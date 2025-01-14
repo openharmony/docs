@@ -22,21 +22,7 @@ Custom components cannot be used as child components. Only the [TabContent](ts-c
 
 ## APIs
 
-Tabs(options?: TabsOptions)
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type        | Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| options | [TabsOptions](#tabsoptions14) | No| Options of the **Tabs** component.|
-
-## TabsOptions<sup>14+</sup>
-
-Provides options of the **Tabs** component, including the position, index of the currently displayed tab, and tab controller.
+Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -312,23 +298,6 @@ Sets the background blur style of the tab bar.
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | Yes  | Background blur style of the tab bar.<br>Default value: **BlurStyle.NONE**|
 
-### barBackgroundBlurStyle<sup>13+</sup>
-
-barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
-
-Defines the blur style to apply between the background and content of a tab bar. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name               | Type                                                        | Mandatory| Description                                                        |
-| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
-| options | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10) | Yes  | Background blur options.  
-
 ### barGridAlign<sup>10+</sup>
 
 barGridAlign(value: BarGridColumnOptions)
@@ -360,38 +329,6 @@ Sets the edge effect used when the boundary of the scrolling area is reached.
 | Name| Type                                         | Mandatory| Description                                        |
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | Yes  | Effect used when the boundary of the scrolling area is reached.<br>Default value: **EdgeEffect.Spring**|
-
-### barBackgroundEffect<sup>13+</sup>
-
-barBackgroundEffect(options: BackgroundEffectOptions)
-
-Sets the background effect of the tab bar, including the blur radius, brightness, saturation, and color.
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name | Type                                                        | Mandatory| Description                                      |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | Yes  | Background effect options, including the blur radius, brightness, saturation, and color.|
-
-### pageFlipMode<sup>14+</sup>
-
-pageFlipMode(value: PageFlipMode)
-
-Sets the mode for flipping pages using the mouse wheel.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                       | Mandatory| Description                                                        |
-| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | Yes  | Mode for flipping pages using the mouse wheel.<br>Default value: **PageFlipMode.CONTINUOUS**|
 
 ## DividerStyle<sup>10+</sup>
 
@@ -484,7 +421,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ### onChange
 
-onChange(event: Callback\<number>)
+onChange(event: (index: number) =&gt; void)
 
 Triggered when a tab is switched.
 
@@ -508,13 +445,13 @@ This event is triggered when any of the following conditions is met:
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                                  |
-| ------ | ------ | ---- | -------------------------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<number> | Yes  | Index of the active tab. The index starts from 0.|
+| Name| Type  | Mandatory| Description                                |
+| ------ | ------ | ---- | ------------------------------------ |
+| index  | number | Yes  | Index of the clicked tab. The index starts from 0.|
 
 ### onTabBarClick<sup>10+</sup>
 
-onTabBarClick(event: Callback\<number>)
+onTabBarClick(event: (index: number) =&gt; void)
 
 Triggered when a tab is clicked.
 
@@ -540,13 +477,15 @@ Triggered when the tab switching animation starts. This callback is not triggere
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsAnimationStartCallback](#ontabsanimationstartcallback14) | Yes  | Callback triggered when the switching animation starts.|
+| Name     | Type                                                  | Mandatory| Description                                                        |
+| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index       | number                                                 | Yes  | Index of the currently displayed element.                                        |
+| targetIndex | number                                                 | Yes  | Index of the target element to switch to.                                    |
+| event       | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Tabs** along the main axis, and the hands-off velocity.|
 
 ### onAnimationEnd<sup>11+</sup>
 
-onAnimationEnd(handler: OnTabsAnimationEndCallback)
+onAnimationEnd(handler: (index: number, event: TabsAnimationEvent) => void)
 
 Triggered when the tab switching animation ends. This event is triggered when the tab switching animation ends, whether it is caused by gesture interruption or not. This callback is not triggered when **animationDuration** is set to **0**, which effectively disables the animation.
 
@@ -556,13 +495,14 @@ Triggered when the tab switching animation ends. This event is triggered when th
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsAnimationEndCallback](#ontabsanimationendcallback14) | Yes  | Callback triggered when the switching animation ends.|
+| Name| Type                                                  | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
+| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
 
 ### onGestureSwipe<sup>11+</sup>
 
-onGestureSwipe(handler: OnTabsGestureSwipeCallback)
+onGestureSwipe(handler: (index: number, event: TabsAnimationEvent) => void)
 
 Triggered on a frame-by-frame basis when the tab is switched by a swipe.
 
@@ -572,13 +512,14 @@ Triggered on a frame-by-frame basis when the tab is switched by a swipe.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsGestureSwipeCallback](#ontabsgestureswipecallback14) | Yes  | Triggered on a frame-by-frame basis when the page is turned by a swipe.|
+| Name| Type                                                  | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
+| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
 
 ### customContentTransition<sup>11+</sup>
 
-customContentTransition(delegate: TabsCustomContentTransitionCallback)
+customContentTransition(delegate: (from: number, to: number) => TabContentAnimatedTransition \| undefined)
 
 Sets the custom tab switching animation.
 
@@ -594,9 +535,10 @@ Instructions:
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| delegate  | [TabsCustomContentTransitionCallback](#tabscustomcontenttransitioncallback14) | Yes  | Callback invoked when the custom tab switching animation starts.|
+| Name| Type  | Mandatory| Description                           |
+| ------ | ------ | ---- | ------------------------------- |
+| from   | number | Yes  | Index of the currently displayed tab before the animation starts.|
+| to     | number | Yes  | Index of the target tab before the animation starts.|
 
 **Return value**
 
@@ -606,7 +548,7 @@ Instructions:
 
 ### onContentWillChange<sup>12+</sup>
 
-onContentWillChange(handler: OnTabsContentWillChangeCallback)
+onContentWillChange(handler: (currentIndex: number, comingIndex: number) => boolean)
 
 Triggered when a new page is about to be displayed.
 
@@ -628,113 +570,16 @@ Specifically, this event is triggered in the following cases:
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback14) | Yes  | Callback invoked when a new page is about to be displayed.|
+| Name      | Type  | Mandatory| Description                                      |
+| ------------ | ------ | ---- | ------------------------------------------ |
+| currentIndex | number | Yes  | Index of the active tab. The index starts from 0.|
+| comingIndex  | number | Yes  | Index of the new tab to be displayed.             |
 
 **Return value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | The value **true** means that the tab can switch to the new page.<br>The value **false** means that the tab cannot switch to the new page and will remain on the current page.|
-
-## Callbacks
-
-### OnTabsAnimationStartCallback<sup>14+</sup>
-
-type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void
-
-Defines the callback triggered when the switching animation starts.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name     | Type                                                  | Mandatory| Description                                                        |
-| ----------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index       | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| targetIndex | number                                                 | Yes  | Index of the target element to switch to.                                    |
-| event       | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Tabs** along the main axis, and the hands-off velocity.|
-
-### OnTabsAnimationEndCallback<sup>14+</sup>
-
-type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent) => void
-
-Defines the callback triggered when the switching animation ends.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                  | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
-
-### OnTabsGestureSwipeCallback<sup>14+</sup>
-
-type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent) => void
-
-Defines the callback invoked on a frame-by-frame basis when the page is turned by a swipe.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                  | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| index  | number                                                 | Yes  | Index of the currently displayed element.                                        |
-| event  | [TabsAnimationEvent](#tabsanimationevent11) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Tabs** along the main axis.|
-
-### TabsCustomContentTransitionCallback<sup>14+</sup>
-
-type TabsCustomContentTransitionCallback = (from: number, to: number) => TabContentAnimatedTransition | undefined
-
-Defines the callback invoked when the custom tab switching animation starts.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                           |
-| ------ | ------ | ---- | ------------------------------- |
-| from   | number | Yes  | Index of the currently displayed tab before the animation starts.|
-| to     | number | Yes  | Index of the target tab before the animation starts.|
-
-### OnTabsContentWillChangeCallback<sup>14+</sup>
-
-type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
-
-Defines the callback invoked when a new page is about to be displayed.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name      | Type  | Mandatory| Description                                      |
-| ------------ | ------ | ---- | ------------------------------------------ |
-| currentIndex | number | Yes  | Index of the active tab. The index starts from 0.|
-| comingIndex  | number | Yes  | Index of the new tab to be displayed.             |
 
 ## TabsAnimationEvent<sup>11+</sup>
 
@@ -1078,11 +923,11 @@ struct TabsDivider1 {
             this.startMargin -= 2
           }
         })
-      Button ('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Bottom Margin').width('100%').margin({ bottom:'12vp'})
         .onClick(() => {
           this.endMargin += 2
         })
-      Button ('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Bottom Margin').width('100%').margin({ bottom:'12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
             this.endMargin -= 2
@@ -1705,6 +1550,8 @@ import { CommonUtil } from '../common/CommonUtil'
 @Entry
 @Component
 struct TabsExample {
+  @State colorArray: [string, string][] =
+    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']]
   @State currentIndex: number = 0
   @State animationDuration: number = 300
   @State indicatorLeftMargin: number = 0
@@ -1712,6 +1559,12 @@ struct TabsExample {
   private tabsWidth: number = 0
   private textInfos: [number, number][] = []
   private isStartAnimateTo: boolean = false
+
+  aboutToAppear():void {
+    for (let i = 0; i < this.colorArray.length; i++) {
+      this.textInfos.push([0, 0]);
+    }
+  }
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1723,6 +1576,9 @@ struct TabsExample {
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
           this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (!this.isStartAnimateTo && this.currentIndex === index && this.tabsWidth > 0) {
+            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+          }
         })
     }.width('100%')
   }
@@ -1730,21 +1586,11 @@ struct TabsExample {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Tabs({ barPosition: BarPosition.Start }) {
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.tabBuilder(0, 'green'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.tabBuilder(1, 'blue'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.tabBuilder(2, 'yellow'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.tabBuilder(3, 'pink'))
+        ForEach(this.colorArray, (item: [string, string], index:number) => {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(item[1])
+          }.tabBar(this.tabBuilder(index, item[0]))
+        })
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
         this.tabsWidth = newValue.width as number
@@ -1790,7 +1636,8 @@ struct TabsExample {
     let nextIndex = index
     if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
+    } else if (index < this.textInfos.length - 1 &&
+        (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
     let indexInfo = this.textInfos[index]

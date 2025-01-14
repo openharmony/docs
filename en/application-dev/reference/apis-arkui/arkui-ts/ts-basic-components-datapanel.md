@@ -250,7 +250,7 @@ struct DataPanelExample {
           DataPanel({ values: [50, 12, 8, 5], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
             Text('75').fontSize(35).fontColor('#182431')
-            Text('Used: 98 GB/128 GB') .fontSize(8.17).lineHeight(11.08).fontWeight(500).opacity(0.6)
+            Text('Used: 98 GB/128 GB').fontSize(8.17).lineHeight(11.08).fontWeight(500).opacity(0.6)
           }
 
           Text('%')

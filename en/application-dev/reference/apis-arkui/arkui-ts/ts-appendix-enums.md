@@ -119,9 +119,50 @@
 | Move    | The mouse cursor moves.  |
 | Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.  |
 
+## ModifierKey<sup>10+</sup>
+
+Enumerates the input method modifier keys.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Description          |
+| ----- | ------------ |
+| CTRL  | Ctrl key on the keyboard. |
+| SHIFT | Shift key on the keyboard.|
+| ALT   | Alt key on the keyboard.  |
+
+## FunctionKey<sup>10+</sup>
+
+Enumerates the input method function keys.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Description          |
+| ---- | ------------ |
+| ESC  | Esc key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| F1   | F1 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F2   | F2 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F3   | F3 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F4   | F4 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F5   | F5 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F6   | F6 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F7   | F7 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F8   | F8 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F9   | F9 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| F10  | F10 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| F11  | F11 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| F12  | F12 key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| TAB<sup>12+</sup>  | Tab key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_UP<sup>12+</sup>   | Up arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_DOWN<sup>12+</sup> | Down arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_LEFT<sup>12+</sup> | Left arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DPAD_RIGHT<sup>12+</sup> | Right arrow key on the keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
 ## Curve
 
-Defines an interpolation curve. For details about the animation, see <!--RP1-->Bezier Curve<!--RP1End-->.
+Enumerates the interpolation curves. For details about the animation, see <!--RP1-->[Bezier Curve](../../../../design/ux-design/animation-attributes.md)<!--RP1End-->.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -731,6 +772,18 @@ Defines an interpolation curve. For details about the animation, see <!--RP1-->B
 | ----------- | ------------------------ |
 | PLACEHOLDER | The content is replaced by a placeholder.|
 
+## ColoringStrategy<sup>10+</sup>
+
+Enumerates the coloring strategies.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Description             |
+| ------ | --------------- |
+| INVERT | The foreground colors are the inverse of the component background colors. This strategy is only applicable when set within the [foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor) attribute.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| AVERAGE<sup>11+</sup> | The shadow colors of the component are the average color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PRIMARY<sup>11+</sup> | The shadow colors of the component are the primary color obtained from the component background shadow area. This strategy is only applicable when set within the [shadow](ts-universal-attributes-image-effect.md#shadow) attribute whose input parameter type is ShadowOptions.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
 ## ClickEffectLevel<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -742,6 +795,19 @@ Defines an interpolation curve. For details about the animation, see <!--RP1-->B
 | LIGHT  | Small area (light)| Spring effect, with stiffness of 410, damping of 38, and initial velocity of 1.| 90% |
 | MIDDLE | Medium area (stable)| Spring effect, with stiffness of 350, damping of 35, and initial velocity of 0.5.| 95% |
 | HEAVY  | Large area (heavy)| Spring effect, with stiffness of 240, damping of 28, and initial velocity of 0.| 95% |
+
+## CheckBoxShape<sup>11+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 11.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name          | Value  | Description    |
+| -------------- | ---- | -------- |
+| CIRCLE         | 0    | Circle.    |
+| ROUNDED_SQUARE | 1    | Rounded square.|
 
 ## FoldStatus<sup>11+</sup>
 
@@ -768,7 +834,7 @@ Defines an interpolation curve. For details about the animation, see <!--RP1-->B
 | INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 
-## Nullable <sup>11+</sup>
+## Nullable<sup>11+</sup>
 
 Nullable\<T> {
 
@@ -795,7 +861,7 @@ The object of this type can be of a custom type or **undefined**.
 | Name | Description                                  |
 | ----- | -------------------------------------- |
 | NORMAL  | Word breaks can occur between any two characters for Chinese, Japanese, and Korean (CJK) text, but can occur only at a space character for non-CJK text (such as English).|
-| BREAK_ALL | Word breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
+| BREAK_ALL | Line breaks can occur between any two characters for non-CJK text. CJK text behavior is the same as for **NORMAL**.|
 | BREAK_WORD | This option has the same effect as **BREAK_ALL** for non-CJK text, except that if it preferentially wraps lines at appropriate characters (for example, spaces) whenever possible. CJK text behavior is the same as for **NORMAL**.|
 
 ## LineBreakStrategy<sup>12+</sup>
@@ -821,6 +887,19 @@ The object of this type can be of a custom type or **undefined**.
 | SELECTABLE_UNFOCUSABLE  | The text is selectable, but not focusable. Setting the **selection**, **bindSelectionMenu**, or **copyOption** attribute does not affect the behavior.|
 | SELECTABLE_FOCUSABLE | The text is selectable and focusable. It obtains focus when touched.|
 | UNSELECTABLE     | The text is not selectable nor focusable. The **selection**, **bindSelectionMenu**, and **copyOption** attributes do not work in this case. |
+
+## AccessibilityHoverType<sup>12+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name        | Value| Description                                                        |
+| ------------ | - | ------------------------------------------------------------ |
+| HOVER_ENTER  | 0 | A finger is pressed.        |
+| HOVER_MOVE   | 1 | The touch moves.        |
+| HOVER_EXIT   | 2 | The finger is lifted.             |
+| HOVER_CANCEL | 3 | The current event is canceled. |
 
 ## EllipsisMode<sup>11+</sup>
 
@@ -859,7 +938,7 @@ The object of this type can be of a custom type or **undefined**.
 
 ## PixelRoundCalcPolicy<sup>11+</sup>
 
-Defines the pixel-level rounding policy for component boundaries.
+Enumerates the pixel rounding policies for component boundaries.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -922,18 +1001,6 @@ Enumerates the types of the providers that can be started by the **EmbeddedCompo
 | ROTATION_180 | 180 degrees.|
 | ROTATION_270 | 270 degrees.|
 
-## BlurStyleActivePolicy<sup>14+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 13.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name    | Description                           |
-| ------ | ----------------------------- |
-| ALWAYS_ACTIVE | The blur effect is always active.|
-| FOLLOWS_WINDOW_ACTIVE_STATE | The blur effect changes according to the window's focus state; it is inactive when the window is not in focus and active when the window is in focus.|
-| ALWAYS_INACTIVE | The blur effect is always inactive.|
-
 ## ScrollSource<sup>12+</sup>
 
 Enumerates the sources of scroll operations.
@@ -978,11 +1045,11 @@ Enumerates the sources of scroll operations.
 | TEXTURE                          | The component is used for EGL/OpenGLES and media data input, where the custom content is combined with the content of the component and then displayed on the screen. 1. Frame synchronization is maintained, which ensures that the GPU textures and other ArkUI drawing commands are batched and sent to the RenderService within the same frame. 2. Animations are unified with built-in components. 3. As the GPU is used for composition, this type may consume more power compared to the surface type that uses the display subsystem (DSS).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | NODE<sup>12+</sup>            | The component is used as a placeholder container for native UI nodes. Page components developed with native APIs can be displayed within this container's area.<br>**NOTE**<br>This type is no longer being evolved. You are advised to use the [ContentSlot](../../../quick-start/arkts-rendering-control-contentslot.md) placeholder component for managing components created with native APIs. **ContentSlot** is superior to the NODE-type **XComponent** in terms of memory and performance.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## HoverModeAreaType<sup>13+</sup>
+## HoverModeAreaType<sup>14+</sup>
 
 Enumerates the types of display areas for the hover mode.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -991,7 +1058,7 @@ Enumerates the types of display areas for the hover mode.
 | TOP_SCREEN | Upper half screen.|
 | BOTTOM_SCREEN | Lower half screen.|
 
-### WidthBreakpoint<sup>13+</sup>
+## WidthBreakpoint<sup>13+</sup>
 
 Enumerates the width breakpoint values corresponding to different window width thresholds. The value is returned through [getWindowWidthBreakpoint](../js-apis-arkui-UIContext.md#getwindowwidthbreakpoint13).
 
@@ -1007,7 +1074,7 @@ Enumerates the width breakpoint values corresponding to different window width t
 | WIDTH_LG | 3   | The window width is greater than or equal to 840 vp and less than 1440 vp.|
 | WIDTH_XL | 4   | The window width is greater than or equal to 1440 vp.|
 
-### HeightBreakpoint<sup>13+</sup>
+## HeightBreakpoint<sup>13+</sup>
 
 Enumerates the height breakpoint values corresponding to different window aspect ratio thresholds. The value is returned through [getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13).
 
@@ -1021,15 +1088,34 @@ Enumerates the height breakpoint values corresponding to different window aspect
 | HEIGHT_MD | 1   | The window aspect ratio is greater than or equal to 0.8 and less than 1.2.|
 | HEIGHT_LG | 2   | The window aspect ratio is greater than or equal to 1.2.|
 
-### PageFlipMode<sup>14+</sup>
+## RenderFit<sup>10+</sup>
 
-Enumerates the modes for flipping pages using the mouse wheel.
+Enumerates the modes in which the final state of the component's content is rendered during its width and height animation process.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Value  | Description                  |
-| -------- | ---- | ---------------------- |
-| CONTINUOUS | 0   | Continuous page flipping mode where multiple pages are turned continuously when the user scrolls the mouse wheel without interruption.|
-| SINGLE | 1   | Single-page flipping mode where the mouse wheel event is ignored until the current page flipping animation is complete.|
+| Name                         | Description                                                                             |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| CENTER                      | The component's content stays at the final size and always aligned with the center of the component.               ![renderfit_center](figures/renderfit_center.png) |
+| TOP                         | The component's content stays at the final size and always aligned with the top center of the component.             ![renderfit_top](figures/renderfit_top.png) |
+| BOTTOM                      | The component's content stays at the final size and always aligned with the bottom center of the component.             ![renderfit_bottom](figures/renderfit_bottom.png) |
+| LEFT                        | The component's content stays at the final size and always aligned with the left of the component.               ![renderfit_left](figures/renderfit_left.png) |
+| RIGHT                       | The component's content stays at the final size and always aligned with the right of the component.              ![renderfit_right](figures/renderfit_right.png) |
+| TOP_LEFT                    | The component's content stays at the final size and always aligned with the upper left corner of the component.              ![renderfit_top_left](figures/renderfit_top_left.png) |
+| TOP_RIGHT                   | The component's content stays at the final size and always aligned with the upper right corner of the component.             ![renderfit_top_right](figures/renderfit_top_right.png) |
+| BOTTOM_LEFT                 | The component's content stays at the final size and always aligned with the lower left corner of the component.              ![renderfit_bottom_left](figures/renderfit_bottom_left.png) |
+| BOTTOM_RIGHT                | The component's content stays at the final size and always aligned with the lower right corner of the component.              ![renderfit_bottom_right](figures/renderfit_bottom_right.png) |
+| RESIZE_FILL                 | The component's content is always resized to fill the component's content box, without considering its aspect ratio in the final state.              ![renderfit_resize_fill](figures/renderfit_resize_fill.png) |
+| RESIZE_CONTAIN              | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. It is always aligned with the center of the component.   ![renderfit_resize_contain](figures/renderfit_resize_contain.png) |
+| RESIZE_CONTAIN_TOP_LEFT     | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is left-aligned with the component. When there is remaining space in the height direction of the component, the content is top-aligned with the component.   ![renderfit_resize_contain_top_left](figures/renderfit_resize_contain_top_left.png) |
+| RESIZE_CONTAIN_BOTTOM_RIGHT | While maintaining its aspect ratio in the final state, the component's content is scaled to fit within the component's content box. When there is remaining space in the width direction of the component, the content is right-aligned with the component. When there is remaining space in the height direction of the component, the content is bottom-aligned with the component.   ![renderfit_resize_contain_bottom_right](figures/renderfit_resize_contain_bottom_right.png) |
+| RESIZE_COVER                | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. It is always aligned with the center of the component, so that its middle part is displayed.   ![renderfit_resize_cover](figures/renderfit_resize_cover.png) |
+| RESIZE_COVER_TOP_LEFT       | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is left-aligned with the component, so that its left part is displayed. When there is remaining space in the height direction, the content is top-aligned with the component, so that its top part is displayed.   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
+| RESIZE_COVER_BOTTOM_RIGHT   | While maintaining its aspect ratio in the final state, the component's content is scaled to cover the component's entire content box. When there is remaining space in the width direction, the content is right-aligned with the component, so that its right part is displayed. When there is remaining space in the height direction, the content is bottom-aligned with the component, so that its bottom part is displayed.   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
+
+> **NOTE**
+>
+> - In the illustrative diagrams, the blue area indicates the content, and the orange area indicates the component content box.
+> - Different render fit modes create different effects during the width and height animation process. Choose the one that best fits your need.
