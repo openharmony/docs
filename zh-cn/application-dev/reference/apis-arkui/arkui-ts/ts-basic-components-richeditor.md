@@ -1756,7 +1756,6 @@ RichEditor span信息。
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onDoubleClick<sup>14+</sup>    | Callback\<[GestureEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [GestureEvent](ts-universal-events-click.md#clickevent对象说明)为用户双击事件。<br/>双击完成时回调事件。<br/>双击时，第二次点击触发回调事件。|
 | onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
@@ -2834,6 +2833,7 @@ struct Index {
         Text(this.textFlag)
           .copyOption(CopyOptions.InApp)
           .fontSize(50)
+          .height(150)
       }
       Divider()
       Column() {
@@ -2891,6 +2891,9 @@ struct Index {
                   onLongPress: () => {
                     this.textFlag = "ImageSpan is onLongPress."
                   }
+                },
+                onHover : (status) => {
+                  this.textFlag = "ImageSpan is onHover :" + status
                 }
               })
           })
