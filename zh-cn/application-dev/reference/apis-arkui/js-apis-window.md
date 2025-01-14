@@ -2233,14 +2233,6 @@ isSystemAvoidAreaEnabled(): boolean
 **示例：**
 
 ```ts
-try {
-  let enable = windowClass.isSystemAvoidAreaEnabled();
-} catch (exception) {
-  console.error(`Failed to obtain whether the system window can obtain avoid area. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
