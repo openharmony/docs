@@ -158,7 +158,7 @@ Failed to get the application group information.
 
 **错误描述**
 
-客户端进程获取应用分组信息失败，改信息在数据库中不存在。
+客户端进程获取应用分组信息失败，该信息在数据库中不存在。
 
 **可能原因**
 
