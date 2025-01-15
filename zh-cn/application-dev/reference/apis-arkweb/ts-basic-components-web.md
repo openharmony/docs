@@ -1815,6 +1815,8 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 该脚本按照字典序执行，非数组本身顺序。
+> - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1889,6 +1891,8 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > **说明：**
 >
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+> - 该脚本按照字典序执行，非数组本身顺序。
+> - 不建议与[runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15)同时使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1921,6 +1925,206 @@ struct Index {
         .domStorageAccess(true)
         .backgroundColor(Color.Grey)
         .javaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnDocumentStart<sup>15+</sup>
+
+runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档开始加载时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
+> - 该脚本按照数组本身顺序执行。
+> - 不建议与[javaScriptOnDocumentStart](#javascriptondocumentstart11)同时使用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明               |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+
+**ets示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .runJavaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
+  ```
+**HTML示例：**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### runJavaScriptOnDocumentEnd<sup>15+</sup>
+
+runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当指定页面或者文档加载完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
+> - 该脚本按照数组本身顺序执行。
+> - 不建议与[javaScriptOnDocumentEnd](#javascriptondocumentend11)同时使用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明               |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnHeadEnd<sup>15+</sup>
+
+runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
+
+将JavaScript脚本注入到Web组件中，当页面DOM树head标签解析完成时，该脚本将在其来源与scriptRules匹配的任何页面中执行。
+
+> **说明：**
+>
+> - 该脚本按照数组本身顺序执行。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填   | 说明               |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | 是    | 需要注入的ScriptItem数组 |
+
+**示例：**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnHeadEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnHeadEnd(this.scripts)
         .width('100%')
         .height('100%')
     }
