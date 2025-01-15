@@ -42,13 +42,17 @@
    > - 需要使用支持的播放格式与协议。
    > 
 
-4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
+4. 设置窗口：获取并设置属性SurfaceID，用于设置显示画面。
 
-5. 音频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
+   应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-6. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+5. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置缩放模式、音量等。
 
-7. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
+6. 视频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
+
+7. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+
+8. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
 ## 注意事项
 
@@ -166,9 +170,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
+  private surfaceID: string = ''; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
   public audioTrackList: number[] = [];
   public videoTrackList: number[] = [];
+
+  constructor(surfaceID: string) {
+    this.surfaceID = surfaceID;
+  }
+
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // startRenderFrame首帧渲染回调函数
