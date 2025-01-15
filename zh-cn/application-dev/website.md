@@ -1510,6 +1510,7 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
+      - [取消通知](notification/notification-cancel.md)
       <!--Del-->
       - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
       <!--DelEnd-->
@@ -3258,6 +3259,7 @@
             - [@ohos.update (升级)(系统接口)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
           - 数据文件处理<!--data-file-processing-arkts-->
+            - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](reference/apis-basic-services-kit/js-apis-app-ability-PrintExtensionAbility.md)
             - [@ohos.pasteboard (剪贴板)](reference/apis-basic-services-kit/js-apis-pasteboard.md)
             - [@ohos.print (打印)](reference/apis-basic-services-kit/js-apis-print.md)
             - [@ohos.request (上传下载)](reference/apis-basic-services-kit/js-apis-request.md)
@@ -3982,6 +3984,8 @@
           - [drawing_text_blob.h](reference/apis-arkgraphics2d/drawing__text__blob_8h.md)
           - [drawing_text_declaration.h](reference/apis-arkgraphics2d/drawing__text__declaration_8h.md)
           - [drawing_text_font_descriptor.h](reference/apis-arkgraphics2d/drawing__text__font__descriptor_8h.md)
+          - [drawing_text_line.h](reference/apis-arkgraphics2d/drawing__text__line_8h.md)
+          - [drawing_text_run.h](reference/apis-arkgraphics2d/drawing__text__run_8h.md)
           - [drawing_text_typography.h](reference/apis-arkgraphics2d/drawing__text__typography_8h.md)
           - [drawing_typeface.h](reference/apis-arkgraphics2d/drawing__typeface_8h.md)
           - [drawing_types.h](reference/apis-arkgraphics2d/drawing__types_8h.md)
