@@ -100,7 +100,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None，复制、剪切、搜索、帮写功能不生效。
+设置copyOptions为CopyOptions.None，复制、剪切、翻译、搜索、帮写功能不生效。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
