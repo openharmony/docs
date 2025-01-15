@@ -1059,7 +1059,6 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 | activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。该参数应为整数。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。                                                       |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。                                                     |
-| edid<sup>16+</sup> | ArrayBuffer                                        | 是   | 否   | 屏幕edid，可选参数。                                                    |
 
 ### setOrientation
 
