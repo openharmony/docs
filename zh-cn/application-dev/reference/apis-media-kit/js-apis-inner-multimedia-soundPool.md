@@ -1517,8 +1517,6 @@ on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
-**起始版本：** 16
-
 **参数：**
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
@@ -1559,8 +1557,6 @@ off(type: 'playFinishedWithStreamId'): void
 取消监听音频池资源播放完成。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
-
-**起始版本：** 16
 
 **参数：**
 
