@@ -267,13 +267,11 @@ onAccountAdded(accountId: number): void;
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
-
-
 **参数：**
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| accountId | number | 是    | 新增用户ID。 |
+| accountId | number | 是    | 新增的用户ID。 |
 
 **示例：**
 
@@ -292,8 +290,6 @@ onAccountSwitched(accountId: number): void
 用户账号切换事件回调，回调中包含切换后的账号ID。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
-
-
 
 **参数：**
 
@@ -318,8 +314,6 @@ onAccountRemoved(accountId: number): void
 用户账号删除事件回调，回调中包含被删除的账号ID。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
-
-
 
 **参数：**
 
