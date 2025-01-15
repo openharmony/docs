@@ -650,9 +650,9 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 | 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 是   | 自定义光标。最大限制为256 x 256像素。 |
-| focusX  | number | 否   | 否   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
-| focusY  | number | 否   | 否   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。默认为0。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最大限制为256 x 256像素。 |
+| focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
+| focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。默认为0。 |
 
 ## CursorConfig<sup>14+</sup>
 
@@ -662,7 +662,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 
 | 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| followSystem  | boolean  | 否   | 是   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小。 |
+| followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小。 |
 
 ## pointer.setCustomCursor<sup>14+</sup>
 

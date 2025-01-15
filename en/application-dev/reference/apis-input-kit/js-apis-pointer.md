@@ -650,9 +650,9 @@ Defines a custom cursor.
 
 | Name   | Type    | Read Only  | Optional  | Description  |
 | ------ | ------- | ---------- | --------- | ------------ |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Yes   | Custom cursor. The size limit is 256 x 256.|
-| focusX  | number | No   | No   | Horizontal coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
-| focusY  | number | No   | No   | Vertical coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No   | No   | Custom cursor. The size limit is 256 x 256.|
+| focusX  | number | No   | Yes   | Horizontal coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
+| focusY  | number | No   | Yes   | Vertical coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
 
 ## CursorConfig<sup>14+</sup>
 Specifies custom cursor config.
@@ -661,7 +661,7 @@ Specifies custom cursor config.
 
 | Name   | Type    | Read Only  | Optional  | Description  |
 | ------ | ------- | ---------- | --------- | ------------ |
-| followSystem  | boolean  | No  | Yes   | Whether to adjust the cursor size based on the system settings.|
+| followSystem  | boolean  | No  | No   | Whether to adjust the cursor size based on the system settings.|
 
 
 ## pointer.setCustomCursor<sup>14+</sup>
