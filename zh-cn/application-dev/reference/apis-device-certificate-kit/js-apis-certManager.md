@@ -147,7 +147,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | 否  | 否   | 否签名、验签的初始化操作句柄。 |
+| handle         | Uint8Array        | 否  | 否   | 签名、验签的初始化操作句柄。 |
 
 ## CMErrorCode
 
