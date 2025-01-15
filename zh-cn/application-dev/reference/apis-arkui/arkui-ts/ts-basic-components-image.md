@@ -293,6 +293,26 @@ fillColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | -------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 |
 
+### fillColor<sup>16+</sup>
+
+fillColor(value: ResourceColor|ColorContent)
+
+设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent16)类型。
+
+当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明           |
+| ------ | ------------------------------------------ | ---- | -------------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent16) | 是   | 设置填充颜色。 |
+
 ### autoResize
 
 autoResize(value: boolean)
@@ -653,6 +673,18 @@ type DrawingLattice = Lattice
 | 类型     | 说明       |
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
+
+## ColorContent<sup>16+</sup>
+
+指定颜色填充内容。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型       | 只读 | 必填 | 说明           |
+| ------ | --------- | ---- | --- | ------------- |
+| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
