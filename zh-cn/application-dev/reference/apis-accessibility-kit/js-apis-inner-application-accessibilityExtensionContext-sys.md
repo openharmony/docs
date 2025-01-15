@@ -296,3 +296,47 @@ axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) =>
   console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+### getDefaultFocusedElementIds<sup>16+</sup>
+
+getDefaultFocusedElementIds(windowId: number): Promise<Array&lt;number&gt;>;
+
+提供查询应用自定义默认焦点的能力。
+
+**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| windowId | number | 是 | 表示查询的窗口id。 |
+
+**返回值：**
+| 类型                                  | 说明                     |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;number&gt;> | Promise对象，返回当前窗口下的自定义默认焦点列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                                     |
+| ------- | ---------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**示例：**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+
+axContext.getDefaultFocusedElementIds(windowId).then((data: number[]) => {
+  console.log(`Succeeded in get default focus, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to get default focus, Code is ${err.code}, message is ${err.message}`);
+});
+```
