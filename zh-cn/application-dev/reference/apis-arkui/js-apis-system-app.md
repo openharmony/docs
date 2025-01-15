@@ -18,7 +18,7 @@ import app, { AppResponse } from '@system.app'
 
 static getInfo(): AppResponse
 
-获取当前应用配置文件中声明的信息。
+获取当前应用配置文件中声明的信息。在Stage模型下接口返回值为null。
 
 从API Version9开始，推荐使用[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)。
 
@@ -48,7 +48,7 @@ export default class Info {
 
 static terminate(): void
 
-退出当前Ability。
+退出当前Ability。在Stage模型下接口功能不生效。
 
 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](../apis-ability-kit/js-apis-ability-featureAbility.md)。
 
