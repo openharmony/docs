@@ -11,6 +11,14 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
+## 权限列表
+
+| 权限                                       | 权限等级     | 描述            |
+| ------------------------------------------ | ------------ | ------------------|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
+
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
+
 ## 枚举
 
 ### BundleFlag
