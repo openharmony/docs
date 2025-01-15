@@ -14,11 +14,11 @@ OpenHarmony SDK 升级助手，用于帮助开发者快速解决OpenHarmony应�
 
 ![suap-settings](figures/suap-settings.png)
 
-2.在Settings弹出框界面，选中"Plugins"进入IDE插件模块
+2.在Settings弹出框界面，选中"Plugins"进入IDE插件模块。
 
-3.点击"Marketplace"选项，在下方搜索框中输入"OpenHarmony SDK Upgrade Assistant"
+3.点击"Marketplace"选项，在下方搜索框中输入"OpenHarmony SDK Upgrade Assistant"。
 
-4.点击搜索到的插件右方"Install"按钮进行下载安装，安装完成之后点击"Apply"按钮，重启IDE即安装成功（注意：插件安装完成后需要重启IDE）
+4.点击搜索到的插件右方"Install"按钮进行下载安装，安装完成之后点击"Apply"按钮，重启IDE即安装成功（注意：插件安装完成后需要重启IDE）。
 
 ![suap-install](figures/suap-install.png)
 
