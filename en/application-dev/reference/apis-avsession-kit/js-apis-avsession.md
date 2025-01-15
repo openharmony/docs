@@ -2199,7 +2199,7 @@ Subscribes to output device change events. After the application integrates the 
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the output device changes.|
-| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback function, where the **device** parameter specifies the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
@@ -2725,7 +2725,7 @@ Unsubscribes from playback device change events.
 | Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.    |
-| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback function, where the **device** parameter specifies the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
 
 **Error codes**
 
@@ -3967,7 +3967,7 @@ Unsubscribes from playback state change events. This API is called by the contro
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
-| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for unsubscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback function, where the **state** parameter indicates the new playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
 
@@ -4192,7 +4192,7 @@ Subscribes to playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'requestPlay'** is triggered when a playback request is received.|
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback used for subscription. **AVQueueItem** is the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
 
 **Error codes**
 
@@ -4224,7 +4224,7 @@ Unsubscribes from playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
 | type     | string                                                      | Yes  | Event type, which is **'requestPlay'** in this case.   |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | No  | Callback used for unsubscription. **AVQueueItem** is the media asset that is being played. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | No  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
@@ -4578,29 +4578,6 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 aVCastController.off('keyRequest');
 ```
-## KeyRequestCallback<sup>12+</sup>
-type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
-
-Describes the callback invoked for the media key request event.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.Multimedia.AVSession.AVCast
-
-**Parameters**
-
-| Name| Type  | Mandatory| Description                                     |
-| ------ | ------ | ---- | ----------------------------------------- |
-| assetId     | string  | Yes  | Media asset ID.|
-| requestData |  Uint8Array  | Yes  | Data carried in the media key request.                           |
-
-**Example**
-<!--code_no_check-->
-```ts
-let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
-  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
-}
-```
 
 ### on('castControlGenericError')<sup>13+</sup>
 
@@ -4623,7 +4600,7 @@ Subscribes to generic error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6611000  | The error code for cast control is unspecified.      |
 | 6611001  | An unspecified error occurs in the remote player.   |
 | 6611002  | The playback position falls behind the live window.     |
@@ -4668,7 +4645,7 @@ Unsubscribes from generic error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4697,7 +4674,7 @@ Subscribes to input/output error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6612000  | An unspecified input/output error occurs.     |
 | 6612001  | Network connection failure.   |
 | 6612002  | Network timeout.     |
@@ -4745,7 +4722,7 @@ Unsubscribes from input/output error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4774,7 +4751,7 @@ Subscribes to parsing error events during cast control.
 
 | ID | Error Message             |
 | -------- | --------------------- |
-| 401      |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401      |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6613000  | Unspecified error related to content parsing.     |
 | 6613001  | Parsing error associated with media container format bit streams.   |
 | 6613002  | Parsing error associated with the media manifest.     |
@@ -4810,7 +4787,7 @@ Unsubscribes from parsing error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4839,7 +4816,7 @@ Subscribes to decoding error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6614000  | Unspecified decoding error.     |
 | 6614001  | Decoder initialization failed.   |
 | 6614002  | Decoder query failed.     |
@@ -4875,7 +4852,7 @@ Unsubscribes from decoding error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
@@ -4906,7 +4883,7 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6615000  | Unspecified errors related to the audio renderer.     |
 | 6615001  | Initializing the audio renderer failed.   |
 | 6615002  | The audio renderer fails to write data.     |
@@ -4939,7 +4916,7 @@ Unsubscribes from audio renderer error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 
 **Example**
 
@@ -4968,10 +4945,10 @@ Subscribes to DRM error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 6616000  | Unspecified error related to DRM.     |
 | 6616001  | The chosen DRM protection scheme is not supported by the device.  |
-| 6615002  | Device provisioning failed.    |
+| 6616002  | Device provisioning failed.    |
 | 6616003  | The DRM-protected content to play is incompatible.     |
 | 6616004  | Failed to obtain a license.   |
 | 6616005  | The operation is disallowed by the license policy.     |
@@ -5009,12 +4986,36 @@ Unsubscribes from DRM error events during cast control.
 
 | ID| Error Message             |
 | -------- | --------------------- |
-| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
 aVCastController.off('castControlDrmError');
+```
+
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+Describes the callback invoked for the media key request event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | Yes  | Media asset ID.|
+| requestData |  Uint8Array  | Yes  | Data carried in the media key request.                           |
+
+**Example**
+<!--code_no_check-->
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
+}
 ```
 
 ## CastDisplayState<sup>12+</sup>
@@ -5248,10 +5249,10 @@ Enumerates the output device types.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| DEVICE_TYPE_LOCAL      | 0    | Local device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
-| DEVICE_TYPE_BLUETOOTH      | 10   | Bluetooth device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
-| DEVICE_TYPE_TV      | 2    | TV.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
-| DEVICE_TYPE_SMART_SPEAKER      | 3   | Speaker.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| DEVICE_TYPE_LOCAL      | 0    | Local device.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core|
+| DEVICE_TYPE_BLUETOOTH      | 10   | Bluetooth device.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core|
+| DEVICE_TYPE_TV      | 2    | TV.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| DEVICE_TYPE_SMART_SPEAKER      | 3   | Speaker.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 
 ## DeviceInfo<sup>10+</sup>
 
@@ -5259,14 +5260,14 @@ Describes the information related to the output device.
 
 | Name      | Type          | Mandatory| Description                  |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | Yes  | Cast category.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| deviceId   | string | Yes  | ID of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| castCategory   | AVCastCategory        | Yes  | Cast category.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| deviceId   | string | Yes  | ID of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | deviceName | string | Yes  | Name of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | deviceType | DeviceType | Yes  | Type of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| supportedProtocols<sup>11+</sup> | number | No  | Protocol supported by the output device. The default value is **TYPE_LOCAL**. For details, see [ProtocolType](#protocoltype11).<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | No  | DRM capability supported by the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| manufacturer<sup>13+</sup> | string | No  | Manufacturer of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
-| modelName<sup>13+</sup> | string | No  | Model name of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| supportedProtocols<sup>11+</sup> | number | No  | Protocol supported by the output device. The default value is **TYPE_LOCAL**. For details, see [ProtocolType](#protocoltype11).<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | No  | DRM capability supported by the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| manufacturer<sup>13+</sup> | string | No  | Manufacturer of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| modelName<sup>13+</sup> | string | No  | Model name of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
@@ -6741,7 +6742,7 @@ Unsubscribes from playback state change events. This API is called by the contro
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
-| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for unsubscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback function, where the **state** parameter indicates the new playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
 
@@ -6848,7 +6849,7 @@ Subscribes to call state change events.
 | --------| -----------|-----|------------|
 | type     | string    | Yes  | Event type. The event **'callStateChange'** is triggered when the call state changes.|
 | filter   | Array<keyof&nbsp;[AVCallState](#avcallstate11)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any call state field change will trigger the event, and **Array<keyof&nbsp;[AVCallState](#avcallstate11)\>** indicates that only changes to the listed call state field will trigger the event.|
-| callback | Callback<[AVCallState](#avcallstate11)\>       | Yes  | Callback used for subscription. The **callstate** parameter in the callback indicates the changed call state.|
+| callback | Callback<[AVCallState](#avcallstate11)\>       | Yes  | Callback function, where the **callstate** parameter indicates the new call state.|
 
 **Error codes**
 
@@ -6887,7 +6888,7 @@ Unsubscribes from call state change events.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'callStateChange'** in this case.   |
-| callback | Callback<[AVCallState](#avcallstate11)\>           | No  | Callback used for unsubscription. The **callstate** parameter in the callback indicates the changed call metadata.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.     |
+| callback | Callback<[AVCallState](#avcallstate11)\>           | No  | Callback function, where the **callstate** parameter indicates the new call metadata.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.     |
 
 **Error codes**
 
@@ -7160,7 +7161,7 @@ Unsubscribes from output device change events. This API is called by the control
 | Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.     |
-| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback function, where the **device** parameter specifies the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
@@ -7960,6 +7961,195 @@ Describes the command that can be sent to the session.
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVControlCommandType](#avcontrolcommandtype10)     | Yes  | Command.          |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | No  | Parameters carried in the command.|
+
+
+## AVCastPickerOptions<sup>14+</sup>
+
+Describes the properties related to the semi-modal window that is started for casting purposes.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name           | Type                     | Mandatory| Description                                                                 |
+| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
+| sessionType         | [AVSessionType](#avsessiontype10)  | No  | Session type. The default value is **'audio'**.<br>Currently, only the **'audio'** and **'video'** session types are supported. If **'voice_call'** and **'video_call'** are passed, they are treated as the default value **'audio'**.           |
+
+## AVCastPickerHelper<sup>14+</sup>
+
+Implements a semi-modal object used for casting. It displays a semi-modal window for users to select a target cast device. Before using the APIs of this class, you need to create an **AVCastPickerHelper** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+### constructor<sup>14+</sup>
+
+constructor(context: Context)
+
+Creates an **AVCastPickerHelper** instance. For details about how to obtain the context, see [getContext](../apis-arkui/js-apis-getContext.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context | Yes  | Application context. (Only [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) is supported.)|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context;
+            let avCastPicker = new avSession.AVCastPickerHelper(context);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### select<sup>14+</sup>
+
+select(options?: AVCastPickerOptions): Promise\<void>
+
+Starts the AVCastPicker dialog box, where users can select the target cast device. This API uses a promise to return the result. You can pass in **AVCastPickerOptions** to specify the properties for selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [AVCastPickerOptions](#avcastpickeroptions14) | No  | AVCastPicker selection options. If this parameter is not specified, the default value of **AVCastPickerOptions** is used.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function avCastPicker(context: common.Context) {
+  let avCastPickerOptions : avSession.AVCastPickerOptions = {
+    sessionType : 'video',
+  }
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.select(avCastPickerOptions).then(() => {
+    console.info('select successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`AVCastPicker.select failed with err: ${err.code}, ${err.message}`);
+  });
+}
+```
+### on('pickerStateChange')<sup>14+</sup>
+
+on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
+
+Subscribes to semi-modal window change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type      | Mandatory| Description     |
+| --------| -----------|-----|------------|
+| type     | string    | Yes  | Event type. The event **'pickerStateChange'** is triggered when the semi-modal window changes.|
+| callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)>       | Yes  | Callback function, where the **state** parameter indicates the new state of the semi-modal window.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { AVCastPickerState } from '@kit.AVSessionKit';
+
+avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+  console.info(`picker state change : ${state}`);
+});
+```
+
+### off('pickerStateChange')<sup>14+</sup>
+
+off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
+
+Unsubscribes from semi-modal window change events. After the unsubscription, the event callback is not triggered.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description                                                   |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
+| type     | string                                           | Yes  | Event type, which is **'pickerStateChange'** in this case.        |
+| callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)> | No  | Callback function, where the **state** parameter indicates the new state of the semi-modal window.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                          |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+avCastPicker.off('pickerStateChange');
+```
 
 ## AVSessionErrorCode<sup>10+</sup>
 
