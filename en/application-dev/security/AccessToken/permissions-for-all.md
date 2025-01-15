@@ -355,7 +355,7 @@ Allows an application to support persistent access to file URIs.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: system_basic for API version 11; normal for API version 12 and later
 
 **Authorization mode**: system_grant
 
@@ -393,7 +393,9 @@ Allows an application to set pinned windows.
 
 ### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
-After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for Just-in-time (JIT) compilation, which increases the runtime execution efficiency.
+Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
+
+After the application has this permission, the system JS engine can request anonymous executable memory with MAP_FORT for just-in-time (JIT) compilation, which increase the runtime execution efficiency.
 
 **Permission level**: system_basic
 
