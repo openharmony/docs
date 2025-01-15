@@ -677,8 +677,8 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 参数名    | 类型    | 必填    | 说明    |
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| cursor  | [CustomCursor](js-apis-pointer.md#CustomCursor) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) | 是    | 自定义光标配置。 |
+| cursor  | [CustomCursor](js-apis-pointer.md#CustomCursor14) | 是    | 自定义光标资源。 |
+| config  | [CursorConfig](js-apis-pointer.md#CursorConfig14) | 是    | 自定义光标配置。 |
 
 **返回值**：
 
