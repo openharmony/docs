@@ -227,7 +227,7 @@ ArkUI状态管理V1提供了多种装饰器，通过使用这些装饰器，状�
 | @Reusable     |  暂未提供  | 组件复用。包括：[aboutToReuse](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoreuse10)、[aboutToRecycle](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttorecycle10)。 |
 | $$            | !!         | 双向绑定。V2建议使用!!实现双向绑定。 |
 | @CustomDialog | [openCustomDialog](../../application-dev/reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12)接口   | 自定义弹窗。V2建议使用openCustomDialog实现自定义弹窗功能。 |
-| withTheme     | 暂未提供   | 主题。用于设置应用局部页面自定义主题风格。包括：[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)。 |
+| withTheme     | withTheme   | 主题。用于设置应用局部页面自定义主题风格。包括：[onWillApplyTheme](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onwillapplytheme12)。<br>从API version 16开始，该接口支持在状态管理V2组件中使用。 |
 | 高级组件     | 暂未提供   | 高级组件。例如：[DownloadFileButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)、[ProgressButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ProgressButton.md)、[SegmentButton](../../application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SegmentButton.md) |
 
 有关V1向V2的迁移可参考[迁移指导](./arkts-v1-v2-migration.md)，有关V1与V2的混用可参考[混用文档](./arkts-custom-component-mixed-scenarios.md)。
