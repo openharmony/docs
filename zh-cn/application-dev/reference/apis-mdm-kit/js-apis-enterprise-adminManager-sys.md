@@ -1207,7 +1207,7 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 
 startAdminProvision(admin: Want, type: AdminType, context: common.Context, parameters: Record\<string, string>): void;
 
-设备管理应用拉起激活BYOD管理员页面进行激活，使用同步方法调用。
+设备管理应用拉起BYOD管理员激活页面进行激活。
 
 **需要权限：** ohos.permission.START_PROVISIONING_MESSAGE
 
@@ -1223,12 +1223,12 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | type  | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                   |
-| context  | [common.Context] | 是 | 管理应用的上下文信息。 |
-| parameters  | [Record\<string, string>] | 是 | 自定义参数信息,必须key值：activateId |
+| context  | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是 | 管理应用的上下文信息。 |
+| parameters  | Record\<string, string> | 是 | 自定义参数信息,必选参数的名称："activateId" |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
@@ -1238,8 +1238,8 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 **示例：**
 
 ```ts
-import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { common, Want } from '@kit.AbilityKit';
+import adminManager from '@ohos.enterprise.adminManager';
 let wantTemp: Want = {
   bundleName: 'bundleName',
   abilityName: 'abilityName',
@@ -1250,11 +1250,11 @@ let recordParameters: Record<string, string> = {
   "customizedInfo": "customizedInfo testValue"
 }
 try {
-  Logger.info('context:' + JSON.stringify(context));
+  console.info('context:' + JSON.stringify(context));
   adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
-  msg = 'startAdminProvision::success'
+  console.info('startAdminProvision::success');
 } catch (error) {
-  msg = 'startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message;
+  console.info('startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
 }
 ```
 
@@ -1275,11 +1275,11 @@ getadmins(): Promise&lt;Array&lt;Want&gt;&gt;
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise&lt;Array&lt;Want&gt;&gt; | 包含有所有已激活的设备管理应用的Promise对象。 |
+| Promise&lt;Array&lt;Want&gt;&gt; | 包含所有已激活的设备管理应用的Promise对象。 |
 
 **错误码**：
 
-以下的错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                               |
 | ------- | ----------------------------------------------------- |
