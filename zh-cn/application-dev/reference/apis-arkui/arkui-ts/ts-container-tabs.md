@@ -1383,18 +1383,19 @@ struct TabsCustomAnimationExample {
 @Entry
 @Component
 struct TabsExample {
+  @State selectedIndex: number = 2
   @State currentIndex: number = 2
   private controller: TabsController = new TabsController()
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
-      Text(title).fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+      Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+      Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column(){
             Text('首页的内容')
@@ -1426,6 +1427,7 @@ struct TabsExample {
       .animationDuration(0)
       .onChange((index: number) => {
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .width(360)
       .height(600)
