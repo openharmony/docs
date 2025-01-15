@@ -6662,7 +6662,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 ### setDecorButtonStyle<sup>14+</sup>
 
-setDecorButtonStyle(decorStyle: DecorButtonStyle): void
+setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
 设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
@@ -6674,7 +6674,7 @@ setDecorButtonStyle(decorStyle: DecorButtonStyle): void
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
+| dectorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
 
 **错误码：**
 
@@ -6977,6 +6977,8 @@ setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVi
 
 此接口仅支持2in1设备。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -7038,6 +7040,8 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -11094,7 +11098,7 @@ removeStartingWindow(): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager serivce works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -11119,7 +11123,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowRectAutoSave<sup>14+</sup>
 
-setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
+setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
@@ -11150,7 +11154,7 @@ setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enable | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
 
 
 **返回值：**
