@@ -732,7 +732,8 @@
               - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
             - 卡片数据交互<!--arkts-ui-widget-interaction-->
               - [卡片内容更新](form/arkts-ui-widget-interaction-overview.md)
-              - [卡片定时刷新和定点刷新](form/arkts-ui-widget-update-by-time.md)
+              - [卡片定时刷新](form/arkts-ui-widget-update-by-time.md)
+              - [卡片定点刷新](form/arkts-ui-widget-update-by-time-point.md)
               <!--Del-->
               - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
               <!--DelEnd-->
