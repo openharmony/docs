@@ -369,6 +369,9 @@
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
+    <!--Del-->
+    - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
+    <!--DelEnd-->
   - 公共定义
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
