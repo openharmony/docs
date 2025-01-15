@@ -648,7 +648,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 自定义光标资源。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
-| 名称     | 类型     | 只读     | 必填     | 说明     |
+| 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 是   | 自定义光标。最大限制为256 x 256像素。 |
 | focusX  | number | 否   | 否   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
@@ -656,11 +656,11 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 
 ## CursorConfig<sup>14+</sup>
 
-指定自定义光标配置。
+自定义光标配置。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
-| 名称     | 类型     | 只读     | 必填     | 说明     |
+| 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
 | followSystem  | boolean  | 否   | 是   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小。 |
 
@@ -668,7 +668,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 
 setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
 
-设置自定义光标样式，使用Promise异步方式返回结果。
+设置自定义光标样式，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -678,7 +678,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
 | cursor  | [CustomCursor](js-apis-pointer.md#CustomCursor) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) | 是    | 指定自定义光标配置。 |
+| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) | 是    | 自定义光标配置。 |
 
 **返回值**：
 
