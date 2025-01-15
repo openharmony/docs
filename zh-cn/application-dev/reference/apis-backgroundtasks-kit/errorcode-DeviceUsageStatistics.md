@@ -12,7 +12,7 @@ Memory operation failed.
 
 **错误描述**
 
-内存操作失败
+内存操作失败。
 
 **可能原因**
 
@@ -88,7 +88,7 @@ The application is not installed.
 
 **可能原因**
 
-应用未安装或者已经卸载
+应用未安装或者已经卸载。
 
 **处理步骤**
 
@@ -163,7 +163,7 @@ Failed to get the application group information.
 **可能原因**
 
 1. 应用输入bundleName错误。
-2. 应用可能没有安装或者已经卸载
+2. 应用可能没有安装或者已经卸载。
 
 **处理步骤**
 
