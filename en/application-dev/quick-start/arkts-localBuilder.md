@@ -1,4 +1,4 @@
-# \@LocalBuilder decorator: Maintaining the Parent-Child Relationship Between Component and State Management
+# \@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management
 
 When use @Builder to pass data, the parent-child relationship of components is considered. After **bind(this)** is used, the parent-child relationship of components is inconsistent with that of state management. As a result, the @LocalBuilder decorator is used to fix the inconsistency. @LocalBuilder has the same features as local @Builder and provides a better determination of the parent-child relationship of components and state management.
 
