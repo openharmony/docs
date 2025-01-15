@@ -94,7 +94,7 @@ slider组件通过color、selected-color、block-color样式分别为滑动条�
 >
 > mode属性为滑动条样式，可选值为：
 >
-> - outset：滑块在滑杆上；
+> - outset：滑块在滑杆上。
 >
 > - inset：滑块在滑杆内。
 
