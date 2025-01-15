@@ -26,7 +26,7 @@ UIAbilityContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [UIAbilityContext](./js-apis-inner-application-uiAbilityContext.md) | UIAbilityContext二级模块。 |
+| [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | UIAbilityContext二级模块。 |
 
 ## AbilityStageContext
 
@@ -42,7 +42,7 @@ AbilityStageContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [AbilityStageContext](./js-apis-inner-application-abilityStageContext.md) | AbilityStageContext二级模块。 |
+| [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | AbilityStageContext二级模块。 |
 
 ## ApplicationContext
 
@@ -58,7 +58,7 @@ ApplicationContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ApplicationContext](./js-apis-inner-application-applicationContext.md) | ApplicationContext二级模块。 |
+| [ApplicationContext](js-apis-inner-application-applicationContext.md) | ApplicationContext二级模块。 |
 
 ## BaseContext
 
@@ -74,7 +74,7 @@ BaseContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [BaseContext](./js-apis-inner-application-baseContext.md) | BaseContext二级模块。 |
+| [BaseContext](js-apis-inner-application-baseContext.md) | BaseContext二级模块。 |
 
 ## Context
 
@@ -90,7 +90,7 @@ Context二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [Context](./js-apis-inner-application-context.md) | Context二级模块。 |
+| [Context](js-apis-inner-application-context.md) | Context二级模块。 |
 
 ## ExtensionContext
 
@@ -106,7 +106,7 @@ ExtensionContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ExtensionContext](./js-apis-inner-application-extensionContext.md) | ExtensionContext二级模块。 |
+| [ExtensionContext](js-apis-inner-application-extensionContext.md) | ExtensionContext二级模块。 |
 
 ## FormExtensionContext
 
@@ -152,7 +152,7 @@ EventHub二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [EventHub](./js-apis-inner-application-eventHub.md) | EventHub二级模块。 |
+| [EventHub](js-apis-inner-application-eventHub.md) | EventHub二级模块。 |
 
 ## PacMap
 
@@ -166,7 +166,7 @@ PacMap二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [PacMap](./js-apis-inner-ability-dataAbilityHelper.md#pacmap) | PacMap二级模块。 |
+| [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | PacMap二级模块。 |
 
 ## AbilityResult
 
@@ -182,7 +182,7 @@ AbilityResult二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [AbilityResult](./js-apis-inner-ability-abilityResult.md) | AbilityResult二级模块。 |
+| [AbilityResult](js-apis-inner-ability-abilityResult.md) | AbilityResult二级模块。 |
 
 ## AbilityStartCallback<sup>11+<sup>
 
@@ -198,7 +198,7 @@ AbilityStartCallback二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [AbilityStartCallback](./js-apis-inner-application-abilityStartCallback.md) | AbilityStartCallback二级模块。 |
+| [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | AbilityStartCallback二级模块。 |
 
 ## ConnectOptions
 
@@ -212,7 +212,7 @@ ConnectOptions二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ConnectOptions](./js-apis-inner-ability-connectOptions.md) | ConnectOptions二级模块。 |
+| [ConnectOptions](js-apis-inner-ability-connectOptions.md) | ConnectOptions二级模块。 |
 
 ## UIExtensionContext<sup>10+</sup>
 
@@ -226,7 +226,7 @@ UIExtensionContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [UIExtensionContext](./js-apis-inner-application-uiExtensionContext.md) | UIExtensionContext二级模块。 |
+| [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | UIExtensionContext二级模块。 |
 
 ## EmbeddableUIAbilityContext<sup>12+<sup>
 
@@ -242,7 +242,7 @@ EmbeddableUIAbilityContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [EmbeddableUIAbilityContext](./js-apis-inner-application-EmbeddableUIAbilityContext.md) | EmbeddableUIAbilityContext二级模块。 |
+| [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | EmbeddableUIAbilityContext二级模块。 |
 
 ## PhotoEditorExtensionContext<sup>12+<sup>
 
@@ -256,7 +256,7 @@ PhotoEditorExtensionContext二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [PhotoEditorExtensionContext](./js-apis-app-ability-photoEditorExtensionContext.md) | PhotoEditorExtensionContext二级模块。 |
+| [PhotoEditorExtensionContext](js-apis-app-ability-photoEditorExtensionContext.md) | PhotoEditorExtensionContext二级模块。 |
 
 ## UIServiceProxy<sup>14+<sup>
 
@@ -272,7 +272,7 @@ UIServiceProxy二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [UIServiceProxy](./js-apis-inner-application-uiserviceproxy.md) | UIServiceProxy二级模块。 |
+| [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md) | UIServiceProxy二级模块。 |
 
 ## UIServiceExtensionConnectCallback<sup>14+<sup>
 
@@ -288,7 +288,7 @@ UIServiceExtensionConnectCallback二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [UIServiceExtensionConnectCallback](./js-apis-inner-application-uiServiceExtensionconnectcallback.md) | UIServiceExtensionConnectCallback二级模块。 |
+| [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | UIServiceExtensionConnectCallback二级模块。 |
 
 
 **示例：**

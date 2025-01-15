@@ -24,7 +24,7 @@ import { AbilityStage } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context  | [AbilityStageContext](./js-apis-inner-application-abilityStageContext.md) | 否 | 否 | AbilityStage上下文。 |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 否 | 否 | AbilityStage上下文。 |
 
 ## AbilityStage.onCreate
 

@@ -107,7 +107,7 @@ AbilityDelegator模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [AbilityDelegator](./js-apis-inner-application-abilityDelegator.md) | AbilityDelegator模块。 |
+| [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) | AbilityDelegator模块。 |
 
 ## AbilityDelegatorArgs
 
@@ -121,7 +121,7 @@ AbilityDelegatorArgs模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [AbilityDelegatorArgs](./js-apis-inner-application-abilityDelegatorArgs.md) | AbilityDelegatorArgs模块。 |
+| [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) | AbilityDelegatorArgs模块。 |
 
 ## AbilityMonitor
 
@@ -149,7 +149,7 @@ ShellCmdResult模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ShellCmdResult](./js-apis-inner-application-shellCmdResult.md) | ShellCmdResult模块。 |
+| [ShellCmdResult](js-apis-inner-application-shellCmdResult.md) | ShellCmdResult模块。 |
 
 ## AbilityStageMonitor<sup>14+</sup>
 
@@ -163,4 +163,4 @@ AbilityStageMonitor模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ShellCmdResult](./js-apis-inner-application-shellCmdResult.md) | ShellCmdResult模块。 |
+| [ShellCmdResult](js-apis-inner-application-shellCmdResult.md) | ShellCmdResult模块。 |
