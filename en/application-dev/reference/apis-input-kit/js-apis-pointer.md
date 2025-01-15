@@ -678,7 +678,7 @@ Sets the custom cursor. You can set whether to adjust the cursor size based on t
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | Yes   | Window ID.                         |
 | cursor  | [CustomCursor](js-apis-pointer.md#CustomCursor) | Yes   | Defines a custom cursor.|
-| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) || Yes   | Specifies custom cursor config.|
+| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) | Yes   | Specifies custom cursor config.|
 
 **Return value**
 

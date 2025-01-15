@@ -650,7 +650,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 | 名称     | 类型     | 只读     | 必填     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 自定义光标。大小限制为256 x 256像素。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 自定义光标。最大限制为256 x 256像素。 |
 | focusX  | number | 否   | 否   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
 | focusY  | number | 否   | 否   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。默认为0。 |
 
