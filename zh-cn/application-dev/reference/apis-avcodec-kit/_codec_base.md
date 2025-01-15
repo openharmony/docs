@@ -1478,6 +1478,19 @@ G711MU音频编解码器的MIME类型。
 **起始版本：** 11
 
 
+### OH_AVCODEC_MIMETYPE_AUDIO_RAW
+
+```
+const char* OH_AVCODEC_MIMETYPE_AUDIO_RAW
+```
+**描述**
+RAW音频码流的MIME类型。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 16
+
+
 ### OH_AVCODEC_MIMETYPE_AUDIO_MPEG
 
 ```
