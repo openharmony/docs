@@ -1224,7 +1224,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
 | type  | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                   |
 | context  | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是 | 管理应用的上下文信息。 |
-| parameters  | Record\<string, string> | 是 | 自定义参数信息,必选参数的名称："activateId" |
+| parameters  | Record\<string, string> | 是 | 自定义参数信息,其中Key值必须包含："activateId" |
 
 **错误码**：
 
