@@ -643,25 +643,25 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
-## CustomCursor
-Custom cursor, including the custom cursor resource and focus position.
+## CustomCursor<sup>14+</sup>
+Defines a custom cursor.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-| Name   | Type    | Mandatory  | Description                                 |
-| ----- | ------ | ---- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes   | Pixel map resource.|
-| focusX  | number | No   | Focus x of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
-| focusY  | number | No   | Focus y of the custom cursor. The value is greater than or equal to **0**. The default value is **0**.|
+| Name   | Type    | Read Only  | Optional  | Description  |
+| ------ | ------- | ---------- | --------- | ------------ |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No   | Yes   | Custom cursor. The size limit is 256 x 256.|
+| focusX  | number | No   | No   | Horizontal coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
+| focusY  | number | No   | No   | Vertical coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
 
-## CursorConfig
-Custom cursor config.
+## CursorConfig<sup>14+</sup>
+Specifies custom cursor config.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Pointer
 
-| Name   | Type    | Mandatory  | Description                                 |
-| ----- | ------ | ---- | ------- |
-| followSystem  | boolean | No   | Whether to adjust the cursor size based on the system settings. The default value is **false**.|
+| Name   | Type    | Read Only  | Optional  | Description  |
+| ------ | ------- | ---------- | --------- | ------------ |
+| followSystem  | boolean  | No  | Yes   | Whether to adjust the cursor size based on the system settings.|
 
 
 ## pointer.setCustomCursor<sup>14+</sup>
@@ -677,14 +677,14 @@ Sets the custom cursor. You can set whether to adjust the cursor size based on t
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
 | windowId  | number  | Yes   | Window ID.                         |
-| CustomCursor  | cursor | Yes   | Custom cursor, including the custom cursor resource and focus position.|
-| CursorConfig  | config | Yes   | Custom cursor config|
+| cursor  | [CustomCursor](js-apis-pointer.md#CustomCursor) | Yes   | Defines a custom cursor.|
+| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) || Yes   | Specifies custom cursor config.|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise object with a return value. 0 indicates success in the setting, any other value indicates failure. |
+| Promise&lt;void&gt; | Returns the result through a promise.|
 
 **Error codes**
 
@@ -692,7 +692,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID | Error Message            |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
 
 **Example**
 

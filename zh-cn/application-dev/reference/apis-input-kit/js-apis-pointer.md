@@ -643,26 +643,26 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
-## CustomCursor
+## CustomCursor<sup>14+</sup>
 
-自定义光标，包括自定义光标资源和焦点位置
-
-**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
-| 名称                               | 类型     | 说明     |
-| ------- | ------ | ------ |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 自定义光标资源, 取值范围：大于等于0*0 |
-| focusX  | number | 自定义光标焦点x, 取值范围：大于等于0，默认为0。 |
-| focusY  | number | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
-
-## CursorConfig
-
-自定义光标设置。
+自定义光标资源。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+| 名称     | 类型     | 只读     | 必填     | 说明     |
+| -------- | ------- | -------- | -------- | ------- |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 自定义光标。大小限制为256 x 256像素。 |
+| focusX  | number | 否   | 否   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
+| focusY  | number | 否   | 否   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。默认为0。 |
 
-| 名称                               | 类型     | 说明     |
-| ------- | ------ | ------ |
-| followSystem  | boolean | 是否跟随系统光标样式。 false表示使用自定义光标样式。 |
+## CursorConfig<sup>14+</sup>
+
+指定自定义光标配置。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称     | 类型     | 只读     | 必填     | 说明     |
+| -------- | ------- | -------- | -------- | ------- |
+| followSystem  | boolean  | 否   | 是   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小。 |
 
 ## pointer.setCustomCursor<sup>14+</sup>
 
@@ -674,17 +674,17 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 **参数**：
 
-| 参数名    | 类型     | 必填   | 说明                                  |
-| ----- | ------ | ---- | ----------------------------------- |
+| 参数名    | 类型    | 必填    | 说明    |
+| -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
-| CustomCursor  | cursor | 是    | 自定义光标资源。 |
-| CursorConfig  | config | 是    | 自定义光标设置 |
+| cursor  | | [CustomCursor](js-apis-pointer.md#CustomCursor) | 是    | 自定义光标资源 |
+| config  | [CursorConfig](js-apis-pointer.md#CursorConfig) | 是    | 指定自定义光标配置 |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise&lt;void&gt; | 有返回结果的Promise对象。0为设置成功，其他值为设置失败。 |
+| Promise&lt;void&gt; | 通过Promise返回结果。0为设置成功，其他值为设置失败。 |
 
 **错误码**：
 
@@ -692,7 +692,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
 
 **示例**：
 
