@@ -1,8 +1,12 @@
 # Saving Media Assets
 
-## Using SaveButton
+When users wish to save images, videos, or similar files to Gallery, it is not necessary for the application to request the ohos.permission.WRITE_IMAGEVIDEO permission. Instead, the application can use the [SaveButton](#creating-a-media-asset-using-savebutton) or [authorization pop-up](#saving-a-media-asset-using-an-authorization-pop-up) to save the media assets to Gallery.
 
-This following walks you through on how to create an image using the **SaveButton** security component. When **SaveButton** is used to create a media asset, the caller does not need to have the ohos.permission.WRITE_IMAGEVIDEO permission. For details, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
+## Creating a Media Asset Using SaveButton
+
+For details about the **SaveButton** component, see [SaveButton](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md).
+
+This following walks you through on how to create an image using the **SaveButton** security component.
 
 **How to Develop**
 
@@ -16,8 +20,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  @State saveButtonOptions: SaveButtonOptions = {
+    saveButtonOptions: SaveButtonOptions = {
     icon: SaveIconStyle.FULL_FILLED,
     text: SaveDescription.SAVE_IMAGE,
     buttonType: ButtonType.Capsule
@@ -26,9 +29,6 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
         SaveButton(this.saveButtonOptions) // Create a security component.
           .onClick(async (event, result: SaveButtonOnClickResult) => {
              if (result == SaveButtonOnClickResult.SUCCESS) {
@@ -57,15 +57,15 @@ struct Index {
 
 In addition to specifying the asset in the application sandbox directory using **fileUri**, you can add the asset using ArrayBuffer. For details, see the [addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1).
 
-## Saving a Media Asset via an Authorization Pop-up
+## Saving a Media Asset Using an Authorization Pop-Up
 
-This following walks you through on how to save an image using an authorization pop-up. In this case, you do not need to apply for the ohos.permission.WRITE_IMAGEVIDEO permission for your application.
+This following walks you through on how to save an image using an authorization pop-up.
 
 **How to Develop**
 
-1. Specify the URI of the image in the application sandbox directory to be saved to the media library.
+1. Specify the URI of the [application file](../../file-management/app-file-access.md) in the application sandbox.
 2. Set parameters such as the file name extension, image file type, title (optional) and image subtype (optional) of the image to save.
-3. Call [showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to obtain the target URI of the media library based on pop-up authorization.
+3. Call [showAssetsCreationDialog](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to obtain the target [media file URI](../../file-management/user-file-uri-intro.md#media-file-uri) through an authorization pop-up.
 4. Write the image content from the application sandbox directory to the file specified by the target URI in the media library.
 
 ```ts
