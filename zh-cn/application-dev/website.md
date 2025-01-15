@@ -3210,7 +3210,7 @@
           <!--Del-->
           - [@ohos.telephony.call (拨打电话)（系统接口）](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (蜂窝数据)（系统接口）](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
-          - [@ohos.telephony.esim (eSIM卡管理)（系统接口）](js-apis-esim-sys.md)
+          - [@ohos.telephony.esim (eSIM卡管理)（系统接口）](reference/apis-telephony-kit/js-apis-esim-sys.md)
           - [@ohos.telephony.observer (observer)（系统接口）](reference/apis-telephony-kit/js-apis-observer-sys.md)
           - [@ohos.telephony.radio (网络搜索)（系统接口）](reference/apis-telephony-kit/js-apis-radio-sys.md)
           - [@ohos.telephony.sim (SIM卡管理)（系统接口）](reference/apis-telephony-kit/js-apis-sim-sys.md)
