@@ -982,7 +982,9 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 | reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
 
 ## ResponseHeaders<sup>12+</sup>
-type ResponseHeaders = {[k: string]: string | string[] | undefined;}
+type ResponseHeaders = {
+  [k: string]: string | string[] | undefined;
+}
 
 服务器发送的响应头。
 
@@ -1006,7 +1008,7 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 | 1003      | 无法处理的数据类型 |
 | 1004~1015 | 保留值             |
 
-## HttpProxy
+## HttpProxy<sup>12+</sup>
 
 type HttpProxy = connection.HttpProxy
 
