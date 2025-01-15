@@ -9757,9 +9757,11 @@ promise.then(() => {
 
 setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
-设置子窗和悬浮窗的圆角大小，使用Promise异步回调，仅2in1设备可用。   
-圆角的大小过大将会导致三键位置被裁切，且导致热区不易识别，请根据窗口大小设置合适的圆角值。   
-在调用此接口之前调用getWindowCornerRadius()接口可以获得窗口默认圆角值，调用此接口后，再调用getWindowCornerRadius()获得设置的圆角大小。
+设置子窗和悬浮窗的圆角大小，使用Promise异步回调，仅2in1设备可用。
+
+圆角的大小过大将会导致三键位置被裁切，且导致热区不易识别，请根据窗口大小设置合适的圆角值。
+
+在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius16)接口可以获得窗口默认圆角值，调用此接口后，再调用[getWindowCornerRadius()](#getwindowcornerradius16)获得设置的圆角大小。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -9786,17 +9788,23 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
 | 1300004 | Unauthorized operation.  |
 
 **示例：**
 
 ```ts
-let promise = windowClass.setWindowCornerRadius(1.0f);
-promise.then(() => {
-  console.info('Succeeded in setting window corner radius.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set window corner radius. Cause code: ${err.code}, message: ${err.message}`);
-});
+try{
+  let promise = windowClass.setWindowCornerRadius(1.0f);
+  promise.then(() => {
+    console.info('Succeeded in setting window corner radius.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window corner radius. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
 ```
 
 ### getWindowCornerRadius<sup>16+</sup>
