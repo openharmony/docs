@@ -311,7 +311,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ![zh-cn_image_0000001562940473](figures/zh-cn_image_0000001562940473.png)
 
-- 悬浮按钮
+- 悬浮按钮。
 
   在可以滑动的界面，滑动时按钮始终保持悬浮状态。
 
