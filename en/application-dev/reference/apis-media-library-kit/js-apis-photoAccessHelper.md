@@ -1046,7 +1046,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1060,22 +1060,22 @@ async function example() {
         };
 
         let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
-        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        let resultFile: fileIo.File = fileIo.openSync(resultUri, fileIo.OpenMode.READ_WRITE);
         // Use the actual URI and file size.
-        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let srcFile:  fileIo.File = fileIo.openSync("file://test.jpg", fileIo.OpenMode.READ_ONLY);
         let bufSize: number = 2000000;
         let readSize: number = 0;
         let buf = new ArrayBuffer(bufSize);
-        let readLen = fs.readSync(srcFile.fd, buf, {
+        let readLen = fileIo.readSync(srcFile.fd, buf, {
             offset: readSize,
             length: bufSize
         });
         if (readLen > 0) {
             readSize += readLen;
-            fs.writeSync(resultFile.fd, buf, { length: readLen });
+            fileIo.writeSync(resultFile.fd, buf, { length: readLen });
         }
-        fs.closeSync(srcFile);
-        fs.closeSync(resultFile);
+        fileIo.closeSync(srcFile);
+        fileIo.closeSync(resultFile);
     } catch (err) {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
@@ -1083,8 +1083,9 @@ async function example() {
 }
 ```
 
-### grantPhotoAssetsReadPermission<sup>14+</sup>
-grantPhotoAssetsReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
+### requestPhotoUrisReadPermission<sup>14+</sup>
+
+requestPhotoUrisReadPermission(srcFileUris: Array&lt;string&gt;): Promise&lt;Array&lt;string&gt;&gt;
 
 <!--RP1--><!--RP1End-->Grants the save permission for URIs. This API uses a promise to return the result.
 
@@ -1120,7 +1121,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
-  console.info('grantPhotoAssetsReadPermissionSDemo.');
+  console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
     let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
@@ -1128,10 +1129,10 @@ async function example() {
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // The URI here is an example only.
     ];
-    let desFileUris: Array<string> = await phAccessHelper.grantPhotoAssetsReadPermission(srcFileUris);
-    console.info('grantPhotoAssetsReadPermissionsuccess, data is ' + desFileUris);
+    let desFileUris: Array<string> = await phAccessHelper.requestPhotoUrisReadPermission(srcFileUris);
+    console.info('requestPhotoUrisReadPermission success, data is ' + desFileUris);
   } catch (err) {
-    console.error('grantPhotoAssetsReadPermissionfailed, errCode is ' + err.code + ', errMsg is ' + err.message);
+    console.error('requestPhotoUrisReadPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
   }
 }
 ```
@@ -1776,6 +1777,7 @@ async function example() {
 clone(title: string): Promise&lt;PhotoAsset&gt;
 
 Clones a media asset. The file name can be set, but the file type cannot be changed.
+
 **Required permissions**: ohos.permission.WRITE\_IMAGEVIDEO
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -1784,7 +1786,7 @@ Clones a media asset. The file name can be set, but the file type cannot be chan
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title| string | Yes   | Title of the cloned asset. It is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters: . .. \ / : * ? " ' ` < > \| { } [ ] |
+| title| string | Yes   | Title of the cloned asset. The title must meet the following requirements:<br>-  It does not contain a file name extension.<br>- The file name, which is in the format of title+file name extension, does not exceed 255 characters.<br>- The title does not contain any of the following characters:\ / : * ? " ' ` < > \| { } [ ] |
 
 **Return value**
 
@@ -3462,8 +3464,12 @@ Sets the media asset title.
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| title | string | Yes  | Title to set. It is not allowed to:<br>- Contain the filename extension.<br>- Exceed 255 characters.<br>- Contain any of the following characters:. .. \ / : * ? " ' ` < > | { } [ ] |
+| title | string | Yes  | Title to set.|
 
+The title must meet the following requirements:
+- It does not contain a file name extension.
+- The file name cannot exceed 255 characters.
+- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
 
 **Error codes**
 
@@ -3708,8 +3714,8 @@ For details about the error codes, see [File Management Error Codes](../apis-cor
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3759,13 +3765,13 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
-### setOrientation<sup>13+</sup>
+### setOrientation<sup>15+</sup>
 
 setOrientation(orientation: number): void
 
 Sets the orientation of this image.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 15.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -3902,9 +3908,9 @@ setAlbumName(name: string): void
 
 Sets the album name.
 
-The album name must comply with the following:
-- It cannot exceed 255 characters.
-- It cannot contain any of the following characters:. .. \ / : * ? " ' ` < > | { } [ ]
+The album name must comply with the following specifications:
+- It does not exceed 255 characters.
+- It does not contain any of the following characters:<br> . \ / : * ? " ' ` < > | { } [ ]
 - It is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -4487,8 +4493,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
@@ -4529,7 +4535,7 @@ Media asset handler, which can be used to customize the media asset processing l
 onDataPrepared(data: T, map?: Map<string, string>): void
 
 Called when the requested media asset is ready. If an error occurs, **data** returned by the callback is **undefined**. Each media asset request corresponds to a callback.
-T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image/video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto](#movingphoto12) indicates a moving photo object, and boolean indicates whether the image/video is successfully written to the application sandbox directory.
+T supports the following data types: ArrayBuffer, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource), [MovingPhoto](#movingphoto12), and boolean. ArrayBuffer indicates the image or video asset data, [ImageSource](../apis-image-kit/js-apis-image.md#imagesource) indicates the image source, [MovingPhoto](#movingphoto12) indicates a moving photo object, and boolean indicates whether the image or video is successfully written to the application sandbox directory.
 
 Information returned by **map**:
 | Map Key | **Description**|
@@ -4952,8 +4958,8 @@ The member types are the union of the types listed in the following table.
 
 | Type| Description|
 | ---- | ---- |
-| number | The member value is a number.|
-| string | The member value is a string.|
+| number | The member value is any number.|
+| string | The member value is any string.|
 | boolean | The member value is true or false.|
 
 ## PhotoType
@@ -5049,7 +5055,7 @@ Defines the key information about an image or video file.
 | LCD_SIZE<sup>12+</sup>  | 'lcd_size'  | Width and height of an LCD image, in the format of a **width:height** string.|
 | THM_SIZE<sup>12+</sup>  | 'thm_size'  | Width and height of a thumbnail image, in the format of a **width:height** string.|
 | DETAIL_TIME<sup>13+</sup>  | 'detail_time'  | Detailed time. The value is a string of time when the image or video was taken in the time zone and does not change with the time zone.|
-| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Date when the image/video was taken. The value is the number of milliseconds elapsed since the Epoch time.|
+| DATE_TAKEN_MS<sup>13+</sup>  | 'date_taken_ms'  | Date when the image or video was taken. The value is the number of milliseconds elapsed since the Epoch time.|
 
 ## AlbumKeys
 
@@ -5066,10 +5072,10 @@ Enumerates the key album attributes.
 
 Options for creating an image or video asset.
 
-The title is not allowed to:
-- Contain the filename extension.
-- Exceed 255 characters.
-- Contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
+The title must meet the following requirements:
+- It does not contain a file name extension.
+- The file name cannot exceed 255 characters.
+- It does not contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -5101,8 +5107,8 @@ Represents request options.
 | Name                  | Type                       | Read-Only| Optional| Description                                        |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | No  | No  | Delivery mode of the requested asset. The value can be **FAST_MODE**, **HIGH_QUALITY_MODE**, or **BALANCE_MODE**.|
-| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | No  | Yes  | HDR video transcoding policy, which can be **FAST_ORIGINAL_FORMAT_MODE** (maintaining the original HDR format) or **COMPATIBLE_FORMAT_MODE** (converting HDR content to SDR format).|
-| mediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | No  | Yes  | Callback used to return the HDR-to-SDR conversion progress.|
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | No  | Yes  | HDR video transcoding policy, which can be **FAST_ORIGINAL_FORMAT_MODE** (maintaining the original HDR format) or **COMPATIBLE_FORMAT_MODE** (converting HDR content to SDR format).|
+| mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | No  | Yes  | Callback used to return the HDR-to-SDR conversion progress.|
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -5246,7 +5252,7 @@ Represents the text information about the recommended images.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 simplified Chinese characters.|
+| text | string   | No  | Text based on which images are recommended. The text cannot exceed 250 characters.|
 
 **Example**
 
@@ -5320,6 +5326,7 @@ Defines additional options for selecting media assets from Gallery. It inherits 
 | isEditSupported<sup>11+</sup>       | boolean | No  | Whether the image can be edited.<br>The value **true** means the image can be edited; the value **false** means the opposite.    |
 | isOriginalSupported<sup>12+</sup>       | boolean | No  | Whether to display the button for selecting the original image. <br>The value **true** means to display the button; the value **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | subWindowName<sup>12+</sup>       | string | No  | Name of the sub-window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| complteButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | No  | Text displayed on the complete button.<br>The complete button is located in the lower right corner of the page. It is used by users to signify that they have finished selecting images.<br>**Atomic service API**: This API can be used in atomic services since API version 14.    |
 
 ## PhotoSelectResult
 
@@ -5362,24 +5369,36 @@ Represents the configuration for saving a media asset (image or video) to the me
 | photoType | [PhotoType](#phototype) | Yes | Type of the file to create, which can be **IMAGE** or **VIDEO**.|
 | subtype | [PhotoSubtype](#photosubtype12) | No | Subtype of the image or video file, which can be **DEFAULT** or **MOVING_PHOTO**.|
 
-## CompatibleMode<sup>13+</sup>
+## CompatibleMode<sup>15+</sup>
 
-Representing the video transcoding mode.
+Enumerates the video transcoding mode.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name |  Value|  Description|
 | ----- | ---- | ---- |
-| FAST_ORIGINAL_FORMAT_MODE |  0 |  Maintain the original video format. |
-| COMPATIBLE_FORMAT_MODE    |  1 |  Convert the HDR content to SDR format.   |
+| ORIGINAL_FORMAT_MODE |  0 |  Maintains the original video format. |
+| COMPATIBLE_FORMAT_MODE    |  1 |  Converts the HDR content to SDR format.   |
 
-## MediaAssetProgressHandler<sup>13+</sup>
+## CompleteButtonText<sup>14+</sup>
+
+Enumerates the text displayed on the complete button.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- | ---- | ---- |
+| TEXT_DONE<sup>14+</sup> |  0 |  The text "Done" is displayed. |
+| TEXT_SEND<sup>14+</sup>    |  1 |  The text "Send" is displayed.   |
+| TEXT_ADD<sup>14+</sup> |  2 |  The text "Add" is displayed. |
+
+## MediaAssetProgressHandler<sup>15+</sup>
 
 Represents the media asset progress handler, which is used to obtain the media asset processing progress from **onProgress()**.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### onProgress<sup>13+</sup>
+### onProgress<sup>15+</sup>
 
 onProgress(progress: number): void
 
