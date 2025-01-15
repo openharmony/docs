@@ -60,21 +60,21 @@ try {
   };
   // Obtain a UserAuthInstance object.
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {
     onResult(result) {
       // If the ResultCode 12500000 is returned, the operation is successful.
-      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
       // If the ResultCode 12500011 is returned, the user taps the navigation button to switch to the custom authentication page.
       if (result.result == 12500011) {
         // You need to implement the process of starting the custom authentication page.
       }
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
