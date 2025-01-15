@@ -2161,6 +2161,82 @@ struct styled_string_demo4 {
 
 ![](figures/styledString_10.gif)
 
+### 示例11（属性字符串的插入、删除、替换）
+
+该示例通过getSubStyledString、removeString、removeStyle、clearStyles、replaceStyledString、insertStyledString接口实现属性字符串的插入、删除、替换。
+
+``` ts
+// xxx.ets
+@Entry
+@Component
+struct styled_string_demo4 {
+  @State message: string = 'Hello World'
+  mutableStr: MutableStyledString = new MutableStyledString('123456', [{
+    start: 0,
+    length: 2,
+    styledKey: StyledStringKey.FONT,
+    styledValue: new TextStyle({fontColor: Color.Red})
+  }, {
+    start: 0,
+    length: 3,
+    styledKey: StyledStringKey.DECORATION,
+    styledValue: new DecorationStyle({type: TextDecorationType.LineThrough})
+  }]);
+  mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
+  controller: TextController = new TextController();
+  controller2: TextController = new TextController();
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+          .onAppear(() => {
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Text(undefined, { controller: this.controller2 })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+        Button('GetSubStyledString (0,3)').onClick(() => {
+          this.controller2.setStyledString(this.mutableStr.subStyledString(0, 3))
+        })
+        Button('RemoveStyle (0,1,Decoration)').onClick(() => {
+          this.mutableStr.removeStyle(0, 1, StyledStringKey.DECORATION)
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('RemoveString (5,1)').onClick(() => {
+          this.mutableStr.removeString(5, 1)
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('ClearStyles').onClick(() => {
+          this.mutableStr.clearStyles()
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('replaceStyledString').onClick(() => {
+          this.mutableStr.replaceStyledString(3, 1, new StyledString("abc", [{
+            start: 0,
+            length: 3,
+            styledKey: StyledStringKey.FONT,
+            styledValue: new TextStyle({fontColor: Color.Blue})
+          }]))
+          this.controller.setStyledString(this.mutableStr)
+        })
+        Button('insertStyledString').onClick(() => {
+          this.mutableStr.insertStyledString(4, new StyledString("A"))
+          this.controller.setStyledString(this.mutableStr)
+        })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledString_11.gif)
+
 
 
 
