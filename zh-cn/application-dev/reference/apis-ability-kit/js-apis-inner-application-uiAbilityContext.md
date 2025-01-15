@@ -1229,7 +1229,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置UIAbility在任务中显示的名称（callback形式）。
+设置UIAbility在任务中显示的名称。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1271,7 +1271,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionLabel(label: string): Promise&lt;void&gt;
 
-设置UIAbility在任务中显示的名称（promise形式）。
+设置UIAbility在任务中显示的名称。使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1322,7 +1322,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState, callback: AsyncCallback&lt;void&gt;): void
 
-设置UIAbility任务中流转状态（callback形式）。
+设置UIAbility任务中流转状态。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1364,7 +1364,7 @@ export default class EntryAbility extends UIAbility {
 
 setMissionContinueState(state: AbilityConstant.ContinueState): Promise&lt;void&gt;
 
-设置UIAbility任务中流转状态（promise形式）。
+设置UIAbility任务中流转状态。使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1648,7 +1648,7 @@ export default class EntryAbility extends UIAbility {
 
 reportDrawnCompleted(callback: AsyncCallback\<void>): void
 
-当页面加载完成（loadContent成功）时，为开发者提供打点功能（callback形式）。
+当页面加载完成（loadContent成功）时，为开发者提供打点功能。使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2278,7 +2278,7 @@ struct Index {
 
 backToCallerAbilityWithResult(abilityResult: AbilityResult, requestCode: string): Promise&lt;void&gt;
 
-当通过[startAbilityForResult](#uiabilitycontextstartabilityforresult)或[openLink](#uiabilitycontextopenlink12)拉起目标方Ability，且需要目标方返回结果时，目标方可以通过该接口将结果返回并拉起调用方。与[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)不同的是，本接口在返回时不会销毁当前Ability。
+当通过[startAbilityForResult](#uiabilitycontextstartabilityforresult)或[openLink](#uiabilitycontextopenlink12)拉起目标方Ability，且需要目标方返回结果时，目标方可以通过该接口将结果返回并拉起调用方。与[terminateSelfWithResult](#uiabilitycontextterminateselfwithresult)不同的是，本接口在返回时不会销毁当前Ability。使用Promise异步回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2425,7 +2425,7 @@ export default class EntryAbility extends UIAbility {
 
 setRestoreEnabled(enabled: boolean): void
 
-设置UIAbility是否启用备份恢复。使用Promise异步回调。
+设置UIAbility是否启用备份恢复。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -2470,7 +2470,7 @@ export default class EntryAbility extends UIAbility {
 
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
-启动一个UIServiceExtensionAbility。
+启动一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2554,7 +2554,7 @@ struct Index {
 
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
-连接一个UIServiceExtensionAbility(Promise返回形式).
+连接一个UIServiceExtensionAbility。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2665,7 +2665,7 @@ struct UIServiceExtensionAbility {
 
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
-断开与UIServiceExtensionAbility的连接。
+断开与UIServiceExtensionAbility的连接。使用Promise异步回调。
 
 > **说明：**
 >
