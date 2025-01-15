@@ -705,6 +705,28 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 >
 > 默认的模式为EXTRACT_AND_EXPAND，"HKDF|SHA256|EXTRACT_AND_EXPAND"等价于"HKDF|SHA256"。
 
+## ScryptSpec<sup>16+</sup>
+
+密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为SCRYPT密钥派生函数进行密钥派生时的输入。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| passphrase | string \| Uint8Array | 是   | 否   | 用户输入的原始密码。|
+| salt | Uint8Array | 是   | 否   | 盐值。 |
+| n | number | 是   | 否   | 迭代次数，需要为正整数。 |
+| p | number | 是   | 否   | 并行化参数，需要为正整数。 |
+| r | number | 是   | 否   | 块大小参数，需要为正整数。 |
+| maxMemory | number | 是   | 否   | 最大内存限制参数，需要为正整数。 |
+| keySize | number | 是   | 否   | 派生得到的密钥字节长度，需要为正整数。 |
+
+> **说明：**
+>
+> passphrase指的是原始密码，如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型，同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
+
 ## SM2CipherTextSpec<sup>12+</sup>
 
 SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需要用到此对象。可以通过指定此参数，生成符合国密标准的ASN.1格式的SM2密文，反之，也可以从ASN.1格式的SM2密文中获取具体参数。
