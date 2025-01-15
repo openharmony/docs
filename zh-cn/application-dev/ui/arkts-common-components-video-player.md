@@ -31,7 +31,7 @@ Video组件支持加载本地视频和网络视频。
   ```ts
   @Component
   export struct VideoPlayer{
-    private controller:VideoController | undefined;
+    private controller:VideoController = new VideoController();
     private previewUris: Resource = $r ('app.media.preview');
     private innerResource: Resource = $rawfile('videoTest.mp4');
     build(){
@@ -52,7 +52,7 @@ Video组件支持加载本地视频和网络视频。
   ```ts
   @Component
   export struct VideoPlayer{
-     private controller:VideoController | undefined;
+     private controller:VideoController = new VideoController();
      private previewUris: Resource = $r ('app.media.preview');
      private videoSrc: string = 'dataability://device_id/com.domainname.dataability.videodata/video/10'
      build(){
@@ -74,7 +74,7 @@ Video组件支持加载本地视频和网络视频。
 ```ts
 @Component
 export struct VideoPlayer {
-  private controller: VideoController | undefined;
+  private controller: VideoController = new VideoController();
   private videoSrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
 
   build() {
@@ -97,7 +97,7 @@ export struct VideoPlayer {
 ```ts
 @Component
 export struct VideoPlayer{
-  private controller:VideoController | undefined;
+  private controller:VideoController = new VideoController();
   private previewUris: Resource = $r ('app.media.preview');
   private videoSrc: string= 'https://www.example.com/example.mp4' // 使用时请替换为实际视频加载网址
   build(){
@@ -121,7 +121,7 @@ Video组件[属性](../reference/apis-arkui/arkui-ts/ts-media-components-video.m
 ```ts
 @Component
 export struct VideoPlayer {
-  private controller: VideoController | undefined;
+  private controller: VideoController = new VideoController();
 
   build() {
     Column() {
@@ -147,7 +147,7 @@ export struct VideoPlayer {
 @Entry
 @Component
 struct VideoPlayer{
-  private controller:VideoController | undefined;
+  private controller:VideoController = new VideoController();
   private previewUris: Resource = $r ('app.media.preview');
   private innerResource: Resource = $rawfile('videoTest.mp4');
   build(){
