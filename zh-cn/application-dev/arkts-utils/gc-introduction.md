@@ -226,7 +226,22 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 ## 日志解释
 
+### 开启全量日志
+
+默认情况下详细的GC日志仅在GC耗时超过40ms的情况下才会打印，如果需要开启所有GC执行的日志需要使用命令在设备中开启。
+
+**使用样例：**
+
+```shell
+# 设置开启GC全量日志参数，开启参数为0x905d，关闭GC全量日志，设置为默认值为0x105c
+hdc shell param set persist.ark.properties 0x905d
+# 重启生效
+hdc shell reboot
+```
+
 ### 典型日志
+
+以下日志为一次GC完整执行后的统计信息，具体到GC的类型不同会有一些差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关的日志,也可以查看关键词`ArkCompiler`查看更为全面虚拟机相关的日志。
 
 ```
 // GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。
