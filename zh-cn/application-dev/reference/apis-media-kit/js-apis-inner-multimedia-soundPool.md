@@ -1513,7 +1513,7 @@ on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
 
 当仅单独注册[on('playFinished')](#onplayfinished)事件回调或者[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，都会触发注册的回调。
 
-当同时注册[on('playFinished')](#onplayfinished)事件回调和[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调。
+当同时注册[on('playFinished')](#onplayfinished)事件回调和[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调，不会触发'playFinished'事件回调。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1530,20 +1530,19 @@ on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
-let soundPool: media.SoundPool;
+let soundPool_: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
   if (error) {
     console.error(`Failed to createSoundPool`)
-    return;
   } else {
-    soundPool = soundPool_;
+    soundPool_ = soundPool;
     console.info(`Succeeded in createSoundPool`)
-    soundPool.on('playFinishedWithStreamId', (streamId) => {
-      console.info('Succeeded in playFinishedWithStreamId, streamId: ' + streamId)
+    soundPool_.on('playFinishedWithStreamId', (streamId) => {
+      console.info('The stream with streamId: ' + streamId + ' has finished playing.')
     });
   }
 });
@@ -1570,19 +1569,18 @@ off(type: 'playFinishedWithStreamId'): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 //创建soundPool实例
-let soundPool: media.SoundPool;
+let soundPool_: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
   rendererFlags: 1
 }
-media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
   if (error) {
     console.error(`Failed to createSoundPool`)
-    return;
   } else {
-    soundPool = soundPool_;
+    soundPool_ = soundPool;
     console.info(`Succeeded in createSoundPool`)
-    soundPool.off('playFinishedWithStreamId')
+    soundPool_.off('playFinishedWithStreamId')
   }
 });
 

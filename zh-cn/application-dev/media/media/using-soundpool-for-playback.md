@@ -57,7 +57,7 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
 
     当仅单独注册'playFinished'事件回调或者'playFinishedWithStreamId'事件回调时，当音频播放完成的时候，都会触发注册的回调。
 
-    当同时注册'playFinished'事件回调和'playFinishedWithStreamId'事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调。
+    当同时注册'playFinished'事件回调和'playFinishedWithStreamId'事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调，不会触发'playFinished'事件回调。
 
     ```ts
     soundPool.on('playFinished', () => {
@@ -269,7 +269,7 @@ function loadCallback() {
 //设置播放完成监听
 function finishPlayCallback() {
   // 播放完成回调，'playFinished'回调和'playFinishedWithStreamId'回调可以根据需要选择一个注册，当音频播放完毕时，会触发注册的回调。
-  // 当同时注册'playFinished'回调和'playFinishedWithStreamId'回调的时候，当音频播放完毕，仅会触发'playFinishedWithStreamId'回调。
+  // 当同时注册'playFinished'回调和'playFinishedWithStreamId'回调的时候，当音频播放完毕，仅会触发'playFinishedWithStreamId'回调，不会触发'playFinished'事件回调。
   soundPool.on('playFinishedWithStreamId', (streamId) => {
     console.info("receive play finished message, streamId: " + streamId);
     // 可进行下次播放
