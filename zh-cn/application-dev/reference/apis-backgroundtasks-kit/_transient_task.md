@@ -28,8 +28,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [TransientTask_ErrorCode](#transienttask_errorcode) | 定义短时任务错误码。  | 
-| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)| 定义短时任务返回信息结构体。  | 
+| typedef enum [TransientTask_ErrorCode](#transienttask_errorcode) [TransientTask_ErrorCode](#transienttask_errorcode) | 定义短时任务错误码。  | 
+| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)| 定义短时任务返回信息结构体。  | 
 | typedef void(\* [TransientTask_Callback](#transienttask_callback)) (void) | 定义短时任务超时回调类型。  | 
 
 
