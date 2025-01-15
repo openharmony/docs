@@ -2311,6 +2311,7 @@ metaViewport(enabled: boolean)
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 > - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
+> - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4833,7 +4834,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
-            this.offsetX = 250;
+            this.offsetX = 0;
             this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
