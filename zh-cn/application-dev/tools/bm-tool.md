@@ -610,7 +610,7 @@ Error: install parse profile missing prop.
     hilog -w start
     ```
 
-    落盘位置：/data/log/hilog
+    落盘位置：/data/log/hilog。
 
     打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
 
