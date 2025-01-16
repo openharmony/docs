@@ -301,17 +301,17 @@
 
 允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
 
-**权限级别**: normal
+**权限级别**：normal
 
 **授权方式**：system_grant
 
-**起始版本**: 11
+**起始版本**：11
 
 ## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 允许应用使用外接设备增强功能。
 
-**权限级别**: normal
+**权限级别**：normal
 
 **授权方式**：system_grant
 
