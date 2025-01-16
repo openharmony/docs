@@ -13,6 +13,16 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
+## AuthParam<sup>10+</sup>
+
+Represents the user authentication parameters.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name          | Type                              | Mandatory| Description                                                        |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| userId<sup>16+</sup> | number | No  |ID of the user to be authenticated. The value is a positive integer greater than or equal to 0.|
+
 ## WindowModeType<sup>10+</sup>
 
 Enumerates the window types of the authentication widget.
@@ -23,8 +33,8 @@ Enumerates the window types of the authentication widget.
 
 | Name      | Value  | Description      |
 | ---------- | ---- | ---------- |
-| DIALOG_BOX | 1    | Dialog box. |
-| FULLSCREEN | 2    | Full screen. |
+| DIALOG_BOX | 1    | Dialog box.|
+| FULLSCREEN | 2    | Full screen.|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -32,9 +42,9 @@ Represents the information presented on the user authentication page.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name                | Type                               | Mandatory | Description                                                        |
+| Name                | Type                               | Mandatory| Description                                                        |
 | -------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| windowMode           | [WindowModeType](#windowmodetype10) | No  | Display format of the user authentication page. The default value is **WindowModeType.DIALOG_BOX**.<br>**System API**: This is a system API. |
+| windowMode           | [WindowModeType](#windowmodetype10) | No  | Display format of the user authentication page. The default value is **WindowModeType.DIALOG_BOX**.<br>**System API**: This is a system API.|
 
 ## NoticeType<sup>10+</sup>
 
@@ -46,7 +56,7 @@ Defines the type of the user authentication notification.
 
 | Name         | Value  | Description                |
 | ------------- | ---- | -------------------- |
-| WIDGET_NOTICE | 1    | Notification from the user authentication widget. |
+| WIDGET_NOTICE | 1    | Notification from the user authentication widget.|
 
 ## userAuth.sendNotice<sup>10+</sup>
 
@@ -62,16 +72,16 @@ Sends a notification from the user authentication widget.
 
 **Parameters**
 
-| Name    | Type                       | Mandatory | Description      |
+| Name    | Type                       | Mandatory| Description      |
 | ---------- | --------------------------- | ---- | ---------- |
-| noticeType | [NoticeType](#noticetype10) | Yes  | Notification type. |
-| eventData  | string                      | Yes  | Event data. |
+| noticeType | [NoticeType](#noticetype10) | Yes  | Notification type.|
+| eventData  | string                      | Yes  | Event data.|
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
@@ -104,9 +114,9 @@ try {
   const jsonEventData = JSON.stringify(eventData);
   let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
   userAuth.sendNotice(noticeType, jsonEventData);
-  console.log('sendNotice success');
+  console.info('sendNotice success');
 } catch (error) {
-  console.error('sendNotice catch error: ' + JSON.stringify(error));
+  console.error(`sendNotice catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -126,16 +136,16 @@ Subscribes to commands from the user authentication framework for the user authe
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                                        |
+| Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'command'                                     | Yes  | Event type. The vlaue is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback invoked to return the command from the user authentication framework to the user authentication widget. |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback used to return the command from the user authentication framework to the user authentication widget.|
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | ------------------------ |
 | 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
@@ -148,15 +158,15 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('subscribe authentication event success');
+  console.info('subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -172,16 +182,16 @@ Unsubscribes from commands sent from the user authentication framework.
 
 **Parameters**
 
-| Name  | Type                                         | Mandatory | Description                                                        |
+| Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'command'                                     | Yes  | Event type. The value is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | No  | Callback for the command sent from the user authentication framework to the user authentication widget. |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | No  | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID | Error Message                |
+| ID| Error Message                |
 | -------- | ------------------------ |
 | 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
@@ -194,15 +204,15 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.off('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('cancel subscribe authentication event success');
+  console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -223,21 +233,21 @@ Obtains a **UserAuthWidgetMgr** instance for user authentication.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                |
+| Name | Type  | Mandatory| Description                |
 | ------- | ------ | ---- | -------------------- |
-| version | number | Yes  | Version of the user authentication widget. |
+| version | number | Yes  | Version of the user authentication widget.|
 
 **Return value**
 
 | Type                                     | Description        |
 | ----------------------------------------- | ------------ |
-| [UserAuthWidgetMgr](#userauthwidgetmgr10) | **UserAuthWidgetMgr** instance obtained. |
+| [UserAuthWidgetMgr](#userauthwidgetmgr10) | **UserAuthWidgetMgr** instance obtained.|
 
 **Error codes**
 
 For details about the error codes, see [User Authentication Error Codes](errorcode-useriam.md).
 
-| ID | Error Message                               |
+| ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
@@ -252,9 +262,9 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 let userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -274,7 +284,7 @@ Called to return the command sent from the user authentication framework to the 
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description                              |
+| Name | Type  | Mandatory| Description                              |
 | ------- | ------ | ---- | ---------------------------------- |
 | cmdData | string | Yes  | Command sent from the user authentication framework to the user authentication widget.|
 
@@ -286,14 +296,72 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('subscribe authentication event success');
+  console.info('subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
+
+## UserAuthType<sup>8+</sup>
+
+Enumerates the types of credentials for identity authentication.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name       | Value  | Description      |
+| ----------- | ---- | ---------- |
+| PRIVATE_PIN<sup>14+</sup>  | 16   | Privacy password.|
+
+**Example**
+
+Initiate privacy PIN authentication with the authentication trust level greater than or equal to ATL3.
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PRIVATE_PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Enter password',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // The authentication result is returned by onResult() only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+## UserAuthResultCode<sup>16+</sup>
+
+Enumerates the authentication result codes.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name | Value | Description |
+| ----------------------- | ------ | -------------------- |
+| AUTH_TOKEN_CHECK_FAILED | 12500015 | The authentication token is invalid. |
+| AUTH_TOKEN_EXPIRED | 12500016 | The authentication token has expired. |
+

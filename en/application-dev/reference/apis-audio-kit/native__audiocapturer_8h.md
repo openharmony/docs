@@ -21,7 +21,7 @@ The **native_audiocapturer.h** declares the functions related to an audio captur
 
 ### Functions
 
-| Name       | Description | 
+| Name       | Description| 
 |--------------| -------- |
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Release](_o_h_audio.md#oh_audiocapturer_release)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                               | Releases an audio capturer. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_Start](_o_h_audio.md#oh_audiocapturer_start)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer)                                                                                                   | Starts an audio capturer. | 
@@ -39,4 +39,4 @@ The **native_audiocapturer.h** declares the functions related to an audio captur
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetFrameSizeInCallback](_o_h_audio.md#oh_audiocapturer_getframesizeincallback)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, int32_t \*frameSize)                                            | Obtains the frame size in the callback. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetTimestamp](_o_h_audio.md#oh_audiocapturer_gettimestamp)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, clockid_t clockId, int64_t \*framePosition, int64_t \*timestamp)                    | Obtains the timestamp and position information of an input audio stream. | 
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetFramesRead](_o_h_audio.md#oh_audiocapturer_getframesread)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, int64_t \*frames)                                                                 | Obtains the number of frames that have been read since the stream was created. | 
-| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetOverflowCount](_o_h_audio.md#oh_audiocapturer_getoverflowcount) ([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, uint32_t \*count) | Obtains the number of overloaded audio streams of an audio capturer. | 
+| [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) [OH_AudioCapturer_GetOverflowCount](_o_h_audio.md#oh_audiocapturer_getoverflowcount)([OH_AudioCapturer](_o_h_audio.md#oh_audiocapturer) \*capturer, uint32_t \*count) | Obtains the number of overloaded audio streams of an audio capturer. | 

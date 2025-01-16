@@ -39,6 +39,21 @@ DatePicker(options?: DatePickerOptions)
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
 | selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| mode<sup>16+</sup> | [DatePickerMode](#datepickermode16枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。 |
+
+## DatePickerMode<sup>16+</sup>枚举说明
+
+设置要显示的日期选项列。
+
+**原子化服务API：** 从API version 16开始，该类型支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 说明 |
+| -------- | -------- |
+| DATE | 日期列显示年、月、日三列。|
+| YEAR_AND_MONTH | 日期列显示年、月二列。|
+| MONTH_AND_DAY | 日期列显示月、日二列。<br/>此模式下，如果月份从12月变化到1月，年份不增加1年；如果月份从1月变化到12月，年份不减少1年；年份始终在当前设置的年份。|
 
 **异常情形说明:**
 
@@ -259,3 +274,40 @@ struct DatePickerExample {
 ```
 
 ![datePicker](figures/DatePickerDemo2.png)
+
+### 示例3（设置显示年、月列）
+
+该示例通过配置mode参数实现显示年、月两列。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  @State isLunar: boolean = false
+  private selectedDate: Date = new Date('2021-08-08')
+
+  build() {
+    Column() {
+      Button('切换公历农历')
+        .margin({ top: 30, bottom: 30 })
+        .onClick(() => {
+          this.isLunar = !this.isLunar
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate,
+        mode: DatePickerMode.YEAR_AND_MONTH
+      })
+        .lunar(this.isLunar)
+        .onDateChange((value: Date) => {
+          this.selectedDate = value
+          console.info('select current date is: ' + value.toString())
+        })
+
+    }.width('100%')
+  }
+}
+```
+![datePicker](figures/DatePickerDemo3.png)

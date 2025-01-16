@@ -537,7 +537,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: [ScrollOptions](#scrolloptions16对象说明))
+scrollTo(options: [ScrollOptions](#scrolloptions16对象说明))
 
 
 滑动到指定位置。
@@ -550,7 +550,7 @@ scrollTo(value: [ScrollOptions](#scrolloptions16对象说明))
 
 | 参数名   | 类型 | 必填   | 说明      |
 | ----- | ---- | ---- | --------- |
-| value | [ScrollOptions](#scrolloptions16对象说明) | 是    | 滑动到指定位置的参数。 
+| options | [ScrollOptions](#scrolloptions16对象说明) | 是    | 滑动到指定位置的参数。 
 
 ### scrollEdge
 
@@ -784,7 +784,7 @@ getItemIndex(x: number, y: number): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100004   | Controller not bound to component.                               |
+| 100004   |The controller not bound to component.                              |
 
 ## OffsetResult<sup>11+</sup>
 
@@ -1346,7 +1346,7 @@ struct ScrollExample {
 
 ![fadingEdge_scroll](figures/fadingEdge_scroll.gif)
 
-### 示例9（单边边缘效果）
+### 示例8（单边边缘效果）
 
 该示例通过edgeEffect接口，实现了Scroll组件设置单边边缘效果。
 

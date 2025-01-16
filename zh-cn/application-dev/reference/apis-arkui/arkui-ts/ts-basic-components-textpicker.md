@@ -370,6 +370,8 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 滑动过程中选项进入分割线区域内，触发该回调。
 
+在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
+
 **卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。

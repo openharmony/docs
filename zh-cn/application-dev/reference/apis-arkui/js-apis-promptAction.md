@@ -700,6 +700,8 @@ closeCustomDialog(dialogId: number): void
 
 设置弹窗显示模式，默认显示在应用内，支持显示在应用之上。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 值   | 说明                   |

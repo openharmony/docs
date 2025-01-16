@@ -37,6 +37,7 @@
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | 配置描述符。 |
 | [UsbRequestPipe](_usb_request_pipe.md) | 请求管道。 |
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | 设备内存映射，通过[OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap)创建设备内存映射，使用内存映射后的缓冲区，获得更好的性能。 |
+| [Usb_DeviceArray](_usb_device_array.md) | 设备ID清单，用于存放[OH_Usb_GetDevices()](#oh_usb_getdevices16)接口获取到的设备ID列表和设备数量。 |
 
 ### 枚举
 
@@ -65,6 +66,7 @@
 | [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem12) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | 发送共享内存管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。 |
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
+| [OH_Usb_GetDevices](#oh_usb_getdevices16) ([Usb_DeviceArray](_usb_device_array.md) \*devices) | 获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。 |
 
 #### 函数参数deviceId说明
 
@@ -523,3 +525,29 @@ int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_
 - [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参pipe、ashmem或者ashmem的地址为空指针。
 - [USB_DDK_IO_FAILED](#usbddkerrcode)：表示设备I/O操作失败。
 - [USB_DDK_TIMEOUT](#usbddkerrcode)：表示请求超时。
+
+### OH_Usb_GetDevices()<sup>16+</sup>
+
+
+```
+int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices);
+```
+
+**描述:**
+
+获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。
+
+**需要权限**：ohos.permission.ACCESS_DDK_USB
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| devices | 已申请好的设备内存地址，用于存放获取到的设备ID列表及数量。 |
+
+**返回:**
+
+- [USB_DDK_SUCCESS](#usbddkerrcode)：表示调用接口成功。
+- [USB_DDK_NO_PERM](#usbddkerrcode)：表示权限校验失败。
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode)：表示连接usb_ddk服务失败。
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode)：表示入参devices的地址为空指针。

@@ -784,7 +784,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -860,6 +860,22 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: boolean)
+
+设置是否阻止返回键向其它组件或应用侧传递。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                | 必填 | 说明                                      |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | boolean | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## 事件
 
@@ -1214,7 +1230,7 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKeyType | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。<br>类型为EnterKeyType.NEW_LINE时不触发onSubmit。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。         |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 否   | 提交事件。         |
 
 ## 示例
 

@@ -78,6 +78,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | selected | number | 否 | 设置下拉菜单初始选项的索引。<br/>第一项的索引为0。<br/>当不设置selected属性时，<br/>默认选择值为-1，菜单项不选中。 |
 | value | string | 否 | 设置下拉按钮本身的文本内容。 |
 | onSelect | (index:&nbsp;number,&nbsp;value?:&nbsp;string)&nbsp;=&gt;&nbsp;void | 否 | 下拉菜单选中某一项的回调。<br/>-&nbsp;index：选中项的索引。<br/>-&nbsp;value：选中项的值。 |
+| defaultFocus<sup>16+</sup> | boolean | 否 | 下拉按钮是否为默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## OperationOption
 
@@ -92,6 +93,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | accessibilityLevel<sup>16+<sup>       | string  | 否 | 子标题右侧按钮无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br/>支持的值为：<br/>"auto"：当前组件会转换'yes'。<br/>"yes"：当前组件可被无障碍辅助服务所识别。<br/>"no"：当前组件不可被无障碍辅助服务所识别。<br/>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br/>默认值："auto"。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | accessibilityText<sup>16+<sup>        | ResourceStr | 否 | 子标题右侧按钮的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br/>默认值：类型为TEXT_ARROW和BUTTON时默认值为当前项value属性内容，其他类型默认值为“ ”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | accessibilityDescription<sup>16+<sup> | ResourceStr | 否 | 子标题右侧按钮的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br/>默认值：类型为LOADING时，默认值为“正在加载”，其他类型默认值为“单指双击即可执行”。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。        |
+| defaultFocus<sup>16+</sup> | boolean | 否 | 子标题右侧按钮是否为默认焦点。<br />默认值：false <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 ## SymbolOptions<sup>12+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -456,3 +458,32 @@ struct SubHeaderExample {
 }
 ```
 ![figures/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
+
+### 示例9（右侧按钮设置默认获焦）
+该示例通过设置subheader的右侧按钮属性defaultFocus使其默认获焦。
+```ts
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SubHeaderExample {
+  build() {
+    Column() {
+      SubHeader({
+        // 图标+二级标题, 右侧button
+        icon: $r('app.media.app_icon'),
+        secondaryTitle: '二级标题',
+        operationType: OperationType.BUTTON,
+        operationItem: [{
+          value: '操作',
+          defaultFocus: true,
+          action: () => {
+            promptAction.showToast({ message: 'demo' })
+          }
+        }]
+      })
+    }
+  }
+}
+```
+![/SubHeaderDefaultFocus](figures/SubHeaderDefaultFocus.png)

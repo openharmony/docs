@@ -652,6 +652,47 @@ try {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
+## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
+
+isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
+
+Checks whether the function key is enabled.
+
+**System capability**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**：
+
+| Name     | Type   | Mandatory | Description                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | Yes   | Function key id. |
+
+**Return value**：
+
+| Parameters                                          | Description                            |
+| --------------------------------------------- | ------------------------------- |
+| Promise&lt;boolean&gt; | Return the on/off status of the function key. If it is true, it means is enable, and false means is disable. |
+
+**Error codes**：
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID  | Error Message             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+
+**Example**：
+
+```js
+// Checks whether the function key is enabled
+try {
+  inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
+    console.log(`capslock state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
 
 ## inputDevice.getIntervalSinceLastInput<sup>14+</sup>
 
@@ -785,3 +826,14 @@ Enumerates the keyboard types.
 | DIGITAL_KEYBOARD    | 3    | Keypad. |
 | HANDWRITING_PEN     | 4    | Stylus. |
 | REMOTE_CONTROL      | 5    | Remote control. |
+
+## FunctionKey<sup>15+</sup>
+
+Enumerates function keys.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+| Name                 | Value   | Description       |
+| ------------------- | ---- | --------- |
+| CAPS_LOCK                | 1    | CapsLock key. Enabling or disabling the CapsLock key is allowed only for input keyboard extensions. |
+

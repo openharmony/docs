@@ -31,6 +31,8 @@
 | extraInfo      | Record<string, Object\>                                               | 否  | 是  | 实况通知附加内容。           |
 | pictureInfo    | Record<string, Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\>\> | 否  | 是  | 实况通知附加内容中的图片信息。|
 | isLocalUpdateOnly<sup>12+</sup> | boolean                                           | 否  | 是  | 实况窗是否只在本地更新。     |
+| liveViewType<sup>16+</sup>  | [LiveViewTypes](#liveviewtypes16)  | 否 | 是  | 实况窗类型。  |
+| cardButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  否  |  是  | 实况窗按钮（最多支持3个）。      |
 
 ## NotificationCapsule<sup>11+</sup>
 
@@ -43,12 +45,14 @@
 | 名称                  |  类型                         | 只读 | 可选 | 说明                              |
 | --------------------- | ---------------------------- | ---- | ---- | -------------------------------- |
 | content<sup>12+</sup> | string                       |  否  |  是  | 胶囊的拓展文本。                   |
+| time<sup>16+</sup> | number                       |  否  |  是  | 即时任务类实况胶囊展示时长（单位：秒）。   |
+| capsuleButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton16)\>    |  否  |  是  | 即时任务类实况胶囊的按钮（最多支持2个）。      |
 
 ## LiveViewStatus<sup>11+</sup>
 
 描述普通实况通知的状态。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Security.AccessToken
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
 
@@ -58,3 +62,32 @@
 | LIVE_VIEW_INCREMENTAL_UPDATE | 1  | 增量更新 |
 | LIVE_VIEW_END                | 2  | 结束     |
 | LIVE_VIEW_FULL_UPDATE        | 3  | 全量更新 |
+
+## NotificationIconButton<sup>16+</sup>
+
+描述系统通知按钮。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称  | 类型                                                   | 只读 | 可选 | 说明             |
+| ----- | ----------------------------------------------------- | --- | --- | ----------------- |
+| name | string                                       | 否  |  否 | 按钮标识，用于区分同一通知的多个不同按钮。   |
+| iconResource | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) \| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否  |  否 | 按钮的背景图。   |
+| text | string | 否  |  是 | 按钮展示的信息。   |
+| hidePanel | bool | 否  |  是 | 点击按钮时，是否隐藏通知中心。   |
+
+## LiveViewTypes<sup>16+</sup>
+
+描述实况通知的类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+**系统接口**：此接口为系统接口。
+
+| 名称                         | 值 |   说明   |
+| ---------------------------- |----|----------|
+| LIVE_VIEW_ACTIVITY           | 0  | 实时活动类（进度类）系统实况 |
+| LIVE_VIEW_INSTANT            | 1  | 即时任务类系统实况 |
+| LIVE_VIEW_LONG_TERM          | 2  | 长时任务类系统实况 |

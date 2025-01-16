@@ -586,7 +586,7 @@ killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?
 
 通过Bundle名称终止进程。使用Promise异步回调。
 
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**需要权限**：ohos.permission.KILL_APP_PROCESSES 或 ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -611,7 +611,7 @@ killProcessesByBundleName(bundleName: string, clearPageStack: boolean, appIndex?
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | If the input parameter is not valid parameter. |
 | 16000050 | Internal error. |
 
 **示例：**
@@ -666,7 +666,7 @@ isAppRunning(bundleName: string, appCloneIndex?: number): Promise\<boolean>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 201 | The application does not have permission to call the interface. |
+| 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000050 | Internal error. |
 | 16000073 | The app clone index is invalid. |
@@ -689,3 +689,29 @@ try {
   hilog.error(0x0000, 'testTag', `isAppRunning error, code: ${err.code}, msg:${err.message}`);
 }
 ```
+
+## ApplicationStateObserver<sup>14+</sup>
+
+type ApplicationStateObserver = _ApplicationStateObserver.default
+
+ApplicationStateObserver模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | ApplicationStateObserver模块。 |
+
+## ProcessInformation
+
+type ProcessInformation = _ProcessInformation
+
+ProcessInformation模块。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [ProcessInformation](js-apis-inner-application-processInformation.md) | ProcessInformation模块。 |

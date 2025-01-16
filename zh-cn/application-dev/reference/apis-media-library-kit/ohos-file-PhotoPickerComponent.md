@@ -1,7 +1,7 @@
-# @ohos.file.PhotoPickerComponent (Photo Picker组件)
+# @ohos.file.PhotoPickerComponent (PhotoPicker组件)
 
-应用可以在布局中嵌入Photo Picker组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。仅包含读权限。
-应用嵌入组件后，用户可直接在Photo Picker组件中选择图片或视频文件。
+应用可以在布局中嵌入PhotoPicker组件，通过此组件，应用无需申请权限，即可访问公共目录中的图片或视频文件。仅包含读权限。
+应用嵌入组件后，用户可直接在PhotoPicker组件中选择图片或视频文件。
 
 > **说明：**
 >
@@ -15,7 +15,7 @@ import {
   DataType, BaseItemInfo, ItemInfo, PhotoBrowserInfo, AnimatorParams,
   MaxSelected, ItemType, ClickType, PickerOrientation,
   SelectMode, PickerColorMode, ReminderMode, MaxCountType, PhotoBrowserRange, PhotoBrowserUIElement,
-  ItemsDeletedCallback, ExceedMaxSeletedCallback, CurrentAlbumDeletedCallback
+  ItemsDeletedCallback, ExceedMaxSelectedCallback, CurrentAlbumDeletedCallback
 } from '@ohos.file.PhotoPickerComponent';
 ```
 
@@ -35,7 +35,7 @@ PhotoPickerComponent({
   onPickerControllerReady?: () => void,
   onPhotoBrowserChanged?: (browserItemInfo: BaseItemInfo) => boolean,
   onSelectedItemsDeleted?: ItemsDeletedCallback,
-  onExceedMaxSelected?: ExceedMaxSeletedCallback,
+  onExceedMaxSelected?: ExceedMaxSelectedCallback,
   onCurrentAlbumDeleted?: CurrentAlbumDeletedCallback,
   pickerController: PickerController
 })
@@ -66,7 +66,7 @@ PhotoPickerComponent({
 | onPickerControllerReady | () => void                                                                       | 否   | - | 当pickerController可用时产生的回调事件。<br>调用PickerController相关接口需在该回调后才能生效。                                                                                                                                                                                                                                                                                               |
 | onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | 否   | - | 大图左右滑动时产生的回调事件，将大图相关信息报给应用。                                                                                                                                                                                                                                                                                                                                     |
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | 否   | - | 已勾选的图片被删除时产生的回调，并将被删除图片的相关信息回调给应用。                                                                                                                                                                                                                                                                                                                              |
-| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。 |
+| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSelectedCallback](#exceedmaxselectedcallback13)                          | 否   | - | 选择达到最大选择数量（最大图片选择数量或者是最大视频选择数量亦或是总的最大选择数量）之后再次点击勾选时产生的回调。<br>- 若选择的数量达到了最大图片选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).PHOTO_MAX_COUNT。<br>- 若选择的数量达到了最大视频选择数量且未达到总的最大选择数量则回调的参数exceedMaxCountType为[MaxCountType](#maxcounttype).VIDEO_MAX_COUNT。<br>- 只要选择的数量达到了总的最大选择数量则回调的的参数exceedMaxCountType为[MaxCountType](#maxcounttype).TOTAL_MAX_COUNT。 |
 | onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | 否   | - | 当前相册被删除时产生的回调。<br>当前相册是指通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri)接口设置给宫格组件的相册，即“currentAlbumUri”。<br>当前相册被删除后若使用方刷新自己的相册标题栏，使用方可以设置自己的标题栏名称为默认的相册名例如“图片和视频”、“图片”或“视频”，然后通过pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '')接口传空串去刷新宫格页为默认相册。                                  |
 | onVideoPlayStateChanged<sup>14+</sup>   | [videoPlayStateChangedCallback](#videoplaystatechangedcallback14)                    | 否   | - | 大图页视频播放状态改变时回调。                                  |
 | pickerController        | [PickerController](#pickercontroller)                                            | 否   | @ObjectLink | 应用可通过PickerController向Picker组件发送数据。                                                                                                                                                                                                                                                                                                                             |
@@ -114,9 +114,9 @@ type ItemsDeletedCallback = (baseItemInfos: Array&lt;BaseItemInfo&gt;) => void
 | -------- |--------------------------------------------| -------- |----------|
 | baseItemInfos | Array&lt;[BaseItemInfo](#baseiteminfo)&gt; | 是 | 照片的基本信息。 |
 
-## ExceedMaxSeletedCallback<sup>13+</sup>
+## ExceedMaxSelectedCallback<sup>13+</sup>
 
-type ExceedMaxSeletedCallback = (exceedMaxCountType: MaxCountType) => void
+type ExceedMaxSelectedCallback = (exceedMaxCountType: MaxCountType) => void
 
 选择达到最大选择数量之后再次点击勾选时的回调事件。
 
@@ -544,7 +544,7 @@ struct PickerDemo {
   @State isBrowserShow: boolean = false;
   private selectedItemsDeletedCallback: ItemsDeletedCallback =
     (baseItemInfos: Array<BaseItemInfo>) => this.onSelectedItemsDeleted(baseItemInfos);
-  private exceedMaxSeletedCallback: ExceedMaxSelectedCallback =
+  private exceedMaxSelectedCallback: ExceedMaxSelectedCallback =
     (exceedMaxCountType: MaxCountType) => this.onExceedMaxSelected(exceedMaxCountType);
   private currentAlbumDeletedCallback: CurrentAlbumDeletedCallback = () => this.onCurrentAlbumDeleted();
   private videoPlayStateChangedCallback: videoPlayStateChangedCallback = () => this.videoPlayStateChanged();
@@ -669,7 +669,7 @@ struct PickerDemo {
           onPickerControllerReady: (): void => this.onPickerControllerReady(),
           onPhotoBrowserChanged: (browserItemInfo: BaseItemInfo): boolean => this.onPhotoBrowserChanged(browserItemInfo),
           onSelectedItemsDeleted: this.selectedItemsDeletedCallback,
-          onExceedMaxSelected: this.exceedMaxSeletedCallback,
+          onExceedMaxSelected: this.exceedMaxSelectedCallback,
           onCurrentAlbumDeleted: this.currentAlbumDeletedCallback,
           onVideoPlayStateChanged: this.videoPlayStateChangedCallback,
           pickerController: this.pickerController,

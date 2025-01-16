@@ -4404,6 +4404,7 @@ inputMethodController.recvMessage();
 | ------------ | -- | ------------------ |
 | FLG_FIXED  | 0 | 固定态面板类型。 |
 | FLG_FLOATING | 1 | 悬浮态面板类型。 |
+| FLAG_CANDIDATE<sup>15+</sup> | 2 | 候选词态面板类型。 |
 
 ## PanelType<sup>10+</sup>
 

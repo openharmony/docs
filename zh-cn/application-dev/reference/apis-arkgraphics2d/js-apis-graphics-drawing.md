@@ -114,6 +114,143 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 | XOR     | 3    | 异或操作。 |
 | REVERSE_DIFFERENCE     | 4    | 反向差集操作。 |
 
+## PathIteratorVerb<sup>16+</sup>
+
+迭代器包含的路径操作类型枚举。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+| 名称  | 值   | 说明                           |
+| ----- | ---- | ------------------------------ |
+| MOVE  | 0    | 设置起始点操作。 |
+| LINE  | 1    | 添加线段操作。 |
+| QUAD  | 2    | 添加二阶贝塞尔圆滑曲线操作。 |
+| CONIC | 3    | 添加圆锥曲线操作。 |
+| CUBIC | 4    | 添加三阶贝塞尔圆滑曲线操作。 |
+| CLOSE | 5    | 路径闭合操作。 |
+| DONE  | CLOSE + 1   | 路径设置完成操作。 |
+
+## PathIterator<sup>16+</sup>
+
+表示路径操作迭代器。
+
+### constructor<sup>16+</sup>
+
+constructor(path: Path)
+
+构造一个迭代器并绑定该路径。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| path | [Path](#path) | 是   | 迭代器绑定的路径对象。                 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+```
+
+### next<sup>16+</sup>
+
+next(points: Array<common2D.Point>, offset?: number): PathIteratorVerb
+
+返回当前路径的下一个操作，并将迭代器置于该操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | 是   | 坐标点数组，数组长度需要大于等于4，在操作后数组会被重写，数组中坐标点数对的数量取决于路径操作类型。具体来说：MOVE操作会在坐标点数组中填入1组坐标点；LINE操作会在坐标点数组中填入2组坐标点；QUAD操作会在坐标点数组中填入3组坐标点；CONIC操作会在坐标点数组中填入3.5组坐标点，即3组坐标点加圆锥曲线的权重；CUBIC操作会在坐标点数组中填入4组坐标点；CLOSE、DONE操作不会在坐标点数组中填入坐标点。因此坐标点数组长度至少为偏移量加上4。 |
+| offset | number   | 否   | 数组中写入位置相对起始点的偏移量，默认为0，取值范围为[0, size-4]，size是指坐标点数组长度。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb16) | 迭代器包含的路径操作类型。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+path.moveTo(10, 20);
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let verbStr: Array<string> = ["MOVE", "LINE", "QUAD", "CONIC", "CUBIC", "CLOSE", "DONE"];
+let pointCount: Array<number> = [1,2,3,4,4,0,0]; //1,2,3,3.5,4,0,0
+let points: Array<common2D.Point> = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
+let offset = 0;
+let verb = iter.next(points, offset);
+let outputMessage: string = "pathIteratorNext: ";
+outputMessage += "verb =" + verbStr[verb] + "; has " + pointCount[verb] + " pairs: ";
+for (let j = 0; j < pointCount[verb] + offset; j++) {
+  outputMessage += "[" + points[j].x + ", " + points[j].y + "]";
+}
+console.info(outputMessage);
+```
+
+### peek<sup>16+</sup>
+
+peek(): PathIteratorVerb
+
+返回当前路径的下一个操作，迭代器仍在原操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIteratorVerb](#pathiteratorverb16) | 迭代器包含的路径操作类型。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.peek();
+```
+
+### hasNext<sup>16+</sup>
+
+hasNext(): boolean
+
+判断路径操作迭代器中是否还有其他操作。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 判断路径操作迭代器中是否还有其他操作。true表示有，false表示没有。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter: drawing.PathIterator = new drawing.PathIterator(path);
+let res = iter.hasNext();
+```
+
 ## Path
 
 由直线、圆弧、二阶贝塞尔、三阶贝塞尔组成的复合几何路径。
@@ -1229,6 +1366,28 @@ if(path.buildFromSvgString(svgStr)) {
 }
 ```
 
+### getPathIterator<sup>16+</sup>
+
+getPathIterator(): PathIterator
+
+返回该路径的操作迭代器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [PathIterator](#pathiterator16) | 该路径的迭代器对象。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let path: drawing.Path = new drawing.Path();
+let iter = path.getPathIterator();
+```
+
 ## Canvas
 
 承载绘制内容与绘制状态的载体。
@@ -1536,7 +1695,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### drawShadow<sup>13+</sup>
+### drawShadow<sup>16+</sup>
 
 drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Point3d, lightRadius: number, ambientColor: number, spotColor: number, flag: ShadowFlag) : void
 
@@ -1552,8 +1711,8 @@ drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Poin
 | planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
 | lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
-| ambientColor  |number | 是    | 环境阴影颜色，用16进制ARGB格式的32位无符号整数表示 |
-| spotColor  |number | 是    | 点阴影颜色，用16进制ARGB格式的32位无符号整数表示 |
+| ambientColor  |number | 是    | 环境阴影颜色，用16进制ARGB格式的32位无符号整数表示。 |
+| spotColor  |number | 是    | 点阴影颜色，用16进制ARGB格式的32位无符号整数表示。 |
 | flag         | [ShadowFlag](#shadowflag12)                  | 是    | 阴影标志枚举。    |
 
 **错误码：**
@@ -1903,6 +2062,42 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### drawColor<sup>16+</sup>
+
+drawColor(color: number, blendMode?: BlendMode): void
+
+绘制背景颜色。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名    | 类型                                                 | 必填 | 说明                             |
+| --------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| color     | number | 是   | 16进制ARGB格式的颜色。                   |
+| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    canvas.drawColor(0xff000a0a, drawing.BlendMode.CLEAR);
+  }
+}
+```
+
 ### drawPixelMapMesh<sup>12+</sup>
 
 drawPixelMapMesh(pixelmap: image.PixelMap, meshWidth: number, meshHeight: number, vertices: Array\<number>, vertOffset: number, colors: Array\<number>, colorOffset: number): void
@@ -1989,7 +2184,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### clear<sup>13+</sup>
+### clear<sup>16+</sup>
 
 clear(color: number): void
 
@@ -2001,7 +2196,7 @@ clear(color: number): void
 
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | number| 是   | 颜色用16进制ARGB格式的32位无符号整数表示。  |
+| color     | number| 是   | 16进制ARGB格式的颜色。  |
 
 **错误码：**
 
@@ -4705,7 +4900,7 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
-### getBounds<sup>14+</sup>
+### getBounds<sup>16+</sup>
 
 getBounds(glyphs: Array\<number>): Array\<common2D.Rect>
 
@@ -4767,7 +4962,7 @@ struct Index {
 }
 ```
 
-### getTextPath<sup>14+</sup>
+### getTextPath<sup>16+</sup>
 
 getTextPath(text: string, byteLength: number, x: number, y: number): Path;
 
@@ -4818,7 +5013,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### createPathForGlyph<sup>14+</sup>
+### createPathForGlyph<sup>16+</sup>
 
 createPathForGlyph(index: number): Path
 
@@ -5001,6 +5196,42 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 import { common2D, drawing } from '@kit.ArkGraphics2D';
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
+```
+
+### createBlendModeColorFilter<sup>16+</sup>
+
+static createBlendModeColorFilter(color: number, mode: BlendMode) : ColorFilter
+
+使用指定的颜色和混合模式创建颜色滤波器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+| mode   | [BlendMode](#blendmode)                              | 是   | 颜色的混合模式。 |
+
+**返回值：**
+
+| 类型                        | 说明               |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
 ```
 
 ### createComposeColorFilter
@@ -5297,7 +5528,7 @@ class DrawingRenderNode extends RenderNode {
 ```
 ![zh-ch_Lattice.png](figures/zh-ch_Lattice.png)
 
-### createImageLattice<sup>13+</sup>
+### createImageLattice<sup>16+</sup>
 
 static createImageLattice(xDivs: Array\<number>, yDivs: Array\<number>, fXCount: number, fYCount: number, fBounds?: common2D.Rect | null, fRectTypes?: Array\<RectType> | null, fColors?: Array\<number> | null): Lattice
 
@@ -5340,7 +5571,7 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     let xDivs : Array<number> = [1, 2, 4];
     let yDivs : Array<number> = [1, 2, 4];
-    let colorArray :Array<number>=[0xffffff,0x444444,0x999999,0xffffff,0x444444,0x999999,0xffffff,0x444444,0x999999,0x444444,0x999999,0xffffff,0x444444,0x999999,0xffffff,0x444444];
+    let colorArray :Array<number>=[0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0x44444444,0x99999999,0xffffffff,0x44444444,0x99999999,0xffffffff,0x44444444];
     let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 3, 3,null,null,colorArray);
   }
 }
@@ -5404,6 +5635,18 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+## PathDashStyle<sup>16+</sup>
+
+路径效果的绘制样式枚举。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+| 名称   | 值 | 说明               |
+| ------ | - | ------------------ |
+| TRANSLATE | 0 | 不会随着路径旋转，只会平移。 |
+| ROTATE  | 1 | 随着路径的旋转而旋转。 |
+| MORPH  | 2 | 随着路径的旋转而旋转，但是在转折处的地方，会拉伸或压缩等增加平滑度。 |
+
 ## PathEffect<sup>12+</sup>
 
 路径效果对象。
@@ -5451,6 +5694,119 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### createPathDashEffect<sup>16+</sup>
+
+static createPathDashEffect(path: Path, advance: number, phase: number, style: PathDashStyle): PathEffect
+
+通过路径描述的形状创建一个虚线路径效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| path  | [Path](#path) | 是 | 通过该路径生成一个图形，用来填充每个虚线段。|
+| advance | number | 是 | 虚线段的步长，该参数为大于0的浮点数，否则会抛错误码。 |
+| phase | number | 是 | 表示虚线段内图形在虚线步长范围内的偏移量，该参数为浮点数，效果为先对偏移量取绝对值，然后对步长取模。 |
+| style | [PathDashStyle](#pathdashstyle16) | 是 | 指定虚线效果的样式。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pen = new drawing.Pen();
+    const penColor: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 }
+    pen.setColor(penColor);
+    pen.setStrokeWidth(10);
+    canvas.attachPen(pen);
+    pen.setAntiAlias(true);
+
+    const path = new drawing.Path();
+    path.moveTo(100, 100);
+    path.lineTo(150, 50);
+    path.lineTo(200, 100);
+
+    const path1 = new drawing.Path();
+    path1.moveTo(0, 0);
+    path1.lineTo(10, 0);
+    path1.lineTo(20, 10);
+    path1.lineTo(0,10);
+
+    let pathEffect1: drawing.PathEffect = drawing.PathEffect.createPathDashEffect(path1, 50, -30,
+        drawing.PathDashStyle.MORPH);
+    pen.setPathEffect(pathEffect1);
+
+    canvas.attachPen(pen);
+    canvas.drawPath(path);
+    canvas.detachPen();
+  }
+}
+```
+
+### createSumPathEffect<sup>16+</sup>
+
+static createSumPathEffect(pathEffectOne: PathEffect, pathEffectTwo: PathEffect): PathEffect
+
+通过两种路径效果创建一个叠加的路径效果。与createComposePathEffect不同的是，会分别对两个参数的效果各自独立进行表现，然后将两个效果简单的重叠在一起显示出来。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| pathEffectOne | [PathEffect](#patheffect12) | 是 | 表示第一个路径效果。 |
+| pathEffectTwo | [PathEffect](#patheffect12) | 是 | 表示第二个路径效果。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let intervals = [10, 5];
+    let pathEffectOne = drawing.PathEffect.createDashPathEffect(intervals, 5);
+    let pathEffectTwo = drawing.PathEffect.createDashPathEffect(intervals, 10);
+    let effect = drawing.PathEffect.createSumPathEffect(pathEffectOne, pathEffectTwo);
+  }
+}
+```
+
 ### createCornerPathEffect<sup>12+</sup>
 
 static createCornerPathEffect(radius: number): PathEffect
@@ -5488,6 +5844,93 @@ class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
     let effect = drawing.PathEffect.createCornerPathEffect(30);
+  }
+}
+```
+
+### createDiscretePathEffect<sup>16+</sup>
+
+static createDiscretePathEffect(segLength: number, dev: number, seedAssist?: number): PathEffect
+
+创建一种将路径打散，并且在路径上产生不规则分布的效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型           | 必填    | 说明                                               |
+| ---------- | ------------- | ------- | -------------------------------------------------- |
+| segLength  | number        | 是      | 路径中每进行一次打散操作的长度，该长度为浮点数，负数和0时无效果。 |
+| dev        | number        | 是      | 绘制时的末端点的最大移动偏离量，该偏移量为浮点数。 |
+| seedAssist | number        | 否      | 生成效果伪随机种子辅助变量，默认值为0，该参数为32位无符号整数。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let effect = drawing.PathEffect.createDiscretePathEffect(100, -50, 0);
+  }
+}
+```
+
+### createComposePathEffect<sup>16+</sup>
+
+static createComposePathEffect(outer: PathEffect, inner: PathEffect): PathEffect
+
+创建路径组合的路径效果对象，首先应用内部路径效果，然后应用外部路径效果。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                        | 必填 | 说明                             |
+| ------ | --------------------------- | ---- | -------------------------------- |
+| outer  | [PathEffect](#patheffect12) | 是   | 组合路径效果中外部路径效果。 |
+| inner  | [PathEffect](#patheffect12) | 是   | 组合路径效果中内部路径效果。 |
+
+**返回值：**
+
+| 类型                      | 说明                   |
+| ------------------------- | --------------------- |
+| [PathEffect](#patheffect12) | 返回创建的路径效果对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pathEffect1 = drawing.PathEffect.createCornerPathEffect(100);
+    let pathEffect2 = drawing.PathEffect.createCornerPathEffect(10);
+    let effect = drawing.PathEffect.createComposePathEffect(pathEffect1, pathEffect2);
   }
 }
 ```
@@ -5537,6 +5980,50 @@ class DrawingRenderNode extends RenderNode {
     const canvas = context.canvas;
     let color : common2D.Color = {alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00};
     let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, color);
+  }
+}
+```
+
+### create<sup>16+</sup>
+
+static create(blurRadius: number, x: number, y: number, color: number): ShadowLayer
+
+用于创建一个阴影层对象。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名     | 类型      | 必填 | 说明                                 |
+| ---------- | -------- | ---- | ----------------------------------- |
+| blurRadius  | number   | 是   | 阴影的半径，必须为大于零的浮点数。     |
+| x           | number   | 是   | x轴上的偏移点，该参数为浮点数。        |
+| y           | number   | 是   | Y轴上的偏移点，该参数为浮点数。        |
+| color       | number   | 是   | 16进制ARGB格式的颜色。 |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| --------------------------- | -------------------- |
+| [ShadowLayer](#shadowlayer12) | 返回创建的阴影层对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let shadowLayer = drawing.ShadowLayer.create(3, -3, 3, 0xff00ff00);
   }
 }
 ```
@@ -5770,6 +6257,36 @@ const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
 
+### setColor<sup>16+</sup>
+
+setColor(color: number) : void
+
+用于设置画笔的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const pen = new drawing.Pen();
+pen.setColor(0xffff0000);
+```
+
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -5795,7 +6312,7 @@ pen.setColor(color);
 let colorGet = pen.getColor();
 ```
 
-### getHexColor<sup>13+</sup>
+### getHexColor<sup>16+</sup>
 
 getHexColor(): number
 
@@ -6544,6 +7061,36 @@ const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
 
+### setColor<sup>16+</sup>
+
+setColor(color: number) : void
+
+用于设置画刷的颜色。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                 | 必填 | 说明             |
+| ------ | ---------------------------------------------------- | ---- | ---------------- |
+| color  | number | 是   | 16进制ARGB格式的颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+const brush = new drawing.Brush();
+brush.setColor(0xffff0000);
+```
+
 ### getColor<sup>12+</sup>
 
 getColor(): common2D.Color
@@ -6569,7 +7116,9 @@ brush.setColor(color);
 let colorGet = brush.getColor();
 ```
 
-### getHexColor<sup>13+</sup>
+### getHexColor<sup>16+</sup>
+
+getHexColor(): number
 
 获取画刷的颜色。
 
