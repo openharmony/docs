@@ -240,9 +240,9 @@ promise.then((data : PiPWindow.PiPController) => {
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 否   | 窗口宽度，单位为px，该参数应为整数。 |
-| height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为整数。 |
-| scale  | number   | 是   | 否   | 窗口缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。 |
+| width  | number   | 是   | 否   | 窗口宽度，单位为px，该参数应为正整数，不大于屏幕宽。 |
+| height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为正整数，不大于屏幕高。 |
+| scale  | number   | 是   | 否   | 窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示与width和height一样大。 |
 
 ## PiPWindowInfo<sup>16+</sup>
 
@@ -719,7 +719,7 @@ let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件�
 pipController.setPiPControlEnabled(controlType, enabled);
 ```
 ### getPiPWindowInfo<sup>16+</sup>
-getPiPWindowInfo(): Promise&lt;PiPWindowInfo&gt
+getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;
 
 获取画中画窗口信息。
 
@@ -735,7 +735,7 @@ getPiPWindowInfo(): Promise&lt;PiPWindowInfo&gt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息                                                                                                        |
 |-------|-------------------------------------------------------------------------------------------------------------|
@@ -745,9 +745,15 @@ getPiPWindowInfo(): Promise&lt;PiPWindowInfo&gt
 **示例：**
 
 ```ts
+let pipWindowInfo: PiPWindow.PiPWindowInfo | undefined = undefined;
 try {
-  let info = await pipcontroller.getPiPWindowInfo();
-  console.info('Success in get pip window info. Info: ' + JSON.stringify(info));
+  let promise = pipcontroller.getPiPWindowInfo();
+  promise.then((data) => {
+    pipWindowInfo = data;
+    console.info('Success in get pip window info. Info: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get pip window info. Cause code: ${err.code}, message: ${err.message}`);
+  });
 } catch (exception) {
   console.error(`Failed to get pip window info. Cause code: ${exception.code}, message: ${exception.message}`);
 }
