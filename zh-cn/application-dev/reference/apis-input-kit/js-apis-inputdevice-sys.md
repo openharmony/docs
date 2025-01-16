@@ -413,12 +413,14 @@ setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;vo
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+| 3900003      | It is prohibited for non-input applications. |
 
 **示例**：
 
 ```js
 try {
-  inputDevice.setInputDeviceEnabled(1, true).then(() => {
+  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
     console.info(`Set capslock state success`);
   }).catch((error) => {
     console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
