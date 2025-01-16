@@ -1,6 +1,6 @@
 # @ohos.application.uriPermissionManager(URI权限管理)(系统接口)
 
-URI权限管理模块。用于应用A授权/撤销授权URI给应用B
+URI权限管理模块。用于应用A授权/撤销授权URI给应用B。
 
 > **说明：**
 > 
@@ -23,11 +23,12 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 授权URI给指定应用。使用callback异步回调。
 
 允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
-**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限**：ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -82,11 +83,12 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 授权URI给指定应用。使用Promise异步回调。
 
 允许应用授权属于自身的URI, 若应用拥有ohos.permission.PROXY_AUTHORIZATION_URI权限, 则还允许授权不属于自身但具有访问权限的URI。
-**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限:** ohos.permission.PROXY_AUTHORIZATION_URI
+**需要权限**：ohos.permission.PROXY_AUTHORIZATION_URI
 
 **参数：**
 
@@ -149,7 +151,8 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
 撤销授权指定应用的URI。使用callback异步回调。
 
 允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
-**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -192,9 +195,9 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
 
 撤销授权指定应用的URI。使用Promise异步回调。
 
-
 允许应用撤销自身获得的其他应用URI权限，或授权给其他应用的URI权限。
-**系统API**：该接口为系统接口，三方应用不支持调用。
+
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
