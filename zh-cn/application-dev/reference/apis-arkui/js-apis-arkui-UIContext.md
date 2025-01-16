@@ -5052,6 +5052,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5063,7 +5064,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5076,18 +5077,18 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+          })
       }
       .width('100%')
       .height('100%')
@@ -5137,6 +5138,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5148,7 +5150,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5161,28 +5163,27 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-
-                setTimeout(() => {
-                  try {
-                    promptAction.closeCustomDialog(contentNode);
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);     //2秒后自动关闭
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+                })
+            }, 2000); // 2秒后自动关闭
+          })
       }
       .width('100%')
       .height('100%')
@@ -5233,6 +5234,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5244,7 +5246,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5257,28 +5259,28 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+              })
 
-                setTimeout(() => {
-                  try {
-                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);   //2秒后自动更新弹窗位置
-            })
+            setTimeout(() => {
+              promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                })
+            }, 2000); // 2秒后自动更新弹窗位置
+          })
       }
       .width('100%')
       .height('100%')
