@@ -1855,6 +1855,52 @@ try {
 }
 ```
 
+### bundleManager.getAllBundleCacheSize<sup>15+</sup>
+
+getAllBundleCacheSize(): Promise\<number>
+
+以异步方法获取全局缓存，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<number> | Promise对象。返回全局缓存大小。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    bundleManager.getAllBundleCacheSize().then((data) => {
+        hilog.info(0x0000, 'testTag','getAllBundleCacheSize successful. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllBundleCacheSize failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllBundleCacheSize failed: %{public}s', message);
+}
+```
+
 ### bundleManager.cleanAllBundleCache<sup>15+</sup>
 
 cleanAllBundleCache(): Promise\<void>
