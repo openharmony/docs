@@ -25,7 +25,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | 表示应用信息。 |
-| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息 |
+| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息。 |
 
 
 
