@@ -7,7 +7,7 @@ restool是一种应用工程资源编译工具，通过编译资源文件创建�
 
 ## 参数说明
 
-- **restool当前支持以下命令选项:**
+### restool支持的命令选项:
 
 | 选项 | 是否可缺省 | 是否存在入参 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -26,7 +26,7 @@ restool是一种应用工程资源编译工具，通过编译资源文件创建�
 | --ids | 可缺省 | 带参数 | 指定生成id_defined.json的输出目录。 |
 | --defined-ids | 可缺省 | 带参数 | 指定id_defined.json文件路径，一般都是通过--ids生成。<br>id_defined.json包含资源类型、名称及其ID的列表。<br>开发者可以自定义id_defined.json中的资源ID。 |
 | --icon-check | 可缺省 | 不带参数 | 开启icon和startWindowIcon的PNG图片校验功能。 |
-| --target-config | 可缺省 | 带参数 | 与“-i”命令同时使用，支持选择编译。<br>具体可参考如下:|
+| --target-config | 可缺省 | 带参数 | 与“-i”命令同时使用，支持选择编译。<br>具体可参考如下**target-config参数说明**。|
 
 **target-config参数说明**
 
@@ -46,7 +46,7 @@ Locale匹配规则：Locale匹配需满足以下三条规则。
 
 参数举例说明：Locale[zh_CN,en_US];Device[phone]，该参数过滤其他语言，保留能匹配上zh_CN和en_US的语言；过滤其他设备，保留phone；其他参数（如MccMnc、Orientation等）配置不过滤均保留。
 
-- **restool当前支持以下子命令：**
+### restool支持的子命令：
 
 | 命令  | 描述 |
 | ---  | ---- |
