@@ -120,5 +120,6 @@
    ```
    如果不主动结束定位可能导致设备功耗高，耗电快；建议在不需要获取定位信息时及时结束定位。
    ```ts
+   // 需要取消订阅的回调函数。该回调函数需要与on接口传入的回调函数保持一致。
    geoLocationManager.off('locationChange', locationCallback);
    ```
