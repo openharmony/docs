@@ -22,9 +22,9 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -48,9 +48,9 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -129,9 +129,9 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -7,13 +7,13 @@ Want是对象间信息传递的载体, 可以用于应用组件间的信息传�
 
 **引用文件**：<AbilityKit/ability_base/want.h>
 
-**库：** libability_base_want.so
+**库**：libability_base_want.so
 
-**系统能力：** SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
-**起始版本：** 15
+**起始版本**：15
 
-**相关模块：**[AbilityBase](_ability_base.md)
+**相关模块**：[AbilityBase](_ability_base.md)
 
 
 ## 汇总

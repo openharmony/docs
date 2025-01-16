@@ -22,7 +22,7 @@ onConfigurationUpdated(config: Configuration): void
 
 注册系统环境变化的监听后，在系统环境变化时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -42,7 +42,7 @@ onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
 注册系统环境变化的监听后，在系统内存变化时触发回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 

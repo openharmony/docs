@@ -65,7 +65,7 @@ class UIServiceExt extends UIServiceExtensionAbility {
 
 onRequest(want: Want, startId: number): void
 
-请求拉起[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务处理。如果是[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)	或者[startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability13)拉起的服务，会在[onCreate](#uiserviceextensionabilityoncreate)之后回调。每次拉起服务都会回调，startId会递增。
+请求拉起[UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)服务处理。如果是[startAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)	或者[startUIServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14)拉起的服务，会在[onCreate](#uiserviceextensionabilityoncreate)之后回调。每次拉起服务都会回调，startId会递增。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -130,7 +130,7 @@ onDisconnect(want: Want, proxy: UIServiceHostProxy): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -160,13 +160,13 @@ onWindowWillCreate(config: window.ExtensionWindowConfig): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| config |[window.ExtensionWindowConfig](../apis-arkui/js-apis-window-sys.md#extensionwindowconfig12)| 是 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)窗体配置信息。 |
+| config |[window.ExtensionWindowConfig](../apis-arkui/js-apis-window-sys.md#extensionwindowconfig14)| 是 | 否 | [UIServiceExtension](js-apis-app-ability-uiServiceExtensionAbility-sys.md)窗体配置信息。 |
 
 **示例：**
 
@@ -189,7 +189,7 @@ onWindowDidCreate(window: window.Window): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -218,7 +218,7 @@ onData(proxy: UIServiceHostProxy, data: Record&lt;string, Object&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -247,7 +247,7 @@ onDestroy(): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **示例：**
 
