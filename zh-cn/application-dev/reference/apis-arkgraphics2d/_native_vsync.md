@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供NativeVsync功能。
+提供获取系统vsync回调的功能，可用于实现应用的绘制帧率与系统帧率同步。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -154,7 +154,7 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 | 名称 | 描述 |
 | -------- | -------- |
 | nativeVsync | 一个指向OH_NativeVSync实例的指针。|
-| period | 用于获取vsync周期的变量。 |
+| period | 表示vsync周期，作为出参使用。 |
 
 **返回:**
 
@@ -183,7 +183,7 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 | 名称 | 描述 |
 | -------- | -------- |
 | name | 表示一个名字，与创建的OH_NativeVSync实例关联。 |
-| length | name的长度。 |
+| length | name的长度（字符数）。 |
 
 **返回:**
 
