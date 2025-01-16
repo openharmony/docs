@@ -747,7 +747,7 @@ getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;
 ```ts
 let pipWindowInfo: PiPWindow.PiPWindowInfo | undefined = undefined;
 try {
-  let promise = pipcontroller.getPiPWindowInfo();
+  let promise : Promise<PiPWindow.PiPWindowInfo> = pipController.getPiPWindowInfo();
   promise.then((data) => {
     pipWindowInfo = data;
     console.info('Success in get pip window info. Info: ' + JSON.stringify(data));
