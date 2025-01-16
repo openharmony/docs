@@ -21,6 +21,8 @@ The key management service specifications include mandatory specifications and o
 | SM4/CTR/NoPadding<br>SM4/CBC/NoPadding<br>SM4/CFB/NoPadding | **IV** is mandatory.| 12+ | Yes|
 | SM4/OFB/NoPadding | **Nonce** is mandatory.| 12+ | Yes|
 | SM2/-/NoPadding | SM3 is used as the MD algorithm.| 11+ | Yes|
+| DES/CBC/NoPadding<br>DES/ECB/NoPadding | **IV** is mandatory in CBC mode.| 16+ | Yes|
+| 3DES/CBC/NoPadding<br>3DES/ECB/NoPadding | **IV** is mandatory in CBC mode.| 16+ | Yes|
 
 **Specifications for Mimi-System Devices**
 
