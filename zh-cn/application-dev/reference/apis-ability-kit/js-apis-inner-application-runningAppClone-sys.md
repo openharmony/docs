@@ -1,4 +1,4 @@
- # RunningAppClone (系统接口)
+# RunningAppClone (系统接口)
 
 定义分身应用在运行态的结构信息。
 
@@ -9,7 +9,7 @@
 
 ## 属性
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
