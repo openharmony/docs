@@ -8844,7 +8844,7 @@ struct MarqueeExample {
 ```
 ## dispatchKeyEvent<sup>16+</sup>
 
-按键事件分发到具体组件上。
+按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -8852,7 +8852,7 @@ struct MarqueeExample {
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| node  | number \| string | 是   | 组件的key或者id。 |
+| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
 
 **示例：**
@@ -8864,23 +8864,35 @@ struct Index {
   build() {
     Row() {
       Row() {
-        Button().id('button1').onKeyEvent((event) => {
-          console.log("button1");
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
           return true
         })
-        Button().id('button2').onKeyEvent((event) => {
-          console.log("button2");
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
           return true
         })
       }
       .width('100%')
       .height('100%')
-      .onKeyEventDispatch((event)=>{
-         return this.getUIContext().dispatchKeyEvent('button1', event);
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
       })
+
     }
     .height('100%')
     .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
   }
 }
 ```
