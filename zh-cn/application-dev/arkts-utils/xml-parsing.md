@@ -35,7 +35,7 @@ XML模块提供XmlPullParser类对XML文件解析，输入为含有XML文本的A
 
 2. 对XML文件编码后调用XmlPullParser。
 
-   可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象。(两种构造方式返回结果无区别可任选一种)
+   可以基于ArrayBuffer构造XmlPullParser对象， 也可以基于DataView构造XmlPullParser对象（两种构造方式返回结果无区别可任选一种）。
 
     ```ts
     let strXml: string =
