@@ -767,6 +767,19 @@ FractionStop = [ number, number ]
 | threshold      | number | 是    | 灰度阈值。                                  |
 | thresholdRange | number | 是    | 阈值范围。<br/>**说明：**<br/>灰度阈值上下偏移thresholdRange构成阈值区间，背景颜色灰度值在区间内取值由high线性渐变到low。|
 
+## BackgroundImageOptions<sup>16+</sup>
+
+定义背景图选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            |  类型                                           | 必填  | 说明                                                     |
+| -------------- | ------------------------------------------------| ----- | --------------------------------------------------------|
+| syncLoad       | boolean                                         | 否    | 设置背景图片的同步或异步加载模式。<br/>默认值：false        |
+| repeat         | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | 否    | 设置背景图片的重复样式。                                   |
+
 ## freeze<sup>12+</sup>
 
 freeze(value: boolean)
