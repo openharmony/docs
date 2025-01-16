@@ -469,7 +469,7 @@ Currently, this permission is available only to 2-in-1 device applications.
 
 ## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
-Allow device management applications to configure BYOD control policies.
+Allows a device administrator application to manage personal device restrictions.
 
 **Permission level**: system_basic
 
@@ -482,7 +482,7 @@ Allow device management applications to configure BYOD control policies.
 
 ## ohos.permission.START_PROVISIONING_MESSAGE
 
-Allow device management applications to pull up BYOD activation pages.
+Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
 
 **Permission level**: system_basic
 
