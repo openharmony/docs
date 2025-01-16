@@ -322,7 +322,7 @@ struct SubHeaderExample {
   TitleBuilder(): void {
     Text('自定义标题')
       .fontSize(24)
-      .fontColor(Color.Red)
+      .fontColor(Color.Blue)
       .fontWeight(FontWeight.Bold)
   }
 
@@ -348,7 +348,6 @@ struct SubHeaderExample {
   }
 }
 ```
-
 ![zh-cn_image_subheader_example06](figures/zh-cn_image_subheader_example06.png)
 
 ### 示例7（自定义标题样式）
@@ -361,8 +360,8 @@ import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } f
 @Component
 struct SubHeaderExample {
   // 设置主副标题文本颜色
-  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
-  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Blue);
+  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Blue);
 
   build() {
     Column() {
