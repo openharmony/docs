@@ -1705,7 +1705,7 @@ startMoving(): void
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 12800008 | input method manager service error. |
+| 12800002 | not an input method. |
 | 12800013 | window manager service error. |
 | 12800017 | invalid panel type or panel flag. |
 
@@ -1744,7 +1744,7 @@ getDisplayId(): Promise<number>
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
-| 12800008 | input method manager service error. |
+| 12800002 | not an input method. |
 | 12800013 | window manager service error. |
 
 **示例：**
