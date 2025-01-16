@@ -467,7 +467,7 @@
 
 ### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
-允许设备管理应用配置BYOD管控策略。
+允许设备管理应用管理个人设备限制策略。
 
 **权限级别**：system_basic
 
@@ -480,7 +480,7 @@
 
 ### ohos.permission.START_PROVISIONING_MESSAGE
 
-允许设备管理应用拉起BYOD激活页面。
+允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
 
 **权限级别**：system_basic
 
