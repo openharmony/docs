@@ -453,6 +453,18 @@
 
 **起始版本**：15
 
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+允许应用单独配置每个Ability的图标和标签信息。
+
+设置后的图标与标签信息可在任务中心和快捷栏的界面中显示。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
 ## ohos.permission.NDK_START_SELF_UI_ABILITY
 
 允许应用通过C API启动同应用的UIAbility。
