@@ -23,14 +23,18 @@ The following figure illustrates the development sequence of encrypted import.
 
 ![](figures/Encrypted_import_process.png)
 
-To import an encrypted key, you need to use the HUKS APIs to generate a key pair (used to encrypt the key to be imported), export the public key, import the encrypted key, and delete the key pair.
+During the encrypted import process, the following HUKS capabilities are called in sequence: 
+* Generate an asymmetric key pair and export the public key for key agreement between devices. 
+* Generate a symmetric key to encrypt the key to be imported.
+* Use the symmetric key to encrypt the key to be imported to generate the key ciphertext.
+* Imports the encrypted key.
+* Delete the intermediate keys used for encrypting the key to be imported.
 
-The [public key material](huks-concepts.md#public-key-material-format) exported is encapsulated in X.509 format. The encrypted key material to be imported must be encapsulated in **Length<sub>Data< /sub>-Data** format.
+The [public key plaintext material returned by the key export API is encapsulated in X.509 format](huks-concepts.md#public-key-material-format). The key material in the key import API must be encapsulated in the **Length<sub>Data</sub>-Data** format, for example, [(Length<sub>part1</sub>Data<sub>part1</sub>)... (Length<sub>partn</sub>Data<sub>partn</sub>)].
 
 > **NOTE**
 >
 > The encrypted import supports key agreement algorithms ECDH and X25519. The generated **Shared_Key** uses the AES-GCM algorithm to encrypt **Caller_Kek**. For details about the cipher suites, see [HuksUnwrapSuite](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksunwrapsuite9).
-
 
 ### Key Material Format for Encrypted Import
 
@@ -66,7 +70,7 @@ The key management service specifications include mandatory specifications and o
 
 **You are advised to use mandatory specifications in your development for compatibility purposes.**
 <!--DelEnd-->
-
+**Specifications for Standard-System Devices**
 | Algorithm| Supported Key Length (Bit)| API Version| <!--DelCol4-->Mandatory|
 | -------- | -------- | -------- | -------- |
 | AES | 128, 192, 256| 8+ | Yes|
@@ -82,3 +86,27 @@ The key management service specifications include mandatory specifications and o
 | <!--DelRow-->DH | 3072, 4096| 8+ | No|
 | SM2 | 256 | 9+ | Yes|
 | SM4 | 128 | 9+ | Yes|
+
+**Specifications for Mimi-System Devices**
+
+<!--Del-->
+Before implementing the specifications for mini-system devices, determine whether your device supports the related specifications.
+<!--DelEnd-->
+
+| Algorithm| Supported Key Length (Bit)| API Version|
+| -------- | -------- | -------- |
+| AES | 128, 192, 256| 12+ |
+| DES | 64 | 12+ |
+| 3DES | 128, 192| 12+ |
+| RSA |  An integer multiple of 8, ranging from 1024 to 2048 (inclusive)| 12+ |
+| HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 12+ |
+| CMAC | 128 | 12+ |
+
+## Key Import Formats
+HUKS supports various types of keys in different formats. The following table lists the key types and key material formats supported by HUKS.
+| Key Type| Algorithm| Import Format|
+| -------- | -------- | -------- |
+| Symmetric key| - | Key in bytes|
+| Asymmetric key pair| - | [Key pair material format](huks-concepts.md#key-pair-material-format)|
+| Public key of an asymmetric key pair| Ed25519, X25519| See [Importing the X25519 Key and Public Key](huks-import-key-in-plaintext-arkts.md#importing-the-public-key-of-an-x25519-key-pair).|
+| Public key of an asymmetric key pair| RSA, ECC, ECDH, DSA, DH, SM2| DER format defined in X.509|
