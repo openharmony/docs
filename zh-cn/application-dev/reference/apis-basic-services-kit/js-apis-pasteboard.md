@@ -2951,7 +2951,7 @@ systemPasteboard.getMimeTypes().then((data: Array<String>) => {
 
 getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
-获取剪贴板的内容和进度，使用Promise异步回调。
+获取剪贴板的内容和进度，使用Promise异步回调，不支持对文件夹的拷贝。
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
