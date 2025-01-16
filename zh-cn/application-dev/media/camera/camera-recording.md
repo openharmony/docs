@@ -6,7 +6,9 @@
 
 详细的API说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
 
-1. 导入media模块。创建录像输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的[media接口](../../reference/apis-media-kit/js-apis-media.md)能力，导入media接口的方法如下。
+1. 导入media模块。
+
+   创建录像输出流的SurfaceId以及录像输出的数据，都需要用到系统提供的[media接口](../../reference/apis-media-kit/js-apis-media.md)能力，导入media接口的方法如下。
      
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
