@@ -178,3 +178,107 @@ let contentForm : uniformDataStruct.ContentForm = {
 }
 console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
 ```
+
+## Form<sup>16+</sup>
+
+系统定义的卡片类型数据。
+
+**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称         | 类型   | 只读 | 可选 | 说明                                                                                                                             |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'openharmony.form'| 是   | 否  | 统一数据类型标识为卡片类型数据，固定为“openharmony.form”，数据类型描述信息见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+| formId     | number | 否   | 否  | 卡片id。|
+| formName   | string | 否   | 否  | 卡片名。|
+| bundleName | string | 否   | 否  | 卡片所属的bundle名。|
+| abilityName| string | 否   | 否  | 卡片对应的ability名。|
+| module     | string | 否   | 否  | 卡片所属的module名。|
+| details | Record<string, number \| string \| Uint8Array> | 否   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
+
+
+**示例：**
+
+```ts
+let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+let formDetails : Record<string, number | string | Uint8Array> = {
+  'formKey1': 123,
+  'formKey2': 'formValue',
+  'formKey3': u8Array,
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'formName',
+  bundleName : 'com.xx.app',
+  abilityName : 'abilityName',
+  module : 'module',
+  details : formDetails
+}
+console.info('form.uniformDataType: ' + form.uniformDataType);
+```
+
+## FileUri<sup>16+</sup>
+
+文件地址类型数据。
+
+**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称         | 类型   | 只读 | 可选 | 说明                                                                                                                             |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'general.file-uri'| 是   | 否  | 统一数据类型标识为文件地址类型数据，固定为“general.file-uri”，数据类型描述信息见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。
+| oriUri     | string | 否   | 否  | 文件地址。|
+| fileType   | string | 否   | 否  | 文件类型。|
+| details | Record<string, number \| string \| Uint8Array> | 否   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
+
+
+**示例：**
+
+```ts
+let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+let fileUriDetails : Record<string, number | string | Uint8Array> = {
+  'fileUriKey1': 123,
+  'fileUriKey2': 'fileUriValue',
+  'fileUriKey3': u8Array,
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'www.xx.com',
+  fileType : 'general.image',
+  details : fileUriDetails
+}
+console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
+```
+
+## PixelMap<sup>16+</sup>
+
+系统定义的像素图类型数据。
+
+**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称         | 类型   | 只读 | 可选 | 说明                                                                                                                             |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'openharmony.pixel-map'| 是   | 否  | 统一数据类型标识为像素图类型数据，固定为“openharmony.pixel-map”，数据类型描述信息见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。 
+| pixelMap     | image.PixelMap | 否   | 否  | 像素图二进制数据。|
+| details | Record<string, number \| string \| Uint8Array> | 否   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
+
+
+**示例：**
+
+```ts
+import image from '@ohos.multimedia.image';
+
+let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+let arrayBuffer = new ArrayBuffer(4*200*200);
+let opt : image.InitializationOptions = { editable: true, pixelFormat: 3, size: { height: 200, width: 200 }, alphaType: 3 };
+let pixelMapDetails : Record<string, number | string | Uint8Array> = {
+  'pixelMapKey1': 123,
+  'pixelMapKey2': 'pixelMapValue',
+  'pixelMapKey3': u8Array,
+}
+let pixelMap : uniformDataStruct.PixelMap = {
+  uniformDataType : 'openharmony.pixel-map',
+  pixelMap : image.createPixelMapSync(arrayBuffer, opt),
+  details : pixelMapDetails
+}
+console.info('pixelMap.uniformDataType: ' + pixelMap.uniformDataType);
+```

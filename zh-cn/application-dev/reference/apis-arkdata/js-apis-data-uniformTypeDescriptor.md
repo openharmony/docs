@@ -196,6 +196,8 @@ import { uniformTypeDescriptor } from '@kit.ArkData';
 | OFD<sup>12+</sup>                         | 'general.ofd'                    | 开放版式文档类型，归属类型为COMPOSITE_OBJECT。       |
 | CAD<sup>12+</sup>                         | 'general.cad'                    | 所有计算机辅助设计类型的基类型，归属类型为OBJECT。       |
 | OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | 任意二进制数据类型，归属类型为OBJECT。       |
+| FILE_URI<sup>16+</sup>                         | 'general.file-uri'                    | 文件地址类型，归属类型为TEXT。       |
+| CONTENT_FORM<sup>16+<sup>                         | 'general.content-form'                    | 内容卡片类型，归属类型为OBJECT。       |
 
 
 ## TypeDescriptor<sup>11+</sup> 
