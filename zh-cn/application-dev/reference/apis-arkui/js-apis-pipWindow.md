@@ -719,7 +719,7 @@ let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件�
 pipController.setPiPControlEnabled(controlType, enabled);
 ```
 ### getPiPWindowInfo<sup>16+</sup>
-getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;
+getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo16)&gt;
 
 获取画中画窗口信息。
 
@@ -731,7 +731,7 @@ getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;
 
 | 类型                   | 说明                  |
 |----------------------|---------------------|
-| Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;  | Promise对象，返回当前画中画窗口信息。 |
+| Promise&lt;[PiPWindowInfo](#pipwindowinfo16)&gt;  | Promise对象，返回当前画中画窗口信息。 |
 
 **错误码：**
 
