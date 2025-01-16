@@ -36,11 +36,11 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
                                               JSVM_Script* result);
 ```
 
-同时 code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
+同时 code cache 的生成和使用也会对编译产生影响，这部分可以参考 [使用 code cache 加速编译](use-jsvm-about-code-cache.md)。
 
 #### 热启动: 生成足够多的 code cache
 
-热启动场景下, 我们会在热启动前生成 code cache 以减少编译带来的开销. 这个时候生成的 code cache 的覆盖率会影响 code cache 对热启动的优化效果。
+热启动场景下, 我们会在热启动前生成 code cache 以减少编译带来的开销。这个时候生成的 code cache 的覆盖率会影响 code cache 对热启动的优化效果。
 
 有一个简单的策略可以生成足量的 code cache, 就是在生成 code cache 前的那次编译打开 `eager compile` 选项, 这样 v8 会在编译时进行全量的编译, 这样生成 code cache 一定是全量的。
 
@@ -48,14 +48,14 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
 
 #### 冷启动: 使用 lazy compile 代替 eager compile
 
-在冷启动时, `eager compile` 会增加不必要的编译时间. 这其中主要的原因是没有拿到 v8 lazy compile 优化效果: v8 会将不在必经路径上的函数推迟编译, 在实际运行到的时候才进行编译, 这样会减少一些不被运行到函数的编译, 从而优化冷启动的时间。
+在冷启动时, `eager compile` 会增加不必要的编译时间。这其中主要的原因是没有拿到 v8 lazy compile 优化效果: v8 会将不在必经路径上的函数推迟编译, 在实际运行到的时候才进行编译, 这样会减少一些不被运行到函数的编译, 从而优化冷启动的时间。
 
 因此在冷启动时, 会阻塞主线程的部分可以关闭 `eager compile` 选项, 从而拿到足够的冷启动优化效果。
 
 ### 在 native 层减少时间开销
 #### 冷启动: 减少 code cache 的影响
 
-上面在考虑减少 v8 层开销的时候, 提到了为了热启动的性能可以开启 `eager compile` 进行编译, 而为了冷启动性能却又需要关闭 `eager compile` 选项, 看起来是矛盾的. 为了解决这个矛盾, 避免在冷热启动性能上的权衡, 关键点是在 code cache 生成本身。
+上面在考虑减少 v8 层开销的时候, 提到了为了热启动的性能可以开启 `eager compile` 进行编译, 而为了冷启动性能却又需要关闭 `eager compile` 选项, 看起来是矛盾的。为了解决这个矛盾, 避免在冷热启动性能上的权衡, 关键点是在 code cache 生成本身。
 
 首先 code cache 的生成是需要前置的编译的, 其次生成 code cache 本身也存在开销；
 
@@ -63,7 +63,7 @@ JSVM_EXTERN JSVM_Status OH_JSVM_CompileScript(JSVM_Env env,
 
 然后, 有两个方法可以参考:
 
-- 将生成 code cache 必需的前置编译也放到新增的线程上, 这样编译选项可以分开使用: 生成 code cache 打开 `eager compile`, 冷启动运行则关闭, 这样做的缺点是可能进一步提高运行时的峰值资源占用, 优点是 code cache 生成和运行可以完全解耦, 不再需要考虑生成 code cache 的时间点. 这个流程的伪代码如下所示
+- 将生成 code cache 必需的前置编译也放到新增的线程上, 这样编译选项可以分开使用: 生成 code cache 打开 `eager compile`, 冷启动运行则关闭, 这样做的缺点是可能进一步提高运行时的峰值资源占用, 优点是 code cache 生成和运行可以完全解耦, 不再需要考虑生成 code cache 的时间点。这个流程的伪代码如下所示
 
 ```
 async_create_code_cache() {
