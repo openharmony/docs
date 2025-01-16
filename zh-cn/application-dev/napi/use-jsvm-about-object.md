@@ -634,7 +634,7 @@ JSVM CreateSymbol Success
 
 ### OH_JSVM_SymbolFor
 
-在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol
+在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol。
 
 cpp部分代码
 
