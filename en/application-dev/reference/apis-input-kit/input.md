@@ -274,12 +274,12 @@ Defines a callback used to receive device removal events.
 ### Input_Hotkey
 
 ```
-typedef struct Input_HotkeyInput_Hotkey
+typedef struct Input_Hotkey Input_Hotkey
 ```
 **Description**
 Defines the shortcut key structure.
 
-**Since**: 13
+**Since**: 14
 
 
 ### Input_HotkeyCallback
@@ -290,7 +290,7 @@ typedef void(* Input_HotkeyCallback) (Input_Hotkey *hotkey)
 **Description**
 Defines the callback used to return shortcut key events.
 
-**Since**: 13
+**Since**: 14
 
 
 ### Input_InterceptorEventCallback
@@ -788,8 +788,8 @@ Provides the enum values of error codes.
 | INPUT_PARAMETER_ERROR  | Parameter check failed.   | 
 | INPUT_SERVICE_EXCEPTION  | Service exception.| 
 | INPUT_REPEAT_INTERCEPTOR  | Interceptor repeatedly created.  | 
-| INPUT_OCCUPIED_BY_SYSTEM  | Occupied by a system application.<br>**Since**: API version 13| 
-| INPUT_OCCUPIED_BY_OTHER  | Occupied by other applications.<br>**Since**: API version 13| 
+| INPUT_OCCUPIED_BY_SYSTEM  | Occupied by a system application.<br>**Since**: API version 14| 
+| INPUT_OCCUPIED_BY_OTHER  | Occupied by other applications.<br>**Since**: API version 14| 
 
 
 ### Input_TouchEventAction
@@ -964,7 +964,7 @@ Subscribes to shortcut key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -1174,7 +1174,7 @@ Creates an array of [Input_Hotkey](#input_hotkey) instances.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -1231,7 +1231,7 @@ Creates a shortcut key object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Returns**
 
@@ -1316,7 +1316,7 @@ Destroys the array of [Input_Hotkey](#input_hotkey) instances and reclaims the m
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -1378,7 +1378,7 @@ Destroys a shortcut key object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -1473,7 +1473,7 @@ Obtains all configured shortcut keys.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -1886,7 +1886,7 @@ Obtains the modified key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -1912,7 +1912,7 @@ Obtains the interval since the last system input event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -2285,7 +2285,7 @@ Obtains the modifier key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -2311,7 +2311,7 @@ Checks whether to report repeated key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -2598,7 +2598,7 @@ Unsubscribes from shortcut key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -2915,7 +2915,7 @@ Sets the modified key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -3195,7 +3195,7 @@ Sets the modifier keys.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 
@@ -3216,7 +3216,7 @@ Specifies whether to report repeated key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
 
-**Since**: 13
+**Since**: 14
 
 **Parameters**
 

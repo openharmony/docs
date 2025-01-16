@@ -5,7 +5,7 @@
 
 定义通用API接口。
 
-**库：** libohcrypto.z.so
+**库：** libohcrypto.so
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 

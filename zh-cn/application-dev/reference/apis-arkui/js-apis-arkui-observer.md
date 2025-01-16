@@ -91,6 +91,8 @@ NavDestination组件信息。
 | index<sup>12+</sup>        | number        | 是   | NavDestination在页面栈中的索引。                   |
 | param<sup>12+</sup>        | Object        | 否   | NavDestination组件的参数。                   |
 | navDestinationId<sup>12+</sup>        | string        | 是   | NavDestination组件的唯一标识ID。                   |
+| mode<sup>16+</sup>        | [NavDestinationMode](arkui-ts/ts-basic-components-navdestination.md#navdestinationmode枚举说明-11)        | 是   | NavDestination类型。                   |
+| uniqueId<sup>16+</sup>        | number        | 是   | NavDestination组件的uniqueId。                   |
 
 ## NavigationInfo<sup>12+</sup>
 
@@ -202,6 +204,7 @@ TabContent页面的切换信息。
 | tabContentId | string                                             | 是   | TabContent组件的id。                          |
 | tabContentUniqueId | number                                       | 是   | TabContent组件的uniqueId。                    |
 | state        | [TabContentState](#tabcontentstate12)              | 是   | TabContent组件的状态。                        |
+| index        | number                                             | 是   | TabContent组件的下标索引。                             |
 | id           | string                                             | 是   | Tabs组件的id。                                |
 | uniqueId     | number                                             | 是   | Tabs组件的uniqueId。                          |
 

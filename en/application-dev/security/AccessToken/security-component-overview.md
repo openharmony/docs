@@ -35,12 +35,6 @@ Currently, the following security components are available:
 
   You can use the **SaveButton** component when your application needs to save image or videos to the media library. This component allows for simpler operations than Pickers, which have to start a system application and have the user select a directory for saving the image or video.
 
-- [LocationButton](locationbutton.md)
-  
-  The **LocationButton** component comes with the precise location privilege. When it is tapped, the application running in the foreground can call the location service to obtain the precise location no matter whether the application has applied for or is granted with the precise location permission.
-
-  You can use this component in applications that do not strongly depend on location (such as navigation and health applications) and applications that require location information only in certain foreground scenarios (such as locating city, clocking in/out, and sharing the location). If location information is required for a long period of time or in the background, you are advised to apply for the location permission for your application.
-
 
 ## Working Mechanism
 
@@ -69,7 +63,7 @@ The following figure illustrates the working mechanism.
 
 6. After the authorization is successful, the security component calls **OnClick()** to notify the application layer of the authorization success.
 
-7. The application calls the related API to perform the operation, for example, obtain location information, read data from the pasteboard, or create a file in the media library.
+7. The application calls the corresponding privileged operation, for example, reading pasteboard information and creating a file in the media library.
    The permission usage and authorization validity period vary with the security component. For details, see the development guide of the specific security component.
 
 8. The corresponding service calls the permission manager service or security component manager service to obtain the authorization result and return the authentication result.

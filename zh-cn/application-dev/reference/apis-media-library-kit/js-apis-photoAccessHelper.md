@@ -1046,7 +1046,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1060,22 +1060,22 @@ async function example() {
         };
 
         let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
-        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        let resultFile: fileIo.File = fileIo.openSync(resultUri, fileIo.OpenMode.READ_WRITE);
         // 实际场景请使用真实的uri和文件大小
-        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let srcFile:  fileIo.File = fileIo.openSync("file://test.jpg", fileIo.OpenMode.READ_ONLY);
         let bufSize: number = 2000000;
         let readSize: number = 0;
         let buf = new ArrayBuffer(bufSize);
-        let readLen = fs.readSync(srcFile.fd, buf, {
+        let readLen = fileIo.readSync(srcFile.fd, buf, {
             offset: readSize,
             length: bufSize
         });
         if (readLen > 0) {
             readSize += readLen;
-            fs.writeSync(resultFile.fd, buf, { length: readLen });
+            fileIo.writeSync(resultFile.fd, buf, { length: readLen });
         }
-        fs.closeSync(srcFile);
-        fs.closeSync(resultFile);
+        fileIo.closeSync(srcFile);
+        fileIo.closeSync(resultFile);
     } catch (err) {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
@@ -3713,8 +3713,8 @@ saveCameraPhoto(imageFileType: ImageFileType): void
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 async function example(asset: photoAccessHelper.PhotoAsset) {
@@ -3764,13 +3764,13 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
-### setOrientation<sup>14+</sup>
+### setOrientation<sup>15+</sup>
 
 setOrientation(orientation: number): void
 
 修改图片的旋转角度。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -4492,8 +4492,8 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 **示例：**
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.QuickImageDataHandler<image.Picture> {
@@ -5106,8 +5106,8 @@ title参数规格为：
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>14+</sup>      | [CompatibleMode](#compatiblemode14) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
-| mediaAssetProgressHandler<sup>14+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler14) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -5368,7 +5368,7 @@ async function example() {
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
 
-## CompatibleMode<sup>14+</sup>
+## CompatibleMode<sup>15+</sup>
 
 配置转码模式。
 
@@ -5387,17 +5387,17 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| TEXT_DONE |  0 |  显示“完成”。  |
-| TEXT_SEND    |  1 |  显示“发送”。    |
-| TEXT_ADD |  2 |  显示“添加”。  |
+| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。  |
+| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。    |
+| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。  |
 
-## MediaAssetProgressHandler<sup>14+</sup>
+## MediaAssetProgressHandler<sup>15+</sup>
 
 媒体资产进度处理器，应用在onProgress方法中获取媒体资产进度。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### onProgress<sup>14+</sup>
+### onProgress<sup>15+</sup>
 
 onProgress(progress: number): void
 

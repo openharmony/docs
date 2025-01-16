@@ -2,26 +2,22 @@
 
 The main process of camera application development includes development preparations, device input management, session management, preview, photo capture, and video recording.
 
+## Requesting Permissions
+
 Before developing a camera application, you must request camera-related permissions (as described in the table below) to ensure that the application has the permission to access the camera hardware and other services. Before requesting permissions, ensure that the [basic principles for using permissions](../../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met.
 
+- To use the camera for photo capture, request the ohos.permission.CAMERA permission.
+- To use the microphone to record audio, request the ohos.permission.MICROPHONE permission.
+- To display location information in photos or videos captured, request the ohos.permission.MEDIA_LOCATION permission.
 
-| Permission| Description| Authorization Mode| 
-| -------- | -------- | -------- |
-| ohos.permission.CAMERA | Allows an application to use the camera to take photos and record videos.| user_grant | 
-| ohos.permission.MICROPHONE | Allows an application to access the microphone.<br>This permission is required only if the application is used to record audio.| user_grant | 
-| ohos.permission.WRITE_MEDIA | Allows an application to read media files from and write media files into the user's external storage. This permission is optional.| user_grant | 
-| ohos.permission.READ_MEDIA | Allows an application to read media files from the user's external storage. This permission is optional.| user_grant | 
-| ohos.permission.MEDIA_LOCATION | Allows an application to access geographical locations in the user's media file. This permission is optional.| user_grant | 
+All these permissions must be authorized by users through a dialog box. For details about how to request and verify the permissions, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
-
-After configuring the permissions in the **module.json5** file, the application must call [abilityAccessCtrl.requestPermissionsFromUser](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the required permissions are granted. If not, request the permissions from the user by displaying a dialog box.
-
-
-For details about how to request and verify the permissions, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
-
-
+- To read images or videos, you are advised to use the media library [Picker to access them](../medialibrary/photoAccessHelper-photoviewpicker.md).
+- To save images or videos, use the [security components to save them](../medialibrary/photoAccessHelper-savebutton.md).
+  
 > **NOTE**
-> Even if the user has granted a permission, the application must check for the permission before calling an API protected by the permission. It should not persist the permission granted status, because the user can revoke the permission through the system application **Settings**.
+> 
+> When the application needs to clone, back up, or synchronize images and videos in users' public directory, request the ohos.permission.READ_IMAGEVIDEO and ohos.permission.WRITE_IMAGEVIDEO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
 
 ## How to Develop
 
@@ -37,5 +33,4 @@ You can use either ArkTS or C++ APIs for camera development.
 | Deferred photo delivery| [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)| -  |
 | Moving photos| [Moving Photos (ArkTS)](camera-moving-photo.md)| - |
 | Video Recording| [Video Recording (ArkTS)](camera-recording.md)| [Video Recording (C/C++)](native-camera-recording.md)|
-| Secondary processing of video streams| - | [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)|
 | Metadata| [Camera Metadata (ArkTS)](camera-metadata.md)| [Camera Metadata (C/C++)](native-camera-metadata.md)|

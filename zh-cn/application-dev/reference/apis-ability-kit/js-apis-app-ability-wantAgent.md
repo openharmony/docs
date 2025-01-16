@@ -1267,7 +1267,35 @@ try {
 | -------- | -------- | -------- | -------- | -------- |
 | info           | WantAgent                       | 否 | 否   | 触发的wantAgent。       |
 | want           | [Want](js-apis-app-ability-want.md#属性)                            | 否 | 否   | 存在的被触发的want。     |
-| finalCode      | number                          | 否 | 否   | 触发wantAgent的执行结果。<br/>- 对于启动Ability的场景(即[OperationType](#operationtype) 取值为 1、2、3时)，执行成功finalcode为0，执行失败finalcode取值参见[元能力子系统错误码](errorcode-ability.md)。<br/>- 对于发布公共事件的场景(即[OperationType](#operationtype)取值为4时)，执行成功finalcode为0，执行失败finalcode取值参见[事件错误码](../apis-basic-services-kit/errorcode-CommonEventService.md)。 |
+| finalCode      | number                          | 否 | 否   | 触发wantAgent的请求代码。 |
 | finalData      | string                          | 否 | 否   | 公共事件收集的最终数据。  |
 | extraInfo      | Record\<string, Object>            | 否 |是   | 额外数据。               |
+
+## TriggerInfo
+
+type TriggerInfo = _TriggerInfo
+
+TriggerInfo对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
+
+## WantAgentInfo
+
+type WantAgentInfo = _WantAgentInfo
+
+WantAgentInfo对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
 

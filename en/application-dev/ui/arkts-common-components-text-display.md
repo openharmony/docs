@@ -337,7 +337,7 @@ The [Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md) compone
 You can bind the **Text** component to the [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick), [onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), or other universal events to respond to user operations.
 
 ```ts
-Text ('Click Me')
+Text('Click Me')
   .onClick(()=>{
       console.info('I am the response to the click event');
    })

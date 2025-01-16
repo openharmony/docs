@@ -79,9 +79,9 @@ libace_napi.z.so
 |FUNC|napi_get_value_external|获取先前通过napi_create_external()传递的外部数据指针。|10|
 |FUNC|napi_get_value_int32|获取给定js `Number`对应的C int32值。|10|
 |FUNC|napi_get_value_int64|获取给定js `Number`对应的C int64值。|10|
-|FUNC|napi_get_value_string_latin1|获取给定js vaule对应的ISO-8859-1编码的字符串。|10|
-|FUNC|napi_get_value_string_utf8|获取给定js vaule对应的UTF8编码的字符串。|10|
-|FUNC|napi_get_value_string_utf16|获取给定js vaule对应的UTF16编码的字符串。|10|
+|FUNC|napi_get_value_string_latin1|获取给定js value对应的ISO-8859-1编码的字符串。|10|
+|FUNC|napi_get_value_string_utf8|获取给定js value对应的UTF8编码的字符串。|10|
+|FUNC|napi_get_value_string_utf16|获取给定js value对应的UTF16编码的字符串。|10|
 |FUNC|napi_get_value_uint32|获取给定js `Number`对应的C uint32值。|10|
 |FUNC|napi_get_boolean|根据给定的C boolean值，获取js bool对象。|10|
 |FUNC|napi_get_global|获取`global`对象。|10|
@@ -252,7 +252,7 @@ libace_napi.z.so
 
 **说明：**
 
-- 在OpenHarmory中，如果创建强引用时注册了napi_finalize回调函数，调用该接口的时候会触发该napi_finalize回调。
+- 在OpenHarmony中，如果创建强引用时注册了napi_finalize回调函数，调用该接口的时候会触发该napi_finalize回调。
 
 ### napi_create_symbol
 
@@ -509,7 +509,7 @@ libace_napi.z.so
 
 - promise的then方法的resolve或者reject回调中出现异常时，如果promise没有catch块，代码会继续执行不会崩溃；如果promise有catch块，则异常会被该catch块捕获。
 
-### napi_reject_deffered
+### napi_reject_deferred
 
 **说明：**
 

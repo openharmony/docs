@@ -379,3 +379,492 @@ struct MyComponent {
 }
 ```
 
+## 节点复用能力
+
+将[reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)事件和[recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12)事件传递至BuilderNode中的自定义组件，以实现BuilderNode节点的复用。
+
+```ts
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("hello")) {
+  ReusableChildComponent2({ item: param.item });
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = '';
+  private controller: MyNodeController = new MyNodeController();
+
+  aboutToAppear() {
+    this.controller.item = this.item;
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.item);
+    this.controller?.builderNode?.recycle();
+  }
+
+  aboutToReuse(params: object): void {
+    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
+    this.controller?.builderNode?.reuse(params);
+  }
+
+  build() {
+    NodeContainer(this.controller);
+  }
+}
+
+@Component
+struct ReusableChildComponent2 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0;i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({ item: item })
+          }
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+## 通过系统环境变化更新节点
+
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
+
+> **说明：**
+>
+> updateConfiguration接口用于通知对象进行更新，更新所使用的系统环境取决于应用当前系统环境的变化。
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// 自定义组件
+@Component
+struct TextBuilder {
+  // 作为自定义组件中需要更新的属性，数据类型为基础属性，定义为@Prop
+  @Prop message: string = "TextBuilder";
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 36 })
+          .fontColor($r(`app.color.text_color`))
+          .backgroundColor($r(`app.color.start_window_background`))
+      }
+    }
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+      .fontColor($r(`app.color.text_color`))
+    TextBuilder({ message: params.text }) // 自定义组件
+  }.backgroundColor($r(`app.color.start_window_background`))
+}
+
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "";
+
+  constructor(message: string) {
+    super()
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+  }
+
+  createNode(context: UIContext) {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    builderNodeMap.push(this.textNode);
+  }
+
+  deleteNode() {
+    let node = builderNodeMap.pop();
+    node?.dispose();
+  }
+
+  update(message: string) {
+    if (this.textNode !== null) {
+      // 调用update进行更新。
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
+// 记录创建的自定义节点对象
+const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
+
+function updateColorMode() {
+  builderNodeMap.forEach((value, index) => {
+    // 通知BuilderNode环境变量改变
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+  private textNodeController: TextNodeController = new TextNodeController(this.message);
+  private count = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        console.log('onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        updateColorMode();
+      }
+    }
+    // 注册监听回调
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    //创建自定义节点并添加至map
+    this.textNodeController.createNode(this.getUIContext());
+  }
+
+  aboutToDisappear(): void {
+    //移除map中的引用，并将自定义节点释放
+    this.textNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.textNodeController)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#FFF0F0F0')
+        Button('Update')
+          .onClick(() => {
+            this.count += 1;
+            const message = "Update " + this.count.toString();
+            this.textNodeController.update(message);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+## 跨页面复用注意事项
+
+在使用[路由](../reference/apis-arkui/js-apis-router.md)接口[router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9)、[router.back](../reference/apis-arkui/js-apis-router.md#routerback)、[router.clear](../reference/apis-arkui/js-apis-router.md#routerclear)、[router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10)操作页面时，若某个被缓存的BuilderNode位于即将销毁的页面内，那么在新页面中复用该BuilderNode时，可能会存在数据无法更新或新创建节点无法显示的问题。以[router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10)为例，在以下示例代码中，当点击“router replace”按钮后，页面将切换至PageTwo，同时标志位isShowText会被设定为false。
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // @Builder中使用语法节点生成BuilderProxyNode
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // 复用AppStorage中的BuilderNode
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // 将创建的BuilderNode存入AppStorage
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // 改变AppStorage中的状态变量触发Text节点的重新创建
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```
+
+PageTwo的实现如下：
+
+```ts
+// ets/pages/PageTwo.ets
+// 该页面中存在一个按钮，可跳转回主页面，回到主页面后，原有的文字消失
+import "ets/pages/Index"
+
+@Entry({ routeName: "pageTwo" })
+@Component
+struct PageTwo {
+  build() {
+    Column() {
+      Button('Router replace to index')
+        .onClick(() => {
+          this.getUIContext().getRouter().replaceNamedRoute({ name: "myIndex" });
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+    .padding(16)
+  }
+}
+```
+
+![BuilderNode Reuse Example](./figures/builder_node_reuse.gif)
+
+在API version 16之前，解决该问题的方法是在页面销毁时，将页面上的BuilderNode从缓存中移除。以上述例子为例，可以在页面跳转前，通过点击事件将BuilderNode从AppStorage中移除，以此达到预期效果。
+
+API version 16及之后版本，BuilderNode在新页面被复用时，会自动刷新自身内容，无需在页面销毁时将BuilderNode从缓存中移除。
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // @Builder中使用语法节点生成BuilderProxyNode
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // 复用AppStorage中的BuilderNode
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // 将创建的BuilderNode存入AppStorage
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // 改变AppStorage中的状态变量触发Text节点的重新创建
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+            // 将BuilderNode从AppStorage中移除
+            AppStorage.delete("textNode");
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```

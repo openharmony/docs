@@ -21,7 +21,7 @@ When both **audioSampleRate** and **audioChannels** are **0**, the audio-related
 
 | Name| Description| 
 | -------- | -------- |
-| int32_t [audioSampleRate](#audiosamplerate) | Audio sampling rate. For details about the supported rates, see **OH_AudioCapturer_GetSamplingRate**. | 
+| int32_t [audioSampleRate](#audiosamplerate) | Audio sampling rate. | 
 | int32_t [audioChannels](#audiochannels) | Number of audio channels. | 
 | [OH_AudioCaptureSourceType](_a_v_screen_capture.md#oh_audiocapturesourcetype) [audioSource](#audiosource) | Audio source. | 
 
@@ -44,7 +44,7 @@ Number of audio channels.
 int32_t OH_AudioCaptureInfo::audioSampleRate
 ```
 **Description**
-Audio sampling rate. For details about the supported rates, see **OH_AudioCapturer_GetSamplingRate**.
+Audio sampling rate. For details about the supported rates, see [AudioSamplingRate](../apis-audio-kit/js-apis-audio.md#audiosamplingrate8) of Audio Kit.
 
 
 ### audioSource

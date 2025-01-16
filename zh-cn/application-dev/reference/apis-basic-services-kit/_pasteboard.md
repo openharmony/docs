@@ -69,6 +69,7 @@
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  |
 | char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  |
 | OH_UdmfDat *[OH_Pasteboard_GetDataWithProgress](#oh_pasteboard_getdatawithprogress)(OH_Pasteboard *pasteboard, [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) *params, int *status) | 获取剪贴板的数据以及粘贴进度 |
+| uint32_t [OH_Pasteboard_GetChangeCount](#oh_pasteboard_getchangecount) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 获取剪切板内容的变化次数。  |
 
 
 ## 类型定义说明
@@ -818,3 +819,32 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, OH_Pas
 **返回：**
 
 执行成功时返回统一数据对象**OH_UdmfData**实例的指针。否则返回空指针。
+
+### OH_Pasteboard_GetChangeCount()
+
+```
+uint32_t OH_Pasteboard_GetChangeCount(OH_Pasteboard *pasteboard);
+```
+**描述：**
+
+获取剪切板内容的变化次数。
+
+当剪切板内容过期或调用[OH_Pasteboard_ClearData](#oh_pasteboard_cleardata)等接口导致剪切板内容为空时，内容变化次数不会因此改变。
+
+系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。  |
+
+**返回：**
+
+执行成功时返回剪切板内容的变化次数，否则返回0。
+
+**参见：**
+
+[OH_Pasteboard](#oh_pasteboard)

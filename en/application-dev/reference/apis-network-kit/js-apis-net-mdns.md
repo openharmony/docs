@@ -838,3 +838,17 @@ Defines the MDNS error information.
 | INTERNAL_ERROR  | 0    | Operation failed because of an internal error. |
 | ALREADY_ACTIVE      | 1    | Operation failed because the service already exists.|
 | MAX_LIMIT  | 2 | Operation failed because the number of requests exceeds the maximum value.|
+
+## NetAddress
+
+type NetAddress = connection.NetAddress
+
+Obtains the network address.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| connection.NetAddress | Network address.    |

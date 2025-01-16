@@ -313,7 +313,7 @@ struct FocusableExample {
               this.inputValue = value
             })
             .width(156)
-            .defaultFocus(true)             // The <TextInput> component is the initial default focus of the page.
+            .defaultFocus(true)             // The TextInput component is the initial default focus of the page.
           Button('Group3')
             .width(165)
             .height(40)

@@ -1,6 +1,6 @@
 # 窗口子系统变更说明
 
-## cl.window.1 setWindowLayoutFullScreen、setImmersiveModeEnabledState接口在2in1设备上禁用
+## cl.window.1 setWindowLayoutFullScreen、setImmersiveModeEnabledState接口在2in1设备和平板设备的自由多窗模式上禁用
 
 **访问级别**
 
@@ -8,15 +8,15 @@
 
 **变更原因**
 
-因为phone设备上的沉浸式是应用布局全屏且窗口与系统状态栏与导航条交叠，而开发者在2in1设备上使用窗口全屏会隐藏系统状态栏和Dock栏，行为与phone设备不一致。所以在2in1设备上禁用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口，只能调用maximize接口设置进入/退出沉浸式，在进入最大化时通过maximize接口的入参控制状态栏和Dock栏的隐藏/显示状态。
+因为phone设备上的沉浸式是应用布局全屏且窗口与系统状态栏与导航条交叠，而平板设备的自由多窗模式上的沉浸式是应用布局全屏且窗口与导航条交叠，2in1设备上的沉浸式是应用布局全屏且隐藏系统状态栏和Dock栏，行为与phone设备不一致。所以在2in1设备和平板设备的自由多窗模式上禁用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口，只能调用maximize接口设置进入/退出沉浸式，在进入最大化时通过maximize接口的入参控制状态栏和Dock栏的隐藏/显示状态。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：2in1设备上调用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口，窗口进入/退出沉浸式。
+变更前：2in1设备和平板设备的自由多窗模式上调用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口，窗口进入/退出沉浸式。
 
-变更后：2in1设备上调用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口不生效。
+变更后：2in1设备和平板设备的自由多窗模式上调用setWindowLayoutFullScreen、setImmersiveModeEnabledState接口不生效。
 
 **起始 API Level**
 
@@ -38,7 +38,7 @@ setImmersiveModeEnabledState接口从API version 12开始支持
 
 **适配指导**
 
-2in1设备上需要调用[maximize](../../../application-dev/reference/apis-arkui/js-apis-window.md#maximize12)接口实现窗口沉浸式状态设置。
+2in1设备和平板设备的自由多窗模式上需要调用[maximize](../../../application-dev/reference/apis-arkui/js-apis-window.md#maximize12)接口实现窗口沉浸式状态设置。
 
 当调用[setWindowLayoutFullScreen](../../../application-dev/reference/apis-arkui/js-apis-window.md#setwindowlayoutfullscreen9)接口时，建议同时调用setWindowLayoutFullScreen和maximize接口。
 

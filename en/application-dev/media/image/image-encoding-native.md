@@ -117,7 +117,7 @@ target_link_libraries(sample PUBLIC libimage_packer_ndk.z.so)
    > **NOTE**
    >
    > You only need to call the API once.
-   
+
    ```c++
    // Call OH_ImagePacker_Release to destroy the encoder.
    int32_t ret = OH_ImagePacker_Release(nativePacker);

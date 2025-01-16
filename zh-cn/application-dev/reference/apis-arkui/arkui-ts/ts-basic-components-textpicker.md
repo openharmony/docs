@@ -207,97 +207,6 @@ gradientHeight(value: Optional\<Dimension>)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
 
-> **说明：**
->
-> 该组件不建议开发者在动效过程中修改属性数据。
-
-## 事件
-
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
-
-### onAccept<sup>(deprecated) </sup>
-
-onAccept(callback: (value: string, index: number) => void)
-
-点击弹窗中的“确定”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
-
-从API version 10开始废弃。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                 |
-| ------ | ------ | ---- | -------------------- |
-| value  | string | 是   | 当前选中项的文本。   |
-| index  | number | 是   | 当前选中项的索引值。 |
-
-### onCancel<sup>(deprecated) </sup>
-
-onCancel(callback: () => void)
-
-点击弹窗中的“取消”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
-
-从API version 10开始废弃。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### onChange
-
-onChange(callback: Optional\<OnTextPickerChangeCallback>)
-
-滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型                       | 必填 | 说明                                       |
-| -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。 |
-
-## OnTextPickerChangeCallback<sup>16+</sup>
-
-type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
-
-滑动选中TextPicker文本内容后，触发该回调。
-
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
-
-### onScrollStop<sup>14+</sup>
-
-onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
-
-文本选择器的选项列滑动停止时触发该事件。
-
-手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
-
-当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                       | 必填 | 说明                                              |
-| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
-
 ### disableTextStyleAnimation<sup>15+</sup>
 
 disableTextStyleAnimation(disabled: boolean)
@@ -330,6 +239,98 @@ defaultTextStyle(style: TextPickerTextStyle)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [TextPickerTextStyle](#textpickertextstyle15类型说明) | 是   | 设置关闭滑动过程中文本样式变化动效时的各个选项文本的样式，仅当disableTextStyleAnimation为true时生效。<br/>默认值：与[Text](ts-basic-components-text.md)组件默认值相同。 |
 
+> **说明：**
+>
+> 该组件不建议开发者在动效过程中修改属性数据。
+
+## 事件
+
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+
+### onChange
+
+onChange(callback: Optional\<OnTextPickerChangeCallback>)
+
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                       |
+| -------- | -------------------------- | ---- | ------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。 |
+
+### onScrollStop<sup>14+</sup>
+
+onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
+
+文本选择器的选项列滑动停止时触发该事件。
+
+手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
+
+当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
+### onEnterSelectedArea<sup>16+</sup>
+
+onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
+
+滑动TextPicker过程中，选项进入分割线区域内，触发该回调。
+
+与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。
+
+当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                       | 必填 | 说明                                       |
+| -------- | -------------------------- | ---- | ------------------------------------------ |
+| callback | [TextPickerEnterSelectedAreaCallback](#textpickerenterselectedareacallback16) | 是   | 滑动TextPicker过程中，选项进入分割线区域时触发的回调。 |
+
+### onAccept<sup>(deprecated) </sup>
+
+onAccept(callback: (value: string, index: number) => void)
+
+点击弹窗中的“确定”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
+
+从API version 10开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| value  | string | 是   | 当前选中项的文本。   |
+| index  | number | 是   | 当前选中项的索引值。 |
+
+### onCancel<sup>(deprecated) </sup>
+
+onCancel(callback: () => void)
+
+点击弹窗中的“取消”按钮时触发该回调。该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。
+
+从API version 10开始废弃。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## TextPickerTextStyle<sup>15+</sup>类型说明
 
 文本样式选项，继承自[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)。
@@ -343,6 +344,46 @@ defaultTextStyle(style: TextPickerTextStyle)
 | minFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最小显示字号，与maxFontSize配合使用，当设置minFontSize与maxFontSize时，font中的size设置不生效，默认最大行数为1，默认自适应高度方式为MIN_FONT_SIZE_FIRST。                     |
 | maxFontSize  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 否    | 文本最大显示字号。                     |
 |  overflow   |   [TextOverflow](ts-appendix-enums.md#textoverflow) | 否    | 文本截断方式，设置为MARQUEE时不生效。                     |
+
+## OnTextPickerChangeCallback<sup>16+</sup>
+
+type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
+
+滑动选中TextPicker文本内容后，触发该回调。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
+## TextPickerEnterSelectedAreaCallback<sup>16+</sup>
+
+type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: number | number[]) => void
+
+滑动过程中选项进入分割线区域内，触发该回调。
+
+在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
 ## 示例
 
@@ -392,6 +433,9 @@ struct TextPickerExample {
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         }).margin(bott)
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
+        })
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
@@ -400,6 +444,9 @@ struct TextPickerExample {
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         }).margin(bott)
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
@@ -407,6 +454,9 @@ struct TextPickerExample {
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
     }
   }
@@ -609,7 +659,7 @@ struct TextPickerExample {
       Row() {
         Text('循环滚动').fontSize(20)
 
-        Toggle({ type: ToggleType.Switch, isOn: true })
+        Toggle({ type: ToggleType.Switch, isOn: false })
           .onChange((isOn: boolean) => {
             this.isLoop = isOn
           })

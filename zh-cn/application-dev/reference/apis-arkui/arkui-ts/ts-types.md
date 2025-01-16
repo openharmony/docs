@@ -599,38 +599,6 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
 
-## StyledStringValue<sup>12+</sup>
-
-样式对象类型，用于设置属性字符串的样式。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 名称   | 描述       |
-| ------ | ---------- |
-| TextStyle | 文本字体样式。 |
-| DecorationStyle | 文本装饰线样式。 |
-| BaselineOffsetStyle | 文本基线偏移量样式。 |
-| LetterSpacingStyle | 文本字符间距样式。 |
-| LineHeightStyle | 文本行高样式。 |
-| TextShadowStyle | 文本阴影样式。 |
-| GestureStyle | 事件手势样式。 |
-| ParagraphStyle | 文本段落样式。 |
-| ImageAttachment | 图片样式。 |
-| CustomSpan | 自定义绘制Span样式。 |
-| UserDataSpan | UserDataSpan样式。 |
-
-## EnterKeyType枚举说明
-
-| 名称                   | 描述               |
-| ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Send                   | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Next                   | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-
 ## DividerStyleOptions<sup>12+</sup>
 
 分割线样式属性集合, 用于描述分割线相关信息。
@@ -785,3 +753,18 @@ setTextSelection选中文字时的配置。
 | ----- | ------ | -------------- |
 | horizontal | number | 组件在竖直方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0  |
 | vertical     | number | 组件在水平方向的布局权重，设置大于0的数字时生效。 <br> 默认值：0 <br> 异常值：0 |
+
+## Configuration
+
+数据类型。用于设置颜色模式和字体缩放倍数。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 类型   | 只读 | 可选 | 说明       |
+| --------- | ------ | ---- | ---- | ---------- |
+| colorMode | string | 是   | 否   | 颜色模式。 |
+| fontScale | number | 是   | 否   | 字体缩放。 |

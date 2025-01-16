@@ -994,7 +994,7 @@ hiAppEvent.clearData();
 | BEHAVIOR  | 4    | 行为类型事件。 |
 
 
-## domain<sup>11+</sup>
+## hiappevent.domain<sup>11+</sup>
 
 提供了所有预定义事件的领域名称常量。
 
@@ -1002,34 +1002,34 @@ hiAppEvent.clearData();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称 | 类型   | 说明       |
-| ---  | ------ | ---------- |
-| OS   | string | 系统领域。 |
+| 名称 | 类型   | 只读   | 说明       |
+| ---  | ------ | ------ | ---------- |
+| OS   | string | 是 | 系统领域。 |
 
 
-## event
+## hiappevent.event
 
 提供了所有预定义事件的事件名称常量。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                      | 类型   | 说明                 |
-| ------------------------- | ------ | -------------------- |
-| USER_LOGIN                | string | 用户登录事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| USER_LOGOUT               | string | 用户登出事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| DISTRIBUTED_SERVICE_START | string | 分布式服务启动事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| APP_CRASH<sup>11+</sup>   | string | 应用崩溃事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| APP_FREEZE<sup>11+</sup>  | string | 应用卡死事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
-| APP_LAUNCH<sup>12+</sup>  | string | 应用启动耗时事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| SCROLL_JANK<sup>12+</sup> | string | 应用滑动丢帧事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
-| CPU_USAGE_HIGH<sup>12+</sup> | string | 应用CPU高负载事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| BATTERY_USAGE<sup>12+</sup> | string | 应用24h功耗器件分解统计事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 应用资源泄露事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| ADDRESS_SANITIZER<sup>12+</sup> | string | 应用踩内存事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| MAIN_THREAD_JANK<sup>12+</sup> | string | 应用主线程超时事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| 名称                      | 类型   | 只读   | 说明                 |
+| ------------------------- | ------ | ------ | -------------------- |
+| USER_LOGIN                | string | 是 | 用户登录事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| USER_LOGOUT               | string | 是 | 用户登出事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| DISTRIBUTED_SERVICE_START | string | 是 | 分布式服务启动事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| APP_CRASH<sup>11+</sup>   | string | 是 | 应用崩溃事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| APP_FREEZE<sup>11+</sup>  | string | 是 | 应用卡死事件。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| APP_LAUNCH<sup>12+</sup>  | string | 是 | 应用启动耗时事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| SCROLL_JANK<sup>12+</sup> | string | 是 | 应用滑动丢帧事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | 是 | 应用CPU高负载事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BATTERY_USAGE<sup>12+</sup> | string | 是 | 应用24h功耗器件分解统计事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | 是 | 应用资源泄露事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| ADDRESS_SANITIZER<sup>12+</sup> | string | 是 | 应用踩内存事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MAIN_THREAD_JANK<sup>12+</sup> | string | 是 | 应用主线程超时事件。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
-## param
+## hiappevent.param
 
 提供了所有预定义参数的参数名称常量。
 
@@ -1037,8 +1037,8 @@ hiAppEvent.clearData();
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
-| 名称                            | 类型   | 说明               |
-| ------------------------------- | ------ | ------------------ |
-| USER_ID                         | string | 用户自定义ID。     |
-| DISTRIBUTED_SERVICE_NAME        | string | 分布式服务名称。   |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 分布式服务实例ID。 |
+| 名称                            | 类型   | 只读   | 说明               |
+| ------------------------------- | ------ | ------ | ------------------ |
+| USER_ID                         | string | 是 | 用户自定义ID。     |
+| DISTRIBUTED_SERVICE_NAME        | string | 是 | 分布式服务名称。   |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | 是 | 分布式服务实例ID。 |

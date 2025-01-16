@@ -190,7 +190,7 @@ struct Index {
         console.log('this appRotation:' +msg.appRotation);
         console.log('this windowStatusType:' +msg.windowStatusType);
       })
-      // If the <folderStack> component does not occupy the full screen, it is used as a common stack.
+      // If the folderStack component does not occupy the full screen, it is used as a common stack.
       .alignContent(Alignment.Bottom)
       .height("100%")
       .width("100%")

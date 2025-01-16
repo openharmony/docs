@@ -41,6 +41,7 @@ SIGTRAP信号通常用于调试和跟踪程序的执行。下面是上面列出�
 | 4 | TRAP_HWBKPT | 硬件断点 | 这个信号是由硬件断点引起的，当程序执行到设置的硬件断点时会触发该信号。硬件断点通常用于调试程序，可以在程序的关键位置设置断点，以便在调试时暂停程序的执行并检查变量值等信息。与软件断点不同的是，硬件断点是由CPU硬件实现的，因此可以在程序执行过程中实时检测断点是否被触发。|
 
 SIGBUS是一种由操作系统向进程发送的信号，通常表示内存访问错误。其中，不同的信号类别表示不同的错误场景：
+
 | 二级分类 | 信号字符串 | 解释 | 触发原因 |
 | -------- | -------- | -------- | -------- |
 | 1 | BUS_ADRALN | 内存地址对齐错误 | 这种错误通常发生在尝试访问未对齐的内存地址时，例如尝试访问一个4字节整数的非偶数地址。|
@@ -50,6 +51,7 @@ SIGBUS是一种由操作系统向进程发送的信号，通常表示内存访�
 | 5 | BUS_MCEERR_AO | 硬件内存校验错误 | 发生在访问内存时检测到地址和校验和错误。|
 
 SIGFPE是一个信号，它表示浮点异常或算术异常。下面是这些SIGFPE信号类别的问题场景：
+
 | 二级分类 | 信号字符串 | 解释 | 触发原因 |
 | -------- | -------- | -------- | -------- |
 | 1 | FPE_INTDIV | 整数除法错误 | 这个信号表示整数除法中的除数为零的情况。当一个程序尝试进行整数除法，但除数为零时，会发出这个信号。|
@@ -62,12 +64,14 @@ SIGFPE是一个信号，它表示浮点异常或算术异常。下面是这些SI
 | 8 | FPE_FLTSUB | 浮点陷阱错误 | 这个信号表示浮点数除法中的除数为零的情况。当一个程序尝试进行浮点数除法，但除数为零时，会发出这个信号。|
 
 SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存地址，或者试图访问一个已被操作系统标记为不可访问的内存地址。SIGSEGV信号通常是由以下两种情况引起的：
+
 | 二级分类 | 信号字符串 | 解释 | 触发原因 |
 | -------- | -------- | -------- | -------- |
 | 1 | SEGV_MAPERR | 不存在的内存地址 | 进程试图访问一个不存在的内存地址，或者试图访问一个没有映射到进程地址空间的内存地址。这种情况通常是由于程序中的指针错误或内存泄漏引起的。|
 | 2 | SEGV_ACCERR | 不可访问的内存地址 | 进程试图访问一个已被操作系统标记为不可访问的内存地址，例如只读内存或没有执行权限的内存。这种情况通常是由于程序中的缓冲区溢出或者试图修改只读内存等错误引起的。|
 
 二级分类(code)除了以上根据信号值(signo)维度分类，还可以根据信号产生的原因维度分类。其中根据信号值(signo)维度分类是每个信号值(signo)特有的，根据信号产生的原因维度分类是所有信号值(signo)共有的，当前已有信号产生原因分类的code值如下：
+
 | 二级分类 | 信号字符串 | 解释 | 触发原因 |
 | -------- | -------- | -------- | -------- |
 | 0 | SI_USER | 用户空间信号 |该信号是由用户空间的进程发送给另一个进程的，通常是通过 kill() 系统调用发送的。例如，当用户在终端中按下Ctrl+C时，会发送一个SIGINT信号给前台进程组中的所有进程。|
@@ -100,16 +104,136 @@ SIGSEGV是一种信号，它表示进程试图访问一个不属于它的内存�
 
         ![cppcrash-temp-log](figures/20230407111853.png)
 
+        通过Shell获取的`/data/log/faultlog/temp`获取到的日志内容格式如下：
+
+        ```text
+        Timestamp:2024-05-06 20:10:51.000  <- 故障发生时间戳
+        Pid:9623                           <- 进程号
+        Uid:0                              <- 用户ID
+        Process name:./crasher_cpp         <- 进程名称
+        Process life time:1s               <- 进程存活时间
+        Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004  probably caused by NULL pointer dereference   <- 故障原因和空指针提示
+        Fault thread info:
+        Tid:9623, Name:crasher_cpp         <- 故障线程号，线程名
+        #00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- 调用栈
+        #01 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
+        #02 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
+        #03 pc 00072b98 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+56)(d820b1827e57855d4f9ed03ba5dfea83)
+        #04 pc 00004e28 /system/bin/crasher_cpp(_start_c+84)(adfc673300571d2da1e47d1d12f48b44)
+        #05 pc 00004dcc /system/bin/crasher_cpp(adfc673300571d2da1e47d1d12f48b44)
+        Registers:   <- 故障现场寄存器
+        r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
+        r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
+        r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
+        fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
+        Memory near registers:  <-  故障现场寄存器附近内存
+        r4([stack]):
+            ffd27e30 72656873
+            ffd27e34 7070635f
+            ...
+            ffd27eac 3d73746f
+        r5(/system/bin/crasher_cpp):
+            0096dff8 00000000
+            0096dffc 0096717d
+            ...
+            0096e074 00000000
+        r7(/system/lib/ld-musl-arm.so.1):
+            f7cabb58 00000000
+            f7cabb5c 0034ba00
+            ...
+            f7cabbd4 00000000
+        r8(/system/lib/ld-musl-arm.so.1):
+            f7ba58cc 63637573
+            f7ba58d0 2e737365
+            ...
+            f7ba5948 70206269
+        r9(/system/lib/ld-musl-arm.so.1):
+            f7baea7c 20746f6e
+            f7baea80 6e756f66
+            ...
+            f7baeaf8 25206e69
+        r10([anon:ld-musl-arm.so.1.bss]):
+            f7cadd30 00000000
+            f7cadd34 00000000
+            ...
+            f7caddac 00000000
+        r12([anon:ld-musl-arm.so.1.bss]):
+            f7cb2070 56726562
+            f7cb2074 65756c61
+            ...
+            f7cb20ec 00000000
+        sp([stack]):
+            ffd27328 00000000
+            ffd2732c 00966dd0
+            ...
+            ffd273a4 00000004
+        pc(/system/bin/crasher_cpp):
+            00966dc8 e1a0d00c
+            00966dcc eb000000
+            ...
+            00966e44 e5907008
+        pc(/system/bin/crasher_cpp):
+            00966dc8 e1a0d00c
+            00966dcc eb000000
+            ...
+            00966e44 e5907008
+        FaultStack:   <- 崩溃线程的栈地址空间
+            ffd27260 00000000
+            ffd27264 f7cac628
+            ...
+            ffd2729c 0096ad1f
+        sp0:ffd272a0 0096fdfc <- #00栈顶
+            ffd272a4 009684d3
+        sp1:ffd272a8 00000001
+            ffd272ac 73657408
+            ffd272b0 f7590074
+            ...
+            ffd272dc 0096856d
+        sp2:ffd272e0 ffd27334
+            ffd272e4 ffd27334
+            ffd272e8 00000002
+            ....
+            ffd272f4 f7bfbb9c
+        sp3:ffd272f8 00000000
+            ffd272fc ffd27334
+
+        Maps:   <-  故障时进程maps
+        962000-966000 r--p 00000000 /system/bin/crasher_cpp
+        966000-96c000 r-xp 00003000 /system/bin/crasher_cpp
+        96c000-96f000 r--p 00008000 /system/bin/crasher_cpp
+        96f000-970000 rw-p 0000a000 /system/bin/crasher_cpp
+        149f000-14a0000 ---p 00000000 [heap]
+        14a0000-14a2000 rw-p 00000000 [heap]
+        ...
+        f7b89000-f7be1000 r--p 00000000 /system/lib/ld-musl-arm.so.1
+        f7be1000-f7ca9000 r-xp 00057000 /system/lib/ld-musl-arm.so.1
+        f7ca9000-f7cab000 r--p 0011e000 /system/lib/ld-musl-arm.so.1
+        f7cab000-f7cad000 rw-p 0011f000 /system/lib/ld-musl-arm.so.1
+        f7cad000-f7cbc000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
+        ffd07000-ffd28000 rw-p 00000000 [stack]
+        ffff0000-ffff1000 r-xp 00000000 [vectors]
+        OpenFiles:   <-  故障时进程打开文件Fd信息
+        0->/dev/pts/1 native object of unknown type 0
+        1->/dev/pts/1 native object of unknown type 0
+        2->/dev/pts/1 native object of unknown type 0
+        3->socket:[67214] native object of unknown type 0
+        ...
+        11->pipe:[67219] native object of unknown type 0
+        12->socket:[29074] native object of unknown type 0
+        25->/dev/ptmx native object of unknown type 0
+        26->/dev/ptmx native object of unknown type 0
+        ```
+
     2. CppCrash故障会同步在`/data/log/faultlog/faultlogger/`路径下生成一份完善日志，故障日志文件名格式为`cppcrash-进程名-进程UID-毫秒级时间.log`，日志内容较`/data/log/faultlog/temp`下日志更加完善，增加有设备名，系统版本，进程流水日志等信息。
 
         ![cppcrash-faultlogger-log](figures/cppcrash_image_023.png)
-
 <!--DelEnd-->
-**日志格式 - 空指针故障场景**
-该场景会在日志中打印出提示信息，表明故障很有可能是因为空指针解引用导致
-以下是一份DevEco Studio归档在FaultLog的进程崩溃日志的核心内容，与`设备/data/log/faultlog/faultlogger`下归档的日志内容相同。
 
-```
+**日志格式 - 空指针故障场景**
+
+该场景会在日志中打印出提示信息，表明故障很有可能是因为空指针解引用导致。以下是一份DevEco Studio归档在FaultLog的进程崩溃日志的核心内容。
+
+```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
 Device info:OpenHarmony 3.2        <- 设备信息
@@ -123,7 +247,7 @@ Process name:./crasher_cpp         <- 进程名称
 Process life time:1s               <- 进程存活时间
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004  probably caused by NULL pointer dereference   <- 故障原因和空指针提示
 Fault thread info:
-Tid:9623, Name:crasher_cpp         <- 故障线程号,线程名
+Tid:9623, Name:crasher_cpp         <- 故障线程号，线程名
 #00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- 调用栈
 #01 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
 #02 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
@@ -240,131 +364,11 @@ HiLog:   <-  故障时的Hilog日志
 
 ```
 
-<!--Del-->
-通过Shell获取的`/data/log/faultlog/temp`获取到的日志内容格式如下：
-
-```
-Timestamp:2024-05-06 20:10:51.000  <- 故障发生时间戳
-Pid:9623                           <- 进程号
-Uid:0                              <- 用户ID
-Process name:./crasher_cpp         <- 进程名称
-Process life time:1s               <- 进程存活时间
-Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004  probably caused by NULL pointer dereference   <- 故障原因和空指针提示
-Fault thread info:
-Tid:9623, Name:crasher_cpp         <- 故障线程号,线程名
-#00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- 调用栈
-#01 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
-#02 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
-#03 pc 00072b98 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+56)(d820b1827e57855d4f9ed03ba5dfea83)
-#04 pc 00004e28 /system/bin/crasher_cpp(_start_c+84)(adfc673300571d2da1e47d1d12f48b44)
-#05 pc 00004dcc /system/bin/crasher_cpp(adfc673300571d2da1e47d1d12f48b44)
-Registers:   <- 故障现场寄存器
-r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
-r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
-r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
-fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
-Memory near registers:  <-  故障现场寄存器附近内存
-r4([stack]):
-    ffd27e30 72656873
-    ffd27e34 7070635f
-    ...
-    ffd27eac 3d73746f
-r5(/system/bin/crasher_cpp):
-    0096dff8 00000000
-    0096dffc 0096717d
-    ...
-    0096e074 00000000
-r7(/system/lib/ld-musl-arm.so.1):
-    f7cabb58 00000000
-    f7cabb5c 0034ba00
-    ...
-    f7cabbd4 00000000
-r8(/system/lib/ld-musl-arm.so.1):
-    f7ba58cc 63637573
-    f7ba58d0 2e737365
-    ...
-    f7ba5948 70206269
-r9(/system/lib/ld-musl-arm.so.1):
-    f7baea7c 20746f6e
-    f7baea80 6e756f66
-    ...
-    f7baeaf8 25206e69
-r10([anon:ld-musl-arm.so.1.bss]):
-    f7cadd30 00000000
-    f7cadd34 00000000
-    ...
-    f7caddac 00000000
-r12([anon:ld-musl-arm.so.1.bss]):
-    f7cb2070 56726562
-    f7cb2074 65756c61
-    ...
-    f7cb20ec 00000000
-sp([stack]):
-    ffd27328 00000000
-    ffd2732c 00966dd0
-    ...
-    ffd273a4 00000004
-pc(/system/bin/crasher_cpp):
-    00966dc8 e1a0d00c
-    00966dcc eb000000
-    ...
-    00966e44 e5907008
-pc(/system/bin/crasher_cpp):
-    00966dc8 e1a0d00c
-    00966dcc eb000000
-    ...
-    00966e44 e5907008
-FaultStack:   <- 崩溃线程的栈地址空间
-    ffd27260 00000000
-    ffd27264 f7cac628
-    ...
-    ffd2729c 0096ad1f
-sp0:ffd272a0 0096fdfc <- #00栈顶
-    ffd272a4 009684d3
-sp1:ffd272a8 00000001
-    ffd272ac 73657408
-    ffd272b0 f7590074
-    ...
-    ffd272dc 0096856d
-sp2:ffd272e0 ffd27334
-    ffd272e4 ffd27334
-    ffd272e8 00000002
-    ....
-    ffd272f4 f7bfbb9c
-sp3:ffd272f8 00000000
-    ffd272fc ffd27334
-
-Maps:   <-  故障时进程maps
-962000-966000 r--p 00000000 /system/bin/crasher_cpp
-966000-96c000 r-xp 00003000 /system/bin/crasher_cpp
-96c000-96f000 r--p 00008000 /system/bin/crasher_cpp
-96f000-970000 rw-p 0000a000 /system/bin/crasher_cpp
-149f000-14a0000 ---p 00000000 [heap]
-14a0000-14a2000 rw-p 00000000 [heap]
-...
-f7b89000-f7be1000 r--p 00000000 /system/lib/ld-musl-arm.so.1
-f7be1000-f7ca9000 r-xp 00057000 /system/lib/ld-musl-arm.so.1
-f7ca9000-f7cab000 r--p 0011e000 /system/lib/ld-musl-arm.so.1
-f7cab000-f7cad000 rw-p 0011f000 /system/lib/ld-musl-arm.so.1
-f7cad000-f7cbc000 rw-p 00000000 [anon:ld-musl-arm.so.1.bss]
-ffd07000-ffd28000 rw-p 00000000 [stack]
-ffff0000-ffff1000 r-xp 00000000 [vectors]
-OpenFiles:   <-  故障时进程打开文件Fd信息
-0->/dev/pts/1 native object of unknown type 0
-1->/dev/pts/1 native object of unknown type 0
-2->/dev/pts/1 native object of unknown type 0
-3->socket:[67214] native object of unknown type 0
-...
-11->pipe:[67219] native object of unknown type 0
-12->socket:[29074] native object of unknown type 0
-25->/dev/ptmx native object of unknown type 0
-26->/dev/ptmx native object of unknown type 0
-```
-<!--DelEnd-->
 **日志格式 - 栈溢出故障场景**
-该场景会在日志中打印出提示信息，表明故障很有可能是因为栈溢出导致。核心日志如下：
 
-```
+该场景会在日志中打印出提示信息，表明故障很有可能是因为栈溢出导致。以下是一份DevEco Studio归档在FaultLog的进程崩溃日志的核心内容。
+
+```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
 Device info:OpenHarmony 3.2            <- 设备信息
@@ -381,9 +385,10 @@ Reason:Signal:SIGSEGV(SEGV_ACCERR)@0xf76b7ffc  current thread stack low address 
 ```
 
 **日志格式 - 栈覆盖故障场景**
-在栈覆盖场景下，由于栈上内存被踩，无法成功回溯栈帧，该场景会在日志中打印出提示信息，说明回栈失败并尝试从线程栈里解析获取不可靠的调用栈，尽可能提供开发者信息以分析问题。核心日志如下：
 
-```
+在栈覆盖场景下，由于栈上内存被踩，无法成功回溯栈帧，该场景会在日志中打印出提示信息，说明回栈失败并尝试从线程栈里解析获取不可靠的调用栈，尽可能提供开发者信息以分析问题。以下是一份DevEco Studio归档在FaultLog的进程崩溃日志的核心内容。
+
+```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
 Device info:OpenHarmony 3.2               <- 设备信息
@@ -396,22 +401,28 @@ Uid:0                                     <- 用户ID
 Process name:./crasher_cpp                <- 进程名称
 Process life time:1s                      <- 进程存活时间
 Reason:Signal:SIGSEGV(SEGV_MAPERR)@0000000000  probably caused by NULL pointer dereference      <- 故障原因
-LastFatalMessage: Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack   <- 尝试从线程栈里获取不可靠的堆栈
 Fault thread info:
-Tid:10026, Name:crasher_cpp               <- 故障线程号,线程名
+Tid:10026, Name:crasher_cpp               <- 故障线程号，线程名
 #00 pc 00000000 Not mapped
 #01 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- 调用栈
 #02 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
 #03 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
 #04 pc 00072b98 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+56)(d820b1827e57855d4f9ed03ba5dfea83)
+Registers:   <- 故障现场寄存器
+r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
+r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
+r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
+fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
+ExtraCrashInfo(Unwindstack):   <- 系统框架业务自定义打印回栈相关信息
+Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack   <- 尝试从线程栈里获取不可靠的堆栈
 ...
 ```
 
 **日志格式 - 异步线程场景故障**
-（目前支持ARM64架构，且在调试应用（HAP_DEBUGGABLE）下开启）
-当异步线程发生崩溃后，把提交该异步任务的线程的栈也打印出来，帮助定位由于异步任务提交者造成的崩溃问题。崩溃线程的调用栈和其提交线程的调用栈用SubmitterStacktrace分割开。核心日志如下：
 
-```
+（目前支持ARM64架构，且在调试应用（HAP_DEBUGGABLE）下开启）当异步线程发生崩溃后，把提交该异步任务的线程的栈也打印出来，帮助定位由于异步任务提交者造成的崩溃问题。崩溃线程的调用栈和其提交线程的调用栈用SubmitterStacktrace分割开。以下是一份DevEco Studio归档在FaultLog的进程崩溃日志的核心内容。
+
+```text
 Generated by HiviewDFX@OpenHarmony
 ================================================================
 Device info:OpenHarmony 3.2                 <- 设备信息
@@ -425,7 +436,7 @@ Process name:./crasher_cpp                  <- 进程名称
 Process life time:2s                        <- 进程存活时间
 Reason:Signal:SIGSEGV(SI_TKILL)@0x000000000004750  from:18256:0  <- 故障原因
 Fault thread info:
-Tid:18257, Name:crasher_cpp                 <- 故障线程号,线程名
+Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 #00 pc 000054e6 /system/bin/ld-musl-aarch64.so.l(raise+228)(adfc673300571d2da1e47d1d12f48b44)  <- 调用栈
 #01 pc 000054f9 /system/bin/crasher_cpp(CrashInSubThread(void*)+56)(adfc673300571d2da1e47d1d12f48b50)
 #02 pc 000054f9 /system/bin/ld-musl-aarch64.so.l(start+236)(adfc673300571d2da1e47d1d12f48b44)
@@ -436,6 +447,79 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号,线程名
 #03 pc 0000a4e1c /system/bin/ld-musl-aarch64.so.l(libc_start_main_stage2+68)(adfc673300571d2da1e47d1d12f48b44)
 ...
 ```
+
+**日志格式 - 打印系统框架业务自定义信息**
+
+（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 16开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_memssage接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
+
+1. 字符串类型信息
+
+    ```text
+    Generated by HiviewDFX@OpenHarmony
+    ================================================================
+    Device info:OpenHarmony 3.2        <- 设备信息
+    Build info:OpenHarmony 5.0.0.23    <- 版本信息
+    Fingerprint:cdf52fd0cc328fc432459928f3ed8edfe8a72a92ee7316445143bed179138073 <- 标识故障特征
+    Module name:crasher_cpp            <- 模块名
+    Timestamp:2024-05-06 20:10:51.000  <- 故障发生时间戳
+    Pid:9623   <- 进程号
+    Uid:0         <- 用户ID
+    Process name:./crasher_cpp         <- 进程名称
+    Process life time:1s               <- 进程存活时间
+    Reason:Signal:SIGSEGV(SEGV_MAPERR)@0x00000004  probably caused by NULL pointer dereference   <- 故障原因和空指针提示
+    Fault thread info:
+    Tid:9623, Name:crasher_cpp         <- 故障线程号，线程名
+    #00 pc 00008d22 /system/bin/crasher_cpp(TestNullPointerDereferenceCrash0()+22)(adfc673300571d2da1e47d1d12f48b44)  <- 调用栈
+    #01 pc 000064d1 /system/bin/crasher_cpp(DfxCrasher::ParseAndDoCrash(char const*) const+160)(adfc673300571d2da1e47d1d12f48b44)
+    #02 pc 00006569 /system/bin/crasher_cpp(main+92)(adfc673300571d2da1e47d1d12f48b44)
+    #03 pc 00072b98 /system/lib/ld-musl-arm.so.1(libc_start_main_stage2+56)(d820b1827e57855d4f9ed03ba5dfea83)
+    #04 pc 00004e28 /system/bin/crasher_cpp(_start_c+84)(adfc673300571d2da1e47d1d12f48b44)
+    #05 pc 00004dcc /system/bin/crasher_cpp(adfc673300571d2da1e47d1d12f48b44)
+    Registers:   <- 故障现场寄存器
+    r0:ffffafd2 r1:00000004 r2:00000001 r3:00000000
+    r4:ffd27e39 r5:0096e000 r6:00000a40 r7:0096fdfc
+    r8:f7ba58d5 r9:f7baea86 r10:f7cadd38
+    fp:ffd27308 ip:f7cb2078 sp:ffd272a0 lr:f7c7ab98 pc:0096ad22
+    ExtraCrashInfo(String):   <- 系统框架业务自定义打印字符串信息
+    test get CrashObject.
+    ...
+    ```
+
+2. 内存类型信息
+
+    ```text
+    ...
+    ExtraCrashInfo(Memory start address 0000xxxx):   <- 系统框架业务自定义打印内存信息
+    +0x000: xxxxx   xxxxx    xxxxx     xxxxx         <- 打印从0x000到0x018偏移地址的内存值
+    +0x020: xxxxx   xxxxx    xxxxx     xxxxx         <- 打印从0x020到0x038偏移地址的内存值
+    ...
+    ```
+
+3. 回调类型信息
+
+    从API 16开始从LastFatalMessage字段调整到ExtraCrashInfo(Callback)字段
+
+    ```text
+    ...
+    ExtraCrashInfo(Callback):   <- 系统框架业务自定义打印回调信息
+    test get callback information.
+    ...
+    ```
+
+4. 回栈类型信息
+
+    从API 16开始从LastFatalMessage字段调整到ExtraCrashInfo(Unwindstack)字段
+
+    ```text
+    ...
+    ExtraCrashInfo(Unwindstack):   <- 系统框架业务自定义打印回栈相关信息
+    Failed to unwind stack, try to get unreliable call stack from #02 by reparsing thread stack
+    ...
+    ```
+
+> **说明：**
+>
+> 省略部分信息跟字符串类型信息的样例类似
 
 ### 基于崩溃栈定位行号
 
@@ -451,7 +535,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号,线程名
     获取崩溃栈中so文件对应的带符号版本，保证与应用/系统内运行时的so文件版本一致。
     对于应用自身的动态库，经DevEco编译构建，生成在工程的 /build/default/intermediates/libs 目录下，默认是带符号的版本。可通过Linux file 命令查询二进制文件的 BuildID 以核对是否匹配。其中，BuildID 是用于标识二进制文件的唯一标识符，通常由编译器在编译时生成，not stripped 表示该动态库是包含符号表的。
 
-    ```
+    ```text
     $ file libbabel.so
     libbabel.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=fdb1b5432b9ea4e2a3d29780c3abf30e2a22da9d, with debug_info, not stripped
     ```
@@ -462,7 +546,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号,线程名
     llvm-addr2line 工具归档在：`[SDK DIR PATH]\OpenHarmony\11\native\llvm\bin` 路径下。根据实际的SDK版本路径略有不同，开发者请自行识别或在路径下搜索。
     例如有堆栈如下（有省略）：
 
-    ```
+    ```text
     Generated by HiviewDFX@OpenHarmony
     ================================================================
     Device info:OpenHarmony 3.2
@@ -497,7 +581,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号,线程名
 
     基于SDK llvm-addr2line解析行号如下所示：
 
-    ```
+    ```text
     [SDK DIR PATH]\OpenHarmony\11\native\llvm\bin> .\llvm-addr2line.exe -Cfie libentry.so 3150
     TrggerCrash(napi_env__*, napi_callback_info__*)
     D:/code/apprecovery-demo/entry/src/main/cpp/hello.cpp:48
@@ -521,11 +605,159 @@ hstack是DevEco Studio为开发人员提供的用于将release应用混淆后的
 
 一般而言，如果是比较明确的问题，反编译定位到代码行就能够定位；较少数的情况，比如定位到某一行里面调用的方法有多个参数，参数又涉及到结构体等，就需要借助反汇编来进一步分析。
 
+参考案例
+
+CPPCRASH日志头部信息如下：
+
+```text
+Process name:com.ohos.medialibrary.medialibrarydata
+
+Process life time:13402s
+
+Reason:SIGSEGV(SEGV_MAPERR)@0x0000005b3b46c000
+
+Fault thread info:
+
+Tid:48552, Name:UpradeTask
+
+#00 pc 00000000000a87e4 /system/lib/ld-musl-aarch64.so.1(memcpy+356)(3c3e7fb27680dc2ee99aa08dd0f81e85)
+
+...
 ```
-objdump -S xxx.so > xxx.txt
-objdump -d xxxx                    对 xxxx 文件反汇编
-objdump -S -l xxxx                 对 xxxx 文件反汇编，同时将指令对应的源码行显示出来
-```
+
+分析步骤：
+
+1. 根据pc寄存器地址找到对应的汇编指令，根据汇编指令找到当前操作
+
+    在CPPCRASH日志文件中找到栈顶的PC地址，并反汇编对应的ELF(使用unstrip的so，llvm-objdump -d -l xxx.so)。
+
+    例如参考案例在执行00000000000a87e4地址对应的指令时发生data_abort，反编译对应buildId(3c3e7fb27680dc2ee99aa08dd0f81e85)的libc.so,
+
+    反汇编查看a87e4偏移地址显示的信息:
+
+    ```text
+    xxx/../../third_party/optimized-routines/string/aarch64/memcpy.S:175
+
+    a87e4：a94371aa         ldp x10, x11, [x1, #48]
+    ```
+
+    根据反汇编显示的源码文件位置175行，查看对应memcpy.S源文件代码:
+
+    ```text
+    L(loop64):
+
+    line 170   stp A_l, A_h, [dst, 16]
+
+    line 171   ldp A_l, A_h, [src, 16]
+
+    line 172   stp B_l, B_h, [dst, 32]
+
+    line 173   ldp B_l, B_h, [src, 32]
+
+    line 174   stp C_l, C_h, [dst, 48]
+
+    line 175   ldp C_l, C_h, [src, 48]      ---->  崩溃处指令
+
+    line 176   stp D_l, D_h, [dst, 64]
+
+    line 177   ldp D_l, D_h, [src, 64]
+
+    line 178   subs count, count, 64
+
+    line 179   b.hi L(loop64)
+    ```
+
+2. 根据寄存器值，结合上下文推测当前操作的代码对象
+
+    通常x0寄存器为函数的第一个参数，x1为第二个参数，x2为第三个，依次类推；如果为类的方法，x0为对象的地址指针，其后x1、x2、x3为依次类推，注意函数参数超过5个会压入堆栈中。
+
+    栈顶函数void* memcpy(void* restrict dest, void* restrict src, size_t n)的调用参数，x0为目的地址dest, x1为源地址，x2为拷贝字节数；
+
+    在CPPCRASH日志文件中找到对应的三个寄存器值，结合错误访问地址0x0000005b3b46c000，判断出问题的参数为x1对应的src源地址参数:
+
+    ```text
+    Register:
+
+    x0:000005b50c3e3c4 x1:000005b3b46bfcc x2:0000000000007e88 x3:000005b50c42380
+
+    ...
+    ```
+
+3. 判断代码对象的故障类型
+
+    通过CPPCRASH日志中Memory near registers查看寄存器附近内存地址值:
+
+    ```text
+    x1(/data/medialibrary/database/kvdb/3ddb6fb8b2fcb38d2f431e86bfb806dab771637860d6e86bb9430fa15df04248/single_ver/main/gen_natural_st):
+
+        0000005b21bb1fb8 8067d0f2e727f00a
+
+        0000005b21bb1fc0 1b10e1e9a1079f7a
+
+        0000005b21bb1fc8 83906d9c18cdb9c1
+
+        0000005b21bb1fd0 627dd75ab9335eb0
+
+        0000005b21bb1fd8 aabe2bb1b00f2c03
+
+        0000005b21bb1fe0 f981e4acb716cbc1
+
+        0000005b21bb1fe8 806b3d5730d281ee
+
+        0000005b21bb1ff0 3e99fedbc0a9b5e9
+
+        0000005b21bb1ff8 a91ab9d327969682
+
+        0000005b21bb2000 ffffffffffffffff       -----> 读取越界
+
+        0000005b21bb2008 ffffffffffffffff
+
+        0000005b21bb2010 ffffffffffffffff
+
+        0000005b21bb2018 ffffffffffffffff
+
+        0000005b21bb2020 ffffffffffffffff
+
+        0000005b21bb2028 ffffffffffffffff
+
+        0000005b21bb2030 ffffffffffffffff
+    ```
+
+    由上判断是一个读取越界的问题，出问题的参数为memcpy的buf和bufSize，
+
+    此时只需要分析代码中调用memcpy时传入的参数逻辑即可。
+
+4. 持续跟踪出问题对象的参数来源，结合代码与流水日志排查问题
+
+    排查方向一：排查参数对象的有效性、范围是否合法，例如buf的实际大小是否与传入的bufSize一致；
+
+    排查方向二：参数对象的生命周期是否合法，例如buf是否已被释放，是否存在多线程操作被踩内存；
+
+    排查方向三：通过参数对象访问函数的上下文，排查参数的不合理操作逻辑，例如跟踪buf和bufsize的操作逻辑，增加调试信息，锁定不合理操作逻辑。
+
+    代码片段：
+
+    ```text
+    static StatusInter xxxFunc(..., const uint8_t *buf, uint32_t bufSize)
+
+    ...
+
+    uint32_t srcSize = bufSize;
+
+    uint32_t srcOffset = cache->appendOffset - bufSize;
+
+    errno_t ret = memcpy_s(cache->buffer + srcOffset, srcSize, buf, bufSize); 
+
+    if (ret != EOK) {
+
+        return MEMORY_OPERATE_FAILED_INTER;
+
+    }
+
+    ...
+    ```
+
+    通过持续追踪buf和bufSize的来源，最终来确定buf与bufSize在连续拷贝后不匹配，bufSize最终大于实际buf大小导致越界读取。
 
 ### CppCrash 常见问题分类与原因
 
@@ -540,7 +772,7 @@ objdump -S -l xxxx                 对 xxxx 文件反汇编，同时将指令对
 - use after free问题
     返回临时变量、野指针：比如返回栈变量的引用，释放后未置空继续访问。
 
-    ```
+    ```text
     # include <iostream>
 
     int& getStackReference() {
@@ -558,7 +790,7 @@ objdump -S -l xxxx                 对 xxxx 文件反汇编，同时将指令对
     ```
 
 - 栈溢出：如递归调用，析构函数相互调用，特殊的栈(信号栈)中使用大块栈内存。
-    ```
+    ```text
     # include <iostream>
 
     class RecursiveClass {
@@ -579,6 +811,7 @@ objdump -S -l xxxx                 对 xxxx 文件反汇编，同时将指令对
         return 0;
     }
     ```
+
     创建一个 RecursiveClass 对象时，它的构造函数被调用。销毁这个对象时，它的析构函数被调用。在析构函数中，创建了一个新的RecursiveClass对象，这会导致递归调用，直到栈溢出。递归调用导致了无限的函数调用，最终导致栈空间耗尽，程序崩溃。
 - 二进制不匹配：通常由ABI（应用程序二进制接口）不匹配引起，如自己编译二进制与实际运行的二进制接口存在差异，数据结构定义存在差异，这种一般会产生随机的崩溃栈。
 - 踩内存：使用有效的野指针，并修改了其中的内存为非法值，访问越界，覆盖了正常的数据这种一般会产生随机的崩溃栈。
@@ -609,7 +842,7 @@ SIGSEGV在很多时候是由于指针越界引起的，但并不是所有的指�
 1. 错误的访问类型
     样例代码如下：
 
-    ```
+    ```text
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
     {
         char *s = "hello world";
@@ -626,7 +859,7 @@ SIGSEGV在很多时候是由于指针越界引起的，但并不是所有的指�
 
     样例代码如下：
 
-    ```
+    ```text
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
     {
         uint64_t* p = (uint64_t*)0xffffffcfc42ae6f4;
@@ -637,7 +870,7 @@ SIGSEGV在很多时候是由于指针越界引起的，但并不是所有的指�
 
     在这个例子中，我们访问了一个属于内核的地址。当然很少会有人这样写程序，但程序可能在不经意的情况下做出这样的行为，产生SIGSEGV(SEGV_MAPERR)@0xffffffcfc42ae6f4的崩溃。本例中的CppCrash故障日志（仅展示核心日志内容）如下：
 
-    ```
+    ```text
     Device info:xxxxxx xxxx xx xxx
     Build info:xxxxxxx
     Fingerprint:73a5dcdf3e509605563aa11ac8cb4f3d7f99b9946dc142212246b53b741c4129
@@ -657,9 +890,9 @@ SIGSEGV在很多时候是由于指针越界引起的，但并不是所有的指�
     # 00 pc 0000000000001ccc /data/storage/el1/bundle/libs/arm64/libentry.so(TriggerCrash(napi_env__*, napi_callback_info__*)+36)(4dd115fa8b8c1b3f37bdb5b7b67fc70f31f0dbac)
     # 01 pc 0000000000033678 /system/lib64/platformsdk/libace_napi.z.so(ArkNativeFunctionCallBack(panda::JsiRuntimeCallInfo*)+372)(7d6f229764fdd4b72926465066bc475e)
     # 02 pc 00000000001d7f38 /system/lib64/module/arkcompiler/stub.an(RTStub_PushCallArgsAndDispatchNative+40)
-    # 03 at doTriggerException (entry/src/main/ets/pages/FaultTriggerPage.ets:72:7)
-    # 04 at triggerNativeException (entry/src/main/ets/pages/FaultTriggerPage.ets:79:5)
-    # 05 at anonymous (entry/src/main/ets/pages/FaultTriggerPage.ets:353:19)
+    # 03 at doTriggerException entry (entry/src/main/ets/pages/FaultTriggerPage.ets:72:7)
+    # 04 at triggerNativeException entry (entry/src/main/ets/pages/FaultTriggerPage.ets:79:5)
+    # 05 at anonymous entry (entry/src/main/ets/pages/FaultTriggerPage.ets:353:19)
     # 06 pc 000000000048e024 /system/lib64/platformsdk/libark_jsruntime.so(panda::FunctionRef::Call(panda::ecmascript::EcmaVM const*, panda::Local<panda::JSValueRef>, panda::Local<panda::JSValueRef> const*, int)+1040)(9fa942a1d42bd4ae607257975fbc1b77)
     ...
     # 38 pc 00000000000324b0 /system/bin/appspawn(AppSpawnRun+172)(c992404f8d1cf03c84c067fbf3e1dff9)
@@ -670,7 +903,7 @@ SIGSEGV在很多时候是由于指针越界引起的，但并不是所有的指�
 3. 访问不存在的内存
     样例代码如下：
 
-    ```
+    ```text
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
     {
         int *a = NULL;
@@ -686,7 +919,7 @@ SIGSEGV在很多时候是由于指针越界引起的，但并不是所有的指�
 4. 重复free
     样例代码如下：
 
-    ```
+    ```text
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
     {
         void *pc = malloc(1024);
@@ -710,7 +943,7 @@ SIGABRT信号被发送到进程，告诉进程中止。既可以进程自己调�
 1. 执行abort函数
     样例代码如下：
 
-    ```
+    ```text
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
     {
         OH_LOG_FATAL(LOG_APP, "test fatal log.");
@@ -726,7 +959,7 @@ SIGABRT信号被发送到进程，告诉进程中止。既可以进程自己调�
 2. 执行assert函数
     样例代码如下：
 
-    ```
+    ```text
     static napi_value TriggerCrash(napi_env env, napi_callback_info info)
     {
     # if 0  //该值为0，则报错；为1，则正常
@@ -748,9 +981,10 @@ SIGABRT信号被发送到进程，告诉进程中止。既可以进程自己调�
 #### 类型一：内存访问类崩溃问题
 
 **问题背景**
+
 每次崩溃地址0x7f82764b70都在libace_napi_ark.z.so的可读可执行段上。崩溃原因是需要对地址进行写操作，而对应的maps段只有可读、可执行权限没有写权限，当进程试图访问不被允许访问的内存区域时，进程发生内存访问类崩溃。
 
-```
+```text
 7f82740000-7f8275c000 r--p 00000000 /system/lib64/libace_napi_ark.z.so
 7f8275c000-7f8276e000 r-xp 0001b000 /system/lib64/libace_napi_ark.z.so <-崩溃地址落在该地址区间
 7f8276e000-7f82773000 r--p 0002c000 /system/lib64/libace_napi_ark.z.so
@@ -762,10 +996,11 @@ SIGABRT信号被发送到进程，告诉进程中止。既可以进程自己调�
 ![cppcrash-demo6](figures/cppcrash_image_010.png)
 
 **定位思路**
+
 每次地址出错都很有规律，但node地址不应该落在libace_napi_ark.z.so，从此类问题的现象来看，很有可能是踩内存问题。踩内存问题可使用[ASAN工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-asan-V5)排查问题。于是后续使用ASAN版本进行压测复现，也找到了稳定必现的场景。ASAN版本检测出来的问题也和上面崩溃栈反映的问题一致。堆栈报的是heap-use-after-free，实际上是对同一个address进行重复释放，只是在重复释放那次操作时，使用该地址去访问了其对象成员，进而报出了UAF问题。
 ASAN核心日志如下：
 
-```
+```text
 =================================================================
 ==appspawn==2029==ERROR: AddressSanitizer: heap-use-after-free on address 0x003a375eb724 at pc 0x002029ba8514 bp 0x007fd8175710 sp 0x007fd8175708
 READ of size 1 at 0x003a375eb724 thread T0 (thread name)
@@ -828,17 +1063,21 @@ JsiWeak析构或重置的时候会触发其成员(类型为JsiObject/JsiValue/Js
 ![cppcrash-demo7](figures/cppcrash_image_013.png)
 
 **修改方法**
+
 JsiWeak调用SetWeakCallback，传入callback，在GC过程中IterateWeakEcmaGlobalStorage释放WeakNode时，通知JsiWeak对其保存的CopyableGlobal进行重置，确保同一个地址不被double-free。
 
 **建议与总结**
+
 使用内存时应考虑是否存在重复释放或者未释放的可能，另外定位内存访问类崩溃问题（一般是SIGSEGV类型问题）时，如果根据崩溃栈分析问题无头绪时，应优先考虑跑ASAN版本复现问题。
 
 #### 类型二：多线程类问题
 
 **问题背景**
+
 napi_env释放后仍被使用。
 
 **问题场景**
+
 napi接口的env传入非法，崩溃栈直接挂在NativeEngineInterface::ClearLastError()中，根据日志打印env地址定位，发现是env被释放后仍然被使用。
 
 ![cppcrash-demo9](figures/cppcrash_image_015.png)
@@ -848,9 +1087,11 @@ napi接口的env传入非法，崩溃栈直接挂在NativeEngineInterface::Clear
 ![cppcrash-demo8](figures/cppcrash_image_014.png)
 
 **修改方法**
+
 一个线程的创建的env，不要传给另一个线程使用。
 
 **建议与总结**
+
 对于多线程类问题可以打开方舟多线程检测功能，能够更加方便定位问题，见工具类方舟多线程检测章节。
 
 注：napi接口中的env，是引擎创建时候的arkNativeEngine。
@@ -858,15 +1099,19 @@ napi接口的env传入非法，崩溃栈直接挂在NativeEngineInterface::Clear
 #### 类型三：生命周期类问题
 
 **问题背景**
+
 开发者在写native代码创建napi_value时，需要配合napi_handle_scope一起使用。napi_handle_scope的作用是管理napi_value的生命周期，napi_value只能在napi_handle_scope的作用域范围内进行使用，离开napi_handle_scope作用域范围后，napi_value及它所持有的js对象的生命周期不再得到保护，一旦引用计数为0，就会被GC回收掉，此时再去使用napi_value就会访问已释放的内存，产生问题。
 
 **问题场景**
+
 napi_value其实是个裸指针（结构体指针），其作用是持有js对象，用于保持js对象的生命周期，保证js对象不被GC当成垃圾对象回收。napi_handle_scope用来管理napi_value，离开napi_handle_scope作用域之后，napi_value由GC回收，napi_value不再持有js对象（不再保护js对象生命周期）。
 
 **定位思路**
+
 根据崩溃栈反编译找到出现问题的napi接口的上层接口，在上层接口内找到出问题的napi_value，检查napi_value的使用范围是否超出了napi_handle_scope的作用域范围。
 
 **案例**
+
 napi_value超出NAPI框架的scope，如下：
 
 ![cppcrash-demo9](figures/cppcrash_image_016.png)
@@ -877,20 +1122,25 @@ js侧通过Add接口添加数据，native侧以napi_value保存到vector，js侧
 #### 类型四：指针类问题
 
 **问题背景**
+
 智能指针使用之前未判空，造成进程运行时发生空指针解引用崩溃问题。
 
 **问题影响**
+
 进程发生崩溃，影响进程的稳定运行，非预期退出。
 
 **定位思路**
+
 ![cppcrash-demo10](figures/cppcrash_image_017.png)
 
 空指针类型崩溃可以从故障原因得到提示信息。通过llvm-addr2line解行号发现业务代码中在使用智能指针之前未对智能指针判空，对空地址进行访问导致崩溃产生。
 
 **修复方法**
+
 对所有使用该指针的地方进行保护性判空。
 
 **建议与总结**
+
 指针在使用之前应该要进行判空处理，防止访问空指针造成进程崩溃退出。
 
 ### 配合工具分析问题
@@ -902,28 +1152,31 @@ js侧通过Add接口添加数据，native侧以napi_value保存到vector，js侧
 #### 工具二：方舟多线程检测
 
 **基本原理**
+
 js是单线程的，操作js对象只允许发生在创建该js线程上，否则将会有多线程安全问题（主线程创建的js对象只能在主线程上操作，worker创建的js对象只能在worker线程上操作）。napi接口会直接涉及到对象的操作，因此绝大部分（95%）的napi接口只允许在js线程上使用。多线程检测机制检测的是：当前线程和使用的vm/env中的js thread id是否一致，若不一致，则表明vm/env被跨线程使用，存在多线程安全问题。常见问题有：1. 非js线程使用napi接口，2. napi接口使用其他线程的env。
 
 **使用方法**
+
 ![cppcrash-demo13](figures/cppcrash_image_020.png)
 
 DevEco勾选Multi Thread Check选项即可开启方舟多线程检测功能。
 
 **使用场景**
+
 如果crash日志的堆栈难以分析，出现概率也相对比较高，对于此类问题，应该考虑开启多线程检测。 开启多线程检测之后，如果cpp_crash日志中fatal信息为Fatal: ecma_vm cannot run in multi-thread! thread:3096 currentThread:3550，则发生了多线程安全问题，意思是当前线程号为3550，而使用的js thread却是3096线程创建出来的，跨线程使用vm。
 
 **案例**
+
 打开后重新触发崩溃，如果是多线程问题，会显示fatal 信息，参考如下:
 
-```
+```text
 Fatal: ecma_vm cannot run in multi-thread! thread:xxx currentThread:yyy
 ```
 
 该信息意思是当前线程号为17585，而使用的 js thread 却是17688 线程创建出来的，跨线程使用 vm。vm 就是 js thread 的 napi_env__* ，运行线程代码的环境，一个线程使用一个 vm。
 崩溃日志核心部分如下所示：
 
-```
-
+```text
 Reason:Signal:SIGABRT(SI_TKILL)@0x01317b9f000044b1 from:17585: 20020127
 LastFatalMessage: [default] CheckThread:177 Fatal: ecma_vm cannot run in multi-thread! thread:17688 currentThread:17585
 Fault thread Info:
@@ -944,9 +1197,10 @@ ii. 如果 libace_napi.z.so 下面的栈帧没有明显的 napi_env 参数传递
 #### 工具三：objdump
 
 **使用方法**
+
 objdump二进制是系统侧工具，开发者需要具备OpenHarmony编译环境，项目代码在gitee上可获取，命令如下：
 
-```
+```text
 repo init -u git@gitee.com:openharmony/manifest.git -b master --no-repo-verify --no-clone-bundle --depth=1
 repo sync -c
 ./build/prebuilts_download.sh
@@ -954,17 +1208,19 @@ repo sync -c
 
 工具在工程目录下`prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-objdump`，命令如下：
 
-```
+```text
 prebuilts/clang/ohos/linux-x86_64/llvm/bin/llvm-objdump -d libark_jsruntime.so > dump.txt
 ```
 
 **使用场景**
+
 有些情况下，通过addr2line只能看出代码某一行有问题，无法确认具体是哪个变量异常，此时可以通过objdump反汇编并结合cppcrash寄存器内容，进一步确认具体崩溃原因。
 
 **案例**
+
 日志内容如下：
 
-```
+```text
 Tid:6655, Name:GC_WorkerThread
 # 00 pc 00000000004492d4 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::NonMovableMarker::MarkObject(unsigned int, panda::ecmascript::TaggedObject*)+124)(21cf5411626d5986a4ba6383e959b3cc)
 # 01 pc 000000000044b580 /system/lib64/platformsdk/libark_jsruntime.so(panda::ecmascript::NonMovableMarker::MarkValue(unsigned int, panda::ecmascript::ObjectSlot&, panda::ecmascript::Region*, bool)+72)(21cf5411626d5986a4ba6383e959b3cc)
@@ -989,7 +1245,7 @@ Tid:6655, Name:GC_WorkerThread
 
 查看x20寄存器，发现为0x000000000000000，x20从上面可以看出是基于x2做位运算(清除掉后18位，典型的Region::ObjectAddressToRange操作)。这样分析之后，就清楚了，x2为MarkObject函数的第二个参数object，x20为变量objectRegion，如下：
 
-```
+```text
 Registers: x0:0000007f0fe31560 x1:0000000000000003 x2:0000000000000000 x3:0000005593100000
         x4:0000000000000000 x5:0000000000000000 x6:0000000000000000 x7:0000005596374fa0
         x8:0000000000000000 x9:0000000000000000 x10:0000000000000000 x11:0000007f9cb42bb8

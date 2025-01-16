@@ -979,3 +979,72 @@ try {
   console.error(`setResidentProcessEnabled failed, code is ${code}, message is ${message}`);
 }
 ```
+
+## AtomicServiceStartupRule<sup>16+</sup>
+
+嵌入式拉起原子化服务的规则。
+
+**系统接口**: 该接口为系统接口。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | ---------| ---- | ---- | --------- |
+| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。          |
+
+## abilityManager.queryAtomicServiceStartupRule<sup>16+</sup>
+
+queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
+
+查询嵌入式拉起[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)的规则。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 嵌入式拉起EmbeddableUIAbility的调用方Context。<br>**说明**：目前仅支持[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。 |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule16)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not support. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { abilityManager, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    try {
+      abilityManager.queryAtomicServiceStartupRule(this.context, appId).then((data: abilityManager.AtomicServiceStartupRule) => {
+        console.info(`queryAtomicServiceStartupRule data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`queryAtomicServiceStartupRule failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+```

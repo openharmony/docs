@@ -20,7 +20,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 1. 新建一个ArkTS应用工程，编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，导入依赖模块：
 
    ```ts
-   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
    ```
 
 2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onForeground函数中添加系统事件的订阅，示例代码如下：
@@ -76,67 +76,113 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     编辑工程中的“entry > src > main > ets  > pages> Index.ets”文件
 
     ```ts
-        Button("timeOut350")
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-            let t = Date.now();
-            while (Date.now() - t <= 350) {}
-        })
+      @Entry
+      @Component
+      struct Index {
+        build() {
+          RelativeContainer() {
+            Column() {
+              Button("timeOut350", { stateEffect:true, type: ButtonType.Capsule})
+                .width('75%')
+                .height(50)
+                .margin(15)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  let t = Date.now();
+                  while (Date.now() - t <= 350) {}
+                })
+            }.width('100%')
+          }
+          .height('100%')
+          .width('100%')
+        }
+      }
     ```
 
 4. （可选）该步骤用于模拟自定义采样栈参数，并触发主线程超时事件场景。
 
-   编辑工程中的“entry > src > main > ets  > pages> Index.ets”文件，本示例中设置一个Button控件，在onClick中实现自定义设置采样栈参数代码，示例代码如下：
+   编辑工程中的“entry > src > main > ets  > pages> Index.ets”文件，本示例中设置一个customSample的Button控件，在onClick中实现自定义设置采样栈参数代码，示例代码如下：
 
     ```ts
-      Button("customSample")
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-      .onClick(() => {
-          // 在按钮点击函数中进行事件打点，以记录按钮点击事件
-          let params: Record<string, hiAppEvent.ParamType> = {
-            // 事件类型定义， 0-默认值，1-只采样栈 2-只收集trace
-            "log_type": "1",
-            // 超时时间 & 采样间隔
-            "sample_interval": "100",
-            // 忽略启动开始时间
-            "ignore_startup_time": "11",
-            // 采样次数
-            "sample_count": "21",
-            // 事件上报次数定义
-            "report_times_per_app": "3",
-          };
-          hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
-            hilog.info(0x0000, 'testTag', `HiAppEvent success to set event params.`)
-          }).catch((err: BusinessError) => {
-            hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
-          });
-      })
-    ```
+      import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
 
-   模拟超时事件函数定义，示例代码如下：
-
-    ```ts
+      //模拟超时事件函数定义，示例代码：
       function wait150ms() {
         let t = Date.now();
         while (Date.now() - t <= 150){
         }
       }
+
+      function wait500ms() {
+        let t = Date.now();
+        while (Date.now() - t <= 500){
+        }
+      }
+
+      @Entry
+      @Component
+      struct Index {
+        build() {
+          RelativeContainer() {
+            Column() {
+              //自定义设置采样栈参数按钮
+              Button("customSample", { stateEffect:true, type: ButtonType.Capsule})
+                .width('75%')
+                .height(50)
+                .margin(15)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  // 在按钮点击函数中进行事件打点，以记录按钮点击事件
+                  let params: Record<string, hiAppEvent.ParamType> = {
+                    // 事件类型定义， 0-默认值，1-只采样栈 2-只收集trace
+                    "log_type": "1",
+                    // 超时时间 & 采样间隔
+                    "sample_interval": "100",
+                    // 忽略启动开始时间
+                    "ignore_startup_time": "11",
+                    // 采样次数
+                    "sample_count": "21",
+                    // 事件上报次数定义
+                    "report_times_per_app": "3",
+                  };
+                  hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+                    hilog.info(0x0000, 'testTag', `HiAppEvent success to set event params.`)
+                  }).catch((err: BusinessError) => {
+                    hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
+                  });
+                })
+              //触发150ms超时事件按钮
+              Button("timeOut150", { stateEffect:true, type: ButtonType.Capsule})
+                .width('75%')
+                .height(50)
+                .margin(15)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  wait150ms();
+                })
+              //触发500ms超时事件按钮
+              Button("timeOut500", { stateEffect:true, type: ButtonType.Capsule})
+                .width('75%')
+                .height(50)
+                .margin(15)
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .onClick(() => {
+                  wait500ms();
+                })
+            }.width('100%')
+          }
+          .height('100%')
+          .width('100%')
+        }
+      }
     ```
 
-   触发超时事件按钮，示例代码如下：
-
-    ```ts
-      Button("timeOut150")
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-      .onClick(() => {
-          wait150ms();
-      })
-    ```
-
-5. 点击IDE界面中的运行按钮，运行应用工程，连续点击两次触发超时的按钮，会触发主线程超时事件。
+5. 点击DevEco Studio界面中的运行按钮，运行应用工程，连续点击两次触发超时的按钮，会触发主线程超时事件。
 
 6. 主线程超时事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：
 

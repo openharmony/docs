@@ -73,3 +73,17 @@ The application is not authorized by the user.
 **处理步骤**
 
 检查输入的凭据是否正确或当前应用申请授权。
+
+## 17500007 设备进入坚盾守护模式
+
+**错误信息**
+
+The device enters advanced security mode.
+
+**可能原因**
+
+用户已开启坚盾守护模式。
+
+**处理步骤**
+
+需要在应用界面提醒用户关闭坚盾守护模式。

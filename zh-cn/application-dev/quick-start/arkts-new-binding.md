@@ -16,10 +16,6 @@
 - 如果父组件没有使用`!!`，则父组件发生的变化是单向的。
 
 
-## 使用限制
-`!!`双向绑定语法不支持多层父子组件传递。
-
-
 ## 使用场景
 
 ### 自定义组件间双向绑定
@@ -67,6 +63,11 @@ struct Star {
 ```
 
 
+## 使用限制
+- `!!`双向绑定语法不支持多层父子组件传递。
+- 不支持与@Event混用。当使用`!!`双向绑定语法时，在给子组件传递参数时，不允许给对应的@Event方法传参。
+
+
 ### 内置组件参数双向绑定
 
 !!运算符为系统内置组件提供TS变量的引用，使得TS变量和系统内置组件的内部状态保持同步。添加方式是在变量名后添加，例如isShow!!。
@@ -82,6 +83,11 @@ struct Star {
   | [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | isShow | 13          |
   | [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | isShown | 13          |
   | [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | show | 13   |
+  | [TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md) | text | 16   |
+  | [TextArea](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md) | text | 16   |
+  | [Search](../reference/apis-arkui/arkui-ts/ts-basic-components-search.md) | value | 16   |
+  | [BindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | isShow | 16   |
+  | [BindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | isShow | 16   |
 
 - !!绑定的[\@Local](arkts-new-local.md)变量变化时，会触发UI的同步刷新。
 

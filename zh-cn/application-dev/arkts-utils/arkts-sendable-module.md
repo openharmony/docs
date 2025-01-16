@@ -44,8 +44,9 @@
 
 - 共享模块可以引用共享模块或非共享模块。不限制共享模块的引用和被引用场景。
 
-- napi_load_module、napi_load_module_with_info以及动态加载不支持加载共享模块。
+- napi_load_module和napi_load_module_with_info支持加载共享模块。
 
+- 动态加载不支持加载共享模块。
 
 ## 使用示例
 
