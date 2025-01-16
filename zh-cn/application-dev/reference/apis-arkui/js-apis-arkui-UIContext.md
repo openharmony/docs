@@ -6170,7 +6170,7 @@ struct Index {
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。通过该接口弹出的popup弹窗内容样式完全按照content中设置的样式显示。
+创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。
 
 > **说明：**
 >
