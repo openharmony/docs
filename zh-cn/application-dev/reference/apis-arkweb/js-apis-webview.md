@@ -3676,7 +3676,7 @@ struct WebComponent {
 
 scrollTo(x:number, y:number): void
 
-在指定时间内，将页面滚动到指定的绝对位置。
+将页面滚动到指定的绝对位置。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3713,15 +3713,7 @@ struct WebComponent {
       Button('scrollTo')
         .onClick(() => {
           try {
-            this.controller.scrollTo(50, 50, 500);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-        Button('stopScroll')
-        .onClick(() => {
-          try {
-            this.controller.scrollBy(0, 0, 1); //如果想停止当前scroll产生的动画，可再次生成一个1ms的动画去打断该动画。
+            this.controller.scrollTo(50, 50);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
