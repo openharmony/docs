@@ -731,7 +731,7 @@ getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;
 
 | 类型                   | 说明                  |
 |----------------------|---------------------|
-| Promise&lt;PiPWindowInfo&gt;  | Promise对象，返回当前画中画窗口信息。 |
+| Promise&lt;[PiPWindowInfo](#pipwindowinfosup16sup)&gt;  | Promise对象，返回当前画中画窗口信息。 |
 
 **错误码：**
 
