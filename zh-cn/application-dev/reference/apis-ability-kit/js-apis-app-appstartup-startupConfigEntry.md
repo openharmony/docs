@@ -21,7 +21,7 @@ onConfig?(): StartupConfig
 
 应用启动时调用以配置应用启动框架的设置。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **返回值：**
 
