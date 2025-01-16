@@ -136,19 +136,19 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 - 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数
 - 限制参数：对应的空间阈值
-- 说明：对象申请空间到达对应空间阈值时触发GC
+- 说明：对象申请空间到达对应空间阈值时触发GC。
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT
 
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
 - 限制参数：`globalSpaceNativeLimit`
-- 说明：影响是否进行全量mark，以及是否开始并发mark
+- 说明：影响是否进行全量mark，以及是否开始并发mark。
 
 #### 切换后台触发GC
 
 - 函数方法：`ChangeGCParams`
-- 说明：切换后台主动触发一次Full GC
+- 说明：切换后台主动触发一次Full GC。
 - 典型日志：`app is inBackground`，`app is not inBackground`
   GC 日志中可区分GCReason::SWITCH_BACKGROUND
 
