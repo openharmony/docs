@@ -555,9 +555,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
 screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
-  console.info('Succeeded in making unoque screens.');
+  console.info('Succeeded in make unique screens.');
 }).catch((err: BusinessError) => {
-  console.error(`Failed to make unoque screens. Code:${err.code},message is ${err.message}`);
+  console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
 });
 ```
 
