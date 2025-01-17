@@ -2,6 +2,9 @@
 
 To change the unobservable data to observable data, you can use the [makeObserved](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved12) API.
 
+
+**makeObserved** can be used when \@Trace cannot be used. Before reading this topic, you are advised to read [\@Trace](./arkts-new-observedV2-and-trace.md).
+
 >**NOTE**
 >
 >The **makeObserved** API in UIUtils is supported since API version 12.
@@ -168,7 +171,7 @@ export class SendableData  {
   name: string = 'Tom';
   age: number = 20;
   gender: number = 1;
-  // .... more other properties
+  // Other attributes are omitted here.
   likes: number = 1;
   follow: boolean = false;
 }
@@ -272,32 +275,32 @@ struct Index {
       /****************************APIs for Changing the Data Length**************************/
       Scroll(this.scroller) {
         Column({space: 10}) {
-          // push
+          // push: adds a new element.
           Button('push').onClick(() => {
             this.arrCollect.push(new Info(30));
           })
-          // pop: remove the last one
+          // pop: deletes the last element.
           Button('pop').onClick(() => {
             this.arrCollect.pop();
           })
-          // shift: remove the first one
+          // shift: deletes the first element.
           Button('shift').onClick(() => {
             this.arrCollect.shift();
           })
-          // unshift: insert the new item in the start of the array
+          // unshift: inserts a new item at the beginning of the array.
           Button('unshift').onClick(() => {
             this.arrCollect.unshift(new Info(50));
           })
-          // splice: Removes elements from the array at the specified position
+          // splice: deletes an element from the specified position of the array.
           Button('splice').onClick(() => {
             this.arrCollect.splice(1);
           })
 
-          // Shrinks the ArkTS array to the given arrayLength.
+          // shrinkTo: shrinks the array length to a specified length.
           Button('shrinkTo').onClick(() => {
             this.arrCollect.shrinkTo(1);
           })
-          // Extends the ArkTS array to the given arrayLength,
+          // extendTo: extends the array length to a specified length.
           Button('extendTo').onClick(() => {
             this.arrCollect.extendTo(6, new Info(20));
           })
@@ -310,7 +313,7 @@ struct Index {
           Button('sort').onClick(() => {
             this.arrCollect.sort((a: Info, b: Info) => b.id - a.id);
           })
-          // fill: filling the section identified by start and end with value
+          // fill: fills in the specified part with a value.
           Button('fill').onClick(() => {
             this.arrCollect.fill(new Info(5), 0, 2);
           })
