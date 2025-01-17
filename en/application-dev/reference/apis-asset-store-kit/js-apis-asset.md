@@ -22,6 +22,8 @@ To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STOR
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
@@ -93,6 +95,8 @@ To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STOR
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
@@ -151,6 +155,8 @@ remove(query: AssetMap): Promise\<void>
 Removes one or more assets. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
@@ -214,6 +220,8 @@ Removes one or more assets. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
@@ -265,6 +273,8 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 Updates an asset. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
@@ -333,6 +343,8 @@ Updates an asset. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | query              | [AssetMap](#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
@@ -389,6 +401,8 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 Performs preprocessing for the asset query. This API is used when user authentication is required for the access to the asset. After the user authentication is successful, call [asset.query](#assetquery) and [asset.postQuery](#assetpostquery). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
@@ -455,6 +469,8 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.|
@@ -515,6 +531,8 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 Queries one or more assets. If user authentication is required for the access to the asset, call [asset.preQuery](#assetprequery) before this API and call [asset.postQuery](#assetpostquery) after this API. For details about the development procedure, see [Querying an Asset with User Authentication](../../security/AssetStoreKit/asset-js-query-auth.md). This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
@@ -585,6 +603,8 @@ Queries one or more assets. If user authentication is required for the access to
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | query    | [AssetMap](#assetmap)           | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.      |
@@ -653,6 +673,8 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | handle | [AssetMap](#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQuery](#assetprequery).|
@@ -705,6 +727,8 @@ postQuerySync(handle: AssetMap): void
 Performs postprocessing for the asset query. This API is used when user authentication is required for the access to the asset. This API must be used with [asset.preQuerySync](#assetprequerysync12) together. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
@@ -773,16 +797,16 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | Validity period of the user authentication.                                            |
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | Challenge for the user authentication.                                        |
 | AUTH_TOKEN                | TagType.BYTES &#124; 0x08    | Authorization token obtained after the user authentication is successful.                                          |
-| SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | Type of sync supported by the asset.                                      |
+| SYNC_TYPE                 | TagType.NUMBER &#124; 0x10 | Asset sync type.                                      |
 | IS_PERSISTENT             | TagType.BOOL &#124; 0x11                         | Whether to retain the asset when the application is uninstalled.|
 | DATA_LABEL_CRITICAL_1     | TagType.BYTES &#124; 0x20 | Additional asset data customized by the service with integrity protection.            |
 | DATA_LABEL_CRITICAL_2 | TagType.BYTES &#124; 0x21 | Additional asset data customized by the service with integrity protection.|
 | DATA_LABEL_CRITICAL_3 | TagType.BYTES &#124; 0x22 | Additional asset data customized by the service with integrity protection.|
 | DATA_LABEL_CRITICAL_4 | TagType.BYTES &#124; 0x23  | Additional asset data customized by the service with integrity protection.|
-| DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | Additional data of the asset customized by the service without integrity protection.            |
-| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | Additional data of the asset customized by the service without integrity protection.|
-| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | Additional data of the asset customized by the service without integrity protection.|
+| DATA_LABEL_NORMAL_1       | TagType.BYTES &#124; 0x30 | Additional asset data customized by the service without integrity protection.            |
+| DATA_LABEL_NORMAL_2 | TagType.BYTES &#124; 0x31 | Additional asset data customized by the service without integrity protection.|
+| DATA_LABEL_NORMAL_3 | TagType.BYTES &#124; 0x32 | Additional asset data customized by the service without integrity protection.|
+| DATA_LABEL_NORMAL_4 | TagType.BYTES &#124; 0x33  | Additional asset data customized by the service without integrity protection.|
 | DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> | TagType.BYTES &#124; 0x34 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> | TagType.BYTES &#124; 0x35 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | TagType.BYTES &#124; 0x36 | Local information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
@@ -790,7 +814,7 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | RETURN_TYPE               | TagType.NUMBER &#124; 0x40 | Type of the asset query result to return.                                        |
 | RETURN_LIMIT              | TagType.NUMBER &#124; 0x41                      | Maximum number of asset records to return.                                        |
 | RETURN_OFFSET             | TagType.NUMBER &#124; 0x42   | Offset of the asset query result.<br>**NOTE**: This parameter specifies the starting asset record to return in batch asset query.                                |
-| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | How the query results are sorted. Currently, the results can be sorted only by **DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
+| RETURN_ORDERED_BY         | TagType.NUMBER &#124; 0x43 | Sorting order of the query results Currently, the results can be sorted only by **ASSET_TAG_DATA_LABEL**.<br>**NOTE**: By default, assets are returned in the order in which they are added.|
 | CONFLICT_RESOLUTION       | TagType.NUMBER &#124; 0x44 | Policy for resolving the conflict (for example, a duplicate alias).                            |
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
@@ -803,6 +827,12 @@ Represents the value of each attribute in [AssetMap](#assetmap).
 
 **System capability**: SystemCapability.Security.Asset
 
+| Type   | Description                                            |
+| ------- | ------------------------------------------------|
+| boolean | The value is a Boolean value, that is, **true** or **false**.     |
+| number  | The value is a number. It can be an enumerated value or a numeric value.|
+| Uint8Array | The value is a byte array, and the content is defined by the service.       |
+
 ## AssetMap
 
 type AssetMap = Map\<Tag, Value>
@@ -810,6 +840,10 @@ type AssetMap = Map\<Tag, Value>
 Represents a set of asset attributes in KV pairs.
 
 **System capability**: SystemCapability.Security.Asset
+
+| Type            | Description                                                             |
+| ---------------- | ------------------------------------------------------------------|
+| Map\<Tag, Value> | The value type is Map. For details about the range of the KV pair, see [Tag](#tag) and [Value](#value).|
 
 ## Accessibility
 
