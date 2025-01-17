@@ -38,7 +38,7 @@
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.47开始
+从OpenHarmony SDK 5.1.0.48开始
 
 **变更的接口/组件**
 
