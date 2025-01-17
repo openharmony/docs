@@ -698,7 +698,7 @@ try {
   let contentNode = typeNode.createNode(ctx, "XComponent", {
     type: XComponentType.SURFACE,
     controller: new ExtXComponentController(),
-  })
+  });
   pipcontroller.updateContentNode(contentNode);
 } catch (exception) {
   console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
