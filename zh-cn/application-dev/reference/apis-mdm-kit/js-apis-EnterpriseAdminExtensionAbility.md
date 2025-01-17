@@ -263,7 +263,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAccountAdded(accountId: number): void;
 
-用户账号新增事件回调，回调中包含账号ID。
+系统账号新增事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -287,7 +287,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAccountSwitched(accountId: number): void
 
-用户账号切换事件回调，回调中包含切换后的账号ID。
+系统账号切换事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -311,7 +311,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAccountRemoved(accountId: number): void
 
-用户账号删除事件回调，回调中包含被删除的账号ID。
+系统账号删除事件回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
