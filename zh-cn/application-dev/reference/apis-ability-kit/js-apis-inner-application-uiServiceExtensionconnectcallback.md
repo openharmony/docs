@@ -26,7 +26,7 @@ import { common } from '@kit.AbilityKit';
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
 
-**原子化服务API：** 从 API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从 API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -133,7 +133,7 @@ onDisconnect(): void
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
 
-**原子化服务API：** 从 API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从 API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

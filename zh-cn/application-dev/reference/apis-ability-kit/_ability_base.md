@@ -4,9 +4,9 @@
 
 作为Ability Kit的基础定义模块，AbilityBase提供了组件启动参数[Want](want__8h.md)的定义与接口，可以用于应用组件间的信息传递。
 
-**系统能力：** SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
-**起始版本：** 15
+**起始版本**：15
 
 ## 汇总
 
@@ -57,7 +57,7 @@ enum AbilityBase_ErrorCode
 
 定义AbilityBase相关错误码。
 
-**起始版本：** 15
+**起始版本**：15
 
 | 枚举值                                        | 描述           |
 | --------------------------------------------- | -------------- |
@@ -77,7 +77,7 @@ AbilityBase_Want
 
 Want数据结构。
 
-**起始版本：** 15
+**起始版本**：15
 
 
 ## 函数说明
@@ -92,7 +92,7 @@ AbilityBase_Want* OH_AbilityBase_CreateWant(AbilityBase_Element element)
 
 创建Want。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -114,7 +114,7 @@ AbilityBase_ErrorCode OH_AbilityBase_DestroyWant(AbilityBase_Want* want)
 
 销毁Want。销毁后的Want不可使用，否则会导致未定义行为。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -137,7 +137,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantElement(AbilityBase_Want* want, Abil
 
 设置Want中由bundleName、moduleName与abilityName组成的Element结构体。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -161,7 +161,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantElement(AbilityBase_Want* want, Abil
 
 获取Want中由bundleName、moduleName与abilityName组成的Element结构体。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -185,7 +185,7 @@ AbilityBase_ErrorCode OH_AbilityBase_SetWantCharParam(AbilityBase_Want* want, co
 
 设置Want Param参数，Param可参考[Want中的parameters参数](js-apis-inner-ability-want.md)。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -210,7 +210,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantCharParam(AbilityBase_Want* want, co
 
 获取[OH_AbilityBase_SetWantCharParam](#oh_abilitybase_setwantcharparam)方法设置的Want Param参数。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -236,7 +236,7 @@ AbilityBase_ErrorCode OH_AbilityBase_AddWantFd(AbilityBase_Want* want, const cha
 
 添加Want文件描述符，文件描述符可通过[fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen)获取。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 
@@ -261,7 +261,7 @@ AbilityBase_ErrorCode OH_AbilityBase_GetWantFd(AbilityBase_Want* want, const cha
 
 获取Want文件描述符。
 
-**起始版本：** 15
+**起始版本**：15
 
 **参数:**
 

@@ -14,7 +14,7 @@ onAutoStartupOn(info: AutoStartupInfo): void;
 
 应用设置为开机自启动时调用。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -52,7 +52,7 @@ onAutoStartupOff(info: AutoStartupInfo): void;
 
 取消应用开机自启动时调用。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

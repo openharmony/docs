@@ -5,9 +5,9 @@
 
 提供元能力基础框架的相关能力。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**起始版本：** 13
+**起始版本**：13
 
 
 ## 汇总
@@ -56,7 +56,7 @@ enum AbilityRuntime_ErrorCode
 
 定义元能力模块错误码。
 
-**起始版本：** 13
+**起始版本**：13
 
 | 枚举值                                        | 描述           |
 | --------------------------------------------- | -------------- |
@@ -85,7 +85,7 @@ enum AbilityRuntime_AreaMode
 
 定义数据加密等级。
 
-**起始版本：** 13
+**起始版本**：13
 
 | 枚举值                        | 描述                                                         |
 | ----------------------------- | ------------------------------------------------------------ |
@@ -107,7 +107,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCacheDir(char* b
 
 获取应用级别的缓存目录。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -135,7 +135,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetAreaMode(Ability
 
 获取应用级别的数据加密等级。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -161,7 +161,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleName(char*
 
 获取应用包名。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -189,7 +189,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetTempDir(char* bu
 
 获取应用级别的临时文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 
@@ -217,7 +217,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetFilesDir(char* b
 
 获取应用级别的通用文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 
@@ -245,7 +245,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char
 
 获取应用级别的数据库文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 
@@ -273,7 +273,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetPreferencesDir(c
 
 获取应用级别的首选项文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 
@@ -301,7 +301,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetBundleCodeDir(ch
 
 获取应用级别的安装文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 
@@ -329,7 +329,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDistributedFiles
 
 获取应用级别的分布式文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 
@@ -357,7 +357,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetCloudFileDir(cha
 
 获取应用级别的云文件目录。
 
-**起始版本：** 16
+**起始版本**：16
 
 **参数:**
 

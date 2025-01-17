@@ -21,7 +21,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 执行启动框架启动任务或加载so文件。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -87,7 +87,7 @@ removeAllStartupTaskResults(): void
 删除所有启动任务结果。
 如果存在so预加载任务，则将对应so文件置为未加载状态。对于缓存中已加载的so文件，不会被移除。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **示例：**：
 
@@ -126,7 +126,7 @@ getStartupTaskResult(startupTask: string): Object
 
 获得指定的启动任务结果，传参为so时则返回undefined。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -186,7 +186,7 @@ isStartupTaskInitialized(startupTask: string): boolean
 获取指定启动任务是否已初始化。
 当入参为so文件时，则获取指定so是否已加载。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -255,7 +255,7 @@ removeStartupTaskResult(startupTask: string): void
 
 删除指定初始化结果，入参为so文件，则将该so文件置为未加载，缓存中已加载的so文件不会被移除。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
