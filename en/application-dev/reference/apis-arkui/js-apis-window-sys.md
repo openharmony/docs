@@ -3110,7 +3110,7 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-Sets whether to hide non-system floating windows. This API uses an asynchronous callback to return the result.
+Sets whether to hide non-system floating windows. This API uses a promise to return the result.
 
 A non-system floating window is a floating window created by a non-system application. By default, the main window of a system application can be displayed together with a non-system floating window. This means that the main window may be blocked by an upper-layer non-system floating window. If the **shouldHide** parameter is set to **true**, all non-system floating windows are hidden, so that the main window will never be blocked by a non-system floating window.
 
