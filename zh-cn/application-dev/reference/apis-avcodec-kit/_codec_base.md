@@ -95,8 +95,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average)     |描述视频帧平均量化参数的键，值类型为int32_t。该键是可选的。  |
 | [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。该键是可选的。  |
-| [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)         | 如果自上一帧提交给编码器以来没有新的帧可用，则会以毫秒为单位重复提交最后一帧的键，值类型为int32_t。该键只用于视频编码Surface模式，在Configure阶段使用。 |
-| [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)         | 描述在没有新的帧可用的情况下，先前给编码器的帧可以被重复提交的最大次数的键，值类型为int32_t。该键仅在OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER可用时生效，在Configure阶段使用。|
+| [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)         | 如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。该键只用于视频编码Surface模式，在Configure阶段使用。 |
+| [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)         | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。该键仅在OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER可用时生效，在Configure阶段使用。|
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | surface旋转角度的键。值类型为int32_t：应为{0, 90, 180, 270}，默认值为0。该键只在视频解码Surface模式下使用。该键是可选的。 |
 | [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | 视频缩放模式，值类型为int32_t，请参见[OH_ScalingMode](#oh_scalingmode)。该键是可选的且只用于视频解码Surface模式。建议直接调用[OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md)接口进行设置。（API14废弃）|
@@ -298,8 +298,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。  |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)    | 如果自上一帧提交给编码器以来没有新的帧可用，则会以毫秒为单位重复提交最后一帧的键，值类型为int32_t。 |
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)    | 描述在没有新的帧可用的情况下，先前给编码器的帧可以被重复提交的最大次数的键，值类型为int32_t。|
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)    | 如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](#oh_md_key_video_encoder_repeat_previous_max_count)    | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。|
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)   | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | const char \* [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count) | 音频通道计数键，值类型为int32_t。 |
@@ -2767,15 +2767,14 @@ const char* OH_MD_KEY_CREATION_TIME
 const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER
 ```
 **描述**
-如果自上一帧提交给编码器以来没有新的帧可用，则会以毫秒为单位重复提交最后一帧的键，值类型为int32_t。
+如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。
 
 该键只用于视频编码Surface模式，在Configure阶段使用。
 
 | 配置的值 | 描述 | 
 | -------- | -------- |
-| 0 | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  |
-| 小于0 | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  | 
-| 大于0|  如果自上一帧提交给编码器以来没有新的帧可用，则会以毫秒为单位重复提交最后一帧。 |
+| 小于等于0 | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  |
+| 大于0|  如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧。 |
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
@@ -2788,15 +2787,15 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER
 const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 ```
 **描述**
-描述在没有新的帧可用的情况下，先前给编码器的帧可以被重复提交的最大次数的键，值类型为int32_t。
+描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。
 
 该键仅在[OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](#oh_md_key_video_encoder_repeat_previous_frame_after)可用时生效，在Configure阶段使用。
 
 | 配置的值 | 描述 | 
 | -------- | -------- |
-| 0 | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  |
-| 小于0 | 编码帧支持历史帧repeat编码会一直编，上限是256。  | 
-| 大于0|  自上一帧提交给编码器以来没有新的帧可用的这段时间内，最多能重复编几帧。 |
+|   0  | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  |
+| 小于0 | 编码帧支持历史帧repeat编码会一直编，直到达到系统上限。  | 
+| 大于0|  在上一帧提交给编码器之后，没有新的帧可用的这段时间内，最多可以重复编码的帧数。 |
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 

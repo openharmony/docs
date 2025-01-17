@@ -14,6 +14,7 @@
 |          支持的能力                       |                              使用简述                                            |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 分层编码 <br> 设置LTR帧、参考帧                      | 具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)        |
+| 编码帧支持历史帧repeat编码                     | 具体可参考：[OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](../../reference/apis-avcodec-kit/_codec_base.md#oh_md_key_video_encoder_repeat_previous_frame_after)、<br> [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](../../reference/apis-avcodec-kit/_codec_base.md#oh_md_key_video_encoder_repeat_previous_max_count)    |
 <!--RP4End-->
 
 ## 限制约束
@@ -220,7 +221,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 创建硬件编码器实例
-    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
+    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
