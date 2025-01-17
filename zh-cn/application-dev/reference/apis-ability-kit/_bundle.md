@@ -115,7 +115,7 @@ char* OH_NativeBundle_GetCompatibleDeviceType()
 
 **描述**
 
-获取自身应用适用的设备类型。
+获取当前应用适用的设备类型。用于将手机应用分发到平板/2in1设备时，合理适配布局和字体大小。
 
 **起始版本：** 14
 
