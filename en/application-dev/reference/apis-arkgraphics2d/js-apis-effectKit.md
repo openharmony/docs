@@ -31,7 +31,7 @@ Creates a **Filter** instance based on a pixel map.
 
 **Parameters**
 
-| Name   | Type              | Mandatory | Description    |
+| Name   | Type              | Mandatory| Description    |
 | ------- | ----------------- | ---- | -------- |
 | source  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md).  |
 
@@ -39,7 +39,7 @@ Creates a **Filter** instance based on a pixel map.
 
 | Type                            | Description          |
 | -------------------------------- | -------------- |
-| [Filter](#filter) | Head node of the filter linked list without any effect. If the operation fails, **null** is returned. |
+| [Filter](#filter) | Head node of the filter linked list without any effect. If the operation fails, **null** is returned.|
 
 **Example**
 
@@ -75,21 +75,21 @@ Creates a **ColorPicker** instance based on a pixel map. This API uses a promise
 
 **Parameters**
 
-| Name    | Type        | Mandatory | Description                      |
+| Name    | Type        | Mandatory| Description                      |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md). |
+| source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md).|
 
 **Return value**
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created. |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Input parameter error.             |
 
@@ -133,22 +133,22 @@ Creates a **ColorPicker** instance for the selected region based on a pixel map.
 
 **Parameters**
 
-| Name    | Type        | Mandatory | Description                      |
+| Name    | Type        | Mandatory| Description                      |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md). |
+| source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md).|
 | region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.|
 
 **Return value**
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created. |
+| Promise\<[ColorPicker](#colorpicker)>  | Promise used to return the **ColorPicker** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Input parameter error.             |
 
@@ -192,16 +192,16 @@ Creates a **ColorPicker** instance based on a pixel map. This API uses an asynch
 
 **Parameters**
 
-| Name    | Type               | Mandatory | Description                      |
+| Name    | Type               | Mandatory| Description                      |
 | -------- | ------------------ | ---- | -------------------------- |
 | source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md). |
-| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created. |
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Input parameter error.             |
 
@@ -245,17 +245,17 @@ Creates a **ColorPicker** instance for the selected region based on a pixel map.
 
 **Parameters**
 
-| Name    | Type               | Mandatory | Description                      |
+| Name    | Type               | Mandatory| Description                      |
 | -------- | ------------------ | ---- | -------------------------- |
 | source   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image/image-overview.md). |
 | region   | Array\<number> | Yes  |  Region of the image from which the color is picked.<br>The array consists of four elements, representing the left, top, right, and bottom positions of the image, respectively. The value of each element must be in the range [0, 1]. The leftmost and topmost positions of the image correspond to 0, and the rightmost and bottom positions correspond to 1. In the array, the third element must be greater than the first element, and the fourth element must be greater than the second element.|
-| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created. |
+| callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Input parameter error.             |
 
@@ -295,12 +295,25 @@ A class that stores the color picked.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
-| Name  | Type  | Readable | Writable | Description             |
+| Name  | Type  | Readable| Writable| Description             |
 | ------ | ----- | ---- | ---- | ---------------- |
 | red   | number | Yes  | No  | Value of the red component. The value range is [0x0, 0xFF].          |
 | green | number | Yes  | No  | Value of the green component. The value range is [0x0, 0xFF].          |
 | blue  | number | Yes  | No  | Value of the blue component. The value range is [0x0, 0xFF].          |
 | alpha | number | Yes  | No  | Value of the alpha component. The value range is [0x0, 0xFF].      |
+
+## TileMode<sup>14+</sup>
+
+Enumerates the tile modes of the shader effect.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+| Name                  | Value  | Description                          |
+| ---------------------- | ---- | ------------------------------ |
+| CLAMP     | 0    | Replicates the edge color if the shader effect draws outside of its original boundary.|
+| REPEAT    | 1    | Repeats the shader effect in both horizontal and vertical directions.|
+| MIRROR    | 2    | Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.|
+| DECAL     | 3    | Renders the shader effect only within the original boundary.|
 
 ## ColorPicker
 
@@ -322,7 +335,7 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| Promise\<[Color](#color)> | Promise used to return the color value of the main color. If the operation fails, an error message is returned. |
+| Promise\<[Color](#color)> | Promise used to return the color value of the main color. If the operation fails, an error message is returned.|
 
 **Example**
 
@@ -370,7 +383,7 @@ Obtains the main color from the image and writes the result to a [Color](#color)
 
 | Type    | Description                                 |
 | :------- | :----------------------------------- |
-| [Color](#color)    | Color value of the main color. If the operation fails, **null** is returned. |
+| [Color](#color)    | Color value of the main color. If the operation fails, **null** is returned.|
 
 **Example**
 
@@ -417,7 +430,7 @@ Obtains the color with the largest proportion from the image and writes the resu
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Color](#color)       | Color value of the color with the largest proportion. If the operation fails, **null** is returned. |
+| [Color](#color)       | Color value of the color with the largest proportion. If the operation fails, **null** is returned.|
 
 **Example**
 
@@ -461,7 +474,7 @@ Obtains a given number of colors with the top proportions in the image. This API
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Parameters**
-| Name     | Type  | Mandatory | Description             |
+| Name     | Type  | Mandatory| Description             |
 | ---------- | ------ | ---- | ------------------------------------------- |
 | colorCount | number | Yes  | Number of colors to obtain. The value range is [1, 10]. If a non-integer is passed in, the value will be rounded down.  |
 
@@ -469,7 +482,7 @@ Obtains a given number of colors with the top proportions in the image. This API
 
 | Type                                    | Description                                           |
 | :--------------------------------------- | :---------------------------------------------- |
-| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the color fails to be obtained, an empty array is returned.<br>- If the value of **colorCount** is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned. |
+| Array<[Color](#color) \| null> | Array of colors, sorted by proportion.<br>- If the number of colors obtained is less than the value of **colorCount**, the array size is the actual number obtained.<br>- If the color fails to be obtained, an empty array is returned.<br>- If the value of **colorCount** is less than 1, **[null]** is returned.<br>- If the value of **colorCount** is greater than 10, an array holding the first 10 colors with the top proportions is returned.|
 
 **Example**
 
@@ -520,7 +533,7 @@ Obtains the color with the highest saturation from the image and writes the resu
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Color](#color)       | Color value of the color with the highest saturation. If the operation fails, **null** is returned. |
+| [Color](#color)       | Color value of the color with the highest saturation. If the operation fails, **null** is returned.|
 
 **Example**
 
@@ -567,7 +580,7 @@ Obtains the average color from the image and writes the result to a [Color](#col
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Color](#color)       | Average color value. If the operation fails, **null** is returned. |
+| [Color](#color)       | Average color value. If the operation fails, **null** is returned.|
 
 **Example**
 
@@ -612,15 +625,15 @@ Checks whether a color is black, white, and gray.
 
 **Parameters**
 
-| Name    | Type        | Mandatory | Description                      |
+| Name    | Type        | Mandatory| Description                      |
 | -------- | ----------- | ---- | -------------------------- |
-| color| number | Yes  |  Color to check. The value range is [0x0, 0xFFFFFFFF]. |
+| color| number | Yes  |  Color to check. The value range is [0x0, 0xFFFFFFFF].|
 
 **Return value**
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| boolean              | Returns **true** if the image is black, white, and gray; returns **false** otherwise. |
+| boolean              | Returns **true** if the image is black, white, and gray; returns **false** otherwise.|
 
 **Example**
 
@@ -672,15 +685,15 @@ Adds the blur effect to the filter linked list, and returns the head node of the
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                                                        |
+| Name| Type       | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-|  radius   | number | Yes  | Blur radius, in pixels. The blur effect is proportional to the configured value. A larger value indicates a more obvious effect. |
+|  radius   | number | Yes  | Blur radius, in pixels. The blur effect is proportional to the configured value. A larger value indicates a more obvious effect.|
 
 **Return value**
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | Final image effect. |
+| [Filter](#filter) | Final image effect.|
 
 **Example**
 
@@ -707,6 +720,56 @@ image.createPixelMap(color, opts).then((pixelMap) => {
 ```
 ![image_Add_Blur.png](figures/image_Add_Blur.png)
 
+### blur<sup>14+</sup>
+
+blur(radius: number, tileMode: TileMode): Filter
+
+Adds the blur effect to the filter linked list, and returns the head node of the linked list.
+
+>  **NOTE**
+>
+>  This API provides the blur effect for static images. To provide the real-time blur effect for components, use [dynamic blur](../../ui/arkts-blur-effect.md).
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name| Type       | Mandatory| Description                                                        |
+| ------ | ----------- | ---- | ------------------------------------------------------------ |
+|  radius   | number | Yes  | Blur radius, in pixels. The blur effect is proportional to the configured value. A larger value indicates a more obvious effect.|
+|  tileMode   | [TileMode](#tilemode14) | Yes  | Tile mode of the shader effect. The blur effect of image edges is affected. Currently, only CPU rendering is supported. Therefore, the tile mode supports only DECAL.|
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Filter](#filter) | Final image effect.|
+
+**Example**
+
+```ts
+import { image } from "@kit.ImageKit";
+import { effectKit } from "@kit.ArkGraphics2D";
+
+const color = new ArrayBuffer(96);
+let opts : image.InitializationOptions = {
+  editable: true,
+  pixelFormat: 3,
+  size: {
+    height: 4,
+    width: 6
+  }
+};
+image.createPixelMap(color, opts).then((pixelMap) => {
+  let radius = 30;
+  let headFilter = effectKit.createEffect(pixelMap);
+  if (headFilter != null) {
+    headFilter.blur(radius, effectKit.TileMode.DECAL);
+  }
+})
+```
+![image_Add_Blur_With_TileMode.png](figures/image_Add_Blur_With_TileMode.png)
+
 ### invert<sup>12+</sup>
 
 invert(): Filter
@@ -719,7 +782,7 @@ Adds the inversion effect to the filter linked list, and returns the head node o
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | Final image effect. |
+| [Filter](#filter) | Final image effect.|
 
 **Example**
 
@@ -755,21 +818,21 @@ Adds a custom effect to the filter linked list, and returns the head node of the
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                                                        |
+| Name| Type       | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-|  colorMatrix  |   Array\<number> | Yes  | Custom color matrix.<br>A 5 x 4 matrix can be created. The value range of the matrix element is [0, 1], where **0** indicates that the color channel is not involved in the calculation, and **1** indicates that the color channel is involved in the calculation and retains the original weight. |
+|  colorMatrix  |   Array\<number> | Yes  | Custom color matrix.<br>A 5 x 4 matrix can be created. The value range of the matrix element is [0, 1], where **0** indicates that the color channel is not involved in the calculation, and **1** indicates that the color channel is involved in the calculation and retains the original weight.|
 
 **Return value**
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | Final image effect. |
+| [Filter](#filter) | Final image effect.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID | Error Message                       |
+| ID| Error Message                       |
 | -------- | ------------------------------ |
 | 401      | Input parameter error.             |
 
@@ -816,15 +879,15 @@ Adds the brightness effect to the filter linked list, and returns the head node 
 
 **Parameters**
 
-| Name | Type       | Mandatory | Description                                                        |
+| Name| Type       | Mandatory| Description                                                        |
 | ------ | ----------- | ---- | ------------------------------------------------------------ |
-|  bright   | number | Yes  | Brightness value, ranging from 0 to 1. When the value is **0**, the image brightness remains unchanged. |
+|  bright   | number | Yes  | Brightness value, ranging from 0 to 1. When the value is **0**, the image brightness remains unchanged.|
 
 **Return value**
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | Final image effect. |
+| [Filter](#filter) | Final image effect.|
 
 **Example**
 
@@ -867,7 +930,7 @@ Adds the grayscale effect to the filter linked list, and returns the head node o
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [Filter](#filter) | Final image effect. |
+| [Filter](#filter) | Final image effect.|
 
 **Example**
 
@@ -909,7 +972,7 @@ Obtains **image.PixelMap** of the source image to which the filter linked list i
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-| Promise\<image.PixelMap>  | Promise used to return **image.PixelMap** of the source image. |
+| Promise\<image.PixelMap>  | Promise used to return **image.PixelMap** of the source image.|
 
 
 **Example**
@@ -950,7 +1013,7 @@ Obtains **image.PixelMap** of the source image to which the filter linked list i
 
 | Type          | Description                                           |
 | :------------- | :---------------------------------------------- |
-| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **image.PixelMap** of the source image. |
+| [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | **image.PixelMap** of the source image.|
 
 **Example**
 
