@@ -42,7 +42,7 @@
    | displayName | 表示卡片的显示名称。取值可以是名称内容，也可以是对名称内容的资源索引，以支持多语言。字符串最小长度为1字节，最大长度为30字节。 | 字符串 | 否 |
    | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
    | src | 表示卡片对应的UI代码的完整路径。当为ArkTS卡片时，完整路径需要包含卡片文件的后缀，如："./ets/widget/pages/WidgetCard.ets"。当为JS卡片时，完整路径无需包含卡片文件的后缀，如："./js/widget/pages/WidgetCard" | 字符串 | 否 |
-   | uiSyntax | 表示该卡片的类型，当前支持如下两种类型：<br/>-&nbsp;arkts：当前卡片为ArkTS卡片。<br/>-&nbsp;hml：当前卡片为JS卡片。 | 字符串 | 可缺省，缺省值为hml |
+   | uiSyntax | 表示该卡片的类型，当前支持如下两种类型：<br/>-&nbsp;arkts：当前卡片为ArkTS卡片。<br/>-&nbsp;hml：当前卡片为JS卡片。 | 字符串 | 可缺省，缺省值为“hml”。 |
    | [window](#window标签) | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省，缺省值见表2。 |
    | isDefault | 表示该卡片是否为默认卡片，每个UIAbility有且只有一个默认卡片。<br/>-&nbsp;true：默认卡片。<br/>-&nbsp;false：非默认卡片。 | 布尔值 | 否 |
    | colorMode | 表示卡片的主题样式，取值范围如下：<br/>-&nbsp;auto：跟随系统的颜色模式值选取主题。<br/>-&nbsp;dark：深色主题。<br/>-&nbsp;light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 |
@@ -60,6 +60,10 @@
    | previewImages | 表示卡片预览图, 与配置项`supportDimensions`一一对应。| 字符串 | 可缺省，智能穿戴卡片必须配置，当前仅支持在智能穿戴上使用。 |
    | <!--DelRow-->formVisibleNotify | 表示是否允许卡片使用卡片可见性通知（仅对系统应用的卡片生效）。 | 布尔类型 | 可缺省，缺省值为false。 |
    | <!--DelRow-->transparencyEnabled | 表示是否支持卡片使用方设置此卡片的背景透明度（仅对系统应用的ArkTS卡片生效。）。 <br/>-&nbsp;true：支持设置背景透明度 。<br/>-&nbsp;false：不支持设置背景透明度。<br/>| 布尔类型 | 可缺省，缺省值为false。 |
+   |enableBlurBackground|表示卡片是否使用模糊背板。<br/>-&nbsp;true：开启模糊背板。<br/>-&nbsp;false：关闭模糊背板。|布尔类型|可缺省，缺省值为false。|
+   |renderingMode|表示卡片的渲染模式，取值范围如下：<br/>-&nbsp;autoColor：自动模式，锁屏卡片中心与桌面卡片中心/卡片管理内都可以显示的卡片。<br/>-&nbsp;fullColor：全色模式，桌面卡片中心/卡片管理内可以显示的卡片。<br/>-&nbsp;singleColor：单色模式，锁屏卡片中心内可以显示的卡片。	|字符串|可缺省，缺省值为“fullColor”。|
+   |multiScheduledUpdateTime|表示卡片的多定点刷新的时刻，作为单点刷新的一个附加参数，采用24小时制，精确到分钟，多个时间用英文逗号分隔，最多写24个时间。<br/>**说明：**<br/>multiScheduledUpdateTime需要配合scheduledUpdateTime使用。|字符串|可缺省，缺省时不进行多定点刷新。|
+   |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
 
 ## isDynamic标签
 
@@ -96,6 +100,7 @@
            "autoDesignWidth": true
          },
          "colorMode": "auto",
+         "renderingMode": "fullColor",
          "isDefault": true,
          "updateEnabled": true,
          "scheduledUpdateTime": "10:30",

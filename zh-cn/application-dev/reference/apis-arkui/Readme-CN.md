@@ -193,11 +193,13 @@
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
     - [GridObjectSortComponent](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
     - [SwipeRefresher](arkui-ts/ohos-arkui-advanced-SwipeRefresher.md)
+    - [ArcScrollBar](arkui-ts/ts-basic-components-arcscrollbar.md)
     - [滚动组件通用接口](arkui-ts/ts-container-scrollable-common.md)
     <!--Del-->
     - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
     <!--DelEnd-->
   - 导航与切换
+    - [Indicator](arkui-ts/ts-swiper-components-indicator.md)
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
@@ -373,6 +375,9 @@
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
+    <!--Del-->
+    - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
+    <!--DelEnd-->
   - 公共定义
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)

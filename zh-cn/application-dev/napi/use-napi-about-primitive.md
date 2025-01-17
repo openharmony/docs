@@ -345,7 +345,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_global:%{public}s', global
 
 ### napi_get_null
 
-用于获取ArkTS中的null
+用于获取ArkTS中的null。
 
 cpp部分代码
 
@@ -379,7 +379,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_null:%{public}s', value);
 
 ### napi_get_undefined
 
-用于获取ArkTS中的undefined
+用于获取ArkTS中的undefined。
 
 cpp部分代码
 

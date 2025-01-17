@@ -755,6 +755,8 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 设定指定应用的角标使能状态。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -778,6 +780,7 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. | 
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -807,6 +810,8 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 设定指定应用的角标使能状态。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -835,6 +840,7 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -861,6 +867,8 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 获取指定应用的角标使能状态。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -883,6 +891,7 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -912,6 +921,8 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 获取指定应用的角标使能状态。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -939,6 +950,7 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -965,6 +977,8 @@ notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 设定指定应用的通知渠道。使用Promise异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -994,6 +1008,7 @@ setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1025,6 +1040,8 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 
 设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1048,6 +1065,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCal
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1082,6 +1100,8 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 
 设置前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1110,6 +1130,7 @@ setSlotByBundle(bundle: BundleOption, slot: NotificationSlot): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1141,6 +1162,8 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 获取指定应用的通知渠道标识位。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1168,6 +1191,7 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1194,6 +1218,8 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 获取指定应用的所有通知渠道。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1216,6 +1242,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1245,6 +1272,8 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 获取指定应用的所有通知渠道。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1272,6 +1301,7 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1299,6 +1329,8 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 获取指定应用的通知渠道数量。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1321,6 +1353,7 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1352,6 +1385,8 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 获取指定应用的通知渠道数量。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1379,6 +1414,7 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1722,6 +1758,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 设置免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1744,6 +1782,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1777,6 +1816,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 设置免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1805,6 +1846,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1834,6 +1876,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 指定用户设置免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1857,6 +1901,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1894,6 +1939,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 指定用户设置免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1922,6 +1969,7 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1956,6 +2004,8 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 查询免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1977,6 +2027,7 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2004,6 +2055,8 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 查询免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2025,6 +2078,7 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2049,6 +2103,8 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 查询指定用户的免打扰时间。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2071,6 +2127,7 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2102,6 +2159,8 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 查询指定用户的免打扰时间。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2129,6 +2188,7 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2247,6 +2307,8 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 设置设备是否支持分布式通知。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2269,6 +2331,7 @@ setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2295,6 +2358,8 @@ notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 setDistributedEnable(enable: boolean): Promise\<void>
 
 设置设备是否支持分布式通知。使用Promise异步回调。
+
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -2323,6 +2388,7 @@ setDistributedEnable(enable: boolean): Promise\<void>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2347,6 +2413,8 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 设置指定应用是否支持分布式通知。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2370,6 +2438,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2403,6 +2472,8 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 设置指定应用是否支持分布式通知。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2431,6 +2502,7 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2459,6 +2531,8 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 根据应用的包获取应用程序是否支持分布式通知。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2481,6 +2555,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2511,6 +2586,8 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 查询指定应用是否支持分布式通知。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2538,6 +2615,7 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2566,6 +2644,8 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 获取通知的提醒方式。使用callback异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2587,6 +2667,7 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2612,6 +2693,8 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 获取通知的提醒方式。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2633,6 +2716,7 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3114,6 +3198,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3138,6 +3224,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3170,6 +3257,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 设置指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3195,6 +3284,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3228,6 +3318,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 设置指定应用的指定渠道类型的使能状态。使用promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3252,6 +3344,7 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3280,6 +3373,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 获取指定应用的指定渠道类型的使能状态。使用callback异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
@@ -3303,6 +3398,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3334,6 +3430,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 获取指定应用的指定渠道类型的使能状态。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3362,6 +3460,7 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3388,6 +3487,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 设置是否将通知同步到未安装应用程序的设备(callback形式)。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3411,6 +3512,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3441,6 +3543,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 设置是否将通知同步到未安装应用程序的设备(Promise形式)。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
@@ -3469,6 +3573,7 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3601,6 +3706,8 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3622,6 +3729,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 | -------- | ----------------------------------- | 
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 
 **示例：**
@@ -3654,6 +3762,8 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 
 系统中每个[SlotType](./js-apis-notificationManager.md#slottype)只允许存在一个注册者。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3677,6 +3787,7 @@ on(type: 'checkNotification', checkRequest: NotificationCheckRequest, callback: 
 | 201      | Permission denied.     |  
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3706,6 +3817,8 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 取消通知监听回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -3728,6 +3841,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 | 201      | The application dose not have permission to call the interface.     |
 | 202      | Not system application.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 
 **示例：**
@@ -3747,6 +3861,8 @@ try{
 triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOptions: ButtonOptions): Promise\<void>
 
 触发系统实况窗。使用Promise异步回调。
+
+该接口不支持wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3777,6 +3893,7 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3812,6 +3929,8 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 订阅系统实况窗。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
@@ -3836,6 +3955,7 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 | -------- | ----------------------------------- |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3864,6 +3984,8 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void\>
 
 设置指定应用是否支持跨设备协同。使用Promise异步回调。
+
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3894,6 +4016,7 @@ setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: 
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3925,6 +4048,8 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 
 获取指定应用是否支持跨设备协同。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3953,6 +4078,7 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3983,6 +4109,8 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 设置设备是否与其他设备协同智能提醒。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4011,6 +4139,7 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4037,6 +4166,8 @@ notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
 isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 
 获取设备是否与其他设备协同智能提醒。使用Promise异步回调。
+
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4065,6 +4196,7 @@ isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4091,6 +4223,8 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 
 代理其他应用设定角标个数。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **系统接口**：此接口为系统接口。
@@ -4116,6 +4250,7 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 | -------- | ----------------------------------- |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4145,6 +4280,8 @@ notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
 getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<NotificationSlot>
 
 获取指定应用指定类型的通知渠道。使用Promise异步回调。
+
+该接口不支持wearable设备。
 
 获取前需要先通过[addSlot](#notificationmanageraddslot)创建通知渠道。
 
@@ -4176,6 +4313,7 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4206,6 +4344,8 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 添加勿扰模式配置信息。使用Promise异步回调。
 
+该接口不支持wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4233,6 +4373,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4274,6 +4415,8 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 删除勿扰模式配置。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4301,6 +4444,7 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4330,6 +4474,8 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 设置通知的系统附加配置信息。使用Promise异步回调。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **需要权限**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -4358,6 +4504,7 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 | 201      | Permission denied.     |  
 | 202      | Not system application to call the interface.                                      |  
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4379,6 +4526,8 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 
 查询勿扰模式配置信息。使用Promise异步回调。
+
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4407,6 +4556,7 @@ getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |

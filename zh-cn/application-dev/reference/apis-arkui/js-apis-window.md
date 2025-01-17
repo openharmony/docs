@@ -761,6 +761,78 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## window.shiftAppWindowPointerEvent<sup>15+</sup>
+shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
+
+在同应用内窗口分合场景下，需要将输入事件从源窗口转移到目标窗口，使用Promise异步回调，仅在2in1设备上，针对主窗和子窗生效。
+
+在2in1设备上，源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                    |
+| -------------- | ------ | ----- | ----------------------- |
+| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。            |
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。             |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Blank('160')
+          .color(Color.Blue)
+          .onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              try {
+                let sourceWindowId = 1;
+                let targetWindowId = 2;
+                let promise = window.shiftAppWindowPointerEvent(sourceWindowId, targetWindowId);
+                promise.then(() => {
+                  console.info('Succeeded in shifting app window pointer event');
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to shift app window pointer event. Cause code: ${err.code}, message: ${err.message}`);
+                });
+              } catch (exception) {
+                console.error(`Failed to shift app pointer event. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            }
+          })
+      }.width('100%')
+    }.height('100%').width('100%')
+  }
+}
+```
+
 ## window.getWindowsByCoordinate<sup>14+</sup>
 
 getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
@@ -5797,7 +5869,9 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能，使用Promise异步回调，仅2in1设备可用。
+主窗口调用，实现最大化功能，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6662,7 +6736,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 ### setDecorButtonStyle<sup>14+</sup>
 
-setDecorButtonStyle(decorStyle: DecorButtonStyle): void
+setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
 设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
 
@@ -6674,7 +6748,7 @@ setDecorButtonStyle(decorStyle: DecorButtonStyle): void
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
+| dectorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
 
 **错误码：**
 
@@ -6977,6 +7051,8 @@ setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVi
 
 此接口仅支持2in1设备。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -7038,6 +7114,8 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -11094,7 +11172,7 @@ removeStartingWindow(): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager serivce works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -11119,7 +11197,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowRectAutoSave<sup>14+</sup>
 
-setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
+setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
@@ -11150,7 +11228,7 @@ setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enable | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
 
 
 **返回值：**

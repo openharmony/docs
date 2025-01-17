@@ -201,7 +201,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API version 10-11为false；从API version 12开始为true。
 
 **起始版本**：10
 
@@ -387,7 +387,7 @@
 
 ### ohos.permission.ACCESS_SYSTEM_SETTINGS
 
-允许应用接入或拉起系统设置界面
+允许应用接入或拉起系统设置界面。
 
 **权限级别**：system_basic
 
@@ -1379,7 +1379,7 @@
 
 ### ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
-允许应用使用同步任务动画
+允许应用使用同步任务动画。
 
 **权限级别**：system_core
 
@@ -1475,7 +1475,7 @@
 
 ### ohos.permission.LAUNCH_DATA_PRIVACY_CENTER
 
-允许应用从其隐私声明页面跳转至“数据与隐私”页面
+允许应用从其隐私声明页面跳转至“数据与隐私”页面。
 
 **权限级别**：system_basic
 
@@ -2349,7 +2349,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PRIVATE_SPACE_PASSWORD_PROTECT
 
@@ -2361,7 +2361,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
@@ -2373,7 +2373,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.ACCESS_TEXTAUTOFILL_ABILITY
 
@@ -2385,7 +2385,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_LOWPOWER_MANAGER
 
@@ -2397,7 +2397,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_APP_BOOT
 
@@ -2607,13 +2607,13 @@
 
 允许应用修改坚盾守护模式配置。
 
-权限级别: system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**：11
 
 ### ohos.permission.SET_DEVELOPER_MODE
 
@@ -2649,7 +2649,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_PRIVATE_PHOTOS
 
@@ -2681,13 +2681,13 @@
 
 允许应用录制通话内容。
 
-权限级别: system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_APP_INSTALL_INFO
 
@@ -2711,7 +2711,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.ACCESS_HIVIEWX
 
@@ -3087,7 +3087,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
@@ -3103,7 +3103,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_AS_USER
 
-允许U0用户空间业务调用账号开放能力API
+允许U0用户空间业务调用账号开放能力API。
 
 **权限级别**：system_core
 
@@ -3231,7 +3231,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
@@ -4571,7 +4571,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API version 10-11为false；从API version 12开始为true。
 
 **起始版本**：10
 
@@ -4675,7 +4675,7 @@
 
 允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
 
-**权限级别** system_basic
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

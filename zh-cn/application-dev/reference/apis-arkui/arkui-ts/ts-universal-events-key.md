@@ -78,7 +78,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 
 onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
-对应组件收到按键事件时，会触发该回调，该按键事件不会分发给其子组件。
+对应组件收到按键事件时，会触发该回调，该按键事件不会分发给其子组件。不支持构造KeyEvent进行分发，只支持分发已有的按键事件。
 
 该回调的返回值为`true`时，视作该按键事件已被消费，不会冒泡给父组件处理。
 

@@ -39,6 +39,7 @@ import { audio } from '@kit.AudioKit';
 >
 > 在使用SoundPool实例的方法时，建议开发者注册相关回调，主动获取当前状态变化。
 > - [on('loadComplete')](#onloadcomplete)：监听资源加载完成。
+> - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)：监听播放完成，同时返回播放结束的音频的streamId。
 > - [on('playFinished')](#onplayfinished)：监听播放完成。
 > - [on('error')](#onerror)：监听错误事件。
 
@@ -1499,6 +1500,87 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     soundPool.off('loadComplete')
+  }
+});
+
+```
+
+### on('playFinishedWithStreamId')<sup>16+</sup>
+
+on(type: 'playFinishedWithStreamId', callback: Callback\<number>): void
+
+音频池资源播放完成监听，同时返回播放结束的音频的streamId。
+
+当仅单独注册[on('playFinished')](#onplayfinished)事件回调或者[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，都会触发注册的回调。
+
+当同时注册[on('playFinished')](#onplayfinished)事件回调和[on('playFinishedWithStreamId')](#onplayfinishedwithstreamid16)事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调，不会触发'playFinished'事件回调。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 支持的事件：'playFinishedWithStreamId'，音频流播放完成会触发此回调，并返回播放完成的音频的streamId。 |
+| callback | Callback\<number> | 是   |  异步'playFinishedWithStreamId'的回调方法。返回播放完成的音频的streamId。   |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//创建soundPool实例
+let soundPool_: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+  } else {
+    soundPool_ = soundPool;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool_.on('playFinishedWithStreamId', (streamId) => {
+      console.info('The stream with streamId: ' + streamId + ' has finished playing.')
+    });
+  }
+});
+
+```
+
+### off('playFinishedWithStreamId')<sup>16+</sup>
+
+off(type: 'playFinishedWithStreamId'): void
+
+取消监听音频池资源播放完成。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | 是   | 取消注册的事件：'playFinishedWithStreamId'。 |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//创建soundPool实例
+let soundPool_: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+  } else {
+    soundPool_ = soundPool;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool_.off('playFinishedWithStreamId')
   }
 });
 

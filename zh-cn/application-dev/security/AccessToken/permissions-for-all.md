@@ -301,17 +301,17 @@
 
 允许应用存储持久化的数据，该数据直到设备恢复出厂设置或重装系统才会被清除。
 
-**权限级别**: normal
+**权限级别**：normal
 
 **授权方式**：system_grant
 
-**起始版本**: 11
+**起始版本**：11
 
 ## ohos.permission.ACCESS_EXTENSIONAL_DEVICE_DRIVER
 
 允许应用使用外接设备增强功能。
 
-**权限级别**: normal
+**权限级别**：normal
 
 **授权方式**：system_grant
 
@@ -446,6 +446,18 @@
 允许应用设置键盘功能键状态。
 
 如CapsLock(大小写) 的亮灭状态等。当前仅输入法应用可以申请该权限。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+允许应用单独配置每个Ability的图标和标签信息。
+
+设置后的图标与标签信息可在任务中心和快捷栏的界面中显示。
 
 **权限级别**：normal
 

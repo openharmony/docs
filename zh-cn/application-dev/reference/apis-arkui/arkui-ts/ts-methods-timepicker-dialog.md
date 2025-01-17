@@ -61,6 +61,17 @@ static show(options?: TimePickerDialogOptions)
 | onEnterSelectedArea<sup>16+</sup>   |  Callback\<[TimePickerResult](ts-basic-components-timepicker.md#TimePickerResult对象说明)> | 否   |  滑动过程中，选项进入分割线区域内，触发该回调。与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。<br />**说明：**<br />当enableCascade设置为true时，由于上午/下午列与小时列存在联动关系，不建议使用该回调。该回调标识的是滑动过程中选项进入分割线区域内的节点，而联动变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | enableCascade<sup>16+</sup>              | boolean | 否   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
+**异常情形说明:**
+
+| 异常情形   | 对应结果  |
+| -------- |  ------------------------------------------------------------ |
+| 起始时间晚于结束时间    | 起始时间、结束时间都为默认值  |
+| 选中时间早于起始时间    | 选中时间为起始时间  |
+| 选中时间晚于结束时间    | 选中时间为结束时间  |
+| 起始时间晚于当前系统时间，选中时间未设置    | 选中时间为起始时间 |
+| 结束时间早于当前系统时间，选中时间未设置    | 选中时间为结束时间  |
+| 时间格式不符合规范，如'01:61:61'   | 取默认值  |
+
 ## 示例
 
 >  **说明：**
@@ -356,3 +367,74 @@ struct TimePickerDialogExample {
 ```
 ![TimetPickerDialog](figures/TimePickerDialogDemo6.png)
 
+### 示例7（设置时间滑动选择器弹窗的起始时间）
+
+该示例设置TimePickerDialog的起始时间。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2022-07-22T08:50:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            useMilitaryTime: false,
+            selected: this.selectTime,
+            format: TimePickerFormat.HOUR_MINUTE_SECOND,
+            start: new Date('2022-07-22T08:30:00')
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+![TimetPickerDialog](figures/TimePickerDialogDemo7.png)
+
+### 示例8（设置时间滑动选择器弹窗的结束时间）
+
+该示例设置TimePickerDialog的结束时间。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2022-07-22T08:50:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            useMilitaryTime: false,
+            selected: this.selectTime,
+            format: TimePickerFormat.HOUR_MINUTE_SECOND,
+            end: new Date('2022-07-22T15:20:00')
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+![TimetPickerDialog](figures/TimePickerDialogDemo8.png)

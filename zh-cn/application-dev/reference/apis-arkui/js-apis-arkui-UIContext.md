@@ -101,6 +101,100 @@ getUIObserver(): UIObserver
 uiContext.getUIObserver();
 ```
 
+### notifyDragStartRequest<sup>16+</sup>
+
+notifyDragStartRequest(requestStatus: DragStartRequestStatus): void
+
+控制应用是否可以发起拖拽。
+
+**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填| 说明                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [DragStartRequestStatus](#dragstartrequeststatus16枚举说明)    | 是  |定义应用是否可以发起拖拽。|
+
+## DragStartRequestStatus<sup>16+</sup>枚举说明
+
+定义应用是否可以发起拖拽的枚举类型，取值有WAITING与READY。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                                                         |
+| -------- | ------------------------------------------------------------ |
+| WAITING   | 应用无法发起拖拽。 |
+| READY | 应用可以发起拖拽。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
+}
+```
+
 ### getMediaQuery
 
 getMediaQuery(): MediaQuery
@@ -6170,7 +6264,7 @@ struct Index {
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
 
-创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。通过该接口弹出的popup弹窗内容样式完全按照content中设置的样式显示。
+创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。
 
 > **说明：**
 >
@@ -8750,7 +8844,7 @@ struct MarqueeExample {
 ```
 ## dispatchKeyEvent<sup>16+</sup>
 
-按键事件分发到具体组件上。
+按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -8758,7 +8852,7 @@ struct MarqueeExample {
 
 | 参数名 | 类型                          | 必填 | 说明               |
 | ------ | ----------------------------- | ---- | ------------------ |
-| node  | number \| string | 是   | 组件的key或者id。 |
+| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
 | event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
 
 **示例：**
@@ -8770,23 +8864,35 @@ struct Index {
   build() {
     Row() {
       Row() {
-        Button().id('button1').onKeyEvent((event) => {
-          console.log("button1");
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
           return true
         })
-        Button().id('button2').onKeyEvent((event) => {
-          console.log("button2");
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
           return true
         })
       }
       .width('100%')
       .height('100%')
-      .onKeyEventDispatch((event)=>{
-         return this.getUIContext().dispatchKeyEvent('button1', event);
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
       })
+
     }
     .height('100%')
     .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
   }
 }
 ```

@@ -138,7 +138,7 @@ struct Index {
 }
 ```
 
-![img.png](img.png)
+![zh-cn_image_composetitlebar_example01](figures/zh-cn_image_composetitlebar_example01.png)
 
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
@@ -229,7 +229,8 @@ struct Index {
   }
 }
 ```
-![img_1.png](img_1.png)
+
+![zh-cn_image_composetitlebar_example02](figures/zh-cn_image_composetitlebar_example02.png)
 
 ### 示例3（设置Symbol类型图标）
 

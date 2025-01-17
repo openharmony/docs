@@ -24,7 +24,7 @@ import { Configuration } from '@kit.AbilityKit';
 | screenDensity  | [ConfigurationConstant.ScreenDensity](js-apis-app-ability-configurationConstant.md#screendensity) | 否 | 是 | 表示屏幕像素密度，取值范围：<br />- SCREEN_DENSITY_NOT_SET：未设置<br />- SCREEN_DENSITY_SDPI：120<br />- SCREEN_DENSITY_MDPI：160<br />- SCREEN_DENSITY_LDPI：240<br />- SCREEN_DENSITY_XLDPI：320<br />- SCREEN_DENSITY_XXLDPI：480<br />- SCREEN_DENSITY_XXXLDPI：640<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | displayId  | number | 否 | 是 | 表示应用所在的物理屏幕ID。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | hasPointerDevice  | boolean | 否 | 是 | 指示指针类型设备是否已连接，如键鼠、触控板等。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| fontId<sup>14+<sup> | number | 否 | 是 | 表示当前系统字体的唯一ID。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| fontId<sup>14+<sup> | string | 否 | 是 | 表示当前系统字体的唯一ID。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | fontSizeScale<sup>12+<sup> | number | 否 | 是 | 字体大小缩放比例，取值为非负数，默认值为1。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | fontWeightScale<sup>12+<sup> | number | 否 | 是 | 字体粗细缩放比例，取值为非负数，默认值为1。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | mcc<sup>12+<sup> | string | 否  | 是 | 移动设备国家代码。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |

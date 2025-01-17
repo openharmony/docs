@@ -385,7 +385,7 @@ typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg;
 | OH_JSVM_CloseHandleScope| 关闭Handle scope |
 
 场景示例:
-创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境
+创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境。
 
 ```c++
 bool VM_INIT = false;
@@ -999,7 +999,7 @@ OH_JSVM_CloseHandleScope(env, scope);
 |OH_JSVM_CreateSet | 创建一个新的 JavaScript Set对象 |
 
 场景示例:
-创建指定长度的数组
+创建指定长度的数组。
 
 ```c++
 size_t arrayLength = 2;

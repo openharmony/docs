@@ -422,7 +422,7 @@ cachedCount(count: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 |
+| count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
@@ -1181,6 +1181,7 @@ struct WaterFlowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .height('90%')
+      .scrollBar(BarState.On)
       .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
 
     }
@@ -1196,7 +1197,8 @@ struct WaterFlowDemo {
 
 ```ts
 //index.ets
-import { WaterFlowDataSource } from '../data/WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
 @Entry
 @Component
 struct WaterFlowDemo {
@@ -1228,7 +1230,7 @@ struct WaterFlowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ scroller:this.scroller }) {
+      WaterFlow({ scroller: this.scroller }) {
         LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
@@ -1244,14 +1246,14 @@ struct WaterFlowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .height('90%')
-      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true, effectEdge: EffectEdge.START })
 
     }
   }
 }
 ```
 
-![edgeEffect_waterFlow](figures/edgeEffect_waterFlow.gif)
+![edgeEffect_waterFlow](figures/edgeEffect_waterflow.gif)
 
 ### 示例7（WaterFlow组件设置和改变尾部组件）
 

@@ -453,6 +453,18 @@ With this permission, the application can turn on or off the function keys, such
 
 **Valid since**: 15
 
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+Allows an application to set the icon and label information for each ability.
+
+The configured icon and label information can be displayed in the Task Center and shortcut bar.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ## ohos.permission.NDK_START_SELF_UI_ABILITY
 
 Allows an application to start its UIAbility by using C APIs.

@@ -411,12 +411,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+| 3900003      | It is prohibited for non-input applications. |
 
 **Example**：
 
 ```js
 try {
-  inputDevice.setInputDeviceEnabled(1, true).then(() => {
+  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
     console.info(`Set capslock state success`);
   }).catch((error) => {
     console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);

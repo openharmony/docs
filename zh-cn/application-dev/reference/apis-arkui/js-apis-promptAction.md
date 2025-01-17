@@ -576,7 +576,7 @@ struct Index {
 ```
 该示例定义了弹窗样式，如宽度、高度、背景色、阴影等等。
 ```ts
-import { promptAction } from '@kit.ArkUI'
+import { promptAction, LevelMode, ImmersiveMode } from '@kit.ArkUI'
 
 let customDialogId: number = 0
 
@@ -609,10 +609,11 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Text(this.message)
+        Text(this.message).id("test_text")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
+            const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
             promptAction.openCustomDialog({
               builder: () => {
                 this.customDialogComponent()
@@ -633,6 +634,9 @@ struct Index {
                 offsetX: 50,
                 offsetY: 0
               }),
+              levelMode: LevelMode.EMBEDDED,
+              levelUniqueId: node?.getUniqueId(),
+              immersiveMode: ImmersiveMode.DEFAULT,
             }).then((dialogId: number) => {
               customDialogId = dialogId
             })
@@ -645,6 +649,92 @@ struct Index {
 }
 ```
 ![zh-cn_image_0007](figures/zh-cn_image_0007.gif)
+
+该示例实现了一个页面内的弹窗。
+```ts
+// Index.ets
+import { promptAction, LevelMode, ImmersiveMode, router } from '@kit.ArkUI'
+
+let customDialogId: number = 0
+
+@Builder
+function customDialogBuilder() {
+  Column() {
+    Text('Custom dialog Message').fontSize(10).height(100)
+    Row() {
+      Button("Next").onClick(() => {
+        router.pushUrl({url: 'pages/Next'})
+      })
+      Blank().width(50)
+      Button("Close").onClick(() => {
+        promptAction.closeCustomDialog(customDialogId)
+      })
+    }
+  }.padding(20)
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+
+  @Builder
+  customDialogComponent() {
+    customDialogBuilder()
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message).id("test_text")
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            const node: FrameNode | null = this.getUIContext().getFrameNodeById("test_text") || null;
+            promptAction.openCustomDialog({
+              builder: () => {
+                this.customDialogComponent()
+              },
+              levelMode: LevelMode.EMBEDDED,
+              levelUniqueId: node?.getUniqueId(),
+              immersiveMode: ImmersiveMode.DEFAULT,
+            }).then((dialogId: number) => {
+              customDialogId = dialogId
+            })
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+```ts
+// Next.ets
+import { router } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Next {
+  @State message: string = 'Back'
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            router.back()
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![embedded_dialog](figures/embedded_dialog.gif)
 
 ## promptAction.closeCustomDialog<sup>11+</sup>
 
@@ -730,6 +820,9 @@ closeCustomDialog(dialogId: number): void
 | shadow<sup>12+</sup>              | [ShadowOptions](arkui-ts/ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>     | boolean                                                      | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| levelMode<sup>16+</sup>       | [LevelMode](#levelmode16枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| levelUniqueId<sup>16+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| immersiveMode<sup>16+</sup>       | [ImmersiveMode](#immersivemode16枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## ShowDialogSuccessResponse
 
@@ -755,6 +848,9 @@ closeCustomDialog(dialogId: number): void
 | buttons                       | [[Button](#button),[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?,[Button](#button)?] | 是   | 菜单中菜单项按钮的数组，结构为：{text:'button',&nbsp;color:&nbsp;'\#666666'}，支持1-6个按钮。按钮数量大于6个时，仅显示前6个按钮，之后的按钮不显示。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | showInSubWindow<sup>11+</sup> | boolean                                                      | 否   | 某弹框需要显示在主窗口之外时，是否在子窗口显示此弹窗。<br/>默认值：false，在子窗口不显示弹窗。<br/>**说明**：<br/> - showInSubWindow为true的弹窗无法触发显示另一个showInSubWindow为true的弹窗。 <br/> - 若在UIExtension中设置showInSubWindow为true, 弹窗将基于UIExtension的宿主窗口对齐。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isModal<sup>11+</sup>         | boolean                                                      | 否   | 弹窗是否为模态窗口，模态窗口有蒙层，非模态窗口无蒙层。<br/>默认值：true，此时弹窗有蒙层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| levelMode<sup>16+</sup>       | [LevelMode](#levelmode16枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| levelUniqueId<sup>16+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| immersiveMode<sup>16+</sup>       | [ImmersiveMode](#immersivemode16枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## ActionMenuSuccessResponse
 
@@ -945,6 +1041,9 @@ type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
 | enableHoverMode<sup>14+</sup>   | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>     | [HoverModeAreaType](arkui-ts/ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | keyboardAvoidDistance<sup>16+</sup>       | [LengthMetrics](js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 弹窗避让键盘后，和键盘之间的最小距离。<br />**说明：**<br />- 默认值：16vp。<br />- 默认单位：vp。<br />- 当且仅当keyboardAvoidMode属性设置为DEFAULT时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| levelMode<sup>16+</sup>       | [LevelMode](#levelmode16枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| levelUniqueId<sup>16+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| immersiveMode<sup>16+</sup>       | [ImmersiveMode](#immersivemode16枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -984,6 +1083,32 @@ Dialog关闭的信息。
 | ------- | ---- | ------------------------------------------------ |
 | DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
 | NONE    | 1    | 不避让软键盘。                                   |
+
+## LevelMode<sup>16+</sup>枚举说明
+
+弹窗显示层级模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                                             |
+| ------- | ---- | ------------------------------------------------ |
+| OVERLAY | 0    | 弹窗层级为应用窗口根节点，应用内路由导航切换弹窗不隐藏。 |
+| EMBEDDED    | 1    | 弹窗节点为页面内路由/导航下的节点，随路由导航切换，弹窗随页面隐藏。|
+
+## ImmersiveMode<sup>16+</sup>枚举说明
+
+页面内弹窗蒙层显示区域模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 值   | 说明                                             |
+| ------- | ---- | ------------------------------------------------ |
+| DEFAULT | 0    | 弹窗蒙层遵循父节点布局约束进行显示。 |
+| EXTEND    | 1    | 弹窗蒙层可扩展至覆盖状态栏和导航条。
 
 ## Button
 
