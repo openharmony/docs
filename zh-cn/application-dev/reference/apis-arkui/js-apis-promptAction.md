@@ -115,27 +115,26 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 ```ts
 import { promptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct toastExample {
   @State toastId: number = 0;
+
   build() {
     Column() {
       Button('Open Toast')
         .height(100)
         .onClick(() => {
-          try {
-            promptAction.openToast({
-              message: 'Toast Massage',
-              duration: 10000,
-            }).then((toastId: number) => {
-              this.toastId = toastId;
-            });
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`OpenToast error code is ${code}, message is ${message}`);
-          };
+          promptAction.openToast({
+            message: 'Toast Massage',
+            duration: 10000,
+          }).then((toastId: number) => {
+            this.toastId = toastId;
+          })
+            .catch((error: BusinessError) => {
+              console.error(`openToast error code is ${error.code}, message is ${error.message}`)
+            })
         })
       Blank().height(50);
       Button('Close Toast')
@@ -522,21 +521,35 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 ```ts
 import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
 struct Index {
   private customDialogComponentId: number = 0
 
-  @Builder customDialogComponent() {
+  @Builder
+  customDialogComponent() {
     Column() {
       Text('弹窗').fontSize(30)
       Row({ space: 50 }) {
         Button("确认").onClick(() => {
-          promptAction.closeCustomDialog(this.customDialogComponentId)
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
         })
         Button("取消").onClick(() => {
-          promptAction.closeCustomDialog(this.customDialogComponentId)
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -565,6 +578,9 @@ struct Index {
             }).then((dialogId: number) => {
               this.customDialogComponentId = dialogId
             })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
           })
       }
       .width('100%')
