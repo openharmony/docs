@@ -100,7 +100,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None，复制、剪切、帮写功能不生效。
+设置copyOptions为CopyOptions.None，复制、剪切、搜索、帮写功能不生效。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -266,7 +266,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enterKeyType<sup>12+</sup>
 
@@ -282,7 +282,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 ### enableKeyboardOnFocus<sup>12+</sup>
 
@@ -316,6 +316,38 @@ barState(state: BarState)
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | state | [BarState](ts-appendix-enums.md#barstate) | 是   | 输入框编辑态时滚动条的显示模式。<br/>默认值：BarState.Auto |
+
+### maxLength<sup>16+</sup>
+
+maxLength(value: Optional\<number\>)
+
+设置文本的最大输入字符数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
+
+### maxLines<sup>16+</sup>
+
+maxLines(value: Optional\<number\>)
+
+设置文本可显示的最大行数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -713,6 +745,8 @@ Span类型信息。
 | lineHeight<sup>12+</sup> | number       | 否    | 文本行高，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | letterSpacing<sup>12+</sup>| number       | 否    | 文本字符间距，默认单位为fp。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fontFeature<sup>12+</sup> | string | 否 | 文字特性效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| halfLeading<sup>16+</sup> | boolean | 否 | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| textBackgroundStyle<sup>16+</sup> | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 否    | 文本背景样式。|
 
 >  **说明：**
 >
@@ -1565,6 +1599,8 @@ SymbolSpan样式选项。
 | lineHeight<sup>12+</sup>    | number \| string \| [Resource](ts-types.md#resource) | 否     |设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小，number类型时单位为fp，不支持设置百分比字符串。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | letterSpacing<sup>12+</sup> | number \| string             | 否     | 设置文本字符间距，当取值为负值时，文字会发生压缩，负值过小时会将组件内容区大小压缩为0，导致无内容显示，number类型时单位为fp, 不支持设置百分比字符串。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | fontFeature<sup>12+</sup> | string | 否 | 设置文字特性效果，比如数字等宽的特性。如果未设置，默认为变宽数字。设置无效字符保持默认。<br/>格式为：normal \| \<feature-tag-value\><br/>\<feature-tag-value\>的格式为：\<string\> \[ \<integer\> \| on \| off ]<br/>\<feature-tag-value\>的个数可以有多个，中间用','隔开。<br/>例如，使用等宽时钟数字的输入格式为："ss01" on。<br/>Font Feature当前支持的属性见 [fontFeature属性列表](ts-basic-components-text.md#fontfeature12)。<br/>设置 Font Feature 属性，Font Feature 是 OpenType 字体的高级排版能力，如支持连字、数字等宽等特性，一般用在自定义字体中，其能力需要字体本身支持。<br/>更多 Font Feature 能力介绍可参考 https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop 和 https://sparanoid.com/lab/opentype-features/<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| halfLeading<sup>16+</sup> | boolean | 否    | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| textBackgroundStyle<sup>16+</sup> | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 否    | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
 ## PlaceholderStyle<sup>12+</sup>
 
@@ -1590,7 +1626,7 @@ SymbolSpan样式选项。
 | offset                | number                                   | 否    | 添加图片的位置。省略时，添加到所有内容的最后。<br/>当值小于0时，放在所有内容最前面；当值大于所有内容长度时，放在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否    | 图片样式信息。省略时，使用系统默认图片信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onHover<sup>14+</sup> | [onHoverCallback](#onhovercallback14) | 否    | 鼠标悬停触发回调。省略时，不执行相关行为。     <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| onHover<sup>14+</sup> | [OnHoverCallback](#onhovercallback14) | 否    | 鼠标悬停触发回调。省略时，不执行相关行为。     <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorImageSpanStyle
 
@@ -1671,7 +1707,7 @@ RichEditor span信息。
 | ----------- | ---------- | ---- | ------------- |
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1720,7 +1756,6 @@ RichEditor span信息。
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onDoubleClick<sup>14+</sup>    | Callback\<[GestureEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [GestureEvent](ts-universal-events-click.md#clickevent对象说明)为用户双击事件。<br/>双击完成时回调事件。<br/>双击时，第二次点击触发回调事件。|
 | onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
@@ -1749,8 +1784,8 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
+| enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
@@ -2798,6 +2833,7 @@ struct Index {
         Text(this.textFlag)
           .copyOption(CopyOptions.InApp)
           .fontSize(50)
+          .height(150)
       }
       Divider()
       Column() {
@@ -2855,6 +2891,9 @@ struct Index {
                   onLongPress: () => {
                     this.textFlag = "ImageSpan is onLongPress."
                   }
+                },
+                onHover : (status) => {
+                  this.textFlag = "ImageSpan is onHover :" + status
                 }
               })
           })
@@ -4651,3 +4690,155 @@ struct RichEditor_example {
 ```
 
 ![StyledString](figures/example23.gif)
+
+### 示例24（获取光标相对组件位置的矩形）
+通过RichEditorBaseController的[getCaretRect](#getcaretrect16)方法来获取当前光标相对于组件位置的Rect。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller };
+  @State caretRect: string = "not found";
+
+  build() {
+    Column() {
+      Button('get caret rect')
+        .onClick(() => {
+          let rectCaret = this.controller.getCaretRect();
+          if(rectCaret == undefined) {
+            this.caretRect = 'undefined'
+          } else {
+            this.caretRect = 'X: ' + rectCaret.x + '\nY: ' + rectCaret.y
+              + '\nWidth: ' + rectCaret.width + '\nHeight: ' + rectCaret.height
+          }
+        })
+        .fontSize(24)
+        .width("60%")
+        .height("10%")
+
+      Text(this.caretRect)
+        .margin(12)
+        .fontSize(24)
+
+      RichEditor(this.options)
+        .onReady(() => {
+          this.controller.addTextSpan('12345678901234567890', {
+            style:
+            {
+              fontColor: Color.Orange,
+              fontSize: 50
+            }
+          })
+        })
+        .borderWidth(1)
+        .borderColor(Color.Red)
+        .width("100%")
+        .height("60%")
+    }
+  }
+}
+
+```
+
+![StyledString](figures/example24.gif)
+
+### 示例25（设置最大行数和最大字符数）
+通过maxLength设置可输入的最大字符数，通过maxLines设置可输入的最大行数。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky,"+
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, "+
+    " pink, and lavender, creating a breathtaking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil." +
+    "it casts a warm," +
+    "golden hue that spreads like liquid amber across the vast expanse of the sky." +
+    "The once-blue heavens gradually transform, " +
+    "now painted in a breathtaking palette of soft oranges, pinks, " +
+    "and purples, each color blending seamlessly into the next. Wisps of clouds, tinged with fiery edges, " +
+    "float lazily amidst this celestial canvas," +
+    "creating a scene so serene and beautiful that it almost seems to pause time itself." +
+    "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breathtaking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil." +
+    "it casts a warm," +
+    "golden hue that spreads like liquid amber across the vast expanse of the sky." +
+    "The once-blue heavens gradually transform, "
+  @State maxLineList: (number | undefined)[] = [ 2, 6, undefined]
+  @State maxLineIndex: number = 0
+  @State maxLineStringList: (string)[] = ["2", "6", "undefined"]
+  richEditorStyledString: MutableStyledString = new MutableStyledString("");
+  controller1: RichEditorController = new RichEditorController()
+  controller2: TextInputController = new TextInputController()
+  controller3: RichEditorController = new RichEditorController()
+  controller4: RichEditorStyledStringController = new RichEditorStyledStringController();
+  controller: RichEditorController = new RichEditorController();
+  option: RichEditorOptions = { controller: this.controller };
+
+  build() {
+    Column() {
+      Text("当前的maxLength为7 " )
+        .margin(10)
+        .fontSize(25)
+      Row() {
+        Button("插入占1字符数的图片")
+          .onClick(() => {
+            this.controller1.addImageSpan($r("app.media.app_icon"),
+              {
+                imageStyle:
+                {
+                  size: ["57px", "57px"]
+                }
+              })
+          })
+        Button("插入占2字符数图片")
+          .onClick(() => {
+            this.controller1.addSymbolSpan($r("sys.symbol.ohos_trash"),
+              {
+                style:
+                {
+                  fontSize: 30
+                }
+              })
+          })
+          .margin({left:20})
+      }
+        RichEditor({ controller: this.controller1 })
+          .width('95%')
+          .margin(10)
+          .maxLength(7)
+          .backgroundColor('rgb(240,250,255)')
+        Text("当前的maxLine为 " + this.maxLineStringList[this.maxLineIndex]).margin(10)
+          .fontSize(25)
+        Button("更改maxLines").onClick(() => {
+          this.maxLineIndex++
+          if (this.maxLineIndex > this.maxLineList.length - 1) {
+            this.maxLineIndex = 0
+          }
+        })
+      RichEditor({ controller: this.controller3 })
+        .onReady(() => {
+          this.controller3.addTextSpan(this.text,
+            {
+              style:
+              {
+                fontColor: 'rgb(0,74,175)'
+              }
+            })
+        })
+        .margin(10)
+        .width('95%')
+        .maxLines(this.maxLineList[this.maxLineIndex])
+        .height(105)
+        .backgroundColor('rgb(240,250,255)')
+    }
+  }
+}
+```
+![StyledString](figures/maxLengthmaxLines.gif)

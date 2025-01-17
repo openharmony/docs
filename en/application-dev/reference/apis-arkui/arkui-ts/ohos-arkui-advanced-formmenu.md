@@ -37,7 +37,7 @@ AddFormMenuItem(
   want: Want,
   componentId: string,
   options?: AddFormOptions
-): void;
+): void
 
 
 **Decorator**: @Component
@@ -50,7 +50,7 @@ AddFormMenuItem(
 
 | Name          | Type                       | Mandatory| Decorator| Description                                                            |
 | -------------- | ------------------------------- | ---- | ---------- | ---------------------------------------------------------------- |
-| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)                            | Yes  | \@Prop     | Want information of the functional component.                                        |
+| want           | [Want](../../apis-ability-kit/js-apis-app-ability-want.md#want)                            | Yes  | \@Prop     | Want information of the functional component.                                        |
 | componentId    | string                          | Yes  | -          | In-application functional component ID, which corresponds to a UI similar to the UI of the service widget to add.|
 | AddFormOptions| [AddFormOptions](#addformoptions) | No  | -          | Options for adding the service widget.                                                        |
 
@@ -119,9 +119,13 @@ struct Index {
         {
           formBindingData: formBindingData.createFormBindingData({}),
           // formBindingData: formBindingData.createFormBindingData({ data: 'share' }),
-          callback:
-          (error, formId) => {
-            hilog.info(0x3900, tag, 'callback info: error: ' + error + ' formId:' + formId);
+          callback: (error, formId) => {
+            hilog.info(0x3900, tag, `callback info: error = ${JSON.stringify(error)}, formId = ${formId}`);
+            if (error?.code === 0) {
+              hilog.info(0x3900, tag, "Added to the home screen.")
+            } else {
+              hilog.info(0x3900, tag, "Failed to add to the home screen. Try another method.")
+            }
           },
           style: {
             // options: {

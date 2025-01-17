@@ -8,17 +8,17 @@
 When **position** is set for a container component, it is taken out of normal flow and works independently from the outer container. In this case, the height does not take effect. You can replace the outer container with a stack to solve this issue.
 
 
-## How do I implement horizontal scrolling on a \<Grid> component? (API version 9)
+## How do I implement horizontal scrolling on a Grid component? (API version 9)
 
-Set **rowsTemplate** (the number of rows) for the **\<Grid>** component and do not set **columnsTemplate** (the number of columns). In this way, the **\<Grid>** component scrolls horizontally when its content does not fit within its width.
-
-
-## What should I do if the \<List> component cannot be dragged to the bottom when it is used with another component and does not have the size specified? (API version 9)
-
-Add the **layoutWeight** attribute for the **\<List>** component so that it takes up the remaining height (or width, depending on the scrolling direction) adaptively. By default, the **\<List>** component, as a scrollable container, takes up the entire screen height. When it is used with any component whose height is fixed, you need to explicitly add the **layoutWeight** attribute for the **\<List>** component so that it takes up the remaining height instead of the entire screen height.
+Set **rowsTemplate** (the number of rows) for the **Grid** component and do not set **columnsTemplate** (the number of columns). In this way, the **Grid** component scrolls horizontally when its content does not fit within its width.
 
 
-## Can tab switching be disabled for the \<Tabs> component? (API version 9)
+## What should I do if the List component cannot be dragged to the bottom when it is used with another component and does not have the size specified? (API version 9)
+
+Add the **layoutWeight** attribute for the **List** component so that it takes up the remaining height (or width, depending on the scrolling direction). By default, the **List** component, as a scrollable container, takes up the entire screen height. When it is used with any component whose height is fixed, you need to explicitly add the **layoutWeight** attribute for the **List** component so that it takes up the remaining height instead of the entire screen height.
+
+
+## Can tab switching be disabled for the Tabs component? (API version 9)
 
 No. This feature is not supported.
 
@@ -32,9 +32,9 @@ If **true** is returned in **onBackPress**, the page executes its own return log
 [Custom Component Lifecycle-onBackPress](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onbackpress)
 
 
-## How do I implement a sticky header for a list item group in the \<List> component? (API version 9)
+## How do I implement a sticky header for a list item group in the List component? (API version 9)
 
-You can use the **sticky** attribute of the **\<List>** component together with the **\<ListItemGroup>** component. Specifically, set the **sticky** attribute of the **\<List>** component to **StickyStyle.Header** and set the **header** parameter of the corresponding **\<ListItemGroup>** component.
+You can use the **sticky** attribute of the **List** component together with the **ListItemGroup** component. Specifically, set the **sticky** attribute of the **List** component to **StickyStyle.Header** and set the **header** parameter of the corresponding **ListItemGroup** component.
 
 **Reference**
 
@@ -54,15 +54,15 @@ You can use the **sticky** attribute of the **\<List>** component together with 
 
 **Solution**
 
-1. To display text with images, you can nest an **\<ImageSpan>** component in a **\<Text>** component or nest **\<Text>** and **\<Image>** components in a container component (such as **\<Row>** and **\<Colunm>**. The former is recommended.
+1. To display text with images, you can nest an **ImageSpan** component in a **Text** component; alternatively, nest **Text** and **Image** components in a container component (such as **Row** and **Column**). The former is recommended.
 
-2. If editing is needed, use the **\<RichEditor>** component.
+2. If editing is needed, use the **RichEditor** component.
 
 **Reference**
 
 [RichEditor](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md)
 
-## How do I implement a layout similar to that achieved by CoordinatorLayout? (API version 10)
+## How do I implement a coordinated layout? (API version 10)
 
 **Solution**
 
@@ -76,7 +76,7 @@ You can implement nested scrolling in a scrollable component with the **nestedSc
 
 **Solution**
 
-Configure the navigation bar as the second child component, that is, the content area, of the **\<SideBarContainer>** component. In this way, the sidebar takes up only its own width and does not block other part of the navigation bar.
+Configure the navigation bar as the second child component, that is, the content area, of the **SideBarContainer** component. In this way, the sidebar takes up only its own width and does not block other part of the navigation bar.
 
 **Reference**
 
@@ -92,7 +92,7 @@ If the default key generator is used, the framework automatically generates a ke
 
 [ForEach: Rendering of Repeated Content](../quick-start/arkts-rendering-control-foreach.md)
 
-## How do I decouple a dialog box from pages? What are the best practices? (API version 10)
+## How do I decouple a dialog box from pages? What are the best practices? (API 10)
 
 **Solution**
 
@@ -133,4 +133,5 @@ Flex(){
 }
 ```
 
+**Reference**
 [Layout Constraints](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md)

@@ -2002,7 +2002,7 @@ Sets nested scrolling options.
 > - You can set the up, down, left, and right directions, or set the forward and backward nested scrolling modes to implement scrolling linkage with the parent component.
 > - When the **value** is of the **NestedScrollOptionsExt** type (up, down, left, and right), the default nested scrolling mode of the **scrollUp**, **scrollDown**, **scrollLeft**, and **scrollRight **options [NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10).
 > - When the **value** is of the **NestedScrollOptions** type (forward and backward), the default nested scrolling mode of the **scrollForward** and **scrollBackward** options is **NestedScrollMode.SELF_FIRST**.
-> - Containers that support nested scrolling: **\<Grid>**, **\<List>**, **\<Scroll>**, **\<Swiper>**, **\<Tabs>**, **\<WaterFlow>**.
+> - Containers that support nested scrolling: **Grid**, **List**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 > - In nested scrolling scenarios, since the **Web** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
 
@@ -6134,7 +6134,7 @@ Called when the intelligent tracking prevention feature is enabled and the track
 
 onOverrideUrlLoading(callback: OnOverrideUrlLoadingCallback)
 
-Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **\<Web>** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
+Called to enable the host application to obtain control when the URL is about to be loaded to this **Web** component. If the callback returns **true**, the **Web** component stops loading the URL. If the callback returns **false**, the **Web** component continues to load the URL.
 
 POST requests do not trigger this callback.
 

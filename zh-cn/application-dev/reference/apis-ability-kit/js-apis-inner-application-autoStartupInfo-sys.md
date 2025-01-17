@@ -1,4 +1,4 @@
- # AutoStartupInfo (系统接口)
+# AutoStartupInfo (系统接口)
 
 定义开机自启动应用组件信息。
 
@@ -10,7 +10,7 @@
 
 ## 属性
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

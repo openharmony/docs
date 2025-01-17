@@ -25,4 +25,3 @@
   - [Security Component Overview](security-component-overview.md)
   - [Using PasteButton](pastebutton.md)
   - [Using SaveButton](savebutton.md)
-  - [Using LocationButton](locationbutton.md)

@@ -62,12 +62,14 @@ AtomicServiceTabs ({
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色。|
 | index | number | 否 | @Prop | 设置当前显示页签的索引。|
 | barOverlap | boolean| 否 | @Prop | 设置TabBar是否背后变模糊并叠加在TabContent之上。|
-| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | @Prop |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
+| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | - |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
 | onChange | Callback\<number\> | 否 | - | Tabs页签切换后触发的事件。 |
 | onTabBarClick | Callback\<number\> | 否 | - |Tabs页签点击后触发的事件。|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。|
 
 ## TabContentBuilder
+
+type TabContentBuilder = () => void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -78,6 +80,12 @@ AtomicServiceTabs ({
 | () => void | 内容视图容器 |
 
 ## TabBarOptions
+
+初始化页签的构造函数，包括icon，text，unselectColor和SelectedColor。
+
+### constructor
+
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor);
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -102,6 +110,8 @@ AtomicServiceTabs ({
 | BOTTOM  | 1 | 设置TabBar位于屏幕底部 |
 
 ## OnContentWillChangeCallback
+
+type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

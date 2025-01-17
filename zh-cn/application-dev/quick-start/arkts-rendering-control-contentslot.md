@@ -64,6 +64,7 @@ abstract class Content {
 import { nativeNode } from 'libNativeNode.so' // 开发者自己实现的so
 import { NodeContent } from '@kit.ArkUI'
 
+@Entry
 @Component
 struct Parent {
     private nodeContent: Content = new NodeContent();

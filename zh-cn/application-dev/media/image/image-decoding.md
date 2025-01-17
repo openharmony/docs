@@ -16,17 +16,8 @@
    - 方法一：获取沙箱路径。具体请参考[获取应用文件路径](../../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../../file-management/app-sandbox-directory.md)。
 
       ```ts
-      // Stage模型参考如下代码
       const context : Context = getContext(this);
       const filePath : string = context.cacheDir + '/test.jpg';
-      ```
-
-      ```ts
-      // FA模型参考如下代码
-      import { featureAbility } from '@kit.AbilityKit';
-      
-      const context = featureAbility.getContext();
-      const filePath = context.getCacheDir() + "/test.jpg";
       ```
 
    - 方法二：通过沙箱路径获取图片的文件描述符。具体请参考[file.fs API参考文档](../../reference/apis-core-file-kit/js-apis-file-fs.md)。
@@ -39,19 +30,8 @@
       然后调用fs.openSync()获取文件描述符。
   
       ```ts
-      // Stage模型参考如下代码
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
-      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-      const fd : number = file?.fd;
-      ```
-
-      ```ts
-      // FA模型参考如下代码
-      import { featureAbility } from '@kit.AbilityKit';
-      
-      const context = featureAbility.getContext();
-      const filePath = context.getCacheDir() + "/test.jpg";
       const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
@@ -59,26 +39,12 @@
    - 方法三：通过资源管理器获取资源文件的ArrayBuffer。具体请参考[ResourceManager API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1)。
 
       ```ts
-      // Stage模型
       // 导入resourceManager资源管理器
       import { resourceManager } from '@kit.LocalizationKit';
 
       const context : Context = getContext(this);
       // 获取resourceManager资源管理器
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-      ```
-
-      ```ts
-      // FA模型
-      // 导入resourceManager资源管理器
-      import { resourceManager } from '@kit.LocalizationKit';
-      import { BusinessError } from '@kit.BasicServicesKit';
-
-      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
-         console.log("Succeeded in getting resourceManager")
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get resourceManager")
-      });
       ```
 
       不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFileContent()获取资源文件的ArrayBuffer。
@@ -97,26 +63,12 @@
    - 方法四：通过资源管理器获取资源文件的RawFileDescriptor。具体请参考[ResourceManager API参考文档](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1)。
 
       ```ts
-      // Stage模型
       // 导入resourceManager资源管理器
       import { resourceManager } from '@kit.LocalizationKit';
 
       const context : Context = getContext(this);
       // 获取resourceManager资源管理器
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-      ```
-
-      ```ts
-      // FA模型
-      // 导入resourceManager资源管理器
-      import { resourceManager } from '@kit.LocalizationKit';
-      import { BusinessError } from '@kit.BasicServicesKit';
-
-      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
-         console.log("Succeeded in getting resourceManager")
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get resourceManager")
-      });
       ```
 
       不同模型获取资源管理器的方式不同，获取资源管理器后，再调用resourceMgr.getRawFd()获取资源文件的RawFileDescriptor。
@@ -200,10 +152,12 @@
       ```
    解码完成，获取到pixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
-5. 释放pixelMap。
+5. 释放pixelMap和imageSource。
 
+   需确认pixelMap和imageSource异步方法已经执行完成，不再使用该变量后可按需手动调用下面方法释放。
    ```ts
    pixelMap.release();
+   imageSource.release();
    ```
 
 ## 开发示例-对资源文件中的图片进行解码
@@ -258,10 +212,12 @@
    });
    ```
 
-4. 释放pixelMap。
-
+4. 释放pixelMap和imageSource。
+   
+   需确认pixelMap和imageSource异步方法已经执行完成，不再使用该变量后可按需手动调用下面方法释放。
    ```ts
    pixelMap.release();
+   imageSource.release();
    ```
 
 ## 相关实例

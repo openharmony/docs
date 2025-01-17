@@ -77,7 +77,9 @@ Defines the margin type.
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
-### Example 1
+### Example 1: Configuring an Exception Prompt
+
+This example demonstrates how to configure an exception prompt, including the exception icon, text, margin, and the text content of the right-side icon button.
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
@@ -99,10 +101,10 @@ struct Index {
       ExceptionPrompt({
         options: this.options,
         onTipClick: () => {
-            // Click the text on the left to change into the connecting state
+            // Click the text on the left to switch to the connecting state.
         },
         onActionTextClick: () => {
-            // Click Set Network to open the Set network pop-up interface
+            // Click Set network to open the Set network dialog box.
         },
       })
     }
@@ -112,7 +114,9 @@ struct Index {
 
 ![ExceptionPrompt1](figures/ExceptionPrompt1.png)
 
-### Example 2
+### Example 2: Setting a Dialog-Type Exception Prompt
+
+This example uses a custom dialog box to set a dialog-type exception prompt.
 
 ```ts
 import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'

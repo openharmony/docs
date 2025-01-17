@@ -62,7 +62,7 @@ textOverflow(options: TextOverflowOptions)
 
 Sets the display mode when the text is too long.
 
-Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters. Since API version 11, preferably set the **wordBreak** attribute to **WordBreak.BREAK_ALL** to achieve the same purpose. For details, see [Example](#example-4).
+Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters. Since API version 11, preferably set the **wordBreak** attribute to **WordBreak.BREAK_ALL** to achieve the same purpose. For details, see [Example 4](#example-4-setting-text-wrapping-and-line-breaking).
 
 If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **TextOverflow.Ellipsis**, this attribute must be used with **maxLines** for the settings to take effect. **TextOverflow.None** produces the same effect as **TextOverflow.Clip**.
 
@@ -80,7 +80,7 @@ Since API version 12, **TextOverflow.MARQUEE** is available for the **ImageSpan*
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [TextOverflowOptions](#textoverflowoptions13) | Yes  | Display mode when the text is too long.|
+| options | [TextOverflowOptions](#textoverflowoptions14) | Yes  | Display mode when the text is too long.|
 
 ### maxLines
 
@@ -182,7 +182,7 @@ minFontSize(value: number | string | Resource)
 
 Sets the minimum font size.
 
-For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize) and [maxlines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
+For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize) and [maxLines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
 
 When the adaptive font size is used, the **fontSize** settings do not take effect.
 
@@ -206,7 +206,7 @@ maxFontSize(value: number | string | Resource)
 
 Sets the maximum font size.
 
-For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize) and [maxlines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
+For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize) and [maxLines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
 
 When the adaptive font size is used, the **fontSize** settings do not take effect.
 
@@ -414,7 +414,7 @@ heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
 
 Sets how the adaptive height is determined for the text.
 
-When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the [maxlines](#maxlines) attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between [minFontSize](#minfontsize) and [maxFontSize](#maxfontsize) to allow for more content to be shown.
+When this attribute is set to **TextHeightAdaptivePolicy.MAX_LINES_FIRST**, the [maxLines](#maxlines) attribute takes precedence for adjusting the text height. If the **maxLines** setting results in a layout beyond the layout constraints, the text will shrink to a font size between [minFontSize](#minfontsize) and [maxFontSize](#maxfontsize) to allow for more content to be shown.
 
 If this attribute is set to **TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST**, the **minFontSize** attribute takes precedence for adjusting the text height. If the text can fit in one line with the **minFontSize** setting, the text will enlarge to the largest possible font size between **minFontSize** and **maxFontSize**.
 
@@ -620,7 +620,7 @@ Font feature list<br>
 Font features are advanced typographic features, such as ligatures and monospace, for OpenType fonts. They are typically used in custom fonts and require the support of the font itself.
 For more information about the font features, see [Low-level font feature settings control: the font-feature-settings property](https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop) and [The Complete CSS Demo for OpenType Features](https://sparanoid.com/lab/opentype-features/).
 
->  **NOTE**<br/>
+>  **NOTE**
 >
 >  The **Text** component cannot contain both text and the child component **Span** or **ImageSpan**. If both of them exist, only the content in **Span** or **ImageSpan** is displayed.
 >
@@ -724,7 +724,7 @@ Sets the minimum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: (0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
 
 ### maxFontScale<sup>12+</sup>
 
@@ -778,7 +778,7 @@ It is only effective for the **Text** component, not for its child components.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| fontValue | [Font](ts-types.md#font) | Yes | Sets the text style,|
+| fontValue | [Font](ts-types.md#font) | Yes | Text style.|
 | options | [FontSettingOptions](ts-text-common.md#fontsettingoptions12) | No | Font settings.|
 
 ### fontWeight<sup>12+</sup>
@@ -887,13 +887,13 @@ Provides the [span](ts-basic-components-span.md) type information.
 | LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
 | SELECT | The menu is displayed when the component is selected.|
 
-## TextOverflowOptions<sup>13+</sup>
+## TextOverflowOptions<sup>14+</sup>
 
 Describes the display mode when the text is too long.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -1010,10 +1010,8 @@ Obtains the **LayoutManager** object.
 
 ## Example
 
-### Example 1
-
-This example shows how to set the **textAlign**, **maxLines**, **textOverflow**, and **lineHeight** attributes.
-
+### Example 1: Setting the Text Layout
+This example demonstrates the effects of text layout attributes such as **textAlign**, **lineHeight**, **baselineOffset**, and **halfLeading**.
 ```ts
 // xxx.ets
 @Extend(Text)
@@ -1023,61 +1021,84 @@ function style(TextAlign: TextAlign) {
   .border({ width: 1 })
   .padding(10)
   .width('100%')
+  .margin(5)
 }
 
 @Entry
 @Component
 struct TextExample1 {
+  @State changeTextAlignIndex: number = 0
+  @State changeDecorationIndex: number = 0
+  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End]
+  @State TextAlignStr: string[] = ['Start', 'Center', 'End']
+  @State TextDecorationType: TextDecorationType[] =
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+  @State TextDecorationStyle: TextDecorationStyle[] =
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      // Set the horizontal alignment for the text.
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      // Set horizontal alignment for text.
       // Single-line text
       Text('textAlign').fontSize(9).fontColor(0xCCCCCC)
-      Text('TextAlign set to Center.')
-        .style(TextAlign.Center)
-      Text('TextAlign set to Start.')
-        .style(TextAlign.Start)
-      Text('TextAlign set to End.')
-        .style(TextAlign.End)
+      Text(`TextAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.TextAlign[this.changeTextAlignIndex])
 
       // Multi-line text
-      Text('This is the text content with textAlign set to Center.')
-        .style(TextAlign.Center)
-      Text('This is the text content with textAlign set to Start.')
-        .style(TextAlign.Start)
-      Text('This is the text content with textAlign set to End.')
-        .style(TextAlign.End)
+      Text(`This is the text content with textAlign set to ${this.TextAlignStr[this.changeTextAlignIndex]}.`)
+        .style(this.TextAlign[this.changeTextAlignIndex])
+        .margin(5)
 
+      Row() {
+        Button('Current TextAlign: ' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+          this.changeTextAlignIndex++
+          if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
+            this.changeTextAlignIndex = 0
+          }
+        })
+      }.justifyContent(FlexAlign.Center).width('100%')
 
-      // Set the display mode when the text is too long.
-      Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC)
-      // Clip the text when the value of maxLines is exceeded.
-      Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
-        .textOverflow({ overflow: TextOverflow.Clip })
-        .maxLines(1)
-        .style(TextAlign.Start)
-
-      // Show an ellipsis (...) when the value of maxLines is exceeded.
-      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
-        .textOverflow({ overflow: TextOverflow.Ellipsis })
-        .maxLines(1)
-        .style(TextAlign.Start)
-
+      // Set the text line height.
       Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text with the line height set. This is the text with the line height set.')
         .style(TextAlign.Start)
       Text('This is the text with the line height set. This is the text with the line height set.')
         .style(TextAlign.Start)
         .lineHeight(20)
-    }.height(600).width(340).padding({ left: 35, right: 35, top: 35 })
+
+      // Set the text baseline offset.
+      Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text content with baselineOffset 0.')
+        .baselineOffset(0)
+        .style(TextAlign.Start)
+      Text('This is the text content with baselineOffset 30.')
+        .baselineOffset(30)
+        .style(TextAlign.Start)
+      Text('This is the text content with baselineOffset -20.')
+        .baselineOffset(-20)
+        .style(TextAlign.Start)
+
+      // Set whether half leading is enabled.
+      Text('halfLeading').fontSize(9).fontColor(0xCCCCCC)
+      Text("This is the text with the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(true)
+        .style(TextAlign.Start)
+      Text("This is the text without the halfLeading set.")
+        .lineHeight(60)
+        .halfLeading(false)
+        .style(TextAlign.Start)
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
-![textExp1](figures/textExp1.png)
+![textExp1](figures/textExp1.gif)
 
-### Example 2
+### Example 2: Setting the Text Style
 
-This example shows how to set the **decoration**, **baselineOffset**, **letterSpacing**, and **textCase** attributes.
+This example showcases various text styles by using the **decoration**, **letterSpacing**, **textCase**, and **textShadow** attributes.
 
 ```ts
 @Extend(Text)
@@ -1086,48 +1107,41 @@ function style() {
   .border({ width: 1 })
   .padding(10)
   .width('100%')
+  .margin(5)
 }
 
 @Entry
 @Component
 struct TextExample2 {
+  @State changeDecorationIndex: number = 0
+  @State TextDecorationType: TextDecorationType[] =
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+  @State TextDecorationStyle: TextDecorationStyle[] =
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Text('decoration').fontSize(9).fontColor(0xCCCCCC)
       Text('This is the text content with the decoration set to LineThrough and the color set to Red.')
         .decoration({
-          type: TextDecorationType.LineThrough,
-          color: Color.Red
-        })
-        .style()
-
-      Text('This is the text content with the decoration set to Overline and the color set to Red.')
-        .decoration({
-          type: TextDecorationType.Overline,
+          type: this.TextDecorationType[this.changeDecorationIndex],
           color: Color.Red,
-          style: TextDecorationStyle.DOTTED
+          style: this.TextDecorationStyle[this.changeDecorationIndex]
         })
         .style()
+        .margin(5)
 
-      Text('This is the text content with the decoration set to Underline and the color set to Red.')
-        .decoration({
-          type: TextDecorationType.Underline,
-          color: Color.Red,
-          style: TextDecorationStyle.WAVY
+      Row() {
+        Button('Toggle Decoration Type: ' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
+          this.changeDecorationIndex++
+          if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
+            this.changeDecorationIndex = 0
+          }
         })
-        .style()
-
-      // Set the offset of the text baseline.
-      Text('baselineOffset').fontSize(9).fontColor(0xCCCCCC)
-      Text('This is the text content with baselineOffset 0.')
-        .baselineOffset(0)
-        .style()
-      Text('This is the text content with baselineOffset 30.')
-        .baselineOffset(30)
-        .style()
-      Text('This is the text content with baselineOffset -20.')
-        .baselineOffset(-20)
-        .style()
+      }.justifyContent(FlexAlign.Center).width('100%')
 
       // Set the letter spacing.
       Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
@@ -1154,152 +1168,185 @@ struct TextExample2 {
         .textCase(TextCase.UpperCase)
         .style()
 
-    }.height(700).width(350).padding({ left: 35, right: 35, top: 35 })
-  }
-}
-```
-![textExp1](figures/textExp2.png)
-
-### Example 3
-
-This example shows how to use **textShadow**, **heightAdaptivePolicy**, and **TextOverflow.MARQUEE**.
-
-```ts
-@Extend(Text)
-function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
-  .width('80%')
-  .height(90)
-  .borderWidth(1)
-  .minFontSize(10)
-  .maxFontSize(30)
-  .maxLines(2)
-  .textOverflow({ overflow: TextOverflow.Ellipsis })
-  .heightAdaptivePolicy(HeightAdaptivePolicy)
-}
-
-@Entry
-@Component
-struct TextExample3 {
-  build() {
-    Column() {
-      Text('textShadow').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
+      Text('textShadow').fontSize(9).fontColor(0xCCCCCC)
       // Set the text shadow.
       Text('textShadow')
-        .width('80%')
-        .height(55)
-        .fontSize(40)
-        .lineHeight(55)
+        .style()
         .textAlign(TextAlign.Center)
+        .fontSize(40)
         .textShadow({
           radius: 10,
           color: Color.Black,
           offsetX: 0,
           offsetY: 0
         })
-        .borderWidth(1)
-      Divider()
-      // Set how the adaptive height is determined for the text.
-      Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      Text('This is the text with the height adaptive policy set')
-        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-      Text('This is the text with the height adaptive policy set')
-        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
-      Text('This is the text with the height adaptive policy set')
-        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
-      Divider()
-      Text('marquee').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      // Set the text to continuously scroll when text overflow occurs.
-      Text('This is the text with the text overflow set marquee')
-        .width(300)
-        .borderWidth(1)
-        .textOverflow({ overflow: TextOverflow.MARQUEE })
-    }
+
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
+![textExp1](figures/textExp2.gif)
 
-![](figures/text_3.gif)
+### Example 3: Setting Text Overflow
 
-### Example 4
-This example shows how to use **ellipsisMode** and **wordBreak**.
+This example demonstrates how to use **maxLines**, **textOverflow**, and **ellipsisMode** to display excess content with an ellipsis (...) when the text is too long.
 
 ```ts
-// xxx.ets
+@Extend(Text)
+function style() {
+  .textAlign(TextAlign.Center)
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+  .margin(5)
+}
+
 @Entry
 @Component
-struct TextExample4 {
+struct TextExample3 {
   @State text: string =
     'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
-  @State ellipsisModeIndex: number = 0;
+  @State ellipsisModeIndex: number = 0
   @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
   @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
-  @State wordBreakIndex: number = 0;
-  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
-  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
-  @State textClip: boolean = false
 
   build() {
-    Column({ space: 10 }) {
-      Text(this.text)
-        .fontSize(16)
-        .border({ width: 1 })
-        .lineHeight(20)
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      // Set the display mode when the text is too long.
+      Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC)
+      // Clip the text when the value of maxLines is exceeded.
+      Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
+        .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1)
+        .style()
+
+      // Show an ellipsis (...) when the value of maxLines is exceeded.
+      Text('This is set textOverflow to Ellipsis text content This is set textOverflow to Ellipsis text content.')
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+        .maxLines(1)
+        .style()
+
+      Text('marquee').fontSize(9).fontColor(0xCCCCCC)
+      // Set the text to continuously scroll when text overflow occurs.
+      Text('This is the text with the text overflow set marquee')
+        .textOverflow({ overflow: TextOverflow.MARQUEE })
+        .style()
+
+      Text('ellipsisMode').fontSize(9).fontColor(0xCCCCCC)
+      // Set the position of the ellipsis (...) for text truncation.
+      Text(this.text)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
-        .width(300)
-        .margin({ left: 20, top: 20 })
+        .maxLines(1)
+        .style()
 
       Row() {
-        Button('Change Ellipsis Position:' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick (() => {
+        Button('Change Ellipsis Position: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
           this.ellipsisModeIndex++
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
             this.ellipsisModeIndex = 0
           }
         })
       }
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
 
-      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
-        .fontSize(12)
-        .border({ width: 1 })
-        .wordBreak(WordBreak.NORMAL)
-        .lineHeight(20)
-        .maxLines(2)
-        .clip(this.textClip)
-        .width(260)
-      Row() {
-        Button('Change Clip Mode: ' + this.textClip).onClick(() => {
-          this.textClip = !this.textClip
-        })
-      }
+![](figures/textExp3.gif)
 
+### Example 4: Setting Text Wrapping and Line Breaking
+
+This example demonstrates the effects of different text wrapping and line breaking rules, as well as whether text is truncated when it exceeds the container's length, using the **wordBreak**, **lineBreakStrategy**, and **clip** attributes.
+
+```ts
+// xxx.ets
+@Extend(Text)
+function style() {
+  .fontSize(12)
+  .border({ width: 1 })
+  .padding(10)
+  .width('100%')
+  .margin(5)
+}
+
+@Entry
+@Component
+struct TextExample4 {
+  @State text: string =
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+  @State text2: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttons progress indicators and text You can set the rendering effect of these components in method chaining mode," +
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State textClip: boolean = false
+  @State wordBreakIndex: number = 0
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      Text('wordBreak').fontSize(9).fontColor(0xCCCCCC)
+      // Set the word break rule.
       Text(this.text)
-        .fontSize(12)
-        .border({ width: 1 })
         .maxLines(2)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .wordBreak(this.wordBreak[this.wordBreakIndex])
-        .lineHeight(20)
-        .width(260)
+        .style()
+
       Row() {
-        Button('Change wordBreak Mode: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
+        Button('Toggle wordBreak Value: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
           this.wordBreakIndex++
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
             this.wordBreakIndex = 0
           }
         })
       }
-    }
+
+      Text('clip').fontSize(9).fontColor(0xCCCCCC)
+      // Set whether text is truncated when it exceeds the length.
+      Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
+        .wordBreak(WordBreak.NORMAL)
+        .maxLines(2)
+        .clip(this.textClip)
+        .style()
+      Row() {
+        Button('Change Clip Mode: ' + this.textClip).onClick(() => {
+          this.textClip = !this.textClip
+        })
+      }
+
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      // Set the text line breaking rule.
+      Text(this.text2)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+        .style()
+      Row() {
+        Button('Toggle lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![](figures/textExample4.gif)
+![](figures/textExp4.gif)
 
-### Example 5
-This example shows how to use **selection** and **onCopy**.
+### Example 5: Setting Text Selection and Copy
+
+This example demonstrates the effects of text selection and triggering a copy callback using the **selection** and **onCopy** APIs.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextExample5 {
@@ -1334,20 +1381,61 @@ struct TextExample5 {
 ```
 ![](figures/textExample5.png)
 
-### Example 6
-This example shows how to use **enableDataDetector** and **dataDetectorConfig**.
+### Example 6: Setting Text Auto-Adaptation
+
+This example showcases the implementation of text auto-adaptation features using the **heightAdaptivePolicy** attribute.
 
 ```ts
+// xxx.ets
+@Extend(Text)
+function style(HeightAdaptivePolicy: TextHeightAdaptivePolicy) {
+  .width('80%')
+  .height(90)
+  .borderWidth(1)
+  .minFontSize(10)
+  .maxFontSize(30)
+  .maxLines(2)
+  .margin(5)
+  .textOverflow({ overflow: TextOverflow.Ellipsis })
+  .heightAdaptivePolicy(HeightAdaptivePolicy)
+}
+
 @Entry
 @Component
 struct TextExample6 {
-  @State phoneNumber: string = '(86) (755) ********';
-  @State url: string = 'www.********.com';
-  @State email: string = '***@example.com';
-  @State address: string = 'XX (province) XX (city) XX (county) XXXX';
-  @State datetime: string = 'XX-XX-XX XXXX';
-  @State enableDataDetector: boolean = true;
-  @State types: TextDataDetectorType[] = [];
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
+      // Set how the adaptive height is determined for the text.
+      Text('heightAdaptivePolicy').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text with the height adaptive policy set.')
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+      Text('This is the text with the height adaptive policy set.')
+        .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
+      Text('This is the text with the height adaptive policy set.')
+        .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textHeightAdaptivePolicy](figures/textHeightAdaptivePolicy.PNG)
+
+### Example 7: Setting Text Recognition
+
+This example demonstrates how to implement text recognition features using the **enableDataDetector** and **dataDetectorConfig** APIs.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample7 {
+  @State phoneNumber: string = '(86) (755) ********'
+  @State url: string = 'www.********.com'
+  @State email: string = '***@example.com'
+  @State address: string = 'XX (province) XX (city) XX (county) XXXX'
+  @State datetime: string = 'XX-XX-XX XXXX'
+  @State enableDataDetector: boolean = true
+  @State types: TextDataDetectorType[] = []
 
   build() {
     Row() {
@@ -1377,16 +1465,17 @@ struct TextExample6 {
 
 ![](figures/text7.png)
 
-### Example 7
+### Example 8: Binding Text to a Custom Menu
 
-This example shows how to use **bindSelectionMenu**, **onTextSelectionChange**, and **closeSelectionMenu**.
+This example showcases how to bind text to a custom menu using the **bindSelectionMenu**, **onTextSelectionChange**, and **closeSelectionMenu** APIs.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample7 {
-  controller: TextController = new TextController();
-  options: TextOptions = { controller: this.controller };
+struct TextExample8 {
+  controller: TextController = new TextController()
+  options: TextOptions = { controller: this.controller }
 
   build() {
     Column() {
@@ -1402,16 +1491,16 @@ struct TextExample7 {
         .copyOption(CopyOptions.InApp)
         .bindSelectionMenu(TextSpanType.IMAGE, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS, {
           onDisappear: () => {
-            console.info(`Triggered when the custom context menu on selection is closed.`);
+            console.info(`Callback when the custom menu is closed`);
           },
           onAppear: () => {
-            console.info(`Triggered when the custom context menu on selection is displayed`);
+            console.info(`Callback when the custom menu is displayed`);
           }
         })
         .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK)
         .bindSelectionMenu(TextSpanType.MIXED, this.SelectMixCustomMenu, TextResponseType.SELECT)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          console.info(`Triggered when the text selection position changes, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`);
+          console.info(`Callback when the text selection changes, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`);
         })
         .borderWidth(1)
         .borderColor(Color.Red)
@@ -1433,7 +1522,7 @@ struct TextExample7 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu();
+              this.controller.closeSelectionMenu()
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
@@ -1450,7 +1539,7 @@ struct TextExample7 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu();
+              this.controller.closeSelectionMenu()
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
@@ -1467,7 +1556,7 @@ struct TextExample7 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu();
+              this.controller.closeSelectionMenu()
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
@@ -1488,77 +1577,72 @@ function MenuStyles() {
 
 ![](figures/textBindSelectionMenu.gif)
 
-### Example 8
-This example shows how to use **fontFeature**, **lineSpacing**, and **lineBreakStrategy**.
+### Example 9: Setting Text Features and Line Spacing
+
+This example demonstrates the effects of setting text features and line spacing using the **fontFeature** and **lineSpacing** APIs.
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 
-@Extend(Text) function lineSpacingValue(LineSpacing: LengthMetrics|undefined) {
-  .lineSpacing(LineSpacing)
+@Extend(Text)
+function style() {
   .fontSize(12)
   .border({ width: 1 })
+  .width('100%')
+  // .margin(5)
 }
+
 @Entry
 @Component
-struct TextExample8 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
-  @State lineBreakStrategyIndex: number = 0;
-  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+struct TextExample9 {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
       Text('lineSpacing').fontSize(9).fontColor(0xCCCCCC)
+      // Set the line spacing.
       Text('This is a context with no lineSpacing set.')
-        .lineSpacingValue(undefined)
-      Text( 'This is a context with lineSpacing set to 20_px.')
-        .lineSpacingValue(LengthMetrics.px(20))
+        .lineSpacing(undefined)
+        .style()
+      Text('This is a context with lineSpacing set to 20_px.')
+        .lineSpacing(LengthMetrics.px(20))
+        .style()
       Text('This is the context with lineSpacing set to 20_vp.')
-        .lineSpacingValue(LengthMetrics.vp(20))
+        .lineSpacing(LengthMetrics.vp(20))
+        .style()
       Text('This is the context with lineSpacing set to 20_fp.')
-        .lineSpacingValue(LengthMetrics.fp(20))
+        .lineSpacing(LengthMetrics.fp(20))
+        .style()
       Text('This is the context with lineSpacing set to 20_lpx.')
-        .lineSpacingValue(LengthMetrics.lpx(20))
+        .lineSpacing(LengthMetrics.lpx(20))
+        .style()
       Text('This is the context with lineSpacing set to 100%.')
-        .lineSpacingValue(LengthMetrics.percent(1))
+        .lineSpacing(LengthMetrics.percent(1))
+        .style()
+
       Text('fontFeature').fontSize(9).fontColor(0xCCCCCC)
+      // Set text features.
       Text('This is ss01 on : 0123456789')
-        .fontSize(20)
         .fontFeature("\"ss01\" on")
+        .style()
       Text('This is ss01 off: 0123456789')
-        .fontSize(20)
         .fontFeature("\"ss01\" off")
-      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
-      Text(this.message1)
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
-      Row() {
-        Button('Current lineBreakStrategy value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
-          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
-          }
-        })
-      }
-    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+        .style()
+    }.height(300).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![](figures/TextExample8.gif)
+![](figures/TextExample8.PNG)
 
-### Example 9
-This example shows how to use **getLayoutManager**.
+### Example 10: Obtaining Text Information
+
+This example shows how to obtain text information by calling the layout manager object of the text using the **getLayoutManager** API.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample9 {
+struct TextExample10 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
@@ -1606,7 +1690,7 @@ struct TextExample9 {
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
               this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
-            });
+            })
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
@@ -1619,14 +1703,16 @@ struct TextExample9 {
 
 ![textLayoutManager](figures/textLayoutManager.gif)
 
-### Example 10
-This example shows how to use **textSelectable**: With **TextSelectMode.SELECTABLE_FOCUSABLE** set, the text can be selected with the keyboard.
+### Example 11: Implementing Keyboard-based Text Selection
+
+This example demonstrates how to implement the feature to select text using the keyboard by setting the **textSelectable** attribute to **TextSelectMode.SELECTABLE_FOCUSABLE**.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample10 {
-  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+struct TextExample11 {
+  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText'
   
   build() {
     Column() {
@@ -1645,27 +1731,18 @@ struct TextExample10 {
 
 ![textTextSelectableMode](figures/textTextSelectableMode.gif)
 
-### Example 11
+### Example 12: Setting Custom Menu Extensions
 
-This example shows how to set **editMenuOptions**.
+This example demonstrates how to use the **editMenuOptions** API to create custom menu extensions for text settings. It includes customizing text content, icons, and callbacks for these extensions.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct TextExample11 {
+struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy_custom"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select all_custom"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -1690,17 +1767,17 @@ struct TextExample11 {
           onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
             if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
               console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
+              return true
             }
             if (menuItem.id.equals(TextMenuItemId.COPY)) {
               console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
+              return true
             }
             if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
               console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
+              return false
             }
-            return false;
+            return false
           }
         })
         .margin({ top: 100 })
@@ -1713,44 +1790,15 @@ struct TextExample11 {
 
 ![textEditMenuOptions](figures/textEditMenuOptions.gif)
 
-### Example 12
+### Example 13: Securing Sensitive Information
 
-This example shows how to use **halfLeading**.
+This example illustrates how to secure sensitive information using the **privacySensitive** attribute. Note that the display requires widget framework support.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct TextExample12 {
-  build() {
-    Column({ space: 10 }) {
-      // Set whether half leading is enabled.
-      Text('halfLeading').fontSize(9).fontColor(0xCCCCCC).margin(15).width('90%')
-      Text("This is the text with the halfLeading set.")
-        .lineHeight(60)
-        .halfLeading(true)
-        .borderWidth(1)
-        .width('80%')
-      Text("This is the text without the halfLeading set.")
-        .lineHeight(60)
-        .halfLeading(false)
-        .borderWidth(1)
-        .width('80%')
-    }
-  }
-}
-```
-
-![textHalfLeading](figures/textHalfLeading.PNG)
-
-### Example 13
-
-This example shows how to enable privacy mode, which requires widget framework support.
-
-```ts
-@Entry
-@Component
-struct ImageExample {
+struct TextExample13 {
   build() {
     Column({ space: 10 }) {
       Text("privacySensitive")

@@ -21,7 +21,7 @@ onCompleted?(error: BusinessError\<void\>): void
 
 在所有启动任务完成时调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 

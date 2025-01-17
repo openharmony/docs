@@ -48,7 +48,7 @@
    g++ --shared -o example.so example.cpp
    ```
 
-3. 在IDE中配置build-profile.json5中配置transformLib选项（这里用windows环境举例）。
+3. 在DevEco Studio中配置build-profile.json5中配置transformLib选项（这里用windows环境举例）。
 
    选项中配置的路径为步骤2生成的链接库文件在项目中的路径（这里是dll目录下）。
 

@@ -25,7 +25,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | 表示应用信息。 |
-| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息 |
+| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息。 |
 
 
 
@@ -33,11 +33,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | 获取应用自身的相关信息。 |
-| [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | 获取自身应用的appId信息。 |
-| [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
-| [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
-| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
+| [OH_NativeBundle_GetCurrentApplicationInfo](#oh_nativebundle_getcurrentapplicationinfo) | 获取当前应用的信息。 |
+| [OH_NativeBundle_GetAppId](#oh_nativebundle_getappid) | 获取当前应用的appId信息。 |
+| [OH_NativeBundle_GetAppIdentifier](#oh_nativebundle_getappidentifier) | 获取当前应用的appIdentifier信息。 |
+| [OH_NativeBundle_GetMainElementName](#oh_nativebundle_getmainelementname) | 获取当前应用的入口信息。 |
+| [OH_NativeBundle_GetCompatibleDeviceType](_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取当前应用适用的设备类型。 |
 
 
 ## 函数说明
@@ -115,7 +115,7 @@ char* OH_NativeBundle_GetCompatibleDeviceType()
 
 **描述**
 
-获取自身应用适用的设备类型。
+获取当前应用适用的设备类型。用于将手机应用分发到平板/2in1设备时，合理适配布局和字体大小。
 
 **起始版本：** 14
 

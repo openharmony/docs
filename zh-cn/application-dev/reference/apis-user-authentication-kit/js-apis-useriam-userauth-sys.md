@@ -13,6 +13,16 @@
 import { userAuth } from '@kit.UserAuthenticationKit';
 ```
 
+## AuthParam<sup>10+</sup>
+
+用户认证相关参数。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称           | 类型                               | 必填 | 说明                                                         |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| userId<sup>16+</sup> | number | 否   |要认证的目标用户ID，值为大于等于0的正整数。|
+
 ## WindowModeType<sup>10+</sup>
 
 用户认证界面的显示类型。
@@ -104,9 +114,9 @@ try {
   const jsonEventData = JSON.stringify(eventData);
   let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
   userAuth.sendNotice(noticeType, jsonEventData);
-  console.log('sendNotice success');
+  console.info('sendNotice success');
 } catch (error) {
-  console.error('sendNotice catch error: ' + JSON.stringify(error));
+  console.error(`sendNotice catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -148,15 +158,15 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('subscribe authentication event success');
+  console.info('subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -194,15 +204,15 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.off('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('cancel subscribe authentication event success');
+  console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -252,9 +262,9 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 let userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -286,15 +296,15 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('subscribe authentication event success');
+  console.info('subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -331,16 +341,27 @@ try {
   };
 
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能通过onResult获取到认证结果。
   userAuthInstance.on('result', {
     onResult (result) {
-      console.log(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
+
+## UserAuthResultCode<sup>16+</sup>
+
+表示返回码的枚举。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称                    |   值   | 说明                 |
+| ----------------------- | ------ | -------------------- |
+| AUTH_TOKEN_CHECK_FAILED | 12500015      | verifyAuthToken系统接口错误码，表示验证的AuthToken无效。|
+| AUTH_TOKEN_EXPIRED      | 12500016      | verifyAuthToken系统接口错误码，AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长。|

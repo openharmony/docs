@@ -61,6 +61,18 @@ Allows an application to turn on and off the location service.
 
 **Valid since**: 12
 
+### ohos.permission.LOCATION_SWITCH_IGNORED
+
+Allows a system application to obtain location information when the location switch is turned off.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.SUBSCRIBE_SWING_ABILITY
 
 Allows an application to use the subscription capability powered by smart sensing.
@@ -324,6 +336,18 @@ Allows an application to start the upgrade service to perform assisted or collab
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.PLUGIN_UPDATE
+
+Allows a system application or system service to call the update APIs to download and update plug-ins and AI models.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -1033,6 +1057,30 @@ Allows an application to control the microphone, for example, persisting the mut
 
 **Valid since**: 12
 
+### ohos.permission.CAPTURE_PLAYBACK
+
+Allows a system service to capture audio without using the AVScreenCapture framework.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+Allows a system application to use the microphone in the background.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.START_DLP_CRED
 
 Allows a system application or system service to start the DLP credential management application.
@@ -1159,7 +1207,7 @@ Allows an application to obtain the MAC address of the local Wi-Fi device.
 
 Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
-To obtain the MAC address of the peer device when obtaining Wi-Fi scanning results, you need to apply for this permission.
+This permission is required if you want to obtain the MAC address of the peer device when obtaining the Wi-Fi scanning result.
 
 **Permission level**: system_basic
 
@@ -1412,18 +1460,6 @@ Allows an application to read wallpaper files.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.GET_WIFI_CONFIG
-
-Allows an application to obtain the Wi-Fi configuration.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -1760,18 +1796,6 @@ Allows an application to set the system time zone.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-Allows an application to configure Wi-Fi information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -2737,6 +2761,18 @@ Allows a system application to set dynamic sandbox policies.
 
 **Valid since**: 11
 
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+Allows a system application or system service to check sandbox policies of other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 Allows an SA to call **Find Device**.
@@ -2884,6 +2920,18 @@ Allows an application or system ability to initiate the process for registering 
 **Enable via ACL**: true
 
 **Valid since**: 13
+
+### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
+
+Allows a system application or system ability to manage the service that enables a powered-off device to be found by another device with the same account.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ### ohos.permission.MANAGE_RGM
 
@@ -3178,18 +3226,6 @@ Allows a system application to obtain cloud space information and resources thro
 Allows a system application or service to preload application processes.
 
 **Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
-
-Allows a system application to use infrared interfaces.
-
-**Permission level**: normal
 
 **Authorization mode**: system_grant
 
@@ -3580,6 +3616,18 @@ Allows a system application to filter input events.
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.INPUT_DEVICE_CONTROLLER
+
+Allows an application to obtain and set the status of input devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
@@ -4079,6 +4127,18 @@ Allows an application to utilize the recovery key to reset the lock screen passw
 
 **Valid since**: 14
 
+### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
+
+Allows an application to access the confidential computing zone.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 Allows an application to obtain brief information about the recovery key.
@@ -4141,6 +4201,18 @@ Allows an application to access the application lock.
 
 **Valid since**: 13
 
+### ohos.permission.ACCESS_APP_SINGLE_PERMISSION_MANAGEMENT
+
+Allows an application to launch a page for modifying a specific permission of another application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.kernel.DISABLE_CODE_MEMORY_PROTECTION
 
 Allows an application to disable its runtime code integrity protection.
@@ -4153,7 +4225,7 @@ For the application developed using the cross-platform framework, this permissio
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.kernel.ALLOW_WRITABLE_CODE_MEMORY
 
@@ -4167,7 +4239,7 @@ For the application developed using the cross-platform framework, this permissio
 
 **Enable via ACL**: true
 
-**Valid since**: 13
+**Valid since**: 14
 
 ### ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
 
@@ -4209,13 +4281,149 @@ Allows a system application to access the application installation directory.
 
 Allows a system application to invoke the services provided by the account ServiceExtensionAbility.
 
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
+### ohos.permission.ANTI_FRAUD
+
+Allows an application to access risk control probes to detect device security risks. The detection result can be used as the input for risk control decision-making in the cloud.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+Allows a system application or system service to call APIs to perform encryption and decryption.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+### ohos.permission.WATCH_READ_EMERGENCY_INFO
+
+Allows an application to read the SOS emergency information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
+
+Allows an application to write the SOS emergency information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.WATCH_START_SOS_SERVICE
+
+Allows an application to enable or access the SOS service.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14, and is available to system applications since API version 15.
+
+### ohos.permission.ACCESS_DLP_HIDE_INFO
+
+Allows a system application to start the page for setting privacy protection.
+
 **Permission level**：system_basic
 
 **Authorization mode**：system_grant
 
 **Enable via ACL**：true
 
-**Valid since**：13
+**Valid since**：16
+
+### ohos.permission.DLP_GET_HIDE_STATUS
+
+Allows a system application to use the information hiding APIs to obtain the information hiding status.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.GET_ANIM_POLICY
+
+Allows a system application to register the animation plugin to obtain animation policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
+
+Allows a system application to create a virtual keyboard window.
+
+A system application can create a virtual keyboard window only after obtaining this permission. Currently, this permission is available only to system applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
+### ohos.permission.GET_FAMILY_INFO
+
+Allows a system application to obtain the group information of Family Sharing.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ## system_grant Permissions (Unavailable via ACL)
 
@@ -4466,6 +4674,18 @@ Allows a UIExtensionAbility to be displayed on the locked screen.
 ### ohos.permission.USE_USER_ACCESS_MANAGER
 
 Allows an application to query and configure user identity authentication policies, and verify the authentication result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: false
+
+**Valid since**: 16
+
+### ohos.permission.SET_LAUNCH_REASON_MESSAGE
+
+Allows a system application to set the launch reason when starting another application.
 
 **Permission level**: system_basic
 

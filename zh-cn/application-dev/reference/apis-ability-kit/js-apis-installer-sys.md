@@ -1508,7 +1508,7 @@ try {
 }
 ```
 
-## BundleInstaller.destroyAppClone<sup>14+</sup>
+## BundleInstaller.destroyAppClone<sup>15+</sup>
 
 destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: DestroyAppCloneParam): Promise\<void\>;
 
@@ -1526,7 +1526,7 @@ destroyAppClone(bundleName: string, appIndex: number, destroyAppCloneParam?: Des
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 待删除应用分身的包名。                                         |
 | appIndex     | number                        | 是   | 待删除应用分身的索引。                                         |
-| destroyAppCloneParam       | [DestroyAppCloneParam](#destroyappcloneparam14)   | 否   | 指定删除应用分身所需的其他参数，默认值：参照[DestroyAppCloneParam](#destroyappcloneparam14)的默认值。   |
+| destroyAppCloneParam       | [DestroyAppCloneParam](#destroyappcloneparam15)   | 否   | 指定删除应用分身所需的其他参数，默认值：参照[DestroyAppCloneParam](#destroyappcloneparam15)的默认值。   |
 
 **返回值：**
 
@@ -1679,7 +1679,7 @@ try {
 | additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 | verifyCodeParams<sup>deprecated<sup> | Array<[VerifyCodeParam](#verifycodeparamdeprecated)> | 否 | 代码签名文件参数，默认值为空。         |
 | pgoParams<sup>11+</sup> | Array<[PGOParam](#pgoparam11)> | 否 | PGO配置文件参数，默认值为空。         |
-| parameters<sup>14+</sup> | Array<[Parameters](#parameters14)> | 否 | 扩展参数，默认值为空。         |
+| parameters<sup>15+</sup> | Array<[Parameters](#parameters15)> | 否 | 扩展参数，默认值为空。         |
 
 ## UninstallParam<sup>10+</sup>
 
@@ -1722,7 +1722,7 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | moduleName | string | 是 | 应用程序模块名称。 |
 | pgoFilePath  | string | 是 | PGO配置文件路径。           |
 
-## Parameters<sup>14+</sup>
+## Parameters<sup>15+</sup>
 
 扩展参数信息。
 
@@ -1748,7 +1748,7 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | userId      | number | 否   | 指定创建分身应用所在的用户id。默认值：调用方所在用户。            |
 | appIndex    | number | 否   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
 
-## DestroyAppCloneParam<sup>14+</sup>
+## DestroyAppCloneParam<sup>15+</sup>
 
 删除分身应用可指定的参数信息。
 
@@ -1759,4 +1759,4 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 | 名称        | 类型   | 必填 | 说明                                                          |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | userId      | number | 否   | 指定删除分身应用所在的用户id。默认值：调用方所在用户。            |
-| parameters  | Array<[Parameters](#parameters14)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |
+| parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |

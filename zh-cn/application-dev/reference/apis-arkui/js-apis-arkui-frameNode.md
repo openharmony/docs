@@ -1387,6 +1387,68 @@ typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础
 
 请参考[自定义具体类型节点示例](#自定义具体类型节点示例)。
 
+### getAttribute('Scroll')<sup>16+</sup>
+getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
+
+获取Scroll节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'Scroll' | 是 | 获取Scroll节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| ScrollAttribute&nbsp;\|&nbsp;undefined | Scroll节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'Scroll');
+```
+
+### bindController('Scroll')<sup>16+</sup>
+bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
+
+将滚动控制器Scroller绑定到Scroll节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
+| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
+| nodeType | 'Scroll' | 是 | 绑定滚动控制器的目标节点的节点类型为Scroll。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The type of the node is error; 2.The node is null or undefined. |
+| 100021   | The FrameNode is not modifiable. |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.bindController(node, scroller, 'Scroll');
+```
+
 ### Text<sup>12+</sup>
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
@@ -2435,12 +2497,12 @@ let options: XComponentOptions = {
 typeNode.createNode(uiContext, 'XComponent', options);
 ```
 
-### QRCode<sup>13+</sup>
+### QRCode<sup>14+</sup>
 type QRCode = TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt;
 
 QRCode类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2448,12 +2510,12 @@ QRCode类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;QRCodeInterface, QRCodeAttribute&gt; | 提供QRCode类型FrameNode节点。<br/>**说明：**<br/> QRCodeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为QRCode组件的构造函数类型。 <br/> QRCodeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回QRCode组件的属性设置对象。 |
 
-### createNode('QRCode')<sup>13+</sup>
+### createNode('QRCode')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'QRCode'): QRCode
 
 创建QRCode类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2468,7 +2530,7 @@ createNode(context: UIContext, nodeType: 'QRCode'): QRCode
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [QRCode](#qrcode13) | QRCode类型的FrameNode节点。 |
+| [QRCode](#qrcode14) | QRCode类型的FrameNode节点。 |
 
 **示例：**
 
@@ -2476,12 +2538,12 @@ createNode(context: UIContext, nodeType: 'QRCode'): QRCode
 typeNode.createNode(uiContext, 'QRCode');
 ```
 
-### Badge<sup>13+</sup>
+### Badge<sup>14+</sup>
 type Badge = TypedFrameNode&lt;BadgeInterface, BadgeAttribute&gt;
 
 Badge类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2489,12 +2551,12 @@ Badge类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;BadgeInterface, BadgeAttribute&gt; | 提供Badge类型FrameNode节点。<br/>**说明：**<br/> BadgeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Badge组件的构造函数类型。 <br/> BadgeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Badge组件的属性设置对象。 |
 
-### createNode('Badge')<sup>13+</sup>
+### createNode('Badge')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'Badge'): Badge
 
 创建Badge类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2509,7 +2571,7 @@ createNode(context: UIContext, nodeType: 'Badge'): Badge
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Badge](#badge13) | Badge类型的FrameNode节点。 |
+| [Badge](#badge14) | Badge类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2519,12 +2581,12 @@ createNode(context: UIContext, nodeType: 'Badge'): Badge
 typeNode.createNode(uiContext, 'Badge');
 ```
 
-### Grid<sup>13+</sup>
+### Grid<sup>14+</sup>
 type Grid = TypedFrameNode&lt;GridInterface, GridAttribute&gt;
 
 Grid类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2532,12 +2594,12 @@ Grid类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;GridInterface, GridAttribute&gt; | 提供Grid类型FrameNode节点。<br/>**说明：**<br/> GridInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Grid组件的构造函数类型。 <br/> GridAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Grid组件的属性设置对象。 |
 
-### createNode('Grid')<sup>13+</sup>
+### createNode('Grid')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'Grid'): Grid
 
 创建Grid类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2552,7 +2614,7 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Grid](#grid13) | Grid类型的FrameNode节点。 |
+| [Grid](#grid14) | Grid类型的FrameNode节点。 |
 
 **示例： ** 
 
@@ -2562,12 +2624,12 @@ createNode(context: UIContext, nodeType: 'Grid'): Grid
 typeNode.createNode(uiContext, 'Grid');
 ```
 
-### GridItem<sup>13+</sup>
+### GridItem<sup>14+</sup>
 type GridItem = TypedFrameNode&lt;GridItemInterface, GridItemAttribute&gt;
 
 GridItem类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2575,12 +2637,12 @@ GridItem类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;GridItemInterface, GridItemAttribute&gt; | 提供GridItem类型FrameNode节点。<br/>**说明：**<br/> GridItemInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为GridItem组件的构造函数类型。 <br/> GridItemAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回GridItem组件的属性设置对象。 |
 
-### createNode('GridItem')<sup>13+</sup>
+### createNode('GridItem')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 
 创建GridItem类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2595,7 +2657,7 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [GridItem](#griditem13) | GridItem类型的FrameNode节点。 |
+| [GridItem](#griditem14) | GridItem类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2605,12 +2667,12 @@ createNode(context: UIContext, nodeType: 'GridItem'): GridItem
 typeNode.createNode(uiContext, 'GridItem');
 ```
 
-### TextClock<sup>13+</sup>
+### TextClock<sup>14+</sup>
 type TextClock = TypedFrameNode&lt;TextClockInterface, TextClockAttribute&gt;
 
 TextClock类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2618,12 +2680,12 @@ TextClock类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;TextClockInterface, TextClockAttribute&gt; | 提供TextClock类型FrameNode节点。<br/>**说明：**<br/> TextClockInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextClock组件的构造函数类型。 <br/> TextClockAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextClock组件的属性设置对象。 |
 
-### createNode('TextClock')<sup>13+</sup>
+### createNode('TextClock')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'TextClock'): TextClock
 
 创建TextClock类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2638,7 +2700,7 @@ createNode(context: UIContext, nodeType: 'TextClock'): TextClock
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [TextClock](#textclock13) | TextClock类型的FrameNode节点。 |
+| [TextClock](#textclock14) | TextClock类型的FrameNode节点。 |
 
 **示例： ** 
 
@@ -2648,12 +2710,12 @@ createNode(context: UIContext, nodeType: 'TextClock'): TextClock
 typeNode.createNode(uiContext, 'TextClock');
 ```
 
-### TextTimer<sup>13+</sup>
+### TextTimer<sup>14+</sup>
 type TextTimer = TypedFrameNode&lt;TextTimerInterface, TextTimerAttribute&gt;
 
 TextTimer类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2661,12 +2723,12 @@ TextTimer类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;TextTimerInterface, TextTimerAttribute&gt; | 提供TextTimer类型FrameNode节点。<br/>**说明：**<br/> TextTimerInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextTimer组件的构造函数类型。 <br/> TextTimerAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextTimer组件的属性设置对象。 |
 
-### createNode('TextTimer')<sup>13+</sup>
+### createNode('TextTimer')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'TextTimer'): TextTimer
 
 创建TextTimer类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2681,7 +2743,7 @@ createNode(context: UIContext, nodeType: 'TextTimer'): TextTimer
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [TextTimer](#texttimer13) | TextTimer类型的FrameNode节点。 |
+| [TextTimer](#texttimer14) | TextTimer类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2691,12 +2753,12 @@ createNode(context: UIContext, nodeType: 'TextTimer'): TextTimer
 typeNode.createNode(uiContext, 'TextTimer');
 ```
 
-### Marquee<sup>13+</sup>
+### Marquee<sup>14+</sup>
 type Marquee = TypedFrameNode&lt;MarqueeInterface, MarqueeAttribute&gt;
 
 Marquee类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2704,12 +2766,12 @@ Marquee类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;MarqueeInterface, MarqueeAttribute&gt; | 提供Marquee类型FrameNode节点。<br/>**说明：**<br/> MarqueeInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Marquee组件的构造函数类型。 <br/> MarqueeAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Marquee组件的属性设置对象。 |
 
-### createNode('Marquee')<sup>13+</sup>
+### createNode('Marquee')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 
 创建Marquee类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2724,7 +2786,7 @@ createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Marquee](#marquee13) | Marquee类型的FrameNode节点。 |
+| [Marquee](#marquee14) | Marquee类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2734,12 +2796,12 @@ createNode(context: UIContext, nodeType: 'Marquee'): Marquee
 typeNode.createNode(uiContext, 'Marquee');
 ```
 
-### TextArea<sup>13+</sup>
+### TextArea<sup>14+</sup>
 type TextArea = TypedFrameNode&lt;TextAreaInterface, TextAreaAttribute&gt;
 
 TextArea类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2747,12 +2809,12 @@ TextArea类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;TextAreaInterface, TextAreaAttribute&gt; | 提供TextArea类型FrameNode节点。<br/>**说明：**<br/> TextAreaInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为TextArea组件的构造函数类型。 <br/> TextAreaAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回TextArea组件的属性设置对象。 |
 
-### createNode('TextArea')<sup>13+</sup>
+### createNode('TextArea')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 
 创建TextArea类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2767,7 +2829,7 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [TextArea](#textarea13) | TextArea类型的FrameNode节点。 |
+| [TextArea](#textarea14) | TextArea类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2777,12 +2839,12 @@ createNode(context: UIContext, nodeType: 'TextArea'): TextArea
 typeNode.createNode(uiContext, 'TextArea');
 ```
 
-### SymbolGlyph<sup>13+</sup>
+### SymbolGlyph<sup>14+</sup>
 type SymbolGlyph = TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt;
 
 SymbolGlyph类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2790,12 +2852,12 @@ SymbolGlyph类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SymbolGlyphInterface, SymbolGlyphAttribute&gt; | 提供SymbolGlyph类型FrameNode节点。<br/>**说明：**<br/> SymbolGlyphInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为SymbolGlyph组件的构造函数类型。 <br/> SymbolGlyphAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回SymbolGlyph组件的属性设置对象。 |
 
-### createNode('SymbolGlyph')<sup>13+</sup>
+### createNode('SymbolGlyph')<sup>14+</sup>
 createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 
 创建SymbolGlyph类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2810,7 +2872,7 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [SymbolGlyph](#symbolglyph13) | SymbolGlyph类型的FrameNode节点。 |
+| [SymbolGlyph](#symbolglyph14) | SymbolGlyph类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2820,12 +2882,12 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 typeNode.createNode(uiContext, 'SymbolGlyph');
 ```
 
-### Checkbox<sup>13+</sup>
+### Checkbox<sup>16+</sup>
 type Checkbox = TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt;
 
 Checkbox类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2833,12 +2895,12 @@ Checkbox类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt; | 提供Checkbox类型FrameNode节点。<br/>**说明：**<br/> CheckboxInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Checkbox组件的构造函数类型。 <br/> CheckboxAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Checkbox组件的属性设置对象。 |
 
-### createNode('Checkbox')<sup>13+</sup>
+### createNode('Checkbox')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 创建Checkbox类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2853,7 +2915,7 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Checkbox](#checkbox13) | Checkbox类型的FrameNode节点。 |
+| [Checkbox](#checkbox16) | Checkbox类型的FrameNode节点。 |
 
 **示例： ** 
 
@@ -2863,12 +2925,12 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 typeNode.createNode(uiContext, 'Checkbox');
 ```
 
-### CheckboxGroup<sup>13+</sup>
+### CheckboxGroup<sup>16+</sup>
 type CheckboxGroup = TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt;
 
 CheckboxGroup类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2876,12 +2938,12 @@ CheckboxGroup类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt; | 提供CheckboxGroup类型FrameNode节点。<br/>**说明：**<br/> CheckboxGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为CheckboxGroup组件的构造函数类型。 <br/> CheckboxGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回CheckboxGroup组件的属性设置对象。 |
 
-### createNode('CheckboxGroup')<sup>13+</sup>
+### createNode('CheckboxGroup')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 创建CheckboxGroup类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2896,7 +2958,7 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [CheckboxGroup](#checkboxgroup13) | CheckboxGroup类型的FrameNode节点。 |
+| [CheckboxGroup](#checkboxgroup16) | CheckboxGroup类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2906,12 +2968,12 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 typeNode.createNode(uiContext, 'CheckboxGroup');
 ```
 
-### Rating<sup>13+</sup>
+### Rating<sup>16+</sup>
 type Rating = TypedFrameNode&lt;RatingInterface, RatingAttribute&gt;
 
 Rating类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2919,12 +2981,12 @@ Rating类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;RatingInterface, RatingAttribute&gt; | 提供Rating类型FrameNode节点。<br/>**说明：**<br/> RatingInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Rating组件的构造函数类型。 <br/> RatingAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Rating组件的属性设置对象。 |
 
-### createNode('Rating')<sup>13+</sup>
+### createNode('Rating')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 创建Rating类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2939,7 +3001,7 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Rating](#rating13) | Rating类型的FrameNode节点。 |
+| [Rating](#rating16) | Rating类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2949,12 +3011,12 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 typeNode.createNode(uiContext, 'Rating');
 ```
 
-### Radio<sup>13+</sup>
+### Radio<sup>16+</sup>
 type Radio = TypedFrameNode&lt;RadioInterface, RadioAttribute&gt;
 
 Radio类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2962,12 +3024,12 @@ Radio类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;RadioInterface, RadioAttribute&gt; | 提供Radio类型FrameNode节点。<br/>**说明：**<br/> RadioInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Radio组件的构造函数类型。 <br/> RadioAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Radio组件的属性设置对象。 |
 
-### createNode('Radio')<sup>13+</sup>
+### createNode('Radio')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 创建Radio类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2982,7 +3044,7 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Radio](#radio13) | Radio类型的FrameNode节点。 |
+| [Radio](#radio16) | Radio类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2992,12 +3054,12 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 typeNode.createNode(uiContext, 'Radio');
 ```
 
-### Slider<sup>13+</sup>
+### Slider<sup>16+</sup>
 type Slider = TypedFrameNode&lt;SliderInterface, SliderAttribute&gt;
 
 Slider类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3005,12 +3067,12 @@ Slider类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SliderInterface, SliderAttribute&gt; | 提供Slider类型FrameNode节点。<br/>**说明：**<br/> SliderInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Slider组件的构造函数类型。 <br/> SliderAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Slider组件的属性设置对象。 |
 
-### createNode('Slider')<sup>13+</sup>
+### createNode('Slider')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 创建Slider类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3025,7 +3087,7 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Slider](#slider13) | Slider类型的FrameNode节点。 |
+| [Slider](#slider16) | Slider类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -3035,12 +3097,12 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 typeNode.createNode(uiContext, 'Slider');
 ```
 
-### Select<sup>13+</sup>
+### Select<sup>16+</sup>
 type Select = TypedFrameNode&lt;SelectInterface, SelectAttribute&gt;
 
 Select类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3048,12 +3110,12 @@ Select类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SelectInterface, SelectAttribute&gt; | 提供Select类型FrameNode节点。<br/>**说明：**<br/> SelectInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Select组件的构造函数类型。 <br/> SelectAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Select组件的属性设置对象。 |
 
-### createNode('Select')<sup>13+</sup>
+### createNode('Select')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Select'): Select
 
 创建Select类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3068,7 +3130,7 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Select](#select13) | Select类型的FrameNode节点。 |
+| [Select](#select16) | Select类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -3078,12 +3140,12 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 typeNode.createNode(uiContext, 'Select');
 ```
 
-### Toggle<sup>13+</sup>
+### Toggle<sup>16+</sup>
 type Toggle = TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt;
 
 Toggle类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3091,12 +3153,12 @@ Toggle类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt; | 提供Toggle类型FrameNode节点。<br/>**说明：**<br/> ToggleInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Toggle组件的构造函数类型。 <br/> ToggleAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Toggle组件的属性设置对象。 |
 
-### createNode('Toggle')<sup>13+</sup>
+### createNode('Toggle')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Toggle
 
 创建Toggle类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3112,7 +3174,7 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Toggle](#toggle13) | Toggle类型的FrameNode节点。 |
+| [Toggle](#toggle16) | Toggle类型的FrameNode节点。 |
 
 **示例：** 
 

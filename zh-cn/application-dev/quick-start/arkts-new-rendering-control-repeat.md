@@ -15,7 +15,7 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 - Repeat使用键值作为标识，因此键值生成函数`key()`必须针对每个数据生成唯一的值。
 - Repeat virtualScroll场景必须在滚动类容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持virtualScroll场景（此时配置cachedCount会生效）。其它容器组件只适用于non-virtualScroll场景。
 - Repeat开启virtualScroll后，在每次迭代中，必须创建且只允许创建一个子组件。不开启virtualScroll没有该限制。生成的子组件必须是允许包含在Repeat父容器组件中的子组件。
-- 当Repeat与@Builder混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
+- 当Repeat与自定义组件/@Builder函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
 - template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
 - totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
 - 在容器组件内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
@@ -68,7 +68,7 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 
 ![Repeat-Start](./figures/Repeat-Start.PNG)
 
-当前Repeat组件templateId有a和b两种，templateId a对应的缓存池，其最大缓存值为3，templateId b对应的缓存池，其最大缓存值为4，其父组件默认预加载节点1个。这时，我们将屏幕右滑，Repeat将开始复用缓存池中的节点。
+当前Repeat组件templateId有a和b两种，templateId a对应的缓存池，其最大缓存值为3，templateId b对应的缓存池，其最大缓存值为4，其父组件默认预加载节点1个。这时，我们将屏幕向后滑动，Repeat将开始复用缓存池中的节点。
 
 ![Repeat-Slide](./figures/Repeat-Slide.PNG)
 
@@ -102,7 +102,9 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 - 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据；
 - totalCount > arr.length时，代表Repeat将渲染totalCount个数据，滚动条样式根据totalCount值变化。
 
-> **注意：** 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+> **注意：** 
+>
+> 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
 ## cachedCount规则
 
@@ -595,6 +597,7 @@ struct DemoList {
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
+      // 此处app.media.listItem0、app.media.listItem1、app.media.listItem2仅作示例，请开发者自行替换
       this.videoList.push(new DemoListItemInfo('视频' + i,
         i % 3 == 0 ? $r("app.media.listItem0") :
         i % 3 == 1 ? $r("app.media.listItem1") : $r("app.media.listItem2")));
@@ -704,6 +707,7 @@ struct DemoGrid {
 
   aboutToAppear(): void {
     for (let i = 0; i < 10; i++) {
+      // 此处app.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
       this.itemList.push(new DemoGridItemInfo('视频' + i,
         i % 3 == 0 ? $r("app.media.gridItem0") :
         i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));
@@ -769,8 +773,9 @@ struct DemoGrid {
       .onRefreshing(() => {
         setTimeout(() => {
           this.itemList.splice(10, 1);
-          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0')));
+          this.itemList.unshift(new DemoGridItemInfo('refresh', $r('app.media.gridItem0'))); // 此处app.media.gridItem0仅作示例，请开发者自行替换
           for (let i = 0; i < 10; i++) {
+            // 此处aapp.media.gridItem0、app.media.gridItem1、app.media.gridItem2仅作示例，请开发者自行替换
             this.itemList.unshift(new DemoGridItemInfo('新视频' + this.num,
               i % 3 == 0 ? $r("app.media.gridItem0") :
               i % 3 == 1 ? $r("app.media.gridItem1") : $r("app.media.gridItem2")));

@@ -25,7 +25,7 @@ useEffect(value: boolean)
 
 ## useEffect<sup>14+</sup>
 
-useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
+useEffect(useEffect: boolean, effectType: EffectType)
 
 用于设置组件是否应用<!--Del-->父级[EffectComponent](ts-container-effectcomponent-sys.md)或<!--DelEnd-->窗口定义的效果模板。
 
@@ -35,9 +35,26 @@ useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 
 **参数：**
 
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| useEffect  | boolean                                                      | 是   | 控制组件是否应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>useEffect为true时表示应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：false |
+| effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | 是   | 设置组件应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：EffectType.DEFAULT |
+
+## useEffect<sup>16+</sup>
+
+useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
+
+用于设置组件是否应用<!--Del-->父级[EffectComponent](ts-container-effectcomponent-sys.md)或<!--DelEnd-->窗口定义的效果模板。与[useEffect<sup>14+</sup>](#useeffect)相比，useEffect参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| useEffect | Optional\<boolean> | 是 | 控制组件是否应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>useEffect为true时表示应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：false|
+| useEffect | Optional\<boolean> | 是 | 控制组件是否应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>useEffect为true时表示应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：false<br/>当useEffect的值为undefined时，维持之前取值。 |
 | effectType | [EffectType](ts-universal-attributes-use-effect.md#effecttype14) | 否 | 设置组件应用<!--Del-->父级EffectComponent或<!--DelEnd-->窗口定义的效果模板。<br/>默认值：EffectType.DEFAULT|
 
 ## EffectType<sup>14+</sup>
@@ -52,6 +69,15 @@ useEffect(useEffect: Optional\<boolean>, effectType?: EffectType)
 | -------- | ---- | ---------------------- |
 | DEFAULT  | 0   | 使用<!--Del-->父级EffectComponent定义的<!--DelEnd-->效果模板进行定义。 |
 | WINDOW_EFFECT  | 1   | 使用窗口定义的效果模板进行定义。 |
+
+效果模板
+
+|  设备类型    | 模糊半径(单位: px)   | 饱和度                 |  亮度  |  颜色  |
+| -------- | ---- | ---------------------- | -------- | -------- |
+| 移动设备  | 0   | 0 | 0 | '#ffffffff'
+| 2in1设备：深色模式  | 80   | 1.5 | 1.0 | '#e52e3033'
+| 2in1设备：浅色模式  | 80   | 1.9 | 1.0 | '#e5ffffff'
+| Tablet设备  | 0   | 0 | 0 | '#ffffffff'
 
 <!--Del-->
 ## 示例

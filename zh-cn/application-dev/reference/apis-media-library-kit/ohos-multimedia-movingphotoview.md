@@ -95,8 +95,8 @@ autoPlayPeriod(startTime: number, endTime: number)
 
 | 参数名  | 类型    | 必填 | 说明                         |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| number| 是   | 区间播放开始时间，单位：ms。<br/>取值范围：[0,3000]|
-| endTime| number| 是   | 区间播放结束时间，单位：ms。<br/>取值范围：[0,3000]|
+| startTime| number| 是   | 区间播放开始时间，单位：ms。<br/>取值范围：大于等于0|
+| endTime| number| 是   | 区间播放结束时间，单位：ms。<br/>取值范围：大于startTime |
 
 ### autoPlay<sup>13+</sup>
 

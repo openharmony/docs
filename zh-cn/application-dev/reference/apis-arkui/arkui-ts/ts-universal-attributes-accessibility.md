@@ -196,7 +196,260 @@ accessibilitySelected(isSelect: boolean)
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | isSelect | boolean | 是   | 用于表示组件是否被选中。<br/>支持的值为:<br/>true:当前组件被选中。<br/>false:当前组件未被选中。<br/>undefined:由组件自行确定选中状态。<br/>默认值:undefined。<br/>**说明：**<br/>1. 使用该接口设置true或false后，如果需要同时使用accessibilityChecked接口则需要将accessibilityChecked接口的参数设置为undefined。 |
 
+## accessibilityRole<sup>16+</sup>
 
+accessibilityRole(role: AccessibilityRoleType)
+
+用于更新覆盖组件无障碍属性字段内容。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType16) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
+
+## onAccessibilityFocus<sup>16+</sup>
+
+onAccessibilityFocus(callback: AccessibilityFocusCallback)
+
+无障碍节点是否获焦、失焦，回调组件注册的回调函数。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型    | 必填 | 说明                                                         |
+| -------- | ------- | ---- | ------------------------------------------------------------ |
+| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback16) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+
+## AccessibilityFocusCallback<sup>16+</sup>
+
+type AccessibilityFocusCallback = (isFocus: boolean) => void
+
+定义onAccessibilityFocus中使用的回调类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明              |
+| ------ | ------ | ---- | ---------------- |
+| isFocus | boolean | 是 | 是否获焦、失焦。 |
+
+## AccessibilityRoleType<sup>16+</sup>枚举说明
+
+定义组件的屏幕朗读功能角色类型。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值  | 说明             |
+| ---- | ---- | ------------------ |
+| ACTION_SHEET | 0 | 列表弹窗。 |
+| ALERT_DIALOG | 1 | 显示警告弹窗组件。 |
+| INDEXER_COMPONENT | 2 | 索引器组件。 |
+| BADGE_COMPONENT | 3 | 信息标记组件。 |
+| BLANK  | 4 | 空白填充组件。 |
+| BUTTON | 5 | 按钮。 |
+| BACK_BUTTON | 6 | 大图页返回按钮。 |
+| SHEET_DRAG_BAR | 7 | 滑动条。 |
+| CALENDAR_PICKER | 8 | 日历选择器组件。 |
+| CALENDAR | 9 | 日历。 |
+| CANVAS | 10 | 提供画布组件。 |
+| CANVAS_GRADIENT | 11 | 渐变对象。 |
+| CANVAS_PATTERN | 12 | 通过指定图像和重复方式创建图片填充的模板。 |
+| CHECKBOX | 13 | 提供多选框组件。 |
+| CHECKBOX_GROUP | 14 | 多选框群组。 |
+| CIRCLE | 15 | 用于绘制圆形的组件。|
+| COLUMN_SPLIT | 16 | 将子组件纵向布局，并在每个子组件之间插入一根横向的分割线。 |
+| COLUMN | 17 | 沿垂直方向布局的容器。 |
+| CANVAS_RENDERING_CONTEXT_2D | 18 | 用于在画布组件上绘制矩形、文本、图片等。 |
+| CHART | 19 | 图表组件。 |
+| COUNTER | 20 | 计数器组件。 |
+| CONTAINER_MODAL | 21 | 模态容器。 |
+| DATA_PANEL | 22 | 数据面板组件。 |
+| DATE_PICKER | 23 | 选择日期的滑动选择器组件。 |
+| DIALOG | 24 | 弹出框 。 |
+| DIVIDER | 25 | 提供分隔器组件。 |
+| DRAG_BAR | 26 | 拖拽条。 |
+| EFFECT_COMPONENT | 27 | 特效合并容器组件。 |
+| ELLIPSE | 28 | 椭圆绘制组件。 |
+| FLEX | 29 | 以弹性方式布局子组件的容器组件。 |
+| FLOW_ITEM | 30 | 瀑布流组件的子组件。 |
+| FORM_COMPONENT | 31 | 提供卡片组件。 |
+| FORM_LINK | 32 | 静态卡片交互组件。 |
+| GAUGE | 33 | 数据量规图表组件。 |
+| GRID | 34 | 网格容器。 |
+| GRID_COL | 35 | 栅格子组件。 |
+| GRID_CONTAINER | 36 | 纵向排布栅格布局容器。 |
+| GRID_ITEM | 37 | 网格容器中单项内容容器。 |
+| GRID_ROW | 38 | 栅格容器组件。 |
+| HYPERLINK | 39 | 超链接组件。 |
+| IMAGE | 40 | 图片组件。 |
+| IMAGE_ANIMATOR | 41 | 提供帧动画组件。 |
+| IMAGE_BITMAP | 42 | 存储canvas渲染的像素数据。 |
+| IMAGE_DATA | 43 | 存储canvas渲染的像素数据。 |
+| IMAGE_SPAN | 44 | 用于显示行内图片。 |
+| LABEL | 45 | 标签。 |
+| LINE | 46 | 线型。 |
+| LIST | 47 | 列表。|
+| LIST_ITEM | 48 | 用来展示列表具体item。 |
+| LIST_ITEM_GROUP | 49 | 用来展示列表item分组。 |
+| LOADING_PROGRESS | 50 | 用于显示加载动效的组件。 |
+| MARQUEE | 51 | 跑马灯组件。 |
+| MATRIX2D | 52 | 矩阵对象。 |
+| MENU | 53 | 菜单。 |
+| MENU_ITEM | 54 | 菜单项。 |
+| MENU_ITEM_GROUP | 55 | 菜单项分组。 |
+| NAV_DESTINATION | 56 | 显示Navigation的内容区。 |
+| NAV_ROUTER | 57 | 导航组件。 |
+| NAVIGATION | 58 | 路由导航的根视图容器。 |
+| NAVIGATION_BAR | 59 | 导航栏。 |
+| NAVIGATION_MENU | 60 | 导航菜单。 |
+| NAVIGATOR | 61 | 路由容器组件。 |
+| OFFSCREEN_CANVAS | 62 | 用于自定义绘制图形。 |
+| OFFSCREEN_CANVAS_RENDERING_CONTEXT2D | 63 | 2D绘制对象，用于在画布组件上绘制矩形、文本、图片等。 |
+| OPTION | 64 | 具体项目。 |
+| PANEL | 65 | 可滑动面板。 |
+| PAPER_PAGE | 66 | 页面。 |
+| PATH | 67 | 路径绘制组件。 |
+| PATH2D | 68 | 路径对象。 |
+| PATTERN_LOCK | 69 | 图案密码锁组件。 |
+| PICKER | 70 | 选择器。 |
+| PICKER_VIEW | 71 | 选择器视图。 |
+| PLUGIN_COMPONENT | 72 | 新增插件组件。 |
+| POLYGON | 73 | 多边形绘制组件。 |
+| POLYLINE | 74 | 折线绘制组件。 |
+| POPUP | 75 | 显示特定样式气泡。 |
+| PROGRESS | 76 | 文本下载按钮。 |
+| QRCODE | 77 | 二维码。 |
+| RADIO | 78 | 单选框。 |
+| RATING | 79 | 提供在给定范围内选择评分的组件。 |
+| RECT | 80 | 矩形绘制组件。 |
+| REFRESH | 81 | 下拉刷新容器组件。 |
+| RELATIVE_CONTAINER | 82 | 相对布局组件。 |
+| REMOTE_WINDOW | 83 | 远程控制窗口组件。 |
+| RICH_EDITOR | 84 | 支持图文混排和文本交互式编辑的组件。 |
+| RICH_TEXT | 85 | 富文本组件。 |
+| ROLE_PAGER | 86 | 分页。 |
+| ROW | 87 | 沿水平方向布局容器。 |
+| ROW_SPLIT | 88 | 将子组件横向布局，并在每个子组件之间插入一根纵向的分割线。 |
+| SCROLL | 89 | 可滚动的容器组件。 |
+| SCROLL_BAR | 90 | 滚动条。 |
+| SEARCH | 91 | 搜索框组件。 |
+| SEARCH_FIELD | 92 | 搜索框。 |
+| SELECT | 93 | 下拉选择菜单组件。 |
+| SHAPE | 94 | 绘制组件的父组件。 |
+| SIDEBAR_CONTAINER | 95 | 提供侧边栏可以显示和隐藏的侧边栏容器。 |
+| SLIDER | 96 | 垂直方向的滑动条。 |
+| SPAN | 97 | 用于显示行内文本的组件。 |
+| STACK | 98 | 堆叠容器。 |
+| STEPPER | 99 | 步骤导航器组件。 |
+| STEPPER_ITEM | 100 | 用作Stepper组件的页面子组件。 |
+| SWIPER | 101 | 滑块视图容器。 |
+| SWIPER_INDICATOR | 102 | 定义 Swiper 组件的导航指示器。 |
+| SWITCH | 103 | 开关。 |
+| SYMBOL_GLYPH | 104 | 显示图标小符号的组件。 |
+| TAB_CONTENT | 105 | 仅在Tabs中使用，对应一个切换页签的内容视图。 |
+| TAB_BAR | 106 | 页签栏。 |
+| TABS | 107 | 通过页签进行内容视图切换的容器组件。 |
+| TEXT | 108 | 文本。 |
+| TEXT_CLOCK | 109 | 文本时钟组件。 |
+| TEXT_ENTRY | 110 | 文本输入。 |
+| TEXT_INPUT | 111 | 输入框组件。 |
+| TEXT_PICKER | 112 | 文本类滑动选择器组件。 |
+| TEXT_TIMER | 113 | 通过文本显示计时信息并控制其计时器状态的组件。 |
+| TEXT_AREA | 114 | 输入区域组件。 |
+| TEXT_FIELD | 115 | 文本框。 |
+| TIME_PICKER | 116 | 时间选择组件。 |
+| TITLE_BAR | 117 | 标题栏。 |
+| TOGGLER | 118 | 状态组件。 |
+| UI_EXTENSION_COMPONENT | 119 | 用户界面扩展组件。 |
+| VIDEO | 120 | 用于播放视频文件并控制其播放状态的组件。 |
+| WATER_FLOW | 121 | 瀑布流容器。 |
+| WEB | 122 | 加载网页组件。 |
+| XCOMPONENT | 123 | 自定义渲染。 |
+| ROLE_NONE | 124 | NULL。 |
+
+## accessibilityNextFocusId<sup>16+</sup>
+
+accessibilityNextFocusId(nextId: string)
+
+指定走焦过程中组件的下一个焦点。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| nextId | string | 是   | 定义下一个要聚焦的组件ID。若设置的accessibilityNextFocusId不存在，则设置无效。 |
+
+## accessibilityDefaultFocus<sup>16+</sup>
+
+accessibilityDefaultFocus(focus: boolean)
+
+设置屏幕朗读当前页默认首焦点。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| focus  | boolean | 是   | 设置屏幕朗读当前页默认首焦点。值为true则表示该组件为当前页默认首焦点，值为false或其他值无效。 |
+
+## accessibilityUseSamePage<sup>16+</sup>
+
+accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
+
+针对UIExtensionComponent等子树场景中可能出现的跳焦问题，可以通过设置accessibilityUseSamePage属性来解决。由于UEApage事件和宿主page事件发送时序的问题，可能会导致焦点从当前组件移动到另一个组件，这种现象即为"跳焦"。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                             |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
+| pageMode | [AccessibilitySamePageMode](#accessibilitysamepagemode16枚举说明) | 是   | 当前UIExtensionComponent和宿主应用的同page模式。 |
+
+## AccessibilitySamePageMode<sup>16+</sup>枚举说明
+
+当前UIExtensionComponent和宿主应用的同page模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称        | 值   | 说明                                                         |
+| ----------- | ---- | ------------------------------------------------------------ |
+| SEMI_SILENT | 0    | UEA中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
+| FULL_SILENT | 1    | UEA忽略所有的page事件。                                      |
 
 ## 示例1（设置无障碍文本和无障碍说明）
 

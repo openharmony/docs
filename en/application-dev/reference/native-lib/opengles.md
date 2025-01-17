@@ -455,7 +455,7 @@ The process of using the **XComponent** to obtain a native window is as follows:
    }
    ```
 
-For details about how to use the **XComponent**, see [ArkTS XComponent Usage Example] (https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent).
+For details about how to use the **XComponent**, see [ArkTS XComponent Usage Example](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent).
 ### Using eglCreateContext to Create a Rendering Context
 
 The **eglCreateContext** function is used to create an EGL rendering context and associate it with a specific display and configuration. You can specify a shared context to share status information with an existing OpenGL context. The parameters in the function are described as follows:

@@ -232,6 +232,8 @@ Navdestination
 
 示例：
 
+其中，NavDestination的内容区需自行构造，可参考[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-navigation.md)。
+
 ```ts
 @Entry
 @Component
@@ -242,6 +244,8 @@ struct NavigationDemo {
 	@Builder
 	pageOneTmp() {
 		NavDestination() {
+          // ...
+          // 需自行构造NavDestination
 		}
 		.title("PageOne")
 		.mode(NavDestinationMode.DIALOG)

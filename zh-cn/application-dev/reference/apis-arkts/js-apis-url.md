@@ -741,8 +741,8 @@ delete(name: string): void
 
 ```ts
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new url.URLSearchParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let paramsObject = new url.URLSearchParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 ### getAll<sup>(deprecated)</sup>

@@ -487,6 +487,129 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
+### getTemperatureType<sup>16+</sup>
+
+static getTemperatureType(): TemperatureType
+
+Obtains the preferred temperature unit for the current user.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| [TemperatureType](#temperaturetype16) | Temperature unit.|
+
+**Example**
+  ```ts
+  let type: i18n.TemperatureType = i18n.System.getTemperatureType();
+  ```
+
+### getTemperatureName<sup>16+</sup>
+
+static getTemperatureName(type: TemperatureType): string
+
+Obtains the name of a temperature unit.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description           |
+| -------- | ------ | ---- | ------------- |
+| type| [TemperatureType](#temperaturetype16) | Yes   | Temperature unit.|
+
+**Return value**
+
+| Type     | Description                                      |
+| ------- | ---------------------------------------- |
+| string | Name of the temperature unit, which can be **celsius**, **fahrenheit**, and **kelvin**.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+
+> **Description**
+>
+> The error message of 890001 is subject to the actual error.
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let res: string = i18n.System.getTemperatureName(i18n.TemperatureType.CELSIUS);  // res = celsius
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.getTemperatureName failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### getFirstDayOfWeek<sup>16+</sup>
+
+static getFirstDayOfWeek(): WeekDay
+
+Obtains the preferred start day of a week for the current user.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Return value**
+
+| Type    | Description           |
+| ------ | ------------- |
+| [WeekDay](#weekday16) | Start day of a week.|
+
+**Example**
+  ```ts
+  let type: i18n.WeekDay = i18n.System.getFirstDayOfWeek();
+  ```
+
+## TemperatureType<sup>16+</sup>
+
+Enumerates temperature units.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| CELSIUS | 1 | Celsius.|
+| FAHRENHEIT | 2 | Fahrenheit.|
+| KELVIN | 3 | Kelvin.|
+
+## WeekDay<sup>16+</sup>
+
+Enumerates the start day of a week. The value is a day from Monday to Sunday.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| MON | 1 | Monday.|
+| TUE | 2 | Tuesday.|
+| WED | 3 | Wednesday.|
+| THU | 4 | Thursday.|
+| FRI | 5 | Friday.|
+| SAT | 6 | Saturday.|
+| SUN | 7 | Sunday.|
+
+
 ## i18n.isRTL
 
 isRTL(locale: string): boolean
@@ -1089,7 +1212,7 @@ Creates a **PhoneNumberFormat** object.
 | Name    | Type                                      | Mandatory  | Description              |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | Yes   | Country or region to which the phone number to be formatted belongs.|
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options for initializing the **PhoneNumberFormat** object. The default value is **NATIONAL**. |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | No   | Options for **PhoneNumberFormat** object initialization. The default value is **NATIONAL**. |
 
 **Example**
   ```ts
@@ -1201,7 +1324,7 @@ Obtains the home location of a phone number.
 
 ## PhoneNumberFormatOptions<sup>8+</sup>
 
-Options for initializing the **PhoneNumberFormat** object.
+Options for **PhoneNumberFormat** object initialization.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2747,6 +2870,346 @@ Defines the local names of a holiday.
 | language        | string           |   Yes   | Local language of a holiday, for example, **ar**, **en**, or **tr**.         |
 | name            | string           |   Yes   | Local name of a holiday. For example, the Turkish name of Sacrifice Feast is Kurban Bayrami.     |
 
+
+## i18n.getSimpleDateTimeFormatByPattern<sup>16+</sup>
+
+getSimpleDateTimeFormatByPattern(pattern: string, locale?: intl.Locale): SimpleDateTimeFormat
+
+Obtains a **SimpleDateTimeFormat** object based on the specified pattern string. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatBySkeleton**, see [SimpleDateTimeFormat] (#simpledatetimeformat16).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                      |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| pattern | string      | Yes   | Valid pattern. For details about the supported characters and their meanings, see [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter also supports custom text enclosed in single quotation marks (').|
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | No   | Valid locale. The default value is the system locale.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat16) | **SimpleDateTimeFormat** object.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  ```
+
+## i18n.getSimpleDateTimeFormatBySkeleton<sup>16+</sup>
+
+getSimpleDateTimeFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleDateTimeFormat
+
+Obtains a **SimpleDateTimeFormat** object based on the specified skeleton. For details about the display differences between the objects obtained by this API and **getSimpleDateTimeFormatByPattern**, see [SimpleDateTimeFormat] (#simpledatetimeformat16).
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                      |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | Yes   | Valid skeleton. For details about the supported characters and their meanings, see [Date Field Symbol Table](https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). This parameter does not support custom text.|
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | No   | Valid locale. The default value is the system locale.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [SimpleDateTimeFormat](#simpledatetimeformat16) | **SimpleDateTimeFormat** object.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  ```
+
+## SimpleDateTimeFormat<sup>16+</sup>
+
+### format<sup>16+</sup>
+
+format(date: Date): string
+
+Formats the date and time.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description               |
+| ---- | ---- | ---- | ----------------- |
+| date | Date | Yes   | Date and time to be formatted.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| string | A string containing the formatted date and time.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let date : Date = new Date(2024, 11, 13);
+
+  let formatterWithText : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("'month('M')'", locale);
+  let result : string = formatterWithText.format(date); // result = month(12)
+
+  let patternFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatByPattern("yMd", locale);
+  result = patternFormatter.format(date); // result = 20241213
+
+  let skeletonFormatter : i18n.SimpleDateTimeFormat = i18n.getSimpleDateTimeFormatBySkeleton("yMd", locale);
+  result = skeletonFormatter.format(date); // result = 2024/12/13
+  ```
+
+
+## i18n.getSimpleNumberFormatBySkeleton<sup>16+</sup>
+
+getSimpleNumberFormatBySkeleton(skeleton: string, locale?: intl.Locale): SimpleNumberFormat
+
+Obtains a **SimpleNumberFormat** object based on the specified skeleton.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                      |
+| ------- | ----------- | ----- | ---------------------------------------- |
+| skeleton | string      | Yes   | Valid skeleton. For details about the supported characters and their meanings, see [Number Skeletons](https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#number-skeletons).|
+| locale  | [intl.Locale](./js-apis-intl.md#locale) | No   | Valid locale. The default value is the system locale.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| [SimpleNumberFormat](#simplenumberformat16) | **SimpleNumberFormat** object.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  ```
+
+## SimpleNumberFormat<sup>16+</sup>
+
+### format<sup>16+</sup>
+
+format(value: number): string
+
+Formats a number.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description               |
+| ---- | ---- | ---- | ----------------- |
+| value | number | Yes   | Number to be formatted.|
+
+**Return value**
+
+| Type                    | Description   |
+| ---------------------- | ----- |
+| string | Formatted number.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let locale : intl.Locale = new intl.Locale("zh-Hans-CN");
+  let formatter : i18n.SimpleNumberFormat = i18n.getSimpleNumberFormatBySkeleton("%", locale);
+  let result : string = formatter.format(10); // result = 10%
+  ```
+
+## StyledNumberFormat<sup>16+</sup>
+
+### constructor<sup>16+</sup>
+
+constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: StyledNumberFormatOptions)
+
+Creates a **NumberFormat** object for rich text display.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ------------- | ---- | ------------- |
+| numberFormat | [intl.NumberFormat](js-apis-intl.md#numberformat) \| [SimpleNumberFormat](#simplenumberformat16) | Yes  | **NumberFormat** object. |
+| options | [StyledNumberFormatOptions](#stylednumberformatoptions16) | No| Configuration options of the **NumberFormat** object. The default value is the default text style. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let integer_textStyle = new TextStyle({fontColor: Color.Red});
+  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
+  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
+  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+
+  // Create a StyledNumberFormat object through intl.NumberFormat.
+  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
+  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  
+  // Create a StyledNumberFormat object through SimpleNumberFormat.
+  let locale = new intl.Locale("zh");
+  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
+  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  ```
+
+### format<sup>16+</sup>
+
+format(value: number): StyledString
+
+Formats a number to a rich text object.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+|   Name |      Type     | Mandatory|     Description     |
+| --------- | ------------- | ---- | ------------- |
+| value | Number | Yes| Number to be formatted. |
+
+**Return value**
+
+|       Type       |         Description         |
+| ----------------- | ----------------------|
+| [StyledString](../apis-arkui/arkui-ts/ts-universal-styled-string.md#styledstring) | Rich text object.|
+
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+  ```ts
+  import { intl } from '@kit.LocalizationKit';
+
+  let integer_textStyle = new TextStyle({fontColor: Color.Red});
+  let decimal_textStyle = new TextStyle({fontColor: Color.Brown});
+  let fraction_textStyle = new TextStyle({fontColor: Color.Blue});
+  let unit_textStyle = new TextStyle({fontColor: Color.Green});
+
+  // Create a StyledNumberFormat object through intl.NumberFormat.
+  let numFmt = new intl.NumberFormat("zh", {style: "unit", unit: "percent"});
+  let styledNumFmt_1 = new i18n.StyledNumberFormat(numFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  let result_1 = styledNumFmt_1.format(1234.5678); // result_1.getString() is 1,234.568%. In result_1, 1,234 is in red, . in brown, 568 in blue, and % in green.
+  
+  // Create a StyledNumberFormat object through SimpleNumberFormat.
+  let locale = new intl.Locale("zh");
+  let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
+  let styledNumFmt_2 = new i18n.StyledNumberFormat(simpleNumFmt, {
+    integer: integer_textStyle,
+    decimal: decimal_textStyle,
+    fraction: fraction_textStyle,
+    unit: unit_textStyle });
+  let result_2 = styledNumFmt_2.format(1234.5678); // result_2.getString() is 1,234.5678%. In result_2, 1,234 is in red, . in brown, 5678 in blue, and % in green.
+  ```
+
+## StyledNumberFormatOptions<sup>16+</sup>
+
+Defines the options for creating a **NumberFormat** object for rich text display.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+| Name           | Type            |  Mandatory  |  Description                                  |
+| --------------- | --------------- | ------  | --------------------------------------- |
+| integer        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the integer part. The default value is the default text style.    |
+| decimal        | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the decimal point. The default value is the default text style.   |
+| fraction       | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the fraction part. The default value is the default text style.    |
+| unit           | [TextStyle](../apis-arkui/arkui-ts/ts-universal-styled-string.md#textstyle) |   No   |  Text style for the unit. The default value is the default text style.    |
 
 ## i18n.getDisplayCountry<sup>(deprecated)</sup>
 

@@ -11,7 +11,7 @@ A range of lifecycle callbacks are provided for custom components, including **o
 | Attribute         | Type    | Description              | Invoked When                                                    |
 | ------------- | -------- | ------------------ | ------------------------------------------------------------ |
 | onInit        | Function | Custom component initialization  | The custom component is created. This callback is invoked once.|
-| onAttached    | Function | Custom component loading    | The custom component is added to the **\<Page>** component tree. When this callback is invoked, related data can be displayed during the lifecycle in scenarios such as image loading and animation playback.|
+| onAttached    | Function | Custom component loading    | The custom component is added to the **Page** component tree. When this callback is invoked, related data can be displayed during the lifecycle in scenarios such as image loading and animation playback.|
 | onLayoutReady | Function | Component layout completion| Layout calculation, including content size and position adjustment, is complete for the custom component.|
 | onDetached    | Function | Custom component detachment    | The custom component is detached. It is usually used to stop animation or asynchronous logic execution. |
 | onDestroy     | Function | Custom component destruction    | The custom component is destroyed. It is usually used to release resources.              |
@@ -39,13 +39,13 @@ export default {
   },
   onAttached() {
     this.value = "Load the component."
-    console.log ("Component loaded.")
+    console.log("Component loaded.")
   },
   onShow() {
-    console.log ("Page displayed.")
+    console.log("Page displayed.")
   },
   onHide() {
-    console.log ("Page hidden.")
+    console.log("Page hidden.")
   }
 }
 ```

@@ -53,9 +53,9 @@
 
 ## Building the First Page
 
-1. Use the **\<Text>** component.
+1. Use the **Text** component.
 
-   After the project synchronization is complete, choose **entry** > **src** > **main** > **ets** > **pages** in the **Project** window and open the **Index.ets** file. You can see that the file contains a **\<Text>** component. The sample code in the **Index.ets** file is shown below:
+   After the project synchronization is complete, choose **entry** > **src** > **main** > **ets** > **pages** in the **Project** window and open the **Index.ets** file. You can see that the file contains a **Text** component. The sample code in the **Index.ets** file is shown below:
    
    ```ts
    // Index.ets
@@ -78,9 +78,9 @@
    }
    ```
 
-2. Add a **\<Button>** component.
+2. Add a **Button** component.
 
-   On the default page, add a **\<Button>** component to respond to user clicks and implement redirection to another page. The sample code in the **Index.ets** file is shown below:
+   On the default page, add a **Button** component to respond to user clicks and implement redirection to another page. The sample code in the **Index.ets** file is shown below:
    
    ```ts
    // Index.ets
@@ -143,9 +143,9 @@
       }
       ```
 
-2. Add **\<Text>** and **\<Button>** components.
+2. Add **Text** and **Button** components.
 
-   Add **\<Text>** and **\<Button>** components and set their styles, by referring to the first page. The sample code in the **Second.ets** file is shown below:
+   Add **Text** and **Button** components and set their styles, by referring to the first page. The sample code in the **Second.ets** file is shown below:
    
    ```ts
    // Second.ets

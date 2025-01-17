@@ -23,7 +23,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
-
+- 从API version 16开始，Worker线程优先级可以在构造函数的参数[WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions)中进行指定。
 
 ### 创建Worker的注意事项
 
@@ -157,6 +157,103 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
 
 
 - Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小者。在内存允许的情况下，系统最多可以同时运行64个Worker。如果尝试创建的Worker数量超出这一上限，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况动态调整。一旦所有Worker和主线程的累积内存占用超过了设定的阈值，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
+
+
+## Worker基本用法示例
+
+1. DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“worker”为例。
+
+   此外，还支持手动创建Worker文件，具体方式和相关注意事项请见[创建Worker的注意事项](#创建worker的注意事项)。
+
+2. 导入Worker模块。
+
+    ```ts
+    // Index.ets
+    import { ErrorEvent, MessageEvents, worker } from '@kit.ArkTS'
+    ```
+
+3. 在宿主线程中通过调用ThreadWorker的[constructor()](../reference/apis-arkts/js-apis-worker.md#constructor9)方法创建Worker对象，当前线程为宿主线程，并注册回调函数。
+
+      ```ts
+      // Index.ets
+      @Entry
+      @Component
+      struct Index {
+        @State message: string = 'Hello World';
+
+        build() {
+          RelativeContainer() {
+            Text(this.message)
+              .id('HelloWorld')
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+              .alignRules({
+                center: { anchor: '__container__', align: VerticalAlign.Center },
+                middle: { anchor: '__container__', align: HorizontalAlign.Center }
+              })
+              .onClick(() => {
+                // 创建Worker对象
+                let workerInstance = new worker.ThreadWorker('entry/ets/workers/worker.ets');
+
+                // 注册onmessage回调，当宿主线程接收到来自其创建的Worker通过workerPort.postMessage接口发送的消息时被调用，在宿主线程执行
+                workerInstance.onmessage = (e: MessageEvents) => {
+                  let data: string = e.data;
+                  console.info("workerInstance onmessage is: ", data);
+                }
+
+                // 注册onerror回调，当Worker在执行过程中发生异常时被调用，在宿主线程执行
+                workerInstance.onerror = (err: ErrorEvent) => {
+                  console.info("workerInstance onerror message is: " + err.message);
+                }
+
+                // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在宿主线程执行
+                workerInstance.onmessageerror = () => {
+                  console.info('workerInstance onmessageerror');
+                }
+
+                // 注册onexit回调，当Worker销毁时被调用，在宿主线程执行
+                workerInstance.onexit = (e: number) => {
+                  // 当Worker正常退出时code为0，异常退出时code为1
+                  console.info("workerInstance onexit code is: ", e);
+                }
+
+                // 向Worker线程发送消息
+                workerInstance.postMessage('1');
+              })
+          }
+          .height('100%')
+          .width('100%')
+        }
+      }
+      ```
+
+4. 在Worker文件中注册回调函数。
+
+      ```ts
+      // worker.ets
+      import { ErrorEvent, MessageEvents, ThreadWorkerGlobalScope, worker } from '@kit.ArkTS';
+
+      const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
+
+      // 注册onmessage回调，当Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用，在Worker线程执行
+      workerPort.onmessage = (e: MessageEvents) => {
+        let data: string = e.data;
+        console.info('workerPort onmessage is: ', data);
+
+        // 向主线程发送消息
+        workerPort.postMessage('2');
+      }
+
+      // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在Worker线程执行
+      workerPort.onmessageerror = () => {
+        console.info('workerPort onmessageerror');
+      }
+
+      // 注册onerror回调，当Worker在执行过程中发生异常被调用，在Worker线程执行
+      workerPort.onerror = (err: ErrorEvent) => {
+        console.info('workerPort onerror err is: ', err.message);
+      }
+      ```
 
 
 ## 跨har包加载Worker

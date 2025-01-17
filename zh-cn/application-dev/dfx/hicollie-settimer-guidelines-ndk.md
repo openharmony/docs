@@ -18,7 +18,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
 ## 开发步骤
 下文将展示如何在应用内增加一个按钮，并单击该按钮以调用HiCollie Ndk接口。
 
-1. 新建Native C++工程，并将jsoncpp导入到新建工程内，目录结构如下：
+1. 新建Native C++工程，目录结构如下：
 
    ```yml
    entry:
@@ -68,7 +68,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     {
       int id;
       int* callBackParam = new int(2024);
-      HiCollie_SetTimerParam = {"testTimer", 1, CallBack, callBackParam, HiCollie_Flag::HICOLLIE_FLAG_LOG};  // 设置HiCollieTimer 参数（Timer任务名，超时时间，回调函数，回调函数参数，超时发生后行为）
+      HiCollie_SetTimerParam param = {"testTimer", 1, CallBack, callBackParam, HiCollie_Flag::HICOLLIE_FLAG_LOG};  // 设置HiCollieTimer 参数（Timer任务名，超时时间，回调函数，回调函数参数，超时发生后行为）
       HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // 注册HiCollieTimer函数执行时长超时检测一次性任务
       if (errorCode == HICOLLIE_SUCCESS) {  // HiCollieTiimer任务注册成功
         OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // 打印任务id
@@ -88,7 +88,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            { "testHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr };
+            { "testHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;

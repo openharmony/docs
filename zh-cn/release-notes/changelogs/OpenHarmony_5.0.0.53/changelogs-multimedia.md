@@ -182,7 +182,7 @@ image.Component.packing()
 
 **适配指导**
 
-在调用该接口进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型。
+在调用该接口进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型，使用两种类型都可以将图片编码为heic格式。
 
 
 ## cl.multimedia.6 image.Component.OH_PackingOptions结构体Heif格式编码参数变更
@@ -219,4 +219,4 @@ image.Component.OH_PackingOptions
 
 **适配指导**
 
-在调用该属性进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型。
+在调用该接口进行Heif图片编码时，开发者调用参数可以使用变更前的image/heif类型，也可以使用image/heic类型，使用两种类型都可以将图片编码为heic格式。

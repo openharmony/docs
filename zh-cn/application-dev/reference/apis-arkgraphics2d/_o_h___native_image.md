@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供NativeImage功能，作为数据消费者，主要用来将数据和OpenGL纹理对接，需在OpenGL环境下使用。
+提供NativeImage功能，作为数据消费者，其中一种用法是将数据和OpenGL纹理对接，需在OpenGL环境下使用，另外一种用法是开发者自行获取buffer进行渲染处理。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -171,7 +171,7 @@ enum OHNativeErrorCode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | NATIVE_ERROR_OK  | 成功   | 
-| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>14+</sup> | 内存操作错误 | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | 内存操作错误 | 
 | NATIVE_ERROR_INVALID_ARGUMENTS  | 入参无效   | 
 | NATIVE_ERROR_NO_PERMISSION  | 无权限操作   | 
 | NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer   | 
@@ -210,7 +210,7 @@ int32_t OH_NativeImage_GetBufferMatrix (OH_NativeImage* image, float matrix[16] 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
-**起始版本：** 14
+**起始版本：** 15
 
 **参数:**
 
@@ -479,7 +479,7 @@ OH_NativeImage* OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarge
 
 **返回：**
 
-返回一个指向**OH_NativeImage**实例的指针 returns **NULL** otherwise。
+创建成功则返回一个指向**OH_NativeImage**实例的指针实例的指针，否则返回**NULL**。
 
 
 ### OH_NativeImage_Destroy()

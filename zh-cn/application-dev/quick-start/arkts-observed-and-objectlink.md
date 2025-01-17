@@ -102,14 +102,14 @@ class Parent {
 
 
 ```ts
-@ObjectLink parent: Parent
+@ObjectLink parent: Parent;
 
 // 赋值变化可以被观察到
-this.parent.child = new Child(5)
-this.parent.count = 5
+this.parent.child = new Child(5);
+this.parent.count = 5;
 
 // Child没有被@Observed装饰，其属性的变化观察不到
-this.parent.child.num = 5
+this.parent.child.num = 5;
 ```
 
 \@ObjectLink：\@ObjectLink只能接收被\@Observed装饰class的实例，推荐设计单独的自定义组件来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个自定义组件，一个自定义组件呈现外部数组/对象，另一个自定义组件呈现嵌套在数组/对象内的类对象。可以观察到：
@@ -124,7 +124,7 @@ this.parent.child.num = 5
 @Observed
 class DateClass extends Date {
   constructor(args: number | string) {
-    super(args)
+    super(args);
   }
 }
 
@@ -187,8 +187,10 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法
-   2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
+
+   a. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
+
+   b. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
@@ -201,139 +203,140 @@ struct Parent {
 
 3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
 
-```ts
-@Observed
-class Info {
-  count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-  constructor(count: number) {
-    this.count = count;
+    constructor(count: number) {
+      this.count = count;
+    }
   }
-}
 
-class Test {
-  msg: number;
+  class Test {
+    msg: number;
 
-  constructor(msg: number) {
-    this.msg = msg;
+    constructor(msg: number) {
+      this.msg = msg;
+    }
   }
-}
 
-// 错误写法，编译报错
-@ObjectLink count;
-@ObjectLink test: Test;
+  // 错误写法，count未指定类型，编译报错
+  @ObjectLink count;
+  // 错误写法，Test未被@Observed装饰，编译报错
+  @ObjectLink test: Test;
 
-// 正确写法
-@ObjectLink count: Info;
-```
+  // 正确写法
+  @ObjectLink count: Info;
+  ```
 
 4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
-```ts
-@Observed
-class Info {
-  count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-  constructor(count: number) {
-    this.count = count;
+    constructor(count: number) {
+      this.count = count;
+    }
   }
-}
 
-// 错误写法，编译报错
-@ObjectLink count: Info = new Info(10);
+  // 错误写法，编译报错
+  @ObjectLink count: Info = new Info(10);
 
-// 正确写法
-@ObjectLink count: Info;
-```
+  // 正确写法
+  @ObjectLink count: Info;
+  ```
 
 5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
-【反例】
+  【反例】
 
-```ts
-@Observed
-class Info {
-  count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-  constructor(count: number) {
-    this.count = count;
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink num: Info;
-
-  build() {
-    Column() {
-      Text(`num的值: ${this.num.count}`)
-        .onClick(() => {
-          // 错误写法，@ObjectLink装饰的变量不能被赋值
-          this.num = new Info(10);
-        })
+    constructor(count: number) {
+      this.count = count;
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  @State num: Info = new Info(10);
+  @Component
+  struct Child {
+    @ObjectLink num: Info;
 
-  build() {
-    Column() {
-      Text(`count的值: ${this.num.count}`)
-      Child({num: this.num})
+    build() {
+      Column() {
+        Text(`num的值: ${this.num.count}`)
+          .onClick(() => {
+            // 错误写法，@ObjectLink装饰的变量不能被赋值
+            this.num = new Info(10);
+          })
+      }
     }
   }
-}
-```
 
-【正例】
+  @Entry
+  @Component
+  struct Parent {
+    @State num: Info = new Info(10);
 
-```ts
-@Observed
-class Info {
-  count: number;
-
-  constructor(count: number) {
-    this.count = count;
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink num: Info;
-
-  build() {
-    Column() {
-      Text(`num的值: ${this.num.count}`)
-        .onClick(() => {
-          // 正确写法，可以更改@ObjectLink装饰变量的成员属性
-          this.num.count = 20;
-        })
+    build() {
+      Column() {
+        Text(`count的值: ${this.num.count}`)
+        Child({num: this.num})
+      }
     }
   }
-}
+  ```
 
-@Entry
-@Component
-struct Parent {
-  @State num: Info = new Info(10);
+  【正例】
 
-  build() {
-    Column() {
-      Text(`count的值: ${this.num.count}`)
-      Button('click')
-        .onClick(() => {
-          // 可以在父组件做整体替换
-          this.num = new Info(30);
-        })
-      Child({num: this.num})
+  ```ts
+  @Observed
+  class Info {
+    count: number;
+
+    constructor(count: number) {
+      this.count = count;
     }
   }
-}
-```
+
+  @Component
+  struct Child {
+    @ObjectLink num: Info;
+
+    build() {
+      Column() {
+        Text(`num的值: ${this.num.count}`)
+          .onClick(() => {
+            // 正确写法，可以更改@ObjectLink装饰变量的成员属性
+            this.num.count = 20;
+          })
+      }
+    }
+  }
+
+  @Entry
+  @Component
+  struct Parent {
+    @State num: Info = new Info(10);
+
+    build() {
+      Column() {
+        Text(`count的值: ${this.num.count}`)
+        Button('click')
+          .onClick(() => {
+            // 可以在父组件做整体替换
+            this.num = new Info(30);
+          })
+        Child({num: this.num})
+      }
+    }
+  }
+  ```
 
 
 ## 使用场景
@@ -438,7 +441,7 @@ struct Father {
           .margin(10)
           .onClick(() => {
             this.bookName.size += 1;
-            console.log('this.bookName.size:' + this.bookName.size)
+            console.log('this.bookName.size:' + this.bookName.size);
           })
       }
       .width(320)
@@ -463,8 +466,8 @@ struct GrandFather {
         .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
-          this.child.bookName.size += 10
-          console.log('this.child.bookName.size:' + this.child.bookName.size)
+          this.child.bookName.size += 10;
+          console.log('this.child.bookName.size:' + this.child.bookName.size);
         })
       Button(`GrandFather: this.user.bag = new Bag(10)`)
         .width(320)
@@ -493,7 +496,7 @@ struct GrandFather {
 GrandFather中的事件句柄：
 
 
-- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量size和其属性的修改。
+- this.user.bag = new Bag(10) 和this.user = new User(new Bag(20))： 对@State装饰的变量user和其属性的修改。
 
 - this.child.bookName.size += ... ：该变化属于第二层的变化，@State无法观察到第二层的变化，但是Bag被\@Observed装饰，Bag的属性size的变化可以被\@ObjectLink观察到。
 
@@ -501,7 +504,7 @@ GrandFather中的事件句柄：
 Father中的事件句柄：
 
 
-- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Button组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
+- this.bookName.size += 1：对\@ObjectLink变量size的修改，将触发Text组件的刷新。\@ObjectLink和\@Prop不同，\@ObjectLink不拷贝来自父组件的数据源，而是在本地构建了指向其数据源的引用。
 
 - \@ObjectLink变量是只读的，this.bookName = new bookName(...)是不允许的，因为一旦赋值操作发生，指向数据源的引用将被重置，同步将被打断。
 
@@ -571,16 +574,16 @@ struct Parent {
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA.push(new Info(0))
+          this.arrA.push(new Info(0));
         })
       Button(`ViewParent: shift`)
         .width(320)
         .margin(10)
         .onClick(() => {
           if (this.arrA.length > 0) {
-            this.arrA.shift()
+            this.arrA.shift();
           } else {
-            console.log("length <= 0")
+            console.log("length <= 0");
           }
         })
       Button(`ViewParent: item property in middle`)
@@ -749,7 +752,7 @@ struct MapSampleNested {
 
 @Component
 struct MapSampleNestedChild {
-  @ObjectLink myMap: MyMap<number, string>
+  @ObjectLink myMap: MyMap<number, string>;
 
   build() {
     Row() {
@@ -764,25 +767,25 @@ struct MapSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(4, "d")
+            this.myMap.set(4, "d");
           })
         Button('clear')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.clear()
+            this.myMap.clear();
           })
         Button('replace the first one')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(0, "aa")
+            this.myMap.set(0, "aa");
           })
         Button('delete the first one')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.delete(0)
+            this.myMap.delete(0);
           })
       }
       .width('100%')
@@ -845,7 +848,7 @@ struct SetSampleNested {
 
 @Component
 struct SetSampleNestedChild {
-  @ObjectLink mySet: MySet<number>
+  @ObjectLink mySet: MySet<number>;
 
   build() {
     Row() {
@@ -858,19 +861,19 @@ struct SetSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.mySet.add(5)
+            this.mySet.add(5);
           })
         Button('clear')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.mySet.clear()
+            this.mySet.clear();
           })
         Button('delete the first one')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.mySet.delete(0)
+            this.mySet.delete(0);
           })
       }
       .width('100%')
@@ -908,40 +911,44 @@ class Data {
 @Entry
 @Component
 struct Parent {
-  @State count: Source | Data | undefined = new Source(10)
+  @State count: Source | Data | undefined = new Source(10);
 
   build() {
     Column() {
       Child({ count: this.count })
 
       Button('change count property')
+        .margin(10)
         .onClick(() => {
           // 判断count的类型，做属性的更新
           if (this.count instanceof Source) {
-            this.count.source += 1
+            this.count.source += 1;
           } else if (this.count instanceof Data) {
-            this.count.data += 1
+            this.count.data += 1;
           } else {
-            console.info('count is undefined, cannot change property')
+            console.info('count is undefined, cannot change property');
           }
         })
 
       Button('change count to Source')
+        .margin(10)
         .onClick(() => {
           // 赋值为Source的实例
-          this.count = new Source(100)
+          this.count = new Source(100);
         })
 
       Button('change count to Data')
+        .margin(10)
         .onClick(() => {
           // 赋值为Data的实例
-          this.count = new Data(100)
+          this.count = new Data(100);
         })
 
       Button('change count to undefined')
+        .margin(10)
         .onClick(() => {
           // 赋值为undefined
-          this.count = undefined
+          this.count = undefined;
         })
     }.width('100%')
   }
@@ -949,13 +956,14 @@ struct Parent {
 
 @Component
 struct Child {
-  @ObjectLink count: Source | Data | undefined
+  @ObjectLink count: Source | Data | undefined;
 
   build() {
     Column() {
       Text(`count is instanceof ${this.count instanceof Source ? 'Source' :
         this.count instanceof Data ? 'Data' : 'undefined'}`)
         .fontSize(30)
+        .margin(10)
 
       Text(`count's property is  ${this.count instanceof Source ? this.count.source : this.count?.data}`).fontSize(15)
 

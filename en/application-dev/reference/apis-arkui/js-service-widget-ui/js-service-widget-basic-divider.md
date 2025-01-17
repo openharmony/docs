@@ -1,7 +1,7 @@
 # divider
 
 
-The **\<Divider>** component is used to separate content blocks and content elements. It can be used in a list or for UI layout.
+The **\<divider>** component is used to separate content blocks and content elements. It can be used in a list or for UI layout.
 
 > **NOTE**
 >

@@ -16,17 +16,13 @@
       - [Creating a Swiper (Swiper)](arkts-layout-development-create-looping.md)
       - [Using Tabs (Tabs)](arkts-navigation-tabs.md)
   - Adding a Component
-    - Adding a Common Component
-      - [Button](arkts-common-components-button.md)
-      - [Radio Button (Radio)](arkts-common-components-radio-button.md)
-      - [Toggle](arkts-common-components-switch.md)
-      - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
-      - [Image Display](arkts-graphics-display.md)
-      - [Video Playback (Video)](arkts-common-components-video-player.md)
-      - [Custom Rendering (XComponent)](napi-xcomponent-guidelines.md)
-    - Adding a Popup and Menu
-      - [Popup](arkts-popup-and-menu-components-popup.md)
-      - [Menu](arkts-popup-and-menu-components-menu.md)
+    - [Button](arkts-common-components-button.md)
+    - [Radio Button (Radio)](arkts-common-components-radio-button.md)
+    - [Toggle](arkts-common-components-switch.md)
+    - [Progress Indicator (Progress)](arkts-common-components-progress-indicator.md)
+    - [Image Display (Image)](arkts-graphics-display.md)
+    - [Video Playback (Video)](arkts-common-components-video-player.md)
+    - [Custom Rendering (XComponent)](napi-xcomponent-guidelines.md)
   - Setting Component Navigation and Page Routing
     - [Component Navigation and Page Routing Overview](arkts-navigation-introduction.md)
     - [Component Navigation (Navigation) (Recommended)](arkts-navigation-navigation.md)
@@ -34,15 +30,27 @@
     - [Page Routing (@ohos.router) (Not Recommended)](arkts-routing.md)
     - [Transition from Router to Navigation](arkts-router-to-navigation.md)
   - Using Text
+    - [Introduction to Text](arkts-text-introduction.md)
     - [Text Display (Text/Span)](arkts-common-components-text-display.md)
     - [Text Input (TextInput/TextArea)](arkts-common-components-text-input.md)
     - [Rich Text (RichEditor)](arkts-common-components-richeditor.md)
     - [Symbol Glyph (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md)
-  - Using Dialog Boxes
-    - [Modal Dialog Box (ModalDialog)](arkts-modal-dialog.md)
-    - [Global Custom Dialog Box Independent of UI Components (Recommended)](arkts-uicontext-custom-dialog.md)
-    - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
+  - Using Popup Windows
+     - [Popup Window Overview](arkts-dialog-overview.md)
+     - Using Dialog Boxes (Dialog)
+       - [Dialog Box Overview](arkts-base-dialog-overview.md)
+       - [Global Custom Dialog Box Independent of UI Components (openCustomDialog) (Recommended)](arkts-uicontext-custom-dialog.md)
+       - [Basic Custom Dialog Box (CustomDialog) (Not Recommended)](arkts-common-components-custom-dialog.md)
+       - [Fixed Style Dialog Box](arkts-fixes-style-dialog.md)
+     - [Menu Control (Menu)](arkts-popup-and-menu-components-menu.md)
+     - [Popup](arkts-popup-and-menu-components-popup.md)
+     - Binding a Modal Page
+        - [Modal Page Overview](arkts-modal-overview.md)
+        - [Binding a Semi-Modal Page (bindSheet)](arkts-sheet-page.md)
+        - [Binding a Full-Modal Page (bindContentCover)](arkts-contentcover-page.md)
+     - [Using Toasts (Toast)](arkts-create-toast.md)
+     - [Managing Overlays (OverlayManager)](arkts-create-overlaymanager.md)
   - Using Graphics
     - [Drawing Geometric Shapes (Shape)](arkts-geometric-shape-drawing.md)
     - [Drawing Custom Graphics on the Canvas (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -57,7 +65,7 @@
       - [Enter/Exit Transition](arkts-enter-exit-transition.md)
       - [Modal Transition](arkts-modal-transition.md)
       - [Shared Element Transition](arkts-shared-element-transition.md)
-      - [Screen Rotation Animation Enhancement](arkts-rotation-transition-animation.md)   
+      - [Rotation Transition Animation](arkts-rotation-transition-animation.md)   
       - [Page Transition Animation (Not Recommended)](arkts-page-transition-animation.md)
     - [Particle Animation](arkts-particle-animation.md)
     - [Component Animation](arkts-component-animation.md)
@@ -70,7 +78,7 @@
       - [Blur Effect](arkts-blur-effect.md)
       - [Shadow Effect](arkts-shadow-effect.md)
       - [Color Effect](arkts-color-effect.md)
-    - [Frame Animation](arkts-animator.md)
+    - [Frame Animation (ohos.animator)](arkts-animator.md)
   - Using Interaction Events
     - [Interaction Event Overview](arkts-event-overview.md)
     - Universal Events
@@ -84,18 +92,19 @@
       - [Single Gesture](arkts-gesture-events-single-gesture.md)
       - [Combined Gestures](arkts-gesture-events-combined-gestures.md)
       - [Multi-level Gesture Events](arkts-gesture-events-multi-level-gesture.md)
+      - [Gesture Judgment](arkts-gesture-events-gesture-judge.md)
   - Using Customization Capabilities
     - [Customization Capability Overview](arkts-user-defined.md)
     - Custom Nodes
       - [Custom Node Overview](arkts-user-defined-node.md)
-      - [Custom Placeholder Node](arkts-user-defined-place-hoder.md)
-      - [FrameNode](arkts-user-defined-arktsNode-frameNode.md)
-      - [RenderNode](arkts-user-defined-arktsNode-renderNode.md)
-      - [BuilderNode](arkts-user-defined-arktsNode-builderNode.md)
+      - [Custom Placeholder Nodes](arkts-user-defined-place-hoder.md)
+      - [Custom Component Node (FrameNode)](arkts-user-defined-arktsNode-frameNode.md)
+      - [Custom RenderNode (RenderNode)](arkts-user-defined-arktsNode-renderNode.md)
+      - [Custom Declarative Node (BuilderNode)](arkts-user-defined-arktsNode-builderNode.md)
     - Custom Extension
       - [Custom Extension Capability Overview](arkts-user-defined-modifier.md)
-      - [AttributeModifier](arkts-user-defined-extension-attributeModifier.md)
-      - [AttributeUpdater](arkts-user-defined-extension-attributeUpdater.md)
+      - [Attribute Modifier (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
+      - [Attribute Updater (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
   - [Using the Mirroring Capability](arkts-mirroring-display.md)
   - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
   - Setting the Theme

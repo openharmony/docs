@@ -135,3 +135,17 @@ The key cannot be used for digital signature.
 **处理步骤**
 
 检查证书的正确性。
+
+## 19030008 私钥密码错误
+
+**错误信息**
+
+The password may be wrong.
+
+**可能原因**
+
+私钥密码错误。
+
+**处理步骤**
+
+检查私钥的密码是否正确。

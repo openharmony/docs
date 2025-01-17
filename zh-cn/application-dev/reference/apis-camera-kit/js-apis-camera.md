@@ -65,13 +65,15 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                               | 只读 | 可选 | 说明        |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | 是   | 否   | 相机id。|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 否   | 相机位置。    |
-| cameraType     | [CameraType](#cameratype)         | 是   | 否   | 相机类型。    |
-| connectionType | [ConnectionType](#connectiontype) | 是   | 否   | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
+| 名称                              | 类型                                  | 只读 | 可选 | 说明        |
+|---------------------------------|-------------------------------------| ---- |----|---------- |
+| cameraId                        | string                              | 是   | 否  | 相机id。|
+| cameraPosition                  | [CameraPosition](#cameraposition)   | 是   | 否  | 相机位置。    |
+| cameraType                      | [CameraType](#cameratype)           | 是   | 否  | 相机类型。    |
+| connectionType                  | [ConnectionType](#connectiontype)   | 是   | 否  | 相机连接类型。 |
+| cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
+| hostDeviceName<sup>16+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
+| hostDeviceType<sup>16+</sup>    | [HostDeviceType](#hostdevicetype16) | 是   | 否  | 远端设备类型。 |
 
 ## CameraPosition
 
@@ -83,7 +85,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 | 名称                         | 值   | 说明                                                              |
 | --------------------------- | ---- |-----------------------------------------------------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。                                                        |
+| CAMERA_POSITION_UNSPECIFIED | 0    | 相对于设备屏幕没有固定的朝向的相机。                                                        |
 | CAMERA_POSITION_BACK        | 1    | 后置相机。                                                           |
 | CAMERA_POSITION_FRONT       | 2    | 前置相机。                                                           |
 | CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | 折叠态相机。<br/> 从API version 11开始支持，从API version 12开始废弃。 |
@@ -113,6 +115,18 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CAMERA_CONNECTION_BUILT_IN   | 0    | 内置相机。      |
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | USB连接的相机。 |
 | CAMERA_CONNECTION_REMOTE     | 2    | 远程连接的相机。 |
+
+## HostDeviceType<sup>16+</sup>
+
+枚举，远端相机设备类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                          | 值       | 说明      |
+| ---------------------------- | ----     |---------|
+| UNKNOWN_TYPE                 | 0        | 未知设备类型。 |
+| PHONE                        | 0x0E     | 手机设备。   |
+| TABLET                       | 0x11     | 平板设备。   |
 
 ## CameraStatus
 
@@ -7886,7 +7900,7 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 | 错误码ID   | 错误信息                                                                                                                                       |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
 | 7400102  | Operation not allowed.                                                                                                                         |
 | 7400103  | Session not config.                                                                                                                            |
 | 7400201  | Camera service fatal error.                                                                                                                    |
@@ -8259,6 +8273,17 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## QualityPrioritization<sup>14+</sup>
+
+枚举，录像质量优先级。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称          | 值  | 说明       |
+| ------------- | --- | ---------- |
+| HIGH_QUALITY  | 0   | 高录像质量。   |
+| POWER_BALANCE | 1   | 功耗平衡的录像质量。 |
+
 ## VideoSession<sup>11+</sup>
 
 VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
@@ -8584,6 +8609,48 @@ off(type: 'autoDeviceSwitchStatusChange', callback?: AsyncCallback\<AutoDeviceSw
 ```ts
 function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
   videoSession.off('autoDeviceSwitchStatusChange');
+}
+```
+
+### setQualityPrioritization<sup>14+</sup>
+
+setQualityPrioritization(quality : QualityPrioritization) : void;
+
+设置录像质量优先级。
+
+> **说明：**
+> 默认为高质量，设置为功耗平衡将降低录像质量以减少功耗。实际功耗收益因平台而异。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名  | 类型                                              | 必填 | 说明                                       |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------ |
+| quality | [QualityPrioritization](#qualityprioritization14) | 是   | 需要设置的视频质量优先级（默认为高质量）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID | 错误信息                                                                                                                                        |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                                                                                                             |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setQualityPrioritization(videoSession: camera.VideoSession): void {
+  try {
+    videoSession.setQualityPrioritization(camera.QualityPrioritization.POWER_BALANCE);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The setQualityPrioritization call failed. error code: ${err.code}`);
+  }
 }
 ```
 

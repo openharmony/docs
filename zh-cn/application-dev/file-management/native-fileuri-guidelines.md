@@ -23,7 +23,7 @@ FileUri提供了关于文件URI的基本操作，对外提供了URI与沙箱路�
 | FileManagement_ErrCode OH_FileUri_GetUriFromPath(const char *path, unsigned int length, char **result)| 通过传入的路径PATH获取到对应的URI。                      |
 | FileManagement_ErrCode OH_FileUri_GetPathFromUri(const char *uri, unsigned int length, char **result) | 通过传入的URI获取到对应的沙箱路径PATH。                    |
 | FileManagement_ErrCode OH_FileUri_GetFullDirectoryUri(const char *uri, unsigned int length, char **result) | 获取所在路径URI，文件获取所在路径URI，如果URI指向目录则获取当前路径URI。 |
-| bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | 判断传人的URI的格式是否正确。                           |
+| bool OH_FileUri_IsValidUri(const char *uri, unsigned int length) | 判断传入的URI的格式是否正确。                           |
 | FileManagement_ErrCode OH_FileUri_GetFileName(const char *uri, unsigned int length, char **result) | 通过传入的URI获取到对应的文件名称。                        |
 
 ## 开发步骤

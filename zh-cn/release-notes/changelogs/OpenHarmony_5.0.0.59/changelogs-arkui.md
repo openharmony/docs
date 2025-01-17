@@ -79,3 +79,76 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
     }
 }),
 ```
+
+## cl.arkui.3 RichEditor（富文本）RichEditorTextSpanResult接口返回值变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在应用添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily将显示默认值"HarmonyOS Sans"。然而，此默认值可能与系统实际应用的字体不一致，从而可能导致应用判断出现偏差。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：
+在应用中添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily将采用默认值"HarmonyOS Sans"。 
+
+变更后：
+在应用中添加文本或更新文本样式时，若未指定fontFamily，通过getSpans接口获取的文本信息中，fontFamily为""。
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.59开始。
+
+**变更的接口/组件**
+
+RichEditor
+
+**适配指导**
+
+默认行为变更，无需适配。
+
+## cl.ArkUI.4 uiExtension的hideNonSecureWindows接口在2in1设备上不阻止全局悬浮窗创建和显示
+
+**访问级别**
+
+系统接口
+
+**变更原因**
+
+hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建和显示，不满足业务需求，导致2in1设备上部分依赖全局悬浮窗应用异常。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+
+变更前：hideNonSecureWindows在2in1设备上不允许全局悬浮窗创建，且会隐藏已经创建的全局悬浮窗。
+
+
+变更后：hideNonSecureWindows在2in1设备上不阻止全局悬浮窗创建和显示。
+
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.59开始。
+
+**变更的接口/组件**
+
+hideNonSecureWindows
+
+**适配指导**
+
+默认行为变更，无需适配。

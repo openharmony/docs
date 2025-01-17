@@ -12,15 +12,15 @@
 |[不依赖UI组件的自定义弹出框 (openCustomDialog)](arkts-uicontext-custom-dialog.md) | 当用户需要在自定义弹出框内动态更新弹出框属性时使用。 |
 |[基础自定义弹出框 (CustomDialog)](arkts-common-components-custom-dialog.md) | 当用户需要自定义弹出框内的组件和内容时使用。 |
 | [警告弹窗 (AlertDialog)](arkts-fixes-style-dialog.md#警告弹窗-alertdialog) | 固定样式，通常用来展示用户当前需要或必须关注的信息或操作。如用户操作一个敏感行为时响应一个二次确认的弹出框。 |
-| [列表选择弹窗 (ActionSheet)](arkts-fixes-style-dialog.md#列表选择弹出框-actionsheet) | 固定样式，当用户需要关注或确认的信息存在列表选择时使用。 |
-|[选择器弹窗 (PickerDialog)](arkts-fixes-style-dialog.md#选择器弹出框-pickerdialog) | 固定样式，当用户需要在弹出框内选择日期、时间和文本时使用。 |
+| [列表选择弹窗 (ActionSheet)](arkts-fixes-style-dialog.md#列表选择弹窗-actionsheet) | 固定样式，当用户需要关注或确认的信息存在列表选择时使用。 |
+|[选择器弹窗 (PickerDialog)](arkts-fixes-style-dialog.md#选择器弹窗-pickerdialog) | 固定样式，当用户需要在弹出框内选择日期、时间和文本时使用。 |
 | [对话框 (showDialog)](arkts-fixes-style-dialog.md#对话框-showdialog) | 固定样式，当用户需要对在弹出框响应后异步返回结果进行处理时使用。 |
 | [操作菜单 (showActionMenu)](arkts-fixes-style-dialog.md#操作菜单-showactionmenu) | 固定样式，当用户需要对在操作菜单响应后异步返回结果进行处理时使用。 |
 
 ## 规格约束
 
 * UIContext.getPromptAction.showDialog、UIContext.getPromptAction.showActionMenu、UIContext.getPromptAction.openCustomDialog依赖UI的执行上下文，不可以在UI上下文不明确的地方使用，参见[UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext)说明。
-* 建议在除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等无UI界面的场景外，均使用UIContext中的弹出框方法。
+* 建议在<!--Del-->除[ServiceExtension](../../application-dev/application-models/serviceextensionability.md)等<!--DelEnd-->无UI界面的场景外，均使用UIContext中的弹出框方法。
 * 可以通过使用UIContext中的[getPromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#getpromptaction)方法获取当前UI上下文关联的[PromptAction](../reference/apis-arkui/js-apis-arkui-UIContext.md#promptaction)对象。
 
 

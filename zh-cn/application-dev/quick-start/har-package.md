@@ -114,7 +114,7 @@ export { nativeAdd } from './src/main/ets/utils/nativeTest';
 
 ### 导出资源
 在编译构建HAP时，DevEco Studio会从HAP模块及依赖的模块中收集资源文件，如果不同模块下的资源文件出现重名冲突时，DevEco Studio会按照以下优先级进行覆盖（优先级由高到低）：
-- AppScope（仅API9的Stage模型支持）。
+- AppScope（仅Stage模型支持）。
 - HAP包自身模块。
 - 依赖的HAR模块，如果依赖的多个HAR之间有资源冲突，会按照工程oh-package.json5中dependencies下的依赖顺序进行覆盖，依赖顺序在前的优先级较高。例如下方示例中dayjs和lottie中包含同名文件时，会优先使用dayjs中的资源。
 > **说明：**
@@ -290,15 +290,9 @@ struct Index {
 ```
 ## 编译
 
-HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护时，建议开启混淆能力。
+HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护时，建议[开启混淆能力](../arkts-utils/source-obfuscation.md#开启代码混淆)。
 
 混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
-
-> **说明：**
-> 
-> 编译HAR时，如果没有开启混淆能力，编译后的产物是源码文件。<br/>
-> 仅Stage模型的ArkTS工程支持混淆。  
-> HAR开启混淆后资源ID为-1，[ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md)等通过ID获取资源的API不再生效。
 
 HAR模块原先默认开启混淆能力，会对API 10及以上的HAR模块，且编译模块为release时，自动进行简单的代码混淆；**从DevEco Studio 5.0.3.600开始，新建工程默认关闭代码混淆功能**，可以在HAR模块的build-profile.json5文件中的ruleOptions字段下的enable进行开启混淆，详情请见[代码混淆](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-build-obfuscation-V13)，配置如下所示：
 

@@ -35,7 +35,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
 
 **Number Formatting Options**
 
-You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, and compact display. Supported number display formats include decimal, percent, currency, and unit.
+You can use [NumberOptions](../reference/apis-localization-kit/js-apis-intl.md#numberoptions) to configure number formatting options, including minimum number of integer digits, minimum and maximum numbers of fraction digits, minimum and maximum numbers of significant digits, use of grouping for display, number notation, compact display, rounding mode, rounding priority, rounding increment, number display format, and numbering system. Supported number display formats include decimal, percent, currency, and unit.
 
 The following uses **123000.123** as an example to show the parameter values and corresponding display effects.
 
@@ -119,6 +119,74 @@ let formattedNumber3 = numberFormat3.format(123400); // formattedNumber3: +123,4
 // Display numbers in the percentage format.
 let numberFormat4 = new intl.NumberFormat('zh-CN', {style: 'percent'});
 let formattedNumber4 = numberFormat4.format(0.25); // formattedNumber4: 25%
+
+// Rounding mode
+let numberFormat5 : intl.NumberFormat = new intl.NumberFormat('en',
+    {
+        roundingMode: 'trunc',
+        maximumSignificantDigits: 2
+    });
+console.log(numberFormat5.format(2.28)); // 2.2
+console.log(numberFormat5.format(-2.25)); // -2.2
+
+// Rounding priority
+let options : intl.NumberOptions = {
+    roundingPriority: 'lessPrecision',
+    maximumFractionDigits: 3,
+    maximumSignificantDigits: 2
+};
+let numberFormat6 : intl.NumberFormat = new intl.NumberFormat('en', options);
+console.log(numberFormat6.format(1.23456)); // 1.2
+
+// Rounding increment
+let numOptions : intl.NumberOptions = {
+    style: "currency",
+    currency: "USD",
+    roundingIncrement: 5,
+    maximumFractionDigits: 2,
+    roundingMode: "halfCeil"
+};
+let numberFormat7 : intl.NumberFormat = new intl.NumberFormat('en-US', numOptions);
+console.log(numberFormat7.format(11.21)); // $11.20
+```
+
+### Number Range Formatting
+
+Number range formatting is implemented through the [formatRange](../reference/apis-localization-kit/js-apis-intl.md#formatrange-1) API of the [NumberFormat](../reference/apis-localization-kit/js-apis-intl.md#numberformat) class. The development procedure is as follows:
+
+1. Import the **intl** module.
+   ```ts
+   import { intl } from '@kit.LocalizationKit';
+   ```
+
+2. Create a **NumberFormat** object.
+   If you pass in a list of locales, the first valid locale will be used. If you do not pass in any locale, the current system locale will be used.
+   The **NumberFormat** constructor allows you to set different number formatting formats by using **NumberOptions**. For details, see Table 1 to Table 8.
+
+   ```ts
+   let numberFormat: intl.NumberFormat = new intl.NumberFormat(locale: string | Array<string>, options?: NumberOptions);
+   ```
+
+3. Format the start and end numbers based on the configuration of **numberFormat**.
+   ```ts
+   let formattedNumber: string = numberFormat.formatRange(startRange: number, endRange: number);
+   ```
+
+**Development Example**
+
+```ts
+// Import the intl module.
+import { intl } from '@kit.LocalizationKit';
+
+// Number range formatting
+let options : intl.NumberOptions = {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0
+};
+let numberRangeFormat : intl.NumberFormat = new intl.NumberFormat('es-ES', options);
+console.log(numberRangeFormat.formatRange(2, 8)); // 2-8 €
+console.log(numberRangeFormat.formatRange(2.9, 3.1)); // ~3 €
 ```
 
 

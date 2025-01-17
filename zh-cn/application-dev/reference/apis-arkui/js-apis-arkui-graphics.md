@@ -140,6 +140,18 @@ type Offset = Vector2
 
 ## Matrix4
 
+type Matrix4 = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
+设置四阶矩阵。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 参数为长度为16（4\*4）的number数组。 |
+
 用于设置组件的变换信息，该类型为一个 4x4 矩阵，使用一个长度为16的`number[]`进行表示，例如：
 ```ts
 const transform: Matrix4 = [

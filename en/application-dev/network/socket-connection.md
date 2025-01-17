@@ -4,6 +4,10 @@
 
 The Socket Connection module allows an application to transmit data over a socket connection through the TCP, UDP, Multicast, or TLS protocol.
 
+> **NOTE**
+>
+> After an application is switched from the background to the foreground, it will attempt to resume network communication. If the attempt fails, an error is thrown and a new TCP/UDP connection object is created.
+
 ## Basic Concepts
 
 - Socket: An abstraction of endpoints for bidirectional communication between application processes running on different hosts in a network.

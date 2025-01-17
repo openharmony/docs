@@ -446,14 +446,14 @@ OH_NativeBuffer的格式。
 | NATIVEBUFFER_PIXEL_FMT_BGRX_8888 | BGRX8888格式 | 
 | NATIVEBUFFER_PIXEL_FMT_BGRA_8888 | BGRA8888格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YUV_422_I<sup>12+</sup> | YUV422 interleaved 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP<sup>12+</sup> | YCBCR422 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP<sup>12+</sup> | YCRCB422 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP<sup>12+</sup> | YCBCR420 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP<sup>12+</sup> | YCRCB420 semi-plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P<sup>12+</sup> | YCBCR422 plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P<sup>12+</sup> | YCRCB422 plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P<sup>12+</sup> | YCBCR420 plannar 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P<sup>12+</sup> | YCRCB420 plannar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_SP<sup>12+</sup> | YCBCR422 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_SP<sup>12+</sup> | YCRCB422 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_SP<sup>12+</sup> | YCBCR420 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_SP<sup>12+</sup> | YCRCB420 semi-planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_422_P<sup>12+</sup> | YCBCR422 planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_422_P<sup>12+</sup> | YCRCB422 planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCBCR_420_P<sup>12+</sup> | YCBCR420 planar 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_YCRCB_420_P<sup>12+</sup> | YCRCB420 planar 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YUYV_422_PKG<sup>12+</sup> | YUYV422 packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_UYVY_422_PKG<sup>12+</sup> | UYVY422 packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YVYU_422_PKG<sup>12+</sup> | YVYU422 packed 格式 | 
@@ -462,7 +462,7 @@ OH_NativeBuffer的格式。
 | NATIVEBUFFER_PIXEL_FMT_YCBCR_P010<sup>12+</sup> | YCBCR420 semi-planar 10bit packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_YCRCB_P010<sup>12+</sup> | YCRCB420 semi-planar 10bit packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_RAW10<sup>12+</sup> | Raw 10bit packed 格式 | 
-| NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | vender mask 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | vendor mask 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_BUTT | 无效格式 | 
 
 
@@ -579,7 +579,7 @@ enum OHNativeErrorCode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | NATIVE_ERROR_OK | 成功 | 
-| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>14+</sup> | 内存操作错误 | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | 内存操作错误 | 
 | NATIVE_ERROR_INVALID_ARGUMENTS | 入参无效 | 
 | NATIVE_ERROR_NO_PERMISSION | 无权限操作 | 
 | NATIVE_ERROR_NO_BUFFER | 无空闲可用的buffer | 
@@ -892,8 +892,8 @@ int32_t OH_NativeBuffer_SetMetadataValue (OH_NativeBuffer *buffer, OH_NativeBuff
 | 名称 | 描述 | 
 | -------- | -------- |
 | buffer | 一个指向OH_NativeBuffer实例的指针。 | 
-| metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)获取。 | 
-| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey)。 | 
+| metadataKey | OH_NativeBuffer的元数据类型，其值从[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)获取。 | 
+| size | uint8_t向量的大小，其取值范围见[OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1)。 | 
 | metaDate | 指向uint8_t向量的指针。 | 
 
 **返回：**

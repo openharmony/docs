@@ -7,9 +7,9 @@
 
 创建的子进程不支持UI界面，也不支持Context相关的接口调用。通过此模块和[childProcessManager](js-apis-app-ability-childProcessManager.md)（非SELF_FORK模式）启动的子进程总数最大为512个。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**起始版本：** 12
+**起始版本**：12
 
 
 ## 汇总
@@ -47,7 +47,8 @@
 
 > **说明：**
 >
-> 当前仅支持2in1设备，且单个进程只能启动一个Native子进程。
+> 当前仅支持2in1设备。
+> 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
 
 ## 类型定义说明
 ### OH_Ability_OnNativeChildProcessStarted
@@ -60,7 +61,7 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
 
 通知子进程启动结果的回调函数。
 
-**起始版本：** 12
+**起始版本**：12
 
 **参数:**
 
@@ -89,7 +90,7 @@ typedef struct NativeChildProcess_Fd {
 
 子进程文件描述记录。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -111,7 +112,7 @@ typedef struct NativeChildProcess_FdList {
 
 子进程文件描述记录链表。文件描述符记录个数不能超过16个。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -132,7 +133,7 @@ typedef struct NativeChildProcess_Args {
 
 启动子进程的入参。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -154,7 +155,7 @@ typedef struct NativeChildProcess_Options {
 
 启动子进程的配置选项。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数:**
 
@@ -175,7 +176,7 @@ enum Ability_NativeChildProcess_ErrCode
 
 定义Native子进程模块错误码。
 
-**起始版本：** 12
+**起始版本**：12
 
 | 枚举值                                 | 描述                                              |
 | ----------------------------------- | ----------------------------------------------- |
@@ -183,7 +184,7 @@ enum Ability_NativeChildProcess_ErrCode
 | NCP_ERR_INVALID_PARAM               | 无效参数。                                           |
 | NCP_ERR_NOT_SUPPORTED               | 不支持创建Native子进程。                                 |
 | NCP_ERR_INTERNAL                    | 内部错误。                                           |
-| NCP_ERR_BUSY                        | 在Native子进程的启动过程中不能再次创建新的子进程，可以等待当前子进程启动完成后再次尝试。 |
+| NCP_ERR_BUSY                        | 在Native子进程的启动过程中不能再次创建新的子进程，可以等待当前子进程启动完成后再次尝试。从API version 15开始被废弃。 |
 | NCP_ERR_TIMEOUT                     | 启动Native子进程超时。                                  |
 | NCP_ERR_SERVICE_ERROR               | 服务端出错。                                          |
 | NCP_ERR_MULTI_PROCESS_DISABLED      | 多进程模式已关闭，不允许启动子进程。                              |
@@ -202,7 +203,7 @@ enum NativeChildProcess_IsolationMode
 
 定义Native子进程独立模式。
 
-**起始版本：** 13
+**起始版本**：13
 
 | 枚举值                                 | 描述                                              |
 | ----------------------------------- | ----------------------------------------------- |
@@ -246,9 +247,10 @@ int OH_Ability_CreateNativeChildProcess (const char *libName, OH_Ability_OnNativ
 
 > **说明：**
 >
-> 当前仅支持2in1设备，且单个进程只能启动一个Native子进程。
+> 当前仅支持2in1设备。
+> 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
 
-**起始版本：** 12
+**起始版本**：12
 
 **参数**：
 
@@ -280,7 +282,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcess(
 >
 > 当前仅支持2in1、tablet设备。
 
-**起始版本：** 13
+**起始版本**：13
 
 **参数**：
 

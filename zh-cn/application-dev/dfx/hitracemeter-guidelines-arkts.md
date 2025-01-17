@@ -84,7 +84,7 @@ HiTraceMeter打点接口按功能/行为分类，主要分三类：同步时间�
    }
    ```
 
-2. 运行项目，单击IDE界面上的运行按钮，然后可通过[hitrace](hitrace.md)命令获取跟踪任务的相关日志。
+2. 运行项目，单击DevEco Studio界面上的运行按钮，然后可通过[hitrace](hitrace.md)命令获取跟踪任务的相关日志。
    
    在 DevEco Studio Terminal 中执行如下命令：
 

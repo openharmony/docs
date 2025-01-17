@@ -39,15 +39,17 @@ devicedebug help
 ```bash
 devicedebug kill
 ```
-Sends a signal carrying a PID to an application process. After receiving the signal, the application terminates the corresponding process.
+Sends the signal (1-64) to a process of the debuggable application. After receiving the signal, the application terminates the corresponding process.
 
 **Table 3** Kill command parameters
   | Command| Description|
   | -------- |-------------------|
   | help/-h | Help information.|
-  | -\<signal\> \<pid\> |  **signal** indicates the kill signal, which is used to kill a process with a specified PID. This field is mandatory.| 
+  | -\<signal\> \<pid\> |  **signal** (1-64) indicates the kill signal, which is used to kill a process of the debuggable application with a specified PID. This field is mandatory.|
 
+  **Return value**
 
+  If the process corresponding to the PID is a non-application process, "devicedebug: kill: {pid}: No such app process" is displayed. If the corresponding process is not a debuggable application process, "devicedebug: kill: process: {pid} is not debuggable app" is displayed.
 
 Example:
   ```bash

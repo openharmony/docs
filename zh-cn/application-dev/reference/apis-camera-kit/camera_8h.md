@@ -67,6 +67,7 @@
 | typedef enum [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode) | 平滑变焦模式的枚举。 | 
 | typedef enum [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype) | 预配置照片分辨率的枚举 | 
 | typedef enum [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio) | 预配置照片比例的枚举。 | 
+| typedef enum [Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype)[Camera_HostDeviceType](_o_h___camera.md#camera_hostdevicetype) | 远程设备类型枚举。 | 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](_o_h___camera.md#camera_size) | 大小参数。 | 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](_o_h___camera.md#camera_profile) | 相机流的配置文件。 | 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](_o_h___camera.md#camera_frameraterange) | 帧速率范围。 | 
@@ -110,6 +111,8 @@
 | [Camera_SmoothZoomMode](_o_h___camera.md#camera_smoothzoommode-1) { NORMAL = 0 } | 平滑变焦模式的枚举。 | 
 | [Camera_PreconfigType](_o_h___camera.md#camera_preconfigtype-1) {<br/>PRECONFIG_720P = 0,<br/>PRECONFIG_1080P = 1,<br/>PRECONFIG_4K = 2,<br/>PRECONFIG_HIGH_QUALITY = 3 } | 预配置照片分辨率的枚举。 | 
 | [Camera_PreconfigRatio](_o_h___camera.md#camera_preconfigratio-1) {<br/>PRECONFIG_RATIO_1_1 = 0,<br/>PRECONFIG_RATIO_4_3 = 1,<br/>PRECONFIG_RATIO_16_9 = 2 } | 预配置照片比例的枚举。 | 
+<br/>HOST_DEVICE_TYPE_PHONE = 0x0E,<br/>HOST_DEVICE_TYPE_TABLET = 0x11 } | 远程设备类型枚举。 | 
+| [Camera_QualityPrioritization](_o_h___camera.md#camera_qualityprioritization) { [HIGH_QUALITY](_o_h___camera.md) = 0, [POWER_BALANCE](_o_h___camera.md) = 1 } | 录像质量优先级的枚举。 | 
 
 
 ### 函数

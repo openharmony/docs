@@ -79,7 +79,7 @@ PanGestureOptions(value?: { fingers?: number, direction?: PanDirection, distance
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
 | tag<sup>11+</sup>   | string  | Tag for the pan gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool)>  | Allowed event input types for the pan gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)>  | Allowed event input types for the pan gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## Example
 
@@ -124,7 +124,7 @@ struct PanGestureExample {
         })
       )
 
-      Button ('Set PanGesture Trigger Condition')
+      Button('Set PanGesture Trigger Condition')
         .onClick(() => {
           // Set the pan gesture to be triggered by two fingers moving in any direction.
           this.panOption.setDirection(PanDirection.All)
