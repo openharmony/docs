@@ -2793,9 +2793,9 @@ const char* OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT
 
 | 配置的值 | 描述 | 
 | -------- | -------- |
-|   0  | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  |
-| 小于0 | 编码帧支持历史帧repeat编码会一直编，直到达到系统上限。  | 
-| 大于0|  在上一帧提交给编码器之后，没有新的帧可用的这段时间内，最多可以重复编码的帧数。 |
+| 0  | Configure阶段会被拦截，返回ERROR AV_ERR_INVALID_VAL。  |
+| 小于0 | 在没有新的帧提交给编码器的这段时间内，编码器会一直重复编上一帧，直到达到系统上限。  | 
+| 大于0|  在没有新的帧提交给编码器的这段时间内，最多可以重复编码的帧数。 |
 
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
