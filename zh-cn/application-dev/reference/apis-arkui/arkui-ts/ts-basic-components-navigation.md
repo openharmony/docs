@@ -456,8 +456,6 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的页面栈。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -486,7 +484,7 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enableDragBar  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式 |
+| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式 |
 
 ## 事件
 
