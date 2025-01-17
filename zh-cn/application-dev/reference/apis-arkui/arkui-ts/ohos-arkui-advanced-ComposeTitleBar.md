@@ -135,4 +135,4 @@ struct Index {
 }
 ```
 
-![img.png](img.png)
+![zh-cn_image_composetitlebar_example01](figures/zh-cn_image_composetitlebar_example01.png)
