@@ -2639,7 +2639,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
 | ------ | ------ | ---- | ------------------------ |
 | path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
 | delimiter | string | 否   | 路径分隔符，默认值：/。 |
-| locale | intl.Locale | 否   | intl.Locale对象，默认值：intl.Locale(i18n.System.getSystemLocale())。 |
+| locale | [intl.Locale](../js-apis-intl.md#locale) | 否   | intl.Locale对象，默认值：intl.Locale(i18n.System.getSystemLocale())。 |
 
 **错误码：**
 
