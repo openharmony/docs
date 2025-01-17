@@ -679,7 +679,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 > **说明：** 
 >
-> 数据传输总量限制在200kb以下
+> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下，否则ret = -3。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
