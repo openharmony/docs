@@ -144,7 +144,6 @@ struct Index {
   }
 }
 ```
-
 ![zh-cn_image_editabletitlebar_example01](figures/zh-cn_image_editabletitlebar_example01.png)
 
 ### 示例2（头像与背景模糊标题栏）
@@ -248,5 +247,4 @@ struct Index {
   }
 }
 ```
-
 ![zh-cn_image_editabletitlebar_example02](figures/zh-cn_image_editabletitlebar_example02.png)
