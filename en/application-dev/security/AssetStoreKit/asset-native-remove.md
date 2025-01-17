@@ -52,7 +52,7 @@ Remove asset **demo_alias**.
       Asset_Blob alias = { (uint32_t)(strlen(ALIAS)), (uint8_t *)ALIAS };
 
       Asset_Attr attr[] = {
-         {.tag = ASSET_TAG_ALIAS, .value.blob = alias}, // Specify the alias of the asset to remove. If no alias is specified, all assets will be removed.
+         { .tag = ASSET_TAG_ALIAS, .value.blob = alias }, // Specify the asset alias to remove a single asset. To remove all assets, leave the alias unspecified.
       };
 
       int32_t ret = OH_Asset_Remove(attr, sizeof(attr) / sizeof(attr[0]));

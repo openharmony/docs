@@ -132,7 +132,7 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // Return only the attributes of the asset, that is, the return result does not include the plaintext of the asset.
+query.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ATTRIBUTES); // Return only the attributes of the asset, that is, the result does not include the asset plaintext.
 query.set(asset.Tag.DATA_LABEL_NORMAL_1, stringToArray('demo_label'));
 query.set(asset.Tag.RETURN_OFFSET, 5); // Return results from the fifth asset that matches the search criteria.
 query.set(asset.Tag.RETURN_LIMIT, 10); // Return information about 10 assets that match the search criteria.

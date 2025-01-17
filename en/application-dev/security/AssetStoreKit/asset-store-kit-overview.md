@@ -4,7 +4,7 @@ Asset Store Kit provides a set of asset store service (ASSET) APIs, which implem
 
 ## Basic Concepts
 
-The secure storage of assets depends on the underlying HUKS. Specifically, HUKS implements the asset encryption, decryption, and access control in a secure environment (such as a TEE). The sensitive user data will never be disclosed even if the system is attacked.
+The secure storage of assets depends on the underlying universal keystore. Specifically, the universal keystore implements the asset encryption, decryption, and access control in a secure environment (such as a TEE). The sensitive user data will never be disclosed even if the system is attacked.
 
 The AES256-GCM algorithm is used to encrypt and decrypt assets. The following access control mechanisms are used to protect assets against unauthorized access:
 
@@ -49,4 +49,4 @@ The AES256-GCM algorithm is used to encrypt and decrypt assets. The following ac
 
 ## Relationship with Other Kits
 
-Asset Store Kit provides secure storage of sensitive data less than 1 KB in size. To protect data greater than 1 KB, use [HUKS](../UniversalKeystoreKit/huks-overview.md) or [Crypto Framework](../CryptoArchitectureKit/crypto-architecture-kit-intro.md).
+Asset Store Kit provides secure storage of sensitive data less than 1 KB in size. To protect data greater than 1 KB, use [Universal Keystore Kit](../UniversalKeystoreKit/huks-overview.md) or [Crypto Architecture Kit](../CryptoArchitectureKit/crypto-architecture-kit-intro.md).
