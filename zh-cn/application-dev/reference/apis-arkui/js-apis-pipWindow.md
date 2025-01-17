@@ -663,7 +663,7 @@ pipController.updatePiPControlStatus(controlType, status);
 ### updateContentNode<sup>16+</sup>
 updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
 
-更新画中画节点内容
+更新画中画节点内容。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -695,6 +695,10 @@ updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
 
 ```ts
 try {
+  let contentNode = typeNode.createNode(ctx, "XComponent", {
+    type: XComponentType.SURFACE,
+    controller: new ExtXComponentController(),
+  })
   pipcontroller.updateContentNode(contentNode);
 } catch (exception) {
   console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
