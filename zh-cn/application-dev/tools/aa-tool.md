@@ -93,7 +93,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       ```json
       {
         "name": "TargetAbility",
-        ......
+        // ......
         "exported": true,
         "skills": [
           {

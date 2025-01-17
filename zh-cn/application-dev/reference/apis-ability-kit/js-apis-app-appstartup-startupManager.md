@@ -19,7 +19,7 @@ run(startupTasks: Array\<string\>, config?: StartupConfig): Promise\<void\>
 
 执行启动框架。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -84,7 +84,7 @@ removeAllStartupTaskResults(): void
 
 删除所有启动任务结果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **示例：**：
 
@@ -123,7 +123,7 @@ getStartupTaskResult(startupTask: string): Object
 
 获得指定的启动任务结果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -182,7 +182,7 @@ isStartupTaskInitialized(startupTask: string): boolean
 
 获取指定启动任务是否已初始化。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -245,7 +245,7 @@ removeStartupTaskResult(startupTask: string): void
 
 删除指定初始化结果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
