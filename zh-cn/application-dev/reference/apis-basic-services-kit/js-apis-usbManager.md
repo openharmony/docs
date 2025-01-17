@@ -750,7 +750,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#UsbDataTransferParams) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。|
 
 **错误码：**
 
@@ -1403,12 +1403,12 @@ USB配件句柄。
 | 名称         | 类型   | 必填    |说明    |
 | ---------- | ------ | ----- |----- |
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| flags | [USBTransferFlags](#USBTransferFlags) |是 | USB传输标志。 |
+| flags | [USBTransferFlags](#usbtransferflags) |是 | USB传输标志。 |
 | endpoint | number | 是 | 端点地址。 |
-| type | [USBEndpointTransferType](#USBEndpointTransferType) |是 | 传输类型。 |
+| type | [USBEndpointTransferType](#usbendpointtransfertype) |是 | 传输类型。 |
 | timeout | number | 是 | 设置超时。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度）。 |
-| callback | AsyncCallback<[CallbackInfo](#CallbackInfo)> |是 | 传输完成时的回调信息。|
+| callback | AsyncCallback<[CallbackInfo](#callbackinfo)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
 | numIsoPackets | Uint8Array | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
@@ -1448,8 +1448,8 @@ Usb异步传输回调信息。
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值 |
-| status | [UsbTransferStatus](#UsbTransferStatus) | 读写操作完成的状态 |
-| isoPacketDesc | Array<Readonly<[UsbIsoPacketDescriptor](#UsbIsoPacketDescriptor)>> | 实时传输的分包信息（仅实时传输时有返回值） |
+| status | [UsbTransferStatus](#usbtransferstatus) | 读写操作完成的状态 |
+| isoPacketDesc | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor)>> | 实时传输的分包信息（仅实时传输时有返回值） |
 
 ## UsbTransferStatus
 
@@ -1480,4 +1480,4 @@ libusb实际处理完成后的传输状态。
 | ---------- | ------ | ----- |
 | isoLength | number | 读写操作的期望长度值 |
 | isoActualLength | number| 读写操作的实际长度值 |
-| isoStatus | [UsbTransferStatus](#UsbTransferStatus) | 实时传输分包的传输状态 |
+| isoStatus | [UsbTransferStatus](#usbtransferstatus) | 实时传输分包的传输状态 |
