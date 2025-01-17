@@ -1402,7 +1402,7 @@ USB配件句柄。
 | type | [UsbEndpointTransferType](#usbendpointtransfertype) |是 | 传输类型。 |
 | timeout | number | 是 | 设置超时。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度）。 |
-| callback | AsyncCallback<[CallbackInfo](#callbackinfo)> |是 | 传输完成时的回调信息。|
+| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
 | numIsoPackets | Uint8Array | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
@@ -1433,7 +1433,7 @@ Usb传输类型。
 | TRANSFER_TYPE_BULK  | 2    | 批量传输 |
 | TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输|
 
-## CallbackInfo
+## SubmitTransferCallback
 
 Usb异步传输回调信息。
 
