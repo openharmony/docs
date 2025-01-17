@@ -49,7 +49,7 @@ style(indicatorStyle: DotIndicatorStyle | DigitIndicatorStyle)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| indicatorStyle  | [DotIndicator](ts-container-swiper.md#dotindicator10)&nbsp;\|&nbsp;[DigitIndicatorStyle](ts-container-swiper.md#digitindicator10)&nbsp;| 是   | 可选导航点指示器样式。<br/> \- DotIndicatorStyle：圆点指示器样式。<br/> \- DigitIndicatorStyle：数字指示器样式。<br/>&nbsp;&nbsp;默认类型：DotIndicatorStyle。 |
+| indicatorStyle  | [DotIndicator](ts-container-swiper.md#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](ts-container-swiper.md#digitindicator10)&nbsp;| 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/>&nbsp;&nbsp;默认类型：DotIndicator。 |
 
 ### count
 
