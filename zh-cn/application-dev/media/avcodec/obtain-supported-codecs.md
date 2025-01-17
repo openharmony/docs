@@ -262,9 +262,9 @@ if (capability == nullptr) {
 }
 // 1. 确认待配置采样率是否支持
 const int32_t *sampleRates = nullptr;
-uint32_t sampleRateNum = -1;
+uint32_t sampleRateNum = 0;
 int32_t ret = OH_AVCapability_GetAudioSupportedSampleRates(capability, &sampleRates, &sampleRateNum);
-if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum <= 0) {
+if (ret != AV_ERR_OK || sampleRates == nullptr || sampleRateNum == 0) {
    // 异常处理
 }
 bool isMatched = false;
@@ -330,9 +330,9 @@ if (capability == nullptr) {
 }
 // 1. 确认待配置档次是否支持
 const int32_t *profiles = nullptr;
-uint32_t profileNum = -1;
+uint32_t profileNum = 0;
 int32_t ret = OH_AVCapability_GetSupportedProfiles(capability, &profiles, &profileNum);
-if (ret != AV_ERR_OK || profiles == nullptr || profileNum <= 0) {
+if (ret != AV_ERR_OK || profiles == nullptr || profileNum == 0) {
    // 异常处理
 }
 bool isMatched = false;
@@ -343,9 +343,9 @@ for (int i = 0; i < profileNum; i++) {
 }
 // 2. 查询待配置档次能支持的级别范围
 const int32_t *levels = nullptr;
-uint32_t levelNum = -1;
+uint32_t levelNum = 0;
 ret = OH_AVCapability_GetSupportedLevelsForProfile(capability, profile, &levels, &levelNum);
-if (ret != AV_ERR_OK || levels == nullptr || levelNum <= 0) {
+if (ret != AV_ERR_OK || levels == nullptr || levelNum == 0) {
    // 异常处理
 }
 OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
@@ -559,9 +559,9 @@ if (capability == nullptr) {
 }
 // 1. 获取当前视频编解码器支持的像素格式
 const int32_t *pixFormats = nullptr;
-uint32_t pixFormatNum = -1;
+uint32_t pixFormatNum = 0;
 int32_t ret = OH_AVCapability_GetVideoSupportedPixelFormats(capability, &pixFormats, &pixFormatNum);
-if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum <= 0) {
+if (ret != AV_ERR_OK || pixFormats == nullptr || pixFormatNum == 0) {
    // 异常处理
 }
 // 2. 校验是否支持对应像素格式
