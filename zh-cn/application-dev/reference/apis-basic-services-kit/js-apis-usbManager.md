@@ -846,7 +846,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#UsbDataTransferParams) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
 
 **错误码：**
 
