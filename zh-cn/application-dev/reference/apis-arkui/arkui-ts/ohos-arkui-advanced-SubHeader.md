@@ -382,4 +382,4 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题7](figures/zh-cn_image_subheader_example07.png)
+![zh-cn_image_subheader_example07](figures/zh-cn_image_subheader_example07.png)
