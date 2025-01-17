@@ -8466,6 +8466,115 @@ struct SnapshotExample {
 }
 ```
 
+### createFromComponent<sup>16+</sup>
+
+createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+
+将传入的content对象进行截图，并通过Promise返回结果。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| content  | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md)         | 是   | 当前UIContext显示的组件内容。      |
+| delay   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 默认值：300，可配置delay范围为大于等于0 <br/> 单位：毫秒|
+| checkImageStatus  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。可以指定截图时图形侧绘制pixelmap的缩放比例与是否强制等待系统执行截图指令前所有绘制指令都执行完成之后再截图。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
+
+**示例：** 
+
+```ts
+import { image } from '@kit.ImageKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string | undefined | null  = "";
+
+  constructor(text: string | undefined | null ) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  ReusableChildComponent({ text: params.text });
+}
+
+@Component
+struct ReusableChildComponent {
+  @Prop text: string | undefined | null  = "";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent Reusable " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.text);
+  }
+
+  build() {
+    Column() {
+      Text(this.text)
+        .fontSize(90)
+        .fontWeight(FontWeight.Bold)
+        .margin({ bottom: 36 })
+        .width('100%')
+        .height('100%')
+    }.backgroundColor('#FFF0F0F0')
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State message: string | undefined | null = "hello"
+  uiContext: UIContext = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Button("点击生成组件截图")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            this.uiContext.getComponentSnapshot()
+              .createFromComponent(contentNode
+                , 320, true, {scale : 2, waitUntilRenderFinished : true})
+              .then((pixmap: image.PixelMap) => {
+                this.pixmap = pixmap
+              })
+              .catch((err: Error) => {
+                console.error("error: " + err)
+              })
+          })
+        Image(this.pixmap)
+          .margin(10)
+          .height(200)
+          .width(200)
+          .border({ color: Color.Black, width: 2 })
+      }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
 ## FrameCallback<sup>12+</sup>
 
 用于设置下一帧渲染时需要执行的任务。需要配合[UIContext](#uicontext)中的[postFrameCallback](#postframecallback12)和[postDelayedFrameCallback](#postdelayedframecallback12)使用。开发者需要继承该类并重写[onFrame](#onframe12)或[onIdle](#onidle12)方法，实现具体的业务逻辑。
