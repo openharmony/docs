@@ -188,7 +188,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 ### onStart
 
-onStart(event:&nbsp;VoidCallback)
+onStart(event:()&nbsp;=&gt;&nbsp;void)
 
 播放时触发该事件。
 
@@ -196,15 +196,9 @@ onStart(event:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
-
-| 参数名 | 类型                                           | 必填 | 说明                                 |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放的回调函数。        |
-
 ### onPause
 
-onPause(event:&nbsp;VoidCallback)
+onPause(event:()&nbsp;=&gt;&nbsp;void)
 
 暂停时触发该事件。
 
@@ -212,27 +206,15 @@ onPause(event:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
-
-| 参数名 | 类型                                           | 必填 | 说明                                 |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频暂停的回调函数。        |
-
 ### onFinish
 
-onFinish(event:&nbsp;VoidCallback)
+onFinish(event:()&nbsp;=&gt;&nbsp;void)
 
 播放结束时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                           | 必填 | 说明                                 |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放结束的回调函数。        |
 
 ### onError
 
