@@ -152,9 +152,9 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                                               |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 |
 
 ### editMode<sup>(deprecated)</sup>
 
