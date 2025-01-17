@@ -760,7 +760,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14400001 | service permission denied. |
+| 14400001 | Permission denied. Call requestRight to get the permission first. |
 | 14400006 | usb submit transmission operation successful. |
 | 14400007 | usb submit transmission input/output error. |
 | 14400008 | transmission invalid parameter. |
@@ -851,7 +851,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14400001 | service permission denied. |
+| 14400001 | Permission denied. Call requestRight to get the permission first. |
 | 14400007 | usb submit transmission input/output error. |
 | 14400008 | transmission invalid parameter. |
 | 14400015 | napi get params error. |
@@ -1443,7 +1443,7 @@ Usb异步传输回调信息。
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值 |
 | status | [UsbTransferStatus](#usbtransferstatus) | 读写操作完成的状态 |
-| isoPacketDesc | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor)>> | 实时传输的分包信息（仅实时传输时有返回值） |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor)>> | 实时传输的分包信息（仅实时传输时有返回值） |
 
 ## UsbTransferStatus
 
