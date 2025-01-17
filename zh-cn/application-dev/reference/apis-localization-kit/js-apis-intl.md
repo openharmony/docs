@@ -281,7 +281,7 @@ format(date: Date): string
 
 | 参数名  | 类型   | 必填   | 说明      |
 | ---- | ---- | ---- | ------- |
-| date | Date | 是    | 时间日期对象。其中，月份取值范围为[0，11]的整数，0表示一月，11表示十二月。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
 **返回值：** 
 
@@ -317,8 +317,8 @@ formatRange(startDate: Date, endDate: Date): string
 
 | 参数名       | 类型   | 必填   | 说明       |
 | --------- | ---- | ---- | -------- |
-| startDate | Date | 是    | 时间、日期的开始。其中，月份取值范围为[0，11]的整数，0表示一月，11表示十二月。|
-| endDate   | Date | 是    | 时间、日期的结束。其中，月份取值范围为[0，11]的整数，0表示一月，11表示十二月。|
+| startDate | Date | 是    | 时间、日期的开始。说明：月份从0开始计数，如0表示一月。|
+| endDate   | Date | 是    | 时间、日期的结束。说明：月份从0开始计数，如0表示一月。|
 
 **返回值：** 
 
@@ -329,7 +329,7 @@ formatRange(startDate: Date, endDate: Date): string
 **示例：** 
   ```ts
   let startDate = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
-  let endDate = new Date(2021, 11, 18, 3, 24, 0); // 时间日期为2021.12.18 03:24:00
+  let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // 使用 en-GB locale创建DateTimeFormat对象
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDateRange = datefmt.formatRange(startDate, endDate); // formattedDateRange = "17/12/2021 - 18/12/2021"
