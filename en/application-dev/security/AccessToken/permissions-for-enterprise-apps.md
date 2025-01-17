@@ -189,3 +189,16 @@ Allows an application to manage domain accounts.
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 16
+
+## ohos.permission.GET_SIGNATURE_INFO
+
+Allows an application to obtain signature information of application packages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 16
