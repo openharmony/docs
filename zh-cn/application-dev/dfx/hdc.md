@@ -95,19 +95,19 @@ hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议
 
 在使用hdc前，请在设备上开启usb调试功能，用usb线连接设备和PC。
 
-**查询连接的设备**
+### 查询连接的设备
 
    ```shell
    hdc list targets
    ```
 
-**执行shell命令**
+### 执行shell命令
 
    ```shell
    hdc shell echo "Hello world"
    ```
 
-**获取帮助**
+### 获取帮助
 
 | 命令 | 说明 |
 | -------- | -------- |
@@ -121,22 +121,22 @@ hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议
    hdc help
    ```
 
-   **返回值：**
-   | 返回值 | 说明 |
-   | -------- | -------- |
-   | OpenHarmony device connector(HDC) ...<br/>---------------------------------global commands:----------------------------------<br/>-h/help [verbose]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Print hdc help, 'verbose' for more other cmds<br/>..._（此处省略详细帮助信息）_ | hdc命令使用帮助信息 |
+**返回值：**
+| 返回值 | 说明 |
+| -------- | -------- |
+| OpenHarmony device connector(HDC) ...<br/>---------------------------------global commands:----------------------------------<br/>-h/help [verbose]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Print hdc help, 'verbose' for more other cmds<br/>..._（此处省略详细帮助信息）_ | hdc命令使用帮助信息 |
 
-   **使用方法：**
+**使用方法：**
 
-   ```shell
-   hdc -h
-   hdc help
+```shell
+hdc -h
+hdc help
 
-   // 显示详细帮助信息
-   hdc -h verbose
-   ```
+// 显示详细帮助信息
+hdc -h verbose
+```
 
-**注意事项**
+### 使用注意事项
 
 - 使用hdc时如出现异常，可尝试通过hdc kill -r命令杀掉异常进程并重启hdc服务。
 
@@ -146,11 +146,9 @@ hdc server启动时，默认会监听PC的8710端口，hdc client使用tcp协议
 
 ### 查询设备列表
 
-| 命令 | 说明 |
-| -------- | -------- |
-| list targets [-v] | 查询已连接的所有目标设备。添加-v参数，则会打印设备详细信息。 |
-
-显示所有已连接的设备列表，命令格式如下：
+通过命令list targets，查询已连接的所有目标设备。
+添加-v参数，则会打印设备详细信息。
+命令格式如下：
 
 ```shell
 hdc list targets [-v]
@@ -201,7 +199,7 @@ hdc list targets -v
    >
    > 返回的错误提示信息后续会调整优化，请勿用于自动化脚本或程序的结果判断。
 
-   **使用方法**：
+   **使用方法：**
 
    该方法需要与具体的操作命令搭配使用，下面以shell命令举例：
 
@@ -235,7 +233,8 @@ hdc list targets -v
 
 #### USB连接场景
 
-**环境确认**
+- 环境确认
+
 | 确认项 | 正常 | 异常处理 |
 | -------- | -------- | -------- |
 | USB调试选项 | 开启 | 设备的USB调试模式如无法自动开启，请尝试重启设备。 |
@@ -244,7 +243,8 @@ hdc list targets -v
 | hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容 | 参见[环境准备章节](#环境准备)。 |
 | 驱动 | 连接HDC设备后，设备管理器通用串行总线设备存在设备"HDC Device"或"HDC Interface" | 参见[设备无法识别章节](#设备无法识别)。 |
 
-**连接步骤**
+- 连接步骤
+
 1. PC通过USB连接设备。
 
 2. 查看已连接设备，执行以下命令：
@@ -267,14 +267,15 @@ hdc list targets -v
    >
    > TCP调试功能尚未稳定，请谨慎用于生产环境。
 
-**环境确认**
+- 环境确认
+
 | 确认项 | 正常 | 异常处理 |
 | -------- | -------- | -------- |
 | 网络连接 | PC、手机设备处于同一网络。 | 连接同一WiFi或手机开启热点。 |
 | 网络状态 | telnet IP:port正常，网速稳定。 | 请选择稳定的网络连接方式。 |
 | hdc环境变量 | 终端命令行输入hdc -h有回显帮助信息内容 | 参见[环境准备章节](#环境准备)。 |
 
-**连接步骤**
+- 连接步骤
 
 1. 在设备设置界面打开无线调试开关。
 
@@ -306,13 +307,13 @@ hdc list targets -v
 
 hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运行，PC2中的hdc server连接设备。
 
-**连接命令**
+- 连接命令
 
-| 命令 | 说明 |
-| -------- | -------- |
-| -s | 指定当前服务进程的网络监听参数。 |
+   | 命令 | 说明 |
+   | -------- | -------- |
+   | -s | 指定当前服务进程的网络监听参数。 |
 
-远程连接使用-s参数来指定服务端的网络参数，包括地址和端口号，以确保连接的即时配置，该设置将在当前会话中有效，命令格式如下：
+   远程连接使用-s参数来指定服务端的网络参数，包括地址和端口号，该设置只在当前命令执行期间有效，命令格式如下：
 
    ```shell
    hdc -s [ip]:[port] [command]
@@ -342,29 +343,29 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    >
    > 当命令行中明确使用 -s 参数指定服务端口时，系统将忽略OHOS_HDC_SERVER_PORT环境变量中定义的端口设置。
 
-**连接步骤**
+- 连接步骤
 
-1. 服务端配置
+   1. 服务端配置
 
-服务端通过USB连接到对应的HDC设备后执行以下命令：
+   服务端通过USB连接到对应的HDC设备后执行以下命令：
 
-```shell
-hdc kill          // 关闭本地hdc服务
-hdc -s IP:8710 -m // 启动网络转发的hdc服务
-                  // 其中IP为服务端自身的IP，windows可通过ipconfig查询，unix系统可通过ifconfig查询
-                  // 8710为默认端口号，也可设置为其他端口号如：18710
-                  // 启动后服务端将打印日志
-```
+   ```shell
+   hdc kill          // 关闭本地hdc服务
+   hdc -s IP:8710 -m // 启动网络转发的hdc服务
+                     // 其中IP为服务端自身的IP，windows可通过ipconfig查询，unix系统可通过ifconfig查询
+                     // 8710为默认端口号，也可设置为其他端口号如：18710
+                     // 启动后服务端将打印日志
+   ```
 
-2. 客户端连接
+   2. 客户端连接
 
-客户端连接需要确保可以连通服务端IP地址，满足前述条件后执行以下命令：
+   客户端连接需要确保可以连通服务端IP地址，满足前述条件后执行以下命令：
 
-```shell
-hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端启动时设置的端口号，
-                         // 如果端口号有变化，这里也需要变更。
-                         // command可以为任意hdc可用命令，例如list targets
-```
+   ```shell
+   hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端启动时设置的端口号，
+                           // 如果端口号有变化，这里也需要变更。
+                           // command可以为任意hdc可用命令，例如list targets
+   ```
 
 ### usb调试和无线调试切换
 
@@ -1017,7 +1018,7 @@ PC端支持的端口转发类型：tcp。
 
 ### server端日志
 
-**指定运行时日志等级**
+#### 指定运行时日志等级
 
 hdc运行时日志等级，默认为LOG_INFO，命令格式如下：
 
@@ -1068,7 +1069,7 @@ hdc运行时日志等级，默认为LOG_INFO，命令格式如下：
    > **说明：**
    > 以后台模式启动，可以在hdc.log中观察日志输出，日志路径可以查看**日志获取**章节的描述。
 
-**日志获取**
+#### 日志获取
 
 执行以下命令开启日志获取：
 
@@ -1118,6 +1119,8 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 **现象描述**
 
 命令行执行`hdc list targets`命令后，返回结果为`[empty]`。
+
+**可能原因&解决方法**
 
 可通过以下方式排查。
 
@@ -1211,7 +1214,7 @@ hdc file recv /data/log/hilog                         // 获取hilog已落盘日
 
          如存在抢占的软件，可以关闭该软件进程或者更换OHOS_HDC_SERVER_PORT环境变量为其他端口号。
 
-      3. 排查未关闭的其他版本hdc server
+      3. 排查未关闭的其他版本hdc server。
 
          Windows：
 
