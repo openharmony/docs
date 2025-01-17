@@ -162,6 +162,7 @@ struct SubHeaderExample {
 
 ![子标题2](figures/zh-cn_image_subheader_example02.png)
 
+
 ### 示例3（spinner型内容型子标题）
 该示例主要演示子标题左侧为select，右侧operationType类型为ICON_GROUP。
 
@@ -377,5 +378,4 @@ struct SubHeaderExample {
   }
 }
 ```
-
-![子标题7](figures/zh-cn_image_subheader_example07.png)
+![zh-cn_image_subheader_example07](figures/zh-cn_image_subheader_example07.png)
