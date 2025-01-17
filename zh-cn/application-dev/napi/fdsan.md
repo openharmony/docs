@@ -212,19 +212,27 @@ int main()
 
 标准库接口中fopen，fdopen，opendir，fdopendir都已经集成了fdsan，使用前述接口而非直接使用open可以帮助检测问题。在前述案例中可以使用fopen替代open：
 
-```cpp
+```c
+#include <stdio.h>
+#include <errno.h>
+#define TEMP_FILE "/data/local/tmp/test.txt"
+
 void good_write()
 {
-    sleep(1);
     // fopen is protected by fdsan, replace open with fopen
-    // int fd = open(DEV_NULL_FILE, O_RDONLY);
-    FILE *f = fopen(DEV_NULL_FILE, O_RDONLY);
-    sleep(3);
-    ssize_t ret = write(fileno(f), "fdsan test\n", 11);
-    if (ret == -1) {
-        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+    // int fd = open(TEMP_FILE, O_RDONLY);
+    FILE *f = fopen(TEMP_FILE, "w+");
+    if (f == NULL) {
+        printf("fopen failed errno=%d\n", errno);
+        return;
     }
-    close(fileno(f));
+    // ssize_t ret = write(fd, "fdsan test\n", 11);
+    int ret = fprintf(f, "fdsan test %d\n", 11);
+    if (ret < 0) {
+        printf("fprintf failed errno=%d\n", errno);
+    }
+    // close(fd);
+    fclose(f);
 }
 ```
 
@@ -318,6 +326,13 @@ OpenFiles:
 下面是一个具有fdsan的函数接口实现实例：
 
 ```cpp
+#include <errno.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#include <utility>
+
 struct fdsan_fd {
     fdsan_fd() = default;
 
@@ -401,17 +416,21 @@ struct fdsan_fd {
 在实现了具有fdsan的函数接口之后，可以使用该接口包装fd：
 
 ```cpp
+#define TEMP_FILE "/data/local/tmp/test.txt"
+
 void good_write()
 {
-    sleep(1);
     // int fd = open(DEV_NULL_FILE, O_RDONLY);
-    fdsan_fd fd(open(DEV_NULL_FILE, O_RDONLY));
-    sleep(3);
+    fdsan_fd fd(open(TEMP_FILE, O_CREAT | O_RDWR));
+    if (fd.get() == -1) {
+        printf("fopen failed errno=%d\n", errno);
+        return;
+    }
     ssize_t ret = write(fd.get(), "fdsan test\n", 11);
     if (ret == -1) {
-        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+        printf("write failed errno=%d\n", errno);
     }
-    close(fd.get());
+    fd.reset();
 }
 ```
 
