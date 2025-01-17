@@ -734,6 +734,190 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 }
 ```
 
+## usbManager.usbSubmitTransfer
+
+usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
+
+提交异步传输请求。
+
+本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
+
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| transfer | [UsbDataTransferParams](#UsbDataTransferParams) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+注：本接口错误码返回分为两部分，一部分为返回值中直接返回，一部分为通过callback抓取。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14400001 | service permission denied. |
+| 14400006 | usb submit transmission operation successful. |
+| 14400007 | usb submit transmission input/output error. |
+| 14400008 | transmission invalid parameter. |
+| 14400009 | no such device (it may have been disconnected). |
+| 14400010 | transmission time out error. |
+| 14400011 | transmission other error. |
+| 14400012 | transmission overflow error. |
+| 14400013 | insufficient memory. |
+| 14400014 | interface does not support. |
+| 14400015 | napi get params error. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| &lt;void&gt; | 无 |
+
+**示例：**
+
+> **说明：** 
+>
+> 以下示例代码只是调用usbSubmitTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
+```ts
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
+//才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+//获取endpoint端点地址
+let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
+  return value.direction === 0 && value.type === 2
+})
+//获取设备的第一个id
+let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
+
+const transferParams = {
+  devPipe: devicepipe,
+  flags: 0,
+  endpoint: 1,
+  type: 2,
+  timeout: 2000,
+  status: 0,
+  length: 10, 
+  actualLength: 0,
+  callback: () => {},
+  userData: new Uint8Array(10),
+  buffer: new Uint8Array(10),
+  numIsoPackets: 0,
+  isoPacketDesc: [],
+};
+try {
+  transferParams.endpoint=endpoint?.address as number
+  transferParams.callback=(err,callBackData)=>{
+    console.info('callBackData =' +JSON.stringify(callBackData));
+  }
+  usbManager.usbSubmitTransfer(transferParams); 
+  console.info('USB transfer request submitted.');
+} catch (error) {
+  console.error('USB transfer failed:', error);
+  expect(false).assertFalse();
+}
+```
+
+
+## usbManager.usbCancelTransfer
+
+usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
+
+取消异步传输请求。
+
+需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
+
+**系统能力：**  SystemCapability.USB.USBManager
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| transfer | [UsbDataTransferParams](#UsbDataTransferParams) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 14400001 | service permission denied. |
+| 14400007 | usb submit transmission input/output error. |
+| 14400008 | transmission invalid parameter. |
+| 14400015 | napi get params error. |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| &lt;void&gt; | 无 |
+
+**示例：**
+
+> **说明：** 
+>
+> 以下示例代码只是调用usbCancelTransfer接口的必要流程，实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
+```ts
+//usbManager.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
+//把获取到的设备对象作为参数传入usbManager.connectDevice;当usbManager.connectDevice接口成功返回之后；
+//才可以调用第三个接口usbManager.claimInterface.当usbManager.claimInterface 调用成功以后,再调用该接口。
+let devicesList: Array<usbManager.USBDevice> = usbManager.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+let device: usbManager.USBDevice = devicesList[0];
+usbManager.requestRight(device.name);
+let devicepipe: usbManager.USBDevicePipe = usbManager.connectDevice(device);
+//获取endpoint端点地址
+let endpoint = device.configs[0].interfaces[0]?.endpoints.find((value) => {
+  return value.direction === 0 && value.type === 2
+})
+//获取设备的第一个id
+let ret: number = usbManager.claimInterface(devicepipe, device.configs[0].interfaces[0], true);
+const transferParams = {
+  devPipe: devicepipe,
+  flags: 0,
+  endpoint: 1,
+  type: 2,
+  timeout: 2000,
+  status: 0,
+  length: 10, 
+  actualLength: 0,
+  callback: () => {},
+  userData: new Uint8Array(10),
+  buffer: new Uint8Array(10),
+  numIsoPackets: 0,
+  isoPacketDesc: [],
+};
+try {
+  transferParams.endpoint=endpoint?.address as number
+  transferParams.callback=(err,callBackData)=>{
+    console.info('callBackData =' +JSON.stringify(callBackData));
+  }
+  usbManager.usbSubmitTransfer(transferParams);
+  usbManager.UsbCancelTransfer(transferParams);
+  console.info('USB transfer request submitted.');
+} catch (error) {
+  console.error('USB transfer failed:', error);
+  expect(false).assertFalse();
+}
+```
+
 ## usbManager.closePipe
 
 closePipe(pipe: USBDevicePipe): number
@@ -1209,3 +1393,91 @@ USB配件句柄。
 | 名称        | 类型   | 必填 | 说明                                      |
 | ----------- | ------ | ---- | ----------------------------------------- |
 | accessoryFd | number | 是   | 配件文件描述符。合法的accessoryFd是正整数。 |
+
+## UsbDataTransferParams
+
+作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称         | 类型   | 必填    |说明    |
+| ---------- | ------ | ----- |----- |
+| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
+| flags | [USBTransferFlags](#USBTransferFlags) |是 | USB传输标志。 |
+| endpoint | number | 是 | 端点地址。 |
+| type | [USBEndpointTransferType](#USBEndpointTransferType) |是 | 传输类型。 |
+| timeout | number | 是 | 设置超时。 |
+| length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度）。 |
+| callback | AsyncCallback<[CallbackInfo](#CallbackInfo)> |是 | 传输完成时的回调信息。|
+| userData | Uint8Array | 否 | 用户上下文数据。 |
+| buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
+| numIsoPackets | Uint8Array | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
+
+## USBTransferFlags
+
+Usb传输标志。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称                         | 值   | 说明   |
+| ---------------------------- | ---- | ------ |
+| USB_TRANSFER_SHORT_NOT_OK    | 0    | 将短帧报告为错误。 |
+| USB_TRANSFER_FREE_BUFFER | 1    | 自动释放传输缓冲区。 |
+| USB_TRANSFER_FREE_TRANSFER  | 2    | 完成回调后自动传输。 |
+| USB_TRANSFER_ADD_ZERO_PACKET     | 3    | 传输将增加一个额外的数据包。 |
+
+## USBEndpointTransferType
+
+Usb传输类型。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称                         | 值   | 说明   |
+| ---------------------------- | ---- | ------ |
+| TRANSFER_TYPE_CONTROL    | 0    | 控制传输（不支持）|
+| TRANSFER_TYPE_ISOCHRONOUS | 1    | 实时传输 |
+| TRANSFER_TYPE_BULK  | 2    | 批量传输 |
+| TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输|
+
+## CallbackInfo
+
+Usb异步传输回调信息。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称         | 类型 | 说明    |
+| ---------- | ------ | ----- |
+| actualLength | number | 读写操作的实际长度值 |
+| status | [UsbTransferStatus](#UsbTransferStatus) | 读写操作完成的状态 |
+| isoPacketDesc | Array<Readonly<[UsbIsoPacketDescriptor](#UsbIsoPacketDescriptor)>> | 实时传输的分包信息（仅实时传输时有返回值） |
+
+## UsbTransferStatus
+
+libusb实际处理完成后的传输状态。
+
+注：如果实际返回有数据，但返回状态不为0，也视为传输成功
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称                         | 值   | 说明   |
+| ---------------------------- | ---- | ------ |
+| TRANSFER_COMPLETED    | 0    | 传输完成|
+| TRANSFER_ERROR | 1    | 传输失败 |
+| TRANSFER_TIMED_OUT  | 2    | 传输超时 |
+| TRANSFER_CANCELLED     | 3    |传输已被取消 |
+| TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点），不支持控传输制请求。 |
+| TRANSFER_NO_DEVICE     | 5    | 设备已断开|
+| TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多|
+
+
+## UsbIsoPacketDescriptor
+
+实时传输模式回调返回的分包信息。
+
+**系统能力：** SystemCapability.USB.USBManager
+
+| 名称         | 类型 | 说明    |
+| ---------- | ------ | ----- |
+| isoLength | number | 读写操作的期望长度值 |
+| isoActualLength | number| 读写操作的实际长度值 |
+| isoStatus | [UsbTransferStatus](#UsbTransferStatus) | 实时传输分包的传输状态 |
