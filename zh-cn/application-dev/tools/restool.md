@@ -26,6 +26,7 @@ restool当前支持以下命令选项:
 | --ids | 可缺省 | 带参数 | 指定生成id_defined.json的输出目录。 |
 | --defined-ids | 可缺省 | 带参数 | 指定id_defined.json文件路径，一般都是通过--ids生成。<br>id_defined.json包含资源类型、名称及其ID的列表。<br>开发者可以自定义id_defined.json中的资源ID。 |
 | --icon-check | 可缺省 | 不带参数 | 开启icon和startWindowIcon的PNG图片校验功能。 |
+| --thread | 可缺省 | 带参数 | 指定资源编译时开启的子线程数量。 |
 | --target-config | 可缺省 | 带参数 | 与“-i”命令同时使用，支持选择编译。<br>[参数说明](#target-config参数说明)：指定要包含的配置。|
 
 ### target-config参数说明
