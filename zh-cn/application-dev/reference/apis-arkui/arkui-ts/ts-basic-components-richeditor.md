@@ -319,7 +319,7 @@ barState(state: BarState)
 
 ### maxLength<sup>16+</sup>
 
-maxLength(value: number)
+maxLength(value: Optional\<number\>)
 
 设置文本的最大输入字符数。
 
@@ -331,11 +331,11 @@ maxLength(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 
 ### maxLines<sup>16+</sup>
 
-maxLines(value: number)
+maxLines(value: Optional\<number\>)
 
 设置文本可显示的最大行数。
 
@@ -347,7 +347,7 @@ maxLines(value: number)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入 <br/>取值范围：(0, +∞) |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
