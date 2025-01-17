@@ -1727,7 +1727,7 @@ try {
 
 ### getDisplayId<sup>16+</sup>
 
-getDisplayId(): Promise<number>
+getDisplayId(): Promise\<number>
 获取当前窗口的displayid，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1736,7 +1736,7 @@ getDisplayId(): Promise<number>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-|number| Promise对象。返回窗口的displayId。  |
+|Promise\<number>| Promise对象。返回窗口的displayId。  |
 
 **错误码：**
 
