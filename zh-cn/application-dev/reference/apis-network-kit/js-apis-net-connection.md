@@ -2756,7 +2756,7 @@ type HttpRequest = http.HttpRequest
 | ---------------- | --------------------------- |
 | http.HttpRequest | 定义HTTP请求任务。在调用HttpRequest提供的API之前。 |
 
-## TCPSocket<sup>10+</sup>
+## TCPSocket
 
 type TCPSocket = socket.TCPSocket
 
@@ -2770,7 +2770,7 @@ type TCPSocket = socket.TCPSocket
 | ---------------- | --------------------------- |
 | socket.TCPSocket | 定义一个TCPSocket连接。     |
 
-## UDPSocket<sup>10+</sup>
+## UDPSocket
 
 type UDPSocket = socket.UDPSocket
 
