@@ -1,12 +1,10 @@
 # Specifying the User for Key Operations (for System Applications Only)
 
 To implement isolation and access control for key data, HUKS provides APIs with the user ID specified for concurrent key operations initiated by multiple users.
->**NOTE**<br>
-> The mini-system devices do not support the operation described in this topic.
 
 ## Constraints
 
-- The value range of the user ID is **0** to **99**, including **0** and **99**.
+- The range of the caller's user ID is **0** to **99**, including **0** and **99**.
 - The APIs are available only for system applications.
 
 ## Available APIs
