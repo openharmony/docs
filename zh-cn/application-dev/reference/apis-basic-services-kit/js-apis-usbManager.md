@@ -92,6 +92,10 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
+> **说明：** 
+>
+> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
+
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
