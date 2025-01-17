@@ -28,7 +28,8 @@ function loadModel() : void {
 
 Once the model is loaded, you can use the **SceneResourceFactory** instance to create a camera and light source, and modify the camera and light settings to adjust the viewing angle and illumination effect. Finally, you can pass the **Scene** instance and **ModelType** as **SceneOptions** to the **Component3D** component to display them on the screen.
 
-The sample code for displaying a model is as follows:
+Below is the comprehensive sample code for displaying a model. It is crucial to verify that the .gltf file's content and its path are correctly specified.
+
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
@@ -46,7 +47,7 @@ struct Model {
 
   Init(): void {
     if (this.scene == null) {
-      // Load the model and place the gltf file in the related path. Use the actual path during loading.
+      // Load the model and place the .gltf file in the related path. Use the actual path during loading.
       Scene.load($rawfile('gltf/DamagedHelmet/glTF/DamagedHelmet.gltf'))
       .then(async (result: Scene) => {
         this.scene = result;
