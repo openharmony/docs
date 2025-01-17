@@ -809,14 +809,11 @@ const transferParams = {
   endpoint: 1,
   type: 2,
   timeout: 2000,
-  status: 0,
   length: 10, 
-  actualLength: 0,
   callback: () => {},
   userData: new Uint8Array(10),
   buffer: new Uint8Array(10),
   numIsoPackets: 0,
-  isoPacketDesc: [],
 };
 try {
   transferParams.endpoint=endpoint?.address as number
@@ -895,14 +892,11 @@ const transferParams = {
   endpoint: 1,
   type: 2,
   timeout: 2000,
-  status: 0,
   length: 10, 
-  actualLength: 0,
   callback: () => {},
   userData: new Uint8Array(10),
   buffer: new Uint8Array(10),
   numIsoPackets: 0,
-  isoPacketDesc: [],
 };
 try {
   transferParams.endpoint=endpoint?.address as number
@@ -1402,10 +1396,10 @@ USB配件句柄。
 
 | 名称         | 类型   | 必填    |说明    |
 | ---------- | ------ | ----- |----- |
-| pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| flags | [USBTransferFlags](#usbtransferflags) |是 | USB传输标志。 |
+| pipe | [UsbDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
+| flags | [UsbTransferFlags](#usbtransferflags) |是 | USB传输标志。 |
 | endpoint | number | 是 | 端点地址。 |
-| type | [USBEndpointTransferType](#usbendpointtransfertype) |是 | 传输类型。 |
+| type | [UsbEndpointTransferType](#usbendpointtransfertype) |是 | 传输类型。 |
 | timeout | number | 是 | 设置超时。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度）。 |
 | callback | AsyncCallback<[CallbackInfo](#callbackinfo)> |是 | 传输完成时的回调信息。|
@@ -1413,7 +1407,7 @@ USB配件句柄。
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
 | numIsoPackets | Uint8Array | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
 
-## USBTransferFlags
+## UsbTransferFlags
 
 Usb传输标志。
 
@@ -1426,7 +1420,7 @@ Usb传输标志。
 | USB_TRANSFER_FREE_TRANSFER  | 2    | 完成回调后自动传输。 |
 | USB_TRANSFER_ADD_ZERO_PACKET     | 3    | 传输将增加一个额外的数据包。 |
 
-## USBEndpointTransferType
+## UsbEndpointTransferType
 
 Usb传输类型。
 
@@ -1478,6 +1472,6 @@ libusb实际处理完成后的传输状态。
 
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
-| isoLength | number | 读写操作的期望长度值 |
-| isoActualLength | number| 读写操作的实际长度值 |
+| length | number | 读写操作的期望长度值 |
+| actualLength | number| 读写操作的实际长度值 |
 | isoStatus | [UsbTransferStatus](#usbtransferstatus) | 实时传输分包的传输状态 |
