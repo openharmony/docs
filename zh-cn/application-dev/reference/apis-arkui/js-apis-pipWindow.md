@@ -694,11 +694,12 @@ updateContentNode(contentNode: typeNode.XComponent): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { typeNode, UIContext } from '@kit.ArkUI';
+
+let context: UIContext | undefined = undefined; // 可传入UIContext或在布局中通过this.getUIContext()为context赋有效值
+
 try {
-  let contentNode = typeNode.createNode(ctx, "XComponent", {
-    type: XComponentType.SURFACE,
-    controller: new ExtXComponentController(),
-  });
+  let contentNode = typeNode.createNode(context, "XComponent");
   pipcontroller.updateContentNode(contentNode);
 } catch (exception) {
   console.error(`Failed to update content node. Cause: ${exception.code}, message: ${exception.message}`);
