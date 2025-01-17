@@ -833,6 +833,7 @@
           - [更新关键资产(ArkTS)](security/AssetStoreKit/asset-js-update.md)
           - [查询关键资产(ArkTS)](security/AssetStoreKit/asset-js-query.md)
           - [查询需要用户认证的关键资产(ArkTS)](security/AssetStoreKit/asset-js-query-auth.md)
+          - [管理群组关键资产(ArkTS)](security/AssetStoreKit/asset-js-group-access-control.md)
           <!--Del-->
           - [指定用户空间进行关键资产操作(仅对系统应用开放)(ArkTS)](security/AssetStoreKit/asset-as-user-sys.md)
           <!--DelEnd-->
@@ -841,6 +842,7 @@
           - [删除关键资产(C/C++)](security/AssetStoreKit/asset-native-remove.md)
           - [更新关键资产(C/C++)](security/AssetStoreKit/asset-native-update.md)
           - [查询关键资产(C/C++)](security/AssetStoreKit/asset-native-query.md)
+          - [管理群组关键资产(C/C++)](security/AssetStoreKit/asset-native-group-access-control.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-kit-->
         - [Crypto Architecture Kit简介](security/CryptoArchitectureKit/crypto-architecture-kit-intro.md)
         - 密钥生成和转换<!--crypto-key-generation-conversion-->
