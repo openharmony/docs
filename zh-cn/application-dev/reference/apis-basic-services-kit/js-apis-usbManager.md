@@ -813,11 +813,11 @@ const transferParams = {
   callback: () => {},
   userData: new Uint8Array(10),
   buffer: new Uint8Array(10),
-  numIsoPackets: 0,
+  isoPacketCount: 0,
 };
 try {
-  transferParams.endpoint=endpoint?.address as number
-  transferParams.callback=(err,callBackData)=>{
+  transferParams.endpoint=endpoint?.address as number;
+  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
     console.info('callBackData =' +JSON.stringify(callBackData));
   }
   usbManager.usbSubmitTransfer(transferParams); 
@@ -896,11 +896,11 @@ const transferParams = {
   callback: () => {},
   userData: new Uint8Array(10),
   buffer: new Uint8Array(10),
-  numIsoPackets: 0,
+  isoPacketCount: 0,
 };
 try {
-  transferParams.endpoint=endpoint?.address as number
-  transferParams.callback=(err,callBackData)=>{
+  transferParams.endpoint=endpoint?.address as number;
+  transferParams.callback=(err, callBackData: usbManager.           SubmitTransferCallback)=>{
     console.info('callBackData =' +JSON.stringify(callBackData));
   }
   usbManager.usbSubmitTransfer(transferParams);
