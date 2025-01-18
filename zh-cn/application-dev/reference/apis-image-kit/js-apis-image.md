@@ -757,7 +757,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ReadPixels() {
+async function ReadPixelsRGBA() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
@@ -773,7 +773,7 @@ async function ReadPixels() {
   }
 }
 
-async function ReadPixels() {
+async function ReadPixelsYUV() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6),  // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
@@ -820,7 +820,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function ReadPixels() {
+async function ReadPixelsRGBA() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
@@ -839,7 +839,7 @@ async function ReadPixels() {
   }
 }
 
-async function ReadPixels() {
+async function ReadPixelsYUV() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
@@ -937,7 +937,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixels() {
+async function WritePixelsRGBA() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
@@ -957,7 +957,7 @@ async function WritePixels() {
   }
 }
 
-async function WritePixels() {
+async function WritePixelsYUV() {
   const area: image.PositionArea = {
     pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
@@ -1008,7 +1008,7 @@ RGBA的区域计算公式：读取区域（region.size{width * height}）* 4 （
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-async function WritePixels() {
+async function WritePixelsRGBA() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(8), // 8为需要创建的像素buffer大小，取值为：height * width *4
     offset: 0,
     stride: 8,
@@ -1030,7 +1030,7 @@ async function WritePixels() {
   }
 }
 
-async function WritePixels() {
+async function WritePixelsYUV() {
   const area: image.PositionArea = { pixels: new ArrayBuffer(6), // 6为需要创建的像素buffer大小，取值为：height * width *1.5
     offset: 0,
     stride: 8,
