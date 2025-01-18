@@ -87,6 +87,8 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"HandleScopeFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+const char *srcCallNative = "HandleScopeFor()";
 ```
 
 预期输出
