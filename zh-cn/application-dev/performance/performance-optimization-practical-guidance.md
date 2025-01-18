@@ -459,7 +459,7 @@ export struct WithReuseId {
 #### 类型
 响应时延/完成时延
 #### 解决方法
-全局搜索@Prop并且替换
+全局搜索@Prop并且替换。
 #### 反例
 ```typescript
 @Observed

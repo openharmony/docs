@@ -175,4 +175,4 @@ struct Index {
 }
 ```
 
-![img_2.png](img_2.png)
+![zh-cn_image_selecttitlebar_example01](figures/zh-cn_image_selecttitlebar_example01.png)

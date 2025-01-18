@@ -12,7 +12,7 @@ Check whether a key exists.
 
 1. Construct the parameters.
    - Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
-   - Set **TAG** of the key. By default, leave this parameter empty.
+   - Set the [tag](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_tag) of the key to check. By default, this parameter is left empty.
 
 2. Use [OH_Huks_IsKeyItemExist](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_iskeyitemexist) to check whether the key exists.
 

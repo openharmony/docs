@@ -623,6 +623,7 @@ uiObserver.on('routerPageUpdate', this.getUIContext(), callBackFunc);
 Navigation同样可以通过在observer中实现注册监听。
 
 ```ts
+// EntryAbility.ets
 export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
