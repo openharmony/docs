@@ -362,6 +362,7 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | itemCount        | number                                | 否   | 条目总数。        |
 | elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
