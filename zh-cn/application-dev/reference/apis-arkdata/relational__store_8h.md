@@ -92,6 +92,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
+| int [OH_Rdb_CreateTransaction](_r_d_b.md#oh_rdb_createtransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*options, [OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*\*trans) | 创建一个事务对象。 | 
+| int [OH_Rdb_ExecuteV2](_r_d_b.md#oh_rdb_executev2) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql, const [OH_Data_Values](_r_d_b.md#oh_data_values) \*args, [OH_Data_Value](_r_d_b.md#oh_data_value) \*\*result) | 执行有返回值的SQL语句，支持向量数据库。 | 
+| [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_ExecuteQueryV2](_r_d_b.md#oh_rdb_executequeryv2) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql, const [OH_Data_Values](_r_d_b.md#oh_data_values) \*args) | 根据指定SQL语句查询数据库中的数据，支持向量数据库。 | 
+| int [OH_Rdb_IsTokenizerSupported](_r_d_b.md#oh_rdb_istokenizersupported) ([Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) tokenizer, bool \*isSupported) | 判断当前平台是否支持传入的分词器。 | 
+| int [OH_Rdb_SetTokenizer](_r_d_b.md#oh_rdb_settokenizer) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) tokenizer) | 给指定的数据库文件配置设置分词器类型。 | 
 | [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \* [OH_Rdb_CreateConfig](_r_d_b.md#oh_rdb_createconfig) () | 创建一个[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2)实例，并返回指向该实例的指针。 | 
 | int [OH_Rdb_DestroyConfig](_r_d_b.md#oh_rdb_destroyconfig) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config) | 销毁由[OH_Rdb_CreateConfig](_r_d_b.md#oh_rdb_createconfig)创建的[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2)对象。 | 
 | int [OH_Rdb_SetDatabaseDir](_r_d_b.md#oh_rdb_setdatabasedir) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, const char \*databaseDir) | 给指定的数据库文件配置[OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2)，设置数据库文件路径。 | 
