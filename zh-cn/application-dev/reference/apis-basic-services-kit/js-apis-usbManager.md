@@ -813,11 +813,11 @@ const transferParams = {
   callback: () => {},
   userData: new Uint8Array(10),
   buffer: new Uint8Array(10),
-  numIsoPackets: 0,
+  isoPacketCount: 0,
 };
 try {
   transferParams.endpoint=endpoint?.address as number;
-  transferParams.callback=(err, callBackData)=>{
+  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
     console.info('callBackData =' +JSON.stringify(callBackData));
   }
   usbManager.usbSubmitTransfer(transferParams); 
@@ -896,11 +896,11 @@ const transferParams = {
   callback: () => {},
   userData: new Uint8Array(10),
   buffer: new Uint8Array(10),
-  numIsoPackets: 0,
+  isoPacketCount: 0,
 };
 try {
   transferParams.endpoint=endpoint?.address as number;
-  transferParams.callback=(err, callBackData)=>{
+  transferParams.callback=(err, callBackData: usbManager.SubmitTransferCallback)=>{
     console.info('callBackData =' +JSON.stringify(callBackData));
   }
   usbManager.usbSubmitTransfer(transferParams);
@@ -1405,7 +1405,7 @@ USB配件句柄。
 | callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
-| numIsoPackets | Uint8Array | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
+| isoPacketCount | Uint8Array | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
 
 ## UsbTransferFlags
 
