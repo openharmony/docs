@@ -620,7 +620,7 @@ class MyNodeController extends NodeController {
     let node: FrameNode | null = this.rootNode.getFrameNode();
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
-    ;
+    
     let changedTouchLen = event.changedTouches.length;
     for (let i = 0; i < changedTouchLen; i++) {
       if (offsetX != null && offsetY != null && offsetX != undefined && offsetY != undefined) {
@@ -926,7 +926,7 @@ updateConfiguration(): void
 **示例：**
 ```ts
 import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
-import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+import { AbilityConstant, Configuration, ConfigurationConstant, EnvironmentCallback } from '@kit.AbilityKit';
 
 class Params {
   text: string = ""
@@ -949,8 +949,6 @@ struct TextBuilder {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .margin({ bottom: 36 })
-          .fontColor($r(`app.color.text_color`))
-          .backgroundColor($r(`app.color.start_window_background`))
       }
     }
   }
@@ -963,9 +961,8 @@ function buildText(params: Params) {
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
       .margin({ bottom: 36 })
-      .fontColor($r(`app.color.text_color`))
     TextBuilder({ message: params.text }) // 自定义组件
-  }.backgroundColor($r(`app.color.start_window_background`))
+  }.backgroundColor($r('sys.color.ohos_id_color_background'))
 }
 
 class TextNodeController extends NodeController {
@@ -1029,6 +1026,9 @@ struct Index {
     }
     // 注册监听回调
     this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // 设置应用深浅色跟随系统
+    this.getUIContext()
+      .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     //创建自定义节点并添加至map
     this.textNodeController.createNode(this.getUIContext());
   }
@@ -1050,6 +1050,16 @@ struct Index {
             this.count += 1;
             const message = "Update " + this.count.toString();
             this.textNodeController.update(message);
+          })
+        Button('切换深色')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+          })
+        Button('设置浅色')
+          .onClick(() => {
+            this.getUIContext()
+              .getHostContext()?.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
           })
       }
       .width('100%')

@@ -261,13 +261,14 @@ clearChildren(): void
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -291,6 +292,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -298,7 +300,7 @@ struct Index {
         .width(200)
         .height(300)
       Button("clearChildren")
-        .onClick(()=>{
+        .onClick(() => {
           renderNode.clearChildren();
         })
     }.width("100%")
@@ -331,13 +333,14 @@ getChild(index: number): RenderNode | null
 **示例：**
 
 ```ts
-import {  RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController } from '@kit.ArkUI';
 
 const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 300 };
 for (let i = 0; i < 10; i++) {
   let childNode = new RenderNode();
-  childNode.size = {width: i*10 ,height : i*10};
-  childNode.position = {x: i*10 ,y : i*10};
+  childNode.size = { width: i * 10, height: i * 10 };
+  childNode.position = { x: i * 10, y: i * 10 };
   childNode.backgroundColor = 0xFF0000FF - 0X11 * i;
   renderNode.appendChild(childNode);
 }
@@ -361,6 +364,7 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
+
   build() {
     Column() {
       NodeContainer(this.myNodeController)
@@ -368,10 +372,10 @@ struct Index {
         .width(200)
         .height(300)
       Button("getChild")
-        .onClick(()=>{
+        .onClick(() => {
           for (let i = 0; i < 11; i++) {
-            let childNode : RenderNode | null = renderNode.getChild(i);
-            if(childNode == null){
+            let childNode: RenderNode | null = renderNode.getChild(i);
+            if (childNode == null) {
               console.log(`the ${i} of renderNode's childNode is null`);
             } else {
               console.log(`the ${i} of renderNode's childNode has a size of {${childNode.size.width},${childNode.size.height}}`);
