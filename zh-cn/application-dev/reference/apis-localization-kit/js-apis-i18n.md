@@ -600,12 +600,13 @@ setTime(date: Date): void
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | 是    | 时间、日期。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
-  let date: Date = new Date(2021, 10, 7, 8, 0, 0, 0);
+  // 时间日期为2021.11.07 08:00:00
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0);
   calendar.setTime(date);
   ```
 
@@ -898,7 +899,7 @@ isWeekend(date?: Date): boolean
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 指定日期。<br>默认值：系统日期。若不填，则判断当前日期是否为周末。 |
+| date | Date | 否    | 时间、日期。说明：月份从0开始计数，如0表示一月。<br>默认值：系统日期。若不填，则判断当前日期是否为周末。 |
 
 **返回值：**
 
@@ -909,9 +910,9 @@ isWeekend(date?: Date): boolean
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间为2021.12.11 08:00:00
   calendar.isWeekend(); // true
-  let date: Date = new Date(2011, 11, 6, 9, 0, 0);
+  let date: Date = new Date(2011, 11, 6, 9, 0, 0); // 时间日期为2011.12.06 09:00:00
   calendar.isWeekend(date); // false
   ```
 
@@ -996,7 +997,7 @@ compareDays(date: Date): number
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 是    | 指定日期。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
 **返回值：**
 
@@ -2594,7 +2595,7 @@ isHoliday(date?: Date): boolean
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | 否   | Date对象。<br>如果没有指定日期，默认为当天。|
+| date      | Date           | 否   | 时间、日期。说明：月份从0开始计数，如0表示一月。<br>如果没有指定日期，默认为当天。|
 
 **返回值：**
 
@@ -2618,7 +2619,7 @@ isHoliday(date?: Date): boolean
     let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
     let isHoliday = holidayManager.isHoliday();
     console.log(isHoliday.toString());
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // 时间日期为2023.06.25
     console.log(isHoliday2.toString());
   } catch(error) {
     let err: BusinessError = error as BusinessError;
