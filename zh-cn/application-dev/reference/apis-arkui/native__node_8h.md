@@ -47,6 +47,7 @@
 | typedef struct [ArkUI_NodeAdapterEvent](_ark_u_i___native_module.md#arkui_nodeadapterevent) [ArkUI_NodeAdapterEvent](_ark_u_i___native_module.md#arkui_nodeadapterevent) | 定义适配器事件对象。  | 
 | typedef struct [ArkUI_NodeContentEvent](_ark_u_i___native_module.md#arkui_nodecontentevent) [ArkUI_NodeContentEvent](_ark_u_i___native_module.md#arkui_nodecontentevent) | 定义NodeContent事件的通用结构类型。  | 
 | typedef void(\* [ArkUI_NodeContentCallback](_ark_u_i___native_module.md#arkui_nodecontentcallback)) ([ArkUI_NodeContentEvent](_ark_u_i___native_module.md#arkui_nodecontentevent) \*event) | 定义NodeContent事件的回调函数类型。  | 
+| typedef struct [ArkUI_SnapshotOptions ](_ark_u_i___node_component_snapshot.md#ArkUI_SnapshotOptions) [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) | 组件截图参数。  | 
 
 
 ### 枚举
@@ -139,3 +140,6 @@
 | int32_t [OH_ArkUI_RegisterDrawCallbackOnNodeHandle](_ark_u_i___native_module.md#oh_arkui_registerdrawcallbackonnodehandle)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void\* userData, void (\*onDrawCompleted)(void\* userData))| 注册组件绘制完成回调方法。同一组件仅能注册一个绘制完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterLayoutCallbackOnNodeHandle](_ark_u_i___native_module.md#oh_arkui_unregisterlayoutcallbackonnodehandle)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)| 取消注册组件布局完成回调方法。  |
 | int32_t [OH_ArkUI_UnregisterDrawCallbackOnNodeHandle](_ark_u_i___native_module.md#oh_arkui_unregisterdrawcallbackonnodehandle)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)| 取消注册组件绘制完成回调方法。  |
+| ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_CreateSnapshotOptions) () |  创建快照选项。  | 
+| void [OH_ArkUI_DestroySnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_DestroySnapshotOptions) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions) | 销毁快照选项。  | 
+| int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___node_component_snapshot.md#OH_ArkUI_SnapshotOptions_SetScale) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions, float scale) | 设置快照选项的缩放比例。  | 
