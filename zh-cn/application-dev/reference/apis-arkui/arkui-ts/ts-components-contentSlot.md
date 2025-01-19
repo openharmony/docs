@@ -24,7 +24,7 @@ ContentSlot(content: Content)
 | ------- | -------- | ---- | ------------------------------------------------------------ |
 | content | [Content](../js-apis-arkui-Content.md)  | 是   | Content作为ContentSlot的管理器，通过Native侧提供的接口，可以注册并触发ContentSlot的上下树事件回调以及管理ContentSlot的子组件。 |
 
-**示例：**
+## 示例
 
 下面的示例展示了ContentSlot的基本用法。
 
@@ -35,18 +35,18 @@ import { NodeContent } from '@kit.ArkUI'
 @Entry
 @Component
 struct Parent {
-    private nodeContent: Content = new NodeContent();
+  private nodeContent: Content = new NodeContent();
 
-    aboutToAppear() {
-        // 通过C-API创建节点，并添加到管理器nodeContent上
-        nativeNode.createNativeNode(this.nodeContent);
-    }
+  aboutToAppear() {
+    // 通过C-API创建节点，并添加到管理器nodeContent上
+    nativeNode.createNativeNode(this.nodeContent);
+  }
 
-    build() {
-        Column() {
-            // 显示nodeContent管理器里存放的Native侧的组件
-            ContentSlot(this.nodeContent)
-        }
+  build() {
+    Column() {
+      // 显示nodeContent管理器里存放的Native侧的组件
+      ContentSlot(this.nodeContent)
     }
+  }
 }
 ```
