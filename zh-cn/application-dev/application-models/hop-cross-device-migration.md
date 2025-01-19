@@ -398,6 +398,53 @@ export default class MigrationAbility extends UIAbility {
    }
 ```
 
+### 支持不同应用跨端迁移
+一般情况下，跨端迁移的双端是同BundleName应用之间，但有些应用在不同设备类型下的相同应用的BundleName名称不同，为了支持该场景下的两个应用之间能够完成迁移，可以通过在module.json5文件的abilities标签中配置可迁移应用continueBundleName进行关联。同时，可迁移应用的两个Ability的continueType字段必须保持一致，示例如下：
+
+   > **说明：**
+   >
+   > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
+   > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
+    
+   >以下示例中，假设设备A上应用的BundleName为：com.demo.example1；设备B上应用的BundleName为：com.demo.example2
+
+```JSON
+// 设备A
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example2"], // continueBundleName标签配置
+       
+      }
+    ]
+    
+  }
+}
+
+// 设备B
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example1"], // continueBundleName标签配置
+       
+      }
+    ]
+    
+  }
+}
+
+```
+
 ### 支持快速拉起目标应用
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
 
