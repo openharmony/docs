@@ -1283,7 +1283,7 @@ TriggerInfo对象。
 
 | 类型 | 说明 |
 | --- | --- |
-| [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
+| [_TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
 
 ## WantAgentInfo
 
@@ -1297,5 +1297,5 @@ WantAgentInfo对象。
 
 | 类型 | 说明 |
 | --- | --- |
-| [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
+| [_WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
 

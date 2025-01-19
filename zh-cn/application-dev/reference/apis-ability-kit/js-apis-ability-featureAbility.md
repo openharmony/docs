@@ -920,7 +920,7 @@ Context模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [Context](js-apis-inner-app-context.md) | Context模块。 |
+| [_Context](js-apis-inner-app-context.md) | Context模块。 |
 
 ## AppVersionInfo<sup>9+</sup>
 
@@ -934,7 +934,7 @@ type AppVersionInfo = _AppVersionInfo
 
 | 类型 | 说明 |
 | --- | --- |
-| [AppVersionInfo](js-apis-inner-app-appVersionInfo.md) | 应用版本信息。 |
+| [_AppVersionInfo](js-apis-inner-app-appVersionInfo.md) | 应用版本信息。 |
 
 ## ProcessInfo<sup>9+</sup>
 
@@ -948,4 +948,4 @@ type ProcessInfo = _ProcessInfo
 
 | 类型 | 说明 |
 | --- | --- |
-| [ProcessInfo](js-apis-inner-app-processInfo.md) | 进程信息。 |
+| [_ProcessInfo](js-apis-inner-app-processInfo.md) | 进程信息。 |

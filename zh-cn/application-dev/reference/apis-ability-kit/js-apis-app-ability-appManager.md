@@ -700,7 +700,7 @@ ApplicationStateObserver模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | ApplicationStateObserver模块。 |
+| [_ApplicationStateObserver.default](js-apis-inner-application-applicationStateObserver.md) | ApplicationStateObserver模块。 |
 
 ## ProcessInformation
 
@@ -714,4 +714,4 @@ ProcessInformation模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ProcessInformation](js-apis-inner-application-processInformation.md) | ProcessInformation模块。 |
+| [_ProcessInformation](js-apis-inner-application-processInformation.md) | ProcessInformation模块。 |
