@@ -132,7 +132,7 @@ try {
 
 saveAppState(): boolean
 
-保存当前App状态，可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用
+保存当前App状态，可以配合[errorManager](js-apis-app-ability-errorManager.md)相关接口使用。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

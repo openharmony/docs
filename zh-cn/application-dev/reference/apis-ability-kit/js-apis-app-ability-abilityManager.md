@@ -60,14 +60,16 @@ import { abilityManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
-    console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
-  }).catch((err: BusinessError) => {
-    console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
-  });
-} catch (paramError) {
-  let code: number = (paramError as BusinessError).code;
-  let message: string = (paramError as BusinessError).message;
-  console.error(`error.code: ${code}, error.message: ${message}`);
+  abilityManager.getAbilityRunningInfos()
+    .then((data: abilityManager.AbilityRunningInfo[]) => {
+      console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+    })
+    .catch((error: BusinessError) => {
+      console.error(`getAbilityRunningInfos fail, error code: ${JSON.stringify(error.code)}, error msg: ${JSON.stringify(error.message)}`);
+    })
+} catch (e) {
+  let code = (e as BusinessError).code;
+  let msg = (e as BusinessError).message;
+  console.error(`getAbilityRunningInfos fail, error code: ${JSON.stringify(code)}, error msg: ${JSON.stringify(msg)}`);
 }
 ```
