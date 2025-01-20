@@ -1871,7 +1871,7 @@ getAllBundleCacheSize(): Promise\<number>
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| Promise\<number> | Promise对象。返回全局缓存大小。 |
+| Promise\<number> | Promise对象。返回全局缓存大小，以字节为单位。 |
 
 **错误码：**
 
@@ -1905,13 +1905,11 @@ try {
 
 cleanAllBundleCache(): Promise\<void>
 
-以异步方法清理全局缓存，使用Promise形式返回。添加可选权限后，运行状态下应用的缓存不会被清理，否则，运行中的应用缓存会被清理。
+以异步方法清理全局缓存，使用Promise形式返回。
 
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.REMOVE_CACHE_FILES
-
-**可选权限：** ohos.permission.GET_RUNNING_INFO
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -1939,7 +1937,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 
 try {
     bundleManager.cleanAllBundleCache().then((data) => {
-        hilog.info(0x0000, 'testTag','cleanAllBundleCache successful.';
+        hilog.info(0x0000, 'testTag','cleanAllBundleCache successful.');
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'cleanAllBundleCache failed: %{public}s', err.message);
     });

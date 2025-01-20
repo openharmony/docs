@@ -18,52 +18,48 @@ import { request } from '@kit.BasicServicesKit';
 
 **System capability**: SystemCapability.MiscServices.Download
 
-### Network Types
-You can set **networkType** in [DownloadConfig](#downloadconfig) to specify the network type for the download service.
+> **NOTE**
+>
+> **Network type**: set **networkType** in [DownloadConfig](#downloadconfig) to specify the network type for the download service.<br>
+>
+> **Download error codes**: values of **err** in the callback of [on('fail')<sup>7+</sup>](#onfail7) and the values of the **failedReason** field returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).<br>
+>
+> **Causes of download pause**: values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).<br>
+>
+> **Download task status code**: values of **status** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
 
 | Name| Type| Value| Description|
 | -------- | -------- | -------- | -------- |
-| NETWORK_MOBILE | number | 0x00000001 | Whether download is allowed on a mobile network.|
-| NETWORK_WIFI | number | 0x00010000 | Whether download is allowed on a WLAN.|
-
-### Download Error Codes
-The table below lists the values of **err** in the callback of [on('fail')<sup>7+</sup>](#onfail7) and the values of **failedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| ERROR_CANNOT_RESUME<sup>7+</sup> | number |   0   | Failure to resume the download due to network errors.|
-| ERROR_DEVICE_NOT_FOUND<sup>7+</sup> | number |   1   | Failure to find a storage device such as a memory card.|
-| ERROR_FILE_ALREADY_EXISTS<sup>7+</sup> | number |   2   | Failure to download the file because it already exists.|
-| ERROR_FILE_ERROR<sup>7+</sup> | number |   3   | File operation failure.|
-| ERROR_HTTP_DATA_ERROR<sup>7+</sup> | number |   4   | HTTP transmission failure.|
-| ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | Insufficient storage space.|
-| ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | Error caused by too many network redirections.|
-| ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | Unidentified HTTP code.|
-| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | Unknown error. (In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.)|
-| ERROR_OFFLINE<sup>9+</sup> | number |   9   | No network connection.|
-| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | Network type mismatch.|
-
-### Causes of Download Pause
-The table below lists the values of **pausedReason** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed by a mobile network session.|
-| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | Download paused due to a network connection problem, for example, network disconnection.|
-| PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | Download paused and then retried.|
-| PAUSED_BY_USER<sup>9+</sup> | number |   3   | The user paused the session.|
-| PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | Download paused due to unknown reasons.|
-
-### Download Task Status Codes
-The table below lists the values of **status** returned by [getTaskInfo<sup>9+</sup>](#gettaskinfo9).
-
-| Name| Type| Value| Description|
-| -------- | -------- | -------- | -------- |
-| SESSION_SUCCESSFUL<sup>7+</sup> | number |   0   | Successful download.|
-| SESSION_RUNNING<sup>7+</sup> | number |   1   | Download in progress.|
-| SESSION_PENDING<sup>7+</sup> | number |   2   | Download pending.|
-| SESSION_PAUSED<sup>7+</sup> | number |   3   | Download paused.|
-| SESSION_FAILED<sup>7+</sup> | number |   4   | Download failure without retry.|
+| EXCEPTION_PERMISSION<sup>9+</sup> | number |   201   | (Universal error codes) Permission verification failed.|
+| EXCEPTION_PARAMCHECK<sup>9+</sup> | number |   401   | (Universal error codes) Parameter check failed.|
+| EXCEPTION_UNSUPPORTED<sup>9+</sup> | number |   801   | (Universal error codes) The device does not support this API.|
+| EXCEPTION_FILEIO<sup>9+</sup> | number |   13400001   | (Specific error codes) Abnormal file operation.|
+| EXCEPTION_FILEPATH<sup>9+</sup> | number |   13400002   | (Specific error codes) Abnormal file path.|
+| EXCEPTION_SERVICE<sup>9+</sup> | number |   13400003   | (Specific error codes) Abnormal service.|
+| EXCEPTION_OTHERS<sup>9+</sup> | number |   13499999   | (Specific error codes) Other errors.|
+| NETWORK_MOBILE<sup>6+</sup> | number | 0x00000001 | (Network type) Bit flag download allowed on a mobile network.|
+| NETWORK_WIFI<sup>6+</sup> | number | 0x00010000 | (Network type) Bit flag download allowed on a WLAN.|
+| ERROR_CANNOT_RESUME<sup>7+</sup> | number |   0   | (Download error codes) Failure to resume the download due to network errors.|
+| ERROR_DEVICE_NOT_FOUND<sup>7+</sup> | number |   1   | (Download error codes) Failure to find a storage device such as a memory card.|
+| ERROR_FILE_ALREADY_EXISTS<sup>7+</sup> | number |   2   | (Download error codes) Failure to download the file because it already exists.|
+| ERROR_FILE_ERROR<sup>7+</sup> | number |   3   | (Download error codes) File operation failed.|
+| ERROR_HTTP_DATA_ERROR<sup>7+</sup> | number |   4   | (Download error codes) HTTP transmission failed.|
+| ERROR_INSUFFICIENT_SPACE<sup>7+</sup> | number |   5   | (Download error codes) Insufficient storage space.|
+| ERROR_TOO_MANY_REDIRECTS<sup>7+</sup> | number |   6   | (Download error codes) Error caused by too many network redirections.|
+| ERROR_UNHANDLED_HTTP_CODE<sup>7+</sup> | number |   7   | (Download error codes) Unidentified HTTP code.|
+| ERROR_UNKNOWN<sup>7+</sup> | number |   8   | (Download error codes) Unknown error. (In API version 12 or earlier, only serial connection to the IP addresses associated with the specified domain name is supported, and the connection time for a single IP address is not controllable. If the first IP address returned by the DNS is blocked, a handshake timeout may occur, leading to an **ERROR_UNKNOWN** error.)|
+| ERROR_OFFLINE<sup>9+</sup> | number |   9   | (Download error codes) No network connection.|
+| ERROR_UNSUPPORTED_NETWORK_TYPE<sup>9+</sup> | number |   10   | (Download error codes) Network type mismatch.|
+| PAUSED_QUEUED_FOR_WIFI<sup>7+</sup> | number |   0   | (Causes of download pause) Download paused and queuing for a WLAN connection, because the file size exceeds the maximum value allowed for a mobile network session.|
+| PAUSED_WAITING_FOR_NETWORK<sup>7+</sup> | number |   1   | (Causes of download pause) Download paused due to a network connection problem, for example, network disconnection.|
+| PAUSED_WAITING_TO_RETRY<sup>7+</sup> | number |   2   | (Causes of download pause) Download paused and then retried.|
+| PAUSED_BY_USER<sup>9+</sup> | number |   3   | (Causes of download pause) The user paused the session.|
+| PAUSED_UNKNOWN<sup>7+</sup> | number |   4   | (Causes of download pause) Download paused due to unknown reasons.|
+| SESSION_SUCCESSFUL<sup>7+</sup> | number |   0   | (Download task status codes) Successful download.|
+| SESSION_RUNNING<sup>7+</sup> | number |   1   | (Download task status codes) Download in progress.|
+| SESSION_PENDING<sup>7+</sup> | number |   2   | (Download task status codes) Download pending.|
+| SESSION_PAUSED<sup>7+</sup> | number |   3   | (Download task status codes) Download paused.|
+| SESSION_FAILED<sup>7+</sup> | number |   4   | (Download task status codes) Download failure without retry.|
 
 
 ## request.uploadFile<sup>9+</sup>
@@ -394,11 +390,10 @@ Subscribes to upload completion or failure events. This API uses an asynchronous
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  | type | string | Yes| Callback types for subscribing to the upload events, including **'complete' |**|**'fail'**.<br>\-**'complete'**: the upload is complete.<br>\-**'fail'**: the upload fails.
-  | callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
-
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| type | string | Yes| Callback types for subscribing to the upload events, including **'complete'\|'fail'**.<br>\- **'complete'**: the upload is complete.<br>\- **'fail'**: the upload fails. |
+| callback | Callback&lt;Array&lt;[TaskState](#taskstate9)&gt;&gt; | Yes| Callback used to return the result.  |
 
 **Error codes**
 
@@ -1298,7 +1293,7 @@ Subscribes to download failure events. This API uses an asynchronous callback to
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| err | number | Yes| Error code of the download failure. For details about the error codes, see [Download Error Codes](#download-error-codes).|
+| err | number | Yes| Error code of the download failure. For details about the error codes, see [Download Error Codes](#constants).|
 
 **Error codes**
 
@@ -2328,11 +2323,11 @@ Defines the download task information, which is the callback parameter of the [g
 | Name| Type|Mandatory|  Description|
 | -------- | -------- | -------- | -------- |
 | downloadId | number |Yes| ID of the download task.|
-| failedReason | number|Yes| Cause of the download failure. The value can be any constant in [Download Error Codes](#download-error-codes).|
+| failedReason | number|Yes| Cause of the download failure. The value can be any constant in [Download Error Codes](#constants).|
 | fileName | string |Yes| Name of the downloaded file.|
 | filePath | string |Yes| URI of the saved file.|
-| pausedReason | number |Yes| Cause of download pause. The value can be any constant in [Causes of Download Pause](#causes-of-download-pause).|
-| status | number |Yes| Download task status code. The value can be any constant in [Download Task Status Codes](#download-task-status-codes).|
+| pausedReason | number |Yes| Cause of download pause. The value can be any constant in [Causes of Download Pause](#constants).|
+| status | number |Yes| Download task status code. The value can be any constant in [Download Task Status Codes](#constants).|
 | targetURI | string |Yes| URI of the downloaded file.|
 | downloadTitle | string |Yes| Name of the download task.|
 | downloadTotalBytes | number |Yes| Total size of the files to download, in bytes.|
@@ -2409,7 +2404,7 @@ Provides the file information of a table item.
 | path | string | Yes| File path:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>- User public file, for example, **file://media/Photo/path/to/file.img**. Only frontend tasks are supported.|
 | mimeType | string | No| MIME type of the file, which is obtained from the file name.|
 | filename | string | No| File name. The default value is obtained from the file path.|
-| extras | object | No| Additional information of the file.|
+| extras | object | No| Additional information. This parameter is not included in HTTP requests.|
 
 
 ## FormItem<sup>10+</sup> 
@@ -2444,8 +2439,8 @@ Provides the configuration information of an upload or download task.
 | saveas | string | No| Path for storing downloaded files. The options are as follows:<br>- Relative path, which is in the cache directory of the caller, for example, **./xxx/yyy/zzz.html** or **xxx/yyy/zzz.html**.<br>- Internal protocol path, which can be **internal://** or its subdirectory. **internal** indicates the cache directory of the caller (that is, the input **context**), and **internal://cache** corresponds to **context.cacheDir**, for example, **internal://cache/path/to/file.txt**.<br>- Application sandbox directory. Only the **base** directory and its subdirectories are supported, for example, **/data/storage/el1/base/path/to/file.txt**.<br>- File protocol path, which must match the application bundle name. Only the **base** directory and its subdirectories are supported, for example, **file://com.example.test/data/storage/el2/base/file.txt**.<br>The default value is the cache directory of the caller (that is, the input **context**). The default file name is the part truncated from the last slash (/) in the URL.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | network | [Network](#network10) | No| Network used for the task. The default value is **ANY** (Wi-Fi or cellular).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | metered | boolean | No| Whether the task is allowed on a metered connection. The default value is **false**.<br>- **true**: task allowed on a metered connection.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a roaming network.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: task enabled for an automatic retry.<br>- **false**: task disabled for an automatic retry.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| roaming | boolean | No| Whether the task is allowed on a roaming network. The default value is **true**.<br>- **true**: task allowed on a roaming network.<br>- **false**: task not allowed on a metered connection.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| retry | boolean | No| Whether automatic retry is enabled for the task. This parameter is only applicable to background tasks. The default value is **true**.<br>- **true**: automatic retry is enabled.<br>- **false**: automatic retry is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | redirect | boolean | No| Whether redirection is allowed. The default value is **true**.<br>- **true**: redirection allowed.<br>- **false**: redirection not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | proxy<sup>12+</sup> | string | No| Proxy address. The value contains a maximum of 512 characters.<br>It is in the format of http://\<domain or address\>:\<port\>. By default, this parameter is left blank.|
 | index | number | No| Path index of the task. It is usually used for resumable downloads. The default value is **0**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -2551,13 +2546,13 @@ Defines the data structure of the task information for query. The fields availab
 | mimeType | string | Yes| MIME type in the task configuration.|
 | progress | [Progress](#progress10) | Yes| Task progress.|
 | gauge | boolean | Yes| Whether to send progress notifications. This parameter applies only to background tasks.|
-| ctime | number | Yes| Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br>Note: When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10).|
+| ctime | number | Yes | Unix timestamp when the task is created, in milliseconds. The value is generated by the system of the current device.<br/>**NOTE**<br>When [request.agent.search<sup>10+</sup>](#requestagentsearch10-1) is used for query, this value must be within the range of [after,before] for the task ID to be obtained. For details about **before** and **after**, see [Filter](#filter10). |
 | mtime | number | Yes| Unix timestamp when the task state changes, in milliseconds. The value is generated by the system of the current device.|
 | retry | boolean | Yes| Whether automatic retry is enabled for the task. This parameter applies only to background tasks.|
 | tries | number | Yes| Number of retries of the task.|
 | faults | [Faults](#faults10) | Yes| Failure cause of the task.|
 | reason | string | Yes| Reason why the task is waiting, failed, stopped, or paused.|
-| extras | object | No| Extra information of the task|
+| extras | object | No| Extra information of the task.|
 
 
 ## HttpResponse<sup>12+</sup> 
@@ -2589,6 +2584,9 @@ Task attributes include the task ID and task configuration.
 | tid | string | Yes| Task ID, which is unique in the system and is automatically generated by the system.|
 | config | [Config](#config10) | Yes| Task configuration.|
 
+> **NOTE**
+>
+> The **Task** object and its mounting callback function are released and automatically reclaimed by the system after the **remove** method is called.
 
 ### on('progress')<sup>10+</sup>
 
@@ -3968,11 +3966,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4320,13 +4318,15 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config, (err: BusinessError, task: request.agent.Task) => {
+  request.agent.create(getContext(), config, async (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-    task.start();
+    await task.start();
+    // You need to manually call remove() to end the lifecycle of the task object.
+    request.agent.remove(task.tid);
   });
   ```
 
@@ -4338,7 +4338,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
-Creates an upload or download task and adds it to the queue. This API uses a promise to return a result. HTTP is supported.
+Creates an upload or download task and adds it to the queue. This API uses a promise to return the result. HTTP is supported.
 
 
 **Required permissions**: ohos.permission.INTERNET
@@ -4408,9 +4408,11 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(getContext(), config).then(async (task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-    task.start();
+    await task.start();
+    // You need to manually call remove() to end the lifecycle of the task object.
+    request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -4458,9 +4460,9 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
   import { BusinessError } from '@kit.BasicServicesKit';
 
   request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
-    console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
+    console.info(`Succeeded in querying a task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query a task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4468,7 +4470,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
-Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses an asynchronous callback to return the result.
+Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses an asynchronous callback to return the result. After this API is called, the **task** object and its callback function are released.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -4510,7 +4512,7 @@ For details about the error codes, see [Upload and Download Error Codes](errorco
 
 remove(id: string): Promise&lt;void&gt;
 
-Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses a promise to return the result.
+Removes a specified task of the invoker. If the task is being executed, the task is forced to stop. This API uses a promise to return the result. After this API is called, the **task** object and its callback function are released.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

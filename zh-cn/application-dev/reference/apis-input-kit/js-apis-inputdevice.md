@@ -756,7 +756,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 ```js
   inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
-    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+    console.log(`Interval since last input: ${JSON.stringify(timeInterval)}`);
   });
 ```
 

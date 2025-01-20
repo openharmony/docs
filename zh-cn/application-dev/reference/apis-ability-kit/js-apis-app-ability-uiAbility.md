@@ -547,7 +547,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
  **说明：**
 - 该生命周期回调不支持specified启动模式。
 - 通过startAbility()等方法拉起协同方应用时，需要在Want对象中设置协同标记[Flags](js-apis-ability-wantConstant.md#flags)为FLAG_ABILITY_ON_COLLABORATE。
-- 冷启动时，该回调需要在onForeground前或onBackground后调用；热启动时，该回调需要在onNewWant前调用。
+- 冷启动时，该回调在[onForeground](#uiabilityonforeground)前或[onBackground](#uiabilityonbackground)后调用；热启动时，该回调在[onNewWant](#uiabilityonnewwant)前调用。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -562,7 +562,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult16) | 协同方应用是否接受协同。 |
 
 **示例：**
 

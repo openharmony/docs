@@ -169,13 +169,13 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 #### 第一次OldGC后阈值的调整
 
 - 函数方法：`AdjustOldSpaceLimit`
-- 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制
+- 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制。
 - 典型日志：`"AdjustOldSpaceLimit oldSpaceAllocLimit_: " << oldSpaceAllocLimit << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_;`
 
 #### 第二次及以后的OldGC对old Space/global space阈值调整，以及增长因子的调整
 
 - 函数方法：`RecomputeLimits`
-- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子
+- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子。
 - 典型日志：`"RecomputeLimits oldSpaceAllocLimit_: " << newOldSpaceLimit_ << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_ << " globalSpaceNativeLimit_:" << globalSpaceNativeLimit_;`
 
 #### PartialGC的Cset 选择策略
