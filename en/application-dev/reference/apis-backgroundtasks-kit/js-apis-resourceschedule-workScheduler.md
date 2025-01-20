@@ -249,7 +249,7 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
