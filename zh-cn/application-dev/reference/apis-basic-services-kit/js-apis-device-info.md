@@ -198,7 +198,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the distributionOSApiVersion is :500001
     console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
 
-    let distributionOSApiName: number = deviceInfo.distributionOSApiName
+    let distributionOSApiName: string = deviceInfo.distributionOSApiName
     console.info('the value of the deviceInfo distributionOSApiName is :' + distributionOSApiName);
 
     let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType
