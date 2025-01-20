@@ -28,7 +28,7 @@ AlphabetIndexer、Badge、Blank、Button、CalendarPicker、Checkbox、CheckboxG
 
 ## DrawModifier
 
-DrawModifier可设置前景(drawFront)、内容(drawContent)和背景(drawBehind)的绘制方法，还提供主动触发重绘的方法invalidate。每个DrawModifier实例只能设置到一个组件上，禁止进行重复设置
+DrawModifier可设置前景(drawFront)、内容(drawContent)和背景(drawBehind)的绘制方法，还提供主动触发重绘的方法invalidate。每个DrawModifier实例只能设置到一个组件上，禁止进行重复设置。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
