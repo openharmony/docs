@@ -18,7 +18,7 @@ The following describes how to configure a system application to reset the OAID.
 
 ## How to Develop
 
-1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
+1. In the **module.json5** file of the module, configure the [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent) permission. The sample code is as follows:
    ```ts
     {
      "module": {
