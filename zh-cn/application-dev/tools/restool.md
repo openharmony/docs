@@ -58,6 +58,8 @@ Locale匹配规则：Locale匹配需满足以下三条规则。
 restool dump [-h] [config] filePath
 ```
 
+起始版本：15
+
 dump命令参数列表：
 
 | 参数 | 是否可缺省 | 是否存在入参 | 描述 |
@@ -73,8 +75,6 @@ restool dump entry.hap
 # 打印hap包中资源的限定词信息
 restool dump config entry.hap
 ```
-
-起始版本：15
 
 ## 使用实例
 
