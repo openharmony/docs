@@ -2782,6 +2782,63 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 avPlayer.off('amplitudeUpdate')
 ```
 
+### on('seiMessageReceived')<sup>13+</sup>
+
+on(type: 'seiMessageReceived', payloadTypes: Array<number>, callback: OnSeiMessageHandle): void
+
+订阅获取SEI消息事件，仅适用于HTTP-FLV直播，视频流中包含SEI消息时上报。需在prepare之前订阅，当用户重复订阅时，以最后一次订阅的回调接口为准。仅支持payloadType为5。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
+| payloadTypes | Array<number> | 是   | SEI消息的订阅负载类型 |
+| callback | OnSeiMessageHandle | 是   | SEI消息上报事件回调方法。 |
+
+**示例：**
+
+```ts
+this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) => {
+      Logger.info(this.tag, 'seiMessageReceived playbackPosition ' + playbackPosition)
+
+      for (let key = 0; key < messages.length; key++) {
+        Logger.info(this.tag, 'seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+
+
+        let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true});
+        let ab = messages[key].payload.slice(16, messages[key].payload.byteLength)
+        let result: Uint8Array = new Uint8Array(ab);
+        let retStr: string = textDecoder.decodeToString(result);
+        Logger.info(this.tag, 'seiMessageReceived messages payload ' + retStr)
+      }
+    })
+```
+
+### off('seiMessageReceived')<sup>13+</sup>
+
+off(type: 'seiMessageReceived', payloadTypes?: Array<number>, callback?: OnSeiMessageHandle): void
+
+取消订阅获取SEI消息事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
+| payloadTypes | Array<number> | 否   | SEI消息的订阅负载类型 |
+| callback | OnSeiMessageHandle | 否   | SEI消息上报事件回调方法。 |
+
+**示例：**
+
+```ts
+avPlayer.off('seiMessageReceived')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
@@ -2904,6 +2961,32 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | text | string | 否  | 字幕文本信息。 |
 | startTime | number | 否  | 显示当前字幕文本的开始时间（单位：毫秒）。 |
 | duration | number | 否 | 显示当前字幕文本的持续时间（单位：毫秒）。 |
+
+## SeiMessage<sup>12+</sup>
+
+获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| payloadType | number | 是  | SEI信息的负载类型。 |
+| payload | ArrayBuffer | 是  | SEI信息的负载数据。 |
+
+## OnSeiMessageHandle<sup>12+</sup>
+
+获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| messages | Array<SeiMessage> | 是  | SEI信息。 |
+| playbackPosition | number | 否  | 获取当前播放位置（单位：毫秒）。 |
 
 ## SeekMode<sup>8+</sup>
 
