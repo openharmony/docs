@@ -474,8 +474,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<title>Happy</title>'
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let uint8Array = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(uint8Array.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
 ### parse
@@ -483,6 +483,7 @@ let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF
 parse(option: ParseOptions): void
 
 Parses XML information.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -549,7 +550,7 @@ Defines the XML parsing options.
 | ignoreNameSpace                | boolean                                                      | No  | Whether to ignore the namespace. The default value is **false**, indicating that the namespace is not ignored.|
 | tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | No  | Start tag, tag value, and end tag of parsing. The default value is **undefined**, indicating no parsing.|
 | attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | No  | Parsing attribute and attribute value. The default value is **undefined**, indicating no parsing.|
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType] (#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.|
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | No  | Parsing element's [EventType](#eventtype) and [ParseInfo](#parseinfo). The default value is **undefined**, indicating no parsing.|
 
 ## ParseInfo
 

@@ -203,7 +203,7 @@ Queries information about all existing asynchronous locks.
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
 if (states.length == 0) {
-    throw new Error ('Test failed: At least one state is expected, but what got is ' + states.length);
+    throw new Error('Test failed: At least one state is expected, but what got is ' + states.length);
 }
 ```
 
@@ -533,7 +533,7 @@ Enumerates the return types of the parsing result.
 
 | Name| Value| Description           |
 | ------ | ------ | --------------- |
-| OBJECT   | 0 |Returns a **SendableObject** object. |
+| OBJECT   | 0 |Returns a **SendableObject** object.|
 
 ### ParseOptions
 
@@ -660,8 +660,7 @@ Checks whether the passed-in value is of the sendable data type.
 import { ArkTSUtils } from '@kit.ArkTS'
 
 @Sendable
-function sendableFunc()
-{
+function sendableFunc() {
   console.info("sendableFunc")
 }
 

@@ -262,6 +262,16 @@ normalize(): URI
 
 Normalizes the path of this URI.
 
+> **NOTE**
+>
+> If the URI is opaque or its path is already in normalized, the URI is directly returned. Otherwise, a new URI is created. The new URI is similar to the current URI. The only difference relies on its path, which is determined by normalizing the path of the current URI according to the following guidelines:
+>
+> - All . (dot) segments are removed.
+> - For any .. (double-dot) segment that is immediately preceded by a segment that is not .., both segments are removed. This process is iterated until no further removals can be made.
+> 
+> If normalization results in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
+
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -277,8 +287,14 @@ Normalizes the path of this URI.
 ```ts
 const uriInstance = new uri.URI('https://username:password@www.qwer.com:8080/path/path1/../path2/./path3?query=pppppp');
 console.info(uriInstance.path); // /path/path1/../path2/./path3
+// Following path normalization, all . (dot) segments are removed. If a .. (double-dot) segment is immediately preceded by a segment that is not .., both segments are removed.
 let uriInstance1 = uriInstance.normalize();
 console.info(uriInstance1.path); // /path/path2/path3
+let uri1 = new uri.URI('http://www.test.com/../../patch/path1/../path2/path3/./path4/../');
+console.log(uri1.path); // /../../patch/path1/../path2/path3/./path4/../
+// If normalization result in a path starting with a .. (double-dot) segment, it indicates that there were insufficient preceding non-.. segments for removal. As a result, the path will start with a .. segment.
+let uri2 = uri1.normalize();
+console.log(uri2.path); // /../../patch/path2/path3
 ```
 
 ### checkRelative<sup>12+</sup>
