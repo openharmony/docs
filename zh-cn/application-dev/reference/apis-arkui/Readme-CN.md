@@ -133,6 +133,7 @@
       - 模态转场设置
         - [全屏模态转场](arkui-ts/ts-universal-attributes-modal-transition.md)
         - [半模态转场](arkui-ts/ts-universal-attributes-sheet-transition.md)
+        - [半模态转场 (系统接口)](arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
       - [隐私遮罩](arkui-ts/ts-universal-attributes-obscured.md)
       - [文本通用](arkui-ts/ts-universal-attributes-text-style.md)
       - [拖拽控制](arkui-ts/ts-universal-attributes-drag-drop.md)
