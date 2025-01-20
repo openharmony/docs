@@ -19,11 +19,20 @@
 ```ts
 import { Animator as animator, AnimatorOptions,AnimatorResult } from '@kit.ArkUI';
 ```
-## create<sup>9+</sup>
+
+## Animator
+
+定义Animator类。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+### create<sup>9+</sup>
 
 create(options: AnimatorOptions): AnimatorResult
 
-定义Animator类。
+创建动画。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -70,6 +79,46 @@ let options: AnimatorOptions = {
 };
 animator.create(options);// 建议使用 UIContext.creatAnimator()接口
   ```
+
+### createAnimator<sup>(deprecated)</sup>
+
+createAnimator(options: AnimatorOptions): AnimatorResult
+
+创建动画
+
+从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [AnimatorResult](#animatorresult) | Animator结果接口。 |
+
+**示例：** 
+
+```ts
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
+let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0,
+};
+this.animator = animator.createAnimator(options);
+```
 
 ## AnimatorResult
 
@@ -740,42 +789,3 @@ struct AnimatorTest {
 }
 ```
 
-## createAnimator<sup>(deprecated)</sup>
-
-createAnimator(options: AnimatorOptions): AnimatorResult
-
-定义Animator类。
-
-从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型                                  | 必填   | 说明      |
-| ------- | ----------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
-
-**返回值：** 
-
-| 类型                                | 说明            |
-| --------------------------------- | ------------- |
-| [AnimatorResult](#animatorresult) | Animator结果接口。 |
-
-**示例：** 
-
-```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-
-let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0,
-};
-this.animator = animator.createAnimator(options);
-```

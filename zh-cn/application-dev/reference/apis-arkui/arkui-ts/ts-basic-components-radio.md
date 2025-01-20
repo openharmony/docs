@@ -99,7 +99,7 @@ radioStyle(value?: RadioStyle)
 | ------ | ----------------------------------- | ---- | ---------------------------------- |
 | value  | [RadioStyle](#radiostyle10对象说明) | 否   | 单选框选中状态和非选中状态的样式。 |
 
-## contentModifier<sup>12+</sup>
+### contentModifier<sup>12+</sup>
 
 contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 

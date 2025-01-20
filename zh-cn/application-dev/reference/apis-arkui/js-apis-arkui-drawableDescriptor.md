@@ -160,7 +160,7 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     }
     ```
 
-### constructor
+### constructor<sup>12+</sup>
 
 constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor);
 
