@@ -9799,7 +9799,7 @@ struct WebComponent {
 }
 ```
 
-### saveCookieSync
+### saveCookieSync<sup>16+</sup>
 
 static saveCookieSync(): void
 
