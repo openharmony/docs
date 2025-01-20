@@ -8069,6 +8069,7 @@ select(options?: AVCastPickerOptions): Promise\<void>
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function avCastPicker(context: common.Context) {
@@ -8112,11 +8113,15 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
+import { common } from '@kit.AbilityKit';
 import { AVCastPickerState } from '@kit.AVSessionKit';
 
-avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
-  console.info(`picker state change : ${state}`);
-});
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+    console.info(`picker state change : ${state}`);
+  });
+}
 ```
 
 ### off('pickerStateChange')<sup>14+</sup>
@@ -8148,7 +8153,12 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 **示例：**
 
 ```ts
-avCastPicker.off('pickerStateChange');
+import { common } from '@kit.AbilityKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.off('pickerStateChange');
+}
 ```
 
 ## AVSessionErrorCode<sup>10+</sup>
