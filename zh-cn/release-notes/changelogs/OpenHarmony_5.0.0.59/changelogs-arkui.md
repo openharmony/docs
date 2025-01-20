@@ -153,7 +153,7 @@ hideNonSecureWindows
 
 默认行为变更，无需适配。
 
-## cl.ArkUI.4 uiExtension下新增properties必选属性
+## cl.ArkUI.5 uiExtension下新增properties必选属性
 
 **访问级别**
 
@@ -161,7 +161,7 @@ hideNonSecureWindows
 
 **变更原因**
 
-支持开发者在2in1设备上获取EmbeddedExtension组件的大小和位置信息。
+在2in1设备上无法获取EmbeddedExtension组件的大小和位置信息，不满足开发者业务诉求。
 
 **变更影响**
 
