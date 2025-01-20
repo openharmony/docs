@@ -8,7 +8,7 @@
 > 
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 从API version 12开始，可以通过UIContext中的getMeasureUtils方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+> 从API version 12开始，可以通过UIContext中的getMeasureUtils方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 >
 > 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
 >

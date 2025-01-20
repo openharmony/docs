@@ -952,7 +952,7 @@ set frame(frame: Frame)
 
 | 参数名 | 类型                                       | 必填 | 说明                             |
 | ------ | ------------------------------------------ | ---- | -------------------------------- |
-| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | 是   | 将要设置的RenderNode的大小和位置 |
+| frame  | [Frame](./js-apis-arkui-graphics.md#frame) | 是   | 将要设置的RenderNode的大小和位置。 |
 
 get frame(): Frame
 
