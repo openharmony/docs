@@ -7757,6 +7757,20 @@ isCapture(): boolean
 | ------- | ------------ |
 | boolean | 返回是否调用多媒体能力。 |
 
+### getMimeTypes<sup>9+</sup>
+
+getMimeTypes(): Array\<string\>
+
+获取文件MIME类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型              | 说明        |
+| --------------- | --------- |
+| Array\<string\> | 返回文件MIME类型。 |
+
 ## HttpAuthHandler<sup>9+</sup>
 
 Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequest9)。
