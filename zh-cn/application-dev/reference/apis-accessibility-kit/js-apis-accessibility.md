@@ -1326,3 +1326,25 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
   console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
 });
 ```
+
+**主动播报支持Resource示例：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'click',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'click',
+  textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
