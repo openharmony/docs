@@ -152,3 +152,38 @@ hideNonSecureWindows
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.ArkUI.4 uiExtension下新增properties必选属性
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+支持开发者在2in1设备上获取EmbeddedExtension组件的大小和位置信息。
+
+**变更影响**
+
+该变更为不兼容变更。
+
+变更前：开发者无法获取EmbeddedExtension组件的大小和位置信息。
+
+变更后：开发者在2in1设备上可通过properties属性获取EmbeddedExtension组件的大小和位置信息。
+
+
+**起始API Level**
+
+API 14
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.59开始。
+
+**变更的接口/组件**
+
+properties
+
+**适配指导**
+
+变更后开发者在2in1设备上可通过properties属性获取EmbeddedExtension组件的大小和位置信息。
