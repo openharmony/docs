@@ -760,7 +760,6 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14400001 | Permission denied. Call requestRight to get the permission first. |
 | 14400006 | usb submit transmission operation successful. |
 | 14400007 | usb submit transmission input/output error. |
 | 14400008 | transmission invalid parameter. |
@@ -851,7 +850,6 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14400001 | Permission denied. Call requestRight to get the permission first. |
 | 14400007 | usb submit transmission input/output error. |
 | 14400008 | transmission invalid parameter. |
 | 14400015 | napi get params error. |
