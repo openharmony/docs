@@ -154,7 +154,7 @@ Cannot reopen the accessory.
 
 **错误信息**
 
-usb submit transmission input/output error.
+transmission input/output error.
 
 **错误描述**
 
@@ -168,7 +168,7 @@ libusb实际读/写/取消，操作失败。
 
 **错误信息**
 
-transmission invalid parameter.
+invalid parameter.
 
 **错误描述**
 
@@ -210,7 +210,7 @@ transmission time out error.
 
 **错误信息**
 
-transmission other error.
+other error.
 
 **错误描述**
 
@@ -266,7 +266,7 @@ interface does not support.
 
 **错误信息**
 
-napi get params error.
+parameter error.
 
 **错误描述**
 

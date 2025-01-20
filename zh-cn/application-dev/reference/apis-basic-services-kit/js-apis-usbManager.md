@@ -761,15 +761,15 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 14400006 | usb submit transmission operation successful. |
-| 14400007 | usb submit transmission input/output error. |
+| 14400007 | transmission input/output error. |
 | 14400008 | transmission invalid parameter. |
 | 14400009 | no such device (it may have been disconnected). |
 | 14400010 | transmission time out error. |
-| 14400011 | transmission other error. |
+| 14400011 | other error. |
 | 14400012 | transmission overflow error. |
 | 14400013 | insufficient memory. |
 | 14400014 | interface does not support. |
-| 14400015 | napi get params error. |
+| 14400015 | parameter error. |
 
 **返回值：**
 
