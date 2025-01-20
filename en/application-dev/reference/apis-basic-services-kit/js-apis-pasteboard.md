@@ -89,7 +89,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
-
 ## pasteboard.createRecord<sup>9+</sup>
 
 createRecord(mimeType: string, value: ValueType):PasteDataRecord;
@@ -159,7 +158,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 ## ShareOption<sup>9+</sup>
 
-Enumerates the paste options of data.
+Enumerates the pasteable ranges of pasteboard data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -433,7 +432,7 @@ The defined properties can be applied to the pasteboard only with the [setProper
 | tag<sup>7+</sup> | string | Yes| Yes| Custom tag.                                                                                                                                                                                                                                |
 | timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).                                                                                                                                                                                                                     |
 | localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the **shareOption** attribute instead. **ShareOption.INAPP** and **ShareOption.LOCALDEVICE** set **localOnly** to **true**, and **ShareOption.CROSSDEVICE** sets **localOnly** to false.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.                                                                                                                                                                                           |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.|
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -2501,65 +2500,4 @@ try {
 } catch (err) {
     console.error('Failed to set UnifiedData. Cause:' + err.message);
 };  
-```
-### Pattern<sup>13+</sup>
-Describes the modes supported by the pasteboard.
-
-**System capability**: SystemCapability.MiscServices.Pasteboard
-
-| Name                              | Value | Description                                                                                 |
-| ---------------------------------- | --- | ------------------------------------------------------------------------------------- |
-| URL                              | 0   | URL.                                                             |
-| NUMBER                        | 1   | Number.                                                   |
-| EMAIL_ADDRESS | 2   | Email address.|
-
-### detectPatterns<sup>13+</sup>
-
-detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&gt;
-
-Detects patterns on the **local** pasteboard. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.MiscServices.Pasteboard
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| patterns | [Array&lt;Pattern&gt;](#pattern13) | Yes| 	Pattern to be detected in the pasteboard.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise used to return the detected pattern.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| Error Code ID| Error Message|
-| -------- | -------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
-
-**Example**
-
-```ts
-import { pasteboard } from '@kit.BasicServicesKit'
-
-let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
-let patterns: Array<pasteboard.Pattern> = [pasteboard.Pattern.URL, pasteboard.Pattern.EMAIL_ADDRESS];
-
-systemPasteboard.detectPatterns(patterns).then((data: Array<pasteboard.Pattern>) => {
-    if (patterns.sort().join('')==data.sort().join('')) {
-      console.info('All needed patterns detected, next get data');
-      try {
-        let result: pasteboard.PasteData = systemPasteboard.getDataSync();
-        console.info('Succeeded in getting PasteData.');
-      } catch (err) {
-        console.error('Failed to get PasteData. Cause:' + err.message);
-      };
-    } else {
-      console.info("Not all needed patterns detected, no need to get data.");
-    }
-});
 ```
