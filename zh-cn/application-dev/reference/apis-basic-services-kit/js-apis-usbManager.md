@@ -823,7 +823,6 @@ try {
   console.info('USB transfer request submitted.');
 } catch (error) {
   console.error('USB transfer failed:', error);
-  expect(false).assertFalse();
 }
 ```
 
@@ -906,7 +905,6 @@ try {
   console.info('USB transfer request submitted.');
 } catch (error) {
   console.error('USB transfer failed:', error);
-  expect(false).assertFalse();
 }
 ```
 
