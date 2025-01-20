@@ -32,13 +32,14 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称        | 值   | 说明           |
-| ----------- | ---- | -------------- |
-| EQUALS      | 0    | 等于给定值。   |
-| CONTAINS    | 1    | 包含给定值。   |
-| STARTS_WITH | 2    | 以给定值开始。 |
-| ENDS_WITH   | 3    | 以给定值结束。 |
-
+| 名称        | 值 | 说明            |
+| ----------- |---|---------------|
+| EQUALS      | 0 | 等于给定值。        |
+| CONTAINS    | 1 | 包含给定值。        |
+| STARTS_WITH | 2 | 以给定值开始。       |
+| ENDS_WITH   | 3 | 以给定值结束。       |
+| REG_EXP   | 4 | 区分大小写的正则表达式。  |
+| REG_EXP_ICASE   | 5 | 不区分大小写的正则表达式。 |
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
