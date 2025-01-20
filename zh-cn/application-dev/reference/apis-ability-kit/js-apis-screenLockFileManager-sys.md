@@ -141,3 +141,63 @@ try {
     hilog.error(0x0000, 'testTag', 'releaseAccess failed: %{public}s', message);
 }
 ```
+
+## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+
+queryAppKeyState(dataType: DataType): KeyStatus
+
+以同步方法查询锁屏下应用敏感数据访问权限。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_MEDIA_DATA 或 ohos.permission.ACCESS_SCREEN_LOCK_ALL_DATA
+
+**系统能力：** SystemCapability.Security.ScreenLockFileManager
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| dataType | [DataType](#datatype) | 是   | 锁屏下访问的敏感数据类型。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                           |
+| ------------------------------------------------------------ | ------------------------------ |
+| [KeyStatus](js-apis-screenLockFileManager.md#keystatus16) | 锁屏下敏感数据访问权限的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.screenLockFileManager错误码](errorcode-screenLockFileManager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed, usually returned by VerifyAccessToken. |
+| 202      | Permission verification failed, application which is not a system application uses system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | The specified SystemCapability name was not found.           |
+| 29300001 | Invalid parameter.                                           |
+| 29300002 | The system ability work abnormally.                          |
+
+**示例：**
+
+```ts
+// 查询锁屏下媒体类型数据的访问权限
+import { screenLockFileManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    let keyStatus = screenLockFileManager.queryAppKeyState(screenLockFileManager.DataType.MEDIA_DATA);
+    if (keyStatus === screenLockFileManager.KeyStatus.KEY_NOT_EXIST) {
+        hilog.info(0x0000, 'testTag', 'Key does not exist.');
+    } else if (keyStatus === screenLockFileManager.KeyStatus.KEY_RELEASED) {
+        hilog.info(0x0000, 'testTag', 'Key has been released.');
+    } else if (keyStatus === screenLockFileManager.KeyStatus.KEY_EXIST) {
+        hilog.info(0x0000, 'testTag', 'Key exists.');
+    }
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAppKeyState failed: %{public}s', message);
+}
+```

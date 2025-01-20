@@ -34,6 +34,18 @@ import { screenLockFileManager } from '@kit.AbilityKit';
 | RELEASE_DENIED |  -1 | 拒绝锁屏下敏感数据访问释放。 |
 | RELEASE_GRANTED |  0  |  释放锁屏下敏感数据访问。  |
 
+## KeyStatus<sup>16+</sup>
+
+枚举，锁屏下敏感数据访问权限的状态。
+
+ **系统能力：** SystemCapability.Security.ScreenLockFileManager
+
+| 名称 | 值 | 说明 |
+|-----------------|----|----|
+| KEY_NOT_EXIST |  -2 | 应用未开启锁屏敏感数据保护功能。 |
+| KEY_RELEASED |  -1 | 锁屏敏感数据访问权限已释放。 |
+| KEY_EXIST |  0  |  应用可以访问锁屏敏感数据。  |
+
 ## screenLockFileManager.acquireAccess
 
 acquireAccess(): AccessStatus
@@ -119,5 +131,51 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'releaseAccess failed: %{public}s', message);
+}
+```
+
+## screenLockFileManager.queryAppKeyState<sup>16+</sup>
+
+queryAppKeyState(): KeyStatus
+
+以同步方法查询锁屏下应用敏感数据访问权限。
+
+**系统能力：** SystemCapability.Security.ScreenLockFileManager
+
+**返回值：**
+
+| 类型                            | 说明                           |
+| ------------------------------- | ------------------------------ |
+| [KeyStatus](#keystatus16) | 锁屏下敏感数据访问权限的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.screenLockFileManager错误码](errorcode-screenLockFileManager.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801      | The specified SystemCapability name was not found.           |
+| 29300002 | The system ability work abnormally.                          |
+
+**示例：**
+
+```ts
+// 查询锁屏下应用敏感数据访问权限
+import { screenLockFileManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    let keyStatus = screenLockFileManager.queryAppKeyState();
+    if (keyStatus === screenLockFileManager.KeyStatus.KEY_NOT_EXIST) {
+        hilog.info(0x0000, 'testTag', 'Key does not exist.');
+    } else if (keyStatus === screenLockFileManager.KeyStatus.KEY_RELEASED) {
+        hilog.info(0x0000, 'testTag', 'Key has been released.');
+    } else if (keyStatus === screenLockFileManager.KeyStatus.KEY_EXIST) {
+        hilog.info(0x0000, 'testTag', 'Key exists.');
+    }
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'queryAppKeyState failed: %{public}s', message);
 }
 ```
