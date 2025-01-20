@@ -26,10 +26,12 @@ For details about the APIs, see [Preferences](../reference/apis-arkdata/_prefere
 | int OH_Preferences_Delete (OH_Preferences \*preference, const char \*key) | Deletes the KV data corresponding to the specified key from a **Preferences** instance.|
 | int OH_Preferences_RegisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | Subscribes to data changes of the specified keys. If the value of the specified key changes, a callback will be invoked after **OH_Preferences_Close()** is called.|
 | int OH_Preferences_UnregisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | Unsubscribes from data changes of the specified keys.|
+| int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool \*isSupported) | Checks whether the specified storage type is supported.|
 | OH_PreferencesOption \* OH_PreferencesOption_Create (void) | Creates an **OH_PreferencesOption** instance and a pointer to it. If this pointer is no longer required, use **OH_PreferencesOption_Destroy** to destroy it. Otherwise, memory leaks may occur.|
 | int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | Sets the file name for an **OH_PreferencesOption** instance.|
 | int OH_PreferencesOption_SetBundleName (OH_PreferencesOption \*option, const char \*bundleName) | Sets the bundle name for an OH_PreferencesOption instance.|
 | int OH_PreferencesOption_SetDataGroupId (OH_PreferencesOption \*option, const char \*dataGroupId) | Sets the application group ID for an **OH_PreferencesOption** instance.|
+| int OH_PreferencesOption_SetStorageType (OH_PreferencesOption \*option, Preferences_StorageType type) | Sets the storage type for an **OH_PreferencesOption** instance.|
 | int OH_PreferencesOption_Destroy (OH_PreferencesOption \*option) | Destroys an **OH_PreferencesOption** instance.|
 | const char \* OH_PreferencesPair_GetKey (const OH_PreferencesPair \*pairs, uint32_t index) | Obtains the key based on the specified index from the KV data.|
 | const OH_PreferencesValue \* OH_PreferencesPair_GetPreferencesValue (const OH_PreferencesPair \*pairs, uint32_t index) | Obtains the value based on the specified index from the KV pairs.|
@@ -59,7 +61,7 @@ libohpreferences.so
 
 ## How to Develop
 The following example shows how to use **Preferences** APIs to modify and persist KV data.
-1. Create a **PreferencesOption** instance and sets its parameters. When the **PreferencesOption** instance is not required, call **OH_PreferencesOption_Destroy** to destroy it.
+1. Create a **PreferencesOption** instance and set the name, application group ID, bundle name, and storage type). Use **OH_PreferencesOption_Destroy** to destroy it when this instance is no longer required.
 2. Call **OH_Preferences_Open** to open a **Preferences** instance. When the **Preferences** instance is not required, call **OH_Preferences_Close** to close it.
 3. Call **OH_Preferences_RegisterDataObserver** to register a **DataChangeObserverCallback** callback to observe data changes of three keys.
 4. Set KV data in a **Preferences** instance.
@@ -125,13 +127,34 @@ if (ret != PREFERENCES_OK) {
     // Error handling.
 }
 
+// Set the storage type for the PreferencesOption instance. Before the setting, call OH_Preferences_IsStorageTypeSupported to check whether the storage type is supported.
+bool isClkvSupported = false;
+ret = OH_Preferences_IsStorageTypeSupported(Preferences_StorageType::PREFERENCES_STORAGE_CLKV, &isClkvSupported);
+if (ret != PREFERENCES_OK) {
+    (void)OH_PreferencesOption_Destroy(option);
+    // Error handling.
+}
+if (isClkvSupported) {
+    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_CLKV);
+    if (ret != PREFERENCES_OK) {
+        (void)OH_PreferencesOption_Destroy(option);
+        // Error handling.
+    }
+} else {
+    ret = OH_PreferencesOption_SetStorageType(option, Preferences_StorageType::PREFERENCES_STORAGE_XML);
+    if (ret != PREFERENCES_OK) {
+        (void)OH_PreferencesOption_Destroy(option);
+        // Error handling.
+    }
+}
+
 // 2. Open a Preferences instance.
 int errCode = PREFERENCES_OK;
 OH_Preferences *preference = OH_Preferences_Open(option, &errCode);
 // Destroy the PreferencesOption instance that is no longer used, and set the instance pointer to null.
 (void)OH_PreferencesOption_Destroy(option);
 option = nullptr;
-if (preference == nullptr) {
+if (preference == nullptr || errCode != PREFERENCES_OK) {
     // Error handling.
 }
 
@@ -143,7 +166,7 @@ if (ret != PREFERENCES_OK) {
     // Error handling.
 }
 
-// 4. Set the KV data in the Preferences instance.
+// 4. Set KV data in the Preferences instance.
 ret = OH_Preferences_SetInt(preference, keys[0], 0);
 if (ret != PREFERENCES_OK) {
     (void)OH_Preferences_Close(preference);
@@ -160,7 +183,7 @@ if (ret != PREFERENCES_OK) {
     // Error handling.
 }
 
-// 5. Obtain the KV data from the Preferences instance.
+// 5. Obtain KV data from the Preferences instance.
 int intValue = 0;
 ret = OH_Preferences_GetInt(preference, keys[0], &intValue);
 if (ret == PREFERENCES_OK) {
