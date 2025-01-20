@@ -48,7 +48,7 @@ The table below lists the main APIs used for transient task development. For det
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. Request a transient task and implement the callback.
+2. Request a transient task and implement the callback. The callback is triggered when the transient task is about to end and is independent of the service of the application. After the request for the transient task is successful, the application normally executes its own service logic.
    
    ```ts
    let id: number;         // ID of the transient task.
@@ -65,6 +65,8 @@ The table below lists the main APIs used for transient task development. For det
      id = delayInfo.requestId;
      delayTime = delayInfo.actualDelayTime;
    }
+
+   // Execute the service logic of the application.
    ```
 
 3. Obtain the remaining time of the transient task. Based on the remaining time, the application determines whether to continue to run other services. For example, the application has two small tasks. After the first task is executed, it queries the remaining time of the current transient task to determine whether to execute the second task.

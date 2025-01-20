@@ -26,7 +26,7 @@ Starts a deferred task.
 
 | Name | Type                   | Mandatory  | Description            |
 | ---- | --------------------- | ---- | -------------- |
-| work | [WorkInfo](#workinfo) | Yes   | Deferred task to start. |
+| work | [WorkInfo](#workinfo) | Yes   | Deferred task to start.|
 
 **Error codes**
 
@@ -80,7 +80,7 @@ Stops a deferred task.
 
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
-| work       | [WorkInfo](#workinfo) | Yes   | Deferred task to stop. |
+| work       | [WorkInfo](#workinfo) | Yes   | Deferred task to stop.|
 | needCancel | boolean               | No   | Whether to clear the task while stopping it.<br>The value **true** means to clear the task while stopping it, and **false** means to stop the task only. The default value is **false**.|
 
 **Error codes**
@@ -135,7 +135,7 @@ Obtains the information a deferred task. This API uses an asynchronous callback 
 | Name     | Type                                   | Mandatory  | Description                                      |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | Yes   | ID of the deferred task.                                |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown. |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -175,13 +175,13 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | -------- |
-| workId | number | Yes   | ID of the deferred task. |
+| workId | number | Yes   | ID of the deferred task.|
 
 **Return value**
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown. |
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. If **workId** is valid, the task information obtained from WorkSchedulerService is returned. Otherwise, an exception is thrown.|
 
 **Error codes**
 
@@ -220,7 +220,7 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback |  AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback |  AsyncCallback\<void> | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -245,7 +245,7 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 | Name     | Type                  | Mandatory  | Description                             |
 | -------- | -------------------- | ---- | ------------------------------- |
-| callback |  AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt; | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object. |
+| callback |  AsyncCallback&lt;Array&lt;WorkInfo&gt;&gt; | Yes   | Callback used to return the result. If all the deferred tasks are obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -284,7 +284,7 @@ Obtains all the deferred tasks. This API uses a promise to return the result.
 
 | Type                                    | Description                            |
 | -------------------------------------- | ------------------------------ |
-| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all the deferred tasks. |
+| Promise<Array\<[WorkInfo](#workinfo)>> | Promise used to return all the deferred tasks.|
 
 **Error codes**
 
@@ -356,7 +356,7 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | Yes   | ID of the deferred task.                                |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. |
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -383,7 +383,7 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 | Name     | Type                  | Mandatory  | Description                                      |
 | -------- | -------------------- | ---- | ---------------------------------------- |
 | workId   | number               | Yes   | ID of the deferred task.                                |
-| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.|
 
 **Error codes**
 
@@ -423,13 +423,13 @@ Checks whether the last execution of a task timed out. This API uses a promise t
 
 | Name   | Type    | Mandatory  | Description      |
 | ------ | ------ | ---- | -------- |
-| workId | number | Yes   | ID of the deferred task. |
+| workId | number | Yes   | ID of the deferred task.|
 
 **Return value**
 
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
-| Promise\<boolean> | Promise used to return the result. The value **true** means that the last execution of the specified task times out, and **false** means the opposite. |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the last execution of the specified task times out, and **false** means the opposite.|
 
 **Error codes**
 
@@ -467,20 +467,20 @@ Defines the information about the deferred task.
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | ID of the deferred task.         |
 | bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
-| abilityName     | string                            | Yes   | Ability name in the bundle. |
+| abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
 | isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite. |
+| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value **true** means that the task is repeated, and **false** means the opposite.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
+| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>The value **true** means that the task can be saved. That is, the task can be restored after the system restarts. The value **false** means the opposite.|
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
-| parameters      | Record<string, number \| string \| boolean>  | No   | Carried parameters. |
+| parameters      | Record<string, number \| string \| boolean>  | No   | Carried parameters.|
 
 ## NetworkType
 
@@ -493,7 +493,7 @@ Enumerates the network types that can trigger deferred task scheduling.
 | NETWORK_TYPE_ANY       | 0    | Any network type.    |
 | NETWORK_TYPE_MOBILE    | 1    | Mobile network.   |
 | NETWORK_TYPE_WIFI      | 2    | Wi-Fi network.  |
-| NETWORK_TYPE_BLUETOOTH | 3    | Bluetooth network. |
+| NETWORK_TYPE_BLUETOOTH | 3    | Bluetooth network.|
 | NETWORK_TYPE_WIFI_P2P  | 4    | Wi-Fi P2P network. |
 | NETWORK_TYPE_ETHERNET  | 5    | Ethernet.       |
 
@@ -505,7 +505,7 @@ Enumerates the charging types that can trigger deferred task scheduling.
 
 | Name                       | Value | Description                  |
 | ------------------------- | ---- | -------------------- |
-| CHARGING_PLUGGED_ANY      | 0    | Any charging type. |
+| CHARGING_PLUGGED_ANY      | 0    | Any charging type.|
 | CHARGING_PLUGGED_AC       | 1    | DC charging.   |
 | CHARGING_PLUGGED_USB      | 2    | USB charging.    |
 | CHARGING_PLUGGED_WIRELESS | 3    | Wireless charging.   |
@@ -520,7 +520,7 @@ Enumerates the battery statuses that can trigger deferred task scheduling.
 | -------------------------- | ---- | -------------------------- |
 | BATTERY_STATUS_LOW         | 0    | A low battery alert is displayed.            |
 | BATTERY_STATUS_OKAY        | 1    | The battery level is restored from low to normal.      |
-| BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed. |
+| BATTERY_STATUS_LOW_OR_OKAY | 2    | The battery level is restored from low to normal, or a low battery alert is displayed.|
 
 ## StorageRequest
 
@@ -532,4 +532,4 @@ Enumerates the storage statuses that can trigger deferred task scheduling.
 | ------------------------- | ---- | ------------------------------ |
 | STORAGE_LEVEL_LOW         | 0    | The storage space is insufficient.              |
 | STORAGE_LEVEL_OKAY        | 1    | The storage space is restored from insufficient to normal.        |
-| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is insufficient, or the storage space is restored from insufficient to normal. |
+| STORAGE_LEVEL_LOW_OR_OKAY | 2    | The storage space is insufficient, or the storage space is restored from insufficient to normal.|
