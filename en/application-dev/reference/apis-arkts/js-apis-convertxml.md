@@ -27,22 +27,22 @@ Converts an XML text into a JavaScript object.
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description           |
+| Name | Type                             | Mandatory| Description           |
 | ------- | --------------------------------- | ---- | --------------- |
-| xml     | string                            | Yes  | XML text to convert. |
-| options | [ConvertOptions](#convertoptions) | No  | Options for conversion. The default value is a **ConvertOptions** object, which consists of the default values of the attributes in the object. |
+| xml     | string                            | Yes  | XML text to convert. If the XML text contains the ampersand (&), replace it with the entity reference **\&amp;**.|
+| options | [ConvertOptions](#convertoptions) | No  | Options for conversion. The default value is a **ConvertOptions** object, which consists of the default values of the attributes in the object.|
 
 **Return value**
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| Object | JavaScript object. |
+| Object | JavaScript object.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
-| ID | Error Message |
+| ID| Error Message|
 | -------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200002 | Invalid xml string. |
@@ -89,16 +89,16 @@ Converts an XML text into a JavaScript object.
 
 **Parameters**
 
-| Name | Type                             | Mandatory | Description           |
+| Name | Type                             | Mandatory| Description           |
 | ------- | --------------------------------- | ---- | --------------- |
-| xml     | string                            | Yes  | XML text to convert. |
+| xml     | string                            | Yes  | XML text to convert.|
 | options | [ConvertOptions](#convertoptions) | No  | Options for conversion. The default value is a **ConvertOptions** object, which consists of the default values of the attributes in the object. |
 
 **Return value**
 
 | Type  | Description                        |
 | ------ | ---------------------------- |
-| Object | JavaScript object. |
+| Object | JavaScript object.|
 
 **Example**
 
@@ -130,7 +130,7 @@ Options for conversion.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name             | Type | Mandatory | Description                                                       |
+| Name             | Type| Mandatory| Description                                                       |
 | ----------------- | -------- | ---- | ----------------------------------------------------------- |
 | trim              | boolean  | Yes  | Whether to trim the whitespace characters before and after the text.                |
 | ignoreDeclaration | boolean  | No  | Whether to ignore the XML declaration. The default value is **false**.                       |
@@ -140,8 +140,8 @@ Options for conversion.
 | ignoreCDATA       | boolean  | No  | Whether to ignore the element's CDATA information. The default value is **false**.                       |
 | ignoreDoctype     | boolean  | No  | Whether to ignore the element's Doctype information. The default value is **false**.                     |
 | ignoreText        | boolean  | No  | Whether to ignore the element's text information. The default value is **false**.                        |
-| declarationKey    | string   | Yes  | Name of the attribute key for **declaration** in the output object. |
-| instructionKey    | string   | Yes  | Name of the attribute key for **instruction** in the output object. |
+| declarationKey    | string   | Yes  | Name of the attribute key for **declaration** in the output object.|
+| instructionKey    | string   | Yes  | Name of the attribute key for **instruction** in the output object.|
 | attributesKey     | string   | Yes  | Name of the attribute key for **attributes** in the output object.  |
 | textKey           | string   | Yes  | Name of the attribute key for **text** in the output object.              |
 | cdataKey          | string   | Yes  | Name of the attribute key for **cdata** in the output object.            |
