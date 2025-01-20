@@ -38,7 +38,7 @@ arkXtest is divided into two parts: unit test framework and UI test framework.<b
 <!--RP2-->
 1. Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
 
-2. Open the **.ets** file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
+2. Open the .ets file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class. For more details, see [DevEco Studio User Guide](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415).
 
 <!--RP2End-->
 
@@ -121,7 +121,7 @@ export default function abilityTest() {
   }
   ```
 
-2. Write test code in the **.test.ets** file under **ohosTest** > **ets** > **test**.
+2. Write test code in the .test.ets file under **ohosTest** > **ets** > **test**.
 
   ```ts
   import { describe, it, expect } from '@ohos/hypium';
@@ -483,7 +483,7 @@ hdc shell uitest uiInput longClick 100 100
 | from_y   | Yes               | The y-coordinate of the start point.| 
 | to_x   | Yes               | The x-coordinate of the stop point.|
 | to_y   | Yes               | The y-coordinate of the stop point.|
-| swipeVelocityPps_   | No     | Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
+| swipeVelocityPps_   | No     | Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.| 
 | stepLength_   | No| The step length. The default value is the sliding distance divided by 50.<br>  To achieve better simulation effect, you are advised to use the default values. | 
 
 
@@ -515,7 +515,7 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 | Parameter            | Mandatory      | Description|
 |-------------------|-------------|----------|
 | direction         | No| Fling direction, which can be **0**, **1**, **2**, or **3**. The default value is **0**.<br> The value **0** indicates leftward fling, **1** indicates rightward fling, **2** indicates upward fling, and **3** indicates downward fling.   | 
-| swipeVelocityPps_ | No| Fling speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   | 
+| swipeVelocityPps_ | No| Swipe speed, in px/s. Value range: 200 to 40000.<br> The default value is 600.   | 
 | stepLength        | No       | The step length.<br> The default value is the sliding distance divided by 50. To achieve better simulation effect, you are advised to use the default values.|
 
 ```shell  
@@ -555,9 +555,9 @@ hdc shell uitest uiInput inputText 100 100 hello
 > A maximum of three key values can be passed. <!--RP3-->For details about the key values, see [KeyCode](../reference/apis-input-kit/js-apis-keycode.md)<!--RP3End-->.
 
 ```shell  
-# Return to the home page.
+# Back to home page.
 hdc shell uitest uiInput keyEvent Home
-# Return to the last page.
+# Back to the last page.
 hdc shell uitest uiInput keyEvent Back
 # Perform a key combination to copy and paste text.
 hdc shell uitest uiInput keyEvent 2072 2038
@@ -577,7 +577,9 @@ hdc shell uitest start-daemon
 >**NOTE**
 >
 > You need to enable the developer mode for the device.
+>
 > Only the test HAP started by the **aa test** ability can call the ability of the UiTest.
+>
 > <!--RP4-->The <!--RP4End-->[Ability Privilege Level (APL)](../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism) of the <!--RP4End-->test HAP must be **system_basic** or **normal**.
 
 <!--Del-->
@@ -730,7 +732,7 @@ The UI test case fails to be executed. The HiLog file contains the error message
 
 2. Do not execute UI test cases in multiple processes.
 
-**The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"**
+The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object".
 
 **Problem**
 
