@@ -323,9 +323,9 @@ struct TreeViewDemo {
       this.clickNodeId = callbackParam.currentNodeId;
     })
 
-    let normalResource: Resource = $r('app.media.ic_public_collect_normal');
-    let selectedResource: Resource = $r('app.media.ic_public_collect_selected');
-    let editResource: Resource = $r('app.media.ic_public_collect_edit');
+    let normalResource: Resource = $r('sys.media.ohos_ic_normal_white_grid_folder');
+    let selectedResource: Resource = $r('sys.media.ohos_ic_public_select_all');
+    let editResource: Resource = $r('sys.media.ohos_ic_public_edit');
     let nodeParam: NodeParam = { parentNodeId:-1, currentNodeId: 1, isFolder: true, icon: normalResource, selectedIcon: selectedResource,
       editIcon: editResource, primaryTitle: "目录1验证悬浮框自适应效果是否OK",
       secondaryTitle: "6" };
