@@ -152,7 +152,7 @@ Example of loading a link with the hash (#) route through the resource protocol 
   }
   ```
 
-Example of loading local resource files in the sandbox:
+To load the local resource file in the sandbox path, you need to enable the [fileAccess](#fileaccess) permission for the file system in the application.
 
 1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
 
@@ -196,6 +196,7 @@ Example of loading local resource files in the sandbox:
        Column() {
          // Load the files in the sandbox.
          Web({ src: url, controller: this.controller })
+         .fileAccess(true)
        }
      }
    }
@@ -240,15 +241,27 @@ Define web options through [APIs](#apis).
 
 | Name       | Type                                    | Mandatory  | Description                                    |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src        | string \| [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl).|
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file (in HTML or TXT format) in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.<br>**src** cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](js-apis-webview.md#loadurl).|
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12)| No  | Rendering mode.<br>**RenderMode.ASYNC_RENDER** (default, cannot be dynamically adjusted): The **Web** component is rendered asynchronously.<br>**RenderMode.SYNC_RENDER**: The **Web** component is rendered synchronously within the current execution context.|
 | incognitoMode<sup>11+</sup> | boolean | No| Whether to enable incognito mode. The value **true** means to enable incognito mode, and **false** means the opposite.<br> Default value: **false**|
 | sharedRenderProcessToken<sup>12+</sup> | string | No| The token of the shared rendering process specified by the **Web** component. In multi-rendering process mode, the **Web** component with the same token preferentially attempts to reuse the rendering process bound to the token. The token is bound to the rendering process when the rendering process is initialized. When the rendering process is not associated with a **Web** component, its binding to the token is removed.<br> Default value: **""** |
 
+## WebviewController<sup>9+</sup>
+
+type WebviewController = WebviewController
+
+Provides methods for the web controller.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Type    | Description      |
+| ------ | ---------- |
+| [WebviewController](js-apis-webview.md#webviewcontroller)  | Implements a **WebviewController** to control the behavior of the **Web** component. A **WebviewController** object can control only one **Web** component. Methods (except static methods) on the **WebviewController** can be called only after the **Web** component is bound to the **WebviewController**.|
+
 ## Attributes
 
-The following universal attributes are supported: [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexGrow](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [stateStyles](../apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md#statestyles), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md), [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)
+Common attributes support only [aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio), [backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur), [backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor), [bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover), [bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8), [bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu), [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet), [borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor), [borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius), [borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle), [borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth), [clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip), [constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize), [defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9), [focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable), [tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9), [groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9), [focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9), [displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority), [enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled), [flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis), [flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink), [layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight), [id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md), [gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md), [height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height), [touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md), [margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin), [markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor), [offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset), [width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width), [zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex), [visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility), [scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale), [translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate), [responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion), [size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size), [opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity), [shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow), [sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md) and [transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md).
 
 ### domStorageAccess
 
@@ -400,6 +413,14 @@ Registers a JavaScript object with the window. APIs of this object can then be i
     testObj = new TestObj();
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("objName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
           .javaScriptProxy({
@@ -451,7 +472,7 @@ Sets whether JavaScript scripts can be executed. By default, JavaScript scripts 
 
 overScrollMode(mode: OverScrollMode)
 
-Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **Web** component plays a bounce effect animation.
+Sets the overscroll mode, which is disabled by default. When the overscroll mode is enabled and the boundary of the scrolling area is reached, the **Web** component plays a bounce effect animation. The internal page on the root page does not trigger rebound.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1023,11 +1044,11 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
   @Component
   struct WebComponent {
     controller: WebController = new WebController()
-    @State atio: number = 150
+    @State ratio: number = 150
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomAtio(this.atio)
+          .textZoomAtio(this.ratio)
       }
     }
   }
@@ -1057,12 +1078,12 @@ Sets the text zoom ratio of the page. The default value is **100**, which indica
   @Component
   struct WebComponent {
     controller: webview.WebviewController = new webview.WebviewController();
-    @State atio: number = 150;
+    @State ratio: number = 150;
 
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-          .textZoomRatio(this.atio)
+          .textZoomRatio(this.ratio)
       }
     }
   }
@@ -1733,8 +1754,8 @@ you can run the **hdc shell param set persist.web.allowWindowOpenMethod.enabled 
             })
             this.dialogController.open();
             // Return the WebviewController object corresponding to the new window to the Web kernel.
-            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
+            // If no new window is created, set the value of event.handler.setWebController to null to notify the Web component that no new window is created.
             event.handler.setWebController(popController);
           })
       }
@@ -1794,6 +1815,8 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 > **NOTE**
 >
 > - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+> - The script is executed in the lexicographic order, not the array order.
+> - You are not advised to use this API together with [runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1868,6 +1891,8 @@ Injects a JavaScript script into the **Web** component. When the specified page 
 > **NOTE**
 >
 > - The script runs before any JavaScript code of the page, when the DOM tree has been loaded and rendered.
+> - The script is executed in the lexicographic order, not the array order.
+> - You are not advised to use this API together with [runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15).
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -1920,6 +1945,206 @@ Hello world!
 </html>
 ```
 
+### runJavaScriptOnDocumentStart<sup>15+</sup>
+
+runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **Web** component. When the specified page or document starts to be loaded, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - The script runs before any JavaScript code of the page, when the DOM tree may not have been loaded or rendered.
+> - This script is executed in the array order.
+> - You are advised not to use this API together with [javaScriptOnDocumentStart](#javascriptondocumentstart11).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
+
+**Example in the .ets file**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct Index {
+      controller: webview.WebviewController = new webview.WebviewController();
+      private localStorage: string =
+          "if (typeof(Storage) !== 'undefined') {" +
+          "   localStorage.setItem('color', 'Red');" +
+          "}";
+      @State scripts: Array<ScriptItem> = [
+          { script: this.localStorage, scriptRules: ["*"] }
+      ];
+
+      build() {
+          Column({ space: 20 }) {
+              Web({ src: $rawfile('index.html'), controller: this.controller })
+                  .javaScriptAccess(true)
+                  .domStorageAccess(true)
+                  .backgroundColor(Color.Grey)
+                  .runJavaScriptOnDocumentStart(this.scripts)
+                  .width('100%')
+                  .height('100%')
+          }
+      }
+  }
+  ```
+**Example in the HTML file**
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+      Hello world!
+      <div id="result"></div>
+  </body>
+  <script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+  </script>
+</html>
+```
+
+### runJavaScriptOnDocumentEnd<sup>15+</sup>
+
+runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **Web** component. When the specified page or document has been loaded, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - The script runs before any JavaScript code of the page, when the DOM tree has been loaded and rendered.
+> - This script is executed in the array order.
+> - You are advised not to use this API together with [javaScriptOnDocumentEnd](#javascriptondocumentend11).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
+
+**Example**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnDocumentEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnDocumentEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
+### runJavaScriptOnHeadEnd<sup>15+</sup>
+
+runJavaScriptOnHeadEnd(scripts: Array\<ScriptItem>)
+
+Injects a JavaScript script into the **Web** component. When the **head** tag of the DOM tree is parsed, the script is executed on any page whose source matches **scriptRules**.
+
+> **NOTE**
+>
+> - This script is executed in the array order.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory  | Description              |
+| ------- | ----------------------------------- | ---- | ------------------ |
+| scripts | Array\<[ScriptItem](#scriptitem11)> | Yes   | Script item array to be injected.|
+
+**Example**
+
+  ```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+
+@Entry
+@Component
+struct Index {
+  controller: webview.WebviewController = new webview.WebviewController();
+  private jsStr: string =
+    "window.document.getElementById(\"result\").innerHTML = 'this is msg from runJavaScriptOnHeadEnd'";
+  @State scripts: Array<ScriptItem> = [
+    { script: this.jsStr, scriptRules: ["*"] }
+  ];
+
+  build() {
+    Column({ space: 20 }) {
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .domStorageAccess(true)
+        .backgroundColor(Color.Grey)
+        .runJavaScriptOnHeadEnd(this.scripts)
+        .width('100%')
+        .height('100%')
+    }
+  }
+}
+  ```
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;">
+Hello world!
+<div id="result">test msg</div>
+</body>
+</html>
+```
+
 ### layoutMode<sup>11+</sup>
 
 layoutMode(mode: WebLayoutMode)
@@ -1931,9 +2156,9 @@ Sets the web layout mode.
 > Currently, only two web layout modes are supported: **WebLayoutMode.NONE** and **WebLayoutMode.FIT_CONTENT**.
 >
 > The following restrictions apply with the usage of **WebLayoutMode.FIT_CONTENT**:
-> - If the web content is wider or longer than 8000 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **Web** component; otherwise, the screen may be blank.
+> - If the **Web** component is wider or longer than 7680 px, specify the **RenderMode.SYNC_RENDER** mode when creating the **Web** component; otherwise, the screen may be blank.
 > - After the **Web** component is created, dynamic switching of the **layoutMode** is not supported.
-> - The width and height of the **Web** component cannot exceed 500,000 px each.
+> - The width and height of a **Web** component cannot exceed 500,000 px when the **RenderMode.SYNC_RENDER** mode is specified, and cannot exceed 7680 px when the **RenderMode.ASYNC_RENDER** mode is specified.
 > - Frequent changes to the page width and height will trigger a re-layout of the **Web** component, which can affect the user experience.
 > - Waterfall web pages are not supported (drop down to the bottom to load more).
 > - Only height adaptation is supported. Width adaptation is not supported.
@@ -1949,7 +2174,7 @@ Sets the web layout mode.
 
 **Example**
 
-  1. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you need to explicitly specify the **renderMode** to **RenderMode.SYNC_RENDER**. Otherwise, rendering errors may occur when the viewport height exceeds 7680px in the default **RenderMode.ASYNC_RENDER**.
+  1. After specifying the **layoutMode** as **WebLayoutMode.FIT_CONTENT**, you need to explicitly specify the **renderMode** to** RenderMode.SYNC_RENDER**. Otherwise, rendering errors may occur when the viewport height exceeds 7680px in the default **RenderMode.ASYNC_RENDER**.
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
@@ -2002,7 +2227,7 @@ Sets nested scrolling options.
 > - You can set the up, down, left, and right directions, or set the forward and backward nested scrolling modes to implement scrolling linkage with the parent component.
 > - When the **value** is of the **NestedScrollOptionsExt** type (up, down, left, and right), the default nested scrolling mode of the **scrollUp**, **scrollDown**, **scrollLeft**, and **scrollRight **options [NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10).
 > - When the **value** is of the **NestedScrollOptions** type (forward and backward), the default nested scrolling mode of the **scrollForward** and **scrollBackward** options is **NestedScrollMode.SELF_FIRST**.
-> - Containers that support nested scrolling: **Grid**, **List**, **Scroll**, **Swiper**, **Tabs**, **WaterFlow**.
+> - The following containers support nested scrolling: [Grid](../apis-arkui/arkui-ts/ts-container-grid.md), [List](../apis-arkui/arkui-ts/ts-container-list.md), [Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md), [Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md), [Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md), [WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md), [Refresh](../apis-arkui/arkui-ts/ts-container-refresh.md) and [bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet).
 > - Input sources that support nested scrolling: gestures, mouse device, and touchpad.
 > - In nested scrolling scenarios, since the **Web** component's over-scrolling to the edge will trigger the over-scroll bounce effect first, it is recommended that you set **overScrollMode** to **OverScrollMode.NEVER** to avoid undermining the user experience.
 
@@ -2134,6 +2359,8 @@ forceDisplayScrollBar(enabled: boolean)
 
 Sets whether the scroll bar is always visible. By default, it is not always visible. Under the always-visible settings, when the page size exceeds one page, the scroll bar appears and remains visible.
 
+When **layoutMode** is set to **WebLayoutMode.FIT_CONTENT**, the **enabled** parameter is set to **false**.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 **Parameters**
@@ -2190,7 +2417,7 @@ Sets whether the scroll bar is always visible. By default, it is not always visi
 
 registerNativeEmbedRule(tag: string, type: string)
 
-Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type can be any non-empty string, case-insensitive.
+Registers the HTML tag name and type for same-layer rendering. The tag name only supports **object** and **embed**. The tag type only supports visible ASCII characters.
 
 If the specified type is the same as the W3C standard **object** or **embed** type, the ArkWeb kernel identifies the type as a non-same-layer tag.
 
@@ -2287,6 +2514,8 @@ Sets whether the **viewport** property of the **meta** tag is enabled.
 > - If this parameter is set to **true**, the **viewport** property of the **meta** tag is enabled. This means that the property will be parsed and used for the layout.
 > - If set to an invalid value, this parameter does not take effect.
 > - If the device is 2-in-1, the **viewport** property is not supported. This means that, regardless of whether this parameter is set to **true** or **false**, the **viewport** property will not be parsed and a default layout will be used.
+> - If the device is a tablet, the **viewport-fit** property of the **meta** tag is parsed regardless of whether this parameter is set to **true** or **false**. When **viewport-fit** is set to **cover**, the size of the safe area can be obtained through the CSS attribute.
+> - Currently, the **viewport** attribute of the **meta** tag on the frontend HTML page is enabled based on whether **UserAgent** contains the **Mobile** field. If a **UserAgent** does not contain the **Mobile** field, the **viewport** property in the **meta** tag is disabled by default. In this case, you can explicitly set the **metaViewport** property to **true** to overwrite the disabled state.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2439,7 +2668,7 @@ The API only supports the selection of plain text; if the selected content conta
   }
   ```
 
- HTML file to be loaded:
+  HTML file to be loaded:
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -2510,7 +2739,7 @@ If the keyboard avoidance mode set in **UIContext** is [KeyboardAvoidMode.RESIZE
 
 | Name             | Type                             | Mandatory  | Description         |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | Yes    | Web soft keyboard avoidance mode.<br>Default value: **WebKeyboardAvoidMode.RESIZE_CONTENT**|
+| mode | [WebKeyboardAvoidMode](#webkeyboardavoidmode12) | Yes    | Web soft keyboard avoidance mode.<br>Default value: **WebKeyboardAvoidMode.RESIZE_CONTENT**<br>In the nested scrolling scenario, the soft keyboard avoidance mode of the **Web** component is not recommended, including **RESIZE_VISUAL** and **RESIZE_CONTENT**.|
 
 **Example**
 
@@ -2567,7 +2796,7 @@ If this API is used together with [selectionMenuOptions](#selectionmenuoptions12
 
 | Name             | Type                             | Mandatory  | Description         |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions)| Yes    | Custom menu options of the **Web** component.<br>The number of menu options, menu content size, and icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.<br>The values of ([TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)) supported by the **Web** component are **CUT**, **COPY**, **PASTE**, and **SELECT_ALL**.<br>**textRange** in **onMenuItemClick()** is useless in the **Web** component. The input value is **-1**.|
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions) | Yes    | Custom menu options of the **Web** component.<br>The number of menu options, menu content size, and icon size must be the same as those of the ArkUI [\<Menu>](../apis-arkui/arkui-ts/ts-basic-components-menu.md) component.<br>The values of ([TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)) supported by the **Web** component are **CUT**, **COPY**, **PASTE**, and **SELECT_ALL**.<br>**textRange** in **onMenuItemClick()** is useless in the **Web** component. The input value is **-1**.|
 
 **Example**
 
@@ -2617,7 +2846,7 @@ struct WebComponent {
     } else if (menuItem.id.equals(TextMenuItemId.of('customItem1'))) {
       // User-defined behavior.
       console.log ("Intercept ID: customItem1")
-      return true;// There is no difference between true and false to the custom menu option, but true is recommended.
+      return true;// User-defined menu option. If true is returned, the menu is not closed after being clicked. If false is returned, the menu is closed.
     } else if (menuItem.id.equals((TextMenuItemId.of($r('app.string.customItem2'))))){
       // User-defined behavior.
       console.log ("Intercept ID: app.string.customItem2")
@@ -2816,6 +3045,179 @@ struct WebComponent {
 </html>
 ```
 
+### blurOnKeyboardHideMode<sup>14+</sup>
+
+blurOnKeyboardHideMode(mode: BlurOnKeyboardHideMode)
+
+Sets the blur mode of the **Web** component when the soft keyboard is hidden. The default value of this mode is **SILENT**. When a user collapses the soft keyboard, the focus is still on the text box. When the value is set to **BLUR**, the focus moves from the text box to the web body when a user manually collapses the soft keyboard.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type                                   | Mandatory  | Description              |
+| ---- | --------------------------------------- | ---- | ------------------ |
+| mode | [BlurOnKeyboardHideMode](#bluronkeyboardhidemode14)| Yes   | Sets whether to enable the blur mode of the **Web** component when the soft keyboard is hidden. The default value is **BlurOnKeyboardHideMode.SILENT**.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    @State blurMode: BlurOnKeyboardHideMode = BlurOnKeyboardHideMode.BLUR;
+    build() {
+      Column() {
+        Web({ src: $rawfile("index.html"), controller: this.controller })
+          .blurOnKeyboardHideMode(this.blurMode)
+      }
+    }
+  }
+  ```
+
+ HTML file to be loaded:
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Test Web Page</title>
+  </head>
+  <body>
+    <h1>blurOnKeyboardHideMode Demo</h1>
+    <input type="text" id="input_a">
+    <script>
+      const inputElement = document.getElementById('input_a');
+      inputElement.addEventListener('blur', function() {
+        console.log('Input has lost focus');
+      });
+    </script>
+  </body>
+</html>
+```
+
+### enableSmoothDragResize<sup>16+</sup>
+
+enableSmoothDragResize(mode: boolean)
+
+
+Sets whether to enable the smooth drag resizing function for a **Web** component. This function is disabled by default. After this function is enabled, the white block area is reduced when the **Web** component is dragged and zoomed in on the 2-in-1 page.
+
+> **NOTE**
+>
+> **WebLayoutMode.FIT_CONTENT** and **RenderMode.SYNC_RENDER** are not supported.
+> 
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type| Mandatory| Description          |
+| ------- | -------- | ---- | ------------------ |
+| mode | boolean  | Yes  | Whether to enable the smooth drag resizing function for a **Web** component. The default value is **false**.|
+
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .enableSmoothDragResize(true)
+      }
+    }
+  }
+  ```
+
+### enableFollowSystemFontWeight<sup>16+</sup>
+
+enableFollowSystemFontWeight(follow: boolean)
+
+Set whether the font weight of a **Web** component follows the system settings. By default, this function is disabled.
+
+> **NOTE**
+>
+> Currently, only front-end text elements support this function. The **canvas** element and embedded .docx and .pdf texts do not support this function.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name      | Type                            | Mandatory| Description                               |
+| ------------ | ------------------------------- | ---- | ----------------------------------- |
+| follow | boolean | Yes   | Whether the font weight of a **Web** component follows the system settings. The default value is **false**. If this parameter is set to **true**, the font weight changes with the font weight in the system settings. If it set to **false**, the font weight remains unchanged when the system settings change.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+    build() {
+      Column() {
+        Web({ src: "www.example.com", controller: this.controller })
+          .enableFollowSystemFontWeight(true)
+      }
+    }
+  }
+  ```
+
+### optimizeParserBudget<sup>16+</sup>
+
+optimizeParserBudget(optimizeParserBudget: boolean)
+
+Sets whether to enable segment-based HTML parsing optimization. By default, this function is disabled.
+
+To avoid occupying too many main thread resources and enable progressive loading of web pages, the ArkWeb kernel uses the segment-based parsing policy when parsing the HTML document structure. By default, the ArkWeb kernel uses the parsing time as the segment point. When the parsing time exceeds the threshold, the parsing is interrupted and then the layout and rendering operations are performed.
+
+After this function is enabled, the ArkWeb kernel checks whether the parsing time exceeds the limit and whether the number of parsed tokens (minimum parsing unit of HTML documents, such as **\<div>** and **attr="xxx"**) exceeds the threshold specified by the kernel, and decreases the threshold. When the First Contentful Paint (FCP) of the page is triggered, the default interrupt judgment logic is restored. In this way, the web page is parsed more frequently before the FCP is triggered, thereby the first-frame content may be parsed in advance and enter a rendering phase, effectively reducing the workload of first-frame rendering, and finally advancing the FCP.
+
+When the FCP of a page is triggered, the default segment parsing logic is restored. Therefore, the segment-based HTML parsing optimization takes effect only for the first page loaded by each **Web** component.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name       | Type   | Mandatory  | Default Value | Description                  |
+| ---------- | ------- | ---- | ---- | ---------------------- |
+| optimizeParserBudget | boolean | Yes   | false | If this parameter is set to **true**, the number of parsed records instead of the parsing time is used as the segment point for HTML segment parsing, and the upper limit of the number of parsed records in each segment is reduced. If it is set to **false**, the parsing time is used as the segment point for HTML segment parsing. The default value is **false**.|
+
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController()
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .optimizeParserBudget(true)
+      }
+    }
+  }
+  ```
+
 ## Events
 
 The following universal events are supported: [onAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#onappear), [onDisAppear](../apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear), [onBlur](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onblur), [onFocus](../apis-arkui/arkui-ts/ts-universal-focus-event.md#onfocus), [onDragEnd](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragend), [onDragEnter](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragenter), [onDragStart](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragstart), [onDragMove](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragmove), [onDragLeave](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondragleave), [onDrop](../apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#ondrop), [onHover](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onhover), [onMouse](../apis-arkui/arkui-ts/ts-universal-mouse-key.md#onmouse), [onKeyEvent](../apis-arkui/arkui-ts/ts-universal-events-key.md#onkeyevent), [onTouch](../apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), [onVisibleAreaChange](../apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange)
@@ -2879,7 +3281,7 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
   }
   ```
 
- HTML file to be loaded:
+  HTML file to be loaded:
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -2958,7 +3360,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
   }
   ```
 
- HTML file to be loaded:
+  HTML file to be loaded:
   ```html
   <!--index.html-->
   <!DOCTYPE html>
@@ -3578,7 +3980,7 @@ onRenderExited(callback: Callback\<OnRenderExitedEvent\>)
 
 Called when the rendering process exits abnormally.
 
-After **onRenderExited()** is executed on a page of an application, all **Web** components exit.
+A rendering process may be shared by multiple **Web** components. Each affected **Web** component triggers this callback.
 
 You can call the bound **webviewController** APIs to restore the web page when this callback is triggered. For example, [refresh](js-apis-webview.md#refresh) and [loadUrl](js-apis-webview.md#loadurl).
 
@@ -3937,7 +4339,7 @@ Called when the **Web** component is about to access a URL. This API is used to 
     controller: webview.WebviewController = new webview.WebviewController();
     responseWeb: WebResourceResponse = new WebResourceResponse();
     heads: Header[] = new Array();
-    @State webData: string = "<!DOCTYPE html>\n" +
+    webData: string = "<!DOCTYPE html>\n" +
       "<html>\n" +
       "<head>\n" +
       "<title>intercept test</title>\n" +
@@ -4073,6 +4475,48 @@ To include errors with requests for subframes, use the [OnSslErrorEvent](#onssle
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
+  import { cert } from '@kit.DeviceCertificateKit';
+  
+  function LogCertInfo(certChainData : Array<Uint8Array> | undefined) {
+    if (!(certChainData instanceof Array)) {
+      console.log('failed, cert chain data type is not array');
+      return;
+    }
+
+    for (let i = 0; i < certChainData.length; i++) {
+      let encodeBlobData: cert.EncodingBlob = {
+        data: certChainData[i],
+        encodingFormat: cert.EncodingFormat.FORMAT_DER
+      }
+      cert.createX509Cert(encodeBlobData, (error, x509Cert) => {
+        if (error) {
+          console.error('Index : ' + i + ',createX509Cert failed, errCode: ' + error.code + ', errMsg: ' + error.message);
+        } else {
+          console.log('createX509Cert success');
+          console.log(ParseX509CertInfo(x509Cert));
+        }
+      });
+    }
+    return;
+  }
+  
+  function Uint8ArrayToString(dataArray: Uint8Array) {
+    let dataString = '';
+    for (let i = 0; i < dataArray.length; i++) {
+      dataString += String.fromCharCode(dataArray[i]);
+    }
+    return dataString;
+  }
+
+  function ParseX509CertInfo(x509Cert: cert.X509Cert) {
+    let res: string = 'getCertificate success, '
+      + 'issuer name = '
+      + Uint8ArrayToString(x509Cert.getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509Cert.getSubjectName().data) + ', valid start = '
+      + x509Cert.getNotBeforeTime()
+      + ', valid end = ' + x509Cert.getNotAfterTime();
+    return res;
+  }
 
   @Entry
   @Component
@@ -4083,6 +4527,7 @@ To include errors with requests for subframes, use the [OnSslErrorEvent](#onssle
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .onSslErrorEventReceive((event) => {
+            LogCertInfo(event.certChainData);
             AlertDialog.show({
               title: 'onSslErrorEventReceive',
               message: 'text',
@@ -4593,7 +5038,7 @@ Called when a context menu is displayed after the user clicks the right mouse bu
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
-            this.offsetX = 250;
+            this.offsetX = 0;
             this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
@@ -4904,7 +5349,7 @@ onWindowNew(callback: Callback\<OnWindowNewEvent\>)
 
 Called to notify the user of a new window creation request, when **multiWindowAccess** is enabled.
 If the **event.handler.setWebController** API is not called, the render process will be blocked.
-If opening a new window is not needed, set the parameter to **null** when calling the **event.handler.setWebController** API.
+If no new window is created, set the value of event.handler.setWebController to null to notify the Web component that no new window is created.
 
 The new window should not cover the original **Web** component, otherwise, users may be misled to other websites. If the application displays the URL of the home page, ensure that the URL of the new window is displayed in a similar way. Otherwise, new windows should be prohibited.
 
@@ -4968,8 +5413,8 @@ Note that there is no reliable method to determine which page requests a new win
             })
             this.dialogController.open();
             // Return the WebviewController object corresponding to the new window to the Web kernel.
-            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
             // If the event.handler.setWebController API is not called, the render process will be blocked.
+            // If no new window is created, set the value of event.handler.setWebController to null to notify the Web component that no new window is created.
             event.handler.setWebController(popController);
           })
       }
@@ -5951,7 +6396,7 @@ Called when a finger touches a same-layer tag.
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -5965,7 +6410,7 @@ Called when a finger touches a same-layer tag.
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -6453,7 +6898,7 @@ Called when the visibility of a same-layer tag (such as an **Embed** tag or an *
     height: number;
   }
 
-  declare class nodeControllerParams {
+  declare class NodeControllerParams {
     surfaceId: string;
     renderType: NodeRenderType;
     width: number;
@@ -6467,7 +6912,7 @@ Called when the visibility of a same-layer tag (such as an **Embed** tag or an *
     private width_: number = 0;
     private height_: number = 0;
 
-    setRenderOption(params: nodeControllerParams) {
+    setRenderOption(params: NodeControllerParams) {
       this.surfaceId_ = params.surfaceId;
       this.renderType_ = params.renderType;
       this.width_ = params.width;
@@ -6615,6 +7060,14 @@ Represents the return value of the callback that intercepts the soft keyboard fr
 
 Implements a controller to control the input, deletion, and closure of the custom keyboard. For details about the sample code, see [onInterceptKeyboardAttach](#oninterceptkeyboardattach12).
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+Constructs the **WebKeyboardController** API.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### insertText<sup>12+</sup>
 
 insertText(text: string): void
@@ -6683,6 +7136,14 @@ Closes this custom keyboard.
 
 Implements the **ConsoleMessage** object. For the sample code, see [onConsole](#onconsole).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **ConsoleMessage** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### getLineNumber
 
 getLineNumber(): number
@@ -6743,6 +7204,14 @@ Obtains the path and name of the web page source file.
 
 Implements the **JsResult** object, which indicates the result returned to the **Web** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
 
+### constructor
+
+constructor()
+
+Constructs the **JsResult** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### handleCancel
 
 handleCancel(): void
@@ -6781,6 +7250,8 @@ Implements a **FullScreenExitHandler** object for listening for exiting full scr
 
 constructor()
 
+Constructs the **FullScreenExitHandler** API.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 ### exitFullScreen<sup>9+</sup>
@@ -6794,6 +7265,14 @@ Called when the **Web** component exits full screen mode.
 ## ControllerHandler<sup>9+</sup>
 
 Implements a **WebviewController** object for new **Web** components. For the sample code, see [onWindowNew](#onwindownew9).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **ControllerHandler** API.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -6814,6 +7293,14 @@ Sets a **WebviewController** object. If opening a new window is not needed, set 
 ## WebResourceError
 
 Implements the **WebResourceError** object. For the sample code, see [onErrorReceive](#onerrorreceive).
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **WebResourceError** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getErrorCode
 
@@ -6846,6 +7333,14 @@ Obtains error information about resource loading.
 ## WebResourceRequest
 
 Implements the **WebResourceRequest** object. For the sample code, see [onErrorReceive](#onerrorreceive).
+
+### constructor
+
+constructor()
+
+Constructs the **WebResourceRequest** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getRequestHeader
 
@@ -6945,6 +7440,14 @@ Describes the request/response header returned by the **Web** component.
 ## WebResourceResponse
 
 Implements the **WebResourceResponse** object. For the sample code, see [onHttpErrorReceive](#onhttperrorreceive).
+
+### constructor
+
+constructor()
+
+Constructs the **WebResourceResponse**.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getReasonMessage
 
@@ -7074,7 +7577,7 @@ Sets the data in the resource response.
 
 | Name | Type                                    | Mandatory  | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to a **ArrayBuffer** object, the value indicates the original binary data of a resource.|
+| data | string \| number \| [Resource](../apis-arkui/arkui-ts/ts-types.md)<sup>10+</sup> \| ArrayBuffer<sup>11+</sup> | Yes   | Resource response data to set. When set to a string, the value indicates a string in HTML format. When set to a number, the value indicates a file handle, which is closed by the system **Web** component. When set to a **Resource** object, the value indicates the file resources in the **rawfile** directory of the application. When set to an **ArrayBuffer** object, the value indicates the original binary data of a resource.|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -7164,6 +7667,14 @@ Sets whether the resource response data is ready.
 
 Notifies the **Web** component of the file selection result. For the sample code, see [onShowFileSelector](#onshowfileselector9).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **FileSelectorResult**.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### handleFileList<sup>9+</sup>
 
 handleFileList(fileList: Array\<string\>): void
@@ -7181,6 +7692,14 @@ Instructs the **Web** component to select a file.
 ## FileSelectorParam<sup>9+</sup>
 
 Implements the **FileSelectorParam** object. For the sample code, see [onShowFileSelector](#onshowfileselector9).
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **FileSelectorParam**.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### getTitle<sup>9+</sup>
 
@@ -7242,6 +7761,14 @@ Checks whether multimedia capabilities are invoked.
 
 Implements the **HttpAuthHandler** object. For the sample code, see [onHttpAuthRequest](#onhttpauthrequest9).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **HttpAuthHandler**.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### cancel<sup>9+</sup>
 
 cancel(): void
@@ -7289,6 +7816,14 @@ Sets whether to use the account name and password cached on the server for authe
 
 Implements an **SslErrorHandler** object. For the sample code, see [onSslErrorEventReceive Event](#onsslerroreventreceive9).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **SslErrorHandler**.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### handleCancel<sup>9+</sup>
 
 handleCancel(): void
@@ -7308,6 +7843,14 @@ Continues using the SSL certificate.
 ## ClientAuthenticationHandler<sup>9+</sup>
 
 Implements a **ClientAuthenticationHandler** object returned by the **Web** component. For the sample code, see [onClientAuthenticationRequest](#onclientauthenticationrequest9).
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **ClientAuthenticationHandler**.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### confirm<sup>9+</sup>
 
@@ -7361,6 +7904,14 @@ Ignores this request.
 ## PermissionRequest<sup>9+</sup>
 
 Implements the **PermissionRequest** object. For the sample code, see [onPermissionRequest](#onpermissionrequest9).
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **PermissionRequest** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### deny<sup>9+</sup>
 
@@ -7416,6 +7967,14 @@ Grants the permission for resources requested by the web page.
 
 Implements the **ScreenCaptureHandler** object for accepting or rejecting a screen capture request. For the sample code, see [onScreenCaptureRequest Event](#onscreencapturerequest10).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **ScreenCaptureHandler** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### deny<sup>10+</sup>
 
 deny(): void
@@ -7460,7 +8019,35 @@ Grants the screen capture permission.
 
 Represents the event consumption result sent to the **Web** component. For details about the supported events, see [TouchType](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype). If the application does not consume the event, set this parameter to **false**, and the event will be consumed by the **Web** component. If the application has consumed the event, set this parameter to **true**, and the event will not be consumed by the **Web** component. For the sample code, see [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+Constructs the EventResult object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### setGestureEventResult<sup>12+</sup>
+
+Sets the gesture event consumption result.
+
+setGestureEventResult(result: boolean): void
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name         | Type| Mandatory | Description            |
+| --------------- | -------- | ----  |------- |
+| result          | boolean  | Yes   | Whether to consume the gesture event. Default value: **true**|
+
+**Example**
+
+See [onNativeEmbedGestureEvent](#onnativeembedgestureevent11).
+
+### setGestureEventResult<sup>12+</sup>
+
+Sets the gesture event consumption result.
 
 setGestureEventResult(result: boolean, stopPropagation?: boolean): void
 
@@ -7526,6 +8113,14 @@ Supports using with a bitwise OR operator. For example, to support CAN_CUT, CAN_
 ## WebContextMenuParam<sup>9+</sup>
 
 Implements a context menu, which is displayed after the user clicks the right mouse button or long presses a specific element, such as an image or a link. For the sample code, see [onContextMenuShow](#oncontextmenushow9).
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **WebContextMenuParam** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### x<sup>9+</sup>
 
@@ -7727,6 +8322,14 @@ Obtains the height of a preview image.
 
 Implements a **WebContextMenuResult** object. For the sample code, see [onContextMenuShow](#oncontextmenushow9).
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **WebContextMenuResult** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
 ### closeContextMenu<sup>9+</sup>
 
 closeContextMenu(): void
@@ -7757,6 +8360,10 @@ paste(): void
 
 Performs the paste operation related to this context menu.
 
+> **NOTE**
+>
+> The **ohos.permission.READ_PASTEBOARD** permission must be declared.
+
 **System capability**: SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
@@ -7782,6 +8389,8 @@ Implements the **PermissionRequest** object. For the sample code, see [onGeoloca
 ### constructor
 
 constructor()
+
+Constructs the **JsGeolocation** object.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -7843,10 +8452,10 @@ Enumerates the reasons why the rendering process exits.
 
 | Name     | Value| Description                                  |
 | ------- | -- | ------------------------------------ |
-| Default<sup>9+</sup> | 0 | The cache that has not expired is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.|
-| None    | 1 | The cache is used to load the resources. If the resources do not exist in the cache, they will be obtained from the Internet.    |
-| Online  | 2 | The cache is not used to load the resources. All resources are obtained from the Internet.              |
-| Only    | 3 | The cache alone is used to load the resources.                       |
+| Default<sup>9+</sup> | 0 | The cache that has not expired is preferentially used to load resources. If the cache is invalid or no cache is available, resources are obtained from the network.|
+| None    | 1 | The cache (including expired caches) is preferentially used to load resources. If no cache is available, resources are obtained from the network.    |
+| Online  | 2 | The latest resources are forcibly obtained from the network without using any cache.              |
+| Only    | 3 | The local cache alone is used to load the resources.                       |
 
 ## FileSelectorMode<sup>9+</sup>
 
@@ -7885,7 +8494,11 @@ Enumerates the reasons why the rendering process exits.
 
 ## OnContextMenuHideCallback<sup>11+</sup>
 
+type OnContextMenuHideCallback = () => void
+
 Implements the callback context menu customizes the hidden callback.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ## SslError<sup>9+</sup>
 
@@ -7965,16 +8578,24 @@ Implements a **NestedScrollOptionsExt** object to set up, down, left, and right 
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-| Name            | Type              | Description                  |
-| -------------- | ---------------- | -------------------- |
-| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | Nested scrolling options when the component scrolls up.|
-| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | Nested scrolling options when the component scrolls down.|
-| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | Nested scrolling options when the component scrolls left.|
-| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | Nested scrolling options when the component scrolls right.|
+| Name            | Type              | Mandatory  | Description                  |
+| -------------- | ---------------- | ---- | -------------------- |
+| scrollUp  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | No   | Nested scrolling options when the component scrolls up.|
+| scrollDown | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | No   | Nested scrolling options when the component scrolls down.|
+| scrollLeft  | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | No   | Nested scrolling options when the component scrolls left.|
+| scrollRight | [NestedScrollMode](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10) | No   | Nested scrolling options when the component scrolls right.|
 
 ## DataResubmissionHandler<sup>9+</sup>
 
 Implements the **DataResubmissionHandler** object for resubmitting or canceling the web form data.
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **DataResubmissionHandler** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### resend<sup>9+</sup>
 
@@ -8065,7 +8686,7 @@ This API is deprecated since API version 9. You are advised to use [getCookie](j
 
 | Type       | Description                                      |
 | --------- | ---------------------------------------- |
-| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated).|
+| WebCookie | Cookie management object. For details, see [WebCookie](#webcookie).|
 
 **Example**
 
@@ -8803,9 +9424,17 @@ This API is deprecated since API version 9. You are advised to use [clearHistory
   }
   ```
 
-## WebCookie<sup>(deprecated)</sup>
+## WebCookie
 
 Manages behavior of cookies in **Web** components. All **Web** components in an application share a **WebCookie**. You can use the **getCookieManager** API in **controller** to obtain the **WebCookie** for subsequent cookie management.
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+Constructs the **WebCookie** object.
+
+**System capability**: SystemCapability.Web.Webview.Core
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -9036,7 +9665,7 @@ Provides detailed information about the first meaningful paint.
 
 type OnFirstMeaningfulPaintCallback = (firstMeaningfulPaint: [FirstMeaningfulPaint](#firstmeaningfulpaint12)) => void
 
-Called when the first meaningful paint occurs on the web page.
+Represents the callback invoked when the first meaningful paint occurs on the page.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -9226,7 +9855,7 @@ Defines the custom expanded menu options.
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | content   | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | Yes    | Content to display.    |
 | startIcon | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr)  | No    | Icon to display.    |
-| action    | (selectedText: {plainText: string}) => void                                                         | Yes    | Selected text.|
+| action    | (selectedText: {plainText: string}) => void                    | Yes    | Selected text.|
 
 ## WebKeyboardAvoidMode<sup>12+</sup>
 
@@ -9525,6 +10154,7 @@ Represents the callback invoked when the web page receives an SSL error.
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | Yes| User operation.|
 | error   | [SslError](#sslerror9)          | Yes| Error code.          |
+| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | No| Certificate chain data.          |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
@@ -9647,7 +10277,7 @@ Defines the JavaScript object to be injected.
 | object     | object                                   | Yes   | Object to be registered. Methods can be declared, but attributes cannot.                  |
 | name       | string                                   | Yes   | Name of the object to be registered, which is the same as that invoked in the window.               |
 | methodList | Array\<string\>                          | Yes   | Synchronous methods of the JavaScript object to be registered at the application side.                |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | No   | Asynchronous methods of the JavaScript object to be registered at the application side. Asynchronous methods do not provide return values.  |
 | permission<sup>12+</sup>  | string  | No   | JSON string, which is empty by default. This string is used to configure JSBridge permission control and define the URL whitelist at the object and method levels.<br>For the example, see [Invoking Application Functions on the Frontend Page](../../web/web-in-page-app-function-invoking.md).|
 
@@ -9731,8 +10361,6 @@ Defines the custom expanded menu options.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
-**Parameters**
-
 | Name          | Type                                            | Mandatory   | Description            |
 | ---------- | -----------------------------------------------------| ------ | ---------------- |
 | onAppear   | Callback\<void\>   | No    | Callback invoked when the custom selection menu is displayed.    |
@@ -9740,4 +10368,15 @@ Defines the custom expanded menu options.
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | No    | Preview content style of the custom selection menu. If this parameter is not set, there is no preview content.|
 | menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13)     | No    | Type of the custom menu.<br>Default value: **MenuType.SELECTION_MENU**    |
 
-<!--no_check-->
+## BlurOnKeyboardHideMode<sup>14+</sup>
+
+Enumerates whether the **Web** component loses focus when the soft keyboard is manually collapsed.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name    | Value| Description         |
+| ------ | -- | ----------- |
+| SILENT  | 0 | The **Web** component does not lose focus when the soft keyboard is manually collapsed.|
+| BLUR | 1 | The **Web** component loses focus when the soft keyboard is manually collapsed.|

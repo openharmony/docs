@@ -3,7 +3,7 @@
 
 ## Overview
 
-Defines a native API struct of the post message. Before calling an API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
+Defines a native API struct of the post message. Before calling the API, you are advised to use **ARKWEB_MEMBER_MISSING** to check whether the function struct has the corresponding pointer to avoid crash caused by mismatch between the SDK and the device ROM.
 
 **Since**: 12
 
@@ -40,7 +40,7 @@ Pointer to the function used to close the message port.
 | Name| Description|
 | -------- | -------- |
 | webMessagePort | Pointer to the message port. |
-| webTag | Name of the **Web** component. |
+| webTag | Name of a **Web** component. |
 
 
 ### postMessage
@@ -57,7 +57,7 @@ Pointer to the function used to send the message to the HTML page.
 | Name| Description|
 | -------- | -------- |
 | webMessagePort | Pointer to the message port. |
-| webTag | Name of the **Web** component. |
+| webTag | Name of a **Web** component. |
 | webMessage | Message to send. |
 
 **Returns**
@@ -79,7 +79,7 @@ Pointer to the callback used to set the HTML messages received.
 | Name| Description|
 | -------- | -------- |
 | webMessagePort | Pointer to the message port. |
-| webTag | Name of the **Web** component. |
+| webTag | Name of a **Web** component. |
 | messageEventHandler | Callback used to handle messages. |
 | userData | User-defined data. |
 
