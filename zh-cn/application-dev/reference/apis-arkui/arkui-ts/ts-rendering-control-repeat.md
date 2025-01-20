@@ -208,16 +208,17 @@ List() {
 
 | 名称     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
-| totalCount | number | 否   | 加载的数据项总数，可以大于/小于数据源长度 |
+| totalCount | number | 否   | 加载的数据项总数，可以大于/小于数据源长度。 |
+| reusable<sup>16+</sup> | boolean | 否   | 是否开启复用功能，true表示开启，false表示不开启，默认开启。 |
 
 **示例：**
 ```ts
 // arr是Array<string>类型的数组，在List容器组件中使用Repeat，并打开virtualScroll
-// 将加载的数据项总数设为数据源的长度
+// 将加载的数据项总数设为数据源的长度，并开启复用功能
 List() {
   Repeat<string>(this.arr)
     .each((obj: RepeatItem<string>) => { ListItem() { Text(obj.item) }})
-    .virtualScroll( { totalCount: this.arr.length } )
+    .virtualScroll( { totalCount: this.arr.length, reusable: true } )
 }
 ```
 
