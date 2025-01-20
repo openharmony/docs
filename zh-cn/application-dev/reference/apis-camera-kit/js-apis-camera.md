@@ -3871,6 +3871,67 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
   return activeProfile;
 }
 ```
+### isMirrorSupported<sup>16+</sup>
+
+isMirrorSupported(): boolean
+
+查询是否支持镜像录像。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                              |
+| -------------- |---------------------------------|
+| boolean | 返回是否支持镜像录像，true表示支持，false表示不支持。 |
+
+**示例：**
+
+```ts
+function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
+  let isSupported: boolean = videoOutput.isMirrorSupported();
+  return isSupported;
+}
+```
+### enableMirror<sup>16+</sup>
+
+enableMirror(enabled: boolean): void
+
+启用/关闭镜像录像。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                        |
+|----------| ---------------------- | ---- |---------------------------|
+| enabled | boolean                | 是   | true为开启镜像录像，false为关闭镜像录像。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+| -------- |------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400103  | Session not config.                    |
+
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function testEnableMirror(videoOutput: camera.VideoOutput, mirrorMode: boolean): void {
+  try {
+    videoOutput.enableMirror(mirrorMode);
+  } catch (error) {
+    // 失败返回错误码error.code并处理
+    let err = error as BusinessError;
+    console.error(`The enableMirror call failed. error code: ${err.code}`);
+  }
+}
+```
 
 ### getVideoRotation<sup>12+</sup>
 
@@ -3881,6 +3942,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
 - 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
+- 使用[enableMirror](js-apis-camera.md#enablemirrorsup16sup)打开/关闭录像镜像,必须重新调用接口，获取新结果,参考[录像实现方案](../../media/camera/camera-recording-case.md)。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
