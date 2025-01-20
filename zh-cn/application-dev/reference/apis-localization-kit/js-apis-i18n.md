@@ -815,7 +815,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | year   | number | 是    | 设置的年。  |
-| month  | number | 是    | 设置的月。  |
+| month  | number | 是    | 设置的月。说明：月份从0开始计数，如0表示一月。  |
 | date   | number | 是    | 设置的日。  |
 | hour   | number | 否    | 设置的小时。默认值：系统小时。 |
 | minute | number | 否    | 设置的分钟。默认值：系统分钟。 |
@@ -824,7 +824,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // 设置时间日期为2021.11.1 08:00:00
   ```
 
 ### setTimeZone<sup>8+</sup>
@@ -988,7 +988,7 @@ get(field: string): number
 | ----- | ---------------------------------------- |
 | era | 纪元，例如公历中的公元前或者公元后 |
 | year | 年 |
-| month | 月 |
+| month | 月。说明：月份从0开始计数，如0表示一月。 |
 | date | 日 |
 | hour | 挂钟小时数 |
 | hour_of_day | 一天中的第几小时 |
@@ -1018,7 +1018,7 @@ get(field: string): number
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // 设置时间日期为2021.11.1 08:00:00
   let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
@@ -1116,7 +1116,7 @@ add(field: string, amount: number): void
 
   try {
     let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+    calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间日期为2021.12.11 08:00:00
     calendar.add("year", 8); // 2021 + 8
     let year: number = calendar.get("year"); // year = 2029
   } catch(error) {
