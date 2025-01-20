@@ -295,7 +295,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 | deviceType    | [DeviceType](#devicetype)       | 是    | 否    | 当前设备类型。   |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
 type RawFileDescriptor = _RawFileDescriptor
 
