@@ -4555,7 +4555,7 @@ map支持返回的信息：
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-  onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
+  onDataPrepared = (data: image.ImageSource, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4566,7 +4566,7 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 }
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer, map: Map<string, string>) {
+  onDataPrepared = (data: ArrayBuffer, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4577,7 +4577,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 }
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
-  onDataPrepared(data: photoAccessHelper.MovingPhoto, map: Map<string, string>) {
+  onDataPrepared = (data: photoAccessHelper.MovingPhoto, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
