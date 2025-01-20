@@ -5,13 +5,9 @@
 
 设备基本信息。
 
-**起始版本：**
+**起始版本：** 11
 
-11
-
-**相关模块：**
-
-[HID DDK](_hid_ddk.md)
+**相关模块：**[HidDdk](_hid_ddk.md)
 
 
 ## 汇总
@@ -21,97 +17,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [deviceName](#devicename) | 设备名称 | 
-| [vendorId](#vendorid) | 厂商ID | 
-| [productId](#productid) | 产品ID | 
-| [version](#version) | 版本号 | 
-| [bustype](#bustype) | 总线类型 | 
-| [properties](#properties) | 设备特性 | 
-| [propLength](#proplength) | 设备特性数量 | 
-
-
-## 结构体成员变量说明
-
-
-### deviceName
-
-
-```
-const char Hid_Device::deviceName
-```
-
-**描述:**
-
-设备名称
-
-
-### vendorId
-
-
-```
-uint16_t Hid_Device::vendorId
-```
-
-**描述:**
-
-厂商ID
-
-
-### productId
-
-
-```
-uint16_t  Hid_Device::productId
-```
-
-**描述:**
-
-产品ID
-
-
-### version
-
-
-```
-uint16_t Hid_Device::version
-```
-
-**描述:**
-
-版本号
-
-
-### bustype
-
-
-```
-uint16_t Hid_Device::bustype
-```
-
-**描述:**
-
-总线类型
-
-
-### properties
-
-
-```
-Hid_DeviceProp Hid_Device::properties
-```
-
-**描述:**
-
-设备特性
-
-
-### propLength
-
-
-```
-uint16_t Hid_Device::propLength
-```
-
-**描述:**
-
-设备特性数量
+| const char \* [deviceName](_hid_ddk.md#devicename) | 设备名称 | 
+| uint16_t [vendorId](_hid_ddk.md#vendorid) | 厂商ID | 
+| uint16_t [productId](_hid_ddk.md#productid) | 产品ID | 
+| uint16_t [version](_hid_ddk.md#version) | 版本号 | 
+| uint16_t [bustype](_hid_ddk.md#bustype) | 总线类型 | 
+| [Hid_DeviceProp](_hid_ddk.md#hid_deviceprop) \* [properties](_hid_ddk.md#properties) | 设备特性 | 
+| uint16_t [propLength](_hid_ddk.md#proplength) | 设备特性数量 | 

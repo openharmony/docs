@@ -25,7 +25,7 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md) | 表示应用信息。 |
-| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息 |
+| [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md) | 表示应用入口的信息。 |
 
 
 
@@ -115,7 +115,7 @@ char* OH_NativeBundle_GetCompatibleDeviceType()
 
 **描述**
 
-获取自身应用适用的设备类型。
+获取当前应用适用的设备类型。用于将手机应用分发到平板/2in1设备时，合理适配布局和字体大小。
 
 **起始版本：** 14
 

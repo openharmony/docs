@@ -133,7 +133,7 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 ## IDataSourcePrefetching
 
-实现该接口，提供具备预取能力的DataSource
+继承自[IDataSource](./arkui-ts/ts-rendering-control-lazyforeach.md#idatasource10)。实现该接口，提供具备预取能力的DataSource。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -172,6 +172,8 @@ cancel?(index: number): Promise\<void\> | void;
 列表内容移出屏幕时（比如列表快速滑动场景下），预取算法判断屏幕以外的Item可以被取消预取时，该方法即会被调用。例如，如果HTTP框架支持请求取消，则可以在此处取消在prefetch中发起的网络请求。
 
 ## 示例
+
+下面示例展示了Prefetcher配合LazyForEach实现的懒加载效果。
 
 ```typescript
 import { BasicPrefetcher, IDataSourcePrefetching } from '@kit.ArkUI';

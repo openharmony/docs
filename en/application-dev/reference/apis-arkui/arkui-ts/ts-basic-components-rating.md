@@ -402,7 +402,7 @@ class MyRatingStyle implements ContentModifier<RatingConfiguration> {
           }
         }).visibility(config.stars >= 5 ? Visibility.Visible : Visibility.Hidden)
     }
-    Text ("Rating: "+ config.rating)
+    Text("Rating: "+ config.rating)
   }
 }
 

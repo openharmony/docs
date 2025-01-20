@@ -64,9 +64,9 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 5. （可选）设置音频打断模式：调用[OH_AVPlayer_SetAudioInterruptMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode)，设置AVPlayer音频流打断模式。
 
-6. 设置播放画面窗口：调用[OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setvideosurface)设置播放画面窗口。此函数必须在SetSource之后，Prepare之前调用。
+6. 设置播放画面窗口：调用[OH_AVPlayer_SetVideoSurface()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setvideosurface)设置播放画面窗口。此函数必须在SetSource之后，Prepare之前调用。
 
-7. 准备播放：调用[OH_AVPlayer_SetVideoSurface()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare)，AVPlayer进入[AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，此时可以获取时长，设置音量。
+7. 准备播放：调用[OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare)，AVPlayer进入[AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，此时可以获取时长，设置音量。
 
 8. （可选）设置音频音效模式：调用[OH_AVPlayer_SetAudioEffectMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudioeffectmode)，设置AVPlayer音频音效模式。
 

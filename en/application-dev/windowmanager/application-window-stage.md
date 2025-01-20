@@ -113,6 +113,13 @@ export default class EntryAbility extends UIAbility {
 
 You can create an application subwindow, such as a dialog box, and set its properties.
 
+> **NOTE**
+>
+> Due to the following limitations, using subwindows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
+> - Subwindows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
+> - In split-screen or freeform window mode, components, when compared with subwindows, offer better real-time adaptability to changes in the main window's position and size. 
+> - On certain platforms, system configurations may restrict subwindows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
+
 ### How to Develop
 
 1. Create a subwindow.

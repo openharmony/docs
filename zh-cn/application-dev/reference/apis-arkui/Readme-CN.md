@@ -193,11 +193,13 @@
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
     - [GridObjectSortComponent](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
     - [SwipeRefresher](arkui-ts/ohos-arkui-advanced-SwipeRefresher.md)
+    - [ArcScrollBar](arkui-ts/ts-basic-components-arcscrollbar.md)
     - [滚动组件通用接口](arkui-ts/ts-container-scrollable-common.md)
     <!--Del-->
     - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
     <!--DelEnd-->
   - 导航与切换
+    - [Indicator](arkui-ts/ts-swiper-components-indicator.md)
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
@@ -221,6 +223,7 @@
     - [DownloadFileButton](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
   - 文本与输入
     - [Text](arkui-ts/ts-basic-components-text.md)
@@ -298,7 +301,8 @@
   - 渲染绘制
     - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
     - [Component3D](arkui-ts/ts-basic-components-component3d.md)
-    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md) 
+    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)
+    - [XComponent(系统接口)](arkui-ts/ts-basic-components-xcomponent-sys.md)
   - 标题栏与工具栏
     - [ComposeTitleBar](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
     - [EditableTitleBar](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
@@ -371,6 +375,9 @@
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
+    <!--Del-->
+    - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
+    <!--DelEnd-->
   - 公共定义
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
@@ -419,6 +426,7 @@
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
+    - [native_interface_focus.h](native__interface__focus_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
@@ -479,6 +487,7 @@
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
+    - [截图错误码](errorcode-snapshot.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

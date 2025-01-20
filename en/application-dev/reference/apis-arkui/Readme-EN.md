@@ -87,6 +87,7 @@
       - [Custom Keyboard Shortcuts](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [Custom Event Dispatch](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [Custom Event Interception](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
+      - [Focus Axis Event](arkui-ts/ts-universal-events-focus_axis.md)
     - Universal attributes
       - [Size](arkui-ts/ts-universal-attributes-size.md)
       - [Location](arkui-ts/ts-universal-attributes-location.md)
@@ -199,6 +200,7 @@
   - Navigation and Switching
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
+    - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
     - [Stepper](arkui-ts/ts-basic-components-stepper.md)
     - [StepperItem](arkui-ts/ts-basic-components-stepperitem.md)
     - [Tabs](arkui-ts/ts-container-tabs.md)
@@ -260,6 +262,7 @@
     - [ExceptionPrompt](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
+    - [LinearIndicator](arkui-ts/ts-basic-components-linearindicator.md)
     - [Marquee](arkui-ts/ts-basic-components-marquee.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
     - [Progress](arkui-ts/ts-basic-components-progress.md)
@@ -295,7 +298,8 @@
   - Rendering Drawing
     - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
     - [Component3D](arkui-ts/ts-basic-components-component3d.md)
-    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md) 
+    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)
+    - [XComponent (System API)](arkui-ts/ts-basic-components-xcomponent-sys.md)
   - Title Bars and Toolbars
     - [ComposeTitleBar](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
     - [EditableTitleBar](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
@@ -339,7 +343,6 @@
     <!--DelEnd-->
   - Security
     - [Security Component Universal Attributes](arkui-ts/ts-securitycomponent-attributes.md)
-    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
     <!--Del-->
@@ -392,6 +395,7 @@
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
+    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [Click Control](arkui-ts/ts-universal-attributes-click.md)
@@ -475,6 +479,7 @@
     - [Focus Error Codes](errorcode-focus.md)
     - [System Resource Error Codes](errorcode-system-resource.md)
     - [Sheet Error Codes](errorcode-bindSheet.md)
+    - [Scrollable Component Error Codes](errorcode-scroll.md)
   - Graphics
     - [Display Error Codes](errorcode-display.md)
     - [Window Error Codes](errorcode-window.md)

@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供NativeVsync功能。
+提供获取系统vsync回调的功能，可用于实现应用的绘制帧率与系统帧率同步。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -117,7 +117,7 @@ enum OHNativeErrorCode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | NATIVE_ERROR_OK  | 成功   | 
-| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>14+</sup> | 内存操作错误 | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | 内存操作错误 | 
 | NATIVE_ERROR_INVALID_ARGUMENTS  | 入参无效   | 
 | NATIVE_ERROR_NO_PERMISSION  | 无权限操作   | 
 | NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer   | 
@@ -199,7 +199,7 @@ vsync周期是在每次使用OH_NativeVSync_RequestFrame接口请求vsync信号�
 | 名称 | 描述 |
 | -------- | -------- |
 | nativeVsync | 一个指向OH_NativeVSync实例的指针。|
-| period | 用于获取vsync周期的变量。 |
+| period | 表示vsync周期，作为出参使用。 |
 
 **返回:**
 
@@ -228,7 +228,7 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 | 名称 | 描述 |
 | -------- | -------- |
 | name | 表示一个名字，与创建的OH_NativeVSync实例关联。 |
-| length | name的长度。 |
+| length | name的长度（字符数）。 |
 
 **返回:**
 
@@ -245,6 +245,8 @@ OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow (uint64_t windowID, co
 
 创建一个和窗口绑定的OH_NativeVSync实例，每次调用都会产生一个新的实例。
 
+使用本接口创建出来的OH_NativeVSync实例的实际vsync周期与系统vsync周期不完全一致，系统会根据窗口的状态对实际vsync周期进行调整。
+
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeVsync
 
 **起始版本：** 14
@@ -255,7 +257,7 @@ OH_NativeVSync* OH_NativeVSync_Create_ForAssociatedWindow (uint64_t windowID, co
 | -------- | -------- |
 | windowID | 表示窗口ID，窗口子进程索引标识符，可以通过[OH_NativeWindow_GetSurfaceId](_native_window.md#oh_nativewindow_getsurfaceid)接口获取。 | 
 | name | 表示一个名称，与创建的OH_NativeVSync实例关联。 | 
-| length | name的长度。 | 
+| length | name的长度（字符数）。 | 
 
 **返回：**
 

@@ -32,13 +32,13 @@ Tabs(options?: TabsOptions)
 
 | 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [TabsOptions](#tabsoptions14) | 否 | Tabs组件参数。 |
+| options | [TabsOptions](#tabsoptions16) | 否 | Tabs组件参数。 |
 
-## TabsOptions<sup>14+</sup>
+## TabsOptions<sup>16+</sup>
 
 Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引和Tabs控制器。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -164,7 +164,7 @@ barWidth(value: Length)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9对象说明)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9对象说明)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置SubTabBarStyle和BottomTabBarStyle的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabBarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置SubTabBarStyle和BottomTabBarStyle的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabBarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。 |
 
 ### barHeight
 
@@ -182,7 +182,7 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9对象说明)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9对象说明)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为48vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为48vp。 |
 
 ### animationDuration
 
@@ -312,13 +312,13 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
-### barBackgroundBlurStyle<sup>14+</sup>
+### barBackgroundBlurStyle<sup>15+</sup>
 
-barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
+barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
 
 为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -326,7 +326,7 @@ barBackgroundBlurStyle(value: BlurStyle, options: BackgroundBlurStyleOptions)
 
 | 参数名                | 类型                                                         | 必填 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
+| style                 | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是   | 背景模糊样式。模糊样式中封装了模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度五个参数。 |
 | options | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 是   | 背景模糊选项。   
 
 ### barGridAlign<sup>10+</sup>
@@ -361,13 +361,13 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
-### barBackgroundEffect<sup>14+</sup>
+### barBackgroundEffect<sup>15+</sup>
 
 barBackgroundEffect(options: BackgroundEffectOptions)
 
 设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -377,13 +377,13 @@ barBackgroundEffect(options: BackgroundEffectOptions)
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 是   | 设置TabBar背景属性包括：模糊半径，亮度，饱和度，颜色等。 |
 
-### pageFlipMode<sup>14+</sup>
+### pageFlipMode<sup>15+</sup>
 
-pageFlipMode(value: PageFlipMode)
+pageFlipMode(mode: Optional\<PageFlipMode>)
 
 设置鼠标滚轮翻页模式。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -391,7 +391,7 @@ pageFlipMode(value: PageFlipMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+| mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -460,9 +460,11 @@ TabBar布局模式枚举。
 
 | 名称          | 值   | 说明                                                         |
 | ------------- | ---- | ------------------------------------------------------------ |
-| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画                             |
-| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
-| NO_ANIMATION  | 2    | 关闭默认动画                                                 |
+| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。                             |
+| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
+| NO_ANIMATION  | 2    | 关闭默认动画。                                                 |
+| CONTENT_FIRST_WITH_JUMP<sup>16+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
+| ACTION_FIRST_WITH_JUMP<sup>16+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
@@ -542,7 +544,7 @@ onAnimationStart(handler: OnTabsAnimationStartCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsAnimationStartCallback](#ontabsanimationstartcallback14) | 是   | 切换动画开始时触发的回调。 |
+| handler  | [OnTabsAnimationStartCallback](#ontabsanimationstartcallback16) | 是   | 切换动画开始时触发的回调。 |
 
 ### onAnimationEnd<sup>11+</sup>
 
@@ -558,7 +560,7 @@ onAnimationEnd(handler: OnTabsAnimationEndCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsAnimationEndCallback](#ontabsanimationendcallback14) | 是   | 切换动画结束时触发的回调。 |
+| handler  | [OnTabsAnimationEndCallback](#ontabsanimationendcallback16) | 是   | 切换动画结束时触发的回调。 |
 
 ### onGestureSwipe<sup>11+</sup>
 
@@ -574,7 +576,7 @@ onGestureSwipe(handler: OnTabsGestureSwipeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsGestureSwipeCallback](#ontabsgestureswipecallback14) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
+| handler  | [OnTabsGestureSwipeCallback](#ontabsgestureswipecallback16) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
 
 ### customContentTransition<sup>11+</sup>
 
@@ -596,13 +598,8 @@ customContentTransition(delegate: TabsCustomContentTransitionCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| delegate  | [TabsCustomContentTransitionCallback](#tabscustomcontenttransitioncallback14) | 是   | 自定义Tabs页面切换动画开始时触发的回调。 |
+| delegate  | [TabsCustomContentTransitionCallback](#tabscustomcontenttransitioncallback16) | 是   | 自定义Tabs页面切换动画开始时触发的回调。 |
 
-**返回值：** 
-
-| 类型                                                         | 说明                     |
-| ------------------------------------------------------------ | ------------------------ |
-| [TabContentAnimatedTransition](#tabcontentanimatedtransition11对象说明)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
 
 ### onContentWillChange<sup>12+</sup>
 
@@ -630,25 +627,18 @@ onContentWillChange(handler: OnTabsContentWillChangeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback14) | 是   | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。 |
+| handler  | [OnTabsContentWillChangeCallback](#ontabscontentwillchangecallback16) | 是   | 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。 |
 
-**返回值：** 
 
-| 类型    | 说明                                                         |
-| ------- | ------------------------------------------------------------ |
-| boolean | 当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br/>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。 |
-
-## 回调函数
-
-### OnTabsAnimationStartCallback<sup>14+</sup>
+## OnTabsAnimationStartCallback<sup>16+</sup>
 
 type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void
 
 切换动画开始时触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -660,15 +650,15 @@ type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraIn
 | targetIndex | number                                                 | 是   | 切换动画目标元素的索引。                                     |
 | event       | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Tabs起始位置的位移，以及离手速度。 |
 
-### OnTabsAnimationEndCallback<sup>14+</sup>
+## OnTabsAnimationEndCallback<sup>16+</sup>
 
 type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent) => void
 
 切换动画结束时触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -679,15 +669,15 @@ type OnTabsAnimationEndCallback = (index: number, extraInfo: TabsAnimationEvent)
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
-### OnTabsGestureSwipeCallback<sup>14+</sup>
+## OnTabsGestureSwipeCallback<sup>16+</sup>
 
 type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent) => void
 
 在页面跟手滑动过程中，逐帧触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -698,15 +688,15 @@ type OnTabsGestureSwipeCallback = (index: number, extraInfo: TabsAnimationEvent)
 | index  | number                                                 | 是   | 当前显示元素的索引。                                         |
 | event  | [TabsAnimationEvent](#tabsanimationevent11对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Tabs起始位置的位移。 |
 
-### TabsCustomContentTransitionCallback<sup>14+</sup>
+## TabsCustomContentTransitionCallback<sup>16+</sup>
 
 type TabsCustomContentTransitionCallback = (from: number, to: number) => TabContentAnimatedTransition | undefined
 
 自定义Tabs页面切换动画开始时触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -717,15 +707,21 @@ type TabsCustomContentTransitionCallback = (from: number, to: number) => TabCont
 | from   | number | 是   | 动画开始时，当前页面的index值。 |
 | to     | number | 是   | 动画开始时，目标页面的index值。 |
 
-### OnTabsContentWillChangeCallback<sup>14+</sup>
+**返回值：** 
+
+| 类型                                                         | 说明                     |
+| ------------------------------------------------------------ | ------------------------ |
+| [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
+
+## OnTabsContentWillChangeCallback<sup>16+</sup>
 
 type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
 自定义Tabs页面切换拦截事件能力，新页面即将显示时触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -735,6 +731,12 @@ type OnTabsContentWillChangeCallback = (currentIndex: number, comingIndex: numbe
 | ------------ | ------ | ---- | ------------------------------------------ |
 | currentIndex | number | 是   | 当前显示页面的index索引，索引从0开始计算。 |
 | comingIndex  | number | 是   | 将要显示的新页面的index索引。              |
+
+**返回值：** 
+
+| 类型    | 说明                                                         |
+| ------- | ------------------------------------------------------------ |
+| boolean | 当回调函数handler的返回值为true时，Tabs可以切换到新页面。<br/>当回调函数handler的返回值为false时，Tabs无法切换到新页面，仍然显示原来页面内容。 |
 
 ## TabsAnimationEvent<sup>11+</sup>对象说明
 
@@ -750,7 +752,7 @@ Tabs组件动画相关信息集合。
 | targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
 | velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
-## TabContentAnimatedTransition<sup>11+</sup>对象说明
+## TabContentAnimatedTransition<sup>11+</sup>
 
 Tabs自定义切换动画相关信息。
 
@@ -1582,18 +1584,19 @@ struct TabsCustomAnimationExample {
 @Entry
 @Component
 struct TabsExample {
+  @State selectedIndex: number = 2
   @State currentIndex: number = 2
   private controller: TabsController = new TabsController()
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
-      Text(title).fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+      Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+      Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column(){
             Text('首页的内容')
@@ -1625,6 +1628,7 @@ struct TabsExample {
       .animationDuration(0)
       .onChange((index: number) => {
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .width(360)
       .height(600)
@@ -2069,3 +2073,94 @@ struct TabsSwiperExample {
 ```
 
 ![tabs12](figures/tabs12.gif)
+
+### 示例13（设置翻页动效）
+
+本示例通过设置animationMode属性，实现了翻页的动效。
+
+```ts
+// xxx.ets
+class TabsMyDataSource implements IDataSource {
+  private list: number[] = []
+  constructor(list: number[]) {
+    this.list = list
+  }
+  totalCount(): number {
+    return this.list.length
+  }
+  getData(index: number): number {
+    return this.list[index]
+  }
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+  unregisterDataChangeListener() {
+  }
+}
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 0
+  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
+  private controller: TabsController = new TabsController()
+  private data: TabsMyDataSource = new TabsMyDataSource([])
+  private sum : number = 10
+  aboutToAppear(): void {
+    let list: number[] = []
+    for (let i = 0; i < this.sum; i++) {
+      list.push(i);
+    }
+    this.data = new TabsMyDataSource(list)
+  }
+  @Builder
+  tabBuilder(title: string,targetIndex: number) {
+    Column(){
+      Text(title).fontColor(this.currentIndex === targetIndex ? '#FF0000' : '#6B6B6B')
+    }.width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+  }
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        LazyForEach(this.data, (item: string) => {
+          TabContent() {
+            Column(){
+              Text('' + item)
+            }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center)
+          }.tabBar(this.tabBuilder('P' + item, parseInt(item)))
+        }, (item: string) => item)
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationMode(this.currentAnimationMode)
+      .animationDuration(4000)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(120)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      Text('AnimationMode:' + AnimationMode[this.currentAnimationMode])
+      Button('AnimationMode').width('50%').margin({ top: 1 }).height(25)
+        .onClick(()=>{
+          if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST
+          } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+            this.currentAnimationMode = AnimationMode.NO_ANIMATION
+          } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+          } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+          } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs13](figures/tabs13.gif)

@@ -243,7 +243,7 @@ udid of current device is :
 ## 快速修复命令（quickfix）
 
 ```bash
-bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName]
+bm quickfix [-h] [-a -f filePath [-t targetPath] [-d] [-o]] [-q -b bundleName] [-r -b bundleName]
 ```
 
 注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
@@ -257,6 +257,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
 | -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
+| -o | 可选参数，应用快速修复覆盖模式，该模式下so将被解压覆盖到应用的so目录中。|
 
 
 
@@ -610,7 +611,7 @@ Error: install parse profile missing prop.
     hilog -w start
     ```
 
-    落盘位置：/data/log/hilog
+    落盘位置：/data/log/hilog。
 
     打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
 
@@ -1102,6 +1103,22 @@ Error: uninstall missing installed bundle.
 
 1. 确认要卸载的应用是否已经安装。
 
+### 9568388 企业设备管理不允许卸载该应用
+**错误信息**
+
+Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+
+**错误描述**
+
+企业设备管理不允许卸载该应用。
+
+**可能原因**
+
+应用被设置为不允许被卸载。
+
+**处理步骤**
+
+1. 由设置方取消该应用的卸载管控。
 
 ### 9568284 安装版本不匹配
 **错误信息**
@@ -1411,3 +1428,20 @@ Error: Failed to uninstall the app because the app is locked.
 **处理步骤**
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
+
+### 9568420 禁止通过bm安装release的预装应用
+**错误信息**
+
+os_integration bundle is not allowed to install for shell.
+
+**错误描述**
+
+禁止通过bm安装release的预装应用
+
+**可能原因**
+
+通过bm安装release的预装应用
+
+**处理步骤**
+
+1. 检查应用是否是release的预装应用。

@@ -849,7 +849,7 @@ halfLeading(halfLeading: boolean)
 
 ### minFontScale<sup>16+</sup>
 
-minFontScale(scale: number | Resource)
+minFontScale(scale: Optional\<number | Resource>)
 
 设置文本最小的字体缩放倍数。
 
@@ -861,11 +861,11 @@ minFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
 
 ### maxFontScale<sup>16+</sup>
 
-maxFontScale(scale: number | Resource)
+maxFontScale(scale: Optional\<number | Resource>)
 
 设置文本最大的字体缩放倍数。
 
@@ -877,7 +877,7 @@ maxFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -957,7 +957,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -1050,6 +1050,22 @@ EllipsisMode仅在内联模式下生效。
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | value  | [EllipsisMode](ts-basic-components-richeditor#ellipsismode16) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: boolean)
+
+设置是否阻止返回键向其它组件或应用侧传递。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                | 必填 | 说明                                      |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+
 ## InputType枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1127,7 +1143,7 @@ EllipsisMode仅在内联模式下生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 描述               |
+| 名称                   | 说明               |
 | ---------------------- | ------------------ |
 | Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
@@ -1454,7 +1470,7 @@ stopEditing(): void
 | error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
 | disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
-## SubmitEvent<sup>11+</sup>对象说明
+## SubmitEvent<sup>11+</sup>
 
 定义用户提交事件。
 
@@ -1514,7 +1530,7 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
-| event | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
+| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
 
 ## OnTextSelectionChangeCallback<sup>14+</sup>对象说明
 

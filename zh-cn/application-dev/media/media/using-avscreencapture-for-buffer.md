@@ -100,7 +100,7 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so libnative_buffe
     OH_AVScreenCapture_StartScreenCapture(capture);
     ```
 
-    或调用StartScreenCaptureWithSurface方法以Surface模式进行屏幕录制。
+    或调用StartScreenCaptureWithSurface()方法以Surface模式进行屏幕录制。
 
     ```c++
     OH_AVScreenCapture_StartScreenCaptureWithSurface(capture, window);
@@ -362,6 +362,96 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 #include <fcntl.h>
 #include "string"
 #include "unistd.h"
+// 错误事件发生回调函数OnError()
+void OnError(OH_AVScreenCapture *capture, int32_t errorCode, void *userData) {
+    (void)capture;
+    (void)errorCode;
+    (void)userData;
+}
+
+// 状态变更事件处理函数OnStageChange()
+void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCode stateCode, void *userData) {
+    (void)capture;
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STARTED) {
+        // 处理录屏开始状态变更
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_CANCELED) {
+        // 处理录屏取消状态变更
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL) {
+        // 录屏被电话打断状态处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE) {
+        // 录屏中途麦克风无法获取状态处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
+        // 录屏被打断状态处理
+    }
+    ...
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
+        // 录屏退出隐私模式状态处理
+    }
+    (void)userData;
+}
+
+// 获取并处理音视频原始码流数据回调函数OnBufferAvailable()
+void OnBufferAvailable(OH_AVScreenCapture *capture, OH_AVBuffer *buffer, OH_AVScreenCaptureBufferType bufferType, int64_t timestamp, void *userData) {
+    // 处于录屏取码流状态
+    if (IsCaptureStreamRunning) {
+        if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO) {
+            // 视频buffer
+            OH_NativeBuffer *nativeBuffer = OH_AVBuffer_GetNativeBuffer(buffer);
+            if (nativeBuffer != nullptr && capture != nullptr) {
+                // 获取buffer容量
+                int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+                // 获取buffer属性
+                OH_AVCodecBufferAttr info;
+                OH_AVBuffer_GetBufferAttr(buffer, &info);
+
+                // 获取nativeBuffer配置
+                OH_NativeBuffer_Config config;
+                OH_NativeBuffer_GetConfig(nativeBuffer, &config);
+
+                // 获取buffer地址
+                uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+                if (buf != nullptr) {
+                    return;
+                }
+                // 使用buffer数据
+
+                // nativeBuffer的引用计数值减一，当引用计数值减为0，释放该资源
+                OH_NativeBuffer_Unreference(nativeBuffer);
+            }
+        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER) {
+            // 内录buffer
+            // 获取buffer属性
+            OH_AVCodecBufferAttr info;
+            OH_AVBuffer_GetBufferAttr(buffer, &info);
+
+            // 获取buffer容量
+            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+            // 获取buffer地址
+            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+            if (buf != nullptr) {
+                return;
+            }
+            // 使用buffer数据
+        } else if (bufferType == OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC) {
+            // 麦克风buffer
+            // 获取buffer容量
+            int bufferLen = OH_AVBuffer_GetCapacity(buffer);
+
+            // 获取buffer地址
+            uint8_t *buf = OH_AVBuffer_GetAddr(buffer);
+            if (buf != nullptr) {
+                return;
+            }
+            // 使用buffer数据
+        }
+    }
+}
 
 struct OH_AVScreenCapture *capture;
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
@@ -390,6 +480,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
 
+    // 可选 设置光标显示开关，开始录屏前后均可调用
+    OH_AVScreenCapture_ShowCursor(capture, false);
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // 可选 [过滤音频]

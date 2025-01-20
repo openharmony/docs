@@ -523,7 +523,7 @@ Use the [alignContent](../reference/apis-arkui/arkui-ts/ts-container-flex.md#api
 
 When the size of the flex container is not large enough, the following attributes of the child element can be used to achieve adaptive layout:
 
-- **flexBasis**: base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the result of width/height.
+- [flexBasis](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis): base size of the child element in the container along the main axis. It sets the space occupied by the child element. If this attribute is not set, the space occupied by the child element is the result of width/height.
 
 
   ```ts
@@ -553,7 +553,7 @@ When the size of the flex container is not large enough, the following attribute
 
   ![en-us_image_0000001562940505](figures/en-us_image_0000001562940505.png)
 
-- **flexGrow**: percentage of the flex container's remaining space that is allocated to the child element. In other words, it is the grow factor of the child element.
+- [flexGrow](../reference/apis-arkui//arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow): percentage of the flex container's remaining space that is allocated to the child element. In other words, it is the grow factor of the child element.
 
   ```ts
   Flex() {
@@ -581,7 +581,7 @@ When the size of the flex container is not large enough, the following attribute
   
   After receiving their share of remaining space at the 2:3 ratio, the first and second child elements are at a width of 140 vp (100 vp + 100 vp x 2/5) and 160 vp (100 vp + 100 vp x 3/5), respectively.
   
-- **flexShrink**: shrink factor of the child element when the size of all child elements is larger than the flex container.
+- [flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink): shrink factor of the child element when the size of all child elements is larger than the flex container.
 
 
   ```ts

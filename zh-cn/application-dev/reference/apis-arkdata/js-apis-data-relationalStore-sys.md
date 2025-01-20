@@ -30,7 +30,6 @@ import { relationalStore } from '@kit.ArkData';
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | 否 | 指定数据库是否支持搜索，true表示支持搜索，false表示不支持搜索，默认不支持搜索。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 11开始，支持此可选参数。<br/> |
-| vector<sup>12+</sup> | boolean | 否 | 指定数据库是否是向量数据库，true表示向量数据库，false表示关系型数据库，默认为false。<br/>向量数据库适用于存储和处理高维向量数据，关系型数据库适用于存储和处理结构化数据。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。向量数据库目前支持[execute](js-apis-data-relationalStore.md#execute12-1)，[querySql](js-apis-data-relationalStore.md#querysql-1)，[beginTrans](js-apis-data-relationalStore.md#begintrans12)，[commit](js-apis-data-relationalStore.md#commit12)，[rollback](js-apis-data-relationalStore.md#rollback12)以及[ResultSet](js-apis-data-relationalStore.md#resultset)类型操作接口。当使用向量数据库时，在调用deleteRdbStore接口前，应当确保向量数据库已经被正确关闭。|
 | haMode<sup>12+</sup> | [HAMode](#hamode12) | 否 | 指定关系型数据库存储的高可用性模式，SINGLE表示将数据写入单个关系型数据库存储，MAIN_REPLICA表示将数据写入主关系型数据库存储和副本关系型数据库存储，但不支持加密场景和attach场景。MAIN_REPLICA会导致数据库写入性能的劣化，默认为SINGLE。<br/>**系统接口：** 此接口为系统接口。<br/>从API version 12开始，支持此可选参数。<br/> |
 
 ## HAMode<sup>12+</sup>
@@ -591,6 +590,10 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 手动执行按条件进行端云同步，使用callback异步回调。使用该接口需要实现云同步功能。
 
+> **说明：**
+> 
+> 指定资产下载能力作为按条件端云同步的一种形式，从API version 16开始支持，同步模式选择[SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode)，谓词中支持使用主键（必须）和资产（可选）作为同步条件；选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
+
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
 **系统接口：** 此接口为系统接口。
@@ -615,7 +618,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 801       | Capability not supported.  |
 | 14800014  | Already closed.      |
 
-**示例：**
+**示例1：手动同步，同步模式为云端同步到本地设备**
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -633,12 +636,44 @@ if(store != undefined) {
   });
 };
 ```
+**示例2：指定资产下载**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let asset : relationalStore.Asset = {
+  name: "name",
+  uri: "uri",
+  path: "path",
+  createTime: new Date().getTime().toString(),
+  modifyTime: new Date().getTime().toString(),
+  size: "1024"
+}
+// 谓词条件中指定主键和资产，asset为数据库的资产列
+predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }, (err) => {
+     if (err) {
+       console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+       return;
+     }
+     console.info('cloud sync succeeded');
+  });
+};
+```
 
 ### cloudSync<sup>11+</sup>
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
 手动执行按条件进行端云同步，使用Promise异步处理。使用该接口需要实现云同步功能。
+
+>**说明：**
+> 
+>指定资产下载能力作为按条件端云同步的一种形式，从API version 16开始支持，同步模式选择[SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode)，谓词中支持使用主键（必须）和资产（可选）作为同步条件；选择资产作为同步条件时，谓词仅支持[equalTo](js-apis-data-relationalStore.md#equalto)；指定资产的数量较多时（最多支持指定50个资产），建议谓词中仅使用主键作为同步条件。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -669,7 +704,7 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 | 801       | Capability not supported.       |
 | 14800014  | Already closed.      |
 
-**示例：**
+**示例1：手动同步，同步模式为云端同步到本地设备**
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -681,6 +716,32 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
+    console.info('cloud sync succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+  });
+};
+```
+**示例2：指定资产下载**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let asset : relationalStore.Asset = {
+  name: "name",
+  uri: "uri",
+  path: "path",
+  createTime: new Date().getTime().toString(),
+  modifyTime: new Date().getTime().toString(),
+  size: "1024"
+}
+// 谓词条件中指定主键和资产，asset为数据库的资产列
+predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);

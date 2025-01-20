@@ -57,7 +57,7 @@ Inherited from [TimePickerOptions](ts-basic-components-timepicker.md#timepickero
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br>Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | dateTimeOptions<sup>12+</sup> | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | No| Whether to display a leading zero for the hours and minutes. Currently only the configuration of the **hour** and **minute** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
 
 ## Example
 
@@ -78,7 +78,7 @@ struct TimePickerDialogExample {
 
   build() {
     Column() {
-      Button ("TimePickerDialog 12-hour format")
+      Button("TimePickerDialog 12-hour format")
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show ({ // You are advised to use this.getUIContext().showTimePickerDialog() API.
@@ -113,7 +113,7 @@ struct TimePickerDialogExample {
             }
           })
         })
-      Button ("TimePickerDialog 24-hour format")
+      Button("TimePickerDialog 24-hour format")
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show({
@@ -169,7 +169,7 @@ struct TimePickerDialogExample {
 
   build() {
     Column() {
-      Button ("TimePickerDialog 24-hour format")
+      Button("TimePickerDialog 24-hour format")
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show({
@@ -229,7 +229,7 @@ struct TimePickerDialogExample {
 
   build() {
     Column() {
-      Button ("TimePickerDialog 12-hour format")
+      Button("TimePickerDialog 12-hour format")
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show ({ // You are advised to use this.getUIContext().showTimePickerDialog().

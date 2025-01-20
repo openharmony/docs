@@ -69,19 +69,14 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 ### 示例1（下拉菜单标题栏）
 该示例实现了简单的下拉菜单标题栏，带有返回箭头的下拉菜单标题栏和带有右侧菜单项目列表的下拉菜单标题栏。
 ```ts
-import { SelectTitleBar, promptAction } from '@kit.ArkUI'
+import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI'
 
-interface menuItems {
-  value: Resource;
-  isEnabled?: boolean;
-  action?: () => void;
-}
 
 @Entry
 @Component
 struct Index {
   // 定义右侧菜单项目列表
-  private menuItems: Array<menuItems> =
+  private menuItems: Array<SelectTitleBarMenuItem> =
     [
       {
         // 菜单图片资源
@@ -102,7 +97,7 @@ struct Index {
         action: () => promptAction.showToast({ message: 'show toast index 3' }),
       },
       {
-        value: $r('sys.media.ohos_ic_public_copy'),
+        value: $r('sys.media.ohos_ic_public_remove'),
         isEnabled: true,
         action: () => promptAction.showToast({ message: 'show toast index 4' }),
       },
@@ -183,27 +178,18 @@ struct Index {
 }
 ```
 
-![SelectTitleBar1](figures/SelectTitleBar1.png)
+![zh-cn_image_selecttitlebar_example01](figures/zh-cn_image_selecttitlebar_example01.png)
 
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
 ```ts
-import { SelectTitleBar, promptAction } from '@kit.ArkUI'
-
-interface menuItems {
-  value: Resource;
-  isEnabled?: boolean;
-  action?: () => void;
-  accessibilityText?: ResourceStr;
-  accessibilityDescription?: ResourceStr;
-  accessibilityLevel?: string;
-}
+import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
 struct Index {
   // 定义右侧菜单项目列表
-  private menuItems: Array<menuItems> =
+  private menuItems: Array<SelectTitleBarMenuItem> =
     [
       {
         // 菜单图片资源
@@ -237,12 +223,12 @@ struct Index {
         accessibilityDescription: '点击操作编辑图标',
       },
       {
-        value: $r('sys.media.ohos_ic_public_copy'),
+        value: $r('sys.media.ohos_ic_public_remove'),
         isEnabled: true,
         action: () => promptAction.showToast({ message: "show toast index 4" }),
-        accessibilityText: '复制',
+        accessibilityText: '移除',
         accessibilityLevel: 'yes',
-        accessibilityDescription: '点击操作复制图标',
+        accessibilityDescription: '点击操作移除图标',
       }
     ]
 
@@ -320,4 +306,4 @@ struct Index {
   }
 }
 ```
-![SelectTitleBar2](figures/SelectTitleBar2.png)
+![zh-cn_image_selecttitlebar_example02](figures/zh-cn_image_selecttitlebar_example02.png)

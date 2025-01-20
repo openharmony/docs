@@ -29,7 +29,7 @@ Encapsulate **javaScriptProxy** and **runJavaScript** to implement the JSBridge 
   ```
 
   ```
-  // Use the <Web> component to load the HTML5 page.
+  // Use the Web to load the HTML5 page.
   @Component
   struct JsProxy {
     private controller: WebviewController = new WebView.WebviewController()
@@ -448,7 +448,7 @@ You can use the **prepareForPageLoad** API to preconnect to a URL.
 
 **Reference**
 
-[Dynamically Creating Web Components](../web/web-page-loading-with-web-components.md#dynamically-creating-web-components)
+[Dynamically Creating a Web Component](../web/web-page-loading-with-web-components.md#dynamically-creating-a-web-component)
 
 
 ## Does OpenHarmony provide JavaScript engine capabilities as other systems?

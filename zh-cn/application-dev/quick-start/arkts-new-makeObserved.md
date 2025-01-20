@@ -171,7 +171,7 @@ export class SendableData  {
   name: string = 'Tom';
   age: number = 20;
   gender: number = 1;
-  // .... more other properties
+  // ....更多其他属性
   likes: number = 1;
   follow: boolean = false;
 }
@@ -275,7 +275,7 @@ struct Index {
       /****************************改变数据长度的api**************************/
       Scroll(this.scroller) {
         Column({space: 10}) {
-          // push 操作
+          // push: 新增新元素
           Button('push').onClick(() => {
             this.arrCollect.push(new Info(30));
           })

@@ -52,6 +52,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_text_declaration.h](drawing__text__declaration_8h.md) | 提供2d 绘制文本相关的数据结构声明 | 
 | [drawing_text_font_descriptor.h](drawing__text__font__descriptor_8h.md) | 定义了字体信息的相关接口，比如获取字体信息，查找指定字体等。 |
 | [drawing_text_line.h](drawing__text__line_8h.md) | 提供获取文本行内的字符位置、获取渲染单元信息和按行截断等功能。 |
+| [drawing_text_lineTypography.h](drawing__text__line_typography_8h.md) | 提供排版行相关的接口，比如获取指定位置处开始可以排版的字符个数等函数。 | 
 | [drawing_text_run.h](drawing__text__run_8h.md) | 提供字体渲染单元的相关接口，比如绘制功能、获取排版边界功能等。  |
 | [drawing_text_typography.h](drawing__text__typography_8h.md) | 定义绘制模块中排版相关的函数。 | 
 | [drawing_typeface.h](drawing__typeface_8h.md) | 文件中定义了与字形相关的功能函数。 不同的平台有自己的默认字形，也可以从ttf文件解析出三方指定字形，如宋体、黑体字形等。 | 
@@ -94,6 +95,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | typedef bool(\* [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback)) (double offset, int32_t index, bool leadingEdge) | 用户自定义的回调函数。将文本行对象中每个字符的偏移量、索引值作为参数传递给用户自定义的回调函数。 |
 | typedef struct [OH_Drawing_LineTypography](#oh_drawing_linetypography) [OH_Drawing_LineTypography](#oh_drawing_linetypography) | 用于从一段文字中提取单行数据进行排版。 |
 | typedef struct [OH_Drawing_TextTab](#oh_drawing_texttab) [OH_Drawing_TextTab](#oh_drawing_texttab) | 用于管理文本制表符。 |
+| typedef struct [OH_Drawing_TextLine](#oh_drawing_textline) [OH_Drawing_TextLine](#oh_drawing_textline) | 用于管理文本行。 | 
+| typedef struct [OH_Drawing_Run](#oh_drawing_run) [OH_Drawing_Run](#oh_drawing_run) | 用于管理文本渲染单元。 | 
 | typedef struct [OH_Drawing_Array](#oh_drawing_array) [OH_Drawing_Array](#oh_drawing_array) | 定义数组对象, 用于存储多个同类型对象。 |
 | typedef struct [OH_Drawing_FontArguments](#oh_drawing_fontarguments) [OH_Drawing_FontArguments](#oh_drawing_fontarguments) | 用于描述字型参数。 | 
 | typedef struct [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) [OH_Drawing_RecordCmdUtils](#oh_drawing_recordcmdutils) | 定义指令录制工具，用于生成录制指令。 | 
@@ -197,7 +200,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3 } | 字体类型的枚举。 |
+| [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3, CUSTOMIZED = 1 &lt;&lt; 4 } | 字体类型的枚举。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode-1) { OH_DRAWING_SUCCESS = 0, OH_DRAWING_ERROR_NO_PERMISSION = 201, OH_DRAWING_ERROR_INVALID_PARAMETER = 401, OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE = 26200001,OH_DRAWING_ERROR_ALLOCATION_FAILED = 26200002 } | 枚举本模块可能产生的错误码。 | 
 | [OH_Drawing_PathOpMode](#oh_drawing_pathopmode-1) {<br/>PATH_OP_MODE_DIFFERENCE, PATH_OP_MODE_INTERSECT, PATH_OP_MODE_UNION, PATH_OP_MODE_XOR,<br/>PATH_OP_MODE_REVERSE_DIFFERENCE<br/>} | 路径操作类型枚举。 | 
 | [OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags-1) { GET_POSITION_MATRIX, GET_TANGENT_MATRIX, GET_POSITION_AND_TANGENT_MATRIX } | 路径测量获取相应矩阵信息维度枚举。 | 
@@ -246,6 +249,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| void [OH_Drawing_ErrorCodeReset](#oh_drawing_errorcodereset) (void) | 将本模块的错误码重置为OH_DRAWING_SUCCESS。<br/>通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)获取的本模块错误码会在不以错误码为返回值的接口执行失败时被置为对应的错误编号，但是不会在执行成功后被重置为OH_DRAWING_SUCCESS。<br/>调用本接口可将错误码重置为OH_DRAWING_SUCCESS，避免多个接口间互相干扰，方便开发者调试。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontSetThemeFontFollowed](#oh_drawing_fontsetthemefontfollowed) ([OH_Drawing_Font](#oh_drawing_font) \*font, bool followed) | 设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。 | 
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontIsThemeFontFollowed](#oh_drawing_fontisthemefontfollowed) (const [OH_Drawing_Font](#oh_drawing_font) \*font, bool \*followed) | 获取字型中的字体是否跟随主题字体。默认不跟随主题字体。 | 
 | OH_Drawing_FontCollection \* [OH_Drawing_GetFontCollectionGlobalInstance](#oh_drawing_getfontcollectionglobalinstance) (void) | 获取全局字体集对象OH_Drawing_FontCollection，可感知主题字信息，禁止释放该对象。  | 
@@ -859,7 +863,7 @@ typedef struct OH_Drawing_LineTypography OH_Drawing_LineTypography
 
 用于从一段文字中提取单行数据进行排版。
 
-**起始版本：** 14
+**起始版本：** 16
 
 ### OH_Drawing_TextTab
 
@@ -871,7 +875,31 @@ typedef struct OH_Drawing_TextTab OH_Drawing_TextTab
 
 用于管理文本制表符。
 
-**起始版本：** 14
+**起始版本：** 16
+
+### OH_Drawing_TextLine
+
+```
+typedef struct OH_Drawing_TextLine OH_Drawing_TextLine
+```
+
+**描述**
+
+用于管理文本行。
+
+**起始版本：** 16
+
+### OH_Drawing_Run
+
+```
+typedef struct OH_Drawing_RunOH_Drawing_Run
+```
+
+**描述**
+
+用于管理文本渲染单元。
+
+**起始版本：** 16
 
 ### Drawing_CaretOffsetsCallback
 
@@ -2218,6 +2246,7 @@ enum OH_Drawing_SystemFontType
 | GENERIC | 系统字体类型 |
 | STYLISH | 风格字体类型 |
 | INSTALLED | 用户已安装字体类型 |
+| CUSTOMIZED<sup>16+</sup> | 自定义字体类型 |
 
 ### OH_Drawing_ErrorCode
 
@@ -3102,6 +3131,23 @@ enum OH_Drawing_WordBreakType
 
 ## 函数说明
 
+### OH_Drawing_ErrorCodeReset()
+
+```
+void OH_Drawing_ErrorCodeReset (void )
+```
+
+**描述**
+
+将本模块的错误码重置为OH_DRAWING_SUCCESS。
+
+通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)获取的本模块错误码会在不以错误码为返回值的接口执行失败时被置为对应的错误编号，但是不会在执行成功后被重置为OH_DRAWING_SUCCESS。
+
+调用本接口可将错误码重置为OH_DRAWING_SUCCESS，避免多个接口间互相干扰，方便开发者调试。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 16
 
 ### OH_Drawing_FontSetThemeFontFollowed()
 
@@ -3182,7 +3228,7 @@ OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography (OH_Drawing_Typograph
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3206,7 +3252,7 @@ void OH_Drawing_DestroyLineTypography (OH_Drawing_LineTypography* lineTypography
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3226,7 +3272,7 @@ size_t OH_Drawing_LineTypographyGetLineBreak (OH_Drawing_LineTypography* lineTyp
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3252,7 +3298,7 @@ OH_Drawing_TextLine* OH_Drawing_LineTypographyCreateLine (OH_Drawing_LineTypogra
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3278,7 +3324,7 @@ OH_Drawing_TextTab* OH_Drawing_CreateTextTab (OH_Drawing_TextAlign alignment, fl
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3303,7 +3349,7 @@ void OH_Drawing_DestroyTextTab (OH_Drawing_TextTab* )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3323,7 +3369,7 @@ OH_Drawing_TextAlign OH_Drawing_GetTextTabAlignment (OH_Drawing_TextTab* )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3347,7 +3393,7 @@ float OH_Drawing_GetTextTabLocation (OH_Drawing_TextTab* )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3371,7 +3417,7 @@ void OH_Drawing_SetTypographyTextTab (OH_Drawing_TypographyStyle* , OH_Drawing_T
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3392,7 +3438,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetBounds (const OH_Drawing_Font* font, cons
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3419,7 +3465,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetPathForGlyph (const OH_Drawing_Font* font
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3445,7 +3491,7 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray (size_t size)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3469,7 +3515,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArraySize (OH_Drawing_Array* rectArray, s
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3494,7 +3540,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectGetArrayElement (OH_Drawing_Array* rectArray
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3520,7 +3566,7 @@ OH_Drawing_ErrorCode OH_Drawing_RectDestroyArray (OH_Drawing_Array* rectArray)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3544,7 +3590,7 @@ OH_Drawing_Array* OH_Drawing_TypographyGetTextLines (OH_Drawing_Typography* typo
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3568,7 +3614,7 @@ void OH_Drawing_DestroyTextLines (OH_Drawing_Array* lines)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3588,7 +3634,7 @@ void OH_Drawing_DestroyTextLine (OH_Drawing_TextLine* line)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3608,7 +3654,7 @@ OH_Drawing_TextLine* OH_Drawing_GetTextLineByIndex (OH_Drawing_Array* lines, siz
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3633,7 +3679,7 @@ double OH_Drawing_TextLineGetGlyphCount (OH_Drawing_TextLine* line)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3657,7 +3703,7 @@ void OH_Drawing_TextLineGetTextRange (OH_Drawing_TextLine* line, size_t* start, 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3679,7 +3725,7 @@ OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns (OH_Drawing_TextLine* line)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3703,7 +3749,7 @@ void OH_Drawing_DestroyRuns (OH_Drawing_Array* runs)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3723,7 +3769,7 @@ OH_Drawing_Run* OH_Drawing_GetRunByIndex (OH_Drawing_Array* runs, size_t index )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3748,7 +3794,7 @@ void OH_Drawing_TextLinePaint (OH_Drawing_TextLine* line, OH_Drawing_Canvas* can
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3771,7 +3817,7 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine (OH_Drawing_TextLine
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3798,7 +3844,7 @@ double OH_Drawing_TextLineGetTypographicBounds (OH_Drawing_TextLine* line, doubl
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3825,7 +3871,7 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds (OH_Drawing_TextLine* line)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3849,7 +3895,7 @@ double OH_Drawing_TextLineGetTrailingSpaceWidth (OH_Drawing_TextLine* line)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3873,7 +3919,7 @@ int32_t OH_Drawing_TextLineGetStringIndexForPosition (OH_Drawing_TextLine* line,
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3898,7 +3944,7 @@ double OH_Drawing_TextLineGetOffsetForStringIndex (OH_Drawing_TextLine* line, in
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3923,7 +3969,7 @@ void OH_Drawing_TextLineEnumerateCaretOffsets (OH_Drawing_TextLine* line, Drawin
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3944,7 +3990,7 @@ double OH_Drawing_TextLineGetAlignmentOffset (OH_Drawing_TextLine* line, double 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3970,7 +4016,7 @@ void OH_Drawing_AddTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -3991,7 +4037,7 @@ void OH_Drawing_RemoveTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4012,7 +4058,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath (const OH_Drawing_Font* font, co
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4067,7 +4113,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices (OH_Drawing_Run* run, int64_t s
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4094,7 +4140,7 @@ uint64_t OH_Drawing_GetRunStringIndicesByIndex (OH_Drawing_Array* stringIndices,
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4120,7 +4166,7 @@ void OH_Drawing_DestroyRunStringIndices (OH_Drawing_Array* stringIndices)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4141,7 +4187,7 @@ void OH_Drawing_GetRunStringRange (OH_Drawing_Run* run, uint64_t* location, uint
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4164,7 +4210,7 @@ float OH_Drawing_GetRunTypographicBounds (OH_Drawing_Run* run, float* ascent, fl
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4192,7 +4238,7 @@ void OH_Drawing_RunPaint (OH_Drawing_Canvas* canvas, OH_Drawing_Run* run, double
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4216,7 +4262,7 @@ OH_Drawing_Rect* OH_Drawing_GetRunImageBounds (OH_Drawing_Run* run)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4241,7 +4287,7 @@ void OH_Drawing_DestroyRunImageBounds (OH_Drawing_Rect* rect)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4262,7 +4308,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs (OH_Drawing_Run* run, int64_t start, i
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4289,7 +4335,7 @@ uint16_t OH_Drawing_GetRunGlyphsByIndex (OH_Drawing_Array* glyphs, size_t index 
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4315,7 +4361,7 @@ void OH_Drawing_DestroyRunGlyphs (OH_Drawing_Array* glyphs)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4335,7 +4381,7 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions (OH_Drawing_Run* run, int64_t start
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4361,7 +4407,7 @@ OH_Drawing_Point* OH_Drawing_GetRunPositionsByIndex (OH_Drawing_Array* positions
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4387,7 +4433,7 @@ void OH_Drawing_DestroyRunPositions (OH_Drawing_Array* positions)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4407,7 +4453,7 @@ uint32_t OH_Drawing_GetRunGlyphCount (OH_Drawing_Run* run)
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4431,7 +4477,7 @@ OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors (OH_Drawing_FontDescr
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 
@@ -4456,7 +4502,7 @@ void OH_Drawing_DestroyFontDescriptors (OH_Drawing_FontDescriptor* , size_t  )
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
-**起始版本：** 14
+**起始版本：** 16
 
 **参数:**
 

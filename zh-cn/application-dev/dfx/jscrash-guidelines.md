@@ -8,16 +8,16 @@
 
 ### JS Crash日志规格
 
-直接生成的JS Crash日志为二进制格式的rawheap文件，由于.rawheap文件为二进制格式，需要先使用如下方式进行处理：
-1、使用解析脚本手动将日志解析为heapsnapshot文件后进行查看，工具使用方法见[rawheap格式文件转换工具](../tools/rawheap-translator.md)。
-2、DevEco Profiler 提供Raw Heap离线导入能力，可导入一个或多个 .rawheap文件。
-
 以下是进程崩溃日志信息中对应字段解释。
 
 ```
+Device info:XXX <- 设备信息
 Build info:XXX-XXXX X.X.X.XX(XXXXXXXX) <- 版本信息
+Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697 <- 特征信息
+Timestamp:XXXX-XX-XX XX:XX:XX.XXX <- 时间戳
 Module name:com.example.myapplication <- 模块名
 Version:1.0.0 <- 版本号
+VersionCode:1000000 <- 版本编码
 Pid:579 <- 进程号
 Uid:0 <- 用户ID
 Reason:TypeError <- 原因
@@ -88,6 +88,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     VersionCode:1000000
@@ -110,9 +111,10 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:a370fceb59011d96e41e97bda139b1851c911012ab8c386d1a2d63986d6d226d
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
-    Versioncode:1000000
+    VersionCode:1000000
     PreInstalled:No
     Foreground:Yes
     Pid:39185
@@ -130,6 +132,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:377ef8529301363f373ce837d0bf83aacfc46112502143237e2f4026e86a0510
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     Versioncode:1000000
@@ -153,6 +156,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:89f2b64b24d642b0fc64e3a7cf68ca39fecaa580ff5736bb9d6706ea4cdf2c93
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     VersionCode:1000000
@@ -220,6 +224,7 @@ Error message:Cannot read property xxx of undefined
     Device info:xxxx
     Build info:xxxx
     Fingerprint:9851196f9fed7fd818170303296ae7a5767c9ab11f38fd8b0072f0e32c42ea39
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0.29
     VersionCode:10000029

@@ -9,7 +9,7 @@ Ability信息，未做特殊说明的属性，均通过[bundle.getAbilityInfo](j
 
 > 从API version 9开始不再维护，建议使用[bundleManager-AbilityInfo](js-apis-bundleManager-abilityInfo.md)替代。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称                  | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |

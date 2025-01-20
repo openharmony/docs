@@ -133,7 +133,7 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
   channels: audio.AudioChannel.CHANNEL_2,
   sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
   encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
@@ -198,6 +198,32 @@ Enumerates the audio device flags.
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API.   |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API.|
 
+## EffectFlag<sup>15+</sup>
+
+Enumerates the audio effect flags.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name                           |  Value    | Description                       |
+| ------------------------------- | ------ |------------------------------|
+| RENDER_EFFECT_FLAG  | 0      | Rendered audio effect flag.  |
+| CAPTURE_EFFECT_FLAG | 1      | Captured audio effect flag.  |
+
+## AudioEffectProperty<sup>15+</sup>
+
+Describes the audio effect properties.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name              | Type| Mandatory| Description      |
+| ------------------ | ---- | ---- | --------- |
+| name         | string | Yes| Audio effect name.|
+| category     | string | Yes| Audio effect category.|
+| flag        | [EffectFlag](#effectflag15) | Yes| Audio effect flag.|
 
 ## StreamUsage
 
@@ -378,6 +404,7 @@ Enumerates the audio source types.
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wake-up scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
 | SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | Audio source in voice calls.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.RECORD_VOICE_CALL <br> This is a system API.|
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>15+</sup>   | 12     | Audio source for speech-to-text conversion.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br> This is a system API.|
 
 ## VolumeAdjustType<sup>10+</sup>
 
@@ -558,6 +585,38 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
 }).catch ((err: BusinessError) => {
   console.error(`Failed to set the audio scene mode ${err}`);
 });
+```
+
+### getEffectManager<sup>15+</sup>
+
+getEffectManager(): AudioEffectManager
+
+Obtains an **AudioEffectManager** instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                          | Description                         |
+|----------------------------------------------| ----------------------------- |
+| [AudioEffectManager](#audioeffectmanager15) | **AudioEffectManager** instance.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioEffectManager: audio.AudioEffectManager = audioManager.getEffectManager();
 ```
 
 ### getSpatializationManager<sup>11+</sup>
@@ -1281,7 +1340,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
-| ------- | --------------------------------------------|
+| -------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
@@ -1297,6 +1356,139 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 }).catch((error: BusinessError) => {
   console.error('Fail to adjust the system volume by step.');
 });
+```
+## AudioEffectManager<sup>15+</sup>
+
+Manages audio effects. Before calling an API in **AudioEffectManager**, you must use [getEffectManager](geteffectmanager15) to obtain an **AudioEffectManager** instance.
+
+
+### getSupportedAudioEffectProperty<sup>15+</sup>
+
+getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
+
+Obtains the supported audio effects. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                                                     | Description                                   |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Array\<[AudioEffectProperty](#audioeffectproperty15)>     | Properties of the audio effects supported.             |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 6800301 | System error. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioStreamManager.getSupportedAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getSupportedAudioEffectProperty ERROR: ${error}`);
+}
+```
+
+
+### getAudioEffectProperty<sup>15+</sup>
+
+getAudioEffectProperty(): Array\<AudioEffectProperty>
+
+Obtains the audio effect in use. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                                                     | Description                                   |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Array\<[AudioEffectProperty](#audioeffectproperty15)>     | Audio effect in use.                       |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 6800301 | System error. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioStreamManager.getAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getAudioEffectProperty ERROR: ${error}`);
+}
+```
+
+### setAudioEffectProperty<sup>15+</sup>
+
+setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
+
+Sets an audio effect in use. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.core
+
+**Parameters**
+| Name       | Type                                                 | Mandatory    | Description                        |
+| ------------- | ----------------------------------------------------- | -------- | ---------------------------- |
+| propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty15)> | Yes      |  Property of the audio effect.       |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Possible causes: 1.more than one enhanceProps of the same enhanceClass in input Array; 2.input audioEnhanceProperties are not supported by current device. 3.names of enhanceProp or enhanceClass are incorrect.|
+| 6800301 | System error. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioEffectManager.getAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+  audioEffectManager.setAudioEffectProperty(propertyArray);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setAudioEffectProperty ERROR: ${error}`);
+}
 ```
 
 ## AudioRoutingManager<sup>9+</sup>
@@ -1621,6 +1813,215 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### selectInputDeviceByFilter<sup>14+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDeviceDescriptor: AudioDeviceDescriptors, callback: AsyncCallback&lt;void&gt;): void
+
+Selects an audio input device based on the filter criteria. Currently, only one input device can be selected. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                        | Type                                                               | Mandatory| Description                                     |
+|-----------------------------|-------------------------------------------------------------------| ---- |-----------------------------------------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | Yes  | Filter criteria.                                 |
+| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Yes  | Input device.                                 |
+| callback                    | AsyncCallback&lt;void&gt;                                         | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+
+**Example**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter() {
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor, (err: BusinessError) => {
+    if (err) {
+        console.error(`Result ERROR: ${err}`);
+    } else {
+        console.info('Select input devices by filter result callback: SUCCESS'); }
+    });
+}
+```
+
+### selectInputDeviceByFilter<sup>14+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, outputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+Selects an audio input device based on the filter criteria. Currently, only one input device can be selected. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description    |
+| ----------------------| ------------------------------------------------------------ | ---- |--------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter14)                     | Yes  | Filter criteria.|
+| outputAudioDeviceDescriptor | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Yes  | Input device.|
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor).then(() => {
+        console.info('Select input devices by filter result promise: SUCCESS');
+    }).catch((err: BusinessError) => {
+        console.error(`Result ERROR: ${err}`);
+    })
+}
+```
+
+### getPreferredOutputDeviceByFilter<sup>14+</sup>
+
+getPreferredOutputDeviceByFilter(filter: AudioRendererFilter):  AudioDeviceDescriptors
+
+Obtains an audio output device based on the filter criteria.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | Yes  | Filter criteria.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+
+**Example**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
+  uid : 20010041,
+  rendererInfo : {
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
+
+async function selectOutputDeviceByFilter(){
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    let desc : audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceByFilter(outputAudioRendererFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
+### getPreferredInputDeviceByFilter<sup>14+</sup>
+
+getPreferredInputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
+
+Obtains an audio input device based on the filter criteria. Currently, only one input device can be acquired.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+|---------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| filter              | [AudioCapturerFilter](#audiocapturerfilter14)                     | Yes  | Filter criteria.|
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+async function getPreferredInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager(); // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager(); // Call an API of AudioManager to create an AudioRoutingManager instance.
+    let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceByFilter(inputAudioCapturerFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 Describes the audio renderer change event.
@@ -1677,6 +2078,30 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
     rendererFlags : 0
   },
   rendererId : 0
+};
+```
+## AudioCapturerFilter<sup>14+</sup>
+
+Filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an **AudioCapturerFilter** instance.
+
+**System API**: This is a system API.
+
+| Name         | Type                                    | Mandatory| Description         |
+| -------------| ---------------------------------------- | ---- | -------------- |
+| uid          | number                                   |  No | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| capturerInfo | [AudioCapturerInfo](js-apis-audio.md#audiocapturerinfo8) |  No | Audio capturer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Capturer|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
 };
 ```
 

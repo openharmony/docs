@@ -243,7 +243,7 @@ export struct TaskSwitchMainPage {
         .height('100%')
         .backgroundColor(0xF0F0F0)
 
-      // <Scroll> component
+      // Scroll component
       Scroll(this.scroller) {
         Row({ space: this.cardSpace }) {
           ForEach(taskDataArr, (item:TaskData, index) => {

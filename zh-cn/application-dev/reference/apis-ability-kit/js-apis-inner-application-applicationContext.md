@@ -23,7 +23,7 @@ on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback): number
 
 注册监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -111,7 +111,7 @@ off(type: 'abilityLifecycle', callbackId: number,  callback: AsyncCallback\<void
 
 取消监听应用内生命周期。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -164,7 +164,7 @@ off(type: 'abilityLifecycle', callbackId: number): Promise\<void>
 
 取消监听应用内生命周期。使用Promise异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -216,7 +216,7 @@ on(type: 'environment', callback: EnvironmentCallback): number
 
 注册对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -279,7 +279,7 @@ off(type: 'environment', callbackId: number,  callback: AsyncCallback\<void>): v
 
 取消对系统环境变化的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -331,7 +331,7 @@ off(type: 'environment', callbackId: number): Promise\<void\>
 
 取消对系统环境变化的监听。使用Promise异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -382,7 +382,7 @@ on(type: 'applicationStateChange', callback: ApplicationStateChangeCallback): vo
 
 注册对当前应用前后台变化的监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -438,7 +438,7 @@ off(type: 'applicationStateChange', callback?: ApplicationStateChangeCallback): 
 
 取消当前应用注册的前后台变化的全部监听。使用callback异步回调。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -481,7 +481,7 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>
 
 获取有关运行进程的信息。使用Promise异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -525,7 +525,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 获取有关运行进程的信息。使用callback异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -572,9 +572,9 @@ killAllProcesses(): Promise\<void\>
 
 > **说明：**
 >
-> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -614,9 +614,9 @@ killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
 > **说明：**
 >
-> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -638,7 +638,7 @@ killAllProcesses(clearPageStack: boolean): Promise\<void\>
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 401 | If the input parameter is not valid parameter. |
 | 16000011 | The context does not exist. |
 
 **示例：**
@@ -664,9 +664,9 @@ killAllProcesses(callback: AsyncCallback\<void\>)
 
 > **说明：**
 >
-> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](./js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
+> 该接口用于应用异常场景中强制退出应用。如需正常退出应用，可以使用[terminateSelf()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself-1)接口。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -707,7 +707,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 设置应用的颜色模式。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -745,7 +745,7 @@ setLanguage(language: string): void
 
 设置应用的语言。仅支持主线程调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -868,7 +868,7 @@ restartApp(want: Want): void
 
 应用重启并拉起自身指定UIAbility。重启时不会收到onDestroy回调。仅支持主线程调用，且待重启的应用需要处于获焦状态。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -916,7 +916,7 @@ getCurrentAppCloneIndex(): number
 
 获取当前应用的分身索引。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1073,7 +1073,7 @@ setFontSizeScale(fontSizeScale: number): void
 
 设置应用字体大小缩放比例。仅支持主线程调用。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 13开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

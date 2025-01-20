@@ -383,8 +383,8 @@ parseUUID(uuid: string): Uint8Array
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.info(JSON.stringify(uuid));
-// 输出结果：132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+console.info("uuid = " + uuid);
+// 输出结果：uuid = 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
 
 ## util.printf<sup>(deprecated)</sup>

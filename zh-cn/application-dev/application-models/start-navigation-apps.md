@@ -145,9 +145,9 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
     UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
-    在参数**want.uri**中会携带目标方配置的linkFeature对应的uri;
+    在参数**want.uri**中会携带目标方配置的linkFeature对应的uri。
 
-    在参数**want.parameters**中会携带Caller方传入的参数，不同场景参数如下所示
+    在参数**want.parameters**中会携带Caller方传入的参数，不同场景参数如下所示。
 
     - 路线规划场景
     

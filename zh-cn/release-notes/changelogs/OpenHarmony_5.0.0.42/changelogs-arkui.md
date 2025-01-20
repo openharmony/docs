@@ -15,10 +15,9 @@
 由于NavigationMenuItem变量类型变更为 string | Resource，不再与单一变量类型string相匹配，因此将NavigationMenuItem赋值给一个string类型变量，程序会编译报错。
 
 ```
-@State myString: string = '';
-@State myIcon: NavigationMenuItem["value"] = $r("app.string.MyTestMenuValue1")
+const myIcon: NavigationMenuItem = { value: "图标", icon: "https://example.png"}
+const myString: string = myIcon.value
 
-this.myString = this.myIcon
 ```
 
 **起始API Level**
@@ -232,6 +231,8 @@ Navdestination
 
 示例：
 
+其中，NavDestination的内容区需自行构造，可参考[开发指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/arkts-navigation-navigation.md)。
+
 ```ts
 @Entry
 @Component
@@ -242,6 +243,8 @@ struct NavigationDemo {
 	@Builder
 	pageOneTmp() {
 		NavDestination() {
+          // ...
+          // 需自行构造NavDestination
 		}
 		.title("PageOne")
 		.mode(NavDestinationMode.DIALOG)

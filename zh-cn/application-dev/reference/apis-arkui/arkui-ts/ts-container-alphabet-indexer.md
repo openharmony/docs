@@ -14,7 +14,7 @@
 
 ## 接口
 
-AlphabetIndexer(value: AlphabetIndexerOptions)
+AlphabetIndexer(options: AlphabetIndexerOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -24,7 +24,7 @@ AlphabetIndexer(value: AlphabetIndexerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [AlphabetIndexerOptions](#alphabetindexeroptions16对象说明) | 是 | 设置索引条组件参数。 |
+| options | [AlphabetIndexerOptions](#alphabetindexeroptions16对象说明) | 是 | 设置索引条组件参数。 |
 
 ## AlphabetIndexerOptions<sup>16+</sup>对象说明
 
@@ -414,7 +414,7 @@ enableHapticFeedback(value: boolean)
 
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| value | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
+| value | boolean | 是  | 支持触控反馈。<br/>默认值：true。<br/> |
 
 ## IndexerAlign枚举说明
 

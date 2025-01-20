@@ -38,7 +38,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -94,7 +94,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -136,7 +136,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -181,7 +181,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -218,7 +218,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -277,7 +277,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -334,7 +334,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -371,7 +371,7 @@ cancelAllReminders(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -491,7 +491,7 @@ removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 通知渠道类型。 |
 | callback | AsyncCallback\<void> | 是 | 回调函数，当删除成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -531,7 +531,7 @@ removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 目标notification\.slot的类型。 |
+| slotType | [notification.SlotType](../apis-notification-kit/js-apis-notification.md#slottype) | 是 | 通知渠道类型。 |
 
 **返回值**：
 
@@ -576,7 +576,7 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |

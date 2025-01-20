@@ -93,6 +93,27 @@ loop为false时，自动轮播到最后一页时停止轮播。手势切换后�
 | ------ | ------- | ---- | -------------------------------------- |
 | value  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
 
+### autoPlay<sup>16+</sup>
+
+autoPlay(autoPlay: boolean, options: AutoPlayOptions)
+
+手指或者鼠标等按下屏幕时，设置子组件是否自动播放。
+
+当[loop](#loop)设置为false时，自动轮播将在到达最后一页时停止。在通过手势切换且未处于最后一页的情况下，轮播将继续进行。Swiper在不可见时，轮播也将停止。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------- | ---- | -------------------------------------- |
+| autoPlay  | boolean | 是   | 子组件是否自动播放。<br/>默认值：false |
+| options  | [AutoPlayOptions](#autoplayoptions16对象说明)&nbsp; | 否   | 配置手指或者鼠标等按下屏幕时子组件是否停止自动播放。<br/>默认值：{ stopWhenTouched: true } 停止自动播放 |
+
 ### interval
 
 interval(value: number)
@@ -128,6 +149,25 @@ indicator(value: DotIndicator | DigitIndicator | boolean)
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DotIndicator](#dotindicator10)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
+
+### indicator<sup>16+</sup>
+
+indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicator | boolean)
+
+设置外部绑定的导航点组件控制器。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| controller  | [IndicatorComponentController](ts-swiper-components-indicator.md#indicatorcomponentcontroller)<sup>16+</sup>&nbsp;\| [DotIndicator](#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)&nbsp;\|&nbsp;boolean| 是   | 可选导航点指示器样式。<br/>\- IndicatorComponentController：单独导航点指示器控制器。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator。|
+
 
 ### loop
 
@@ -226,7 +266,7 @@ displayMode(value: SwiperDisplayMode)
 
 ### cachedCount<sup>8+</sup>
 
-cachedCount(value: number, isShown?: boolean)
+cachedCount(value: number)
 
 设置预加载子组件个数，以当前页面为基准，加载当前显示页面的前后个数。例如cachedCount=1时，会将当前显示的页面的前面一页和后面一页的子组件都预加载。如果设置为按组翻页，即displayCount的swipeByGroup参数设为true，预加载时会以组为基本单位。例如cachedCount=1，swipeByGroup=true时，会将当前组的前面一组和后面一组的子组件都预加载。
 
@@ -241,7 +281,25 @@ cachedCount(value: number, isShown?: boolean)
 | 参数名 | 类型   | 必填 | 说明                             |
 | ------ | ------ | ---- | -------------------------------- |
 | value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
-| isShown<sup>16+</sup>  | boolean | 否   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
+
+### cachedCount<sup>16+</sup>
+
+cachedCount(count: number, isShown: boolean)
+
+设置预加载子组件个数。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                             |
+| ------ | ------ | ---- | -------------------------------- |
+| count  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| isShown  | boolean | 是   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
 
 ### disableSwipe<sup>8+</sup>
 
@@ -445,13 +503,13 @@ indicatorInteractive(value: boolean)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
 
-### pageFlipMode<sup>14+</sup>
+### pageFlipMode<sup>15+</sup>
 
-pageFlipMode(value: PageFlipMode)
+pageFlipMode(mode: Optional\<PageFlipMode>)
 
 设置鼠标滚轮翻页模式。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -459,7 +517,7 @@ pageFlipMode(value: PageFlipMode)
 
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+| mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
@@ -575,6 +633,25 @@ changeIndex(index: number, useAnimation?: boolean)
 | index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
 | useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
 
+### changeIndex<sup>16+</sup>
+
+changeIndex(index: number, animationMode: SwiperAnimationMode | boolean)
+
+翻页至指定页面。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型       | 必填  | 说明     |
+| -------- | ---------- | ---- | -------- |
+| index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
+| animationMode| [SwiperAnimationMode](#swiperanimationmode16枚举说明)&nbsp;\|&nbsp;boolean | 是    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION。<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
+
 ### finishAnimation
 
 finishAnimation(callback?: VoidCallback)
@@ -627,6 +704,20 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 | --------   | -------------------------------------------- |
 | 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 | 100004 | Controller not bound to component. |
+
+## SwiperAnimationMode<sup>16+</sup>枚举说明
+
+Swiper组件翻页至指定页面的动效模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值   | 说明                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| NO_ANIMATION  | 0    | 无动效翻页至指定页面。                                                 |
+| DEFAULT_ANIMATION | 1    | 有动效翻页至指定页面。                             |
+| FAST_ANIMATION  | 2    | 先无动效翻页至指定页面附近，再有动效翻页至指定页面。 |
 
 ## Indicator<sup>10+</sup>
 
@@ -1141,6 +1232,17 @@ DigitIndicator的构造函数。
 | ------- | -------------------- | ------ | ------------------------------------ |
 | minSize | [VP](ts-types.md#vp10) | 是     | 设置元素显示最小宽度。<br/>默认值：0 |
 
+## AutoPlayOptions<sup>16+</sup>对象说明
+自动播放属性。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称              | 类型                                     | 必填  | 说明                                     |
+| ---------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| stopWhenTouched   | boolean                                  | 是    | 在按下事件中配置子组件是否立即停止播放。<br/>true |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -1181,7 +1283,7 @@ onAnimationStart(event: OnSwiperAnimationStartCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperAnimationStartCallback](#onswiperanimationstartcallback14) | 是   | 切换动画开始时触发的回调。 |
+| event  | [OnSwiperAnimationStartCallback](#onswiperanimationstartcallback16) | 是   | 切换动画开始时触发的回调。 |
 
 >**说明：**
 >
@@ -1205,7 +1307,7 @@ onAnimationEnd(event: OnSwiperAnimationEndCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperAnimationEndCallback](#onswiperanimationendcallback14) | 是   | 切换动画结束时触发的回调。 |
+| event  | [OnSwiperAnimationEndCallback](#onswiperanimationendcallback16) | 是   | 切换动画结束时触发的回调。 |
 
 >**说明：**
 >
@@ -1225,7 +1327,7 @@ onGestureSwipe(event: OnSwiperGestureSwipeCallback)
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback14) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
+| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback16) | 是   | 在页面跟手滑动过程中，逐帧触发的回调。 |
 
 ### customContentTransition<sup>12+</sup>
 
@@ -1235,7 +1337,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 使用说明：
 
-1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1245,7 +1347,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12对象说明) | 是 | Swiper自定义切换动画相关信息。 |
+| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12) | 是 | Swiper自定义切换动画相关信息。 |
 
 ### onContentDidScroll<sup>12+</sup>
 
@@ -1267,17 +1369,16 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
 
-## 回调函数
 
-### OnSwiperAnimationStartCallback<sup>14+</sup>
+## OnSwiperAnimationStartCallback<sup>16+</sup>
 
 type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
 
 切换动画开始时触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1289,15 +1390,15 @@ type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extra
 | targetIndex<sup>10+</sup> | number                                                     | 是   | 切换动画目标元素的索引。                                     |
 | extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，包括主轴方向上当前显示元素和目标元素相对Swiper起始位置的位移，以及离手速度。 |
 
-### OnSwiperAnimationEndCallback<sup>14+</sup>
+## OnSwiperAnimationEndCallback<sup>16+</sup>
 
 type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
 
 切换动画结束时触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1308,15 +1409,15 @@ type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEv
 | index                   | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
 | extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
 
-### OnSwiperGestureSwipeCallback<sup>14+</sup>
+## OnSwiperGestureSwipeCallback<sup>16+</sup>
 
 type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
 
 在页面跟手滑动过程中，逐帧触发的回调。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1326,6 +1427,23 @@ type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEv
 | --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | index     | number                                                     | 是   | 当前显示元素的索引。多列Swiper时，index为最左侧组件的索引。                                         |
 | extraInfo | [SwiperAnimationEvent](#swiperanimationevent10对象说明) | 是   | 动画相关信息，只返回主轴方向上当前显示元素相对于Swiper起始位置的位移。 |
+
+## ContentDidScrollCallback<sup>12+</sup>
+
+type ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
+
+Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)中的说明。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| selectedIndex | number | 是 | 当前选中页面的索引。 |
+| index | number | 是 | 视窗内页面的索引。 |
+| position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
+| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
 
 ## SwiperAnimationEvent<sup>10+</sup>对象说明
 
@@ -1341,7 +1459,7 @@ Swiper组件动画相关信息集合。
 | targetOffset | number | 否 | 否 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
 | velocity | number | 否 | 否 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
-## SwiperContentAnimatedTransition<sup>12+</sup>对象说明
+## SwiperContentAnimatedTransition<sup>12+</sup>
 
 Swiper自定义切换动画相关信息。
 
@@ -1351,10 +1469,10 @@ Swiper自定义切换动画相关信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
-| transition | Callback<[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)> | 是 | 自定义切换动画具体内容。 |
+| timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
+| transition | Callback<[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)> | 是 | 自定义切换动画具体内容。 |
 
-## SwiperContentTransitionProxy<sup>12+</sup>对象说明
+## SwiperContentTransitionProxy<sup>12+</sup>
 
 Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
 
@@ -1388,28 +1506,11 @@ finishTransition(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## ContentDidScrollCallback<sup>12+</sup>
-
-type ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
-
-Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)中的说明。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------ | ---- | ---- | ---- |
-| selectedIndex | number | 是 | 当前选中页面的索引。 |
-| index | number | 是 | 视窗内页面的索引。 |
-| position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
-| mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
-
 ## 示例
 
-### 示例1（设置导航点交互）
+### 示例1（设置导航点交互及翻页动效）
 
-该示例通过indicatorInteractive接口，实现了控制导航点交互的功能。
+该示例通过changeIndex接口设置SwiperAnimationMode动效模式，实现了Swiper组件翻页至指定页面。
 
 ```ts
 // xxx.ets
@@ -1513,6 +1614,20 @@ struct SwiperExample {
         Button('showPrevious')
           .onClick(() => {
             this.swiperController.showPrevious()
+          })
+      }.margin(5)
+      Row({ space: 5 }) {
+        Button('FAST 0')
+          .onClick(() => {
+            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION)
+          })
+        Button('FAST 3')
+          .onClick(() => {
+            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION)
+          })
+        Button('FAST ' + 9)
+          .onClick(() => {
+            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION)
           })
       }.margin(5)
     }.width('100%')

@@ -677,6 +677,10 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
 
+> **说明：** 
+>
+> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
+
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
@@ -832,7 +836,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -863,7 +867,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   hilog.info(0, 'testTag ui', `requestAccessoryRight success, ret:${flag}`)
 } catch (error) {
   hilog.info(0, 'testTag ui', `requestAccessoryRight error ${error.code}, message is ${error.message}`)
@@ -878,7 +882,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -903,7 +907,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   usbManager.cancelAccessoryRight(accList[0])
   hilog.info(0, 'testTag ui', `cancelAccessoryRight success`)
 } catch (error) {
@@ -917,7 +921,7 @@ getAccessoryList(): Array<Readonly&lt;USBAccessory&gt;>
 
 获取当前已接入主机的USB配件列表。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **错误码：**
 
@@ -953,7 +957,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 
 需要调用[usbManager.getAccessoryList](#usbmanagergetaccessorylist14)获取配件列表，得到[USBAccessory](#usbaccessory14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -969,7 +973,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 14400001 | Permission denied. Call requestAccessoryRight to get the right first. |
-| 14400004 | Service exception. Possible causes: No accessory is plugged in. |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
 | 14401001 | The target USBAccessory not matched.                         |
 | 14401002 | Failed to open the native accessory node.                    |
 | 14401003 | Cannot reopen the accessory.                                 |
@@ -986,7 +990,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
 } catch (error) {
@@ -1002,7 +1006,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 
 需要调用[usbManager.openAccessory](#usbmanageropenaccessory14)获取配件列表，得到[USBAccessoryHandle](#usbaccessoryhandle14)作为参数。
 
-**系统能力**  SystemCapability.USB.USBManager
+**系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
 
@@ -1025,7 +1029,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   usbManager.closeAccessory(handle)
   hilog.info(0, 'testTag ui', `closeAccessory success`)

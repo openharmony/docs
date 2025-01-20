@@ -6947,9 +6947,15 @@ Enumerates TLS protocol versions.
 
 ## X509CertRawData<sup>9+</sup>
 
+type X509CertRawData = cert.EncodingBlob
+
 Defines the certificate raw data.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| cert.EncodingBlob | Certificate encoding BLOB type.    |
 
 ## socket.constructTLSSocketServerInstance<sup>10+</sup>
 

@@ -248,8 +248,6 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 配置NavDestination是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该NavDestination。该功能需NavDestination对应的Navigation也配置了可恢复属性。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -283,7 +281,7 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 | scrollers | Array<[Scroller](./ts-container-scroll.md#scroller)> | 是   | 可滚动容器组件的控制器。 |
 
 ### bindToNestedScrollable<sup>14+</sup>
-bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
+bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
 绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
@@ -437,6 +435,21 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onResult<sup>16+</sup>
+
+onResult(callback:&nbsp;Callback\<ESObject\>)
+
+NavDestination返回时触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
 
 ## NavDestinationCommonTitle
 
