@@ -34,17 +34,20 @@ If the minimum duration of the long press gesture is greater than or equal to 50
 | -------- | -------- |
 | onAction(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when a long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | onActionEnd(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void) | Invoked when the last finger is lifted after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event: () =&gt; void) | Invoked when a tap cancellation event is received after the long press gesture is recognized. No gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onActionCancel(event:(event: [GestureEvent](ts-gesture-settings.md#gestureevent)) =&gt; void)<sup>16+</sup> | Invoked when a tap cancellation event is received after the long press gesture is recognized. Gesture event information is returned.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 ## Attributes
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 | Name| Type   |Description                                       |
 | ----  | ------  | ---------------------------------------- |
-| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.|
+| tag<sup>11+</sup>   | string  | Tag for the long press gesture. It is used to distinguish the gesture during custom gesture judgment.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| allowedTypes<sup>14+</sup> | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)> | Allowed event input types for the long press gesture.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+
 
 ## Example
+
+This example demonstrates the recognition of a long press gesture using **TapGesture**.
 
 ```ts
 // xxx.ets
@@ -80,4 +83,4 @@ struct LongPressGestureExample {
 }
 ```
 
-![en-us_image_0000001257058425](figures/en-us_image_0000001257058425.gif)
+![en-us_image_0000001174264380](figures/en-us_image_0000001174264380.gif)

@@ -801,8 +801,8 @@ struct Index {
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
 
-### Example 4: Implementing a Mirror Effect
-This example shows how to implement a mirror effect by configuring the **direction** property of the **SegmentButton** component.
+### Example 4: Implementing a Mirroring Effect
+This example shows how to implement a mirroring effect by configuring the **direction** property of the **SegmentButton** component.
 
 ```ts
 // xxx.ets

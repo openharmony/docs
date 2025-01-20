@@ -40,6 +40,7 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | showTime<sup>10+</sup> | boolean | No| Whether to display the time item. The value **true** means to display the time item, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format. The value **true** means to display time in 24-hour format, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>When the display time is in 12-hour format, the AM/PM zone does not change depending on the hour portion.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lunarSwitch<sup>10+</sup> | boolean | No| Whether to display the lunar calendar switch. The value **true** means to display the lunar calendar switch, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lunarSwitchStyle<sup>14+</sup> | [LunarSwitchStyle](#lunarswitchstyle14) | No| Style of the lunar calendar switch.<br>Default value: **{ selectedColor: $r('sys.color.ohos_id_color_text_primary_actived'), unselectedColor: $r('sys.color.ohos_id_color_switch_outline_off'), strokeColor: Color.White }**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} <br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -61,8 +62,22 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | onWillDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. If the user closes the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | dateTimeOptions<sup>12+</sup> | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | No| Whether to display a leading zero for the hours and minutes. Currently only the configuration of the **hour** and **minute** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+
+## LunarSwitchStyle<sup>14+</sup>
+
+Defines the style of the lunar calendar switch in the **DatePickerDialog** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+|  Name | Type                | Mandatory| Description      |
+| ------ |-------------------|-----|----------|
+| selectedColor| [ResourceColor](ts-types.md#resourcecolor) | No  | Background color of the switch when it is on.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_actived')**|
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Border color of the switch when it is off.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
+| strokeColor     | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the icon inside the switch.<br>Default value: **Color.White**|
 
 ## PickerDialogButtonStyle<sup>12+</sup>
 
@@ -110,9 +125,9 @@ The exception detection and handling with the selected date comes after that wit
 >
 > For clarity in UI execution context, you are advised to use the [showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-### Example 1
+### Example 1: Setting the Display Time Format
 
-This example shows the basic usage of **DatePickerDialog**.
+This example demonstrates how to set the display time format using **showTime**, **useMilitaryTime**, and **dateTimeOptions**.
 
 ```ts
 // xxx.ets
@@ -126,53 +141,16 @@ struct DatePickerDialogExample {
       Button("DatePickerDialog")
         .margin(20)
         .onClick(() => {
-          DatePickerDialog.show({ // You are advised to use this.getUIContext().showDatePickerDialog().
+          DatePickerDialog.show({
+            // You are advised to use this.getUIContext().showDatePickerDialog().
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
-            showTime:true,
-            useMilitaryTime:false,
-            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
-            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
-            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
+            showTime: true,
+            useMilitaryTime: false,
+            dateTimeOptions: { hour: "numeric", minute: "2-digit" },
             onDateAccept: (value: Date) => {
               // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
-              this.selectedDate = value
-              console.info("DatePickerDialog:onDateAccept()" + value.toString())
-            },
-            onCancel: () => {
-              console.info("DatePickerDialog:onCancel()")
-            },
-            onDateChange: (value: Date) => {
-              console.info("DatePickerDialog:onDateChange()" + value.toString())
-            },
-            onDidAppear: () => {
-              console.info("DatePickerDialog:onDidAppear()")
-            },
-            onDidDisappear: () => {
-              console.info("DatePickerDialog:onDidDisappear()")
-            },
-            onWillAppear: () => {
-              console.info("DatePickerDialog:onWillAppear()")
-            },
-            onWillDisappear: () => {
-              console.info("DatePickerDialog:onWillDisappear()")
-            }
-          })
-        })
-
-      Button("Lunar DatePickerDialog")
-        .margin(20)
-        .onClick(() => {
-          DatePickerDialog.show({
-            start: new Date("2000-1-1"),
-            end: new Date("2100-12-31"),
-            selected: this.selectedDate,
-            lunar: true,
-            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
-            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
-            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
-            onDateAccept: (value: Date) => {
               this.selectedDate = value
               console.info("DatePickerDialog:onDateAccept()" + value.toString())
             },
@@ -203,9 +181,9 @@ struct DatePickerDialogExample {
 
 ![DataPickerDialog](figures/DatePickerDialog.gif)
 
-### Example 2
+### Example 2: Customizing the Style
 
-This example shows how to customize the button style.
+In this example, **disappearTextStyle**, **textStyle**, **selectedTextStyle**, **acceptButtonStyle**, and **cancelButtonStyle** are configured to customize the text and button style.
 
 ```ts
 // xxx.ets
@@ -223,17 +201,33 @@ struct DatePickerDialogExample {
             start: new Date("2000-1-1"),
             end: new Date("2100-12-31"),
             selected: this.selectedDate,
-            showTime:true,
-            useMilitaryTime:false,
-            disappearTextStyle: {color: Color.Pink, font: {size: '22fp', weight: FontWeight.Bold}},
-            textStyle: {color: '#ff00ff00', font: {size: '18fp', weight: FontWeight.Normal}},
-            selectedTextStyle: {color: '#ff182431', font: {size: '14fp', weight: FontWeight.Regular}},
-            acceptButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Red,
-              fontSize: '26fp', fontWeight: FontWeight.Bolder, fontStyle: FontStyle.Normal, fontFamily: 'sans-serif', backgroundColor:'#80834511',
-              borderRadius: 20 },
-            cancelButtonStyle: { type: ButtonType.Normal, style: ButtonStyleMode.NORMAL, role: ButtonRole.NORMAL, fontColor: Color.Blue,
-              fontSize: '16fp', fontWeight: FontWeight.Normal, fontStyle: FontStyle.Italic, fontFamily: 'sans-serif', backgroundColor:'#50182431',
-              borderRadius: 10 },
+            disappearTextStyle: { color: '#297bec', font: { size: '20fp', weight: FontWeight.Bold } },
+            textStyle: { color: Color.Black, font: { size: '18fp', weight: FontWeight.Normal } },
+            selectedTextStyle: { color: Color.Blue, font: { size: '26fp', weight: FontWeight.Regular } },
+            acceptButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: 'rgb(81, 81, 216)',
+              fontSize: '26fp',
+              fontWeight: FontWeight.Bolder,
+              fontStyle: FontStyle.Normal,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#A6ACAF',
+              borderRadius: 20
+            },
+            cancelButtonStyle: {
+              type: ButtonType.Normal,
+              style: ButtonStyleMode.NORMAL,
+              role: ButtonRole.NORMAL,
+              fontColor: Color.Blue,
+              fontSize: '16fp',
+              fontWeight: FontWeight.Normal,
+              fontStyle: FontStyle.Italic,
+              fontFamily: 'sans-serif',
+              backgroundColor: '#50182431',
+              borderRadius: 10
+            },
             onDateAccept: (value: Date) => {
               // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
               this.selectedDate = value
@@ -270,7 +264,7 @@ struct DatePickerDialogExample {
 >
 > To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [\<DatePicker>](ts-basic-components-datepicker.md) component.
 
-### Example 3
+### Example 3: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in hover mode on a foldable device.
 
@@ -326,4 +320,205 @@ struct DatePickerDialogExample {
 }
 ```
 
+![DataPickerDialog](figures/DatePickerDialog_HoverMode.gif)
 
+### Example 4: Setting the Dialog Box Position
+
+This example demonstrates how to set the position of a dialog box using **alignment** and **offset**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            // You are advised to use this.getUIContext().showDatePickerDialog().
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            alignment: DialogAlignment.Center,
+            offset: { dx: 20, dy: 0 },
+            onDateAccept: (value: Date) => {
+              // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo4.png)
+
+### Example 5: Setting the Mask Area
+
+This example demonstrates how to set the mask area using **maskRect**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            maskRect: {
+              x: 30,
+              y: 60,
+              width: '100%',
+              height: '60%'
+            },
+            onDateAccept: (value: Date) => {
+              // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo5.png)
+
+### Example 6: Setting the Background
+
+This example demonstrates how to set the dialog box background using **backgroundColor**, **backgroundBlurStyle**, and **shadow**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            backgroundColor: 'rgb(204, 226, 251)',
+            backgroundBlurStyle: BlurStyle.NONE,
+            shadow: ShadowStyle.OUTER_FLOATING_SM,
+            onDateAccept: (value: Date) => {
+              // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo6.png)
+
+### Example 7: Switching Between Gregorian and Lunar Calendars
+
+This example demonstrates how to set the date picker dialog box to display either the Gregorian (solar) calendar or the lunar calendar using **lunar** and **lunarSwitch**.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            lunar: false,
+            onDateAccept: (value: Date) => {
+              // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+
+      Button("Lunar DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            lunar: true,
+            lunarSwitch: true,
+            onDateAccept: (value: Date) => {
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo7.gif)
+
+### Example 8: Setting Display of Month and Day Columns
+
+This example demonstrates how to configure the **mode** parameter to display only the month and day columns in the date picker dialog box.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerDialogExample {
+  selectedDate: Date = new Date("2010-1-1")
+
+  build() {
+    Column() {
+      Button("DatePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          DatePickerDialog.show({
+            start: new Date("2000-1-1"),
+            end: new Date("2100-12-31"),
+            selected: this.selectedDate,
+            mode: DatePickerMode.MONTH_AND_DAY,
+            onDateAccept: (value: Date) => {
+              // Use the setFullYear method to set the date when the OK button is touched. In this way, when the date picker dialog box is displayed again, the selected date is the date last confirmed.
+              this.selectedDate = value
+              console.info("DatePickerDialog:onDateAccept()" + value.toString())
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![DataPickerDialog](figures/DatePickerDialogDemo8.png)
+<!--no_check-->

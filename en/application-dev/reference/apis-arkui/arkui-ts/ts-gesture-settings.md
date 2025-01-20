@@ -112,6 +112,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 
 ## Example
 
+This example demonstrates how to configure **priorityGesture** and **parallelGesture** to set up gesture recognition where the parent component has priority in recognizing gestures, and both parent and child components can trigger gestures simultaneously.
+
 ```ts
 // xxx.ets
 @Entry

@@ -29,6 +29,8 @@ Sets whether the component responds to user interactions.
 
 ## Example
 
+This example demonstrates how to use **enable** to set whether a button responds to user interactions.
+
 ```ts
 // xxx.ets
 @Entry

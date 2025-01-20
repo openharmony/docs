@@ -27,6 +27,8 @@ Sets the visibility of this component.
 
 ## Example
 
+ This example demonstrates how to use the **visibility** configuration to achieve different visibility control effects.
+
 ```ts
 // xxx.ets
 @Entry

@@ -79,13 +79,13 @@ Sets the image scale type.
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | Yes  | Image scale type.<br>Default value: **ImageFit.Cover**|
 
-### colorFilter<sup>13+</sup>
+### colorFilter<sup>14+</sup>
 
 colorFilter(value: ColorFilter | DrawingColorFilter)
 
 Sets the color filter for the image.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -169,9 +169,9 @@ Object returned after the callback is triggered when an image is successfully lo
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Alignment Mode
 
-This example sets the basic attributes of the image span as well as the alignment mode of the image with the text.
+This example demonstrates the alignment and scaling effects of the **ImageSpan** component using the **verticalAlign** and **objectFit** attributes.
 
 ```ts
 // xxx.ets
@@ -220,9 +220,9 @@ struct SpanExample {
 
 ![imagespan](figures/imagespan.png)
 
-### Example 2
+### Example 2: Setting the Background Style
 
-This example shows how to set the background style of an image span.
+This example demonstrates the effect of setting a background style for text using the **textBackgroundStyle** attribute.
 
 ```ts
 // xxx.ets
@@ -244,8 +244,10 @@ struct Index {
 ```
 ![imagespan](figures/image_span_textbackgroundstyle.png)
 
-### Example 3
-This example implements a callback triggered when the image is successfully loaded or decoded and a callback triggered when an error occurs during image loading.
+### Example 3: Adding Events to an Image
+
+This example demonstrates how to add load success and load error events to the **ImageSpan** component using **onComplete** and **onError**.
+
 ```ts
 // xxx.ets
 @Entry
@@ -268,9 +270,9 @@ struct Index {
   }
 }
 ```
-### Example 4
+### Example 4: Setting the Color Filter
 
-This example sets the color filter of the image span.
+This example demonstrates the effect of setting a color filter for the **ImageSpan** component using the **colorFilter** attribute.
 
 ```ts
 // xxx.ets
@@ -306,9 +308,9 @@ struct SpanExample {
 ```
 ![imagespan](figures/image_span_colorfilter.gif)
 
-### Example 5
+### Example 5: Setting a Placeholder Image
 
-This example shows how a placeholder image is used in **ImageSpan** during the process of loading an image from the Internet.
+This example shows how a placeholder image is used in the **ImageSpan** component during the process of loading an image from the Internet.
 
 ```ts
 // xxx.ets

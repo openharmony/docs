@@ -35,16 +35,17 @@ TextInput(value?: TextInputOptions)
 | Name| Type | Mandatory  | Description|
 | ---- | ----- | ---- | ---- |
 | placeholder             | [ResourceStr](ts-types.md#resourcestr)   | No   | Text displayed when there is no input.                            |
-| text                    | [ResourceStr](ts-types.md#resourcestr)   | No   | Current text input.<br>You are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| text                    | [ResourceStr](ts-types.md#resourcestr)   | No   | Current text input.<br>You are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 16, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.                         |
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
->  **NOTE**   
+>  **NOTE**
+>
 >  When no underline is set, the default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: '8vp',<br> right: '16vp',<br> bottom: '8vp',<br> left: '16vp'<br> } 
->  
+>
 >  When an underline is set, the default value of **padding** is as follows:<br>{<br> top: '12vp',<br> right: '0vp',<br> bottom: '12vp',<br> left: '0vp'<br> }
 >
 >  When **padding** is set to **0**, set **borderRadius** to **0** to avoid truncation of the cursor.
@@ -113,7 +114,7 @@ Sets the type of the Enter key.
 
 | Name| Type                                            | Mandatory| Description                                            |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Done**|
+| value  | [EnterKeyType](#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Done**|
 
 ### caretColor
 
@@ -131,8 +132,9 @@ Sets the color of the caret in the text box.
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the caret in the text box.<br>Default value: **'#007DFF'**|
 
->  **NOTE**    
->   Since API version 12, this API can be used to set the text handle color, which is the same as the caret color.
+>  **NOTE**
+>
+>  Since API version 12, this API can be used to set the text handle color, which is the same as the caret color.
 
 ### maxLength
 
@@ -730,6 +732,7 @@ Font features are advanced typographic features, such as ligatures and monospace
 For more information about the font features, see [Low-level font feature settings control: the font-feature-settings property](https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop) and [The Complete CSS Demo for OpenType Features](https://sparanoid.com/lab/opentype-features/).
 
 >  **NOTE**
+>
 >  This attribute is not available when **type** is set to an enum value that indicates the password input mode, such as Password, **NEW_PASSWORD**, or **NUMBER_PASSWORD**.
 
 ### wordBreak<sup>12+</sup>
@@ -772,8 +775,9 @@ Text is clipped at the transition between words. To clip text in the middle of a
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
 | value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | Yes  | Display mode when the text is too long.<br>Default value in non-editing state in the inline input style: **TextOverflow.Ellipsis**<br>Default value in editing state in the inline input style: **TextOverflow.Clip**                    |
 
->  **NOTE** 
->   The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If **TextOverflow.MARQUEE** is set, the component automatically switches to **TextOverflow.Ellipsis** for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
+>  **NOTE**
+>
+>  The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If **TextOverflow.MARQUEE** is set, the component automatically switches to **TextOverflow.Ellipsis** for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
 
 ### textIndent<sup>12+</sup>
 
@@ -830,6 +834,54 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 | Name| Type                                                        | Mandatory| Description              |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
+
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+Sets whether half leading is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | Yes | Whether half leading is enabled.<br>Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
+
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: number | Resource)
+
+Sets the minimum font scale factor for text.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handled as 0. A value greater than 1 is handled as 1. Abnormal values are ineffective by default.|
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: number | Resource)
+
+Sets the maximum font scale factor for text.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as 1. Abnormal values are ineffective by default.|
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -968,13 +1020,13 @@ Specifies whether to enable haptic feedback.
 > ]
 > ```
 
-### cancelButton<sup>14+</sup>
+### cancelButton<sup>16+</sup>
 
 cancelButton(value: CancelButtonSymbolOptions)
 
 Sets the style of the cancel button on the right. This attribute is not available for the inline input style.
 
-**Atomic service API**: This API can be used in atomic services since API version 14.
+**Atomic service API**: This API can be used in atomic services since API version 16.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -983,6 +1035,41 @@ Sets the style of the cancel button on the right. This attribute is not availabl
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12) | Yes  | Style of the cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
+
+### ellipsisMode<sup>16+</sup>
+
+ellipsisMode(value: EllipsisMode)
+
+Sets the ellipsis position. For the settings to work, **overflow** must be set to **TextOverflow.Ellipsis**. Setting **ellipsisMode** alone does not take effect.
+
+**ellipsisMode** is effective only in inline mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| value  | [EllipsisMode](ts-basic-components-richeditor#ellipsismode16) | Yes  | Ellipsis position.<br>Default value: **EllipsisMode.END**|
+
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: boolean)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | boolean | Yes  | Whether to consume the back button press.<br>Default value: **true**|
+
 ## InputType
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1054,6 +1141,21 @@ Enumerates the content types for autofill.
 | onIconSrc  | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to hide the password in password input mode.|
 | offIconSrc | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to show the password in password input mode.|
 
+## EnterKeyType
+
+Enumerates the Enter key types.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                  | Description              |
+| ---------------------- | ------------------ |
+| Go                     | The Enter key is labeled "Go."<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| Search                 | The Enter key is labeled "Search."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| Send                   | The Enter key is labeled "Send."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| Next                   | The Enter key is labeled "Next."<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Done                   | The Enter key is labeled "Done."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| PREVIOUS<sup>11+</sup> | The Enter key is labeled "Previous."<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NEW_LINE<sup>11+</sup> | The Enter key is labeled "New Line."<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 
 ## Events
@@ -1066,7 +1168,7 @@ onChange(callback: EditableTextOnChangeCallback)
 
 Triggered when the input in the text box changes.
 
-In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
+In this callback, if cursor operations are performed, you need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1431,7 +1533,7 @@ Defines the callback for submission.
 
 | Name             | Type                                            | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.|
+| enterKey            | [EnterKeyType](#enterkeytype) | Yes  | Type of the Enter key.|
 | event | [SubmitEvent](#submitevent11)         | Yes  | Submit event.                                                  |
 
 ## OnTextSelectionChangeCallback<sup>14+</sup>
@@ -2252,8 +2354,7 @@ This example demonstrates how to use the **editMenuOptions** API to create custo
 @Component
 struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),
@@ -2268,29 +2369,31 @@ struct TextInputExample {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       TextInput({ text: this.text })
         .width('95%')
         .height(50)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
-            }
-            return false;
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")
@@ -2301,9 +2404,9 @@ struct TextInputExample {
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
 
-### Example 15: Setting Symbol Type Cancel Button
+### Example 15: Setting a Symbol-Type Cancel Button
 
-This example demonstrates how to use the **cancelButton** attribute to customize the style of the symbol type cancel button on the right side of the text box.
+This example demonstrates how to use the **cancelButton** attribute to customize the style of the symbol-type cancel button on the right side of the text box.
 
 ```ts
 import { SymbolGlyphModifier } from '@kit.ArkUI';
@@ -2329,3 +2432,61 @@ struct TextInputExample {
 ```
 
 ![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)
+
+### Example 16: Setting Text Overflow
+
+This example demonstrates how to use **textOverflow**, **ellipsisMode**, and **style** to display excess content with an ellipsis (...) when the text is too long.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EllipsisModeExample {
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
+  @State ellipsisModeIndex: number = 0
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER]
+  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER']
+  @State textOverflowIndex: number = 0
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
+  @State styleInputIndex: number = 0
+  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default]
+  @State styleInputStr: string[] = ['Inline', 'Default']
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text('Test TextInput').fontSize(30)
+        TextInput({ text: this.text})
+          .textOverflow( this.textOverflow[this.textOverflowIndex])
+          .ellipsisMode( this.ellipsisMode[this.ellipsisModeIndex])
+          .style(this.styleInput[this.styleInputIndex])
+          .fontSize(30)
+          .margin(30)
+        Button('ellipsisMode Value: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+          this.ellipsisModeIndex++
+          if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+            this.ellipsisModeIndex = 0
+          }
+        }).fontSize(20)
+        Button('textOverflow Value: ' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
+          this.textOverflowIndex++
+          if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
+            this.textOverflowIndex = 0
+          }
+        }).fontSize(20)
+        Button('Style Value: ' + this.styleInputStr[this.styleInputIndex]).onClick(() => {
+          this.styleInputIndex++
+          if (this.styleInputIndex > (this.styleInputStr.length - 1)) {
+            this.styleInputIndex = 0
+          }
+        }).fontSize(20)
+      }
+    }
+  }
+}
+```
+
+![textInputEllipsisMode](figures/textInputEllipsisMode.png)
