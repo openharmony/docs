@@ -1,6 +1,7 @@
 # ArkWeb
 
 - [Introduction to ArkWeb](web-component-overview.md)
+- [ArkWeb Process](web_component_process.md)
 - [Lifecycle of Web Components](web-event-sequence.md)
 - Setting Basic Attributes and Events
   - [Setting UserAgent](web-default-userAgent.md)
@@ -23,6 +24,8 @@
 - Managing Web Page Interactions
   - [Implementing Nested Scrolling](web-nested-scrolling.md)
   - [Implementing Content Scrolling](web-content-scrolling.md)
+  - [Docking to the Soft Keyboard](web-docking-softkeyboard.md)
+  - [Managing Focus](web-focus.md)
 - Managing Cyber Security and Privacy for Web Components
   - [Resolving Cross-Origin Resource Access](web-cross-origin.md)
   - [Intelligent Tracking Prevention](web-intelligent-tracking-prevention.md)
@@ -47,6 +50,7 @@
   - [Previewing PDF Files](web-pdf-preview.md)
   - [Calculating and Adjusting Safe Area Insets](web-safe-area-insets.md)
 - [Using Same-Layer Rendering](web-same-layer.md)
+- [Using Offline Web Components](web-offline-mode.md)
 - Web Debugging
   - [Debugging Frontend Pages by Using DevTools](web-debugging-with-devtools.md)
   - [Using Crashpad to Collect Web Component Crash Information](web-crashpad.md)
