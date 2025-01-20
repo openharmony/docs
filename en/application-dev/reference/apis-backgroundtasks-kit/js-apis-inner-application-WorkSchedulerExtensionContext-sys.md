@@ -6,7 +6,7 @@ This module provides APIs for accessing the resources of a WorkSchedulerExtensio
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 14. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs of this module can be used only in the stage model.
 >
@@ -26,7 +26,7 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
 }
 ```
 
-## WorkSchedulerExtensionContext.startServiceExtensionAbility
+## WorkSchedulerExtensionContext.startServiceExtensionAbility<sup>13+</sup>
 
 startServiceExtensionAbility(want: Want): Promise\<void>
 
@@ -97,7 +97,7 @@ export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtens
 }
 ```
 
-## WorkSchedulerExtensionContext.stopServiceExtensionAbility
+## WorkSchedulerExtensionContext.stopServiceExtensionAbility<sup>13+</sup>
 
 stopServiceExtensionAbility(want: Want): Promise\<void>
 
