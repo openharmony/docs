@@ -21,17 +21,18 @@
     - [module.json5 Configuration File](module-configuration-file.md)
   - Application Configuration Files in FA Model
     - [Overview of Application Configuration Files in FA Model](application-configuration-file-overview-fa.md)
-    - [Internal Structure of the app Tag](app-structure.md)
-    - [Internal Structure of the deviceConfig Tag](deviceconfig-structure.md)
-    - [Internal Structure of the module Tag](module-structure.md)
+    - [Structure of the app Tag](app-structure.md)
+    - [Structure of the deviceConfig Tag](deviceconfig-structure.md)
+    - [Structure of the module Tag](module-structure.md)
   - Typical Scenarios Development
     - [Integrated HSP](integrated-hsp.md)
     - [Converting HAR to HSP](har-to-hsp.md)
     - [Converting HSP to HAR](hsp-to-har.md)
     - [Creating a Static Shortcut of the Application](typical-scenario-configuration.md)
     - [Creating an Application Clone](app-clone.md)
+    - [Creating an Application Multi-Instance](multiInstance.md)
     - [Configuring Layered Icons](layered-image.md)
-  
+
 - [Resource Categories and Access](resource-categories-and-access.md)
 
 - Learning ArkTS
@@ -54,12 +55,13 @@
     - [\@Builder Decorator: Custom Builder Function](arkts-builder.md)
     - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](arkts-localBuilder.md)
     - [\@BuilderParam Decorator: @Builder Function Reference](arkts-builderparam.md)
-    - [wrapBuilder: Encapsulating Global @Builder](arkts-wrapBuilder.md)
+    - [wrapBuilder: Encapsulating a Global @Builder](arkts-wrapBuilder.md)
     - [\@Styles Decorator: Definition of Reusable Styles](arkts-style.md)
     - [\@Extend Decorator: Extension of Built-in Components](arkts-extend.md)
     - [stateStyles: Polymorphic Style](arkts-statestyles.md)
     - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](arkts-animatable-extend.md)
     - [\@Require Decorator: Validating Constructor Input Parameters](arkts-require.md)
+    - [@Reusable Decorator: Reusing Components](arkts-reusable.md)
   - State Management
     - [State Management Overview](arkts-state-management-overview.md)
     - State Management (V1)
@@ -78,7 +80,7 @@
       - Other State Management Features
         - [Overview of Other State Management Features](arkts-other-state-mgmt-functions-overview.md)
         - [\@Watch Decorator: Getting Notified of State Variable Changes](arkts-watch.md)
-        - [$$ Syntax: Creating a Two-Way Synchronization with Built-in Components](arkts-two-way-sync.md)
+        - [$$ Syntax: Two-Way Synchronization of Built-in Components](arkts-two-way-sync.md)
         - [\@Track Decorator: Class Object Property-level Update](arkts-track.md)
         - [Freezing a Custom Component](arkts-custom-components-freeze.md)
       - [MVVM](arkts-mvvm.md)

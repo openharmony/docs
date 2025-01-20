@@ -1,17 +1,19 @@
 # \@Track Decorator: Class Object Property-level Update
 
 
-\@Track is a decorator used to decorate properties of class objects. When a property decorated by \@Track changes, only the UI associated with the property is updated.
+\@Track is a decorator used to decorate properties of class objects. Any changes to the properties decorated by \@Track will trigger only updates to the UI associated with those properties.
 
+
+Before reading this topic, you are advised to read [\@State](./arkts-state.md) to have a basic understanding of the observation capabilities of state management.
 
 > **NOTE**
 >
-> Since API version 11, this decorator is supported in ArkTS widgets.
+> This decorator is supported in ArkTS widgets since API version 11.
 
 
 ## Overview
 
-\@Track enables property-level UI re-renders. When a class object is a state variable, changes to the \@Track decorated property will only trigger re-renders to the UI associated with the property. Properties not decorated by \@Track cannot be used in the UI, otherwise a runtime error will be reported.
+\@Track enables property-level update for the class object. When a class object is a state variable, the change of the \@Track decorated property triggers only the update of the property associated UI. If the class uses the \@Track decorator, the properties that are not decorated by \@Track cannot be used in the UI. Otherwise, a runtime error is reported.
 
 
 ## Decorator Description
@@ -21,8 +23,6 @@
 | Decorator parameters  | None.|
 | Allowed variable types| Non-static properties of class objects.|
 
-
-
 ## Observed Changes and Behavior
 
 When a class object is a state variable, any changes to its properties decorated by \@Track will trigger only updates to the UI associated with those properties.
@@ -31,7 +31,7 @@ When a class object is a state variable, any changes to its properties decorated
 >
 > When no property in the class object is decorated with \@Track, the behavior remains unchanged. \@Track is unable to observe changes of nested objects.
 
-Using the @Track decorator can avoid redundant re-renders.
+Using the @Track decorator can avoid redundant updates.
 
 ```ts
 class LogTrack {
@@ -98,12 +98,12 @@ struct AddLog {
 
 In the preceding example:
 
-1. All attributes in the **LogTrack** class are decorated by @Track. After the **change logTrack.str1** button is clicked, **Text1** is re-rendered, but **Text2** is not, as indicated by that only one log record is generated.
+1. All properties in the **LogTrack** class are decorated by \@Track. After the **change logTrack.str1** button is clicked, **Text1** is updated, but **Text2** is not, as indicated by that only one log record is generated.
     ```ts
     Text 1 is rendered
     ```
 
-2. None of the attributes in the **logNotTrack** class is decorated by @Track. After the **change logTrack.str1** button is clicked, both **Text3** and **Text4** are re-rendered, as indicated by that two log records are generated. Redundant re-renders occur.
+2. None of the properties in the **logNotTrack** class is decorated by \@Track. After the **change logTrack.str1** button is clicked, both **Text3** and **Text4** are updated, as indicated by that two log records are generated. Redundant updates occur.
     ```ts
     Text 3 is rendered
     Text 4 is rendered
@@ -111,7 +111,7 @@ In the preceding example:
 
 ## Constraints
 
-- Properties that are not decorated by \@Track cannot be used in the UI, which means that such properties cannot be bound to components or be used to initialize child components. Incorrect use will cause JavaScript crashes. Yet, these properties can be used in non-UI cases, such as event callback functions and lifecycle functions.
+- If the \@Track decorator is used in a class, the non-\@Track decorated properties in the class cannot be used in the UI. For example, these properties cannot be bound to components nor be used to initialize child components; otherwise, an error is reported during runtime. For details, see [Improperly Using Non-\@Track Decorated Properties Causes Errors](#improperly-using-non-track-decorated-properties-causes-errors). Non-\@Track decorated properties can be used in non-UI functions, such as event callback functions and lifecycle functions.
 
 - Whenever possible, avoid any combination of class objects that contain \@Track and those that do not in, for example, union types and class inheritance.
 
@@ -178,3 +178,34 @@ Processing steps:
 1. The click event **Text.onClick** of the **AddLog** custom component increases the value of **info**.
 
 2. In response to the change of the \@State decorated variable **log**, the \@Track decorated property **logInfo** is updated, and the **Text** component is re-rendered.
+
+## FAQs
+
+### Improperly Using Non-\@Track Decorated Properties Causes Errors
+
+If a property that is not decorated by \@Track is used in the UI, an error is reported during runtime.
+
+```ts
+class Person {
+  // id is decorated by @Track.
+  @Track id: number;
+  // age is not decorated by @Track.
+  age: number;
+
+  constructor(id: number, age: number) {
+    this.id = id;
+    this.age = age;
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State parent: Person = new Person(2, 30);
+
+  build() {
+    // Property that is not decorated by @Track cannot be used in the UI. Otherwise, an error is reported during runtime.
+    Text(`Parent id is: ${this.parent.id} and Parent age is: ${this.parent.age}`)
+  }
+}
+```
