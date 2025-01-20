@@ -44,11 +44,11 @@ operationItems?: SubHeaderV2OperationItem
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon| [SubHeaderV2IconType](#SubHeaderV2IconType) | 否 | @Param | 图标设置项。 |
-| title| [SubHeaderV2Title](#SubHeaderV2Title) | 否 | @Param| 标题设置项。 |
-| select| [SubHeaderV2Select](#SubHeaderV2Select) | 否 | @Param | select内容以及事件。 |
-| operationType | [SubHeaderV2OperationType](#SubHeaderV2OperationType) | 否 | @Param| 操作区元素样式。<br />默认值：OperationType.BUTTON|
-| operationItems | [SubHeaderV2OperationItem](#SubHeaderV2OperationItem)[] | 否 | @Param| 操作区的设置项。 |
+| icon| [SubHeaderV2IconType](#subheaderv2icontype) | 否 | @Param | 图标设置项。 |
+| title| [SubHeaderV2Title](#subheaderv2title) | 否 | @Param| 标题设置项。 |
+| select| [SubHeaderV2Select](#subheaderv2select) | 否 | @Param | select内容以及事件。 |
+| operationType | [SubHeaderV2OperationType](#subheaderv2operationtype) | 否 | @Param| 操作区元素样式。<br />默认值：OperationType.BUTTON|
+| operationItems | [SubHeaderV2OperationItem](#subheaderv2operationitem)[] | 否 | @Param| 操作区的设置项。 |
 | titleBuilder | SubHeaderV2TitleBuilder | 否 | @BuildParam| 自定义标题区内容。 |
 
 ## SubHeaderV2IconType
@@ -202,7 +202,7 @@ type SubHeaderV2SelectOnSelect= (selectIndex: number, selectContent?: string) =>
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| content |  [SubHeaderV2OperationItemType](#SubHeaderV2OperationItemType)  | 是 | @Trace | 操作区元素内容。 |
+| content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | 是 | @Trace | 操作区元素内容。 |
 | action | SubHeaderV2OperationItemAction | 否 | @Trace | 操作区事件。 |
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。|
 | accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。  | 
@@ -246,7 +246,7 @@ type SubHeaderV2OperationItemAction = () => void;
 
 | 属性 | 类型 | 必填  | 描述    |
 | -------- | -------- | -------- | -------- |
-| value |  [SubHeaderV2IconType](#SubHeaderV2IconType)  | 是 | 文本内容。 |
+| value |  [SubHeaderV2IconType](#subheaderv2icontype)  | 是 | 文本内容。 |
 | action | SubHeaderV2OperationItemAction | 否 | 事件。 |
 | accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 | 子标题右侧icon图标无障碍描述。|
 | accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。  | 
