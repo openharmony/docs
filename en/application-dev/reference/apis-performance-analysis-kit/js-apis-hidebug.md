@@ -492,11 +492,11 @@ To obtain the unit trace traffic, you can call **startAppTraceCapture()** with *
 
 **Parameters**
 
-| Name  | Type    | Mandatory| Description                                                                                 |
-| -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
-| tags     | number[] | Yes  | For details, see [tags](#tags12).                                                     |
-| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).         |
-| limitSize| number   | Yes  | Limit on the trace file size, in bytes. The maximum size of a single file is 500 MB.                                                      |
+| Name  | Type    | Mandatory| Description                                  |
+| -------- | ------   | ---- |--------------------------------------|
+| tags     | number[] | Yes  | For details, see [tags](#hidebugtags12).          |
+| flag     | TraceFlag| Yes  | For details, see [TraceFlag](#traceflag12).       |
+| limitSize| number   | Yes  | Limit on the trace file size, in bytes. The maximum size of a single file is 500 MB.|
 
 **Return value**
 
@@ -624,7 +624,7 @@ let cpuUsage: number = hidebug.getSystemCpuUsage();
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 Sets the number of FDs, number of threads, JS memory, or native memory limit of the application.
-**Note**: This function is valid only when the developer option is enabled.
+**NOTE**: This function is valid only when  **Developer options** is enabled and the device is restarted.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -825,46 +825,46 @@ Describes the CPU usage of a thread.
 | threadId           | number  | Yes  | No  | Thread ID.                          |
 | cpuUsage           | number  | Yes  | No  | CPU usage of the thread.                      |
 
-## tags<sup>12+</sup>
+## hidebug.tags<sup>12+</sup>
 
 Enumerates scenario tags.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| Name                    | Type   |  Description                               |
-| -------------------------| ------- |  ----------------------------------- |
-| ABILITY_MANAGER          | number  |  Capability management.                        |
-| ARKUI                    | number  |  ArkUI development framework.                   |
-| ARK                      | number  |  JSVM VM.                      |
-| BLUETOOTH                | number  |  Bluetooth.                           |
-| COMMON_LIBRARY           | number  |  Common library subsystem.                    |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  Distributed hardware device management.    |
-| DISTRIBUTED_AUDIO        | number  |        Distributed audio.                |
-| DISTRIBUTED_CAMERA       | number  |  Distributed camera.                      |
-| DISTRIBUTED_DATA         | number  |  Distributed data management.               |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  Distributed hardware framework.             |
-| DISTRIBUTED_INPUT        | number  |  Distributed input.                      |
-| DISTRIBUTED_SCREEN       | number  |  Distributed screen.                      |
-| DISTRIBUTED_SCHEDULER    | number  |  Distributed scheduler.                    |
-| FFRT                     | number  |  FFRT task.                       |
-| FILE_MANAGEMENT          | number  |  File management system.                    |
-| GLOBAL_RESOURCE_MANAGER  | number  |  Global resource management.                    |
-| GRAPHICS                 | number  |  Graphics module.                       |
-| HDF                      | number  |  HDF subsystem.                      |
-| MISC                     | number  |  MISC module.                       |
-| MULTIMODAL_INPUT         | number  |  Multimodal input module.                  |
-| NET                      | number  |  Network.                            |
-| NOTIFICATION             | number  |  Notification module.                        |
-| NWEB                     | number  |  Nweb.                           |
-| OHOS                     | number  |  OHOS.                        |
-| POWER_MANAGER            | number  |  Power management.                        |
-| RPC                      | number  |  RPC.                            |
-| SAMGR                    | number  |  System capability management.                    |
-| WINDOW_MANAGER           | number  |  Window management.                        |
-| AUDIO                    | number  |  Audio module.                       |
-| CAMERA                   | number  |  Camera module.                       |
-| IMAGE                    | number  |  Image module.                       |
-| MEDIA                    | number  |  Media module.                       |
+| Name                    | Type   | Read Only |Description                               |
+| -------------------------| ------- |-----|----------------------------------- |
+| ABILITY_MANAGER          | number  | Yes|  Capability management.                        |
+| ARKUI                    | number  | Yes|  ArkUI development framework.                   |
+| ARK                      | number  | Yes|  JSVM VM.                      |
+| BLUETOOTH                | number  | Yes|  Bluetooth.                           |
+| COMMON_LIBRARY           | number  | Yes|  Common library subsystem.                    |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | Yes|  Distributed hardware device management.    |
+| DISTRIBUTED_AUDIO        | number  | Yes|        Distributed audio.                |
+| DISTRIBUTED_CAMERA       | number  | Yes|  Distributed camera.                      |
+| DISTRIBUTED_DATA         | number  | Yes|  Distributed data management.               |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | Yes|  Distributed hardware framework.             |
+| DISTRIBUTED_INPUT        | number  | Yes|  Distributed input.                      |
+| DISTRIBUTED_SCREEN       | number  | Yes|  Distributed screen.                      |
+| DISTRIBUTED_SCHEDULER    | number  | Yes|  Distributed scheduler.                    |
+| FFRT                     | number  | Yes|  FFRT task.                       |
+| FILE_MANAGEMENT          | number  | Yes|  File management system.                    |
+| GLOBAL_RESOURCE_MANAGER  | number  | Yes|  Global resource management.                    |
+| GRAPHICS                 | number  | Yes|  Graphics module.                       |
+| HDF                      | number  | Yes|  HDF subsystem.                      |
+| MISC                     | number  | Yes|  MISC module.                       |
+| MULTIMODAL_INPUT         | number  | Yes|  Multimodal input module.                  |
+| NET                      | number  | Yes|  Network.                            |
+| NOTIFICATION             | number  | Yes|  Notification module.                        |
+| NWEB                     | number  | Yes|  Nweb.                           |
+| OHOS                     | number  | Yes|  OHOS.                        |
+| POWER_MANAGER            | number  | Yes|  Power management.                        |
+| RPC                      | number  | Yes|  RPC.                            |
+| SAMGR                    | number  | Yes|  System capability management.                    |
+| WINDOW_MANAGER           | number  | Yes|  Window management.                        |
+| AUDIO                    | number  | Yes|  Audio module.                       |
+| CAMERA                   | number  | Yes|  Camera module.                       |
+| IMAGE                    | number  | Yes|  Image module.                       |
+| MEDIA                    | number  | Yes|  Media module.                       |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -911,7 +911,7 @@ type GcStats = Record&lt;string, number&gt;
 
 Key-value pair format used to store GC statistics. This type is not multi-thread safe. If a **GcStats** instance is operated by multiple threads at the same time in an application, use the lock mechanism for the instance.
 
-**System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
+System capability: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 | Type     | Description                         |
 | -----------| ---------------------------- |
@@ -955,6 +955,8 @@ getGraphicsMemory(): Promise&lt;number&gt;
 
 Obtains the size of the GPU memory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
 **Return value**
@@ -989,6 +991,8 @@ getGraphicsMemorySync(): number
 Obtains the size of the GPU memory. This API uses a synchronous callback to return the result.
 
 **Note**: This API involves multiple cross-process communications and may have performance problems. The asynchronous API **getGraphicsMemory** is recommended.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
