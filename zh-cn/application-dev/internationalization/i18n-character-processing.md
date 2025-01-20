@@ -191,13 +191,13 @@ let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite 
 文件路径镜像处理是指对输入路径进行本地化处理。通过I18NUtil类的[I18nUtil](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath16)接口实现，具体开发步骤如下。
 
 1. 导入模块。
-   ```ts
+```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    import { i18n, intl } from '@kit.LocalizationKit';
-   ```
+```
 
 2. 调用文件路径镜像处理接口。
-   ```ts
+```ts
   try {
     let path : string = "/data/out/tmp"; // 定义路径
     let delimiter : string = "/"; // 定义路径分隔符
@@ -206,7 +206,7 @@ let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite 
   } catch (error) {
     console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
   }
-   ```
+```
 
 
 **开发实例**
@@ -226,7 +226,7 @@ try {
     let localeZh : intl.Locale = new intl.Locale("zh");
     let unMirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh); // unMirrorPath: /data/out/tmp
 } catch (error) {
-  console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
 }
 ```
 <!--RP1--><!--RP1End-->
