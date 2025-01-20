@@ -2661,7 +2661,7 @@ static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl
     let path : string = "/data/out/tmp";
     let delimiter : string = "/";
     let locale : intl.Locale = new intl.Locale("ar");
-    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale)  // mirrorPath:tmp/out/data/
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);  // mirrorPath:tmp/out/data/
   } catch(error) {
     console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
   }
