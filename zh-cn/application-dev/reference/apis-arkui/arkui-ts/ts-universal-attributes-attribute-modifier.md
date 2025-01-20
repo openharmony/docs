@@ -63,7 +63,7 @@ applyDisabledAttribute(instance: T) : void
 ### applySelectedAttribute
 applySelectedAttribute(instance: T) : void
 
-组件选中状态的样式
+组件选中状态的样式。
 
 开发者可根据需要自定义实现这些方法，通过传入的参数识别组件类型，对instance设置属性，支持使用if/else语法进行动态设置。
 
