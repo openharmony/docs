@@ -32,14 +32,14 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称        | 值 | 说明            |
-| ----------- |---|---------------|
-| EQUALS      | 0 | 等于给定值。        |
-| CONTAINS    | 1 | 包含给定值。        |
-| STARTS_WITH | 2 | 以给定值开始。       |
-| ENDS_WITH   | 3 | 以给定值结束。       |
-| REG_EXP   | 4 | 区分大小写的正则表达式。  |
-| REG_EXP_ICASE   | 5 | 不区分大小写的正则表达式。 |
+| 名称        | 值 | 说明                                        |
+| ----------- |---|-------------------------------------------|
+| EQUALS      | 0 | 等于给定值。                                    |
+| CONTAINS    | 1 | 包含给定值。                                    |
+| STARTS_WITH | 2 | 以给定值开始。                                   |
+| ENDS_WITH   | 3 | 以给定值结束。                                   |
+| REG_EXP   | 4 | 正则表达式匹配。<br /> 从API version 16开始，该接口支持使用。 |
+| REG_EXP_ICASE   | 5 | 正则表达式匹配,忽略大小写。<br /> 从API version 16开始，该接口支持使用。                            |
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
@@ -259,6 +259,42 @@ import { On, ON } from '@kit.TestKit';
 let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
+### id<sup>16+</sup>
+
+id(id: string, pattern: MatchPattern): On
+
+指定目标控件id属性，返回On对象自身。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ |----| ---------------- |
+| id     | string | 是  | 指定控件的id值。 |
+| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [On](#on9) | 返回指定目标控件id属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.id('123', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
+```
 
 ### type<sup>9+</sup>
 
@@ -301,6 +337,46 @@ import { On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
+### type<sup>16+</sup>
+
+type(tp: string, pattern: MatchPattern): On;
+
+指定目标控件的控件类型属性，返回On对象自身。
+
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| tp     | string | 是   | 指定控件类型。|
+| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+```
 
 ### clickable<sup>9+</sup>
 
