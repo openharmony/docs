@@ -70,6 +70,7 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | 名称 | 类型 | 必填 | 说明                                                                                                                                                                                                                                                          |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                   |
+| symbolStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于value。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | label<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                 |
 | isEnabled | boolean | 否 | 是否启用，默认启用。<br> isEnabled为true时，表示为启用。<br> isEnabled为false时，表示为禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                       |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                               |
@@ -397,3 +398,72 @@ struct Index {
 }
 ```
 ![/editabletitlebarDefaultFocus02](figures/editabletitlebarDefaultFocus02.png)
+
+### 示例6（设置Symbol类型图标）
+
+该示例通过设置EditableTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
+
+```ts
+import { EditableLeftIconType, EditableTitleBar, promptAction, SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Divider().height(2).color(0xCCCCCC)
+        EditableTitleBar({
+          leftIconStyle: EditableLeftIconType.Cancel,
+          title: '主标题',
+          subtitle: '副标题',
+          menuItems: [
+            {
+              value: $r('sys.symbol.house'),
+              isEnabled: true,
+              action: () => {
+                promptAction.showToast({ message: 'show toast index 2' });
+              }
+            },
+            {
+              value: $r('sys.symbol.car'),
+              isEnabled: false,
+            }
+          ],
+        })
+        Divider().height(2).color(0xCCCCCC)
+        EditableTitleBar({
+          leftIconStyle: EditableLeftIconType.Back,
+          title: '主标题',
+          subtitle: '副标题',
+          imageItem: {
+            value: $r('sys.media.ohos_app_icon'),
+            isEnabled: true,
+            action: () => {
+              promptAction.showToast({ message: "show toast index 1" });
+            }
+          },
+          menuItems: [
+            {
+              value: $r('sys.symbol.house'),
+              symbolStyle: new SymbolGlyphModifier($r('sys.symbol.bell')).fontColor([Color.Red]),
+              isEnabled: true,
+              action: () => {
+                promptAction.showToast({ message: 'show toast index 2' });
+              }
+            },
+            {
+              value: $r('sys.symbol.car'),
+              symbolStyle: new SymbolGlyphModifier($r('sys.symbol.heart')).fontColor([Color.Blue]),
+              isEnabled: false,
+            }
+          ],
+        })
+        Divider().height(2).color(0xCCCCCC)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+![示例6-EditableTitleBar示例6 设置Symbol类型图标](figures/zh-cn_image_editabletitlebar_demo_06.png)
