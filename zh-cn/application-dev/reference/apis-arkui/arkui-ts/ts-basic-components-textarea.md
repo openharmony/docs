@@ -1945,7 +1945,7 @@ struct EllipsisModeExample {
 
 ![textAreaEllipsisMode](figures/textAreaEllipsisMode.png)
 
-###示例16（自定义复制、剪切、粘贴）
+### 示例16（自定义复制、剪切、粘贴）
 
 该示例展示如何监听文本选择菜单的复制、剪切、粘贴按钮，如何屏蔽系统粘贴功能并实现自定义的粘贴能力。
 
