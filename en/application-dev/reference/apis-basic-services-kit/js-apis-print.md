@@ -766,8 +766,6 @@ Defines the size of the printed page.
 | width | number | Yes| Page width, in millimeters.|
 | height | number | Yes| Page height, in millimeters.|
 
-
-
 ## PrintDirectionMode<sup>11+</sup>
 
 Enumerates the print direction modes.
@@ -834,7 +832,7 @@ Enumerates the print job states.
 | -------- | -------- | -------- |
 | PREVIEW_DESTROY | 0 | The preview fails.|
 | PRINT_TASK_SUCCEED | 1 | The print job is successful.|
-| PRINT_TASK_FAIL | 2 | The print job failed.|
+| PRINT_TASK_FAIL | 2 | The print job is failed.|
 | PRINT_TASK_CANCEL | 3 | The print job is canceled.|
 | PRINT_TASK_BLOCK | 4 | The print job is blocked.|
 
