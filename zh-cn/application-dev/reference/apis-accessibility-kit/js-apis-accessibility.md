@@ -1334,9 +1334,9 @@ import { accessibility } from '@kit.AccessibilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventInfo: accessibility.EventInfo = ({
-  type: 'click',
+  type: 'announceForAccessibility',
   bundleName: 'com.example.MyApplication',
-  triggerAction: 'click',
+  triggerAction: 'common',
   textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
 });
 
