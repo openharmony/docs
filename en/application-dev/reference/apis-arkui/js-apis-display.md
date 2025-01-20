@@ -56,9 +56,9 @@ Enumerates the fold statuses of a foldable device.
 | Name| Value| Description|
 | -------- | -------- | -------- |
 | FOLD_STATUS_UNKNOWN | 0 | The fold status of the device is unknown.|
-| FOLD_STATUS_EXPANDED | 1 | The device is fully open.|
-| FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed).|
-| FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed.|
+| FOLD_STATUS_EXPANDED | 1 | The device is fully open. |
+| FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed). |
+| FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed. |
 
 ## FoldDisplayMode<sup>10+</sup>
 
@@ -78,7 +78,7 @@ Enumerates the display modes of a foldable device.
 
 >**NOTE**<br>
 >&bullet; For large-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_MAIN** state.<br>
->&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
+>&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_MAIN** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -695,7 +695,7 @@ Subscribes to folding angle change events of the foldable device.
 | Name  | Type                                     | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees).|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees). |
 
 **Error codes**
 
@@ -1073,7 +1073,7 @@ Implements a **Display** instance, with properties and APIs defined.
 
 Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
