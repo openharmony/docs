@@ -15,13 +15,18 @@
 Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-import camera from '@ohos.multimedia.camera';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { camera } from '@kit.CameraKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
+let photoSession: camera.PhotoSession | undefined = undefined;
+let cameraInput: camera.CameraInput | undefined = undefined;
+let previewOutput: camera.PreviewOutput | undefined = undefined;
+let photoOutput: camera.PhotoOutput | undefined = undefined;
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
@@ -30,12 +35,14 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
       return;
     }
     console.info('on image data prepared');
+    // 请在获取到拍照buffer后，再释放session，提前释放session，会导致无法正常出图。
+    releaseCamSession();
   }
 }
 
 async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
   let requestOptions: photoAccessHelper.RequestOptions = {
-    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
   const handler = new MediaDataHandler();
   await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
@@ -44,7 +51,8 @@ async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
 
 async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
   try {
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
+      new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
     console.info('apply saveCameraPhoto successfully');
@@ -58,7 +66,7 @@ function setPhotoOutputCb(photoOutput: camera.PhotoOutput): void {
   photoOutput.on('photoAssetAvailable', (err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void => {
     console.info('getPhotoAsset start');
     console.info(`err: ${JSON.stringify(err)}`);
-    if (err || photoAsset === undefined) {
+    if ((err !== undefined && err.code !== 0) || photoAsset === undefined) {
       console.error('getPhotoAsset failed');
       return;
     }
@@ -73,12 +81,15 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   // 创建CameraManager对象
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
-    console.error("camera.getCameraManager error");
+    console.error('camera.getCameraManager error');
     return;
   }
   // 监听相机状态变化
   cameraManager.on('cameraStatus', (err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo) => {
-    console.error('cameraStatus with errorCode = ' + err.code);
+    if (err !== undefined && err.code !== 0) {
+      console.error('cameraStatus with errorCode = ' + err.code);
+      return;
+    }
     console.info(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.info(`status: ${cameraStatusInfo.status}`);
   });
@@ -86,19 +97,18 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   // 获取相机列表
   let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error");
+    console.error('cameraManager.getSupportedCameras error');
     return;
   }
 
   for (let index = 0; index < cameraArray.length; index++) {
-    console.info('cameraId : ' + cameraArray[index].cameraId);                          // 获取相机ID
-    console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // 获取相机位置
-    console.info('cameraType : ' + cameraArray[index].cameraType);                      // 获取相机类型
-    console.info('connectionType : ' + cameraArray[index].connectionType);              // 获取相机连接类型
+    console.info('cameraId : ' + cameraArray[index].cameraId); // 获取相机ID
+    console.info('cameraPosition : ' + cameraArray[index].cameraPosition); // 获取相机位置
+    console.info('cameraType : ' + cameraArray[index].cameraType); // 获取相机类型
+    console.info('connectionType : ' + cameraArray[index].connectionType); // 获取相机连接类型
   }
 
   // 创建相机输入流
-  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
@@ -126,25 +136,25 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     return;
   }
   // 获取相机设备支持的输出流能力
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
+  let cameraOutputCap: camera.CameraOutputCapability =
+    cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
-    console.error("cameraManager.getSupportedOutputCapability error");
+    console.error('cameraManager.getSupportedOutputCapability error');
     return;
   }
-  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info('outputCapability: ' + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
-    console.error("createOutput previewProfilesArray == null || undefined");
+    console.error('createOutput previewProfilesArray == null || undefined');
   }
 
   let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
   if (!photoProfilesArray) {
-    console.error("createOutput photoProfilesArray == null || undefined");
+    console.error('createOutput photoProfilesArray == null || undefined');
   }
 
   // 创建预览输出流,其中参数 surfaceId 参考上文 XComponent 组件，预览流为XComponent组件提供的surface
-  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
@@ -154,13 +164,13 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   if (previewOutput === undefined) {
     return;
   }
+
   // 监听预览输出错误信息
   previewOutput.on('error', (error: BusinessError) => {
     console.error(`Preview output error code: ${error.code}`);
   });
 
   // 创建拍照输出流
-  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
   } catch (error) {
@@ -175,7 +185,6 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   setPhotoOutputCb(photoOutput);
 
   //创建会话
-  let photoSession: camera.PhotoSession | undefined = undefined;
   try {
     photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
@@ -249,7 +258,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
       let err = error as BusinessError;
       console.error('Failed to check whether the flash mode is supported. errorCode = ' + err.code);
     }
-    if(flashModeStatus) {
+    if (flashModeStatus) {
       // 设置自动闪光灯模式
       try {
         photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
@@ -291,6 +300,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   if (zoomRatioRange.length <= 0) {
     return;
   }
+
   // 设置可变焦距比
   try {
     photoSession.setZoomRatio(zoomRatioRange[0]);
@@ -302,7 +312,8 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // 设置图片质量高
     rotation: camera.ImageRotation.ROTATION_0 // 设置图片旋转角度0
   }
-  // 使用当前拍照设置进行拍照
+
+  // 使用当前拍照设置触发一次拍照
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to capture the photo ${err.message}`);
@@ -310,22 +321,64 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+}
+
+async function releaseCamSession() {
   // 停止当前会话
-  photoSession.stop();
+  await photoSession?.stop();
 
   // 释放相机输入流
-  cameraInput.close();
+  await cameraInput?.close();
 
   // 释放预览输出流
-  previewOutput.release();
+  await previewOutput?.release();
 
   // 释放拍照输出流
-  photoOutput.release();
+  await photoOutput?.release();
 
   // 释放会话
-  photoSession.release();
+  await photoSession?.release();
 
   // 会话置空
   photoSession = undefined;
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'PhotoAssetDemo';
+  private mXComponentController: XComponentController = new XComponentController();
+  private surfaceId = '';
+
+  build() {
+    Column() {
+      Column() {
+        XComponent({
+          id: 'componentId',
+          type: XComponentType.SURFACE,
+          controller: this.mXComponentController
+        })
+          .onLoad(async () => {
+            console.info('onLoad is called');
+            this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
+            console.info(`onLoad surfaceId: ${this.surfaceId}`);
+            deferredCaptureCase(context, this.surfaceId);
+          })// The width and height of the surface are opposite to those of the XComponent.
+          .renderFit(RenderFit.RESIZE_CONTAIN)
+      }.height('95%')
+      .justifyContent(FlexAlign.Center)
+
+      Text(this.message)
+        .id('PhotoAssetDemo')
+        .fontSize(38)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
 }
 ```
