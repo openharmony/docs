@@ -30,8 +30,9 @@
     - [Converting HSP to HAR](hsp-to-har.md)
     - [Creating a Static Shortcut of the Application](typical-scenario-configuration.md)
     - [Creating an Application Clone](app-clone.md)
+    - [Creating an Application Multi-Instance](multiInstance.md)
     - [Configuring Layered Icons](layered-image.md)
-  
+
 - [Resource Categories and Access](resource-categories-and-access.md)
 
 - Learning ArkTS
@@ -60,6 +61,7 @@
     - [stateStyles: Polymorphic Style](arkts-statestyles.md)
     - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](arkts-animatable-extend.md)
     - [\@Require Decorator: Validating Constructor Input Parameters](arkts-require.md)
+    - [@Reusable Decorator: Reusing Components](arkts-reusable.md)
   - State Management
     - [State Management Overview](arkts-state-management-overview.md)
     - State Management (V1)
@@ -73,7 +75,7 @@
         - [Application State Management Overview](arkts-application-state-management-overview.md)
         - [LocalStorage: Storing UI State](arkts-localstorage.md)
         - [AppStorage: Storing Application-wide UI State](arkts-appstorage.md)
-        - [PersistentStorage: Application State Persistence](arkts-persiststorage.md)
+        - [PersistentStorage: Persisting Application State](arkts-persiststorage.md)
         - [Environment: Device Environment Query](arkts-environment.md)
       - Other State Management Features
         - [Overview of Other State Management Features](arkts-other-state-mgmt-functions-overview.md)
@@ -111,6 +113,6 @@
   - Rendering Control
       - [Rendering Control Overview](arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](arkts-rendering-control-ifelse.md)
-      - [ForEach: Rendering of Repeated Content](arkts-rendering-control-foreach.md)
+      - [ForEach: Rendering Repeated Content](arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](arkts-rendering-control-lazyforeach.md)
       - [ContentSlot: Representing a Placeholder in Hybrid Development](arkts-rendering-control-contentslot.md)
