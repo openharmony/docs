@@ -538,8 +538,8 @@ Creates a URL.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
+| url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string<br>- **URL**: a URL object<br>- This parameter is used when **url** is a relative URL.|
 
 **Example**
 
@@ -582,8 +582,12 @@ Parses a URL.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
+| url | string | Yes| A string representing an absolute or a relative URL.<br>In the case of a relative URL, you must specify **base** to parse the final URL.<br>In the case of an absolute URL, the passed **base** will be ignored.|
+| base | string \| URL | No| Either a string or an object. The default value is **undefined**.<br>- **string**: string<br>- **URL**: a URL object<br>- This parameter is used when **url** is a relative URL.|
+
+> **NOTE**
+>
+> If **url** is a relative URL, the URL parsed by calling this API is not merely a concatenation of **url** and **base**. When **url** is a relative path, it is parsed relative to the current directory of the passed **base**, taking into account all path segments before the last slash in the path of **base**, but excluding the following part (see example url1). When **url** points to a root directory, it is parsed relative to the origin of **base** (see example url2).
 
 **Error codes**
 
@@ -597,9 +601,18 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-let mm = 'https://username:password@host:8080';
+let mm = 'https://username:password@host:8080/test/test1/test3';
 let urlObject = url.URL.parseURL(mm);
-let result = urlObject.toString(); // Output 'https://username:password@host:8080/'
+let result = urlObject.toString(); // Output 'https://username:password@host:8080/test/test1/test3'
+// If url is a relative path, the path in the base parameter is test/test1, and the path of the parsed URL is /test/path2/path3.
+let url1 = url.URL.parseURL('path2/path3', 'https://www.huawei.com/test/test1'); // Output 'https://www.huawei.com/test/path2/path3'
+// If url is a root directory, the path in the base parameter is /test/test1/test3, and the path of the parsed URL is /path1/path2.
+let url2 = url.URL.parseURL('/path1/path2', urlObject); // Output 'https://username:password@host:8080/path1/path2'
+url.URL.parseURL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output 'https://www.exampleUrl/path/path1'
+url.URL.parseURL('/path/path1', ''); // Raises a TypeError exception as '' is not a valid URL
+url.URL.parseURL('/path/path1'); // Raises a TypeError exception as '/path/path1' is not a valid URL
+url.URL.parseURL('https://www.example.com', ); // Output 'https://www.example.com/'
+url.URL.parseURL('https://www.example.com', urlObject); // Output 'https://www.example.com/'
 ```
 
 ### toString
@@ -730,8 +743,8 @@ Deletes key-value pairs of the specified key.
 
 ```ts
 let urlObject = new url.URL('https://developer.exampleUrl/?fod=1&bard=2');
-let paramsobject = new url.URLSearchParams(urlObject.search.slice(1));
-paramsobject.delete('fod');
+let paramsObject = new url.URLSearchParams(urlObject.search.slice(1));
+paramsObject.delete('fod');
 ```
 
 ### getAll<sup>(deprecated)</sup>
