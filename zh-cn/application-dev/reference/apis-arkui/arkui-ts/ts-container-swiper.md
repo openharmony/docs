@@ -322,7 +322,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 | 参数名                     | 类型                                                         | 必填 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10对象说明)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
+| value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
 | swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
 
 ### effectMode<sup>8+</sup>
@@ -1073,7 +1073,7 @@ DigitIndicator的构造函数。
 | arrowSize        | [Length](ts-types.md#length)             | 否    | 设置箭头大小。<br/>在导航点两侧显示时：<br/>默认值：18vp<br/>在组件两侧显示时：<br/>默认值：24vp<br/>**说明：**<br/>showBackground为true时，arrowSize为backgroundSize的3/4。<br/>不支持设置百分比。 |
 | arrowColor       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 设置箭头颜色。<br/>默认值：'\#182431'                 |
 
-## SwiperAutoFill<sup>10+</sup>对象说明
+## SwiperAutoFill<sup>10+</sup>
 
 自适应属性。
 
