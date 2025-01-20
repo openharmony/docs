@@ -13,47 +13,48 @@ The EffectKit module provides the basic image processing capabilities, including
 
 ### File
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [effect_filter.h](effect__filter_8h.md) | Declares the APIs of an image effect filter.|
-| [effect_types.h](effect__types_8h.md) | Declares the data types of the image effect filter.|
+| [effect_filter.h](effect__filter_8h.md) | Declares the APIs of an image effect filter.| 
+| [effect_types.h](effect__types_8h.md) | Declares the data types of the image effect filter.| 
 
 
 ### Structs
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| struct  [OH_Filter](_o_h___filter.md) | Describes a filter used to generate a filter pixel map.|
-| struct  [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | Describes a matrix used to create an effect filter.|
+| struct  [OH_Filter](_o_h___filter.md) | Describes a filter used to generate a filter pixel map.| 
+| struct  [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | Describes a matrix used to create an effect filter.| 
 
 
 ### Types
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| typedef struct [OH_Filter](_o_h___filter.md)  [pixelMap](#pixelmap) | Defines a struct for a filter used to generate a filter pixel map.|
-| typedef enum [EffectErrorCode](#effecterrorcode)  [EffectErrorCode](#effecterrorcode) | Defines an enum for the status codes that may be used by the effect filter.|
+| typedef struct [OH_Filter](_o_h___filter.md)  [pixelMap](#pixelmap) | Defines a struct for a filter used to generate a filter pixel map.| 
+| typedef enum [EffectErrorCode](#effecterrorcode)  [EffectErrorCode](#effecterrorcode) | Defines an enum for the status codes that may be used by the effect filter.| 
 
 
 ### Enums
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [EffectErrorCode](#effecterrorcode) { EFFECT_SUCCESS = 0, EFFECT_BAD_PARAMETER = 401, EFFECT_UNSUPPORTED_OPERATION = 7600201, EFFECT_UNKNOWN_ERROR = 7600901 } | Enumerates the status codes that may be used by the effect filter.|
-
+| [EffectErrorCode](#effecterrorcode) { EFFECT_SUCCESS = 0, EFFECT_BAD_PARAMETER = 401, EFFECT_UNSUPPORTED_OPERATION = 7600201, EFFECT_UNKNOWN_ERROR = 7600901 } | Enumerates the status codes that may be used by the effect filter.| 
+| [EffectTileMode](#effecttilemode) { CLAMP = 0, REPEAT, MIRROR, DECAL } | Enumerates the tile modes of the shader effect.| 
 
 ### Functions
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_CreateEffect](#oh_filter_createeffect) (OH_PixelmapNative \*pixelmap, [OH_Filter](_o_h___filter.md) \*\*filter) | Creates an **OH_Filter** object.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_Release](#oh_filter_release) ([OH_Filter](_o_h___filter.md) \*filter) | Releases an **OH_Filter** object.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | Creates the frosted glass effect and adds it to a filter.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_Brighten](#oh_filter_brighten) ([OH_Filter](_o_h___filter.md) \*filter, float brightness) | Creates the brightening effect and adds it to a filter.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_GrayScale](#oh_filter_grayscale) ([OH_Filter](_o_h___filter.md) \*filter) | Creates the grayscale effect and adds it to a filter.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_Invert](#oh_filter_invert) ([OH_Filter](_o_h___filter.md) \*filter) | Creates the inverted color effect and adds it to a filter.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_SetColorMatrix](#oh_filter_setcolormatrix) ([OH_Filter](_o_h___filter.md) \*filter, [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) \*matrix) | Creates a custom effect through a matrix and adds it to a filter.|
-| [EffectErrorCode](#effecterrorcode) [OH_Filter_GetEffectPixelMap](#oh_filter_geteffectpixelmap) ([OH_Filter](_o_h___filter.md) \*filter, OH_PixelmapNative \*\*pixelmap) | Obtains the pixel map used to create a filter.|
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_CreateEffect](#oh_filter_createeffect) (OH_PixelmapNative \*pixelmap, [OH_Filter](_o_h___filter.md) \*\*filter) | Creates an **OH_Filter** object.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Release](#oh_filter_release) ([OH_Filter](_o_h___filter.md) \*filter) | Releases an **OH_Filter** object.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Blur](#oh_filter_blur) ([OH_Filter](_o_h___filter.md) \*filter, float radius) | Creates the frosted glass effect and adds it to a filter.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_BlurWithTileMode](#oh_filter_blurwithtilemode) ([OH_Filter](_o_h___filter.md) \*filter, float radius, [EffectTileMode](#effecttilemode) tileMode) | Creates the frosted glass effect and adds it to a filter.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Brighten](#oh_filter_brighten) ([OH_Filter](_o_h___filter.md) \*filter, float brightness) | Creates the brightening effect and adds it to a filter.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_GrayScale](#oh_filter_grayscale) ([OH_Filter](_o_h___filter.md) \*filter) | Creates the grayscale effect and adds it to a filter.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_Invert](#oh_filter_invert) ([OH_Filter](_o_h___filter.md) \*filter) | Creates the inverted color effect and adds it to a filter.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_SetColorMatrix](#oh_filter_setcolormatrix) ([OH_Filter](_o_h___filter.md) \*filter, [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) \*matrix) | Creates a custom effect through a matrix and adds it to a filter.| 
+| [EffectErrorCode](#effecterrorcode) [OH_Filter_GetEffectPixelMap](#oh_filter_geteffectpixelmap) ([OH_Filter](_o_h___filter.md) \*filter, OH_PixelmapNative \*\*pixelmap) | Obtains the pixel map used to create a filter.| 
 
 
 ## Type Description
@@ -80,7 +81,7 @@ typedef struct OH_Filter pixelMap
 
 **Description**
 
-Defines a struct for a filter used to generate a filter pixel map. 
+Defines a struct for a filter used to generate a filter pixel map.
 
 **Since**: 12 
 
@@ -100,13 +101,32 @@ Enumerates the status codes that may be used by the effect filter.
 
 **Since**: 12
 
-| Value| Description|
+| Value| Description| 
 | -------- | -------- |
-| EFFECT_SUCCESS | Operation successful.|
-| EFFECT_BAD_PARAMETER | Invalid parameter.|
-| EFFECT_UNSUPPORTED_OPERATION | Unsupported operation.|
-| EFFECT_UNKNOWN_ERROR | Unknown error.|
+| EFFECT_SUCCESS | Operation successful.| 
+| EFFECT_BAD_PARAMETER | Invalid parameter.| 
+| EFFECT_UNSUPPORTED_OPERATION | Unsupported operation.| 
+| EFFECT_UNKNOWN_ERROR | Unknown error.| 
 
+
+### EffectTileMode
+
+```
+enum EffectTileMode
+```
+
+**Description**
+
+Enumerates the tile modes of the shader effect.
+
+**Since**: 14
+
+| Value| Description| 
+| -------- | -------- |
+| CLAMP | Replicates the edge color if the shader effect draws outside of its original boundary.| 
+| REPEAT | Repeats the shader effect in both horizontal and vertical directions.| 
+| MIRROR | Repeats the shader effect in both horizontal and vertical directions, alternating mirror images.| 
+| DECAL | Renders the shader effect only within the original boundary.| 
 
 ## Function Description
 
@@ -125,15 +145,39 @@ Creates the frosted glass effect and adds it to a filter.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
-| radius | Blur radius of the frosted glass effect, in px.|
+| filter | Pointer to the filter.| 
+| radius | Blur radius of the frosted glass effect, in px.| 
 
 **Returns**
 
 Returns a status code defined in [EffectErrorCode](#effecterrorcode).
 
+
+### OH_Filter_BlurWithTileMode()
+
+```
+EffectErrorCode OH_Filter_BlurWithTileMode (OH_Filter* filter, float radius, EffectTileMode tileMode )
+```
+
+**Description**
+
+Creates the frosted glass effect and adds it to a filter.
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| filter | Pointer to the filter.| 
+| radius | Blur radius of the frosted glass effect, in px.| 
+| tileMode | Tile mode of the shader effect. For details about the available options, see [EffectTileMode](#effecttilemode).| 
+
+**Returns**
+
+Returns a status code defined in [EffectErrorCode](#effecterrorcode).
 
 ### OH_Filter_Brighten()
 
@@ -149,10 +193,10 @@ Creates the brightening effect and adds it to a filter.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
-| brightness | Luminance of the brightening effect. The value ranges from 0 to 1. When the value is **0**, the image remains unchanged.|
+| filter | Pointer to the filter.| 
+| brightness | Luminance of the brightening effect. The value ranges from 0 to 1. When the value is **0**, the image remains unchanged.| 
 
 **Returns**
 
@@ -173,10 +217,10 @@ Creates an **OH_Filter** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| pixelmap | Pointer to the pixel map.|
-| filter | Double pointer to the filter created.|
+| pixelmap | Pointer to the pixel map.| 
+| filter | Double pointer to the filter created.| 
 
 **Returns**
 
@@ -197,10 +241,10 @@ Obtains the pixel map used to create a filter.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
-| pixelmap | Double pointer to the pixel map obtained.|
+| filter | Pointer to the filter.| 
+| pixelmap | Double pointer to the pixel map obtained.| 
 
 **Returns**
 
@@ -221,9 +265,9 @@ Creates the grayscale effect and adds it to a filter.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
+| filter | Pointer to the filter.| 
 
 **Returns**
 
@@ -244,9 +288,9 @@ Creates the inverted color effect and adds it to a filter.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
+| filter | Pointer to the filter.| 
 
 **Returns**
 
@@ -267,9 +311,9 @@ Releases an **OH_Filter** object.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
+| filter | Pointer to the filter.| 
 
 **Returns**
 
@@ -290,10 +334,10 @@ Creates a custom effect through a matrix and adds it to a filter.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| filter | Pointer to the filter.|
-| matrix | Pointer to a custom matrix, which is an [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) object.|
+| filter | Pointer to the filter.| 
+| matrix | Pointer to a custom matrix, which is an [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) object.| 
 
 **Returns**
 
