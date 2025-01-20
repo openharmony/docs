@@ -1945,3 +1945,81 @@ struct EllipsisModeExample {
 
 ![textAreaEllipsisMode](figures/textAreaEllipsisMode.png)
 
+###示例16（自定义复制、剪切、粘贴）
+
+该示例展示如何监听文本选择菜单的复制、剪切、粘贴按钮，如何屏蔽系统粘贴功能并实现自定义的粘贴能力。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextAreaExample {
+  @State text: string = ''
+  controller: TextAreaController = new TextAreaController()
+
+  build() {
+    Column() {
+      TextArea({
+        text: this.text,
+        placeholder: 'placeholder',
+        controller: this.controller
+      })
+        .placeholderColor(Color.Red)
+        .textAlign(TextAlign.Center)
+        .caretColor(Color.Green)
+        .caretStyle({ width: '2vp' })
+        .fontStyle(FontStyle.Italic)
+        .fontWeight(FontWeight.Bold)
+        .fontFamily('HarmonyOS Sans')
+        // 只允许字母输入
+        .inputFilter('[a-zA-Z]+', (value) => {
+          console.error(`unsupport char ${value}`)
+        })
+        .copyOption(CopyOptions.LocalDevice)
+        .enableKeyboardOnFocus(false)
+        .selectionMenuHidden(false)
+        .barState(BarState.On)
+        .type(TextAreaType.NORMAL)
+        .selectedBackgroundColor(Color.Orange)
+        .textIndent(2)
+        .halfLeading(true)
+        .minFontScale(1)
+        .maxFontScale(2)
+        .enablePreviewText(true)
+        .enableHapticFeedback(true)
+        // 返回键交给其他组件处理
+        .stopBackPress(false)
+        .width(336)
+        .height(56)
+        .margin(20)
+        .fontSize(16)
+        .onEditChange((isEditing: boolean) => {
+          console.log(`isEditing ${isEditing}`)
+        })
+        .onCopy((value)=> {
+          console.log(`copy ${value}`)
+        })
+        .onCut((value)=> {
+          console.log(`cut ${value}`)
+        })
+        .onPaste((value, event)=> {
+            // 阻止系统粘贴功能，开发者可自行实现
+            if (event.preventDefault) {
+              event.preventDefault()
+            }
+            console.log(`paste:${value}`)
+            this.text = value
+        })
+        .onTextSelectionChange((start: number, end: number) => {
+          console.log(`onTextSelectionChange start ${start}, end ${end}`)
+        })
+        .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`)
+        })
+    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+  }
+}
+
+```
+![textCustomPaste](figures/textarea_custom_paste.PNG)
+
