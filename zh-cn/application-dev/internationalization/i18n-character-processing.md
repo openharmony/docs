@@ -208,6 +208,7 @@ let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite 
   }
    ```
 
+
 **开发实例**
 ```ts
 // 导入模块
@@ -215,15 +216,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { i18n, intl } from '@kit.LocalizationKit';
 
 try {
-  // 传入镜像语言，对路径进行镜像处理
-  let path : string = "/data/out/tmp";
-  let delimiter : string = "/";
-  let locale : intl.Locale = new intl.Locale("ar");
-  let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath: tmp/out/data/
-  
-  // 传入非镜像语言，不处理路径
-  let localeZh : intl.Locale = new intl.Locale("zh");
-  let unMirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh); // unMirrorPath: /data/out/tmp
+    // 传入镜像语言，对路径进行镜像处理
+    let path : string = "/data/out/tmp";
+    let delimiter : string = "/";
+    let locale : intl.Locale = new intl.Locale("ar");
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath: tmp/out/data/
+
+    // 传入非镜像语言，不处理路径
+    let localeZh : intl.Locale = new intl.Locale("zh");
+    let unMirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh); // unMirrorPath: /data/out/tmp
 } catch (error) {
   console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
 }
