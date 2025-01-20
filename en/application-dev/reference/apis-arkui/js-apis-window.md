@@ -223,7 +223,7 @@ Describes the window properties.
 
 | Name                                 | Type                 | Read-Only| Optional| Description                                                                                                    |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecyle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecycle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | No  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | No  | No  | Window type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | isFullScreen                          | boolean                   | No  | No  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                 |
@@ -2147,7 +2147,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
+Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the subwindow mode.<!--RP9End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2210,7 +2210,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-Sets the preferred orientation for the main window. This API uses a promise to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
+Sets the preferred orientation for the main window. This API uses a promise to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the subwindow mode.<!--RP9End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3584,6 +3584,12 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 Subscribes to the window status change event. A notification is sent when the window status changes (the window properties may not be updated).
 
+> **NOTE**
+>
+> When this API is called on 2-in-1 devices, the return value is **WindowStatusType::FULL_SCREEN** when the window is maximized.
+>
+> Upon the return value **WindowStatusType::FULL_SCREEN**, you can call [getImmersiveModeEnabledState()](#getimmersivemodeenabledstate12) to determine whether the window is in full-screen or maximized mode on 2-in-1 devices. The return value **true** means that the window is in full-screen mode, and **false** means that the window is maximized.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -3672,7 +3678,7 @@ Sets the grayscale effect for this window. This API uses a promise to return the
 
 | Name| Type| Mandatory| Description                                    |
 | --------- | ------ | -- | ---------------------------------------- |
-| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0], The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
+| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0]. The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
 
 **Return value**
 
@@ -4222,7 +4228,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets the screen brightness for the main window. This API uses an asynchronous callback to return the result.
 
-When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+When the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4288,7 +4294,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for the main window. This API uses a promise to return the result.
 
-When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+When the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5083,11 +5089,11 @@ export default class EntryAbility extends UIAbility {
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-Implements different functionalities based on the caller:
+The behavior of this API varies based on the caller:
 
-Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+- Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
 
-Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+- Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar. It can be made visible again by calling [showWindow()](#showwindow9). If this API is called by a floating window, error code 1300002 is generated.
 
 This API uses an asynchronous callback to return the result.
 
@@ -5130,11 +5136,11 @@ windowClass.minimize((err: BusinessError) => {
 
 minimize(): Promise&lt;void&gt;
 
-Implements different functionalities based on the caller:
+The behavior of this API varies based on the caller:
 
-Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+- Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
 
-Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+- Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar. It can be made visible again by calling [showWindow()](#showwindow9). If this API is called by a floating window, error code 1300002 is generated.
 
 This API uses a promise to return the result.
 
@@ -5174,7 +5180,9 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-Maximizes the main window. This API uses a promise to return the result. It can be used only on 2-in-1 devices.
+Maximizes the main window. This API uses a promise to return the result.
+
+<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5753,6 +5761,12 @@ export default class EntryAbility extends UIAbility {
 getWindowStatus(): WindowStatusType
 
 Obtains the mode of this window.
+
+> **NOTE**
+>
+> When this API is called on 2-in-1 devices, the return value is **WindowStatusType::FULL_SCREEN** when the window is maximized.
+>
+> Upon the return value **WindowStatusType::FULL_SCREEN**, you can call [getImmersiveModeEnabledState()](#getimmersivemodeenabledstate12) to determine whether the window is in full-screen or maximized mode on 2-in-1 devices. The return value **true** means that the window is in full-screen mode, and **false** means that the window is maximized.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -8233,7 +8247,7 @@ Describes the parameters used for creating a subwindow.
 | ---------- | ---- | ---- | ---- | ----------- |
 | title    | string | No| No| Title of the subwindow.      |
 | decorEnabled | boolean | No| No| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.      |
-| isModal<sup>12+</sup>    | boolean | No| Yes| Whether the modal property is enabled for the subwindow. The value** true** means that the modal property is enabled for the subwindow, and **false** means to disable it. When the modal property is enabled, the parent window does not respond to user operations. The default value is **false**.      |
+| isModal<sup>12+</sup>    | boolean | No| Yes| Whether the modal property is enabled for the subwindow. The value** true** means that the modal property is enabled for the subwindow, and **false** means to disable it. When the modal property is enabled, the parent window cannot respond to user operations. The default value is **false**.     |
 
 ## WindowStage<sup>9+</sup>
 
