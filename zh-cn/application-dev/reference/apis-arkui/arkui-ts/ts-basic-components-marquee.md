@@ -194,12 +194,13 @@ struct MarqueeExample {
   private step: number = 10
   private loop: number = Number.POSITIVE_INFINITY
   controller: TextClockController = new TextClockController()
-  convert2time(value: number): string{
-    let date = new Date(Number(value+'000'));
+
+  convert2time(value: number): string {
+    let date = new Date(Number(value + '000'));
     let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
-    return hours+ ":" + minutes + ":" + seconds;
+    return hours + ":" + minutes + ":" + seconds;
   }
 
   build() {
@@ -216,7 +217,9 @@ struct MarqueeExample {
         .height('80vp')
         .fontColor('#FFFFFF')
         .fontSize('48fp')
+        .allowScale(true) // 当fontSize为‘fp’单位且想要Marquee组件文本跟随系统字体大小缩放，可以设置该属性为true
         .fontWeight(700)
+        .fontFamily('HarmonyOS Sans') // 不想跟随主题字体可设置该属性为默认字体'HarmonyOS Sans'
         .backgroundColor('#182431')
         .margin({ bottom: '40vp' })
         .onStart(() => {
