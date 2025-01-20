@@ -14,7 +14,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 - 键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
 - LazyForEach必须使用DataChangeListener对象进行更新，对第一个参数dataSource重新赋值会异常；dataSource使用状态变量时，状态变量改变不会触发LazyForEach的UI刷新。
 - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，需要生成不同于原来的键值来触发组件刷新。
-- LazyForEach必须和[@Reusable](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-component-reuse-V5#section5601835174020)装饰器一起使用才能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[使用规则](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-component-reuse-V5#section5923195311402)。
+- LazyForEach和[@Reusable](arkts-reusable.md)装饰器一起使用能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[列表滚动配合LazyForEach使用](arkts-reusable.md#列表滚动配合LazyForEach使用)。
 
 ## 键值生成规则
 
