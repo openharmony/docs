@@ -161,7 +161,7 @@ This API is supported since API version 8 and deprecated since API version 10. Y
 
 ### onDateChange<sup>10+</sup>
 
-onDateChange(callback: (value: Date) => void)
+onDateChange(callback: Callback\<Date>)
 
 Triggered when a date is selected.
 
@@ -173,7 +173,7 @@ Triggered when a date is selected.
 
 | Name| Type| Mandatory| Description                                                        |
 | ------ | ---- | ---- | ------------------------------------------------------------ |
-| value  | Date | Yes  | Selected time, where the year, month, and day portions are subject to the selection, the hour and minute portions are subject to the current system time, and the second portion is always **00**.|
+| callback  | [Callback](ts-types.md#callback12)\<Date> | Yes  | Selected time, where the year, month, and day portions are subject to the selection, the hour and minute portions are subject to the current system time, and the second portion is always **00**.|
 
 ## DatePickerResult
 
@@ -187,8 +187,9 @@ Triggered when a date is selected.
 | month | number | No  | No  | Month of the selected date. The value ranges from 0 to 11. The value **0** indicates January, and **11** indicates December.|
 | day   | number | No  | No  | Day of the selected date.                            |
 
-
 ## Example
+
+This example implements a date picker that allows users to switch between the Gregorian (solar) calendar and the lunar calendar by clicking a button.
 
 
 ```ts
@@ -213,7 +214,7 @@ struct DatePickerExample {
       })
         .disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}})
         .textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}})
-        .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}})
+        .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal}})
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
           this.selectedDate = value

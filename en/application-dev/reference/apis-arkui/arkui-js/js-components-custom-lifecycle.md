@@ -39,13 +39,13 @@ export default {
   },
   onAttached() {
     this.value = "Load the component."
-    console.log ("Component loaded.")
+    console.log("Component loaded.")
   },
   onShow() {
-    console.log ("Page displayed.")
+    console.log("Page displayed.")
   },
   onHide() {
-    console.log ("Page hidden.")
+    console.log("Page hidden.")
   }
 }
 ```

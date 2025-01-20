@@ -1,6 +1,8 @@
 # Flex
 
-The **Flex** component allows for flexible layout of child components.
+The **Flex** component is a container that lays out its children using a flexible box model, providing an effective way to arrange, align, and distribute remaining space among child elements.
+
+For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
 
 > **NOTE**
 >
@@ -19,7 +21,7 @@ Supported
 
 Flex(value?: FlexOptions)
 
-Creates a standard **Flex** component. For details, see [Flex Layout](../../../ui/arkts-layout-development-flex-layout.md).
+Creates a **Flex** component.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -35,6 +37,8 @@ Creates a standard **Flex** component. For details, see [Flex Layout](../../../u
 
 ## FlexOptions
 
+Describes the layout and alignment of child components within the **Flex** component.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -46,7 +50,7 @@ Creates a standard **Flex** component. For details, see [Flex Layout](../../../u
 | justifyContent | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in the **Flex** component along the main axis.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.                   |
 | alignItems     | [ItemAlign](ts-appendix-enums.md#itemalign) | No    | Alignment mode of the child components in the **Flex** component along the cross axis.<br>Default value: **ItemAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.                |
 | alignContent   | [FlexAlign](ts-appendix-enums.md#flexalign) | No    | Alignment mode of the child components in a multi-row **Flex** component along the cross axis. This parameter is valid only when **wrap** is set to **Wrap** or **WrapReverse**.<br>Default value: **FlexAlign.Start**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9. |
-| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | No  | Space of all child components on the main axis or cross axis of the **Flex** component.<br>Default value: **{main:LengthMetrics.px(0), cross:LengthMetrics.px(0)}**<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| space<sup>12+</sup>          | [FlexSpaceOptions<sup>12+</sup>](ts-container-flex.md#flexspaceoptions12) | No  | Spacing between child components along the main axis or cross axis of the **Flex** component.<br>Default value: **{main:LengthMetrics.px(0), cross:LengthMetrics.px(0)}**<br>This parameter does not take effect if the value specified is a negative number or percentage, or if **justifyContent** is set to **FlexAlign.SpaceBetween**, **FlexAlign.SpaceAround**, or **FlexAlign.SpaceEvenly**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## FlexSpaceOptions<sup>12+</sup>
 
@@ -54,15 +58,15 @@ Creates a standard **Flex** component. For details, see [Flex Layout](../../../u
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name         | Type       |  Read-Only    | Optional     | Description     |
+| Name         | Type       |  Read Only    | Optional     | Description     |
 | ----------- | --------- | ----------- | --------- |----------- |
 | main   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)  | No| Yes| Space on the main axis of the **Flex** component.<br> space: {main: LengthMetrics.unit(value)} |
 | cross  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Yes| Space on the cross axis of the **Flex** component.<br> space: {cross: LengthMetrics.unit(value)} |
 
 ## Example
 
-### Example 1
-
+### Example 1: Setting the Child Component Layout Direction
+This example demonstrates different layout directions for child components by setting the **direction** property.
 ```ts
 // xxx.ets
 @Entry
@@ -126,8 +130,8 @@ struct FlexExample1 {
 
 ![en-us_image_0000001219744189](figures/en-us_image_0000001219744189.PNG)
 
-### Example 2
-
+### Example 2: Implementing Single- and Multi-Line Layouts
+This example demonstrates single-line and multi-line layouts for child components by setting the **wrap** property.
 ```ts
 // xxx.ets
 @Entry
@@ -174,8 +178,8 @@ struct FlexExample2 {
 
 ![en-us_image_0000001174264366](figures/en-us_image_0000001174264366.png)
 
-### Example 3
-
+### Example 3: Setting Alignment Along the Main Axis
+This example demonstrates different alignment effects for child components along the main axis by setting the **justifyContent** property.
 ```ts
 // xxx.ets
 @Component
@@ -225,8 +229,8 @@ struct FlexExample3 {
 
 ![en-us_image_0000001174582854](figures/en-us_image_0000001174582854.PNG)
 
-### Example 4
-
+### Example 4: Setting Alignment Along the Cross Axis
+This example demonstrates different alignment effects for child components along the cross axis by setting the **alignItems** property.
 ```ts
 // xxx.ets
 @Component
@@ -276,8 +280,8 @@ struct FlexExample4 {
 
 ![en-us_image_0000001174422904](figures/en-us_image_0000001174422904.png)
 
-### Example 5
-
+### Example 5: Setting Alignment of Multiple Lines
+This example demonstrates different alignment effects for multiple lines of content by setting the **alignContent** property.
 ```ts
 // xxx.ets
 @Component
@@ -339,8 +343,8 @@ struct FlexExample5 {
 
 ![en-us_image_0000001174422906](figures/en-us_image_0000001174422906.PNG)
 
-### Example 6
-
+### Example 6: Setting the Spacing Between Child Components Along the Main Axis or Cross Axis
+This example shows how to set the spacing between child components along the main axis or cross axis using the **space** property.
 ```ts
 import {LengthMetrics} from '@kit.ArkUI';
 
@@ -388,7 +392,7 @@ struct FlexExample2 {
 
 ![en-us_image_0000001174422907](figures/en-us_image_0000001174422907.PNG)
 
-### Example 7
+### Example 7: Implementing a Flex Component with Adaptive Width
 This example shows how the **Flex** component can automatically adjust to fit the layout of child components when the width is set to **auto**.
 ```ts
 @Component

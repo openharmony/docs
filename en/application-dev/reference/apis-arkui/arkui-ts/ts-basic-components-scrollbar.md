@@ -46,6 +46,14 @@ Sets whether nested scrolling is enabled.
 | ------ | ------- | ---- | ------------------------------------- |
 | value  | boolean | Yes  | Whether nested scrolling is enabled. The value **true** means that nested scrolling is enabled, and **false** means the opposite.<br>Default value: **false**|
 
+>  **NOTE**
+>
+> When nested scrolling is enabled, the scroll offset is first passed to the inner scrollable component, which then passes it to the outer parent scrollable component based on the set nested scrolling priority.
+>
+> Nested scrolling is not supported when the **WaterFlow** component is in **SLIDING_WINDOW** layout mode.
+>
+> When the nested scrolling mode is set to **PARALLEL**, both the parent and child components scroll simultaneously. You need to manage the scroll order in the **onScrollFrameBegin** event according to the desired logic.
+
 ## ScrollBarOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -78,7 +86,7 @@ Sets whether nested scrolling is enabled.
 | Horizontal | Horizontal scrollbar.|
 
 
-## Example 1
+## Example 1: Implementing a ScrollBar Component with Child Components
 
 This example illustrates the style of a **ScrollBar** component with child components.
 
@@ -128,7 +136,7 @@ struct ScrollBarExample {
 
 ![en-us_image_0000001232775585](figures/en-us_image_0000001232775585.gif)
 
-## Example 2
+## Example 2: Implementing a ScrollBar Component Without Child Components
 
 This example illustrates the style of a **ScrollBar** component without child components.
 
@@ -171,9 +179,9 @@ struct ScrollBarExample {
 
 ![en-us_image_scrollbar](figures/en-us_image_scrollbar.gif)
 
-## Example 3
+## Example 3: Enabling Nested Scrolling
 
-This example illustrates the style of the **ScrollBar** component that supports nested scrolling.
+This example demonstrates how to enable nested scrolling for a **ScrollBar** component using the **enableNestedScroll** attribute.
 ```ts
 @Entry
 @Component

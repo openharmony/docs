@@ -26,7 +26,7 @@ Only the following attributes are supported.
 
 textBackgroundStyle(style: TextBackgroundStyle)
 
-Sets the text background style If this attribute is not separately set for a child component, the child component inherits the settings from the component.
+Sets the text background style. If this attribute is not separately set for a child component, the child component inherits the settings from the component.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -59,6 +59,8 @@ Creates an attribute modifier.
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
+
+This example demonstrates the effect of setting a background style for text using the **textBackgroundStyle** attribute.
 
 ```ts
 // xxx.ets

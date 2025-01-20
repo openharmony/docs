@@ -81,6 +81,8 @@ Sets the route mode used for redirecting the user from the **NavRouter** compone
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name   | Description            |
 | ----- | ---------------- |
 | PUSH_WITH_RECREATE | The new navigation destination page replaces the current one. The current page is destroyed, but the information about this page is retained in the navigation stack.|
@@ -155,7 +157,7 @@ struct NavRouterExample {
             .borderRadius(30)
             .margin({ left: 3, right: 10 })
             .backgroundColor(Color.Pink)
-          Text (`Bluetooth`)
+          Text(`Bluetooth`)
             .fontSize(22)
             .fontWeight(500)
             .textAlign(TextAlign.Center)
@@ -165,7 +167,7 @@ struct NavRouterExample {
 
         NavDestination() {
           Flex({ direction: FlexDirection.Row }) {
-            Text ('No Bluetooth device available.') .fontSize (30).padding ({ left:15 })
+            Text('No Bluetooth device available.').fontSize(30).padding({ left: 15 })
           }
         }.title("Bluetooth")
       }
@@ -179,7 +181,7 @@ struct NavRouterExample {
     }
     .height('100%')
     .width('100%')
-    .title ('Settings')
+    .title('Settings')
     .backgroundColor("#F2F3F5")
     .titleMode(NavigationTitleMode.Free)
     .mode(NavigationMode.Auto)

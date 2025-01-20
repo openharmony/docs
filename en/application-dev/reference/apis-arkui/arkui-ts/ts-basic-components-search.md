@@ -12,25 +12,13 @@ Not supported
 
 ## APIs
 
-Search(options?: SearchOptions)
+Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-
-| Name     | Type        | Mandatory| Description       |
-| ----------- | ------------- | ---- | ------------- |
-| options       | [SearchOptions](#searchoptions14)| No  | Initialization options of the **Search** component.|
-
-## SearchOptions<sup>14+</sup>
-
-Describes the initialization options of the **Search** component.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name     | Type        | Mandatory| Description       |
 | ----------- | ------------- | ---- | ------------- |
@@ -249,7 +237,7 @@ Sets whether to hide the system text selection menu.
 
 customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
-Custom keyboard.
+Sets the custom keyboard.
 
 When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.
 
@@ -262,6 +250,8 @@ The custom keyboard cannot obtain the focus, but it blocks gesture events.
 By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.
 
 When a custom keyboard is set, the text box does not support camera input, even when the device supports.
+
+When setting a custom keyboard, you can bind the [onKeyPrelme](ts-universal-events-key.md#onkeypreime12) event to prevent input from the physical keyboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -320,7 +310,7 @@ Sets the type of the Enter key.
 
 | Name| Type                                            | Mandatory| Description                                              |
 | ------ | ------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Search**|
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Search**|
 
 ### lineHeight<sup>12+</sup>
 
@@ -656,6 +646,22 @@ Invoked when users click the search icon or the search button, or touch the sear
 | ------ | ------ | ---- | ---------------------------- |
 | value  | string | Yes  | Current text input.|
 
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: SearchSubmitCallback)
+
+Invoked when the search icon, search button, or soft keyboard search button is clicked. The submission event provides a method to maintain the edit state of the **Search** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                         |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | Yes  | Callback triggered when the search icon, search button, or soft keyboard search button is clicked.|
+
 ### onChange
 
 onChange(callback: EditableTextOnChangeCallback)
@@ -908,10 +914,29 @@ Sets the text selection range and highlights the selected text when the componen
 >
 >  If the selected text contains an emoji, the emoji is selected when its start position is within the text selection range.
 
+## SearchSubmitCallback<sup>14+</sup>
+
+type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
+
+Represents the callback triggered when the search icon, search button, or soft keyboard search button is clicked.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| searchContent | string             | Yes  | Current text input.|
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | No  | Submit event.   |
+
 ##  Example
 
-### Example 1
-This example demonstrates the basic usage of **Search**.
+### Example 1: Setting and Obtaining the Cursor Position
+
+This example demonstrates how to use the controller to set and obtain the cursor position within a text box.
+
 ```ts
 // xxx.ets
 @Entry
@@ -957,8 +982,10 @@ struct SearchExample {
 
 ![search](figures/search.gif)
 
-### Example 2
-This example shows how to set the **searchButton**, **searchIcon**, and **cancelButton** attributes.
+### Example 2: Setting Search and Delete Icons
+
+This example demonstrates how to set search and delete icons using the **searchButton**, **searchIcon**, and **cancelButton** attributes.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1003,8 +1030,10 @@ struct SearchExample {
 ![searchButton](figures/searchButton.gif)
 
 
-### Example 3
-This example illustrates how to bind a custom keyboard to the **Search** component.
+### Example 3: Implementing a Custom Keyboard
+
+This example demonstrates how to implement a custom keyboard using the **customKeyboard** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1045,8 +1074,10 @@ struct SearchExample {
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
-### Example 4
-This example shows how to set the **enterKeyType** attribute.
+### Example 4: Setting the Enter Key Type
+
+This example shows how to use the **enterKeyType** attribute to dynamically change the effect of the Enter key on the soft keyboard.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1077,9 +1108,9 @@ struct SearchExample {
 
 ![searchEnterKeyType](figures/searchEnterKey.gif)
 
-### Example 5
+### Example 5: Setting the Text Style
 
-This example shows how to use the **lineHeight**, **letterSpacing**, and **decoration** attributes.
+This example showcases various text styles by using the **lineHeight**, **letterSpacing**, and **decoration** attributes.
 
 ```ts
 // xxx.ets
@@ -1126,13 +1157,15 @@ struct SearchExample {
 
 ![SearchDecoration](figures/search_decoration.png)
 
-### Example 6
-This example shows how to set the **fontFeature** attribute, with a comparison between the ss01-enabled and ss01-disabled effects.
+### Example 6: Setting Text Feature Effects
+
+This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct search {
+struct SearchExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1152,11 +1185,12 @@ struct search {
 ```
 ![fontFeature](figures/searchFontFeature.png)
 
-### Example 7
+### Example 7: Setting Custom Keyboard Avoidance
 
-This example shows how to support custom keyboard avoidance.
+This example illustrates the implementation of a custom keyboard that automatically adjusts its position to avoid covering the text box.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {
@@ -1225,9 +1259,9 @@ struct SearchExample {
 
 ![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
 
-### Example 8
+### Example 8: Setting Text Auto-Adaptation
 
-This example shows how to set **minFontSize** and **maxFontSize**.
+This example showcases the implementation of text auto-adaptation features using the **minFontSize** and **maxFontSize** attributes.
 
 ```ts
 // xxx.ets
@@ -1255,9 +1289,9 @@ struct SearchExample {
 
 ![searchAdaptFont](figures/search_adapt_font.png)
 
-### Example 9
+### Example 9: Setting Insert and Delete Callbacks
 
-This example shows how to use the insert and delete callbacks.
+This example showcases the implementation of insert and delete operations using the **onWillInsert**, **onDidInsert**, **onWillDelete**, and **onDidDelete** APIs.
 
 ```ts
 // xxx.ets
@@ -1309,27 +1343,17 @@ struct SearchExample {
 
 ![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)
 
-### Example 10
+### Example 10: Setting Custom Menu Extensions
 
-This example shows how to set **editMenuOptions**.
+This example demonstrates how to use the **editMenuOptions** API to create custom menu extensions for text settings. It includes customizing text content, icons, and callbacks for these extensions.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Index {
+struct SearchExample {
   @State text: string = 'Search editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy_custom"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select all_custom"
-      }
-    })
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -1344,28 +1368,30 @@ struct Index {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       Search({ value: this.text })
         .width('95%')
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
-            }
-            return false;
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")
@@ -1376,9 +1402,9 @@ struct Index {
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
 
-### Example 11
+### Example 11: Setting a Custom Symbol-Type Cancel Button
 
-This example shows how to set icon styles for **searchIcon** and **cancelButton** using **SymbolGlyphModifier**.
+This example demonstrates how to use the **searchIcon** and **cancelButton** attributes to customize the style of the symbol-type cancel button on the right side of the text box.
 
 ```ts
 // xxx.ets
