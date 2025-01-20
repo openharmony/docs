@@ -7757,7 +7757,7 @@ isCapture(): boolean
 | ------- | ------------ |
 | boolean | 返回是否调用多媒体能力。 |
 
-### getMimeTypes<sup>9+</sup>
+### getMimeTypes<sup>16+</sup>
 
 getMimeTypes(): Array\<string\>
 
