@@ -15,7 +15,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 | body                                  | string                                                       | 否   | 邮件内容                                                     |
 | ability.params.stream                 | string[ ]                                                    | 否   | 邮件附件（附件的uri地址列表）                                |
 | ability.want.params.uriPermissionFlag | [wantConstant.Flags](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 否   | 给邮件附件赋予至少读权限。邮件附件参数存在时，该参数也必须要传 |
-| sceneType                             | number                                                       | 否   | 意图取值 ：1：发邮件。默认为1。                              |
+| sceneType                             | number                                                       | 否   | 意图场景，表明本次请求对应的操作意图。1：发邮件。默认为1。                              |
 
 > **说明：**
 >
@@ -24,7 +24,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 > * 邮件类应用扩展面板中的类型为string[]的参数，数组中的元素都要经过encodeURI编码。
 
 ## 拉起方开发步骤
-1. 导入ohos.app.ability.common模块。 
+1. 导入相关模块。 
     ```ts
     import { common, wantConstant } from '@kit.AbilityKit';
     ```
@@ -96,7 +96,7 @@ startAbilityByType接口中type字段为mail，对应的wantParam参数：
 2. 解析面板传过来的参数并做对应处理。
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     在参数**want.parameters**中会携带Caller方传入的参数（与调用方传入的有些差异），如下表所示：
