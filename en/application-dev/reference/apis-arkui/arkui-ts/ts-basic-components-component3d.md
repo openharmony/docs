@@ -3,7 +3,7 @@ The **Component3D** component is used to load 3D model resources and create cust
 
 >  **NOTE**
 >
->  This component is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -12,15 +12,17 @@ Not supported
 
 ## APIs
 
-Component3D((sceneOptions?: SceneOptions))
+Component3D(sceneOptions?: SceneOptions)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
 **Parameters**
 
-| Name         | Type                             | Mandatory  | Description                                    |
-| ------------ | --------------------------------- | ---- | ---------------------------------------- |
-| sceneOptions | [SceneOptions](#sceneoptions) | No   | 3D scene configuration.<br>**NOTE**<br> The 3D scene configuration cannot be dynamically modified after the component is created.|
+| Name      | Type                                 | Mandatory| Description                                                        |
+| ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| sceneOptions | [SceneOptions](#sceneoptions) | No  | 3D scene configuration.<br>**NOTE**<br> The 3D scene configuration cannot be dynamically modified after the component is created.|
 
 
 ## SceneOptions
@@ -29,20 +31,37 @@ Provides the 3D scene configuration options.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
 | Name       | Type                              | Mandatory  | Description                                      |
 | --------- | -------------------------------- | ---- | ---------------------------------------- |
-| scene     | [Resource](ts-types.md#resource)\|[Scene](../../apis-arkgraphics3d/js-apis-inner-scene.md#scene-1)<sup>12+</sup> | No   | 3D model resource file or scene object.<br>Default value: **undefined**<br>**NOTE**<br>Currently, only GLTF files are supported.|
+| scene     | [ResourceStr](ts-types.md#resourcestr) \| [Scene](#scene12) | No   | 3D model resource file or scene object.<br>Default value: **undefined**<br>**NOTE**<br>Currently, only GLTF files are supported.|
 | modelType | [ModelType](#modeltype) | No   | Composition mode of the 3D scene.<br>Default value: **ModelType.SURFACE**<br>**NOTE**<br>**ModelType.TEXTURE**: The GPU is used for composition.<br>**ModelType.SURFACE**: Dedicated hardware is used for composition.<br>In general cases, leave this parameter at its default settings.|
 
 ## ModelType
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name     | Description            |
-| ------- | -------------- |
-| TEXTURE | The GPU is used for composition of the 3D scene.|
-| SURFACE | Dedicated hardware is used for composition of the 3D scene. |
+**System capability**: SystemCapability.ArkUi.Graphics3D
 
+| Name   | Value  | Description                    |
+| ------- | ---- | ------------------------ |
+| TEXTURE | 0    | The GPU is used for composition of the 3D scene. |
+| SURFACE | 1    | Dedicated hardware is used for composition of the 3D scene.|
+
+## Scene<sup>12+</sup>
+
+type Scene = Scene
+
+Represents a 3D scene object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUi.Graphics3D
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [Scene](../../apis-arkgraphics3d/js-apis-inner-scene.md#scene-1) | 3D scene object.|
 
 ## Attributes
 
@@ -50,7 +69,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ### environment
 
-environment(uri: Resource)
+environment(uri: ResourceStr)
 
 Sets the 3D environment resource. Currently, only GLTF files are supported. Model resources cannot be dynamically modified after the component is created.
 
@@ -60,13 +79,13 @@ Sets the 3D environment resource. Currently, only GLTF files are supported. Mode
 
 **Parameters**
 
-| Name| Type                            | Mandatory| Description        |
-| ------ | -------------------------------- | ---- | ------------ |
-| uri    | [Resource](ts-types.md#resource) | Yes  | 3D environment resource.|
+| Name| Type                                  | Mandatory| Description        |
+| ------ | -------------------------------------- | ---- | ------------ |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | Yes  | 3D environment resource.|
 
 ### customRender
 
-customRender(uri: Resource, selfRenderUpdate: boolean)
+customRender(uri: ResourceStr, selfRenderUpdate: boolean)
 
 Sets the custom 3D scene rendering pipeline. **uri** and **selfRenderUpdate** cannot be dynamically modified after the component is created.
 
@@ -76,14 +95,14 @@ Sets the custom 3D scene rendering pipeline. **uri** and **selfRenderUpdate** ca
 
 **Parameters**
 
-| Name          | Type                            | Mandatory| Description                                                        |
-| ---------------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| uri              | [Resource](ts-types.md#resource) | Yes  | Configuration file for creating a custom rendering pipeline.                                  |
-| selfRenderUpdate | boolean                          | Yes  | Whether rendering can be triggered when the external UI is not updated.<br>The value **true** means that rendering can be triggered when the external UI is not updated, and false means the opposite.|
+| Name          | Type                                  | Mandatory| Description                                                        |
+| ---------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| uri              | [ResourceStr](ts-types.md#resourcestr) | Yes  | Configuration file for creating a custom rendering pipeline.                                  |
+| selfRenderUpdate | boolean                                | Yes  | Whether rendering can be triggered when the external UI is not updated.<br>The value **true** means that rendering can be triggered when the external UI is not updated, and false means the opposite.|
 
 ### shader
 
-shader(uri: Resource)
+shader(uri: ResourceStr)
 
 Sets the shader file for custom rendering. The shader file cannot be dynamically modified after the component is created.
 
@@ -93,13 +112,13 @@ Sets the shader file for custom rendering. The shader file cannot be dynamically
 
 **Parameters**
 
-| Name| Type                            | Mandatory| Description                        |
-| ------ | -------------------------------- | ---- | ---------------------------- |
-| uri    | [Resource](ts-types.md#resource) | Yes  | Shader file for custom rendering.|
+| Name| Type                                  | Mandatory| Description                        |
+| ------ | -------------------------------------- | ---- | ---------------------------- |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | Yes  | Shader file for custom rendering.|
 
 ### shaderImageTexture
 
-shaderImageTexture(uri: Resource)
+shaderImageTexture(uri: ResourceStr)
 
 Sets the texture resource used for custom rendering. To use multiple texture resources for custom rendering, call this API multiple times. The sequence in which the resources are used is the same as the call sequence. The texture resource cannot be dynamically modified after the component is created.
 
@@ -109,9 +128,9 @@ Sets the texture resource used for custom rendering. To use multiple texture res
 
 **Parameters**
 
-| Name| Type                            | Mandatory| Description                      |
-| ------ | -------------------------------- | ---- | -------------------------- |
-| uri    | [Resource](ts-types.md#resource) | Yes  | Texture resource used for custom rendering.|
+| Name| Type                                  | Mandatory| Description                      |
+| ------ | -------------------------------------- | ---- | -------------------------- |
+| uri    | [ResourceStr](ts-types.md#resourcestr) | Yes  | Texture resource used for custom rendering.|
 
 ### shaderInputBuffer
 

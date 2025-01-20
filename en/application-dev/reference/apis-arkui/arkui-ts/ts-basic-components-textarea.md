@@ -37,7 +37,7 @@ TextArea(value?: TextAreaOptions)
 | Name| Type | Mandatory  | Description|
 | ---- | ----- | ---- | ---- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | No   | Text displayed when there is no input.  <br>When only the **placeholder** attribute is set, the text selection handle is still available; the caret stays at the beginning of the placeholder text when the handle is released.    |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | No   | Current text input.<br>You are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| text             | [ResourceStr](ts-types.md#resourcestr)  | No   | Current text input.<br>You are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 16, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | No   | Text area controller.|
 
 
@@ -421,7 +421,7 @@ Sets the type of the Enter key.
 
 | Name| Type                                            | Mandatory| Description                                                |
 | ------ | ------------------------------------------------ | ---- | ---------------------------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.NEW_LINE**|
 
 ### enableAutoFill<sup>12+</sup>
 
@@ -667,6 +667,54 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
 
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+Sets whether half leading is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | Yes | Whether half leading is enabled.<br>Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
+
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: number | Resource)
+
+Sets the minimum font scale factor for text.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handled as 0. A value greater than 1 is handled as 1. Abnormal values are ineffective by default.|
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: number | Resource)
+
+Sets the maximum font scale factor for text.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as 1. Abnormal values are ineffective by default.|
+
 ### heightAdaptivePolicy<sup>12+</sup>
 
 heightAdaptivePolicy(value: TextHeightAdaptivePolicy)
@@ -794,6 +842,40 @@ Specifies whether to enable haptic feedback.
 >  }
 > ]
 > ```
+
+### ellipsisMode<sup>16+</sup>
+
+ellipsisMode(value: EllipsisMode)
+
+Sets the ellipsis position. For the settings to work, **overflow** must be set to **TextOverflow.Ellipsis** and **maxLines** must be specified. Setting **ellipsisMode** alone does not take effect.
+
+**EllipsisMode.START** and **EllipsisMode.CENTER** take effect only when **maxLines** is set to **1**.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | Yes  | Ellipsis position.<br>Default value: **EllipsisMode.END**|
+
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: boolean)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                               | Mandatory| Description                                     |
+| ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
+| isStopped  | boolean | Yes  | Whether to consume the back button press.<br>Default value: **true**|
 
 ## Events
 
@@ -930,7 +1012,7 @@ Triggered when the Enter key on the soft keyboard is pressed.
 
 | Name  | Type                                            | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered.|
+| enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Yes  | Type of the Enter key. If it is **EnterKeyType.NEW_LINE** and the text box is in inline input style, **onSubmit** is not triggered.|
 
 ### onSubmit<sup>14+</sup>
 
@@ -1147,7 +1229,7 @@ Represents the callback invoked when the Enter key on the soft keyboard is press
 
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKeyType | [EnterKeyType](ts-types.md#enterkeytype)             | Yes  | Type of the Enter key.<br>If the type is **EnterKeyType.NEW_LINE**, **onSubmit** is not triggered.|
+| enterKeyType | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype)             | Yes  | Type of the Enter key.<br>If the type is **EnterKeyType.NEW_LINE**, **onSubmit** is not triggered.|
 | event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | No  | Submit event.        |
 
 ## Example
@@ -1353,7 +1435,7 @@ struct TextAreaExample {
         .fontSize(16)
         .border({ width: 1 })
         .wordBreak(WordBreak.BREAK_ALL)
-      Text("WordBreakType as BREAK_ALL: ") .fontSize (16).fontColor (0xFF0000)
+      Text("WordBreakType as BREAK_ALL: ").fontSize(16).fontColor(0xFF0000)
       TextArea({
         text: 'The TextArea component automatically wraps text so that each line does not have more than the width of the component.\nIf the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.'
       })
@@ -1743,8 +1825,7 @@ This example demonstrates how to use the **editMenuOptions** API to create custo
 @Component
 struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),
@@ -1759,29 +1840,31 @@ struct TextAreaExample {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       TextArea({ text: this.text })
         .width('95%')
         .height(56)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
-            }
-            return false;
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")
@@ -1791,3 +1874,73 @@ struct TextAreaExample {
 ```
 
 ![textAreaEditMenuOptions](figures/textAreaEditMenuOptions.gif)
+
+### Example 15: Setting Text Overflow
+
+This example demonstrates how to use **textOverflow**, **ellipsisMode**, and **maxlines** to display excess content with an ellipsis (...) when the text is too long.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EllipsisModeExample {
+  @State textIndex: number = 0
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
+    " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
+  @State ellipsisModeIndex: number = 0
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] =
+    [EllipsisMode.START, EllipsisMode.END, EllipsisMode.CENTER, undefined, null]
+  @State ellipsisModeStr: string[] = ['START ', 'END', 'CENTER', 'undefined', 'null']
+  @State textOverflowIndex: number = 0
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
+  @State maxLinesIndex: number = 0
+  @State maxLines: number[] = [1, 2, 3]
+  @State maxLinesStr: string[] = ['1', '2', '3']
+  @State styleAreaIndex: number = 0
+  @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT]
+  @State styleAreaStr: string[] = ['Inline', 'Default']
+
+  build() {
+    Column() {
+      TextArea({ text: this.text })
+        .textOverflow(this.textOverflow[this.textOverflowIndex])
+        .ellipsisMode(this.ellipsisMode[this.ellipsisModeIndex])
+        .maxLines(this.maxLines[this.maxLinesIndex])
+        .style(this.styleArea[this.styleAreaIndex])
+        .fontSize(30)
+        .margin(30)
+
+      Button('ellipsisMode Value: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+        this.ellipsisModeIndex++
+        if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
+          this.ellipsisModeIndex = 0
+        }
+      }).fontSize(20)
+      Button('textOverflow Value: ' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
+        this.textOverflowIndex++
+        if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
+          this.textOverflowIndex = 0
+        }
+      }).fontSize(20)
+      Button('maxLines Value: ' + this.maxLinesStr[this.maxLinesIndex]).onClick(() => {
+        this.maxLinesIndex++
+        if (this.maxLinesIndex > (this.maxLinesStr.length - 1)) {
+          this.maxLinesIndex = 0
+        }
+      }).fontSize(20)
+      Button('Style Value: ' + this.styleAreaStr[this.styleAreaIndex]).onClick(() => {
+
+        this.styleAreaIndex++
+        if (this.styleAreaIndex > (this.styleAreaStr.length - 1)) {
+          this.styleAreaIndex = 0
+        }
+      }).fontSize(20)
+    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+  }
+}
+```
+
+![textAreaEllipsisMode](figures/textAreaEllipsisMode.png)
