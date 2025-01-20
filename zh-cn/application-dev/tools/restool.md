@@ -58,7 +58,6 @@ Locale匹配规则：Locale匹配需满足以下三条规则。
 restool dump [-h] [config] filePath
 ```
 
-
 dump命令参数列表：
 
 | 参数 | 是否可缺省 | 是否存在入参 | 描述 |
