@@ -89,7 +89,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
  let pasteData: pasteboard.PasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_PLAIN, dataText);
   ```
 
-
 ## pasteboard.createRecord<sup>9+</sup>
 
 createRecord(mimeType: string, value: ValueType):PasteDataRecord;
@@ -159,7 +158,7 @@ let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboa
 
 ## ShareOption<sup>9+</sup>
 
-Enumerates the paste options of data.
+Enumerates the pasteable ranges of pasteboard data.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -433,7 +432,7 @@ The defined properties can be applied to the pasteboard only with the [setProper
 | tag<sup>7+</sup> | string | Yes| Yes| Custom tag.                                                                                                                                                                                                                                |
 | timestamp<sup>7+</sup> | number | Yes| No| Timestamp when data is written to the pasteboard (unit: ms).                                                                                                                                                                                                                     |
 | localOnly<sup>7+</sup> | boolean | Yes| Yes| Whether the pasteboard content is for local access only. The default value is **false**. The value will be overwritten by the value of the **shareOption** attribute. You are advised to use the **shareOption** attribute instead. **ShareOption.INAPP** and **ShareOption.LOCALDEVICE** set **localOnly** to **true**, and **ShareOption.CROSSDEVICE** sets **localOnly** to false.<br>- **true**: The pasteboard content is set for local access only.<br>- **false**: The pasteboard content can be shared between devices.|
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.                                                                                                                                                                                           |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | Yes| Yes| Where the pasteboard content can be pasted. If this attribute is set incorrectly or not set, the default value **CROSSDEVICE** is used.|
 
 ## PasteDataRecord<sup>7+</sup>
 
