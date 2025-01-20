@@ -9,16 +9,19 @@ UI界面除了运行动画之外，还承载着与用户进行实时交互的功
 
 ```ts
 import { curves } from '@kit.ArkUI';
-class SetSlt{
-  isAnimation:boolean = true
-  set():void{
+
+class SetSlt {
+  isAnimation: boolean = true
+
+  set(): void {
     this.isAnimation = !this.isAnimation;
   }
 }
+
 @Entry
 @Component
 struct AnimationToAnimationDemo {
-// 第一步：声明相关状态变量
+  // 第一步：声明相关状态变量
   @State SetAnimation: SetSlt = new SetSlt();
 
   build() {
@@ -32,15 +35,17 @@ struct AnimationToAnimationDemo {
         .backgroundColor(0xf56c6c)
         .width(100)
         .height(100)
-        // 第二步：将状态变量设置到相关可动画属性接口
-        .scale({ x: this.SetAnimation.isAnimation ? 2 : 1, y: this.SetAnimation.isAnimation ? 2 : 1 })
-        // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
-        .animation({ curve: curves.springMotion(0.4, 0.8) })
+        .scale({
+          // 第二步：将状态变量设置到相关可动画属性接口
+          x: this.SetAnimation.isAnimation ? 2 : 1,
+          y: this.SetAnimation.isAnimation ? 2 : 1
+        })
+        .animation({ curve: curves.springMotion(0.4, 0.8) }) // 第四步：通过隐式动画接口开启隐式动画，动画终点值改变时，系统自动添加衔接动画
 
       Button('Click')
         .margin({ top: 200 })
-        // 第三步：通过点击事件改变状态变量值，影响可动画属性值
         .onClick(() => {
+          // 第三步：通过点击事件改变状态变量值，影响可动画属性值
           this.SetAnimation.set()
         })
     }
@@ -71,7 +76,6 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct SpringMotionDemo {
-
   // 第一步：声明相关状态变量
   @State positionX: number = 100;
   @State positionY: number = 100;
@@ -82,11 +86,10 @@ struct SpringMotionDemo {
       Row() {
         Circle({ width: this.diameter, height: this.diameter })
           .fill(Color.Blue)
-          // 第二步：将状态变量设置到相关可动画属性接口
-          .position({ x: this.positionX, y: this.positionY })
-          // 第三步：在跟手过程改变状态变量值，并且采用responsiveSpringMotion动画运动到新的值
+          .position({ x: this.positionX, y: this.positionY })// 第二步：将状态变量设置到相关可动画属性接口
           .onTouch((event?: TouchEvent) => {
-            if(event){
+            // 第三步：在跟手过程改变状态变量值，并且采用responsiveSpringMotion动画运动到新的值
+            if (event) {
               if (event.type === TouchType.Move) {
                 // 跟手过程，使用responsiveSpringMotion曲线
                 this.getUIContext()?.animateTo({ curve: curves.responsiveSpringMotion() }, () => {
