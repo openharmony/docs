@@ -6457,12 +6457,14 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 **示例：**
 
 ```ts
-try {
-  let enabled = false;
-  windowClass.setWindowTitleMoveEnabled(enabled);
-} catch (exception) {
-  console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let enabled = false;
+    windowClass.setWindowTitleMoveEnabled(enabled);
+  } catch (exception) {
+    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
 ```
 
 ### setSubWindowModal<sup>12+</sup>
@@ -6692,19 +6694,21 @@ setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 ```ts
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
-try {
-  let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
-  let style: window.DecorButtonStyle = {
-    colorMode: colorMode,
-    buttonBackgroundSize: 24,
-    spacingBetweenButtons: 12,
-    closeButtonRightMargin: 20
-  };
-  windowClass.setDecorButtonStyle(style);
-  console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
-} catch (exception) {
-  console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+    let style: window.DecorButtonStyle = {
+      colorMode: colorMode,
+      buttonBackgroundSize: 24,
+      spacingBetweenButtons: 12,
+      closeButtonRightMargin: 20
+    };
+    windowClass.setDecorButtonStyle(style);
+    console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+  } catch (exception) {
+    console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
 ```
 
 ### getDecorButtonStyle<sup>14+</sup>
