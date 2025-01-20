@@ -2,8 +2,8 @@
 
 ## 场景介绍
 
-为了解码Surface模式的正常运行，需要依赖一个surface来进行buffer轮转。在XComponent尚未创建或OpenGL后处理尚未初始化的情况下,
-可以创建一个ConsumerSurface，以确保视频解码器能够正常创建和运行。
+为了解码Surface模式的正常创建，在XComponent尚未创建或OpenGL后处理（NativeImage）尚未初始化的情况下，
+可以创建一个空的surface，以确保视频解码器能够正常创建和运行。
 
 
 ## 开发步骤
