@@ -1137,6 +1137,67 @@ async function example() {
 }
 ```
 
+### getSupportedPhotoFormats<sup>16+</sup>
+
+getSupportedPhotoFormats(photoType: PhotoType): Promise&lt;Array&lt;string&gt;&gt;
+
+接口提供给应用调用，获取媒体库支持的图片或者视频后缀列表。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明      |
+|-----------|-------------------------|-----------|-----------------|
+| photoType | [PhotoType](#phototype) | 是   | 媒体文件类型。 |
+
+**返回值：**
+
+| 类型                                     | 说明              |
+|------------------------------------------|-------------------------|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回支持的图片或者视频后缀列表。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. |
+
+**示例：**
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+async function example(photoTypeNumber: number){
+  console.info('getSupportedPhotoFormatsDemo.');
+
+  try {
+    if (photoTypeNumber !== 1 && photoTypeNumber !== 2) {
+      outputText = 'Does not support querying formats other than images or videos';
+      return;
+    }
+    outputText = 'The supported types are:\n';
+    let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(photoTypeNumber);
+    let result = "";
+    for (let i = 0; i < imageFormat.length; i++) {
+      result += imageFormat[i];
+      if (i !== imageFormat.length - 1) {
+        result += ', ';
+      }
+    }
+    outputText += result;
+    console.info('getSupportedPhotoFormats success, data is ' + outputText);
+  } catch (error) {
+    console.error('getSupportedPhotoFormats failed, errCode is', error);
+  }
+}
+```
+
 ## PhotoAsset
 
 提供封装文件属性的方法。
