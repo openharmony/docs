@@ -222,7 +222,7 @@ toybox的执行方式有两种：
 | chcon     | 修改文件的SELinux安全上下文。<br />usage: chcon [-hRv] CONTEXT FILE... |
 | chgrp/chown | 修改文件的组。<br />usage: chgrp/chown [-RHLP] [-fvh] group file... |
 | chmod     | 更改列出的文件的模式（使用-R递归）。<br />usage: chmod [-R] MODE FILE... |
-| cksum     | 对于每个文件，输出crc32的校验和、长度和文件名。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备<br />usage: cksum [-IPLN] [file...] |
+| cksum     | 对于每个文件，输出crc32的校验和、长度和文件名。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备。<br />usage: cksum [-IPLN] [file...] |
 | cmp       | 比较文件的内容（如果只给出一个，则与标准输入设备进行比较），可选在开始时跳过字节。<br />usage: cmp [-l] [-s] FILE1 [FILE2 [SKIP1 [SKIP2]]] |
 | comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行；仅在FILE2中的行；在两个文件中都有的行。“-”代表标准输入设备。<br />usage: comm [-123] FILE1 FILE2  |
 | count     | 将标准输入设备复制到标准输出设备，将简单的进度指示器显示到标准错误输出stderr。<br />usage: count |
