@@ -2476,7 +2476,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，如：16。 |
-| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。 <br>默认是当前区域。|
+| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认是当前区域。|
 
 **返回值：**
 
