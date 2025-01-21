@@ -387,8 +387,8 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象 |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据。         |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象。 |
 
 **错误码：**
 
@@ -454,7 +454,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 参数名   | 类型                          | 必填 | 说明               |
 | -------- | ----------------------------- | ---- | ------------------ |
-| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据。|
 
 **返回值：**
 
