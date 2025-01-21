@@ -21,7 +21,7 @@ Requests a transient task.
 
 >  **NOTE**
 >
-> The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.
+> For details about the constraints on requesting and using a transient task, see [Transient Task (ArkTS)](../../task-management/transient-task.md#constraints).
 
 **System capability**: SystemCapability.ResourceSchedule.BackgroundTaskManager.TransientTask
 
@@ -60,6 +60,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let myReason = 'test requestSuspendDelay';
 try {
     let delayInfo = backgroundTaskManager.requestSuspendDelay(myReason, () => {
+    // Callback function, which is triggered when the transient task is about to time out. The application can carry out data clear and annotation, and cancel the task in the callback.
+    // The callback is independent of the service of the application. After the request for the transient task is successful, the application normally executes its own service logic.
         console.info("Request suspension delay will time out.");
     })
     let id = delayInfo.requestId;
@@ -211,7 +213,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](error
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
-Requests a continuous task. This API uses an asynchronous callback to return the result.
+Requests a continuous task of a specific type. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -224,7 +226,7 @@ Requests a continuous task. This API uses an asynchronous callback to return the
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Continuous task mode.                             |
+| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Type of the continuous task.                          |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.          |
 | callback  | AsyncCallback&lt;void&gt;          | Yes   | Callback used to return the result. If the continuous task is requested, **err** is **undefined**. Otherwise, **err** is an error object.   |
 
@@ -300,7 +302,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
-Requests a continuous task. This API uses a promise to return the result.
+Requests a continuous task of a specific type. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -313,7 +315,7 @@ Requests a continuous task. This API uses a promise to return the result.
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | Context                            | Yes   | Application context.<br>For details about the application context of the FA model, see [Context](../apis-ability-kit/js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
-| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Continuous task mode.                             |
+| bgMode    | [BackgroundMode](#backgroundmode) | Yes   | Type of the continuous task.                         |
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 
 **Return value**
@@ -509,7 +511,7 @@ export default class EntryAbility extends UIAbility {
 
 startBackgroundRunning(context: Context, bgModes: string[], wantAgent: WantAgent): Promise&lt;ContinuousTaskNotification&gt;
 
-Requests a continuous task. This API uses a promise to return the result.
+Requests continuous tasks of multiple types. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -522,7 +524,7 @@ Requests a continuous task. This API uses a promise to return the result.
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context.|
-| bgModes    | string[] | Yes   | Continuous task mode. The options are as follows:<br>**dataTransfer**: data transfer.<br>**audioPlayback**: audio playback.<br>**audioRecording**: audio recording.<br>**location**: location and navigation.<br>**bluetoothInteraction**: Bluetooth-related task<br>**multiDeviceConnection**: multi-device connection.<br>One or more modes can be passed in.|
+| bgModes    | string[] | Yes   | Types of continuous tasks. For details about the available options, see [Item](../../task-management/continuous-task.md#use-cases).<br> **Note**: One or more types can be passed.|
 | wantAgent | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md) | Yes   | Notification parameters, which are used to specify the target page that is redirected to when a continuous task notification is clicked.                |
 
 **Return value**
@@ -598,12 +600,13 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
+  // The application updates its progress.
   updateProcess(process: Number) {
     // The application defines the download notification template.
     let downLoadTemplate: notificationManager.NotificationTemplate = {
       name: 'downloadTemplate', // Currently, only downloadTemplate is supported. Retain the value.
       data: {
-        title:'File download: music.mp4', // Mandatory.
+        title: 'File download: music.mp4', // Mandatory.
         fileName: 'senTemplate', // Mandatory.
         progressValue: process, // The application updates the progress, which is user-defined.
       }
@@ -639,7 +642,7 @@ export default class EntryAbility extends UIAbility {
 
 updateBackgroundRunning(context: Context, bgModes: string[]): Promise&lt;ContinuousTaskNotification&gt;
 
-Updates a continuous task. This API uses a promise to return the result.
+Updates continuous tasks of multiple types. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.KEEP_BACKGROUND_RUNNING
 
@@ -652,7 +655,7 @@ Updates a continuous task. This API uses a promise to return the result.
 | Name      | Type                                | Mandatory  | Description                                      |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | context   | [Context](../apis-ability-kit/js-apis-inner-application-context.md)                            | Yes   | Application context.|
-| bgModes    | string[] | Yes   | Continuous task mode. The options are as follows:<br>**dataTransfer**: data transfer.<br>**audioPlayback**: audio playback.<br>**audioRecording**: audio recording.<br>**location**: location and navigation.<br>**bluetoothInteraction**: Bluetooth-related task<br>**multiDeviceConnection**: multi-device connection.<br>One or more modes can be passed in.
+| bgModes    | string[] | Yes   | Types of continuous tasks after the update. For details about the available options, see [Item](../../task-management/continuous-task.md#use-cases).<br> **Note**: One or more types can be passed.|
 
 **Return value**
 
@@ -713,7 +716,7 @@ Defines the information about the transient task.
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | requestId       | number | Yes   | Request ID of the transient task.                              |
-| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br>The maximum duration of a transient task is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
+| actualDelayTime | number | Yes   | Actual duration of the transient task that the application requests, in milliseconds.<br>**Note**: The maximum duration is 3 minutes in normal cases. In the case of a [low battery](../apis-basic-services-kit/js-apis-battery-info.md), the maximum duration is decreased to 1 minute.|
 
 ## BackgroundMode
 
@@ -724,12 +727,12 @@ Enumerates the continuous task modes.
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | DATA_TRANSFER           | 1    | Data transfer.                 |
-| AUDIO_PLAYBACK          | 2    | Audio playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| AUDIO_PLAYBACK          | 2    | Audio and video playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
 | AUDIO_RECORDING         | 3    | Audio recording.                   |
 | LOCATION                | 4    | Positioning and navigation.                 |
-| BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
+| BLUETOOTH_INTERACTION   | 5    | Bluetooth-related services.                 |
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
-| TASK_KEEPING            | 9    | Computing task (for specific devices only).       |
+| TASK_KEEPING            | 9    | Computing task (for 2-in-1 devices only).       |
 
 ## ContinuousTaskNotification<sup>12+</sup>
 
