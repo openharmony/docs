@@ -4,7 +4,7 @@
 > 
 > Repeat从API version 12开始支持。
 
-本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
 
 Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
@@ -27,9 +27,9 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 
 开发者使用建议：
 
-- 即使数据项有重复，开发者也必须保证键值key唯一（即使数据源发生变化）；
-- 每次执行`key()`函数时，使用相同的数据项作为输入，输出必须是一致的；
-- `key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据项发生了变化，并触发UI重新渲染，会降低性能表现；
+- 即使数据项有重复，开发者也必须保证键值key唯一（即使数据源发生变化）。
+- 每次执行`key()`函数时，使用相同的数据项作为输入，输出必须是一致的。
+- `key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据项发生了变化，并触发UI重新渲染，会降低性能表现。
 - 推荐将简单类型数组转换为类对象数组，并添加一个`readonly id`属性，在构造函数中给它赋一个唯一的值。
 
 ### non-virtualScroll规则
@@ -98,8 +98,8 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 数据源的总长度，可以大于已加载数据项的数量。令arr.length表示数据源长度，以下为totalCount的处理规则：
 
-- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动；
-- 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据；
+- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动。
+- 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据。
 - totalCount > arr.length时，代表Repeat将渲染totalCount个数据，滚动条样式根据totalCount值变化。
 
 > **注意：** 
