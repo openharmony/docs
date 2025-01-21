@@ -17,6 +17,8 @@
 ### 最新版本
 
  - master：最新开发版本。  
+ 
+ - OpenHarmony 5.0.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v5.0.1-release.md)了解版本详情。
 
  - OpenHarmony 4.1 Release版本：点击[此处](zh-cn/release-notes/OpenHarmony-v4.1-release.md)了解版本详情。
 
