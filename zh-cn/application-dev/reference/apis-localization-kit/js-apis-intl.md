@@ -693,7 +693,7 @@ resolvedOptions(): CollatorOptions
 | ignorePunctuation | boolean | 否    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。<br>默认值为false。        |
 | collation         | string  | 否    | 排序规则，<br>取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>默认值为default。 |
 | numeric           | boolean | 否    | 是否使用数字排序，取值范围：true,&nbsp;false。<br>默认值为false。          |
-| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。<br>默认值为false |
+| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。<br>默认值为false。 |
 
 
 >  **说明：**
