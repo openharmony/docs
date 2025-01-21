@@ -1,7 +1,7 @@
 # HMAC (C/C++)
 
 
-This topic walks you through on how to generate a hash-based message authentication code (HMAC), which provides authentication using a shared secret instead of using digital signatures with asymmetric cryptography.
+A Hash-based Message Authentication Code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic has function and a secret cryptographic key. For details about the scenarios and supported algorithm specifications, see [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md).
 
 ## Add the dynamic library in the CMake script.
 ```txt
@@ -16,7 +16,7 @@ This topic walks you through on how to generate a hash-based message authenticat
 
 2. Initialize the key property set.
 
-3. Use **OH_Huks_GenerateKeyItem** to generate a key. For details about the HMAC specifications, see [Key Generation](huks-key-generation-overview.md#supported-algorithms).
+3. Use [OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key. For details about the HMAC specifications, see [Key Generation](huks-key-generation-overview.md#supported-algorithms).
 
 You can also import a key. For details about the supported algorithms, see [Supported Algorithms](huks-key-import-overview.md#supported-algorithms).
 
@@ -92,16 +92,16 @@ OH_Huks_Result HksHmacTest(
 
 static napi_value HmacKey(napi_env env, napi_callback_info info)
 {
+    /* 1. Generate Key */
+    /*
+    * Simulate the key generation scenario.
+    * 1.1. Set the key alias.
+    */
     char tmpKeyAlias[] = "test_hmac";
     struct OH_Huks_Blob keyAlias = { (uint32_t)strlen(tmpKeyAlias), (uint8_t *)tmpKeyAlias };
     struct OH_Huks_ParamSet *hmacParamSet = nullptr;
     OH_Huks_Result ohResult;
     do {
-        /* 1. Generate Key */
-        /*
-        * Simulate the key generation scenario.
-        * 1.1. Set the key alias.
-        */
         /*
         * 1.2. Obtain the parameters for key generation.
         */
