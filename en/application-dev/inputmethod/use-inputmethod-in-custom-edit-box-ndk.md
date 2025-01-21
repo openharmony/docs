@@ -7,7 +7,7 @@ IME Kit allows you to use self-drawing components to develop the custom edit box
 
 ## APIs
 
-For details about the APIs, see [InputMethod API Reference](../reference/apis-ime-kit/_input_method.md).
+For details about the APIs, see [InputMethod](../reference/apis-ime-kit/_input_method.md).
 
 ## Adding Dynamic Link Libraries
 
@@ -26,7 +26,7 @@ libohinputmethod.z.so
 
 ## Binding an Input Method
 
-When the text box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
+When the input box is focused, you can call the [OH_InputMethodController_Attach](../reference/apis-ime-kit/_input_method.md#oh_inputmethodcontroller_attach) API to bind the input method. After the binding is successful, you can use the input method to enter text.
 
 1. Create an **InputMethod_TextEditorProxy** instance. The sample code is as follows:
 
@@ -66,7 +66,7 @@ if (OH_InputMethodProxy_ShowKeyboard(inputMethodProxy) != InputMethod_ErrorCode:
 if (OH_InputMethodProxy_HideKeyboard(inputMethodProxy) != InputMethod_ErrorCode::IME_ERR_OK) {
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "HideKeyboard failed!");
 }
-// Notify the change of the text box configuration.
+// Notify the change of the input box configuration.
 if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_EnterKeyType::IME_ENTER_KEY_GO, InputMethod_TextInputType::IME_TEXT_INPUT_TYPE_TEXT) != InputMethod_ErrorCode::IME_ERR_OK) {
     OH_LOG_Print(LOG_APP, LOG_ERROR, 0, "testTag", "NotifyConfigurationChange failed!");
 }
@@ -80,7 +80,7 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
    // Implement the input method application event response function in InputMethod_TextEditorProxy.
    void GetTextConfig(InputMethod_TextEditorProxy *textEditorProxy, InputMethod_TextConfig *config)
    {
-       // Process the request sent by the input method for obtaining the text box configuration.
+       // Process the request sent by the input method for obtaining the input box configuration.
    }
    void InsertText(InputMethod_TextEditorProxy *textEditorProxy, const char16_t *text, size_t length)
    {

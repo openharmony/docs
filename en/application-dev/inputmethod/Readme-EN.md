@@ -1,4 +1,4 @@
-# IME Kit (Input Method Development Service)
+# IME Kit<!--ime-kit-->
 
 - [Introduction to IME Kit](ime-kit-intro.md)
 - [Implementing an Input Method Application](inputmethod-application-guide.md)

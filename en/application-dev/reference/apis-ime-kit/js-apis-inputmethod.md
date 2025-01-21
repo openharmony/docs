@@ -33,7 +33,7 @@ Describes the input method application attributes.
 | -------- | -------- | -------- | -------- | -------- |
 | name<sup>9+</sup>  | string | Yes| No| Mandatory. Name of the input method package.|
 | id<sup>9+</sup>    | string | Yes| No| Mandatory. Unique identifier of an input method extension in an app. **id** and **name** form a globally unique identifier of the input method extension.|
-| label<sup>9+</sup>    | string | Yes| Yes| Optional. External name of the input method.|
+| label<sup>9+</sup>    | string | Yes| Yes| Optional. External label of the input method extension. |
 | labelId<sup>10+</sup>    | number | Yes| Yes| Optional. External ID of the input method.|
 | icon<sup>9+</sup>    | string | Yes| Yes| Optional. Icon of the input method. It can be obtained by using **iconId**. This parameter is reserved.|
 | iconId<sup>9+</sup>    | number | Yes| Yes| Optional. Icon ID of the input method.|
@@ -153,7 +153,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800007 |  setter error. |
+| 12800007 |  settings extension error. |
 
 **Example**
 
@@ -187,7 +187,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -215,7 +215,7 @@ try{
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.switchInputMethod<sup>9+</sup>
 switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
@@ -247,7 +247,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -273,7 +273,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getCurrentInputMethod<sup>9+</sup>
 
@@ -323,7 +323,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -361,7 +361,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -396,7 +396,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -432,7 +432,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getCurrentInputMethodSubtype<sup>9+</sup>
 
@@ -482,7 +482,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -511,7 +511,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.switchCurrentInputMethodAndSubtype<sup>9+</sup>
 
@@ -546,7 +546,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -573,7 +573,7 @@ try {
 
 > **NOTE**
 >
-> Since API version 11, the error code "201 permissions check fails" is removed.
+> Since API version 11, the error code `201 permissions check fails` is removed.
 
 ## inputMethod.getInputMethodController<sup>(deprecated)</sup>
 
@@ -779,7 +779,6 @@ Describes the window information of the input method keyboard.
 | top  | number | No| No| Vertical coordinate of the upper left corner of the input method keyboard window, in px.|
 | width  | number | No| No| Width of the input method keyboard window, in px.|
 | height  | number | No| No| Height of the input method keyboard window, in px.|
-
 ## InputMethodController
 
 In the following API examples, you must first use [getController](#inputmethodgetcontroller9) to obtain an **InputMethodController** instance, and then call the APIs using the obtained instance.
@@ -921,7 +920,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -963,7 +962,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1005,7 +1004,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached.             |
+| 12800009 | input method client is detached.             |
 
 **Example**
 
@@ -1049,7 +1048,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | -------- | -------------------------------------- |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1163,7 +1162,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached.             |
+| 12800009 | input method client is detached.             |
 
 **Example**
 
@@ -1217,7 +1216,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1260,7 +1259,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached.             |
+| 12800009 | input method client is detached.             |
 
 **Example**
 
@@ -1310,7 +1309,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1355,7 +1354,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached.             |
+| 12800009 | input method client is detached.             |
 
 **Example**
 
@@ -1406,7 +1405,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1448,7 +1447,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached.             |
+| 12800009 | input method client is detached.             |
 
 **Example**
 
@@ -1498,7 +1497,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 12800003 | input method client error.             |
 | 12800008 | input method manager service error. |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1881,7 +1880,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -1953,7 +1952,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2014,7 +2013,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2040,7 +2039,7 @@ Disables listening for the rightward delete event.
 
 | Name  | Type                    | Mandatory| Description                                                        |
 | -------- | ------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                   | Yes  | Listening type. The value is fixed at **'deleteRight'**.|
+| type     | string                   | Yes  | Listening type. The value is fixed at `deleteRight`.|
 | callback | (length: number) => void | No  | Callback used for disable listening, which must be the same as that passed by the **on** API.<br>If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
 
 **Example**
@@ -2075,7 +2074,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2136,7 +2135,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2197,7 +2196,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                          |
 | -------- | -------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2258,7 +2257,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2356,7 +2355,7 @@ Disables listening for the select-by-range event. This API uses an asynchronous 
 ```ts
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange, range: ${JSON.stringify(range)}`);
+    console.log(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');
@@ -2451,7 +2450,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2520,7 +2519,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2589,7 +2588,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800009 | input method client detached. |
+| 12800009 | input method client is detached. |
 
 **Example**
 
@@ -2711,7 +2710,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | bundle manager error.                 |
+| 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2767,7 +2766,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | bunder manager error.                 |
+| 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2814,7 +2813,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | bunder manager error.                 |
+| 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2857,7 +2856,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 
 | ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | bunder manager error.                 |
+| 12800001 | package manager error.                 |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2906,7 +2905,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | bunder manager error.               |
+| 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -2960,7 +2959,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | bunder manager error.               |
+| 12800001 | package manager error.               |
 | 12800008 | input method manager service error. |
 
 **Example**

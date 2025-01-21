@@ -8,7 +8,7 @@
 
 **Error Message**
 
-Bundle manager error.
+Package manager error.
 
 **Description**
 
@@ -52,17 +52,19 @@ This error code is reported when the API for showing or hiding the keyboard fail
 
 **Possible Causes**
 
-The input method is disconnected from the third-party application due to a service error with the application.
+1. The input method is disconnected from the third-party application due to a service error with the application.
+2. The third-party application is not focused.
 
 **Solution**
 
-Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+1. Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+2. Place the third-party application in the foreground and ensure that it is not covered by other applications or windows. Enable the input method by touching a text input box.
 
 ## 12800004 Not an Input Method
 
 **Error Message**
 
-Not an input method.
+Not an input method extension.
 
 **Description**
 
@@ -80,7 +82,7 @@ Call the API only in an input method.
 
 **Error Message**
 
-Configuration persistence error.
+Configuration persisting error.
 
 **Description**
 
@@ -116,7 +118,7 @@ None
 
 **Error Message**
 
-Input method setter error.
+Input method settings extension error.
 
 **Description**
 
@@ -152,7 +154,7 @@ Run the **ps -A|grep inputmethod** command to check for the process ID of the in
 
 **Error Message**
 
-Input method client detached.
+Input method client is detached.
 
 **Description**
 
@@ -170,7 +172,7 @@ Call the **attach** API and then try again.
 
 **Error Message**
 
-Not the preconfigured default input method.
+Not default input method configured by system.
 
 **Description**
 
@@ -188,7 +190,7 @@ Use [getDefaultInputMethod](js-apis-inputmethod.md#inputmethodgetdefaultinputmet
 
 **Error Message**
 
-Text preview not supported.
+Text preview is not supported.
 
 **Description**
 
@@ -206,7 +208,7 @@ Use [getEditorAttributeSync](js-apis-inputmethodengine.md#geteditorattributesync
 
 **Error Message**
 
-The input method panel does not exist.
+Input method panel doesn't exist.
 
 **Description**
 

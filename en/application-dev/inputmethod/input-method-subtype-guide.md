@@ -60,7 +60,7 @@ The input method subtypes allow the input method to switch to a specific mode or
    let inputMethodAbility: inputMethodEngine.InputMethodAbility = inputMethodEngine.getInputMethodAbility();
    inputMethodAbility.on('setSubtype', (inputMethodSubtype: InputMethodSubtype) => {
      let subType = inputMethodSubtype; // Save the current input method subtype. You can also change the state variable value here, based on which different layouts are displayed.
-     if (inputMethodSubtype.id == 'InputMethodExtAbility') { // Different soft keyboard UIs are loaded according to the subtype.
+     if (inputMethodSubtype.id == 'InputMethodExtAbility') {// Different soft keyboard UIs are loaded according to the subtype.
        panel.setUiContent('pages/Index'); 
      }
      if (inputMethodSubtype.id == 'InputMethodExtAbility1') { // Different soft keyboard UIs are loaded according to the subtype.
@@ -83,3 +83,5 @@ The input method subtypes allow the input method to switch to a specific mode or
 1. To switch to another subtype of the current input method, call [switchCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9).
 
 2. To switch to a specified subtype of a specified input method, call [switchCurrentInputMethodAndSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9).
+
+ <!--no_check--> 

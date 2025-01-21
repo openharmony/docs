@@ -26,16 +26,16 @@ Switches to another input method. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-|bundleName |  string| Yes| Bundle name of the target input method.|
-|subtypeId |  string| No| Input method subtype.|
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  |bundleName |  string| Yes| Bundle name of the target input method.|
+  |subtypeId |  string| No| Input method subtype.|
 
 **Return value**
 
-| Type          | Description                    |
-| -------------- | ----------------------- |
-| Promise\<void> | Promise that returns no value.|
+  | Type          | Description                    |
+  | -------------- | ----------------------- |
+  | Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -46,7 +46,7 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 | 201      | permissions check fails.  |
 | 202      | not system application.  |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800005 | configuration persistence error.        |
+| 12800005 | configuration persisting error.        |
 | 12800008 | input method manager service error. |
 
 **Example**
@@ -95,7 +95,7 @@ Subscribes to the soft keyboard show event of the [input method panel](js-apis-i
 | Name  | Type| Mandatory| Description|
 | -------- | ---- | ---- | ---- |
 | type     | string | Yes| Event type, which is **'imeShow'**.|
-| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes| Callback used to return the soft keyboard information of the input method panel in the fixed state. |
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes| Callback used to return the soft keyboard information of the input method panel in the fixed state.|
 
 **Error codes**
 
@@ -132,7 +132,7 @@ Subscribes to the soft keyboard hide event of the [input method panel](js-apis-i
 | Name  | Type| Mandatory| Description|
 | -------- | ---- | ---- | ---- |
 | type     | string | Yes| Event type, which is **'imeHide'**.|
-| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes| Callback used to return the soft keyboard information of the input method panel in the fixed state. |
+| callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void | Yes| Callback used to return the soft keyboard information of the input method panel in the fixed state.|
 
 **Error codes**
 
