@@ -150,6 +150,20 @@ Cannot reopen the accessory.
 
 配件已被打开，继续执行后续开发操作。
 
+## 14400006 操作成功无错误
+
+**错误信息**
+
+usb submit transmission operation successful.
+
+**错误描述**
+
+传输请求操作成功
+
+**处理步骤**
+
+本次操作已成功完成，以成功的状态码通知应用。
+
 ## 14400007 I/O错误
 
 **错误信息**
