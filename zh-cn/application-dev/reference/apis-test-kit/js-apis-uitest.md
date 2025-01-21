@@ -1871,7 +1871,7 @@ async function demo() {
 ```
 ### scrollSearch<sup>16+</sup>
 
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise<Component>
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 
 在控件上滑动查找目标控件(适用支持滑动的控件),支持查找方向和死区。
 
