@@ -561,6 +561,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
   }
 }
 ```
+<!--Del-->
 包间overlay资源包中的配置文件app.json5中支持的字段，仅对系统应用开放：
 ```{
   "app":{
@@ -571,7 +572,7 @@ overlay是一种资源替换机制，针对不同品牌、产品的显示风格�
     "icon": "$media:app_icon",
     "label": "$string:app_name",
     "targetBundleName": "com.example.myapplication",
-    "targetPariority": 1,
+    "targetPriority": 1,
   }
 }
 ```
