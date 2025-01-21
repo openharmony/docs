@@ -2403,7 +2403,7 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 
 **示例：**
 
-参考[inflateBack](#inflateback12)
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBackEnd<sup>12+</sup>
 
@@ -2438,7 +2438,7 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 
 **示例：**
 
-参考[inflateBack](#inflateback12)
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBack<sup>12+</sup>
 
