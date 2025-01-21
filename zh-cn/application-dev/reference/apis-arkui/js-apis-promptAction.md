@@ -140,6 +140,7 @@ struct toastExample {
       Blank().height(50);
       Button('Close Toast')
         .height(100)
+        .type(ButtonType.Capsule)
         .onClick(() => {
           try {
             promptAction.closeToast(this.toastId);
