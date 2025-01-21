@@ -3375,15 +3375,197 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@kit.TestKit';
+import { Driver, UiDirection } from '@kit.TestKit';
 async function demo() {
   let driver:Driver = Driver.create();
-  let text: Component = await driver.findComponent(ON.type('TextInput'));
-  let point = await text.getBoundsCenter();
-  await driver.inputText(point, '123');
+  await driver.touchPadMultiFingerSwipe(3, UiDirection.UP);
 }
 ```
 
+### penClick<sup>16+</sup>
+
+penClick(point: Point): Promise\<void>
+
+模拟笔点击操作。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明      |
+| ------ |-----------------------------------------------|----|---------|
+| point      | [Point](#point9) | 是   | 点击的坐标点。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penClick({x: 100, y: 100});
+}
+```
+
+### penLongClick<sup>16+</sup>
+
+penLongClick(point: Point, pressure?: number): Promise\<void>
+
+模拟笔长按操作。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                            |
+| ------ |-----------------------------------------------|----|-------------------------------|
+| point      | [Point](#point9) | 是  | 长按的坐标点。                       |
+| pressure      | number | 否  | 笔长按操作的压力，默认为1.0，取值范围为0.0到1.0。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penLongClick({x: 100, y: 100}, 0.5);
+}
+```
+
+### penDoubleClick<sup>16+</sup>
+
+penDoubleClick(point: Point): Promise\<void>
+
+模拟笔双击操作。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明      |
+| ------ |-----------------------------------------------|----|---------|
+| point      | [Point](#point9) | 是  | 双击的坐标点。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penDoubleClick({x: 100, y: 100});
+}
+```
+
+### penSwipe<sup>16+</sup>
+
+penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number): Promise\<void>
+
+模拟笔的滑动操作
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                                                      |
+| ------ |-----------------------------------------------|----|---------------------------------------------------------|
+| startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                               |
+| endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                               |
+| speed      | number | 否  | 笔滑动的速度（pixels/s），默认值为600，值范围为200到40000，如果超出范围，则设置为600。。 |
+| pressure      | number | 否  | 笔长按操作的压力，默认为1.0，取值范围为0.0到1.0。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Driver } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  await driver.penSwipe({x: 100, y: 100}, {x: 100, y: 500}, 600, 0.5);
+}
+```
+
+### injectPenPointerAction<sup>16+</sup>
+
+injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: number): Promise\<void>
+
+模拟笔多指针操作
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型                                            | 必填 | 说明                                                     |
+| ------ |-----------------------------------------------|----|--------------------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列, **仅支持单指操作**。                     |
+| speed      | number| 否  | 注入笔指针动作的速度（像素每秒），默认值为600，值范围为200到40000，如果超出范围，则设置为600。 |
+| pressure      | number | 否  | 笔长按操作的压力，默认为1.0，取值范围为0.0到1.0。                          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Driver, PointerMatrix } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let pointer = PointerMatrix.create(1,8);
+  for (let step = 0; step < 8; step++) {
+    pointer.setPoint(0, step, {x: 500, y: 1100 - 100 *step});
+  }
+  await driver.injectPenPointerAction(pointer, 600, 0.5);
+}
+```
 
 ## PointerMatrix<sup>9+</sup>
 
