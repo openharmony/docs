@@ -32,7 +32,7 @@ setDataSource(dataSource: IDataSourcePrefetching): void;
 
 | 参数名        | 类型                                                | 必填 | 说明         |
 |------------|---------------------------------------------------|----|------------|
-| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 是  | 支持预取能力的数据源 |
+| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 是  | 支持预取能力的数据源。 |
 
 ```typescript
 class MyPrefetcher implements IPrefetcher {
@@ -61,8 +61,8 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 | 参数名        | 类型     | 必填 | 说明        |
 |------------|--------|----|-----------|
-| minVisible | number | 是  | 列表可见区域的上界 |
-| maxVisible | number | 是  | 列表可见区域的下界 |
+| minVisible | number | 是  | 列表可见区域的上界。 |
+| maxVisible | number | 是  | 列表可见区域的下界。 |
 
 ```typescript
 class MyPrefetcher implements IPrefetcher {
@@ -98,7 +98,7 @@ constructor(dataSource?: IDataSourcePrefetching);
 
 | 参数名        | 类型                                                | 必填 | 说明         |
 |------------|---------------------------------------------------|----|------------|
-| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 否  | 支持预取能力的数据源 |
+| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 否  | 支持预取能力的数据源。 |
 
 ### setDataSource
 setDataSource(dataSource: IDataSourcePrefetching): void;
@@ -113,7 +113,7 @@ setDataSource(dataSource: IDataSourcePrefetching): void;
 
 | 参数名        | 类型                                                | 必填 | 说明         |
 |------------|---------------------------------------------------|----|------------|
-| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 是  | 支持预取能力的数据源 |
+| dataSource | [IDataSourcePrefetching](#idatasourceprefetching) | 是  | 支持预取能力的数据源。 |
 
 ### visibleAreaChanged
 visibleAreaChanged(minVisible: number, maxVisible: number): void;
@@ -128,8 +128,8 @@ visibleAreaChanged(minVisible: number, maxVisible: number): void;
 
 | 参数名        | 类型     | 必填 | 说明        |
 |------------|--------|----|-----------|
-| minVisible | number | 是  | 列表可见区域的上界 |
-| maxVisible | number | 是  | 列表可见区域的下界 |
+| minVisible | number | 是  | 列表可见区域的上界。 |
+| maxVisible | number | 是  | 列表可见区域的下界。 |
 
 ## IDataSourcePrefetching
 
@@ -152,7 +152,7 @@ prefetch(index: number): Promise\<void\> | void;
 
 | 参数名   | 类型     | 必填 | 说明       |
 |-------|--------|----|----------|
-| index | number | 是  | 预取数据项索引值 |
+| index | number | 是  | 预取数据项索引值。 |
 
 ### cancel
 cancel?(index: number): Promise\<void\> | void;
@@ -167,7 +167,7 @@ cancel?(index: number): Promise\<void\> | void;
 
 | 参数名   | 类型     | 必填 | 说明         |
 |-------|--------|----|------------|
-| index | number | 是  | 取消预取数据项索引值 |
+| index | number | 是  | 取消预取数据项索引值。 |
 
 列表内容移出屏幕时（比如列表快速滑动场景下），预取算法判断屏幕以外的Item可以被取消预取时，该方法即会被调用。例如，如果HTTP框架支持请求取消，则可以在此处取消在prefetch中发起的网络请求。
 
