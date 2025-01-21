@@ -11,9 +11,9 @@ During application development, UI updates need to be synchronized in real time 
 
 ## Implementing ViewModel Through V2
 
-In the MVVM mode, the ViewModel plays an important role in managing data state and automatically updating views when data changes. The state management of V2 (referrer to as V2) provides various decorators and tools to help you share data between custom components and ensure that data changes are automatically synchronized to the UI. Common state management decorators include \@Local, \@Param, \@Event, \@ObservedV2, and \@Trace. In addition, V2 provides **AppStorageV2** and **PersistenceV2** as global state storage tools for state sharing between applications and persistent storage.
+In the MVVM mode, the ViewModel plays an important role in managing data state and automatically updating views when data changes. The state management of V2 (referred to as V2) in ArkUI provides various decorators and tools to help you share data between custom components and ensure that data changes are automatically synchronized to the UI. Common state management decorators include \@Local, \@Param, \@Event, \@ObservedV2, and \@Trace. In addition, V2 provides **AppStorageV2** and **PersistenceV2** as global state storage tools for state sharing between applications and persistent storage.
 
-This section uses a simple To-Do list as an example to introduce the decorators and tools of V2 and gradually extend functions based on a basic static to-do list. With step-by-step extension, you can gradually understand and grasp the usage of each decorator.
+This section uses a simple to-do list as an example to introduce the decorators and tools of V2 and gradually extend functions based on a basic static to-do list. With step-by-step extension, you can gradually understand and grasp the usage of each decorator.
 
 ### Basic Example
 
@@ -317,7 +317,7 @@ struct TodoList {
 
 ### Adding \@Monitor and \@Computed to Listen for State Variables and Computation Properties
 
-Based on the current task list function, some additional functions can be added to improve user experience, such as listening for task status changes and dynamic computation of the number of unfinished tasks. Therefore, the \@Monitor and \@Computed decorators are introduced. \@Monitor is used to listen for in-depth state variables and trigger the custom callback method when the property changes. \@Computed is used to decorate the **getter** method and detect the changes of computed properties. When the value changes, it is computed only once to reduce the overhead of repeated computation.
+Based on the current task list function, some additional functions can be added to improve user experience, such as listening for task status changes and dynamic computation of the number of unfinished tasks. Therefore, the \@Monitor and \@Computed decorators are introduced. \@Monitor is used to listen for in-depth state variables and trigger the custom callback method when the property changes. \@Computed is used to decorate the **get** method and detect the changes of computed properties. When the value changes, it is computed only once to reduce the overhead of repeated computation.
 
 In this example, \@Monitor is used to listen for the in-depth **isFinish** property of **task** in **TaskItem**. When the task status changes, the **onTasksFinished** callback is invoked to output a log to record the change. In addition, the number of unfinished tasks in the **TodoList** is recorded. Use \@Computed to decorate **tasksUnfinished**. The value is automatically recomputed when the task status changes. The two decorators are used to implement in-depth listening and efficient computation of state variables.
 
@@ -503,7 +503,7 @@ struct TodoList {
           .onClick(() => {
             let wantInfo: Want = {
               deviceId: '', // An empty deviceId indicates the local device.
-              bundleName: 'com.example.mvvmv2_new',
+              bundleName: 'com.example.mvvmv2_new', // Replace it with the bundle name in AppScope/app.json5.
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -526,7 +526,8 @@ struct TodoList {
 
 ```ts
 // SettingPage code of the SettingAbility.
-import { router, AppStorageV2 } from '@kit.ArkUI';
+import { AppStorageV2 } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @ObservedV2
 export class Setting {
@@ -537,6 +538,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
+  private context = getContext(this) as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -551,7 +553,7 @@ struct SettingPage {
           })
       }
       Button('Back')
-        .onClick(()=>{router.back()})
+        .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
     }
     .alignItems(HorizontalAlign.Start)
@@ -592,7 +594,7 @@ class TaskList {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
@@ -747,7 +749,7 @@ class TaskList {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: Task)=>{
       let newTask = new Task();
       newTask.taskName = task.taskName;
@@ -864,7 +866,7 @@ struct TodoList {
 
 ## Reconstructing Code to Comply with the MVVM Architecture
 
-The preceding example uses a series of state management decorators to implement data synchronization and UI re-render in **TodoList**. However, as application functions become more complex, the code structure becomes difficult to maintain. The responsibilities of Model, View, and ViewModel are not completely separated, and there is still some coupling. To better organize code and improve maintainability, the MVVM mode is used to reconstruct code to further separate the data layer (Model), logic layer (ViewModel), and display layer (View).
+The preceding example uses a series of state management decorators to implement data synchronization and UI re-render in the to-do list. However, as application functions become more complex, the code structure becomes difficult to maintain. The responsibilities of Model, View, and ViewModel are not completely separated, and there is still some coupling. To better organize code and improve maintainability, the MVVM mode is used to reconstruct code to further separate the data layer (Model), logic layer (ViewModel), and display layer (View).
 
 ### Reconstructed Code Structure
 ```
@@ -924,7 +926,7 @@ export default class TaskListModel {
     let getJson = await context.resourceManager.getRawFileContent('defaultTasks.json');
     let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM : true };
     let textDecoder = util.TextDecoder.create('utf-8',textDecoderOptions);
-    let result =textDecoder.decodeWithStream(getJson,{ stream : false });
+    let result = textDecoder.decodeToString(getJson);
     this.tasks =JSON.parse(result).map((task: TaskModel)=>{
       let newTask = new TaskModel();
       newTask.taskName = task.taskName;
@@ -1136,7 +1138,7 @@ export default struct BottomView {
 }
 ```
 
-- **TodoListPage**: main page of the To-Do list, which contains the preceding three View components (TitleView, ListView, and BottomView) and is used to display all parts of the to-do list in a unified manner and manage the task list and settings. It obtains data from ViewModel, passes the data to each child component of View for rendering, and persists task data through **PersistenceV2** to ensure data consistency after the application is restarted.
+- **TodoListPage**: main page of the to-do list, which contains the preceding three **View** components (**TitleView**, **ListView**, and **BottomView**) and is used to display all parts of the to-do list in a unified manner and manage the task list and settings. It obtains data from ViewModel, passes the data to each child component of View for rendering, and persists task data through **PersistenceV2** to ensure data consistency after the application is restarted.
 
 ```ts
 // src/main/ets/pages/TodoListPage.ets
@@ -1187,7 +1189,8 @@ struct TodoList {
 ```ts
 // src/main/ets/pages/SettingPage.ets
 
-import { router, AppStorageV2 } from '@kit.ArkUI';
+import { AppStorageV2 } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @ObservedV2
 export class Setting {
@@ -1198,6 +1201,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
+  private context = getContext(this) as common.UIAbilityContext;
 
   build(){
     Column(){
@@ -1212,7 +1216,7 @@ struct SettingPage {
           })
       }
       Button('Back')
-        .onClick(()=>{router.back()})
+        .onClick(()=>this.context.terminateSelf())
         .margin({ top: 10 })
     }
     .alignItems(HorizontalAlign.Start)
@@ -1223,3 +1227,4 @@ struct SettingPage {
 ## Summary
 
 This guide uses a simple to-do list application as an example to introduce decorators of V2 and implement the MVVM architecture through code reconstruction. Finally, data, logic, and views are layered to provide a clearer code structure and easier maintenance. Proper use of Model, View, and ViewModel helps efficiently synchronize data with the UI, simplify the development process, and reduce complexity. It is hoped that you can better understand the MVVM mode and flexibly apply it to your application development, thereby improving the development efficiency and code quality.
+

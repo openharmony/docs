@@ -33,6 +33,7 @@ The following table describes the attributes for adding an asset.
 | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | ASSET_TAG_CONFLICT_RESOLUTION   | Type: uint32_t<br>Value range: see [Asset_ConflictResolution](../../reference/apis-asset-store-kit/_asset_type.md#asset_conflictresolution)| No    | Policy for resolving the conflict (for example, duplicate alias).                            |
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to encrypt the customized asset attribute information. By default, the information does not need to be encrypted.|
+| ASSET_TAG_GROUP_ID<sup>16+</sup> | Type: Uint8[]<br>Length: 7-127 bytes| No| Group to which the asset to be added belongs. By default, this parameter is not specified.|
 
 ## Constraints
 
@@ -48,7 +49,9 @@ The following table describes the attributes for adding an asset.
 
 ## Example
 
-Add an asset with password of **demo_pwd**, alias of **demo_alias**, and additional information of **demo_label** and allow the asset to be accessed after the device is unlocked for the first time.
+Add an asset that is accessible when the user unlocks the device for the first time. The asset includes password **demo_pwd**, alias **demo_alias**, and additional information **demo_label**.
+
+For details about how to add an asset to a group, see [Adding an Asset to a Group](asset-native-group-access-control.md#adding-an-asset-to-a-group).
 
 1. Add the dynamic library in the CMake script.
    ```txt

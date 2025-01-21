@@ -133,6 +133,7 @@
       - 模态转场设置
         - [全屏模态转场](arkui-ts/ts-universal-attributes-modal-transition.md)
         - [半模态转场](arkui-ts/ts-universal-attributes-sheet-transition.md)
+        - [半模态转场 (系统接口)](arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
       - [隐私遮罩](arkui-ts/ts-universal-attributes-obscured.md)
       - [文本通用](arkui-ts/ts-universal-attributes-text-style.md)
       - [拖拽控制](arkui-ts/ts-universal-attributes-drag-drop.md)
@@ -426,6 +427,7 @@
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
+    - [native_interface_focus.h](native__interface__focus_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
@@ -486,6 +488,7 @@
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
+    - [截图错误码](errorcode-snapshot.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

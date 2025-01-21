@@ -338,9 +338,33 @@ struct TextTimerExample {
 @Entry
 @Component
 struct TextTimerExample {
-  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
-      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
-      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  @State textShadows: ShadowOptions | Array<ShadowOptions> = [{
+    radius: 10,
+    color: Color.Red,
+    offsetX: 10,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Black,
+    offsetX: 20,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Brown,
+    offsetX: 30,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Green,
+    offsetX: 40,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Yellow,
+    offsetX: 100,
+    offsetY: 0
+  }]
+
   build() {
     Column({ space: 8 }) {
       TextTimer().fontSize(50).textShadow(this.textShadows)
@@ -359,26 +383,29 @@ struct TextTimerExample {
 class MyTextTimerModifier implements ContentModifier<TextTimerConfiguration> {
   constructor() {
   }
-  applyContent() : WrappedBuilder<[TextTimerConfiguration]>
-  {
-      return wrapBuilder(buildTextTimer)
+
+  applyContent(): WrappedBuilder<[TextTimerConfiguration]> {
+    return wrapBuilder(buildTextTimer)
   }
 }
 
-@Builder function buildTextTimer(config: TextTimerConfiguration) {
+@Builder
+function buildTextTimer(config: TextTimerConfiguration) {
   Column() {
-     Stack({ alignContent: Alignment.Center }) {
-       Circle({ width: 150, height: 150 }).fill(config.started ? (config.isCountDown ? 0xFF232323 : 0xFF717171) : 0xFF929292)
-       Column(){
-         Text(config.isCountDown ? "倒计时" : "正计时").fontColor(Color.White)
-         Text(
-           (config.isCountDown ? "剩余" : "已经过去了") + (config.isCountDown?
-             (Math.max(config.count / 1000 - config.elapsedTime / 100,0)).toFixed(1) + "/" + (config.count / 1000).toFixed(0)
-             :((config.elapsedTime / 100).toFixed(0))
-           ) + "秒"
-         ).fontColor(Color.White)
-       }
-     }
+    Stack({ alignContent: Alignment.Center }) {
+      Circle({ width: 150, height: 150 })
+        .fill(config.started ? (config.isCountDown ? 0xFF232323 : 0xFF717171) : 0xFF929292)
+      Column() {
+        Text(config.isCountDown ? "倒计时" : "正计时").fontColor(Color.White)
+        Text(
+          (config.isCountDown ? "剩余" : "已经过去了") + (config.isCountDown ?
+            (Math.max(config.count / 1000 - config.elapsedTime / 100, 0)).toFixed(1) + "/" +
+            (config.count / 1000).toFixed(0)
+            : ((config.elapsedTime / 100).toFixed(0))
+          ) + "秒"
+        ).fontColor(Color.White)
+      }
+    }
   }
 }
 
@@ -393,27 +420,27 @@ struct Index {
   build() {
     Row() {
       Column() {
-        TextTimer({isCountDown: true, count: this.count, controller: this.countDownTextTimerController})
+        TextTimer({ isCountDown: true, count: this.count, controller: this.countDownTextTimerController })
           .contentModifier(this.myTimerModifier)
           .onTimer((utc: number, elapsedTime: number) => {
             console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime)
           })
           .margin(10)
-        TextTimer({isCountDown: false, controller: this.countUpTextTimerController})
+        TextTimer({ isCountDown: false, controller: this.countUpTextTimerController })
           .contentModifier(this.myTimerModifier)
           .onTimer((utc: number, elapsedTime: number) => {
             console.info('textTimer onTimer utc is：' + utc + ', elapsedTime: ' + elapsedTime)
           })
         Row() {
-          Button("start").onClick(()=>{
+          Button("start").onClick(() => {
             this.countDownTextTimerController.start()
             this.countUpTextTimerController.start()
           }).margin(10)
-          Button("pause").onClick(()=>{
+          Button("pause").onClick(() => {
             this.countDownTextTimerController.pause()
             this.countUpTextTimerController.pause()
           }).margin(10)
-          Button("reset").onClick(()=>{
+          Button("reset").onClick(() => {
             this.countDownTextTimerController.reset()
             this.countUpTextTimerController.reset()
           }).margin(10)
@@ -430,9 +457,10 @@ struct Index {
 该示例展示了TextTimer计时器如何在创建完成之后立即开始计时。
 
 ``` ts
+// xxx.ets
 @Entry
 @Component
-struct textTimerStart {
+struct TextTimerStart {
   textTimerController: TextTimerController = new TextTimerController()
   @State format: string = 'mm:ss.SS'
 
@@ -447,7 +475,7 @@ struct textTimerStart {
         .onTimer((utc: number, elapsedTime: number) => {
           console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
         })
-        .onAppear(()=>{
+        .onAppear(() => {
           this.textTimerController.start()
         })
     }

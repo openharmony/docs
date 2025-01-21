@@ -26,7 +26,7 @@ ArcScrollBar的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value |  [ArcScrollBarOptions](#arcscrollbaroptions)| 是 | 滚动条组件参数。 |
+| options |  [ArcScrollBarOptions](#arcscrollbaroptions)| 是 | 滚动条组件参数。 |
 
 ## ArcScrollBarOptions
 

@@ -18,11 +18,11 @@ type UIAbilityContext = _UIAbilityContext.default
 
 UIAbilityContext二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -34,11 +34,11 @@ type AbilityStageContext = _AbilityStageContext.default
 
 AbilityStageContext二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -50,11 +50,11 @@ type ApplicationContext = _ApplicationContext.default
 
 ApplicationContext二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -66,11 +66,11 @@ type BaseContext = _BaseContext.default
 
 BaseContext二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -82,11 +82,11 @@ type Context = _Context.default
 
 Context二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -98,11 +98,11 @@ type ExtensionContext = _ExtensionContext.default
 
 ExtensionContext二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -114,11 +114,11 @@ type FormExtensionContext = _FormExtensionContext.default
 
 FormExtensionContext二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -132,7 +132,7 @@ VpnExtensionContext二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -144,11 +144,11 @@ type EventHub = _EventHub.default
 
 EventHub二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -160,7 +160,7 @@ type PacMap = _PacMap
 
 PacMap二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -174,11 +174,11 @@ type AbilityResult = _AbilityResult
 
 AbilityResult二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -190,11 +190,11 @@ type AbilityStartCallback = _AbilityStartCallback
 
 AbilityStartCallback二级模块。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -208,7 +208,7 @@ ConnectOptions二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -222,7 +222,7 @@ UIExtensionContext二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -234,11 +234,11 @@ type EmbeddableUIAbilityContext = _EmbeddableUIAbilityContext.default
 
 EmbeddableUIAbilityContext二级模块。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -252,7 +252,7 @@ PhotoEditorExtensionContext二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -264,11 +264,11 @@ type UIServiceProxy = _UIServiceProxy.default
 
 UIServiceProxy二级模块。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -280,11 +280,11 @@ type UIServiceExtensionConnectCallback = _UIServiceExtensionConnectCallback.defa
 
 UIServiceExtensionConnectCallback二级模块。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在Stage模型下使用。
+**模型约束**：此接口仅可在Stage模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |

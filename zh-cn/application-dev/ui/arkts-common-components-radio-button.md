@@ -107,4 +107,4 @@ struct RadioExample {
 ```
 
 
-![zh-cn_image_0000001562700457](figures/zh-cn_image_0000001562700457.png)
+![zh-cn_image_0000001562700457](figures/zh-cn_image_0000001562700457.gif)

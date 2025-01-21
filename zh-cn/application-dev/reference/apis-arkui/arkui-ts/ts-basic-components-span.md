@@ -301,7 +301,7 @@ baselineOffset(value: LengthMetrics): T
 ## 示例
 ### 示例1（设置文本样式）
 
-该示例通过decoration、letterSpacing、textCase属性展示了不同样式的文本效果。
+该示例展示了设置不同样式的文本效果以及span配置点击事件。
 
 ```ts
 // xxx.ets
@@ -309,7 +309,7 @@ baselineOffset(value: LengthMetrics): T
 @Component
 struct SpanExample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
       Text('Basic Usage').fontSize(9).fontColor(0xCCCCCC)
       Text() {
         Span('In Line')
@@ -320,10 +320,11 @@ struct SpanExample {
       Text() {
         Span('This is the Span component').fontSize(12).textCase(TextCase.Normal)
           .decoration({ type: TextDecorationType.None, color: Color.Red })
-      }
+          .fontFamily('HarmonyOS Sans')
+      }.margin({ top: 12 })
 
       // 文本横线添加
-      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
+      Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)
       }
@@ -339,7 +340,7 @@ struct SpanExample {
       }
 
       // 文本字符间距
-      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC)
+      Text('LetterSpacing').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('span letter spacing')
           .letterSpacing(0)
@@ -360,7 +361,7 @@ struct SpanExample {
 
 
       // 文本大小写展示设置
-      Text('Text Case').fontSize(9).fontColor(0xCCCCCC)
+      Text('Text Case').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
       Text() {
         Span('I am Lower-span').fontSize(12)
           .textCase(TextCase.LowerCase)
@@ -372,7 +373,63 @@ struct SpanExample {
           .textCase(TextCase.UpperCase)
           .decoration({ type: TextDecorationType.None })
       }
-    }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
+
+      // 文本字体样式设置
+      Text('FontStyle').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am FontStyle-Normal').fontSize(12)
+          .fontStyle(FontStyle.Normal)
+      }
+
+      Text() {
+        Span('I am FontStyle-Italic').fontSize(12)
+          .fontStyle(FontStyle.Italic)
+      }
+
+      // 文本字体粗细设置
+      Text('FontWeight').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am FontWeight-Lighter').fontSize(12)
+          .fontWeight(FontWeight.Lighter)
+      }
+
+      Text() {
+        Span('I am FontWeight-Bold').fontSize(12)
+          .fontWeight(FontWeight.Bold)
+      }
+
+      // 文本行高设置
+      Text('LineHeight').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('I am lineHeight default\n').fontSize(12)
+          .fontWeight(FontWeight.Lighter)
+        Span('I am lineHeight 30').fontSize(12)
+          .lineHeight(30)
+      }
+      .backgroundColor(Color.Gray)
+
+      // 文本样式设置
+      Text('Font').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('span font 12 Bolder Italic')
+          .font({
+            size: 12,
+            weight: FontWeight.Bolder,
+            style: FontStyle.Italic,
+            family: "HarmonyOS Sans"
+          })
+      }
+
+      // span点击事件设置
+      Text('span click event').fontSize(9).fontColor(0xCCCCCC).margin({ top: 12 })
+      Text() {
+        Span('Span default ').fontSize(12)
+        Span('Span click')
+          .onClick((event) => {
+            console.log("span onClick")
+          })
+      }
+    }.width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```

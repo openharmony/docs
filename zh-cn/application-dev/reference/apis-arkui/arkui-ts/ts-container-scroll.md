@@ -240,6 +240,9 @@ initialOffset(value: OffsetOptions)
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+>  **说明：**
+>
+>  不支持滚动组件通用事件中的[onWillScroll](ts-container-scrollable-common.md#onwillscroll12)、[onDidScroll](ts-container-scrollable-common.md#ondidscroll12)事件。
 
 ### onScrollFrameBegin<sup>9+</sup>
 

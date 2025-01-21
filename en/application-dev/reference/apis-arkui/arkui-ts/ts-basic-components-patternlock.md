@@ -48,7 +48,7 @@ Sets the width and height (same value) of the component. If this attribute is se
 
 circleRadius(value: Length)
 
-Sets the radius of the grid dot. If this attribute is set to **0** or a negative value, the default value is used.
+Sets the radius of the dots in a grid. If this attribute is set to **0** or a negative value, the default value is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -58,7 +58,7 @@ Sets the radius of the grid dot. If this attribute is set to **0** or a negative
 
 | Name| Type                        | Mandatory| Description                              |
 | ------ | ---------------------------- | ---- | ---------------------------------- |
-| value  | [Length](ts-types.md#length) | Yes  | Radius of the grid dot.<br>Default value: **6vp**|
+| value  | [Length](ts-types.md#length) | Yes  | Radius of the dots in a grid.<br>Default value: **6vp**<br>Value range: (0, sideLength/11]<br>Values less than or equal to 0 are handled as the default value, and values exceeding the maximum are handled as the maximum.|
 
 ### backgroundColor
 backgroundColor(value: ResourceColor)
@@ -173,7 +173,7 @@ Sets whether to allow the user to reset the component status (that is, clear the
 
 activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 
-Sets the background circle style of the grid dot in the activated state.
+Sets the background circle style for the dots in a grid when they are in the activated state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -183,9 +183,9 @@ Sets the background circle style of the grid dot in the activated state.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| options  | [CircleStyleOptions](#circlestyleoptions12)| Yes  | Background circle style of the grid dot in the activated state.|
+| options  | [CircleStyleOptions](#circlestyleoptions12)| Yes  | Background circle style of the dots in the activated state.|
 
-## CircleStyleOptions<sup>12+</sup>
+### CircleStyleOptions<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -197,6 +197,23 @@ Sets the background circle style of the grid dot in the activated state.
 | color | [ResourceColor](ts-types.md#resourcecolor) | No| Color of the background circle.<br>Default value: same as the value of **pathColor**|
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Radius of the background circle.<br>Default value: 11/6 of **circleRadius**|
 | enableWaveEffect | boolean | No| Whether to enable the wave effect.<br>Default value: **true**|
+| enableForeground<sup>14+</sup> | boolean | No| Whether the background circle is displayed in the foreground.<br>Default value: **true**|
+
+### skipUnselectedPoint<sup>14+</sup>
+
+skipUnselectedPoint(skipped: boolean)
+
+Sets whether unselected dots in the grid are automatically selected when the password path passes over them.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| skipped  | boolean | Yes  | Whether unselected dots in the grid are automatically selected when the password path passes over them. Default value: **false**|
 
 ## Events
 
@@ -240,6 +257,12 @@ Implements the controller bound to the **PatternLock** component for resetting t
 let patternLockController: PatternLockController = new PatternLockController()
 ```
 
+### constructor
+
+constructor()
+
+A constructor used to create a **PatternLockController** instance.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -264,7 +287,7 @@ Sets the authentication challenge result for the pattern password.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Type                                                    | Mandatory| Description      |
+| Name  | Type                                                        | Mandatory| Description          |
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | result | [PatternLockChallengeResult](#patternlockchallengeresult11) | Yes  | Authentication challenge result of the pattern password.|
 
@@ -280,6 +303,12 @@ Sets the authentication challenge result for the pattern password.
 | WRONG   | The pattern password is incorrect.|
 
 ##  Example
+
+This example shows the basic usage of the **PatternLock** component. It sets the size of the grid using **sideLength**, customizes the dot styles using **circleRadius** and other attributes, and sets a callback for password input using **onPatternComplete**.
+
+When the user completes the password input, different responses are given based on the input:<br>- If the password length is less than 5, a message is displayed to prompt the user to re-enter the password.<br>- After the first input, a message is displayed to prompt the user to enter the password again.<br>- After the second input, the system checks whether the two inputs match. If they match, a message is displayed to indicate that the password setup is successful; otherwise, the user is prompted to re-enter the password.
+
+The user can click **Reset PatternLock** to reset the password lock.
 
 ```ts
 // xxx.ets
@@ -314,7 +343,7 @@ struct PatternLockExample {
         })
         .onPatternComplete((input: Array<number>) => {
           // If the length of the entered password is less than 5, the system prompts the user to enter the password again.
-          if (input === null || input === undefined || input.length < 5) {
+          if (input.length < 5) {
             this.message = 'The password length needs to be greater than 5, please enter again.'
             return
           }

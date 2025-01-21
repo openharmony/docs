@@ -623,36 +623,36 @@ struct Parent {
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 ```
 
-使用new StringArray()来构造StringArray的实例，new运算符使得\@Observed生效，\@Observed观察到StringArray的属性变化。
+声明一个继承自Array的类ObservedArray\<T\>并使用new操作符创建ObservedArray\<string\>的实例。通过new操作符创建的ObservedArray的实例可以观察到属性变化。
 
-声明一个从Array扩展的类class StringArray extends Array&lt;string&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
-
+在下面的示例中，展示了如何利用\@Observed观察二维数组的变化。
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 
 @Component
-struct ItemPage {
-  @ObjectLink itemArr: StringArray;
+struct Item {
+  @ObjectLink itemArr: ObservedArray<string>;
 
   build() {
     Row() {
-      Text('ItemPage')
-        .width(100).height(100)
-
-      ForEach(this.itemArr,
-        (item: string | Resource) => {
-          Text(item)
-            .width(100).height(100)
-        },
-        (item: string) => item
-      )
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
     }
   }
 }
@@ -660,39 +660,38 @@ struct ItemPage {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<StringArray> = [new StringArray(), new StringArray(), new StringArray()];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
 
   build() {
     Column() {
-      ItemPage({ itemArr: this.arr[0] })
-      ItemPage({ itemArr: this.arr[1] })
-      ItemPage({ itemArr: this.arr[2] })
-      Divider()
-
-
-      ForEach(this.arr,
-        (itemArr: StringArray) => {
-          ItemPage({ itemArr: itemArr })
-        },
-        (itemArr: StringArray) => itemArr[0]
-      )
+      ForEach(this.arr, (itemArr: ObservedArray<string>) => {
+        Item({ itemArr: itemArr })
+      })
 
       Divider()
 
-      Button('update')
+      Button('push two-dimensional array item')
+        .margin(10)
         .onClick(() => {
-          console.error('Update all items in arr');
-          if ((this.arr[0] as StringArray)[0] !== undefined) {
-            // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
-            // 因此需要确保推送的字符串是唯一的。
-            this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
-            this.arr[1].push(`${this.arr[1].slice(-1).pop()}${this.arr[1].slice(-1).pop()}`);
-            this.arr[2].push(`${this.arr[2].slice(-1).pop()}${this.arr[2].slice(-1).pop()}`);
-          } else {
-            this.arr[0].push('Hello');
-            this.arr[1].push('World');
-            this.arr[2].push('!');
-          }
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(new ObservedArray<string>(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = new ObservedArray<string>(['watermelon']);
         })
     }
   }

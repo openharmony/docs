@@ -457,7 +457,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ### libuv单线程约束
 
-在OpenHarmony中使用libuv时，**务必注意：使用`uv_loop_init`接口初始化loop的线程和调用`uv_run`的线程应保持一致，称为loop线程，并且对uvloop的所有非线程安全操作，均需保证与loop同线程，否则将会有发生crash的风险**。OpenHarmony对libuv的使用有更严格的约束，对于非线程安全的函数，libbuv将实现多线程检测机制，检测到多线程问题后输出警告日志。为了确保检测机制的准确性，协助开发者规避uv接口的不规范使用，我们建议在创建事件循环与执行uv_run始终保持在同一线程。
+在OpenHarmony中使用libuv时，**务必注意：使用`uv_loop_init`接口初始化loop的线程和调用`uv_run`的线程应保持一致，称为loop线程，并且对uvloop的所有非线程安全操作，均需保证与loop同线程，否则将会有发生crash的风险**。OpenHarmony对libuv的使用有更严格的约束，对于非线程安全的函数，libuv将实现多线程检测机制，检测到多线程问题后输出警告日志。为了确保检测机制的准确性，协助开发者规避uv接口的不规范使用，我们建议在创建事件循环与执行uv_run始终保持在同一线程。
 
 #### 单线程约束
 

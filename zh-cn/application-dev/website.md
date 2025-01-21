@@ -833,6 +833,7 @@
           - [更新关键资产(ArkTS)](security/AssetStoreKit/asset-js-update.md)
           - [查询关键资产(ArkTS)](security/AssetStoreKit/asset-js-query.md)
           - [查询需要用户认证的关键资产(ArkTS)](security/AssetStoreKit/asset-js-query-auth.md)
+          - [管理群组关键资产(ArkTS)](security/AssetStoreKit/asset-js-group-access-control.md)
           <!--Del-->
           - [指定用户空间进行关键资产操作(仅对系统应用开放)(ArkTS)](security/AssetStoreKit/asset-as-user-sys.md)
           <!--DelEnd-->
@@ -841,6 +842,7 @@
           - [删除关键资产(C/C++)](security/AssetStoreKit/asset-native-remove.md)
           - [更新关键资产(C/C++)](security/AssetStoreKit/asset-native-update.md)
           - [查询关键资产(C/C++)](security/AssetStoreKit/asset-native-query.md)
+          - [管理群组关键资产(C/C++)](security/AssetStoreKit/asset-native-group-access-control.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-kit-->
         - [Crypto Architecture Kit简介](security/CryptoArchitectureKit/crypto-architecture-kit-intro.md)
         - 密钥生成和转换<!--crypto-key-generation-conversion-->
@@ -1310,6 +1312,7 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
         - [媒体数据解析](media/avcodec/audio-video-demuxer.md)
@@ -1661,6 +1664,76 @@
       - [OpenHarmony ABI](napi/ohos-abi.md)
       - [CPU特性](napi/cpu-features.md)
       - [使用Neon指令扩展](napi/neon-guide.md)
+  <!--Del-->
+  - 性能
+    - [性能优化概览 ](performance/performance-overview.md)
+    - [应用开发性能优化入门引导 ](performance/application-performance-optimization-guidance.md)
+    - [应用性能优化常见问题解决指导 ](performance/performance-optimization-practical-guidance.md)
+    - ArkTS高性能编程
+      - [高效并发编程](performance/efficient-concurrent-programming.md)
+      - [N-API高效开发指导](performance/develop-Native-modules-using-NAPI-safely-and-efficiently.md)
+      - [多线程能力场景化](performance/multi_thread_capability.md)
+      - [利用native的方式实现跨线程调用](performance/native-threads-call-js.md)
+      - [避免开发过程中的冗余操作](performance/avoiding-redundant-operations.md)
+      - [使用AOT进行性能优化](performance/performance-optimization-using-aot.md)
+      - [延迟加载Lazy-Import使用指导](performance/Lazy-Import-Instructions.md)
+    - 减少卡顿丢帧
+      - [正确使用LazyForEach优化](performance/lazyforeach_optimization.md)
+      - [组件复用使用指导](performance/component-recycle.md)
+      - [组件复用性能优化指导](performance/component_recycle_case.md)
+      - [组件复用总览](performance/component-reuse-overview.md)
+      - [WaterFlow高性能开发指导](performance/waterflow_optimization.md)
+      - [Swiper高性能开发指导](performance/swiper_optimization.md)
+      - [合理进行状态管理](performance/proper_state_management.md)
+      - [精准控制组件的更新范围](performance/precisely-control-render-scope.md)
+      - [合理使用renderGroup](performance/reasonable-using-renderGroup.md)
+      - [合理使用动画](performance/reasonable-using-animation.md)
+      - [合理使用多线程共享内存](performance/thread_memory_shared.md)
+      - [Grid高性能开发指导](performance/grid_optimization.md)
+      - [合理使用自定义组件冻结功能](performance/custom_component_freeze.md)
+      - [避免在滑动场景的高频回调接口中处理耗时操作](performance/avoid_high_frequency_callback_execute_lengthy_operation.md)
+      - [合理使用系统接口](performance/reasonable_using_system_interfaces.md)
+      - [避免在主线程中执行耗时操作](performance/avoid_time_consuming_operations_in_mainthread.md)
+      - [图像模糊动效优化：静态模糊与动态模糊的性能对比解析](performance/fuzzy_scene_performance_optimization.md)
+      - [复杂绘制场景下使用Native Drawing自绘制能力替代Canvas提升性能](performance/native_drawing_substitute_canvas.md)
+    - 提升应用启动和响应速度
+      - [提升应用冷启动速度](performance/improve-application-cold-start-speed.md)
+      - [提升应用响应速度](performance/improve-application-response.md)
+      - [Flex布局性能提升使用指导](performance/flex-development-performance-boost.md)
+      - [优化布局性能](performance/reduce-view-nesting-levels.md)
+      - [合理选择条件渲染和显隐控制](performance/proper-choice-between-if-and-visibility.md)
+      - [文件上传下载性能提升指导](performance/improve-file-upload-and-download-performance.md)
+      - [减少首帧绘制时的冗余操作](performance/reduce-redundant-operations-when-render-first-frame.md)
+      - [列表场景性能提升实践](performance/list-perf-improvment.md)
+      - [动效能力实践](performance/animation_practice.md)
+      - [性能提升的其他方法](performance/arkts-performance-improvement-recommendation.md)
+      - [运行时动态加载页面提升性能](performance/performance-dynamic-import.md)
+      - [合理使用缓存提升性能](performance/reasonable_using_cache_improve_performance.md)
+      - [合理运行后台任务](performance/reasonable-running-backgroundTask.md)
+      - [Web组件开发性能提升指导](performance/performance-web-import.md)
+      - [使用同层渲染在Webview上渲染原生组件](performance/webview-render-app-components.md)
+      - [减小应用包大小](performance/reduce-package-size.md)
+      - [全局自定义组件复用实现](performance/node_custom_component_reusable_pool.md)
+      - [使用ArkUI的FrameNode扩展实现动态布局类框架](performance/imperative_dynamic_layouts.md)
+      - [在线短视频流畅切换 ](performance/performance-quick-switch-short-video.md)
+      - [相机分段式拍照性能提升实践](performance/performance-camera-shot2see.md)
+      - [在线视频播放卡顿优化实践](performance/online_video_playback_lags_practice.md)
+      - [音画同步最佳实践](performance/audio-video-synchronization.md)
+    - 性能工具
+      - [性能分析工具CPU Profiler](performance/application-performance-analysis.md)
+      - [性能优化工具HiDumper](performance/performance-optimization-using-hidumper.md)
+      - [性能优化工具SmartPerf-Host](performance/performance-optimization-using-smartperf-host.md)
+      - [常用trace使用指导](performance/common-trace-using-instructions.md)
+      - [状态变量组件定位工具实践](performance/state_variable_dfx_pratice.md)
+      - [应用滑动场景帧率问题分析实践](performance/long-frame-optimization.md)
+      - [时延类性能问题分析实践](performance/delay_related_performance.md)
+      - [Web性能问题分析案例](performance/web-analyse.md)
+      - [应用性能问题分析指导](performance/application-performance-guide.md)
+      - [页面布局检查器ArkUI Inspector](performance/arkUI-inspector.md)
+      - [跨线程序列化耗时点分析](performance/cross-thread-serialization-time-consumption-analysis.md)
+    - 功耗
+      - [高效利用HWC的低功耗设计](performance/utilize_hwc_effiently.md)
+  <!--DelEnd-->
 
 - API参考<!--api-reference-->
   - API参考概述<!--ref-overview-api-->

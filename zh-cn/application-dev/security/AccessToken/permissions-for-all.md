@@ -477,3 +477,28 @@
 
 **起始版本**：15
 
+### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+允许设备管理应用管理个人设备限制策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：15
+
+### ohos.permission.START_PROVISIONING_MESSAGE
+
+允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：15

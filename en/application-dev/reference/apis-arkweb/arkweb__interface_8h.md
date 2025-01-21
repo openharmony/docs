@@ -30,7 +30,7 @@ Declares ArkWeb APIs for obtaining native APIs and the basic native API types.
 
 | Name| Description| 
 | -------- | -------- |
-| [ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) {<br>[ARKWEB_NATIVE_COMPONENT](_web.md), [ARKWEB_NATIVE_CONTROLLER](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE_PORT](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE](_web.md),<br>[ARKWEB_NATIVE_COOKIE_MANAGER](_web.md)<br>} | Enumerates the native API types. | 
+| [ArkWeb_NativeAPIVariantKind](_web.md#arkweb_nativeapivariantkind) {<br>[ARKWEB_NATIVE_COMPONENT](_web.md), [ARKWEB_NATIVE_CONTROLLER](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE_PORT](_web.md), [ARKWEB_NATIVE_WEB_MESSAGE](_web.md),<br>[ARKWEB_NATIVE_COOKIE_MANAGER](_web.md), [ARKWEB_NATIVE_JAVASCRIPT_VALUE](_web.md)<br>} | Enumerates the native API types. | 
 
 
 ### Functions

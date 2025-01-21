@@ -39,6 +39,7 @@ TextPicker(options?: TextPickerOptions)
 | range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
 | selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
 | value | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用string类型。<br/>多列、多列联动数据选择器使用string[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
+| columnWidths<sup>16+</sup> | LengthMetrics[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等<br/>**说明**：如果文本长度大于列宽时，本文被截断。 |
 
 ## TextPickerRangeContent<sup>10+</sup>对象说明
 
@@ -243,6 +244,31 @@ defaultTextStyle(style: TextPickerTextStyle)
 >
 > 该组件不建议开发者在动效过程中修改属性数据。
 
+### enableHapticFeedback<sup>16+</sup>
+
+enableHapticFeedback(enable: Optional\<boolean>)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+> ```json
+> "requestPermissions": [
+>  {
+>     "name": "ohos.permission.VIBRATE",
+>  }
+> ]
+> ``
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -389,10 +415,11 @@ type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: num
 
 ### 示例1（设置选择器列数）
 
-该示例通过配置range实现单列或多列文本选择器。
+该示例通过配置range实现单列或多列文本选择器，通过配置columnWidths设置每一列宽度。
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
 class bottom {
   bottom:number = 50
 }
@@ -422,11 +449,25 @@ struct TextPickerExample {
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
   ]
+  private singleColumnWidths: LengthMetrics[] = [
+    LengthMetrics.percent(50)
+  ]
 
+  private multipleColumnWidths: LengthMetrics[] = [
+    LengthMetrics.vp(100),
+    LengthMetrics.vp(200),
+    LengthMetrics.vp(100)
+  ]
+
+  private cascadeColumnWidths: LengthMetrics[] = [
+    LengthMetrics.percent(20),
+    LengthMetrics.percent(30),
+    LengthMetrics.percent(50)
+  ]
   build() {
     Column() {
 
-      TextPicker({ range: this.apfruits, selected: this.select })
+      TextPicker({ range: this.apfruits, selected: this.select, columnWidths: this.singleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
@@ -437,7 +478,7 @@ struct TextPickerExample {
           console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
         })
 
-      TextPicker({ range: this.multi })
+      TextPicker({ range: this.multi, columnWidths: this.multipleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
@@ -448,7 +489,7 @@ struct TextPickerExample {
           console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
 
-      TextPicker({ range: this.cascade })
+      TextPicker({ range: this.cascade, columnWidths: this.cascadeColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
@@ -463,7 +504,7 @@ struct TextPickerExample {
 }
 ```
 
-![textpicker](figures/textpicker.gif)
+![textpicker](figures/textpicker.png)
 
 ### 示例2（设置文本样式）
 

@@ -62,12 +62,14 @@ AtomicServiceTabs ({
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | No| @Prop | Background color of the tab bar.|
 | index | number | No| @Prop | Index of the currently displayed tab.|
 | barOverlap | boolean| No| @Prop | Whether the tab bar is superimposed on the **TabContent** component after having its background blurred.|
-| controller|[TabsController](ts-container-tabs#tabscontroller) | No| @Prop |Tab controller, which is used to control switching of tabs.|
+| controller|[TabsController](ts-container-tabs#tabscontroller) | No| - |Tab controller, which is used to control switching of tabs.|
 | onChange | Callback\<number\> | No| - | Callback invoked when a tab is switched.|
 | onTabBarClick | Callback\<number\> | No| - |Callback invoked when a tab is clicked.|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | No| - | Callback invoked when a new page is about to be displayed.|
 
 ## TabContentBuilder
+
+type TabContentBuilder = () => void
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -78,6 +80,12 @@ AtomicServiceTabs ({
 | () => void | Content view container.|
 
 ## TabBarOptions
+
+Defines tab bar options, including **icon**, **text**, **unselectColor**, and **SelectedColor**.
+
+### constructor
+
+constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor);
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -102,6 +110,8 @@ AtomicServiceTabs ({
 | BOTTOM  | 1 | The tab bar is at the bottom of the screen.|
 
 ## OnContentWillChangeCallback
+
+type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

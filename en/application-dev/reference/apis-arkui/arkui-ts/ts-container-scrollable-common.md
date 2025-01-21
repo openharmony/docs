@@ -137,13 +137,13 @@ Sets the maximum initial velocity at the start of the fling animation that occur
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **12000**<br>Unit: vp/s|
 
-### fadingEdge<sup>13+</sup>
+### fadingEdge<sup>14+</sup>
 
 fadingEdge(enabled: Optional&lt;boolean&gt;, options?: FadingEdgeOptions): T
 
 Sets whether to enable the edge fading effect and the length of the fading edge.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -151,8 +151,8 @@ Sets whether to enable the edge fading effect and the length of the fading edge.
 
 | Name | Type                                             | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| enabled | Optional&lt;boolean&gt;                                 | Yes  | Whether to enable the edge fading effect. When set to enabled, this API supersedes the **.overlay()** API of the component.<br>When the edge fading effect is enabled, avoid setting background-related attributes on the component, as this will affect the display of the effect.<br>Default value: **false**|
-| options | [FadingEdgeOptions](#fadingedgeoptions13) | No  | Object defining edge fading effect properties, such as the fading edge length.|
+| enabled | Optional&lt;boolean&gt;                           | Yes  | Whether to enable the edge fading effect.<br>When **fadingEdge** is set to **true**, it overrides the **.overlay()** attribute of the component.<br>With **fadingEdge** set to **true**, avoid setting background-related attributes on the component, as this may affect the display of the fading effect.<br>With **fadingEdge** set to **true**, the component is clipped to the boundary, and setting the component's **clip** attribute to **false** will not take effect.<br>Default value: **false**|
+| options | [FadingEdgeOptions](#fadingedgeoptions14) | No  | Object defining edge fading effect properties, such as the fading edge length.|
 
 ### clipContent<sup>14+</sup>
 
@@ -322,10 +322,11 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | Name  | Type | Mandatory| Description             |
 | ----- | ------| ------- | ----------------- |
 | alwaysEnabled | boolean | Yes| Whether to enable the scroll effect when the component content is smaller than the component itself.|
+| effectEdge<sup>16+</sup> | number | No| Edge where the edge effect is applied. With **[EffectEdge](#effectedge16).START**, the edge effect is applied to the start edge only. With **[EffectEdge](#effectedge16).END**, the edge effect is applied to the end edge only. The default value is [EffectEdge](#effectedge16).START \| [EffectEdge](#effectedge16).END, which means that the edge effect is applied to both the start and end edges. If an invalid value is set, the edge effect is applied to both the start and end edges by default.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
-## FadingEdgeOptions<sup>13+</sup>
+## FadingEdgeOptions<sup>14+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -333,13 +334,29 @@ This API is deprecated since API version 12. For the **Scroll** component, the *
 | ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | fadingEdgeLength | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Length of the fading edge. If the value is smaller than 0, the default length, 32 vp, is used.<br>If the value exceeds half the height of the container, it is adjusted to exactly half the height of the container.|
 
+## EffectEdge<sup>16+</sup>
+
+Enumerates the edges where the edge effect is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Value  | Description        |
+| ----- | ---- | ------------ |
+| START | 1    | Start edge.|
+| END   | 2    | End edge.|
+
 ## ContentClipMode<sup>14+</sup>
+
+Enumerates the content clipping modes for the scrollable container.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 The figure below illustrates the clipping areas corresponding to each enumeration value after the component has been configured with margin and padding attributes.
+
 ![ContentClipMode](figures/ContentClipMode.png)
 
 | Name    |  Value | Description                                      |

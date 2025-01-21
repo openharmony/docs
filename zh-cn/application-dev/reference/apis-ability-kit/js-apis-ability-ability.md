@@ -20,7 +20,7 @@ DataAbilityHelper二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -48,7 +48,7 @@ DataAbilityOperation二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -63,7 +63,7 @@ DataAbilityResult二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -78,7 +78,7 @@ AbilityResult二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -93,7 +93,7 @@ ConnectOptions二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
@@ -106,9 +106,9 @@ type StartAbilityParameter = _StartAbilityParameter
 
 StartAbilityParameter二级模块。
 
-**系统能力**: SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |

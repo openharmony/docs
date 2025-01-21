@@ -12,7 +12,9 @@ The area change event is triggered when the component's size, position, or any o
 
 onAreaChange(event: (oldValue: Area, newValue: Area) => void): T
 
-Triggered when the component area changes in size or position due to layout updates. This event is not triggered for render attribute changes caused by re-rendering, such as changes of [translate](ts-universal-attributes-transformation.md#translate) and [offset](ts-types.md#offset).
+Triggered when the component area changes in size or position due to layout updates.
+
+This event is not triggered for changes in render attributes caused by re-rendering, such as changes in [translate](ts-universal-attributes-transformation.md#translate) and [offset](ts-types.md#offset). In addition, if the component position is altered due to drawing changes, for example, through [bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet), this event is also not triggered.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -32,6 +34,8 @@ Triggered when the component area changes in size or position due to layout upda
 | T | Current component.|
 
 ## Example
+
+This example demonstrates how to set an area change event for a **Text** component. When the layout of the **Text** component changes, the **onAreaChange** event is triggered, allowing you to obtain relevant parameters.
 
 ```ts
 // xxx.ets

@@ -8,7 +8,7 @@ This guide is applicable when you use ArkTS for coding during system or applicat
 
 ## Source
 
-ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some rules in this topic are selected from the [TypeScript and JavaScript Coding Style Guide](https://gitee.com/openharmony/docs/tree/master/en/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md), providing standards for ArkTS-specific syntax to improve code readability and execution performance.
+ArkTS further enhances static check and analysis while maintaining the basic syntax style of TypeScript. Some rules in this topic are selected from the [TypeScript and JavaScript Coding Style Guide](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/OpenHarmony-Application-Typescript-JavaScript-coding-guide.md), providing standards for ArkTS-specific syntax to improve code readability and execution performance.
 
 ## Document Structure
 
@@ -263,7 +263,7 @@ for (let idx = 0; idx < 5; ++idx) {
 }
 ```
 
-### Indent the case or default Statement in a switch Statement Block
+### Indent case and default in the switch Statement Block
 
 **[Category]** Recommendation
 
@@ -288,7 +288,7 @@ switch (condition) {
 }
 ```
 
-### Keep a Consistent Line Break Style for Expressions and Ensure That Operators Are Placed at the End of a Line
+### Keep a Consistent Line Break Style for Expressions
 
 **[Category]** Recommendation
 
@@ -563,7 +563,7 @@ function foo() {
   //...
 }
 ```
-
+ 
 ## Programming Practices
 
 ### Add Accessible Modifiers for Class Attributes
@@ -816,5 +816,3 @@ let y: Array<string> = ['a', 'b', 'c'];
 let x: number[] = [1, 2, 3];
 let y: string[] = ['a', 'b', 'c'];
 ```
-
-<!--no_check-->

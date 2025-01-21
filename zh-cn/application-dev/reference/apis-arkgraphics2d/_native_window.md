@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供NativeWindow功能，作为数据生产者，可用来和egl对接。
+NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开发者作为图像buffer的生产者，生产buffer并通过NativeWindow传递buffer供消费端去读取。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
