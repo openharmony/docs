@@ -950,16 +950,16 @@ function style(TextAlign: TextAlign) {
 @Entry
 @Component
 struct TextExample1 {
-  @State changeTextAlignIndex: number = 0
-  @State changeDecorationIndex: number = 0
-  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End]
-  @State TextAlignStr: string[] = ['Start', 'Center', 'End']
+  @State changeTextAlignIndex: number = 0;
+  @State changeDecorationIndex: number = 0;
+  @State TextAlign: TextAlign[] = [TextAlign.Start, TextAlign.Center, TextAlign.End];
+  @State TextAlignStr: string[] = ['Start', 'Center', 'End'];
   @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
   @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -976,9 +976,9 @@ struct TextExample1 {
 
       Row() {
         Button('当前TextAlign类型：' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
-          this.changeTextAlignIndex++
+          this.changeTextAlignIndex++;
           if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
-            this.changeTextAlignIndex = 0
+            this.changeTextAlignIndex = 0;
           }
         })
       }.justifyContent(FlexAlign.Center).width('100%')
@@ -1036,13 +1036,13 @@ function style() {
 @Entry
 @Component
 struct TextExample2 {
-  @State changeDecorationIndex: number = 0
+  @State changeDecorationIndex: number = 0;
   @State TextDecorationType: TextDecorationType[] =
-    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline]
-  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline']
+    [TextDecorationType.LineThrough, TextDecorationType.Overline, TextDecorationType.Underline];
+  @State TextDecorationTypeStr: string[] = ['LineThrough', 'Overline', 'Underline'];
   @State TextDecorationStyle: TextDecorationStyle[] =
-    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY]
-  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY']
+    [TextDecorationStyle.SOLID, TextDecorationStyle.DOTTED, TextDecorationStyle.WAVY];
+  @State TextDecorationStyleStr: string[] = ['SOLID', 'DOTTED', 'WAVY'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1059,9 +1059,9 @@ struct TextExample2 {
       Row() {
         Button('当前decoration类型：' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
         this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
-          this.changeDecorationIndex++
+          this.changeDecorationIndex++;
           if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
-            this.changeDecorationIndex = 0
+            this.changeDecorationIndex = 0;
           }
         })
       }.justifyContent(FlexAlign.Center).width('100%')
@@ -1129,10 +1129,10 @@ function style() {
 @Component
 struct TextExample3 {
   @State text: string =
-    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
-  @State ellipsisModeIndex: number = 0
-  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END]
-  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END']
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.';
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: EllipsisMode[] = [EllipsisMode.START, EllipsisMode.CENTER, EllipsisMode.END];
+  @State ellipsisModeStr: string[] = ['START', 'CENTER', 'END'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1166,9 +1166,9 @@ struct TextExample3 {
 
       Row() {
         Button('更改省略号位置：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
+          this.ellipsisModeIndex++;
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
+            this.ellipsisModeIndex = 0;
           }
         })
       }
@@ -1198,19 +1198,19 @@ function style() {
 @Component
 struct TextExample4 {
   @State text: string =
-    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.'
+    'The text component is used to display a piece of textual information.Support universal attributes and universal text attributes.';
   @State text2: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttons progress indicators and text You can set the rendering effect of these components in method chaining mode," +
-      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State textClip: boolean = false
-  @State wordBreakIndex: number = 0
-  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD]
-  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD']
-  @State lineBreakStrategyIndex: number = 0
+      "page components are divided into independent UI units to implement independent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State textClip: boolean = false;
+  @State wordBreakIndex: number = 0;
+  @State wordBreak: WordBreak[] = [WordBreak.NORMAL, WordBreak.BREAK_ALL, WordBreak.BREAK_WORD];
+  @State wordBreakStr: string[] = ['NORMAL', 'BREAK_ALL', 'BREAK_WORD'];
+  @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
-    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
@@ -1224,9 +1224,9 @@ struct TextExample4 {
 
       Row() {
         Button('当前wordBreak模式：' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
-          this.wordBreakIndex++
+          this.wordBreakIndex++;
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
-            this.wordBreakIndex = 0
+            this.wordBreakIndex = 0;
           }
         })
       }
@@ -1240,7 +1240,7 @@ struct TextExample4 {
         .style()
       Row() {
         Button('切换clip：' + this.textClip).onClick(() => {
-          this.textClip = !this.textClip
+          this.textClip = !this.textClip;
         })
       }
 
@@ -1251,9 +1251,9 @@ struct TextExample4 {
         .style()
       Row() {
         Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
+          this.lineBreakStrategyIndex++;
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }
@@ -1273,10 +1273,11 @@ struct TextExample4 {
 @Entry
 @Component
 struct TextExample5 {
-  @State onCopy: string = ''
-  @State text: string = 'This is set selection to Selection text content This is set selection to Selection text content.'
-  @State start: number = 0
-  @State end: number = 20
+  @State onCopy: string = '';
+  @State text: string =
+    'This is set selection to Selection text content This is set selection to Selection text content.';
+  @State start: number = 0;
+  @State end: number = 20;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -1288,14 +1289,14 @@ struct TextExample5 {
         .copyOption(CopyOptions.InApp)
         .selection(this.start, this.end)
         .onCopy((value: string) => {
-          this.onCopy = value
+          this.onCopy = value;
         })
       Button('Set text selection')
-        .margin({left:20})
+        .margin({ left: 20 })
         .onClick(() => {
           // 变更文本选中起始点、终点
-          this.start = 10
-          this.end = 30
+          this.start = 10;
+          this.end = 30;
         })
       Text(this.onCopy).fontSize(12).margin(10).key('copy')
     }.height(600).width(335).padding({ left: 35, right: 35, top: 35 })
@@ -1352,28 +1353,31 @@ struct TextExample6 {
 @Entry
 @Component
 struct TextExample7 {
-  @State phoneNumber: string = '(86) (755) ********'
-  @State url: string = 'www.********.com'
-  @State email: string = '***@example.com'
-  @State address: string = 'XX省XX市XX区XXXX'
-  @State datetime: string = 'XX年XX月XX日XXXX'
-  @State enableDataDetector: boolean = true
-  @State types: TextDataDetectorType[] = []
+  @State phoneNumber: string = '(86) (755) ********';
+  @State url: string = 'www.********.com';
+  @State email: string = '***@example.com';
+  @State address: string = 'XX省XX市XX区XXXX';
+  @State datetime: string = 'XX年XX月XX日XXXX';
+  @State enableDataDetector: boolean = true;
+  @State types: TextDataDetectorType[] = [];
 
   build() {
     Row() {
       Column() {
         Text(
           '电话号码：' + this.phoneNumber + '\n' +
-          '链接：' + this.url + '\n' +
-          '邮箱：' + this.email + '\n' +
-          '地址：' + this.address + '\n' +
-          '时间：' + this.datetime
+            '链接：' + this.url + '\n' +
+            '邮箱：' + this.email + '\n' +
+            '地址：' + this.address + '\n' +
+            '时间：' + this.datetime
         )
           .fontSize(16)
           .copyOption(CopyOptions.InApp)
           .enableDataDetector(this.enableDataDetector)
-          .dataDetectorConfig({types : this.types, onDetectResultUpdate: (result: string)=>{}})
+          .dataDetectorConfig({
+            types: this.types, onDetectResultUpdate: (result: string) => {
+            }
+          })
           .textAlign(TextAlign.Center)
           .borderWidth(1)
           .padding(10)
@@ -1397,8 +1401,8 @@ struct TextExample7 {
 @Entry
 @Component
 struct TextExample8 {
-  controller: TextController = new TextController()
-  options: TextOptions = { controller: this.controller }
+  controller: TextController = new TextController();
+  options: TextOptions = { controller: this.controller };
 
   build() {
     Column() {
@@ -1414,16 +1418,16 @@ struct TextExample8 {
         .copyOption(CopyOptions.InApp)
         .bindSelectionMenu(TextSpanType.IMAGE, this.LongPressImageCustomMenu, TextResponseType.LONG_PRESS, {
           onDisappear: () => {
-            console.info(`自定义选择菜单关闭时回调`)
+            console.info(`自定义选择菜单关闭时回调`);
           },
           onAppear: () => {
-            console.info(`自定义选择菜单弹出时回调`)
+            console.info(`自定义选择菜单弹出时回调`);
           }
         })
         .bindSelectionMenu(TextSpanType.TEXT, this.RightClickTextCustomMenu, TextResponseType.RIGHT_CLICK)
         .bindSelectionMenu(TextSpanType.MIXED, this.SelectMixCustomMenu, TextResponseType.SELECT)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`)
+          console.info(`文本选中区域变化回调, selectionStart: ${selectionStart}, selectionEnd: ${selectionEnd}`);
         })
         .borderWidth(1)
         .borderColor(Color.Red)
@@ -1445,7 +1449,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Right Click Menu 3", labelInfo: "" })
@@ -1462,7 +1466,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Long Press Image Menu 3", labelInfo: "" })
@@ -1479,7 +1483,7 @@ struct TextExample8 {
         MenuItemGroup() {
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 1", labelInfo: "" })
             .onClick((event) => {
-              this.controller.closeSelectionMenu()
+              this.controller.closeSelectionMenu();
             })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 2", labelInfo: "" })
           MenuItem({ startIcon: $r('app.media.app_icon'), content: "Select Mixed Menu 3", labelInfo: "" })
@@ -1513,7 +1517,6 @@ function style() {
   .fontSize(12)
   .border({ width: 1 })
   .width('100%')
-  // .margin(5)
 }
 
 @Entry
@@ -1568,13 +1571,13 @@ import { text } from '@kit.ArkGraphics2D'
 @Entry
 @Component
 struct TextExample10 {
-  @State lineCount: string = ""
-  @State glyphPositionAtCoordinate: string = ""
-  @State lineMetrics: string = ""
-  @State rectsForRangeStr: string = ""
-  controller: TextController = new TextController()
+  @State lineCount: string = "";
+  @State glyphPositionAtCoordinate: string = "";
+  @State lineMetrics: string = "";
+  @State rectsForRangeStr: string = "";
+  controller: TextController = new TextController();
   @State textStr: string =
-    'Hello World! 您好，世界！'
+    'Hello World! 您好，世界！';
 
   build() {
     Scroll() {
@@ -1588,8 +1591,8 @@ struct TextExample10 {
           .fontSize(25)
           .borderWidth(1)
           .onAreaChange(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            this.lineCount = "LineCount: " + layoutManager.getLineCount()
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            this.lineCount = "LineCount: " + layoutManager.getLineCount();
           })
 
         Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
@@ -1598,11 +1601,11 @@ struct TextExample10 {
         Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("相对组件坐标[150,50]字形信息")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50);
             this.glyphPositionAtCoordinate =
               "相对组件坐标[150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
-              position.affinity
+              position.affinity;
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
@@ -1610,31 +1613,17 @@ struct TextExample10 {
         Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("首行行信息、文本样式信息、以及字体属性信息")
           .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
-            let runMetrics = lineMetrics.runMetrics
+            let layoutManager: LayoutManager = this.controller.getLayoutManager();
+            let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0);
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n";
+            let runMetrics = lineMetrics.runMetrics;
             runMetrics.forEach((value, key) => {
-              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
+              this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n";
             })
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
 
-        Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
-        Button("获取指定矩形宽度和高度下，文本中任意区间范围内字符或占位符的绘制区域信息")
-          .onClick(() => {
-            let layoutManager: LayoutManager = this.controller.getLayoutManager()
-            let range: TextRange = { start: 0, end: 1 }
-            let rectsForRangeInfo: text.TextBox[] =
-              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
-            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
-            rectsForRangeInfo.forEach((value, key) => {
-              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
-            })
-          })
-          .margin({ bottom: 20, top: 10 })
-        Text(this.rectsForRangeStr)
       }
       .margin({ top: 100, left: 8, right: 8 })
     }
@@ -1653,8 +1642,9 @@ struct TextExample10 {
 @Entry
 @Component
 struct TextExample11 {
-  @State message: string = 'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText'
-  
+  @State message: string =
+    'TextTextTextTextTextTextTextText' + 'TextTextTextTextTextTextTextTextTextTextTextTextTextTextTextText';
+
   build() {
     Column() {
       Text(this.message)
@@ -1687,34 +1677,34 @@ struct TextExample12 {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
-  }
+    return false;
+  };
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -1745,7 +1735,7 @@ struct TextExample13 {
     Column({ space: 10 }) {
       Text("privacySensitive")
         .privacySensitive(true)
-        .margin({top :30})
+        .margin({ top: 30 })
     }
     .alignItems(HorizontalAlign.Center)
     .width("100%")
