@@ -50,14 +50,11 @@ You can use the APIs of the input method framework service to easily switch betw
    }
    ```
 
-
-   ```
-
 ## Switching Between Input Methods
 
 In the input method application in use, call [switchInputMethod](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchinputmethod9) with the target [InputMethodProperty](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodproperty8) to switch to another input method.
 
-​```ts
+```ts
 import { inputMethod } from '@kit.IMEKit';
 
 export class KeyboardController {
@@ -71,7 +68,7 @@ export class KeyboardController {
     }
   }
 }
-   ```
+```
 
 ## Switching Between Input Methods and Subtypes
 

@@ -1270,6 +1270,7 @@ type NfcATag = _NfcATag
 获取NfcATag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
