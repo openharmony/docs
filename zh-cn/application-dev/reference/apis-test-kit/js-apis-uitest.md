@@ -1039,44 +1039,6 @@ async function demo() {
 }
 ```
 
-### getHint<sup>16+</sup>
-
-getHint(): Promise<string>
-
-获取控件对象的提示值。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**返回值：**
-
-| 类型             | 说明                   |
-| ---------------- |----------------------|
-| Promise\<string> | 以Promise形式返回的控件的提示值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
-
-| 错误码ID | 错误信息                                 |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000004 | The window or component is invisible or destroyed.           |
-
-**示例：**
-
-```ts
- import { Component, Driver, ON } from '@kit.TestKit';
-async function demo() {
-  let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('TextInput'));
-  let hints = await button.getHint();
-}
-```
-
-
-
 ### getText<sup>9+</sup>
 
 getText(): Promise\<string>
@@ -1651,52 +1613,6 @@ async function demo() {
 }
 ```
 
-### scrollSearch<sup>16+</sup>
-
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise<Component>
-
-在控件上滑动查找目标控件(适用支持滑动的控件),支持查找方向和死区。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型         | 必填 | 说明                     |
-| ------ |------------|---|------------------------|
-| on     | [On](#on9) | 是 | 目标控件的属性要求。             |
-| vertical |    boolean | 否 | 滑动方向是否垂直, 默认 true      |
-| offset     | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80 |
-
-**返回值：**
-
-| 类型                               | 说明                                  |
-| ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000004 | The window or component is invisible or destroyed.           |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
- import { Component, Driver, ON } from '@kit.TestKit';
-async function demo() {
-  let driver: Driver = Driver.create();
-  let scrollBar = await driver.findComponent(ON.id('verticalScroll'))
-  let text1 = await scrollBar.scrollSearch(ON.text('11'), true, 80);
-}
-
-```
-
 ### scrollToTop<sup>9+</sup>
 
 scrollToTop(speed?: number): Promise\<void>
@@ -1918,11 +1834,86 @@ async function demo() {
   let description = await button.getDescription();
 }
 ```
+### getHint<sup>16+</sup>
 
+getHint(): Promise<string>
 
+获取控件对象的提示值。
 
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
+**系统能力**：SystemCapability.Test.UiTest
 
+**返回值：**
+
+| 类型             | 说明                   |
+| ---------------- |----------------------|
+| Promise\<string> | 以Promise形式返回的控件的提示值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+
+**示例：**
+
+```ts
+ import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('TextInput'));
+  let hints = await button.getHint();
+}
+```
+### scrollSearch<sup>16+</sup>
+
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise<Component>
+
+在控件上滑动查找目标控件(适用支持滑动的控件),支持查找方向和死区。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型         | 必填 | 说明                     |
+| ------ |------------|---|------------------------|
+| on     | [On](#on9) | 是 | 目标控件的属性要求。             |
+| vertical |    boolean | 否 | 滑动方向是否垂直, 默认 true      |
+| offset     | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80 |
+
+**返回值：**
+
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let scrollBar = await driver.findComponent(ON.id('verticalScroll'))
+  let text1 = await scrollBar.scrollSearch(ON.text('11'), true, 80);
+}
+
+```
 
 ## Driver<sup>9+</sup>
 
