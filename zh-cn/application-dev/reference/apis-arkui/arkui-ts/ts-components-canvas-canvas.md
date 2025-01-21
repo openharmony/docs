@@ -77,7 +77,9 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 | -------------------------- | ---------------------------------------- |
 | onReady(event: () => void) | Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调，当该事件被触发时画布被清空，该事件之后Canvas组件宽高确定且可获取，可使用Canvas相关API进行绘制。当Canvas组件仅发生位置变化时，只触发[onAreaChange](ts-universal-component-area-change-event.md#onAreaChange)事件、不触发onReady事件。<br/>[onAreaChange](ts-universal-component-area-change-event.md#onAreaChange)事件在onReady事件后触发。 |
 
-**示例：**
+## 示例
+
+### 示例1（使用CanvasRenderingContext2D中的方法）
 
 该示例实现了如何在Canvas组件使用CanvasRenderingContext2D中的方法进行绘制。
 
@@ -106,6 +108,7 @@ struct CanvasExample {
 ```
   ![zh-cn_image_0000001194032666](figures/zh-cn_image_0000001194032666.png)
 
+### 示例2（使用DrawingRenderingContext中的方法）
 
 该示例实现了如何在Canvas组件使用DrawingRenderingContext中的方法进行绘制。
 

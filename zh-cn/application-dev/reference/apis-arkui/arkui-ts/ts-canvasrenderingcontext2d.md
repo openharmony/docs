@@ -415,9 +415,9 @@ struct TextBaseline {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.strokeStyle = '#0000ff'
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
+          this.context.strokeStyle = 'rgb(213,213,213)'
           this.context.moveTo(0, 120)
           this.context.lineTo(400, 120)
           this.context.stroke()
@@ -440,7 +440,7 @@ struct TextBaseline {
 }
 ```
 
-![zh-cn_image_0000001238712413](figures/zh-cn_image_0000001238712413.png)
+![textBaseline](figures/textBaseline.jpg)
 
 
 ### globalAlpha
@@ -950,9 +950,9 @@ fillRect(x: number, y: number, w: number, h: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.fillRect(30,30,100,100)
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            this.context.fillRect(30, 30, 100, 100)
          })
         }
       .width('100%')
@@ -961,7 +961,7 @@ fillRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194192436](figures/zh-cn_image_0000001194192436.png)
+  ![fillRect](figures/fillRect.jpg)
 
 
 ### strokeRect
@@ -1153,9 +1153,9 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.font = '55px sans-serif'
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
+            this.context.font = '50vp sans-serif'
             this.context.strokeText("Hello World!", 20, 60)
         })
       }
@@ -1165,7 +1165,7 @@ strokeText(text: string, x: number, y: number, maxWidth?: number): void
   }
   ```
 
-  ![zh-cn_image_0000001239032413](figures/zh-cn_image_0000001239032413.png)
+  ![strokeText](figures/strokeText.jpg)
 
 
 ### measureText
@@ -1207,8 +1207,8 @@ measureText(text: string): TextMetrics
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             this.context.font = '50px sans-serif'
             this.context.fillText("Hello World!", 20, 100)
             this.context.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
@@ -1220,7 +1220,7 @@ measureText(text: string): TextMetrics
   }
   ```
 
-  ![zh-cn_image_0000001193872492](figures/zh-cn_image_0000001193872492.png)
+  ![measureText](figures/measureText.jpg)
 
 
 ### stroke
@@ -2147,8 +2147,6 @@ reset(): void
 
 将CanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -2188,8 +2186,6 @@ reset(): void
 saveLayer(): void
 
 创建一个图层。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2237,8 +2233,6 @@ saveLayer(): void
 restoreLayer(): void
 
 恢复图像变换和裁剪状态至saveLayer前的状态，并将图层绘制在canvas上。restoreLayer示例代码同saveLayer。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2432,7 +2426,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.context.fillStyle = 'rgb(0,0,0)'
             this.context.fillRect(0, 0, 100, 100)
             this.context.transform(1, 0.5, -0.5, 1, 10, 10)
@@ -2449,7 +2443,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   }
   ```
 
-  ![zh-cn_image_0000001238832395](figures/zh-cn_image_0000001238832395.png)
+  ![transform](figures/transform.jpg)
 
 
 ### setTransform
@@ -2506,8 +2500,6 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
   ```
 
   ![zh-cn_image_0000001238712421](figures/zh-cn_image_0000001238712421.png)
-
-### setTransform
 
 setTransform(transform?: Matrix2D): void
 
@@ -2923,6 +2915,10 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 **示例：**
 
+> **说明：**
+>
+> DevEco Studio的预览器不支持显示使用setPixelMap绘制的内容。
+
   ```ts
   // xxx.ets
   @Entry
@@ -3176,14 +3172,14 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() =>{
             let imageData = this.offContext.createImageData(100, 100)
             for (let i = 0; i < imageData.data.length; i += 4) {
               imageData.data[i + 0] = 255
               imageData.data[i + 1] = 0
-              imageData.data[i + 2] = 255
-              imageData.data[i + 3] = 255
+              imageData.data[i + 2] = 60
+              imageData.data[i + 3] = 80
             }
             this.offContext.putImageData(imageData, 10, 10)
             let image = this.offContext.transferToImageBitmap()
@@ -3195,7 +3191,7 @@ transferFromImageBitmap(bitmap: ImageBitmap): void
     }
   }
   ```
-  ![zh-cn_image_0000001238952387](figures/zh-cn_image_0000001238952387.png)  
+  ![transferFromImageBitmap](figures/transferFromImageBitmap.jpg)  
 
 
 ### toDataURL
