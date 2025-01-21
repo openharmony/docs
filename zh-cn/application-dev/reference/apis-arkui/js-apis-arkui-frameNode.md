@@ -1821,7 +1821,9 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 | ------------------ | ------------------ |
 | [Progress](#progress12) | Progress类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Progress');
@@ -1861,7 +1863,9 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 | ------------------ | ------------------ |
 | [Scroll](#scroll12) | Scroll类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Scroll');
@@ -2533,6 +2537,8 @@ createNode(context: UIContext, nodeType: 'QRCode'): QRCode
 | [QRCode](#qrcode14) | QRCode类型的FrameNode节点。 |
 
 **示例：**
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'QRCode');
