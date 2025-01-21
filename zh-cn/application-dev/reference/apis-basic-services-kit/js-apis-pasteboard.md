@@ -617,7 +617,7 @@ export default class EntryAbility extends UIAbility {
 
 toPlainText(): string
 
-将一个PasteData中的内容强制转换为文本内容。
+将一个PasteDataRecord中的html、plain、uri内容强制转换为文本内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
