@@ -3357,11 +3357,11 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 **参数：**
 
-| 参数名 | 类型             | 必填 | 说明                        |
-| ------ | ---------------- |----|---------------------------|
-| fingers      | number | 是  | 手指触摸板多指滑动的手指数。 取值范围[3, 4] |
-| direction | [UiDirection](#uidirection10) | 是  | 进行抛滑的方向。                  |
-| options      |  [TouchPadSwipeOptions](#TouchPadSwipeOptions) | 否  | 触摸板多指滑动手势选项相关信息。          |
+| 参数名 | 类型                                            | 必填 | 说明                        |
+| ------ |-----------------------------------------------|----|---------------------------|
+| fingers      | number                                        | 是  | 手指触摸板多指滑动的手指数。 取值范围[3, 4] |
+| direction | [UiDirection](#uidirection10)                 | 是  | 进行抛滑的方向。                  |
+| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势选项相关信息。          |
 
 **错误码：**
 
