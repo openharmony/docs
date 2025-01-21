@@ -378,6 +378,47 @@ import { MatchPattern, On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
 ```
 
+### hint<sup>16+</sup>
+
+hint(val: string, pattern?: MatchPattern): On
+
+指定目标控件的提示值属性，返回On对象自身。
+
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ |----|------------|
+| val     | string | 是  | 指定控件提示值。   |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { MatchPattern, On, ON } from '@kit.TestKit';
+ let on:On = ON.hint('welcome', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的提示值属性。
+```
+
 ### clickable<sup>9+</sup>
 
 clickable(b?: boolean): On
@@ -996,6 +1037,44 @@ async function demo() {
   let id = await button.getId();
 }
 ```
+
+### getHint<sup>16+</sup>
+
+getHint(): Promise<string>
+
+获取控件对象的提示值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明                   |
+| ---------------- |----------------------|
+| Promise\<string> | 以Promise形式返回的控件的提示值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+
+**示例：**
+
+```ts
+ import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('TextInput'));
+  let hints = await button.getHint();
+}
+```
+
+
 
 ### getText<sup>9+</sup>
 
