@@ -136,7 +136,7 @@ onHoverStatusChange(handler: (param: HoverEventParam) => void)
 
 type WindowStatusType = WindowStatusType
 
-窗口模式枚举
+窗口模式枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
