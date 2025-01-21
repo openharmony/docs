@@ -23,7 +23,7 @@
           hilog.info(DOMAIN_NUMBER, TAG, want.parameters?.[formInfo.FormParam.NAME_KEY] as string);
     
           // ...
-          // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+          // 卡片使用方创建卡片时触发，提供方需要返回卡片数据绑定类
           let obj: Record<string, string> = {
             'title': 'titleOnAddForm',
             'detail': 'detailOnAddForm'
@@ -54,7 +54,7 @@
         }
     
         onChangeFormVisibility(newStatus: Record<string, number>): void {
-          // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+          // 卡片使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onChangeFormVisibility');
         }
     
