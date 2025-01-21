@@ -174,6 +174,20 @@ UI事件的相关信息。
 | type       | string | 是   | 否   | 控件/窗口类型。       |
 | text       | string | 是   | 否   | 控件/窗口的文本信息。 |
 
+
+## TouchPadSwipeOptions<sup>16+</sup>
+
+触摸板多指滑动手势选项相关信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 类型   | 可读 | 可写 | 说明                                                           |
+| ---------- | ------ | ---- |----|--------------------------------------------------------------|
+| stay | boolean | 是   | 否  | 滑动后是否停留1秒并抬起，默认为false 。                                      |
+| speed       | number | 是   | 否  | 触摸板多指滑动的速度（pixels/s），默认值为2000，值范围为200到40000，如果超出范围，则设置为2000。 |
+
 ## On<sup>9+</sup>
 
 UiTest框架在API 9中，通过On类提供了丰富的控件特征描述API，用于进行控件筛选来匹配/查找出目标控件。<br>
@@ -1838,7 +1852,7 @@ async function demo() {
 
 getHint(): Promise\<string>
 
-获取控件对象的提示值。
+获取控件对象的默认文本。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -1846,9 +1860,9 @@ getHint(): Promise\<string>
 
 **返回值：**
 
-| 类型             | 说明                   |
-| ---------------- |----------------------|
-| Promise\<string> | 以Promise形式返回的控件的提示值。 |
+| 类型             | 说明                    |
+| ---------------- |-----------------------|
+| Promise\<string> | 以Promise形式返回的控件的默认文本。 |
 
 **错误码：**
 
@@ -3330,6 +3344,46 @@ async function demo() {
   await driver.inputText(point, '123');
 }
 ```
+
+### touchPadMultiFingerSwipe<sup>16+</sup>
+
+touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
+
+模拟触摸板多指滑动手势。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型             | 必填 | 说明                        |
+| ------ | ---------------- |----|---------------------------|
+| fingers      | number | 是  | 手指触摸板多指滑动的手指数。 取值范围[3, 4] |
+| direction | [UiDirection](#uidirection10) | 是  | 进行抛滑的方向。                  |
+| options      |  [TouchPadSwipeOptions](#TouchPadSwipeOptions) | 否  | 触摸板多指滑动手势选项相关信息。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17000002 | The async function is not called with await.             |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver:Driver = Driver.create();
+  let text: Component = await driver.findComponent(ON.type('TextInput'));
+  let point = await text.getBoundsCenter();
+  await driver.inputText(point, '123');
+}
+```
+
 
 ## PointerMatrix<sup>9+</sup>
 
