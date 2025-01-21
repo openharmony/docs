@@ -1469,31 +1469,31 @@ struct TextAreaExample {
     Row() {
       Column() {
         Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'lineHeight unset'})
+        TextArea({ text: 'lineHeight unset' })
           .border({ width: 1 }).padding(10).margin(5)
-        TextArea({text: 'lineHeight 15'})
+        TextArea({ text: 'lineHeight 15' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextArea({text: 'lineHeight 30'})
+        TextArea({ text: 'lineHeight 30' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
 
         Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'letterSpacing 0'})
+        TextArea({ text: 'letterSpacing 0' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextArea({text: 'letterSpacing 3'})
+        TextArea({ text: 'letterSpacing 3' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextArea({text: 'letterSpacing -1'})
+        TextArea({ text: 'letterSpacing -1' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
 
         Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'LineThrough, Red\nsecond line'})
+        TextArea({ text: 'LineThrough, Red\nsecond line' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextArea({text: 'Overline, Red, DOTTED\nsecond line'})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+        TextArea({ text: 'Overline, Red, DOTTED\nsecond line' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})
-        TextArea({text: 'Underline, Red, WAVY\nsecond line'})
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED })
+        TextArea({ text: 'Underline, Red, WAVY\nsecond line' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
       }.height('90%')
     }
     .width('90%')
@@ -1517,13 +1517,13 @@ struct TextAreaExample {
   @State text2: string = 'This is ss01 off: 0123456789'
 
   build() {
-    Column(){
-      TextArea({text: this.text1})
+    Column() {
+      TextArea({ text: this.text1 })
         .fontSize(20)
-        .margin({top:200})
+        .margin({ top: 200 })
         .fontFeature("\"ss01\" on")
-      TextArea({text : this.text2})
-        .margin({top:10})
+      TextArea({ text: this.text2 })
+        .margin({ top: 10 })
         .fontSize(20)
         .fontFeature("\"ss01\" off")
     }
@@ -1545,19 +1545,21 @@ struct TextAreaExample {
 struct TextAreaExample {
   controller: TextAreaController = new TextAreaController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State height2:number = 100
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State height2: number = 100
+  @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
@@ -1573,16 +1575,16 @@ struct TextAreaExample {
 
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1590,12 +1592,13 @@ struct TextAreaExample {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      TextArea({ controller: this.controller, text: this.inputValue})
+      .padding({ bottom: 50 })
+
+      TextArea({ controller: this.controller, text: this.inputValue })
         .height(100)
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
-        // .height(200)
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })// 绑定自定义键盘
+        .margin(10)
+        .border({ width: 1 })
     }
   }
 }
@@ -1655,26 +1658,26 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Component
 struct TextAreaExample {
   build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({ placeholder: 'This is the TextArea with no lineSpacing set.' })
-          .fontSize(12)
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_px.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.px(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_vp.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.vp(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_fp.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.fp(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_lpx.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.lpx(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 100%.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.percent(1))
-      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+      TextArea({ text: 'This is the TextArea with no lineSpacing set.' })
+        .fontSize(12)
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_px.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.px(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_vp.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.vp(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_fp.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.fp(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_lpx.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.lpx(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 100%.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.percent(1))
+    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -1971,8 +1974,7 @@ struct TextAreaExample {
         .fontStyle(FontStyle.Italic)
         .fontWeight(FontWeight.Bold)
         .fontFamily('HarmonyOS Sans')
-        // 只允许字母输入
-        .inputFilter('[a-zA-Z]+', (value) => {
+        .inputFilter('[a-zA-Z]+', (value) => { // 只允许字母输入
           console.error(`unsupport char ${value}`)
         })
         .copyOption(CopyOptions.LocalDevice)
@@ -1987,8 +1989,7 @@ struct TextAreaExample {
         .maxFontScale(2)
         .enablePreviewText(true)
         .enableHapticFeedback(true)
-        // 返回键交给其他组件处理
-        .stopBackPress(false)
+        .stopBackPress(false)//返回键交给其他组件处理
         .width(336)
         .height(56)
         .margin(20)
@@ -1996,19 +1997,19 @@ struct TextAreaExample {
         .onEditChange((isEditing: boolean) => {
           console.log(`isEditing ${isEditing}`)
         })
-        .onCopy((value)=> {
+        .onCopy((value) => {
           console.log(`copy ${value}`)
         })
-        .onCut((value)=> {
+        .onCut((value) => {
           console.log(`cut ${value}`)
         })
-        .onPaste((value, event)=> {
-            // 阻止系统粘贴功能，开发者可自行实现
-            if (event.preventDefault) {
-              event.preventDefault()
-            }
-            console.log(`paste:${value}`)
-            this.text = value
+        .onPaste((value, event) => {
+          // 阻止系统粘贴功能，开发者可自行实现
+          if (event.preventDefault) {
+            event.preventDefault()
+          }
+          console.log(`paste:${value}`)
+          this.text = value
         })
         .onTextSelectionChange((start: number, end: number) => {
           console.log(`onTextSelectionChange start ${start}, end ${end}`)
@@ -2019,7 +2020,6 @@ struct TextAreaExample {
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
-
 ```
 ![textCustomPaste](figures/textarea_custom_paste.PNG)
 
