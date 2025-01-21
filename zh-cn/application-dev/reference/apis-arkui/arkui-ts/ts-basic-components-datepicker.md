@@ -83,7 +83,7 @@ DatePicker(options?: DatePickerOptions)
 
 ### lunar
 
-lunar(value: Optional\<boolean>)
+lunar(value: boolean)
 
 设置弹窗的日期是否显示农历。
 
@@ -91,15 +91,31 @@ lunar(value: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
+
+### lunar<sup>16+</sup>
+
+lunar(isLunar: Optional\<boolean>)
+
+设置弹窗的日期是否显示农历。与[lunar](#lunar)相比，isLunar参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
+| isLunar | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
 
 ### disappearTextStyle<sup>10+</sup>
 
-disappearTextStyle(value: Optional\<PickerTextStyle>)
+disappearTextStyle(value: PickerTextStyle)
 
 设置所有选项中最上和最下两个选项的文本样式。
 
@@ -107,15 +123,31 @@ disappearTextStyle(value: Optional\<PickerTextStyle>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### disappearTextStyle<sup>16+</sup>
+
+disappearTextStyle(style: Optional\<PickerTextStyle>)
+
+设置所有选项中最上和最下两个选项的文本样式。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>10+</sup>
 
-textStyle(value: Optional\<PickerTextStyle>)
+textStyle(value: PickerTextStyle)
 
 设置所有选项中除了最上、最下及选中项以外的文本样式。
 
@@ -123,19 +155,19 @@ textStyle(value: Optional\<PickerTextStyle>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
-### selectedTextStyle<sup>10+</sup>
+### textStyle<sup>16+</sup>
 
-selectedTextStyle(value: Optional\<PickerTextStyle>)
+textStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本样式。
+设置所有选项中除了最上、最下及选中项以外的文本样式。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -143,7 +175,39 @@ selectedTextStyle(value: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### selectedTextStyle<sup>10+</sup>
+
+selectedTextStyle(value: PickerTextStyle)
+
+设置选中项的文本样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+
+### selectedTextStyle<sup>16+</sup>
+
+selectedTextStyle(style: Optional\<PickerTextStyle>)
+
+设置选中项的文本样式。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### enableHapticFeedback<sup>16+</sup>
 
@@ -201,11 +265,27 @@ onChange(callback: (value: DatePickerResult) => void)
 
 ### onDateChange<sup>10+</sup>
 
-onDateChange(callback: Optional\<Callback\<Date>>)
+onDateChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明                                                         |
+| ------ | ---- | ---- | ------------------------------------------------------------ |
+| value  | Date | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
+
+### onDateChange<sup>16+</sup>
+
+onDateChange(callback: Optional\<Callback\<Date>>)
+
+选择日期时触发该事件。与[onDateChange<sup>10+</sup>](#ondatechange10)相比，callback参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

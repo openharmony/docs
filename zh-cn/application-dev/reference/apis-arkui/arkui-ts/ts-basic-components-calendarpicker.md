@@ -33,11 +33,28 @@ CalendarPicker(options?: CalendarOptions)
 
 ### edgeAlign
 
-edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
+edgeAlign(alignType: CalendarAlign, offset?: Offset)
 
 设置选择器与入口组件的对齐方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                    | 必填 | 说明                                                         |
+| --------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| alignType | [CalendarAlign](#calendaralign枚举说明) | 是   | 对齐方式类型。<br/>默认值：CalendarAlign .END                |
+| offset    | [Offset](ts-types.md#offset)            | 否   | 按照对齐类型对齐后，选择器相对入口组件的偏移量。<br/>默认值：{dx: 0, dy: 0} |
+
+### edgeAlign<sup>16+</sup>
+
+edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
+
+设置选择器与入口组件的对齐方式。与[edgeAlign](#edgealign)相比，alignType参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,7 +67,7 @@ edgeAlign(alignType: Optional\<CalendarAlign>, offset?: Offset)
 
 ### textStyle
 
-textStyle(value: Optional\<PickerTextStyle>)
+textStyle(value: PickerTextStyle)
 
 入口区的文本颜色、字号、字体粗细。
 
@@ -62,7 +79,23 @@ textStyle(value: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| value  | [PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### textStyle<sup>16+</sup>
+
+textStyle(style: Optional\<PickerTextStyle>)
+
+入口区的文本颜色、字号、字体粗细。与[textStyle](#textstyle)相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ## 事件
 
@@ -70,11 +103,27 @@ textStyle(value: Optional\<PickerTextStyle>)
 
 ### onChange
 
-onChange(callback: Optional\<Callback\<Date>>)
+onChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明           |
+| ------ | ---- | ---- | -------------- |
+| value  | Date | 是   | 选中的日期值。 |
+
+### onChange<sup>16+</sup>
+
+onChange(callback: Optional\<Callback\<Date>>)
+
+选择日期时触发该事件。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

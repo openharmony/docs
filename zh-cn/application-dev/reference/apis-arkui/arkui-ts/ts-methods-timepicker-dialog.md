@@ -388,7 +388,7 @@ struct TimePickerDialogExample {
             useMilitaryTime: false,
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
-            start: new Date('2022-07-22T08:30:00')
+            start: new Date('2022-07-22T08:30:00'),
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
@@ -424,7 +424,7 @@ struct TimePickerDialogExample {
             useMilitaryTime: false,
             selected: this.selectTime,
             format: TimePickerFormat.HOUR_MINUTE_SECOND,
-            end: new Date('2022-07-22T15:20:00')
+            end: new Date('2022-07-22T15:20:00'),
             onAccept: (value: TimePickerResult) => {
               // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
               if (value.hour != undefined && value.minute != undefined) {
