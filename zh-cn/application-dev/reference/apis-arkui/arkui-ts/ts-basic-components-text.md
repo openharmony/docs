@@ -1181,12 +1181,12 @@ struct TextExample1 {
 
 ### 示例2（设置文本样式）
 
-该示例通过decoration、letterSpacing、textCase、textShadow属性展示了不同样式的文本效果。
+该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
 @Extend(Text)
 function style() {
-  .fontSize(12)
+  .font({ size: 12 })
   .border({ width: 1 })
   .padding(10)
   .width('100%')
@@ -1251,6 +1251,12 @@ struct TextExample2 {
         .textCase(TextCase.UpperCase)
         .style()
 
+      Text('fontFamily').fontSize(9).fontColor(0xCCCCCC)
+      // 设置字体列表
+      Text('This is the text content with fontFamily')
+        .style()
+        .fontFamily('HarmonyOS Sans')
+
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC)
       // 设置文字阴影效果
       Text('textShadow')
@@ -1264,7 +1270,28 @@ struct TextExample2 {
           offsetY: 0
         })
 
-    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+      Text('fontStyle').fontSize(9).fontColor(0xCCCCCC)
+      // 设置字体样式
+      Text('This is the text content with fontStyle set to Italic')
+        .style()
+        .fontStyle(FontStyle.Italic)
+      Text('This is the text content with fontStyle set to Normal')
+        .style()
+        .fontStyle(FontStyle.Normal)
+
+      Text('textIndent').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文字缩进
+      Text('This is the text content with textIndent 30')
+        .style()
+        .textIndent(30)
+
+      Text('fontWeight').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本的字体粗细
+      Text('This is the text content with fontWeight 800')
+        .style()
+        .fontWeight('800', { enableVariableFontWeight: true })
+
+    }.width('100%').padding({ left: 35, right: 35 })
   }
 }
 ```
@@ -1444,7 +1471,7 @@ struct TextExample4 {
 
 ### 示例5（设置文本选中和复制）
 
-该示例通过selection、onCopy接口展示了文本选中以及触发复制回调的效果。
+该示例通过selection、onCopy、draggable、caretColor、selectedBackgroundColor接口展示了文本选中、触发复制回调、设置文本选中可拖拽以及修改手柄和选中颜色的效果。
 
 ```ts
 // xxx.ets
@@ -1468,6 +1495,10 @@ struct TextExample5 {
         .onCopy((value: string) => {
           this.onCopy = value
         })
+        .draggable(true)
+        .caretColor(Color.Red)
+        .selectedBackgroundColor(Color.Grey)
+        .enableHapticFeedback(true)
       Button('Set text selection')
         .margin({left:20})
         .onClick(() => {
@@ -1482,9 +1513,9 @@ struct TextExample5 {
 ```
 ![](figures/textExample5.png)
 
-### 示例6（设置文本自适应）
+### 示例6（设置文本自适应和缩放倍数限制范围）
 
-该示例通过heightAdaptivePolicy属性展示了文本自适应的效果。
+该示例通过heightAdaptivePolicy属性展示文本自适应效果以及通过minFontScale、maxFontScale展示设置字体缩放倍数限制范围。
 
 ```ts
 // xxx.ets
@@ -1514,6 +1545,12 @@ struct TextExample6 {
         .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       Text('This is the text with the height adaptive policy set.')
         .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+
+      Text('fontScale').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text content with minFontScale set to 1 and maxFontScale set to 1.2')
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .minFontScale(1)
+        .maxFontScale(1.2)
     }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }
