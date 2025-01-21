@@ -569,7 +569,7 @@ struct XComponentExample {
 // xxx.ets
 @Entry
 @Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;
