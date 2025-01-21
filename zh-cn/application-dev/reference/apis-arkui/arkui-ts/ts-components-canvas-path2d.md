@@ -70,17 +70,16 @@ addPath(path: Path2D, transform?: Matrix2D): void
   struct AddPath {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  
     private path2Da: Path2D = new Path2D("M250 150 L150 350 L350 350 Z")
     private path2Db: Path2D = new Path2D()
-  
+
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.addPath(this.path2Da)
             this.context.stroke(this.path2Db)
           })
@@ -123,7 +122,7 @@ closePath(): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.moveTo(200, 100)
             this.path2Db.lineTo(300, 100)
             this.path2Db.lineTo(200, 200)
@@ -176,7 +175,7 @@ moveTo(x: number, y: number): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.moveTo(50, 100)
             this.path2Db.lineTo(250, 100)
             this.path2Db.lineTo(150, 200)
@@ -229,7 +228,7 @@ lineTo(x: number, y: number): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.moveTo(100, 100)
             this.path2Db.lineTo(100, 200)
             this.path2Db.lineTo(200, 200)
@@ -287,7 +286,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.moveTo(10, 10)
             this.path2Db.bezierCurveTo(20, 100, 200, 100, 200, 20)
             this.context.stroke(this.path2Db)
@@ -340,7 +339,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.moveTo(10, 10)
             this.path2Db.quadraticCurveTo(100, 100, 200, 20)
             this.context.stroke(this.path2Db)
@@ -395,7 +394,7 @@ arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, 
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.arc(100, 75, 50, 0, 6.28)
             this.context.stroke(this.path2Db)
           })
@@ -448,7 +447,7 @@ arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.arcTo(150, 20, 150, 70, 50)
             this.context.stroke(this.path2Db)
           })
@@ -504,8 +503,8 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.path2Db.ellipse(200, 200, 50, 100, 0, Math.PI * 1, Math.PI*2)
+          .onReady(() => {
+            this.path2Db.ellipse(200, 200, 50, 100, 0, Math.PI * 1, Math.PI * 2)
             this.context.stroke(this.path2Db)
           })
       }
@@ -556,7 +555,7 @@ rect(x: number, y: number, w: number, h: number): void
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             this.path2Db.rect(20, 20, 100, 100);
             this.context.stroke(this.path2Db)
           })

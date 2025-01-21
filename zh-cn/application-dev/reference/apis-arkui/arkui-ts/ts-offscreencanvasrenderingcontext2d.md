@@ -467,8 +467,8 @@ struct TextBaseline {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.strokeStyle = '#0000ff'
           offContext.moveTo(0, 120)
@@ -497,7 +497,7 @@ struct TextBaseline {
 }
 ```
 
-![zh-cn_image_0000001193872518](figures/zh-cn_image_0000001193872518.png)
+![textBaseline](figures/textBaseline.jpg)
 
 
 ### globalAlpha
@@ -645,12 +645,12 @@ struct ShadowBlur {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .backgroundColor('rgb(213,213,213)')
         .onReady(() =>{
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 30
           offContext.shadowColor = 'rgb(0,0,0)'
-          offContext.fillStyle = 'rgb(255,0,0)'
+          offContext.fillStyle = 'rgb(39,135,217)'
           offContext.fillRect(20, 20, 100, 80)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -662,7 +662,7 @@ struct ShadowBlur {
 }
 ```
 
-![zh-cn_image_0000001194352452](figures/zh-cn_image_0000001194352452.png)
+![shadowBlur](figures/shadowBlur.jpg)
 
 
 ### shadowColor
@@ -681,12 +681,12 @@ struct ShadowColor {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
-        .onReady(() =>{
+        .backgroundColor('rgb(213,213,213)')
+        .onReady(() => {
           let offContext = this.offCanvas.getContext("2d", this.settings)
           offContext.shadowBlur = 30
-          offContext.shadowColor = 'rgb(0,0,255)'
-          offContext.fillStyle = 'rgb(255,0,0)'
+          offContext.shadowColor = 'rgb(255,192,0)'
+          offContext.fillStyle = 'rgb(39,135,217)'
           offContext.fillRect(30, 30, 100, 100)
           let image = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(image)
@@ -698,7 +698,7 @@ struct ShadowColor {
 }
 ```
 
-![zh-cn_image_0000001238952399](figures/zh-cn_image_0000001238952399.png)
+![shadowColor](figures/shadowColor.jpg)
 
 
 ### shadowOffsetX
@@ -995,7 +995,7 @@ fillRect(x: number, y: number, w: number, h: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('rgb(213,213,213)')
           .onReady(() =>{
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillRect(30,30,100,100)
@@ -1009,7 +1009,7 @@ fillRect(x: number, y: number, w: number, h: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194192436](figures/zh-cn_image_0000001194192436.png)
+  ![fillRect](figures/fillRect.jpg)
 
 
 ### strokeRect
@@ -1273,7 +1273,7 @@ measureText(text: string): TextMetrics
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
@@ -1423,8 +1423,8 @@ beginPath(): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.lineWidth = 6
@@ -1442,7 +1442,7 @@ beginPath(): void
   }
   ```
 
-  ![zh-cn_image_0000001193872522](figures/zh-cn_image_0000001193872522.png)
+  ![beginPath](figures/beginPath.jpg)
 
 
 ### moveTo
@@ -1639,7 +1639,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
   struct CreatePattern {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/icon.jpg")
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
 
     build() {
@@ -1647,8 +1647,8 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             let pattern = offContext.createPattern(this.img, 'repeat')
             offContext.fillStyle = pattern as CanvasPattern
@@ -1663,7 +1663,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
   }
   ```
 
-  ![zh-cn_image_0000001194352456](figures/zh-cn_image_0000001194352456.png)
+  ![createPattern](figures/createPattern.jpg)
 
 
 ### bezierCurveTo
@@ -1762,8 +1762,8 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.beginPath()
             offContext.moveTo(20, 20)
@@ -1779,7 +1779,7 @@ quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void
   }
   ```
 
-  ![zh-cn_image_0000001194032482](figures/zh-cn_image_0000001194032482.png)
+  ![quadraticCurveTo](figures/quadraticCurveTo.jpg)
 
 
 ### arc
@@ -2279,6 +2279,8 @@ reset(): void
 
 将OffscreenCanvasRenderingContext2D重置为其默认状态，清除后台缓冲区、绘制状态栈、绘制路径和样式。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **示例：**
@@ -2546,7 +2548,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 > **说明：**
-> 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标)：
+> 变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
 >
 > - x' = scaleX \* x + skewY \* y + translateX
 >
@@ -2579,8 +2581,8 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .backgroundColor('rgb(213,213,213)')
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = 'rgb(0,0,0)'
             offContext.fillRect(0, 0, 100, 100)
@@ -2600,7 +2602,7 @@ transform方法对应一个变换矩阵，想对一个图形进行变化的时�
   }
   ```
 
-  ![zh-cn_image_0000001239032431](figures/zh-cn_image_0000001239032431.png)
+  ![transform](figures/transform.jpg)
 
 
 ### setTransform
@@ -2661,9 +2663,6 @@ setTransform方法使用的参数和transform()方法相同，但setTransform()�
   ```
 
   ![zh-cn_image_0000001193872526](figures/zh-cn_image_0000001193872526.png)
-
-
-### setTransform
 
 setTransform(transform?: Matrix2D): void
 
@@ -3015,6 +3014,10 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 新的PixelMap对象 |
 
 **示例：**
+
+> **说明：**
+>
+> DevEco Studio的预览器不支持显示使用setPixelMap绘制的内容。
 
   ```ts
   // xxx.ets
