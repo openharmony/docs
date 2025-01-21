@@ -8,7 +8,7 @@
 
 应用退至后台一小段时间后，应用进程会被挂起，无法执行对应的任务。如果应用在后台仍需要执行耗时不长的任务，可以申请短时任务，扩展应用在后台的运行时间。
 
-短时任务适用于小文件下载、缓存、信息发送等实时性高、需要临时占用资源执行的任务。详细的开发指导可参考[短时任务](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/transient-task.md/)。
+短时任务适用于小文件下载、缓存、信息发送等实时性高、需要临时占用资源执行的任务。详细的开发指导可参考[短时任务](../task-management/transient-task.md)。
 
 ### 场景示例
 
@@ -123,7 +123,7 @@ struct Index {
 
 ## 长时任务
 
-应用退至后台后，在后台需要长时间运行用户可感知的任务，如播放音乐、导航等。为防止应用进程被挂起，导致对应功能异常，可以申请长时任务，使应用在后台长时间运行。申请长时任务后，系统会做相应的校验，确保应用在执行相应的长时任务。详细的开发指导可参考[长时任务](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/continuous-task.md/)。
+应用退至后台后，在后台需要长时间运行用户可感知的任务，如播放音乐、导航等。为防止应用进程被挂起，导致对应功能异常，可以申请长时任务，使应用在后台长时间运行。申请长时任务后，系统会做相应的校验，确保应用在执行相应的长时任务。详细的开发指导可参考[长时任务](../task-management/continuous-task.md)。
 
 长时任务支持的类型包括数据传输、音视频播放、录音、定位导航、蓝牙相关、多设备互联、WLAN 相关、音视频通话、计算任务。可以根据下表的场景举例选择相应的长时任务类型。
 
@@ -139,8 +139,8 @@ struct Index {
 | 音视频通话（仅对系统应用开放） | 系统聊天类应用后台音频电话。         |
 | 计算任务（仅对特定设备开放）   | 杀毒软件                             |
 
-- 申请了数据传输的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/apis/js-apis-request.md/)托管给系统执行，可以参考[文件上传下载性能提升指导](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/improve-file-upload-and-download-performance.md/)。
-- 申请音视频播放长时任务必须使用[媒体会话服务](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/media/avsession-overview.md/)，否则无法在后台播放。
+- 申请了数据传输的长时任务，系统仅会提升应用进程的优先级，降低系统终止应用进程的概率，但仍然会挂起对应的应用进程。对于上传下载对应的功能，需要调用系统[上传下载代理接口](../reference/apis-basic-services-kit/js-apis-request.md)托管给系统执行，可以参考[文件上传下载性能提升指导](./improve-file-upload-and-download-performance.md)。
+- 申请音视频播放长时任务必须使用[媒体会话服务](../media/avsession/avsession-overview.md)，否则无法在后台播放。
 - 申请录音类型长时任务，需要有显著的用户提示，必须通过动态授权弹框来提供用户授权界面，请求用户授权麦克风权限。
 
 ### 场景示例
@@ -174,7 +174,7 @@ struct Index {
 - ohos.permission.LOCATION
 - ohos.permission.KEEP_BACKGROUND_RUNNING
 
-权限申请方式参考[配置文件权限申明](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/security/accesstoken-guidelines.md/#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E5%A3%B0%E6%98%8E)，在 [module.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 中进行配置。其中部分权限申请以及打开使能通知开关需要用户手动确认。系统为申请的长时任务发布通知栏消息时，应用的使能通知开关必须处于开启状态，否则用户无法感知后台正在运行的长时任务。
+权限申请方式参考[配置文件权限申明](../security/AccessToken/declare-permissions.md#在配置文件中声明权限)，在 [module.json5](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/product/phone/entry/src/main/module.json5) 中进行配置。其中部分权限申请以及打开使能通知开关需要用户手动确认。系统为申请的长时任务发布通知栏消息时，应用的使能通知开关必须处于开启状态，否则用户无法感知后台正在运行的长时任务。
 
 后台定位的实现代码如下：
 
@@ -326,17 +326,17 @@ export struct LongTermTaskView {
 
 - 数据传输中使用高效率的数据格式和解析方法，减少任务执行时间。
 
-更多长时任务的使用限制和注意事项可以参考[长时任务约束与限制](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/continuous-task.md/)。
+更多长时任务的使用限制和注意事项可以参考[长时任务约束与限制](../task-management/continuous-task.md#约束与限制)。
 
 ## 延迟任务
 
 应用退至后台后，如果需要执行实时性要求不高的任务，可以使用延迟任务。当应用满足设定条件（包括网络类型、充电类型、存储状态、电池状态、定时状态等）时，将任务添加到执行队列，系统会根据内存、功耗、设备温度、用户使用习惯等统一调度拉起应用。
 
-延迟任务适用于软件更新、信息收集、数据处理等场景。详细的开发指导可参考[延迟任务](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/work-scheduler.md/)。
+延迟任务适用于软件更新、信息收集、数据处理等场景。详细的开发指导可参考[延迟任务](../task-management/work-scheduler.md)。
 
 ## 代理提醒
 
-应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。详细的开发指导可参考[代理提醒](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/task-management/agent-powered-reminder.md/)。
+应用退到后台或进程终止后，仍然有一些提醒用户的定时类任务，例如购物类应用抢购提醒等，为满足此类功能场景，系统提供了代理提醒（reminderAgentManager）的能力。当应用退至后台或进程终止后，系统会代理应用做相应的提醒。详细的开发指导可参考[代理提醒](../task-management/agent-powered-reminder.md)。
 
 当前支持的提醒类型包括：
 
