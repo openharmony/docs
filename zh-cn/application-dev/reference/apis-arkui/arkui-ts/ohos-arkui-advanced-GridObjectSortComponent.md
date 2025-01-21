@@ -150,5 +150,4 @@ struct Index {
   }
 }
 ```
-
-![GridObjectSortComponent.gif](..%2F..%2F..%2F..%2F..%2F..%2F..%2F%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6%2FGridObjectSortComponent.gif)
+![GridObjectSortComponent](figures/GridObjectSortComponent.gif)
