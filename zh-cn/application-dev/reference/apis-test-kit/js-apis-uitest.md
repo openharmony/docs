@@ -1836,7 +1836,7 @@ async function demo() {
 ```
 ### getHint<sup>16+</sup>
 
-getHint(): Promise<string>
+getHint(): Promise\<string>
 
 获取控件对象的提示值。
 
