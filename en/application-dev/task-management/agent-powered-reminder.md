@@ -14,7 +14,13 @@ After an application switches to the background or an application process is ter
 
 ### Constraints
 
-- **Quantity limit**: A third-party application supports a maximum of 30 valid reminders. A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders. (A reminder is considered valid as long as it is published.)
+- **Quantity limit**: A third-party application supports a maximum of 30 valid reminders.<!--Del--> A system application supports a maximum of 10,000 valid reminders. The entire system supports a maximum of 12,000 valid reminders.<!--DelEnd-->
+
+   > **NOTE**
+   >
+   > When the reminder time arrives, the notification center displays the relevant reminder. The reminder remains active and unexpired unless the user touches the CLOSE button, at which point the reminder becomes expired.
+   >
+   > For a recurring reminder (for example, a daily reminder), the reminder is always valid regardless of whether the user touches the CLOSE button.
 
 - **Redirection limit**: The application that is redirected to upon a click on the notification must be the application that requested the agent-powered reminder.
 
