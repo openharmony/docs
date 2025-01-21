@@ -38,7 +38,7 @@ Path2D(description: string, unit?: LengthMetricsUnit)
 
 | 参数名  | 类型     | 必填 |  说明   |
 | ----- | -------- | ---- | ---------- |
-| description | string | 是 | 符合 SVG 路径描述规范的路径字符串 |
+| description | string | 是 | 符合 SVG 路径描述规范的路径字符串。 |
 | unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否 | 用来配置Path2D对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT。|
 
 ## addPath

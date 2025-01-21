@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标，单位px |
-| y | number | 是    | 相对于组件的纵坐标，单位px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
 
 **返回值：**
 
@@ -648,7 +648,7 @@ getStyledString(): MutableStyledString;
 
 | 类型    | 说明                          |
 | ------- | ----------------------------- |
-| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串 |
+| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串。 |
 
 ## DecorationStyleResult<sup>12+</sup>
 
