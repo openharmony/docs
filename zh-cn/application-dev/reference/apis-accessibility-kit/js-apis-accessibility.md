@@ -1327,7 +1327,7 @@ accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
 });
 ```
 
-**主动播报支持Resource示例：**
+**主动播报支持Resource示例<sup>16+</sup>：**
 
 ```ts
 import { accessibility } from '@kit.AccessibilityKit';
