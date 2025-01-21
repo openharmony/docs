@@ -4,9 +4,9 @@ You can use the APIs of the input method framework service to easily switch betw
 
 > **NOTE**
 >
-> The following APIs can be called only in the current input method application.
+> 1. The following APIs can be called only in the current input method application.
 >
-> For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod-application-guide.md).
+> 2. For details about how to implement an input method application, see [Implementing an Input Method Application](./inputmethod-application-guide.md).
 
 ## Switching Between Input Method Subtypes
 
@@ -48,8 +48,6 @@ You can use the APIs of the input method framework service to easily switch betw
        });
      }
    }
-
-
    ```
 
 ## Switching Between Input Methods

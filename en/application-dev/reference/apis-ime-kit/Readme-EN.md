@@ -24,6 +24,4 @@
     - [inputmethod_types_capi.h](inputmethod__types__capi_8h.md)
 - Error Codes
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
-
-<!--no_check-->
   
