@@ -256,7 +256,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession) {
     const extensionWindow = session.getUIExtensionWindowProxy();
     // 注册组件（EmbeddedComponent或UIExtensionComponent）位置及尺寸变化的监听
-    extensionWindow.on('rectChange', uiextension.RectChangeReason.HOST_WINDOW_RECT_CHANGE, (data: uiextension.RectChangeOptions) => {
+    extensionWindow.on('rectChange', uiExtension.RectChangeReason.HOST_WINDOW_RECT_CHANGE, (data: uiExtension.RectChangeOptions) => {
         console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
     });
   }
@@ -562,7 +562,7 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
       this.extensionWindow?.on('windowSizeChange', (size: window.Size) => {
           console.info(`size = ${JSON.stringify(size)}`);
       });
-      this.extensionWindow?.on('rectChange', uiextension.RectChangeReason.HOST_WINDOW_RECT_CHANGE, (data: uiextension.RectChangeOptions) => {
+      this.extensionWindow?.on('rectChange', uiExtension.RectChangeReason.HOST_WINDOW_RECT_CHANGE, (data: uiExtension.RectChangeOptions) => {
           console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
       });
       this.extensionWindow?.on('avoidAreaChange', (info: uiExtension.AvoidAreaInfo) => {
