@@ -804,6 +804,7 @@ id(id: string, pattern: MatchPattern): On
 | ------ | ------ |----| ---------------- |
 | id     | string | 是  | 指定控件的id值。 |
 | pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
+
 **返回值：**
 
 | 类型       | 说明                             |
