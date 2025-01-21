@@ -1374,7 +1374,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let uid = 20010005;
 
 try {
-    bundleManager.getAppCloneIdentity(uid).then((res: bundleManager.AppCloneIdentity) => {
+    bundleManager.getAppCloneIdentity(uid).then((res) => {
         hilog.info(0x0000, 'testTag', 'getAppCloneIdentity res = %{public}s', JSON.stringify(res));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', err.message);
@@ -1625,7 +1625,7 @@ skill信息。
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |skill信息。 |
 
-### SkillUri<sup>12+</sup>
+### SkillUrl<sup>12+</sup>
 
 type SkillUrl = _Skill.SkillUri
 

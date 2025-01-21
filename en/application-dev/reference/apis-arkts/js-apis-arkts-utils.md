@@ -203,7 +203,7 @@ Queries information about all existing asynchronous locks.
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
 if (states.length == 0) {
-    throw new Error ('Test failed: At least one state is expected, but what got is ' + states.length);
+    throw new Error('Test failed: At least one state is expected, but what got is ' + states.length);
 }
 ```
 
@@ -642,6 +642,77 @@ console.info(str);
 // Expected output: '[1,2,3]'
 ```
 
+### stringify<sup>16+</sup>
+
+stringify(value: Object | null | undefined): string
+
+Converts ArkTS object data into a JSON string, with additional support for Map and Set types.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| value | Object \| null \| undefined  | Yes| ArkTS object data.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| string | JSON string.|
+
+**Example**
+
+```ts
+import { ArkTSUtils, collections, HashMap, HashSet } from '@kit.ArkTS';
+
+let hashMap = new HashMap<string,string>();
+hashMap.set("ha","a");
+hashMap.set("sh","b");
+hashMap.set("map","c");
+let str1 = ArkTSUtils.ASON.stringify(hashMap);
+console.info(str1);
+// Expected output: '{"sh":"b","ha":"a","map":"c"}'
+let hashSet = new HashSet<string>();
+hashSet.add("ha");
+hashSet.add("sh");
+hashSet.add("set");
+let str2 = ArkTSUtils.ASON.stringify(hashSet);
+console.info(str2);
+// Expected output: '["set","sh","ha"]'
+let map = new Map<string,string>();
+map.set("m","a");
+map.set("a","b");
+map.set("p","c");
+let str3 = ArkTSUtils.ASON.stringify(map);
+console.info(str3);
+// Expected output: '{"m":"a","a":"b","p":"c"}'
+let set = new Set<string>();
+set.add("s");
+set.add("e");
+set.add("t");
+let str4 = ArkTSUtils.ASON.stringify(set);
+console.info(str4);
+// Expected output: '["s","e","t"]'
+let sendableMap = new collections.Map<string,string>();
+sendableMap.set("send","a");
+sendableMap.set("able","b");
+sendableMap.set("map","c");
+let str5 = ArkTSUtils.ASON.stringify(sendableMap);
+console.info(str5);
+// Expected output: '{"send":"a","able":"b","map":"c"}'
+let sendableSet = new collections.Set<string>();
+sendableSet.add("send");
+sendableSet.add("able");
+sendableSet.add("set");
+let str6 = ArkTSUtils.ASON.stringify(sendableSet);
+console.info(str6);
+// Expected output: '["send","able","set"]'
+```
+
 ### isSendable
 
 isSendable(value: Object | null | undefined): boolean
@@ -670,8 +741,7 @@ Checks whether the passed-in value is of the sendable data type.
 import { ArkTSUtils } from '@kit.ArkTS'
 
 @Sendable
-function sendableFunc()
-{
+function sendableFunc() {
   console.info("sendableFunc")
 }
 

@@ -60,7 +60,7 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 | -------- | -------- |
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_BeginChain](#oh_hitrace_beginchain) (const char \*name, int flags) | 开始跟踪进程实现。 | 
 | void [OH_HiTrace_EndChain](#oh_hitrace_endchain) () | 如果给定的跟踪ID有效，则停止进程跟踪并清除当前线程的跟踪ID，否则不执行任何操作。 | 
-| [HiTraceId](_hi_trace_id.md) [OH_HiTrace_GetId](#oh_hitrace_getid) () | 获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID | 
+| [HiTraceId](_hi_trace_id.md) [OH_HiTrace_GetId](#oh_hitrace_getid) () | 获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID。 | 
 | void [OH_HiTrace_SetId](#oh_hitrace_setid) (const [HiTraceId](_hi_trace_id.md) \*id) | 将id设置为当前线程的跟踪id。如果ID无效，则不执行任何操作。 | 
 | void [OH_HiTrace_ClearId](#oh_hitrace_clearid) (void) | 清除当前线程的跟踪ID并将其设置为无效。 | 
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_CreateSpan](#oh_hitrace_createspan) (void) | 根据当前线程的跟踪id创建一个新的span id。 | 

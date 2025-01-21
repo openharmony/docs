@@ -125,6 +125,7 @@ struct toastExample {
     Column() {
       Button('Open Toast')
         .height(100)
+        .type(ButtonType.Capsule)
         .onClick(() => {
           promptAction.openToast({
             message: 'Toast Massage',
