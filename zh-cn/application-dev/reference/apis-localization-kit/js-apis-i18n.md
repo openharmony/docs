@@ -819,28 +819,28 @@ get(field: string): number
 
 | field名称   | 说明                                       |
 | ----- | ---------------------------------------- |
-| era | 纪元，例如公历中的公元前或者公元后 |
-| year | 年 |
+| era | 纪元，例如公历中的公元前或者公元后。 |
+| year | 年。 |
 | month | 月。说明：月份从0开始计数，如0表示一月。 |
-| date | 日 |
-| hour | 挂钟小时数 |
-| hour_of_day | 一天中的第几小时 |
-| minute | 分 |
-| second | 秒 |
-| millisecond | 毫秒 |
-| week_of_year | 一年中的第几周，按照星期计算周，注意：第一周的归属算法各地有区别 |
-| year_woy | 一年中的第几周，按照数值计算周，例如一年中前1~7日属于第一周 |
-| week_of_month | 一个月中的第几周，按照星期计算周 |
-| day_of_week_in_month | 一月中的第几周，按照数值计算周，例如1-7日属于第一周 |
-| day_of_year | 一年中的第几天 |
-| day_of_week | 一周中的第几天(星期) |
-| milliseconds_in_day | 一天中的第几毫秒 |
-| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时) |
-| dst_offset | 以毫秒计时的夏令时偏移量 |
-| dow_local | 本地星期 |
-| extended_year | 扩展的年份数值，支持负数 |
-| julian_day | 儒略日,与当前时区相关 |
-| is_leap_month | 是否为闰月 |
+| date | 日。 |
+| hour | 挂钟小时数。 |
+| hour_of_day | 一天中的第几小时。 |
+| minute | 分。 |
+| second | 秒。 |
+| millisecond | 毫秒。 |
+| week_of_year | 一年中的第几周，按照星期计算周，注意：第一周的归属算法各地有区别。 |
+| year_woy | 一年中的第几周，按照数值计算周，例如一年中前1~7日属于第一周。 |
+| week_of_month | 一个月中的第几周，按照星期计算周。 |
+| day_of_week_in_month | 一月中的第几周，按照数值计算周，例如1-7日属于第一周。 |
+| day_of_year | 一年中的第几天。 |
+| day_of_week | 一周中的第几天(星期)。 |
+| milliseconds_in_day | 一天中的第几毫秒。 |
+| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时)。 |
+| dst_offset | 以毫秒计时的夏令时偏移量。 |
+| dow_local | 本地星期。 |
+| extended_year | 扩展的年份数值，支持负数。 |
+| julian_day | 儒略日,与当前时区相关。 |
+| is_leap_month | 是否为闰月。 |
 
 **返回值：**
 
@@ -2251,7 +2251,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
 | locale   | string                 | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md) |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。 |
 
 **返回值：**
 
@@ -2309,7 +2309,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，如：16。 |
-| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。 <br>默认是当前区域。|
+| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认是当前区域。|
 
 **返回值：**
 
@@ -2701,7 +2701,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 | 名称            | 类型             |  必填   |  说明                                   |
 | --------------- | -----------------| ------  | --------------------------------------- |
-| language        | string           |   是    | 节假日的本地语言，例如ar,en,tr。          |
+| language        | string           |   是    | 节假日的本地语言，例如ar，en，tr。          |
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
 
