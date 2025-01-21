@@ -4272,6 +4272,57 @@ stop(): Promise&lt;void&gt;
   });
   ```
 
+### setMaxSpeed<sup>16+</sup>
+
+setMaxSpeed(speed: number): Promise\<void\>
+
+设置任务每秒能传输的字节数上限。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                 |
+|-------|--------|----|------------------------------------|
+| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节，最小值为16384字节。 |
+
+**返回值：**
+
+| 类型              | 说明                         |
+|-----------------|----------------------------|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息                                                                                                                           |
+|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error.                                                                                                    |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let config: request.agent.Config = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    saveas: "./",
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    // 设置任务速度上限。
+    task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+      console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+    }).catch((err: BussinessError) => {
+      console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
 ## request.agent.create<sup>10+</sup>
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
