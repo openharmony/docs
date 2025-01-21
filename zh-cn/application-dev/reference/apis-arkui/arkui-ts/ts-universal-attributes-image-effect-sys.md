@@ -34,6 +34,7 @@ advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 ```ts
 // xxx.ets
 import { uiEffect } from "@kit.ArkGraphics2D"
+
 // uiEffect.createBrightnessBlender创建BrightnessBlender实例用于给组件添加提亮效果
 let blender: uiEffect.BrightnessBlender = uiEffect.createBrightnessBlender({
   cubicRate: 0.5,
