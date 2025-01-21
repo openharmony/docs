@@ -878,6 +878,15 @@ selectedBackgroundColor(color: ResourceColor)
 | TEXT | Span为文字类型。 |
 | IMAGE | Span为图像类型。|
 | MIXED | Span为图文混合类型。|
+| DEFAULT<sup>16+</sup> | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
+
+>  **说明：**
+>
+>  菜单类型的匹配顺序如下。例如，用户长按文本时，根据以下规则查找：
+>  1. 查找是否注册了TextSpanType.TEXT、TextResponseType.LONG_PRESS菜单
+>  2. 查找是否注册了TextSpanType.TEXT、TextResponseType.DEFAULT菜单
+>  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
+>  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
 
 ## TextResponseType<sup>11+</sup>枚举说明
 
@@ -890,6 +899,15 @@ selectedBackgroundColor(color: ResourceColor)
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+| DEFAULT<sup>16+</sup> | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
+
+>  **说明：**
+>
+>  菜单类型的匹配顺序如下。例如，用户长按文本时，根据以下规则查找：
+>  1. 查找是否注册了TextSpanType.TEXT、TextResponseType.LONG_PRESS菜单
+>  2. 查找是否注册了TextSpanType.TEXT、TextResponseType.DEFAULT菜单
+>  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
+>  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
 
 ## TextOverflowOptions<sup>16+</sup>对象说明
 
