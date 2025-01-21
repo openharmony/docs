@@ -1369,6 +1369,23 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
 
+### onSelected<sup>16+</sup>
+
+onSelected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为当前选中的元素的索引值。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前选中元素的索引。 |
 
 ## OnSwiperAnimationStartCallback<sup>16+</sup>
 
@@ -2056,3 +2073,108 @@ struct MyComponent {
   }
 }
 ```
+
+### 示例7（实现Tabs与Swiper联动）
+
+该示例通过onSelected接口，实现了Tabs与Swiper联动切换。
+
+```ts
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct TabsSwiperExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  private list: number[] = []
+  private tabsController: TabsController = new TabsController()
+  private swiperController: SwiperController = new SwiperController()
+  private swiperData: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    for (let i = 0; i <= 9; i++) {
+      this.list.push(i);
+    }
+    this.swiperData = new MyDataSource(this.list)
+  }
+
+  @Builder tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === index ? 1 : 0)
+    }.width('20%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
+        ForEach(this.list, (index: number) =>{
+          TabContent().tabBar(this.tabBuilder(index, '页签 ' + this.list[index]))
+        })
+      }
+      .onTabBarClick((index: number) => {
+        this.currentIndex = index
+        this.swiperController.changeIndex(index, true)
+      })
+      .barMode(BarMode.Scrollable)
+      .backgroundColor('#F1F3F5')
+      .height(56)
+      .width('100%')
+
+      Swiper(this.swiperController) {
+        LazyForEach(this.swiperData, (item: string) => {
+          Text(item.toString())
+            .onAppear(()=>{
+              console.info('onAppear ' + item.toString())
+            })
+            .onDisAppear(()=>{
+              console.info('onDisAppear ' + item.toString())
+            })
+            .width('100%')
+            .height('40%')
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .loop(false)
+      .onSelected((index: number) => {
+        console.info("onSelected:" + index)
+        this.currentIndex = index;
+        this.tabsController.changeIndex(index)
+      })
+    }
+  }
+}
+```
+![swiper](figures/tabs_swiper.gif)
