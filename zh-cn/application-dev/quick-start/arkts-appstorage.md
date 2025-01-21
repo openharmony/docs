@@ -51,7 +51,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 | 传递/访问      | 说明                                       |
 | ---------- | ---------------------------------------- |
-| 从父节点初始化和更新 | 禁止，\@StorageProp不支持从父节点初始化，只能AppStorage中key对应的属性初始化，如果没有对应key的话，将使用本地默认值初始化 |
+| 从父节点初始化和更新 | 禁止，\@StorageProp不支持从父节点初始化，只能AppStorage中key对应的属性初始化，如果没有对应key的话，将使用本地默认值初始化。 |
 | 初始化子节点     | 支持，可用于初始化\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问  | 否。                                       |
 
@@ -100,7 +100,7 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 \@StorageLink(key)是和AppStorage中key对应的属性建立双向数据同步：
 
-1. 本地修改发生，该修改会被写回AppStorage中；
+1. 本地修改发生，该修改会被写回AppStorage中。
 
 2. AppStorage中的修改发生后，该修改会被同步到所有绑定AppStorage对应key的属性上，包括单向（\@StorageProp和通过Prop创建的单向绑定变量）、双向（\@StorageLink和通过Link创建的双向绑定变量）变量和其他实例（比如PersistentStorage）。
 
@@ -177,7 +177,7 @@ AppStorage.setOrCreate('PropA', 47);
 
 3. AppStorage与[PersistentStorage](arkts-persiststorage.md)以及[Environment](arkts-environment.md)配合使用时，需要注意以下几点：
 
-    （1） 在AppStorage中创建属性后，调用PersistentStorage.persistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)；
+    （1） 在AppStorage中创建属性后，调用PersistentStorage.persistProp()接口时，会使用在AppStorage中已经存在的值，并覆盖PersistentStorage中的同名属性，所以建议要使用相反的调用顺序，反例可见[在PersistentStorage之前访问AppStorage中的属性](arkts-persiststorage.md#在persistentstorage之前访问appstorage中的属性)。
 
     （2） 如果在AppStorage中已经创建属性后，再调用Environment.envProp()创建同名的属性，会调用失败。因为AppStorage已经有同名属性，Environment环境变量不会再写入AppStorage中，所以建议AppStorage中属性不要使用Environment预置环境变量名。
 

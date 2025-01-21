@@ -398,7 +398,7 @@ struct Son {
   }
   ```
 
-- 不允许直接改变状态变量，反例如下。详细分析见[\@State常见问题：不允许在build里改状态变量](./arkts-state.md#不允许在build里改状态变量)
+- 不允许直接改变状态变量，反例如下。详细分析见[\@State常见问题：不允许在build里改状态变量](./arkts-state.md#不允许在build里改状态变量)。
 
   ```ts
   @Component
