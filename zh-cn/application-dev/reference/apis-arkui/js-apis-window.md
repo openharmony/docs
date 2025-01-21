@@ -9757,7 +9757,7 @@ promise.then(() => {
 
 setWindowShadowRadius(radius: number): void
 
-设置窗口边缘阴影的模糊半径。
+设置子窗或悬浮窗窗口边缘阴影的模糊半径，仅2in1设备可用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -9794,7 +9794,7 @@ try {
 
 setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
-设置子窗和悬浮窗的圆角大小，使用Promise异步回调，仅2in1设备可用。
+设置子窗或悬浮窗的圆角大小，使用Promise异步回调，仅2in1设备可用。
 
 圆角的大小过大将会导致三键位置被裁切，且导致热区不易识别，请根据窗口大小设置合适的圆角值。
 
