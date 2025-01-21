@@ -403,6 +403,14 @@ async function example() {
 
 实体相册
 
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称           | 类型    | 可读   | 可写  | 说明   |
+| ------------ | ------ | ---- | ---- | ------- |
+| lpath<sup>16+</sup>    | string | 是    | 否   | 相册虚拟路径。**系统接口**：此接口为系统接口。|
+
 ## AlbumType
 
 枚举，相册类型，表示是用户相册还是系统预置相册。
@@ -434,3 +442,13 @@ async function example() {
 | GROUP_PHOTO           | 4103 | 合影相册。**系统接口**：此接口为系统接口。                 |
 | HIGHLIGHT             | 4104 | 时刻相册。**系统接口**：此接口为系统接口。                 |
 | HIGHLIGHT_SUGGESTIONS | 4105 | 时刻建议相册。**系统接口**：此接口为系统接口。             |
+
+## AlbumKeys
+
+枚举，相册关键信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                              | 值                    | 说明                                                       |
+| --------------------------------- | -------------------- | ----------------------------------------------------- |
+| ALBUM_LPATH<sup>16+</sup>         | 'lpath'                 | 相册的虚拟路径。**系统接口**：此接口为系统接口。            |
