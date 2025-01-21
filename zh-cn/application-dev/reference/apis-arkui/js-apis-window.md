@@ -9796,9 +9796,9 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 
 设置子窗或悬浮窗的圆角大小，使用Promise异步回调，仅2in1设备可用。
 
-圆角的大小过大将会导致三键位置被裁切，且导致热区不易识别，请根据窗口大小设置合适的圆角值。
+圆角的大小过大将会导致三键（最大化、最小化、关闭）位置被裁切，且导致热区不易识别，请根据窗口大小设置合适的圆角值。
 
-在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius16)接口可以获得窗口默认圆角值，调用此接口后，再调用[getWindowCornerRadius()](#getwindowcornerradius16)获得设置的圆角大小。
+在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius16)接口可以获得窗口默认圆角值。调用此接口后，再调用[getWindowCornerRadius()](#getwindowcornerradius16)获得设置的圆角大小。
 
 **系统能力**：SystemCapability.Window.SessionManager
 
@@ -9846,7 +9846,7 @@ try{
 
 ### getWindowCornerRadius<sup>16+</sup>
 
-getWindowCornerRadius(): void
+getWindowCornerRadius(): number;
 
 获得子窗或悬浮窗圆角大小，仅2in1设备可用。
 
