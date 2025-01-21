@@ -1439,7 +1439,7 @@ Usb异步传输回调信息。
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值 |
-| status | [UsbTransferStatus](#usbtransferstatus) | 读写操作完成的状态 |
+| status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态 |
 | isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息（仅实时传输时有返回值） |
 
 ## UsbTransferStatus<sup>16+</sup>
