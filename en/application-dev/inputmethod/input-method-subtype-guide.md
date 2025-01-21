@@ -1,10 +1,10 @@
 # Setting Input Method Subtypes
 
-The input method subtype allows the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
+The input method subtypes allow the input method to switch to a specific mode or language, for example, the Chinese or English keyboard.
 
 ## Configuring and Implementing an Input Method Subtype
 
-1. Implement an **InputMethodExtensionAbility** instance for an input method, which will be shared by all subtypes of the input method. Add **metadata** to the [module.json5](../quick-start/module-configuration-file.md) file, setting it name to **ohos_extension.input_method** and **resource** to the resource file applicable to all subtypes of the input method.
+1. Implement an **InputMethodExtensionAbility** instance for an input method, which will be shared by all subtypes of the input method. Add **metadata** with the name **ohos_extension.input_method** to the [module.json5](../quick-start/module-configuration-file.md) file to configure resource information for all subtypes.
    ```ts
    {
      "module": {
@@ -83,3 +83,5 @@ The input method subtype allows the input method to switch to a specific mode or
 1. To switch to another subtype of the current input method, call [switchCurrentInputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodsubtype9).
 
 2. To switch to a specified subtype of a specified input method, call [switchCurrentInputMethodAndSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9).
+
+ <!--no_check--> 

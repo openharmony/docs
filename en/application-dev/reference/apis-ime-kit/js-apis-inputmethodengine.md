@@ -143,7 +143,7 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. T
 let keyboardDelegate = inputMethodEngine.createKeyboardDelegate();
 ```
 
-## inputMethodEngine.CommandDataType<sup>12+</sup>
+## CommandDataType<sup>12+</sup>
 
 type CommandDataType = number | string | boolean;
 
@@ -309,7 +309,7 @@ Enables listening for the input method binding event. This API uses an asynchron
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Event type, which is **'inputStart'**.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | Yes| Callback used to return the result.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), inputClient: [InputClient](#inputclient9)) => void | Yes| Callback used to return instances related to input method operations.|
 
 **Example**
 
@@ -497,7 +497,7 @@ Disables listening for a keyboard visibility event. This API uses an asynchronou
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Event type.<br>- The value **'keyboardShow'** indicates the keyboard display event.<br>- The value **'keyboardHide'** indicates the keyboard hiding event.|
-| callback | () => void   | No  | Callback to unregister. |
+| callback | () => void   | No  | Callback to unregister.|
 
 **Example**
 
@@ -640,7 +640,7 @@ Enables listening for the private data event of the input method. This API uses 
 | Name  | Type                                         | Mandatory| Description                                      |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
 | type     | string                                        | Yes  | Event type, which is **'privateCommand'**.|
-| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | Yes  | Callback used to return the private data sent to the input method application.|
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | Yes  | Callback used to return the private data sent to the input method application.|
 
 **Error codes**
 
@@ -683,7 +683,7 @@ Disables listening for the private data event of the input method. This API uses
 | Name  | Type                                       | Mandatory| Description                                                        |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                      | Yes  | Event type, which is **'privateCommand'**.                  |
-| callback | Callback<Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)>> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| callback | Callback<Record<string, [CommandDataType](#commanddatatype12)>> | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Error codes**
 
@@ -748,7 +748,7 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-Creates an input method panel. This API uses an asynchronous callback to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
+Creates an input method panel, which can be called only by input method applications. This API uses an asynchronous callback to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -757,7 +757,7 @@ Creates an input method panel. This API uses an asynchronous callback to return 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
 | ctx     | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Current context of the input method.|
-| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
+| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method application.|
 | callback | AsyncCallback\<[Panel](#panel10)> | Yes  | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
 
 **Error codes**
@@ -794,7 +794,7 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-Creates an input method panel. This API uses a promise to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
+Creates an input method panel, which can be called only by input method applications. This API uses a promise to return the result.<br>Only one [SOFT_KEYBOARD](#paneltype10) panel and one [STATUS_BAR](#paneltype10) panel can be created for a single input method.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -983,13 +983,13 @@ Enables listening for a physical keyboard event. This API uses an asynchronous c
 ```ts
 try {
   inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
   inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent: inputMethodEngine.KeyEvent) => {
-    console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-    console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+    console.log(`inputMethodEngine keyCode.(keyDown): ${keyEvent.keyCode}`);
+    console.log(`inputMethodEngine keyAction.(keyDown): ${keyEvent.keyAction}`);
     return true;
   });
 } catch(err) {
@@ -1042,7 +1042,7 @@ Enables listening for a keyboard event. This API uses an asynchronous callback t
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'keyEvent'**.|
-| callback | function | Yes  | Callback used to return the result.<br>- Input parameter: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent).<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
+| callback | (event: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent)) => boolean | Yes  | Callback used to return the result. The input parameter is the key event information and the return value is of the Boolean type.<br>- Input parameter: [InputKeyEvent](../apis-input-kit/js-apis-keyevent.md#keyevent).<br>- If the event is consumed by the event subscriber, **true** is returned. Otherwise, **false** is returned.|
 
 **Example**
 
@@ -1053,7 +1053,8 @@ try {
   inputMethodEngine.getKeyboardDelegate().on('keyEvent', (keyEvent: KeyEvent) => {
     console.log('inputMethodEngine keyEvent.action:' + JSON.stringify(keyEvent.action));
     console.log('inputMethodEngine keyEvent.key.code:' + JSON.stringify(keyEvent.key.code));
-    console.log('inputMethodEngine keyEvent.ctrlKey:' + JSON.stringify(keyEvent.ctrlKey));
+    console.log(`inputMethodEngine keyEvent.ctrlKey: ${keyEvent.ctrlKey}`);
+    console.log(`inputMethodEngine keyEvent.unicodeChar: ${keyEvent.unicodeChar}`);
     return true;
   });
 } catch(err) {
@@ -1105,7 +1106,7 @@ Enables listening for the cursor change event. This API uses an asynchronous cal
 | Name   | Type | Mandatory | Description |
 | -------- | ---- | ---- | ----- |
 | type     | string | Yes  | Event type, which is **'cursorContextChange'**.|
-| callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor movement direction.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: y coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.|
+| callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor information.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: y coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.|
 
 **Example**
 
@@ -1134,7 +1135,7 @@ Disables listening for cursor context changes. This API uses an asynchronous cal
 | Name   | Type | Mandatory | Description  |
 | -------- | ---- | ---- | ------ |
 | type     | string  | Yes  | Event type, which is **'cursorContextChange'**.|
-| callback | (x: number, y:number, height:number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
+| callback | (x: number, y:number, height:number) => void | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 
   **Example**
@@ -1158,10 +1159,10 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description  |
+| Name    |  Type  | Mandatory | Description   |
 | -------- | ----- | ---- | ---- |
-| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
-| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
+| type     | string  | Yes   | Event type, which is **'selectionChange'**.|
+| callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes   | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
 **Example**
 
@@ -1189,9 +1190,9 @@ Disables listening for the text selection change event. This API uses an asynchr
 
 **Parameters**
 
-| Name  | Type | Mandatory| Description    |
+| Name   | Type  | Mandatory | Description     |
 | -------- | ------- | ---- | ------- |
-| type     | string  | Yes  | Event type, which is **'selectionChange'**.|
+| type     | string  | Yes   | Event type, which is **'selectionChange'**. |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1218,9 +1219,9 @@ Enables listening for the text change event. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name   |  Type  | Mandatory | Description                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'textChange'**.|
+| type     | string | Yes   | Event type, which is **'textChange'**. |
 | callback | (text: string) => void | Yes  | Callback used to return the text content.|
 
 **Example**
@@ -1245,9 +1246,9 @@ Disables listening for the text change event. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name   |  Type  | Mandatory | Description                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'textChange'**.|
+| type     | string | Yes   | Event type, which is **'textChange'**. |
 | callback | (text: string) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1272,9 +1273,9 @@ Enables listening for the edit box attribute change event. This API uses an asyn
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name   |  Type  | Mandatory | Description                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
+| type     | string | Yes   | Event type, which is **'editorAttributeChanged'**. |
 | callback | (attr: EditorAttribute) => void | Yes  | Callback used to return the changed edit box attribute.|
 
 **Example**
@@ -1299,9 +1300,9 @@ Disables listening for the edit box attribute change event. This API uses an asy
 
 **Parameters**
 
-| Name  | Type  | Mandatory| Description                                                        |
+| Name   |  Type  | Mandatory | Description                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| type     | string | Yes  | Event type, which is **'editorAttributeChanged'**.|
+| type     | string | Yes   | Event type, which is **'editorAttributeChanged'**. |
 | callback | (attr: EditorAttribute) => void | No  | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified type.|
 
 **Example**
@@ -1324,9 +1325,9 @@ Loads content from a page to this input method panel. This API uses an asynchron
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
+| Name   | Type                   | Mandatory | Description     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  | Path of the page from which the content will be loaded.|
+| path | string | Yes   | Path of the page from which the content will be loaded. |
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -1365,13 +1366,13 @@ Loads content from a page to this input method panel. This API uses a promise to
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
+| Name   | Type                   | Mandatory | Description     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  |  Path of the page from which the content will be loaded.|
+| path | string | Yes   |  Path of the page from which the content will be loaded. |
 
 **Return value**
 
-| Type  | Description                            |
+| Type   | Description                             |
 | ------- | ------------------------------ |
 | Promise\<void> | Promise that returns no value. |
 
@@ -1409,9 +1410,9 @@ Loads content from a page linked to LocalStorage to this input method panel. Thi
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
+| Name   | Type                   | Mandatory | Description     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  | Path of the page linked to LocalStorage.|
+| path | string | Yes   | Path of the page linked to LocalStorage. |
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -1453,14 +1454,14 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
+| Name   | Type                   | Mandatory | Description     |
 | -------- | ---------------------- | ---- | -------- |
-| path | string | Yes  | Path of the page from which the content will be loaded.|
+| path | string | Yes   | Path of the page from which the content will be loaded. |
 | storage | [LocalStorage](../apis-arkui/arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 
 **Return value**
 
-| Type  | Description                            |
+| Type   | Description                             |
 | ------- | ------------------------------ |
 | Promise\<void> | Promise that returns no value. |
 
@@ -1504,9 +1505,9 @@ Resizes this input method panel. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description    |
+| Name   | Type                   | Mandatory | Description     |
 | -------- | ---------------------- | ---- | -------- |
-| width | number | Yes  | Target width of the panel, in px.|
+| width | number | Yes   | Target width of the panel, in px.|
 | height | number | Yes  | Target height of the panel, in px.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
@@ -1883,7 +1884,7 @@ Enables listening for the panel size change. This API uses an asynchronous callb
 
 >**NOTE**
 >
-> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When **adjustPanelRect()** is called to adjust the panel size, the system needs to calculate the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used for the input method application to refresh the panel layout.
+> This API applies only to the panels of the **SOFT_KEYBOARD** type in the **FLG_FIXED** or **FLG_FLOATING** state. When **adjustPanelRect** is called to adjust the panel size, the system needs to calculate the final value based on certain rules (for example, whether the panel size exceeds the screen). This callback can be used for the input method application to refresh the panel layout.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1900,7 +1901,7 @@ Enables listening for the panel size change. This API uses an asynchronous callb
 import { window } from '@kit.ArkUI';
 try {
   panel.on('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
   console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -1986,7 +1987,7 @@ Disables listening for the panel size change. This API uses an asynchronous call
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | type | string | Yes| Event type, which is **'sizeChange'**.|
-| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | No  | Callback to unregister.|
+| callback | Callback\<[window.Size](../apis-arkui/js-apis-window.md#size7)> | No   | Callback used to return the size of the soft keyboard panel, including the width and height.|
 
 **Example**
 
@@ -1994,7 +1995,7 @@ Disables listening for the panel size change. This API uses an asynchronous call
 import { window } from '@kit.ArkUI';
 try {
   panel.off('sizeChange', (windowSize: window.Size) => {
-    console.info(`panel is size changes, width: ${JSON.stringify(windowSize.width)}, height:${JSON.stringify(windowSize.width)}`);
+    console.info(`panel is size changes, width: ${windowSize.width}, height: ${windowSize.height}`);
   });
 } catch(err) {
     console.error(`Failed to sizeChange: ${JSON.stringify(err)}`);
@@ -2013,7 +2014,7 @@ Changes the state type of this input method panel. This API only works for [SOFT
 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | Yes| Target state type of the panel.|
+| flag | [PanelFlag](#panelflag10) | Yes| Type of the state of the target panel.|
 
 **Error codes**
 
@@ -2323,8 +2324,8 @@ Describes the range of the selected text.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| start  | number | Yes| Yes| Index of the first selected character in the text box.|
-| end  | number | Yes| Yes| Index of the last selected character in the text box.|
+| start  | number | No| No| Index of the first selected character in the text box.|
+| end  | number | No| No| Index of the last selected character in the text box.|
 
 ## Movement<sup>10+</sup>
 
@@ -2334,7 +2335,7 @@ Describes the direction in which the cursor moves when the text is selected.
 
 | Name| Type| Read-Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| direction  | [Direction](#direction10) | Yes| Yes| Direction in which the cursor moves when the text is selected.|
+| direction  | [Direction](#direction10) | No| No| Direction in which the cursor moves when the text is selected.|
 
 ## InputClient<sup>9+</sup>
 
@@ -3129,8 +3130,8 @@ inputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMethod
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+  console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 });
 ```
 
@@ -3163,8 +3164,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputClient.getEditorAttribute().then((editorAttribute: inputMethodEngine.EditorAttribute) => {
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
   }).catch((err: BusinessError) => {
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
   });
@@ -3185,7 +3186,7 @@ Obtains the attribute of the edit box.
 
 | Type                               | Description          |
 | ----------------------------------- | -------------- |
-| [EditorAttribute](#editorattribute) | Attribute of the edit box.|
+| [EditorAttribute](#editorattribute) | Attribute object of the edit box.|
 
 **Error codes**
 
@@ -3200,7 +3201,8 @@ For details about the error codes, see [Input Method Framework Error Codes](erro
 ```ts
 try {
   let editorAttribute: inputMethodEngine.EditorAttribute = inputClient.getEditorAttributeSync();
-  console.log(`Succeeded in getEditorAttributeSync, editorAttribute = ${JSON.stringify(editorAttribute)}`);
+    console.log(`editorAttribute.inputPattern:  ${editorAttribute.inputPattern}`);
+    console.log(`editorAttribute.enterKeyType:  ${editorAttribute.enterKeyType}`);
 } catch (err) {
   console.error(`Failed to getEditorAttributeSync: ${JSON.stringify(err)}`);
 }
@@ -3795,7 +3797,7 @@ Sends private data to the system component that needs to communicate with the in
 
 | Name     | Type                           | Mandatory| Description      |
 | ----------- | ------------------------------- | ---- | ---------- |
-| commandData | Record<string, [CommandDataType](#inputmethodenginecommanddatatype12)> | Yes  | Private data to send.|
+| commandData | Record<string, [CommandDataType](#commanddatatype12)> | Yes  | Private data to send.|
 
 **Return value**
 
@@ -3937,7 +3939,7 @@ try {
 
 setPreviewTextSync(text: string, range: Range): void
 
-Sets the preview text. This API returns the result synchronously.
+Sets the preview text.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -4017,7 +4019,7 @@ try {
 
 finishTextPreviewSync(): void
 
-Finishes the text preview. This API returns the result synchronously.
+Finishes the text preview.
 
 >**NOTE**
 >
@@ -4098,8 +4100,8 @@ Describes the attributes of the input method panel.
 
 | Name     | Type| Read-Only| Optional| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| type   	| [PanelType](#paneltype10)   | Yes  | Yes  | Type of the panel.|
-| flag	    | [PanelFlag](#panelflag10)   | Yes  | Yes  | State type of the panel.|
+| type   	| [PanelType](#paneltype10)   | No  | No  | Type of the panel.|
+| flag	    | [PanelFlag](#panelflag10)   | No  | Yes  | State type of the panel.|
 
 ## PanelRect<sup>12+</sup>
 
@@ -4109,8 +4111,8 @@ Represents the size of the input method panel.
 
 | Name        | Type| Read-Only| Optional| Description              |
 | ------------ | -------- | ---- | ---- | ------------------ |
-| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | Yes  | Yes  | Size of the input method panel window in landscape mode.|
-| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | Yes  | Yes  | Size of the input method panel window in portrait mode.|
+| landscapeRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in landscape mode.|
+| portraitRect | [window.Rect](../apis-arkui/js-apis-window.md#rect7)   | No  | No  | Size of the input method panel window in portrait mode.|
 
 ## WindowInfo<sup>12+</sup>
 
@@ -4120,8 +4122,8 @@ Represents window information.
 
 | Name  | Type                                                        | Read-Only| Optional| Description          |
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
-| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | Yes  | Yes  | Rectangular area of the window.|
-| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | Yes  | Yes  | Window status type.|
+| rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | No  | No  | Rectangular area of the window.|
+| status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | No  | No  | Window status type.|
 
 ## TextInputClient<sup>(deprecated)</sup>
 
@@ -4614,8 +4616,8 @@ textInputClient.getEditorAttribute((err: BusinessError, editorAttribute: inputMe
     console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log(`editorAttribute.inputPattern: ${editorAttribute.inputPattern}`;
+  console.log(`editorAttribute.enterKeyType: ${editorAttribute.enterKeyType}`);
 });
 ```
 

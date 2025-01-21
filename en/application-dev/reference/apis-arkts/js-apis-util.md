@@ -50,7 +50,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
 | %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
 | %i     | Converts a string into a decimal integer for all values except **Symbol** and **BigInt**.|
-| %f     | Converts a string into a floating point number for all values except **Symbol** and **BigInt**.|
+| %f     | Converts a string into a floating point number for all values except **BigInt** and **Symbol**.|
 | %j     | Converts a JavaScript object into a JSON string.|
 | %o     | Converts a JavaScript object into a string, without containing the prototype chain information of the object.|
 | %O     | Converts a JavaScript object into a string.|
@@ -159,6 +159,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let errnum = -1; // -1 is a system error code.
 let result = util.errnoToString(errnum);
 console.info("result = " + result);
+// Output: result = operation not permitted
 ```
 
 **Some error code and message examples**
@@ -220,6 +221,7 @@ cb(1, (err : Object, ret : string) => {
   if (err) throw new Error;
   console.info(ret);
 });
+// Output: hello world
 ```
 
 ## util.promisify<sup>9+</sup>
@@ -263,6 +265,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
   try {
     let res: string = await addCall();
     console.info(res);
+    // Output: hello world
   } catch (err) {
     console.info(err);
   }
@@ -380,9 +383,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.info(JSON.stringify(uuid));
-// Output:
-// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+console.info("uuid = " + uuid);
+// Output: uuid = 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
 
 ## util.printf<sup>(deprecated)</sup>
@@ -415,6 +417,7 @@ Formats a string by replacing the placeholders in it.
 ```ts
 let res = util.printf("%s", "hello world!");
 console.info(res);
+// Output: hello world!
 ```
 
 
@@ -448,6 +451,7 @@ Obtains detailed information about a system error code.
 let errnum = -1; // -1 is a system error code.
 let result = util.getErrorString(errnum);
 console.info("result = " + result);
+// Output: result = operation not permitted
 ```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
@@ -517,7 +521,7 @@ let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
 console.info('result2 is ' + result2);
-// Output: The values of **result1** and **result2** are the same and are a random hash value.
+// Output: The values of result1 and result2 are the same and are a random hash value.
 ```
 
 
@@ -832,6 +836,8 @@ A constructor used to create a **TextDecoder** object.
 ```ts
 let textDecoder = new util.TextDecoder();
 let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// Output: retStr = utf-8
 ```
 ### create<sup>9+</sup>
 
@@ -867,6 +873,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
 let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// Output: retStr = utf-8
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -914,6 +922,7 @@ let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
 let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
 let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
+// Output: retStr = abc
 ```
 
 ### decodeWithStream<sup>(deprecated)</sup>
@@ -972,6 +981,7 @@ uint8[5] = 0x63;
 console.info("input num:");
 let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
+// Output: retStr = abc
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -1051,6 +1061,7 @@ uint8[5] = 0x63;
 console.info("input num:");
 let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
+// Output: retStr = abc
 ```
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
@@ -1760,7 +1771,7 @@ A constructor used to create a **RationalNumber** object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [parserationalnumber<sup>9+</sup>](#parserationalnumber9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [parseRationalNumber<sup>9+</sup>](#parserationalnumber9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1807,6 +1818,8 @@ Compares this **RationalNumber** object with a given object.
 let rationalNumber = new util.RationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.compareTo(rational);
+console.info("result = " + result);
+// Output: result = -1
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1834,12 +1847,7 @@ Obtains the greatest common divisor of two specified integers.
 | -------- | -------- |
 | number | Greatest common divisor obtained.|
 
-**Example**
 
-```ts
-let rationalNumber = new util.RationalNumber(1,2);
-let result = util.RationalNumber.getCommonDivisor(4,6);
-```
 
 ## LRUCache<sup>9+</sup>
 
@@ -2356,7 +2364,7 @@ console.info('result = ' + result);
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>] (#updatecapacity9).
+Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>](#updatecapacity9).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2662,6 +2670,8 @@ class Temperature{
 let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
+console.info("range = " + range);
+// Output: range = [30, 40]
 ```
 
 ### toString<sup>9+</sup>
@@ -2703,6 +2713,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.toString();
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### intersect<sup>9+</sup>
@@ -2819,6 +2831,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.intersect(tempMiDF, tempMidS);
+console.info("result = " + result);
+// Output: result = [35, 39]
 ```
 
 ### getUpper<sup>9+</sup>
@@ -2860,6 +2874,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getUpper();
+console.info("result = " + result);
+// Output: result = 40
 ```
 
 ### getLower<sup>9+</sup>
@@ -2901,6 +2917,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getLower();
+console.info("result = " + result);
+// Output: result = 30
 ```
 
 ### expand<sup>9+</sup>
@@ -2959,6 +2977,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF, tempMidS);
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
@@ -3017,6 +3037,8 @@ let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
 let result = range.expand(rangeFir);
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
@@ -3073,6 +3095,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF);
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### contains<sup>9+</sup>
@@ -3129,6 +3153,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.contains(tempMiDF);
+console.info("result = " + result);
+// Output: result = true
 ```
 
 ### contains<sup>9+</sup>
@@ -3187,6 +3213,8 @@ let tempLess = new Temperature(20);
 let tempMore = new Temperature(45);
 let rangeSec = new util.ScopeHelper(tempLess, tempMore);
 let result = range.contains(rangeSec);
+console.info("result = " + result);
+// Output: result = false
 ```
 
 ### clamp<sup>9+</sup>
@@ -3243,6 +3271,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.clamp(tempMiDF);
+console.info("result = " + result);
+// Output: result = 35
 ```
 
 ## Base64Helper<sup>9+</sup>
@@ -3302,6 +3332,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
   let result = base64Helper.encodeSync(array);
+  console.info("result = " + result);
+  // Output: result = 99,122,69,122
   ```
 
 
@@ -3342,6 +3374,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
   let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  // Output: result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+  aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+  aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+  */
   ```
 
 
@@ -3382,6 +3420,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
   let result = base64Helper.decodeSync(buff, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  Output: result = 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+  */
   ```
 
 
@@ -3423,6 +3465,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let array = new Uint8Array([115,49,51]);
   base64Helper.encode(array).then((val) => {
     console.info(val.toString());
+    // Output: 99,122,69,122
   })
   ```
 
@@ -3465,6 +3508,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
   base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
     console.info(val);
+    /*
+    // Output: TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+    aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+    aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+    */
+
   })
   ```
 
@@ -3507,6 +3556,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
   base64Helper.decode(array, util.Type.MIME).then((val) => {
     console.info(val.toString());
+    /*
+    Output: 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+    */
   })
   ```
 
@@ -3580,7 +3632,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   let decoder = new util.StringDecoder('utf-8');
   let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
   const decoded = decoder.write(input);
-  console.info("decoder:", decoded));// Hi You
+  console.info("decoded:", decoded);
+  // Output: decoded: Hello, World
   ```
 
 ### end<sup>12+</sup>
@@ -3618,10 +3671,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```ts
   let decoder = new util.StringDecoder('utf-8');
   let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
-  const decoded = decoder.write(input.slice(0, 5));
-  const decodedend = decoder.end(input.slice(5));
-  console.info("decoded:", decoded));// Hi
-  console.info("decodedend:", decodedend);// You
+  const writeString = decoder.write(input.slice(0, 5));
+  const endString = decoder.end(input.slice(5));
+  console.info("writeString:", writeString);
+  // Output: writeString: Hello
+  console.info("endString:", endString);
+  // Output: endString: World
   ```
 
 ## Type<sup>10+</sup>
@@ -5025,6 +5080,8 @@ Checks whether the input value is of the SharedArrayBuffer type.
   pro.put(2,10);
   pro.put(1,8);
   let result = pro.length;
+  console.info("result = " + result);
+  // Output: result = 2
   ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -5048,7 +5105,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 **Example**
 
   ```ts
-  let lrubuffer : util.LruBuffer<number,number> = new util.LruBuffer();
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   ```
 
 ### updateCapacity<sup>(deprecated)</sup>
@@ -5102,6 +5159,8 @@ Obtains the string representation of this cache.
   pro.get(2);
   pro.remove(20);
   let result = pro.toString();
+  console.info("result = " + result);
+  // Output: result = Lrubuffer[ maxSize = 64, hits = 1, misses = 0, hitRate = 100% ]
   ```
 
 ### getCapacity<sup>(deprecated)</sup>
@@ -5127,6 +5186,8 @@ Obtains the capacity of this cache.
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.getCapacity();
+  console.info("result = " + result);
+  // Output: result = 64
   ```
 
 ### clear<sup>(deprecated)</sup>
@@ -5174,6 +5235,8 @@ Obtains the number of return values for **createDefault()**.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(1,8);
   let result = pro.getCreateCount();
+  console.info("result = " + result);
+  // Output: result = 0
   ```
 
 ### getMissCount<sup>(deprecated)</sup>
@@ -5201,6 +5264,8 @@ Obtains the number of times that the queried values are mismatched.
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMissCount();
+  console.info("result = " + result);
+  // Output: result = 0
   ```
 
 ### getRemovalCount<sup>(deprecated)</sup>
@@ -5229,6 +5294,8 @@ Obtains the number of removals from this cache.
   pro.updateCapacity(2);
   pro.put(50,22);
   let result = pro.getRemovalCount();
+  console.info("result = " + result);
+  // Output: result = 0
   ```
 
 ### getMatchCount<sup>(deprecated)</sup>
@@ -5256,6 +5323,8 @@ Obtains the number of times that the queried values are matched.
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info("result = " + result);
+  // Output: result = 1
   ```
 
 ### getPutCount<sup>(deprecated)</sup>
@@ -5282,6 +5351,8 @@ Obtains the number of additions to this cache.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.getPutCount();
+  console.info("result = " + result);
+  // Output: result = 1
   ```
 
 ### isEmpty<sup>(deprecated)</sup>
@@ -5308,6 +5379,8 @@ Checks whether this cache is empty.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.isEmpty();
+  console.info("result = " + result);
+  // Output: result = false
   ```
 
 ### get<sup>(deprecated)</sup>
@@ -5340,6 +5413,8 @@ Obtains the value of the specified key.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result  = pro.get(2);
+  console.info("result = " + result);
+  // Output: result = 10
   ```
 
 ### put<sup>(deprecated)</sup>
@@ -5372,6 +5447,8 @@ Adds a key-value pair to this cache.
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.put(2,10);
+  console.info("result = " + result);
+  // Output: result = 10
   ```
 
 ### values<sup>(deprecated)</sup>
@@ -5400,6 +5477,8 @@ Obtains all values in this cache, listed from the most to the least recently acc
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
   let result = pro.values();
+  console.info("result = " + result);
+  // Output: result = anhu,grfb
   ```
 
 ### keys<sup>(deprecated)</sup>
@@ -5426,6 +5505,8 @@ Obtains all keys in this cache, listed from the most to the least recently acces
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.keys();
+  console.info("result = " + result);
+  // Output: result = 2
   ```
 
 ### remove<sup>(deprecated)</sup>
@@ -5458,6 +5539,8 @@ Removes the specified key and its value from this cache.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.remove(20);
+  console.info("result = " + result);
+  // Output: result = undefined
   ```
 
 ### afterRemoval<sup>(deprecated)</sup>
@@ -5492,8 +5575,11 @@ class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
       console.info('key: ' + key);
+      // Output: key: 11
       console.info('value: ' + value);
+      // Output: value: 1
       console.info('newValue: ' + newValue);
+      // Output: newValue: null
     }
   }
 }
@@ -5534,6 +5620,8 @@ Checks whether this cache contains the specified key.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.contains(20);
+  console.info('result = ' + result);
+  // Output: result = false
   ```
 
 ### createDefault<sup>(deprecated)</sup>
@@ -5665,6 +5753,8 @@ A constructor used to create a **Scope** object with the specified upper and low
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
+  console.info("range = " + range);
+  // Output: range = [30, 40]
   ```
 
 ### toString<sup>(deprecated)</sup>
@@ -5708,6 +5798,8 @@ Obtains a string representation that contains this **Scope**.
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.toString();
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -5760,6 +5852,8 @@ Obtains the intersection of this **Scope** and the given **Scope**.
   let tempMidS = new Temperature(39);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
   let result = range.intersect(rangeFir );
+  console.info("result = " + result);
+  // Output: result = [35, 39]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -5812,6 +5906,8 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
   let tempMidS = new Temperature(39);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.intersect(tempMiDF, tempMidS);
+  console.info("result = " + result);
+  // Output: result = [35, 39]
   ```
 
 ### getUpper<sup>(deprecated)</sup>
@@ -5855,6 +5951,8 @@ Obtains the upper limit of this **Scope**.
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.getUpper();
+  console.info("result = " + result);
+  // Output: result = 40
   ```
 
 ### getLower<sup>(deprecated)</sup>
@@ -5898,6 +5996,8 @@ Obtains the lower limit of this **Scope**.
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.getLower();
+  console.info("result = " + result);
+  // Output: result = 30
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -5950,6 +6050,8 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
   let tempMidS = new Temperature(39);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.expand(tempMiDF, tempMidS);
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -6002,6 +6104,8 @@ Obtains the union set of this **Scope** and the given **Scope**.
   let range = new util.Scope(tempLower, tempUpper);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
   let result = range.expand(rangeFir);
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -6052,6 +6156,8 @@ Obtains the union set of this **Scope** and the given value.
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.expand(tempMiDF);
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -6102,6 +6208,8 @@ Checks whether a value is within this **Scope**.
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.contains(tempMiDF);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -6154,6 +6262,8 @@ Checks whether a range is within this **Scope**.
   let tempMore = new Temperature(45);
   let rangeSec = new util.Scope(tempLess, tempMore);
   let result = range.contains(rangeSec);
+  console.info("result = " + result);
+  // Output: result = false
   ```
 
 ### clamp<sup>(deprecated)</sup>
@@ -6205,6 +6315,8 @@ Limits a value to this **Scope**.
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.clamp(tempMiDF);
+  console.info("result = " + result);
+  // Output: result = 35
   ```
 
 
@@ -6262,6 +6374,8 @@ Encodes the input content into a Uint8Array object. This API returns the result 
   let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = base64.encodeSync(array);
+  console.info("result = " + result);
+  // Output: result = 99,122,69,122
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -6294,6 +6408,8 @@ Encodes the input content into a string. This API returns the result synchronous
   let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = base64.encodeToStringSync(array);
+  console.info("result = " + result);
+  // Output: result = czEz
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -6326,6 +6442,8 @@ Decodes the input content into a Uint8Array object.
   let base64 = new util.Base64();
   let buff = 'czEz';
   let result = base64.decodeSync(buff);
+  console.info("result = " + result);
+  // Output: result = 115,49,51
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -6359,6 +6477,7 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
   let array = new Uint8Array([115,49,51]);
   base64.encode(array).then((val) => {
     console.info(val.toString());
+    // Output: 99,122,69,122
   })
   ```
 
@@ -6393,6 +6512,7 @@ Encodes the input content into a string. This API uses a promise to return the r
   let array = new Uint8Array([115,49,51]);
   base64.encodeToString(array).then((val) => {
       console.info(val);
+      // Output: czEz
   })
   ```
 
@@ -6428,5 +6548,6 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
   let array = new Uint8Array([99,122,69,122]);
   base64.decode(array).then((val) => {
     console.info(val.toString());
+    // Output: 115,49,51
   })
   ```
