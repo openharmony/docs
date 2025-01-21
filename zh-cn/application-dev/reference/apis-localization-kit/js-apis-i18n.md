@@ -2623,6 +2623,50 @@ static getThreeLetterRegion(locale: string): string
   }
   ```
 
+### getUnicodeWrappedFilePath<sup>16+</sup>
+
+static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
+
+文件路径镜像处理。<br>例如，将/data/out/tmp镜像处理后生成tmp/out/data/。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| path | string | 是   | 待处理的路径，如：/data/out/tmp。 |
+| delimiter | string | 否   | 路径分隔符，默认值：/。 |
+| locale | [intl.Locale](./js-apis-intl.md#locale) | 否   | intl.Locale对象，默认值：new intl.Locale([i18n.System.getSystemLocale()](#getsystemlocale9))。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](errorcode-i18n.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import intl from '@ohos.intl';
+  import i18n from '@ohos.i18n';
+
+  try {
+    let path : string = "/data/out/tmp";
+    let delimiter : string = "/";
+    let locale : intl.Locale = new intl.Locale("ar");
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);  // mirrorPath:tmp/out/data/
+  } catch(error) {
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
 ## Normalizer<sup>10+</sup>
 
 
