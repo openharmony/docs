@@ -562,8 +562,8 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象 |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据。         |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象。 |
 
 **错误码：**
 
@@ -629,7 +629,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 参数名   | 类型                          | 必填 | 说明               |
 | -------- | ----------------------------- | ---- | ------------------ |
-| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据。 |
 
 **返回值：**
 
@@ -10951,60 +10951,62 @@ generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint
 ```ts
 import { cert } from '@kit.DeviceCertificateKit';
 
-let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
-let prikeyEnstr: string =
-  '-----BEGIN RSA PRIVATE KEY-----\n'                                  +
-    'Proc-Type: 4,ENCRYPTED\n'                                           +
-    'DEK-Info: AES-128-CBC,B5FFA3AEEE7176106FDDB0988B532F07\n\n'         +
-    't3zNRGKp5X4BNkcsYATad/Le+94yMIX9CoNAGsBIDzQw+773UMGIoeGEYVlXWc8x\n' +
-    'N1XWDinn4ytWw9x9OfUYgmNnrdkWRSaIuw+SpQfBgJip+MsNERYOHZ5TYWTR8n3k\n' +
-    '7/jHY8eCgTsP3hbNtyaePIrtbTLZGZAHG1YWY5UmLaYoI1O6/Vvobx72lx3b43Tx\n' +
-    '4j5lkknpLl85fcs1s4TYMOd8vEwhdpouR4VY8kfRSm44WQLtGXrce0An3MG3pXyZ\n' +
-    'GhpmJyTcg0epTEYVzglENlBJrBVDL+bJ8uvHGH4tmeQb77e6ILXoxZntM7zQMMFo\n' +
-    'A7dilqO6FBxu20n2TidVGCa0Yn+DZLpry2OdwVUC2nXyCHCehr3jAZz6k20FWg5B\n' +
-    'EsU16yOIB+bp9BUKdTpJVtc/pmZJtnlA9pSCUVmWdltOsjjxkE94wfAUOYhO3Mvz\n' +
-    'gF9KR1/bdAbLw4t7bGeuyV4N2iYr83FodLLXpupM6Qfb51+HVgHvm2aaHv2Q4sf3\n' +
-    'poCVTNlegoVV9x3+7HqXY6MjlG8aU6LcWqH34ySqRBQrKL1PuDzQSY5/RmP7PUhG\n' +
-    'ym4l6KbEaRC2H/XS2qKa4VCMgBCgA0hoiw4s48Xd4h2GUTuxLM9wGyW89OEaHky7\n' +
-    'VE7t3O9a2zhkRTYDDYQ8QCycKhNrsKySyItRUWn/w2lXvuKM7PpAzYH7Ey3W1eZG\n' +
-    'PyyeGG9exjpdIvD3tx5Hl/OWwBkW1DAzO40gT6sdD5FXzRv4fCHuCrIow5QMLF4T\n' +
-    'd5Y4a6q13V4O5b73T5INmKl8rEbPGIw7WLR7BNj05QuzNcn5kA1aBFIJqsxQv46l\n' +
-    '-----END RSA PRIVATE KEY-----\n';
-let priKeyInfo: cert.PrivateKeyInfo = {
-  key: prikeyEnstr,
-  password : "123abc"
-}
-let keyUsage: cert.CsrAttribute = {
-  type: "keyUsage",
-  value: "digitalSignature, keyEncipherment"
-};
-
-let challengePassword: cert.CsrAttribute = {
-  type:"challengePassword",
-  value: "123456"
-};
-let attribute: cert.CsrAttribute[] = [
-  keyUsage,challengePassword
-];
-try {
-  let data = await cert.createX500DistinguishedName(nameStr);
-  console.info('createX500DistinguishedName success' + data.getName("CN").toString());
-  let conf: cert.CsrGenerationConfig = {
-    subject: data,
-    mdName: "SHA256",
-    outFormat: cert.EncodingBaseFormat.PEM,
-    attributes: attribute
+async function createCsrTest() {
+  let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+  let prikeyEnstr: string =
+    '-----BEGIN RSA PRIVATE KEY-----\n'                                  +
+      'Proc-Type: 4,ENCRYPTED\n'                                           +
+      'DEK-Info: AES-128-CBC,B5FFA3AEEE7176106FDDB0988B532F07\n\n'         +
+      't3zNRGKp5X4BNkcsYATad/Le+94yMIX9CoNAGsBIDzQw+773UMGIoeGEYVlXWc8x\n' +
+      'N1XWDinn4ytWw9x9OfUYgmNnrdkWRSaIuw+SpQfBgJip+MsNERYOHZ5TYWTR8n3k\n' +
+      '7/jHY8eCgTsP3hbNtyaePIrtbTLZGZAHG1YWY5UmLaYoI1O6/Vvobx72lx3b43Tx\n' +
+      '4j5lkknpLl85fcs1s4TYMOd8vEwhdpouR4VY8kfRSm44WQLtGXrce0An3MG3pXyZ\n' +
+      'GhpmJyTcg0epTEYVzglENlBJrBVDL+bJ8uvHGH4tmeQb77e6ILXoxZntM7zQMMFo\n' +
+      'A7dilqO6FBxu20n2TidVGCa0Yn+DZLpry2OdwVUC2nXyCHCehr3jAZz6k20FWg5B\n' +
+      'EsU16yOIB+bp9BUKdTpJVtc/pmZJtnlA9pSCUVmWdltOsjjxkE94wfAUOYhO3Mvz\n' +
+      'gF9KR1/bdAbLw4t7bGeuyV4N2iYr83FodLLXpupM6Qfb51+HVgHvm2aaHv2Q4sf3\n' +
+      'poCVTNlegoVV9x3+7HqXY6MjlG8aU6LcWqH34ySqRBQrKL1PuDzQSY5/RmP7PUhG\n' +
+      'ym4l6KbEaRC2H/XS2qKa4VCMgBCgA0hoiw4s48Xd4h2GUTuxLM9wGyW89OEaHky7\n' +
+      'VE7t3O9a2zhkRTYDDYQ8QCycKhNrsKySyItRUWn/w2lXvuKM7PpAzYH7Ey3W1eZG\n' +
+      'PyyeGG9exjpdIvD3tx5Hl/OWwBkW1DAzO40gT6sdD5FXzRv4fCHuCrIow5QMLF4T\n' +
+      'd5Y4a6q13V4O5b73T5INmKl8rEbPGIw7WLR7BNj05QuzNcn5kA1aBFIJqsxQv46l\n' +
+      '-----END RSA PRIVATE KEY-----\n';
+  let priKeyInfo: cert.PrivateKeyInfo = {
+    key: prikeyEnstr,
+    password : "123abc"
   }
+  let keyUsage: cert.CsrAttribute = {
+    type: "keyUsage",
+    value: "digitalSignature, keyEncipherment"
+  };
+
+  let challengePassword: cert.CsrAttribute = {
+    type:"challengePassword",
+    value: "123456"
+  };
+  let attribute: cert.CsrAttribute[] = [
+    keyUsage,challengePassword
+  ];
   try {
-    let csrStr = cert.generateCsr(priKeyInfo, conf)
-    console.log('return str is' + csrStr.toString())
+    let data = await cert.createX500DistinguishedName(nameStr);
+    console.info('createX500DistinguishedName success' + data.getName("CN").toString());
+    let conf: cert.CsrGenerationConfig = {
+      subject: data,
+      mdName: "SHA256",
+      outFormat: cert.EncodingBaseFormat.PEM,
+      attributes: attribute
+    }
+    try {
+      let csrStr = cert.generateCsr(priKeyInfo, conf)
+      console.log('generateCsr success return str is' + csrStr.toString())
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('generateCsr failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
   } catch (error) {
     let e: BusinessError = error as BusinessError;
-    console.error('generateCsr failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
   }
-} catch (error) {
-  let e: BusinessError = error as BusinessError;
-  console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
 }
 ```
 
