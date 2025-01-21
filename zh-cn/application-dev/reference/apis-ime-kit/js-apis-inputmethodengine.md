@@ -1707,14 +1707,10 @@ startMoving(): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  panel.startMoving().then(() => {
-    console.log('Succeeded in moving the panel.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to move panel: ${JSON.stringify(err)}`);
-  });
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
 } catch (err) {
   console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
