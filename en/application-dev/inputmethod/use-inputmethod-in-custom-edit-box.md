@@ -111,4 +111,4 @@ In the inputmethod framework, use [getController](../reference/apis-ime-kit/js-a
    ```
 
    ## Effect
-   ![Example](figures/image-1.png)
+  ![Example effect](./figures/image-1.png)
