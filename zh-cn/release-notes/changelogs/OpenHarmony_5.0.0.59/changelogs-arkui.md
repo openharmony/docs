@@ -167,10 +167,9 @@ hideNonSecureWindows
 
 该变更为不兼容变更。
 
-变更前：开发者无法获取EmbeddedExtension组件的大小和位置信息。
+变更前：uiExtension命名空间下的WindowProxy无必选属性properties。
 
-变更后：开发者在2in1设备上可通过properties属性获取EmbeddedExtension组件的大小和位置信息。
-
+变更后：uiExtension命名空间下的WindowProxy有必选属性properties。
 
 **起始API Level**
 
@@ -186,4 +185,4 @@ properties
 
 **适配指导**
 
-变更后开发者在2in1设备上可通过properties属性获取EmbeddedExtension组件的大小和位置信息。
+升级到API14后，如果应用在自己的业务中实现WindowProxy这个Interface，则需要在自定义的实现中新增必选属性properties。
