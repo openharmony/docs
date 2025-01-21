@@ -489,5 +489,3 @@ Provides the information about the suspension delay.
 | BLUETOOTH_INTERACTION   | 5    | Bluetooth-related task.                 |
 | MULTI_DEVICE_CONNECTION | 6    | Multi-device connection.                |
 | TASK_KEEPING            | 9    | Computing task (effective only for specific devices).       |
-
- <!--no_check--> 
