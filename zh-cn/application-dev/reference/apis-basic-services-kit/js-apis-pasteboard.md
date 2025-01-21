@@ -2891,7 +2891,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式 |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式。 |
 
 **错误码：**
 
@@ -2938,7 +2938,7 @@ getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型。 |
 
 **示例：**
 
