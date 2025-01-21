@@ -353,6 +353,7 @@ try {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
+```
 
 ## UserAuthResultCode<sup>16+</sup>
 
@@ -364,4 +365,3 @@ try {
 | ----------------------- | ------ | -------------------- |
 | AUTH_TOKEN_CHECK_FAILED | 12500015      | verifyAuthToken系统接口错误码，表示验证的AuthToken无效。|
 | AUTH_TOKEN_EXPIRED      | 12500016      | verifyAuthToken系统接口错误码，AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长。|
-```

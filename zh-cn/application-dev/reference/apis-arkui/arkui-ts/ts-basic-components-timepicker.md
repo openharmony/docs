@@ -36,6 +36,8 @@ TimePicker(options?: TimePickerOptions)
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date('1970-01-01 00:00:00') <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date('1970-01-01 23:59:59') <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
 
@@ -47,6 +49,17 @@ TimePicker(options?: TimePickerOptions)
 | ------------------ | ------------------------ |
 | HOUR_MINUTE        | 按照小时和分显示。       |
 | HOUR_MINUTE_SECOND | 按照小时、分钟和秒显示。 |
+
+**异常情形说明:**
+
+| 异常情形   | 对应结果  |
+| -------- |  ------------------------------------------------------------ |
+| 起始时间晚于结束时间    | 起始时间、结束时间都为默认值  |
+| 选中时间早于起始时间    | 选中时间为起始时间  |
+| 选中时间晚于结束时间    | 选中时间为结束时间  |
+| 起始时间晚于当前系统时间，选中时间未设置    | 选中时间为起始时间 |
+| 结束时间早于当前系统时间，选中时间未设置    | 选中时间为结束时间  |
+| 时间格式不符合规范，如'01:61:61'   | 取默认值  |
 
 ## 属性
 
@@ -200,7 +213,7 @@ onEnterSelectedArea(callback: Callback\<TimePickerResult>)
 
 滑动TimePicker过程中，选项进入分割线区域内，触发该回调。
 
-与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。
+与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。当enableCascade设置为true时，由于上午/下午列与小时列存在联动关系，不建议使用该回调。该回调标识的是滑动过程中选项进入分割线区域内的节点，而联动变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -387,3 +400,66 @@ struct TimePickerExample {
 ```
 
 ![timePicker](figures/TimePickerDemo4.gif)
+
+### 示例5（设置时间选择组件的起始时间）
+
+该示例设置TimePicker的起始时间。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:50:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime,
+        format: TimePickerFormat.HOUR_MINUTE_SECOND,
+        start: new Date('2022-07-22T08:30:00')
+      })
+        .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![timePicker](figures/TimePickerDemo5.png)
+
+### 示例6（设置时间选择组件的结束时间）
+
+该示例设置TimePicker的结束时间。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:50:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime,
+        format: TimePickerFormat.HOUR_MINUTE_SECOND,
+        end: new Date('2022-07-22T15:20:00'),
+      })
+        .dateTimeOptions({ hour: "numeric", minute: "2-digit", second: "2-digit" })
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo6.png)

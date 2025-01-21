@@ -160,6 +160,24 @@ drawable.json位于项目工程entry/src/main/resources/base/media目录下。�
     }
     ```
 
+### constructor<sup>12+</sup>
+
+constructor(foreground?: DrawableDescriptor, background?: DrawableDescriptor, mask?: DrawableDescriptor);
+
+LayeredDrawableDescriptor的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型              | 必填  | 说明                                       |
+| --------- | ---------------- | ---- | ------------------------------------------ |
+| foreground | [DrawableDescriptor](#drawabledescriptor)  | 否   | 分层图标的前景图片选项。 |
+| background   | [DrawableDescriptor](#drawabledescriptor) | 否   | 分层图标的背景图片选项。  |
+| mask | [DrawableDescriptor](#drawabledescriptor) | 否 | 分层图标的遮罩选项。 |
+
 ### getForeground
 getForeground(): DrawableDescriptor;
 
@@ -173,7 +191,7 @@ getForeground(): DrawableDescriptor;
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
+| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象。 |
 
 **示例：**
   ```ts
@@ -198,7 +216,7 @@ getBackground(): DrawableDescriptor;
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
+| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象。 |
 
 **示例：**
   ```ts
@@ -223,7 +241,7 @@ getMask(): DrawableDescriptor
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
+| [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象。 |
 
 **示例：**
   ```ts
@@ -247,7 +265,7 @@ LayeredDrawableDescriptor的静态方法，获取系统内置的裁切路径参�
 
 | 类型                                       | 说明                   |
 | ---------------------------------------- | -------------------- |
-| string | 返回裁切路径的命令字符串 |
+| string | 返回裁切路径的命令字符串。 |
 
 **示例：**
 

@@ -652,6 +652,47 @@ try {
   console.log(`Failed to get keyboard type, error: ${JSON.stringify(error, [`code`, `message`])}`)
 }
 ```
+
+## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
+
+setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
+
+Sets whether to enable the function key.
+
+**System capability**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**：
+
+| Parameters   | Type     | Mandatory | Description                      |
+| -------- | ------- | ---- | ------------------------- |
+| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15)  | Yes   | Function key id.              |
+| enabled  | boolean | Yes   | Setting the function key status, true is enable, false is disable. |
+
+**Error codes**：
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input device Error Codes](errorcode-inputdevice.md).
+
+| ID | Error Message                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+| 3900003      | It is prohibited for non-input applications. |
+
+**Example**：
+
+```js
+try {
+  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
+    console.info(`Set capslock state success`);
+  }).catch((error) => {
+    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set capslock enable error`);
+}
+```
+
 ## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
 
 isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
@@ -674,11 +715,12 @@ Checks whether the function key is enabled.
 
 **Error codes**：
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input device Error Codes](errorcode-inputdevice.md).
 
 | ID  | Error Message             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
 
 **Example**：
 

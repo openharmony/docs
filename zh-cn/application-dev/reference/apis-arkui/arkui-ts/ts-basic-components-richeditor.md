@@ -102,8 +102,6 @@ copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选�
 
 设置copyOptions为CopyOptions.None，复制、剪切、搜索、帮写功能不生效。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -112,7 +110,7 @@ copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选�
 
 | 参数名 | 类型                                             | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br />**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice |
 
 ### enableDataDetector<sup>11+</sup>
 
@@ -319,7 +317,7 @@ barState(state: BarState)
 
 ### maxLength<sup>16+</sup>
 
-maxLength(value: number)
+maxLength(value: Optional\<number\>)
 
 设置文本的最大输入字符数。
 
@@ -331,11 +329,11 @@ maxLength(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 
 ### maxLines<sup>16+</sup>
 
-maxLines(value: number)
+maxLines(value: Optional\<number\>)
 
 设置文本可显示的最大行数。
 
@@ -347,7 +345,7 @@ maxLines(value: number)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入 <br/>取值范围：(0, +∞) |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -712,6 +710,7 @@ Span类型信息。
 | IMAGE | 1 | Span为图像类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | MIXED | 2 | Span为图文混合类型。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>16+</sup> | 4 | 默认类型，不指定Span类型时生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -726,6 +725,7 @@ Span类型信息。
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+| DEFAULT<sup>16+</sup> | 默认类型，不指定响应类型时生效。|
 
 ## RichEditorTextStyleResult
 
@@ -1708,6 +1708,8 @@ RichEditor span信息。
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
+| onMenuShow<sup>16+</sup> | [MenuType](#menucallback16) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| onMenuHide<sup>16+</sup> | [MenuType](#menucallback16) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1756,7 +1758,6 @@ RichEditor span信息。
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onDoubleClick<sup>14+</sup>    | Callback\<[GestureEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [GestureEvent](ts-universal-events-click.md#clickevent对象说明)为用户双击事件。<br/>双击完成时回调事件。<br/>双击时，第二次点击触发回调事件。|
 | onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
@@ -1795,6 +1796,23 @@ type MenuOnAppearCallback = (start: number, end: number) => void
 自定义选择菜单弹出时触发的回调事件。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | 是   | 选中内容的起始位置。 |
+| end    | number         | 是   | 选中内容的终止位置。         |
+
+## MenuCallback<sup>16+</sup>
+
+type MenuCallback = (start: number, end: number) => void
+
+自定义选择菜单显示或隐藏时触发的回调事件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2834,6 +2852,7 @@ struct Index {
         Text(this.textFlag)
           .copyOption(CopyOptions.InApp)
           .fontSize(50)
+          .height(150)
       }
       Divider()
       Column() {
@@ -2891,6 +2910,9 @@ struct Index {
                   onLongPress: () => {
                     this.textFlag = "ImageSpan is onLongPress."
                   }
+                },
+                onHover : (status) => {
+                  this.textFlag = "ImageSpan is onHover :" + status
                 }
               })
           })

@@ -1,10 +1,10 @@
 # Repeat：子组件复用
 
->**说明：**
->
+> **说明：**
+> 
 > Repeat从API version 12开始支持。
 
-API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
 
 Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
@@ -62,19 +62,21 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 
 子组件在Repeat首次渲染只生成当前需要的组件，在滑动和数据更新时会缓存下屏的节点，在需要生成新的组件时，对缓存里的组件进行复用。
 
+Repeat组件在virtualScroll模式下默认启用复用功能。从API version 16开始，可以通过配置reusable字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。
+
 #### 滑动场景
 
 滑动前节点现状如下图所示
 
 ![Repeat-Start](./figures/Repeat-Start.PNG)
 
-当前Repeat组件templateId有a和b两种，templateId a对应的缓存池，其最大缓存值为3，templateId b对应的缓存池，其最大缓存值为4，其父组件默认预加载节点1个。这时，我们将屏幕向后滑动，Repeat将开始复用缓存池中的节点。
+当前Repeat组件template type有a和b两种，template type等于a对应的缓存池，其最大缓存值为3，template type等于b对应的缓存池，其最大缓存值为4，其父组件默认预加载节点1个。这时，我们将屏幕向右滑动，Repeat将开始复用缓存池中的节点。
 
 ![Repeat-Slide](./figures/Repeat-Slide.PNG)
 
-index=18的数据进入屏幕及父组件预加载的范围内，此时计算出其templateId为b，这时Repeat会从type=b的缓存池中取出一个节点进行复用，更新它的key&index&data，该子节点内部使用了该项数据及索引的其他孙子节点会根据V2状态管理的规则做同步更新。
+index=18的数据进入屏幕及父组件预加载的范围内，此时计算出其template type等于b，这时Repeat会从template type等于b的缓存池中取出一个节点进行复用，更新它的key&index&data，该子节点内部使用了该项数据及索引的其他孙子节点会根据V2状态管理的规则做同步更新。
 
-index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程空闲时，会去检测type=a的缓存池是否还有空间，此时缓存池中有四个节点，超过了额定的3个，Repeat会释放掉最后一个节点。
+index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程空闲时，会去检测template type等于a的缓存池是否还有空间，此时缓存池中有四个节点，超过了额定的3个，Repeat会释放掉最后一个节点。
 
 ![Repeat-Slide-Done](./figures/Repeat-Slide-Done.PNG)
 
@@ -82,15 +84,15 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Start](./figures/Repeat-Start.PNG)
 
-此时我们做如下更新操作，删除index=12节点，更新index=13节点的数据，更新index=14节点的templateId为a，更新index=15节点的key。
+此时我们做如下更新操作，删除index=12节点，更新index=13节点的数据，更新index=14节点的template type为a，更新index=15节点的key。
 
 ![Repeat-Update1](./figures/Repeat-Update1.PNG)
 
-此时Repeat会通知父组件重新布局，逐一对比templateId值，若和原节点templateId值相同，则复用该节点，更新key、index和data，若templateId值发生变化，则复用相应的templateId缓存池中的节点，并更新key、index和data。
+此时Repeat会通知父组件重新布局，逐一对比template type值，若和原节点template type值相同，则复用该节点，更新key、index和data，若template type值发生变化，则复用相应template type的缓存池中的节点，并更新key、index和data。
 
 ![Repeat-Update2](./figures/Repeat-Update2.PNG)
 
-上图显示node13节点更新了数据data和index；node14更新了templateId和index，于是从缓存池中取走一个复用；node15由于key值发生变化并且templateId不变，复用自身节点并同步更新key、index、data；node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
+上图显示node13节点更新了数据data和index；node14更新了template type和index，于是从缓存池中取走一个复用；node15由于key值发生变化并且template type不变，复用自身节点并同步更新key、index、data；node16和node17均只更新index。index=17的节点是新的，从缓存池中复用。
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 

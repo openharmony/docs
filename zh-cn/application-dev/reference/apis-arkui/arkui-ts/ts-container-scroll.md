@@ -240,6 +240,9 @@ initialOffset(value: OffsetOptions)
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+>  **说明：**
+>
+>  不支持滚动组件通用事件中的[onWillScroll](ts-container-scrollable-common.md#onwillscroll12)、[onDidScroll](ts-container-scrollable-common.md#ondidscroll12)事件。
 
 ### onScrollFrameBegin<sup>9+</sup>
 
@@ -537,7 +540,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: [ScrollOptions](#scrolloptions16对象说明))
+scrollTo(options: [ScrollOptions](#scrolloptions16对象说明))
 
 
 滑动到指定位置。
@@ -550,12 +553,11 @@ scrollTo(value: [ScrollOptions](#scrolloptions16对象说明))
 
 | 参数名   | 类型 | 必填   | 说明      |
 | ----- | ---- | ---- | --------- |
-| value | [ScrollOptions](#scrolloptions16对象说明) | 是    | 滑动到指定位置的参数。 
+| options | [ScrollOptions](#scrolloptions16对象说明) | 是    | 滑动到指定位置的参数。 
 
 ### scrollEdge
 
 scrollEdge(value: Edge, options?: ScrollEdgeOptions)
-
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
@@ -1346,7 +1348,7 @@ struct ScrollExample {
 
 ![fadingEdge_scroll](figures/fadingEdge_scroll.gif)
 
-### 示例9（单边边缘效果）
+### 示例8（单边边缘效果）
 
 该示例通过edgeEffect接口，实现了Scroll组件设置单边边缘效果。
 

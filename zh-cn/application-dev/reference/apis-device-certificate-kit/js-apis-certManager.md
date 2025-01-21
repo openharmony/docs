@@ -148,7 +148,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | 否  | 否   | 否签名、验签的初始化操作句柄。 |
+| handle         | Uint8Array        | 否  | 否   | 签名、验签的初始化操作句柄。 |
 
 ## CMErrorCode
 
@@ -570,6 +570,46 @@ try {
     }
 } catch (error) {
     console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.uninstallUserTrustedCertificateSync<sup>16+</sup>
+
+uninstallUserTrustedCertificateSync(certUri: string) : void
+
+表示删除用户CA证书。
+
+**需要权限：** ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT<!--Del-->或ohos.permission.ACCESS_USER_TRUSTED_CERT<!--DelEnd-->
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+**参数**：
+
+| 参数名       | 类型                         | 必填 | 说明           |
+|-----------|----------------------------|----|--------------|
+| certUri     | string                 | 是  | 表示待卸删除证书的唯一标识符。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
+
+| 错误码ID                  | 错误信息                                                                                                                                            |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                                                                                                                 |
+| 17500002               | Indicates that the certificate does not exist.                                                                                                  |
+
+**示例**：
+
+```ts
+import {certificateManager} from '@kit.DeviceCertificateKit';
+
+let certUri: string = "test"; /* 业务安装证书，返回唯一标识符，此处省略 */
+try {
+    certificateManager.uninstallUserTrustedCertificateSync(certUri);
+} catch (error) {
+    console.error(`Failed to uninstall user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 

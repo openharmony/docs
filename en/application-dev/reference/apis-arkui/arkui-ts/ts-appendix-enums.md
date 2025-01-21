@@ -12,7 +12,7 @@
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                    | Value           | Description                                                        |
+| Color                    | Value           | Illustration                                                        |
 | ------------------------ | ------------- | ------------------------------------------------------------ |
 | Black                    | 0x000000      | ![en-us_image_0000001219864153](figures/en-us_image_0000001219864153.png) |
 | Blue                     | 0x0000ff      | ![en-us_image_0000001174104404](figures/en-us_image_0000001174104404.png) |
@@ -119,6 +119,7 @@
 | Release | The mouse button is released.|
 | Move    | The mouse cursor moves.  |
 | Hover   | The mouse pointer is hovered on an element.<br>**NOTE**<br>This value has no effect.  |
+| Cancel<sup>16+</sup>  | The mouse button action is canceled.|
 
 ## ModifierKey<sup>10+</sup>
 
@@ -834,7 +835,7 @@ Enumerates the coloring strategies.
 | INLINE  | Inline input style. The background height of the selected text is the same as the height of the text box.<br>This style is used in scenarios where editing and non-editing states are obvious, for example, renaming in the file list view.<br>The **showError** attribute is not supported for this style.<br>This style does not allow for text dragging and dropping.|
 
 
-## Nullable <sup>11+</sup>
+## Nullable<sup>11+</sup>
 
 Nullable\<T> {
 

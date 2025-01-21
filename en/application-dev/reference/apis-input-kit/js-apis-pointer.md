@@ -643,6 +643,82 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
   });
 });
 ```
+## CustomCursor<sup>14+</sup>
+Defines a custom cursor.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name   | Type    | Read Only  | Optional  | Description  |
+| ------ | ------- | ---------- | --------- | ------------ |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | No   | No   | Custom cursor. The size limit is 256 x 256.|
+| focusX  | number | No   | Yes   | Horizontal coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
+| focusY  | number | No   | Yes   | Vertical coordinate of the focus of the custom cursor. It is subject to the size of the custom cursor.|
+
+## CursorConfig<sup>14+</sup>
+Specifies custom cursor config.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+| Name   | Type    | Read Only  | Optional  | Description  |
+| ------ | ------- | ---------- | --------- | ------------ |
+| followSystem  | boolean  | No  | No   | Whether to adjust the cursor size based on the system settings.|
+
+
+## pointer.setCustomCursor<sup>14+</sup>
+
+setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
+
+Sets the custom cursor. You can set whether to adjust the cursor size based on the system settings.This API Use a Promise asynchronous method to return the result.
+In any of the following scenarios, the cursor may switch back to the default system style, and you are required to reset the cursor style: application window layout changes, hot area switching, page redirection, cursor moving out and back into the window, and cursor movement across different areas within the window.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| windowId  | number  | Yes   | Window ID.                         |
+| cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | Yes   | Defines a custom cursor.|
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | Yes   | Specifies custom cursor config.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Returns the result through a promise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+
+**Example**
+
+```js
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+      let windowId = win.getWindowProperties().id;
+        try {
+          pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
+            console.log(`setCustomCursor success`);
+          });
+        } catch (error) {
+          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        }
+      });
+  });
+});
+```
 
 ## pointer.setCustomCursorSync<sup>11+</sup>
 

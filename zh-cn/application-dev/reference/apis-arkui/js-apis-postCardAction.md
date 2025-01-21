@@ -10,7 +10,7 @@
 
 postCardAction(component: Object, action: Object): void
 
-执行函数内部的交互，处理component和action对象的相关操作,不返回任何内容.
+执行函数内部的交互，处理component和action对象的相关操作,不返回任何内容。
 
 **元服务API：** 从API version 11开始，该接口支持在元服务中使用。
 

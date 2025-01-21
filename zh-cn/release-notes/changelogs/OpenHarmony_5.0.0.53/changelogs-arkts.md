@@ -37,14 +37,12 @@
 例如：
 
 ```typescript
-console.log(1 ** NaN)
-console.log(1 ** "Test")
+console.log((1 ** NaN).toString())
 ```
 
 未变更前该用例输出为：
 
 ```
-1
 1
 ```
 
@@ -52,10 +50,13 @@ console.log(1 ** "Test")
 
 ```
 NaN
-NaN
 ```
 
-本变更修复该问题，** （幂运算）对于底数是1，指数为NaN或ToNumber之后是NaN的情况会返回NaN
+> **说明：**
+
+> 对于类似  `1 ** "test"` 的用法，在ets文件中不能使用，但是可能在三方库中有使用，该行为同样会变化。
+
+本变更修复该问题，** （幂运算）对于底数是1，指数为NaN或ToNumber之后是NaN的情况会返回NaN。
 
 
 
@@ -96,7 +97,7 @@ String.prototype.lastIndexOf
 例如：
 
 ```typescript
-console.log("abcde".lastIndexOf(""))
+console.log("abcde".lastIndexOf("").toString())
 ```
 
 未变更前该用例输出为：
@@ -111,5 +112,5 @@ console.log("abcde".lastIndexOf(""))
 5
 ```
 
-本变更修复该问题，String.prototype.lastIndexOf 查找空串的结果是最后一个字符的位置加1
+本变更修复该问题，String.prototype.lastIndexOf 查找空串的结果是最后一个字符的位置加1。
 

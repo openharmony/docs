@@ -15,10 +15,10 @@ Defines the native ArkWeb **JavaScriptValue** API. Before calling the API, you a
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| size_t [size](#size) | Size of the struct. |
-| [ArkWeb_JavaScriptValuePtr](_web.md#arkweb_javascriptvalueptr)(\* [createJavaScriptValue](#createjavascriptvalue) )([ArkWeb_JavaScriptValueType](_web.md#arkweb_javascriptvaluetype) type, void \*data, size_t dataLength) | Pointer to **createJavaScriptValue**, which is returned to HTML. |
+| size_t [size](#size) | Size of the struct. | 
+| [ArkWeb_JavaScriptValuePtr](_web.md#arkweb_javascriptvalueptr)(\* [createJavaScriptValue](#createjavascriptvalue) )([ArkWeb_JavaScriptValueType](_web.md#arkweb_javascriptvaluetype) type, void \*data, size_t dataLength) | Pointer to **createJavaScriptValue**, which is returned to HTML. | 
 
 
 ## Member Variable Description
@@ -35,11 +35,11 @@ Pointer to **createJavaScriptValue**, which is returned to HTML.
 
 **Parameters**
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| type | Type of the JavaScript value. |
-| data | Data of JavaScript values. |
-| dataLength | Data length of JavaScript values. |
+| type | Type of the JavaScript value. | 
+| data | Data of JavaScript values. | 
+| dataLength | Data length of JavaScript values. | 
 
 **Returns**
 
@@ -54,5 +54,3 @@ size_t ArkWeb_JavaScriptValueAPI::size
 **Description**
 
 Size of the struct.
-
-<!--no_check-->

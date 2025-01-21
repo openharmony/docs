@@ -21,7 +21,7 @@
 
 1. 申请ohos.permission.ACCESS_CERT_MANAGER权限。可参考[申请应用权限-声明权限](../AccessToken/declare-permissions.md)。
 
-2. 导入相关模块
+2. 导入相关模块。
 
    ```ts
    import certificateManagerDialog from '@ohos.security.certManagerDialog';

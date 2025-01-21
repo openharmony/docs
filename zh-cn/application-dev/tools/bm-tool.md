@@ -611,7 +611,7 @@ Error: install parse profile missing prop.
     hilog -w start
     ```
 
-    落盘位置：/data/log/hilog
+    落盘位置：/data/log/hilog。
 
     打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
 
@@ -1103,6 +1103,22 @@ Error: uninstall missing installed bundle.
 
 1. 确认要卸载的应用是否已经安装。
 
+### 9568388 企业设备管理不允许卸载该应用
+**错误信息**
+
+Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+
+**错误描述**
+
+企业设备管理不允许卸载该应用。
+
+**可能原因**
+
+应用被设置为不允许被卸载。
+
+**处理步骤**
+
+1. 由设置方取消该应用的卸载管控。
 
 ### 9568284 安装版本不匹配
 **错误信息**
@@ -1412,3 +1428,20 @@ Error: Failed to uninstall the app because the app is locked.
 **处理步骤**
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
+
+### 9568420 禁止通过bm安装release的预装应用
+**错误信息**
+
+os_integration bundle is not allowed to install for shell.
+
+**错误描述**
+
+禁止通过bm安装release的预装应用
+
+**可能原因**
+
+通过bm安装release的预装应用
+
+**处理步骤**
+
+1. 检查应用是否是release的预装应用。

@@ -36,3 +36,4 @@
 | [OH_Usb_SendPipeRequestWithAshmem](_usb_ddk.md#oh_usb_sendpiperequestwithashmem)&nbsp;(const&nbsp;struct&nbsp;[UsbRequestPipe](_usb_request_pipe.md)&nbsp;\*pipe,&nbsp;[DDK_Ashmem](_ddk_ashmem.md)&nbsp;\*ashmem) | 发送共享内存的管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | [OH_Usb_CreateDeviceMemMap](_usb_ddk.md#oh_usb_createdevicememmap)&nbsp;(uint64_t&nbsp;deviceId,&nbsp;size_t&nbsp;size,&nbsp;[UsbDeviceMemMap](_usb_device_mem_map.md)&nbsp;\*\*devMmap) | 创建缓冲区。请在缓冲区使用完后，调用[OH_Usb_DestroyDeviceMemMap()](_usb_ddk.md#oh_usb_destroydevicememmap)销毁缓冲区，否则会造成资源泄露。 |
 | [OH_Usb_DestroyDeviceMemMap](_usb_ddk.md#oh_usb_destroydevicememmap)&nbsp;([UsbDeviceMemMap](_usb_device_mem_map.md)&nbsp;\*devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
+| [OH_Usb_GetDevices](_usb_ddk.md#oh_usb_getdevices)&nbsp;([Usb_DeviceArray](_usb_device_array.md)&nbsp;\*devices) | 获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。 |

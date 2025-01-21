@@ -49,7 +49,10 @@ import certificateManagerDialog from '@ohos.security.certManagerDialog';
 
 | 名称       | 值 |  说明      |
 | ---------- | ------ | --------- |
+| NOT_SPECIFIED<sup>16+</sup>  | 0      | 未指定用户 |
 | CURRENT_USER | 1      | 当前用户 |
+| GLOBAL_USER<sup>16+</sup> | 2      | 公共目录 |
+
 
 ## CertificateDialogErrorCode
 
@@ -140,8 +143,8 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | 是   | 表示应用的上下文信息。 |
-| certType<sup>14+</sup> | [CertificateType](#certificatetype14)                   | 是   | 表示安装证书类型。 |
-| certScope<sup>14+</sup> | [CertificateScope](#certificatescope14)                   | 是   | 表示证书使用范围类型。 |
+| certType | [CertificateType](#certificatetype14)                   | 是   | 表示安装证书类型。 |
+| certScope | [CertificateScope](#certificatescope14)                   | 是   | 表示安装证书的使用范围。 |
 | cert | Uint8Array                  | 是   | 表示安装证书数据。 |
 
 **返回值**：
@@ -159,9 +162,10 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 29700001 | Internal error.     |
-| 29700002<sup>14+</sup> | The user cancels the installation operation.     |
-| 29700003<sup>14+</sup> | The user install certificate failed in the certificate manager dialog.     |
-| 29700004<sup>14+</sup> | The API is not supported on this device.     |
+| 29700002 | The user cancels the installation operation.     |
+| 29700003 | The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.     |
+| 29700004 | The API is not supported on this device.     |
+| 29700005<sup>16+</sup> | The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.     |
 
 **示例**：
 ```ts
@@ -187,5 +191,70 @@ try {
   })
 } catch (error) {
   console.error(`Failed to open install certificate dialog. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManagerDialog.openUninstallCertificateDialog<sup>16+</sup>
+
+openUninstallCertificateDialog(context: common.Context, certType: CertificateType, certUri: string): Promise\<void>
+
+表示拉起证书管理删除证书向导，显示相应的页面，使用Promise方式异步返回结果。
+
+仅2in1设备支持。
+
+**需要权限：** ohos.permission.ACCESS_CERT_MANAGER
+
+**系统能力：** SystemCapability.Security.CertificateManagerDialog
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名   | 类型                                              | 必填 | 说明                       |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | 是   | 表示应用的上下文信息。 |
+| certType | [CertificateType](#certificatetype14)                   | 是   | 表示删除证书类型。 |
+| certUri | string                  | 是   | 表示待删除证书的唯一标识符。 |
+
+**返回值**：
+
+| 类型                                        | 说明                 |
+| ------------------------------------------- | -------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书管理对话框错误码](errorcode-certManagerDialog.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 29700001 | Internal error.     |
+| 29700002 | The user cancels the uninstallation operation.     |
+| 29700003 | The user uninstall certificate failed in the certificate manager dialog, such as the certificate uri is not exist.     |
+| 29700004 | The API is not supported on this device.     |
+| 29700005 | The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.     |
+
+**示例**：
+```ts
+import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+/* context为应用的上下文信息，调用方自行获取，此处仅为示例 */
+let context: common.Context = getContext(this);
+/* certificateType为证书类型，此处赋值CA_CERT，即安装CA证书 */
+let certificateType: certificateManagerDialog.CertificateType = certificateManagerDialog.CertificateType.CA_CERT;
+/* certUri为业务安装证书返回的唯一标识符，此处仅为示例 */
+let certUri: string = "test";
+try {
+  certificateManagerDialog.openUninstallCertificateDialog(context, certificateType, certUri).then(() => {
+    console.info('Succeeded opening uninstall certificate');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to open uninstall certificate dialog. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to open uninstall certificate dialog. Code: ${error.code}, message: ${error.message}`);
 }
 ```

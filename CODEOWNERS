@@ -250,7 +250,7 @@ zh-cn/application-dev/ui/arkts-common-components-progress-indicator.md	@yeyinglo
 zh-cn/application-dev/ui/arkts-common-components-text-display.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-text-input.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-custom-dialog.md		@zhangfanfan2	@luyuxuan1	@HelloCrease
-zh-cn/application-dev/ui/arkts-common-components-video-player.md	@keerecles	@seaside_wu	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-common-components-video-player.md	@keerecles	@ZhangYu-Home	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-common-components-xcomponent.md	@keerecles	@ZhangYu-Home	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-popup.md		@zhangfanfan2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md		@zhangfanfan2	@luyuxuan1	@HelloCrease
@@ -259,7 +259,7 @@ zh-cn/application-dev/ui/arkts-navigation-navigation.md	@jiangdayuan	@raulnaruto
 zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@cc520bf	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-graphics-display.md	@crazyracing0726		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-geometric-shape-drawing.md	@keerecles	@seaside_wu	@luyuxuan1	@HelloCrease
-zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md	@keerecles	@seaside_wu	@luyuxuan1	@HelloCrease
+zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md	@keerecles	@ZhangYu-Home	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-animation.md	@lightningHo	@huaweimaxuchu	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-attribute-animation-overview.md	@lightningHo	@huaweimaxuchu	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-attribute-animation-apis.md	@lightningHo	@huaweimaxuchu	@luyuxuan1	@HelloCrease
@@ -361,9 +361,8 @@ zh-cn/application-dev/application-models/driverextensionability.md @li-yan339
 zh-cn/application-dev/device/externaldevice-guidelines.md @li-yan339
 
 
-
 [开发-Form Kit]
-zh-cn/application-dev/form/ @Eiln  @cmz001  @nezha-father
+zh-cn/application-dev/form/ @Eiln  @cmz001  @nezha-father  @yuanzhishuai
 
 
 [开发-DFX]
@@ -1075,7 +1074,7 @@ zh-cn/application-dev/reference/apis-driverdevelopment-kit/  @li-yan339
 
 
 [API参考-Form Kit]
-zh-cn/application-dev/reference/apis-form-kit/  @Eiln  @cmz001  @nezha-fathe
+zh-cn/application-dev/reference/apis-form-kit/  @Eiln  @cmz001  @nezha-fathe  @yuanzhishuai
 
 
 

@@ -47,16 +47,16 @@ Inherits [BindOptions](#bindoptions).
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize) \| [Length](ts-types.md#length) | No   | Height of the sheet.<br>Default value: **LARGE**<br>**NOTE**<br>In versions earlier than API version 12, this attribute is ineffective for a bottom sheet in landscape mode; the height is fixed at 8 vp from the top of the screen.<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode; the maximum height is 8 vp from the top of the screen.<br>Since API version 14, for a bottom sheet in landscape mode, the maximum height is 8 vp from the top of the screen if there is no status bar, and 8 vp from the status bar if there is one.<br>When a bottom sheet has **detents** set, this attribute is ineffective.<br>For a bottom sheet in portrait mode, the maximum height is 8 vp from the status bar.<br>For center and popup sheets set to **SheetSize.LARGE** or **SheetSize.MEDIUM**, this attribute is ineffective, with the default height being 560 vp. For center and popup sheets, the minimum height is 320 vp, and the maximum height is 90% of the shorter edge of the window. If the height specified by **Length** and the height adaptively set with **SheetSize.FIT_CONTENT** exceed the maximum height, the maximum height is used instead. If they are less than the minimum height, the minimum height is used instead.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize) \| [Length](ts-types.md#length))?] | No| Array of heights where the sheet can rest.<br>**NOTE**<br>Since API version 12, this attribute takes effect for a bottom sheet in landscape mode.<br>In earlier versions, this attribute takes effect only for the bottom sheet in portrait mode. The first height in the tuple is the initial height.<br>The sheet can switch between heights by dragging. After the sheet is dragged and released, it switches to the target height or remains at the current height, depending on the velocity and distance.<br> If the velocity exceeds the threshold, the sheet switches to the target height in the same direction as the velocity. If the velocity is less than the threshold, the displacement distance is used for judgement. If the displacement distance is greater than 1/2 of the distance between the current and target positions, the sheet switches to the target height in the same direction as the velocity; otherwise, the sheet remains at the current height.<br> Velocity threshold: 1000; Distance threshold: 50%.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by screen width.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= width < 840 vp: bottom and center<br>3. Width >= 840 vp: bottom, center, and popup<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferType<sup>11+</sup> | [SheetType](#sheettype11)| No| Type of the sheet.<br>**NOTE**<br>The types supported by the sheet vary by window.<br>1. Width < 600 vp: bottom<br>2. 600 vp <= width < 840 vp: bottom and center (default)<br>3. Width >= 840 vp: bottom, center, and popup (default)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | No| Whether to display the close icon. By default, the icon is displayed.<br> On 2-in-1 devices, the icon does not have a background by default.<br>**NOTE**<br>The value of **Resource** must be of the Boolean type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | dragBar         | boolean                                  | No   | Whether to display the drag bar.<br>**NOTE**<br>By default, the drag bar is displayed only when the sheet's **detents** attribute is set to multiple heights and the settings take effect.  <br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | No| Background blur of the sheet. By default, there is no background blur.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | maskColor | [ResourceColor](ts-types.md#resourcecolor) | No| Mask color of the sheet.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title<sup>11+</sup> | [SheetTitleOptions](#sheettitleoptions11) \| [CustomBuilder](ts-types.md#custombuilder8) | No| Title of the sheet.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | enableOutsideInteractive<sup>11+</sup> | boolean | No| Whether to allow users to interact with the page pertaining to the sheet.<br>**NOTE**<br>The value **true** means that interactions are allowed, in which case no mask is not displayed. The value **false** means that interactions are not allowed, in which case a mask is displayed. If this parameter is not set, interactions are allowed for the popup sheet, but not for bottom and center sheets. If this parameter is set to **true**, the setting of **maskColor** does not take effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | No| Callback invoked when the user attempts to dismiss the sheet.<br>**NOTE**<br>When the user attempts to dismiss the sheet by a pull-down gesture or clicking the back button, the mask, or the close icon, the sheet is not dismissed; instead, the callback is executed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| onWillDismiss<sup>12+</sup> | [DismissSheetAction](#dismisssheetaction12) | No   | Callback invoked when the user attempts to dismiss the sheet.<br>**NOTE**<br>If this callback is registered, when the user attempts to dismiss the sheet, the sheet is not dismissed immediately; instead, this callback is executed, and you can control whether to dismiss the sheet based on [reason](../js-apis-promptAction.md#dismissreason12) in the callback. No further interception with **onWillDismiss** is allowed in an **onWillDismiss** callback. **Atomic service API**: This API can be used in atomic services since API version 12.|
-| onWillSpringBackWhenDismiss<sup>12+</sup> | [SpringBackAction](#springbackaction12) | No   | Callback to control the interactive spring back before the sheet is dismissed.<br>**NOTE**<br>When a user performs a pull-down-to-dismiss gesture and either **shouldDismiss** or **onWillDismiss** is registered, the sheet will not spring back automatically if this callback is registered. You can then control whether the sheet should spring back through **springBack** in the callback. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| shouldDismiss<sup>11+</sup> | (sheetDismiss: [SheetDismiss](#sheetdismiss11)) => void | No| Callback invoked when the user performs an interactive dismiss operation: pulling down or clicking the back button, the mask, or the close icon.<br>**NOTE**<br>If this callback is registered, the sheet is not dismissed immediately when the user performs the above operations. To dismiss the sheet, you must call **shouldDismiss.dismiss()** in the callback.<br>If this callback is not registered, the sheet is dismissed immediately when the user performs the above operations, without any additional behavior.<br>It is recommended that this API be used in scenarios where a [secondary confirmation](../../../ui/arkts-sheet-page.md#secondary-confirmation-capability) is required<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onWillDismiss<sup>12+</sup> | [DismissSheetAction](#dismisssheetaction12) | No   | Callback invoked when the user performs an interactive dismiss operation: pulling down or clicking the back button, the mask, or the close icon, to obtain the type of dismiss operation and decide whether to dismiss the sheet.<br>**NOTE**<br>If this callback is registered, the sheet is not dismissed immediately when the user performs the above operations. Instead,you can use the [reason](../js-apis-promptAction.md#dismissreason12) parameter in the callback to determine the type of dismiss operation and decide whether to dismiss the sheet.<br>If this callback is not registered, the sheet is dismissed immediately when the user performs the above operations, without any additional behavior.<br>No further interception with **onWillDismiss** is allowed in an **onWillDismiss** callback.<br>It is recommended that this API be used in scenarios where a [secondary confirmation](../../../ui/arkts-sheet-page.md#secondary-confirmation-capability) is required<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onWillSpringBackWhenDismiss<sup>12+</sup> | [SpringBackAction](#springbackaction12) | No   | Callback invoked when the user performs a pull-down-to-dismiss gesture, to control the bounce effect.<br>**NOTE**<br>If this callback is registered along with **shouldDismiss** or **onWillDismiss**,you can control whether the sheet bounces back during the pull-down-to-dismiss operation by calling **springBack** in the callback.<br>If this callback is not registered but **shouldDismiss** or **onWillDismiss** is registered, the sheet will bounce back before remaining open or being dismissed based on the callback behavior.<br>If neither this callback nor **shouldDismiss** or **onWillDismiss** is registered, the sheet is dismissed by default during the pull-down-to-dismiss operation.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onHeightDidChange<sup>12+</sup> | Callback&lt;number&gt; | No| Callback for changes in the height of the sheet.<br>**NOTE**<br>For a bottom sheet, the height of each frame is only returned when there are changes in detents or during drag actions. When the sheet is pulled up or making space for the soft keyboard, only the final height is returned. For other types of sheets, the final height is only returned when the sheet is pulled up.<br>The return value is in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onDetentsDidChange<sup>12+</sup> | Callback&lt;number&gt; | No| Callback for changes in the detents of the sheet.<br>**NOTE**<br>For a bottom sheet, the final height is returned when there are changes in detents.<br>The return value is in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | onWidthDidChange<sup>12+</sup> | Callback&lt;number&gt; | No| Callback for changes in the width of the sheet.<br>**NOTE**<br>The final height is returned when there are changes in the width.<br>The return value is in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -71,8 +71,8 @@ Inherits [BindOptions](#bindoptions).
 | scrollSizeMode<sup>12+</sup> | [ScrollSizeMode](#scrollsizemode12)   | No| Timing for updating the content display area of the sheet when it is scrolled.<br>Default value: **ScrollSizeMode.FOLLOW_DETENT**|
 | keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13) | No| How the sheet avoids the soft keyboard when it is brought up.<br> Default value: **TRANSLATE_AND_SCROLL**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | enableHoverMode<sup>14+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**NOTE**<br>The bottom and popup sheets do not respond in the hover mode.|
-| hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
-
+| hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| radius<sup>16+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) \| [LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | No| Corner radius of the sheet.<br>To deliver the optimal experience, use the same radius for the four corners.<br>Default value: **32vp**<br>**NOTE**<br>1. The corner radius is displayed based on the set value. If it is not set, the default value is used. The bottom sheet does not display the bottom two corners, even if they are set.<br>2. If different corner radii are set for the four corners and one of the values is invalid, the corner pertaining to the invalid value is reset to the default value, while the other corners retain their set values. If a uniform corner radius is set for all four corners and the value is invalid, all four corners are reset to the default value.<br>3. When the corner radius is set as a percentage, the width of the sheet is used as the reference.<br>4. If the corner radius is greater than half the width of the sheet, it is set to half the width of the sheet.<br>5. If the height of the sheet is too small and the corner radius is set too large, it may cause display issues.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 ## SheetSize
 
 | Name                     | Value   | Description                        |
@@ -158,7 +158,9 @@ Inherits [BindOptions](#bindoptions).
 | TRANSLATE_AND_SCROLL    | 3    | Lifts the sheet to avoid the keyboard;<br>if not enough, scrolls the content.|
 
 ## Example
-### Example 1
+### Example 1: Setting Sheets with Different Heights
+
+This example demonstrates how to set different heights for sheets using the **height** property.
 
 ```ts
 // xxx.ets
@@ -231,9 +233,12 @@ struct SheetTransitionExample {
 
 ![en-us_sheet](figures/en-us_sheet1.gif)
 
-### Example 2
+### Example 2: Setting Three Different Height Detents
 
-This example demonstrates how to use the **detents** property of **bindSheet** to set three different height positions for a sheet.
+This example demonstrates how to use the **detents** property of **bindSheet** to set three different height detents for a sheet.
+1. The drag bar is only effective when there are multiple height detents.
+2. Unlike the **height** property, which can set different heights at different times, the **detents** property provides a gesture to switch between detent heights and is more suitable for fixed height intervals.
+3. If the height range is uncertain or there may be more than three different heights, avoid using the **detents** property.
 
 ```ts
 // xxx.ets
@@ -281,7 +286,7 @@ struct SheetTransitionExample {
 
 ![en-us_sheet](figures/en-us_sheet2.gif)
 
-### Example 3
+### Example 3: Setting the Border Width and Color
 
 This example demonstrates how to use the **borderWidth** and **borderColor** properties with **LocalizedEdgeWidths** and **LocalizedEdgeColors** types in **bindSheet**.
 
@@ -341,7 +346,7 @@ The following shows how the example is represented with right-to-left scripts.
 
 ![en-us_sheet](figures/en-us_sheet3_rtl.png)
 
-### Example 4
+### Example 4: Using Dismiss Callbacks
 
 This example shows how to register **onWillDismiss** and **onWillSpringBackWhenDismiss** with **bindSheet**.
 
@@ -394,9 +399,10 @@ struct bindSheetExample {
 ```
 ![en-us_sheet](figures/en-us_sheet4.gif)
 
-### Example 5
+### Example 5: Setting Content Update Timing
 
-This example demonstrates how to set **scrollSizeMode** for a sheet.
+This example shows how to use **ScrollSizeMode.CONTINUOUS**, which continuously updates the content and is suitable for detents with multiple height settings.
+Whenever possible, minimize UI loading time within the builder, as real-time content refreshing during scrolling has higher performance requirements.
 
 ```ts
 // xxx.ets
@@ -448,7 +454,7 @@ The sheet's content height is updated in real time as the user drags the sheet.
 
 ![en-us_sheet](figures/en-us_sheet5_rtl.gif)
 
-### Example 6
+### Example 6: Listening for Keyboard Height Changes
 
 This example shows how to listen for keyboard height changes and adjust the scroll of a scrollable component based on these changes in **resizeOnly** mode.
 
@@ -571,3 +577,60 @@ struct ListenKeyboardHeightChange {
   }
 }
 ```
+
+### Example 7: Setting the Corner Radius in a Mirrored Layout
+
+This example demonstrates how to set different corner radii for a sheet in a mirrored layout. Typically, to avoid a poor visual experience, do not set different values.
+
+In this example, the **radius** property of the sheet uses the LocalizedBorderRadiuses type.
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct SheetTransitionExample {
+  @State isShow: boolean = false
+
+  @Builder
+  myBuilder() {
+    Column() {
+      Button("content1")
+        .margin(10)
+        .fontSize(20)
+
+      Button("content2")
+        .margin(10)
+        .fontSize(20)
+    }
+    .width('100%')
+  }
+
+  build() {
+    Column() {
+      Button("transition modal 1")
+        .onClick(() => {
+          this.isShow = true
+        })
+        .fontSize(20)
+        .margin(10)
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          title: { title: "title", subtitle: "subtitle" },
+          radius: { topStart: LengthMetrics.vp(50), topEnd: LengthMetrics.vp(10) },
+        })
+    }
+    .justifyContent(FlexAlign.Start)
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+The following shows how the example is represented with left-to-right scripts.
+
+![en-us_sheet](figures/en-us_sheet7_ltr.png)
+
+The following shows how the example is represented with right-to-left scripts.
+
+![en-us_sheet](figures/en-us_sheet7_rtl.png)

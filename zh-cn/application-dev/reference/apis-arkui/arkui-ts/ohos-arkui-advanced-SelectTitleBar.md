@@ -178,7 +178,7 @@ struct Index {
 }
 ```
 
-![img_3.png](img_3.png)
+![zh-cn_image_selecttitlebar_example01](figures/zh-cn_image_selecttitlebar_example01.png)
 
 ### 示例2（右侧自定义按钮播报）
 该示例通过设置标题栏右侧自定义按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
@@ -306,4 +306,4 @@ struct Index {
   }
 }
 ```
-![img_2.png](img_2.png)
+![zh-cn_image_selecttitlebar_example02](figures/zh-cn_image_selecttitlebar_example02.png)

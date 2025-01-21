@@ -242,3 +242,36 @@ struct CalendarPickerDialogExample {
 ```
 
 ![CalendarPickerDialog](figures/CalendarPickerDialogDemo4.png)
+
+### 示例5（设置开始日期和结束日期）
+
+该示例通过start和end设置日历选择器弹窗的开始日期和结束日期。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2025-01-01')
+  private startDate: Date = new Date('2024-01-10')
+  private endDate: Date = new Date('2025-1-10')
+
+  build() {
+    Column() {
+      Text('月历日期选择器').fontSize(30)
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({
+            start: this.startDate,
+            end: this.endDate,
+            selected: this.selectedDate,
+          })
+        })
+    }.width('100%').margin({ top: 350 })
+  }
+}  
+```
+
+![CalendarPickerDialog](figures/calendar_picker_dialog_start_end.gif)

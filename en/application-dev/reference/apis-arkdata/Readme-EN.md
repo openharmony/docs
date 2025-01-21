@@ -11,7 +11,6 @@
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.sendableRelationalStore (Shared RDB Store)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (Unified Data Channel)](js-apis-data-unifiedDataChannel.md)
-  - [@ohos.data.unifiedDataChannel (Uniform Data Channel) (System API)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (Uniform Data Structs)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (Uniform Data Definition and Description)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
@@ -55,6 +54,7 @@
     - [uds.h](uds_8h.md)
     - [utd.h](utd_8h.md)
     - [oh_preferences.h](oh__preferences_8h.md)
+    - [oh_preferences_err_code.h](oh__preferences__err__code_8h.md)
     - [oh_preferences_option.h](oh__preferences__option_8h.md)
     - [oh_preferences_value.h](oh__preferences__value_8h.md)
   - Structs

@@ -156,7 +156,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
   > **说明：**
   >
-  > 当useSharedStorage设置为true，并且storage又被赋值时，useSharedStorage的值优先级更高。
+  > 当useSharedStorage设置为true，并且storage也被赋值时，useSharedStorage的值优先级更高。
 
   ```ts
   @Entry({ routeName : 'myPage' })

@@ -811,6 +811,29 @@ enabled(respond: boolean): T
 | HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL | 1 | 安全控件上图标和文字分布的方向为垂直排列。 |
 
+## ButtonType枚举说明
+
+按钮类型。
+
+不同的按钮类型将影响属性[borderRadius（边框圆角半径）](ts-securitycomponent-attributes.md#borderradius)的设置效果。影响如下：
+
+- 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角半径始终为宽、高中较小值的一半。
+- 当按钮类型为Circle时：
+  - 若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；
+  - 若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；
+  - 若不设置宽高或者borderRadius的值为负，borderRadius不生效，按钮半径根据具体布局确定。
+- 在不设置borderRadius时，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
+| ------- | ------------------ |
+| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
+| Circle  | 圆形按钮。              |
+| Normal  | 普通按钮（默认不带圆角）。      |
+| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
 
 ## 示例
 

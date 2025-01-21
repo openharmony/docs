@@ -15,11 +15,11 @@ Defines a proxy method.
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| const char \* [methodName](#methodname) | Pointer to the method name to be injected. |
-| [ArkWeb_OnJavaScriptProxyCallbackWithResult](_web.md#arkweb_onjavascriptproxycallbackwithresult) [callback](#callback) | Callback used when a proxy method is invoked. |
-| void \* [userData](#userdata) | Pointer to the user data used in a callback. |
+| const char \* [methodName](#methodname) | Pointer to the method name to be injected. | 
+| [ArkWeb_OnJavaScriptProxyCallbackWithResult](_web.md#arkweb_onjavascriptproxycallbackwithresult) [callback](#callback) | Callback used when a proxy method is invoked. | 
+| void \* [userData](#userdata) | Pointer to the user data used in a callback. | 
 
 
 ## Member Variable Description
@@ -53,5 +53,3 @@ void* ArkWeb_ProxyMethodWithResult::userData
 **Description**
 
 Pointer to the user data used in a callback.
-
-<!--no_check-->

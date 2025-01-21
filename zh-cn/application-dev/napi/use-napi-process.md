@@ -207,7 +207,7 @@ struct Index {
 
 ### 注册建议
 
-- nm_register_func对应的函数（如上述Init函数）需要加上static，防止与其他so里的符号冲突；
+- nm_register_func对应的函数（如上述Init函数）需要加上static，防止与其他so里的符号冲突。
 
 - 模块注册的入口，即使用__attribute__((constructor))修饰的函数的函数名（如上述RegisterDemoModule函数）需要确保不与其它模块重复。
 

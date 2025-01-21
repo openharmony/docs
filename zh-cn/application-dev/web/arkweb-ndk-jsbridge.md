@@ -17,7 +17,7 @@
   Native JSBridge方案可以解决ArkTS环境的冗余切换，同时允许回调在非UI线程上运行，避免造成UI阻塞。
 
 ## 使用Native接口实现JSBridge通信（推荐）
-原先，Native同步接口不支持返回值，其返回类型固定为void。然而，随着业务的持续扩展，众多业务场景要求接口能够提供返回值，以支持同步调用的实现。为应对这一需求，自API version 14起，引入了替代接口，旨在满足业务对返回值的需求。这些替代接口支持bool、string和buffer类型的返回值。
+原先，Native同步接口不支持返回值，其返回类型固定为void。然而，随着业务的持续扩展，众多业务场景要求接口能够提供返回值，以支持同步调用的实现。为应对这一需求，自API version 16起，引入了替代接口，旨在满足业务对返回值的需求。这些替代接口支持bool、string和buffer类型的返回值。
 
 另外针对同步接口[registerJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerjavascriptproxyex)和异步接口[registerAsyncJavaScriptProxyEx](../reference/apis-arkweb/_ark_web___controller_a_p_i.md#registerasyncjavascriptproxyex)，新增了参数[permission](#permission)字段，用于调用权限控制。
 
