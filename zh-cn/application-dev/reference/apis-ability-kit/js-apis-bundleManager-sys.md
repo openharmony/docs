@@ -2064,7 +2064,9 @@ try {
 
 cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 
-以异步方法根据给定的bundleName和appIndex清理BundleCache，使用Promise形式返回结果。
+根据给定的bundleName和appIndex清理BundleCache，使用Promise异步回调。
+
+调用方清理自身缓存数据时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
