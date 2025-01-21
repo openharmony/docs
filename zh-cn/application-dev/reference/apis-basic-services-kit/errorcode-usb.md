@@ -154,7 +154,7 @@ Cannot reopen the accessory.
 
 **错误信息**
 
-usb submit transmission operation successful.
+submit transmission operation successful.
 
 **错误描述**
 
@@ -168,7 +168,7 @@ usb submit transmission operation successful.
 
 **错误信息**
 
-transmission input/output error.
+transmission I/O error.
 
 **错误描述**
 
@@ -178,19 +178,19 @@ libusb实际读/写/取消，操作失败。
 
 尝试重新操作。
 
-## 14400008 参数无效
+## 14400008 资源繁忙
 
 **错误信息**
 
-invalid parameter.
+resource busy.
 
 **错误描述**
 
-libusb识别为无效参数。
+资源被占用。
 
 **处理步骤**
 
-重新检查传入参数是否正确，设备类型是否正确。
+检查claimInterface()接口是否调用成功。
 
 ## 14400009 没有设备(连接已断开)
 
@@ -220,15 +220,15 @@ transmission time out error.
 
 首先检查缓冲区是否已经成功读取/写入数据，如果有数据，则视为成功，如无数据，则尝试重新操作，或重新设置超时时间。
 
-## 14400011 其他错误
+## 14400011 无法识别的错误
 
 **错误信息**
 
-other error.
+unrecognised discard.
 
 **错误描述**
 
-libusb返回为其他错误。例如在某些场景中有可能存在资源繁忙、系统拒绝访问、信号中断等预料之外的错误。
+libusb库无法识别的错误。
 
 **处理步骤**
 
@@ -242,7 +242,7 @@ transmission overflow error.
 
 **错误描述**
 
-实时传输时部分分包数据丢失。
+实时传输时部分分包数据丢失，或者期望读到的数据未读完。
 
 **处理步骤**
 
@@ -270,23 +270,37 @@ interface does not support.
 
 **错误描述**
 
-无法打开libusb接口。
+没有打开libusb开关。
 
 **处理步骤**
 
-检查libusb开关是否打开（使用宏LIBUSB_ENABLE控制），平台是否支持使用libusb。
+检查代码中libusb开关是否打开（使用宏LIBUSB_ENABLE控制）。
 
 ## 14400015 错误参数
 
 **错误信息**
 
-parameter error.
+entity not found.
 
 **错误描述**
 
-napi参数检查返回错误
+此次传输已被取消或已经传输完成。
 
 **处理步骤**
 
-重新检查传参是否按照接口参数定义正确传参。
+重新发起新的传输请求。
+
+## 14400016 通道异常
+
+**错误信息**
+
+pipe error.
+
+**错误描述**
+
+设备挂起导致传输通道异常。
+
+**处理步骤**
+
+重新拔插设备。
 

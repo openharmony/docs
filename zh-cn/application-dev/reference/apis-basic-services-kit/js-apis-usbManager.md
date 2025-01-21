@@ -734,7 +734,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 }
 ```
 
-## usbManager.usbSubmitTransfer
+## usbManager.usbSubmitTransfer<sup>16+</sup>
 
 usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
@@ -750,7 +750,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。|
 
 **错误码：**
 
@@ -760,16 +760,16 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14400006 | usb submit transmission operation successful. |
-| 14400007 | transmission input/output error. |
-| 14400008 | transmission invalid parameter. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
+| 14400006 | submit transmission operation successful. |
+| 14400007 | transmission I/O error. |
+| 14400008 | resource busy. |
 | 14400009 | no such device (it may have been disconnected). |
 | 14400010 | transmission time out error. |
-| 14400011 | other error. |
 | 14400012 | transmission overflow error. |
 | 14400013 | insufficient memory. |
 | 14400014 | interface does not support. |
-| 14400015 | parameter error. |
+| 14400016 | pipe error. |
 
 **返回值：**
 
@@ -827,7 +827,7 @@ try {
 ```
 
 
-## usbManager.usbCancelTransfer
+## usbManager.usbCancelTransfer<sup>16+</sup>
 
 usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
@@ -841,7 +841,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams16 ) | 是 | 在取消传输的接口中，只需要填充USBDevicePipe和endpoint即可。|
 
 **错误码：**
 
@@ -849,9 +849,11 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 14400007 | usb submit transmission input/output error. |
-| 14400008 | transmission invalid parameter. |
-| 14400015 | napi get params error. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
+| 14400009 | no such device (it may have been disconnected). |
+| 14400011 | other error. unrecognised discard. |
+| 14400014 | interface does not support. |
+| 14400015 | entity not found. |
 
 **返回值：**
 
@@ -1384,7 +1386,7 @@ USB配件句柄。
 | ----------- | ------ | ---- | ----------------------------------------- |
 | accessoryFd | number | 是   | 配件文件描述符。合法的accessoryFd是正整数。 |
 
-## UsbDataTransferParams
+## UsbDataTransferParams<sup>16+</sup>
 
 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。
 
@@ -1393,17 +1395,17 @@ USB配件句柄。
 | 名称         | 类型   | 必填    |说明    |
 | ---------- | ------ | ----- |----- |
 | pipe | [UsbDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
-| flags | [UsbTransferFlags](#usbtransferflags) |是 | USB传输标志。 |
+| flags | [UsbTransferFlags](#usbtransferflags16) |是 | USB传输标志。 |
 | endpoint | number | 是 | 端点地址。 |
-| type | [UsbEndpointTransferType](#usbendpointtransfertype) |是 | 传输类型。 |
+| type | [UsbEndpointTransferType](#usbendpointtransfertype16) |是 | 传输类型。 |
 | timeout | number | 是 | 设置超时。 |
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度）。 |
-| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback)> |是 | 传输完成时的回调信息。|
+| callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
 | isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
 
-## UsbTransferFlags
+## UsbTransferFlags<sup>16+</sup>
 
 Usb传输标志。
 
@@ -1416,7 +1418,7 @@ Usb传输标志。
 | USB_TRANSFER_FREE_TRANSFER  | 2    | 完成回调后自动传输。 |
 | USB_TRANSFER_ADD_ZERO_PACKET     | 3    | 传输将增加一个额外的数据包。 |
 
-## UsbEndpointTransferType
+## UsbEndpointTransferType<sup>16+</sup>
 
 Usb传输类型。
 
@@ -1424,12 +1426,11 @@ Usb传输类型。
 
 | 名称                         | 值   | 说明   |
 | ---------------------------- | ---- | ------ |
-| TRANSFER_TYPE_CONTROL    | 0    | 控制传输（不支持）|
 | TRANSFER_TYPE_ISOCHRONOUS | 1    | 实时传输 |
 | TRANSFER_TYPE_BULK  | 2    | 批量传输 |
 | TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输|
 
-## SubmitTransferCallback
+## SubmitTransferCallback<sup>16+</sup>
 
 Usb异步传输回调信息。
 
@@ -1439,9 +1440,9 @@ Usb异步传输回调信息。
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值 |
 | status | [UsbTransferStatus](#usbtransferstatus) | 读写操作完成的状态 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor)>> | 实时传输的分包信息（仅实时传输时有返回值） |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息（仅实时传输时有返回值） |
 
-## UsbTransferStatus
+## UsbTransferStatus<sup>16+</sup>
 
 libusb实际处理完成后的传输状态。
 
@@ -1455,12 +1456,12 @@ libusb实际处理完成后的传输状态。
 | TRANSFER_ERROR | 1    | 传输失败 |
 | TRANSFER_TIMED_OUT  | 2    | 传输超时 |
 | TRANSFER_CANCELLED     | 3    |传输已被取消 |
-| TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点），不支持控传输制请求。 |
+| TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）|
 | TRANSFER_NO_DEVICE     | 5    | 设备已断开|
 | TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多|
 
 
-## UsbIsoPacketDescriptor
+## UsbIsoPacketDescriptor<sup>16+</sup>
 
 实时传输模式回调返回的分包信息。
 
@@ -1470,4 +1471,4 @@ libusb实际处理完成后的传输状态。
 | ---------- | ------ | ----- |
 | length | number | 读写操作的期望长度值 |
 | actualLength | number| 读写操作的实际长度值 |
-| status | [UsbTransferStatus](#usbtransferstatus) | 实时传输分包的传输状态 |
+| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的传输状态 |
