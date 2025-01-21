@@ -1689,19 +1689,14 @@ try {
 ### startMoving<sup>16+</sup>
 
 startMoving(): void
+
 发送移动命令给窗口，不产生实际移动效果（仅在鼠标点击作用才可以移动）。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-**返回值：**
-
-| 类型   | 说明                             |
-| ------- | ------------------------------ |
-|void| 无返回结果。  |
-
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
@@ -1728,7 +1723,8 @@ try {
 ### getDisplayId<sup>16+</sup>
 
 getDisplayId(): Promise\<number>
-获取当前窗口的displayid，使用promise异步回调。
+
+获取当前窗口的所在id,使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1740,7 +1736,7 @@ getDisplayId(): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |
