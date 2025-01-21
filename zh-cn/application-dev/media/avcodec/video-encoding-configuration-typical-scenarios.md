@@ -1,6 +1,6 @@
 # 典型场景的视频编码配置
 
-此文档描述了鸿蒙5.0的视频编码能力在不同应用场景下的推荐配置参数，供调用者根据实际应用场景进行视频编码应用的开发。
+此文档描述了AVCodec视频编码能力在不同应用场景下的推荐配置参数，供调用者根据实际应用场景进行视频编码应用的开发。
 
 视频编码在视频通话、视频会议、直播、视频编辑、视频分享等场景均有广泛使用，按照体验要求，上述场景可归纳划分为低时延、实时流媒体、离线编码三大类别应用场景。
 
@@ -67,7 +67,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 
     示例中的变量说明如下：
-    - videoEnc：视频编码器实例的指针。创建方式可参考[视频编码Surface模式](video-encoding.md#surface模式)“步骤-2：创建解码器实例对象”。
+    - videoEnc：视频编码器实例的指针。创建方式可参考[视频编码Surface模式](video-encoding.md#surface模式)“步骤-2：创建编码器实例对象”。
 
     ```c++
     // 2.1 创建AVFormat参数实例
@@ -106,6 +106,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 3. （可选）在运行过程中动态配置编码器参数。
 
+    详情可参考[视频编码Surface模式](video-encoding.md#surface模式)“步骤-9：OH_VideoEncoder_SetParameter()在运行过程中动态配置编码器参数”。
+
     ```c++
     // 3.1 创建AVFormat参数实例
     OH_AVFormat *format = OH_AVFormat_Create();
@@ -127,11 +129,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
 **开发指导**
 
-基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段做具体说明。
+基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段，配置实时流媒体编码场景的参数做具体说明。
 
-配置编码器参数。
-
-在配置编码器参数阶段，配置实时流媒体编码场景的参数。
 
 娱乐直播场景，典型分辨率的编码参数（以H.265为例）推荐如下：
 
@@ -181,11 +180,7 @@ OH_AVFormat_Destroy(format);
 
 **开发指导**
 
-基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段做具体说明。
-
-配置编码器参数。
-   
-在配置编码器参数阶段，配置离线编码场景的编码参数。
+基础编码流程请参考[视频编码](video-encoding.md)，下面仅针对编码器配置阶段，配置离线编码场景的编码参数做具体说明。
 
 视频编辑场景，典型分辨率的编码参数（以H.265为例）推荐如下：
 
