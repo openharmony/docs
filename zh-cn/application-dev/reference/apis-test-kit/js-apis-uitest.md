@@ -886,6 +886,7 @@ hint(val: string, pattern?: MatchPattern): On
 | ------ | ------ |----|------------|
 | val     | string | 是  | 指定控件提示值。   |
 | pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+
 **返回值：**
 
 | 类型       | 说明                                     |
