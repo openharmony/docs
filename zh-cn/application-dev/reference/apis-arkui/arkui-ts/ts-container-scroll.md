@@ -559,7 +559,6 @@ scrollTo(options: [ScrollOptions](#scrolloptions16对象说明))
 
 scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 
-
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
 
