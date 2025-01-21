@@ -259,43 +259,6 @@ import { On, ON } from '@kit.TestKit';
 let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
-### id<sup>16+</sup>
-
-id(id: string, pattern: MatchPattern): On
-
-指定目标控件id属性，返回On对象自身。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ |----| ---------------- |
-| id     | string | 是  | 指定控件的id值。 |
-| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
-**返回值：**
-
-| 类型       | 说明                             |
-| ---------- | -------------------------------- |
-| [On](#on9) | 返回指定目标控件id属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.id('123', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
-```
-
 ### type<sup>9+</sup>
 
 type(tp: string): On
@@ -335,88 +298,6 @@ type(tp: string): On
 ```ts
 import { On, ON } from '@kit.TestKit';
 let on:On = ON.type('Button'); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
-```
-
-### type<sup>16+</sup>
-
-type(tp: string, pattern: MatchPattern): On;
-
-指定目标控件的控件类型属性，返回On对象自身。
-
->**说明**
->
->控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。|
-| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
-**返回值：**
-
-| 类型       | 说明                                     |
-| ---------- | ---------------------------------------- |
-| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
-```
-
-### hint<sup>16+</sup>
-
-hint(val: string, pattern?: MatchPattern): On
-
-指定目标控件的提示值属性，返回On对象自身。
-
->**说明**
->
->控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明         |
-| ------ | ------ |----|------------|
-| val     | string | 是  | 指定控件提示值。   |
-| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
-**返回值：**
-
-| 类型       | 说明                                     |
-| ---------- | ---------------------------------------- |
-| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
- import { MatchPattern, On, ON } from '@kit.TestKit';
- let on:On = ON.hint('welcome', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的提示值属性。
 ```
 
 ### clickable<sup>9+</sup>
@@ -905,6 +786,124 @@ description(val: string, pattern?: MatchPattern): On
 ```ts
 import { On, ON } from '@kit.TestKit';
 let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，指定目标控件的description属性。
+```
+
+### id<sup>16+</sup>
+
+id(id: string, pattern: MatchPattern): On
+
+指定目标控件id属性，返回On对象自身。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明             |
+| ------ | ------ |----| ---------------- |
+| id     | string | 是  | 指定控件的id值。 |
+| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
+**返回值：**
+
+| 类型       | 说明                             |
+| ---------- | -------------------------------- |
+| [On](#on9) | 返回指定目标控件id属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.id('123', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
+```
+### type<sup>16+</sup>
+
+type(tp: string, pattern: MatchPattern): On;
+
+指定目标控件的控件类型属性，返回On对象自身。
+
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| tp     | string | 是   | 指定控件类型。|
+| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
+
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
+```
+### hint<sup>16+</sup>
+
+hint(val: string, pattern?: MatchPattern): On
+
+指定目标控件的提示值属性，返回On对象自身。
+
+>**说明**
+>
+>控件类型是开发者自定义的。同时，可以借助[DevEco Testing工具](https://developer.huawei.com/consumer/cn/download)进行查询。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明         |
+| ------ | ------ |----|------------|
+| val     | string | 是  | 指定控件提示值。   |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+**返回值：**
+
+| 类型       | 说明                                     |
+| ---------- | ---------------------------------------- |
+| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { MatchPattern, On, ON } from '@kit.TestKit';
+ let on:On = ON.hint('welcome', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的提示值属性。
 ```
 
 ## Component<sup>9+</sup>
@@ -1650,6 +1649,52 @@ async function demo() {
 }
 ```
 
+### scrollSearch<sup>16+</sup>
+
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise<Component>
+
+在控件上滑动查找目标控件(适用支持滑动的控件),支持查找方向和死区。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名 | 类型         | 必填 | 说明                     |
+| ------ |------------|---|------------------------|
+| on     | [On](#on9) | 是 | 目标控件的属性要求。             |
+| vertical |    boolean | 否 | 滑动方向是否垂直, 默认 true      |
+| offset     | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80 |
+
+**返回值：**
+
+| 类型                               | 说明                                  |
+| ---------------------------------- | ------------------------------------- |
+| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                               |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+
+**示例：**
+
+```ts
+ import { Component, Driver, ON } from '@kit.TestKit';
+async function demo() {
+  let driver: Driver = Driver.create();
+  let scrollBar = await driver.findComponent(ON.id('verticalScroll'))
+  let text1 = await scrollBar.scrollSearch(ON.text('11'), true, 80);
+}
+
+```
+
 ### scrollToTop<sup>9+</sup>
 
 scrollToTop(speed?: number): Promise\<void>
@@ -1871,6 +1916,11 @@ async function demo() {
   let description = await button.getDescription();
 }
 ```
+
+
+
+
+
 
 ## Driver<sup>9+</sup>
 
