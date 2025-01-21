@@ -2783,7 +2783,7 @@ isHoliday(date?: Date): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // ics文件需要应用预置在可读目录下
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // 需要将"/system/lib/US.ics"替换为实际ics文件路径
     let isHoliday = holidayManager.isHoliday();
     console.log(isHoliday.toString());
     let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // 时间日期为2023.06.25
@@ -2831,7 +2831,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // ics文件需要应用预置在可读目录下
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // 需要将"/system/lib/US.ics"替换为实际ics文件路径
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
     for (let i =0; i < holidayInfoItemArray.length; i++) {
         console.log(JSON.stringify(holidayInfoItemArray[i]));
