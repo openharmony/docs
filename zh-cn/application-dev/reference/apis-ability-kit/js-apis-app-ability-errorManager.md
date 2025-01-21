@@ -394,7 +394,7 @@ ErrorObserver模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ErrorObserver](js-apis-inner-application-errorObserver.md) | ErrorObserver模块。 |
+| [_ErrorObserver.default](js-apis-inner-application-errorObserver.md) | ErrorObserver模块。 |
 
 ## LoopObserver<sup>12+</sup>
 
@@ -408,7 +408,7 @@ LoopObserver模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [LoopObserver](js-apis-inner-application-loopObserver.md) | LoopObserver模块。 |
+| [_LoopObserver](js-apis-inner-application-loopObserver.md) | LoopObserver模块。 |
 
 ## UnhandledRejectionObserver<sup>12+</sup>
 

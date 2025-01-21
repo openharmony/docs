@@ -24,7 +24,7 @@ import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
 
 ## AppStorageV2
 
-AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)
+AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -448,7 +448,7 @@ type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
 | key | string    | 是   | 出错的键值。   |
-| reson | 'quota' \| 'serialization' \| 'unknown'    | 是   | 出错的原因类型。   |
+|reason| 'quota' \| 'serialization' \| 'unknown'    | 是   | 出错的原因类型。   |
 | message | string    | 是   | 出错的更多消息。   |
 
 **示例：**
