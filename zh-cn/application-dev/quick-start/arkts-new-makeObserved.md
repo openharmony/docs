@@ -29,7 +29,7 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 - makeObserved仅支持非空的对象类型传参。
   - 不支持undefined和null：返回自身，不做任何处理。
-  - 非Object类型：编译拦截报错
+  - 非Object类型：编译拦截报错。
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
