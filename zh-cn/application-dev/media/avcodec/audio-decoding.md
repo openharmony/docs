@@ -91,7 +91,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ADecBufferSignal *signal_;
     ```
    
-3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。  
+3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。
+
    注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError：解码器运行错误。
@@ -99,7 +100,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     - OH_AVCodecOnNeedInputBuffer：运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。
     - OH_AVCodecOnNewOutputBuffer：运行过程中产生了新的输出数据，即解码完成。
 
-   开发者可以通过处理该回调报告的信息，确保解码器正常运转。
+   开发者可以通过处理该回调报告的信息，确保解码器正常运转。  
+   > **注意：**
+   > 回调中不建议进行耗时操作。
 
     ```cpp
     // OH_AVCodecOnError回调函数的实现
@@ -342,9 +345,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-9. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。
+9. 调用OH_AudioCodec_PushInputBuffer()，写入待解码的数据。需开发者填充完整的输入数据后调用。  
 
-   如果是结束，需要对flag标识成AVCODEC_BUFFER_FLAGS_EOS。
+   如果是结束，需要对flags标识成AVCODEC_BUFFER_FLAGS_EOS。
 
     ```c++
     uint32_t index = signal_->inQueue_.front();
@@ -375,8 +378,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
    
-10. 调用OH_AudioCodec_FreeOutputBuffer()，输出解码后的PCM码流。
-
+10. 调用OH_AudioCodec_FreeOutputBuffer()，释放解码后的数据。在取走解码PCM码流后，就应及时调用OH_AudioCodec_FreeOutputBuffer()进行释放。
     <!--RP3-->
     ```c++
     uint32_t index = signal_->outQueue_.front();
@@ -404,8 +406,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    此时需要调用OH_AudioCodec_Start()重新开始解码。
    使用情况：
 
-    * 在文件EOS之后，需要调用刷新
-    * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）调用
+    * 在文件EOS之后，需要调用刷新。
+    * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）调用。
 
     ```c++
     // 刷新解码器 audioDec_
@@ -436,7 +438,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-13. 调用OH_AudioCodec_Stop()停止解码器。
+13. 调用OH_AudioCodec_Stop()停止解码器。停止后，可以通过调用OH_AudioCodec_Start()重新进入已启动状态（started），但需要注意的是，如果编解码器之前已输入数据，则需要重新输入编解码器数据。
 
     ```c++
     // 终止解码器 audioDec_

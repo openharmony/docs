@@ -102,6 +102,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    - OH_AVCodecOnNewOutputBuffer：运行过程中产生了新的输出数据，即编码完成。
 
    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
+   > **注意：**
+   > 回调中不建议进行耗时操作。
 
     ```cpp
     // OH_AVCodecOnError回调函数的实现
@@ -166,7 +168,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | G711mu      | 8000                                                                            |         1          |
    <!--RP3--><!--RP3End-->
 
-   对于44100Hz采样率、2声道立体声、SAMPLE_S16LE采样格式的PCM音频，以32000bps的码率进行AAC编码的调用流程如下：
+   例如对一个44100Hz采样率、2声道立体声、SAMPLE_S16LE采样格式的PCM音频，以32000bps的码率进行AAC编码的调用流程如下：
     <!--RP4-->
     ```cpp
     int32_t ret;
@@ -211,7 +213,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
     // 配置音频声道类型（必须）
     constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
-    // 配置音频位深（必须） flac 只有SAMPLE_S16LE和SAMPLE_S32LE
+    // 配置音频位深（必须） flac只有SAMPLE_S16LE和SAMPLE_S32LE
     constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_S32LE;
     // 配置音频compliance level (默认值0，取值范围-2~2)
     constexpr int32_t COMPLIANCE_LEVEL = 0;
@@ -260,11 +262,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。
+7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。需开发者填充完整的输入数据后调用。
 
-   aac： 每帧样点数(SAMPLES_PER_FRAME)建议使用20ms的PCM样点数，即采样率*0.02。
-
-   flac： 每帧样点数(SAMPLES_PER_FRAME)比较特殊需要，根据如下表格进行设置。
+   每帧样点数(SAMPLES_PER_FRAME)取值：  
+   aac建议使用20ms的PCM样点数，即采样率*0.02。  
+   flac比较特殊，需要根据如下表格进行设置。
 
    | 采样率 | 样点数 |
    | :----: | :----: |
@@ -287,6 +289,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     // 声道数，对于amr编码声道数只支持单声道的音频输入
     constexpr int32_t DEFAULT_CHANNEL_COUNT = 2;
     // 每帧输入数据的长度，声道数 * 每帧样点数 * 每个样点的字节数（以采样格式SAMPLE_S16LE为例）
+    // 如果最后一帧数据不满足长度，建议进行丢弃或填充处理
     constexpr int32_t INPUT_FRAME_BYTES = DEFAULT_CHANNEL_COUNT * SAMPLES_PER_FRAME * sizeof(short);
     uint32_t index = signal_->inQueue_.front();
     auto buffer = signal_->inBufferQueue_.front();
@@ -314,7 +317,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | AVCODEC_BUFFER_FLAGS_EOS | 表示缓冲区是流结束帧。 | 
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 表示缓冲区包含编解码特定数据。 | 
 
-8. 调用OH_AudioCodec_FreeOutputBuffer()，输出编码格式码流。
+8. 调用OH_AudioCodec_FreeOutputBuffer()，释放编码后的数据。在取走编码码流后，就应及时调用OH_AudioCodec_FreeOutputBuffer()进行释放。
 
     ```c++
     uint32_t index = signal_->outQueue_.front();
@@ -342,8 +345,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    此时需要调用OH_AudioCodec_Start()重新开始编码。
    使用情况：
 
-   * 在文件EOS之后，需要调用刷新
-   * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）可以调用，然后重新调用OH_AudioCodec_Start
+   * 在文件EOS之后，需要调用刷新。
+   * 在执行过程中遇到可继续执行的错误时（即OH_AudioCodec_IsValid 为true）可以调用，然后重新调用OH_AudioCodec_Start。
 
     ```c++
     // 刷新编码器 audioEnc_
@@ -374,7 +377,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-11. 调用OH_AudioCodec_Stop()停止编码器。
+11. 调用OH_AudioCodec_Stop()停止编码器。停止后，可以通过Start重新进入已启动状态（started），但需要注意的是，如果编码器之前已输入数据，则需要重新输入编码器数据。
 
     ```c++
     // 终止编码器 audioEnc_
