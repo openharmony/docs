@@ -320,7 +320,7 @@ type OverlayModuleInfo = _OverlayModuleInfo.OverlayModuleInfo
 
 OverlayModuleInfo信息。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
