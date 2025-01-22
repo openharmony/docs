@@ -151,7 +151,8 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 | CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | TRANSLATE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供翻译服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| SHARE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供分享服务，拉起分享窗口分享选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务，拉起浏览器搜索选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ### of
 
