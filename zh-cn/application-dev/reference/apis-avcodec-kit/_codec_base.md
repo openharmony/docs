@@ -1254,7 +1254,7 @@ enum OH_TemporalGopReferenceMode
 | -------- | -------- |
 | ADJACENT_REFERENCE  | 参考最近的短期参考帧。   | 
 | JUMP_REFERENCE  | 参考最近的长期参考帧。   | 
-| UNIFORMLY_SCALED_REFERENCE  | 均匀分层参考结构，在丢弃最高层级视频帧后，视频帧均匀分布。其中时域图片组个数必须为2的幂   | 
+| UNIFORMLY_SCALED_REFERENCE  | 均匀分层参考结构，在丢弃最高层级视频帧后，视频帧均匀分布。其中时域图片组个数必须为2的幂。   | 
 
 
 ### OH_VVCLevel
