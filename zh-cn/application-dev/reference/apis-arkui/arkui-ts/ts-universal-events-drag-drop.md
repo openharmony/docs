@@ -261,7 +261,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | PREVIEW_LANDING_STARTED | 4 | 拖拽落回动效发起阶段。(落回动效发起时触发) |
 | PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发) |
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
-
+| PREPARING_FOR_DRAG_DETECTION<sup>16+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
 ## executeDropAnimation<sup>16+</sup>
 
 设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。

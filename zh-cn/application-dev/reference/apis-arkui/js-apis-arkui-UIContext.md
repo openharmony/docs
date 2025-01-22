@@ -157,7 +157,7 @@ struct NormalEts {
       let unifiedData = new unifiedDataChannel.UnifiedData(data);
       this.unifiedData1 = unifiedData
 
-      this.getUIContext().getDragController().notifyDragStartRequest(DragStartRequestStatus.READY)
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
     }, 4000);
     this.timeout1 = timeout
   }
@@ -180,7 +180,7 @@ struct NormalEts {
           })
           .onDragStart((event: DragEvent) => {
             if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(DragStartRequestStatus.WAITING)
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
             } else {
               event.setData(this.unifiedData1);
             }
