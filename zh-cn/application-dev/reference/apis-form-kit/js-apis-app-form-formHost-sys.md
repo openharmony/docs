@@ -2825,3 +2825,63 @@ try {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
+
+## updateFormLockedState<sup>16+</sup>
+
+updateFormLockedState(formId: string, isLocked: boolean): Promise&lt;void&gt;
+
+通知卡片管控状态更新。
+
+卡片管控状态是指，应用使能了应用锁管控，对应应用的卡片也会跟随使能应用锁管控，此时卡片页面会使用加锁的蒙板样式遮罩卡片。在管控状态下，操作和使用卡片需要输入加锁时设置的密码。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|-------|------|------|-----|
+| formId | string | 是 | 卡片标识。 |
+| isLocked | boolean | 是 | 标识卡片是否为管控状态，true表示管控状态，false表示非管控状态。 |
+
+**返回值：**
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not a system app.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.                       |
+| 16501003 | The form cannot be operated by the current application.     |
+
+以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)和[通用错误码](../errorcode-universal.md)。
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let formId: string = '12400633174999288';
+let isLocked: boolean = true;
+
+try {
+  formHost.updateFormLockedState(this.formId, this.isLocked).then(() => {
+    console.log(`formHost updateFormLockedState success`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+
+```
