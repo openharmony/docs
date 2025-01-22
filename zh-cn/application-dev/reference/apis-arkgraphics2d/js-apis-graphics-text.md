@@ -1979,7 +1979,7 @@ import { image } from '@kit.ImageKit';
 
 function textFunc(pixelmap: PixelMap) {
   let canvas = new drawing.Canvas(pixelmap);
-  lines[0].paint(canvas, 0, 0);
+  runs[0].paint(canvas, 0, 0);
 }
 
 @Entry
