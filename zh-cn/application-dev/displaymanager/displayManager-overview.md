@@ -12,5 +12,5 @@
 
 ## 约束和限制
 
-- 需要在支持SystemCapability.Window.SessionManager能力的系统上使用Display和Screen接口，更详细的系统能力请参考[系统能力SystemCapability使用指南](../reference/syscap.md)。
+- 需要在支持SystemCapability.Window.SessionManager能力的系统上使用Display和Screen接口，<!--RP1-->更详细的系统能力请参考[系统能力SystemCapability使用指南](../reference/syscap.md)。<!--RP1End-->
 - 在多屏实现中，Screen接口仅支持系统应用使用，且部分接口需要申请ohos.permission.CAPTURE_SCREEN权限。
