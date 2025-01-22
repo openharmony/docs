@@ -12,7 +12,7 @@
     ```
 
 2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中可以通过[FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
-   
+      <!--RP1-->
       ```ts
       const TAG: string = 'EntryFormAbility';
       const DOMAIN_NUMBER: number = 0xFF00;
@@ -83,7 +83,7 @@
         }
       }
       ```
-
+      <!--RP1End-->
 
 > **说明：**
 >
