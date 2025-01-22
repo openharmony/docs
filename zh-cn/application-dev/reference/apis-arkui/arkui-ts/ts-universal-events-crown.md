@@ -11,7 +11,7 @@
 >
 >  - 仅穿戴设备支持该事件。
 >
->  - 默认支持表冠事件的组件: [Slider](ts-basic-components-slider.md)、[CalendarPicker](ts-basic-components-calendarpicker.md)、[DatePicker](ts-basic-components-datepicker.md)、[TextPicker](ts-basic-components-textpicker.md)、 [TimePicker](ts-basic-components-timepicker.md)、[List](ts-container-list.md)、[ScrollBar](ts-basic-components-scrollbar.md)和[Swiper](ts-container-swiper.md)。
+>  - 默认支持表冠事件的组件: [Slider](ts-basic-components-slider.md)、[CalendarPicker](ts-basic-components-calendarpicker.md)、[DatePicker](ts-basic-components-datepicker.md)、[TextPicker](ts-basic-components-textpicker.md)、 [TimePicker](ts-basic-components-timepicker.md)、[Scroll](ts-container-scroll.md)、[List](ts-container-list.md)、[Grid](ts-container-grid.md)、[WaterFlow](ts-container-waterflow.md)、[ArcList](ts-container-arclist.md)、[Refresh](ts-container-refresh.md)和[Swiper](ts-container-swiper.md)。
 
 ## onDigitalCrown
 
