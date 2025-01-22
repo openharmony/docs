@@ -297,7 +297,7 @@ struct ActionSheetExample {
 @Component
 struct ActionSheetExample {
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Button('Click to Show ActionSheet')
         .onClick(() => {
           ActionSheet.show({
@@ -358,7 +358,6 @@ struct ActionSheetExample {
           })
         })
     }.width('100%')
-    .height('100%')
   }
 }
 ```
