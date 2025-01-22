@@ -818,7 +818,7 @@ try {
 | SECRET                    | TagType.BYTES &#124; 0x01  | 关键资产明文。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                                 |
 | ALIAS                     | TagType.BYTES &#124; 0x02 | 关键资产别名，每条关键资产的唯一索引。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                         |
 | ACCESSIBILITY             | TagType.NUMBER &#124; 0x03 | 基于锁屏状态的访问控制。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                       |
-| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124 0x04                   | 是否仅在设置了锁屏密码的情况下，可访问关键资产。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                 |
+| REQUIRE_PASSWORD_SET      | TagType.BOOL &#124; 0x04                   | 是否仅在设置了锁屏密码的情况下，可访问关键资产。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                 |
 | AUTH_TYPE                 | TagType.NUMBER &#124; 0x05 | 访问关键资产所需的用户认证类型。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                               |
 | AUTH_VALIDITY_PERIOD      | TagType.NUMBER &#124; 0x06 | 用户认证的有效期。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                             |
 | AUTH_CHALLENGE            | TagType.BYTES &#124; 0x07     | 用户认证的挑战值。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。                                         |
