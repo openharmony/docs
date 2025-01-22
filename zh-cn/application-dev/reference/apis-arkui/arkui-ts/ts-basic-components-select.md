@@ -12,7 +12,7 @@
 
 ## 接口
 
-Select(options: Array\<[SelectOption](#selectoption对象说明)\>)
+Select(options: Array\<SelectOption>)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -384,8 +384,8 @@ menuBackgroundBlurStyle(value: Optional\<BlurStyle>)
 
 | 名称                | 说明             |
 | ------------------- | ------------------ |
-| END<sup>10+</sup>   | 文字在前，箭头在后。 |
-| START<sup>10+</sup> | 箭头在前，文字在后。 |
+| END | 文字在前，箭头在后。 |
+| START | 箭头在前，文字在后。 |
 
 ## MenuAlignType<sup>10+</sup>枚举说明
 
