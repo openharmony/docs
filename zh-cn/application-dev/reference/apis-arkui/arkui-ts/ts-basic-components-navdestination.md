@@ -178,7 +178,7 @@ systemBarStyle(style: Optional&lt;SystemBarStyle&gt;)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述                                       |
+| 名称   | 说明                                     |
 | ---- | ---------------------------------------- |
 | STANDARD | 标准模式的NavDestination。                       |
 | DIALOG | 默认透明，进出页面栈不影响下层NavDestination的生命周期，不支持系统转场动画。    |
@@ -326,7 +326,7 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | ----  | ---   | ---- |----- |
 | name  | string | 是 | 页面名称。|
 | pageSourceFile| string | 是 | 页面在当前包中的路径。|
-| data | object | 是 | 页面自定义字段信息。|
+| data | Object | 是 | 页面自定义字段信息。|
 
 ## 示例（NavDestination使用）
 
