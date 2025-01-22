@@ -121,6 +121,30 @@ Allows a system application to display the **Learn more** dialog for detailed in
 
 **Valid since**: 13
 
+### ohos.permission.WRITE_PROTECTION_ADVICE_POLIVY
+
+Allows an application to write the protection advice database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+Allows an application to read the protection advice database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.MANAGE_SETTINGS
 
 Allows an application to set the device-level configuration table and user-level configuration table in **SettingsData**.
