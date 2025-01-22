@@ -1711,6 +1711,8 @@ SymbolSpan样式选项。
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
+| dragBackgroundColor<sup>16+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。 |
+| isDragShadowNeeded<sup>16+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
 
 ## RichEditorSpan<sup>12+</sup>
 
@@ -4920,3 +4922,61 @@ struct RichEditorExample {
 }
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
+
+### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
+通过addBuilderSpan，可以在拖拽场景下，对自定义布局的拖拽背板及拖拽投影的参数进行设置。
+
+```ts
+// xxx.ets
+import { ColorMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct richEditorNew03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  build() {
+    Column({ space: 10 }) {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
+              isDragShadowNeeded: false
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
+                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
+              isDragShadowNeeded: true
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, { offset: -1 })
+          })
+          .borderWidth(1)
+          .width("100%")
+          .height("50%")
+          .margin(50)
+      }
+      .width('100%')
+      .margin({top:100})
+    }
+  }
+
+  @Builder
+  placeholderBuilder() {
+    Row() {
+      Text('是BuilderSpan，不是纯文本内容')
+        .fontSize(22)
+        .copyOption(CopyOptions.InApp)
+    }
+  }
+}
+```
+![StyledString](figures/builderspan_drag_config.gif)
