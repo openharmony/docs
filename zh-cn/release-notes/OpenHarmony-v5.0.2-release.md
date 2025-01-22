@@ -322,6 +322,7 @@ USB管理新增支持检查应用程序是否有权访问USB配件。（[API参�
 **表3** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 | 
+| ------- | ------- |
 | I9SXZ8 | 进程com.ohos.contacts小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreez。 |
 | IA6RH6 | 进程com.ohos.settings有较高概率出现因THREAD_BLOCK_6S卡在libbtframework.z.so导致的appfreeze。 |
 | IASDWO | 通过浏览器访问微博首页的滑动帧率低于规格基线。 |
