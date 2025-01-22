@@ -93,7 +93,7 @@ The widget provider development based on the [stage model](../application-models
 
 ### Creating a FormExtensionAbility Instance
 
-To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. For details about how to generate a service widget template, see <!--RP1-->[Creating a Service Widget](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->.
+To create a widget in the stage model, you need to implement the lifecycle callbacks of FormExtensionAbility. For details about how to generate a service widget template, see <!--RP1-->[Developing a Service Widget](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->.
 
 1. Import related modules to **EntryFormAbility.ets**.
     ```ts
