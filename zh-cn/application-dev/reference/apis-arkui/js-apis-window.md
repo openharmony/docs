@@ -5873,6 +5873,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
