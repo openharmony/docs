@@ -5871,8 +5871,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 主窗口调用，实现最大化功能，使用Promise异步回调。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
-
+此接口仅可在2in1设备下使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
