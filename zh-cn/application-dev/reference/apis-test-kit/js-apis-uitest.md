@@ -3370,6 +3370,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17000002 | The async function is not called with await.             |
+| 17000005 | This operation is not supported.         |
 | 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
