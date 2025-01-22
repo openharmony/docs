@@ -4342,6 +4342,7 @@ copySignal.onCancel().then(() => {
 **示例：**
 
   ```ts
+  import { TaskSignal } from '@kit.CoreFileKit';
   let copySignal: fs.TaskSignal = new TaskSignal();
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
     console.info(`processedSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);
