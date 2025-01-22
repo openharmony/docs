@@ -19,10 +19,10 @@
     - [ddk_types.h](ddk_types.md)
     - [hid_ddk_api.h](hid__ddk__api_8h.md)
     - [hid_ddk_types.h](hid__ddk__types_8h.md)
-    - [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md)
-    - [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
     - [usb_ddk_api.h](usb__ddk__api_8h.md)
     - [usb_ddk_types.h](usb__ddk__types_8h.md)
+    - [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md)
+    - [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
   - 结构体
     - [DDK_Ashmem](_ddk_ashmem.md)
     - [UsbConfigDescriptor](_usb_config_descriptor.md)
