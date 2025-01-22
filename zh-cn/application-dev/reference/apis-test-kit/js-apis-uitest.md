@@ -1895,11 +1895,11 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 
 **参数：**
 
-| 参数名 | 类型         | 必填 | 说明                     |
-| ------ |------------|---|------------------------|
-| on     | [On](#on9) | 是 | 目标控件的属性要求。             |
-| vertical |    boolean | 否 | 滑动方向是否垂直, 默认 true      |
-| offset     | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80 |
+| 参数名 | 类型         | 必填 | 说明                         |
+| ------ |------------|---|----------------------------|
+| on     | [On](#on9) | 是 | 目标控件的属性要求。                 |
+| vertical |    boolean | 否 | 滑动方向是否垂直, 默认 true          |
+| offset     | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(px) |
 
 **返回值：**
 
@@ -3357,11 +3357,11 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 **参数：**
 
-| 参数名 | 类型                                            | 必填 | 说明                        |
-| ------ |-----------------------------------------------|----|---------------------------|
-| fingers      | number                                        | 是  | 手指触摸板多指滑动的手指数。 取值范围[3, 4] |
-| direction | [UiDirection](#uidirection10)                 | 是  | 进行抛滑的方向。                  |
-| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势选项相关信息。          |
+| 参数名 | 类型                                            | 必填 | 说明                       |
+| ------ |-----------------------------------------------|----|--------------------------|
+| fingers      | number                                        | 是  | 手指触摸板多指滑动的手指数。 取值范围为3~4。 |
+| direction | [UiDirection](#uidirection10)                 | 是  | 进行抛滑的方向。                 |
+| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势选项相关信息。         |
 
 **错误码：**
 
