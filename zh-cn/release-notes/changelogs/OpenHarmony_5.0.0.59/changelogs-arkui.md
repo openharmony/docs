@@ -163,11 +163,11 @@ hideNonSecureWindows
 
 **变更原因**
 
-在2in1设备上无法获取EmbeddedExtension组件的大小和位置信息，不满足开发者业务诉求。
+无法获取EmbeddedExtension组件的大小和位置信息，不满足开发者业务诉求。
 
 **变更影响**
 
-该变更为不兼容变更。
+此变更涉及应用适配。
 
 变更前：uiExtension命名空间下的WindowProxy无必选属性properties。
 
