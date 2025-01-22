@@ -470,7 +470,7 @@ type SoundPool = _SoundPool
 
 | 类型     | 说明                       |
 | -------- | ------------------------------ |
-| [SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
+| [_SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
 
 ## PlayParameters<sup>10+</sup>
 
@@ -482,7 +482,7 @@ type PlayParameters = _PlayParameters
 
 | 类型     | 说明                       |
 | -------- | ------------------------------ |
-| [PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
+| [_PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
 
 ## AVErrorCode<sup>9+</sup>
 
