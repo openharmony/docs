@@ -78,9 +78,6 @@ struct Index {
       Scroll() {
         Column({ space: 20 }) {
           ProgressButton({
-            colorOptions: {
-             
-            }
             progress: this.progressIndex,
             progressButtonWidth: this.ButtonWidth,
             content: this.textState,
