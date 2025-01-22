@@ -79,11 +79,11 @@ Core模块提供用于媒体框架的基础骨干能力，包含内存、错误�
 | struct [OH_AVFormat](#oh_avformat) \* [OH_AVFormat_CreateVideoFormat](#oh_avformat_createvideoformat) (const char \*mimeType, int32_t width, int32_t height) | 创建视频OH_AVFormat实例指针并预设置指定参数，用于读写数据。 | 
 | void [OH_AVFormat_Destroy](#oh_avformat_destroy) (struct [OH_AVFormat](#oh_avformat) \*format) | 销毁OH_AVFormat实例。 | 
 | bool [OH_AVFormat_Copy](#oh_avformat_copy) (struct [OH_AVFormat](#oh_avformat) \*to, struct [OH_AVFormat](#oh_avformat) \*from) | 复制OH_AVFormat实例。 | 
-| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | 对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋int类型的值。 |
-| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | 对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋long类型的值。 |
-| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | 对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋float类型的值。 |
-| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | 对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋double类型的值 |
-| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | 对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋string类型的值。 |
+| bool [OH_AVFormat_SetIntValue](#oh_avformat_setintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t value) | 对OH_AVFormat的key赋int类型的值。 |
+| bool [OH_AVFormat_SetLongValue](#oh_avformat_setlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t value) | 对OH_AVFormat的key赋long类型的值。 |
+| bool [OH_AVFormat_SetFloatValue](#oh_avformat_setfloatvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, float value) | 对OH_AVFormat的key赋float类型的值。 |
+| bool [OH_AVFormat_SetDoubleValue](#oh_avformat_setdoublevalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, double value) | 对OH_AVFormat的key赋double类型的值 |
+| bool [OH_AVFormat_SetStringValue](#oh_avformat_setstringvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const char \*value) | 对OH_AVFormat的key赋string类型的值。 |
 | bool [OH_AVFormat_SetBuffer](#oh_avformat_setbuffer) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, const uint8_t \*addr, size_t size) | 将指定长度的数据块写入OH_AVFormat。 | 
 | bool [OH_AVFormat_GetIntValue](#oh_avformat_getintvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int32_t \*out) | 从OH_AVFormat的key获取int类型的值 | 
 | bool [OH_AVFormat_GetLongValue](#oh_avformat_getlongvalue) (struct [OH_AVFormat](#oh_avformat) \*format, const char \*key, int64_t \*out) | 从OH_AVFormat的key获取long类型的值。 | 
@@ -1002,7 +1002,7 @@ bool OH_AVFormat_GetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **描述**
 
-从OH_AVFormat的key获取double类型的值。
+从OH_AVFormat的[key](_codec_base.md#媒体数据键值对)获取double类型的值。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1037,7 +1037,7 @@ bool OH_AVFormat_GetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **描述**
 
-从OH_AVFormat的key获取float类型的值。
+从OH_AVFormat的[key](_codec_base.md#媒体数据键值对)获取float类型的值。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1072,7 +1072,7 @@ bool OH_AVFormat_GetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **描述**
 
-从OH_AVFormat的key获取int类型的值。
+从OH_AVFormat的[key](_codec_base.md#媒体数据键值对)获取int类型的值。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1107,7 +1107,7 @@ bool OH_AVFormat_GetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **描述**
 
-从OH_AVFormat的key获取long类型的值。
+从OH_AVFormat的[key](_codec_base.md#媒体数据键值对)获取long类型的值。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1142,7 +1142,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **描述**
 
-从OH_AVFormat的key获取string类型的值。
+从OH_AVFormat的[key](_codec_base.md#媒体数据键值对)获取string类型的值。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1215,7 +1215,7 @@ bool OH_AVFormat_SetDoubleValue (struct OH_AVFormat *format, const char *key, do
 
 **描述**
 
-对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋double类型的值。该接口仅能设置double类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
+对OH_AVFormat的[key](_codec_base.md#媒体数据键值对)赋double类型的值。该接口仅能设置double类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1249,7 +1249,7 @@ bool OH_AVFormat_SetFloatValue (struct OH_AVFormat *format, const char *key, flo
 
 **描述**
 
-对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋float类型的值。该接口仅能设置float类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
+对OH_AVFormat的[key](_codec_base.md#媒体数据键值对)赋float类型的值。该接口仅能设置float类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1282,7 +1282,7 @@ bool OH_AVFormat_SetIntValue (struct OH_AVFormat *format, const char *key, int32
 
 **描述**
 
-对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋int类型的值。该接口仅能设置int类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
+对OH_AVFormat的[key](_codec_base.md#媒体数据键值对)赋int类型的值。该接口仅能设置int类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1316,7 +1316,7 @@ bool OH_AVFormat_SetLongValue (struct OH_AVFormat *format, const char *key, int6
 
 **描述**
 
-对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋long类型的值。该接口仅能设置long类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
+对OH_AVFormat的[key](_codec_base.md#媒体数据键值对)赋long类型的值。该接口仅能设置long类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -1350,7 +1350,7 @@ bool OH_AVFormat_SetStringValue (struct OH_AVFormat *format, const char *key, co
 
 **描述**
 
-对OH_AVFormat的[key](_codec_base#媒体数据键值对)赋string类型的值。该接口仅能设置string类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
+对OH_AVFormat的[key](_codec_base.md#媒体数据键值对)赋string类型的值。该接口仅能设置string类型的参数，参数类型定义详见[CodecBase](_codec_base.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 

@@ -600,12 +600,13 @@ setTime(date: Date): void
 
 | 参数名  | 类型   | 必填   | 说明                |
 | ---- | ---- | ---- | ----------------- |
-| date | Date | 是    | 时间、日期。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("en-US", "gregory");
-  let date: Date = new Date(2021, 10, 7, 8, 0, 0, 0);
+  // 时间日期为2021.11.07 08:00:00
+  let date: Date = new Date(2021, 10, 7, 8, 0, 0);
   calendar.setTime(date);
   ```
 
@@ -647,7 +648,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 | 参数名    | 类型     | 必填   | 说明     |
 | ------ | ------ | ---- | ------ |
 | year   | number | 是    | 设置的年。  |
-| month  | number | 是    | 设置的月。  |
+| month  | number | 是    | 设置的月。说明：月份从0开始计数，如0表示一月。  |
 | date   | number | 是    | 设置的日。  |
 | hour   | number | 否    | 设置的小时。默认值：系统小时。 |
 | minute | number | 否    | 设置的分钟。默认值：系统分钟。 |
@@ -656,7 +657,7 @@ set(year: number, month: number, date:number, hour?: number, minute?: number, se
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // 设置时间日期为2021.11.1 08:00:00
   ```
 
 ### setTimeZone<sup>8+</sup>
@@ -818,28 +819,28 @@ get(field: string): number
 
 | field名称   | 说明                                       |
 | ----- | ---------------------------------------- |
-| era | 纪元，例如公历中的公元前或者公元后 |
-| year | 年 |
-| month | 月 |
-| date | 日 |
-| hour | 挂钟小时数 |
-| hour_of_day | 一天中的第几小时 |
-| minute | 分 |
-| second | 秒 |
-| millisecond | 毫秒 |
-| week_of_year | 一年中的第几周，按照星期计算周，注意：第一周的归属算法各地有区别 |
-| year_woy | 一年中的第几周，按照数值计算周，例如一年中前1~7日属于第一周 |
-| week_of_month | 一个月中的第几周，按照星期计算周 |
-| day_of_week_in_month | 一月中的第几周，按照数值计算周，例如1-7日属于第一周 |
-| day_of_year | 一年中的第几天 |
-| day_of_week | 一周中的第几天(星期) |
-| milliseconds_in_day | 一天中的第几毫秒 |
-| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时) |
-| dst_offset | 以毫秒计时的夏令时偏移量 |
-| dow_local | 本地星期 |
-| extended_year | 扩展的年份数值，支持负数 |
-| julian_day | 儒略日,与当前时区相关 |
-| is_leap_month | 是否为闰月 |
+| era | 纪元，例如公历中的公元前或者公元后。 |
+| year | 年。 |
+| month | 月。说明：月份从0开始计数，如0表示一月。 |
+| date | 日。 |
+| hour | 挂钟小时数。 |
+| hour_of_day | 一天中的第几小时。 |
+| minute | 分。 |
+| second | 秒。 |
+| millisecond | 毫秒。 |
+| week_of_year | 一年中的第几周，按照星期计算周，注意：第一周的归属算法各地有区别。 |
+| year_woy | 一年中的第几周，按照数值计算周，例如一年中前1~7日属于第一周。 |
+| week_of_month | 一个月中的第几周，按照星期计算周。 |
+| day_of_week_in_month | 一月中的第几周，按照数值计算周，例如1-7日属于第一周。 |
+| day_of_year | 一年中的第几天。 |
+| day_of_week | 一周中的第几天(星期)。 |
+| milliseconds_in_day | 一天中的第几毫秒。 |
+| zone_offset | 以毫秒计时的时区固定偏移量(不含夏令时)。 |
+| dst_offset | 以毫秒计时的夏令时偏移量。 |
+| dow_local | 本地星期。 |
+| extended_year | 扩展的年份数值，支持负数。 |
+| julian_day | 儒略日,与当前时区相关。 |
+| is_leap_month | 是否为闰月。 |
 
 **返回值：**
 
@@ -850,7 +851,7 @@ get(field: string): number
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 10, 1, 8, 0, 0); // set time to 2021.11.1 08:00:00
+  calendar.set(2021, 10, 1, 8, 0, 0); // 设置时间日期为2021.11.1 08:00:00
   let hourOfDay: number = calendar.get("hour_of_day"); // hourOfDay = 8
   ```
 
@@ -898,7 +899,7 @@ isWeekend(date?: Date): boolean
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 否    | 指定日期。<br>默认值：系统日期。若不填，则判断当前日期是否为周末。 |
+| date | Date | 否    | 时间、日期。说明：月份从0开始计数，如0表示一月。<br>默认值：系统日期。若不填，则判断当前日期是否为周末。 |
 
 **返回值：**
 
@@ -909,9 +910,9 @@ isWeekend(date?: Date): boolean
 **示例：**
   ```ts
   let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-  calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+  calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间为2021.12.11 08:00:00
   calendar.isWeekend(); // true
-  let date: Date = new Date(2011, 11, 6, 9, 0, 0);
+  let date: Date = new Date(2011, 11, 6, 9, 0, 0); // 时间日期为2011.12.06 09:00:00
   calendar.isWeekend(date); // false
   ```
 
@@ -948,7 +949,7 @@ add(field: string, amount: number): void
 
   try {
     let calendar: i18n.Calendar = i18n.getCalendar("zh-Hans");
-    calendar.set(2021, 11, 11, 8, 0, 0); // set time to 2021.12.11 08:00:00
+    calendar.set(2021, 11, 11, 8, 0, 0); // 设置时间日期为2021.12.11 08:00:00
     calendar.add("year", 8); // 2021 + 8
     let year: number = calendar.get("year"); // year = 2029
   } catch(error) {
@@ -996,7 +997,7 @@ compareDays(date: Date): number
 
 | 参数名  | 类型   | 必填   | 说明                                       |
 | ---- | ---- | ---- | ---------------------------------------- |
-| date | Date | 是    | 指定日期。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
 **返回值：**
 
@@ -2250,7 +2251,7 @@ static unitConvert(fromUnit: UnitInfo, toUnit: UnitInfo, value: number, locale: 
 | toUnit   | [UnitInfo](#unitinfo8) | 是    | 转换成的目标单位。                                 |
 | value    | number                 | 是    | 需要转换的单位的数量值。                             |
 | locale   | string                 | 是    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成，如：zh-Hans-CN。                |
-| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md) |
+| style    | string                 | 否    | 格式化使用的风格，取值包括："long",&nbsp;"short",&nbsp;"narrow"。默认值：short。<br>不同取值显示效果请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。 |
 
 **返回值：**
 
@@ -2308,7 +2309,7 @@ static getTimePeriodName(hour:number, locale?: string): string
 | 参数名    | 类型     | 必填   | 说明                        |
 | ------ | ------ | ---- | ------------------------- |
 | hour | number | 是    | 指定的时间，如：16。 |
-| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。 <br>默认是当前区域。|
+| locale | string | 否    | [表示区域信息的字符串](../../internationalization/i18n-locale-culture.md#实现原理)，由语言、脚本、国家或地区组成。如：zh-Hans-CN。<br>默认是当前区域。|
 
 **返回值：**
 
@@ -2594,7 +2595,7 @@ isHoliday(date?: Date): boolean
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ---------------| ---- | ------------- |
-| date      | Date           | 否   | Date对象。<br>如果没有指定日期，默认为当天。|
+| date      | Date           | 否   | 时间、日期。说明：月份从0开始计数，如0表示一月。<br>如果没有指定日期，默认为当天。|
 
 **返回值：**
 
@@ -2615,10 +2616,10 @@ isHoliday(date?: Date): boolean
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // 需要将"/system/lib/US.ics"替换为实际ics文件路径
     let isHoliday = holidayManager.isHoliday();
     console.log(isHoliday.toString());
-    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25));
+    let isHoliday2 = holidayManager.isHoliday(new Date(2023,5,25)); // 时间日期为2023.06.25
     console.log(isHoliday2.toString());
   } catch(error) {
     let err: BusinessError = error as BusinessError;
@@ -2663,7 +2664,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
   import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics");
+    let holidayManager= new i18n.HolidayManager("/system/lib/US.ics"); // 需要将"/system/lib/US.ics"替换为实际ics文件路径
     let holidayInfoItemArray = holidayManager.getHolidayInfoItemArray(2023);
     for (let i =0; i < holidayInfoItemArray.length; i++) {
         console.log(JSON.stringify(holidayInfoItemArray[i]));
@@ -2700,7 +2701,7 @@ getHolidayInfoItemArray(year?: number): Array&lt;[HolidayInfoItem](#holidayinfoi
 
 | 名称            | 类型             |  必填   |  说明                                   |
 | --------------- | -----------------| ------  | --------------------------------------- |
-| language        | string           |   是    | 节假日的本地语言，例如ar,en,tr。          |
+| language        | string           |   是    | 节假日的本地语言，例如ar，en，tr。          |
 | name            | string           |   是    | 节假日的本地名称，例如Sacrifice Feast(宰牲节)的土耳其语名称为Kurban Bayrami。      |
 
 

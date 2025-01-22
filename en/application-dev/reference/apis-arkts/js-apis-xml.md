@@ -474,15 +474,68 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<title>Happy</title>'
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let uint8Array = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(uint8Array.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
-### parse
+### parseXml<sup>14+</sup>
+
+parseXml(option: ParseOptions): void
+
+Parses XML information.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description         |
+| ------ | ----------------------------- | ---- | ------------- |
+| option | [ParseOptions](#parseoptions) | Yes  | XML parsing options.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { xml, util } from '@kit.ArkTS';
+
+let strxml =
+  '<?xml version="1.0" encoding="utf-8"?>' +
+    '<note importance="high" logged="true">' +
+    '    <title><![CDATA[Test\nTest]]></title>' +
+    '</note>';
+let textEncoder = new util.TextEncoder();
+let uint8 = textEncoder.encodeInto(strxml);
+
+function func(key: xml.EventType, value: xml.ParseInfo) {
+  if (key == xml.EventType.CDSECT) {
+    console.log(JSON.stringify(value.getText()));
+  }
+  return true;
+}
+let options: xml.ParseOptions = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
+let pullParser = new xml.XmlPullParser(uint8.buffer as object as ArrayBuffer);
+pullParser.parseXml(options);
+// "Test\nTest"
+```
+
+### parse<sup>(deprecated)</sup>
 
 parse(option: ParseOptions): void
 
 Parses XML information.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 14. You are advised to use [parseXml<sup>14+</sup>](#parsexml14) instead.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

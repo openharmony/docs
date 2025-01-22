@@ -25,7 +25,7 @@
 
 ## 限制条件
 
-- getTarget仅支持对象类型传参
+- getTarget仅支持对象类型传参。
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
