@@ -16,6 +16,7 @@
 
 [Release Notes]
 zh-cn/release-notes/changelogs/ @ang-huawei
+zh-cn/release-notes/changelogs/**/changelogs-ability.md  @ang-huawei  @huipeizi
 
 [设备开发]
 zh-cn/device-dev/ @li-yan339 @zengyawen
@@ -325,7 +326,7 @@ zh-cn/application-dev/device-usage-statistics/device-usage-statistics-use-guide.
 zh-cn/application-dev/account/ @zengyawen
 
 [开发-Basic Services Kit-公共事件]
-zh-cn/application-dev/application-models/common-event*.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/basic-services/common-event/  @huipeizi  @idanny   @shine_hk
 
 [开发-Basic Services Kit-设备管理]
 zh-cn/application-dev/device/usb-overview.md @li-yan339 @Kevin-Lau @liuhonggang123
@@ -474,8 +475,8 @@ zh-cn/application-dev/napi/rawfile-guidelines.md @Brilliantry_Rui @budda-wang @y
 
 
 [开发-Notification Kit]
-zh-cn/application-dev/notification/ @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/notification/ @huipeizi  @idanny   @shine_hk
+
 
 
 [开发-Performance]
@@ -527,6 +528,7 @@ zh-cn/application-dev/reference/common/js-apis-logs.md @gongjunsong @ge-yafang @
 
 
 [API参考-Ability Kit-元能力]
+zh-cn/application-dev/reference/apis-ability-kit/   @huipeizi  @ccllee  @lxfycode  @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-ability*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-application*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-app-*.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
@@ -938,14 +940,13 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @zengyawen
 
 [API参考-Basic Services Kit-公共事件]
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-definitions.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEventManager-definitions.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-ability.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/commonEvent-bundleManager.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-commonEvent*.md  @huipeizi  @idanny   @shine_hk
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-inner-commonEvent*.md  @huipeizi  @idanny   @shine_hk
+zh-cn/application-dev/reference/apis-basic-sevices-kit/js-apis-emitter.md  @huipeizi  @idanny   @shine_hk
+zh-cn/application-dev/reference/apis-basic-sevices-kit/capi-common-event.md  @huipeizi  @idanny   @shine_hk
+zh-cn/application-dev/reference/apis-basic-sevices-kit/oh_commonevent*.md  @huipeizi  @idanny   @shine_hk
+zh-cn/application-dev/reference/apis-basic-sevices-kit/common_event/ @huipeizi  @idanny   @shine_hk
+zh-cn/application-dev/reference/apis-basic-sevices-kit/errorcode-CommonEventService.md @huipeizi  @idanny   @shine_hk
 
 
 [API参考-Basic Services Kit-设备管理]
@@ -1181,9 +1182,8 @@ zh-cn/application-dev/reference/apis-neural-network-runtime-kit/_neural_network_
 
 
 [API参考-Notification Kit]
-zh-cn/application-dev/reference/apis-notification-kit/js-apis-inner-notification*.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-notification-kit/errorcode-notification.md @huipeizi  @idanny   @event_notification
-zh-cn/application-dev/reference/apis-notification-kit/errorcode-DistributedNotificationService.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/reference/apis-notification-kit/ @huipeizi  @idanny   @shine_hk
+
 
 
 [API参考-Security]
@@ -1235,12 +1235,12 @@ zh-cn/application-dev/tools/bm-tool.md @Brilliantry_Rui  @changzheng6  @hou-xian
 zh-cn/application-dev/tools/packing-tool.md @jsjzju  @huipeizi  @lixueqing513
 zh-cn/application-dev/tools/unpacking-tool.md @jsjzju  @huipeizi  @lixueqing513
 zh-cn/application-dev/tools/app-check-tool.md @jsjzju  @huipeizi  @lixueqing513
-zh-cn/application-dev/tools/cem-tool.md @huipeizi   @idanny   @event_notification
-zh-cn/application-dev/tools/anm-tool.md @huipeizi   @idanny   @event_notification
+zh-cn/application-dev/tools/cem-tool.md @huipeizi   @idanny   @shine_hk
+zh-cn/application-dev/tools/anm-tool.md @huipeizi   @idanny   @shine_hk
 
 
 [FAQ]
 zh-cn/application-dev/faqs/ @zengyawen
 zh-cn/application-dev/faqs/faqs-ability.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
 zh-cn/application-dev/faqs/faqs-bundle-management.md @huipeizi  @changzheng6  @hou-xiangyu1029  @kongjing2
-zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @idanny   @event_notification
+zh-cn/application-dev/faqs/faqs-event-notification.md @huipeizi  @idanny   @shine_hk
