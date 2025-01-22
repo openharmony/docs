@@ -34,6 +34,7 @@
       - [Converting HSP to HAR](quick-start/hsp-to-har.md)
       - [Creating a Static Shortcut of the Application](quick-start/typical-scenario-configuration.md)
       - [Creating an Application Clone](quick-start/app-clone.md)
+      - [Creating an Application Multi-Instance](quick-start/multiInstance.md)
       - [Configuring Layered Icons](quick-start/layered-image.md)
   - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS<!--learning-arkts-->
@@ -62,6 +63,7 @@
       - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
       - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
       - [\@Require Decorator: Validating Constructor Input Parameters](quick-start/arkts-require.md)
+      - [@Reusable Decorator: Reusing Components](quick-start/arkts-reusable.md)
     - State Management<!--arkts-state-management-->
       - [State Management Overview](quick-start/arkts-state-management-overview.md)
       - State Management (V1)<!--arkts-state-management-v1-->
@@ -370,6 +372,7 @@
           - [Lazy Import](arkts-utils/arkts-lazy-import.md)
           - [Dynamically Loading a Native Module in Synchronous Mode](arkts-utils/js-apis-load-native-module.md)
           - [Loading Modules Using Node-API](arkts-utils/load-module-base-nodeapi.md)
+          - [Module Loading Side Effects and Optimization](arkts-utils/arkts-module-side-effects.md)
       - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
         - [ArkTS Compilation Toolchain Overview](arkts-utils/compilation-tool-chain-overview.md)
         - Ark Bytecode<!--arkts-bytecode-->
@@ -592,8 +595,12 @@
         <!--DelEnd-->
         - [Using NativeWindowEventFilter to Filter Multimodal Input Events (C/C++)](windowmanager/native-window-event-filter.md)
       - Display Management<!--display-manager-->
-        
+        - [Display Management Overview](displaymanager/displayManager-overview.md)
         - [Using OH_DisplayManager to Obtain Basic Display Information and Listen for Status Changes (C/C++)](displaymanager/native-display-manager.md)
+        - [Using Display to Obtain Display Properties and Listen for Status Changes (ArkTS)](displaymanager/screenProperty-guideline.md)
+        <!--Del-->
+        - [Creating and Using a Virtual Screen (ArkTS) (for System Applications Only)](displaymanager/virtualScreen-guideline.md)
+        <!--DelEnd-->
     - ArkWeb<!--arkweb-->
       - [Introduction to ArkWeb](web/web-component-overview.md)
       - [ArkWeb Process](web/web_component_process.md)
@@ -719,13 +726,14 @@
               - [Applying Custom Drawing in the Widget](form/arkts-ui-widget-page-custom-drawing.md)
             - Widget Event Development<!--arkts-ui-widget-event-->
               - [Widget Event Capability Overview](form/arkts-ui-widget-event-overview.md)
-              - [Redirecting to a UIAbility Through the router Event](form/arkts-ui-widget-event-router.md)
-              - [Launching a UIAbility in the Background Through the call Event](form/arkts-ui-widget-event-call.md)
+              - [Launching the UIAbility of the Widget Provider Through the router Event](form/arkts-ui-widget-event-router.md)
+              - [Launching the UIAbility of the Widget Provider in the Background Through the call Event](form/arkts-ui-widget-event-call.md)
               - [Updating Widget Content Through the message Event](form/arkts-ui-widget-event-formextensionability.md)
               - [Updating Widget Content Through the router or call Event](form/arkts-ui-widget-event-uiability.md)
             - Widget Data Interaction<!--arkts-ui-widget-interaction-->
-              - [Widget Data Interaction](form/arkts-ui-widget-interaction-overview.md)
-              - [Configuring a Widget to Update Periodically](form/arkts-ui-widget-update-by-time.md)
+              - [Updating Widget Content](form/arkts-ui-widget-interaction-overview.md)
+              - [Interval-based Widget Updates](form/arkts-ui-widget-update-by-time.md)
+              - [Time-specific Widget Updates](form/arkts-ui-widget-update-by-time-point.md)
               <!--Del-->
               - [Updating Widget Content Through a Proxy](form/arkts-ui-widget-update-by-proxy.md)
               <!--DelEnd-->
@@ -742,6 +750,7 @@
       - [Using the Input Method in a Custom Edit Box](inputmethod/use-inputmethod-in-custom-edit-box.md)
       - [Switching Between Input Methods](inputmethod/switch-inputmehod-guide.md)
       - [Setting Input Method Subtypes](inputmethod/input-method-subtype-guide.md)
+      - [Custom Edit Box Development Guide (C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
     - IPC Kit<!--ipc-kit-->
       - [Introduction to IPC Kit](ipc/ipc-rpc-overview.md)
       - [IPC and RPC Development](ipc/ipc-rpc-development-guideline.md)
@@ -981,6 +990,8 @@
               - [HUKS Access Control Development](security/UniversalKeystoreKit/huks-user-identity-authentication.md)
               - [Refined Access Control Development](security/UniversalKeystoreKit/huks-refined-user-identity-authentication.md)
           - HMAC<!--huks-hmac-->
+            - [HMAC Overview and Algorithm Specifications](security/UniversalKeystoreKit/huks-hmac-overview.md)
+            - Development<!--huks-hmac-dev-->
               - [HMAC(ArkTS)](security/UniversalKeystoreKit/huks-hmac-arkts.md)
               - [HMAC(C/C++)](security/UniversalKeystoreKit/huks-hmac-ndk.md)
         - Key Deletion <!--huks-delete-key-->
@@ -1095,6 +1106,7 @@
         - USB Service<!--usb-->
           - [USB Service Development Overview](basic-services/usb/usb-overview.md)
           - [USB Service Development](basic-services/usb/usb-guidelines.md)
+          - [FAQs](basic-services/faqs/faqs-usb.md)
         <!--Del-->
         - Update Service<!--update-->
           - [Sample Server Development Overview](basic-services/update/sample-server-overview.md)
@@ -1192,7 +1204,7 @@
         - HiDebug<!--hidebug-->
           - [Using HiDebug (ArkTS)](dfx/hidebug-guidelines-arkts.md)
           - [Using HiDebug (C/C++)](dfx/hidebug-guidelines-ndk.md)
-        - HiCollie
+        - HiCollie<!--hicollie-->
           - [Using HiCollie (C/C++)](dfx/hicollie-guidelines-ndk.md)
         - Error Management<!--error-manager-->
           - [Development of Error Manager](dfx/errormanager-guidelines.md)
@@ -1475,6 +1487,7 @@
         - [Publishing Live View Notification (for System Applications Only)](notification/live-view-notification.md)
         <!--DelEnd-->
         - [Adding a WantAgent Object to a Notification](notification/notification-with-wantagent.md)
+      - [Canceling a Notification](notification/notification-cancel.md)
       <!--Del-->
       - [Notification Subscription (for System Applications Only)](notification/notification-subscription.md)
       <!--DelEnd-->
@@ -2012,7 +2025,7 @@
         - [Common Library Error Codes](reference/apis-arkts/errorcode-utils.md)
     - ArkUI<!--arkui-api-->
       - ArkTS APIs<!--arkui-arkts-->
-        - UI!--arkui-ui-interface-->
+        - UI<!--arkui-ui-interface-->
           - [@ohos.animator (Animator)](reference/apis-arkui/js-apis-animator.md)
           - [@ohos.arkui.componentSnapshot (Component Snapshot)](reference/apis-arkui/js-apis-arkui-componentSnapshot.md)
           - [@ohos.arkui.componentUtils (componentUtils)](reference/apis-arkui/js-apis-arkui-componentUtils.md)
@@ -2804,6 +2817,19 @@
         - [@ohos.inputMethod (Input Method Framework)](reference/apis-ime-kit/js-apis-inputmethod.md)
         - [@ohos.inputMethodEngine (Input Method Service)](reference/apis-ime-kit/js-apis-inputmethodengine.md)
         - [@ohos.inputMethodList (Input Method List)](reference/apis-ime-kit/js-apis-inputmethodlist.md)
+      - C APIs<!--ime-c-->
+        - Modules<!--ime-module-->
+          - [InputMethod](reference/apis-ime-kit/_input_method.md)
+        - Header Files<!--ime-headerfile-->
+          - [inputmethod_attach_options_capi.h](reference/apis-ime-kit/inputmethod__attach__options__capi_8h.md)
+          - [inputmethod_controller_capi.h](reference/apis-ime-kit/inputmethod__controller__capi_8h.md)
+          - [inputmethod_cursor_info_capi.h](reference/apis-ime-kit/inputmethod__cursor__info__capi_8h.md)
+          - [inputmethod_inputmethod_proxy_capi.h](reference/apis-ime-kit/inputmethod__inputmethod__proxy__capi_8h.md)
+          - [inputmethod_private_command_capi.h](reference/apis-ime-kit/inputmethod__private__command__capi_8h.md)
+          - [inputmethod_text_avoid_info_capi.h](reference/apis-ime-kit/inputmethod__text__avoid__info__capi_8h.md)
+          - [inputmethod_text_config_capi.h](reference/apis-ime-kit/inputmethod__text__config__capi_8h.md)
+          - [inputmethod_text_editor_proxy_capi.h](reference/apis-ime-kit/inputmethod__text__editor__proxy__capi_8h.md)
+          - [inputmethod_types_capi.h](reference/apis-ime-kit/inputmethod__types__capi_8h.md)
       - Error Codes<!--ime-arkts-errcode-->
         - [Input Method Framework Error Codes](reference/apis-ime-kit/errorcode-inputmethod-framework.md)
     - IPC Kit<!--ipc-api-->
@@ -3221,11 +3247,15 @@
             - [@ohos.systemTime (System Time and Time Zone)](reference/apis-basic-services-kit/js-apis-system-time.md)
         - C APIs<!--basic-services-c-->
           - Modules<!--basic-services-module-->
+            - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
+            - [InitSync](reference/apis-basic-services-kit/_init_sync.md)
             - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [TimeService](reference/apis-basic-services-kit/_time_service.md)
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
           - Header Files<!--basic-services-headerfile-->
+            - [deviceinfo.h](reference/apis-basic-services-kit/deviceinfo_8h.md)
+            - [init_sync.h](reference/apis-basic-services-kit/init__sync_8h.md)
             - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
             - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
