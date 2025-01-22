@@ -3,7 +3,7 @@
 
 ## Overview
 
-Provides APIs to manage a relational database (RDB) store.
+Provides APIs for managing data in a relational database (RDB) store. The APIs not marked as supporting vector stores support only RDB stores.
 
 **File to include**: <database/rdb/relational_store.h>
 
@@ -50,7 +50,7 @@ Provides APIs to manage a relational database (RDB) store.
 | -------- | -------- |
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel) | Defines an enum for RDB store security levels.|
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea) | Defines an enum for security area levels of an RDB store.|
-| typedef struct [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) | Defines a struct for the RDB store configuration. Different from [OH_Rdb_Config](_o_h___rdb___config.md), this struct does not expose its member variables externally. Methods are used to configure the properties of this struct.|
+| typedef struct [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) | Defines a struct for the RDB store configuration. Different from [OH_Rdb_Config](_o_h___rdb___config.md), this struct does not expose its member variables externally. Methods are used to configure the properties of this struct. It supports vector stores.|
 | typedef enum [Rdb_DBType](_r_d_b.md#rdb_dbtype) [Rdb_DBType](_r_d_b.md#rdb_dbtype) | Defines an enum for the database kernel types.|
 | [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) | Defines an enum for distributed types.|
 | [Rdb_DistributedConfig](_r_d_b.md#rdb_distributedconfig) | Defines a struct for the distributed configuration of a table.|
@@ -80,7 +80,7 @@ Provides APIs to manage a relational database (RDB) store.
 | [OH_Rdb_SecurityLevel](_r_d_b.md#oh_rdb_securitylevel-1) { S1 = 1, S2, S3, S4} | Enumerates the RDB store security levels.|
 | [Rdb_SecurityArea](_r_d_b.md#rdb_securityarea-1) { RDB_SECURITY_AREA_EL1 = 1, RDB_SECURITY_AREA_EL2, RDB_SECURITY_AREA_EL3, RDB_SECURITY_AREA_EL4 } | Enumerates the security area levels of an RDB store.|
 | [Rdb_DBType](_r_d_b.md#rdb_dbtype-1) { RDB_SQLITE = 1, RDB_CAYLEY = 2, DBTYPE_BUTT = 64 } | Enumerates the database kernel types.|
-| [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types. |
+| [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype-1) { RDB_DISTRIBUTED_CLOUD } | Enumerates the distributed types.|
 | [Rdb_ChangeType](_r_d_b.md#rdb_changetype-1) { RDB_DATA_CHANGE, RDB_ASSET_CHANGE } | Enumerates the data change types.|
 | [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype-1) { RDB_SUBSCRIBE_TYPE_CLOUD, RDB_SUBSCRIBE_TYPE_CLOUD_DETAILS, RDB_SUBSCRIBE_TYPE_LOCAL_DETAILS } | Enumerates the subscription types.|
 | [Rdb_SyncMode](_r_d_b.md#rdb_syncmode-1) { RDB_SYNC_MODE_TIME_FIRST, RDB_SYNC_MODE_NATIVE_FIRST, RDB_SYNC_MODE_CLOUD_FIRST } | Enumerates the RDB sync modes.|
@@ -92,6 +92,11 @@ Provides APIs to manage a relational database (RDB) store.
 
 | Name| Description|
 | -------- | -------- |
+| int [OH_Rdb_CreateTransaction](_r_d_b.md#oh_rdb_createtransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const [OH_RDB_TransOptions](_r_d_b.md#oh_rdb_transoptions) \*options, [OH_Rdb_Transaction](_r_d_b.md#oh_rdb_transaction) \*\*trans) | Creates a transaction object.|
+| int [OH_Rdb_ExecuteV2](_r_d_b.md#oh_rdb_executev2) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql, const [OH_Data_Values](_r_d_b.md#oh_data_values) \*args, [OH_Data_Value](_r_d_b.md#oh_data_value) \*\*result) | Executes an SQL statement with a return value. This API supports vector stores.| 
+| [OH_Cursor](_o_h___cursor.md) \* [OH_Rdb_ExecuteQueryV2](_r_d_b.md#oh_rdb_executequeryv2) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql, const [OH_Data_Values](_r_d_b.md#oh_data_values) \*args) | Queries data in the database using the specified SQL statement. This API supports vector stores.| 
+| int [OH_Rdb_IsTokenizerSupported](_r_d_b.md#oh_rdb_istokenizersupported) ([Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) tokenizer, bool \*isSupported) | Checks whether the specified tokenizer is supported.|
+| int [OH_Rdb_SetTokenizer](_r_d_b.md#oh_rdb_settokenizer) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, [Rdb_Tokenizer](_r_d_b.md#rdb_tokenizer) tokenizer) | Sets a tokenizer for a database file.|
 | [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \* [OH_Rdb_CreateConfig](_r_d_b.md#oh_rdb_createconfig) () | Creates an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
 | int [OH_Rdb_DestroyConfig](_r_d_b.md#oh_rdb_destroyconfig) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config) | Destroys an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
 | int [OH_Rdb_SetDatabaseDir](_r_d_b.md#oh_rdb_setdatabasedir) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, const char \*databaseDir) | Sets the database file path for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
@@ -104,33 +109,33 @@ Provides APIs to manage a relational database (RDB) store.
 | int [OH_Rdb_SetDbType](_r_d_b.md#oh_rdb_setdbtype) ([OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int dbType) | Sets the database type ([Rdb_DBType](_r_d_b.md#rdb_dbtype)) for an [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) instance.|
 | const int \* [OH_Rdb_GetSupportedDbType](_r_d_b.md#oh_rdb_getsupporteddbtype) (int \*typeCount) | Obtains the supported database type [Rdb_DBType](_r_d_b.md#rdb_dbtype).|
 | [OH_Rdb_Store](_o_h___rdb___store.md) \* [OH_Rdb_CreateOrOpen](_r_d_b.md#oh_rdb_createoropen) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config, int \*errCode) | Creates or opens an [OH_Rdb_Store](_o_h___rdb___store.md) instance based on the given [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2).|
-| int [OH_Rdb_ExecuteByTrxId](_r_d_b.md#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | Executes an SQL statement that returns no value based on the specified transaction ID.|
-| int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | Starts a transaction and obtains the transaction ID before executing an SQL statement.|
-| int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Rolls back the executed SQL statement based on the specified transaction ID.|
-| int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Commits the executed SQL statement based on the specified transaction ID.|
+| int [OH_Rdb_ExecuteByTrxId](_r_d_b.md#oh_rdb_executebytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId, const char \*sql) | Executes an SQL statement that returns no value based on the specified transaction ID.| 
+| int [OH_Rdb_BeginTransWithTrxId](_r_d_b.md#oh_rdb_begintranswithtrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t \*trxId) | Begins a transaction and obtains the transaction ID before executing an SQL statement. This API supports vector stores.|
+| int [OH_Rdb_RollBackByTrxId](_r_d_b.md#oh_rdb_rollbackbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Rolls back the executed SQL statement based on the specified transaction ID. This API supports vector stores.|
+| int [OH_Rdb_CommitByTrxId](_r_d_b.md#oh_rdb_commitbytrxid) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int64_t trxId) | Commits the executed SQL statement based on the specified transaction ID. This API supports vector stores.|
 | [OH_Rdb_CreateValueObject](_r_d_b.md#oh_rdb_createvalueobject) (void) | Creates an [OH_VObject](_o_h___v_object.md) instance.|
 | [OH_Rdb_CreateValuesBucket](_r_d_b.md#oh_rdb_createvaluesbucket) (void) | Creates an [OH_VBucket](_o_h___v_bucket.md) instance.|
 | [OH_Rdb_CreatePredicates](_r_d_b.md#oh_rdb_createpredicates) (const char \*table) | Creates an [OH_Predicates](_o_h___predicates.md) instance.|
 | [OH_Rdb_GetOrOpen](_r_d_b.md#oh_rdb_getoropen) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config, int \*errCode) | Obtains an [OH_Rdb_Store](_o_h___rdb___store.md) instance for RDB store operations.|
 | [OH_Rdb_CloseStore](_r_d_b.md#oh_rdb_closestore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Destroys an [OH_Rdb_Store](_o_h___rdb___store.md) object and reclaims the memory occupied by the object.|
 | [OH_Rdb_DeleteStore](_r_d_b.md#oh_rdb_deletestore) (const [OH_Rdb_Config](_o_h___rdb___config.md) \*config) | Deletes an RDB store with the specified database file configuration.|
-| int [OH_Rdb_DeleteStoreV2](_r_d_b.md#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config) | Deletes an RDB store based on the given [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2).|
+| int [OH_Rdb_DeleteStoreV2](_r_d_b.md#oh_rdb_deletestorev2) (const [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2) \*config) | Deletes an RDB store based on the given [OH_Rdb_ConfigV2](_r_d_b.md#oh_rdb_configv2). If a vector store is used, ensure that the vector store has been correctly closed before calling the API.|
 | [OH_Rdb_Insert](_r_d_b.md#oh_rdb_insert) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*table, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket) | Inserts a row of data into a table.|
 | [OH_Rdb_Update](_r_d_b.md#oh_rdb_update) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_VBucket](_o_h___v_bucket.md) \*valuesBucket, [OH_Predicates](_o_h___predicates.md) \*predicates) | Updates data in an RDB store based on specified conditions.|
 | [OH_Rdb_Delete](_r_d_b.md#oh_rdb_delete) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates) | Deletes data from an RDB store based on specified conditions.|
 | [OH_Rdb_Query](_r_d_b.md#oh_rdb_query) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [OH_Predicates](_o_h___predicates.md) \*predicates, const char \*const \*columnNames, int length) | Queries data in an RDB store based on specified conditions.|
 | [OH_Rdb_Execute](_r_d_b.md#oh_rdb_execute) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Executes the SQL statement that returns no value.|
-| [OH_Rdb_ExecuteQuery](_r_d_b.md#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Queries data in an RDB store based on the SQL statements executed.|
+| [OH_Rdb_ExecuteQuery](_r_d_b.md#oh_rdb_executequery) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*sql) | Queries data in the database using the specified SQL statement. This API supports vector stores.|
 | [OH_Rdb_BeginTransaction](_r_d_b.md#oh_rdb_begintransaction) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Starts the transaction before executing the SQL statements.|
 | [OH_Rdb_RollBack](_r_d_b.md#oh_rdb_rollback) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Rolls back the SQL statements that have been executed.|
 | [OH_Rdb_Commit](_r_d_b.md#oh_rdb_commit) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store) | Commits the executed SQL statements.|
-| [OH_Rdb_Backup](_r_d_b.md#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Backs up the RDB store in the specified path.|
-| [OH_Rdb_Restore](_r_d_b.md#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Restores an RDB store from the specified database backup file.|
+| [OH_Rdb_Backup](_r_d_b.md#oh_rdb_backup) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Backs up an RDB store using the backup file of the specified path. This API supports vector stores.|
+| [OH_Rdb_Restore](_r_d_b.md#oh_rdb_restore) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*databasePath) | Restores a database from a specified database backup file. This API supports vector stores.|
 | [OH_Rdb_GetVersion](_r_d_b.md#oh_rdb_getversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int \*version) | Obtains the RDB store version.|
 | [OH_Rdb_SetVersion](_r_d_b.md#oh_rdb_setversion) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, int version) | Sets the RDB store version.|
 | [OH_Rdb_SetDistributedTables](_r_d_b.md#oh_rdb_setdistributedtables) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tables[], uint32_t count, [Rdb_DistributedType](_r_d_b.md#rdb_distributedtype) type, const [Rdb_DistributedConfig](_rdb___distributed_config.md) \*config) | Sets distributed database tables.|
 | [OH_Rdb_FindModifyTime](_r_d_b.md#oh_rdb_findmodifytime) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, const char \*tableName, const char \*columnName, [OH_VObject](_o_h___v_object.md) \*values) | Obtains the last modification time of a table in an RDB store.|
-| [OH_Rdb_Subscribe](_r_d_b.md#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Registers an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes. |
+| [OH_Rdb_Subscribe](_r_d_b.md#oh_rdb_subscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Registers an observer for an RDB store. When data in the RDB store changes, a callback will be invoked to return the data changes.|
 | [OH_Rdb_Unsubscribe](_r_d_b.md#oh_rdb_unsubscribe) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SubscribeType](_r_d_b.md#rdb_subscribetype) type, const [Rdb_DataObserver](_rdb___data_observer.md) \*observer) | Unregisters the observer of the specified type.|
 | [OH_Rdb_GetTableDetails](_r_d_b.md#oh_rdb_gettabledetails) ([Rdb_ProgressDetails](_rdb___progress_details.md) \*progress, int32_t version) | Obtains the device-cloud sync statistics of a table.|
 | [OH_Rdb_CloudSync](_r_d_b.md#oh_rdb_cloudsync) ([OH_Rdb_Store](_o_h___rdb___store.md) \*store, [Rdb_SyncMode](_r_d_b.md#rdb_syncmode) mode, const char \*tables, int count, const [Rdb_ProgressObserver](_rdb___progress_observer.md) \*observer) | Performs device-cloud sync.|

@@ -532,7 +532,7 @@ type PermissionRequestResult = _PermissionRequestResult
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [PermissionRequestResult](js-apis-permissionrequestresult.md) | 权限请求结果对象。 |
+| [_PermissionRequestResult](js-apis-permissionrequestresult.md) | 权限请求结果对象。 |
 
 ## Context<sup>10+</sup>
 
@@ -548,4 +548,4 @@ type Context = _Context
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [Context](js-apis-inner-application-context.md) | 提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。 |
+| [_Context](js-apis-inner-application-context.md) | 提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。 |
