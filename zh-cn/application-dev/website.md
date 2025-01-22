@@ -137,7 +137,7 @@
             - [ServiceExtensionAbility（仅对系统应用开放）](application-models/serviceextensionability.md)
             - [UIServiceExtension（仅对系统应用开放）](application-models/uiserviceextension-sys.md)
             - [UIExtensionAbility（仅对系统应用开放）](application-models/uiextensionability.md)
-            - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)  
+            - [AutoFillExtensionAbility（仅对系统应用开放）](application-models/autofillextensionablility-guide.md)
             <!--DelEnd-->
             - [UIServiceExtension](application-models/uiserviceextension.md)
             - [EmbeddedUIExtensionAbility](application-models/embeddeduiextensionability.md)
@@ -264,9 +264,9 @@
           - [request接口切换](application-models/request-switch.md)
           - [resourceManager接口切换](application-models/resourcemanager-switch.md)
           - [window接口切换](application-models/window-switch.md)
-          - [Storage接口切换](application-models/storage-switch.md)   
+          - [Storage接口切换](application-models/storage-switch.md)
       <!--DelEnd-->
-      - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md) 
+      - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
@@ -454,7 +454,7 @@
             - [出现/消失转场](ui/arkts-enter-exit-transition.md)
             - [模态转场](ui/arkts-modal-transition.md)
             - [共享元素转场 (一镜到底)](ui/arkts-shared-element-transition.md)
-            - [旋转屏动画](ui/arkts-rotation-transition-animation.md)  
+            - [旋转屏动画](ui/arkts-rotation-transition-animation.md)
             - [页面转场动画 (不推荐)](ui/arkts-page-transition-animation.md)
           - [粒子动画](ui/arkts-particle-animation.md)
           - [组件动画](ui/arkts-component-animation.md)
@@ -1073,7 +1073,7 @@
           <!--Del-->
             - [网络防火墙（仅对系统应用开放）](network/net-netfirewall.md)
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
-            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)   
+            - [以太网连接管理（仅对系统应用开放）](network/net-ethernet.md)
             - [VPN管理（仅对系统应用开放）](network/net-vpn.md)
           <!--DelEnd-->
       - Telephony Kit（蜂窝通信服务）<!--telephony-kit-->
@@ -1099,7 +1099,7 @@
         - 账号管理<!--account-management-->
           <!--Del-->
           - [账号管理概述](basic-services/account/account-overview.md)
-          - 系统账号 <!--os-account-->       
+          - 系统账号 <!--os-account-->
             - [管理系统账号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
             - [使用约束管控系统账号](basic-services/account/control-os-account-by-constraints.md)
             - [管理系统账号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
@@ -1440,7 +1440,7 @@
       - 媒体开发指导(C/C++)<!--media-kit-dev--c-->
         - 播放<!--media-playback-c-->
           - [使用AVPlayer播放音频(C/C++)](media/media/using-ndk-avplayer-for-playback.md)
-          - [使用AVPlayer播放视频(C/C++)](media/media/using-ndk-avplayer-for-video-playback.md)  
+          - [使用AVPlayer播放视频(C/C++)](media/media/using-ndk-avplayer-for-video-playback.md)
         - 录屏<!--media-recording-c-->
           - [使用AVScreenCapture录屏取码流(C/C++)](media/media/using-avscreencapture-for-buffer.md)
           - [使用AVScreenCapture录屏写文件(C/C++)](media/media/using-avscreencapture-for-file.md)
@@ -1482,7 +1482,7 @@
       - [ArkGraphics 3D场景动画控制以及管理](graphics3d/arkgraphics3D-animation.md)
   - 应用服务<!--gapp-service-->
     - Ads Kit（广告服务）<!--ads-kit-->
-      - [广告标识服务](ads-service/oaid/oaid-service.md)   
+      - [广告标识服务](ads-service/oaid/oaid-service.md)
       <!--Del-->
       - [重置OAID信息（仅对系统应用开放）](ads-service/oaid/oaid-service-sys.md)
       <!--DelEnd-->
@@ -1924,7 +1924,6 @@
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
-            - [BundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleInfo-sys.md)
             - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -2091,7 +2090,7 @@
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
         - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
     - ArkTS（方舟编程语言）<!--arkts-api-->
-      - ArkTS API<!--arkts-arkts--> 
+      - ArkTS API<!--arkts-arkts-->
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
         - [@arkts.lang (ArkTS语言基础能力)](reference/apis-arkts/js-apis-arkts-lang.md)
         - [@arkts.math.Decimal (高精度数学库Decimal)](reference/apis-arkts/js-apis-arkts-decimal.md)
@@ -2120,9 +2119,9 @@
         - [@ohos.util.TreeSet (非线性容器TreeSet)](reference/apis-arkts/js-apis-treeset.md)
         - [@ohos.worker (启动一个Worker)](reference/apis-arkts/js-apis-worker.md)
         - [@ohos.xml (xml解析与生成)](reference/apis-arkts/js-apis-xml.md)
-        - 已停止维护的接口<!--arkts-arkts-dep--> 
+        - 已停止维护的接口<!--arkts-arkts-dep-->
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
-      - 错误码<!--arkts-arkts-errcode--> 
+      - 错误码<!--arkts-arkts-errcode-->
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
@@ -2153,7 +2152,7 @@
           - [postCardAction](reference/apis-arkui/js-apis-postCardAction.md)
           <!--Del-->
           - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)(系统接口)](reference/apis-arkui/js-apis-arkui-drawableDescriptor-sys.md)
-          - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md)  
+          - [@ohos.arkui.performanceMonitor (性能监测)(系统接口)](reference/apis-arkui/js-apis-arkui-performancemonitor-sys.md)
           - [@ohos.arkui.uiExtension (uiExtension)(系统接口)](reference/apis-arkui/js-apis-arkui-uiExtension-sys.md)
           - [@ohos.deviceStatus.dragInteraction (拖拽)(系统接口)](reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md)
           - [@ohos.pluginComponent (PluginComponentManager)(系统接口)](reference/apis-arkui/js-apis-plugincomponent-sys.md)
@@ -2421,7 +2420,7 @@
         - 渲染绘制<!--rendering-drawing-->
           - [XComponent](reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)
           - [Component3D](reference/apis-arkui/arkui-ts/ts-basic-components-component3d.md)
-          - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md) 
+          - [EmbeddedComponent](reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)
         - 标题栏与工具栏<!--bars-and-toolbars-->
           - [ComposeTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
           - [EditableTitleBar](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
@@ -2447,7 +2446,7 @@
           - [显式动画立即下发 (animateToImmediately)](reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)
           <!--Del-->
           - [组件内隐式共享元素转场 (geometryTransition)(系统接口)](reference/apis-arkui/arkui-ts/ts-transition-animation-geometrytransition-sys.md)
-          <!--DelEnd-->  
+          <!--DelEnd-->
         - 弹窗<!--dialog-boxes-->
           - [警告弹窗 (AlertDialog)](reference/apis-arkui/arkui-ts/ts-methods-alert-dialog-box.md)
           - [列表选择弹窗 (ActionSheet)](reference/apis-arkui/arkui-ts/ts-methods-action-sheet.md)
@@ -2472,7 +2471,7 @@
           - [SaveButton (系统接口)](reference/apis-arkui/arkui-ts/ts-security-components-savebutton-sys.md)
           <!--DelEnd-->
         - 主题<!--themes-->
-          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md) 
+          - [WithTheme](reference/apis-arkui/arkui-ts/ts-container-with-theme.md)
         - 原子化服务<!--atomic-services-->
           - [AtomicServiceNavigation](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceNavigation.md)
           - [AtomicServiceTabs](reference/apis-arkui/arkui-ts/ohos-atomicservice-AtomicServiceTabs.md)
@@ -2774,7 +2773,7 @@
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
           - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
-          - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)    
+          - [系统资源错误码](reference/apis-arkui/errorcode-system-resource.md)
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
@@ -2811,14 +2810,14 @@
     - Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
       - ArkTS API<!--background-tasks-arkts-->
         - [@ohos.reminderAgentManager (后台代理提醒)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)
-        - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md) 
+        - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md)
         - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-workScheduler.md)
         - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md)
         <!--Del-->
         - [@ohos.reminderAgentManager (后台代理提醒)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager-sys.md)
         - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager-sys.md)
         - [@ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceStandby-sys.md)
-        - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md) 
+        - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](reference/apis-backgroundtasks-kit/js-apis-resourceschedule-deviceUsageStatistics-sys.md)
         <!--DelEnd-->
         - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
@@ -2986,7 +2985,7 @@
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
+          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md)
           - [Resource](reference/apis-localization-kit/resource.md)
           - [SendableResource](reference/apis-localization-kit/sendableResource.md)
       - C API<!--localization-c-->
@@ -3049,7 +3048,7 @@
             - [crypto_sym_cipher.h](reference/apis-crypto-architecture-kit/crypto__sym__cipher_8h.md)
             - [crypto_sym_key.h](reference/apis-crypto-architecture-kit/crypto__sym__key_8h.md)
           - 结构体<!--crypto-architecture-struct-->
-            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)  
+            - [Crypto_DataBlob](reference/apis-crypto-architecture-kit/_crypto___data_blob.md)
         - 错误码<!--crypto-architecture-arkts-errcode-->
           - [crypto framework错误码](reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md)
       - Data Protection Kit（数据保护服务）<!--data-protection-api-->
@@ -3121,7 +3120,7 @@
           - [用户认证错误码](reference/apis-user-authentication-kit/errorcode-useriam.md)
     - 网络<!--system-network-api-->
       - Connectivity Kit（短距通信服务）<!--connectivity-api-->
-        - ArkTS API<!--connectivity-arkts--> 
+        - ArkTS API<!--connectivity-arkts-->
           - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md)
           - [@ohos.bluetooth.access(蓝牙access模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-access.md)
           - [@ohos.bluetooth.baseProfile(蓝牙baseProfile模块)(推荐)](reference/apis-connectivity-kit/js-apis-bluetooth-baseProfile.md)
@@ -3318,7 +3317,7 @@
             - [@ohos.deviceInfo (设备信息)](reference/apis-basic-services-kit/js-apis-device-info.md)
             - [@ohos.power (系统电源管理)](reference/apis-basic-services-kit/js-apis-power.md)
             - [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
-            - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)      
+            - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
             - [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
             <!--Del-->
             - [@ohos.batteryInfo (电量信息)(系统接口)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
@@ -3390,7 +3389,7 @@
             - [@system.battery (电量信息)](reference/apis-basic-services-kit/js-apis-system-battery.md)
             - [@system.device (设备信息)](reference/apis-basic-services-kit/js-apis-system-device.md)
             - [@system.request (上传下载)](reference/apis-basic-services-kit/js-apis-system-request.md)
-            - [@ohos.screenLock (锁屏管理)](reference/apis-basic-services-kit/js-apis-screen-lock.md) 
+            - [@ohos.screenLock (锁屏管理)](reference/apis-basic-services-kit/js-apis-screen-lock.md)
             <!--Del-->
             - [@ohos.commonEvent (公共事件模块)(系统接口)](reference/apis-basic-services-kit/js-apis-commonEvent-sys.md)
             - [@ohos.usb (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usb-deprecated-sys.md)
@@ -3448,7 +3447,7 @@
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
           - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           <!--Del-->
-          - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)          
+          - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
           - [智能语音错误码](reference/apis-basic-services-kit/errorcode-intelligentVoice.md)
           <!--DelEnd-->
@@ -3622,7 +3621,7 @@
           - [Sensor错误码](reference/apis-sensor-service-kit/errorcode-sensor.md)
           - [Vibrator错误码](reference/apis-sensor-service-kit/errorcode-vibrator.md)
     - 调测调优<!--system-debug-optimize-api-->
-      
+
       - Performance Analysis Kit（性能分析服务）<!--performance-analysis-api-->
         - ArkTS API<!--performance-analysis-arkts-->
           - [@ohos.faultLogger (故障日志获取)](reference/apis-performance-analysis-kit/js-apis-faultLogger.md)
@@ -3680,11 +3679,11 @@
         - ArkTS API<!--test-arkts-->
            - [@ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-app-ability-abilityDelegatorRegistry.md)
            - [@ohos.application.testRunner (TestRunner)](reference/apis-test-kit/js-apis-application-testRunner.md)
-           - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md) 
+           - [@ohos.UiTest](reference/apis-test-kit/js-apis-uitest.md)
            - 接口依赖的元素及定义<!--test-api-interface-depend-->
               - [abilityDelegator](reference/apis-test-kit/js-apis-inner-application-abilityDelegator.md)
               - [abilityDelegatorArgs](reference/apis-test-kit/js-apis-inner-application-abilityDelegatorArgs.md)
-              - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)   
+              - [shellCmdResult](reference/apis-test-kit/js-apis-inner-application-shellCmdResult.md)
            - 已停止维护的接口<!--test-arkts-dep-->
               - [@ohos.application.abilityDelegatorRegistry (AbilityDelegatorRegistry)](reference/apis-test-kit/js-apis-application-abilityDelegatorRegistry.md)
         - 错误码<!--test-arkts-errcode-->
@@ -3998,7 +3997,7 @@
           - [moving_photo_capi.h](reference/apis-media-library-kit/moving__photo__capi_8h.md)
         - 结构体<!--media-library-struct-->
           - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
-          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)  
+          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->
