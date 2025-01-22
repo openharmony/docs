@@ -825,8 +825,6 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**需要权限**：ohos.permission.CAPTURE_SCREEN，仅系统应用可用。
-
 **参数：**
 
 | 参数名    | 类型   | 必填 | 说明          |
