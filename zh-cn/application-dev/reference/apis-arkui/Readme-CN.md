@@ -184,6 +184,8 @@
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
+    - [ArcList](arkui-ts/ts-container-arclist.md)
+    - [ArcListItem](arkui-ts/ts-container-arclistitem.md)
     - [Grid](arkui-ts/ts-container-grid.md)
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
