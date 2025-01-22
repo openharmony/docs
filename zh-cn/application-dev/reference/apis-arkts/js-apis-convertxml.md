@@ -21,7 +21,7 @@ convertToJSObject(xml: string, options?: ConvertOptions) : Object
 
 转换xml文本为JavaScript对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -126,7 +126,7 @@ console.log(result);
 
 转换选项。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
