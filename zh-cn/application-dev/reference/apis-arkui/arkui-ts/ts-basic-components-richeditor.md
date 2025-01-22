@@ -377,6 +377,20 @@ keyboardAppearance(appearance: KeyboardAppearance)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: Optional&lt;boolean&gt;)
+
+设置是否阻止返回键向其它组件或应用侧传递。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。默认值：true |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持[OnDidChangeCallback](ts-text-common.md#ondidchangecallback12)、[StyledStringChangedListener](ts-text-common.md#styledstringchangedlistener12)、[StyledStringChangeValue](ts-text-common.md#styledstringchangevalue12)和以下事件：
@@ -4639,7 +4653,7 @@ struct RichEditorExample {
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
 ### 示例23（组件部分常用属性）
-通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。
+通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress16)属性设置是否阻止返回键向其它组件或应用侧传递。
 
 ```ts
 // xxx.ets
@@ -4692,6 +4706,7 @@ struct RichEditor_example {
         .barState(this.bs[this.bs_num])
         .enableKeyboardOnFocus(this.e)
         .enableHapticFeedback(true)
+        .stopBackPress(false);
 
       RichEditor(this.options1).width(300)
 
