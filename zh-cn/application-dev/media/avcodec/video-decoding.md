@@ -688,8 +688,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     > **说明：**
     >
-    > 不能在回调函数中调用；
-    > 执行该步骤之后，需要调用者将videoDec指向NULL，防止野指针导致程序错误。
+    > 1. 不能在回调函数中调用；
+    > 2. 执行该步骤之后，需要调用者将videoDec指向NULL，防止野指针导致程序错误。
     >
 
     ```c++
