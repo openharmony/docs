@@ -85,6 +85,7 @@ export default class EntryAbility extends UIAbility {
 removeAllStartupTaskResults(): void
 
 删除所有启动任务结果。
+
 如果存在so预加载任务，则将对应so文件置为未加载状态。对于缓存中已加载的so文件，不会被移除。
 
 **系统能力**：SystemCapability.Ability.AppStartup
@@ -124,7 +125,7 @@ export default class EntryAbility extends UIAbility {
 
 getStartupTaskResult(startupTask: string): Object
 
-获得指定的启动任务结果，传参为so时则返回undefined。
+获取指定启动任务或so预加载任务的执行结果。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
@@ -132,13 +133,13 @@ getStartupTaskResult(startupTask: string): Object
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的文件名或so文件名，所有启动任务都需要实现[StartupTask](./js-apis-app-appstartup-startupTask.md)接口的方法。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | Object | 指定启动任务的结果。 |
+  | Object | 输入为启动任务名时，返回指定的启动任务结果。<br/> 输入为so文件名时，返回undefined。 |
 
 **错误码：**
 
@@ -183,8 +184,7 @@ export default class EntryAbility extends UIAbility {
 
 isStartupTaskInitialized(startupTask: string): boolean
 
-获取指定启动任务是否已初始化。
-当入参为so文件时，则获取指定so是否已加载。
+获取指定启动任务或so预加载任务是否已初始化。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
@@ -192,13 +192,13 @@ isStartupTaskInitialized(startupTask: string): boolean
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名称。 |
 
 **返回值：**
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | 返回布尔值，true表示该启动任务已执行完成，false表示该启动任务尚未执行完成。 |
+  | boolean | 返回布尔值，true表示该启动任务或so预加载任务已执行完成，false表示该启动任务或so预加载任务尚未执行完成。 |
 
 **错误码：**
 
@@ -253,7 +253,11 @@ export default class EntryAbility extends UIAbility {
 
 removeStartupTaskResult(startupTask: string): void
 
-删除指定初始化结果，入参为so文件，则将该so文件置为未加载，缓存中已加载的so文件不会被移除。
+删除指定启动任务或so预加载任务的初始化结果。
+
+- 输入为启动任务名时，删除指定启动任务的初始化结果。
+
+- 输入为so文件时，将该so文件置为未加载，缓存中已加载的so文件不会被移除。
 
 **系统能力**：SystemCapability.Ability.AppStartup
 
@@ -261,7 +265,7 @@ removeStartupTaskResult(startupTask: string): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称。 |
+  | startupTask | string | 是 | 启动任务所实现[StartupTask](js-apis-app-appstartup-startupTask.md)接口的类名称或so文件名。 |
   
 **错误码：**
 
