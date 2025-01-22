@@ -97,6 +97,22 @@ textStyle(style: Optional\<PickerTextStyle>)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](./ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 设置入口区的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
+### markToday<sup>16+</sup>
+
+markToday(enabled: boolean)
+
+日历选择器在系统当前日期时，通过该属性设置其是否保持高亮显示。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置日历选择器在系统当前日期时，是否保持高亮显示。<br />默认值：false。true表示日历选择器在系统当前日期时，保持高亮显示。false表示日历选择器在系统当前日期时，不保持高亮显示。 |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
@@ -145,6 +161,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 | selected | Date | 否    | 设置选中项的日期。选中的日期未设置或日期格式不符合规范则为默认值。<br/>默认值：当前系统日期。 |
 | start<sup>16+</sup> | Date | 否    | 设置开始日期。 |
 | end<sup>16+</sup> | Date | 否    | 设置结束日期。 |
+| disabledDateRange<sup>16+</sup> | DateRange[] | 否    | 设置禁用日期区间。<br />**说明：**<br />1. 若日期区间内的开始日期或结束日期为异常值，则该日期区间无效。<br />2. 若在日期区间内，结束日期早于开始日期，则该日期区间无效。<br />3. 当在入口区选定某日期，通过上下箭头调整日期进行增加或减少操作时，若遇到禁用日期，系统将自动跳过整个禁用区间。 |
 
 **start和end设置规则：**
 
@@ -230,3 +247,35 @@ struct CalendarPickerExample {
 ```
 
 ![CalendarPicker](figures/calendar_picker_start_end.jpg)
+
+### 示例3（设置日历选择器在系统当前日期时，保持高亮显示和禁用日期区间）
+
+该示例通过markToday设置日历选择器在系统当前日期时，开启保持高亮显示，同时，通过disabledDateRange设置日历选择器的禁用日期区间。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerExample {
+  private disabledDateRange: DateRange[] = [
+    { start: new Date('2025-01-01'), end: new Date('2025-01-02') },
+    { start: new Date('2025-01-09'), end: new Date('2025-01-10') },
+    { start: new Date('2025-01-15'), end: new Date('2025-01-16') },
+    { start: new Date('2025-01-19'), end: new Date('2025-01-19') },
+    { start: new Date('2025-01-22'), end: new Date('2025-01-25') }
+  ]
+
+  build() {
+    Column() {
+      CalendarPicker({ disabledDateRange: this.disabledDateRange })
+        .margin(10)
+        .markToday(true)
+        .onChange((value) => {
+          console.info("CalendarPicker onChange:" + JSON.stringify(value))
+        })
+    }.width('100%')
+  }
+}
+```
+
+![CalendarPicker](figures/calendar_picker_mark_disabled.gif)
