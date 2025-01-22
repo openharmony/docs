@@ -261,6 +261,7 @@
     <!--DelEnd-->
   - 信息展示
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
+    - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
