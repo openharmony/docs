@@ -253,7 +253,7 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
