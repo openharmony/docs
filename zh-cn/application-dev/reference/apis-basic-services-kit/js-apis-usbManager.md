@@ -851,7 +851,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 | -------- | ------------------------------------------------------------ |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400009 | no such device (it may have been disconnected). |
-| 14400011 | error other. |
+| 14400011 | usb error other. |
 | 14400014 | interface does not support. |
 | 14400015 | entity not found. |
 

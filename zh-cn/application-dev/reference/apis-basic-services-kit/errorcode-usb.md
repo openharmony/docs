@@ -224,7 +224,7 @@ transmission time out error.
 
 **错误信息**
 
-error other.
+usb error other.
 
 **错误描述**
 
