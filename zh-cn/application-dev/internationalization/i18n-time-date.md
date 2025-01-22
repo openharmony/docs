@@ -98,8 +98,7 @@
 // 导入模块
 import { intl } from '@kit.LocalizationKit';
 
-// 设置要格式化的日期
-let date = new Date(2021, 8, 17, 13, 4, 0);
+let date = new Date(2021, 8, 17, 13, 4, 0); // 时间日期为2021.09.17 13:04:00
 let startDate = new Date(2021, 8, 17, 13, 4, 0);
 let endDate = new Date(2021, 8, 18, 13, 4, 0);
 
