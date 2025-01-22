@@ -7516,8 +7516,9 @@ struct Index {
 
 startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
-基于窗口与鼠标坐标的偏移量移动窗口，使用Promise异步回调。
-先移动窗口到鼠标位置，使当前鼠标在窗口内指定偏移量的位置，再开始移动窗口。
+移动窗口时，指定鼠标在窗口内的位置，使用Promise异步回调。
+
+鼠标快速移动场景下，先移动窗口到鼠标位置，使当前鼠标在窗口内指定偏移量的位置，再开始移动窗口。
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
