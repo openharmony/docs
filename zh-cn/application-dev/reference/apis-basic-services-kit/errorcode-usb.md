@@ -172,7 +172,7 @@ transmission I/O error.
 
 **错误描述**
 
-libusb实际读/写/取消，操作失败。
+libusb实际读/写操作失败。
 
 **处理步骤**
 
@@ -224,7 +224,7 @@ transmission time out error.
 
 **错误信息**
 
-unrecognised discard.
+error other.
 
 **错误描述**
 

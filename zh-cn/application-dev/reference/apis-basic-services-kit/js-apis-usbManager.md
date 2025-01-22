@@ -851,7 +851,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 | -------- | ------------------------------------------------------------ |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400009 | no such device (it may have been disconnected). |
-| 14400011 | other error. unrecognised discard. |
+| 14400011 | error other. |
 | 14400014 | interface does not support. |
 | 14400015 | entity not found. |
 
@@ -1444,9 +1444,7 @@ Usb异步传输回调信息。
 
 ## UsbTransferStatus<sup>16+</sup>
 
-libusb实际处理完成后的传输状态。
-
-注：如果实际返回有数据，但返回状态不为0，也视为传输成功
+libusb实际处理完成后的传输状态码。
 
 **系统能力：** SystemCapability.USB.USBManager
 
