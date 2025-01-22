@@ -220,7 +220,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 创建硬件编码器实例
-    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
+    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
@@ -356,7 +356,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 1000;
-    // 配置比特率
+    // 配置比特率，单位为bps
     int64_t bitRate = 5000000;
     // 配置编码质量
     int64_t quality = 90;
@@ -406,7 +406,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过OHNativeWindow*变量类型，可通过生产者接口获取待填充数据地址。
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)。
 
 7. 调用OH_VideoEncoder_Prepare()编码器就绪。
 
@@ -581,8 +581,8 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     > **说明：**
     >
-    > 不能在回调函数中调用；
-    > 执行该步骤之后，需要调用者将videoEnc指向NULL，防止野指针导致程序错误。
+    > 1. 不能在回调函数中调用；
+    > 2. 执行该步骤之后，需要调用者将videoEnc指向NULL，防止野指针导致程序错误。
     >
 
     ```c++
@@ -682,7 +682,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码输入回调OH_AVCodecOnNeedInputBuffer实现
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 获取视频宽高跨距
+        // 获取视频宽、高跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
@@ -710,7 +710,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     <!--RP10End-->
 
     ```c++
-    // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback 接口
+    // 配置异步回调，调用OH_VideoEncoder_RegisterCallback接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL);
     if (ret != AV_ERR_OK) {
