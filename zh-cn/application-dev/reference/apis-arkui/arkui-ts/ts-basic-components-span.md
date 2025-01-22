@@ -325,7 +325,9 @@ struct SpanExample {
       // 文本横线添加
       Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
       Text() {
-        Span('I am Underline-WAVY-span').decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY }).fontSize(12)
+        Span('I am Underline-WAVY-span')
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
+          .fontSize(12)
       }
 
       Text() {
@@ -335,7 +337,9 @@ struct SpanExample {
       }
 
       Text() {
-        Span('I am Overline-DASHED-span').decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED }).fontSize(12)
+        Span('I am Overline-DASHED-span')
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED })
+          .fontSize(12)
       }
 
       // 文本字符间距
@@ -357,7 +361,6 @@ struct SpanExample {
           .letterSpacing(3)
           .fontSize(12)
       }
-
 
       // 文本大小写展示设置
       Text('Text Case').fontSize(9).fontColor(0xCCCCCC)
@@ -388,18 +391,44 @@ struct SpanExample {
 @Entry
 @Component
 struct SpanExample {
-  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
-      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
-      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  @State textShadows: ShadowOptions | Array<ShadowOptions> = [{
+    radius: 10,
+    color: Color.Red,
+    offsetX: 10,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Orange,
+    offsetX: 20,
+    offsetY: 0
+  },
+    {
+      radius: 10,
+      color: Color.Yellow,
+      offsetX: 30,
+      offsetY: 0
+    }, {
+      radius: 10,
+      color: Color.Green,
+      offsetX: 40,
+      offsetY: 0
+    },
+    {
+      radius: 10,
+      color: Color.Blue,
+      offsetX: 100,
+      offsetY: 0
+    }]
 
   build() {
     Column({ space: 8 }) {
       Text() {
-        Span('123456789').fontSize(50).textShadow(this.textShadows)
+        Span('123456789').fontSize(50).textShadow(this.textShadows).fontColor(Color.Pink)
       }
+
       Text() {
         Span('123456789') // span can inherit text shadow & font size from outer text
-      }.fontSize(50).textShadow(this.textShadows)
+      }.fontSize(50).textShadow(this.textShadows).fontColor(Color.Pink)
     }
   }
 }
@@ -420,10 +449,10 @@ struct SpanExample {
       Text() {
         Span('   Hello World !   ')
           .fontSize('20fp')
-          .textBackgroundStyle({color: "#7F007DFF", radius: "5vp"})
+          .textBackgroundStyle({ color: "#7F007DFF", radius: "5vp" })
           .fontColor(Color.White)
       }
-    }.width('100%').margin({bottom: '5vp'}).alignItems(HorizontalAlign.Center)
+    }.width('100%').margin({ bottom: '5vp' }).alignItems(HorizontalAlign.Center)
   }
 }
 ```
@@ -434,6 +463,7 @@ struct SpanExample {
 该示例通过baselineOffset属性展示了文本设置不同基线偏移量的效果。
 
 ```ts
+// xxx.ets
 import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
@@ -442,16 +472,18 @@ struct SpanExample {
   build() {
     Row() {
       Column() {
-        Text(){
-          Span('word1')
-            .baselineOffset(new LengthMetrics(20,LengthUnit.VP))
-          Span('word2')
-            .baselineOffset(new LengthMetrics(0,LengthUnit.VP))
-          ImageSpan($r("app.media.icon"))
-            .width('45px')
-            .baselineOffset(new LengthMetrics(-20,LengthUnit.VP))
+        Text() {
+          Span('SpanOne')
+            .fontSize(10)
+            .baselineOffset(new LengthMetrics(20, LengthUnit.VP))
+          Span('SpanTwo')
+            .fontSize(10)
+            .baselineOffset(new LengthMetrics(0, LengthUnit.VP))
+          ImageSpan($r("app.media.sky"))//建议使用自定义的本地图片
+            .width('80px')
+            .baselineOffset(new LengthMetrics(-20, LengthUnit.VP))
         }
-        .backgroundColor(Color.Gray)
+        .backgroundColor('#7F007DFF')
       }
       .width('100%')
     }
