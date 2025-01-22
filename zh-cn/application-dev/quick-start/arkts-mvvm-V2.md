@@ -20,6 +20,8 @@
 首先，从最基础的静态待办事项列表开始。在这个例子中，任务是静态的，没有状态变化和动态交互。
 
 ```ts
+// src/main/ets/pages/1-Basic.ets
+
 @Entry
 @ComponentV2
 struct TodoList {
@@ -43,6 +45,8 @@ struct TodoList {
 在这个例子中，新增了一个被\@Local装饰的isFinish属性代表任务是否完成。准备了两个图标：finished.png和unfinished.png，用于展示任务完成或未完成的状态。点击待办事项时，isFinish状态切换，从而更新图标和文本删除线的效果。
 
 ```ts 
+// src/main/ets/pages/2-Local.ets
+
 @Entry
 @ComponentV2
 struct TodoList {
@@ -73,6 +77,8 @@ struct TodoList {
 在这个例子中，每个待办事项被抽象为TaskItem组件。被\@Param修饰的taskName属性从父组件TodoList传入任务名称，使TaskItem组件灵活且可复用，能接收并渲染不同的任务名称。被\@Param \@Once装饰的isFinish属性在接收初始值后，可以在子组件内更新。
 
 ```ts
+// src/main/ets/pages/3-Param.ets
+
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -114,6 +120,8 @@ struct TodoList {
 在这个例子中，每个TaskItem增加了删除按钮，同时任务列表底部增加了添加新任务的功能。点击子组件TaskItem的“删除”按钮时，deleteTask事件会被触发并传递给父组件TodoList，父组件响应并将该任务从列表中移除。通过使用\@Param和\@Event，子组件不仅能接收父组件的数据，还能够将事件传递回父组件，实现数据的双向同步。
 
 ```ts
+// src/main/ets/pages/4-Event.ets
+
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -174,6 +182,8 @@ struct TodoList {
 在本例中，任务量较少，选择了non-virtualScroll模式。新建了一个任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。在任务增删时，这种方式能高效复用已有组件，避免重复渲染，从而提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
 
 ```ts
+// src/main/ets/pages/5-Repeat.ets
+
 @ComponentV2
 struct TaskItem {
   @Param taskName: string = '';
@@ -235,6 +245,8 @@ struct TodoList {
 在这个例子中，任务（Task）被抽象为一个类，并用\@ObservedV2标记该类，用\@Trace标记isFinish属性。TodoList组件嵌套了TaskItem，TaskItem又嵌套了Task。在最外层的TodoList中，添加了"全部完成"和"全部未完成"的按钮，每次点击这些按钮都会直接更新最内层Task类的isFinish属性。\@ObservedV2和\@Trace确保可以观察到对应isFinish UI组件的刷新，从而实现了对嵌套类属性的深度观测。
 
 ```ts
+// src/main/ets/pages/6-ObservedV2Trace.ets
+
 @ObservedV2
 class Task {
   taskName: string = '';
@@ -322,6 +334,8 @@ struct TodoList {
 在这个例子中，使用\@Monitor深度监听TaskItem中task的isFinish属性。当任务完成状态变化时会触发onTasksFinished回调，输出日志记录任务完成状态的变化。此外，新增了对todolist中未完成任务的数量的记录。用\@Computed装饰tasksUnfinished，每当任务状态变化时自动重新计算。通过这两个装饰器，实现了对状态变量的深度监听和高效的计算属性。
 
 ```ts
+// src/main/ets/pages/7-MonitorComputed.ets
+
 @ObservedV2
 class Task {
   taskName: string = '';
@@ -419,6 +433,8 @@ struct TodoList {
 在这个例子中，新增了一个Ability，SettingAbility，用于加载设置页SettingPage。SettingPage包含了一个Setting类，其中的showCompletedTask属性用于控制是否显示已完成的任务，用户通过一个开关可以切换该选项。两个Ability通过AppStorageV2共享设置数据，键为"Setting"，对应的数据为Setting类。第一次通过connect连接Setting时，若不存在储存的数据，会新建一个默认showCompletedTask为trueSetting实例。后续用户在设置页面修改设置后，主页面会根据这一设置更新任务列表的显示。通过AppStorageV2，实现了跨Ability、跨页面的数据共享。
 
 ```ts
+// src/main/ets/pages/8-AppStorageV2.ets
+
 import { AppStorageV2 } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
@@ -503,7 +519,7 @@ struct TodoList {
           .onClick(() => {
             let wantInfo: Want = {
               deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.example.mvvmv2_new', // 替换成AppScope/app.json5里的bundleName
+              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -568,6 +584,8 @@ struct SettingPage {
 在这个例子中，创建了一个TaskList类，用于通过PersistenceV2持久化存储所有任务信息，键为"TaskList"，数据对应TaskList类。第一次通过connect连接TaskList时，如果没有数据，会创建一个默认tasks数组为空的新TaskList实例。在aboutToAppear生命周期函数中，连接到PersistenceV2的TaskList，若无存储任务数据，会从本地文件defaultTasks.json中加载任务并存储到PersistenceV2中。此后，每个任务的完成状态都会同步到PersistenceV2中。这样，即使应用关闭后再次打开，所有任务数据依旧保持不变，实现了持久化的应用状态存储功能。
 
 ```ts
+// src/main/ets/pages/9-PersistenceV2.ets
+
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
@@ -638,7 +656,7 @@ struct TodoList {
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
-    if (this.taskList.tasks.length == 0) {
+    if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
   }
@@ -676,7 +694,7 @@ struct TodoList {
           .onClick(() => {
             let wantInfo: Want = {
               deviceId: '', // deviceId为空表示本设备
-              bundleName: 'com.example.mvvmv2_new',
+              bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
               abilityName: 'SettingAbility',
             };
             this.context.startAbility(wantInfo);
@@ -717,6 +735,8 @@ JSON文件存放在src/main/resources/rawfile/defaultTasks.json路径下。
 在这个例子中，使用\@Builder定义了ActionButton方法，统一管理各类按钮的文字、样式和点击事件，使代码更简洁、结构更清晰，提升了代码的可维护性。在此基础上，调整了待办事项界面的布局和样式，例如组件的间距、颜色和大小，使UI更美观，最终呈现一个功能完善、界面简洁的待办事项应用。
 
 ```ts
+// src/main/ets/pages/10-Builder.ets
+
 import { AppStorageV2, PersistenceV2, Type } from '@kit.ArkUI';
 import { common, Want } from '@kit.AbilityKit';
 import { Setting } from './SettingPage';
@@ -798,7 +818,7 @@ struct TodoList {
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
-    if (this.taskList.tasks.length == 0) {
+    if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
   }
@@ -834,7 +854,7 @@ struct TodoList {
         ActionButton('设置', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.example.mvvmv2_new',
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -981,11 +1001,11 @@ export default class TaskListViewModel {
 
   async loadTasks(context: common.UIAbilityContext) {
     let taskList = new TaskListModel([]);
-    await taskList.loadTasks(context)
+    await taskList.loadTasks(context);
     for(let task of taskList.tasks){
       let taskViewModel = new TaskViewModel();
-      taskViewModel.updateTask(task)
-      this.tasks.push(taskViewModel)
+      taskViewModel.updateTask(task);
+      this.tasks.push(taskViewModel);
     }
   }
 
@@ -1115,7 +1135,7 @@ export default struct BottomView {
         ActionButton('设置', (): void => {
           let wantInfo: Want = {
             deviceId: '', // deviceId为空表示本设备
-            bundleName: 'com.example.mvvmv2_new',
+            bundleName: 'com.samples.statemgmtv2mvvm', // 替换成AppScope/app.json5里的bundleName
             abilityName: 'SettingAbility',
           };
           this.context.startAbility(wantInfo);
@@ -1160,7 +1180,7 @@ struct TodoList {
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
-    if (this.taskList.tasks.length == 0) {
+    if (this.taskList.tasks.length === 0) {
       await this.taskList.loadTasks(this.context);
     }
   }
@@ -1227,3 +1247,6 @@ struct SettingPage {
 ## 总结
 
 本教程通过一个简单的待办事项应用示例，逐步引入了状态管理V2装饰器，并通过代码重构实现了MVVM架构。最终，将数据、逻辑和视图分层，使得代码结构更加清晰、易于维护。合理地使用Model、View和ViewModel，可以帮助开发者实现高效的数据与UI同步，简化开发流程并降低复杂性。希望通过这个示例，开发者能够更好地理解MVVM模式，并能将其灵活应用到自己项目的开发中，从而提高开发效率和代码质量。
+
+## 代码示例
+[完整源码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/ArkUISample/StateMgmtV2MVVM/entry)
