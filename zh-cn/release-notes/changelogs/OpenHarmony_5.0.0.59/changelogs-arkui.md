@@ -155,6 +155,8 @@ hideNonSecureWindows
 
 ## cl.ArkUI.5 uiExtension下新增properties必选属性
 
+[uiExtension.d.ts](https://gitee.com/openharmony/interface_sdk-js/blob/master/api/@ohos.arkui.uiExtension.d.ts)中uiExtension命名空间下新增properties必选属性
+
 **访问级别**
 
 公开接口
