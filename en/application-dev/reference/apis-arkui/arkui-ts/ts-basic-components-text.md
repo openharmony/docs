@@ -1745,12 +1745,12 @@ struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'Custom 1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
     }
     let item2: TextMenuItem = {
-      content: 'custom2',
+      content: 'Custom 2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
     }

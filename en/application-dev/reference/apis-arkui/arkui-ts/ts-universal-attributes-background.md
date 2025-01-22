@@ -203,7 +203,7 @@ Describes the background effect.
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   No  |   Color.<br>Default value: transparent |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT** When set to **AVERAGE**, the adaptive color mode takes effect only when the color has transparency.  |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0, 0]** |
-| policy<sup>14+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
+| policy<sup>14+</sup>    | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
 
 ## backgroundImageResizable<sup>12+</sup>
@@ -236,9 +236,20 @@ Inherited from [BlurStyleOptions](ts-universal-attributes-foreground-blur-style.
 
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy<sup>14+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
+| policy<sup>14+</sup>  | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
 
+## BlurStyleActivePolicy<sup>14+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value|Description                           |
+| ------ | ----------------------------- |----------------------------- |
+| FOLLOWS_WINDOW_ACTIVE_STATE| 0|The blur effect changes according to the window's focus state; it is inactive when the window is not in focus and active when the window is in focus.|
+|  ALWAYS_ACTIVE  | 1|The blur effect is always active.|
+| ALWAYS_INACTIVE |2 |The blur effect is always inactive.|
 
 ## backgroundBrightness<sup>12+</sup> 
 

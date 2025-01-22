@@ -100,7 +100,7 @@ Specifies whether to display the sidebar control button.
 
 ### sideBarWidth
 
-sideBarWidth(value: number | Length)
+sideBarWidth(value: number)
 
 Sets the width of the sidebar. A value less than 0 evaluates to the default value. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used.
 
@@ -112,11 +112,27 @@ Sets the width of the sidebar. A value less than 0 evaluates to the default valu
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \| [Length](ts-types.md#length)<sup>9+</sup> | Yes  | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+| value  | number | Yes  | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+
+### sideBarWidth<sup>9+</sup>
+
+sideBarWidth(value: Length)
+
+Sets the width of the sidebar. A value less than 0 evaluates to the default value. The value must comply with the width constraints. If it is not within the valid range, the valid value closest to the set one is used.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>The default value is **200vp** in API version 9 and **240vp** in API version 10.|
 
 ### minSideBarWidth
 
-minSideBarWidth(value: number | Length)
+minSideBarWidth(value: number)
 
 Sets the minimum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
 
@@ -130,11 +146,29 @@ Sets the minimum width of the sidebar. A value less than 0 evaluates to the defa
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | number \| [Length](ts-types.md#length)<sup>9+</sup> | Yes  | Minimum width of the sidebar.<br>Default value: **240vp**<br>Unit: vp<br>**NOTE**<br>In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+| value  | number | Yes  | Minimum width of the sidebar.<br>Default value: In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
+
+### minSideBarWidth<sup>9+</sup>
+
+minSideBarWidth(value: Length)
+
+Sets the minimum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
+
+**minSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **minWidth** of the sidebar child components.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | Yes  | Minimum width of the sidebar.<br>Default value: In API version 9 and earlier versions, the default value is **200vp**. In API version 10, the default value is **240vp**.|
 
 ### maxSideBarWidth
 
-maxSideBarWidth(value: number | Length)
+maxSideBarWidth(value: number)
 
 Sets the maximum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
 
@@ -148,7 +182,25 @@ Sets the maximum width of the sidebar. A value less than 0 evaluates to the defa
 
 | Name| Type                                                        | Mandatory| Description                                               |
 | ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
-| value  | number \| [Length](ts-types.md#length)<sup>9+</sup> | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp|
+| value  | number | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp|
+
+### maxSideBarWidth<sup>9+</sup>
+
+maxSideBarWidth(value: Length)
+
+Sets the maximum width of the sidebar. A value less than 0 evaluates to the default value. The value cannot exceed the width of the sidebar container itself. Otherwise, the width of the sidebar container itself is used.
+
+**maxSideBarWidth**, whether it is specified or kept at the default value, takes precedence over **maxWidth** of the sidebar child components.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                               |
+| ------ | ------------------------------------------------------------ | ---- | --------------------------------------------------- |
+| value  | [Length](ts-types.md#length) | Yes  | Maximum width of the sidebar.<br>Default value: **280vp**<br>Unit: vp|
 
 ### autoHide<sup>9+</sup>
 
@@ -308,6 +360,8 @@ This event is triggered when any of the following conditions is met:
 
 
 ## Example
+
+This example demonstrates how to use the **SideBarContainer** component and implement the page layout.
 
 ```ts
 // xxx.ets
