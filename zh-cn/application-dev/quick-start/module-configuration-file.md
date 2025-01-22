@@ -10,6 +10,7 @@
     "name": "entry",
     "type": "entry",
     "description": "$string:module_desc",
+    "srcEntry": "./ets/entryability/EntryAbility.ets",
     "mainElement": "EntryAbility",
     "deviceTypes": [
       "default",
