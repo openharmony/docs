@@ -1634,7 +1634,7 @@ enum Camera_ErrorCode
 | CAMERA_DEVICE_DISABLED | 由于安全原因，相机已禁用。 | 
 | CAMERA_DEVICE_PREEMPTED | 因被抢占而无法使用相机。 | 
 | CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS | 与当前配置存在冲突。<br/>**起始版本：** 12 | 
-| CAMERA_SERVICE_FATAL_ERROR | 相机服务致命错误。 | 
+| CAMERA_SERVICE_FATAL_ERROR | 相机服务致命错误。比如没有相机权限、相机服务重启、跨进程调用异常等。| 
 
 
 ### Camera_ExposureMode
@@ -1819,7 +1819,7 @@ enum Camera_PreconfigType
 
 **描述**
 
-预配置照片分辨率的枚举
+预配置照片分辨率的枚举。
 
 **起始版本：** 12
 
@@ -2282,7 +2282,7 @@ Camera_ErrorCode OH_CameraManager_CreateCameraInput_WithPositionAndType(Camera_M
 
 **描述**
 
-创建具有位置和类型的相机输入实例
+创建具有位置和类型的相机输入实例。
 
 **起始版本：** 11
 
