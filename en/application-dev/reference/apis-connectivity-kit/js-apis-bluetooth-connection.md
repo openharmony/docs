@@ -1287,6 +1287,90 @@ try {
 
 ## connection.off('pinRequired')
 
+## connection.on('discoveryResult')<sup>16+</sup>
+
+on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+Subscribes to the Bluetooth device discovery result. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                    |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.|
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | Yes   | Callback used to return information about the discovered devices. You need to create the callback and register it here.   |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+## connection.off('discoveryResult')<sup>16+</sup>
+
+off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+Unsubscribes from the Bluetooth device discovery result.
+
+**Required permissions**: ohos.permission.ACCESS_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type                                 | Mandatory  | Description                                      |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | Yes   | Event type. The value is **discoveryResult**, which indicates information about the Bluetooth devices discovered.  |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | No   | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data is an array of Bluetooth devices discovered.
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+    connection.off('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 Unsubscribes from the pairing request events of the remote Bluetooth device.
@@ -1455,3 +1539,16 @@ Enumerates the charging states.
 | DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | The device is being charged and does not support supercharging.|
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | The device is not charged and supports supercharging.|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | The device is being charged and supports supercharging.|
+
+## DiscoveryResult<sup>16+</sup>
+
+Represents information about the discovered device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name      | Type  | Readable  | Writable  | Description         |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId<sup>16+</sup> | string      | Yes   | No   | ID of the discovered device.|
+| rssi<sup>16+</sup>     | number      | Yes   | No   | RSSI of the discovered device.|
+| deviceName<sup>16+</sup>     | string      | Yes   | No   | Name of the discovered device.|
+| deviceClass<sup>16+</sup>     | DeviceClass      | Yes   | No   | Bluetooth class of the discovered device.|
