@@ -12,14 +12,14 @@ controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller };
 
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('创建不使用属性字符串构建的RichEditor组件。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('创建不使用属性字符串构建的RichEditor组件。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
+  })
 ```
 ![alt text](figures/richeditor_image_options.gif)
 
@@ -30,26 +30,26 @@ RichEditor(this.options)
 
 ```ts
 fontStyle: TextStyle = new TextStyle({
-    fontColor: Color.Pink
-  });
-//自定义字体样式
+  fontColor: Color.Pink
+});
+// 定义字体样式对象
 
 mutableStyledString: MutableStyledString = new MutableStyledString("创建使用属性字符串构建的RichEditor组件。",
-    [{
-        start: 0,
-        length: 5,
-        styledKey: StyledStringKey.FONT,
-        styledValue: this.fontStyle
-    }]);
-//创建属性字符串
+  [{
+    start: 0,
+    length: 5,
+    styledKey: StyledStringKey.FONT,
+    styledValue: this.fontStyle
+  }]);
+// 创建属性字符串
 
 controller: RichEditorStyledStringController = new RichEditorStyledStringController();
-options: RichEditorStyledStringOptions = {controller: this.controller};
+options: RichEditorStyledStringOptions = { controller: this.controller };
 
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.setStyledString(this.mutableStyledString);
-    })
+  .onReady(() => {
+    this.controller.setStyledString(this.mutableStyledString);
+  })
 ```
 ![alt text](figures/richeditor_image_stylestringoptions.gif)
 
@@ -85,6 +85,7 @@ export interface SelectionMenuTheme {
   iconPanelShadowStyle: ShadowStyle;
   iconFocusBorderColor: Resource;
 }
+// 自定义SelectionMenuTheme接口
 
 export const defaultTheme: SelectionMenuTheme = {
   imageSize: 24,
@@ -108,10 +109,10 @@ export const defaultTheme: SelectionMenuTheme = {
   iconPanelShadowStyle: ShadowStyle.OUTER_DEFAULT_MD,
   iconFocusBorderColor: $r('sys.color.ohos_id_color_focused_outline'),
 }
-//定义startIcon信息
+// 定义defaultTheme变量
 
 RichEditor(this.options)
-.onReady(() => {
+  .onReady(() => {
     this.controller.addTextSpan('组件设置了自定义菜单，长按可触发。', {
       style: {
         fontColor: Color.Black,
@@ -123,41 +124,42 @@ RichEditor(this.options)
     onDisappear: () => {
       this.sliderShow = false
     }
-  })//绑定自定义菜单
+  })
+// 绑定自定义菜单
   .width(300)
   .height(300)
 
 @Builder
-  SystemMenu() {
-    Column() {
-      Menu() {
-        if (this.controller) {
-          MenuItemGroup() {
-            MenuItem({
-              startIcon: this.theme.cutIcon,
-              content: "剪切",
-              labelInfo: "Ctrl+X",
-            })
-            MenuItem({
-              startIcon: this.theme.copyIcon,
-              content: "复制",
-              labelInfo: "Ctrl+C"
-            })
-            MenuItem({
-              startIcon: this.theme.pasteIcon,
-              content: "粘贴",
-              labelInfo: "Ctrl+V"
-            })
-          }
+SystemMenu() {
+  Column() {
+    Menu() {
+      if (this.controller) {
+        MenuItemGroup() {
+          MenuItem({
+            startIcon: this.theme.cutIcon,
+            content: "剪切",
+            labelInfo: "Ctrl+X",
+          })
+          MenuItem({
+            startIcon: this.theme.copyIcon,
+            content: "复制",
+            labelInfo: "Ctrl+C"
+          })
+          MenuItem({
+            startIcon: this.theme.pasteIcon,
+            content: "粘贴",
+            labelInfo: "Ctrl+V"
+          })
         }
       }
-      .radius(this.theme.containerBorderRadius)
-      .clip(true)
-      .backgroundColor(Color.White)
-      .width(this.theme.defaultMenuWidth)
     }
+    .radius(this.theme.containerBorderRadius)
+    .clip(true)
+    .backgroundColor(Color.White)
     .width(this.theme.defaultMenuWidth)
   }
+  .width(this.theme.defaultMenuWidth)
+}
 ```
 
 ![alt text](figures/richeditor_image_bindselectionmenu.gif)
@@ -191,17 +193,17 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-    .placeholder("此处为提示文本...", {
-        fontColor: Color.Gray,
-        font: {
-            size: 15,
-            weight: FontWeight.Normal,
-            family: "HarmonyOS Sans",
-            style: FontStyle.Normal
-        }
-    })
-    .width(300)
-    .height(300)
+  .placeholder("此处为提示文本...", {
+    fontColor: Color.Gray,
+    font: {
+      size: 15,
+      weight: FontWeight.Normal,
+      family: "HarmonyOS Sans",
+      style: FontStyle.Normal
+    }
+  })
+  .width(300)
+  .height(50)
 ```
 
 ![alt text](figures/richeditor_image_placeholder.gif)
@@ -209,6 +211,7 @@ RichEditor(this.options)
 更多属性使用请参考[RichEditor属性](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#属性)。
 
 ## 添加事件
+
 ### 添加组件初始化完成后可触发的回调
 通过[onReady](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#onready)来添加组件初始化完成后可触发的回调。
 
@@ -216,14 +219,14 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('onReady回调内容是组件内预置文本。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('onReady回调内容是组件内预置文本。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
+  })
 ```
 
 ![alt text](figures/richeditor_image_onReady.gif)
@@ -237,28 +240,28 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('选中此处文本，触发onselect回调。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('选中此处文本，触发onselect回调。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .onSelect((value: RichEditorSelection) => {
-        this.controller1.addTextSpan(JSON.stringify(value), {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
+  })
+  .onSelect((value: RichEditorSelection) => {
+    this.controller1.addTextSpan(JSON.stringify(value), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .width(300)
-    .height(50)
+  })
+  .width(300)
+  .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
-    .width(300)
-    .height(70)
+  .width(300)
+  .height(70)
 ```
 
 ![alt text](figures/richeditor_image_onSelect.gif)
@@ -272,38 +275,39 @@ RichEditor(this.options1)
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('组件内图文变化前，触发回调。\n图文变化后，触发回调。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('组件内图文变化前，触发回调。\n图文变化后，触发回调。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .onWillChange((value: RichEditorChangeValue) => {
-        this.controller1.addTextSpan('组件内图文变化前，触发回调：\n' + JSON.stringify(value), {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
-        return true;
+  })
+  .onWillChange((value: RichEditorChangeValue) => {
+    this.controller1.addTextSpan('组件内图文变化前，触发回调：\n' + JSON.stringify(value), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
-        this.controller1.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) + '\nrangeAfter：' + JSON.stringify(rangeBefore), {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
-        return true;
+    return true;
+  })
+  .onDidChange((rangeBefore: TextRange, rangeAfter: TextRange) => {
+    this.controller1.addTextSpan('\n图文变化后，触发回调：\nrangeBefore:' + JSON.stringify(rangeBefore) +
+      '\nrangeAfter：' + JSON.stringify(rangeBefore), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .width(300)
-    .height(50)
+    return true;
+  })
+  .width(300)
+  .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
-    .width(300)
-    .height(70)
+  .width(300)
+  .height(70)
 ```
 
 ![alt text](figures/richeditor_image_ondid.gif)
@@ -317,38 +321,38 @@ RichEditor(this.options1)
 
 ```ts
 RichEditor(this.options)
-          .onReady(() => {
-            this.controller.addTextSpan('输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。' , {
-              style: {
-                fontColor: Color.Black,
-                fontSize: 15
-              }
-            })
-          })
-          .aboutToIMEInput((value: RichEditorInsertValue) => {
-            this.controller1.addTextSpan('输入法输入内容前，触发回调：\n'+JSON.stringify(value), {
-              style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-              }
-            })
-            return true;
-          })
-          .onIMEInputComplete((value: RichEditorTextSpanResult) => {
-            this.controller1.addTextSpan('输入法完成输入后，触发回调：\n'+ JSON.stringify(value), {
-              style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-              }
-            })
-            return true;
-          })
-          .width(300)
-          .height(50)
+  .onReady(() => {
+    this.controller.addTextSpan('输入法输入内容前，触发回调。\n输入法完成输入后，触发回调。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
+    })
+  })
+  .aboutToIMEInput((value: RichEditorInsertValue) => {
+    this.controller1.addTextSpan('输入法输入内容前，触发回调：\n' + JSON.stringify(value), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
+    })
+    return true;
+  })
+  .onIMEInputComplete((value: RichEditorTextSpanResult) => {
+    this.controller1.addTextSpan('输入法完成输入后，触发回调：\n' + JSON.stringify(value), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
+    })
+    return true;
+  })
+  .width(300)
+  .height(50)
 Text('查看回调内容：').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
-    .width(300)
-    .height(70)
+  .width(300)
+  .height(70)
 ```
 
 ![alt text](figures/richeditor_image_aboutToIMEInput2.0.gif)
@@ -362,24 +366,24 @@ RichEditor(this.options1)
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .onPaste(() => {
-        this.controller1.addTextSpan('触发onPaste回调\n', {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
+  })
+  .onPaste(() => {
+    this.controller1.addTextSpan('触发onPaste回调\n', {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .width(300)
-    .height(70)
+  })
+  .width(300)
+  .height(70)
 ```
 
 ### 添加完成剪切前可触发的回调
@@ -391,24 +395,24 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .onCut(() => {
-        this.controller1.addTextSpan('触发onCut回调\n', {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
+  })
+  .onCut(() => {
+    this.controller1.addTextSpan('触发onCut回调\n', {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .width(300)
-    .height(70)
+  })
+  .width(300)
+  .height(70)
 ```
 
 ### 添加完成复制前可触发的回调
@@ -420,24 +424,24 @@ RichEditor(this.options)
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('对此处文本进行复制粘贴操作可触发对应回调。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .onCopy(() => {
-        this.controller1.addTextSpan('触发onCopy回调\n', {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
+  })
+  .onCopy(() => {
+    this.controller1.addTextSpan('触发onCopy回调\n', {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .width(300)
-    .height(70)
+  })
+  .width(300)
+  .height(70)
 ```
 
 ![alt text](figures/richeditor_image_oncut_paste_copy.gif)
@@ -446,45 +450,45 @@ RichEditor(this.options)
 更多事件使用请参考[RichEditor事件](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#事件)。
 
 ## 设置用户预设的样式
-通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle12)设置用户预设的样式。
-  
+通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的样式。
+
 此接口可用于个性化的写作体验，例如可以使用此接口让输入的不同层级标题自动应用相应格式（如一级、二级标题）。
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮,改变组件预设样式。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('点击按钮,改变组件预设样式。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .width(300)
-    .height(60)
+  })
+  .width(300)
+  .height(60)
 Button('setTypingStyle', {
-        buttonStyle: ButtonStyleMode.NORMAL
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.controller.setTypingStyle({
+      fontWeight: 'medium',
+      fontColor: Color.Pink,
+      fontSize: 15,
+      fontStyle: FontStyle.Italic,
+      decoration: {
+        type: TextDecorationType.Underline,
+        color: Color.Gray
+      }
     })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.controller.setTypingStyle({
-            fontWeight: 'medium',
-            fontColor: Color.Pink,
-            fontSize: 15,
-            fontStyle: FontStyle.Italic,
-            decoration: {
-                type: TextDecorationType.Underline,
-                color: Color.Gray
-            }
-        })
-    })
+  })
 ```
 
 ![alt text](figures/richeditor_image_setTypingStyle.gif)
 
 ## 设置组件内的内容选中时部分背板高亮
-通过[setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection12)设置组件内的内容选中时部分背板高亮。
+通过[setSelection](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#setselection11)设置组件内的内容选中时部分背板高亮。
 
 此接口可用与文本聚焦效果，例如当用户点击某个文本段落的标题或摘要时，可通过该接口自动选中并高亮出对应正文内容。
 
@@ -492,24 +496,24 @@ Button('setTypingStyle', {
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮在此处选中0-2位置的文本。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('点击按钮在此处选中0-2位置的文本。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .width(300)
-    .height(60)
+  })
+  .width(300)
+  .height(60)
 Button('setSelection(0,2)', {
-        buttonStyle: ButtonStyleMode.NORMAL
-    })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.controller.setSelection(0, 2)
-    })
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.controller.setSelection(0, 2)
+  })
 ```
 
 ![alt text](figures/richeditor_image_set_selection.gif)
@@ -523,24 +527,24 @@ Button('setSelection(0,2)', {
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮在此处添加text。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('点击按钮在此处添加text。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .width(300)
-    .height(100)
+  })
+  .width(300)
+  .height(100)
 Button('addTextSpan', {
-        buttonStyle: ButtonStyleMode.NORMAL
-    })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.controller.addTextSpan('新添加一段文字。')
-    })
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.controller.addTextSpan('新添加一段文字。')
+  })
 ```
 
 ![alt text](figures/richeditor_image_add_text.gif)
@@ -554,28 +558,28 @@ Button('addTextSpan', {
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮在此处添加image。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('点击按钮在此处添加image。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .width(300)
-    .height(100)
+  })
+  .width(300)
+  .height(100)
 Button('addImageSpan', {
-        buttonStyle: ButtonStyleMode.NORMAL
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.controller.addImageSpan($r("app.media.startIcon"), {
+      imageStyle: {
+        size: ["57px", "57px"]
+      }
     })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.controller.addImageSpan($r("app.media.startIcon"), {
-            imageStyle: {
-                size: ["57px", "57px"]
-            }
-        })
-    })
+  })
 ```
 
 ![alt text](figures/richeditor_image_add_image.gif)
@@ -588,62 +592,65 @@ Button('addImageSpan', {
 该接口内可通过[RichEditorBuilderSpanOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#richeditorbuilderspanoptions11)设置在组件中添加builder的位置，省略或者为异常值时，则添加builder到所有内容的最后位置。
 
 ```ts
+private my_builder: CustomBuilder = undefined
+
 @Builder
 TextBuilder() {
-    Row() {
-            Image($r('app.media.startIcon')).width(50).height(50).margin(16)
-            Column() {
-                Text("文本文档.txt").fontWeight(FontWeight.Bold).fontSize(16)
-                Text("123.45KB").fontColor('#8a8a8a').fontSize(12)
-            }.alignItems(HorizontalAlign.Start)
-        }.backgroundColor('#f4f4f4')
-        .borderRadius("20")
-        .width(220)
+  Row() {
+    Image($r('app.media.startIcon')).width(50).height(50).margin(16)
+    Column() {
+      Text("文本文档.txt").fontWeight(FontWeight.Bold).fontSize(16)
+      Text("123.45KB").fontColor('#8a8a8a').fontSize(12)
+    }.alignItems(HorizontalAlign.Start)
+  }.backgroundColor('#f4f4f4')
+  .borderRadius("20")
+  .width(220)
 }
 
 Button('addBuilderSpan', {
-        buttonStyle: ButtonStyleMode.NORMAL
-    })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.my_builder = () => {
-            this.TextBuilder()
-        }
-        this.controller.addBuilderSpan(this.my_builder)
-    })
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.my_builder = () => {
+      this.TextBuilder()
+    }
+    this.controller.addBuilderSpan(this.my_builder)
+  })
 ```
 ![alt text](figures/richeditor_image_add_builder_span2.0.gif)   
 
 ## 添加SymbolSpan内容
 可通过[addSymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#addsymbolspan11)添加Symbol内容。此接口可用于特殊符号添加与展示，例如在编辑学术论文时，此接口可用于添加各种数学符号。
+
 添加Symbol内容时，如果组件内有光标闪烁，则插入Symbol后光标位置更新为新插入Symbol的右侧。
 Symbol内容暂不支持手势、复制、拖拽处理。
 
 ```ts
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮在此处添加symbol。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('点击按钮在此处添加symbol。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .width(300)
-    .height(100)
+  })
+  .width(300)
+  .height(100)
 Button('addSymbolSpan', {
-        buttonStyle: ButtonStyleMode.NORMAL
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.controller.addSymbolSpan($r("sys.symbol.basketball_fill"), {
+      style: {
+        fontSize: 30
+      }
     })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.controller.addSymbolSpan($r("sys.symbol.basketball_fill"), {
-            style: {
-                fontSize: 30
-            }
-        })
-    })
+  })
 ```
 ![alt text](figures/richeditor_image_add_SymbolSpan.gif)
 
@@ -657,37 +664,36 @@ controller: RichEditorController = new RichEditorController();
 options: RichEditorOptions = { controller: this.controller }
 controller1: RichEditorController = new RichEditorController();
 options1: RichEditorOptions = { controller: this.controller1 }
-//定义两个富文本组件
+// 创建两个富文本组件
 
 RichEditor(this.options)
-    .onReady(() => {
-        this.controller.addTextSpan('点击按钮获取此处span信息。', {
-            style: {
-                fontColor: Color.Black,
-                fontSize: 15
-            }
-        })
+  .onReady(() => {
+    this.controller.addTextSpan('点击按钮获取此处span信息。', {
+      style: {
+        fontColor: Color.Black,
+        fontSize: 15
+      }
     })
-    .width(300)
-    .height(50)
+  })
+  .width(300)
+  .height(50)
 Text('查看getSpans返回值：').fontSize(10).fontColor(Color.Gray).width(300)
 RichEditor(this.options1)
-    .width(300)
-    .height(50)
+  .width(300)
+  .height(50)
 Button('getSpans', {
-        buttonStyle: ButtonStyleMode.NORMAL
+  buttonStyle: ButtonStyleMode.NORMAL
+})
+  .height(30)
+  .fontSize(13)
+  .onClick(() => {
+    this.controller1.addTextSpan(JSON.stringify(this.controller.getSpans()), {
+      style: {
+        fontColor: Color.Gray,
+        fontSize: 10
+      }
     })
-    .height(30)
-    .fontSize(13)
-    .onClick(() => {
-        this.controller1.addTextSpan(JSON.stringify(this.controller.getSpans()), {
-            style: {
-                fontColor: Color.Gray,
-                fontSize: 10
-            }
-        })
-
-    })
+  })
 ```
 ![alt text](figures/richeditor_image_getspan.gif)
 <!--RP1--><!--RP1End-->
