@@ -163,7 +163,7 @@ hideNonSecureWindows
 
 **变更原因**
 
-无法获取EmbeddedExtension组件的大小和位置信息，不满足开发者业务诉求。
+EmbeddedExtension组件所在的应用窗口移动的场景下，无法获取该组件的大小和位置信息，不满足开发者业务诉求。
 
 **变更影响**
 
@@ -183,7 +183,7 @@ API 14
 
 **变更的接口/组件**
 
-properties
+WindowProxy的properties属性
 
 **适配指导**
 
