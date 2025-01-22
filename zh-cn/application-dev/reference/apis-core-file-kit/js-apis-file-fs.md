@@ -4648,7 +4648,6 @@ copySignal.onCancel().then(() => {
 **示例：**
 
   ```ts
-  import { fileIo as fs } from '@kit.CoreFileKit';
   import { TaskSignal } from '@kit.CoreFileKit';
   let copySignal: fs.TaskSignal = new TaskSignal();
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
