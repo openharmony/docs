@@ -307,14 +307,14 @@ USB管理新增支持检查应用程序是否有权访问USB配件。（[API参�
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/code-v5.0.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/code-v5.0.1-Release.tar.gz.sha256) | 42.7 GB |
-| Hi3861解决方案（二进制）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_pegasus.tar.gz.sha256) | 27.2 MB |
-| Hi3516解决方案-LiteOS（二进制） | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.4 MB |
-| Hi3516解决方案-Linux（二进制）  | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/hispark_taurus_Linux.tar.gz.sha256) | 221.1 MB |
-| RK3568标准系统解决方案（二进制）        | 5.0.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/dayu200_standard_arm32.tar.gz.sha256) | 12.7 GB |
-| 标准系统Public SDK包（Mac）             | 5.0.1.111 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
-| 标准系统Public SDK包（Mac-M1）             | 5.0.1.111  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
-| 标准系统Public SDK包（Windows/Linux）   | 5.0.1.111   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.1-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 2.5 GB |
+| 全量代码（标准、轻量和小型系统）        | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
+| Hi3861解决方案（二进制）        | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
+| Hi3516解决方案-LiteOS（二进制） | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
+| Hi3516解决方案-Linux（二进制）  | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
+| RK3568标准系统解决方案（二进制）        | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
+| 标准系统Public SDK包（Mac）             | 5.0.2.123 | *发布上传中* | *发布上传中* | NA |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.2.123  | *发布上传中* | *发布上传中* | NA |
+| 标准系统Public SDK包（Windows/Linux）   | 5.0.2.123   | *发布上传中* | *发布上传中* | NA |
 
 
 ## 修复缺陷列表
@@ -322,9 +322,14 @@ USB管理新增支持检查应用程序是否有权访问USB配件。（[API参�
 **表3** 修复缺陷ISSUE列表
 
 | ISSUE单 | 问题描述 | 
-| -------- | -------- |
-
-
+| I9SXZ8 | 进程com.ohos.contacts小概率出现因THREAD_BLOCK_6S卡在libark_jsruntime.so导致的appfreez。 |
+| IA6RH6 | 进程com.ohos.settings有较高概率出现因THREAD_BLOCK_6S卡在libbtframework.z.so导致的appfreeze。 |
+| IASDWO | 通过浏览器访问微博首页的滑动帧率低于规格基线。 |
+| IAZYOO | RK3568开发板在执行WuKong整机随机压力测试过程有较高概率出现卡死现象。 |
+| IB4L3E | 进程com.ohos.camera有较高概率出现因LIFECYCLE_TIMEOUT卡在libcamera_framework.z.so导致的appfreeze。 |
+| IAP85P | 启动进程优先级过低有小概率会被优先kill掉导致出现sysfreeze。 |
+| I9SXZ8 | 进程com.ohos.contacts小概率因THREAD_BLOCK_6S卡在libark_jsruntime.so出现appfreeze。 |
+| IB36B2 | 进程com.ohos.mms小概率出现jscrash，问题栈为close。 |
 
 
 ## 遗留缺陷列表
@@ -333,4 +338,9 @@ USB管理新增支持检查应用程序是否有权访问USB配件。（[API参�
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
+| IANQF3 | 在执行WuKong压测过程有较高概率出现重启现象。 | 问题出现会导致设备重启。<br/>该问题暂时无法规避。 | 2025年2月15日 | 
+| IBJ6LH | 因新引入安全校验机制导致删除多张图片的处理时长可能过长，影响体验。 | 不影响使用，无需规避。 | 2025年2月15日 | 
+| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年2月15日 | 
+| IBE36X | render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年2月15日 | 
+| IBDPFF | 进程intell_voice_service下的SaOndemand线程小概率出现cppcrash，崩溃栈：libintell_voice_server.z.so | 系统异常，用户无感知。 | 2025年2月15日 | 
 
