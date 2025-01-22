@@ -7808,7 +7808,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setExclusivelyHighlighted<sup>16+<sup>
 
-setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise<void>;
+setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;;
 
 设置窗口独占激活态属性。独占激活态表示窗口获焦时，会导致当前父子窗口链中处于激活态的其他窗口失去激活态。使用Promise异步回调。
 此接口不对主窗、模态窗、dialog窗口生效。
