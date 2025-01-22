@@ -2455,24 +2455,6 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
-InflateBackInputCallback的说明：
-
-InflateBackInputCallback = (inDesc: object) => ArrayBuffer
-
-| 名称   | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| inDesc | object | 是   | 用户定义数据对象 |
-
-InflateBackOutputCallback的说明：
-
-InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
-
-| 名称    | 类型        | 必填 | 说明                   |
-| ------- | ----------- | ---- | ---------------------- |
-| outDesc | object      | 是   | 用户定义数据对象       |
-| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
-| length  | number      | 是   | 写入输出缓冲区的长度。 |
-
 **返回值：**
 
 | 类型                                           | 说明                        |
@@ -2624,6 +2606,52 @@ async function demo() {
   inflateBackTest();
 }
 ```
+
+### InflateBackInputCallback<sup>12+</sup>
+
+type InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+用于输入数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| inDesc | object | 是   | 用户定义数据对象。 |
+
+**返回值：**
+
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| ArrayBuffer | 从输入数据源成功读取的内容缓冲区。 |
+
+### InflateBackOutputCallback<sup>12+</sup>
+
+type InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+用于输出数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型        | 必填 | 说明                   |
+| ------- | ----------- | ---- | ---------------------- |
+| outDesc | object      | 是   | 用户定义数据对象。     |
+| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
+| length  | number      | 是   | 写入输出缓冲区的长度。 |
+
+**返回值：**
+
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| number | 输出缓冲区的字节数。 |
 
 ### inflate<sup>12+</sup>
 
