@@ -7724,6 +7724,139 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setWindowShadowRadius<sup>16+</sup>
+
+setWindowShadowRadius(radius: number): void
+
+设置子窗或悬浮窗窗口边缘阴影的模糊半径，此接口仅支持在2in1设备或平板设备上使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                          |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.  |
+
+**示例：**
+
+```ts
+try {
+  windowClass.setWindowShadowRadius(4.0);
+} catch (exception) {
+  console.error(`Failed to set shadow. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setWindowCornerRadius<sup>16+</sup>
+
+setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
+
+设置子窗或悬浮窗的圆角半径值，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+圆角半径值过大将会导致三键（最大化、最小化、关闭按钮）位置被裁切，且会导致热区不易识别，请根据窗口大小设置合适的圆角半径值。
+
+在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius16)接口可以获得窗口默认圆角半径值。
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                 |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| cornerRadius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，单位为vp，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try{
+  let promise = windowClass.setWindowCornerRadius(1.0f);
+  promise.then(() => {
+    console.info('Succeeded in setting window corner radius.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window corner radius. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
+```
+
+### getWindowCornerRadius<sup>16+</sup>
+
+getWindowCornerRadius(): number;
+
+获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius16)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| number | 当前子窗或悬浮窗的圆角半径值，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.  |
+
+**示例：**
+
+```ts
+try {
+  let cornerRadius = windowClass.getWindowCornerRadius();
+} catch (exception) {
+  console.error(`Failed to get corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
