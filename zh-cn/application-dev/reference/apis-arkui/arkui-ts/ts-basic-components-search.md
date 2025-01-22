@@ -999,12 +999,12 @@ struct SearchExample {
       Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
-          src: $r('app.media.search')
+          src: $r('sys.media.ohos_ic_public_search_filled')
         })
         .cancelButton({
           style: CancelButtonStyle.CONSTANT,
           icon: {
-            src: $r('app.media.cancel')
+            src: $r('sys.media.ohos_ic_public_cancel_filled')
           }
         })
         .width('90%')
