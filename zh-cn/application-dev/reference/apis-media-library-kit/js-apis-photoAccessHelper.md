@@ -4321,6 +4321,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 801<sup>15+</sup>   | Capability not supported.       |
 | 14000011       | System inner fail.         |
 
 **示例：**
