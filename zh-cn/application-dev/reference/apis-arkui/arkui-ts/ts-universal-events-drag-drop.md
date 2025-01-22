@@ -280,7 +280,6 @@ struct Index {
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
   @State imgState: Visibility = Visibility.Visible;
-  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
   @State backGroundColor: Color = Color.Transparent;
@@ -370,18 +369,6 @@ struct Index {
           .width('100%')
           .height(80)
           .textFont({ size: 20 })
-        Column() {
-          Text('change video source')
-        }.draggable(true)
-        .onDragStart((event) => {
-          let video: unifiedDataChannel.Video = new unifiedDataChannel.Video();
-          video.videoUri = '/resources/rawfile/01.mp4';
-          let data: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(video);
-          (event as DragEvent).setData(data);
-          return { builder: () => {
-            this.pixelMapBuilder()
-          }, extraInfo: 'extra info' };
-        })
 
         Column() {
           Text('this is abstract')
@@ -445,12 +432,6 @@ struct Index {
               this.targetText = plainText.textContent;
             })
           })
-
-        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
-          .width('100%')
-          .height(200)
-          .controls(true)
-          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
 
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')

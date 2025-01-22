@@ -1263,133 +1263,144 @@ MIFARE Ultralight标签类型的定义。
 | TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight类型。   |
 | TYPE_ULTRALIGHT_C | 2      | MIFARE UltralightC 类型。 |
 
-## NfcATag
+## NfcATag<sup>7+</sup>
 
 type NfcATag = _NfcATag
 
 获取NfcATag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NfcATag](./js-apis-nfctech.md#nfcatag) | NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问。 |
 
-## NfcBTag
+## NfcBTag<sup>7+</sup>
 
 type NfcBTag = _NfcBTag
 
 获取NfcBTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NfcBTag](./js-apis-nfctech.md#nfcbtag) | NfcBTag 提供 NFC-B(ISO 14443-3B)技术的属性和I/O操作的访问。 |
 
-## NfcFTag
+## NfcFTag<sup>7+</sup>
 
 type NfcFTag = _NfcFTag
 
 获取NfcFTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NfcFTag](./js-apis-nfctech.md#nfcftag) | NfcFTag 提供对 NFC-F(JIS 6319-4)技术的属性和I/O操作的访问。 |
 
-## NfcVTag
+## NfcVTag<sup>7+</sup>
 
 type NfcVTag = _NfcVTag
 
 获取NfcVTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_NfcATag](./js-apis-nfctech.md#nfcvtag) | NfcVTag 提供对 NFC-V(ISO 15693)技术的属性和I/O操作的访问。 |
+| [_NfcVTag](./js-apis-nfctech.md#nfcvtag) | NfcVTag 提供对 NFC-V(ISO 15693)技术的属性和I/O操作的访问。 |
 
-## IsoDepTag
+## IsoDepTag<sup>9+</sup>
 
 type IsoDepTag = _IsoDepTag
 
 获取IsoDepTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | IsoDepTag 提供 ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问。 |
 
-## NdefTag
+## NdefTag<sup>9+</sup>
 
 type NdefTag = _NdefTag
 
 获取NdefTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefTag](./js-apis-nfctech.md#ndeftag9) | 提供对已格式化为NDEF的NFC标签的数据和操作的访问。 |
 
-## MifareClassicTag
+## MifareClassicTag<sup>9+</sup>
 
 type MifareClassicTag = _MifareClassicTag
 
 获取MifareClassicTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_MifareClassicTag](./js-apis-nfctech.md#mifareclassictag9) | MifareClassicTag提供对MIFARE Classic属性和I/O操作的访问。 |
 
-## MifareUltralightTag
+## MifareUltralightTag<sup>9+</sup>
 
 type MifareUltralightTag = _MifareUltralightTag;
 
 获取MifareUltralightTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_MifareUltralightTag](./js-apis-nfctech.md#mifareultralighttag9) | MifareUltralightTag 提供对MIFARE Ultralight属性和I/O操作的访问。 |
 
-## NdefFormatableTag
+## NdefFormatableTag<sup>9+</sup>
 
 type NdefFormatableTag = _NdefFormatableTag
 
 获取NdefFormatableTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
 
-## NdefMessage
+## NdefMessage<sup>9+</sup>
 
 type NdefMessage = _NdefMessage
 
 获取NdefMessage。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefMessage](./js-apis-nfctech.md#ndefmessage9) | 获取NDEF消息中的所有记录。 |
 
-## TagSession
+## TagSession<sup>7+</sup>
 
 type TagSession = _TagSession
 
 获取TagSession。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |

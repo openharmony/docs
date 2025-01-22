@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
+Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -2342,10 +2342,6 @@ workerPort.onmessage = (d: MessageEvents): void => {
     console.log("post message is function");
   }
   // workerPort.postMessage(func1); 传递func1发生序列化错误
-  // let obj1: obj | null = null;
-  // if (obj1) {
-  //   workerPort.postMessage(obj1 as obj);  //传递obj1发生序列化错误
-  // }
   let obj2 = new MyModel();
   workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }

@@ -5,7 +5,7 @@
 
 When building a UI with NDK APIs, you need to create placeholder components in the ArkTS page for mounting components created by the NDK APIs. The placeholder component type is [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), which can bind a [NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md) object. This object can be passed to the native side through the Node-API for mounting and displaying native components.
 
-- The usage of placeholder components is the same as other built-in ArkTS components.
+- The usage of placeholder components is the same as other built-in ArkTS components. For the sample code, see [Example](#example).
   ```ts
   import { NodeContent } from '@kit.ArkUI';
   
@@ -245,11 +245,11 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    Corresponding implementation file:
    ```cpp
    // NativeEntry.cpp
-   #include "NativeEntry.h"
-
+   
    #include <arkui/native_node_napi.h>
    #include <hilog/log.h>
    #include <js_native_api.h>
+   #include "NativeEntry.h"
    
    namespace NativeModule {
    
@@ -280,14 +280,18 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    } // namespace NativeModule
    ```
-
+   
+   
    When using the C APIs provided by the NDK, you need to add a reference to **libace_ndk.z.so** in the **CMakeLists.txt** file, as shown below. Here, **entry** is the name of the dynamic library exported by the project, such as the default name **libentry.so** used in this example.
+   
    ```
    target_link_libraries(entry PUBLIC libace_napi.z.so libace_ndk.z.so)
    ```
 
 4. Since the NDK provides C APIs, to simplify programming and project management in an object-oriented manner, it is recommended that you use C++ for secondary encapsulation. The following example shows the encapsulation classes required for the list and text components on the example page.
+   
    (1) Obtain the entry module of ArkUI in the NDK API [ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md), which provides a series of function pointers for component creation, tree construction, attribute setting, and event registration.
+   
    ```c
    // NativeModule.h
    // Provide encapsulated APIs for obtaining ArkUI modules on the native side.
@@ -326,9 +330,9 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    #endif // MYAPPLICATION_NATIVEMODULE_H
    ```
-
-   (2) Provide base class objects for list and text components to encapsulate common properties and events.
-
+   
+      (2) Provide base class objects for list and text components to encapsulate common properties and events.
+   
    ```c
    // ArkUIBaseNode.h
    // Provide a base class for component tree operations.
@@ -400,7 +404,7 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    #endif // MYAPPLICATION_ARKUIBASENODE_H
    ```
-
+   
    ```c
    // ArkUINode.h
    // Provide encapsulation of common properties and events.
@@ -469,9 +473,9 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    #endif // MYAPPLICATION_ARKUINODE_H
    ```
-
-   (3) Implement the list component.
-
+   
+      (3) Implement the list component.
+   
    ```c
    // ArkUIListNode.h
    // Provide encapsulation for the list component. 
@@ -502,9 +506,9 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    #endif // MYAPPLICATION_ARKUILISTNODE_H
    ```
-
-   (4) Implement the list item component.
-
+   
+      (4) Implement the list item component.
+   
    ```c
    // ArkUIListItemNode.h
    // Provide an encapsulation class for list items
@@ -524,9 +528,9 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    #endif // MYAPPLICATION_ARKUISTACKNODE_H
    ```
-
-   (5) Implement the text component.
-
+   
+      (5) Implement the text component.
+   
    ```c
    // ArkUITextNode.h
    // Implement an encapsulation class for the text component.
@@ -572,7 +576,7 @@ The following example demonstrates how to use **ContentSlot** to mount a native 
    
    #endif // MYAPPLICATION_ARKUITEXTNODE_H
    ```
-
+   
 5. Complete the **CreateTextListExample** function from step 3 to create and mount the display of the native text list.
    ```c
    // NormalTextListExample.h

@@ -5470,7 +5470,9 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能，使用Promise异步回调，仅2in1设备可用。
+主窗口调用，实现最大化功能，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5988,7 +5990,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 setWindowTitleMoveEnabled(enabled: boolean): void
 
-禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，仅对2in1设备生效，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。
+禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，仅对2in1设备生效，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -6014,12 +6016,14 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 **示例：**
 
 ```ts
-try {
-  let enabled = false;
-  windowClass.setWindowTitleMoveEnabled(enabled);
-} catch (exception) {
-  console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let enabled = false;
+    windowClass.setWindowTitleMoveEnabled(enabled);
+  } catch (exception) {
+    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
 ```
 
 ### setSubWindowModal<sup>12+</sup>
@@ -6219,9 +6223,9 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 ### setDecorButtonStyle<sup>14+</sup>
 
-setDecorButtonStyle(decorStyle: DecorButtonStyle): void
+setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
-设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
+设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -6231,7 +6235,7 @@ setDecorButtonStyle(decorStyle: DecorButtonStyle): void
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
+| dectorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | 是   | 要设置的装饰栏按钮样式。 |
 
 **错误码：**
 
@@ -6249,19 +6253,21 @@ setDecorButtonStyle(decorStyle: DecorButtonStyle): void
 ```ts
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
-try {
-  let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
-  let style: window.DecorButtonStyle = {
-    colorMode: colorMode,
-    buttonBackgroundSize: 24,
-    spacingBetweenButtons: 12,
-    closeButtonRightMargin: 20
-  };
-  windowClass.setDecorButtonStyle(style);
-  console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
-} catch (exception) {
-  console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+    let style: window.DecorButtonStyle = {
+      colorMode: colorMode,
+      buttonBackgroundSize: 24,
+      spacingBetweenButtons: 12,
+      closeButtonRightMargin: 20
+    };
+    windowClass.setDecorButtonStyle(style);
+    console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+  } catch (exception) {
+    console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
 ```
 
 ### getDecorButtonStyle<sup>14+</sup>
@@ -6540,6 +6546,8 @@ setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVi
 
 此接口仅支持2in1设备。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
@@ -6601,6 +6609,8 @@ setWindowTopmost(isWindowTopmost: boolean): Promise&lt;void&gt;
 应用可通过自定义快捷键实现主窗口的置顶和取消置顶。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -6689,8 +6699,6 @@ raiseToAppTop(): Promise&lt;void&gt;
 
 应用子窗口调用，提升应用子窗口到顶层，只在当前应用同一个父窗口下的相同类型子窗范围内生效。使用Promise异步回调。
 
-**模型约束：** 此接口仅可在Stage模型下使用。
-
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **返回值：**
@@ -6730,8 +6738,6 @@ setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
 禁止/使能子窗点击抬升功能。使用Promise异步回调。
 
 通常来说，点击一个子窗口，会将该子窗口显示抬升到应用内同一个父窗口下同类型子窗口的最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口进行抬升，而是保持不变。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -10611,7 +10617,7 @@ removeStartingWindow(): Promise&lt;void&gt;
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager serivce works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **示例：**
 
@@ -10636,7 +10642,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowRectAutoSave<sup>14+</sup>
 
-setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
+setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 设置主窗的尺寸记忆是否启用，使用Promise异步回调，仅对2in1设备生效。
 
@@ -10667,7 +10673,7 @@ setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enable | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
+| enabled | boolean | 是   | 设置主窗口的尺寸记忆是否启用，true为启用，false为不启用。 |
 
 
 **返回值：**

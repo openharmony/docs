@@ -51,7 +51,7 @@ function stringToArray(str: string): Uint8Array {
 }
 
 let query: asset.AssetMap = new Map();
-query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // Specify the alias of the asset to remove. If no alias is specified, all assets will be removed.
+query.set(asset.Tag.ALIAS, stringToArray('demo_alias')); // Specify the asset alias to remove a single asset. To remove all assets, leave the alias unspecified.
 try {
   asset.remove(query).then(() => {
     console.info(`Asset removed successfully.`);

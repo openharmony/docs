@@ -174,6 +174,8 @@ getRdbStore目前不支持多线程并发操作。
 | 14800017  | Config changed. |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort.   |
+| 14800023  | SQLite: Access permission denied.    |
 | 14800027  | SQLite: Attempt to write a readonly database. |
 | 14800028  | SQLite: Some kind of disk I/O error occurred. |
 | 14800029  | SQLite: The database is full. |

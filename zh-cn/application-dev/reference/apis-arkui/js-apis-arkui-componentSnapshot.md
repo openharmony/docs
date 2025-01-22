@@ -37,13 +37,13 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
@@ -110,7 +110,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -121,7 +121,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -199,7 +199,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -306,7 +306,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -395,7 +395,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -406,7 +406,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |

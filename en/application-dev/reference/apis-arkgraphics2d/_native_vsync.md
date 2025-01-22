@@ -187,6 +187,10 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 
 Obtains the VSync period.
 
+The VSync period is refreshed only when the **OH_NativeVSync_FrameCallback** callback is received following a request for a VSync signal via **OH_NativeVSync_RequestFrame**.
+
+To obtain the VSync period for the first time using this function, you need to call **OH_NativeVSync_RequestFrame** to request a VSync signal. Once the **OH_NativeVSync_FrameCallback** callback is received, the vsync period can be obtained.
+
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
 **Parameters**
@@ -268,6 +272,8 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 **Description**
 
 Destroys an **OH_NativeVSync** instance.
+
+Once the **OH_NativeVSync** pointer is destroyed, it must not be used to prevent dangling pointer problems. Pay special attention to the management of the **OH_NativeVSync** pointer in concurrent multithreaded scenarios. 
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 

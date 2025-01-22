@@ -1,4 +1,4 @@
-# Structure of the app Tag
+# Internal Structure of the app Tag
 
 
 The **app** tag contains application-wide configuration. The following table describes its internal structure.

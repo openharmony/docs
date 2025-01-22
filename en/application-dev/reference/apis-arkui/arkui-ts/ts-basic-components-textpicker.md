@@ -259,8 +259,32 @@ Triggered when an item in the picker is selected. When the picker contains text 
 | value  | string \| string[]<sup>10+</sup> | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
 | index  | number \| number[]<sup>10+</sup> | Yes  | Index of the selected item. For a multi-column picker, **index** is of the array type.|
 
+### onScrollStop<sup>14+</sup>
+
+onScrollStop(callback: (value: string \| string[], index: number \| number[]) =&gt; void)
+
+Triggered when the scrolling in the text picker stops.
+
+If the scrolling is initiated by a gesture, this event is triggered when the finger is lifted from the screen and the scrolling stops.
+
+When the picker contains text only or a combination of images and text, **value** indicates the text of the selected item. When the picker contains images only, **value** is empty.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description                                             |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string \| string[] | Yes  | Text of the selected item. For a multi-column picker, **value** is of the array type.  |
+| index  | number \| number[] | Yes  | Index of the selected item. For a multi-column picker, **index** is of the array type.|
 
 ## Example
+
+### Example 1: Setting the Number of Columns in the Picker
+
+This example demonstrates how to set **range** to implement single-column or multi-column text pickers.
 
 ```ts
 // xxx.ets
@@ -278,19 +302,19 @@ struct TextPickerExample {
   private multi: string[][] = [this.apfruits, this.orfruits, this.pefruits]
   private cascade: TextCascadePickerRangeContent[] = [
     {
-      text: 'Category 1',
-      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
-        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+      text: 'Asia',
+      children: [{ text: 'China', children: [{ text: 'Beijing' }, { text: 'Shanghai' }, { text: 'Chongqing' }] },
+        { text: 'Japan', children: [{ text: 'Tokyo' }, { text: 'Hokkaido' }, { text: 'Osaka' }] }]
     },
     {
-      text: 'Category 2',
-      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
-        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+      text: 'Europe',
+      children: [{ text: 'Germany', children: [{ text: 'Berlin' }, { text: 'Munich' }, { text: 'Nuremberg' }] },
+        { text: 'France', children: [{ text: 'Paris' }, { text: 'Lille' }, { text: 'Orleans' }] }]
     },
     {
-      text: 'Category 3',
-      children: [{ text: 'Subcategory 1', children: [{ text: 'Subcategory 2' }, { text: 'Subcategory 3' }, { text: 'Subcategory 4' }] },
-        { text: 'Item 1', children: [{ text: ''Item 2' }, { text: ''Item 3' }, { text: ''Item 4' }] }]
+      text: 'Africa',
+      children: [{ text: 'Egypt', children: [{ text: 'Cairo' }, { text: 'Damietta' }, { text: 'Girga' }] },
+        { text: 'Algeria', children: [{ text: 'Alger' }, { text: 'Oran' }, { text: 'Adrar' }] }]
     }
   ]
 
@@ -300,16 +324,25 @@ struct TextPickerExample {
       TextPicker({ range: this.apfruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         }).margin(bott)
 
       TextPicker({ range: this.multi })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker multi-column: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker multi-column: onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         }).margin(bott)
 
       TextPicker({ range: this.cascade })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker multi-column linkage: onChange' + JSON.stringify(value) + ',' + 'index:' + JSON.stringify(index))
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker multi-column linkage: onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
     }
   }
@@ -317,6 +350,10 @@ struct TextPickerExample {
 ```
 
 ![textpicker](figures/textpicker.gif)
+
+### Example 2: Setting the Text Style
+
+This example demonstrates how to configure **disappearTextStyle**, **textStyle**, and **selectedTextStyle** to customize the text style in a text picker.
 
 ```ts
 // xxx.ets
@@ -331,6 +368,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -342,6 +382,10 @@ struct TextPickerExample {
 
 ![textpicker](figures/textpicker1.gif)
 
+### Example 3: Using the No-Divider Style
+
+This example demonstrates how to configure a text picker with no divider by setting **divider** to **null**.
+
 ```ts
 // xxx.ets
 @Entry
@@ -356,6 +400,9 @@ struct TextPickerExample {
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
+        })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
         .selectedTextStyle({color: Color.Blue, font: {size: 30, weight: FontWeight.Bolder}})
@@ -365,6 +412,10 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker2.gif)
+
+### Example 3: Using the Divider Style
+
+This example demonstrates how to configure a text picker with a custom divider style by setting **divider** with **DividerOptions**.
 
 ```ts
 // xxx.ets
@@ -379,6 +430,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})
@@ -394,8 +448,13 @@ struct TextPickerExample {
 }
 ```
 ![textpicker](figures/textpicker3.gif)
+
+### Example 5: Setting the Fade Effect
+
+This example demonstrates how to customize the height of the fade effect in a text picker using **gradientHeight**.
+
 ```ts
-// xxx.ets. This example customizes the height the gradient effect for the text picker through gradientHeight().
+// xxx.ets
 @Entry
 @Component
 struct TextPickerExample {
@@ -407,6 +466,9 @@ struct TextPickerExample {
       TextPicker({ range: this.fruits, selected: this.select })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
+        })
+        .onScrollStop((value: string | string[], index: number | number[]) => {
+          console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         })
         .disappearTextStyle({color: Color.Red, font: {size: 15, weight: FontWeight.Lighter}})
         .textStyle({color: Color.Black, font: {size: 20, weight: FontWeight.Normal}})

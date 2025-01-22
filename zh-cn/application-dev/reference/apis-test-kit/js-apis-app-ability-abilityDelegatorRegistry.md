@@ -94,3 +94,73 @@ console.info(`getArguments parameters: ${JSON.stringify(args.parameters)}`);
 console.info(`getArguments testCaseNames: ${args.testCaseNames}`);
 console.info(`getArguments testRunnerClassName: ${args.testRunnerClassName}`);
 ```
+
+## AbilityDelegator
+
+type AbilityDelegator = _AbilityDelegator
+
+AbilityDelegator模块。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityDelegator](js-apis-inner-application-abilityDelegator.md) | AbilityDelegator模块。 |
+
+## AbilityDelegatorArgs
+
+type AbilityDelegatorArgs = _AbilityDelegatorArgs
+
+AbilityDelegatorArgs模块。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) | AbilityDelegatorArgs模块。 |
+
+## AbilityMonitor
+
+type AbilityMonitor = _AbilityMonitor
+
+AbilityMonitor模块。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityMonitor](../apis-ability-kit/js-apis-inner-application-abilityMonitor.md) | AbilityMonitor模块。 |
+
+## ShellCmdResult
+
+type ShellCmdResult = _ShellCmdResult
+
+ShellCmdResult模块。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ShellCmdResult](js-apis-inner-application-shellCmdResult.md) | ShellCmdResult模块。 |
+
+## AbilityStageMonitor<sup>14+</sup>
+
+type AbilityStageMonitor = _AbilityStageMonitor
+
+AbilityStageMonitor模块。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityStageMonitor](../apis-ability-kit/js-apis-inner-application-abilityStageMonitor.md) | AbilityStageMonitor模块。 |

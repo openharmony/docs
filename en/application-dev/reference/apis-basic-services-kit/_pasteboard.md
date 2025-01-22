@@ -23,12 +23,12 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 
 | Name| Description|
 | -------- | -------- |
-| typedef enum [Pasteboard_NotifyType](#pasteboard_notifytype) [Pasteboard_NotifyType](#pasteboard_notifytype) | Defines an enum for the data change types of the pasteboard. |
+| typedef enum [Pasteboard_NotifyType](#pasteboard_notifytype) [Pasteboard_NotifyType](#pasteboard_notifytype) | Defines an enum for data change types of the pasteboard. |
 | typedef void(\* [Pasteboard_Notify](#pasteboard_notify)) (void \*context, [Pasteboard_NotifyType](#pasteboard_notifytype) type) | Defines a callback to be invoked when the pasteboard content changes. |
 | typedef void(\* [Pasteboard_Finalize](#pasteboard_finalize)) (void \*context) | Defines a callback to be invoked to release the context when the pasteboard observer object is destroyed. |
 | typedef struct [OH_PasteboardObserver](#oh_pasteboardobserver) [OH_PasteboardObserver](#oh_pasteboardobserver) | Defines the pasteboard observer. |
 | typedef struct [OH_Pasteboard](#oh_pasteboard) [OH_Pasteboard](#oh_pasteboard) | Define the pasteboard object to operate the system pasteboard. |
-| typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | Defines an enum for error codes. |
+| typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | Defines an enum for the error codes used in the **Pasteboard** module. |
 
 
 ### Enums
@@ -57,7 +57,7 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | OH_UdmfData \* [OH_Pasteboard_GetData](#oh_pasteboard_getdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, int \*status) | Obtains data from the pasteboard. |
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | Writes the unified data object to the pasteboard. |
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | Clears data from the pasteboard. |
-| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | Obtains the MIME type from the pasteboard. |
+| char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | Obtains the MIME type from the pasteboard.  | 
 
 
 ## Type Description
@@ -164,12 +164,12 @@ Enumerates the error codes.
 
 | Value| Description|
 | -------- | -------- |
-| ERR_OK  | The operation is successful. ||
-| ERR_PERMISSION_ERROR  | Permission verification has failed. ||
-| ERR_INVALID_PARAMETER  | Invalid parameter. ||
-| ERR_DEVICE_NOT_SUPPORTED  | The device capability is not supported. ||
-| ERR_INNER_ERROR  | Internal error. ||
-| ERR_BUSY  | System busy. ||
+| ERR_OK  | The operation is successful. |
+| ERR_PERMISSION_ERROR  | Permission verification has failed. |
+| ERR_INVALID_PARAMETER  | Invalid parameter. |
+| ERR_DEVICE_NOT_SUPPORTED  | The device capability is not supported. |
+| ERR_INNER_ERROR  | Internal error. |
+| ERR_BUSY  | System busy. |
 
 
 ### Pasteboard_NotifyType
@@ -185,8 +185,8 @@ Enumerates the data change types of the pasteboard.
 
 | Value| Description|
 | -------- | -------- |
-| NOTIFY_LOCAL_DATA_CHANGE  | The pasteboard data of the local device is changed. ||
-| NOTIFY_REMOTE_DATA_CHANGE  | The pasteboard data of a non-local device on the network is changed. ||
+| NOTIFY_LOCAL_DATA_CHANGE  | The pasteboard data of the local device is changed. |
+| NOTIFY_REMOTE_DATA_CHANGE  | The pasteboard data of a non-local device on the network is changed. |
 
 
 ## Function Description
@@ -211,7 +211,7 @@ Clears data from the pasteboard.
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode). Returns **ERR_OK** if the operation is successful. Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -314,7 +314,7 @@ Obtains the pasteboard data source.
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode). Returns **ERR_OK** if the operation is successful. Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 
@@ -342,7 +342,7 @@ Checks whether the pasteboard contains data.
 
 **Returns**
 
-Returns **true** if there is data in the pasteboard; returns **false** otherwise.
+Returns a Boolean value indicating whether the pasteboard contains data. The value **true** means the pasteboard contains data; the value **false** means the opposite.
 
 **See**
 
@@ -369,7 +369,7 @@ Checks whether the pasteboard contains data of the specified type.
 
 **Returns**
 
-Returns **true** if the pasteboard contains data of the specified type; returns **false** otherwise.
+Returns a Boolean value indicating whether the pasteboard contains data of the specified type. The value **true** means the pasteboard contains data of the specified type; the value **false** means the opposite.
 
 **See**
 
@@ -395,7 +395,7 @@ Checks whether the pasteboard data comes from remote devices.
 
 **Returns**
 
-Returns **true** if the pasteboard data comes from the remote devices; returns **false** otherwise.
+Returns a Boolean value indicating whether the data is from a remote device. The value **true** means the data is from a remote device. The value **false** means the data is from the local device.
 
 **See**
 
@@ -596,8 +596,8 @@ Obtains the MIME type from the pasteboard.
 
 | Name| Description|
 | -------- | -------- |
-| pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance. |
-| count | Pointer to the number of data types obtained. |
+| pasteboard | Pointer to an [OH_Pasteboard](#oh_pasteboard) instance.  | 
+| count | Pointer to the number of uniform data types obtained.  | 
 
 **Returns**
 

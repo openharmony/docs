@@ -72,9 +72,9 @@ interface PersonList {
 struct BindContentCoverDemo {
   private personList: Array<PersonList> = [
     { name: 'Wang **', cardnum: '1234***********789' },
-    { name: 'Song*', cardnum: '2345***********789' },
+    { name: 'Song *', cardnum: '2345***********789' },
     { name: 'Xu **', cardnum: '3456***********789' },
-    { name: 'Tang*', cardnum: '4567***********789' }
+    { name: 'Tang *', cardnum: '4567***********789' }
   ];
   // Step 1: Define bindContentCover.
   // Define the state variable to control the visibility of the modal.

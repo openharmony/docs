@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
 
-本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-BundleInfo-sys.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 >
@@ -1861,6 +1861,8 @@ cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的bundleName清理BundleCache，使用callback形式返回结果。
 
+调用方清理自身缓存数据时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.REMOVE_CACHE_FILES
@@ -1913,6 +1915,8 @@ try {
 cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 以异步方法根据给定的bundleName清理BundleCache，使用Promise形式返回结果。
+
+调用方清理自身缓存数据时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4609,14 +4613,16 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
-import { Base } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
-    console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
-
-}).catch((err: Base.BusinessError) => {
-    console.error("GetAllPreinstalledApplicationInfo success errCode is :" + JSON.stringify(err.code));
-});
+try {
+    let data = bundleManager.getAllPreinstalledApplicationInfo();
+    hilog.info(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo success, Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed: %{public}s', message);
+}
 ```
 
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>

@@ -40,6 +40,7 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | showTime<sup>10+</sup> | boolean | No| Whether to display the time item. The value **true** means to display the time item, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | useMilitaryTime<sup>10+</sup> | boolean | No| Whether to display time in 24-hour format. The value **true** means to display time in 24-hour format, and **false** means the opposite.<br>Default value: **false**<br>**NOTE**<br>When the display time is in 12-hour format, the AM/PM zone does not change depending on the hour portion.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | lunarSwitch<sup>10+</sup> | boolean | No| Whether to display the lunar calendar switch. The value **true** means to display the lunar calendar switch, and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| lunarSwitchStyle<sup>14+</sup> | [LunarSwitchStyle](#lunarswitchstyle14) | No| Style of the lunar calendar switch.<br>Default value: **{ selectedColor: $r('sys.color.ohos_id_color_text_primary_actived'), unselectedColor: $r('sys.color.ohos_id_color_switch_outline_off'), strokeColor: Color.White }**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width for the top and bottom items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '14fp', <br>weight: FontWeight.Regular<br>}<br>}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of all items except the top, bottom, and selected items.<br>Default value:<br>{<br>color: '#ff182431',<br>font: {<br>size: '16fp', <br>weight: FontWeight.Regular<br>}<br>}<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| Font color, font size, and font width of the selected item.<br>Default value:<br>{<br>color: '#ff007dff',<br>font: {<br>size: '20vp', <br>weight: FontWeight.Medium<br>}<br>} <br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -61,8 +62,22 @@ Inherited from [DatePickerOptions](ts-basic-components-datepicker.md#datepickero
 | onWillDisappear<sup>12+</sup> | [VoidCallback](ts-types.md#voidcallback12) | No| Event callback when the dialog box is about to disappear.<br>**NOTE**<br>1. The normal timing sequence is as follows: onWillAppear > onDidAppear > (onDateAccept/onCancel/onDateChange) > onWillDisappear > onDidDisappear.<br>2. If the user closes the dialog box immediately after it appears, **onWillDisappear** is invoked before **onDidAppear**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | dateTimeOptions<sup>12+</sup> | [DateTimeOptions](../../apis-localization-kit/js-apis-intl.md#datetimeoptions) | No| Whether to display a leading zero for the hours and minutes. Currently only the configuration of the **hour** and **minute** parameters is supported.<br>Default value:<br>**hour**: In the 24-hour format, it defaults to **2-digit**, which means a leading zero is used; In the 12-hour format, it defaults to **numeric**, which means no leading zero is used.<br>**minute**: defaults to **2-digit**, which means a leading zero is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover mode.<br>Default value: **false**, meaning not to enable the hover mode.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in hover mode.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+
+## LunarSwitchStyle<sup>14+</sup>
+
+Defines the style of the lunar calendar switch in the **DatePickerDialog** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+|  Name | Type                | Mandatory| Description      |
+| ------ |-------------------|-----|----------|
+| selectedColor| [ResourceColor](ts-types.md#resourcecolor) | No  | Background color of the switch when it is on.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_actived')**|
+| unselectedColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Border color of the switch when it is off.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
+| strokeColor     | [ResourceColor](ts-types.md#resourcecolor) | No  | Color of the icon inside the switch.<br>Default value: **Color.White**|
 
 ## PickerDialogButtonStyle<sup>12+</sup>
 
@@ -110,9 +125,9 @@ The exception detection and handling with the selected date comes after that wit
 >
 > For clarity in UI execution context, you are advised to use the [showDatePickerDialog](../js-apis-arkui-UIContext.md#showdatepickerdialog) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-### Example 1
+### Example 1: Displaying a Date Picker Dialog Box
 
-This example shows the basic usage of **DatePickerDialog**.
+This example demonstrates how to display a text picker dialog box when a button is touched.
 
 ```ts
 // xxx.ets
@@ -203,9 +218,9 @@ struct DatePickerDialogExample {
 
 ![DataPickerDialog](figures/DatePickerDialog.gif)
 
-### Example 2
+### Example 2: Customizing the Style
 
-This example shows how to customize the button style.
+In this example, **disappearTextStyle**, **textStyle**, **selectedTextStyle**, **acceptButtonStyle**, and **cancelButtonStyle** are configured to customize the text and button style.
 
 ```ts
 // xxx.ets
@@ -270,7 +285,7 @@ struct DatePickerDialogExample {
 >
 > To implement a fully customized date picker dialog box, create a [custom dialog box](ts-methods-custom-dialog-box.md) and then implement the [\<DatePicker>](ts-basic-components-datepicker.md) component.
 
-### Example 3
+### Example 3: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in hover mode on a foldable device.
 
@@ -325,5 +340,6 @@ struct DatePickerDialogExample {
   }
 }
 ```
+
 
 

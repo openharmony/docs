@@ -712,7 +712,7 @@ animate(options: AnimationOptions, handler: () => void): void
 
 | 参数名   | 类型                             | 必填 | 说明                               |
 | -------- | -------------------------------- | ---- | -----------------------------------|
-| options  | [AnimationOptions](#animationoptions11)                | 是   | 动效参数                           |
+| options  | [AnimationOptions](#animationoptions11)                | 是   | 动效参数。                           |
 | handler  | () => void                         | 是   | 用于修改背板蒙版颜色等属性的回调方法。  |
 
 **示例：**

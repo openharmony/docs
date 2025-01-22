@@ -761,7 +761,7 @@ struct AlphabetIndexerSample {
           .justifyContent(FlexAlign.Center)
 
           Column() {
-            Button ('Collapse')
+            Button('Collapse')
               .margin('5vp')
               .onClick(() => {
                 this.isNeedAutoCollapse = true;

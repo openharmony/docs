@@ -962,7 +962,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：** 仅支持处理图片、视频uri。 |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
@@ -1124,7 +1124,7 @@ async function example() {
   console.info('requestPhotoUrisReadPermissionDemo.');
 
   try {
-    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    let phAccessHelper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
     // 获取需要进行授权的图片/视频uri
     let srcFileUris: Array<string> = [
       'file://fileUriDemo1' // 实际场景请使用真实的uri
@@ -3764,53 +3764,6 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
-### setOrientation<sup>13+</sup>
-
-setOrientation(orientation: number): void
-
-修改图片的旋转角度。
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**参数：**
-
-| 参数名        | 类型      | 必填   | 说明                                 |
-| ---------- | ------- | ---- | ---------------------------------- |
-| orientation | number | 是   | 待修改的图片旋转角度，且只能为0、90、180、270。 |
-
-接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
-
-| 错误码ID | 错误信息 |
-| -------- | ---------------------------------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-
-**示例：**
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function example() {
-  console.info('setOrientationDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  let asset = await fetchResult.getFirstObject();
-  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
-  assetChangeRequest.setOrientation(90);
-  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
-    console.info('apply setOrientation successfully');
-  }).catch((err: BusinessError) => {
-    console.error(`apply setOrientation failed with error: ${err.code}, ${err.message}`);
-  });
-}
-```
-
 ## MediaAlbumChangeRequest<sup>11+</sup>
 
 相册变更请求。
@@ -4555,7 +4508,7 @@ map支持返回的信息：
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-  onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
+  onDataPrepared = (data: image.ImageSource, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4566,7 +4519,7 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 }
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer, map: Map<string, string>) {
+  onDataPrepared = (data: ArrayBuffer, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4577,7 +4530,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 }
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
-  onDataPrepared(data: photoAccessHelper.MovingPhoto, map: Map<string, string>) {
+  onDataPrepared = (data: photoAccessHelper.MovingPhoto, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -5106,8 +5059,6 @@ title参数规格为：
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
-| compatibleMode<sup>13+</sup>      | [CompatibleMode](#compatiblemode13) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
-| mediaAssetProgressHandler<sup>13+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler13) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -5325,7 +5276,7 @@ async function example() {
 | isEditSupported<sup>11+</sup>       | boolean | 否   | 是否支持编辑照片，true表示支持，false表示不支持，默认为true。     |
 | isOriginalSupported<sup>12+</sup>       | boolean | 否   | 是否显示选择原图按钮，true表示显示，false表示不显示，默认为false。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
 | subWindowName<sup>12+</sup>       | string | 否   | 子窗窗口名称。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。     |
-| complteButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | 否   | 完成按钮显示的内容。<br>完成按钮指在界面右下方，用户点击表示图片选择已完成的按钮。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。     |
+| completeButtonText<sup>14+</sup>       | [CompleteButtonText](#completebuttontext14) | 否   | 完成按钮显示的内容。<br>完成按钮指在界面右下方，用户点击表示图片选择已完成的按钮。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。     |
 
 ## PhotoSelectResult
 
@@ -5368,17 +5319,6 @@ async function example() {
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
 
-## CompatibleMode<sup>13+</sup>
-
-配置转码模式。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-| 名称  |  值 |  说明 |
-| ----- | ---- | ---- |
-| FAST_ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
-| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
-
 ## CompleteButtonText<sup>14+</sup>
 
 配置完成按钮显示内容。
@@ -5387,26 +5327,6 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| TEXT_DONE |  0 |  显示“完成”。  |
-| TEXT_SEND    |  1 |  显示“发送”。    |
-| TEXT_ADD |  2 |  显示“添加”。  |
-
-## MediaAssetProgressHandler<sup>13+</sup>
-
-媒体资产进度处理器，应用在onProgress方法中获取媒体资产进度。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-### onProgress<sup>13+</sup>
-
-onProgress(progress: number): void
-
-当所请求的视频资源返回进度时系统会回调此方法。
-
-**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明                       |
-| ------- | ------- | ---- | -------------------------- |
-| progress | number | 是   | 返回的进度百分比，范围为0~100。 |
+| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。  |
+| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。    |
+| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。  |

@@ -203,7 +203,7 @@ Queries information about all existing asynchronous locks.
 ```ts
 let states: ArkTSUtils.locks.AsyncLockState[] = ArkTSUtils.locks.AsyncLock.queryAll();
 if (states.length == 0) {
-    throw new Error ('Test failed: At least one state is expected, but what got is ' + states.length);
+    throw new Error('Test failed: At least one state is expected, but what got is ' + states.length);
 }
 ```
 
@@ -615,6 +615,8 @@ stringify(value: ISendable | null | undefined): string
 
 Converts ISendable data into a JSON string.
 
+Extension: THis API supports conversion to a JSON string from a Map, Set, [collections.Map](./js-apis-arkts-collections.md#collectionsmap), [collections.Set](./js-apis-arkts-collections.md#collectionsset), [HashMap](./js-apis-hashmap.md#hashmap), or [HashSet](./js-apis-hashset.md#hashset).
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -634,11 +636,26 @@ Converts ISendable data into a JSON string.
 **Example**
 
 ```ts
-import { collections } from '@kit.ArkTS';
+import { collections, lang, ArkTSUtils } from '@kit.ArkTS';
 
 let arr = new collections.Array(1, 2, 3);
 let str = ArkTSUtils.ASON.stringify(arr);
 console.info(str);
+// Expected output: '[1,2,3]'
+
+let map = new collections.Map<string, string>();
+map.set("key1", "value1");
+map.set("key2", "value2");
+let str2 = ArkTSUtils.ASON.stringify(map);
+console.info(str2);
+// Expected output: '{"key1":"value1","key2":"value2"}'
+
+let set = new Set<number>();
+set.add(1);
+set.add(2);
+set.add(3);
+let str3 = ArkTSUtils.ASON.stringify(set as Object as lang.ISendable);
+console.info(str3);
 // Expected output: '[1,2,3]'
 ```
 
@@ -670,8 +687,7 @@ Checks whether the passed-in value is of the sendable data type.
 import { ArkTSUtils } from '@kit.ArkTS'
 
 @Sendable
-function sendableFunc()
-{
+function sendableFunc() {
   console.info("sendableFunc")
 }
 

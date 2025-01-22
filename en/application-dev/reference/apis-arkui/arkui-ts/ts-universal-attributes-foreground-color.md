@@ -20,7 +20,7 @@ Sets the foreground color of the component. If the component does not have a for
 
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-types.md#coloringstrategy10) | Yes  | Foreground color. The value can be a specific color or a coloring strategy. Property animations are supported.|
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-appendix-enums.md#coloringstrategy10) | Yes  | Foreground color. The value can be a specific color or a coloring strategy. Property animations are supported.|
 
 ## Example
 
@@ -82,7 +82,7 @@ struct foregroundColorInherit {
     Column() {
       Button('Foreground Color: Set to Orange').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)
       Divider()
-      Button ('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
+      Button('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
     }.foregroundColor(Color.Red)
   }
 }

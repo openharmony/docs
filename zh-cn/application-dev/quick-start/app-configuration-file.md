@@ -180,7 +180,7 @@ configuration标签示例：
 }
 ```
 
-在开发视图的AppScope/resources/base/media/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
+在开发视图的AppScope/resources/base/profile下面定义配置文件configuration.json，其中文件名"configuration"可自定义，需要和configuration标签指定的信息对应。配置文件中列举了当前应用字体大小跟随系统变化的属性。
 
    **表4** configuration标签说明
 

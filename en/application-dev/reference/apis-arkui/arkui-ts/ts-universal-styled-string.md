@@ -125,7 +125,7 @@ Obtains the styles in the specified range of a styled string.
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | Yes  | Subscript that corresponds to the target range in the styled string.|
 | length | number | Yes  | Length of the target range in the styled string.|
-| styledKey | [StyledStringKey](#styledstringkey12) | No  | Style key of the styled string.|
+| styledKey | [StyledStringKey](#styledstringkey) | No  | Style key of the styled string.|
 
 **Return value**
 
@@ -175,7 +175,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 static toHtml(styledString: StyledString): string
 
-Converts a styled string into an HTML-formatted string. The supported styled string keys for conversion, as detailed in [StyledStringKey](#styledstringkey12), include: **StyledStringKey.FONT**, **StyledStringKey.DECORATION**, **StyledStringKey.LETTER_SPACING**, **StyledStringKey.TEXT_SHADOW**, **StyledStringKey.LINE_HEIGHT**, and **StyledStringKey.IMAGE**.
+Converts a styled string into an HTML-formatted string. The supported styled string keys for conversion, as detailed in [StyledStringKey](#styledstringkey), include: **StyledStringKey.FONT**, **StyledStringKey.DECORATION**, **StyledStringKey.LETTER_SPACING**, **StyledStringKey.TEXT_SHADOW**, **StyledStringKey.LINE_HEIGHT**, and **StyledStringKey.IMAGE**.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -358,7 +358,7 @@ This API equally works when the styled string contains an image.
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | Yes  | Subscript that corresponds to the start position of the target range.|
 | length | number | Yes  | Length of the target range.|
-| styledKey | [StyledStringKey](#styledstringkey12) | Yes  | Styled key.|
+| styledKey | [StyledStringKey](#styledstringkey) | Yes  | Styled key.|
 
 **Error codes**
 
@@ -476,6 +476,32 @@ Appends a styled string.
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | other | [StyledString](#styledstring) | Yes  | New styled string.|
 
+
+## StyledStringValue
+
+type StyledStringValue = TextStyle | DecorationStyle | BaselineOffsetStyle | LetterSpacingStyle |
+TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightStyle | UrlStyle | CustomSpan | UserDataSpan | BackgroundColorStyle
+
+Defines the style for a styled string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type | Description  |
+| ------ | ---------- |
+| [TextStyle](#textstyle) | Text style.|
+| [DecorationStyle](#decorationstyle) | Text decorative line style.|
+| [BaselineOffsetStyle](#baselineoffsetstyle) | Text baseline offset style.|
+| [LetterSpacingStyle](#letterspacingstyle) | Text letter spacing style.|
+| [LineHeightStyle](#lineheightstyle) | Text line height style.|
+| [TextShadowStyle](#textshadowstyle) | Text shadow style.|
+| [GestureStyle](#gesturestyle) | Gesture style.|
+| [ParagraphStyle](#paragraphstyle) | Text paragraph style.|
+| [ImageAttachment](#imageattachment) | Image style.|
+| [CustomSpan](#customspan) | Custom span style.|
+| [UserDataSpan](#userdataspan) | User data span style.|
+
 ## StyleOptions
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
@@ -486,8 +512,8 @@ Appends a styled string.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | No  | Start position of the styled string style.|
 | length | number | No  | Length of the styled string style.|
-| styledKey | [StyledStringKey](#styledstringkey12) | Yes  | Style key.|
-| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | Yes  | Style object.|
+| styledKey | [StyledStringKey](#styledstringkey) | Yes  | Style key.|
+| styledValue | [StyledStringValue](#styledstringvalue) | Yes  | Style object.|
 
 ## SpanStyle
 
@@ -499,8 +525,8 @@ Appends a styled string.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | Yes  | Start position of the styled string style.|
 | length | number | Yes  | Length of the styled string style.|
-| styledKey | [StyledStringKey](#styledstringkey12) | Yes  | Style key.|
-| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | Yes  | Style object.|
+| styledKey | [StyledStringKey](#styledstringkey) | Yes  | Style key.|
+| styledValue | [StyledStringValue](#styledstringvalue) | Yes  | Style object.|
 
 ## TextStyle
 
@@ -525,6 +551,8 @@ Describes the text font style.
 ### constructor
 
 constructor(value?: TextStyleInterface)
+
+A constructor used to create a text style.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -559,6 +587,8 @@ Describes the event gesture style.
 ### constructor
 
 constructor(value?: GestureStyleInterface)
+
+A constructor used to create a gesture style.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -603,6 +633,8 @@ Describes the text decorative line style.
 
 constructor(value: DecorationStyleInterface)
 
+A constructor used to create a text decorative line style.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -645,6 +677,8 @@ Describes the text baseline offset style.
 
 constructor(value: LengthMetrics)
 
+A constructor used to create a text baseline offset style.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -674,6 +708,8 @@ Describes the letter spacing style.
 ### constructor
 
 constructor(value: LengthMetrics)
+
+A constructor used to create a text letter spacing style.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -705,6 +741,8 @@ Describes the text line height style.
 
 constructor(lineHeight: LengthMetrics)
 
+A constructor used to create a text line height style.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -734,6 +772,8 @@ Describes the text shadow style.
 ### constructor
 
 constructor(value: ShadowOptions | Array\<ShadowOptions>)
+
+A constructor used to create a text shadow style.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -768,6 +808,8 @@ Describes the image attachment.
 ### constructor
 
 constructor(value: ImageAttachmentInterface)
+
+A constructor used to create an image object.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -929,6 +971,8 @@ The style of a paragraph is the one (if any) set for the first element or the pa
 
 constructor(value?: ParagraphStyleInterface)
 
+A constructor used to create a text paragraph style.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -964,27 +1008,25 @@ The extended user data does not affect the display effect.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-## StyledStringKey<sup>12+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+## StyledStringKey
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    |Description                          |
 | ------ | ----------------------------- |
-| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).|
-| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).|
-| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).|
-| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).|
-| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).|
-| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).|
-| BACKGROUND_COLOR<sup>14+</sup> | Text background color style key, applicable to [BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14).|
-| URL<sup>14+</sup> | Hyperlink style key, applicable to [UrlStyle](./ts-universal-styled-string.md#urlstyle14).|
-| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).|
-| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).|
-| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).|
-| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).|
-| USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).|
+| FONT | Font style key, applicable to [TextStyle](./ts-universal-styled-string.md#textstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| DECORATION | Text decorative line style key, applicable to [DecorationStyle](./ts-universal-styled-string.md#decorationstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BASELINE_OFFSET | Text baseline offset style key, applicable to [BaselineOffsetStyle](./ts-universal-styled-string.md#baselineoffsetstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| LETTER_SPACING | Text letter spacing style key, applicable to [LetterSpacingStyle](./ts-universal-styled-string.md#letterspacingstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| LINE_HEIGHT | Text line height style key, applicable to [LineHeightStyle](./ts-universal-styled-string.md#lineheightstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| TEXT_SHADOW | Text shadow style key, applicable to [TextShadowStyle](./ts-universal-styled-string.md#textshadowstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BACKGROUND_COLOR<sup>14+</sup> | Text background color style key, applicable to [BackgroundColorStyle](./ts-universal-styled-string.md#backgroundcolorstyle14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| URL<sup>14+</sup> | Hyperlink style key, applicable to [UrlStyle](./ts-universal-styled-string.md#urlstyle14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| GESTURE | Gesture key, applicable to [GestureStyle](./ts-universal-styled-string.md#gesturestyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| PARAGRAPH_STYLE | Paragraph style key, applicable to [ParagraphStyle](./ts-universal-styled-string.md#paragraphstyle).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| IMAGE | Image key, applicable to [ImageAttachment](./ts-universal-styled-string.md#imageattachment).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CUSTOM_SPAN | Custom span key, applicable to [CustomSpan](./ts-universal-styled-string.md#customspan).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| USER_DATA | User data span key, applicable to [UserDataSpan](./ts-universal-styled-string.md#userdataspan).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## BackgroundColorStyle<sup>14+</sup>
 
@@ -998,13 +1040,15 @@ Describes the text background color style.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11)  |  Yes |  Yes | Text background color of the styled string.<br>Default value:<br>{<br> color: Color.Transparent,<br>  radius: 0<br>} |
+| textBackgroundStyle  |  [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11)  |  Yes | No| Text background color of the styled string.<br>Default value:<br>{<br> color: Color.Transparent,<br>  radius: 0<br>} |
 
 ### constructor<sup>14+</sup>
 
 constructor(textBackgroundStyle: TextBackgroundStyle)
+
+A constructor used to create a text background style.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1030,13 +1074,15 @@ The default color, font size, and font weight are **'#ff0a59f7'**, **'16fp'**, a
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name          | Type             | Read Only  | Mandatory  | Description    |
+| Name          | Type             | Read Only  | Optional | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| url  | string |  Yes |  Yes | Hyperlink content of the styled string.|
+| url  | string |  Yes |  No| Hyperlink content of the styled string.|
 
 ### constructor<sup>14+</sup>
 
 constructor(url: string)
+
+A constructor used to create a URL object.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -1890,7 +1936,7 @@ struct styled_string_demo6 {
 }
 ```
 
-![](figures/styledstring_6.gif)
+
 
 ### Example 7: Storing Custom Extension Information
 
@@ -1946,7 +1992,7 @@ struct styled_string_demo7 {
 
 ### Example 8: Implementing Conversion Between Styled Strings and HTML-Formatted Strings
 
-his example demonstrates the conversion between styled strings and HTML-formatted strings using the **toHtml** and **fromHtml** APIs.
+This example demonstrates the conversion between styled strings and HTML-formatted strings using the **toHtml** and **fromHtml** APIs.
 
 ```ts
 // xxx.ets
@@ -2017,7 +2063,7 @@ struct styled_string_demo8 {
 }
 ```
 
-![](figures/styledString_8.gif)
+
 
 
 ### Example 9: Setting a Hyperlink
@@ -2050,5 +2096,3 @@ struct styled_string {
 }
 ```
 
-![](figures/styledString_9.gif)
-<!--no_check-->

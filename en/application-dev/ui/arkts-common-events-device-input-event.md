@@ -110,7 +110,7 @@ onMouse(event: (event?: MouseEvent) => void)
 Triggered when a mouse event occurs. It is triggered each time a mouse pointer action (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for customized mouse behavior logic processing.
 
 
-You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton)), action ([MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
+You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8)), action ([MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
 
 
 >**NOTE**
@@ -379,7 +379,7 @@ struct KeyEventExample {
       Divider()
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the parent container <Column>.
+    .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the parent container Column.
       if(event){
         if (event.type === KeyType.Down) {
           this.columnType = 'Down';
@@ -455,7 +455,7 @@ struct KeyEventExample {
       Divider()
       Text(this.columnText).fontColor(Color.Red)
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
-    .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the parent container <Column>.
+    .onKeyEvent((event?: KeyEvent) => { // Set the onKeyEvent event for the parent container Column.
       if(event){
         if (event.type === KeyType.Down) {
           this.columnType = 'Down';

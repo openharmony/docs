@@ -29,7 +29,7 @@
 | 相同name的UIExtensionAbility共进程 | type |将同UIExtensionAbility类配置在同一个进程下，便于应用针对UIExtensionAbility类型对实例进行管理。|
 | 每个UIExtensionAbility为独立进程 | instance | UIExtensionAbility实例之间的状态不会彼此影响，安全性更高；实例之间只能通过跨进程进行通信。 |
 ### Bundle中的所有UIExtensionAbility共进程
-同一个bundle下的[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)配置在同一个进程中，便于多实例间的通信。需要关注的是，各个实例之间的状态会彼此影响，当进程中的一个实例异常退出，将导致进程中所有的实例也都会退出；
+同一个bundle下的[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)配置在同一个进程中，便于多实例间的通信。需要关注的是，各个实例之间的状态会彼此影响，当进程中的一个实例异常退出，将导致进程中所有的实例也都会退出。
 
 **图1** bundle模型配置示意图
 
@@ -121,7 +121,7 @@ process name [{bundleName}：{UIExtensionAbility的类型}]
 ![uiextension-bundle-process-example](figures/uiextability-bundle-process-example.png)
 
 ### 同UIExtensionAbility类的所有UIExtensionAbility共进程
-根据[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)类进行分配进程，拉起多个同样的UIExtensionAbility实例时，这些实例将配置在同一个进程中。将同UIExtensionAbility类配置在同一个进程下，方便应用针对UIExtensionAbility类型对实例进行管理；
+根据[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)类进行分配进程，拉起多个同样的UIExtensionAbility实例时，这些实例将配置在同一个进程中。将同UIExtensionAbility类配置在同一个进程下，方便应用针对UIExtensionAbility类型对实例进行管理。
 
 **图4** type模型配置示意图
 
@@ -213,7 +213,7 @@ process name [{bundleName}：{UIExtensionAbility名}]
 ![uiextability-type-process-example](figures/uiexteability-type-precess-example.png)
 
 ### UIExtensionAbility实例独立进程
-根据[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)实例进行分配进程，配置了instance的UIExtensionAbility实例，将每个实例独立一个进程。独立进程的场景下，UIExtensionAbility实例之间只能通过跨进程进行通信，但实例之间的状态不会彼此影响，安全性更高；
+根据[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)实例进行分配进程，配置了instance的UIExtensionAbility实例，将每个实例独立一个进程。独立进程的场景下，UIExtensionAbility实例之间只能通过跨进程进行通信，但实例之间的状态不会彼此影响，安全性更高。
 
 **图7** instance模型配置示意图
 
@@ -356,7 +356,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
     }
     ```
 
-4. [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)中加载了入口页面文件pages/extension.ets, 并在entry\src\main\resources\base\profile\main_pages.json文件中添加"pages/Extension"声明，extension.ets内容如下：
+4. [UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onSessionCreate](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)中加载了入口页面文件pages/extension.ets, 并在entry\src\main\resources\base\profile\main_pages.json文件中添加"pages/Extension"声明，extension.ets内容如下。
 
     ```ts
     import { UIExtensionContentSession } from '@kit.AbilityKit';
@@ -440,7 +440,7 @@ UIExtensionAbility通过[UIExtensionContext](../reference/apis-ability-kit/js-ap
 ## 开发UIExtensionAbility使用方
 
 开发者可以在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的页面中通过[UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)容器加载自己应用内的[UIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)。
-如在首页文件：pages/Index.ets中添加如下内容：
+如在首页文件：pages/Index.ets中添加如下内容。
 
 ```ts
 @Entry

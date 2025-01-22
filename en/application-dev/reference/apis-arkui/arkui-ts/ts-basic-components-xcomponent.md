@@ -86,7 +86,12 @@ In addition to universal attributes, the following attributes are supported.
   >
   > The **foregroundColor**, **obscured**, and **pixelStretchEffect** attributes are not supported. When **type** is set to **SURFACE**, the following are not supported either: attribute modifier, custom drawing, background options (except **backgroundColor**), image effects (except **shadow**), **maskShape**, and **foregroundEffect** attributes.
   >
-  > When the **XComponent** is of the TEXTURE or SURFACE type, if the [renderFit](./ts-universal-attributes-renderfit.md) attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
+  > For the **XComponent** component of the TEXTURE or SURFACE type, if the [renderFit](./ts-universal-attributes-renderfit.md) attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
+  > 
+  > For the **XComponent** component of the SURFACE type with an opaque black background, the [renderFit](./ts-universal-attributes-renderfit.md) attribute can only be set to **RenderFit.RESIZE_FILL**. Other **RenderFit** enum values are not recommended.
+  >
+  > For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
+
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
@@ -145,7 +150,7 @@ The following events are effective only when **type** is set to **SURFACE** or *
 
 ### onLoad
 
-onLoad(callback: OnNativeLoadCallback )
+onLoad(callback: (event?: object) => void )
 
 Triggered when the plug-in is loaded.
 
@@ -157,7 +162,7 @@ Triggered when the plug-in is loaded.
 
 | Name  | Type  | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| callback | [OnNativeLoadCallback](#onnativeloadcallback14) | Yes   | Callback after the surface held by the **XComponent** is created.|
+| event | object | No   | Context of the **XComponent** object. The APIs contained in the context are defined at the native layer by developers.|
 
 ### onDestroy
 
@@ -174,22 +179,6 @@ Triggered when the plug-in is destroyed.
 | Name  | Type  | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
 | event | [VoidCallback](ts-types.md#voidcallback12) | Yes   | Callback after the **XComponent** is destroyed.|
-
-## OnNativeLoadCallback<sup>14+</sup>
-
-type OnNativeLoadCallback = (event?: object) =\> void
-
-Triggered after the surface held by the **XComponent** is created.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name  | Type  | Mandatory  | Description                                      |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | object | No   | Context of the **XComponent** object. The APIs contained in the context are defined at the native layer by developers.|
 
 ## XComponentController
 
@@ -376,8 +365,9 @@ startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 Starts AI image analysis in the given settings. Before calling this API, make sure the AI image analyzer is [enabled](#enableanalyzer12).<br>Because the image frame used for analysis is the one captured when this API is called, pay attention to the invoking time of this API.<br>If this API is repeatedly called before the execution is complete, an error callback is triggered.
 
 > **NOTE**
-> 
+>
 > The image analysis type cannot be dynamically modified.
+>
 > This API depends on device capabilities. If it is called on an incompatible device, an error code is returned.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.

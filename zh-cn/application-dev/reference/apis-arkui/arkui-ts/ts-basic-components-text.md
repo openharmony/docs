@@ -58,7 +58,7 @@ textAlign(value: TextAlign)
 
 ### textOverflow
 
-textOverflow(options: TextOverflowOptions)
+textOverflow(value: { overflow: TextOverflow })
 
 设置文本超长时的显示方式。
 
@@ -80,7 +80,7 @@ textOverflow(options: TextOverflowOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [TextOverflowOptions](#textoverflowoptions14对象说明) | 是   | 文本超长显示方式对象 |
+| value  | {overflow:&nbsp;[TextOverflow](ts-appendix-enums.md#textoverflow)} | 是   | 文本超长时的显示方式。<br/>默认值：{overflow:&nbsp;TextOverflow.Clip} |
 
 ### maxLines
 
@@ -708,7 +708,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### minFontScale<sup>12+</sup>
 
@@ -886,22 +886,6 @@ selectedBackgroundColor(color: ResourceColor)
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
-
-## TextOverflowOptions<sup>14+</sup>对象说明
-
-文本超长显示方式对象。
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型                                                         | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | 是   | 文本超长时的显示方式。<br/>默认值：TextOverflow.Clip |
 
 ## 事件
 

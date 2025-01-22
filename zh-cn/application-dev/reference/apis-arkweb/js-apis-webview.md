@@ -5969,20 +5969,14 @@ static getDefaultUserAgent(): string
 ```ts
 // xxx.ets
 import { webview } from '@kit.ArkWeb';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-
-  build() {
-    Column() {
-      Button('getDefaultUserAgent')
-        .onClick(() => {
-          let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
-          console.log("defaultUserAgent: " + defaultUserAgent);
-        })
-    }
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("EntryAbility onCreate");
+    webview.WebviewController.initializeWebEngine();
+    let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+    console.log("defaultUserAgent: " + defaultUserAgent);
   }
 }
 ```
@@ -8834,7 +8828,7 @@ struct Index {
 
 ### trimMemoryByPressureLevel<sup>14+</sup>
 
-trimMemoryByPressureLevel(level: number): void
+trimMemoryByPressureLevel(level: PressureLevel): void
 
 根据指定的内存压力等级，主动清理Web组件占用的缓存。
 
@@ -8852,7 +8846,7 @@ trimMemoryByPressureLevel(level: number): void
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Parameter string is too long.3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Parameter string is too long. 3.Parameter verification failed. |
 
 **示例：**
 ```ts
@@ -8899,9 +8893,13 @@ createPdf(configuration: PdfConfiguration, callback: AsyncCallback\<PdfData\>): 
 | configuration | [PdfConfiguration](#pdfconfiguration14) | 是   | 生成PDF所需参数。       |
 | callback      | AsyncCallback<[PdfData](#pdfdata14)>    | 是   | 回调返回网页PDF数据流。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 401      | Invalid input parameter.  |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例**:
@@ -8978,9 +8976,13 @@ createPdf(configuration: PdfConfiguration): Promise\<PdfData\>
 | ------------------------------ | ----------------------------- |
 | Promise<[PdfData](#pdfdata14)> | Promise实例，返回网页数据流。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+| 401      | Invalid input parameter. |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **示例**:
@@ -16050,7 +16052,7 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 ## BackForwardCacheSupportedFeatures<sup>12+<sup>
 
-选择性允许使用以下特性的页面进入前进后退缓存。
+选择性允许使用以下特性的页面进入前进后退缓存。完整示例代码参考[enableBackForwardCache](#enablebackforwardcache12)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16059,9 +16061,17 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 | nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为同层渲染元素创建的原生控件的生命周期，避免造成泄漏。 |
 | mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存，默认不允许。如果设置为允许，需要维护为视频元素创建的原生控件的生命周期，避免造成泄漏。|
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+BackForwardCacheSupportedFeatures的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ## BackForwardCacheOptions<sup>12+<sup>
 
-前进后退缓存相关设置对象，用来控制Web组件前进后退缓存相关选项。
+前进后退缓存相关设置对象，用来控制Web组件前进后退缓存相关选项。完整示例代码参考[BackForwardCacheOptions](#backforwardcacheoptions12)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16069,6 +16079,14 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 |------|------|------|------|
 | size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
 | timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
+
+### constructor<sup>12+</sup>
+
+constructor()
+
+BackForwardCacheOptions的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ## AdsBlockManager<sup>12+</sup>
 

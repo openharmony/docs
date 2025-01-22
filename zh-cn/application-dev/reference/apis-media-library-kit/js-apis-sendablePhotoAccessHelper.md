@@ -627,6 +627,7 @@ commitModify(): Promise&lt;void&gt;
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 async function example() {
   console.info('commitModifyDemo');

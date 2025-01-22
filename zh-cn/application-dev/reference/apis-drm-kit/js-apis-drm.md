@@ -20,6 +20,8 @@ import { drm } from '@kit.DrmKit';
 
 枚举，错误码。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
@@ -32,6 +34,8 @@ import { drm } from '@kit.DrmKit';
 ## PreDefinedConfigName
 
 枚举，预定义的配置属性。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -49,6 +53,8 @@ import { drm } from '@kit.DrmKit';
 
 枚举，媒体密钥类型。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称                       | 值   | 说明            |
@@ -59,6 +65,8 @@ import { drm } from '@kit.DrmKit';
 ## OfflineMediaKeyStatus
 
 枚举，离线媒体密钥状态。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -71,6 +79,8 @@ import { drm } from '@kit.DrmKit';
 ## CertificateStatus
 
 枚举，设备证书状态。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -118,6 +128,8 @@ import { drm } from '@kit.DrmKit';
 ## ProvisionRequest
 
 设备证书请求。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -170,6 +182,8 @@ import { drm } from '@kit.DrmKit';
 
 度量记录。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
@@ -220,6 +234,8 @@ import { drm } from '@kit.DrmKit';
 
 插件信息。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 | 名称      | 类型                           | 必填 | 说明         |
@@ -232,6 +248,8 @@ import { drm } from '@kit.DrmKit';
 createMediaKeySystem(name: string): MediaKeySystem
 
 创建MediaKeySystem实例。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -276,6 +294,8 @@ try {
 isMediaKeySystemSupported(name: string): boolean
 
 判断设备是否支持指定的DRM解决方案。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -322,6 +342,8 @@ isMediaKeySystemSupported(name: string, mimeType: string): boolean
 
 判断设备是否支持指定DRM解决方案及媒体类型。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -367,6 +389,8 @@ try {
 isMediaKeySystemSupported(name: string, mimeType: string, level: ContentProtectionLevel): boolean
 
 判断设备是否支持指定DRM解决方案、媒体类型以及内容保护级别。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -415,6 +439,8 @@ getMediaKeySystemUuid(name: string): string;
 
 获取DRM解决方案支持的DRM内容保护系统唯一标识。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -459,6 +485,8 @@ getMediaKeySystems(): MediaKeySystemDescription[]
 
 获取设备支持的插件信息列表。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -497,6 +525,8 @@ try {
 setConfigurationString(configName: string, value: string): void
 
 设置字符串类型的配置信息。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -537,6 +567,8 @@ try {
 getConfigurationString(configName: string): string
 
 获取字符串类型的配置属性值。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -583,6 +615,8 @@ setConfigurationByteArray(configName: string, value: Uint8Array): void
 
 设置数组类型的配置信息。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -625,6 +659,8 @@ try {
 getConfigurationByteArray(configName: string): Uint8Array
 
 获取数组类型的配置信息。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -671,6 +707,8 @@ getStatistics(): StatisticKeyValue[]
 
 获取性能度量记录。其中包括当前会话数、插件版本信息、每个会话最大三次解密耗时、解密次数和解密失败次数。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -708,6 +746,8 @@ try {
 getMaxContentProtectionLevel(): ContentProtectionLevel
 
 获取当前DRM解决方案支持的最大内容保护级别。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -747,6 +787,8 @@ generateKeySystemRequest(): Promise<ProvisionRequest\>
 
 生成获取mediaKeySystem设备证书的请求。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -784,6 +826,8 @@ mediaKeySystem.generateKeySystemRequest().then((ProvisionRequest: drm.ProvisionR
 processKeySystemResponse(response: Uint8Array): Promise<void\>
 
 处理获得的设备证书请求的响应。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -831,6 +875,8 @@ getCertificateStatus():CertificateStatus
 
 获取设备证书状态值。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -869,6 +915,8 @@ on(type: 'keySystemRequired', callback: (eventInfo: EventInfo) => void): void
 
 监听设备证书请求事件，获取事件信息。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -904,6 +952,8 @@ off(type: 'keySystemRequired', callback?: (eventInfo: EventInfo) => void): void
 
 注销设备证书请求事件的监听。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -934,6 +984,8 @@ mediaKeySystem.off('keySystemRequired');
 createMediaKeySession(level: ContentProtectionLevel): MediaKeySession
 
 创建指定内容保护级别的MediaKeySession实例。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -981,6 +1033,8 @@ createMediaKeySession(): MediaKeySession
 
 创建DRM解决方案默认内容保护级别的MediaKeySession实例。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **返回值：**
@@ -1020,6 +1074,8 @@ getOfflineMediaKeyIds(): Uint8Array[]
 
 获取离线媒体密钥标识列表。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 
@@ -1058,6 +1114,8 @@ try {
 getOfflineMediaKeyStatus(mediaKeyId: Uint8Array): OfflineMediaKeyStatus
 
 获取指定离线媒体密钥标识的媒体密钥的状态值。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
@@ -1106,6 +1164,8 @@ clearOfflineMediaKeys(mediaKeyId: Uint8Array): void
 
 删除指定媒体密钥标识的离线媒体密钥。
 
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 
 **参数：**
@@ -1146,6 +1206,8 @@ try {
 destroy(): void
 
 销毁MediaKeySystem实例。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Drm.Core
 

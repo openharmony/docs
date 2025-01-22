@@ -3,10 +3,6 @@
 
 **TaskPool** and **Worker** provide a multithreaded environment for applications to process time-consuming computing tasks or resource intensive tasks, preventing these tasks from blocking the host thread. This maximizes system utilization, reduces overall resource consumption, and improves overall system performance.
 
-
- 
-
-
 ## Implementation Feature Comparison
 
 **Table 1** Comparison between TaskPool and Worker in implementation features

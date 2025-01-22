@@ -442,22 +442,6 @@ Sets whether the navigation point indicator is interactive. The value **true** m
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether the navigation point indicator is interactive.<br>Default value: **true**|
 
-### pageFlipMode<sup>14+</sup>
-
-pageFlipMode(value: PageFlipMode)
-
-Sets the mode for flipping pages using the mouse wheel.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                       | Mandatory| Description                                                        |
-| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PageFlipMode](ts-appendix-enums.md#pageflipmode14) | Yes  | Mode for flipping pages using the mouse wheel.<br>Default value: **PageFlipMode.CONTINUOUS**|
-
 ## IndicatorStyle<sup>(deprecated)</sup>
 
 This API is supported since API version 8 and is deprecated since API version 10. You are advised to use [indicator](#indicator10) instead.
@@ -1109,7 +1093,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ### onChange
 
-onChange(event: Callback\<number>)
+onChange(event: (index: number) => void)
 
 Triggered when the index of the currently displayed child component changes. The return value is the index of the currently displayed child component.
 
@@ -1125,11 +1109,11 @@ When the **Swiper** component is used together with **LazyForEach**, the subpage
 
 | Name| Type  | Mandatory| Description                |
 | ------ | ------ | ---- | -------------------- |
-| event  | [Callback](./ts-types.md#callback12)\<number> | Yes  | Index of the currently displayed element.|
+| index  | number | Yes  | Index of the currently displayed element.|
 
 ### onAnimationStart<sup>9+</sup>
 
-onAnimationStart(event: OnSwiperAnimationStartCallback)
+onAnimationStart(event: (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void)
 
 Triggered when the switching animation starts.
 
@@ -1141,9 +1125,11 @@ Triggered when the switching animation starts.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperAnimationStartCallback](#onswiperanimationstartcallback14) | Yes  | Callback triggered when the switching animation starts.|
+| Name                   | Type                                                      | Mandatory| Description                                                        |
+| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                     | number                                                     | Yes  | Index of the currently displayed element.                                        |
+| targetIndex<sup>10+</sup> | number                                                     | Yes  | Index of the target element to switch to.                                    |
+| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Swiper** along the main axis, and the hands-off velocity.|
 
 >**NOTE**
 >
@@ -1151,7 +1137,7 @@ Triggered when the switching animation starts.
 
 ### onAnimationEnd<sup>9+</sup>
 
-onAnimationEnd(event: OnSwiperAnimationEndCallback)
+onAnimationEnd(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 Triggered when the switching animation ends.
 
@@ -1165,9 +1151,10 @@ This event is triggered when the switching animation of the **Swiper** component
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperAnimationEndCallback](#onswiperanimationendcallback14) | Yes  | Callback triggered when the switching animation ends.|
+| Name                 | Type                                                      | Mandatory| Description                                                        |
+| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index                   | number                                                     | Yes  | Index of the currently displayed element.                                        |
+| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Swiper** along the main axis.|
 
 >**NOTE**
 >
@@ -1175,7 +1162,7 @@ This event is triggered when the switching animation of the **Swiper** component
 
 ### onGestureSwipe<sup>10+</sup>
 
-onGestureSwipe(event: OnSwiperGestureSwipeCallback)
+onGestureSwipe(event: (index: number, extraInfo: SwiperAnimationEvent) => void)
 
 Triggered on a frame-by-frame basis when the page is turned by a swipe.
 
@@ -1185,9 +1172,10 @@ Triggered on a frame-by-frame basis when the page is turned by a swipe.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                |
-| ------ | ------ | ---- | -------------------- |
-| event  | [OnSwiperGestureSwipeCallback](#onswipergestureswipecallback14) | Yes  | Callback triggered on a frame-by-frame basis when the page is turned by a swipe.|
+| Name   | Type                                                      | Mandatory| Description                                                        |
+| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| index     | number                                                     | Yes  | Index of the currently displayed element.                                        |
+| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Swiper** along the main axis.|
 
 ### customContentTransition<sup>12+</sup>
 
@@ -1233,66 +1221,6 @@ Instructions:
 | Name| Type| Mandatory| Description|
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | Yes| Callback triggered when content in the **Swiper** component scrolls.|
-
-## Callbacks
-
-### OnSwiperAnimationStartCallback<sup>14+</sup>
-
-type OnSwiperAnimationStartCallback = (index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => void
-
-Defines the callback triggered when the switching animation starts.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name                   | Type                                                      | Mandatory| Description                                                        |
-| ------------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index                     | number                                                     | Yes  | Index of the currently displayed element. If there are multiple columns, **index** indicates the index of the leftmost component.                                        |
-| targetIndex<sup>10+</sup> | number                                                     | Yes  | Index of the target element to switch to.                                    |
-| extraInfo<sup>10+</sup>   | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, including the offset of the currently displayed element and target element relative to the start position of the **Swiper** along the main axis, and the hands-off velocity.|
-
-### OnSwiperAnimationEndCallback<sup>14+</sup>
-
-type OnSwiperAnimationEndCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
-
-Defines the callback triggered when the switching animation ends.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name                 | Type                                                      | Mandatory| Description                                                        |
-| ----------------------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index                   | number                                                     | Yes  | Index of the currently displayed element. If there are multiple columns, **index** indicates the index of the leftmost component.                                        |
-| extraInfo<sup>10+</sup> | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Swiper** along the main axis.|
-
-### OnSwiperGestureSwipeCallback<sup>14+</sup>
-
-type OnSwiperGestureSwipeCallback = (index: number, extraInfo: SwiperAnimationEvent) => void
-
-Defines the callback triggered on a frame-by-frame basis when the page is turned by a swipe.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name   | Type                                                      | Mandatory| Description                                                        |
-| --------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| index     | number                                                     | Yes  | Index of the currently displayed element. If there are multiple columns, **index** indicates the index of the leftmost component.                                        |
-| extraInfo | [SwiperAnimationEvent](#swiperanimationevent10) | Yes  | Extra information of the animation, which is the offset of the currently displayed element relative to the start position of the **Swiper** along the main axis.|
 
 ## SwiperAnimationEvent<sup>10+</sup>
 

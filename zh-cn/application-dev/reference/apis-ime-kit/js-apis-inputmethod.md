@@ -13,7 +13,7 @@
 import { inputMethod } from '@kit.IMEKit';
 ```
 
-## 常量<sup>8+</sup>
+## 常量
 
 常量值。
 
@@ -21,7 +21,7 @@ import { inputMethod } from '@kit.IMEKit';
 
 | 参数名 | 类型 | 常量值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 128 | 可支持的最大输入法个数。 |
+| MAX_TYPE_NUM<sup>8+</sup> | number | 128 | 可支持的最大输入法个数。 |
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -2767,7 +2767,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | bunder manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2814,7 +2814,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | bunder manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2857,7 +2857,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | bunder manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2906,7 +2906,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | bunder manager error.               |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -2960,7 +2960,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | bunder manager error.               |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**

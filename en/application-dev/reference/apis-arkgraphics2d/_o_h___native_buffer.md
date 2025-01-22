@@ -462,7 +462,7 @@ Enumerates the **OH_NativeBuffer** formats.
 | NATIVEBUFFER_PIXEL_FMT_YCBCR_P010<sup>12+</sup> | YCBCR420 semi-planar 10-bit packed.| 
 | NATIVEBUFFER_PIXEL_FMT_YCRCB_P010<sup>12+</sup> | YCRCB420 semi-planar 10-bit packed.| 
 | NATIVEBUFFER_PIXEL_FMT_RAW10<sup>12+</sup> | Raw 10-bit packed.| 
-| NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | Vender mask.| 
+| NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | Vendor mask.| 
 | NATIVEBUFFER_PIXEL_FMT_BUTT | Invalid format.| 
 
 
@@ -905,8 +905,8 @@ This function is not thread-safe.
 | Name| Description| 
 | -------- | -------- |
 | buffer | Pointer to an **OH_NativeBuffer** instance.| 
-| metadataKey | Key of the metadata. For details about the available options, see [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey).| 
-| size | Size of the uint8_t vector. For details about the available options, see [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey).| 
+| metadataKey | Key of the metadata. For details about the available options, see [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1).| 
+| size | Size of the uint8_t vector. For details about the available options, see [OH_NativeBuffer_MetadataKey](#oh_nativebuffer_metadatakey-1).| 
 | metaDate | Pointer to the uint8_t vector.| 
 
 **Returns**

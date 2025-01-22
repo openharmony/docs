@@ -92,6 +92,10 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及device，再调用[usbManager.requestRight](#usbmanagerrequestright)请求使用该设备的权限。
 
+> **说明：** 
+>
+> 单次批量传输的传输数据总量（包括pipe、endpoint、buffer、timeout）请控制在200KB以下。
+
 **系统能力：**  SystemCapability.USB.USBManager
 
 **参数：**
@@ -627,7 +631,7 @@ usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, ti
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified.2.Incorrect parameter types. |
 
 **返回值：**
 
@@ -686,7 +690,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 | pipe | [USBDevicePipe](#usbdevicepipe) | 是 | 用于确定设备，需要调用connectDevice获取。|
 | endpoint | [USBEndpoint](#usbendpoint) | 是 | 用于确定传输的端口，需要调用getDevices获取设备信息列表以及endpoint，address用于确定端点地址，direction用于确定端点的方向，interfaceId用于确定所属接口，当前其他属性不做处理。|
 | buffer | Uint8Array | 是 | 用于写入或读取数据的缓冲区。 |
-| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择 。 |
+| timeout | number | 否 | 超时时间（单位：ms），可选参数，默认为0不超时，用户按需选择。 |
 
 **错误码：**
 
@@ -863,7 +867,7 @@ requestAccessoryRight(accessory: USBAccessory): Promise&lt;boolean&gt;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   hilog.info(0, 'testTag ui', `requestAccessoryRight success, ret:${flag}`)
 } catch (error) {
   hilog.info(0, 'testTag ui', `requestAccessoryRight error ${error.code}, message is ${error.message}`)
@@ -903,7 +907,7 @@ cancelAccessoryRight(accessory: USBAccessory): void;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   usbManager.cancelAccessoryRight(accList[0])
   hilog.info(0, 'testTag ui', `cancelAccessoryRight success`)
 } catch (error) {
@@ -986,7 +990,7 @@ openAccessory(accessory: USBAccessory): USBAccessoryHandle;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   hilog.info(0, 'testTag ui', `openAccessory success`)
 } catch (error) {
@@ -1025,7 +1029,7 @@ closeAccessory(accessoryHandle: USBAccessoryHandle): void;
 import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flag = await usbManager.requestAccessoryRight(accList[0])
+  let flag = usbManager.requestAccessoryRight(accList[0])
   let handle = usbManager.openAccessory(accList[0])
   usbManager.closeAccessory(handle)
   hilog.info(0, 'testTag ui', `closeAccessory success`)

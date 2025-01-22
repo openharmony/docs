@@ -4,13 +4,15 @@
 
 > **NOTE**
 >
-> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM]))**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
+> - Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
 >
-> The **NavDestination** component must be used in conjunction with the **Navigation** component to act as the root node for the navigation destination page. When used alone, it can only function as a standard container component and does not possess any routing-related attributes or capabilities.
+> - The **NavDestination** component must be used in conjunction with the **Navigation** component to act as the root node for the navigation destination page. When used alone, it can only function as a standard container component and does not possess any routing-related attributes or capabilities.
 >
-> If the lifecycle of a page in the middle of the navigation stack changes, the lifecycle of the destination page at the top of the stack before the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) and the lifecycle of the destination page after the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) are both triggered at the end.
+> - If the lifecycle of a page in the middle of the navigation stack changes, the lifecycle of the destination page at the top of the stack before the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) and the lifecycle of the destination page after the transition (**onWillShow**, **onShown**, **onHidden**, **onWillDisappear**) are both triggered at the end.
+>
+> - If no main title or subtitle is set for **NavDestination** and there is no back button, the title bar is not displayed.
 
 ## Child Components
 
@@ -253,11 +255,51 @@ Sets whether the **NavDestination** component is recoverable. If set to recovera
 
 | Name| Type        | Mandatory| Description              |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | No  | Whether the **NavDestination** component is recoverable. By default, it is recoverable.|
+| recoverable  | Optional&lt;boolean&gt; | Yes  | Whether the **NavDestination** component is recoverable. By default, it is not recoverable.<br>Default value: **false**<br>**true**: The **NavDestination** component is recoverable.<br>**false**: The **NavDestination** component is not recoverable.|
 
 >  **NOTE**
 >
 > This API must be used together with the [recoverable](./ts-basic-components-navigation.md#recoverable14) API of **Navigation**.
+
+### bindToScrollable<sup>14+</sup>
+bindToScrollable(scrollers: Array&lt;Scroller&gt;)
+
+Binds the **NavDestination** component to a scrollable container, which can be [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md). After the binding, scrolling in the scrollable container will trigger the animations for showing or hiding the title bar and toolbar of all bound **NavDestination** components. A single **NavDestination** component can be bound to multiple scrollable containers, and a single scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1).
+
+> **NOTE**
+>
+> - The connection between the scrolling actions and the animations for showing or hiding the title bar and toolbar of the **NavDestination** component takes effect only when the title bar or toolbar is visible.
+> - If a **NavDestination** component is bound to multiple scrollable containers, scrolling in any of these containers triggers the display or hiding animations of the title bar and toolbar. Specifically, when any scrollable container reaches either the bottom or the top, the display animation for the title bar and toolbar is triggered without delay. As such, to ensure the optimal user experience, avoid triggering scroll events of multiple scrollable containers simultaneously.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollers | Array<[Scroller](./ts-container-scroll.md#scroller)> | Yes  | Controller of the target scrollable container.|
+
+### bindToNestedScrollable<sup>14+</sup>
+bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
+
+Binds the **NavDestination** component to nested scrollable containers, which can be [List](./ts-container-list.md), [Scroll](./ts-container-scroll.md), [Grid](./ts-container-grid.md), or [WaterFlow](./ts-container-waterflow.md). After the binding, scrolling in any of these scrollable containers will trigger the animations for showing or hiding the title bar and toolbar of all bound **NavDestination** components. A single **NavDestination** component can be bound to multiple nested scrollable containers, and a single nested scrollable container can be bound to multiple **NavDestination** components. For details, see [Example 1](#example-1).
+
+> **NOTE**
+>
+> - The connection between the scrolling actions and the animations for showing or hiding the title bar and toolbar of the **NavDestination** component takes effect only when the title bar or toolbar is visible.
+> - If a **NavDestination** component is bound to multiple scrollable containers, scrolling in any of these containers triggers the display or hiding animations of the title bar and toolbar. Specifically, when any scrollable container reaches either the bottom or the top, the display animation for the title bar and toolbar is triggered without delay. As such, to ensure the optimal user experience, avoid triggering scroll events of multiple scrollable containers simultaneously.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| scrollInfos | Array<[NestedScrollInfo](#nestedscrollinfo14)> | Yes  | Controller of the target nested scrollable containers.|
 
 ## NavDestinationMode<sup>11+</sup>
 
@@ -438,6 +480,161 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | pageSourceFile| string | Yes| Path of the page in the current package.|
 | data | Object | Yes| Custom data of the page.|
 
+## NestedScrollInfo<sup>14+</sup>
+
+Provides the information about the nested scrollable containers.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  |Mandatory| Description|
+| ----  | ---   | ---- |----- |
+| parent | [Scroller](./ts-container-scroll.md#scroller) | Yes| Controller of the target scrollable container.|
+| child | [Scroller](./ts-container-scroll.md#scroller) | Yes| Controller of the scrollable container nested within the target scrollable container. This scrollable container is a child component of the target scrollable container.|
+
 ## Example
 
-For details, see [Example in Navigation](ts-basic-components-navigation.md#example-1).
+### Example 1
+
+This example shows how to bind a **NavDestination** component to scrollable containers so that scrolling in the scrollable containers triggers the animations for showing or hiding the title bar and toolbar of the **NavDestination** component.
+
+```ts
+import { SymbolGlyphModifier } from '@kit.ArkUI';
+
+@Component
+struct MyPageOne {
+  private listScroller: Scroller = new Scroller();
+  private scrollScroller: Scroller = new Scroller();
+  private arr: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 30; i++) {
+      this.arr.push(i);
+    }
+  }
+
+  build() {
+    NavDestination() {
+      Scroll(this.scrollScroller) {
+        Column() {
+          List({space: 0, initialIndex: 0, scroller: this.listScroller}) {
+            ForEach(this.arr, (item: number, index: number) => {
+              ListItem() {
+                Text('' + item)
+                  .height(100)
+                  .fontSize(16)
+                  .textAlign(TextAlign.Center)
+                  .width('90%')
+                  .margin({left: '5%'})
+                  .borderRadius(10)
+                  .backgroundColor(Color.Gray)
+              }
+            }, (item: string) => item);
+          }.width('100%').height('80%').scrollBar(BarState.Off)
+          .nestedScroll({scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST})
+          ForEach(this.arr, (item: number, index: number) => {
+            ListItem() {
+              Text('' + item)
+                .height(100)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .width('90%')
+                .margin({top: '5%'})
+                .borderRadius(10)
+                .backgroundColor(Color.Pink)
+            }
+          }, (item: string) => item);
+        }
+      }
+      .width('100%')
+      .scrollBar(BarState.Off)
+      .scrollable(ScrollDirection.Vertical)
+      .edgeEffect(EdgeEffect.Spring)
+    }
+    .title('PageOne', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .toolbarConfiguration([
+      {
+        value: 'item1',
+        symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
+      }
+    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    // Bind the NavDestination component to nested scrollable containers.
+    .bindToNestedScrollable([{parent: this.scrollScroller, child: this.listScroller}])
+  }
+}
+
+@Component
+struct MyPageTwo {
+  private listScroller: Scroller = new Scroller();
+  private arr: number[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 30; i++) {
+      this.arr.push(i);
+    }
+  }
+
+  build() {
+    NavDestination() {
+      List({scroller: this.listScroller}) {
+        ForEach(this.arr, (item: number, index: number) => {
+          ListItem() {
+            Text('' + item)
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .width('90%')
+              .margin({left: '5%'})
+              .borderRadius(10)
+              .backgroundColor(Color.Gray)
+          }
+        }, (item: string) => item);
+      }.width('100%')
+    }
+    .title('PageTwo', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .toolbarConfiguration([
+      {
+        value: 'item1',
+        symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
+      }
+    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    // Bind the NavDestination component to a scrollable container.
+    .bindToScrollable([this.listScroller])
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private stack: NavPathStack = new NavPathStack();
+
+  @Builder
+  MyPageMap(name: string) {
+    if (name === 'myPageOne') {
+      MyPageOne()
+    } else {
+      MyPageTwo()
+    }
+  }
+
+  build() {
+    Navigation(this.stack) {
+      Column() {
+        Button('push PageOne').onClick(() => {
+          this.stack.pushPath({name: 'myPageOne'})
+        })
+        Button('push PageTwo').onClick(() => {
+          this.stack.pushPath({name: 'myPageTwo'})
+        })
+      }.height('40%').justifyContent(FlexAlign.SpaceAround)
+    }.width('100%')
+    .height('100%')
+    .title({main: 'MainTitle', sub: 'subTitle'})
+    .navDestination(this.MyPageMap)
+  }
+}
+```
+![navdestination_bind_scrollable](figures/navdestination_bind_scrollable.gif)
+
+For more examples, see [Example in Navigation](ts-basic-components-navigation.md#example-1-implementing-a-navigation-page-layout).

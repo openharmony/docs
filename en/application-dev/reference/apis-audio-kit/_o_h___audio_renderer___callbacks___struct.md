@@ -102,6 +102,8 @@ int32_t (*OH_AudioRenderer_Callbacks_Struct::OH_AudioRenderer_OnWriteData)(OH_Au
 
 Defines a function pointer to the callback function used to write audio data.
 
+The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
+
 Once the callback function finishes its execution, the audio service queues the data pointed to by **buffer** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **buffer** with the exact length (specified by **length**) of data designated for playback; otherwise, noises may occur during playback.
 
 **Parameters**

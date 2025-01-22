@@ -170,6 +170,8 @@ PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callbac
 
 跟手弹窗，基于目标组件位置弹出，上文中的TipsDialog、SelectDialog、ConfirmDialog、AlertDialog、LoadingDialog、CustomContentDialog都可作为弹窗内容。
 
+**装饰器类型：**\@Component
+
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -275,6 +277,7 @@ struct Index {
     this.getPixmapFromMedia($r('app.media.app_icon'));    
   }
   
+  // 获取PixelMap格式的图片资源
   async getPixmapFromMedia(resource: Resource) {
     let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
@@ -302,6 +305,7 @@ import { SelectDialog } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
+  // 设置默认选中radio的index
   radioIndex = 0;
   dialogControllerList: CustomDialogController = new CustomDialogController({
     builder: SelectDialog({
@@ -345,8 +349,10 @@ struct Index {
               this.dialogControllerList.open()
             })
         }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -370,7 +376,9 @@ struct Index {
     builder: ConfirmDialog({
       title: '文本标题',
       content: '文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本',
+      // 勾选框选中状态
       isChecked: this.isChecked,
+      // 勾选框说明文本
       checkTips: '禁止后不再提示',
       primaryButton: {
         value: '禁止',
@@ -401,9 +409,12 @@ struct Index {
             .onClick(() => {
               this.dialogControllerCheckBox.open()
             })
-        }.margin({bottom: 300})
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({bottom: 300})
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -452,9 +463,12 @@ struct Index {
             .onClick(() => {
               this.dialogControllerConfirm.open()
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -489,9 +503,12 @@ struct Index {
             .onClick(() => {
               this.dialogControllerProgress.open()
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -515,6 +532,7 @@ class CustomThemeImpl implements CustomTheme {
   }
 }
 
+// 自定义内容文字及loading组件主题颜色
 class CustomThemeColors implements CustomColors {
   fontPrimary = '#ffd0a300';
   iconSecondary = '#ffd000cd';
@@ -541,9 +559,12 @@ struct Index {
             .onClick(() => {
               this.dialogController.open();
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -579,9 +600,12 @@ struct Index {
             .onClick(() => {
               this.dialogController.open();
             })
-        }.margin({ bottom: 300 })
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+        }
+        .margin({ bottom: 300 })
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
     .backgroundImageSize({ width: '100%', height: '100%' })
     .height('100%')
@@ -607,9 +631,20 @@ struct Index {
       contentBuilder: () => {
         this.buildContent();
       },
-      buttons: [{ value: '按钮1', buttonStyle: ButtonStyleMode.TEXTUAL, action: () => {
-        console.info('Callback when the button is clicked')
-      } }, { value: '按钮2', buttonStyle: ButtonStyleMode.TEXTUAL, role: ButtonRole.ERROR }],
+      buttons: [
+        { 
+          value: '按钮1',
+          buttonStyle: ButtonStyleMode.TEXTUAL, 
+          action: () => {
+            console.info('Callback when the button is clicked')
+          }
+        },
+        {
+          value: '按钮2',
+          buttonStyle: ButtonStyleMode.TEXTUAL,
+          role: ButtonRole.ERROR
+        }
+      ],
     }),
   });
 
@@ -624,12 +659,14 @@ struct Index {
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
-
+  
+  // 自定义弹出框的内容区
   @Builder
   buildContent(): void {
     Column() {
       Text('内容区')
     }
+    .width('100%')
   }
 }
 ```
@@ -651,7 +688,8 @@ struct Index {
       this.dialogBuilder();
     }
   }
-
+  
+  // 跟手弹窗内容
   @Builder dialogBuilder() {
     AlertDialog({
       content: '跟手弹出框',
@@ -669,9 +707,11 @@ struct Index {
       },
     });
   }
-
+  
+  // 跟手弹窗绑定的builder
   @Builder buttonBuilder() {
-    Button('跟手弹窗目标组件').onClick(() => {
+    Button('跟手弹窗目标组件')
+    .onClick(() => {
       this.isShow = true;
     });
   }

@@ -35,3 +35,63 @@
 **起始版本**：10
 
 **变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
+
+## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+允许应用跨系统本地账号交互。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：7
+
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.GET_DOMAIN_ACCOUNTS
+
+允许应用查询域账号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：10
+
+**变更信息**：API 10-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.QUERY_AUDIT_EVENT
+
+允许应用查询安全审计事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变更为企业普通应用。
+
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+
+允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14
+
+**变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。

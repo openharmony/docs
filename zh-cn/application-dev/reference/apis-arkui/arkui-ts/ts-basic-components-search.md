@@ -12,25 +12,13 @@
 
 ## 接口
 
-Search(options?: SearchOptions)
+Search(options?: { value?: string, placeholder?: ResourceStr, icon?: string, controller?: SearchController })
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数:**
-
-| 参数名      | 类型         | 必填 | 说明        |
-| ----------- | ------------- | ---- | ------------- |
-| options       | [SearchOptions](#searchoptions14对象说明)| 否   | 搜索框组件初始化选项 |
-
-## SearchOptions<sup>14+</sup>对象说明
-
-Search初始化参数。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名      | 类型         | 必填 | 说明        |
 | ----------- | ------------- | ---- | ------------- |
@@ -507,7 +495,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -644,7 +632,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 ### onSubmit
 
-onSubmit(callback: Callback\<string>)
+onSubmit(callback: (value: string) => void)
 
 点击搜索图标、搜索按钮或者按下软键盘搜索按钮时触发该回调。
 
@@ -656,7 +644,7 @@ onSubmit(callback: Callback\<string>)
 
 | 参数名 | 类型   | 必填 | 说明                         |
 | ------ | ------ | ---- | ---------------------------- |
-| callback  | Callback\<string> | 是   | 搜索提交回调，其返回值为当前搜索框中输入的文本内容。 |
+| value  | string | 是   | 当前搜索框中输入的文本内容。 |
 
 ### onSubmit<sup>14+</sup>
 
@@ -694,7 +682,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 ### onCopy
 
-onCopy(callback:Callback\<string>)
+onCopy(callback: (value: string) => void)
 
 进行复制操作时，触发该回调。
 
@@ -705,12 +693,12 @@ onCopy(callback:Callback\<string>)
 **参数：** 
 
 | 参数名    | 类型    | 必填 | 说明             |
-| --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
+| ------ | ------ | ---- | ---------------- |
+| value  | string | 是   | 复制的文本内容。 |
 
 ### onCut
 
-onCut(callback:Callback\<string>)
+onCut(callback: (value: string) => void)
 
 进行剪切操作时，触发该回调。
 
@@ -721,12 +709,12 @@ onCut(callback:Callback\<string>)
 **参数：** 
 
 | 参数名    | 类型    | 必填 | 说明             |
-| --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
+| ------ | ------ | ---- | ---------------- |
+| value  | string | 是   | 剪切的文本内容。 |
 
 ### onPaste
 
-onPaste(callback:OnPasteCallback )
+onPaste(callback: (value: string, event: PasteEvent) => void)
 
 进行粘贴操作时，触发该回调。
 
@@ -737,11 +725,12 @@ onPaste(callback:OnPasteCallback )
 **参数：** 
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](ts-basic-components-textinput#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
+| value               | string                                                       | 是   | 粘贴的文本内容。       |
+| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: OnTextSelectionChangeCallback)
+onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
@@ -753,11 +742,12 @@ onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
+| selectionStart | number | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。 |
+| selectionEnd   | number | 是   | 文本选择区域结束位置。                            |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: OnContentScrollCallback)
+onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 文本内容滚动时，触发该回调。
 
@@ -769,7 +759,8 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](ts-basic-components-textinput#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
+| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
+| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
 ### onEditChange<sup>12+</sup>
 
@@ -937,7 +928,7 @@ type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | searchContent | string             | 是   | 当前搜索框中输入的文本内容。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 否   | 提交事件。    |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 否   | 提交事件。    |
 
 ##  示例
 
@@ -1450,3 +1441,255 @@ struct SearchExample {
 
 ![searchSymbolGlyphModifierIcon](figures/searchSymbolGlyphModifierIcon.png)
 
+### 示例12（设置文本是否可复制）
+
+该示例通过copyOption属性展示如何设置文本是否可复制。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State copyValue: string = ''
+  @State cutValue: string = ''
+
+  build() {
+    Column({ space: 3 }) {
+      Text("copy: " + this.copyValue)
+      Text("cut:" + this.cutValue)
+      Search({ value: 'Search CopyOption:None', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .copyOption(CopyOptions.None)
+        .onCopy((value: string) => {
+          this.copyValue = value;
+        })
+        .onCut((value: string) => {
+          this.cutValue = value;
+        })
+      Search({ value: 'Search CopyOption:InApp', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .copyOption(CopyOptions.InApp)
+        .onCopy((value: string) => {
+          this.copyValue = value;
+        })
+        .onCut((value: string) => {
+          this.cutValue = value;
+        })
+      Search({ value: 'Search CopyOption:LocalDevice', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .copyOption(CopyOptions.LocalDevice)
+        .onCopy((value: string) => {
+          this.copyValue = value;
+        })
+        .onCut((value: string) => {
+          this.cutValue = value;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchCopyOption](figures/searchCopyOption.gif)
+
+### 示例13（设置文本水平对齐/光标样式/选中背景色）
+
+该示例通过textAlign、caretStyle、selectedBackgroundColor属性展示如何设置文本的水平对齐、光标样式和选中背景色。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+
+  build() {
+    Column({ space: 3 }) {
+      Search({ value: 'Search textAlign sample', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .textAlign(TextAlign.Center)
+        .caretStyle({ width: 3, color: Color.Green })
+        .selectedBackgroundColor(Color.Gray)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchTextAlign](figures/searchTextAlign.gif)
+
+### 示例14（设置默认获焦并拉起软键盘）
+
+该示例通过defaultFocus、enableKeyboardOnFocus属性展示如何设置默认获焦并拉起软键盘。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State value: string = 'false'
+
+  build() {
+    Column({ space: 3 }) {
+      Text('editing: ' + this.value)
+      Search({ placeholder: 'please enter...', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .enableKeyboardOnFocus(true)
+        .enablePreviewText(true)
+        .enableHapticFeedback(true)
+        .onEditChange((data: boolean) => {
+          this.value = data ? 'true' : 'false'
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchEnableKeyboardOnFocus](figures/searchEnableKeyboardOnFocus.gif)
+
+### 示例15（关闭系统文本选择菜单）
+
+该示例通过defaultFocus、enableKeyboardOnFocus属性展示如何关闭系统文本选择菜单。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+
+  build() {
+    Column({ space: 3 }) {
+      Search({ value: '123456', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .type(SearchType.NUMBER)
+        .selectionMenuHidden(true)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSelectionMenuHidden](figures/searchSelectionMenuHidden.gif)
+
+### 示例16（对输入的文本进行过滤）
+
+该示例通过inputFilter属性展示如何对输入的文本进行内容的过滤，以限制输入内容。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State filterValue: string = ''
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Filter:' + this.filterValue)
+      Search({ placeholder: 'please enter...', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .textIndent(5)
+        .inputFilter('[a-z]', (filterValue: string) => {
+          this.filterValue = filterValue
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchInputFilter](figures/searchInputFilter.gif)
+
+### 示例17（设置选中指定区域的文本内容）
+
+该示例通过setTextSelection方法展示如何设置选中指定区域的文本内容。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State startIndex: number = 0
+  @State endIndex: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('Selection start:' + this.startIndex + ' end:' + this.endIndex)
+      Search({ value: 'Hello World', controller: this.controller })
+        .width('95%')
+        .height(40)
+        .defaultFocus(true)
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.startIndex = selectionStart
+          this.endIndex = selectionEnd
+        })
+
+      Button('Selection [0,3]')
+        .onClick(() => {
+          this.controller.setTextSelection(0, 3)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchSetTextSelection](figures/searchSetTextSelection.gif)
+
+### 示例18（设置文本滚动事件）
+
+该示例通过onContentScroll事件展示如何设置文本滚动事件的回调。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct SearchExample {
+  controller: SearchController = new SearchController()
+  @State offsetX: number = 0
+  @State offsetY: number = 0
+
+  build() {
+    Column({ space: 3 }) {
+      Text('offset x:' + this.offsetX + ' y:' + this.offsetY)
+      Search({ value: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', controller: this.controller })
+        .width(200)
+        .height(40)
+        .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+          this.offsetX = totalOffsetX
+          this.offsetY = totalOffsetY
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![searchOnContentScroll](figures/searchOnContentScroll.gif)

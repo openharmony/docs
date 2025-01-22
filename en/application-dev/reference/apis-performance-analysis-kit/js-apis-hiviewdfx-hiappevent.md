@@ -267,7 +267,7 @@ Defines parameters for an **AppEventInfo** object.
 
 setEventParam(params: Record&lt;string, ParamType&gt;, domain: string, name?: string): Promise&lt;void&gt;
 
-Method for setting custom event parameters. This API uses a promise to return the result. In the same lifecycle, you can associate system events with application events by event domain and event name. Only crash and freeze events are supported.
+Sets custom event parameters. This API uses a promise to return the result. In the same lifecycle, you can associate system events with application events by event domain and event name. Only crash and freeze events are supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -277,7 +277,7 @@ Method for setting custom event parameters. This API uses a promise to return th
 
 | Name| Type                          | Mandatory| Description          |
 | ------ | ------------------------------ | ---- | -------------- |
-| params | Record&lt;string, [ParamType](#paramtype12)&gt; | Yes| Custom parameter object. The parameter names and parameter values are defined as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value is of the [ParamType](#paramtype12) and contains a maximum of 1024 characters.<br>- The number of parameters must be less than 64.|
+| params | Record&lt;string, [ParamType](#paramtype12)&gt; | Yes| Custom parameter object. The parameter name and value are defined as follows:<br>- A parameter name is a string that contains a maximum of 32 characters, including digits (0 to 9), letters (a to z), underscore (_), and dollar sign ($). It must start with a letter or dollar sign ($) and end with a digit or letter.<br>- The parameter value is of the [ParamType](#paramtype12) and contains a maximum of 1024 characters.<br>- The number of parameters must be less than 64.|
 | domain | string                        | Yes| Event domain. The event domain can be associated with application events and system events (hiAppEvent.domain.OS).|
 | name   | string                        | No| Event name. The default value is an empty string, which indicates all event names in the associated event domain. The event name can be associated with application events and system events. System events can be associated only with crash events (hiAppEvent.event.APP_CRASH) and freeze events (hiAppEvent.event.APP_FREEZE).|
 
@@ -909,7 +909,7 @@ Enumerates event types.
 | BEHAVIOR  | 4    | Behavior event.|
 
 
-## domain<sup>11+</sup>
+## hiappevent.domain<sup>11+</sup>
 
 Defines the domain name of predefined events.
 
@@ -917,34 +917,34 @@ Defines the domain name of predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name| Type  | Description      |
-| ---  | ------ | ---------- |
-| OS   | string | System domain.|
+| Name| Type  | Read Only  | Description      |
+| ---  | ------ | ------ | ---------- |
+| OS   | string | Yes| System domain.|
 
 
-## event
+## hiappevent.event
 
 Defines the names of predefined events.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name                     | Type  | Description                |
-| ------------------------- | ------ | -------------------- |
-| USER_LOGIN                | string | User login event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| USER_LOGOUT               | string | User logout event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| DISTRIBUTED_SERVICE_START | string | Distributed service startup event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| APP_CRASH<sup>11+</sup>   | string | Application crash event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| APP_FREEZE<sup>11+</sup>  | string | Application freeze event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
-| APP_LAUNCH<sup>12+</sup>  | string | Event indicating the application launch duration.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| SCROLL_JANK<sup>12+</sup> | string | Event indicating frame loss during swiping.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| CPU_USAGE_HIGH<sup>12+</sup> | string | Event indicating a high CPU usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BATTERY_USAGE<sup>12+</sup> | string | Event indicating battery usage statistics.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| RESOURCE_OVERLIMIT<sup>12+</sup> | string | Event indicating an application resource leakage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| ADDRESS_SANITIZER<sup>12+</sup> | string | Address sanitizer event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| MAIN_THREAD_JANK<sup>12+</sup> | string | Main thread jank event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| Name                     | Type  | Read Only  | Description                |
+| ------------------------- | ------ | ------ | -------------------- |
+| USER_LOGIN                | string | Yes| User login event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| USER_LOGOUT               | string | Yes| User logout event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| DISTRIBUTED_SERVICE_START | string | Yes| Distributed service startup event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| APP_CRASH<sup>11+</sup>   | string | Yes| Application crash event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| APP_FREEZE<sup>11+</sup>  | string | Yes| Application freeze event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.      |
+| APP_LAUNCH<sup>12+</sup>  | string | Yes| Event indicating the application launch duration.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| SCROLL_JANK<sup>12+</sup> | string | Yes| Event indicating frame loss during swiping.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| CPU_USAGE_HIGH<sup>12+</sup> | string | Yes| Event indicating a high CPU usage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| BATTERY_USAGE<sup>12+</sup> | string | Yes| Event indicating battery usage statistics.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| RESOURCE_OVERLIMIT<sup>12+</sup> | string | Yes| Event indicating an application resource leakage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| ADDRESS_SANITIZER<sup>12+</sup> | string | Yes| Address sanitizer event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MAIN_THREAD_JANK<sup>12+</sup> | string | Yes| Main thread jank event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
-## param
+## hiappevent.param
 
 Defines the names of predefined event parameters.
 
@@ -952,8 +952,8 @@ Defines the names of predefined event parameters.
 
 **System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
-| Name                           | Type  | Description              |
-| ------------------------------- | ------ | ------------------ |
-| USER_ID                         | string | Custom user ID.    |
-| DISTRIBUTED_SERVICE_NAME        | string | Distributed service name.  |
-| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Distributed service instance ID.|
+| Name                           | Type  | Read Only  | Description              |
+| ------------------------------- | ------ | ------ | ------------------ |
+| USER_ID                         | string | Yes| Custom user ID.    |
+| DISTRIBUTED_SERVICE_NAME        | string | Yes| Distributed service name.  |
+| DISTRIBUTED_SERVICE_INSTANCE_ID | string | Yes| Distributed service instance ID.|

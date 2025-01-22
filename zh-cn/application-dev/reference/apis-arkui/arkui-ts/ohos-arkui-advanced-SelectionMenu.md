@@ -117,7 +117,7 @@ struct Index {
   @State select: boolean = true
   controller: RichEditorController = new RichEditorController();
   options: RichEditorOptions = { controller: this.controller }
-  @State message: string = 'Hello word'
+  @State message: string = 'Hello world'
   @State textSize: number = 30
   @State fontWeight: FontWeight = FontWeight.Normal
   @State start: number = -1

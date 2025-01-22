@@ -1,9 +1,21 @@
-# Frame Animation
+# Frame Animation (ohos.animator)
 
-Frame animation involves the use of the **onFrame** callback in applications, which allows you to adjust property values with each frame that is rendered, thereby creating animation effects for the components associated with those property values. For details about the APIs, see [@ohos.animator (Animator)](../reference/apis-arkui/js-apis-animator.md).
+The frame animation allows you to adjust your animation properties on each frame, thanks to its per-frame callback. By leveraging the **onFrame** callback, you can dynamically set property values on each frame, creating smooth and natural animations. For details about the frame animation APIs, see [@ohos.animator (Animator)](../reference/apis-arkui/js-apis-animator.md).
 
+Compared with the property animation, the frame animation offers the benefits of real-time visibility into the animation process and allows you to modify UI values on the fly. In addition, it provides high responsiveness to events and can be paused as needed. However, it is worth noting that the frame animation may not be as performant as the property animation. Therefore, where the property animation meets the requirements, you are advised to use the property animation APIs. For details, see [Implementing Property Animation](./arkts-attribute-animation-apis.md). The table below provides a comparison between the property animation and frame animation.
 
-## Implementing an Animation with animator
+| Name| Implementation| Event Response| Pausable| Performance|
+| -------- | -------- | -------- | -------- |-------- |
+| Frame animation (ohos.animator)| Allows real-time modification and updating of UI properties on each frame.| Responds in real time| Yes| Relatively lower|
+| Property animation| Calculates the final state of the animation, with the UI reflecting only the end state, not the intermediate rendering values.| Responds to the end state| No| Generally higher|
+
+The following figures illustrate the difference: The frame animation offers real-time responsiveness, whereas the property animation reacts to the final state of the animation.
+
+![Alt text](figures/ohos.animator.gif)
+
+![Alt text](figures/animation.gif)
+
+## Using Frame Animation to Implement Animation Effects
 
 To create a simple animator and print the current interpolation value in each frame callback:
 
@@ -24,13 +36,13 @@ To create a simple animator and print the current interpolation value in each fr
       fill: "forwards",                                  
       direction: "normal",                                  
       iterations: 2,                                        
-      // Initial frame value used for interpolation in the onFrame callback                                   
+      // Initial frame value used for interpolation in the onFrame callback                             
       begin: 200.0,                                         
-      // End frame value used for interpolation in the onFrame callback                                   
+      // End frame value used for interpolation in the onFrame callback                                
       end: 400.0                                            
    }; 
    let result: AnimatorResult = this.getUIContext().createAnimator(options);
-      // Set up a callback for when a frame is received, so that the onFrame callback is called for every frame throughout the animation playback process.
+   // Set up a callback for when a frame is received, so that the onFrame callback is called for every frame throughout the animation playback process.
        result.onFrame = (value: number) => {
        console.log("current value is :" + value);
    }
@@ -46,11 +58,11 @@ To create a simple animator and print the current interpolation value in each fr
 4. After the animation has finished executing, manually release the **AnimatorResult** object.
 
    ```ts
-   // Play the animation.
+   // Release the animation object.
    result = undefined;
    ```
 
-## Implementing a Ball's Parabolic Motion with Animator
+## Using Frame Animation to Implement a Ball's Parabolic Motion
 
 1. Import dependencies.
 
@@ -110,7 +122,7 @@ To create a simple animator and print the current interpolation value in each fr
      this.animatorStatus = 'Paused'
    }).width(80).height(35)
    ```
-5. Destroy the animation in the page's **onPageHide** lifecycle callback.
+5. Destroy the animation in the page's **onPageHide** lifecycle callback to avoid memory leak.
    ```ts
    onPageHide(): void {
      this.animatorOptions = undefined;

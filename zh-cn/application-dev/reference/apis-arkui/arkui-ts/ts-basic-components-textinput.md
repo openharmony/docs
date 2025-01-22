@@ -232,7 +232,7 @@ fontFamily(value: ResourceStr)
 
 ### inputFilter<sup>8+</sup>
 
-inputFilter(value: ResourceStr, error?: Callback\<string>)
+inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 通过正则表达式设置输入过滤器。匹配表达式的输入允许显示，不匹配的输入将被过滤。仅支持单个字符匹配，不支持字符串匹配。
 
@@ -247,7 +247,7 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 | 参数名 | 类型                                   | 必填 | 说明                               |
 | ------ | -------------------------------------- | ---- | ---------------------------------- |
 | value  | [ResourceStr](ts-types.md#resourcestr) | 是   | 正则表达式。                       |
-| error  | Callback\<string>                | 否   | 正则匹配失败时，返回被过滤的内容。 |
+| error  | (value: string) => void                | 否   | 正则匹配失败时，返回被过滤的内容。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -568,7 +568,7 @@ passwordRules(value: string)
 
 ### cancelButton<sup>11+</sup>
 
-cancelButton(options: CancelButtonOptions)
+cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions })
 
 设置右侧清除按钮样式。不支持内联模式。
 
@@ -580,7 +580,7 @@ cancelButton(options: CancelButtonOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options  | [CancelButtonOptions](ts-basic-components-search.md#cancelbuttonoptions12对象说明) | 是   | 右侧清除按钮样式选项。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
+| value  | {<br/>style? : [CancelButtonStyle](ts-basic-components-search.md#cancelbuttonstyle10枚举说明)<br/>icon?: [IconOptions](ts-basic-components-search.md#iconoptions10对象说明) <br/>} | 是   | 右侧清除按钮样式。<br />默认值：<br />{<br />style: CancelButtonStyle.INPUT<br />} |
 
 ### selectAll<sup>11+</sup>
 
@@ -909,7 +909,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -1045,7 +1045,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 描述               |
+| 名称                   | 说明               |
 | ---------------------- | ------------------ |
 | Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
@@ -1080,7 +1080,7 @@ onChange(callback:&nbsp;EditableTextOnChangeCallback)
 
 ### onSubmit
 
-onSubmit(callback:OnSubmitCallback)
+onSubmit(callback:&nbsp;(enterKey:&nbsp;EnterKeyType,&nbsp;event:&nbsp;SubmitEvent)&nbsp;=&gt;&nbsp;void)
 
 按下输入法回车键触发该回调。
 
@@ -1092,7 +1092,8 @@ onSubmit(callback:OnSubmitCallback)
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback            | [OnSubmitCallback](#onsubmitcallback14对象说明) | 是   | 提交回调。 |
+| enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
+| event<sup>11+</sup> | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -1112,9 +1113,9 @@ onEditChanged(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
 ### onEditChange<sup>8+</sup>
 
-onEditChange(callback:Callback\<boolean>)
+onEditChange(callback:&nbsp;(isEditing:&nbsp;boolean)&nbsp;=&gt;&nbsp;void)
 
-输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。
+输入状态变化时，触发该回调。有光标时为编辑态，无光标时为非编辑态。isEditing为true表示正在输入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1124,11 +1125,11 @@ onEditChange(callback:Callback\<boolean>)
 
 | 参数名    | 类型    | 必填 | 说明                 |
 | --------- | ------- | ---- | -------------------- |
-| callback | Callback\<boolean> | 是   | 输入状态变化回调，返回值为true表示正在输入。 |
+| isEditing | boolean | 是   | 为true表示正在输入。 |
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:Callback\<string>)
+onCopy(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 进行复制操作时，触发该回调。
 
@@ -1140,11 +1141,11 @@ onCopy(callback:Callback\<string>)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 复制回调，其返回值为复制的文本内容。 |
+| value | string | 是   | 复制的文本内容。 |
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:Callback\<string>)
+onCut(callback:&nbsp;(value:&nbsp;string)&nbsp;=&gt;&nbsp;void)
 
 进行剪切操作时，触发该回调。
 
@@ -1156,11 +1157,11 @@ onCut(callback:Callback\<string>)
 
 | 参数名    | 类型    | 必填 | 说明             |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | 是   | 剪切回调，其返回值为剪切的文本内容。 |
+| value | string | 是   | 剪切的文本内容。 |
 
 ### onPaste<sup>8+</sup>
 
-onPaste(callback:OnPasteCallback )
+onPaste(callback:&nbsp;(value:&nbsp;string, event:&nbsp;PasteEvent)&nbsp;=&gt;&nbsp;void)
 
 进行粘贴操作时，触发该回调。
 
@@ -1169,13 +1170,15 @@ onPaste(callback:OnPasteCallback )
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
+
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
+| value               | string                                                       | 是   | 粘贴的文本内容。       |
+| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: OnTextSelectionChangeCallback)
+onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
 文本选择的位置发生变化或编辑状态下光标位置发生变化时，触发该回调。
 
@@ -1187,11 +1190,12 @@ onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 | 参数名         | 类型   | 必填 | 说明                                    |
 | -------------- | ------ | ---- | --------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
+| selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
+| selectionEnd   | number | 是   | 所选文本的结束位置。                    |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: OnContentScrollCallback)
+onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 文本内容滚动时，触发该回调。
 
@@ -1203,7 +1207,8 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
+| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
+| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
 ### onSecurityStateChange<sup>12+</sup>
 
@@ -1372,7 +1377,7 @@ stopEditing(): void
 | error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
 | disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
-## SubmitEvent<sup>11+</sup>对象说明
+## SubmitEvent<sup>11+</sup>
 
 定义用户提交事件。
 
@@ -1399,74 +1404,6 @@ keepEditableState(): void
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-## OnPasteCallback<sup>14+</sup>对象说明
-
-type OnPasteCallback = (content: string, event: PasteEvent) => void
-
-粘贴回调。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名              | 类型                                                         | 必填 | 说明                   |
-| ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| content               | string                                                       | 是   | 粘贴的文本内容。       |
-| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
-
-## OnSubmitCallback<sup>14+</sup>对象说明
-
-type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
-
-提交回调。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名              | 类型                                             | 必填 | 说明                                                         |
-| ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
-| event | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
-
-## OnTextSelectionChangeCallback<sup>14+</sup>对象说明
-
-type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
-
-文本选择变化回调或光标位置变化回调。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名         | 类型   | 必填 | 说明                                    |
-| -------------- | ------ | ---- | --------------------------------------- |
-| selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
-| selectionEnd   | number | 是   | 所选文本的结束位置。                    |
-
-## OnContentScrollCallback<sup>14+</sup>对象说明
-
-type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
-
-文本内容滚动回调。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名       | 类型   | 必填 | 说明                               |
-| ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | 是   | 文本在内容区的横坐标偏移，单位px。 |
-| totalOffsetY | number | 是   | 文本在内容区的纵坐标偏移，单位px。 |
 
 ## 示例
 

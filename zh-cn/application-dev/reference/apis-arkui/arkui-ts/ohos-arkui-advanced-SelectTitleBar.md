@@ -66,19 +66,14 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 该示例实现了简单的下拉菜单标题栏，带有返回箭头的下拉菜单标题栏和带有右侧菜单项目列表的下拉菜单标题栏。
 
 ```ts
-import { SelectTitleBar, promptAction } from '@kit.ArkUI'
+import { SelectTitleBar, promptAction, SelectTitleBarMenuItem } from '@kit.ArkUI'
 
-interface menuItems {
-  value: Resource;
-  isEnabled?: boolean;
-  action?: () => void;
-}
 
 @Entry
 @Component
 struct Index {
   // 定义右侧菜单项目列表
-  private menuItems: Array<menuItems> =
+  private menuItems: Array<SelectTitleBarMenuItem> =
     [
       {
         // 菜单图片资源
@@ -99,7 +94,7 @@ struct Index {
         action: () => promptAction.showToast({ message: 'show toast index 3' }),
       },
       {
-        value: $r('sys.media.ohos_ic_public_copy'),
+        value: $r('sys.media.ohos_ic_public_remove'),
         isEnabled: true,
         action: () => promptAction.showToast({ message: 'show toast index 4' }),
       },
@@ -180,4 +175,4 @@ struct Index {
 }
 ```
 
-![SelectTitleBar1](figures/SelectTitleBar1.png)
+![zh-cn_image_selecttitlebar_example01](figures/zh-cn_image_selecttitlebar_example01.png)

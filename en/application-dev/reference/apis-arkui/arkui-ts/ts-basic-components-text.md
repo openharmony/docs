@@ -58,7 +58,7 @@ When **textAlign** is set to **TextAlign.JUSTIFY**, you must set the [wordBreak]
 
 ### textOverflow
 
-textOverflow(options: TextOverflowOptions)
+textOverflow(value: { overflow: TextOverflow })
 
 Sets the display mode when the text is too long.
 
@@ -80,7 +80,7 @@ Since API version 12, **TextOverflow.MARQUEE** is available for the **ImageSpan*
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [TextOverflowOptions](#textoverflowoptions14) | Yes  | Display mode when the text is too long.|
+| value | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Yes  | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**|
 
 ### maxLines
 
@@ -887,22 +887,6 @@ Provides the [span](ts-basic-components-span.md) type information.
 | LONG_PRESS  | The menu is displayed when the component is long-pressed.  |
 | SELECT | The menu is displayed when the component is selected.|
 
-## TextOverflowOptions<sup>14+</sup>
-
-Describes the display mode when the text is too long.
-
-**Widget capability**: This API can be used in ArkTS widgets since API version 14.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| overflow  | [TextOverflow](ts-appendix-enums.md#textoverflow) | Yes  | Display mode when the text is too long.<br>Default value: **TextOverflow.Clip**|
-
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
@@ -1052,7 +1036,7 @@ struct TextExample1 {
         .margin(5)
 
       Row() {
-        Button('Current TextAlign: ' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+        Button('TextAlign Value: ' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
           this.changeTextAlignIndex++
           if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
             this.changeTextAlignIndex = 0
@@ -1134,7 +1118,7 @@ struct TextExample2 {
         .margin(5)
 
       Row() {
-        Button('Toggle Decoration Type: ' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        Button('Decoration Type: ' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
         this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
           this.changeDecorationIndex++
           if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
@@ -1242,7 +1226,7 @@ struct TextExample3 {
         .style()
 
       Row() {
-        Button('Change Ellipsis Position: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+        Button('Ellipsis Position: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
           this.ellipsisModeIndex++
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
             this.ellipsisModeIndex = 0
@@ -1258,7 +1242,7 @@ struct TextExample3 {
 
 ### Example 4: Setting Text Wrapping and Line Breaking
 
-This example demonstrates the effects of different text wrapping and line breaking rules, as well as whether text is truncated when it exceeds the container's length, using the **wordBreak**, **lineBreakStrategy**, and **clip** attributes.
+This example demonstrates the effects of different text wrapping and line breaking rules, as well as whether text is clipped when it exceeds the container's length, using the **wordBreak**, **lineBreakStrategy**, and **clip** attributes.
 
 ```ts
 // xxx.ets
@@ -1300,7 +1284,7 @@ struct TextExample4 {
         .style()
 
       Row() {
-        Button('Toggle wordBreak Value: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
+        Button('wordBreak Value: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
           this.wordBreakIndex++
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
             this.wordBreakIndex = 0
@@ -1309,14 +1293,14 @@ struct TextExample4 {
       }
 
       Text('clip').fontSize(9).fontColor(0xCCCCCC)
-      // Set whether text is truncated when it exceeds the length.
+      // Set whether text is clipped when it exceeds the length.
       Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .wordBreak(WordBreak.NORMAL)
         .maxLines(2)
         .clip(this.textClip)
         .style()
       Row() {
-        Button('Change Clip Mode: ' + this.textClip).onClick(() => {
+        Button('Clip Mode: ' + this.textClip).onClick(() => {
           this.textClip = !this.textClip
         })
       }
@@ -1327,7 +1311,7 @@ struct TextExample4 {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
         .style()
       Row() {
-        Button('Toggle lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+        Button('lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
           this.lineBreakStrategyIndex++
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
             this.lineBreakStrategyIndex = 0
@@ -1640,12 +1624,15 @@ This example shows how to obtain text information by calling the layout manager 
 
 ```ts
 // xxx.ets
+import { text } from '@kit.ArkGraphics2D'
+
 @Entry
 @Component
 struct TextExample10 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
+  @State rectsForRangeStr: string = ""
   controller: TextController = new TextController()
   @State textStr: string =
     'Hello World!'
@@ -1654,7 +1641,7 @@ struct TextExample10 {
     Scroll() {
       Column() {
         Text('Use getLayoutManager to get layout information')
-          .fontSize(9)
+          .fontSize(15)
           .fontColor(0xCCCCCC)
           .width('90%')
           .padding(10)
@@ -1666,27 +1653,27 @@ struct TextExample10 {
             this.lineCount = "LineCount: " + layoutManager.getLineCount()
           })
 
-        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Text(this.lineCount)
 
-        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Relative Component Coordinates [150,50]")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
             let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
             this.glyphPositionAtCoordinate =
-              "Relative component coordinates [150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
+              "Relative coordinates [150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
               position.affinity
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
 
-        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Line Metrics")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
             let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
               this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
@@ -1694,6 +1681,21 @@ struct TextExample10 {
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
+
+        Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("Drawing Area Info for Characters/Placeholders within Specified Text Range")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let range: TextRange = { start: 0, end: 1 }
+            let rectsForRangeInfo: text.TextBox[] =
+              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
+            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
+            rectsForRangeInfo.forEach((value, key) => {
+              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
+            })
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.rectsForRangeStr)
       }
       .margin({ top: 100, left: 8, right: 8 })
     }
@@ -1741,8 +1743,7 @@ This example demonstrates how to use the **editMenuOptions** API to create custo
 @Component
 struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
@@ -1757,29 +1758,31 @@ struct TextExample12 {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       Text(this.text)
         .fontSize(20)
         .copyOption(CopyOptions.LocalDevice)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false
-            }
-            return false
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")

@@ -4,13 +4,13 @@
 
 >**说明：**
 >
->本模块首批接口从API version 12开始支持。
+>本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 本文中T和S的含义如下：
 
 
-| 类型   | 描述                                     |
+| 类型   | 说明                                     |
 | ---- | -------------------------------------- |
 | T    | Class，number，boolean，string和这些类型的数组形式。 |
 | S    | number，boolean，string。                 |
@@ -24,9 +24,13 @@ import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
 
 ## AppStorageV2
 
-AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)
+AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)。
 
-### connect<sup>12+</sup>
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### connect
 
 static&nbsp;connect\<T extends object\>( </br >
   &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
@@ -44,8 +48,8 @@ static&nbsp;connect\<T extends object\>( </br >
 
 | 参数名   | 类型   | 必填 | 说明               |
 | -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
-| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
+| type | [TypeConstructorWithArgs\<T\>](#typeconstructorwithargst) | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
+| keyOrDefaultCreator | string&nbsp;\|&nbsp;[StorageDefaultCreator\<T\>](#storagedefaultcreatort) | 否   | 指定的key，或者是获取默认值的构造器。 |
 | defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
 
 >**说明：**
@@ -60,7 +64,7 @@ static&nbsp;connect\<T extends object\>( </br >
 
 **返回值：**
 
-| 类型                                   | 描述                                                         |
+| 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
 | T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
@@ -84,7 +88,7 @@ const as2: SampleClass = AppStorageV2.connect(SampleClass, 'key_as2', () => new 
 const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 ```
 
-### remove<sup>12+</sup>
+### remove
 
 static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
 
@@ -119,7 +123,7 @@ AppStorageV2.remove(SampleClass);
 AppStorageV2.remove('key_as1');
 ```
 
-### keys<sup>12+</sup>
+### keys
 
 static&nbsp;keys():&nbsp;Array\<string\>;
 
@@ -128,10 +132,6 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-无。
 
 **返回值：**
 
@@ -154,9 +154,13 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ## PersistenceV2
 
-继承自AppStorageV2，PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
+继承自[AppStorageV2](#appstoragev2)，PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
 
-### save<sup>12+</sup>
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### save
 
 static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
 
@@ -174,14 +178,14 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 
 >**说明：**
 >
->由于非[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)的自动持久化，如有必要，可调用该接口持久化对应key的数据；
+>由于非[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)的自动持久化，如有必要，可调用该接口持久化对应key的数据。
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
-
 
 **示例：**
 
 <!--code_no_check-->
+
 ```ts
 // 假设PersistenceV2中存在key为key_as2的键，持久化该键值对数据
 PersistenceV2.save('key_as2');
@@ -193,7 +197,7 @@ PersistenceV2.remove(SampleClass);
 PersistenceV2.remove('key_as1');
 ```
 
-### notifyOnError<sup>12+</sup>
+### notifyOnError
 
 static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
@@ -222,7 +226,11 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 
 UIUtils提供一些方法，用于处理状态管理相关的数据转换。
 
-### getTarget<sup>12+</sup>
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getTarget
 
 static getTarget\<T extends object\>(source: T): T;
 
@@ -240,7 +248,7 @@ static getTarget\<T extends object\>(source: T): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | 数据源对象去除状态管理框架所加代理后的原始对象。 |
 
@@ -265,7 +273,7 @@ struct Index {
   }
 }
 ```
-### makeObserved<sup>12+</sup>
+### makeObserved
 
 static makeObserved\<T extends object\>(source: T): T;
 
@@ -283,7 +291,7 @@ static makeObserved\<T extends object\>(source: T): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | 可观察的数据。 |
 
@@ -315,9 +323,9 @@ struct Index {
 }
 ```
 
-## StorageDefaultCreator<sup>12+</sup>
+## StorageDefaultCreator\<T\>
 
-export declare type StorageDefaultCreator\<T\> = () => T;
+type StorageDefaultCreator\<T\> = () => T;
 
 返回默认构造器的函数。
 
@@ -327,7 +335,7 @@ export declare type StorageDefaultCreator\<T\> = () => T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | () => T    | 返回默认构造器的函数。 |
 
@@ -364,9 +372,13 @@ struct SampleComp {
 }
 ```
 
-## TypeConstructorWithArgs<sup>12+</sup>
+## TypeConstructorWithArgs\<T\>
 
 含有任意入参的类构造器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### new
 
@@ -384,7 +396,7 @@ new(...args: any): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
 
@@ -421,9 +433,9 @@ struct SampleComp {
 }
 ```
 
-## PersistenceErrorCallback<sup>12+</sup>
+## PersistenceErrorCallback
 
-export declare type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
+type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
 
 持久化失败时返回错误原因的回调。
 
@@ -436,7 +448,7 @@ export declare type PersistenceErrorCallback = (key: string, reason: 'quota' | '
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
 | key | string    | 是   | 出错的键值。   |
-| reson | 'quota' \| 'serialization' \| 'unknown'    | 是   | 出错的原因类型。   |
+|reason| 'quota' \| 'serialization' \| 'unknown'    | 是   | 出错的原因类型。   |
 | message | string    | 是   | 出错的更多消息。   |
 
 **示例：**
@@ -481,9 +493,13 @@ struct Index {
 }
 ```
 
-## TypeConstructor<sup>12+</sup>
+## TypeConstructor\<T\>
 
 类构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### new
 
@@ -491,7 +507,7 @@ new(): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
 
@@ -535,9 +551,9 @@ struct Index {
 }
 ```
 
-## TypeDecorator<sup>12+</sup>
+## TypeDecorator
 
-export declare type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
+type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
 
 属性装饰器。
 
@@ -549,11 +565,11 @@ export declare type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => Propert
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| type | TypeConstructor\<T\>    | 是   | 标记类属性的类型。   |
+| type | [TypeConstructor\<T\>](#typeconstructort)    | 是   | 标记类属性的类型。   |
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | PropertyDecorator    | 属性装饰器。 |
 

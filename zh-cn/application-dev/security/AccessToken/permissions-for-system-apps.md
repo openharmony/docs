@@ -819,7 +819,7 @@
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
-允许应用对外卡进行挂载卸载操作。
+允许应用对外卡进行挂载、卸载操作。
 
 **权限级别**：system_basic
 
@@ -3911,7 +3911,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.SET_TELEPHONY_ESIM_STATE
 
@@ -3923,7 +3923,7 @@
 
 **ACL使能**：true
 
-**起始版本**：13
+**起始版本**：14
 
 ### ohos.permission.CAMERA_BACKGROUND
 

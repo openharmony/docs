@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供NativeWindow功能，作为数据生产者，可用来和egl对接。
+NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开发者作为图像buffer的生产者，生产buffer并通过NativeWindow传递buffer供消费端去读取。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -274,7 +274,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
 | GET_TIMEOUT | 获取请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输出] int32_t \*timeout，单位为毫秒。 | 
 | SET_COLOR_GAMUT | 设置本地窗口缓冲区色彩空间， 函数中的可变参数是 [输入] int32_t colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
-| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [out int32_t \*colorGamut]，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
+| GET_COLOR_GAMUT | 获取本地窗口缓冲区色彩空间， 函数中的可变参数是 [输出] int32_t \*colorGamut，取值具体可见[OH_NativeBuffer_ColorGamut](_o_h___native_buffer.md#oh_nativebuffer_colorgamut-1)枚举值。 | 
 | SET_TRANSFORM | 设置本地窗口缓冲区变换， 函数中的可变参数是 [输入] int32_t transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
 | GET_TRANSFORM | 获取本地窗口缓冲区变换， 函数中的可变参数是 [输出] int32_t \*transform，取值具体可见[OH_NativeBuffer_TransformType](_o_h___native_buffer.md#oh_nativebuffer_transformtype-1)枚举值。  | 
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
@@ -1149,7 +1149,9 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow *window, uint
 
 **起始版本：** 9
 
-**弃用：** 从API version 10开始废弃，不再提供替代接口。
+**废弃版本：** 10
+
+**替代接口：** [OH_NativeWindow_NativeWindowSetScalingModeV2](#oh_nativewindow_nativewindowsetscalingmodev2)
 
 **参数:**
 

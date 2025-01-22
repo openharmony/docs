@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标，单位px |
-| y | number | 是    | 相对于组件的纵坐标，单位px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
 
 **返回值：**
 
@@ -94,7 +94,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 ### getRectsForRange<sup>14+</sup>
 
-getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
+getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
 获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中任意区间范围内的字符或占位符所占的绘制区域信息。
 
@@ -106,7 +106,7 @@ getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeig
 
 | 参数名      | 类型                                 | 必填 | 说明                     |
 | ----------- | ----------------------------------- | ---- | ------------------------ |
-| range       | [Range](../../apis-arkgraphics2d/js-apis-graphics-text.md#range)                     | 是   | 需要获取的区域的文本区间。  |
+| range       | [TextRange](#textrange12)| 是   | 需要获取的区域的文本区间。  |
 | widthStyle  | [RectWidthStyle](#rectwidthstyle14)   | 是   | 返回的矩形区域的宽度的规格。|
 | heightStyle | [RectHeightStyle](#rectheightstyle14) | 是   | 返回的矩形区域的高度的规格。|
 
@@ -207,7 +207,7 @@ equals(id: TextMenuItemId): boolean
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
 
-## EditMenuOptions对象说明
+## EditMenuOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -500,7 +500,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ## TextEditControllerEx<sup>12+</sup>
 
@@ -630,7 +630,7 @@ getStyledString(): MutableStyledString;
 
 | 类型    | 说明                          |
 | ------- | ----------------------------- |
-| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串 |
+| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串。 |
 
 ## DecorationStyleResult<sup>12+</sup>
 

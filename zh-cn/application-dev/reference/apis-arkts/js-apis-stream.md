@@ -297,7 +297,7 @@ on(event: string, callback: Callback<emitter.EventData>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据达到writableHighWatermark时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
+| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据清空时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | 是 | 回调函数，返回事件传输的数据。 |
 
 **错误码：**
@@ -344,7 +344,7 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据达到writableHighWatermark时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
+| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据清空时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | 否 | 回调函数。 |
 
 **错误码：**

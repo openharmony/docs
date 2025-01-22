@@ -30,6 +30,7 @@
     - [@ohos.update (升级)(系统接口)](js-apis-update-sys.md)
     <!--DelEnd-->
   - 数据文件处理
+    - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](js-apis-app-ability-PrintExtensionAbility.md)
     - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
     - [@ohos.print (打印)](js-apis-print.md)
     - [@ohos.request (上传下载)](js-apis-request.md)

@@ -407,7 +407,9 @@ VKAPI_ATTR VkResult VKAPI_CALL vkAcquireImageOHOS (VkDevice device, VkImage imag
 
 **返回：**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示主机内存不足。
 
 ### vkCreateSurfaceOHOS()
 
@@ -433,7 +435,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkCreateSurfaceOHOS (VkInstance instance, const V
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示分配VkSurfaceKHR内存失败。
+返回VK_ERROR_SURFACE_LOST_KHR，表示操作NativeWindow失败。
 
 
 ### vkGetMemoryNativeBufferOHOS()
@@ -459,8 +464,9 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetMemoryNativeBufferOHOS (VkDevice device, con
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
-
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示pInfo入参异常，或获取的pBuffer异常。
 
 ### vkGetNativeBufferPropertiesOHOS()
 
@@ -485,7 +491,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetNativeBufferPropertiesOHOS (VkDevice device,
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR，表示入参存在异常。
+返回VK_ERROR_OUT_OF_DEVICE_MEMORY，表示设备内存不足。
 
 
 ### vkGetSwapchainGrallocUsageOHOS()
@@ -513,7 +522,9 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetSwapchainGrallocUsageOHOS (VkDevice device, 
 
 **返回：**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_INITIALIZATION_FAILED，表示入参异常。
 
 ### vkQueueSignalReleaseImageOHOS()
 
@@ -541,7 +552,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uin
 
 **返回：**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_DEVICE_LOST，表示Vulkan设备链接丢失。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示主机内存不足。
 
 ## 变量说明
 

@@ -15,7 +15,7 @@ TextClock组件通过文本将当前系统时间显示在设备上。支持不�
 
 ## 接口
 
-TextClock(options?: TextClockOptions)
+TextClock(options?: { timeZoneOffset?: number, controller?: TextClockController })
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -24,18 +24,6 @@ TextClock(options?: TextClockOptions)
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| options |  [TextClockOptions](#textclockoptions14对象说明)| 否 | 通过文本显示当前系统时间的组件参数。 |
-
-## TextClockOptions<sup>14+</sup>对象说明
-
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名            | 类型      | 必填     | 说明                                                     |
 | -------------- | -------- | ------ | --------------------------------------------------------------------------- |
@@ -388,6 +376,7 @@ struct Second {
   @State accumulateTime: number = 0
   // 导入对象
   controller: TextClockController = new TextClockController()
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Current milliseconds is ' + this.accumulateTime)
@@ -427,9 +416,33 @@ struct Second {
 @Entry
 @Component
 struct TextClockExample {
-  @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
-      { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
-      { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+  @State textShadows: ShadowOptions | Array<ShadowOptions> = [{
+    radius: 10,
+    color: Color.Red,
+    offsetX: 10,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Black,
+    offsetX: 20,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Brown,
+    offsetX: 30,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Green,
+    offsetX: 40,
+    offsetY: 0
+  }, {
+    radius: 10,
+    color: Color.Yellow,
+    offsetX: 100,
+    offsetY: 0
+  }]
+
   build() {
     Column({ space: 8 }) {
       TextClock().fontSize(50).textShadow(this.textShadows)
@@ -464,7 +477,9 @@ function buildTextClock(config: TextClockConfiguration) {
         .fontSize(20)
         .margin(20)
       TimePicker({
-        selected: (new Date(config.timeValue * 1000 + ((config.contentModifier as MyTextClockStyle).currentTimeZoneOffset - config.timeZoneOffset) * 60 * 60 * 1000)),
+        selected: (new Date(config.timeValue * 1000 +
+          ((config.contentModifier as MyTextClockStyle).currentTimeZoneOffset - config.timeZoneOffset) * 60 * 60 *
+            1000)),
         format: TimePickerFormat.HOUR_MINUTE_SECOND
       })
         .useMilitaryTime(!config.started)
@@ -533,15 +548,16 @@ struct TextClockExample {
         TextClock()
           .fontSize(20)
           .format("HH:mm:ss")
-          .dateTimeOptions({hour: "numeric"})
+          .dateTimeOptions({ hour: "numeric" })
       }
+
       Row() {
         Text("12小时制增加前导0：")
           .fontSize(20)
         TextClock()
           .fontSize(20)
           .format("aa hh:mm:ss")
-          .dateTimeOptions({hour: "2-digit"})
+          .dateTimeOptions({ hour: "2-digit" })
       }
     }
     .alignItems(HorizontalAlign.Start)

@@ -102,8 +102,6 @@ copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选�
 
 设置copyOptions为CopyOptions.None，复制、剪切、帮写功能不生效。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -112,7 +110,7 @@ copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选�
 
 | 参数名 | 类型                                             | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br />**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice |
 
 ### enableDataDetector<sup>11+</sup>
 
@@ -266,7 +264,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enterKeyType<sup>12+</sup>
 
@@ -1574,7 +1572,7 @@ SymbolSpan样式选项。
 | offset                | number                                   | 否    | 添加图片的位置。省略时，添加到所有内容的最后。<br/>当值小于0时，放在所有内容最前面；当值大于所有内容长度时，放在所有内容最后面。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | imageStyle            | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否    | 图片样式信息。省略时，使用系统默认图片信息。     <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | gesture<sup>11+</sup> | [RichEditorGesture](#richeditorgesture11) | 否    | 行为触发回调。省略时，仅使用系统默认行为。      <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| onHover<sup>14+</sup> | [onHoverCallback](#onhovercallback14) | 否    | 鼠标悬停触发回调。省略时，不执行相关行为。     <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| onHover<sup>14+</sup> | [OnHoverCallback](#onhovercallback14) | 否    | 鼠标悬停触发回调。省略时，不执行相关行为。     <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorImageSpanStyle
 
@@ -1704,7 +1702,6 @@ RichEditor span信息。
 | 名称          | 类型         | 必填   | 说明            |
 | ----------- | ---------- | ---- | ------------- |
 | onClick    | Callback\<[ClickEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [ClickEvent](ts-universal-events-click.md#clickevent对象说明)为用户点击事件。<br/>点击完成时回调事件。<br/>双击时，第一次点击触发回调事件。|
-| onDoubleClick<sup>14+</sup>    | Callback\<[GestureEvent](ts-universal-events-click.md#clickevent对象说明)\> | 否    | [GestureEvent](ts-universal-events-click.md#clickevent对象说明)为用户双击事件。<br/>双击完成时回调事件。<br/>双击时，第二次点击触发回调事件。|
 | onLongPress | Callback\<[GestureEvent](ts-gesture-settings.md#gestureevent对象说明)\>  | 否    | [GestureEvent](ts-gesture-settings.md#gestureevent对象说明)为用户长按事件。<br/>长按完成时回调事件。 |
 
 ## KeyboardOptions<sup>12+</sup>
@@ -1734,7 +1731,7 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
@@ -1785,6 +1782,34 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | status  | boolean                            | 是   | 表示鼠标是否悬浮在组件上，鼠标进入组件时为true，离开组件时为false。|
 | event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | 是   | 设置阻塞事件冒泡属性。 |
+
+## RichEditorTextSpan
+
+文本Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                            | 类型                                       | 必填   | 说明                     |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
+| spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | 是    | Span位置。|
+| value                         | string                                   | 是    | 文本Span内容。|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本Span样式信息。|
+
+## RichEditorImageSpan
+
+图片Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称               | 类型                                                                | 必填  | 说明               |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## 示例
 
@@ -2782,6 +2807,7 @@ struct Index {
         Text(this.textFlag)
           .copyOption(CopyOptions.InApp)
           .fontSize(50)
+          .height(150)
       }
       Divider()
       Column() {
@@ -2839,6 +2865,9 @@ struct Index {
                   onLongPress: () => {
                     this.textFlag = "ImageSpan is onLongPress."
                   }
+                },
+                onHover : (status) => {
+                  this.textFlag = "ImageSpan is onHover :" + status
                 }
               })
           })

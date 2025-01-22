@@ -2,19 +2,7 @@
 
 You can call the native APIs provided by the AudioCodec module to decode audio, that is, to decode media data into PCM streams.
 
-Currently, the following decoding capabilities are supported:
-
-| Container Format| Audio Decoding Type                |
-| -------- | :--------------------------- |
-| mp4      | AAC, MPEG (MP3), FLAC, Vorbis<!--RP1--><!--RP1End--> |
-| m4a      | AAC                          |
-| flac     | FLAC                        |
-| ogg      | Vorbis<!--RP2--><!--RP2End-->    |
-| aac      | AAC                          |
-| mp3      | MPEG (MP3)                    |
-| amr      | AMR (AMR-NB and AMR-WB)           |
-| raw      | G711mu                       |
-| ape      | APE                          |
+For details about the supported decoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#audio-decoding).
 
 **Usage Scenario**
 
@@ -161,7 +149,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 3 in [Media Data Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).  
+4. (Optional) Call **OH_AudioCodec_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demuxing](audio-video-demuxer.md). For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -233,19 +221,21 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    | AMR (amrnb)  | 8000                                                                                            |   1    |
    | AMR (amrwb)  | 16000                                                                                           |   1    |
    | APE         | 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000, 176400, 192000|  1–2  |
+   <!--RP4-->
+   <!--RP4End-->
 
    ```cpp
    // Set the decoding resolution.
    int32_t ret;
    // (Mandatory) Configure the audio sampling rate.
    constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
-   // (Mandatory) Configure the audio bit rate.
+   // (Optional) Configure the audio bit rate.
    constexpr uint32_t DEFAULT_BITRATE = 32000;
    // (Mandatory) Configure the number of audio channels.
    constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
    // (Optional) Configure the maximum input length.
    constexpr uint32_t DEFAULT_MAX_INPUT_SIZE = 1152;
-   // Configure whether to use ADTS decoding (ACC).
+   // Configure whether to use ADTS decoding (optional for AAC decoding).
    constexpr uint32_t DEFAULT_AAC_TYPE = 1;
    OH_AVFormat *format = OH_AVFormat_Create();
    // Set the format.
@@ -304,8 +294,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     The following is the sample code:
     ```c++
     auto buffer = signal_->inBufferQueue_.front();
-    int64_t size;
-    int64_t pts;
     uint32_t keyIdLen = DRM_KEY_ID_SIZE;
     uint8_t keyId[] = {
         0xd4, 0xb2, 0x01, 0xe4, 0x61, 0xc8, 0x98, 0x96,
@@ -319,34 +307,38 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     uint32_t firstEncryptedOffset = 0;
     uint32_t subsampleCount = 1;
     DrmSubsample subsamples[1] = { {0x10, 0x16} };
-    inputFile_.read(reinterpret_cast<char *>(&size), sizeof(size));
-    inputFile_.read(reinterpret_cast<char *>(&pts), sizeof(pts));
-    inputFile_.read((char *)OH_AVMemory_GetAddr(buffer), size);
+    // Create a CencInfo instance.
     OH_AVCencInfo *cencInfo = OH_AVCencInfo_Create();
     if (cencInfo == nullptr) {
         // Exception handling.
     }
+    // Set the decryption algorithm.
     OH_AVErrCode errNo = OH_AVCencInfo_SetAlgorithm(cencInfo, DRM_ALG_CENC_AES_CTR);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set KeyId and Iv.
     errNo = OH_AVCencInfo_SetKeyIdAndIv(cencInfo, keyId, keyIdLen, iv, ivLen);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set the sample information.
     errNo = OH_AVCencInfo_SetSubsampleInfo(cencInfo, encryptedBlockCount, skippedBlockCount, firstEncryptedOffset,
         subsampleCount, subsamples);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set the mode. KeyId, Iv, and SubSamples have been set.
     errNo = OH_AVCencInfo_SetMode(cencInfo, DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Set CencInfo to the AVBuffer.
     errNo = OH_AVCencInfo_SetAVBuffer(cencInfo, buffer);
     if (errNo != AV_ERR_OK) {
         // Exception handling.
     }
+    // Destroy the CencInfo instance.
     errNo = OH_AVCencInfo_Destroy(cencInfo);
     if (errNo != AV_ERR_OK) {
         // Exception handling.

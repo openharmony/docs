@@ -5387,6 +5387,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5398,7 +5399,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5411,18 +5412,18 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+          })
       }
       .width('100%')
       .height('100%')
@@ -5472,6 +5473,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5483,7 +5485,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5496,28 +5498,27 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-
-                setTimeout(() => {
-                  try {
-                    promptAction.closeCustomDialog(contentNode);
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);     //2秒后自动关闭
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+                })
+            }, 2000); // 2秒后自动关闭
+          })
       }
       .width('100%')
       .height('100%')
@@ -5568,6 +5569,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5579,7 +5581,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5592,28 +5594,28 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+              })
 
-                setTimeout(() => {
-                  try {
-                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);   //2秒后自动更新弹窗位置
-            })
+            setTimeout(() => {
+              promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                })
+            }, 2000); // 2秒后自动更新弹窗位置
+          })
       }
       .width('100%')
       .height('100%')
@@ -6751,7 +6753,7 @@ struct RequestExample {
 
 ### activate<sup>14+</sup>
 
-activate(isActive: boolean, atuoInactive?: boolean): void
+activate(isActive: boolean, autoInactive?: boolean): void
 
 设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
 
@@ -6815,7 +6817,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| setAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
 
 ```ts
 @CustomDialog
@@ -6865,17 +6867,17 @@ struct CustomDialogUser {
 ```
 ## PointerStyle<sup>12+</sup>
 
-type PointerStyle = PointerStyle
+type PointerStyle = pointer.PointerStyle
 
 光标样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
 
 |类型|说明|
 | -- | -- |
-|[PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
+|[pointer.PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
@@ -7156,7 +7158,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
@@ -7222,7 +7224,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -7480,7 +7482,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**

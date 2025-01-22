@@ -41,16 +41,14 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 表示复用设备解锁结果的模式。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
-| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。 |
-| CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | 与认证类型相关，只有当任意身份认证（包括设备解锁）结果在有效时间内，并且身份认证的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。 |
-| CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | 与认证类型无关，只要任意身份认证（包括设备解锁）结果在有效时间内，就可以重复使用。 |
+| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | 与认证类型相关，只有当任意身份认证（包括设备解锁）结果在有效时间内，并且身份认证的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | 与认证类型无关，只要任意身份认证（包括设备解锁）结果在有效时间内，就可以重复使用。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## ReuseUnlockResult<sup>12+</sup>
 
@@ -1486,6 +1484,8 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 表示认证结果的信任等级枚举。
 
+典型场景及举例可参考[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
@@ -1499,20 +1499,21 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 ## SecureLevel<sup>(deprecated)</sup>
 
+type SecureLevel = string
+
 表示认证的安全级别。
 
 **原子化服务API：** 从 API version 6 开始支持，从 API version 8 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 | 值    | 说明                                                         |
-| ---- | ----- | ------------------------------------------------------------ |
-| S1 | 'S1' | 认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 |
-| S2 | 'S2' | 认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 |
-| S3 | 'S3' | 认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 |
-| S4 | 'S4' | 认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
+| 类型 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| string | 表示类型为字符，认证的安全级别包括：`'S1'` \| `'S2' `\|`'S3'`\|`'S4'`。 <br/>\- `'S1'`：认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 <br/>\- `'S2'`：认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 <br/>\- `'S3'`：认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 <br/>\- `'S4'`：认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
 
 ## AuthType<sup>(deprecated)</sup>
+
+type AuthType = string
 
 表示认证类型。
 
@@ -1520,10 +1521,9 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称 | 值    | 说明                                                         |
-| ---- | ----- | ------------------------------------------------------------ |
-| ALL  | 'ALL' | 预留参数。当前版本暂不支持ALL类型的认证。 |
-| FACE_ONLY | 'FACE_ONLY' | 人脸认证。 |
+| 类型 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| string  | 表示认证类型为字符，认证类型包括：`'ALL'`\|`'FACE_ONLY'`。<br/>\- `'ALL'`：预留参数，当前版本暂不支持ALL类型的认证。<br/>\- `'FACE_ONLY'`：人脸认证。 |
 
 ## userAuth.getAuthenticator<sup>(deprecated)</sup>
 

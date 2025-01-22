@@ -28,7 +28,7 @@ Before using this tool, you must obtain <!--Del-->[<!--DelEnd-->hdc<!--Del-->](.
 | dump-target-overlay | Displays **overlayModuleInfo** of all overlay bundles associated with a target bundle.|
 
 
-## help Command
+## help
 
 ```bash
 # Display the help information.
@@ -36,7 +36,7 @@ bm help
 ```
 
 
-## Installation Command
+## install
 
 ```bash
 bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
@@ -50,7 +50,7 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 | -h | Displays help information.|
 | -p | Installs an HAP with other HAPs in the specified path. This parameter is mandatory.|
 | -r | Installs an HAP in overwrite mode. This parameter is optional. By default, the HAP is installed in overwrite mode.|
-| -s |  Installs an HSP. Each directory can have only one HSP with the same bundle name. This parameter is mandatory only for HSP installation.|
+| -s |  Installs an HSP. Each directory can have only one HSP with the same bundle name. This parameter is mandatory only for the HSP installation.|
 | -w | Waits for a specified time before installing a HAP. The minimum waiting time is 5s, and the maximum waiting time is 600s. The default waiting time is 5s. This parameter is optional.|
 
 
@@ -154,7 +154,7 @@ Example
 bm clean -c -n com.ohos.app
 # Clear the user data of a bundle.
 bm clean -d -n com.ohos.app
-// The execution result is as follows:
+// Execution result
 clean bundle data files successfully.
 ```
 
@@ -180,7 +180,7 @@ Example
 ```bash
 # Enable a bundle.
 bm enable -n com.ohos.app -a com.ohos.app.EntryAbility
-// The execution result is as follows:
+// Execution result
 enable bundle successfully.
 ```
 
@@ -206,7 +206,7 @@ Example
 ```bash
 # Disable a bundle.
 bm disable -n com.ohos.app -a com.ohos.app.EntryAbility
-// The execution result is as follows:
+// Execution result
 disable bundle successfully.
 ```
 <!--DelEnd-->
@@ -231,7 +231,7 @@ Example
 ```bash
 # Obtain the UDID of a device.
 bm get -u
-// The execution result is as follows:
+// Execution result
 udid of current device is:
 23CADE0C
 ```
@@ -262,8 +262,8 @@ Example
 ```bash
 # Display patch package information by the bundle name.
 bm quickfix -q -b com.ohos.app
-// The execution result is as follows:
-// Information as follows:
+# Execution result
+# Information as follows:
 // ApplicationQuickFixInfo:
 //  bundle name: com.ohos.app
 //  bundle version code: xxx
@@ -275,11 +275,11 @@ bm quickfix -q -b com.ohos.app
 //  type:
 # Install a quick fix patch.
 bm quickfix -a -f /data/app/
-// The execution result is as follows:
+// Execution result
 apply quickfix succeed.
 # Uninstall a quick fix patch.
 bm quickfix -r -b com.ohos.app
-// The execution result is as follows:
+// Execution result
 delete quick fix successfully
 ```
 
@@ -294,9 +294,9 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
-| -a | Displays all shared libraries installed in the system. This parameter is optional.|
-| -n | Displays details about a shared library. This parameter is optional.|
-| -m | Displays details about the bundle name and module name of a specified shared library. This parameter is optional.|
+| -a | Displays all HSPs in the system. This parameter is optional.|
+| -n | Displays detailed information about the shared library with a specified bundle name. This parameter is optional.|
+| -m | Displays detailed information about the shared library with a specified bundle name and module name. This parameter is optional.|
 
 
 Example
@@ -317,7 +317,7 @@ Displays information about the shared library on which a specified module of a b
 bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
 
-  **Parameters of the dump-dependencies command**
+**Parameters of the dump-dependencies command**
 | Parameter| Description|
 | -------- | -------- |
 | -h | Displays help information.|
@@ -337,7 +337,7 @@ Executes the AOT compilation on a bundle.
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
-  **Parameters of the compile command**
+**Parameters of the compile command**
 
 | Parameter| Description|
 | -------- | -------- |
@@ -388,7 +388,7 @@ bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName]
 | -------- | -------- |
 | -h | Displays help information.|
 | -b | Displays all **OverlayModuleInfo** about a specified bundle. This parameter is mandatory.|
-| -m |  Displays **OverlayModuleInfo** based on a specified bundle name and module name. By default, **OverlayModuleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
+| -m | By default, the name of the main module of the current bundle is used. This parameter is optional. Displays **OverlayModuleInfo** about a specified bundle based on the bundle name and module name.|
 | -t | Displays **OverlayModuleInfo** based on a specified bundle name and target module name. This parameter is optional.|
 
 Example
@@ -417,7 +417,7 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
 | -------- | -------- |
 | -h | Displays help information.|
 | -b | Displays all **OverlayBundleInfo** about a specified bundle. This parameter is mandatory.|
-| -m |  Displays **OverlayBundleInfo** based on a specified bundle name and module name. By default, **OverlayBundleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
+| -m | Displays **OverlayModuleInfo** based on a specified bundle name and module name. By default, **OverlayBundleInfo** of the main module of the current bundle is displayed. This parameter is optional.|
 
 Example
 
@@ -431,10 +431,11 @@ bm dump-target-overlay -b com.ohos.app -m entry
 
 ## Error Codes
 
-### 9568320 The signature file does not exist
+### 9568320 The Signature File Does Not Exist
 **Error Message**
 
 Failed to install bundle, no signature file.
+
 ![Example](figures/en-us_image_0000001389116960.png)
 
 **Symptom**
@@ -447,11 +448,11 @@ The HAP file is not signed.
 
 **Solution**
 
-1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237) to sign the HAP file after the device is connected.
-2. Manually sign the HAP file. For details, see <!--RP1-->[Signing Your App/Service Manually](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section297715173233)<!--RP1End-->.
+1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237) to sign the HAP file. after the device is connected.
+2. Manually sign the HAP file. For details, see [Signing Your App/Atomic Service Manually](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section297715173233).
 <br></br>
 
-### 9568347 The local .so file fails to be parsed
+### 9568347 The Local .so File Fails to Be Parsed
 **Error Message**
 
 Error: install parse native so failed.
@@ -476,7 +477,7 @@ The Application Binary Interface (ABI) supported by the device does not match th
     hdc shell
     param get const.product.cpu.abilist
     ```
-4. Based on the obtained list, modify the **abiFilters** settings in the [module-level build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-sample-V5#section4322212200) file. The rules are as follows:
+4. Based on the obtained list, modify the **abiFilters** settings in the [module-level build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section4322212200) file. The rules are as follows:
     * If the list includes only **default**, run the following command to check whether the **lib64** folder exists:
       ```
       cd /system/
@@ -489,10 +490,11 @@ The Application Binary Interface (ABI) supported by the device does not match th
 <br></br>
 
 
-### 9568344 The configuration file fails to be parsed
+### 9568344 The Configuration File Fails to Be Parsed
 **Error Message**
 
 Error: install parse profile prop check error.
+
 ![Example](figures/en-us_image_0000001585361412.png)
 
 **Symptom**
@@ -507,7 +509,7 @@ The application uses the privileges, but the new signature fingerprint is not ad
 
 1. Obtain the new signature fingerprint.
 
-    a. Obtain the storage path of the signature file, which is the value of **profile** in the **signingConfigs** field in the [project-level build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-hvigor-compilation-options-customizing-sample-V5#section1448071082016) file.
+    a. Obtain the storage path of the signature file, which is the value of **profile** in the **signingConfigs** field in the [project-level build-profile.json5](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hvigor-compilation-options-customizing-sample-V13#section1448071082016) file.
 
     b. Open the signature file (with the file name extension .p7b), search for **development-certificate** in the file, copy **-----BEGIN CERTIFICATE-----**, **-----END CERTIFICATE-----**, and the information between them to a new text file, delete the newline characters, and save the file as a new .cer file.
 
@@ -559,10 +561,11 @@ The application uses the privileges, but the new signature fingerprint is not ad
 5. Reinstall the application.
 
 
-### 9568305 The dependent module does not exist
+### 9568305 The Dependent Module Does Not Exist
 **Error Message**
 
 Error: dependent module does not exist.
+
 ![Example](figures/en-us_image_0000001560338986.png)
 
 **Symptom**
@@ -579,12 +582,14 @@ The SharedLibrary module on which the application depends is not installed.
 ![Example](figures/en-us_image_0000001560201786.png)
 2. On the **Run/Debug Configurations** page of DevEco Studio, click the **Deploy Multi Hap** tab, select **Deploy Multi Hap Packages**, select the dependent module SharedLibrary, and click **OK** to save the configuration. Then run or debug the application again.
 ![Example](figures/en-us_image_0000001610761941.png)
+3. Choose **Run** > **Edit Configurations**. On the **General** tab page, select **Auto Dependencies**. Click **OK** to save the configuration, and then run or debug the project.
+![Example](figures/en-us_image_9568305.png)
 
-
-### 9568259 Some fields are missing in the configuration file
+### 9568259 Some Fields Are Missing in the Configuration File
 **Error Message**
 
-Error: install parse profile missing prop.<br>
+Error: install parse profile missing prop.
+
 ![Example](figures/en-us_image_0000001559130596.png)
 
 **Symptom**
@@ -610,10 +615,11 @@ Mandatory fields are missing in the **app.json5** and **module.json5** files.
     Open the log file and find **profile prop %{public}s is mission**. For example, **profile prop icon is mission** indicates that the **icon** field is missing.
 
 
-### 9568258 The release types of the new application and existing application are different
+### 9568258 The Release Types of the New Application and Existing Application Are Different
 **Error Message**
 
-Error: install releaseType target not same.<br>
+Error: install releaseType target not same.
+
 ![Example](figures/en-us_image_0000001609976041.png)
 
 **Symptom**
@@ -622,17 +628,20 @@ When you start debugging or run an application, the error message "error: instal
 
 **Possible Causes**
 
-The value of **releaseType** in the SDK used by the existing HAP is different from that used by the new HAP.
+* Scenario 1: The value of **releaseType** in the SDK used by the existing HAP is different from that used by the new HAP.
+* Scenario 2: When the application has multiple HAPs, the **releaseType** values in the SDK used by each HAP are different.
 
 **Solution**
 
-1. Uninstall the existing HAP on the device, and then install the new HAP.
+* Scenario 1: Uninstall the existing HAP on the device and then install a new HAP.
+* Scenario 2: Use the same SDK to repackage the HAPs to ensure that the **releaseType** values of multiple HAPs are the same.
 
 
-### 9568322 The signature verification fails because the application source is untrusted
+### 9568322 The Signature Verification Fails Because the Application Source Is Untrusted
 **Error Message**
 
 Error: signature verification failed due to not trusted app source.
+
 ![Example](figures/en-us_image_0000001585042216.png)
 
 **Symptom**
@@ -648,7 +657,7 @@ When you start debugging or run an application, the error message "error: signat
 **Solution**
 
 * Scenario 1:
-	1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237) to sign the HAP file after the device is connected.
+	1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237) to sign the HAP file. after the device is connected.
 	2. If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see <!--RP2-->[hapsigner Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->.
 		```
 		// Command for obtaining the UDID
@@ -657,10 +666,11 @@ When you start debugging or run an application, the error message "error: signat
 * Scenario 2: Use the [debug certificate and debug profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-debug-app-0000001914423098) to re-sign the application.
 
 
-### 9568289 The installation fails because the permission request fails
+### 9568289 The Installation Fails Because the Permission Request Fails
 **Error Message**
 
 Error: install failed due to grant request permissions failed.
+
 ![Example](figures/en-us_image_0000001585201996.png)
 
 **Symptom**
@@ -676,10 +686,11 @@ The application uses the default Ability Privilege Level (APL), which is normal,
 1. Change the APL in the **UnsgnedDebugProfileTemplate.json** file to **system_basic** or **system_core**, and sign and pack the application again.
 
 
-### 9568297 The installation fails because the SDK version of the device is too early
+### 9568297 The Installation Fails Because the SDK Version of the Device Is Too Early
 **Error Message**
 
 Error: install failed due to older sdk version in the device.
+
 ![Example](figures/en-us_image_0000001635521909.png)
 
 **Symptom**
@@ -700,11 +711,11 @@ The SDK version used for build and packing does not match the device image versi
 
 * Scenario 2: For applications that need to run on OpenHarmony devices, ensure that runtimeOS has been changed to OpenHarmony.
 
-
-### 9568332 The installation fails due to inconsistent signatures
+### 9568332 The Installation Fails Due to Inconsistent Signatures
 **Error Message**
 
 Error: install sign info inconsistent.
+
 ![Example](figures/en-us_image_0000001635761329.png)
 
 **Symptom**
@@ -713,15 +724,17 @@ When you start debugging or run an application, the error message "error: instal
 
 **Possible Causes**
 
-The signatures of the existing application and new application are different, or the signatures of HAPs and HSPs are different. **Keep Application Data** is selected in **Edit Configurations** (the application installation is overwritten) and the application is re-signed.
+1. The signatures of the existing application and new application are different, or the signatures of HAPs and HSPs are different. **Keep Application Data** is selected in **Edit Configurations** (the application installation is overwritten) and the application is re-signed.
+2. If an application is uninstalled but its data is kept, and a new application with the same bundle name is later installed, it is necessary to check whether the identity details match. If the signature information is inconsistent, this error is reported.
 
 
 **Solution**
-zh-cn\application-dev\quick-start\integrated-hsp.md
+
 1. Uninstall the application, or deselect **Keep Application Data**. Then install the new application.
 2. If the signature inconsistency is caused by HSPs provided by different teams, use [integrated HSP](../quick-start/integrated-hsp.md). If there are multiple HAPs, ensure that their signatures are the same.
+3. If an application is uninstalled but its data is kept, a new application with the same bundle name but different signature information fails to be installed. To install the new application, you must first reinstall the uninstalled application and uninstall it without retaining the data.
 
-### 9568329 The signature information fails to be verified
+### 9568329 The Signature Information Fails to Be Verified
 **Error Message**
 
 Error: verify signature failed.
@@ -743,13 +756,14 @@ The **bundleName** in the signature information is different from that of the ap
 
 * Scenario 1: Use an HSP only for the application with the same bundle name; use an integrated HSP for applications with different bundle names. Ask the third party to provide an integrated HSP or an HSP with the same bundle name.
 
-* Scenario 2: Check the signing process and signing certificate. For details, see [Signing Your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5).
+* Scenario 2: Check the signing process and signing certificate. For details, see [Signing Your App/Atomic Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13).
 
 
-### 9568266 The installation permission is denied
+### 9568266 The Installation Permission Is Denied
 **Error Message**
 
 Error: install permission denied.
+
 ![Example](figures/en_image_9568266.png)
 
 **Symptom**
@@ -765,7 +779,7 @@ The **hdc install** command cannot be used to install the enterprise application
 1. Run the **hdc install** command to install and debug the enterprise application with a debug signature.
 
 
-### 9568337 The installation parsing fails
+### 9568337 The Installation Parsing Fails
 **Error Message**
 
 Error: install parse unexpected.
@@ -790,7 +804,7 @@ When an application is pushed to a device, an error message is displayed, indica
 * 2. Check the MD5 values of the local HAP file and the HAP file pushed to the device. If they are different, the HAP is damaged during the push. In this case, push the file again.
 
 
-### 9568316 The permission of APL in proxyData is low
+### 9568316 The Permission of APL in ProxyData Is Low
 **Error Message**
 
 Error: apl of required permission in proxy data is too low.
@@ -808,7 +822,7 @@ Error: apl of required permission in proxy data is too low.
 1. Check whether the **proxyData** content defined by the application meets the requirements. For details, see [proxyData](../quick-start/module-configuration-file.md#proxydata).
 
 
-### 9568315 The URI in proxy data is incorrect
+### 9568315 The URI in Proxy Data Is Incorrect
 **Error Message**
 
 Error: uri in proxy data is wrong.
@@ -826,7 +840,7 @@ The format of **uri** does not meet the requirement.
 1. Check whether the **proxyData** content defined by the application meets the requirements. For details, see [proxyData](../quick-start/module-configuration-file.md#proxydata).
 
 
-### 9568336 The debugging type of the application is different from that of the installed application
+### 9568336 The Debugging Type of the Application Is Different From That of the Installed Application
 **Error Message**
 
 Error: install debug type not same.
@@ -844,7 +858,7 @@ You have installed the application using the **Debug** button of DevEco Studio, 
 1. Uninstall the existing application and install the new application.
 
 
-### 9568296 The bundle type is incorrect
+### 9568296 The Bundle Type Is Incorrect
 **Error Message**
 
 Error: install failed due to error bundle type.
@@ -864,7 +878,7 @@ The **bundleType** of the application to be installed is different from that of 
 * Method 2: Set the **bundleType** of the application to the same as that of the existing application.
 
 
-### 9568292 The user with UserID 0 can install only the singleton application
+### 9568292 The User With UserID 0 Can Install Only the Singleton Application
 **Error Message**
 
 Error: install failed due to zero user can only install singleton app.
@@ -881,12 +895,12 @@ The user with **UserID 0** is only allowed to install the application with the *
 
 1. If the application has the **singleton** permission, set **UserID** to **0** during installation.
 	```
-	// Set the user ID to 0.
+	//Set the user ID to 0.
 	hdc install -p <HAP file name>.hap -u 0
 	```
 
 
-### 9568263 The installation version cannot be downgraded
+### 9568263 The Installation Version Cannot Be Downgraded
 **Error Message**
 
 Error: install version downgrade.
@@ -904,7 +918,7 @@ The **versionCode** of the application to be installed is earlier than that of t
 1. Uninstall the existing application and install the new application.
 
 
-### 9568304 The application does not support the current device type
+### 9568304 The Application Does Not Support the Current Device Type
 **Error Message**
 
 Error: device type is not supported.
@@ -922,7 +936,7 @@ The application does not support the current device type.
 1. To adapt to the current device, add the current device type to the value of **deviceTypes** of the application. The value of **deviceTypes** can be any of the following: phone, tablet, 2in1, tv, wearable, and car.
 
 
-### 9568317 The multi-process configuration of the application does not match the system configuration
+### 9568317 The Multi-Process Configuration of the Application Does Not Match the System Configuration
 **Error Message**
 
 Error: isolationMode does not match the system.
@@ -941,16 +955,16 @@ The installation fails because **isolationMode** of the application is not suppo
 
 1. Set the value of **isolationMode** in the HAP configuration file based on the isolation mode of the device.
 	```
-	// Query the value of persist.bms.supportIsolationMode. If errNum is:106 is returned, persist.bms.supportIsolationMode is not configured.
+	//Query the value of persist.bms.supportIsolationMode. If errNum is:106 is returned, persist.bms.supportIsolationMode is not configured.
 	hdc shell
 	param get persist.bms.supportIsolationMode
-	// Set persist.bms.supportIsolationMode.
+	//Set persist.bms.supportIsolationMode.
 	hdc shell
 	param set persist.bms.supportIsolationMode [true|false]
 	```
 
 
-### 9568315 The URI attribute of the proxy data is incorrect
+### 9568315 The URI Attribute of the Proxy Data Is Incorrect
 **Error Message**
 
 Error: uri in proxy data is wrong.
@@ -961,18 +975,18 @@ Error: uri in proxy data is wrong.
 
 **Possible Causes**
 
-The format of **uri** does not meet the requirements.
+The format of **uri** does not meet the requirement.
 
 **Solution**
 
 1. Ensure that the URI meets the format requirements.
 	```
-	// URI format specifications:
+	//URI format specifications.
 	The URI of a data proxy must be unique and must be in the format of datashareproxy://bundleName/xxx.
 	```
 
 
-### 9568310 The compatibility policies are different
+### 9568310 The Compatibility Policies Are Different
 **Error Message**
 
 Error: compatible policy not same.
@@ -983,14 +997,15 @@ The compatibility policy of the new bundle is different from that of the existin
 
 **Possible Causes**
 
-A HAP with the same name has been installed on the device.
+1. The shared library to be installed has the same bundle name as the existing bundle.
+2. The bundle to be installed has the same bundle name as the existing shared library.
 
 **Solution**
 
-1. Uninstall the HAP with the same name and install the new HAP.
+1. Uninstall the installed bundle or shared library, and install the new bundle.
 
 
-### 9568391 The bundle manager service is stopped
+### 9568391 The Bundle Manager Service Is Stopped
 **Error Message**
 
 Error: bundle manager service is died.
@@ -1001,14 +1016,20 @@ The bundle manager service is stopped.
 
 **Possible Causes**
 
-When you run the **bm install -p ***.hap** command to install a pre-installed application, the running application is killed, causing an exception (for example, the foundation process restarts).
+The system service restarts due to an unknown exception.
 
 **Solution**
 
-1. Install the pre-installed applications by referring to the OTA upgrade guide.
+1. Check whether the crash file exists in the **/data/log/faultlog/faultlogger/** directory.
+
+2. Check whether the crash file contains **foundation**.
+
+3. Reinstall the bundle for multiple times. If the error persists, check whether a crash file containing **foundation** is generated.
+
+4. If the error still persists, export the crash file and log file and submit them to [online tickets](https://developer.huawei.com/consumer/en/support/feedback/#/) for help.
 
 
-### 9568393 The code signature fails to be verified
+### 9568393 The Code Signature Fails to Be Verified
 **Error Message**
 
 Error: verify code signature failed.
@@ -1019,43 +1040,32 @@ The code signature fails to be verified.
 
 **Possible Causes**
 
-* 1. The package does not contain code signature information.
-
-* 2. The signing certificate is incorrect.
-
+The bundle does not contain code signature information.
 
 **Solution**
 
-* 1. Use the signing tool SDK to check whether the package is signed.
-	```
-	// Verify the signature.
-	java -jar SDK installation path (SDK in the DevEco Studio installation directory) \toolchains\lib\hap-sign-tool.jar verify-app -outCertChain out.cer -outProfile out.p7b -inFile package path\**.hap
-	// 1. If "is can not find codesign block" is returned, the package is not signed.
-	// 2. If "verify codesign success," is returned, the package is signed.
-	```
-
-* Scenario 2: Check the signing process and signing certificate. For details, see [Signing Your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5).
+1. Install the latest version of DevEco Studio and sign the code again.
 
 
-### 9568257 A PKCS7 file failed to be verified
+### 9568257 The PKCS7 File Failed to Be Verified
 **Error Message**
 
 Error: fail to verify pkcs7 file.
 
 **Symptom**
 
-A PKCS7 file failed to be verified.
+The PKCS7 file failed to be verified.
 
 **Possible Causes**
-
-The signature used by the application does not meet the signature requirements for the HarmonyOS application. Generally, the signature for OpenHarmony applications is used and should be replaced with the signature for HarmonyOS applications.
+<!--RP3-->
+The signature used by the application does not meet the signature requirements for the HarmonyOS application. Generally, the signature for OpenHarmony applications is used and should be replaced with the signature for HarmonyOS applications.<!--RP3End-->
 
 **Solution**
 
 1. Select **Support HarmonyOS** during the process of signing your application/service. After the HarmonyOS application is signed, debug or run the application again.
 ![Example](figures/en_image_9868257_1.png)
 
-### 9568401 The bundle to debug can run only on devices in developer mode
+### 9568401 The Bundle to Debug Can Run Only on Devices in Developer Mode
 **Error Message**
 
 Error: debug bundle can only be installed in developer mode.
@@ -1074,7 +1084,7 @@ Developer mode is not enabled on the device.
 2. Connect the device to the PC using a USB cable. Choose **Settings** > **System** > **Developer options** and enable USB debugging. In the displayed dialog box, touch **Allow**.
 3. Start debugging or run the application.
 
-### 9568386 The bundle cannot be found for uninstallation
+### 9568386 The Bundle Cannot Be Found for Uninstallation
 **Error Message**
 
 Error: uninstall missing installed bundle.
@@ -1085,15 +1095,30 @@ The bundle cannot be found for uninstallation.
 
 **Possible Causes**
 
-The application is not completely uninstalled, and residual resources exist.
+The bundle to be uninstalled is not installed.
 
 **Solution**
 
-1. Delete all resources that are not uninstalled in **el1** and **el2**.
-2. Install the application again.
+1. Check whether the bundle to be uninstalled has been installed.
 
+### 9568388 Bundle Uninstall Is Not Allowed by Enterprise Device Management
+**Error Message**
 
-### 9568284 The installation version is not compatible
+Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+
+**Symptom**
+
+The enterprise device management does not allow the uninstall of this bundle.
+
+**Possible Causes**
+
+The bundle is set not to be uninstalled.
+
+**Solution**
+
+1. The enterprise device management cancels the uninstallation control of the bundle.
+
+### 9568284 The Installation Version Is Not Compatible
 **Error Message**
 
 Error: install version not compatible.
@@ -1115,10 +1140,10 @@ When an HSP is installed, the following information is verified:
 1. Uninstall the HAP whose version does not match and then install the HSP.
 2. Change the HSP version to be the same as that of the HAP and install the HSP again.
 
-### 9568287 The number of entry modules in the installation package is invalid
+### 9568287 The Number of Entry Modules in the Installation Package Is Invalid
 **Error Message**
 
-Error: install invalid number of entry hap.
+Error: install invalid number of entry HAP.
 
 **Symptom**
 
@@ -1133,7 +1158,7 @@ There are multiple entry modules in the installation package. An application can
 1. Retain one entry module and change the other entry modules to feature modules (by modifying the **type** field in **module.json5**).
 
 
-### 9568281 The **vendor** field of the installation package is inconsistent
+### 9568281 The vendor Field of the Installation Package Is Inconsistent
 **Error Message**
 
 Error: install vendor not same.
@@ -1152,30 +1177,7 @@ The **vendor** field of the application in the **app.json5** file is inconsisten
 2. If an integrated HSP is included, the **vendor** field of the integrated HSP must be the same as that of the HAP.
 
 
-### 9568279 The version name used for installation is inconsistent
-**Error Message**
-
-Error: install version name not same.
-
-**Symptom**
-
-The version name used for installation is inconsistent.
-
-**Possible Causes**
-
-* Scenario 1: If only a HAP file is involved, the version of the application to install is inconsistent with the application for which the data is saved.
-
-* Scenario 2: If an HSP and a HAP are involved, the bundle name, version number, SDK version number, and release type of the HSP are different from those of the HAP.
-
-**Solution**
-
-* Scenario 1: Deselect **Keep Application Data** on the entry configuration page of DevEco Studio.
-![Example](figures/en_image_9568279.png)
-
-* Scenario 2: Ensure that the bundle name, version number, SDK version number, and release type of the HSP are the same as those of the HAP.
-
-
-### 9568274 An error occurs during service installation
+### 9568274 An Error Occurs During Service Installation
 **Error Message**
 
 Error: install installd service error.
@@ -1193,25 +1195,25 @@ An exception occurs during service installation.
 1. Clear the cache and restart the device.
 
 
-### 9568314 An HSP fails to be installed
+### 9568314 The HSP Fails to Be Installed
 **Error Message**
 
 Error: Failed to install the HSP because installing a shared bundle specified by hapFilePaths is not allowed.
 
 **Symptom**
 
-An HSP fails to be installed.
+The HSP fails to be installed.
 
 **Possible Causes**
 
-The HSP is installed by running the hdc app install *** command.
+The HSP is installed by running the **hdc app install ***** command.
 
 **Solution**
 
-1. Run the hdc install -s *** command to install the HSP.
+1. Run the **hdc install -s ***** command to install the HSP.
 
 
-### 9568359 The SELinux fails to be installed and set
+### 9568359 The SELinux Fails to be Installed and Set
 **Error Message**
 
 Error: installd set selinux label failed.
@@ -1227,12 +1229,15 @@ The **apl** field in the signature configuration file is incorrect. It can be **
 **Solution**
 
 1. Check whether the **apl** field in the .p7b file is correct.
-![Example](figures/en_image_9568359.png)
+
+    ![Example](figures/en_image_9568359.png)
+
 2. If the **apl** field is incorrect, modify the **apl** field in the **UnsgnedReleasedProfileTemplate.json** file and sign the file again.
-![Example](figures/en_image_9568359_2.png)
+
+    ![Example](figures/en_image_9568359_2.png)
 
 
-### 9568403 The encryption check fails during the installation
+### 9568403 The Encryption Check Fails During the Installation
 **Error Message**
 
 Error: check encryption failed.
@@ -1249,3 +1254,20 @@ The image version is too early or the **lib** directory of the HAP contain non-s
 
 1. Install a new image version.
 2. Delete non-so files in the **lib** directory of the HAP project and re-sign and package the files.
+
+### 9568417 Failed to Verify the Signature
+**Error Message**
+
+Error: bundle cannot be installed because the appId is not same with preinstalled bundle.
+
+**Symptom**
+
+The signature verification fails.
+
+**Possible Causes**
+
+The signature of the installed bundle is different from that of the pre-installed bundle with the same bundle name.
+
+**Solution**
+
+1. Check whether the application is configured with an uninstallation disposed rule. The entity that set the rule is responsible for canceling the rule.

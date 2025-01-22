@@ -95,7 +95,24 @@ dialogController : CustomDialogController | null = new CustomDialogController(Cu
 ```
 **说明**：CustomDialogController仅在作为@CustomDialog和@Component struct的成员变量，且在@Component struct内部定义时赋值才有效，具体用法可看下方示例。
 
+### constructor
+
+constructor(value: CustomDialogControllerOptions)
+
+自定义弹窗的构造器。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                   |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------- |
+| value  | [CustomDialogControllerOptions](#customdialogcontrolleroptions对象说明) | 是   | 配置自定义弹窗的参数。 |
+
 ### open
+
 open()
 
 显示自定义弹窗内容，允许多次使用，但如果弹框为SubWindow模式，则该弹框不允许再弹出SubWindow弹框。
@@ -106,6 +123,7 @@ open()
 
 
 ### close
+
 close()
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。

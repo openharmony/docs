@@ -680,7 +680,7 @@ function unregisterCameraOcclusionDetection(cameraInput: camera.CameraInput): vo
 
 | 名称                       | 类型                                      | 只读 | 可选 | 说明        |
 | ------------------------- | ----------------------------------------- | --- | ---- |----------- |
-| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度 |
+| depthDataAccuracy            | [DepthDataAccuracy](#depthdataaccuracy12)         | 是  |  否  | 深度数据的精度，分为相对精度和绝对精度。 |
 
 ## DepthDataQualityLevel<sup>12+</sup>
 
@@ -5759,7 +5759,7 @@ setIso(iso: number): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| iso | number | 是   | 设置ISO值， |
+| iso | number | 是   | 设置ISO值。 |
 
 **错误码：**
 

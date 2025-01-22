@@ -88,9 +88,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode)         | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1)，只在使能分层编码时生效。该键是可选的且只用于视频编码，在configure阶段使用。 |
 | [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。该键是可选的且只用于视频编码。|
 | [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr)  | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。该键是可选的且只用于视频编码。 |
-| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
+| [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	描述当前帧参考的长期参考帧帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | 当前[OH_AVBuffer](_core.md#oh_avbuffer)中输出的码流对应的帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。该键是可选的且只用于视频编码。 |
-| [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | 描述帧的POC的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
+| [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | 描述帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。该键是可选的。 |
 | [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average)     |描述视频帧平均量化参数的键，值类型为int32_t。该键是可选的。  |
@@ -288,9 +288,9 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_TEMPORAL_GOP_REFERENCE_MODE](#oh_md_key_video_encoder_temporal_gop_reference_mode) | 描述图片组内参考模式的键，值类型为int32_t，请参见[OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode)，只在使能分层编码时生效。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count) | 描述长期参考帧个数的键，值类型为int32_t，必须在支持的值范围内使用。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr) | 标记当前帧为长期参考帧的键，值类型为int32_t，1表示被标记，0表示其它情况。该键是可选的且只用于视频编码。  | 
-| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | 描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr) | 描述当前帧参考的长期参考帧帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr) | 当前OH_AVBuffer中输出的码流对应的帧是否为长期参考帧的键，值类型为int32_t，1表示是LTR，0表示其它情况。该键是可选的且只用于视频编码。  | 
-| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc) | 描述帧的POC的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
+| const char \* [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc) | 描述帧的POC号的键，值类型为int32_t。该键是可选的且只用于视频编码。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max) | 描述视频编码器允许的最大量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |
@@ -2394,7 +2394,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR
 const char* OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR
 ```
 **描述**
-描述当前帧参考的长期参考帧帧号的键，值类型为int32_t。
+描述当前帧参考的长期参考帧帧的POC号的键，值类型为int32_t。
 
 该键是可选的且只用于视频编码输入轮转中，配置后立即生效。
 
@@ -2605,7 +2605,7 @@ const char* OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR
 const char* OH_MD_KEY_VIDEO_PER_FRAME_POC
 ```
 **描述**
-描述帧的POC的键，值类型为int32_t。 
+描述帧的POC号的键，值类型为int32_t。 
 
 该键是可选的且只用于视频编码输出轮转中。 
 

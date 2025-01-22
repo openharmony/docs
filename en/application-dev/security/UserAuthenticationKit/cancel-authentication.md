@@ -47,13 +47,13 @@ try {
   };
   // Obtain a UserAuthInstance object.
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  console.info('get userAuth instance success');
   // Start user authentication.
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
   // Cancel the authentication.
   userAuthInstance.cancel();
-  console.log('auth cancel success');
+  console.info('auth cancel success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

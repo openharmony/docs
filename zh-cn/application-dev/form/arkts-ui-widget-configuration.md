@@ -42,7 +42,7 @@
    | displayName | 表示卡片的显示名称。取值可以是名称内容，也可以是对名称内容的资源索引，以支持多语言。字符串最小长度为1字节，最大长度为30字节。 | 字符串 | 否 |
    | description | 表示卡片的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。字符串最大长度为255字节。 | 字符串 | 可缺省，缺省为空。 |
    | src | 表示卡片对应的UI代码的完整路径。当为ArkTS卡片时，完整路径需要包含卡片文件的后缀，如："./ets/widget/pages/WidgetCard.ets"。当为JS卡片时，完整路径无需包含卡片文件的后缀，如："./js/widget/pages/WidgetCard" | 字符串 | 否 |
-   | uiSyntax | 表示该卡片的类型，当前支持如下两种类型：<br/>-&nbsp;arkts：当前卡片为ArkTS卡片。<br/>-&nbsp;hml：当前卡片为JS卡片。 | 字符串 | 可缺省，缺省值为hml |
+   | uiSyntax | 表示该卡片的类型，当前支持如下两种类型：<br/>-&nbsp;arkts：当前卡片为ArkTS卡片。<br/>-&nbsp;hml：当前卡片为JS卡片。 | 字符串 | 可缺省，缺省值为“hml”。 |
    | [window](#window标签) | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省，缺省值见表2。 |
    | isDefault | 表示该卡片是否为默认卡片，每个UIAbility有且只有一个默认卡片。<br/>-&nbsp;true：默认卡片。<br/>-&nbsp;false：非默认卡片。 | 布尔值 | 否 |
    | colorMode | 表示卡片的主题样式，取值范围如下：<br/>-&nbsp;auto：跟随系统的颜色模式值选取主题。<br/>-&nbsp;dark：深色主题。<br/>-&nbsp;light：浅色主题。 | 字符串 | 可缺省，缺省值为“auto”。 |

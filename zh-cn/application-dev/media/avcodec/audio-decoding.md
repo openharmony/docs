@@ -195,17 +195,17 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 5. 调用OH_AudioCodec_Configure()配置解码器。
    配置选项key值说明：
 
-   |                              |                             描述                             |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         |          APE                      |
-   | ---------------------------- | :----------------------------------------------------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :-------------------------------: |
-   | OH_MD_KEY_AUD_SAMPLE_RATE    |                            采样率                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |                必须                |
-   | OH_MD_KEY_AUD_CHANNEL_COUNT  |                            声道数                            |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                |                必须                |
-   | OH_MD_KEY_MAX_INPUT_SIZE     |                         最大输入长度                         |                可选                | 可选 |                可选                 | 可选 |        可选           |               可选                |                可选                |
-   | OH_MD_KEY_AAC_IS_ADTS        |                           是否adts                           |        可选,默认1 latm类型         |  -   |                 -                  |  -   |         -             |               -                  |                 -                  |
-   | MD_KEY_AUDIO_SAMPLE_FORMAT   |                        输出音频流格式                        | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |   -   | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |  可选 | 可选（默认SAMPLE_S16LE）| 可选（SAMPLE_S16LE，SAMPLE_F32LE）|               可选                |
-   | MD_KEY_BITRATE               |                             可选                             |                可选                | 可选 |                可选                | 可选 |         可选           |              可选                 |               可选                |
-   | MD_KEY_IDENTIFICATION_HEADER |                          ID Header                           |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                  |                -                  |
-   | MD_KEY_SETUP_HEADER          |                         Setup Header                         |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |                -                  |
-   | MD_KEY_CODEC_CONFIG          | MD_KEY_SETUP_HEADERID Header+Common Header+Setup Header 拼接 |                 -                  |      |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 |                -                  |
+   |             key              |       描述       |                AAC                 | Flac |               Vorbis               | MPEG |       G711mu        |          AMR(amrnb、amrwb)         | APE |
+   | ---------------------------- | :--------------: | :--------------------------------: | :--: | :--------------------------------: | :--: | :-----------------: | :-------------------------------: | :--: |
+   | OH_MD_KEY_AUD_SAMPLE_RATE    |      采样率      |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                | 必须 |
+   | OH_MD_KEY_AUD_CHANNEL_COUNT  |      声道数      |                必须                | 必须 |                必须                 | 必须 |        必须          |                必须                | 必须 |
+   | OH_MD_KEY_MAX_INPUT_SIZE     |    最大输入长度   |                可选                | 可选 |                可选                 | 可选 |        可选           |               可选                | 可选 |
+   | OH_MD_KEY_AAC_IS_ADTS        |     是否adts     |             可选，默认1             |  -   |                 -                  |  -   |         -             |               -                  |  -  |
+   | OH_MD_KEY_AUDIO_SAMPLE_FORMAT   |  输出音频流格式  | 可选（SAMPLE_S16LE，SAMPLE_F32LE） | 可选 | 可选（SAMPLE_S16LE，SAMPLE_F32LE） |  可选 | 可选（默认SAMPLE_S16LE）| 可选（SAMPLE_S16LE，SAMPLE_F32LE）| 可选 |
+   | OH_MD_KEY_BITRATE               |       码率      |                可选                | 可选 |                可选                | 可选 |         可选           |              可选                 | 可选 |
+   | OH_MD_KEY_IDENTIFICATION_HEADER |    ID Header    |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                  |  -  |
+   | OH_MD_KEY_SETUP_HEADER          |   Setup Header  |                 -                  |  -   |    必须（和Codec_Config二选一）    |  -   |          -            |                -                 |  -  |
+   | OH_MD_KEY_CODEC_CONFIG          | 编解码器特定数据 |                可选                 |  -   |   必须（和上述ID和Setup二选一）    |  -   |           -            |                -                 | 可选 |
    
    各音频解码类型参数范围说明：
    | 音频解码类型 |                                          采样率(Hz)                                              | 声道数 |

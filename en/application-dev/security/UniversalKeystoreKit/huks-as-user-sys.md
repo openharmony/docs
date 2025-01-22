@@ -6,7 +6,7 @@ To implement isolation and access control for key data, HUKS provides APIs with 
 
 ## Constraints
 
-- The value range of the user ID is **0** to **99**, including **0** and **99**.
+- The range of the caller's user ID is **0** to **99**, including **0** and **99**.
 - The APIs are available only for system applications.
 
 ## Available APIs

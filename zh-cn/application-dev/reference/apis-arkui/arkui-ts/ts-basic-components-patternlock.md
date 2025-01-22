@@ -63,7 +63,7 @@ circleRadius(value: Length)
 ### backgroundColor
 backgroundColor(value: ResourceColor)
 
-设置背景颜色
+设置背景颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -197,23 +197,6 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同 |
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6 |
 | enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true |
-| enableForeground<sup>14+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：true |
-
-### skipUnselectedPoint<sup>14+</sup>
-
-skipUnselectedPoint(skipped: boolean)
-
-设置未选中的宫格圆点在密码路径经过时是否自动选中。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| skipped  | boolean | 是   | 未选中的宫格圆点在密码路径经过时是否自动选中。默认值：false|
 
 ## 事件
 
@@ -237,7 +220,7 @@ onPatternComplete(callback: (input: Array\<number\>) => void)
 
 ### onDotConnect<sup>11+</sup>
 
-onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
+onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
 
 密码输入选中宫格圆点时触发该回调。
 

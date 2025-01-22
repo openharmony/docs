@@ -42,9 +42,10 @@ TextInput(value?: TextInputOptions)
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
->  **NOTE**   
+>  **NOTE**
+>
 >  When no underline is set, the default value of the universal attribute [padding](ts-universal-attributes-size.md#padding) is as follows:<br>{<br> top: '8vp',<br> right: '16vp',<br> bottom: '8vp',<br> left: '16vp'<br> } 
->  
+>
 >  When an underline is set, the default value of **padding** is as follows:<br>{<br> top: '12vp',<br> right: '0vp',<br> bottom: '12vp',<br> left: '0vp'<br> }
 >
 >  When **padding** is set to **0**, set **borderRadius** to **0** to avoid truncation of the cursor.
@@ -113,7 +114,7 @@ Sets the type of the Enter key.
 
 | Name| Type                                            | Mandatory| Description                                            |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------ |
-| value  | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Done**|
+| value  | [EnterKeyType](#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Done**|
 
 ### caretColor
 
@@ -131,8 +132,9 @@ Sets the color of the caret in the text box.
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the caret in the text box.<br>Default value: **'#007DFF'**|
 
->  **NOTE**    
->   Since API version 12, this API can be used to set the text handle color, which is the same as the caret color.
+>  **NOTE**
+>
+>  Since API version 12, this API can be used to set the text handle color, which is the same as the caret color.
 
 ### maxLength
 
@@ -730,6 +732,7 @@ Font features are advanced typographic features, such as ligatures and monospace
 For more information about the font features, see [Low-level font feature settings control: the font-feature-settings property](https://www.w3.org/TR/css-fonts-3/#font-feature-settings-prop) and [The Complete CSS Demo for OpenType Features](https://sparanoid.com/lab/opentype-features/).
 
 >  **NOTE**
+>
 >  This attribute is not available when **type** is set to an enum value that indicates the password input mode, such as Password, **NEW_PASSWORD**, or **NUMBER_PASSWORD**.
 
 ### wordBreak<sup>12+</sup>
@@ -772,8 +775,9 @@ Text is clipped at the transition between words. To clip text in the middle of a
 | ------ | ------------------------------------------------------------ | ---- | -------------------------------------------------------------------------------------------------- |
 | value  | [TextOverflow](ts-appendix-enums.md#textoverflow)            | Yes  | Display mode when the text is too long.<br>Default value in non-editing state in the inline input style: **TextOverflow.Ellipsis**<br>Default value in editing state in the inline input style: **TextOverflow.Clip**                    |
 
->  **NOTE** 
->   The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If **TextOverflow.MARQUEE** is set, the component automatically switches to **TextOverflow.Ellipsis** for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
+>  **NOTE**
+>
+>  The **TextInput** component does not support the **TextOverflow.MARQUEE** mode. If **TextOverflow.MARQUEE** is set, the component automatically switches to **TextOverflow.Ellipsis** for the non-editing state in the inline input style and **TextOverflow.Clip** for the non-inline input style and the editing state in the inline input style.
 
 ### textIndent<sup>12+</sup>
 
@@ -968,21 +972,6 @@ Specifies whether to enable haptic feedback.
 > ]
 > ```
 
-### cancelButton<sup>14+</sup>
-
-cancelButton(value: CancelButtonSymbolOptions)
-
-Sets the style of the cancel button on the right. This attribute is not available for the inline input style.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name| Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CancelButtonSymbolOptions](ts-basic-components-search.md#cancelbuttonsymboloptions12) | Yes  | Style of the cancel button on the right.<br>Default value:<br>{<br>style: CancelButtonStyle.INPUT<br>} |
 ## InputType
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -1054,6 +1043,21 @@ Enumerates the content types for autofill.
 | onIconSrc  | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to hide the password in password input mode.|
 | offIconSrc | string \| [Resource](ts-types.md#resource) | No   | Icon that can be used to show the password in password input mode.|
 
+## EnterKeyType
+
+Enumerates the Enter key types.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name                  | Description              |
+| ---------------------- | ------------------ |
+| Go                     | The Enter key is labeled "Go."<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| Search                 | The Enter key is labeled "Search."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| Send                   | The Enter key is labeled "Send."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| Next                   | The Enter key is labeled "Next."<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Done                   | The Enter key is labeled "Done."<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| PREVIOUS<sup>11+</sup> | The Enter key is labeled "Previous."<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| NEW_LINE<sup>11+</sup> | The Enter key is labeled "New Line."<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 
 ## Events
@@ -1066,7 +1070,7 @@ onChange(callback: EditableTextOnChangeCallback)
 
 Triggered when the input in the text box changes.
 
-In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
+In this callback, if cursor operations are performed, you need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1080,7 +1084,7 @@ In this callback, if cursor operations are performed, developers need to adjust 
 
 ### onSubmit
 
-onSubmit(callback:OnSubmitCallback)
+onSubmit(callback: (enterKey: EnterKeyType, event: SubmitEvent) =&gt; void)
 
 Triggered when the Enter key on the keyboard is pressed for submission.
 
@@ -1092,7 +1096,8 @@ Triggered when the Enter key on the keyboard is pressed for submission.
 
 | Name             | Type                                            | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback            | [OnSubmitCallback](#onsubmitcallback14) | Yes  | Callback for submission.|
+| enterKey            | [EnterKeyType](#enterkeytype)         | Yes   | Type of the Enter key. |
+| event<sup>11+</sup> | [SubmitEvent](#submitevent11)         | Yes   | Submit event.                                                   |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -1112,7 +1117,7 @@ This API is deprecated since API version 8. You are advised to use **onEditChang
 
 ### onEditChange<sup>8+</sup>
 
-onEditChange(callback:Callback\<boolean>)
+onEditChange(callback: (isEditing: boolean) =&gt; void)
 
 Triggered when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise.
 
@@ -1124,11 +1129,11 @@ Triggered when the input status changes. The text box is in the editing state wh
 
 | Name   | Type   | Mandatory| Description                |
 | --------- | ------- | ---- | -------------------- |
-| callback | Callback\<boolean> | Yes  | Callback for input status changes. It returns **true** if the input operation is currently in progress.|
+| isEditing | boolean | Yes  | Whether the text box is in the editing state. The value **true** indicates that the text box is in the editing state.|
 
 ### onCopy<sup>8+</sup>
 
-onCopy(callback:Callback\<string>)
+onCopy(callback: (value: string) =&gt; void)
 
 Triggered when a copy operation is performed.
 
@@ -1140,11 +1145,11 @@ Triggered when a copy operation is performed.
 
 | Name   | Type   | Mandatory| Description            |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | Yes  | Callback used to return the copied text content.|
+| value | string | Yes  | Text that is copied.|
 
 ### onCut<sup>8+</sup>
 
-onCut(callback:Callback\<string>)
+onCut(callback: (value: string) =&gt; void)
 
 Triggered when a cut operation is performed.
 
@@ -1156,11 +1161,11 @@ Triggered when a cut operation is performed.
 
 | Name   | Type   | Mandatory| Description            |
 | --------- | ------- | ---- | ---------------- |
-| callback | Callback\<string> | Yes  | Callback used to return the cut text content.|
+| value | string | Yes  | Text that is cut.|
 
 ### onPaste<sup>8+</sup>
 
-onPaste(callback:OnPasteCallback )
+onPaste(callback: (value: string, event: PasteEvent) =&gt; void)
 
 Triggered when a paste operation is performed.
 
@@ -1171,11 +1176,12 @@ Triggered when a paste operation is performed.
 **Parameters**
 | Name             | Type                                                        | Mandatory| Description                  |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](#onpastecallback14)       | Yes  | Callback used to return the pasted text content.|
+| value               | string                                                       | Yes   | Text that is pasted.       |
+| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes   | Custom paste event. |
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: OnTextSelectionChangeCallback)
+onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
 Triggered when the position of the text selection changes or when the cursor position changes during the editing state.
 
@@ -1187,11 +1193,12 @@ Triggered when the position of the text selection changes or when the cursor pos
 
 | Name        | Type  | Mandatory| Description                                   |
 | -------------- | ------ | ---- | --------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback14) | Yes  | Callback for text selection changes or cursor position changes.|
+| selectionStart | number | Yes   | Start position of the selected text. The start position of text is **0**. |
+| selectionEnd   | number | Yes   | End position of the selected text.                    |
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: OnContentScrollCallback)
+onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
 Triggered when the text content is scrolled.
 
@@ -1203,7 +1210,8 @@ Triggered when the text content is scrolled.
 
 | Name      | Type  | Mandatory| Description                              |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](#oncontentscrollcallback14) | Yes  | Callback for text content scrolling.|
+| totalOffsetX | number | Yes   | Offset in the X coordinate of the text in the content area, in px. |
+| totalOffsetY | number | Yes   | Offset in the Y coordinate of the text in the content area, in px. |
 
 ### onSecurityStateChange<sup>12+</sup>
 
@@ -1399,74 +1407,6 @@ Maintains the editable state of the text box when called.
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-## OnPasteCallback<sup>14+</sup>
-
-type OnPasteCallback = (content: string, event: PasteEvent) => void
-
-Defines the callback used to return the pasted text content.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name             | Type                                                        | Mandatory| Description                  |
-| ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| content               | string                                                       | Yes  | Text to be pasted.      |
-| event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes  | Custom paste event.|
-
-## OnSubmitCallback<sup>14+</sup>
-
-type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
-
-Defines the callback for submission.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name             | Type                                            | Mandatory| Description                                                        |
-| ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| enterKey            | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.|
-| event | [SubmitEvent](#submitevent11)         | Yes  | Submit event.                                                  |
-
-## OnTextSelectionChangeCallback<sup>14+</sup>
-
-type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
-
-Defines the callback for text selection changes or cursor position changes.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name        | Type  | Mandatory| Description                                   |
-| -------------- | ------ | ---- | --------------------------------------- |
-| selectionStart | number | Yes  | Start position of the selected text. The start position of text is **0**.|
-| selectionEnd   | number | Yes  | End position of the selected text.                   |
-
-## OnContentScrollCallback<sup>14+</sup>
-
-type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
-
-Defines the callback for text content scrolling.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
-
-| Name      | Type  | Mandatory| Description                              |
-| ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | Yes  | Offset in the X coordinate of the text in the content area, in px.|
-| totalOffsetY | number | Yes  | Offset in the Y coordinate of the text in the content area, in px.|
 
 ## Example
 
@@ -2252,8 +2192,7 @@ This example demonstrates how to use the **editMenuOptions** API to create custo
 @Component
 struct TextInputExample {
   @State text: string = 'TextInput editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),
@@ -2268,29 +2207,31 @@ struct TextInputExample {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       TextInput({ text: this.text })
         .width('95%')
         .height(50)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
-            }
-            return false;
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")
@@ -2300,32 +2241,3 @@ struct TextInputExample {
 ```
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
-
-### Example 15: Setting Symbol Type Cancel Button
-
-This example demonstrates how to use the **cancelButton** attribute to customize the style of the symbol type cancel button on the right side of the text box.
-
-```ts
-import { SymbolGlyphModifier } from '@kit.ArkUI';
-
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  @State text: string = ''
-  symbolModifier: SymbolGlyphModifier =
-    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular)
-
-  build() {
-    Column() {
-      TextInput({ text: this.text, placeholder: 'input your word...' })
-        .cancelButton({
-          style: CancelButtonStyle.CONSTANT,
-          icon: this.symbolModifier
-        })
-    }
-  }
-}
-```
-
-![cancelButton](figures/TextInputCancelButton_SymbolGlyphModifier.jpg)

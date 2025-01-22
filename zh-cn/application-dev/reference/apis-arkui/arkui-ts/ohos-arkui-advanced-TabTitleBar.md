@@ -75,24 +75,7 @@ TabTitleBar({tabItems: Array&lt;TabTitleBarTabItem&gt;, menuItems?: Array&lt;Tab
 该示例实现了带有左侧页签和右侧菜单列表的页签型标题栏。
 
 ```ts
-import { TabTitleBar, promptAction } from '@kit.ArkUI'
-
-//定义标题栏左侧的页签项目类
-class tabItem {
-  title: ResourceStr;
-  icon?: ResourceStr;
-  constructor(title: ResourceStr,icon?: ResourceStr) {
-    this.title = title
-    this.icon = icon
-  }
-}
-
-//定义标题栏右侧菜单项目接口
-interface menuItem {
-  value: ResourceStr;
-  isEnabled?: boolean;
-  action?: () => void
-}
+import { TabTitleBar, promptAction, TabTitleBarTabItem, TabTitleBarMenuItem } from '@kit.ArkUI'
 
 @Entry
 @Component
@@ -138,21 +121,28 @@ struct Index {
   }
 
   //定义几个左侧的页签项目
-  private readonly tabItems: Array<tabItem> = [new tabItem('页签1'),new tabItem('页签2'),new tabItem('页签3'),new tabItem("Happy",$r('app.media.emoji_happy')),new tabItem('页签4')]
+  private readonly tabItems: Array<TabTitleBarTabItem> =
+    [
+      { title: '页签1' },
+      { title: '页签2' },
+      { title: '页签3' },
+      { title: 'icon', icon: $r('sys.media.ohos_app_icon') },
+      { title: '页签4' },
+    ]
   //定义几个右侧的菜单项目
-  private  readonly menuItems: Array<menuItem> = [
+  private readonly menuItems: Array<TabTitleBarMenuItem> = [
     {
-      value: $r('app.media.ic_public_reduce'),
+      value: $r('sys.media.ohos_save_button_filled'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "on item click! index 0" })
     },
     {
-      value: $r('app.media.ic_public_edit'),
+      value: $r('sys.media.ohos_ic_public_copy'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "on item click! index 1" })
     },
     {
-      value: $r('app.media.ic_public_save'),
+      value: $r('sys.media.ohos_ic_public_edit'),
       isEnabled: true,
       action: () => promptAction.showToast({ message: "on item click! index 2" })
     },
@@ -173,4 +163,4 @@ struct Index {
 }
 ```
 
-![zh-cn_image_0000001616916278](figures/zh-cn_image_0000001616916278.png)
+![zh-cn_image_tabtitlebar_example01](figures/zh-cn_image_tabtitlebar_example01.png)

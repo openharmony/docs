@@ -2,7 +2,7 @@
 
 The system provides two solutions for video playback development:
 
-- **AVPlayer** class: provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
+- [AVPlayer](media-kit-intro.md#avplayer): provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
 
 - **Video** component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../../ui/arkts-common-components-video-player.md).
 
@@ -97,16 +97,16 @@ export class AVPlayerDemo {
     // startRenderFrame: callback function invoked when the first frame starts rendering.
     avPlayer.on('startRenderFrame', () => {
       console.info(`AVPlayer start render frame`);
-    })
+    });
     // Callback function for the seek operation.
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
+    });
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
-    })
+    });
     // Callback function for state changes.
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
@@ -157,7 +157,7 @@ export class AVPlayerDemo {
           console.info('AVPlayer state unknown called.');
           break;
       }
-    })
+    });
   }
 
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file using the URL attribute.
@@ -215,14 +215,14 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     let context = getContext(this) as common.UIAbilityContext;
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     // Obtain the size of the file to be played.
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -250,13 +250,13 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir + '/H264_AAC.mp4';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     this.isSeek = false; // The seek operation is not supported.
     avPlayer.dataSrc = src;
   }

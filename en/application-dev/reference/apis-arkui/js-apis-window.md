@@ -223,7 +223,7 @@ Describes the window properties.
 
 | Name                                 | Type                 | Read-Only| Optional| Description                                                                                                    |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecyle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecycle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | No  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | No  | No  | Window type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | isFullScreen                          | boolean                   | No  | No  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                 |
@@ -340,18 +340,6 @@ Enumerates the layout when the window is maximized.
 | EXIT_IMMERSIVE | 1    | The window, when maximized, exits the immersive layout.<br>**Atomic service API**: This API can be used in atomic services since API version 12.            |
 | ENTER_IMMERSIVE    | 2    | The window, when maximized, transitions into the immersive layout, and the window title bar and dock bar are displayed when the cursor hovers over the hot zone.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | The window, when maximized, transitions into the immersive layout, and the window title bar and dock bar are not displayed when you hover the cursor over the hot zone.<br>**Atomic service API**: This API can be used in atomic services since API version 14.  |
-
-## MoveConfiguration<sup>14+</sup>
-
-Describes the window movement configuration.
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-| Name  | Type  | Mandatory| Description                                      |
-| ------ | ------ | ---- | ------------------------------------------ |
-| displayId | number | No| Target display ID. The value must be an integer. If a non-integer is passed in, the value is rounded down. If this parameter is not set or the target displayed ID does not exist, the current display is used by default.|
 
 ## window.createWindow<sup>9+</sup>
 
@@ -1546,69 +1534,6 @@ try {
 }
 ```
 
-### moveWindowToAsync<sup>14+</sup>
-
-moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
-
-Moves this window to an existing display (specified by **displayId** in **moveConfiguration**). This API uses a promise to return the result. A value is returned once the call takes effect. You can use **getWindowProperties** in the callback (see the code snippet below) to obtain the final effect immediately.
-
-This API takes effect only in floating window mode (**window.WindowStatusType.FLOATING** mode).
-
-On 2-in-1 devices, the window moves relative to the display. On other devices, the window moves relative to the parent window.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px. A positive value indicates that the window moves to the right. The value must be an integer. If a non-integer is passed in, the value is rounded down.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px. A positive value indicates that the window moves downwards. The value must be an integer. If a non-integer is passed in, the value is rounded down.|
-| moveConfiguration | [MoveConfiguration](#moveconfiguration14) | No| Window movement configuration. If this parameter is not set, the window will stay on the current display.|
-
-**Return value**
-
-| Type| Description|
-| ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-| 1300010 | The operation in the current window status is invalid. |
-
-**Example**
-
-```ts
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let moveConfiguration: window.MoveConfiguration = {
-    displayId: 0
-  };
-  let promise = windowClass.moveWindowToAsync(300, 300, moveConfiguration);
-  promise.then(() => {
-    console.info('Succeeded in moving the window.');
-    let rect = windowClass?.getWindowProperties().windowRect;
-    console.info(`Get window rect: ` + JSON.stringify(rect));
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
 ### moveWindowToGlobal<sup>13+</sup>
 
 moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
@@ -1655,67 +1580,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let promise = windowClass.moveWindowToGlobal(300, 300);
-  promise.then(() => {
-    console.info('Succeeded in moving the window.');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
-  });
-} catch (exception) {
-  console.error(`Failed to move the window. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### moveWindowToGlobal<sup>14+</sup>
-
-moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
-
-Moves this window to an existing display (specified by **displayId** in **moveConfiguration**) based on the coordinates. This API uses a promise to return the result. A value is returned once the call takes effect.
-
-This operation is not supported in a window in full-screen mode.
-
-On non-2-in-1 devices, the subwindow moves along with the main window.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-**Atomic service API**: This API can be used in atomic services since API version 14.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -- | ----- | -- | --------------------------------------------- |
-| x | number | Yes| Distance that the window moves along the x-axis, in px, with the upper left corner of the target display used as the origin. A positive value indicates that the window moves to the right, and a negative value indicates that the window moves to the left. The value must be an integer. If a non-integer is passed in, the value is rounded down.|
-| y | number | Yes| Distance that the window moves along the y-axis, in px, with the upper left corner of the target display used as the origin. A positive value indicates that the window moves downwards, and a negative value indicates that the window moves upwards. The value must be an integer. If a non-integer is passed in, the value is rounded down.|
-| moveConfiguration | [MoveConfiguration](#moveconfiguration14) | No| Window movement configuration. If this parameter is not set, the window will stay on the current display.|
-
-**Return value**
-
-| Type| Description|
-| ------------------- | ------------------------ |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
-
-| ID| Error Message|
-| ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal.               |
-| 1300003 | This window manager service works abnormally. |
-| 1300010 | The operation in the current window status is invalid. |
-
-**Example**
-
-```ts
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let moveConfiguration: window.MoveConfiguration = {
-    displayId: 0
-  };
-  let promise = windowClass.moveWindowToGlobal(300, 300, moveConfiguration);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
   }).catch((err: BusinessError) => {
@@ -2101,7 +1965,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether the main window layout or the subwindow layout is immersive. This API uses a promise to return the result. From API version 14, this API does not take effect on 2-in-1 devices.
+Sets whether the main window layout or the subwindow layout is immersive. This API uses a promise to return the result. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
 - An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
 - A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
@@ -2170,7 +2034,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. From API version 14, this API does not take effect on 2-in-1 devices.
+Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2517,7 +2381,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
+Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the subwindow mode.<!--RP9End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2580,7 +2444,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-Sets the preferred orientation for the main window. This API uses a promise to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
+Sets the preferred orientation for the main window. This API uses a promise to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the subwindow mode.<!--RP9End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4037,6 +3901,12 @@ on(type:  'windowStatusChange', callback: Callback&lt;WindowStatusType&gt;): voi
 
 Subscribes to the window status change event. A notification is sent when the window status changes (the window properties may not be updated).
 
+> **NOTE**
+>
+> When this API is called on 2-in-1 devices, the return value is **WindowStatusType::FULL_SCREEN** when the window is maximized.
+>
+> Upon the return value **WindowStatusType::FULL_SCREEN**, you can call [getImmersiveModeEnabledState()](#getimmersivemodeenabledstate12) to determine whether the window is in full-screen or maximized mode on 2-in-1 devices. The return value **true** means that the window is in full-screen mode, and **false** means that the window is maximized.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -4125,7 +3995,7 @@ Sets the grayscale effect for this window. This API uses a promise to return the
 
 | Name| Type| Mandatory| Description                                    |
 | --------- | ------ | -- | ---------------------------------------- |
-| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0], The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
+| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0]. The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
 
 **Return value**
 
@@ -4675,7 +4545,7 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets the screen brightness for the main window. This API uses an asynchronous callback to return the result.
 
-When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+When the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4741,7 +4611,7 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for the main window. This API uses a promise to return the result.
 
-When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+When the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5536,11 +5406,11 @@ export default class EntryAbility extends UIAbility {
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-Implements different functionalities based on the caller:
+The behavior of this API varies based on the caller:
 
-Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+- Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
 
-Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+- Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
 
 This API uses an asynchronous callback to return the result.
 
@@ -5583,11 +5453,11 @@ windowClass.minimize((err: BusinessError) => {
 
 minimize(): Promise&lt;void&gt;
 
-Implements different functionalities based on the caller:
+The behavior of this API varies based on the caller:
 
-Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+- Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
 
-Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+- Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
 
 This API uses a promise to return the result.
 
@@ -5627,7 +5497,9 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-Maximizes the main window. This API uses a promise to return the result. It can be used only on 2-in-1 devices.
+Maximizes the main window. This API uses a promise to return the result.
+
+<!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -5691,7 +5563,7 @@ export default class EntryAbility extends UIAbility {
 ### setResizeByDragEnabled<sup>14+</sup>
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable the main window or subwindow to resize itself by dragging. This API uses an asynchronous callback to return the result.
+Sets whether to enable the main window or subwindow with decorations to resize itself by dragging. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -5733,7 +5605,7 @@ windowClass.setResizeByDragEnabled(enabled, (err) => {
 ### setResizeByDragEnabled<sup>14+</sup>
 setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the main window or subwindow to resize itself by dragging. This API uses a promise to return the result.
+Sets whether to enable the main window or subwindow with decorations to resize itself by dragging. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -5889,7 +5761,7 @@ export default class EntryAbility extends UIAbility {
               promise.then(() => {
                   console.info('Succeeded in restoring the window.');
               }).catch((err: BusinessError) => {
-                  console.error(`Failed to restore the window. Cause code: ${err.code}, 
+                  console.error(`Failed to restore the window. Cause code: ${err.code},
                   message: ${err.message}`);
               });
           },5000);
@@ -6384,7 +6256,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 ### setDecorButtonStyle<sup>14+</sup>
 
-setDecorButtonStyle(decorStyle: DecorButtonStyle): void
+setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
 Sets the button style of the decoration bar. The setting takes effect only for the main window on 2-in-1 devices and the subwindow with the window title enabled.
 
@@ -6396,7 +6268,7 @@ Sets the button style of the decoration bar. The setting takes effect only for t
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | Yes  | Button style of the decoration bar.|
+| dectorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | Yes  | Button style of the decoration bar.|
 
 **Error codes**
 
@@ -6568,6 +6440,12 @@ getWindowStatus(): WindowStatusType
 
 Obtains the mode of this window.
 
+> **NOTE**
+>
+> When this API is called on 2-in-1 devices, the return value is **WindowStatusType::FULL_SCREEN** when the window is maximized.
+>
+> Upon the return value **WindowStatusType::FULL_SCREEN**, you can call [getImmersiveModeEnabledState()](#getimmersivemodeenabledstate12) to determine whether the window is in full-screen or maximized mode on 2-in-1 devices. The return value **true** means that the window is in full-screen mode, and **false** means that the window is maximized.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
@@ -6649,7 +6527,7 @@ Creates a subwindow under the main window or another subwindow. This API uses a 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the subwindow.|
-| options  | [SubWindowOptions](#subwindowoptions12) | Yes  | Parameters used for creating the subwindow. |
+| options  | [SubWindowOptions](#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
@@ -6693,11 +6571,13 @@ try {
 
 ### setWindowTitleButtonVisible<sup>14+</sup>
 
-setWindowTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean): void
+setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVisible: boolean, isCloseButtonVisible?: boolean): void
 
-Shows or hides the maximize and minimize buttons on the title bar of the main window.
+Shows or hides the maximize, minimize, and close buttons on the title bar of the main window.
 
 This API can be used only on 2-in-1 devices.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6705,8 +6585,9 @@ This API can be used only on 2-in-1 devices.
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isMaximizeVisible | boolean | Yes  | Whether to show the maximize button. The value **true** means to show the button, and **false** means to hide it. If the maximize button is hidden, the corresponding restore button is also hidden in the maximize scenario.|
-| isMinimizeVisible | boolean | Yes  | Whether to show the minimize button. The value **true** means to show the button, and **false** means to hide it.|
+| isMaximizeButtonVisible | boolean | Yes  | Whether to show the maximize button. The value **true** means to show the button, and **false** means to hide it. If the maximize button is hidden, the corresponding restore button is also hidden in the maximize scenario.|
+| isMinimizeButtonVisible | boolean | Yes  | Whether to show the minimize button. The value **true** means to show the button, and **false** means to hide it.|
+| isCloseButtonVisible | boolean | No  | Whether to show the close button. The value **true** means to show the button, and **false** means to hide it.|
 
 **Error codes**
 
@@ -6737,8 +6618,8 @@ export default class EntryAbility extends UIAbility {
         data => {
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // Call setWindowTitleButtonVisible to hide the maximize and minimize buttons on the title bar of the main window.
-          mainWindow.setWindowTitleButtonVisible(false, false);
+          // Call setWindowTitleButtonVisible to hide the maximize, minimize, and close buttons on the title bar of the main window.
+          mainWindow.setWindowTitleButtonVisible(false, false, false);
         }
       ).catch((err: BusinessError) => {
           if(err.code){
@@ -6759,6 +6640,8 @@ Places the main window above all the other windows of the application. This API 
 Applications use custom shortcut keys to pin or unpin the main window.
 
 <!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6837,6 +6720,115 @@ struct Index {
         }
       }
     })
+  }
+}
+```
+
+### raiseToAppTop<sup>14+</sup>
+
+raiseToAppTop(): Promise&lt;void&gt;
+
+Called by a subwindow to elevate the subwindow to the topmost layer. Its effect is limited to subwindows of the same type that share the same parent window of the current application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = windowClass.raiseToAppTop();
+promise.then(() => {
+  console.info('Succeeded in raising the window to app top.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### setRaiseByClickEnabled<sup>14+</sup>
+
+setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
+
+Sets whether to enable a subwindow to raise itself by click. This API uses a promise to return the result.
+
+Generally, when a subwindow is clicked, it is brought to the forefront among sibling subwindows of the same type that share the same parent window within the application. If the **enable** parameter is set to **false**, when the subwindow is clicked, it still stays in its existing position.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | Yes  | Whether a subwindow can be raised by clicking. The value **true** means that the subwindow can be raised by clicking, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // Create a subwindow.
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        let promise = windowClass.setRaiseByClickEnabled(enabled);
+        promise.then(()=> {
+          console.info('Succeeded in disabling the raise-by-click function.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```
@@ -6971,7 +6963,7 @@ Sets whether the modal window responds to the back gesture event. An error code 
 
 | Name     | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | Yes  | Whether to respond to the back gesture event.<br>The value **true** means to respond to the back gesture event and trigger the **onBackPress** callback, and **false** means the opposite.|
+| enabled    | boolean | Yes  | Whether to respond to the back gesture event.<br>The value **true** means to respond to the back gesture event and trigger the **onBackPress** callback, and **false** means the opposite.<br>|
 
 **Return value**
 
@@ -7178,7 +7170,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      
+
       // Disable the back gesture feature in the current window.
       try {
         let gestureBackEnabled: boolean = false;
@@ -7243,7 +7235,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      
+
       // Check whether the back gesture feature is enabled in the current window.
       try {
         let gestureBackEnabled: boolean = windowClass.isGestureBackEnabled();
@@ -9399,20 +9391,18 @@ Enumerates the modality types of the subwindow.
 | WINDOW_MODALITY      | 0      | Window-modal. Select this value when you want the parent window not to respond to user interactions.|
 | APPLICATION_MODALITY | 1      | Application-modal. Select this value when you want both the parent window and all windows of other instances of the application not to respond to user interactions.<br>This API can be used only on 2-in-1 devices.|
 
-## SubWindowOptions<sup>12+</sup>
+## SubWindowOptions<sup>11+</sup>
 
 Describes the parameters used for creating a subwindow.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name     | Type | Read-Only| Optional| Description        |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title<sup>12+</sup>    | string | No| No| Title of the subwindow.      |
-| decorEnabled<sup>12+</sup> | boolean | No| No| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.      |
-| isModal<sup>12+</sup>    | boolean | No| Yes| Whether the modal property is enabled for the subwindow. The value** true** means that the modal property is enabled for the subwindow, and **false** means to disable it. The default value is **false**.      |
-| modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | No| Yes| Modality type of the subwindow. This parameter takes effect only when the modal property is enabled for the subwindow. **WINDOW_MODALITY** means window-modal, and **APPLICATION_MODALITY** means application-modal. The default value is **WINDOW_MODALITY**.      |
+| title<sup>11+</sup>    | string | No| No| Title of the subwindow.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| decorEnabled<sup>11+</sup> | boolean | No| No| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| isModal<sup>12+</sup>    | boolean | No| Yes| Whether the modal property is enabled for the subwindow. The value** true** means that the modal property is enabled for the subwindow, and **false** means to disable it. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | No| Yes| Modality type of the subwindow. This parameter takes effect only when the modal property is enabled for the subwindow. **WINDOW_MODALITY** means window-modal, and **APPLICATION_MODALITY** means application-modal. The default value is **WINDOW_MODALITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
 
 ## WindowStage<sup>9+</sup>
 
@@ -9715,7 +9705,7 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the subwindow.|
-| options  | [SubWindowOptions](#subwindowoptions12) | Yes  | Parameters used for creating the subwindow. |
+| options  | [SubWindowOptions](#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
@@ -10664,7 +10654,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager serivce works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -10689,7 +10679,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowRectAutoSave<sup>14+</sup>
 
-setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
+setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 Sets whether to enable the auto-save feature for the size of the main window. This API uses a promise to return the result. It takes effect only on 2-in-1 devices.
 
@@ -10697,8 +10687,8 @@ This API must be called by the main window and the setting takes effect for the 
 
 Upon relaunch, the window will reopen in accordance with these remembered size and state.
 
-The following rules apply in stacking scenarios: 
-1. If the current instance is a free-form window, the next opened window will adopt the same size when stacked.   
+The following rules apply in stacking scenarios:
+1. If the current instance is a free-form window, the next opened window will adopt the same size when stacked.
 2. If the current instance is maximized or in full-screen mode, the next opened window will maintain the maximized state when stacked.
 
 The following table describes the memory rules:
@@ -10720,7 +10710,7 @@ The following table describes the memory rules:
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enable | boolean | Yes  | Whether to enable the auto-save feature for the main window's size. The value **true** means to enable the auto-save feature, and **false** means the opposite.|
+| enabled | boolean | Yes  | Whether to enable the auto-save feature for the main window's size. The value **true** means to enable the auto-save feature, and **false** means the opposite.|
 
 
 **Return value**
