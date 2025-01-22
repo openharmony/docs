@@ -530,7 +530,7 @@ decoration:{
 
 当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
 
-当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
+当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本、复制和翻译功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
