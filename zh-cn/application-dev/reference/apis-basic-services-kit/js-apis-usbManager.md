@@ -760,6 +760,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400006 | submit transmission operation successful. |
 | 14400007 | transmission I/O error. |
@@ -849,6 +850,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
+| 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400009 | no such device (it may have been disconnected). |
 | 14400011 | usb error other. |
