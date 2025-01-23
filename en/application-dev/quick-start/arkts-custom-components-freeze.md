@@ -16,8 +16,7 @@ Note that the active or inactive state of a component is not equivalent to its v
 3. LazyForEach: Only the custom component in the currently displayed LazyForEach is in the active state, and the component of the cache node is in the inactive state.
 4. Navigation: Only the custom component in the currently displayed NavDestination is in the active state.
 5. Component reuse: The component that enters the reuse pool is in the inactive state, and the node attached from the reuse pool is in the active state.
-
-
+In other scenarios, for example, masked components in a stack layout are not considered to be in an inactive state although they are invisible. Therefore, component freezing cannot be applied to these components.
 
 Before reading this topic, you are advised to read [Creating a Custom Component](./arkts-create-custom-components.md) to learn about the basic syntax.
 
@@ -787,7 +786,7 @@ struct Page {
 ```
 #### Mixed Use of LazyForEach, if, Component Reuse, and Component Freezing
 
-Under the same parent custom component, reusable nodes may enter the reuse pool in different ways. For example:
+ Under the same parent custom component, reusable nodes may enter the reuse pool in different ways. For example:
 - Detaching from the cache area of LazyForEach by swiping.
 - Notifying the subnodes to detach by switching the if condition.
 
@@ -973,6 +972,7 @@ struct Page {
 ```
 
 ## Constraints
+
 As shown in the following example, the custom node [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is used in **FreezeBuildNode**. **BuilderNode** can dynamically mount components using commands and component freezing strongly depends on the parent-child relationship to determine whether it is enabled. In this case, if the parent component is frozen and **BuilderNode** is enabled at the middle level of the component tree, the child component of the **BuilderNode** cannot be frozen.
 
 ```

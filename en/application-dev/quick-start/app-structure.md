@@ -1,4 +1,4 @@
-# Internal Structure of the app Tag
+# Structure of the app Tag
 
 
 The **app** tag contains application-wide configuration. The following table describes its internal structure.
@@ -7,12 +7,12 @@ The **app** tag contains application-wide configuration. The following table des
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| bundleName | Bundle name, which uniquely identifies an application.<br>The bundle name must start with a letter and can contain only letters, digits, underscores (_), and periods (.).<br>The bundle name is represented as a reverse domain name of 7 to 128 bytes, for example, **"com.example.myapplication"**. It is recommended that the first level be the domain suffix "com" and the second level be the vendor/individual name. More levels are also accepted.| String| No|
+| bundleName | Bundle name, which uniquely identifies an application.<br>The bundle name must start with a letter and can contain only letters, digits, underscores (_), and periods (.).<br>The bundle name is represented as a reverse domain name of 7 to 128 bytes, for example, **"com.example.myapplication"**. It is recommended that the first level be the domain suffix "com" and the second level be the vendor/individual name. More levels are also accepted. | String| No|
 | vendor | Vendor of the application. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 |version | Version of the application.| Object| No|
 | apiVersion | Operating system and API version on which the application depends.| Object| Yes (initial value: left empty)|
-| smartWindowSize | Screen size used when the application runs in the emulator.| String| Yes (initial value: left empty)|
-| smartWindowDeviceType | Types of emulated devices on which the application can run.| String array| Yes (initial value: left empty)|
+| smartWindowSize | Screen size used when the application runs in the Emulator.| String| Yes (initial value: left empty)|
+| smartWindowDeviceType | Types of the emulated devices on which the application can run.| String array| Yes (initial value: left empty)|
 | asanEnabled |   Whether to enable AddressSanitizer (ASan) to detect memory corruption issues such as buffer overflows.<br>- **true**: ASan is enabled.<br>- **false**: ASan is disabled.| Boolean| Yes (initial value: **false**)|
 
 ## Internal Structure of the version Attribute
