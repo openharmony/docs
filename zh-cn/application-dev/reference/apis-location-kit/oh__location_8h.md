@@ -23,6 +23,6 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Location_ResultCode](_location.md#location_resultcode)[OH_Location_IsLocatingEnabled](_location.md#oh_location_islocatingenabled) (bool \*enabled) | 查询位置开关是否开启。  | 
-| [Location_ResultCode](_location.md#location_resultcode)[OH_Location_StartLocating](_location.md#oh_location_startlocating) (const [Location_RequestConfig](_location.md#location_requestconfig) \*requestConfig) | 启动定位并订阅位置变化。  | 
-| [Location_ResultCode](_location.md#location_resultcode)[OH_Location_StopLocating](_location.md#oh_location_stoplocating) (const [Location_RequestConfig](_location.md#location_requestconfig) \*requestConfig) | 停止定位并取消订阅位置变化。  | 
+| [Location_ResultCode](_location.md#location_resultcode) [OH_Location_IsLocatingEnabled](_location.md#oh_location_islocatingenabled) (bool \*enabled) | 查询位置开关是否开启。  | 
+| [Location_ResultCode](_location.md#location_resultcode) [OH_Location_StartLocating](_location.md#oh_location_startlocating) (const [Location_RequestConfig](_location.md#location_requestconfig) \*requestConfig) | 启动定位并订阅位置变化。  | 
+| [Location_ResultCode](_location.md#location_resultcode) [OH_Location_StopLocating](_location.md#oh_location_stoplocating) (const [Location_RequestConfig](_location.md#location_requestconfig) \*requestConfig) | 停止定位并取消订阅位置变化。  | 
