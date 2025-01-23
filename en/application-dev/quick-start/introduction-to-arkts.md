@@ -68,7 +68,7 @@ let hi2 = 'hello, world';
 
 #### Numeric Types
 
-ArkTS has `number` and `Number` numeric types. Any integer and floating-point values can be assigned to a variable of these types.
+ArkTS has numeric types. Any integer and floating-point values can be assigned to a variable of these types.
 
 Numeric literals include integer literals and floating-point literals
 with the decimal base.
@@ -106,6 +106,15 @@ factorial(n1)  //  7.660344000000002
 factorial(n2)  //  7.680640444893748 
 factorial(n3)  //  1 
 factorial(n4)  //  9.33262154439441e+157 
+```
+
+The number type tends to lose precision when it represents very large integers. You can use BigInt to ensure the precision as required.
+
+```typescript
+
+let bigIntger: BigInt = BigInt('999999999999999999999999999999999999999999999999999999999999');
+console.log('bigIntger' + bigIntger.toString());
+
 ```
 
 #### `Boolean`
@@ -367,13 +376,12 @@ A conditional expression looks as follows:
 condition ? expression1 : expression2
 ```
 
-If that logical expression is truthy(a value that is considered `true`), then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
+If that logical expression is truthy (a value that is considered `true`), then the first expression is used as the result of the ternary expression; otherwise, the second expression is used.
 
 Example:
 
 ```typescript
-let isValid = Math.random() > 0.5 ? true : false;
-let message = isValid ? 'Valid' : 'Failed';
+let message = Math.random() > 0.5 ? 'Valid' : 'Failed';
 ```
 
 #### `For` Statements
@@ -1687,7 +1695,6 @@ A top-level declaration can be exported by using the keyword `export`.
 
 A declared name that is not exported is considered private and can be used only in the module where it is declared.
 
-**NOTE**: Use braces ({}) when importing a declaration that was exported using the keyword `export`.
 
 ```typescript
 export class Point {
@@ -1721,7 +1728,7 @@ Let's assume a module has the path './utils' and export entities 'X' and 'Y'.
 An import binding of the form `* as A` binds the name 'A', and all entities exported from the module defined by the import path can be accessed by using the qualified name `A.name`:
 
 ```typescript
-import * as Utils from './utils'
+import * as Utils from './utils';
 Utils.X // denotes X from Utils
 Utils.Y // denotes Y from Utils
 ```
@@ -1729,7 +1736,7 @@ Utils.Y // denotes Y from Utils
 An import binding of the form `{ ident1, ..., identN }` binds an exported entity with a specified name, which can be used as a simple name:
 
 ```typescript
-import { X, Y } from './utils'
+import { X, Y } from './utils';
 X // denotes X from Utils
 Y // denotes Y from Utils
 ```
@@ -1737,7 +1744,7 @@ Y // denotes Y from Utils
 If a list of identifiers contains aliasing of the form `ident as alias`, then entity `ident` is bound under the name `alias`:
 
 ```typescript
-import { X as Z, Y } from './utils'
+import { X as Z, Y } from './utils';
 Z // denotes X from Utils
 Y // denotes Y from Utils
 X // Compile-time error: 'X' is not visible
@@ -1748,10 +1755,18 @@ The **import() **syntax, commonly called dynamic import, is a function-like expr
 In the following example, **import(modulePath)** loads the module and returns a promise that resolves into a module object that contains all its exports. This expression can be called from any place in the code.
 
 ```typescript
-let modulePath = prompt("Which module to load?");
-import(modulePath)
-.then(obj => <module object>)
-.catch(err => <loading error, e.g. if no such module>)
+// Calc.ts
+export function add(a:number, b:number):number {
+  let c = a + b;
+  console.info('Dynamic import, %d + %d = %d', a, b, c);
+  return c;
+}
+// Index.ts
+import("./Calc").then((obj: ESObject) => {
+  console.info(obj.add(3, 5));  
+}).catch((err: Error) => {
+  console.error("Module dynamic import error: ", err);
+});
 ```
 
 You can also use **let module = await import(modulePath)** inside an async function.
@@ -1778,7 +1793,7 @@ async function test() {
 }
 ```
 
-For more details about dynamic import, see [Dynamic Import](arkts-dynamic-import.md).
+For more details about dynamic import, see [Dynamic Import](../arkts-utils/arkts-dynamic-import.md).
 
 <!--RP2--><!--RP2End-->
 
