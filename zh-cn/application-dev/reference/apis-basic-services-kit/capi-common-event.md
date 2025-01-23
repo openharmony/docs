@@ -30,6 +30,7 @@
 |[CommonEvent_RcvData](#commonevent_rcvdata) | 公共事件的回调数据。 |
 |[CommonEvent_Parameters](#commonevent_parameters) | 公共事件的回调附加信息。 |
 |[CommonEvent_ReceiveCallback](#commonevent_receivecallback)| 公共事件的回调函数。 |
+|[CommonEvent_PublishInfo](#commonevent_publishinfo)| 公共事件属性对象。 |
 
 ### 枚举
 
@@ -66,6 +67,36 @@
 | [OH_CommonEvent_GetCharArrayFromParameters](#oh_commonevent_getchararrayfromparameters)| 获取公共事件附加信息中字符数组信息。 |
 | [OH_CommonEvent_GetDoubleFromParameters](#oh_commonevent_getdoublefromparameters)| 获取公共事件附加信息中double数据信息。 |
 | [OH_CommonEvent_GetDoubleArrayFromParameters](#oh_commonevent_getdoublearrayfromparameters)| 获取公共事件附加信息中double数组信息。 |
+| [OH_CommonEvent_CreateParameters](#oh_commonevent_createparameters)| 创建公共事件附加信息对象。 |
+| [OH_CommonEvent_DestroyParameters](#oh_commonevent_destroyparameters)| 销毁公共事件附加信息对象。 |
+| [OH_CommonEvent_SetIntToParameters](#oh_commonevent_setinttoparameters)| 设置公共事件附加信息的int类型内容。 |
+| [OH_CommonEvent_SetIntArrayToParameters](#oh_commonevent_setintarraytoparameters)| 设置公共事件附加信息的int数组内容。 |
+| [OH_CommonEvent_SetLongToParameters](#oh_commonevent_setlongtoparameters)| 设置公共事件附加信息的long类型内容。 |
+| [OH_CommonEvent_SetLongArrayToParameters](#oh_commonevent_setlongarraytoparameters)| 设置公共事件附加信息的long数组内容。 |
+| [OH_CommonEvent_SetDoubleToParameters](#oh_commonevent_setdoubletoparameters)| 设置公共事件附加信息的double类型内容。 |
+| [OH_CommonEvent_SetDoubleArrayToParameters](#oh_commonevent_setdoublearraytoparameters)| 设置公共事件附加信息的double数组内容。 |
+| [OH_CommonEvent_SetBoolToParameters](#oh_commonevent_setbooltoparameters)| 设置公共事件附加信息的布尔类型内容。 |
+| [OH_CommonEvent_SetBoolArrayToParameters](#oh_commonevent_setboolarraytoparameters)| 设置公共事件附加信息的布尔数组内容。 |
+| [OH_CommonEvent_SetCharToParameters](#oh_commonevent_setchartoparameters)| 设置公共事件附加信息的字符类型内容。 |
+| [OH_CommonEvent_SetCharArrayToParameters](#oh_commonevent_setchararraytoparameters)| 设置公共事件附加信息的字符数组内容。 |
+| [OH_CommonEvent_CreatePublishInfo](#oh_commonevent_createpublishinfo)| 创建公共事件属性对象。 |
+| [OH_CommonEvent_DestroyPublishInfo](#oh_commonevent_destroypublishinfo)| 销毁公共事件属性对象。 |
+| [OH_CommonEvent_SetPublishInfoBundleName](#oh_commonevent_setpublishinfobundlename)| 设置公共事件包名称。 |
+| [OH_CommonEvent_SetPublishInfoPermissions](#oh_commonevent_setpublishinfopermissions)| 设置公共事件权限。 |
+| [OH_CommonEvent_SetPublishInfoCode](#oh_commonevent_setpublishinfocode)| 设置公共事件结果码。 |
+| [OH_CommonEvent_SetPublishInfoData](#oh_commonevent_setpublishinfodata)| 设置公共事件结果数据。 |
+| [OH_CommonEvent_SetPublishInfoParameters](#oh_commonevent_setpublishinfoparameters)| 设置公共事件附加信息。 |
+| [OH_CommonEvent_Publish](#oh_commonevent_publish)| 发布自定义公共事件。 |
+| [OH_CommonEvent_PublishWithInfo](#oh_commonevent_publishwithinfo)| 发布带有指定属性的自定义公共事件。 |
+| [OH_CommonEvent_IsOrderedCommonEvent](#oh_commonevent_isorderedcommonevent)| 查询当前公共事件是否为有序公共事件。 |
+| [OH_CommonEvent_FinishCommonEvent](#oh_commonevent_finishcommonevent)| 用于订阅者结束对当前有序公共事件的处理。 |
+| [OH_CommonEvent_GetAbortCommonEvent](#oh_commonevent_getabortcommonevent)| 获取当前有序公共事件是否处于中止状态。 |
+| [OH_CommonEvent_AbortCommonEvent](#oh_commonevent_abortcommonevent)| 中止当前的有序公共事件。 |
+| [OH_CommonEvent_ClearAbortCommonEvent](#oh_commonevent_clearabortcommonevent)| 取消当前有序公共事件的中止状态。 |
+| [OH_CommonEvent_GetCodeFromSubscriber](#oh_commonevent_getcodefromsubscriber)| 获取有序公共事件代码。 |
+| [OH_CommonEvent_GetDataFromSubscriber](#oh_commonevent_getdatafromsubscriber)| 获取有序公共事件的数据。 |
+| [OH_CommonEvent_SetCodeToSubscriber](#oh_commonevent_setcodetosubscriber)| 设置有序公共事件的代码。 |
+| [OH_CommonEvent_SetDataToSubscriber](#oh_commonevent_setdatatosubscriber)| 设置有序公共事件的数据。 |
 
 ### 常量
 | 名称 | 描述 |
@@ -202,6 +233,17 @@ typedef void (*CommonEvent_ReceiveCallback)(const CommonEvent_RcvData *data)
 
 **起始版本：** 12
 
+### CommonEvent_PublishInfo
+
+```c
+typedef struct CommonEvent_PublishInfo CommonEvent_PublishInfo
+```
+
+**描述**
+
+发布自定义公共事件时使用的公共事件属性对象。
+
+**起始版本：** 16
 
 ## 枚举类型说明
 
@@ -1586,3 +1628,697 @@ int32_t OH_CommonEvent_GetDoubleArrayFromParameters(const CommonEvent_Parameters
 **返回：**
 
 返回数组长度。默认为0。
+
+### OH_CommonEvent_CreateParameters
+
+```cpp
+CommonEvent_Parameters* OH_CommonEvent_CreateParameters()
+```
+
+**描述**
+
+创建公共事件附加信息对象。
+
+**起始版本：** 16
+
+**参数：**
+
+无。
+
+**返回：**
+
+返回公共事件附加信息，创建失败时，返回null。
+
+### OH_CommonEvent_DestroyParameters
+
+```cpp
+void OH_CommonEvent_DestroyParameters(CommonEvent_Parameters* param)
+```
+
+**描述**
+
+销毁公共事件附加信息对象。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+
+**返回：**
+
+无。
+
+### OH_CommonEvent_SetIntToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetIntToParameters(CommonEvent_Parameters* param, const char* key, int value)
+```
+
+**描述**
+
+设置公共事件附加信息的int类型内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的int类型内容。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetIntArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetIntArrayToParameters(CommonEvent_Parameters* param, const char* key, const int* value, size_t num)
+```
+
+**描述**
+
+设置公共事件附加信息的int数组内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的int数组内容。|
+| num | 设置的int数组内容中元素的个数。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+
+### OH_CommonEvent_SetLongToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetLongToParameters(CommonEvent_Parameters* param, const char* key, long value)
+```
+
+**描述**
+
+设置公共事件附加信息的long类型内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的long类型内容。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetLongArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetLongArrayToParameters(CommonEvent_Parameters* param, const char* key, const long* value, size_t num)
+```
+
+**描述**
+
+设置公共事件附加信息的long数组内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的long数组内容。|
+| num | 设置的long数组内容中元素的个数。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+
+### OH_CommonEvent_SetDoubleToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetDoubleToParameters(CommonEvent_Parameters* param, const char* key, double value)
+```
+
+**描述**
+
+设置公共事件附加信息的double类型内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的double类型内容。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetDoubleArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetDoubleArrayToParameters(CommonEvent_Parameters* param, const char* key, const double* value, size_t num)
+```
+
+**描述**
+
+设置公共事件附加信息的double数组内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的double数组内容。|
+| num | 设置的double数组内容中元素的个数。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+
+### OH_CommonEvent_SetBoolToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetBoolToParameters(CommonEvent_Parameters* param, const char* key, bool value)
+```
+
+**描述**
+
+设置公共事件附加信息的布尔类型内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的布尔类型内容。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetBoolArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetBoolArrayToParameters(CommonEvent_Parameters* param, const char* key, const bool* value, size_t num)
+```
+
+**描述**
+
+设置公共事件附加信息的布尔数组内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的布尔数组内容。|
+| num | 设置的布尔数组内容中元素的个数。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+
+### OH_CommonEvent_SetCharToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetCharToParameters(CommonEvent_Parameters* param, const char* key, char value)
+```
+
+**描述**
+
+设置公共事件附加信息的字符类型内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的字符类型内容。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetCharArrayToParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetCharArrayToParameters(CommonEvent_Parameters* param, const char* key, const char* value, size_t num)
+```
+
+**描述**
+
+设置公共事件附加信息的字符数组内容。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| param | 公共事件附加信息。|
+| key | 数据键。|
+| value | 设置的字符数组内容。|
+| num | 设置的字符数组内容中元素的个数。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_ALLOC_MEMORY_FAILED表示内存分配失败。
+
+### OH_CommonEvent_CreatePublishInfo
+
+```cpp
+CommonEvent_PublishInfo* OH_CommonEvent_CreatePublishInfo(bool ordered)
+```
+
+**描述**
+
+创建公共事件属性对象。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| ordered | 是否为有序公共事件。<br/>true：有序公共事件。false：无序公共事件。|
+
+**返回：**
+
+创建的公共事件属性对象，创建失败时，返回null。
+
+### OH_CommonEvent_DestroyPublishInfo
+
+```cpp
+void OH_CommonEvent_DestroyPublishInfo(CommonEvent_PublishInfo* info)
+```
+
+**描述**
+
+销毁公共事件属性对象。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| info | 要销毁的公共事件属性对象。|
+
+**返回：**
+
+无。
+
+### OH_CommonEvent_SetPublishInfoBundleName
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoBundleName(CommonEvent_PublishInfo* info, const char* bundleName)
+```
+
+**描述**
+
+设置公共事件包名称。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| info | 公共事件属性对象。|
+| bundleName | 设置的包名称。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetPublishInfoPermissions
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoPermissions(CommonEvent_PublishInfo* info，const char* permissions[], int32_t num)
+```
+
+**描述**
+
+设置公共事件权限。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| info | 公共事件属性对象。|
+| permissions | 权限名称数组。|
+| num | 权限的数量。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetPublishInfoCode
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoCode(CommonEvent_PublishInfo* info, int32_t code)
+```
+
+**描述**
+
+设置公共事件结果码。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| info | 公共事件属性对象。|
+| code | 设置的结果码。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetPublishInfoData
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoData(CommonEvent_PublishInfo* info, const char* data, size_t length)
+```
+
+**描述**
+
+设置公共事件结果数据。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| info | 公共事件属性对象。|
+| code | 设置的结果数据。|
+| length | 结果数据的长度。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_SetPublishInfoParameters
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_SetPublishInfoParameters(CommonEvent_PublishInfo* info, CommonEvent_Parameters* param)
+```
+
+**描述**
+
+设置公共事件附加信息。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| info | 公共事件属性对象。|
+| param | 设置的附加信息。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效。
+
+### OH_CommonEvent_Publish
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_Publish(const char* event)
+```
+
+**描述**
+
+发布自定义公共事件。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| event | 公共事件名称。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+
+### OH_CommonEvent_PublishWithInfo
+
+```cpp
+CommonEvent_ErrCode OH_CommonEvent_PublishWithInfo(const char* event, const CommonEvent_PublishInfo* info)
+```
+
+**描述**
+
+发布带有指定属性的自定义公共事件。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| event | 公共事件名称。|
+| info | 设置的公共事件属性。|
+
+**返回：**
+
+返回COMMONEVENT_ERR_OK表示成功；返回COMMONEVENT_ERR_INVALID_PARAMETER表示参数无效；返回COMMONEVENT_ERR_SENDING_REQUEST_FAILED表示IPC发送失败；返回COMMONEVENT_ERR_INIT_UNDONE表示公共事件服务未初始化。
+
+### OH_CommonEvent_IsOrderedCommonEvent
+
+```cpp
+bool OH_CommonEvent_IsOrderedCommonEvent(const CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+查询当前公共事件是否为有序公共事件。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回true表示有序公共事件；false表示无序公共事件。
+
+### OH_CommonEvent_FinishCommonEvent
+
+```cpp
+bool OH_CommonEvent_FinishCommonEvent(CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+用于订阅者结束对当前有序公共事件的处理。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回true表示操作成功；返回false表示操作失败。
+
+### OH_CommonEvent_GetAbortCommonEvent
+
+```cpp
+bool OH_CommonEvent_GetAbortCommonEvent(const CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+获取当前有序公共事件是否处于中止状态。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回true表示当前有序公共事件处于中止状态；false表示当前有序公共事件没有处于中止状态。
+
+### OH_CommonEvent_AbortCommonEvent
+
+```cpp
+bool OH_CommonEvent_AbortCommonEvent(CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+该接口与OH_CommonEvent_FinishCommonEvent配合使用，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回true表示操作成功；返回false表示操作失败。
+
+### OH_CommonEvent_ClearAbortCommonEvent
+
+```cpp
+bool OH_CommonEvent_ClearAbortCommonEvent(CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+该接口与OH_CommonEvent_FinishCommonEvent配合使用，可以取消当前有序公共事件的中止状态，使该公共事件继续向下一个订阅者传递。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回true表示操作成功；返回false表示操作失败。
+
+### OH_CommonEvent_GetCodeFromSubscriber
+
+```cpp
+int32_t OH_CommonEvent_GetCodeFromSubscriber(const CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+获取有序公共事件代码。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回有序公共事件的代码，无法获取时返回0。
+
+### OH_CommonEvent_GetDataFromSubscriber
+
+```cpp
+const char* OH_CommonEvent_GetDataFromSubscriber(const CommonEvent_Subscriber* subscriber)
+```
+
+**描述**
+
+获取有序公共事件的数据。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+
+**返回：**
+
+返回有序公共事件的数据，无法获取时返回null。
+
+### OH_CommonEvent_SetCodeToSubscriber
+
+```cpp
+bool OH_CommonEvent_SetCodeToSubscriber(CommonEvent_Subscriber* subscriber, int32_t code)
+```
+
+**描述**
+
+设置有序公共事件的代码。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+| code | 公共事件的代码。|
+
+**返回：**
+
+返回true表示操作成功；返回false表示操作失败。
+
+### OH_CommonEvent_SetDataToSubscriber
+
+```cpp
+bool OH_CommonEvent_SetDataToSubscriber(CommonEvent_Subscriber* subscriber, const char* data, size_t length)
+```
+
+**描述**
+
+设置有序公共事件的数据。
+
+**起始版本：** 16
+
+**参数：**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| subscriber | 公共事件的订阅者对象。|
+| data | 公共事件的数据。|
+| length | 数据的长度。|
+
+**返回：**
+
+返回true表示操作成功；返回false表示操作失败。
