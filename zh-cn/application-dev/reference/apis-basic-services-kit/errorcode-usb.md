@@ -224,7 +224,7 @@ transmission time out error.
 
 **错误信息**
 
-usb error other. Possible causes:<br>1.unrecognised discard errno.
+Other USB error. Possible causes:<br>1.Unrecognized discard error code.
 
 **错误描述**
 
@@ -266,7 +266,7 @@ libusb在做内存申请时无内存可用，libusb单次最大传输数据为1k
 
 **错误信息**
 
-interface does not support.
+API not supported.
 
 **错误描述**
 
@@ -280,7 +280,7 @@ interface does not support.
 
 **错误信息**
 
-entity not found.
+Entity not found.
 
 **错误描述**
 
