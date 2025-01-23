@@ -449,6 +449,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 | -------- | -------- | -------- | -------- |
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为字节。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为字节。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
@@ -770,9 +771,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                        |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
-| path | string | 是 | 文件路径                                                                                                                                      |
+| path | string | 是 | 文件路径。                                         |
 | responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息。此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
-| message | string | 是 | 上传任务结果描述信息                                                                                                                                |
+| message | string | 是 | 上传任务结果描述信息。                           |
 
 其中，responseCode包含的返回码值如下：
 
@@ -1105,6 +1106,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
 | totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+
 
 **错误码：**
 
