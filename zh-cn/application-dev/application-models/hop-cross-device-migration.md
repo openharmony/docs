@@ -406,10 +406,10 @@ export default class MigrationAbility extends UIAbility {
    > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
     
-   >以下示例中，假设设备A上应用的BundleName为：com.demo.example1；设备B上应用的BundleName为：com.demo.example2
+示例如下：
 
 ```JSON
-// 设备A
+// 设备A，应用的BundleName为：com.demo.example1
 {
   "module": {
     // ···
@@ -425,8 +425,10 @@ export default class MigrationAbility extends UIAbility {
     
   }
 }
+```
 
-// 设备B
+```JSON
+// 设备B，应用的BundleName为：com.demo.example2
 {
   "module": {
     // ···
