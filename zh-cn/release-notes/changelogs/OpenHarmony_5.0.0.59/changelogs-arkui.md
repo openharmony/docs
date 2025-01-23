@@ -163,7 +163,7 @@ hideNonSecureWindows
 
 **变更原因**
 
-EmbeddedExtension组件所在的应用窗口移动的场景下，无法获取该组件的大小和位置信息，不满足开发者业务诉求。
+[EmbeddedComponent](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-embedded-component.md)所在的应用窗口移动的场景下，无法获取该组件的大小和位置信息，不满足开发者业务诉求。
 
 **变更影响**
 
