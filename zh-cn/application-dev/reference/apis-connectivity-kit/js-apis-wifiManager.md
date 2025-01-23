@@ -1383,7 +1383,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | P2P module error. |
+| 2801000  | Operation failed. |
 
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
@@ -1412,7 +1412,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 | -------- | -------- |
 | 201 | Permission denied.                 |
 | 801 | Capability not supported.          |
-| 2801000  | Operation failed. |
+| 2801000  | P2P module error. |
 | 2801001  | Wi-Fi STA disabled. |
 
 **示例：**
@@ -1591,7 +1591,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p发现阶段完成，才能正常获取到对端设备列表信息
-	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
     if (err) {
         console.error("get P2P peer devices error");
         return;
@@ -1861,14 +1861,14 @@ API 10起：ohos.permission.GET_WIFI_INFO
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
-      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
           if (err) {
               console.error('failed to get peer devices: ' + JSON.stringify(err));
               return;
