@@ -377,7 +377,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetColor (const NativeResourceManag
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -477,7 +477,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetDrawableDescriptor (const Native
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -805,7 +805,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMedia (const NativeResourceManag
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -840,7 +840,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64 (const NativeResourc
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -875,7 +875,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64ByName (const NativeR
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_NAME_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -910,7 +910,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64Data (const NativeRes
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -945,7 +945,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaBase64DataByName (const Nat
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_NAME_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -980,7 +980,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaByName (const NativeResourc
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_NAME_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -1015,7 +1015,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaData (const NativeResourceM
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -1050,7 +1050,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetMediaDataByName (const NativeRes
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_NAME_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -1086,7 +1086,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralString (const NativeResour
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -1124,7 +1124,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetPluralStringByName (const Native
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -1162,7 +1162,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetString (const NativeResourceMana
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -1200,7 +1200,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringArray (const NativeResourc
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -1238,7 +1238,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringArrayByName (const NativeR
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -1276,7 +1276,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetStringByName (const NativeResour
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -1311,7 +1311,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbol (const NativeResourceMana
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_ID_NOT_FOUND 9001001 - 无效的资源ID。
 
@@ -1344,7 +1344,7 @@ ResourceManager_ErrorCode OH_ResourceManager_GetSymbolByName (const NativeResour
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_RES_NAME_NOT_FOUND 9001003 - 无效的资源名称。
 
@@ -1375,7 +1375,7 @@ ResourceManager_ErrorCode OH_ResourceManager_ReleaseConfiguration (ResourceManag
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 
 ### OH_ResourceManager_ReleaseStringArray()
@@ -1401,7 +1401,7 @@ ResourceManager_ErrorCode OH_ResourceManager_ReleaseStringArray (char *** resVal
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 
 ### OH_ResourceManager_RemoveResource()
@@ -1427,6 +1427,6 @@ ResourceManager_ErrorCode OH_ResourceManager_RemoveResource (const NativeResourc
 
 SUCCESS 0 - 成功。
 
-ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确;2.参数验证失败。
+ERROR_CODE_INVALID_INPUT_PARAMETER 401 - 输入参数无效。可能的原因:1.参数类型不正确；2.参数验证失败。
 
 ERROR_CODE_OVERLAY_RES_PATH_INVALID 9001010 - 无效的资源路径。
