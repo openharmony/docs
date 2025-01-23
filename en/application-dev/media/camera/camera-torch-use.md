@@ -51,6 +51,10 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 4. Call [setTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#settorchmode11) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to set the flashlight mode, and then [getTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#gettorchmode11) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to obtain the flashlight mode in use.
 
+    > **NOTE**
+    >
+    > Before using [getTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#gettorchmode11), register a listener for the flashlight status. For details, see [Status Listening](camera-torch-use.md#status-listening).
+
     ```ts
     function setTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : void {
         cameraManager.setTorchMode(torchMode);
@@ -58,6 +62,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
         console.info(`Returned with the torch mode supportd mode: ${isTorchMode}`);
     }
     ```
+
 
 ## Status Listening
 
