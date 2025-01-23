@@ -1298,6 +1298,61 @@ adminManager.getAdmins().then((result) => {
 })
 ```
 
+## adminManager.replaceSuperAdmin<sup>18+</sup>
+
+replaceSuperAdmin(oldAdmin: Want, newAdmin: Want, isKeepPolicy: boolean): void
+
+将指定应用替换成超级设备管理应用。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名            | 类型                                  | 必填   | 说明                           |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| oldAdmin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 原有企业设备管理扩展组件。                  |
+| newAdmin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 新企业设备管理扩展组件。                 |
+| isKeepPolicy   | boolean                             | 是    | 是否保留原有企业设备管理扩展组件的策略，取值为true表示保留，取值为false表示不保留。      |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 9200003 | The administrator ability component is invalid. |
+| 9200011 | Failed to replace the administrator application of the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+| 202  | Permission verification failed. A non-system application calls a system API. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let oldAdmin: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let newAdmin: Want = {
+  bundleName: 'newBundleName',
+  abilityName: 'newAbilityName',
+};
+try {
+  adminManager.replaceSuperAdmin(oldAdmin, newAdmin, false);
+  console.info(`Succeeded in replace super admin.`);
+} catch(err) {
+  console.error(`Failed to replace super admin. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## EnterpriseInfo
 
 设备管理应用的企业信息。
