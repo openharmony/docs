@@ -4028,24 +4028,45 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+        url: 'pages/routerpage2',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4080,27 +4101,48 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'pages/routerpage2',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushUrl success');
-})
+}
 ```
 
 ### pushUrl
@@ -4140,28 +4182,52 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+        url: 'pages/routerpage2',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4197,31 +4263,55 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'pages/routerpage2',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, rtm.Standard, (err) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, rtm.Standard, (err) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushUrl success');
-})
+}
 ```
 
 ### replaceUrl
@@ -4259,21 +4349,42 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+        url: 'pages/detail',
+        params: {
+          data1: 'message'
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4307,24 +4418,45 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+      url: 'pages/detail',
+      params: {
+        data1: 'message'
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceUrl success');
+    })
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceUrl success');
-})
+}
 ```
 
 ### replaceUrl
@@ -4363,25 +4495,49 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+        url: 'pages/detail',
+        params: {
+          data1: 'message'
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4416,28 +4572,52 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+      url: 'pages/detail',
+      params: {
+        data1: 'message'
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceUrl success');
+    });
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceUrl success');
-});
+}
 ```
 
 ### pushNamedRoute
@@ -4476,24 +4656,45 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4528,27 +4729,48 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushNamedRoute success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushNamedRoute success');
-})
+}
 ```
 ### pushNamedRoute
 
@@ -4587,28 +4809,51 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
 let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4644,31 +4889,55 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushNamedRoute success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushNamedRoute success');
-})
+}
 ```
 
 ### replaceNamedRoute
@@ -4706,21 +4975,42 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message'
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4754,24 +5044,45 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message'
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceNamedRoute success');
+    })
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceNamedRoute success');
-})
+}
 ```
 
 ### replaceNamedRoute
@@ -4811,25 +5122,49 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message'
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4864,28 +5199,52 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message'
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceNamedRoute success');
+    })
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceNamedRoute success');
-});
+}
 ```
 
 ### back
