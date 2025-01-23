@@ -307,14 +307,14 @@ USB管理新增支持检查应用程序是否有权访问USB配件。（[API参�
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
-| Hi3861解决方案（二进制）        | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
-| Hi3516解决方案-LiteOS（二进制） | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
-| Hi3516解决方案-Linux（二进制）  | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
-| RK3568标准系统解决方案（二进制）        | 5.0.2 Release    | *发布上传中* | *发布上传中* | NA |
-| 标准系统Public SDK包（Mac）             | 5.0.2.123 | *发布上传中* | *发布上传中* | NA |
-| 标准系统Public SDK包（Mac-M1）             | 5.0.2.123  | *发布上传中* | *发布上传中* | NA |
-| 标准系统Public SDK包（Windows/Linux）   | 5.0.2.123   | *发布上传中* | *发布上传中* | NA |
+| 全量代码（标准、轻量和小型系统）        | 5.0.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/code-v5.0.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/code-v5.0.2-Release.tar.gz.sha256) | 42.5 GB |
+| Hi3861解决方案（二进制）        | 5.0.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/hispark_pegasus.tar.gz.sha256) | 27.2 MB |
+| Hi3516解决方案-LiteOS（二进制） | 5.0.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 328.4 MB |
+| Hi3516解决方案-Linux（二进制）  | 5.0.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/hispark_taurus_Linux.tar.gz.sha256) | 221.2 MB |
+| RK3568标准系统解决方案（二进制）        | 5.0.2 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/dayu200_standard_arm32.tar.gz.sha256) | 13.1 GB |
+| 标准系统Public SDK包（Mac）             | 5.0.2.123 | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.0.2.123  | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.0.2.123   | [站点](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.0.2-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 4.0 GB |
 
 
 ## 修复缺陷列表
