@@ -318,61 +318,6 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 编译生成的源码文件中的注释默认会被全部删除，不支持配置保留。  
 可通过`keep-comments`配置来保留编译生成的声明文件中的JsDoc注释。
 
-#### -print-kept-names *filepath*
-
-该选项支持输出未混淆名单和全量白名单。其中，*filepath*为可选参数。
-
-当*filepath*参数缺省时，未混淆名单（keptNames.json）和全量白名单（whitelist.json）默认输出到缓存路径`build/default/cache/{...}/release/obfuscation`中。
-
-当*filepath*配置参数时，未混淆名单还会输出到该参数指定的路径中。其中，*filepath*仅支持相对路径，相对路径的起始位置为混淆配置文件的当前目录。*filepath*参数中的文件名请以`.json`为后缀。
-
-全量白名单（whitelist.json）包含本次模块编译流程中收集到的全部白名单，分为以下七种：
-
-(1)'sdk'：表示系统api。
-
-(2)'lang'：表示语言中的关键字。
-
-(3)'conf'：表示用户配置的保留选项中的白名单。
-
-(4)'struct'：表示ArkUI的struct中的属性。
-
-(5)'exported'：表示被导出的名称及其属性。
-
-(6)'strProp'：表示字符串属性。
-
-(7)'enum'：表示enum中的成员。
-
-未混淆名单（keptNames.json）中包含未混淆的名称及未混淆的原因。其中，未混淆原因有以下七种：与sdk白名单重名、与语言白名单重名、与用户配置白名单重名、与struct白名单重名、与导出白名单重名、与字符串属性白名单重名（未开启字符串属性混淆的情况下）以及与enum白名单重名。
-
-**注意**：
-
-1.在编译har模块且开启属性混淆的情况下，'enum'白名单将收集enum中的成员名称。
-
-例如：
-
-```
-enum Test {
-  member1,
-  member2
-}
-```
-
-enum白名单内容为['member1', 'member2']。这是由于历史版本的har模块的编译中间产物为js文件，在js文件中enum类型会转换为一个立即执行函数，而enum成员会被转化为一个字符串属性和一个字符串常量。因此，为了保证开启属性混淆的情况下功能正常，需要将enum成员名称收集为白名单。在编译新版字节码har模块时，此特性仍然被保留。
-
-2.在编译hap/hsp/字节码har模块且开启属性混淆的情况下，当enum的成员被初始化时，'enum'白名单收集初始化表达式中包含的变量名称。
-
-例如：
-
-```
-let outdoor = 1;
-enum Test {
-  member1,
-  member2 = outdoor + member1 + 2
-}
-```
-
-其中，编译hap/hsp模块的情况下，enum白名单内容为['outdoor', 'member1']；编译字节码har模块的情况下，enum白名单内容为['outdoor', 'member1', 'member2']。
-
 ### 保留选项
 
 #### -keep-property-name *[,identifiers,...]*
