@@ -15,6 +15,71 @@ import { connection } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+Defines the profile connection status of the Bluetooth device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Profile connection status of the Bluetooth device.|
+
+
+## ProfileId
+
+type ProfileId = constant.ProfileId
+
+Enumerates profiles of the Bluetooth device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | Profile of the Bluetooth device.|
+
+
+## ProfileUuids
+
+type ProfileUuids = constant.ProfileUuids
+
+Defines the UUID of a profile.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | UUID of the profile.|
+
+
+## MajorClass
+
+type MajorClass = constant.MajorClass
+
+Defines the major class of the Bluetooth device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.MajorClass](js-apis-bluetooth-constant.md#majorclass) | Main class of the Bluetooth device.|
+
+
+## MajorMinorClass
+
+type MajorMinorClass = constant.MajorMinorClass
+
+Defines the major and minor classes of the Bluetooth device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | Major and minor classes of the Bluetooth device.|
+
+
 ## connection.pairDevice
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
@@ -1069,7 +1134,7 @@ try {
 
 on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Subscribes to the discovery of a Bluetooth device. This API uses an asynchronous callback to return the result.
+Subscribes to the Bluetooth device discovered. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
@@ -1114,7 +1179,7 @@ try {
 
 off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unsubscribes from the discovery of a Bluetooth device.
+Unsubscribes from the Bluetooth device discovered.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 

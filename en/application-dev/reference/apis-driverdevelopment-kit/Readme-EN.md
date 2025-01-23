@@ -36,5 +36,6 @@
     - [Hid_EventTypeArray](_hid___event_type_array.md)
     - [Hid_KeyCodeArray](_hid___key_code_array.md)
     - [Hid_MscEventArray](_hid___msc_event_array.md)
+    - [Hid_RawDevInfo](_hid___raw_dev_info.md)
     - [Hid_RelAxesArray](_hid___rel_axes_array.md)
 <!--no_check-->
