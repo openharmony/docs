@@ -2,6 +2,7 @@
 
 When you use multiple global @Builder functions in a struct to implement different UI effects, the code maintenance becomes difficult and the page is not neat. In this case, you can use **wrapBuilder** to encapsulate the global @Builder.
 
+Before reading this topic, you are advised to read [\@Builder](./arkts-builder.md).
 
 > **NOTE**
 >
@@ -24,7 +25,7 @@ function testBuilder() {
 
 In the preceding code, **builderArr** is an array consisting of @Builder methods. When each @Builder method is obtained from **ForEach**, the @Builder method cannot be used in the UI method.
 
- To solve this problem, **wrapBuilder** is introduced as the global @Builder encapsulation function. **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
+To solve this problem, **wrapBuilder** is introduced as the global @Builder encapsulation function. **wrapBuilder** is a template function that accepts a [global \@Builder decorated function](arkts-builder.md#global-custom-builder-function) as its argument and returns a **WrappedBuilder** object, thereby allowing global \@Builder decorated function to be assigned a value and transferred.
 
 ## Available APIs
 
@@ -166,35 +167,6 @@ struct Parent{
 ```
 
 ## Incorrect Usage
-
-### wrapBuilder Accepts Only a Global Function Decorated by @Builder
-
-```ts
-function MyBuilder() {
-
-}
-
-const globalBuilder: WrappedBuilder<[string, number]> = wrapBuilder(MyBuilder);
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        globalBuilder.builder(this.message, 30)
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
 
 ### wrapBuilder Redefinition Failure
 
