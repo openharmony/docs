@@ -34,8 +34,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | ---------------------- | ---------------------------------------- | ---------------------------- |
 | x                      | number                                   | X coordinate of the mouse pointer relative to the upper left corner of the component being clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
 | y                      | number                                   | Y coordinate of the mouse pointer relative to the upper left corner of the component being clicked.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
-| button                 | [MouseButton](ts-appendix-enums.md#mousebutton) | Mouse button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
-| action                 | [MouseAction](ts-appendix-enums.md#mouseaction) | Mouse action.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| button                 | [MouseButton](ts-appendix-enums.md#mousebutton8) | Mouse button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
+| action                 | [MouseAction](ts-appendix-enums.md#mouseaction8) | Mouse action.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                       |
 | stopPropagation        | () => void                               | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                     |
 | target    | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the component that triggers the event.<br>**Atomic service API**: This API can be used in atomic services since API version 11.              |
 | windowX<sup>10+</sup> | number                          | X coordinate of the mouse pointer relative to the upper left corner of the application window.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -46,6 +46,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 | screenY<sup>(deprecated)</sup> | number                 | Y coordinate of the mouse pointer relative to the upper left corner of the application window.<br>This API is deprecated since API version 10. You are advised to use **windowY** instead.|
 
 ## Example
+
+This example demonstrates how to set a mouse event on a button. When the button is clicked using a mouse device, the **onMouse** event is triggered to obtain relevant mouse event parameters.
 
 ```ts
 // xxx.ets

@@ -21,6 +21,8 @@ ImageAnimator()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
@@ -123,8 +125,6 @@ Sets the number of images to be pre-decoded.
 
 This API is deprecated since API version 9.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 10.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters** 
@@ -171,13 +171,15 @@ Sets the number of times that the animation is played.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-| Name  | Type  | Mandatory | Description |
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | Yes   | Image path. The image format can be .svg, .png, or .jpg. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
-| width    | number \| string | No | Image width.<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets.      |
-| height   | number \| string | No | Image height.<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets.       |
-| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets. |
-| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>Since API version 10, this API is supported in ArkTS widgets.  |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | Yes   | Image path. The image format can be .jpg, .jpeg, .svg, .png, .bmp, .webp, .ico, or .heif. The [Resource](ts-types.md#resource) type is supported since API version 9, and the [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) type is supported since API version 12.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.|
+| width    | number \| string | No | Image width.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.      |
+| height   | number \| string | No | Image height.<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.       |
+| top      | number \| string | No | Vertical coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10. |
+| left     | number \| string | No | Horizontal coordinate of the image relative to the upper left corner of the widget<br>Default value: **0**<br>**Widget capability**: This API can be used in ArkTS widgets since API version 10.  |
 | duration | number          | No    | Playback duration of each image frame, in milliseconds.<br>Default value: **0**        |
 
 ## Events
@@ -234,7 +236,7 @@ Triggered when the animation playback returns to the initial state.
 
 onFinish(event: () =&gt; void)
 
-Triggered when the animation playback is complete or stopped. 
+Triggered when the animation playback is complete or stopped.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 10.
 
@@ -245,7 +247,9 @@ Triggered when the animation playback is complete or stopped.
 
 ## Example
 
-### Playing an Animation of the Resource Type
+### Example 1: Playing an Animation Using Images of the Resource Type
+
+This example demonstrates how to play an animation using the **ImageAnimator** component with images of the Resource type.
 
 ```ts
 // xxx.ets
@@ -321,9 +325,12 @@ struct ImageAnimatorExample {
 }
 ```
 
-### Playing an Animation of the PixelMap Type
+### Example 2: Playing an Animation Using Images of the PixelMap Type
+
+This example demonstrates how to play an animation using the **ImageAnimator** component with images of the PixelMap type.
 
 ```ts
+// xxx.ets
 import { image } from '@kit.ImageKit'
 
 @Entry
