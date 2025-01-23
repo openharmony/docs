@@ -18,6 +18,10 @@ OH_HiAppEvent_DestroyParamList(list);
 
 **引用文件：** &lt;hiappevent/hiappevent_event.h&gt;
 
+**库：** libhiappevent_ndk.z.so
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
 **起始版本：** 8
 
 **相关模块：**[HiAppEvent](_hi_app_event.md)
