@@ -1,4 +1,4 @@
-# SmartPerf Device性能工具使用指导
+![输入图片说明](../../figures/IMG_1501840659_003.jpg)# SmartPerf Device性能工具使用指导
 
 ## 工具简介
 
@@ -51,15 +51,15 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 点击悬浮窗"start"开始采集，点击悬浮窗"计时器"（如下图中00:07）暂停采集。再次点击"计时器"，继续开始采集。双击"计时器"，实时展示采集数据。长按"计时器"，结束采集。<br>整个过程中，可拖动悬浮框调整悬浮框位置。
 
-![图片说明](figures/SmartPerfControl1.png)
-![图片说明](figures/SmartPerfControl2.png)
+![图片说明](figures/IMG_1501840580_001.jpg)
+![图片说明](figures/IMG_1501840599_002.jpg)
 
 ### 查看报告
 
 点击"报告"，查看测试报告列表。点击项目，进入报告详情页，查看测试指标项详情。
 
-![图片说明](figures/SmartPerfReport1.png)
-![图片说明](figures/SmartPerfReport2.png)
+![图片说明](figures/IMG_1501840659_003.jpg)
+![图片说明](figures/IMG_1501840674_004.jpg)
 <!--DelEnd-->
 
 <!--RP1-->
