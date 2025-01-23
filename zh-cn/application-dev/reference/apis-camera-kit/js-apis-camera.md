@@ -3899,6 +3899,8 @@ enableMirror(enabled: boolean): void
 
 启用/关闭镜像录像。
 
+- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotationsup12sup)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotationsup12sup)更新旋转角度
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 **参数：**
@@ -3920,16 +3922,17 @@ enableMirror(enabled: boolean): void
 **示例：**
 
 ```ts
+import { camera } from '@kit.CameraKit';
+import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function testEnableMirror(videoOutput: camera.VideoOutput, mirrorMode: boolean): void {
-  try {
-    videoOutput.enableMirror(mirrorMode);
-  } catch (error) {
-    // 失败返回错误码error.code并处理
-    let err = error as BusinessError;
-    console.error(`The enableMirror call failed. error code: ${err.code}`);
-  }
+function enableMirror(videoOutput: camera.VideoOutput, mirrorMode: boolean, aVRecorder: media.AVRecorder, deviceDegree : number): void {
+    try {
+        videoOutput.enableMirror(mirrorMode);
+        aVRecorder.updateRotation(videoOutput.getVideoRotation(deviceDegree));
+    } catch (error) {
+        let err = error as BusinessError;
+    }
 }
 ```
 
@@ -3942,7 +3945,6 @@ getVideoRotation(deviceDegree: number): ImageRotation
 - 设备自然方向：设备默认使用方向，手机为竖屏（充电口向下）。
 - 相机镜头角度：值等于相机图像顺时针旋转到设备自然方向的角度，手机后置相机传感器是横屏安装的，所以需要顺时针旋转90度到设备自然方向。
 - 屏幕显示方向：需要屏幕显示的图片左上角为第一个像素点为坐标原点。锁屏时与自然方向一致。
-- 使用[enableMirror](js-apis-camera.md#enablemirrorsup16sup)打开/关闭录像镜像,必须重新调用接口，获取新结果,参考[录像实现方案](../../media/camera/camera-recording-case.md)。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -3970,17 +3972,45 @@ getVideoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
-  try {
-    videoRotation = videoOutput.getVideoRotation(deviceDegree);
-    console.log(`Video rotation is: ${videoRotation}`);
-  } catch (error) {
-    // 失败返回错误码error.code并处理
-    let err = error as BusinessError;
-    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
-  }
-  return videoRotation;
+import { camera } from '@kit.CameraKit';
+import { Decimal } from '@kit.ArkTS';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
+    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+    try {
+        videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+    return videoRotation;
+}
+
+//获取deviceDegree
+function getDeviceDegree(): number {
+    let deviceDegree: number = -1;
+    try {
+        sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+            console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+            console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+            console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+            let x = data.x;
+            let y = data.y;
+            let z = data.z;
+            if ((x * x + y * y) * 3 < z * z) {
+                deviceDegree = -1;
+            } else {
+                let sd: Decimal = Decimal.atan2(y, -x);
+                let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+                deviceDegree = 90 - Number(sc);
+                deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+            }
+        });
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+    }
+    return deviceDegree;
 }
 ```
 

@@ -272,17 +272,6 @@ async function videoRecording(context: common.Context, surfaceId: string): Promi
     console.error(`videoSession start error: ${JSON.stringify(err)}`);
   }
 
-  // 开启镜像功能，如无需开启，可移除该代码块
-  if (videoOutput.isMirrorSupported()) {
-      try {
-          videoOutput.enableMirror(true);
-          avRecorder.updateRotation(videoOutput.getVideoRotation(0));
-      } catch (error) {
-          let err = error as BusinessError;
-          console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
-      }
-  }
-
   // 启动录像输出流
   videoOutput.start((err: BusinessError) => {
     if (err) {
