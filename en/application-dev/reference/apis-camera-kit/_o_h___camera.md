@@ -1635,7 +1635,7 @@ Enumerates the camera error codes.
 | CAMERA_DEVICE_DISABLED | The camera is disabled for security reasons.| 
 | CAMERA_DEVICE_PREEMPTED | The camera is preempted.| 
 | CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS | The configuration conflicts with the current configuration.<br>**Since**: 12| 
-| CAMERA_SERVICE_FATAL_ERROR | A fatal error occurs in the camera service.| 
+| CAMERA_SERVICE_FATAL_ERROR | A fatal error occurs in the camera service, for example, no camera permission, camera service restart, or abnormal cross-process invocation.| 
 
 
 ### Camera_ExposureMode
@@ -1788,7 +1788,7 @@ Enumerates the camera positions.
 
 | Value| Description| 
 | -------- | -------- |
-| CAMERA_POSITION_UNSPECIFIED | Unspecified position.| 
+| CAMERA_POSITION_UNSPECIFIED | A camera that does not have a fixed orientation relative to the device screen.| 
 | CAMERA_POSITION_BACK | Rear camera.| 
 | CAMERA_POSITION_FRONT | Front camera.| 
 
@@ -1943,7 +1943,7 @@ Enumerates the camera types.
 | CAMERA_TYPE_DEFAULT | Default camera type.| 
 | CAMERA_TYPE_WIDE_ANGLE | Wide camera.| 
 | CAMERA_TYPE_ULTRA_WIDE | Ultra wide camera.| 
-| CAMERA_TYPE_TELEPHOTO | Telephone camera.| 
+| CAMERA_TYPE_TELEPHOTO | Telephoto camera.| 
 | CAMERA_TYPE_TRUE_DEPTH | Camera with depth of field information.| 
 
 
@@ -3791,7 +3791,7 @@ Obtains the supported color spaces.
 | -------- | -------- |
 | session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
 | colorSpace | Double pointer to the list of color spaces, which are defined in [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1), if the function is successfully called.| 
-| size | Pointer to the size of the list of color spaces.| 
+| size | Pointer to the size of the list of color spaces, which are defined in [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1), if the function is successfully called.| 
 
 **Returns**
 

@@ -65,13 +65,13 @@ Defines the camera device information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                              | Read-only| Optional| Description       |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | Yes  | No  | Camera ID.|
-| cameraPosition | [CameraPosition](#cameraposition) | Yes  | No  | Camera position.   |
-| cameraType     | [CameraType](#cameratype)         | Yes  | No  | Camera type.   |
-| connectionType | [ConnectionType](#connectiontype) | Yes  | No  | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
+| Name                             | Type                                 | Read-only| Optional| Description       |
+|---------------------------------|-------------------------------------| ---- |----|---------- |
+| cameraId                        | string                              | Yes  | No | Camera ID.|
+| cameraPosition                  | [CameraPosition](#cameraposition)   | Yes  | No | Camera position.   |
+| cameraType                      | [CameraType](#cameratype)           | Yes  | No | Camera type.   |
+| connectionType                  | [ConnectionType](#connectiontype)   | Yes  | No | Camera connection type.|
+| cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
 
 ## CameraPosition
 
@@ -83,7 +83,7 @@ Enumerates the camera positions.
 
 | Name                        | Value  | Description                                                             |
 | --------------------------- | ---- |-----------------------------------------------------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position.                                                       |
+| CAMERA_POSITION_UNSPECIFIED | 0    | A camera that does not have a fixed orientation relative to the device screen.                                                       |
 | CAMERA_POSITION_BACK        | 1    | Rear camera.                                                          |
 | CAMERA_POSITION_FRONT       | 2    | Front camera.                                                          |
 | CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | Folded camera.<br>This API is supported since API version 11 and deprecated since API version 12.|
@@ -7940,7 +7940,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 
 | ID  | Error Message                                                                                                                                      |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
 | 7400102  | Operation not allowed.                                                                                                                         |
 | 7400103  | Session not config.                                                                                                                            |
 | 7400201  | Camera service fatal error.                                                                                                                    |
@@ -8650,6 +8650,7 @@ Implements a secure session, which provides operations on the flash, exposure, f
 > **NOTE**
 >
 > You can call [createSession](#createsession11) with [SceneMode](#scenemode11) set to **SECURE_PHOTO** to create a session in secure mode. This class is designed for applications with high security requirements, such as facial recognition systems and banking services. It must be used together with the <!--RP1-->security TA<!--RP1End--> to support service scenarios where both standard preview streams and security streams are generated.<!--RP2-->
+>
 > The security TA can verify the signature of data delivered by the server, sign images, parse and assemble TLV logic, and read, create, and operate keys. It applies to image processing.<!--RP2End-->
 
 ### addSecureOutput<sup>12+</sup>
