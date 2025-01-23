@@ -3412,7 +3412,7 @@ async function demo() {
 
 injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: number): Promise\<void>
 
-模拟笔多指针操作
+模拟手写笔多点连续注入操作。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
