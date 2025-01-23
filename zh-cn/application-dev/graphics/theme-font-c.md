@@ -8,7 +8,7 @@
 
 ## 实现机制
 
-
+![themeText_native](figures/themeText_native.jpg)
 
 针对主题字的切换使用，应用方应确保订阅主题字变更事件，当接收字体变更事件后，由应用方主动调用页面刷新才能实现主题字的切换，否则主题字只能在重启应用后才生效；主题字的绘制需要使用OH_Drawing_GetFontCollectionGlobalInstance来获取全局字体集对象，仅该接口返回的对象拥有主题字体信息。
 
@@ -100,3 +100,11 @@
    // 通过段落生成器生成段落
    OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);
    ```
+
+## 效果展示
+
+以下展示了在系统**主题应用**中切换使用不同主题字体后，对应的文字渲染效果。
+
+不同主题字体显示效果不同，此处仅示意。
+
+![themeFont_native](figures/themeFont_native.png)
