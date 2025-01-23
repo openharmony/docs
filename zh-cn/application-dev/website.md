@@ -1468,13 +1468,34 @@
         - [请求自绘制内容绘制帧率](graphics/displaysync-xcomponent.md)
         - [NativeDisplaySoloist开发指导 (C/C++)](graphics/displaysoloist-native-guidelines.md)
       - [过度绘制调试使用指导](graphics/overdraw-dfx-guidelines.md)
-      - [使用Drawing实现图形绘制与显示](graphics/drawing-js-guidelines.md)
+      - 图形绘制与显示<!--graphic-drawing-->
+        - [图形绘制与显示开发概述](graphics/graphic-drawing-overview.md)
+        - 画布的获取与绘制结果的显示<!--canvas-get-result-draw-->
+          - [画布的获取与绘制结果的显示（ArkTS）](graphics/canvas-get-result-draw-arkts.md)
+          - [画布的获取与绘制结果的显示（C/C++）](graphics/canvas-get-result-draw-c.md)
+        - 画布操作及状态<!--canvas-operation-state-->
+          - [画布操作及状态（ArkTS）](graphics/canvas-operation-state-arkts.md)
+          - [画布操作及状态处理（C/C++）](graphics/canvas-operation-state-c.md)
+        - 绘制效果<!--drawing-effect-->
+          - [绘制效果概述](graphics/drawing-effect-overview.md)
+          - [基础绘制效果（ArkTS）](graphics/basic-drawing-effect-arkts.md)
+          - [复杂绘制效果（ArkTS）](graphics/complex-drawing-effect-arkts.md)
+          - [基础绘制效果（C/C++）](graphics/basic-drawing-effect-c.md)
+          - [复杂绘制效果（C/C++）](graphics/complex-drawing-effect-c.md)
+        - 图元绘制<!--primitive-drawing-->
+          - [图元绘制概述](graphics/primitive-drawing-overview.md)
+          - [几何形状绘制（ArkTS）](graphics/geometric-shape-drawing-arkts.md)
+          - [图片绘制（ArkTS）](graphics/pixelmap-drawing-arkts.md)
+          - [字块绘制（ArkTS）](graphics/textblock-drawing-arkts.md)
+          - [几何形状绘制（C/C++）](graphics/geometric-shape-drawing-c.md)
+          - [图片绘制（C/C++）](graphics/pixelmap-drawing-c.md)
+          - [字块绘制（C/C++）](graphics/textblock-drawing-c.md)
       - [使用Text模块实现文本显示](graphics/text-js-guidelines.md)
-      - [使用Drawing实现图形绘制与显示 (C/C++)](graphics/drawing-guidelines.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
+      - [图形开发术语](graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
       - [ArkGraphics 3D场景搭建以及管理](graphics3d/arkgraphics3D-scene.md)
