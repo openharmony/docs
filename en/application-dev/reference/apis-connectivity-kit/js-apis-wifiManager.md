@@ -1026,7 +1026,7 @@ Obtain the list of all existed Wi-Fi configurations
 
 **Required permissions**:
 
-ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
 
 **Atomic service API**: This API can be used in atomic services since API version 15.
 
