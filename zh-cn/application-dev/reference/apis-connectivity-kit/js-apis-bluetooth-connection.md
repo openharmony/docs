@@ -1615,7 +1615,7 @@ try {
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId<sup>16+</sup> | string      | 是    | 否    | 表示扫描到的设备ID。
-| rssi<sup>16+</sup>     | number      | 是    | 否    | 表示扫描到的设备的信号强度。
-| deviceName<sup>16+</sup>     | string      | 是    | 否    | 表示扫描到的设备的设备名称。|
-| deviceClass<sup>16+</sup>     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。|
+| deviceId    | string      | 是    | 否    | 表示扫描到的设备ID。|
+| rssi     | number      | 是    | 否    | 表示扫描到的设备的信号强度。|
+| deviceName     | string      | 是    | 否    | 表示扫描到的设备的设备名称。|
+| deviceClass     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。|

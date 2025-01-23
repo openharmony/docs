@@ -1548,7 +1548,7 @@ Represents information about the discovered device.
 
 | Name      | Type  | Readable  | Writable  | Description         |
 | -------- | ------ | ---- | ---- | ----------- |
-| deviceId<sup>16+</sup> | string      | Yes   | No   | ID of the discovered device.|
-| rssi<sup>16+</sup>     | number      | Yes   | No   | RSSI of the discovered device.|
-| deviceName<sup>16+</sup>     | string      | Yes   | No   | Name of the discovered device.|
-| deviceClass<sup>16+</sup>     | DeviceClass      | Yes   | No   | Bluetooth class of the discovered device.|
+| deviceId    | string      | Yes   | No   | ID of the discovered device.|
+| rssi     | number      | Yes   | No   | RSSI of the discovered device.|
+| deviceName     | string      | Yes   | No   | Name of the discovered device.|
+| deviceClass     | DeviceClass      | Yes   | No   | Bluetooth class of the discovered device.|
