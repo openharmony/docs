@@ -4186,6 +4186,56 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    }
    ```
 
+3. 拉起相机选择器。
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { cameraPicker, camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+
+   let mContext = getContext(this) as common.Context;
+
+   async function openCamera(callback: Callback<string>) {
+     try {
+       let pickerProfile: cameraPicker.PickerProfile = {
+         cameraPosition: camera.CaneraPosition.CAMERA_POSITION_BACK
+       };
+       let pickerResult: cameraPicker.PickerResult = await cameraPicker.pick(mContext,
+         [cameraPicker.PickerMediaType.PHOTO, cameraPicker.PickerMediaType.VIDEO], pickerProFile);
+       callback(pickerResult.resultUri);
+     } catch (err: BusinessError) {
+       console.error(`the pick call failed. error code: ${err.code}`);
+     }
+   }
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             openCamera((result) => {
+               if (event) {
+                 console.log('Title is ' + event.fileSelector.getTitle());
+                 console.log('Mode is ' + event.fileSelector.getMode());
+                 console.log('Accept types are ' + event.fileSelector.getAcceptType());
+                 console.log('Capture is ' + event.fileSelector.isCapture());
+                 console.log('Mime types are ' + event.fileSelector.getMimeTypes());
+                 event.result.handleFileList([result]);
+               }
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
    加载的html文件。
    ```html
    <!DOCTYPE html>
@@ -4195,7 +4245,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    </head>
    <body>
      <form id="upload-form" enctype="multipart/form-data">
-       <input type="file" id="upload" name="upload"/>
+       <input type="file" id="upload" name="upload" accept="image/*, video/*"/>
        </form>
    </body>
    </html>
