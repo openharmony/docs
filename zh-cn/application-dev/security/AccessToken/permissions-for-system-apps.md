@@ -4337,6 +4337,18 @@
 
 **起始版本**：16
 
+### ohos.permission.SEND_REMOTE_MESSAGE
+
+允许应用通过Push服务发送远程消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。
