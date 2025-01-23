@@ -47,6 +47,8 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent).
 
 ## Example
 
+This example demonstrates how to set a mouse event on a button. When the button is clicked using a mouse device, the **onMouse** event is triggered to obtain relevant mouse event parameters.
+
 ```ts
 // xxx.ets
 @Entry
