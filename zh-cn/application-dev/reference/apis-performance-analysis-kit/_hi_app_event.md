@@ -1410,7 +1410,7 @@ int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, in
 | -------- | -------- |
 | watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  |
 | row | 当输入值大于0，且新接收事件的数量大于等于该值时，将调用设置的onTrigger回调函数，当输入值小于等于0时，不再以接收数量多少为维度来触发onTrigger回调。  |
-| size | 当输入值大于0，且新接收事件的大小(单个事件大小计算方式为，将事件转换为json字符串后，字符串的长度)大于等于该值时，将调用设置的 onTrigger回调函数，当输入值小于等于0时，不再以新接收事件大小为维度触发onTrigger回调。  |
+| size | 当输入值大于0，且新接收事件的大小(单个事件大小计算方式为，将事件转换为json字符串后，字符串的长度)大于等于该值时，将调用设置的onTrigger回调函数，当输入值小于等于0时，不再以新接收事件大小为维度触发onTrigger回调。  |
 | timeOut | 单位秒，当输入值大于0，每经过timeout秒，将检查监视器是否存在新接收到的事件，如果存在将触发onTrigger回调。触发onTrigger 后，经过timeOut秒后将再次检查是否存在新接收到的事件。当输入值小于等于0，不以超时时间为维度触发onTrigger回调。  |
 
 **返回：**
