@@ -86,10 +86,10 @@
 | 音频       | m4a                        |<!--RP9-->音频码流：AAC<!--RP9End-->|
 | 音频       | aac                        |音频码流：AAC|
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
-| 音频       | ogg                        |音频码流：OGG|
-| 音频       | flac                       |音频码流：FLAC|
-| 音频       | wav                        |音频码流：PCM、PCM-MULAW|
-| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
+| 音频       | ogg                        |音频码流：Vorbis|
+| 音频       | flac                       |音频码流：Flac|
+| 音频       | wav                        |音频码流：PCM、G711mu|
+| 音频       | amr                        |音频码流：AMR(amrnb、amrwb)|
 | 音频       | ape                        |音频码流：APE|
 | 外挂字幕   | srt                        |字幕流：SRT|
 | 外挂字幕   | webvtt                     |字幕流：WEBVTT|
