@@ -177,10 +177,6 @@ UI事件的相关信息。
 
 ## TouchPadSwipeOptions<sup>16+</sup>
 
-> 说明
-> 
-> 该接口仅在2in1设备上生效。
-
 触摸板多指滑动手势选项相关信息。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
@@ -189,8 +185,8 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 可读 | 可写 | 说明                                                           |
 | ---------- | ------ | ---- |----|--------------------------------------------------------------|
-| stay | boolean | 是   | 是  | 触摸板存在多指滑动后停留的手势, 滑动后是否停留1秒并抬起，默认为false 。                     |
-| speed       | number | 是   | 是  | 触摸板多指滑动的速度，默认值为2000，值范围为200到40000，如果超出范围，则设置为2000, 单位：像素点/秒。 |
+| stay | boolean | 是   | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s）。                     |
+| speed       | number | 是   | 是  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 
 ## On<sup>9+</sup>
 
@@ -252,9 +248,10 @@ id(id: string): On
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| id     | string | 是   | 指定控件的id值。 |
+| 参数名                   | 类型   | 必填 | 说明             |
+|-----------------------| ------ |----| ---------------- |
+| id                    | string | 是  | 指定控件的id值。 |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -273,8 +270,8 @@ id(id: string): On
 **示例：**
 
 ```ts
-import { On, ON } from '@kit.TestKit';
-let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
+ import { MatchPattern, On, ON } from '@kit.TestKit';
+ let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
 ```
 
 ### type<sup>9+</sup>
@@ -293,9 +290,10 @@ type(tp: string): On
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。|
+| 参数名                  | 类型   | 必填 | 说明           |
+|----------------------| ------ | ---- | -------------- |
+| tp                   | string | 是   | 指定控件类型。|
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -806,80 +804,6 @@ import { On, ON } from '@kit.TestKit';
 let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，指定目标控件的description属性。
 ```
 
-### id<sup>16+</sup>
-
-id(id: string, pattern: MatchPattern): On
-
-指定目标控件id属性，返回On对象自身。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明             |
-| ------ | ------ |----| ---------------- |
-| id     | string | 是  | 指定控件的id值。 |
-| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
-
-**返回值：**
-
-| 类型       | 说明                             |
-| ---------- | -------------------------------- |
-| [On](#on9) | 返回指定目标控件id属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.id('123', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
-```
-### type<sup>16+</sup>
-
-type(tp: string, pattern: MatchPattern): On;
-
-指定目标控件的控件类型属性，返回On对象自身。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明           |
-| ------ | ------ | ---- | -------------- |
-| tp     | string | 是   | 指定控件类型。|
-| pattern | [MatchPattern](#matchpattern) | 是  | 指定的文本匹配模式。 |
-
-**返回值：**
-
-| 类型       | 说明                                     |
-| ---------- | ---------------------------------------- |
-| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
-import { MatchPattern, On, ON } from '@kit.TestKit';
-let on:On = ON.type('Button', MatchPattern.EQUALS); // 使用静态构造器ON创建On对象，指定目标控件的控件类型属性。
-```
 ### hint<sup>16+</sup>
 
 hint(val: string, pattern?: MatchPattern): On
@@ -1592,9 +1516,11 @@ scrollSearch(on: On): Promise\<Component>
 
 **参数：**
 
-| 参数名 | 类型       | 必填 | 说明                 |
-| ------ | ---------- | ---- | -------------------- |
-| on     | [On](#on9) | 是   | 目标控件的属性要求。 |
+| 参数名                    | 类型       | 必填 | 说明                 |
+|------------------------| ---------- | ---- | -------------------- |
+| on                     | [On](#on9) | 是   | 目标控件的属性要求。 |
+| vertical<sup>16+</sup> |    boolean | 否 | 滑动方向是否垂直, 默认 true           |
+| offset<sup>16+</sup>   | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(像素点) |
 
 **返回值：**
 
@@ -1878,51 +1804,6 @@ async function demo() {
   let button: Component = await driver.findComponent(ON.type('TextInput'));
   let hints = await button.getHint();
 }
-```
-### scrollSearch<sup>16+</sup>
-
-scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
-
-在控件上滑动查找目标控件(适用支持滑动的控件),支持查找方向和死区。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型         | 必填 | 说明                         |
-| ------ |------------|---|----------------------------|
-| on     | [On](#on9) | 是 | 目标控件的属性要求。                 |
-| vertical |    boolean | 否 | 滑动方向是否垂直, 默认 true          |
-| offset     | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(px) |
-
-**返回值：**
-
-| 类型                               | 说明                                  |
-| ---------------------------------- | ------------------------------------- |
-| Promise\<[Component](#component9)> | 以Promise形式返回找到的目标控件对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                               |
-| -------- | ---------------------------------------- |
-| 17000002 | The async function is not called with await. |
-| 17000004 | The window or component is invisible or destroyed.           |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-
-**示例：**
-
-```ts
- import { Component, Driver, ON } from '@kit.TestKit';
-async function demo() {
-  let driver: Driver = Driver.create();
-  let scrollBar = await driver.findComponent(ON.id('verticalScroll'))
-  let text1 = await scrollBar.scrollSearch(ON.text('11'), true, 80);
-}
-
 ```
 
 ## Driver<sup>9+</sup>
@@ -3343,6 +3224,10 @@ async function demo() {
 
 ### touchPadMultiFingerSwipe<sup>16+</sup>
 
+> 说明
+>
+> 该接口仅在2in1设备上生效。
+
 touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
 
 模拟触摸板多指滑动手势。
@@ -3355,9 +3240,9 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 | 参数名 | 类型                                            | 必填 | 说明                       |
 | ------ |-----------------------------------------------|----|--------------------------|
-| fingers      | number                                        | 是  | 手指触摸板多指滑动的手指数。 取值范围为3~4。 |
-| direction | [UiDirection](#uidirection10)                 | 是  | 进行抛滑的方向。                 |
-| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势选项相关信息。         |
+| fingers      | number                                        | 是  | 触摸板多指滑动的手指数。 取值范围为3~4。 |
+| direction | [UiDirection](#uidirection10)                 | 是  | 触摸板多指滑动的方向。               |
+| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势附加选项。         |
 
 **错误码：**
 
@@ -3383,7 +3268,7 @@ async function demo() {
 
 penClick(point: Point): Promise\<void>
 
-模拟笔点击操作。
+模拟手写笔点击操作。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3418,7 +3303,7 @@ async function demo() {
 
 penLongClick(point: Point, pressure?: number): Promise\<void>
 
-模拟笔长按操作。
+模拟手写笔长按操作。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3454,7 +3339,7 @@ async function demo() {
 
 penDoubleClick(point: Point): Promise\<void>
 
-模拟笔双击操作。
+模拟手写笔双击操作。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3489,7 +3374,7 @@ async function demo() {
 
 penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number): Promise\<void>
 
-模拟笔的滑动操作
+模拟手写笔的滑动操作
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3501,7 +3386,7 @@ penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number):
 | ------ |-----------------------------------------------|----|----------------------------------------------------------|
 | startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                                |
 | endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                                |
-| speed      | number | 否  | 笔滑动的速度，默认值为600，值范围为200到40000，如果超出范围，则设置为600 单位：像素点/秒。 |
+| speed      | number | 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
 | pressure      | number | 否  | 笔长按操作的压力，默认为1.0，取值范围为0.0到1.0。                            |
 
 **错误码：**
@@ -3535,11 +3420,11 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 
 **参数：**
 
-| 参数名 | 类型                                            | 必填 | 说明                                                       |
-| ------ |-----------------------------------------------|----|----------------------------------------------------------|
-| pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列, **仅支持单指操作**。                       |
-| speed      | number| 否  | 注入笔指针动作的速度，默认值为600，值范围为200到40000，如果超出范围，则设置为600, 单位：像素点/秒。 |
-| pressure      | number | 否  | 笔长按操作的压力，默认为1.0，取值范围为0.0到1.0。                            |
+| 参数名 | 类型                                            | 必填 | 说明                                         |
+| ------ |-----------------------------------------------|----|--------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列, **仅支持单指操作, 该场景PointerMatrix中fingers必须设置位1**。       |
+| speed      | number| 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| pressure      | number | 否  | 笔长按操作的压力，默认为1.0，取值范围为0.0到1.0。              |
 
 **错误码：**
 
