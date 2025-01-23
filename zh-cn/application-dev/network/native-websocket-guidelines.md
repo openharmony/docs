@@ -6,17 +6,17 @@
 
 ## 接口说明
 
-WebSocket常用接口如下表所示，详细的接口说明请参考[net_websocket.h](../reference/apis-network-kit/netstack.md)。
+WebSocket常用接口如下表所示，详细的接口说明请参考[net_websocket.h](../reference/apis-network-kit/net__websocket_8h.md)。
 
 
 | 接口名 | 描述 |
 | -------- | -------- |
-| [OH_WebSocketClient_Constructor](#oh_websocketclient_constructor) ([WebSocket_OnOpenCallback](#websocket_onopencallback) onOpen, [WebSocket_OnMessageCallback](#websocket_onmessagecallback) onMessage, [WebSocket_OnErrorCallback](#websocket_onerrorcallback) onError, [WebSocket_OnCloseCallback](#websocket_onclosecallback) onclose) | Websocket客户端的构造函数。  |
-| [OH_WebSocketClient_AddHeader](#oh_websocketclient_addheader) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_Header](_web_socket___header.md) header) | 将header头信息添加到client客户端request中。  |
-| [OH_WebSocketClient_Connect](#oh_websocketclient_connect) (struct [WebSocket](_web_socket.md) \*client, const char \*url, struct [WebSocket_RequestOptions](_web_socket___request_options.md) options) | 客户端连接服务端。  |
-| [OH_WebSocketClient_Send](#oh_websocketclient_send) (struct [WebSocket](_web_socket.md) \*client, char \*data, size_t length) | 客户端向服务端发送数据。  |
-| [OH_WebSocketClient_Close](#oh_websocketclient_close) (struct [WebSocket](_web_socket.md) \*client, struct [WebSocket_CloseOption](_web_socket___close_option.md) options) | 客户端主动关闭websocket连接。  |
-| [OH_WebSocketClient_Destroy](#oh_websocketclient_destroy) (struct [WebSocket](_web_socket.md) \*client) | 释放websocket连接上下文和资源。  |
+| OH_WebSocketClient_Constructor(WebSocket_OnOpenCallback onOpen, WebSocket_OnMessageCallback onMessage, WebSocket_OnErrorCallback onError, WebSocket_OnCloseCallback onclose) | Websocket客户端的构造函数。  |
+| OH_WebSocketClient_AddHeader(struct WebSocket \*client, struct WebSocket_Header header) | 将header头信息添加到client客户端request中。  |
+| OH_WebSocketClient_Connect(struct WebSocket \*client, const char \*url, struct WebSocket_RequestOptions options) | 客户端连接服务端。  |
+| OH_WebSocketClient_Send(struct WebSocket \*client, char \*data, size_t length) | 客户端向服务端发送数据。  |
+| OH_WebSocketClient_Close(struct WebSocket \*client, struct WebSocket_CloseOption options) | 客户端主动关闭websocket连接。  |
+| OH_WebSocketClient_Destroy(struct WebSocket \*client) | 释放websocket连接上下文和资源。  |
 
 ## WebSocket接口开发示例
 
@@ -238,18 +238,14 @@ export const Close: () => number;
 5、在index.ets文件中对上述封装好的接口进行调用。
 
 ```ts
-import { hilog } from '@kit.PerformanceAnalysisKit';
-import testWebsocket from 'libentry.so';
-import { PromptAction } from '@kit.ArkUI';
+import testWebsocket from 'libentry.so'
 
 @Entry
 @Component
 struct Index {
-  @State wsUrl: string = '';
-  @State content: string = '';
-  @State connecting: boolean = false;
-  private uiContext: UIContext = this.getUIContext()
-  private promptAction: PromptAction = this.uiContext.getPromptAction()
+  @State wsUrl: string = ''
+  @State content: string = ''
+  @State connecting: boolean = false
 
   build() {
     Navigation() {
@@ -262,7 +258,7 @@ struct Index {
           TextInput()
             .width('100%')
             .onChange((value) => {
-              this.wsUrl = value;
+              this.wsUrl = value
             })
         }
         .margin({
@@ -282,7 +278,7 @@ struct Index {
             .width('100%')
             .enabled(this.connecting)
             .onChange((value) => {
-              this.content = value;
+              this.content = value
             })
         }
         .margin({
@@ -299,7 +295,7 @@ struct Index {
           Button('Connect')
             .enabled(!this.connecting)
             .onClick(() => {
-              let connRet = testWebsocket.Connect(this.wsUrl);
+              let connRet = testWebsocket.Connect(this.wsUrl)
               if (connRet) {
                 this.connecting = true;
               }
@@ -314,7 +310,7 @@ struct Index {
             .onClick(() => {
               let closeResult = testWebsocket.Close()
               if (closeResult != -1) {
-                this.connecting = false;
+                this.connecting = false
               }
             })
         }
