@@ -276,7 +276,7 @@ interface does not support.
 
 检查代码中libusb开关是否打开（使用宏LIBUSB_ENABLE控制）。
 
-## 14400015 错误参数
+## 14400015 未找到正在进行的传输
 
 **错误信息**
 
