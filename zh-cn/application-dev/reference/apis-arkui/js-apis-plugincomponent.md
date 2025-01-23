@@ -72,7 +72,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 用于设置FA模型下使用PluginManager.Request方法时候的需要传递的参数。
 
-**模型约束：** 此接口仅适用于[FA模型](arkui-ts/ts-basic-components-plugincomponent-sys.md#fa模型)。
+**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -188,7 +188,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 组件提供方向组件使用方主动发送组件与数据。
 
-**模型约束：** 此接口仅适用于[FA模型](arkui-ts/ts-basic-components-plugincomponent-sys.md#fa模型)。
+**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -232,7 +232,7 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 组件使用方向组件提供方主动请求组件。
 
-**模型约束：** 此接口仅适用于[FA模型](arkui-ts/ts-basic-components-plugincomponent-sys.md#fa模型)。
+**模型约束：** 此接口仅适用于FA模型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
