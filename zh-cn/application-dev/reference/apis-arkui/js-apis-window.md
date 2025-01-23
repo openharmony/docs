@@ -7600,7 +7600,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
-仅对2in1设备的主窗、子窗、系统窗口生效，其它设备类型和窗口类型调用此接口会报错。
+仅对2in1设备生效，其它设备类型调用此接口会报错。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
