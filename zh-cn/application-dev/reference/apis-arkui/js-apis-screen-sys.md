@@ -790,7 +790,7 @@ setVirtualScreenSurface(screenId:number, surfaceId: string): Promise&lt;void&gt;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -817,7 +817,7 @@ screen.setVirtualScreenSurface(screenId, surfaceId).then(() => {
 });
 ```
 
-## screen.setScreenPrivacyMaskImage
+## screen.setScreenPrivacyMaskImage<sup>16+</sup>
 
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
 
@@ -830,7 +830,7 @@ setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;v
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
 | screenId  | number | 是   | 屏幕的id，该参数仅支持正整数输入。    |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入时，则清理蒙版图片。 |
+| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 屏幕的隐私蒙版图片，不传入时，则清除隐私蒙版图片，恢复为未传入的样式。 |
 
 **返回值：**
 

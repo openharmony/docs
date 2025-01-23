@@ -1081,8 +1081,8 @@ promise.then((data: Array<display.Display>) => {
 | availableWidth<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域宽度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | availableHeight<sup>12+</sup> | number | 是 | 否 | 2in1设备上屏幕的可用区域高度，单位为px，该参数为大于0的整数。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | sourceMode<sup>16+</sup> | [DisplaySourceMode](#displaysourcemode16) | 是 | 是 | 屏幕内容来源模式。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
-| x<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对主屏的坐标。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
-| y<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对主屏的坐标。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
+| x<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的x轴坐标，原点为主屏左上角，该参数为整数。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
+| y<sup>16+</sup> | number | 是 | 是 | 屏幕左上角相对于原点的y轴坐标，原点为主屏左上角，该参数为整数。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
