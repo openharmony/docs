@@ -1534,11 +1534,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTest
+### getHitTest<sup>(deprecated)</sup>
 
 getHitTest(): WebHitTestType
 
 获取当前被点击区域的元素类型。
+
+> **说明：**
+>
+> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3110,11 +3114,15 @@ struct WebComponent {
 }
 ```
 
-### getHitTestValue
+### getHitTestValue<sup>(deprecated)</sup>
 
 getHitTestValue(): HitTestValue
 
 获取当前被点击区域的元素信息。
+
+> **说明：**
+>
+> 从API version11开始支持，从API version 16开始废弃。建议使用[getLastHitTest](#getlasthittest16)替代。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9109,6 +9117,58 @@ struct WebComponent {
     }
     .width('100%')
     .height('100%')
+  }
+}
+```
+
+### getLastHitTest<sup>16+</sup>
+
+getLastHitTest(): HitTestValue
+
+获取上一次被点击区域的元素信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型         | 说明                 |
+| ------------ | -------------------- |
+| [HitTestValue](#hittestvalue) | 点击区域的元素信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('getLastHitTest')
+        .onClick(() => {
+          try {
+            let hitValue = this.controller.getLastHitTest();
+            console.log("hitType: " + hitValue.type);
+            console.log("extra: " + hitValue.extra);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
   }
 }
 ```
