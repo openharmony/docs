@@ -79,7 +79,7 @@ InputMethod模块提供方法来使用输入法和开发输入法。
 | 名称 | 描述 | 
 | -------- | -------- |
 | [InputMethod_AttachOptions](#inputmethod_attachoptions) \* [OH_AttachOptions_Create](#oh_attachoptions_create) (bool showKeyboard) | 创建一个新的[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
-| void [OH_AttachOptions_Destroy](#oh_attachoptions_destroy) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | 销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例. | 
+| void [OH_AttachOptions_Destroy](#oh_attachoptions_destroy) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options) | 销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_AttachOptions_IsShowKeyboard](#oh_attachoptions_isshowkeyboard) ([InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, bool \*showKeyboard) | 从[InputMethod_AttachOptions](#inputmethod_attachoptions)中获取是否显示键盘的值。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach) ([InputMethod_TextEditorProxy](#inputmethod_texteditorproxy) \*textEditorProxy, [InputMethod_AttachOptions](#inputmethod_attachoptions) \*options, [InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*\*inputMethodProxy) | 将应用绑定到输入法服务。 | 
 | [InputMethod_ErrorCode](#inputmethod_errorcode) [OH_InputMethodController_Detach](#oh_inputmethodcontroller_detach) ([InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy) \*inputMethodProxy) | 将应用从输入法服务解绑。 | 
