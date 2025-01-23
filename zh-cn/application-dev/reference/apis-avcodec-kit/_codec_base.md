@@ -111,7 +111,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 | 名称                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为int32_t。 请参见[AudioSampleFormat](../apis-audio-kit/js-apis-audio.md#audiosampleformat8)                        |
+| [OH_MD_KEY_AUDIO_SAMPLE_FORMAT](#oh_md_key_audio_sample_format) | 音频原始格式的键，值类型为int32_t。 请参见[AudioSampleFormat](../apis-audio-kit/js-apis-audio.md#audiosampleformat8)。                        |
 | [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count)  | 音频通道计数键，值类型为int32_t。                           |
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate)      | 音频采样率键，值类型为int32_t。                             |
 | [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | 音频编解码压缩水平的键，只在音频编码使用，值类型为int32_t。该键是可选的。     |
@@ -160,8 +160,8 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 声明用于音频编解码的枚举。 | 
-| [native_avcodec_base.h](native__avcodec__base_8h.md) | 声明用于音视频封装、解封装、编解码基础功能的Native API。 | 
+| [avcodec_audio_channel_layout.h](avcodec__audio__channel__layout_8h.md) | 音频编解码枚举的声明。 | 
+| [native_avcodec_base.h](native__avcodec__base_8h.md) | 音视频封装、解封装、编解码基础功能Native API的声明。 | 
 
 
 ### 结构体
