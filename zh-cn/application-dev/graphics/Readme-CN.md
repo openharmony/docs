@@ -31,6 +31,7 @@
     - [图片绘制（C/C++）](pixelmap-drawing-c.md)
     - [字块绘制（C/C++）](textblock-drawing-c.md)
 - [使用Text模块实现文本显示](text-js-guidelines.md)
+- [使用主题字体（C/C++）](theme-font-c.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
 - [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
