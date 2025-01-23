@@ -274,7 +274,7 @@ type SubHeaderV2TitleBuilder= () => void;
 该示例主要演示子标题左侧为icon、secondaryTitle，右侧operationType为按钮类型。
 
 ```ts
-import
+import {
   SubHeaderV2OperationType,
   SubHeaderV2,
   SubHeaderV2Title,
@@ -292,7 +292,7 @@ struct SubHeaderExample {
   @Local index: number = 1;
   @Local primaryTitle: ResourceStr = '一级标题';
   @Local secondaryTitle: ResourceStr = '二级标题';
-  @Local subHeaderIcon: Resource = $r('sys.media.ohos_ic_public_web');
+  @Local subHeaderIcon: Resource = $r('sys.media.ohos_ic_public_email');
   @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
   @Local primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
   @Local secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
@@ -392,7 +392,6 @@ import {
   SubHeaderV2Select,
   promptAction
 } from '@kit.ArkUI'
-import { TextModifier } from '@ohos.arkui.modifier'
 
 @Entry
 @ComponentV2
@@ -423,21 +422,21 @@ struct SubHeaderExample {
 
     this.operationItems = [
       new SubHeaderV2OperationItem({
-        content: $r('sys.media.ohos_ic_public_web'),
+        content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          promptAction.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
-        content: $r('sys.media.ohos_ic_public_web'),
+        content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          promptAction.showToast({ message: 'demo' })
         }
       }),
       new SubHeaderV2OperationItem({
-        content: $r('sys.media.ohos_ic_public_web'),
+        content: $r('sys.media.ohos_ic_public_email'),
         action: () => {
-          promptAction.showToast({ message: 'demo2' })
+          promptAction.showToast({ message: 'demo' })
         }
       })]
   }
@@ -456,7 +455,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_subheader_example03.png)
+![子标题3](figures/zh-cn_image_subheader_example03.png)
 
 ### 示例4（设置左侧symbol图标）
 该示例主要演示子标题左侧icon设置symbol图标。
@@ -590,79 +589,51 @@ struct SubHeaderExample {
  该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
 
 ```ts
-import
+import {
   SubHeaderV2,
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  SubHeaderV2Select,
-  promptAction,
-  SymbolGlyphModifier
+  promptAction
 } from '@kit.ArkUI'
 
 
 @Entry
 @ComponentV2
 struct SubHeaderExample {
-  @Local icon: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
-  @Local selectedValue: string = 'aaa';
-  @Local selectedIndex: number = 2;
-  @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题', secondaryTitle: '二级标题' });
+  @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
   @Local operationItem: SubHeaderV2OperationItem[] = [];
-  @Local select: SubHeaderV2Select =
-    new SubHeaderV2Select({ options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }] });
 
   aboutToAppear(): void {
-    this.icon = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi'));
-    this.icon.effectStrategy(SymbolEffectStrategy.HIERARCHICAL);
-
-    this.selectedValue = 'selectDemo';
-    this.selectedIndex = 2;
     this.title = new SubHeaderV2Title({
       primaryTitle: '一级标题',
       secondaryTitle: '二级标题'
     });
-    this.select = new SubHeaderV2Select({
-      options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
-      selectedContent: this.selectedValue,
-      selectedIndex: this.selectedIndex,
-      onSelect: (index: number, value?: string) => {
+    this.operationItem = [new SubHeaderV2OperationItem({
+      content: '更多信息',
+      action: () => {
         promptAction.showToast({ message: 'demo' })
       }
-    })
+    })]
+  }
 
-    this.operationItem = [
-      new SubHeaderV2OperationItem({
-        content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')).fontWeight(FontWeight.Lighter),
-        action: () => {
-          promptAction.showToast({ message: 'demo1' })
-        }
-      }),
-      new SubHeaderV2OperationItem({
-        content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs'))
-          .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR)
-          .fontColor([Color.Blue, Color.Grey, Color.Green])
-      ,
-        action: () => {
-          promptAction.showToast({ message: 'demo2' })
-        }
-      }),
-      new SubHeaderV2OperationItem({
-        content: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs'))
-          .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_OPACITY)
-          .fontColor([Color.Blue, Color.Grey, Color.Green])
-      ,
-        action: () => {
-          promptAction.showToast({ message: 'demo3' })
-        }
-      })]
+  @Builder
+  TitleBuilder(): void {
+    Text('自定义标题')
+      .fontSize(24)
+      .fontColor(Color.Blue)
+      .fontWeight(FontWeight.Bold)
   }
 
   build() {
     Column() {
       SubHeaderV2({
-        select: this.select,
-        operationType: SubHeaderV2OperationType.ICON_GROUP,
+        titleBuilder: () => {
+          this.TitleBuilder();
+        },
+        title: this.title,
+
+        operationType: SubHeaderV2OperationType.TEXT_ARROW,
         operationItems: this.operationItem
       })
     }
@@ -676,37 +647,51 @@ struct SubHeaderExample {
 该示例主要演示SubHeader设置标题和副标题字体样式。
 
 ```ts
-import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } from '@kit.ArkUI';
+import {
+  SubHeaderV2,
+  SubHeaderV2OperationType,
+  SubHeaderV2OperationItem,
+  SubHeaderV2Title,
+  promptAction
+} from '@kit.ArkUI'
+import { TextModifier } from '@ohos.arkui.modifier'
 
 @Entry
-@Component
+@ComponentV2
 struct SubHeaderExample {
-  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
-  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+  @Local primaryModifier: TextModifier = new TextModifier().fontColor(Color.Blue);
+  @Local secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Blue);
+  @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
+  @Local operationItems4: SubHeaderV2OperationItem[] = [];
+
+  aboutToAppear(): void {
+    this.title = new SubHeaderV2Title({
+      primaryTitle: 'primaryTitle',
+      primaryTitleModifier: this.primaryModifier,
+      secondaryTitle: 'secondaryTitle',
+      secondaryTitleModifier: this.secondaryModifier
+    });
+    this.operationItems4 = [new SubHeaderV2OperationItem({
+      content: '更多信息',
+      action: () => {
+        promptAction.showToast({ message: 'demo' })
+      }
+    })]
+  }
 
   build() {
     Column() {
-      SubHeader({
-        primaryTitle: 'primaryTitle',
-        secondaryTitle: 'secondaryTitle',
-        primaryTitleModifier: this.primaryModifier,
-        secondaryTitleModifier: this.secondaryModifier,
-        operationType: OperationType.TEXT_ARROW,
-        operationItem: [{
-          value: '更多信息',
-          action: () => {
-            promptAction.showToast({ message: 'demo'})
-          }
-        }],
-        contentMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
-        contentPadding: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) }
+      SubHeaderV2({
+        title: this.title,
+        operationType: SubHeaderV2OperationType.TEXT_ARROW,
+        operationItems: this.operationItems4
       })
     }
   }
 }
 ```
 
-![子标题7](figures/zh-cn_image_subheader_example07.png)
+![子标题7](figures/zh-cn_image_subheaderv2_example07.png)
 
 
 ### 示例8（右侧按钮自定义播报）
@@ -728,7 +713,7 @@ struct SubHeaderExample {
   @Local index: number = 1;
   @Local primaryTitle: ResourceStr = '一级标题';
   @Local secondaryTitle: ResourceStr = '二级标题';
-  @Local subHeaderIcon: SubHeaderV2IconType | undefined = $r('app.media.startIcon');
+  @Local subHeaderIcon: SubHeaderV2IconType | undefined = $r('sys.media.ohos_ic_public_email');
   @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
   @Local title2: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题', secondaryTitle: '二级标题' });
   @Local subHeaderOperationType: SubHeaderV2OperationType = SubHeaderV2OperationType.BUTTON;
@@ -764,12 +749,14 @@ struct SubHeaderExample {
           operationType: this.subHeaderOperationType,
           operationItems: this.operationItems
         });
+        Divider().color('grey').width('100%').height('2vp')
         SubHeaderV2({
           title: this.title2,
           select: this.select,
           operationType: this.subHeaderOperationType2,
           operationItems: this.operationItems
         });
+        Divider().color('grey').width('100%').height('2vp')
         SubHeaderV2({
           select: new SubHeaderV2Select({
             options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
@@ -783,22 +770,80 @@ struct SubHeaderExample {
           }),
           operationType: this.subHeaderOperationType3,
           operationItems: [new SubHeaderV2OperationItem({
-            content: $r('app.media.app_icon'),
+            content: $r('sys.media.ohos_ic_public_email'),
             accessibilityText: '图标1',
             accessibilityLevel: 'yes',
           }), new SubHeaderV2OperationItem({
-            content: $r('app.media.app_icon'),
+            content: $r('sys.media.ohos_ic_public_email'),
             accessibilityText: '图标2',
             accessibilityLevel: 'no',
           }), new SubHeaderV2OperationItem({
-            content: $r('app.media.app_icon'),
+            content: $r('sys.media.ohos_ic_public_email'),
             accessibilityText: '图标3',
             accessibilityDescription: '点击操作图标3',
           })]
         });
-      }.height('60%')
+      }
+      Divider().color('grey').width('100%').height('2vp')
     }
   }
 }
 ```
-![/zh-cn_image_subheader_example08](figures/zh-cn_image_subheader_example08.png)
+![子标题8](figures/zh-cn_image_subheader_example08.png)
+
+### 示例9（右侧按钮自定义播报）
+该示例通过设置subheader的右侧按钮属性accessibilityText、accessibilityDescription、accessibilityLevel自定义屏幕朗读播报文本。
+```ts
+import {
+  SubHeaderV2OperationType,
+  SubHeaderV2,
+  SubHeaderV2Title,
+  SubHeaderV2OperationItem,
+  promptAction
+} from '@kit.ArkUI'
+import { TextModifier } from '@ohos.arkui.modifier'
+
+@Entry
+@ComponentV2
+struct SubHeaderExample {
+  @Local selectText: string = "TTTTT"
+  @Local selectIndex: number = 2
+  @Local flag: boolean = true;
+  @Local index: number = 1;
+  @Local primaryTitle: ResourceStr = '一级标题';
+  @Local secondaryTitle: ResourceStr = '二级标题';
+  @Local subHeaderIcon: Resource = $r('app.media.app_icon');
+  @Local title: SubHeaderV2Title = new SubHeaderV2Title({ primaryTitle: '一级标题' });
+  @Local primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+  @Local secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+  @Local subHeaderOperationType: SubHeaderV2OperationType = SubHeaderV2OperationType.BUTTON;
+  @Local operationItems: SubHeaderV2OperationItem[] = [];
+
+  aboutToAppear(): void {
+    this.title = new SubHeaderV2Title({
+      secondaryTitle: this.secondaryTitle,
+    });
+    this.operationItems = [new SubHeaderV2OperationItem({
+      content: '操作',
+      defaultFocus: true,
+      action: () => {
+        promptAction.showToast({ message: 'demo2' })
+      }
+    })]
+  }
+
+  build() {
+    Column() {
+      Column() {
+        SubHeaderV2({
+          icon: this.subHeaderIcon,
+          title: this.title,
+          operationType: this.subHeaderOperationType,
+          operationItems: this.operationItems
+        });
+      }
+    }
+  }
+}
+```
+![/SubHeaderDefaultFocus](figures/SubHeaderDefaultFocus.png)
