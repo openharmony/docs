@@ -762,15 +762,10 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400006 | Submit transmission operation successful. |
-| 14400007 | Transmission I/O error. |
-| 14400008 | Resource busy. |
-| 14400009 | No such device (it may have been disconnected). |
-| 14400010 | Transmission time out error. |
-| 14400012 | Transmission overflow error. |
-| 14400013 | Insufficient memory. |
-| 14400014 | API not supported. |
-| 14400016 | Pipe error. |
+| 14400006 | Transmission I/O error. |
+| 14400007 | Resource busy. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400009 | Insufficient memory. |
 
 **返回值：**
 
@@ -852,10 +847,9 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400009 | No such device (it may have been disconnected). |
-| 14400011 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
-| 14400014 | API not supported. |
-| 14400015 | Entity not found. |
+| 14400008 | No such device (it may have been disconnected). |
+| 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
+| 14400011 | Entity not found. has been canceled(cancel has been completed). |
 
 **返回值：**
 
@@ -1434,7 +1428,7 @@ Usb传输类型。
 
 ## SubmitTransferCallback<sup>16+</sup>
 
-Usb异步传输回调信息。
+Usb异步传输回调。
 
 **系统能力：** SystemCapability.USB.USBManager
 
