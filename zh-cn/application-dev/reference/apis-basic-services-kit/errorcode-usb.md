@@ -154,7 +154,7 @@ Cannot reopen the accessory.
 
 **错误信息**
 
-submit transmission operation successful.
+Submit transmission operation successful.
 
 **错误描述**
 
@@ -168,7 +168,7 @@ submit transmission operation successful.
 
 **错误信息**
 
-transmission I/O error.
+Transmission I/O error.
 
 **错误描述**
 
@@ -182,7 +182,7 @@ libusb实际读/写操作失败。
 
 **错误信息**
 
-resource busy.
+Resource busy.
 
 **错误描述**
 
@@ -196,7 +196,7 @@ resource busy.
 
 **错误信息**
 
-no such device (it may have been disconnected).
+No such device (it may have been disconnected).
 
 **错误描述**
 
@@ -210,7 +210,7 @@ libusb未识别到正确设备信息。
 
 **错误信息**
 
-transmission time out error.
+Transmission time out error.
 
 **错误描述**
 
@@ -238,7 +238,7 @@ libusb库无法识别的错误。
 
 **错误信息**
 
-transmission overflow error.
+Transmission overflow error.
 
 **错误描述**
 
@@ -252,7 +252,7 @@ transmission overflow error.
 
 **错误信息**
 
-insufficient memory.
+Insufficient memory.
 
 **错误描述**
 
@@ -294,7 +294,7 @@ Entity not found.
 
 **错误信息**
 
-pipe error.
+Pipe error.
 
 **错误描述**
 
