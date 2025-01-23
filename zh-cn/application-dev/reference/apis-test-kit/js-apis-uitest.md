@@ -251,7 +251,7 @@ id(id: string): On
 | 参数名                   | 类型   | 必填 | 说明             |
 |-----------------------| ------ |----| ---------------- |
 | id                    | string | 是  | 指定控件的id值。 |
-| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+| pattern<sup>16+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -290,10 +290,10 @@ type(tp: string): On
 
 **参数：**
 
-| 参数名                  | 类型   | 必填 | 说明           |
-|----------------------| ------ | ---- | -------------- |
-| tp                   | string | 是   | 指定控件类型。|
-| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+| 参数名                   | 类型   | 必填 | 说明           |
+|-----------------------| ------ | ---- | -------------- |
+| tp                    | string | 是   | 指定控件类型。|
+| pattern<sup>16+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
