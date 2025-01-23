@@ -65,11 +65,11 @@ The following illustrates how to view the lunar calendar date corresponding to t
 
     ```ts
       let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "chinese");
-      // Set the calendar information to the Calendar object, with the date and time being 2023.07.25 08:00:00.
+      // Pass the Gregorian calendar information to the Calendar object, with the date and time being 2023.07.25 08:00:00.
       calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
       // Obtain the year, month, and day of the lunar calendar.
       calendar.get("year"); // Year expressed in a heavenly stem and earthly branch, which is 40 in this example. The value ranges from 1 to 60.
-      calendar.get("month"); // The return value is 5, indicating June.
+      calendar.get("month"); // The value 5 indicates June.
       calendar.get ("date"); // Day, which is 8 in this example.
     ```
 
