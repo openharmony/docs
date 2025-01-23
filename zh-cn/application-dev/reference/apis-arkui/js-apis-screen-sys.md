@@ -528,17 +528,17 @@ makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为整数。 |
+| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于等于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回异源屏幕的displayId集合，其中id应为整数。|
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回异源屏幕的displayId集合，其中id应为大于等于0的整数。|
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
@@ -555,7 +555,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
 screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
-  console.info('Succeeded in make unique screens.');
+  console.info('Succeeded in making unique screens.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
 });
