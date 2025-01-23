@@ -118,12 +118,12 @@ select内容以及事件。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性 | 类型 | 必填 | 装饰器类型| 说明                                                                        |
-| -------- | -------- | -------- | -------- |---------------------------------------------------------------------------|
+| 属性 | 类型                                                               | 必填 | 装饰器类型| 说明                                                                        |
+| -------- |------------------------------------------------------------------| -------- | -------- |---------------------------------------------------------------------------|
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | @Trace | 下拉选项内容。                                                                   |
-| selectedIndex | number | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | string | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值''                                                       |
-| onSelect | SubHeaderV2SelectOnSelect | 否 | @Trace | 下拉菜单选中某一项的回调。 默认值undefined                                                |
+| selectedIndex | number                                                           | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
+| selectedContent | string                                                           | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值''                                                       |
+| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 默认值undefined。                                               |
 
 ### constructor
 
@@ -135,9 +135,9 @@ select内容以及事件构造函数。
 
 **参数：**
 
-| 名称    | 类型             | 必填 | 说明             |
-| --------- | -------------------- | ------ | ------------------ |
-| options | SubHeaderV2SelectOptions | 是   | 下拉选项信息。 |
+| 名称    | 类型                            | 必填 | 说明             |
+| --------- |-------------------------------| ------ | ------------------ |
+| options | [SubHeaderV2SelectOptions](#subheaderv2selectoptions) | 是   | 下拉选项信息。 |
 
 ## SubHeaderV2SelectOptions
 
@@ -151,8 +151,8 @@ select内容以及事件构造函数。
 | -------- |------------------------------------------------------------------| -------- |---------------------------------------------------------------------------| 
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
-| selectedContent | string                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''                                                       |
-| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。默认值undefined                                                 |
+| selectedContent | string                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。                                                      |
+| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。默认值undefined。                                                |
 
 ## SubHeaderV2SelectOnSelect
 
@@ -166,9 +166,10 @@ type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) =
 
 **参数：**
 
-|参数名 | 类型         |必填                                             | 说明                                          |
-| ------------------------------- |----------------------------------------------|-------------| --------------------------------------------- |
-| SubHeaderV2SelectOnSelect | (selectedIndex: number, selectedContent?: string) => void;|否 |  下拉菜单选中某一项的回调类型。<br> -index： 表示选中项的索引。<br> -value： 表示选中项的值。 |
+|参数名 | 类型      |必填                                             | 说明                  |
+| ------------------------------- |---------|-------------|---------------------|
+| selectIndex | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的索引。默认值undefined。           |
+| selectContent | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的值。默认值undefined。 |
 
 ## SubHeaderV2OperationType
 
@@ -251,8 +252,8 @@ type SubHeaderV2OperationItemAction = () => void;
 | 名称                       | 类型                                          | 必填  | 说明                                                  |
 |--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
 | value                    | [SubHeaderV2IconType](#subheaderv2icontype) | 是 | 文本内容。                                               |
-| action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值() => void                                |
-| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。默认值undefined                       |
+| action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值() => void。                               |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。默认值undefined。                      |
 | accessibilityLevel       | [string](ts-types.md#resourcestr)           | 否 | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 
@@ -265,12 +266,6 @@ type SubHeaderV2TitleBuilder= () => void;
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-|名称|类型                             | 说明                                          |
-| ------------------------------- |-------------------------------- | --------------------------------------------- |
-| SubHeaderV2TitleBuilder| () => void; |  自定义标题区内容的回调事件类型。 |
 
 ## 事件
 支持[通用事件](ts-universal-events-click.md)
