@@ -49,11 +49,11 @@ ArkGraphics 2D基于2D图像渲染引擎为开发者提供了一系列灵活多�
 
 ## 与Canvas画布组件的关系
 
-[Canvas组件](../reference/apis-arkui/ts-components-canvas-canvas.md)也具有自绘制的能力，目前有[CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)/[OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)和[DrawingRenderingContext](../reference/apis-arkui/arkui-ts/ts-drawingrenderingcontext.md)两套API，应用使用两套绘制API绘制的内容都可以在绑定的Canvas组件上显示。
+[Canvas组件](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)也具有自绘制的能力，目前有[CanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md)/[OffscreenCanvasRenderingContext2D](../reference/apis-arkui/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)和[DrawingRenderingContext](../reference/apis-arkui/arkui-ts/ts-drawingrenderingcontext.md)两套API，应用使用两套绘制API绘制的内容都可以在绑定的Canvas组件上显示。
 
 其中CanvasRenderingContext2D按照W3C标准封装了ArkGraphics 2D中Native Drawing的相关接口，可以方便快速复用Web应用的绘制逻辑，因此非常适用于Web应用和游戏、快速原型设计、数据可视化、在线绘图板、教学工具或创意应用等场景。
 
-[Canvas组件](../reference/apis-arkui/ts-components-canvas-canvas.md)的底层也使用了Native Drawing接口来实现绘制功能，在绘制能力上两者没有本质的区别。但因为多层封装的实现过程，使得Canvas组件不如Native Drawing原生API接近硬件，因此对于性能要求比较高、绘制比较复杂、硬件依赖性比较强的场景，如专业图形处理软件、桌面或移动应用等，使用Canvas组件绘制可能会存在一定的卡顿、掉帧等性能问题，此时可以使用Native Drawing接口的自绘制能力，确保应用的绘制性能。
+[Canvas组件](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md)的底层也使用了Native Drawing接口来实现绘制功能，在绘制能力上两者没有本质的区别。但因为多层封装的实现过程，使得Canvas组件不如Native Drawing原生API接近硬件，因此对于性能要求比较高、绘制比较复杂、硬件依赖性比较强的场景，如专业图形处理软件、桌面或移动应用等，使用Canvas组件绘制可能会存在一定的卡顿、掉帧等性能问题，此时可以使用Native Drawing接口的自绘制能力，确保应用的绘制性能。
 
 
 ## 约束限制
