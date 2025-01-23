@@ -1622,8 +1622,7 @@
       - [OpenHarmony ABIs](napi/ohos-abi.md)
       - [CPU Features](napi/cpu-features.md)
       - [Using Neon Instructions](napi/neon-guide.md)
-  <!--Del-->
-  
+
 - API References<!--api-reference-->
   - API Reference Overview<!--ref-overview-api-->
     - [SystemCapability](reference/syscap.md)
