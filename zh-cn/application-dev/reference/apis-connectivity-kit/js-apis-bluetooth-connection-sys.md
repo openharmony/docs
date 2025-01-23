@@ -634,8 +634,6 @@ getRemoteProductId(deviceId: string): string
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -656,7 +654,6 @@ getRemoteProductId(deviceId: string): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
@@ -733,8 +730,6 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH
-
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
@@ -755,7 +750,7 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
