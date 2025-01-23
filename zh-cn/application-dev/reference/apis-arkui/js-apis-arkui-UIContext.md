@@ -1640,7 +1640,7 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。|
 
 **返回值：** 
 
