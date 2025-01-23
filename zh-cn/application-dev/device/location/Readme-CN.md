@@ -2,6 +2,7 @@
 
 - [Location Kit简介](location-kit-intro.md)
 - [申请位置权限开发指导](location-permission-guidelines.md)
+- [获取设备的位置信息开发指导](location-guidelines-capi.md)
 - [获取设备的位置信息开发指导](location-guidelines.md)
 - [地理编码转化与逆地理编码转化开发指导](geocode-guidelines.md)
 - [地理围栏开发指导](geofence-guidelines.md)

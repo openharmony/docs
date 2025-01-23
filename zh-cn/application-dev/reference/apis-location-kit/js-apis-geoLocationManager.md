@@ -899,6 +899,35 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
 
   let gnssStatusCb = (satelliteStatusInfo:geoLocationManager.SatelliteStatusInfo):void => {
       console.info('satelliteStatusChange: ' + JSON.stringify(satelliteStatusInfo));
+      // 表示卫星个数
+      let totalNumber: number = satelliteStatusInfo.satellitesNumber;
+      let satelliteIds: Array<number> = satelliteStatusInfo.satelliteIds;
+      let carrierToNoiseDensitys: Array<number> = satelliteStatusInfo.carrierToNoiseDensitys;
+      let altitudes: Array<number> = satelliteStatusInfo.altitudes;
+      let azimuths: Array<number> = satelliteStatusInfo.azimuths;
+      let carrierFrequencies: Array<number> = satelliteStatusInfo.carrierFrequencies;
+      let satelliteConstellations: Array<geoLocationManager.SatelliteConstellationCategory> | undefined = satelliteStatusInfo.satelliteConstellation;
+      let satelliteAdditionalInfos: Array<number> | undefined = satelliteStatusInfo.satelliteAdditionalInfo;
+      for (let i = 0;i < totalNumber;i++) {
+        // 卫星的ID
+        let satelliteId: Number = satelliteIds[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的载波噪声功率谱密度比
+        let carrierToNoiseDensity: Number = carrierToNoiseDensitys[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的高度角信息
+        let altitude: Number = altitudes[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的方位角
+        let azimuth: Number = azimuths[i];
+        // 表示卫星的ID为 ${satelliteId} 的卫星的载波频率
+        let carrierFrequencie: Number = carrierFrequencies[i];
+        if (satelliteConstellations != undefined) {
+          // 表示卫星的ID为 ${satelliteId} 的卫星的星座类型
+          let satelliteConstellation: geoLocationManager.SatelliteConstellationCategory = satelliteConstellations[i];
+        }
+        if (satelliteAdditionalInfos != undefined) {
+          // 表示卫星的ID为 ${satelliteId} 的卫星的附加信息
+          let satelliteAdditionalInfo: Number = satelliteAdditionalInfos[i];
+        }
+      }
   }
 
   try {
