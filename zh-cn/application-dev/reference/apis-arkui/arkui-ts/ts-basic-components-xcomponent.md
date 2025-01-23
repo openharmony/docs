@@ -150,11 +150,11 @@ enableSecure(isSecure: boolean)
 
 ### onLoad
 
-onLoad(callback: (event?: object) => void )
+onLoad(callback: (event?: object) => void)
 
 插件加载完成时回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -166,19 +166,13 @@ onLoad(callback: (event?: object) => void )
 
 ### onDestroy
 
-onDestroy(event: VoidCallback )
+onDestroy(event: () => void)
 
 插件卸载完成时回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数:**
-
-| 参数名   | 类型   | 必填   | 说明                                       |
-| ----- | ------ | ---- | ---------------------------------------- |
-| event | [VoidCallback](ts-types.md#voidcallback12) | 是    | XComponent销毁后回调事件。 |
 
 ## XComponentController
 
