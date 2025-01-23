@@ -853,7 +853,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 | 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400009 | no such device (it may have been disconnected). |
-| 14400011 | usb error other. |
+| 14400011 | usb error other. Possible causes:<br>1.unrecognised discard errno. |
 | 14400014 | interface does not support. |
 | 14400015 | entity not found. |
 

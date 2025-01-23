@@ -224,7 +224,7 @@ transmission time out error.
 
 **错误信息**
 
-usb error other.
+usb error other. Possible causes:<br>1.unrecognised discard errno.
 
 **错误描述**
 
