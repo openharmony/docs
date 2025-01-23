@@ -1,7 +1,6 @@
 # Updating Widget Content Through the router or call Event
 
-
-On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
+With the router event, a touch on the widget can start the associated application's UIAbility in the foreground and trigger a widget update. With the call event, a touch on the widget can start the associated application's UIAbility in the background and trigger a widget update. On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API can be used to trigger a router or call event to start a UIAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 > **NOTE**
 >
@@ -9,7 +8,7 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
 
 ## Updating Widget Content Through the router Event
 
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility.
+- In the widget page code, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the router event to start the UIAbility in the foreground.
   
   ```ts
   let storageUpdateRouter = new LocalStorage();
@@ -107,7 +106,7 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
     }
 
     onWindowStageCreate(windowStage: window.WindowStage): void {
-      // Main window is created, set main page for this ability
+      
       hilog.info(DOMAIN_NUMBER, TAG, '%{public}s', 'Ability onWindowStageCreate');
 
       windowStage.loadContent('pages/Index', (err, data) => {
@@ -121,35 +120,9 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
     // ...
   }
   ```
-
-
 ## Updating Widget Content Through the call Event
 
-- When using the call event of the **postCardAction** API, the value of **formId** must be updated in the **onAddForm** callback of the FormExtensionAbility.
-
-  ```ts
-  import { Want } from '@kit.AbilityKit';
-  import { formBindingData, FormExtensionAbility } from '@kit.FormKit';
-  
-  export default class WidgetCalleeFormAbility extends FormExtensionAbility {
-    onAddForm(want: Want): formBindingData.FormBindingData {
-      class DataObj1 {
-        formId: string = '';
-      }
-  
-      let dataObj1 = new DataObj1();
-      if (want.parameters && want.parameters['ohos.extra.param.key.form_identity'] !== undefined) {
-        let formId: string = want.parameters['ohos.extra.param.key.form_identity'].toString();
-        dataObj1.formId = formId;
-      }
-      let obj1 = formBindingData.createFormBindingData(dataObj1);
-      return obj1;
-    }
-    // ...
-  }
-  ```
-
-- On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the call event to start the UIAbility.
+- In the widget page code, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the call event to start the UIAbility in the background.
   
   ```ts
   let storageUpdateCall = new LocalStorage();
@@ -286,4 +259,12 @@ On the widget page, the [postCardAction](../reference/apis-arkui/js-apis-postCar
       });
     }
   }
+  ```
+  To start the UIAbility in the background, you must configure the ohos.permission.KEEP_BACKGROUND_RUNNING permission in the **module.json5** file.
+  ```json
+    "requestPermissions":[
+        {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+        }
+      ]
   ```

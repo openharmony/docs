@@ -47,7 +47,7 @@ PasteButton(options:PasteButtonOptions)
 用于指定粘贴按钮的图标、文本等指定元素。
 
 > **说明：**
-> 
+>
 > - icon或text需至少传入一个。<br>
 > - 如果icon、text都不传入，[PasteButton](#pastebutton-1)中的options参数不起效，创建的PasteButton为默认样式，默认样式：
 >
@@ -103,13 +103,29 @@ PasteButton(options:PasteButtonOptions)
 | SUCCESS | 0 | 粘贴按钮点击成功。 |
 | TEMPORARY_AUTHORIZATION_FAILED | 1 | 粘贴按钮点击后权限授权失败。 |
 
+## PasteButtonCallback
+
+PasteButtonCallback = (event: ClickEvent, result: PasteButtonOnClickResult, error?: BusinessError&lt;void&gt;) =&gt; void
+
+点击粘贴按钮触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| event | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
+| result | [PasteButtononClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
+| error | BusinessError&lt;void&gt; | 否 | 点击按钮时的错误码和错误信息。<br>错误码0表示粘贴按钮点击成功。<br>错误码1表示系统内部错误。<br>错误码2表示属性设置错误，包括但不限于：<br>1. 字体或图标设置过小。<br>2. 字体或图标与背托颜色相近。<br>3. 字体或图标颜色过于透明。<br>4. padding为负值。<br>5. 按钮被其他组件或窗口遮挡。<br>6. 文本超出背托范围。<br>7. 按钮超出窗口或屏幕。<br>8. 按钮整体尺寸过大。<br>9. 按钮文本被截断，显示不全。<br>10. 相关属性设置影响安全控件显示。|
+
 ## 事件
 
 不支持通用事件，仅支持以下事件：
 
 ### onClick
 
-onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
+onClick(event: PasteButtonCallback)
 
 点击动作触发该回调
 
@@ -121,23 +137,31 @@ onClick(event: (event: ClickEvent, result: PasteButtonOnClickResult) =&gt; void)
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| event  | [ClickEvent](ts-universal-events-click.md#clickevent对象说明) |是 |见ClickEvent对象说明|
-| result | [PasteButtonOnClickResult](#pastebuttononclickresult枚举说明)| 是 | 剪贴板权限的授权结果，授权后可以读取当前剪贴板内容。|
+| event | [PasteButtonCallback](#pastebuttoncallback) |是 |见PasteButtonCallback|
 
 ## 示例
 
 ```ts
 // xxx.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct Index {
+  handlePasteButtonClick: PasteButtonCallback = (event: ClickEvent, result: PasteButtonOnClickResult, error: BusinessError<void>) => {
+    if (result == PasteButtonOnClickResult.SUCCESS) {
+      console.info("success");
+    } else {
+      console.info("errCode: " + error.code);
+      console.info("errMessage: " + error.message);
+    }
+  };
+
   build() {
     Row() {
       Column({ space: 10 }) {
         // 默认参数下，图标、文字、背景都存在
-        PasteButton().onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
-          console.info("result " + result)
-        })
+        PasteButton().onClick(this.handlePasteButtonClick)
         // 传入参数即表示元素存在，不传入的参数表示元素不存在，如果不传入buttonType，会默认添加ButtonType.Capsule配置，显示图标+背景。
         PasteButton({ icon: PasteIconStyle.LINES })
         // 只显示图标+背景，如果设置背景色高八位的α值低于0x1A，则会被系统强制调整为0xFF

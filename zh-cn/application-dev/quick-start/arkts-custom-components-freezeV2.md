@@ -332,11 +332,11 @@ struct NavigationContentMsgStack {
 
 3.再次点击“change message”更改message的值，仅pageOneStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。
 
-4.再次点击“Next Page”切换到PageTwo，创建pageTwoStack节点。pageOneStack节点状态由active变为inactive
+4.再次点击“Next Page”切换到PageTwo，创建pageTwoStack节点。pageOneStack节点状态由active变为inactive。
 
 5.再次点击“change message”更改message的值，仅pageTwoStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
 
-6.再次点击“Next Page”切换到PageThree，创建pageThreeStack节点。pageTwoStack节点状态由active变为inactive
+6.再次点击“Next Page”切换到PageThree，创建pageThreeStack节点。pageTwoStack节点状态由active变为inactive。
 
 7.再次点击“change message”更改message的值，仅pageThreeStack中的NavigationContentMsgStack子组件中的@Monitor中注册的方法info被触发。Navigation路由栈中非栈顶的NavDestination中的子自定义组件，将是inactive状态。@Monitor方法不会触发。
 

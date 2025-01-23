@@ -61,8 +61,8 @@ getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
 | 参数名    | 类型   | 必填   | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| x | number | 是    | 相对于组件的横坐标，单位px |
-| y | number | 是    | 相对于组件的纵坐标，单位px |
+| x | number | 是    | 相对于组件的横坐标。<br/>单位：px |
+| y | number | 是    | 相对于组件的纵坐标。<br/>单位：px |
 
 **返回值：**
 
@@ -150,7 +150,9 @@ getRectsForRange(range: TextRange, widthStyle: RectWidthStyle, heightStyle: Rect
 | COLLABORATION_SERVICE   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 互通服务。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | CAMERA_INPUT   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是   | 拍摄输入。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | AI_WRITER<sup>13+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 可对选中的文本进行润色、摘要提取、排版等。该菜单项依赖大模型能力，否则不生效。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
-| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| TRANSLATE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供翻译服务。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| SHARE<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供分享服务，拉起分享窗口分享选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| SEARCH<sup>16+</sup>   | [TextMenuItemId](#textmenuitemid12)   | 是    | 是    | 对选中的文本提供搜索服务，拉起浏览器搜索选中文本内容。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ### of
 
@@ -331,6 +333,21 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | ------- | ---- | ------------------- |
 | SELECTION_MENU | 0 | 文本选择菜单。|
 | PREVIEW_MENU | 1 | 图片预览菜单。|
+
+## KeyboardAppearance<sup>16+</sup>枚举说明
+
+键盘外观。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| NONE_IMMERSIVE | 0 | 默认外观模式，不采用沉浸式风格。|
+| IMMERSIVE | 1 | 沉浸式模式，跟随系统。|
+| LIGHT_IMMERSIVE | 2 | 浅色沉浸式风格。|
+| DARK_IMMERSIVE | 3 | 深色沉浸式风格。|
 
 ## InsertValue<sup>12+</sup>对象说明
 
@@ -632,7 +649,7 @@ getStyledString(): MutableStyledString;
 
 | 类型    | 说明                          |
 | ------- | ----------------------------- |
-| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串 |
+| [MutableStyledString](ts-universal-styled-string.md#mutablestyledstring) | 富文本组件显示的属性字符串。 |
 
 ## DecorationStyleResult<sup>12+</sup>
 

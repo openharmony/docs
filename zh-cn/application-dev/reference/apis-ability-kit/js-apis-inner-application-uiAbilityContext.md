@@ -2509,6 +2509,7 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 | 16000011 | The context does not exist.                                                                                 |
 | 16000012 | The application is controlled.                                                                              |
 | 16000013 | The application is controlled by EDM.                                                                       |
+| 16000019 | No matching ability is found.                                                                               |
 | 16000050 | Internal error.                                                                                             |
 | 16200001 | The caller has been released.                                                                               |
 
@@ -2584,21 +2585,23 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 
 | 错误码ID | 错误信息                                                                             |
 | -------- | ----------------------------------------------------------------------------------- |
-| 201      | The application does not have permission to call the interface.                                                                                 |
+| 201      | The application does not have permission to call the interface.                     |
+| 801      | Capability not supported.                                                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000001 | The specified ability does not exist.                                               |
 | 16000002 | Incorrect ability type.                                                             |
-| 16000004 | Failed to start the invisible ability.                                                  |
+| 16000004 | Failed to start the invisible ability.                                              |
 | 16000005 | The specified process does not have the permission.                                 |
 | 16000008 | The crowdtesting application expires.                                               |
 | 16000011 | The context does not exist.                                                         |
+| 16000013 | The EDM prohibits the application from launching.                                   |
 | 16000050 | Internal error.                                                                     |
 | 16000055 | Installation-free timed out.                                                        |
 
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Extension] ';

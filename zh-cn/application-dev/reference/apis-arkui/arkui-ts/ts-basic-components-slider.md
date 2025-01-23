@@ -573,10 +573,10 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 
 **参数：** 
 
-| 参数名 | 类型    | 只读 | 可选 | 说明              |
-| ------ | ------ | ---- | ---------------- | ---------------- |
-| value | number | 否 | 否 | 设置当前的进度值。 |
-| mode | [SliderChangeMode](#sliderchangemode枚举说明) | 否 | 否 | 设置事件触发的相关状态值。 |
+| 参数名 | 类型    | 必填 | 说明              |
+| ------ | ------ | ---------------- | ---------------- |
+| value | number | 是 | 设置当前的进度值。 |
+| mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
 
 ## 示例
 

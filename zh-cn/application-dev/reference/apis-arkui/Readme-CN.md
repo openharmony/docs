@@ -79,6 +79,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [表冠事件](arkui-ts/ts-universal-events-crown.md)
       - [悬浮事件](arkui-ts/ts-universal-events-hover.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
@@ -133,6 +134,7 @@
       - 模态转场设置
         - [全屏模态转场](arkui-ts/ts-universal-attributes-modal-transition.md)
         - [半模态转场](arkui-ts/ts-universal-attributes-sheet-transition.md)
+        - [半模态转场 (系统接口)](arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
       - [隐私遮罩](arkui-ts/ts-universal-attributes-obscured.md)
       - [文本通用](arkui-ts/ts-universal-attributes-text-style.md)
       - [拖拽控制](arkui-ts/ts-universal-attributes-drag-drop.md)
@@ -182,6 +184,8 @@
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
+    - [ArcList](arkui-ts/ts-container-arclist.md)
+    - [ArcListItem](arkui-ts/ts-container-arclistitem.md)
     - [Grid](arkui-ts/ts-container-grid.md)
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
@@ -225,6 +229,7 @@
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
     - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
+    - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
   - 文本与输入
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
@@ -256,6 +261,7 @@
     <!--DelEnd-->
   - 信息展示
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
+    - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)

@@ -8,15 +8,17 @@ A drag event is triggered when a component is dragged.
 >
 > The resource files preset in the application (that is, the resource files that are contained in the HAP file before the application is installed) can be dragged and dropped only within the application.
 
-The ArkUI framework implements the drag and drop capability for some components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). To enable drag and drop for these components, you only need to set their [draggable](ts-universal-attributes-drag-drop.md) attribute to **true**.<!--RP1--><!--RP1End-->
+The ArkUI framework provides default drag and drop capabilities for the following components, allowing them to serve as the drag source (from which data can be dragged) or drop target (to which data can be dropped). You can further customize drag and drop behavior by implementing universal drag events.
 
-- The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), <!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md), <!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
+- The following component supports drag actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md), [Text](ts-basic-components-text.md), [Image](ts-basic-components-image.md), <!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md), <!--DelEnd-->[Hyperlink](ts-container-hyperlink.md). You can control the default drag behavior by setting the [draggable](ts-universal-attributes-drag-drop.md#draggable) attribute.
 
-- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [Video](ts-media-components-video.md)
+- The following component supports drop actions by default: [Search](ts-basic-components-search.md), [TextInput](ts-basic-components-textinput.md), [TextArea](ts-basic-components-textarea.md), [RichEditor](ts-basic-components-richeditor.md). You can disable the default drag behavior by setting the [allowDrop](ts-universal-attributes-drag-drop.md#allowdrop) attribute to **null**.
 
-You can also define drag responses by implementing common drag events.
+<!--RP1--><!--RP1End-->To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
 
-To enable drag and drop for other components, you need to set the **draggable** attribute to **true** and implement data transmission in APIs such as **onDragStart**.
+> **NOTE**
+>
+> When using the **Text** component, set [copyOption](ts-basic-components-text.md#copyoption9) to **CopyOptions.InApp** or **CopyOptions.LocalDevice**.
 
 ## onDragStart
 
@@ -100,7 +102,7 @@ Triggered when a dragged item leaves a valid drop target. This event takes effec
 
 onDrop(event: (event: DragEvent, extraParams?: string) => void)
 
-Triggered when a dragged item is dropped on a valid drop target. If you do not call **event.setResult()** in **onDrop** to set the drag result, the system considers that the data is successfully received.
+Triggered when a dragged item is dropped on a valid drop target. If you do not explicitly call **event.setResult()** in **onDrop** to set the result of the drag reception, the system handles it as follows:<br>- If the component being dragged is one that supports drop actions by default, the system's actual data processing result is used.<br>- For other components, the system assumes that the data is received successfully.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -204,7 +206,7 @@ Invoked when the component enters a state prior to a drop and drop operation.
 | getDisplayY()<sup>10+</sup> | number | Y coordinate of the drag position relative to the upper left corner of the screen, in vp.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | getX()<sup>(deprecated)</sup> | number | X coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowX()** instead.|
 | getY()<sup>(deprecated)</sup> | number | Y coordinate of the drag position relative to the upper left corner of the window, in vp.<br>This API is deprecated since API version 10. You are advised to use **getWindowY()** instead.|
-| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. However, the **Fn** key on external keyboards is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 
 **Error codes**
@@ -260,7 +262,23 @@ Describes the drag behavior. When [DragResult](#dragresult10) is set to **DROP_E
 | PREVIEW_LANDING_FINISHED | 5 | A drop animation is finished. (Triggered when the drop animation ends.)|
 | ACTION_CANCELED_BEFORE_DRAG | 6 | A drop animation is terminated. (Triggered when the finger is lifted off the screen after the component enters the **READY_TO_TRIGGER_DRAG_ACTION** state.)|
 
+## executeDropAnimation<sup>16+</sup>
+
+Implements a custom drop animation execution function, which is only effective when **useCustomDropAnimation** is set to **true**.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Type | Description            |
+| ------ | ------ | ---------------- |
+| customDropAnimation | Callback\<void\>  |  Custom drop animation.<br> **NOTE**<br>1. This API is only effective when used in the **onDrop** callback.<br> 2. For the API to take effect, set **useCustomDropAnimation** to **true** before using this API.<br> 3. Do not implement logic unrelated to the animation in the animation callback to avoid affecting performance.|
+
 ## Example
+
+### Example 1: Configuring Draggable and Droppable Areas
+
+This example demonstrates the setup for draggable and droppable areas for certain components, such as **Image** and **Text**.
 
 ```ts
 // xxx.ets
@@ -276,7 +294,6 @@ struct Index {
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
   @State imgState: Visibility = Visibility.Visible;
-  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
   @State backGroundColor: Color = Color.Transparent;
@@ -366,18 +383,6 @@ struct Index {
           .width('100%')
           .height(80)
           .textFont({ size: 20 })
-        Column() {
-          Text('change video source')
-        }.draggable(true)
-        .onDragStart((event) => {
-          let video: unifiedDataChannel.Video = new unifiedDataChannel.Video();
-          video.videoUri = '/resources/rawfile/01.mp4';
-          let data: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(video);
-          (event as DragEvent).setData(data);
-          return { builder: () => {
-            this.pixelMapBuilder()
-          }, extraInfo: 'extra info' };
-        })
 
         Column() {
           Text('this is abstract')
@@ -442,12 +447,6 @@ struct Index {
             })
           })
 
-        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
-          .width('100%')
-          .height(200)
-          .controls(true)
-          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
-
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
@@ -474,3 +473,90 @@ struct Index {
 }
 ```
 ![events-drag-drop](figures/events-drag-drop.png) 
+
+### Example 2: Implementing a Custom Drop Animation
+
+This example demonstrates how to implement a custom drop animation using the **executeDropAnimation** API.
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction } from '@kit.ArkUI';
+
+
+@Entry
+@Component
+struct DropAnimationExample {
+  @State targetImage: string = '';
+  @State targetText: string = 'Drag Text';
+  @State hyperLinkText: string = 'HyperLink';
+  @State hyperLinkContent: string = 'HyperLink';
+  @State imageWidth: number = 100;
+  @State imageHeight: number = 100;
+  @State imgState: Visibility = Visibility.Visible;
+  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
+  @State abstractContent: string = "abstract";
+  @State textContent: string = "";
+
+  customDropAnimation =
+    () => {
+      this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
+        this.imageWidth = 200;
+        this.imageHeight = 200;
+        this.imgState = Visibility.None;
+      })
+    }
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.app_icon'))
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 ,top: 40})
+          .visibility(this.imgState)
+          .onDragStart((event) => {
+          })
+          .onDragEnd((event) => {
+            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+            }
+          })
+      }.width('45%')
+      .height('100%')
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width(180)
+          .height(40)
+          .textAlign(TextAlign.Center)
+          .margin(10)
+          .backgroundColor('rgb(240,250,255)')
+        Column() {
+          Image(this.targetImage)
+            .width(this.imageWidth)
+            .height(this.imageHeight)
+        }
+        .draggable(true)
+        .margin({ left: 15 })
+        .border({ color: Color.Black, width: 1 })
+        .allowDrop([udmfType.UniformDataType.IMAGE])
+        .onDrop((dragEvent: DragEvent) => {
+          let records: Array<udmf.UnifiedRecord> = dragEvent.getData().getRecords();
+          let rect: Rectangle = dragEvent.getPreviewRect();
+          this.imageWidth = Number(rect.width);
+          this.imageHeight = Number(rect.height);
+          this.targetImage = (records[0] as udmf.Image).imageUri;
+          dragEvent.useCustomDropAnimation = true;
+          dragEvent.executeDropAnimation(this.customDropAnimation)
+        })
+      }.width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+    }
+    .height('100%')
+  }
+}
+```
+![executeDropAnimation](figures/executeDropAnimation.gif)

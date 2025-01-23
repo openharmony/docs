@@ -48,7 +48,7 @@ sendData(data: Record\<string, Object>): void
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Extension] ';

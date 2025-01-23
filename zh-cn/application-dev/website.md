@@ -385,8 +385,11 @@
           - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
         - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
         - ArkGuard源码混淆<!--arkts-arkguard-->
-          - [ArkGuard源码混淆工具](arkts-utils/source-obfuscation.md)
+          - [ArkGuard混淆概述](arkts-utils/source-obfuscation-overview.md)
+          - [ArkGuard混淆原理及功能](arkts-utils/source-obfuscation.md)
+          - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
           - [不同包类型的源码混淆建议](arkts-utils/source-obfuscation-practice.md)
+          - [ArkGuard混淆常见问题](arkts-utils/source-obfuscation-questions.md)
         - [在build-profile.json5中配置arkOptions](arkts-utils/arkoptions-guide.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
@@ -1312,6 +1315,7 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
         - [媒体数据解析](media/avcodec/audio-video-demuxer.md)
@@ -1928,7 +1932,6 @@
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
-            - [BundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleInfo-sys.md)
             - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -2829,7 +2832,9 @@
         <!--DelEnd-->
         - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
+          <!--Del-->
           - [WorkSchedulerExtensionContext(系统接口)](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext-sys.md)
+          <!--DelEnd-->
         - 已停止维护的接口<!--background-tasks-arkts-dep-->
           - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
           - [@ohos.bundleState (设备使用信息统计)](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics.md)
@@ -2992,7 +2997,7 @@
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
+          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md)
           - [Resource](reference/apis-localization-kit/resource.md)
           - [SendableResource](reference/apis-localization-kit/sendableResource.md)
       - C API<!--localization-c-->
@@ -3164,7 +3169,7 @@
           - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](reference/apis-connectivity-kit/js-apis-nfcTag-sys.md)
           - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-wifiManager-sys.md)
           <!--DelEnd-->
-          - tag<!--connectivity-nfc-tag-arkts--> 
+          - tag<!--connectivity-nfc-tag-arkts-->
             - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->

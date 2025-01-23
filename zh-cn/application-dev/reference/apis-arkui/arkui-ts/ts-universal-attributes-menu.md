@@ -139,6 +139,8 @@ isShown为true，弹出菜单。isShown为false，隐藏菜单。弹出菜单项
 | borderRadius<sup>12+</sup>  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 设置菜单的边框圆角半径。<br/>默认值：2in1设备上默认值8vp，其他设备上默认值20vp。<br />**说明：** <br /> 支持百分比。<br />当水平方向两个圆角半径之和的最大值超出菜单宽度或垂直方向两个圆角半径之和的最大值超出菜单高度时，采用菜单默认圆角半径值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | previewBorderRadius<sup>16+</sup>  | [Length](ts-types.md#length)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 否   | 设置预览菜单绑定组件的边框圆角半径。<br/>默认值：16vp。<br />**说明：** <br /> 预览菜单绑定组件的边框圆角半径仅支持vp、px、fp、lpx、百分比。<br />当水平方向上两个圆角半径之和的最大值超过预览菜单的宽度，或者垂直方向上两个圆角半径之和的最大值超过预览菜单的高度时，应采用预览菜单所能允许的最大圆角半径值。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | layoutRegionMargin<sup>13+</sup>  | [Margin](ts-types.md#margin) | 否   | 设置预览图与菜单布局时距上下左右边界的最小边距。<br />**说明：** <br/> 仅支持vp、px、fp、lpx、百分比。<br/> 当margin设置异常值或负值时，按默认值处理。<br/> 若preview为CustomBuilder，设置margin.left或margin.right时，预览图取消最大栅格的宽度限制。<br/> 注意应避免设置过大的margin导致布局区域变小，使得预览图和菜单无法正常布局。<br />当水平方向上margin之和超过布局最大宽度时，margin.left和margin.right均不生效，按默认值处理。<br/> 当垂直方向上margin之和超过布局最大高度时，margin.top和margin.bottom均不生效，按默认值处理。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>16+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10) | 否 | 自定义弹窗的背景模糊效果。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>16+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## MenuPreviewMode<sup>11+</sup>
 
@@ -655,3 +657,102 @@ struct Index {
 ```
 
 ![preview-builder](figures/hoverScale.gif)
+
+### 示例11（自定义背景模糊效果参数）
+
+该示例为bindMenu通过配置backgroundBlurStyleOptions，实现自定义菜单背景模糊效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct MenuExample {
+  build() {
+    Stack() {
+      Image($r('app.media.bg'))
+      Column() {
+        Text('click for Menu')
+          .bindMenu([
+            {
+              value: 'Menu1',
+              action: () => {
+                console.info('handle Menu1 select')
+              }
+            },
+            {
+              value: 'Menu2',
+              action: () => {
+                console.info('handle Menu2 select')
+              }
+            },
+          ],
+            {
+              backgroundBlurStyle: BlurStyle.BACKGROUND_THIN,
+              backgroundBlurStyleOptions: {
+                colorMode:ThemeColorMode.LIGHT,
+                blurOptions:{grayscale:[20,20]},
+                policy: BlurStyleActivePolicy.ALWAYS_ACTIVE,
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                scale: 1
+              },
+            }
+          )
+      }
+      .width('100%')
+      .margin({ top: 5 })
+    }
+  }
+}
+```
+
+![preview-builder](figures/zh-cn_image_backgroundBlurStyleOptions.png)
+
+### 示例12（自定义背景效果参数）
+
+该示例为bindMenu通过配置backgroundEffect，实现自定义菜单背景效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct MenuExample {
+  build() {
+    Stack() {
+      Image($r('app.media.bg'))
+      Column() {
+        Text('click for Menu')
+          .bindMenu([
+            {
+              value: 'Menu1',
+              action: () => {
+                console.info('handle Menu1 select')
+              }
+            },
+            {
+              value: 'Menu2',
+              action: () => {
+                console.info('handle Menu2 select')
+              }
+            },
+          ],
+            {
+              backgroundBlurStyle: BlurStyle.BACKGROUND_THIN,
+              backgroundEffect: {
+                radius: 60,
+                saturation: 10,
+                brightness: 1,
+                color: '#661A1A1A',
+                adaptiveColor: AdaptiveColor.AVERAGE,
+                blurOptions:{grayscale:[20,20]}
+              }
+            }
+          )
+      }
+      .width('100%')
+      .margin({ top: 5 })
+    }
+  }
+}
+```
+
+![preview-builder](figures/zh-cn_image_backgroundEffect.png)

@@ -36,6 +36,11 @@
 * "uris"列表中包含"scheme"为"https"且"host"为域名地址的元素。
 * "domainVerify"：设置为true，表示开启域名校验开关。
 
+> **说明**：
+>
+> skills标签下默认包含一个skill对象，用于标识应用入口。应用跳转链接不能在该skill对象中配置，需要创建独立的skill对象。如果存在多个跳转场景，需要在skills标签下创建不同的skill对象，否则会导致配置无法生效。
+
+
 例如，声明应用关联在域名是www.example.com，则需进行如下配置：
 
 ```json
@@ -46,6 +51,14 @@
       {
         // ...
         "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          },
           {
             "entities": [
               // entities须包含"entity.system.browsable"
@@ -67,13 +80,14 @@
             ],
             // domainVerify须设置为true
            "domainVerify": true
-          }
+          } // 新增一个skill对象，用于跳转场景。如果存在多个跳转场景，需配置多个skill对象。
         ]
       }
     ]
   }
 }
 ```
+
 
 ### 在开发者网站上关联应用
 

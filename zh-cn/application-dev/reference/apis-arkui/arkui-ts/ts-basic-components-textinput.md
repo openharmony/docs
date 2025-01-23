@@ -253,7 +253,7 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -1190,7 +1190,7 @@ onSubmit(callback:OnSubmitCallback)
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback            | [OnSubmitCallback](#onsubmitcallback14对象说明) | 是   | 提交回调。 |
+| callback            | [OnSubmitCallback](#onsubmitcallback16对象说明) | 是   | 提交回调。 |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -1269,7 +1269,7 @@ onPaste(callback:OnPasteCallback )
 **参数：** 
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
+| callback | [OnPasteCallback](#onpastecallback16对象说明)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
@@ -1285,7 +1285,7 @@ onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 | 参数名         | 类型   | 必填 | 说明                                    |
 | -------------- | ------ | ---- | --------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
+| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback16对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
@@ -1301,7 +1301,7 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
+| callback | [OnContentScrollCallback](#oncontentscrollcallback16对象说明) | 是   | 文本内容滚动回调。 |
 
 ### onSecurityStateChange<sup>12+</sup>
 
@@ -1498,13 +1498,13 @@ keepEditableState(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## OnPasteCallback<sup>14+</sup>对象说明
+## OnPasteCallback<sup>16+</sup>对象说明
 
 type OnPasteCallback = (content: string, event: PasteEvent) => void
 
 粘贴回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1515,13 +1515,13 @@ type OnPasteCallback = (content: string, event: PasteEvent) => void
 | content               | string                                                       | 是   | 粘贴的文本内容。       |
 | event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
 
-## OnSubmitCallback<sup>14+</sup>对象说明
+## OnSubmitCallback<sup>16+</sup>对象说明
 
 type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 提交回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1532,13 +1532,13 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
 | event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
 
-## OnTextSelectionChangeCallback<sup>14+</sup>对象说明
+## OnTextSelectionChangeCallback<sup>16+</sup>对象说明
 
 type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
 
 文本选择变化回调或光标位置变化回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1549,13 +1549,13 @@ type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: numb
 | selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。                    |
 
-## OnContentScrollCallback<sup>14+</sup>对象说明
+## OnContentScrollCallback<sup>16+</sup>对象说明
 
 type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
 
 文本内容滚动回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

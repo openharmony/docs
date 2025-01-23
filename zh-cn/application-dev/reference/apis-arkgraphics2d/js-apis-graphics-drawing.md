@@ -18,7 +18,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 ## BlendMode
 
-混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。
+混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在红、绿、蓝3个颜色通道上是相同的（透明度有另外的处理规则）。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。
 
 为简洁起见，我们使用以下缩写：
 
@@ -34,35 +34,35 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 
 | 名称        | 值   | 说明                                                         | 示意图   |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
-| CLEAR       | 0    | 清除模式，r = 0。                                            | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
-| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。） | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
-| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。） | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d                                         | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
-| DST_OVER    | 4    | r = d + (1 - da) * s                                         | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
-| SRC_IN      | 5    | r = s * da                                                   | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
-| DST_IN      | 6    | r = d * sa                                                   | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
-| SRC_OUT     | 7    | r = s * (1 - da)                                             | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
-| DST_OUT     | 8    | r = d * (1 - sa)                                             | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)                                    | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)                                    | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)                              | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
-| PLUS        | 12   | r = min(s + d, 1)                                            | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
-| MODULATE    | 13   | r = s * d                                                    | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
-| SCREEN      | 14   | 滤色模式，r = s + d - s * d                                  | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
-| OVERLAY     | 15   | 叠加模式                                                     | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
-| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
-| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
-| COLOR_DODGE | 18   | 颜色减淡模式                                                 | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
-| COLOR_BURN  | 19   | 颜色加深模式                                                 | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
-| HARD_LIGHT  | 20   | 强光模式                                                     | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
-| SOFT_LIGHT  | 21   | 柔光模式                                                     | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
-| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
-| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d     | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
-| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d            | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
-| HUE         | 25   | 色相模式                                                     | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
-| SATURATION  | 26   | 饱和度模式                                                   | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
-| COLOR       | 27   | 颜色模式                                                     | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
-| LUMINOSITY  | 28   | 亮度模式                                                     | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
+| CLEAR       | 0    | 清除模式，r = 0，设置为全透明。                                | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
+| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。），使用源像素替换目标像素 | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
+| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。），保持目标像素不变 | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d，在目标像素上方绘制源像素，考虑源像素的透明度 | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
+| DST_OVER    | 4    | r = d + (1 - da) * s，在源像素上方绘制目标像素，考虑目标像素的透明度 | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
+| SRC_IN      | 5    | r = s * da，仅保留源像素与目标不透明部分的交集 | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
+| DST_IN      | 6    | r = d * sa，仅保留目标像素与源不透明部分的交集 | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
+| SRC_OUT     | 7    | r = s * (1 - da)，保留源像素中不与目标重叠的部分 | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
+| DST_OUT     | 8    | r = d * (1 - sa)，保留目标像素中不与源重叠的部分 | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)，源像素覆盖在目标像素上，仅在目标不透明部分显示源像素 | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da)，目标像素覆盖在源像素上，仅在源不透明部分显示目标像素 | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)，仅显示源像素和目标像素中不重叠的部分 | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
+| PLUS        | 12   | r = min(s + d, 1)，源和目标像素的颜色值相加                   | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
+| MODULATE    | 13   | r = s * d，源和目标像素的颜色值相乘                           | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
+| SCREEN      | 14   | 滤色模式，r = s + d - s * d，反转源和目标像素的颜色值，相乘后再反转，结果通常更亮 | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
+| OVERLAY     | 15   | 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度 | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
+| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较暗的颜色值 | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
+| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较亮的颜色值 | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
+| COLOR_DODGE | 18   | 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素           | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
+| COLOR_BURN  | 19   | 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素           | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
+| HARD_LIGHT  | 20   | 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式    | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
+| SOFT_LIGHT  | 21   | 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素             | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
+| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d，计算源和目标像素颜色值的差异 | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
+| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d，类似于DIFFERENCE，但对比度较低 | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
+| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d，源和目标像素的颜色值相乘，结果通常更暗 | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
+| HUE         | 25   | 色相模式，使用源像素的色相，目标像素的饱和度和亮度               | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
+| SATURATION  | 26   | 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度             | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
+| COLOR       | 27   | 颜色模式，使用源像素的色相和饱和度，目标像素的亮度               | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
+| LUMINOSITY  | 28   | 亮度模式，使用源像素的亮度，目标像素的色相和饱和度               | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
 
 ## PathMeasureMatrixFlags<sup>12+</sup>
 
@@ -497,7 +497,7 @@ cubicTo(ctrlX1: number, ctrlY1: number, ctrlX2: number, ctrlY2: number, endX: nu
 import { drawing } from '@kit.ArkGraphics2D';
 let path = new drawing.Path();
 path.moveTo(10,10);
-path.cubicTo(10, 10, 10, 10, 15, 15);
+path.cubicTo(100, 100, 80, 150, 300, 150);
 ```
 
 ### rMoveTo<sup>12+</sup>
@@ -2322,7 +2322,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
 
-在画布上绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度。
+在画布上绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度。当扫描角度的绝对值大于360度时，该方法绘制的是一个椭圆。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2332,7 +2332,7 @@ drawArc(arc: common2D.Rect, startAngle: number, sweepAngle: number): void
 | ------ | -------------------------------------------------- | ---- | -------------- |
 | arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 包含要绘制的圆弧的椭圆的矩形边界。 |
 | startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，正数时以顺时针方向放置起始点，负数时以逆时针方向放置起始点。 |
-| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。 |
+| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。它的有效范围在-360度到360度之间，当绝对值大于360度时，该方法绘制的是一个椭圆。 |
 
 **错误码：**
 
@@ -2837,16 +2837,12 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
     let path = new drawing.Path();
     path.moveTo(10, 10);
-    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.cubicTo(100, 100, 80, 150, 300, 150);
     path.close();
-    canvas.attachPen(pen);
-    canvas.clipPath(path, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clipPath(path, drawing.ClipOp.INTERSECT, true);
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -2883,12 +2879,8 @@ import { common2D, drawing } from '@kit.ArkGraphics2D';
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
-    const pen = new drawing.Pen();
-    pen.setStrokeWidth(5);
-    pen.setColor({alpha: 255, red: 255, green: 0, blue: 0});
-    canvas.attachPen(pen);
     canvas.clipRect({left : 10, right : 500, top : 300, bottom : 900}, drawing.ClipOp.DIFFERENCE, true);
-    canvas.detachPen();
+    canvas.clear({alpha: 255, red: 255, green: 0, blue: 0});
   }
 }
 ```
@@ -2897,7 +2889,7 @@ class DrawingRenderNode extends RenderNode {
 
 save(): number
 
-用于保存当前画布的状态（画布矩阵）到栈顶。
+用于保存当前画布的状态（画布矩阵）到栈顶。需要与恢复接口[restore](#restore12)配合使用。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3293,6 +3285,7 @@ class DrawingRenderNode extends RenderNode {
     let matrix = new drawing.Matrix();
     matrix.setMatrix([5, 0, 0, 0, 1, 2, 0, 0, 1]);
     canvas.concatMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
   }
 }
 ```
@@ -3330,6 +3323,7 @@ class DrawingRenderNode extends RenderNode {
     let matrix = new drawing.Matrix()
     matrix.setMatrix([5, 0, 0, 0, 1, 1, 0, 0, 1]);
     canvas.setMatrix(matrix);
+    canvas.drawRect({left: 10, right: 200, top: 100, bottom: 500});
   }
 }
 ```
@@ -3399,6 +3393,8 @@ class DrawingRenderNode extends RenderNode {
     let region : drawing.Region = new drawing.Region();
     region.setRect(0, 0, 500, 500);
     canvas.clipRegion(region);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
   }
 }
 ```
@@ -3438,6 +3434,8 @@ class DrawingRenderNode extends RenderNode {
     let rect: common2D.Rect = { left: 10, top: 100, right: 200, bottom: 300 };
     let roundRect = new drawing.RoundRect(rect, 10, 10);
     canvas.clipRoundRect(roundRect);
+    let color: common2D.Color = {alpha: 255, red: 255, green: 0, blue: 0};
+    canvas.clear(color);
   }
 }
 ```
@@ -8857,7 +8855,7 @@ import { common2D,drawing } from '@kit.ArkGraphics2D';
 
 let startPt: common2D.Point = { x: 100, y: 100 };
 let endPt: common2D.Point = { x: 300, y: 300 };
-let shaderEffect =drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
+let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
 ### createRadialGradient<sup>12+</sup>

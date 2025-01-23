@@ -189,3 +189,16 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：16
+
+## ohos.permission.GET_SIGNATURE_INFO
+
+允许应用获取应用包的签名信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：16

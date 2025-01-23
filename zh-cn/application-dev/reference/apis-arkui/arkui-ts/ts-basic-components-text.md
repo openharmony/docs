@@ -80,7 +80,7 @@ textOverflow(options: TextOverflowOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | [TextOverflowOptions](#textoverflowoptions14对象说明) | 是   | 文本超长显示方式对象 |
+| options | [TextOverflowOptions](#textoverflowoptions16对象说明) | 是   | 文本超长显示方式对象 |
 
 ### maxLines
 
@@ -532,7 +532,7 @@ decoration:{
 
 当overflow设置为TextOverflow.MARQUEE时，该功能不会生效。
 
-当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本和复制功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
+当copyOption设置为CopyOptions.None时，点击实体弹出的菜单没有选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但没有选择文本功能。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -878,6 +878,15 @@ selectedBackgroundColor(color: ResourceColor)
 | TEXT | Span为文字类型。 |
 | IMAGE | Span为图像类型。|
 | MIXED | Span为图文混合类型。|
+| DEFAULT<sup>16+</sup> | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
+
+>  **说明：**
+>
+>  菜单类型的匹配顺序如下。例如，用户长按文本时，根据以下规则查找：
+>  1. 查找是否注册了TextSpanType.TEXT、TextResponseType.LONG_PRESS菜单
+>  2. 查找是否注册了TextSpanType.TEXT、TextResponseType.DEFAULT菜单
+>  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
+>  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
 
 ## TextResponseType<sup>11+</sup>枚举说明
 
@@ -890,14 +899,23 @@ selectedBackgroundColor(color: ResourceColor)
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+| DEFAULT<sup>16+</sup> | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
 
-## TextOverflowOptions<sup>14+</sup>对象说明
+>  **说明：**
+>
+>  菜单类型的匹配顺序如下。例如，用户长按文本时，根据以下规则查找：
+>  1. 查找是否注册了TextSpanType.TEXT、TextResponseType.LONG_PRESS菜单
+>  2. 查找是否注册了TextSpanType.TEXT、TextResponseType.DEFAULT菜单
+>  3. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.LONG_PRESS菜单
+>  4. 查找是否注册了TextSpanType.DEFAULT、TextResponseType.DEFAULT菜单
+
+## TextOverflowOptions<sup>16+</sup>对象说明
 
 文本超长显示方式对象。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1163,12 +1181,12 @@ struct TextExample1 {
 
 ### 示例2（设置文本样式）
 
-该示例通过decoration、letterSpacing、textCase、textShadow属性展示了不同样式的文本效果。
+该示例通过decoration、letterSpacing、textCase、fontFamily、textShadow、fontStyle、textIndent、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
 @Extend(Text)
 function style() {
-  .fontSize(12)
+  .font({ size: 12 })
   .border({ width: 1 })
   .padding(10)
   .width('100%')
@@ -1233,6 +1251,12 @@ struct TextExample2 {
         .textCase(TextCase.UpperCase)
         .style()
 
+      Text('fontFamily').fontSize(9).fontColor(0xCCCCCC)
+      // 设置字体列表
+      Text('This is the text content with fontFamily')
+        .style()
+        .fontFamily('HarmonyOS Sans')
+
       Text('textShadow').fontSize(9).fontColor(0xCCCCCC)
       // 设置文字阴影效果
       Text('textShadow')
@@ -1246,7 +1270,28 @@ struct TextExample2 {
           offsetY: 0
         })
 
-    }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
+      Text('fontStyle').fontSize(9).fontColor(0xCCCCCC)
+      // 设置字体样式
+      Text('This is the text content with fontStyle set to Italic')
+        .style()
+        .fontStyle(FontStyle.Italic)
+      Text('This is the text content with fontStyle set to Normal')
+        .style()
+        .fontStyle(FontStyle.Normal)
+
+      Text('textIndent').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文字缩进
+      Text('This is the text content with textIndent 30')
+        .style()
+        .textIndent(30)
+
+      Text('fontWeight').fontSize(9).fontColor(0xCCCCCC)
+      // 设置文本的字体粗细
+      Text('This is the text content with fontWeight 800')
+        .style()
+        .fontWeight('800', { enableVariableFontWeight: true })
+
+    }.width('100%').padding({ left: 35, right: 35 })
   }
 }
 ```
@@ -1426,7 +1471,7 @@ struct TextExample4 {
 
 ### 示例5（设置文本选中和复制）
 
-该示例通过selection、onCopy接口展示了文本选中以及触发复制回调的效果。
+该示例通过selection、onCopy、draggable、caretColor、selectedBackgroundColor接口展示了文本选中、触发复制回调、设置文本选中可拖拽以及修改手柄和选中颜色的效果。
 
 ```ts
 // xxx.ets
@@ -1450,6 +1495,10 @@ struct TextExample5 {
         .onCopy((value: string) => {
           this.onCopy = value
         })
+        .draggable(true)
+        .caretColor(Color.Red)
+        .selectedBackgroundColor(Color.Grey)
+        .enableHapticFeedback(true)
       Button('Set text selection')
         .margin({left:20})
         .onClick(() => {
@@ -1464,9 +1513,9 @@ struct TextExample5 {
 ```
 ![](figures/textExample5.png)
 
-### 示例6（设置文本自适应）
+### 示例6（设置文本自适应和缩放倍数限制范围）
 
-该示例通过heightAdaptivePolicy属性展示了文本自适应的效果。
+该示例通过heightAdaptivePolicy属性展示文本自适应效果以及通过minFontScale、maxFontScale展示设置字体缩放倍数限制范围。
 
 ```ts
 // xxx.ets
@@ -1496,6 +1545,12 @@ struct TextExample6 {
         .style(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       Text('This is the text with the height adaptive policy set.')
         .style(TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST)
+
+      Text('fontScale').fontSize(9).fontColor(0xCCCCCC)
+      Text('This is the text content with minFontScale set to 1 and maxFontScale set to 1.2')
+        .style(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
+        .minFontScale(1)
+        .maxFontScale(1.2)
     }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
   }
 }

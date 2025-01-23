@@ -728,6 +728,81 @@ A periodic task cannot have dependencies.
 
 Before calling these APIs, ensure that the task is not a periodic task. If you are not sure, capture exceptions.
 
+## 10200054 Asynchronous Queue Task Discarded
+
+**Error Message**
+
+The asyncRunner task discarded.
+
+**Description**
+
+A task within the waiting list of the asynchronous queue is discarded.
+
+**Possible Causes**
+
+When the number of tasks executed by calling [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16) exceeds the capacity of the waiting list, the earliest task in the list is discarded.
+
+**Solution**
+
+1. Increase the capacity of the waiting list.
+2. Locate the cause of slow task execution and check the task execution logic.
+
+## 10200055 Asynchronous Queue Task Canceled
+
+**Error Message**
+
+The asyncRunner task has been canceled.
+
+**Description**
+
+The task in the asynchronous queue is canceled.
+
+**Possible Causes**
+
+The task is canceled when it is pending in the task pool for processing or when it is in the waiting list.
+
+**Solution**
+
+Before canceling a task, ensure that the task has been distributed to the task pool and started for execution. If you are not sure, capture exceptions.
+
+## 10200056 Asynchronous Queue Task Cannot Have Dependencies
+
+**Error Message**
+
+The task has been executed by AsyncRunner.
+
+**Description**
+
+An asynchronous queue task cannot have dependencies.
+
+**Possible Causes**
+
+[removeDependency](../apis-arkts/js-apis-taskpool.md#removedependency11) or [addDependency](js-apis-taskpool.md#adddependency11) is called to remove or add dependencies for an asynchronous queue task.
+
+**Solution**
+
+Before calling these APIs, ensure that the task is not an asynchronous queue task. If you are not sure, capture exceptions.
+
+## 10200057 Task Cannot Be Executed by Two APIs
+
+**Error Message**
+
+The task cannot be executed by two APIs.
+
+**Description**
+
+Asynchronous queue tasks can be executed only by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16), whereas non-asynchronous tasks cannot be executed by [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16).
+
+**Possible Causes**
+
+1. [sequenceRunner.execute](../apis-arkts/js-apis-taskpool.md#execute11), [executeDelayed](../apis-arkts/js-apis-taskpool.md#taskpoolexecutedelayed11), [addTask](../apis-arkts/js-apis-taskpool.md#addtask10-1), [taskpool.execute](../apis-arkts/js-apis-taskpool.md#taskpoolexecute-1), [asyncRunner.execute](../apis-arkts/js-apis-taskpool.md#execute16), [executePeriodically](../apis-arkts/js-apis-taskpool.md#taskpoolexecuteperiodically12), or [addDependency](js-apis-taskpool.md#adddependency11) is called to execute an asynchronous queue task.
+2. [execute](../apis-arkts/js-apis-taskpool.md#execute16) of the asynchronous queue is called again to execute a task that has been executed.
+
+**Solution**
+
+1. When calling these APIs, ensure that the asynchronous queue task will not be executed. If you are not sure, capture exceptions.
+2. When calling [execute](../apis-arkts/js-apis-taskpool.md#execute16) of the asynchronous queue, ensure that the task has not been executed. If you are not sure, capture exceptions.
+
 ## 10200060 Precision Limit Is Exceeded
 
 **Error Message**

@@ -470,7 +470,7 @@ type SoundPool = _SoundPool
 
 | 类型     | 说明                       |
 | -------- | ------------------------------ |
-| [SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
+| [_SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
 
 ## PlayParameters<sup>10+</sup>
 
@@ -482,7 +482,7 @@ type PlayParameters = _PlayParameters
 
 | 类型     | 说明                       |
 | -------- | ------------------------------ |
-| [PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
+| [_PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
 
 ## AVErrorCode<sup>9+</sup>
 
@@ -840,6 +840,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
@@ -881,6 +882,7 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -1567,6 +1569,7 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1622,6 +1625,7 @@ deselectTrack(index: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2532,6 +2536,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit'
 
@@ -2572,6 +2577,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
@@ -4350,6 +4356,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
@@ -7570,6 +7577,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 **示例2：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
@@ -7690,6 +7698,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | audioChannelCount | number                                                       | 否   | 录屏的音频通道数，内录的系统音和外录的麦克风都是用此通道数，默认2声道，仅支持设置1或2声道。 |
 | audioBitrate      | number                                                       | 否   | 录屏的音频比特率，内录的系统音和外录的麦克风都是用此比特率，默认96000。 |
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
+| displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 

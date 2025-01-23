@@ -2623,6 +2623,50 @@ For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md
   }
   ```
 
+### getUnicodeWrappedFilePath<sup>16+</sup>
+
+static getUnicodeWrappedFilePath(path: string, delimiter?: string, locale?: intl.Locale): string
+
+Performs file path mirroring.<br>For example, **/data/out/tmp** is changed to **tmp/out/data/** after mirroring.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                    |
+| ------ | ------ | ---- | ------------------------ |
+| path | string | Yes  | Path to mirror, for example, **/data/out/tmp**.|
+| delimiter | string | No  | Path delimiter. The default value is **/**.|
+| locale | [intl.Locale](./js-apis-intl.md#locale) | No  | **intl.Locale** object. The default value is **new intl.Locale([i18n.System.getSystemLocale()](#getsystemlocale9))**.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001   | Invalid parameter. Possible causes: Parameter verification failed. |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import intl from '@ohos.intl';
+  import i18n from '@ohos.i18n';
+
+  try {
+    let path : string = "/data/out/tmp";
+    let delimiter : string = "/";
+    let locale : intl.Locale = new intl.Locale("ar");
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale);  // mirrorPath:tmp/out/data/
+  } catch(error) {
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
 ## Normalizer<sup>10+</sup>
 
 
