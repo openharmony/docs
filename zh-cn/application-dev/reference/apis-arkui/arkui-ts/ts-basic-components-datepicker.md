@@ -234,6 +234,23 @@ enableHapticFeedback(enable: Optional\<boolean>)
 > ]
 > ``
 
+### digitalCrownSensitivity<sup>16+</sup>
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md##CrownSensitivity)> | 是    | 表冠灵敏度。                     |
+
+>  **说明：**
+>
+>  用于穿戴设备圆形屏幕使用。
+
 ## PickerTextStyle<sup>10+</sup>类型说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
