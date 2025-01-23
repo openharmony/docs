@@ -156,8 +156,6 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 设置工具栏内容。不设置时不显示工具栏。
 
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -462,7 +460,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复 |
+| recoverable  | Optional&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值:false<br/>true:页面栈可恢复。<br/>false:页面栈不可恢复。|
 
 >  **使用说明：**
 >
@@ -484,7 +482,7 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式 |
+| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
 
 ## 事件
 
@@ -1569,8 +1567,8 @@ Navigation首页名字。
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。 <br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## LaunchMode<sup>12+</sup>枚举说明
 
@@ -1729,7 +1727,6 @@ struct NavigationExample {
 
 ```ts
 // Index.ets
-
 @Entry
 @Component
 struct NavigationExample {
@@ -2471,7 +2468,6 @@ export class CustomTransition {
 
 ```ts
 // Index.ets
-
 @Entry
 @Component
 struct NavigationExample {
@@ -2651,7 +2647,6 @@ export struct PageOne {
 ```
 ```ts
 // PageTwo.ets
-
 class resultClass {
   constructor(count: number) {
     this.count = count;
@@ -2953,13 +2948,13 @@ struct NavigationExample1 {
 ```
 ```ts
 // PageOne.ets
-  @Builder
-  export function PageOneBuilder(name: string) {
-    NavDestination() {
-      Text("this is " + name)
-    }
-    .title(name)
+@Builder
+export function PageOneBuilder(name: string) {
+  NavDestination() {
+    Text("this is " + name)
   }
+  .title(name)
+}
 ```
 ```json
 // 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}
