@@ -4200,12 +4200,13 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    async function openCamera(callback: Callback<string>) {
      try {
        let pickerProfile: cameraPicker.PickerProfile = {
-         cameraPosition: camera.CaneraPosition.CAMERA_POSITION_BACK
+         cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
        };
        let pickerResult: cameraPicker.PickerResult = await cameraPicker.pick(mContext,
-         [cameraPicker.PickerMediaType.PHOTO, cameraPicker.PickerMediaType.VIDEO], pickerProFile);
+         [cameraPicker.PickerMediaType.PHOTO, cameraPicker.PickerMediaType.VIDEO], pickerProfile);
        callback(pickerResult.resultUri);
-     } catch (err: BusinessError) {
+     } catch (error) {
+       let err = error as BusinessError;
        console.error(`the pick call failed. error code: ${err.code}`);
      }
    }
