@@ -4186,6 +4186,57 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    }
    ```
 
+3. 拉起相机选择器。
+
+   ```ts
+   // xxx.ets
+   import { webview } from '@kit.ArkWeb';
+   import { cameraPicker, camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+
+   let mContext = getContext(this) as common.Context;
+
+   async function openCamera(callback: Callback<string>) {
+     try {
+       let pickerProfile: cameraPicker.PickerProfile = {
+         cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK
+       };
+       let pickerResult: cameraPicker.PickerResult = await cameraPicker.pick(mContext,
+         [cameraPicker.PickerMediaType.PHOTO, cameraPicker.PickerMediaType.VIDEO], pickerProfile);
+       callback(pickerResult.resultUri);
+     } catch (error) {
+       let err = error as BusinessError;
+       console.error(`the pick call failed. error code: ${err.code}`);
+     }
+   }
+
+   @Entry
+   @Component
+   struct WebComponent {
+     controller: webview.WebviewController = new webview.WebviewController()
+
+     build() {
+       Column() {
+         Web({ src: $rawfile('index.html'), controller: this.controller })
+           .onShowFileSelector((event) => {
+             openCamera((result) => {
+               if (event) {
+                 console.log('Title is ' + event.fileSelector.getTitle());
+                 console.log('Mode is ' + event.fileSelector.getMode());
+                 console.log('Accept types are ' + event.fileSelector.getAcceptType());
+                 console.log('Capture is ' + event.fileSelector.isCapture());
+                 console.log('Mime types are ' + event.fileSelector.getMimeTypes());
+                 event.result.handleFileList([result]);
+               }
+             })
+             return true;
+           })
+       }
+     }
+   }
+   ```
+
    加载的html文件。
    ```html
    <!DOCTYPE html>
@@ -4195,7 +4246,7 @@ onShowFileSelector(callback: Callback\<OnShowFileSelectorEvent, boolean\>)
    </head>
    <body>
      <form id="upload-form" enctype="multipart/form-data">
-       <input type="file" id="upload" name="upload"/>
+       <input type="file" id="upload" name="upload" accept="image/*, video/*"/>
        </form>
    </body>
    </html>
@@ -7768,6 +7819,20 @@ isCapture(): boolean
 | 类型      | 说明           |
 | ------- | ------------ |
 | boolean | 返回是否调用多媒体能力。 |
+
+### getMimeTypes<sup>16+</sup>
+
+getMimeTypes(): Array\<string\>
+
+获取文件MIME类型。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型              | 说明        |
+| --------------- | --------- |
+| Array\<string\> | 返回文件MIME类型。 |
 
 ## HttpAuthHandler<sup>9+</sup>
 
