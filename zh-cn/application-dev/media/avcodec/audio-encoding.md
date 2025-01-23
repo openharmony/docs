@@ -93,7 +93,8 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     AEncBufferSignal *signal_;
     ```
 
-3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。  
+3. 调用OH_AudioCodec_RegisterCallback()注册回调函数。
+
    注册回调函数指针集合OH_AVCodecCallback，包括：
 
    - OH_AVCodecOnError：编码器运行错误。
@@ -102,6 +103,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    - OH_AVCodecOnNewOutputBuffer：运行过程中产生了新的输出数据，即编码完成。
 
    开发者可以通过处理该回调报告的信息，确保编码器正常运转。
+
    > **注意：**
    > 回调中不建议进行耗时操作。
 
@@ -157,7 +159,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
    可选项：最大输入长度。
 
-   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。  
+   flac编码： 需要额外标识兼容性级别(Compliance Level)和采样精度。
    
    各音频编码类型参数范围说明：
    | 音频编码类型 | 采样率(Hz)                                                                       |       声道数       |
@@ -264,8 +266,10 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
 
 7. 调用OH_AudioCodec_PushInputBuffer()，写入待编码器的数据。需开发者填充完整的输入数据后调用。
 
-   每帧样点数(SAMPLES_PER_FRAME)取值：  
-   aac建议使用20ms的PCM样点数，即采样率*0.02。  
+   每帧样点数(SAMPLES_PER_FRAME)取值：
+
+   aac建议使用20ms的PCM样点数，即采样率*0.02。
+
    flac比较特殊，需要根据如下表格进行设置。
 
    | 采样率 | 样点数 |
@@ -309,15 +313,19 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // 异常处理
     }
     ```
-   在上方案例中，attr.flags代表缓冲区标记的类别。  
+   在上方案例中，attr.flags代表缓冲区标记的类别。
+
    如果是结束，需要将flags标识成AVCODEC_BUFFER_FLAGS_EOS。
+
    | 枚举值 | 描述 | 
    | -------- | -------- |
    | AVCODEC_BUFFER_FLAGS_NONE | 表示为普通帧。 | 
    | AVCODEC_BUFFER_FLAGS_EOS | 表示缓冲区是流结束帧。 | 
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | 表示缓冲区包含编解码特定数据。 | 
 
-8. 调用OH_AudioCodec_FreeOutputBuffer()，释放编码后的数据。在取走编码码流后，就应及时调用OH_AudioCodec_FreeOutputBuffer()进行释放。
+8. 调用OH_AudioCodec_FreeOutputBuffer()，释放编码后的数据。
+
+   在取走编码码流后，就应及时调用OH_AudioCodec_FreeOutputBuffer()进行释放。
 
     ```c++
     uint32_t index = signal_->outQueue_.front();
@@ -341,8 +349,11 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 9. （可选）调用OH_AudioCodec_Flush()刷新编码器。
+
    调用OH_AudioCodec_Flush()后，编码器处于Flush状态，会将当前编码队列清空。
+
    此时需要调用OH_AudioCodec_Start()重新开始编码。
+
    使用情况：
 
    * 在文件EOS之后，需要调用刷新。
@@ -362,6 +373,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 10. （可选）调用OH_AudioCodec_Reset()重置编码器。
+
     调用OH_AudioCodec_Reset()后，编码器回到初始化的状态，需要调用OH_AudioCodec_Configure()重新配置，然后调用OH_AudioCodec_Start()重新开始编码。
 
     ```c++
@@ -377,7 +389,9 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     }
     ```
 
-11. 调用OH_AudioCodec_Stop()停止编码器。停止后，可以通过Start重新进入已启动状态（started），但需要注意的是，如果编码器之前已输入数据，则需要重新输入编码器数据。
+11. 调用OH_AudioCodec_Stop()停止编码器。
+
+    停止后，可以通过Start重新进入已启动状态（started），但需要注意的是，如果编码器之前已输入数据，则需要重新输入编码器数据。
 
     ```c++
     // 终止编码器 audioEnc_

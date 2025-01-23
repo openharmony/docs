@@ -37,7 +37,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 ### 开发步骤
 
-参考以下示例代码，完成音视频封装的全流程。以封装mp4格式的音视频文件为例。  
+参考以下示例代码，完成音视频封装的全流程。以封装mp4格式的音视频文件为例。
 
 不同的封装格式需要配置的key请参考[AVCodec支持的格式](avcodec-support-formats.md#媒体数据封装)。
 
@@ -195,7 +195,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-9. 调用OH_AVMuxer_WriteSampleBuffer()，写入封装数据。封装数据包括视频、音频、封面等数据。
+9. 调用OH_AVMuxer_WriteSampleBuffer()，写入封装数据。
+
+   封装数据包括视频、音频、封面等数据。
 
    ```c++
    // start后，才能开始写入数据
@@ -229,7 +231,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-11. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。注意不能重复销毁，否则将会导致程序崩溃。
+11. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
+
+    注意不能重复销毁，否则将会导致程序崩溃。
 
     ```c++
     if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
