@@ -325,6 +325,7 @@ struct RectExample {
           .fill(Color.Pink)
           .stroke(Color.Transparent)
       }.width('100%').margin({ top: 10 })
+
       // 绘制90% * 50矩形, 左上圆角宽高40,右上圆角宽高20,右下圆角宽高40,左下圆角宽高20
       Rect({ width: '90%', height: 80 })
         .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
