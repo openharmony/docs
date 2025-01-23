@@ -580,10 +580,10 @@ orientation(orientation: ImageRotateOrientation)
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
+|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
+|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
+|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
 
