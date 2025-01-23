@@ -615,7 +615,9 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。
+绑定该事件的网格元素可作为拖拽释放目标，当GridItem停止拖拽时触发。
+
+当拖拽释放位置在网格元素之内时，isSuccess会返回true；在网格元素之外时，isSuccess会返回false。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
