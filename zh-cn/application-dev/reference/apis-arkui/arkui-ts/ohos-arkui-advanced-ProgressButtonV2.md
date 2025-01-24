@@ -116,12 +116,6 @@ struct Index {
   @Local isRunning: boolean = false;
   @Local enableState: boolean = true;
   @Local value: number = 0;
-  @Local colorOptions: ProgressButtonV2Color = new ProgressButtonV2Color({
-    progressColor: ColorMetrics.resourceColor(Color.Red),
-    borderColor: ColorMetrics.resourceColor(Color.Red),
-    textColor: ColorMetrics.resourceColor(Color.Red),
-    backgroundColor: ColorMetrics.resourceColor(Color.Red)
-  });
 
   build() {
     Column() {
@@ -132,7 +126,6 @@ struct Index {
             progressButtonWidth: this.ButtonWidth,
             content: this.textState,
             isEnabled: this.enableState,
-            colorOptions: this.colorOptions,
             onClicked: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
                 this.textState = '继续';
