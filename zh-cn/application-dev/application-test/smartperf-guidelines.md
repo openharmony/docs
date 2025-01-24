@@ -772,7 +772,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     | arktsHeapPss      | 使用的arkts内存大小。    |单位：KB|
     | nativeHeapPss     | 使用的native内存大小。   |单位：KB|
     | stackPss          | 使用的栈内存大小。       |单位：KB|
-    | timeStamp         | 当前时间戳。            |对应采集时间。| 
+    | timeStamp         | 当前时间戳。            |对应采集时间| 
     <!--RP6--><!--RP6End-->
 
 ### 场景化采集
