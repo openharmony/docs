@@ -272,7 +272,7 @@ onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
 | 参数名   | 类型                                                    | 必填 | 说明             |
 | -------- | ------------------------------------------------------- | ---- | ---------------- |
-| callback | [OnCheckboxChangeCallback](#oncheckboxchangecallback14) | 是   | 返回选中的状态。 |
+| callback | [OnCheckboxChangeCallback](#oncheckboxchangecallback16) | 是   | 返回选中的状态。 |
 
 ### onChange<sup>16+</sup>
 
@@ -290,17 +290,17 @@ onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback14)> | 是   | 返回选中的状态。<br/>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback16)> | 是   | 返回选中的状态。<br/>当callback的值为undefined时，不使用回调函数。 |
 
-## OnCheckboxChangeCallback<sup>14+</sup>
+## OnCheckboxChangeCallback<sup>16+</sup>
 
 type OnCheckboxChangeCallback  = (value: boolean) => void
 
 选中的状态。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
