@@ -200,7 +200,7 @@ Insufficient memory.
 
 **错误描述**
 
-libusb在做内存申请时无内存可用，libusb单次最大传输数据为1kb。
+libusb在做内存申请时无内存可用，libusb单次传输，数据大小最大为1kb。
 
 **处理步骤**
 

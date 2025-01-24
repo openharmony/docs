@@ -756,8 +756,6 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
 
 以下错误码的详细介绍请参见[USB服务错误码](errorcode-usb.md)。
 
-注：本接口错误码返回分为两部分，一部分为返回值中直接返回，一部分为通过callback抓取。
-
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
@@ -1436,11 +1434,11 @@ Usb异步传输回调。
 | ---------- | ------ | ----- |
 | actualLength | number | 读写操作的实际长度值 |
 | status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息（仅实时传输时有返回值） |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息 |
 
 ## UsbTransferStatus<sup>16+</sup>
 
-libusb实际处理完成后的传输状态码。
+libusb实际处理完成后通过回调返回的状态码。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1465,4 +1463,4 @@ libusb实际处理完成后的传输状态码。
 | ---------- | ------ | ----- |
 | length | number | 读写操作的期望长度值 |
 | actualLength | number| 读写操作的实际长度值 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的传输状态 |
+| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码 |
