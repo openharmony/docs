@@ -1628,7 +1628,7 @@ class TestObj {
   constructor() {
   }
 
-  test(testStr:string): string {
+  test(testStr: string): string {
     console.log('Web Component str' + testStr);
     return testStr;
   }
@@ -1637,12 +1637,12 @@ class TestObj {
     console.log('Web Component toString');
   }
 
-  testNumber(testNum:number): number {
+  testNumber(testNum: number): number {
     console.log('Web Component number' + testNum);
     return testNum;
   }
 
-  asyncTestBool(testBol:boolean): void {
+  asyncTestBool(testBol: boolean): void {
     console.log('Web Component boolean' + testBol);
   }
 }
@@ -1695,8 +1695,11 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
+            // 同时注册同步和异步函数
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
+            // 仅注册同步函数
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            // 仅注册异步函数
             this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
