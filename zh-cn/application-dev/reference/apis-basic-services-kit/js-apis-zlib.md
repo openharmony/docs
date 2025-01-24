@@ -2380,7 +2380,9 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-**示例：**参考[inflateBack](#inflateback12)
+**示例：**
+
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBackEnd<sup>12+</sup>
 
@@ -2413,7 +2415,9 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-**示例：**参考[inflateBack](#inflateback12)
+**示例：**
+
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBack<sup>12+</sup>
 
