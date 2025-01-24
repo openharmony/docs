@@ -5493,7 +5493,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 参数名 | 类型                          | 必填 | 说明                   |
 | ------ | ----------------------------- | ---- | ---------------------- |
 | format | string                        | 是   | 格式化描述符和纯文本。 |
-| args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
+| ...args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
 
 **返回值：**
 
