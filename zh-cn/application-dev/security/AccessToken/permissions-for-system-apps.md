@@ -3821,30 +3821,6 @@
 
 **起始版本**：12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-允许系统应用配置防火墙规则。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.GET_NET_FIREWALL
-
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 允许系统应用拉起用户凭据录入控件。
@@ -4330,6 +4306,18 @@
 允许应用发起录屏的时候，不弹出隐私授权弹窗。
 
 **权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.SEND_REMOTE_MESSAGE
+
+允许应用通过Push服务发送远程消息。
+
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

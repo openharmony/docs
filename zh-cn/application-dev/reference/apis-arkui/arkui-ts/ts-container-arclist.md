@@ -84,7 +84,7 @@ space(space: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                               |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
-| space  | [Optional&lt;LengthMetrics&gt;](ts-types.md#lengthmetrics12) | 否   | 列表子项之间的间距。<br/>默认值：0 |
+| space  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 列表子项之间的间距。<br/>默认值：0 |
 
 ### scrollBar
 
@@ -186,7 +186,7 @@ scrollBarWidth(width: Optional\<LengthMetrics>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| width  | [Optional&lt;LengthMetrics&gt;](ts-types.md#lengthmetrics12) | 是   | 滚动条的宽度。<br/>默认值：24<br/>最小值：4<br />单位：vp |
+| width  | [Optional&lt;LengthMetrics&gt;](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 滚动条的宽度。<br/>默认值：24<br/>最小值：4<br />单位：vp |
 
 ### scrollBarColor
 

@@ -49,7 +49,7 @@ The asset already exists.
 请先确认写入同别名的关键资产是否符合预期，如果不符合需排查别名是否错误，如果符合则可通过以下任意一种方式处理：
 
 1. 先调用[asset.remove](js-apis-asset.md#assetremove)删除同别名的关键资产，再调用[asset.add](js-apis-asset.md#assetadd)重新写入。
-2. 调用[asset.add](js-apis-asset.md#assetadd)时，指定参数asset.Tag.CONFLICT_RESOLUTION的值为asset.ConflictResolution.OVERWRITE
+2. 调用[asset.add](js-apis-asset.md#assetadd)时，指定参数asset.Tag.CONFLICT_RESOLUTION的值为asset.ConflictResolution.OVERWRITE。
 
 ## 24000004 拒绝访问关键资产
 
