@@ -149,7 +149,7 @@ textStyle(value: PickerTextStyle)
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
+设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -181,7 +181,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持。
+设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -213,7 +213,7 @@ loop(value: boolean)
 
 loop(isLoop: Optional\<boolean>)
 
-设置是否启用循环模式。与[loop<sup>11+</sup>](#loop11)相比，isLoop参数新增了对undefined类型的支持。
+设置是否启用循环模式。与[loop](#loop11)<sup>11+</sup>相比，isLoop参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -275,7 +275,7 @@ enableHapticFeedback(enable: boolean)
 
 enableHapticFeedback(enable: Optional\<boolean>)
 
-设置是否支持触控反馈。与[enableHapticFeedback<sup>12+</sup>](#enablehapticfeedback12)相比，enable参数新增了对undefined类型的支持。
+设置是否支持触控反馈。与[enableHapticFeedback](#enablehapticfeedback12)<sup>12+</sup>相比，enable参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -350,7 +350,7 @@ onChange(callback: Optional\<OnTimePickerChangeCallback>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback16)> | 是   | 选择时间时触发该回调。<br/>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTimePickerChangeCallback](#ontimepickerchangecallback16)> | 是   | 选择时间时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ### onEnterSelectedArea<sup>16+</sup>
 
