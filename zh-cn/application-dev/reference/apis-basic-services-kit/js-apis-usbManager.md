@@ -849,7 +849,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
 | 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
-| 14400011 | Entity not found. has been canceled(cancel has been completed). |
+| 14400011 | If the transfer is not in progress, already complete, or already cancelled.  |
 
 **返回值：**
 

@@ -224,7 +224,7 @@ libusb库无法识别的错误。
 
 **错误信息**
 
-Entity not found. has been canceled(cancel has been completed).
+If the transfer is not in progress, already complete, or already cancelled. 
 
 **错误描述**
 
