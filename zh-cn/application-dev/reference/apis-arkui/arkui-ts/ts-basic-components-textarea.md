@@ -861,6 +861,22 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: KeyboardAppearance)
+
+设置输入框拉起的键盘样式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
 ### stopBackPress<sup>16+</sup>
 
 stopBackPress(isStopped: boolean)
