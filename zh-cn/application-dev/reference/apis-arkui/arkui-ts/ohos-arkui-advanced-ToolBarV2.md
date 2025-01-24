@@ -19,7 +19,7 @@ import { ToolBarV2 } from '@kit.ArkUI';
 
 
 ## ToolBarV2
-工具栏
+工具栏。
 
 ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifier: DividerModifier, toolBarModifier: ToolBarV2Modifier})
 
@@ -29,12 +29,12 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 类型                                                               | 必填 | 装饰器类型               | 说明                                                     |
-| -------------------- | ---------------------------------------------------------------- | -- |---------------------|--------------------------------------------------------|
-| toolBarList          | [ToolBarV2Item](#toolbarv2item)\[]                               | 是  | @Param<br/>@Require | 工具栏列表。                                                 |
-| activatedIndex       | number                                                           | 否  | @Param              | 激活态的子项。<br />默认值：-1，即无工具栏子项为激活态<br />取值范围：-1到4。        |
-| dividerModifier<sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否  | @Param              | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br />默认不生效                    |
-| toolBarModifier<sup> | [ToolBarV2Modifier](#toolbarv2modifier)                          | 否  | @Param              | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br />默认不生效 |
+| 名称                   | 类型                                                               | 必填 | 装饰器类型               | 说明                                                           |
+| -------------------- | ---------------------------------------------------------------- | -- |---------------------|--------------------------------------------------------------|
+| toolBarList          | [ToolBarV2Item](#toolbarv2item)\[]                               | 是  | @Param<br/>@Require | 工具栏列表。                                                       |
+| activatedIndex       | number                                                           | 否  | @Param              | 激活态的子项。<br ></div>默认值：-1，即无工具栏子项为激活态。<br />取值范围：[-1,4]。      |
+| dividerModifier<sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | 否  | @Param              | 工具栏头部分割线属性，可设置分割线高度、颜色等。<br />默认不生效。                         |
+| toolBarModifier<sup> | [ToolBarV2Modifier](#toolbarv2modifier)                          | 否  | @Param              | 工具栏属性，可设置工具栏高度、背景色、内边距（仅在工具栏子项数量小于5时生效）、是否显示按压态。<br />默认不生效。 |
 
 ## ToolBarV2Item
 定义工具栏子项。
@@ -48,12 +48,12 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 | 名称                           | 类型                                              | 必填 | 装饰器类型  | 说明                                                                                                                                                                                                        |
 | ---------------------------- | ----------------------------------------------- | -- | :----- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | content                      | [ToolBarV2ItemText](#toolbarv2itemtext)         | 是  | @Trace | 工具栏子项的文本。                                                                                                                                                                                                 |
-| action                       | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | @Trace | 工具栏子项点击事件。 <br />默认无点击事件                                                                                                                                                                                  |
-| icon                         | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | @Trace | 工具栏子项的图标。<br />默认不显示图标                                                                                                                                                                                    |
+| action                       | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | @Trace | 工具栏子项点击事件。 <br ></div>默认无点击事件。                                                                                                                                                                                  |
+| icon                         | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | @Trace | 工具栏子项的图标。<br ></div>默认不显示图标。                                                                                                                                                                                    |
 | state                        | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | @Trace | 工具栏子项的状态。<br />默认为ENABLE。<br />                                                                                                                                                                           |
-| accessibilityText     | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br />默认值为当前项content属性内容。<br />默认值为当前项content属性内容。             |
+| accessibilityText     | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br ></div>默认值为当前项content属性内容。             |
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | @Trace | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值：“单指双击即可执行”。              |
-| accessibilityLevel  | string                                          | 否  | @Trace | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br />支持的值为：<br />"auto"：当前组件会转换'yes'。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"。<br /> |
+| accessibilityLevel  | string                                          | 否  | @Trace | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br ></div>支持的值为：<br />"auto"：当前组件会转换"yes"。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"。<br /> |
 
 ### constructor
 
@@ -80,8 +80,8 @@ ToolBarV2Item的构造函数。
 | 属性                       | 类型                                              | 必填 | 说明                                                                                                                                                                                                             |
 |:-------------------------| :---------------------------------------------- | :- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | content                  | [ToolBarV2ItemText](#toolbarv2itemtext)         | 是  | 工具栏子项的文本。                                                                                                                                                                                                      |
-| action                   | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | 工具栏子项点击事件。<br />默认无点击事件                                                                                                                                                                                        |
-| icon                     | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | 工具栏子项的图标。<br />默认不显示图标                                                                                                                                                                                         |
+| action                   | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | 工具栏子项点击事件。<br />默认无点击事件。                                                                                                                                                                                       |
+| icon                     | [ToolBarV2ItemIconType](#toolbarv2itemicontype) | 否  | 工具栏子项的图标。<br />默认不显示图标。                                                                                                                                                                                        |
 | state                    | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | 工具栏子项的状态。<br />默认为ENABLE。<br />                                                                                                                                                                                |
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr)          | 否  | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br />默认值为当前项content属性内容。<br />                                     |
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值为“单指双击即可执行”。                   |
