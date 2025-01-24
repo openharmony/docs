@@ -118,7 +118,7 @@ openCertificateManagerDialog(context: common.Context, pageType: CertificateDialo
 
 **示例**：
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
@@ -181,7 +181,7 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 **示例**：
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
@@ -250,7 +250,7 @@ openUninstallCertificateDialog(context: common.Context, certType: CertificateTyp
 
 **示例**：
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
@@ -313,7 +313,7 @@ openCertificateDetailDialog(context: common.Context, cert: Uint8Array, property:
 
 **示例**：
 ```ts
-import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { certificateManagerDialog } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
