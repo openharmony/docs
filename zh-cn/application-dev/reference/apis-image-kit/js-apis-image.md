@@ -3807,6 +3807,9 @@ YUV和RGB类型互转，目前仅支持NV12/NV21与RGB888/RGBA8888/RGB565/BGRA88
 
 从API16开始，可用于ASTC_4x4类型转为RGBA_8888类型，目前仅支持ASTC_4x4转为RGBA_8888。
 
+> **注意：**
+> ASTC_4x4类型转为RGBA_8888类型的建议使用场景，仅在ASTC_4x4格式需要做像素访问时，其他场景下使用ASTC_4x4反解为RGBA_8888时延较高，不推荐使用。
+
 **系统能力：** SystemCapability.Multimedia.Image.Core
 
 **参数：**
