@@ -1045,15 +1045,15 @@ enableHapticFeedback(isEnabled: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 说明               |
-| ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Send                   | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Next                   | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| 名称                   | 值 | 说明               |
+| ---------------------- | --- | ------------------ |
+| Go                     | 2 | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| Search                 | 3 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| Send                   | 4 | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| Next                   | 5 | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Done                   | 6 | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| PREVIOUS<sup>11+</sup> | 7 | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NEW_LINE<sup>11+</sup> | 8 | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 
 ## 事件
@@ -1461,7 +1461,7 @@ struct TextInputExample {
         .showPassword(this.passwordState)
         .onSecurityStateChange(((isShowPassword: boolean) => {
           // 更新密码显示状态
-          console.info('isShowPassword',isShowPassword)
+          console.info('isShowPassword', isShowPassword)
           this.passwordState = isShowPassword
         }))
       // 邮箱地址自动填充类型
@@ -1490,16 +1490,18 @@ struct TextInputExample {
 该示例通过showUnderline、showError、showUnit、passwordIcon属性展示了下划线在不同场景的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne')
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
-  @State textError: string = ''
-  @State text: string = ''
-  @State nameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.ImageOne');
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo');
+  @State textError: string = '';
+  @State text: string = '';
+  @State nameText: string = 'test';
 
-  @Builder itemEnd() {
+  @Builder
+  itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
       { value: 'GB' },
@@ -1514,9 +1516,14 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
+      .responseRegion({
+        height: "40vp",
+        width: "80%",
+        x: '10%',
+        y: '6vp'
+      })
       .onSelect((index: number) => {
-        console.info('Select:' + index)
+        console.info('Select:' + index);
       })
   }
 
@@ -1548,12 +1555,12 @@ struct TextInputExample {
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
           if (this.text == this.nameText) {
-            this.textError = ''
+            this.textError = '';
           } else {
-            this.textError = '用户名输入错误'
-            this.text = ''
+            this.textError = '用户名输入错误';
+            this.text = '';
             // 调用keepEditableState方法，输入框保持编辑态
-            event.keepEditableState()
+            event.keepEditableState();
           }
         })
       // 设置下划线颜色
@@ -1587,22 +1594,23 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State inputValue: string = ""
+  controller: TextInputController = new TextInputController();
+  @State inputValue: string = "";
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Button('x').onClick(() => {
         // 关闭自定义键盘
-        this.controller.stopEditing()
+        this.controller.stopEditing();
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1612,8 +1620,7 @@ struct TextInputExample {
 
   build() {
     Column() {
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
+      TextInput({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
@@ -1631,8 +1638,8 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1643,12 +1650,12 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.icon'),
+            src: $r('app.media.app_icon'),
             color: Color.Blue
           }
         })
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }
   }
@@ -1666,8 +1673,8 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1677,12 +1684,12 @@ struct TextInputExample {
         .height(56)
         .maxLength(6)
         .showUnderline(true)
-		.showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
-		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
-        //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
-        //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+        .showCounter(true,
+          { thresholdPercentage: 50, highlightBorder: true })//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
+          //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
+          //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1697,33 +1704,34 @@ struct TextInputExample {
 该示例通过onChange回调实现了电话号码格式化为XXX XXXX XXXX的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State submitValue: string = ''
-  @State text: string = ''
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
-  @State teleNumberNoSpace: string = ""
-  @State nextCaret: number = -1 // 用于记录下次光标设置的位置
-  @State actualCh: number = -1 // 用于记录光标在第i个数字后插入或者第i个数字前删除
-  @State lastCaretPosition: number = 0
-  @State lastCaretPositionEnd: number = 0
-  controller: TextInputController = new TextInputController()
+  @State submitValue: string = '';
+  @State text: string = '';
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
+  @State teleNumberNoSpace: string = "";
+  @State nextCaret: number = -1; // 用于记录下次光标设置的位置
+  @State actualCh: number = -1; // 用于记录光标在第i个数字后插入或者第i个数字前删除
+  @State lastCaretPosition: number = 0;
+  @State lastCaretPositionEnd: number = 0;
+  controller: TextInputController = new TextInputController();
 
   isEmpty(str?: string): boolean {
-    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str)
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
   }
 
   checkNeedNumberSpace(numText: string) {
-    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g')
-    let isRule: RegExp = new RegExp('^\\+.*')
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
+    let isRule: RegExp = new RegExp('^\\+.*');
 
     if (isSpace.test(numText)) {
       // 如果电话号码里有特殊字符，就不加空格
       if (isRule.test(numText)) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     }
     return true;
@@ -1731,61 +1739,61 @@ struct TextInputExample {
 
   removeSpace(str: string): string {
     if (this.isEmpty(str)) {
-      return ''
+      return '';
     }
-    return str.replace(new RegExp("[\\s]", "g"), '')
+    return str.replace(new RegExp("[\\s]", "g"), '');
   }
 
   setCaret() {
     if (this.nextCaret != -1) {
-      console.log("to keep caret position right, change caret to", this.nextCaret)
-      this.controller.caretPosition(this.nextCaret)
-      this.nextCaret = -1
+      console.log("to keep caret position right, change caret to", this.nextCaret);
+      this.controller.caretPosition(this.nextCaret);
+      this.nextCaret = -1;
     }
   }
 
   calcCaretPosition(nextText: string) {
-    let befNumberNoSpace: string = this.removeSpace(this.text)
-    this.actualCh = 0
+    let befNumberNoSpace: string = this.removeSpace(this.text);
+    this.actualCh = 0;
     if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
       for (let i = 0; i < this.lastCaretPosition; i++) {
         if (this.text[i] != ' ') {
-          this.actualCh += 1
+          this.actualCh += 1;
         }
       }
-      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length
-      console.log("actualCh: " + this.actualCh)
+      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
+      console.log("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
-          this.actualCh -= 1
+          this.actualCh -= 1;
           if (this.actualCh <= 0) {
-            this.nextCaret = i + 1
+            this.nextCaret = i + 1;
             break;
           }
         }
       }
     } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
-        console.log("Caret at last, no need to change")
+        console.log("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
         // 按键盘上回退键一个一个删的情况
         for (let i = this.lastCaretPosition; i < this.text.length; i++) {
           if (this.text[i] != ' ') {
-            this.actualCh += 1
+            this.actualCh += 1;
           }
         }
         for (let i = nextText.length - 1; i >= 0; i--) {
           if (nextText[i] != ' ') {
-            this.actualCh -= 1
+            this.actualCh -= 1;
             if (this.actualCh <= 0) {
-              this.nextCaret = i
+              this.nextCaret = i;
               break;
             }
           }
         }
       } else {
         // 剪切/手柄选择 一次删多个字符
-        this.nextCaret = this.lastCaretPosition // 保持光标位置
+        this.nextCaret = this.lastCaretPosition; // 保持光标位置
       }
     }
   }
@@ -1796,39 +1804,39 @@ struct TextInputExample {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((number: string) => {
             this.teleNumberNoSpace = this.removeSpace(number);
-            let nextText: string = ""
+            let nextText: string = "";
             if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              nextText = this.teleNumberNoSpace
+              nextText = this.teleNumberNoSpace;
             } else if (this.checkNeedNumberSpace(number)) {
               if (this.teleNumberNoSpace.length <= 3) {
-                nextText = this.teleNumberNoSpace
+                nextText = this.teleNumberNoSpace;
               } else {
-                let split1: string = this.teleNumberNoSpace.substring(0, 3)
-                let split2: string = this.teleNumberNoSpace.substring(3)
-                nextText = split1 + ' ' + split2
+                let split1: string = this.teleNumberNoSpace.substring(0, 3);
+                let split2: string = this.teleNumberNoSpace.substring(3);
+                nextText = split1 + ' ' + split2;
                 if (this.teleNumberNoSpace.length > 7) {
-                  split2 = this.teleNumberNoSpace.substring(3, 7)
-                  let split3: string = this.teleNumberNoSpace.substring(7)
-                  nextText = split1 + ' ' + split2 + ' ' + split3
+                  split2 = this.teleNumberNoSpace.substring(3, 7);
+                  let split3: string = this.teleNumberNoSpace.substring(7);
+                  nextText = split1 + ' ' + split2 + ' ' + split3;
                 }
               }
             } else {
-              nextText = number
+              nextText = number;
             }
-            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number)
+            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number);
             if (this.text === nextText && nextText === number) {
               // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
-              this.setCaret()
+              this.setCaret();
             } else {
-              this.calcCaretPosition(nextText)
+              this.calcCaretPosition(nextText);
             }
-            this.text = nextText
+            this.text = nextText;
           })
           .onTextSelectionChange((selectionStart, selectionEnd) => {
             // 记录光标位置
-            console.log("selection change: ", selectionStart, selectionEnd)
-            this.lastCaretPosition = selectionStart
-            this.lastCaretPositionEnd = selectionEnd
+            console.log("selection change: ", selectionStart, selectionEnd);
+            this.lastCaretPosition = selectionStart;
+            this.lastCaretPositionEnd = selectionEnd;
           })
       }
     }
@@ -1848,50 +1856,62 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
+  @State textStrEn: string =
+    'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.';
+  @State textStrZn: string =
+    '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。';
+
   build() {
-    Column() {
-      Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline) // Inline模式
-        .wordBreak(WordBreak.NORMAL) // 非Inline模式该属性无效
+    Row() {
+      Column() {
+        Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)// Inline模式
+          .wordBreak(WordBreak.NORMAL) // 非Inline模式该属性无效
 
-      Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
+        Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_ALL)
 
-      Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
+        Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrZn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_ALL)
 
-      Text("TextInput为inline模式，WordBreakType属性为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_WORD)
-    }
+        Text("TextInput为inline模式，WordBreakType属性为BREAK_WORD的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_WORD)
+      }.width('100%')
+    }.height('100%').margin(10)
   }
 }
 ```
-![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
+![TextInputWordBreak](figures/TextInputWordBreak.png)
 
 ### 示例8（设置文本样式）
 
 该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -1899,31 +1919,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'lineHeight unset'})
+        TextInput({ text: 'lineHeight unset' })
           .border({ width: 1 }).padding(10).margin(5)
-        TextInput({text: 'lineHeight 15'})
+        TextInput({ text: 'lineHeight 15' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextInput({text: 'lineHeight 30'})
+        TextInput({ text: 'lineHeight 30' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
 
         Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'letterSpacing 0'})
+        TextInput({ text: 'letterSpacing 0' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextInput({text: 'letterSpacing 3'})
+        TextInput({ text: 'letterSpacing 3' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextInput({text: 'letterSpacing -1'})
+        TextInput({ text: 'letterSpacing -1' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
 
         Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'LineThrough, Red'})
+        TextInput({ text: 'LineThrough, Red' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextInput({text: 'Overline, Red, DASHED'})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+        TextInput({ text: 'Overline, Red, DASHED' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED})
-        TextInput({text: 'Underline, Red, WAVY'})
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED })
+        TextInput({ text: 'Underline, Red, WAVY' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
       }.height('90%')
     }
     .width('90%')
@@ -1939,11 +1959,12 @@ struct TextInputExample {
 该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
+  @State text1: string = 'This is ss01 on : 0123456789';
+  @State text2: string = 'This is ss01 off: 0123456789';
 
   build() {
     Column() {
@@ -1969,13 +1990,14 @@ struct TextInputExample {
 该示例通过自定义键盘实现了键盘避让的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State inputValue: string = ""
-  @State height1: string | number = '80%'
-  @State supportAvoidance: boolean = true
+  controller: TextInputController = new TextInputController();
+  @State inputValue: string = "";
+  @State height1: string | number = '80%';
+  @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
   @Builder
@@ -1984,7 +2006,7 @@ struct TextInputExample {
       Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
-          this.controller.stopEditing()
+          this.controller.stopEditing();
         }).margin(10)
       }
 
@@ -1993,7 +2015,7 @@ struct TextInputExample {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -2007,13 +2029,13 @@ struct TextInputExample {
         Button("20%")
           .fontSize(24)
           .onClick(() => {
-            this.height1 = "20%"
+            this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
           .margin({ left: 20 })
           .onClick(() => {
-            this.height1 = "80%"
+            this.height1 = "80%";
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -2039,6 +2061,7 @@ struct TextInputExample {
 该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性实现了文本自适应字号的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -2090,16 +2113,18 @@ struct TextInputExample {
 该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State lineBreakStrategyIndex: number = 0
-  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State lineBreakStrategyIndex: number = 0;
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
@@ -2114,9 +2139,9 @@ struct TextInputExample {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
         Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
-          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+          this.lineBreakStrategyIndex++;
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }
@@ -2134,11 +2159,11 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State insertValue: string = ""
-  @State deleteValue: string = ""
-  @State insertOffset: number = 0
-  @State deleteOffset: number = 0
-  @State deleteDirection: number = 0
+  @State insertValue: string = "";
+  @State deleteValue: string = "";
+  @State insertOffset: number = 0;
+  @State deleteOffset: number = 0;
+  @State deleteDirection: number = 0;
 
   build() {
     Row() {
@@ -2146,11 +2171,11 @@ struct TextInputExample {
         TextInput({ text: "TextInput支持插入回调文本" })
           .height(60)
           .onWillInsert((info: InsertValue) => {
-            this.insertValue = info.insertValue
+            this.insertValue = info.insertValue;
             return true;
           })
           .onDidInsert((info: InsertValue) => {
-            this.insertOffset = info.insertOffset
+            this.insertOffset = info.insertOffset;
           })
 
         Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
@@ -2158,13 +2183,13 @@ struct TextInputExample {
         TextInput({ text: "TextInput支持删除回调文本b" })
           .height(60)
           .onWillDelete((info: DeleteValue) => {
-            this.deleteValue = info.deleteValue
-            info.direction
+            this.deleteValue = info.deleteValue;
+            info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
-            this.deleteOffset = info.deleteOffset
-            this.deleteDirection = info.direction
+            this.deleteOffset = info.deleteOffset;
+            this.deleteDirection = info.direction;
           })
 
         Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
@@ -2194,30 +2219,30 @@ struct TextInputExample {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
+    return false;
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
