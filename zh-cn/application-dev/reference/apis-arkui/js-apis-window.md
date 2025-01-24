@@ -84,7 +84,7 @@ import { window } from '@kit.ArkUI';
 
 ## StatusBarProperty<sup>16+</sup>
 
-状态栏的属性。
+状态栏的属性。在获取状态栏属性信息时返回。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -92,7 +92,7 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明 |
 | ------------------------------------- | -------- | ---- |------- |
-| contentColor     | string   |  是   | 状态栏文字颜色，如：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式`#AARRGGBB`，如：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -2700,7 +2700,7 @@ setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
 设置状态栏的颜色，使用Promise异步回调。
 
-子窗口调用后不生效。
+子窗口不支持设置状态栏颜色，调用无效果。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2710,13 +2710,13 @@ setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| color | [ColorMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V13/js-apis-arkui-graphics-V13#colormetrics12) | 是   | 欲设置的颜色值。 |
+| color | [ColorMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V13/js-apis-arkui-graphics-V13#colormetrics12) | 是   | 欲设置的状态栏颜色值。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -2768,7 +2768,7 @@ export default class EntryAbility extends UIAbility {
 
 getStatusBarProperty(): StatusBarProperty
 
-主窗口获取状态栏的属性。
+主窗口获取状态栏的属性，如状态栏颜色。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2778,11 +2778,11 @@ getStatusBarProperty(): StatusBarProperty
 
 | 类型 | 说明 |
 | ------------------------------------- | ------------- |
-| [StatusBarProperty](#statusbarproperty16) | 当前状态栏属性。 |
+| [StatusBarProperty](#statusbarproperty16) | 当前状态栏属性，如状态栏颜色。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
@@ -5054,7 +5054,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 setWindowBackgroundColor(colorMetrics: ColorMetrics): void
 
-设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+设置窗口的背景色。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
