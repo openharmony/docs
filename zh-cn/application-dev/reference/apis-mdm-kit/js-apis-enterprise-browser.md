@@ -20,7 +20,7 @@ import { browser } from '@kit.MDMKit';
 
 setPolicySync(admin: Want, appId: string, policyName: string, policyValue: string): void
 
-指定设备管理应用为指定的浏览器设置浏览器子策略。
+为指定的浏览器设置浏览器子策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BROWSER_POLICY
 
@@ -30,7 +30,7 @@ setPolicySync(admin: Want, appId: string, policyName: string, policyValue: strin
 
 | 参数名      | 类型                                                    | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appId       | string                                                  | 是   | 应用ID，用于指定浏览器。                                     |
 | policyName  | string                                                  | 是   | 浏览器子策略名。当此值为空字符串时，表示设置应用ID对应的浏览器策略。 |
 | policyValue | string                                                  | 是   | 浏览器子策略值。当此值为空字符串时，表示取消浏览器策略名对应浏览器子策略。 |
@@ -54,7 +54,9 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 let policyName: string = 'InsecurePrivateNetworkRequestsAllowed';
 let policyValue: string = '{"level":"mandatory","scope":"machine","source":"platform","value":true}';
 
@@ -79,7 +81,7 @@ getPoliciesSync(admin: Want, appId: string): string
 
 | 参数名 | 类型                                                    | 必填 | 说明                     |
 | ------ | ------------------------------------------------------- | ---- | ------------------------ |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。           |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。           |
 | appId  | string                                                  | 是   | 应用ID，用于指定浏览器。 |
 
 **返回值：**
@@ -105,7 +107,9 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appId: string = 'com.example.myapplication';
+
+// 此处参数appId的赋值应替换为开发者自己指定的浏览器的应用ID
+let appId: string = 'com.example.******_******/******5t5CoBM=';
 
 try {
   let result: string = browser.getPoliciesSync(wantTemp, appId);

@@ -21,7 +21,7 @@ import { applicationManager } from '@kit.MDMKit';
 
 addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?: number): void
 
-指定设备管理应用添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。
+添加应用至应用运行黑名单，添加至黑名单的应用不允许在当前/指定用户下运行。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -33,9 +33,9 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组，指定具体应用。                                   |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -82,9 +82,9 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组，指定具体应用。                                   |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -119,7 +119,7 @@ try {
 
 getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;string>
 
-指定设备管理应用获取当前用户下的应用运行黑名单。
+获取当前用户下的应用运行黑名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -131,8 +131,8 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **返回值：**
 
@@ -172,7 +172,7 @@ try {
 
 addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-以同步方法指定设备管理应用添加开机自启动应用名单。该能力当前仅支持2in1设备。
+添加开机自启动应用名单。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -182,7 +182,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。                         |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限长度为10。 |
 
 **错误码**：
@@ -224,7 +224,7 @@ try {
 
 removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
-以同步方法指定设备管理应用删除开机自启动应用名单。该能力当前仅支持2in1设备。
+删除开机自启动应用名单。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -234,7 +234,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 | 参数名        | 类型                                                         | 必填 | 说明             |
 | ------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。   |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。   |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。 |
 
 **错误码**：
@@ -276,7 +276,7 @@ try {
 
 getAutoStartApps(admin: Want): Array\<Want>
 
-以同步方法指定设备管理应用查询开机自启动应用名单。该能力当前仅支持2in1设备。
+查询开机自启动应用名单。该能力当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -286,7 +286,7 @@ getAutoStartApps(admin: Want): Array\<Want>
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -327,7 +327,7 @@ try {
 
 addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-指定设备管理应用添加保活应用，当前仅支持2in1设备。
+添加保活应用，当前仅支持2in1设备。如果将应用添加至应用运行黑名单[addDisallowedRunningBundlesSync](#applicationmanageradddisallowedrunningbundlessync)，就不能将应用添加至保活，否则会冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -339,9 +339,9 @@ addKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): v
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要添加保活的应用，最大支持5个。                                   |
-| accountId | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。|
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。|
 
 **错误码**：
 
@@ -378,7 +378,7 @@ try {
 
 removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number): void
 
-指定设备管理应用移除保活应用，当前仅支持2in1设备。
+移除保活应用，当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -390,9 +390,9 @@ removeKeepAliveApps(admin: Want, bundleNames: Array\<string>, accountId: number)
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | bundleNames    | Array&lt;string&gt;                                     | 是   | 应用包名数组，指定需要移除保活的应用，最大支持5个。                                   |
-| accountId | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -427,7 +427,7 @@ try {
 
 getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
-指定设备管理应用获取保活应用包名，当前仅支持2in1设备。
+获取保活应用包名，当前仅支持2in1设备。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_APPLICATION
 
@@ -439,8 +439,8 @@ getKeepAliveApps(admin: Want, accountId: number): Array&lt;string>
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
-| accountId | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **返回值：**
 
