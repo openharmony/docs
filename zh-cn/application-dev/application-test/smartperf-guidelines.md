@@ -159,18 +159,18 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----| :-----| :--------------------- |
-| -N    |是| 设置采集次数，一秒采集一次    |
-| -PKG  |否| 设置包名                |
-| -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息 <br>不设置应用包名时，采集整机CPU信息     |
-| -g    |否| 采集gpu的频点和负载信息   |
-| -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名        |
-| -t    |否| 采集GPU温度、系统芯片温度           |
-| -r    |否| 采集内存。<br>设置应用包名时，采集整机和应用内存信息 <br>不设置应用包名时，采集整机内存信息             |
-| -snapshot |否| 屏幕截图             |
-| -net |否| 采集网络速率              |
-| -VIEW |否| 设置图层，需要先获取应用图层名                |
-| -d    |否| 采集DDR                 |
-| -sections|否| 设置分段采集          |
+| -N    |是| 设置采集次数，一秒采集一次。    |
+| -PKG  |否| 设置包名。                |
+| -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息 <br>不设置应用包名时，采集整机CPU信息。     |
+| -g    |否| 采集gpu的频点和负载信息。   |
+| -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名。        |
+| -t    |否| 采集GPU温度、系统芯片温度。           |
+| -r    |否| 采集内存。<br>设置应用包名时，采集整机和应用内存信息 <br>不设置应用包名时，采集整机内存信息。             |
+| -snapshot |否| 屏幕截图。             |
+| -net |否| 采集网络速率。              |
+| -VIEW |否| 设置图层，需要先获取应用图层名。                |
+| -d    |否| 采集DDR。                 |
+| -sections|否| 设置分段采集。          |
 <!--RP2--><!--RP2End-->
 
 ##### 使用示例
@@ -665,8 +665,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次            |
-| -stop |是| 结束采集，执行后会生成采集报告              |
+| -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次。            |
+| -stop |是| 结束采集，执行后会生成采集报告。              |
 
 ##### 使用示例
   
@@ -727,52 +727,52 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     | 数据项    | 说明             |备注|
     | :-----| :--------------------- |:-----|
-    | cpuFrequency      | CPU大中小核频率        |单位：Hz|
-    | cpuUasge          | CPU各核使用率          |%|
-    | cpuidleUsage      | CPU空闲态使用率        |%| 
-    | cpuioWaitUsage    | 等待I/O的使用率        |%|
-    | cpuirqUsage       | 硬中断的使用率         |%|  
-    | cpuniceUsage      | 低优先级用户态使用率    |%|
-    | cpusoftIrqUsage   | 软中断的使用率         |%| 
-    | cpusystemUsage    | 系统/内核态使用率      |%|
-    | cpuuserUsage      | 用户态使用率           |%| 
-    | ProcId            | 进程id                |-|
-    | ProcAppName       | app包名                |-| 
-    | ProcCpuLoad       | 进程CPU负载占比        |%|
-    | ProcCpuUsage      | 进程CPU使用率          |%| 
-    | ProcUCpuUsage     | 进程用户态CPU使用率     |%|
-    | ProcSCpuUsage     | 进程内核态CPU使用率     |%| 
-    | gpuFrequ          | 整机GPU的频率          |%|
-    | gpuLoad           | 整机GPU的负载占比      |%|
-    | currentNow        | 当前读到的电流值       |单位：mA| 
-    | voltageNow        | 当前读到的电压值       |单位：μV| 
-    | fps               | 每秒帧数              |单位：fps|
-    | fpsJitters        | 每一帧绘制间隔        |单位：ns|
-    | refreshrate       | 屏幕刷新率            |单位：Hz|
-    | networkDown       | 下行速率              |单位：byte/s|
-    | networkUp         | 上行速率              |单位：byte/s|
-    | ddrFrequency      | DDR频率               |单位：Hz|
-    | gpu-thermal       | GPU温度              |单位：°C|
-    | soc-thermal       | 系统芯片温度          |单位：°C|
-    | memAvailable      | 整机可用内存         |单位：KB|
-    | memFree           | 整机空闲内存         |单位：KB|
-    | memTotal          | 整机总内存           |单位：KB|
-    | pss               | 进程实际使用内存      |单位：KB|
-    | sharedClean       | 共享的未改写页面      |单位：KB|
-    | sharedDirty       | 共享的已改写页面      |单位：KB|
-    | priviateClean     | 私有的未改写页面      |单位：KB|
-    | privateDirty      | 私有的已改写页面      |单位：KB|
-    | swapTotal         | 总的交换内存          |单位：KB|
-    | swapPss           | 交换的pss内存        |单位：KB|
-    | HeapSize          | 堆内存大小           |单位：KB|
-    | HeapAlloc         | 可分配的堆内存大小    |单位：KB|
-    | HeapFree          | 剩余的堆内存大小      |单位：KB|
-    | gpuPss            | 使用的gpu内存大小     |单位：KB|
-    | graphicPss        | 使用的图形内存大小     |单位：KB|
-    | arktsHeapPss      | 使用的arkts内存大小    |单位：KB|
-    | nativeHeapPss     | 使用的native内存大小   |单位：KB|
-    | stackPss          | 使用的栈内存大小       |单位：KB|
-    | timeStamp         | 当前时间戳            |对应采集时间| 
+    | cpuFrequency      | CPU大中小核频率。        |单位：Hz|
+    | cpuUasge          | CPU各核使用率。          |%|
+    | cpuidleUsage      | CPU空闲态使用率。        |%| 
+    | cpuioWaitUsage    | 等待I/O的使用率。        |%|
+    | cpuirqUsage       | 硬中断的使用率。         |%|  
+    | cpuniceUsage      | 低优先级用户态使用率。    |%|
+    | cpusoftIrqUsage   | 软中断的使用率。         |%| 
+    | cpusystemUsage    | 系统/内核态使用率。      |%|
+    | cpuuserUsage      | 用户态使用率。           |%| 
+    | ProcId            | 进程id。                |-|
+    | ProcAppName       | app包名。                |-| 
+    | ProcCpuLoad       | 进程CPU负载占比。        |%|
+    | ProcCpuUsage      | 进程CPU使用率。          |%| 
+    | ProcUCpuUsage     | 进程用户态CPU使用率。     |%|
+    | ProcSCpuUsage     | 进程内核态CPU使用率。     |%| 
+    | gpuFrequ          | 整机GPU的频率。          |%|
+    | gpuLoad           | 整机GPU的负载占比。      |%|
+    | currentNow        | 当前读到的电流值。       |单位：mA| 
+    | voltageNow        | 当前读到的电压值。       |单位：μV| 
+    | fps               | 每秒帧数。              |单位：fps|
+    | fpsJitters        | 每一帧绘制间隔。        |单位：ns|
+    | refreshrate       | 屏幕刷新率。            |单位：Hz|
+    | networkDown       | 下行速率。              |单位：byte/s|
+    | networkUp         | 上行速率。              |单位：byte/s|
+    | ddrFrequency      | DDR频率。               |单位：Hz|
+    | gpu-thermal       | GPU温度。              |单位：°C|
+    | soc-thermal       | 系统芯片温度。          |单位：°C|
+    | memAvailable      | 整机可用内存。         |单位：KB|
+    | memFree           | 整机空闲内存。         |单位：KB|
+    | memTotal          | 整机总内存。           |单位：KB|
+    | pss               | 进程实际使用内存。      |单位：KB|
+    | sharedClean       | 共享的未改写页面。      |单位：KB|
+    | sharedDirty       | 共享的已改写页面。      |单位：KB|
+    | priviateClean     | 私有的未改写页面。      |单位：KB|
+    | privateDirty      | 私有的已改写页面。      |单位：KB|
+    | swapTotal         | 总的交换内存。          |单位：KB|
+    | swapPss           | 交换的pss内存。        |单位：KB|
+    | HeapSize          | 堆内存大小。           |单位：KB|
+    | HeapAlloc         | 可分配的堆内存大小。    |单位：KB|
+    | HeapFree          | 剩余的堆内存大小。      |单位：KB|
+    | gpuPss            | 使用的gpu内存大小。     |单位：KB|
+    | graphicPss        | 使用的图形内存大小。     |单位：KB|
+    | arktsHeapPss      | 使用的arkts内存大小。    |单位：KB|
+    | nativeHeapPss     | 使用的native内存大小。   |单位：KB|
+    | stackPss          | 使用的栈内存大小。       |单位：KB|
+    | timeStamp         | 当前时间戳。            |对应采集时间。| 
     <!--RP6--><!--RP6End-->
 
 ### 场景化采集
@@ -783,10 +783,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -editor|是|    场景化采集标识，后可添加参数配置项         |
-| -responseTime|否|    响应时延         |
-| -completeTime|否|    完成时延         |
-| -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次       |
+| -editor|是|    场景化采集标识，后可添加参数配置项。         |
+| -responseTime|否|    响应时延。         |
+| -completeTime|否|    完成时延。         |
+| -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次。       |
 
 #### 使用示例
 
@@ -832,14 +832,14 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -screen |否| 采集屏幕分辨率和刷新率               |
-| -deviceinfo|否| 获取设备信息              |
-| -server|否|    启停采集用来拉起daemon进程           |
-| -clear|否|    清除所有SP_daemon进程           |
-| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)          |
-| -editorServer|否|    editor工具用来拉起daemon进程         |
-| -recordcapacity|否|    获取当前设备电量         |
-| -profilerfps |否| 采集当前界面fps          |
+| -screen |否| 采集屏幕分辨率和刷新率。               |
+| -deviceinfo|否| 获取设备信息。              |
+| -server|否|    启停采集用来拉起daemon进程。           |
+| -clear|否|    清除所有SP_daemon进程。           |
+| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)。          |
+| -editorServer|否|    editor工具用来拉起daemon进程。         |
+| -recordcapacity|否|    获取当前设备电量。         |
+| -profilerfps |否| 采集当前界面fps。          |
 
 #### 使用示例
 
