@@ -2759,3 +2759,41 @@ struct UIServiceExtensionAbility {
   }
 }
 ```
+
+## UIAbilityContext.setColorMode<sup>16+</sup>
+
+setColorMode(colorMode: ConfigurationConstant.ColorMode): void
+
+设置uiAbility的颜色模式, UIAbility的颜色模式优先级大于系统的颜色模式。调用时需要保证该uiAbility对应窗口已被成功创建。调用后会创建新的资源管理器对象，需更新缓存的资源管理器。仅支持主线程调用。
+
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明                 |
+| ------ | ------------- | ---- | -------------------- |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：COLOR_MODE_DARK 深色模式、COLOR_MODE_LIGHT 浅色模式、COLOR_MODE_NOT_SET 不设置（跟随系统或应用）。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000011 | The context does not exist. |
+
+**示例：**
+
+```ts
+import { UIAbility, ConfigurationConstant } from '@kit.AbilityKit';
+
+export default class MyAbility extends UIAbility {
+  onWindowStageCreate() {
+    let uiAbilityContext = this.context;
+    uiAbilityContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+  }
+}
+```
