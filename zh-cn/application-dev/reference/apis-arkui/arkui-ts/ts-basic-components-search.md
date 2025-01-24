@@ -834,7 +834,7 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](ts-basic-components-textinput.md#oncontentscrollcallback16对象说明) | 是   | 文本内容滚动回调。 |
+| callback | [OnContentScrollCallback](ts-basic-components-textinput.md#oncontentscrollcallback16) | 是   | 文本内容滚动回调。 |
 
 ### onEditChange<sup>12+</sup>
 

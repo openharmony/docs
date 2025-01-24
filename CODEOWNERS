@@ -879,9 +879,9 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent-sys.md  @keerecles	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-uiappearance-sys.md  @lushi1202  @luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-uiExtensionHost-sys.md  @dutie123	@ge-yafang	
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension.md  @dutie123	@ge-yafang
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension-sys.md  @dutie123	@ge-yafang
+zh-cn/application-dev/reference/apis-arkui/js-apis-uiExtensionHost-sys.md  @ge-yafang	@zhouyaoying @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension.md  @ge-yafang @zhouyaoying @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension-sys.md  @ge-yafang @zhouyaoying @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-builderNode.md  @sunfei2021 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md  @sunfei2021 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md  @sunfei2021 @fredyuan0912	@HelloCrease
