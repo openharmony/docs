@@ -808,11 +808,11 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 说明 |
-| -------- | -------- |
-| TEXT | Span为文字类型。 |
-| IMAGE | Span为图像类型。|
-| MIXED | Span为图文混合类型。|
+| 名称 | 值 | 说明 |
+| -------- | ---- | -------- |
+| TEXT | 0 | Span为文字类型。 |
+| IMAGE | 1 | Span为图像类型。|
+| MIXED | 2 | Span为图文混合类型。|
 
 ## TextResponseType<sup>11+</sup>枚举说明
 
@@ -820,11 +820,11 @@ fontWeight(weight: number | FontWeight | string, options?: FontSettingOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称         | 描述            |
-| ---------- | ------------- |
-| RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
-| LONG_PRESS  | 通过长按触发菜单弹出。   |
-| SELECT | 通过鼠标选中触发菜单弹出。 |
+| 名称         | 值 |  说明          |
+| ---------- | --- | ------------- |
+| RIGHT_CLICK | 0 | 通过鼠标右键触发菜单弹出。 |
+| LONG_PRESS  | 1 | 通过长按触发菜单弹出。   |
+| SELECT | 2 | 通过鼠标选中触发菜单弹出。 |
 
 ## 事件
 
