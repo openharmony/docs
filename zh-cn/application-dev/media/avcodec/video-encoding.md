@@ -911,7 +911,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     src = nullptr;
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），需要调用者拷贝、高对齐后的图像数据到输入回调的AVbuffer中。
+    硬件编码在处理buffer数据时（推送数据前），需要调用者拷贝宽、高对齐后的图像数据到输入回调的AVbuffer中。
     一般需要获取数据的宽、高、跨距、像素格式来保证编码输入数据被正确的处理。
 
     具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoEncoder_RegisterCallback接口设置回调函数来获取数据的宽、高、跨距、像素格式。
