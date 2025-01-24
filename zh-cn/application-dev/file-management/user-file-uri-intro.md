@@ -160,12 +160,12 @@ system_basic等级及以上的应用使用此类uri的方式除了上述通过ph
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
 | SIZE          | 'size'                | 文件大小。                                                   |
-| DATE_ADDED    | 'date_added'          | 添加日期（添加文件时间距1970年1月1日的秒数值）。             |
-| DATE_MODIFIED | 'date_modified'       | 修改日期（修改文件时间距1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
+| DATE_ADDED    | 'date_added'          | 文件创建时的Unix时间戳（单位：秒）。            |
+| DATE_MODIFIED | 'date_modified'       | 文件修改时的Unix时间戳（单位：秒）。修改文件名不会改变此值，当文件内容发生修改时才会更新。 |
 | DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                    |
 | WIDTH         | 'width'               | 图片宽度（单位：像素）。                                    |
 | HEIGHT        | 'height'              | 图片高度（单位：像素）。                                      |
-| DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间距1970年1月1日的秒数值）。                |
+| DATE_TAKEN    | 'date_taken'          | 拍摄时的Unix时间戳（单位：秒）。                |
 | ORIENTATION   | 'orientation'         | 图片文件的方向。                                             |
 | TITLE         | 'title'               | 文件标题。                                                   |
 
