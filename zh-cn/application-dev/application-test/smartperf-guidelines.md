@@ -235,12 +235,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
-    # SP_daemon -N 2 -PKG com.ohos.settings -c
+    # SP_daemon -N 2 -PKG ohos.samples.ecg -c
 
 
 
     order:0 timestamp=1501839151499
-    order:1 ProcAppName=com.ohos.settings
+    order:1 ProcAppName=ohos.samples.ecg
     order:2 ProcCpuLoad=0.000000
     order:3 ProcCpuUsage=36.177645
     order:4 ProcId=2111
@@ -355,7 +355,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集1次整机和指定应用进程内存
 
   ```
-    # SP_daemon -N 1 -PKG com.ohos.settings -r
+    # SP_daemon -N 1 -PKG ohos.samples.ecg -r
 
     order:0 timestamp=1720427095197
     order:1 arktsHeapPss=17555
@@ -431,7 +431,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集5次指定应用帧率
 
   ```
-    # SP_daemon -N 5 -PKG com.ohos.settings -f
+    # SP_daemon -N 5 -PKG ohos.samples.ecg -f
 
     order:0 timestamp=1705306472232
     order:1 fps=43
@@ -564,10 +564,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
  
   <!--RP5-->
   ```
-    # SP_daemon -N 10 -PKG com.ohos.settings -c -g -t -f -r -d -net -snapshot
+    # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
 
     order:0 timestamp=1501837949706
-    order:1 ProcAppName=com.ohos.settings
+    order:1 ProcAppName=ohos.samples.ecg
     order:2 ProcCpuLoad=0.000000
     order:3 ProcCpuUsage=38.775000
     order:4 ProcId=1960
@@ -692,7 +692,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    >
    >- 开始采集示例1（采整机）：SP_daemon -start -c -g -t -r -d -net -snapshot。
    >
-   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG com.ohos.settings -c -g -t -f -r -d -net -snapshot。
+   >- 开始采集示例2（采整机和进程）：SP_daemon -start -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot。
    >
    >- 启停服务文件输出路径为：data/local/tmp/smartperf/1/t_index_info.csv，可通过hdc file recv的方式导出查看报告。具体请参考[查看csv采集结果](#查看csv采集结果)。
 
@@ -793,7 +793,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 应用响应时延（命令仅支持RK）
 
   ```
-   # SP_daemon -editor responseTime com.ohos.settings ohtest
+   # SP_daemon -editor responseTime ohos.samples.ecg ohtest
    time:544ms
 
    command exec finished!
@@ -805,7 +805,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 应用完成时延（命令仅支持RK）
 
   ```
-   # SP_daemon -editor completeTime com.ohos.settings ohtest
+   # SP_daemon -editor completeTime ohos.samples.ecg ohtest
    time:677ms
 
    command exec finished!
