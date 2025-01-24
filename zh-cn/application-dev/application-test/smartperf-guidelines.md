@@ -673,19 +673,19 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    ```
    开始采集
    # SP_daemon -start -c
-    SP_daemon Collection begins
+   SP_daemon Collection begins
     
     
-    command exec finished!
+   command exec finished!
    #
       
    结束采集
    # SP_daemon -stop
-    SP_daemon Collection ended
-    Output Path: data/local/tmp/smartperf/1/t_index_info.csv
+   SP_daemon Collection ended
+   Output Path: data/local/tmp/smartperf/1/t_index_info.csv
     
     
-    command exec finished!
+   command exec finished!
    #
    ```
    >**说明**
@@ -847,10 +847,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   ```
    # SP_daemon -screen
-    activeMode: 720x1280, refreshrate=69
+   activeMode: 720x1280, refreshrate=69
     
     
-    command exec finished!
+   command exec finished!
    #
   ```
   >**说明**
@@ -861,25 +861,25 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   ```
    # SP_daemon -deviceinfo
-    abilist: default
-    activeMode: 720x1280
-    board: hw
-    brand: default
-    cpu_c1_cluster: 0 1 2 3
-    cpu_c1_max: 1992000
-    cpu_c1_min: 408000
-    cpu_cluster_name: policy0
-    daemonPerfVersion: 1.0.5
-    deviceTypeName: rk3568
-    fullname: OpenHarmony-5.1.0.46
-    gpu_max_freq: 800000000
-    gpu_min_freq: 200000000
-    model: ohos
-    name: OpenHarmony 3.2
-    sn: 150100424a5444345209d941bec6b900
-    version: OpenHarmony 5.1.0.46
+   abilist: default
+   activeMode: 720x1280
+   board: hw
+   brand: default
+   cpu_c1_cluster: 0 1 2 3
+   cpu_c1_max: 1992000
+   cpu_c1_min: 408000
+   cpu_cluster_name: policy0
+   daemonPerfVersion: 1.0.5
+   deviceTypeName: rk3568
+   fullname: OpenHarmony-5.1.0.46
+   gpu_max_freq: 800000000
+   gpu_min_freq: 200000000
+   model: ohos
+   name: OpenHarmony 3.2
+   sn: 150100424a5444345209d941bec6b900
+   version: OpenHarmony 5.1.0.46
     
-    command exec finished!
+   command exec finished!
    #
   ```
 
