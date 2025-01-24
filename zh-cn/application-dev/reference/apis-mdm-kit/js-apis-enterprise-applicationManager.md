@@ -33,9 +33,9 @@ addDisallowedRunningBundlesSync(admin: Want, appIds: Array\<string>, accountId?:
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组，指定具体应用。                                   |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -82,9 +82,9 @@ removeDisallowedRunningBundlesSync(admin: Want, appIds:  Array\<string>, account
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。                                               |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
 | appIds    | Array&lt;string&gt;                                     | 是   | 应用ID数组，指定具体应用。                                   |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br> - 调用接口时，若传入accountId，表示指定用户。<br> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **错误码**：
 
@@ -131,8 +131,8 @@ getDisallowedRunningBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。                                               |
-| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。 |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                               |
+| accountId | number                                                  | 否   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。<br/> - 调用接口时，若传入accountId，表示指定用户。<br/> - 调用接口时，若未传入accountId，表示当前用户。 |
 
 **返回值：**
 
@@ -182,7 +182,7 @@ addAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 | 参数名        | 类型                                                         | 必填 | 说明                                   |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 调用该接口的企业设备管理扩展组件名称。                         |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。                         |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。数组长度上限长度为10。 |
 
 **错误码**：
@@ -234,7 +234,7 @@ removeAutoStartApps(admin: Want, autoStartApps: Array\<Want>): void
 
 | 参数名        | 类型                                                         | 必填 | 说明             |
 | ------------- | ------------------------------------------------------------ | ---- | ---------------- |
-| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 调用该接口的企业设备管理扩展组件名称。   |
+| admin         | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。   |
 | autoStartApps | Array\<[Want](../apis-ability-kit/js-apis-app-ability-want.md)> | 是   | 开机自启动应用。 |
 
 **错误码**：
@@ -286,7 +286,7 @@ getAutoStartApps(admin: Want): Array\<Want>
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 

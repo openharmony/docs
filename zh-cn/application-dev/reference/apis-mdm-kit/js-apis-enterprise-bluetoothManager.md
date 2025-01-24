@@ -34,7 +34,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -87,7 +87,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                |
 | --------- | ------------------------------------------------------- | ---- | --------------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。                                      |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                      |
 | deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。添加后的数组长度上限为1000。 |
 
 **错误码**：
@@ -136,7 +136,7 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 | 参数名    | 类型                                                    | 必填 | 说明                    |
 | --------- | ------------------------------------------------------- | ---- | ----------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。          |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。          |
 | deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。 |
 
 **错误码**：
@@ -184,7 +184,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>;
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 调用该接口的企业设备管理扩展组件名称。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
