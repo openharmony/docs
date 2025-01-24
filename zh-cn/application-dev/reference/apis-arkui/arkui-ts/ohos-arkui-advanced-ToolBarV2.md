@@ -77,7 +77,7 @@ ToolBarV2Item的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 属性                       | 类型                                              | 必填 | 说明                                                                                                                                                                                                             |
+| 名称                       | 类型                                              | 必填 | 说明                                                                                                                                                                                                             |
 |:-------------------------| :---------------------------------------------- | :- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | content                  | [ToolBarV2ItemText](#toolbarv2itemtext)         | 是  | 工具栏子项的文本。                                                                                                                                                                                                      |
 | action                   | [ToolBarV2ItemAction](#toolbarv2itemaction)     | 否  | 工具栏子项点击事件。<br />默认无点击事件。                                                                                                                                                                                       |
@@ -85,7 +85,7 @@ ToolBarV2Item的构造函数。
 | state                    | [ToolBarV2ItemState](#toolbarv2itemstate)       | 否  | 工具栏子项的状态。<br />默认为ENABLE。<br />                                                                                                                                                                                |
 | accessibilityText        | [ResourceStr](ts-types.md#resourcestr)          | 否  | 工具栏子项的无障碍文本属性。当组件不包含文本属性时，屏幕朗读选中此组件时不播报，使用者无法清楚地知道当前选中了什么组件。为了解决此场景，开发人员可为不包含文字信息的组件设置无障碍文本，当屏幕朗读选中此组件时播报无障碍文本的内容，帮助屏幕朗读的使用者清楚地知道自己选中了什么组件。<br />默认值为当前项content属性内容。<br />                                     |
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)          | 否  | 工具栏子项的无障碍描述。此描述用于向用户详细解释当前组件，开发人员应为组件的这一属性提供较为详尽的文本说明，以协助用户理解即将执行的操作及其可能产生的后果。特别是当这些后果无法仅从组件的属性和无障碍文本中直接获知时。如果组件同时具备文本属性和无障碍说明属性，当组件被选中时，系统将首先播报组件的文本属性，随后播报无障碍说明属性的内容。<br />默认值为“单指双击即可执行”。                   |
-| accessibilityLevel       | string                                          | 否  | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br />支持的值为：<br />"auto"：当前组件会转换'yes'。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"。<br /> |
+| accessibilityLevel       | string                                          | 否  | 工具栏子项无障碍重要性。用于控制当前项是否可被无障碍辅助服务所识别。<br ></div>支持的值为：<br />"auto"：当前组件会转换"yes"。<br />"yes"：当前组件可被无障碍辅助服务所识别。<br />"no"：当前组件不可被无障碍辅助服务所识别。<br />"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br />默认值："auto"。<br /> |
 
 ## ToolBarV2ItemAction
 
@@ -97,9 +97,11 @@ type ToolBarV2ItemAction = (index: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 类型                      | 说明                                          |
-| :------------------ | :---------------------- | :------------------------------------------ |
-| ToolBarV2ItemAction | (index: number) => void | 工具栏子项点击事件的回调。<br /> -index: 表示触发事件的工具栏子项索引。 |
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明 |
+|:------|:-------|:---|----|
+| index | number | 是  |工具栏子项点击事件的回调。<br /> -index: 表示触发事件的工具栏子项索引。    |
 
 ## ToolBarV2ItemText
 
@@ -111,11 +113,11 @@ type ToolBarV2ItemAction = (index: number) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 类型                                                        | 必填 | 装饰器类型  | 说明                                                       |
-|:--------------------|:----------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
-| text                | ResourceStr                                               | 是  | @Trace | 工具栏子项的文本。                                                |
-| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | @Trace | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')。       |
-| activatedColor<sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | @Trace | 工具栏子项在激活态下文本的颜色。<br/>默认值：$r('sys.color.font_emphasize')。 |
+| 名称                  | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
+|:--------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
+| text                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | @Trace | 工具栏子项的文本。                                                |
+| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')。       |
+| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项在激活态下文本的颜色。<br></div>默认值：$r('sys.color.font_emphasize')。 |
 
 ### constructor
 
@@ -139,11 +141,11 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 类型           | 必填 | 说明                                                       |
-| :------------------ | :----------- | :- |:---------------------------------------------------------|
-| text                | ResourceStr  | 是  | 工具栏子项的文本。                                                |
-| color          | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')。       |
-| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | 工具栏子项在激活态下文本的颜色。<br/>默认值：$r('sys.color.font_emphasize')。 |
+| 名称                  | 类型                                                          | 必填 | 说明                                                       |
+| :------------------ |:------------------------------------------------------------| :- |:---------------------------------------------------------|
+| text                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | 工具栏子项的文本。                                                |
+| color          | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项的文本的颜色。<br/>默认值：$r('sys.color.font_primary')。       |
+| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项在激活态下文本的颜色。<br/>默认值：$r('sys.color.font_emphasize')。 |
 
 ## ToolBarV2ItemImage
 
@@ -155,11 +157,11 @@ ToolBarV2ItemText的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                 | 类型           | 必填 | 装饰器类型  | 说明                                                       |
-|:-------------------| :----------- | :- | :----- |:---------------------------------------------------------|
-| src                | ResourceStr  | 是  | @Trace | 工具栏子项的文本。                                                |
-| color              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | @Trace | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
-| activatedColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | @Trace | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
+| 名称                 | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
+|:-------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
+| src                | [ResourceStr](ts-types.md#resourcestr)                      | 是  | @Trace | 工具栏子项的文本。                                                |
+| color              | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
+| activatedColor     | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | @Trace | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
 
 ### constructor
 
@@ -183,11 +185,11 @@ ToolBarV2ItemImage的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                  | 类型           | 必填 | 说明                                                       |
-|:--------------------| :----------- | :- |:---------------------------------------------------------|
-| src                 | ResourceStr  | 是  | 工具栏子项的文本。                                                |
-| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
-| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 否  | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
+| 名称                  | 类型                                                          | 必填 | 说明                                                       |
+|:--------------------|:------------------------------------------------------------| :- |:---------------------------------------------------------|
+| src                 | [ResourceStr](ts-types.md#resourcestr)                      | 是  | 工具栏子项的文本。                                                |
+| color               | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项的图标的颜色。<br/>默认值：$r('sys.color.icon_primary')。       |
+| activatedColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否  | 工具栏子项在激活态下图标的颜色。<br/>默认值：$r('sys.color.icon_emphasize')。 |
 
 ## ToolBarV2ItemIconType
 
@@ -222,9 +224,9 @@ backgroundColor(backgroundColor: ColorMetrics): ToolBarV2Modifier
 
 **参数：**
 
-| 参数名             | 类型           | 必填 | 说明                                                                |
-| --------------- | ------------ | -- | ----------------------------------------------------------------- |
-| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics) | 是  | 工具栏背景色。<br />默认背景色为\$r('sys.color.ohos\_id\_color\_toolbar\_bg')。 |
+| 参数名             | 类型                                                          | 必填 | 说明                                                                |
+| --------------- |-------------------------------------------------------------| -- | ----------------------------------------------------------------- |
+| backgroundColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 是  | 工具栏背景色。<br />默认背景色为\$r('sys.color.ohos\_id\_color\_toolbar\_bg')。 |
 **返回值：**
 
 | 类型                                      | 说明                                      |
@@ -243,9 +245,9 @@ padding(padding: LengthMetrics): ToolBarV2Modifier
 
 **参数：**
 
-| 参数名     | 类型                                                               | 必填 | 说明                                                                  |
-| ------- | ---------------------------------------------------------------- | -- | ------------------------------------------------------------------- |
-| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics)<sup> | 是  | 工具栏左右内边距，仅在item小于5个时生效。<br />工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
+| 参数名     | 类型                                                            | 必填 | 说明                                                                  |
+| ------- |---------------------------------------------------------------| -- | ------------------------------------------------------------------- |
+| padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是  | 工具栏左右内边距，仅在item小于5个时生效。<br ></div>工具栏默认在item小于5个时padding为24vp，大于等于5个时为0。 |
 
 **返回值：**
 
@@ -335,7 +337,7 @@ ToolBarV2SymbolGlyph的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 参数类型                                                        | 必填 | 说明          |
+| 参数名     | 类型                                                        | 必填 | 说明          |
 | :------ | :---------------------------------------------------------- | :- | :---------- |
 | options | [ToolBarV2SymbolGlyphOptions](#toolbarv2symbolglyphoptions) | 是  | Symbol图标信息。 |
 
