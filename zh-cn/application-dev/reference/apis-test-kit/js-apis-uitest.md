@@ -185,7 +185,7 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 可读 | 可写 | 说明                                          |
 | ---------- | ------ | ---- |----|---------------------------------------------|
-| stay | boolean | 是   | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false（不停留1s）。        |
+| stay | boolean | 是   | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false(不停留1s)。        |
 | speed       | number | 是   | 是  | 滑动速率，范围：200-40000，不在范围内设为默认值为2000，单位：像素点/秒。 |
 
 ## On<sup>9+</sup>
@@ -1520,7 +1520,7 @@ scrollSearch(on: On): Promise\<Component>
 |------------------------| ---------- | ---- |------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                   |
 | vertical<sup>16+</sup> |    boolean | 否 | 滑动查找方向是否为纵向。默认为true。         |
-| offset<sup>16+</sup>   | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(像素点)。 |
+| offset<sup>16+</sup>   | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(pixel)。 |
 
 **返回值：**
 
@@ -1563,7 +1563,7 @@ scrollToTop(speed?: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -1600,7 +1600,7 @@ scrollToBottom(speed?: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -2307,7 +2307,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 | starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
 | endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
 | endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -2346,7 +2346,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 | starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0。              |
 | endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0。              |
 | endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0。              |
-| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -2696,7 +2696,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | from    | [Point](#point9) | 是   | 手指接触屏幕的起始点坐标。                                   |
 | to      | [Point](#point9) | 是   | 手指离开屏幕时的坐标点。                                     |
 | stepLen | number           | 是   | 间隔距离，单位：像素点。                                     |
-| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed   | number           | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -2732,7 +2732,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
 | pointers | [PointerMatrix](#pointermatrix9) | 是   | 滑动轨迹，包括操作手指个数和滑动坐标序列。                   |
-| speed    | number                           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed    | number                           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **返回值：**
 
@@ -2785,7 +2785,7 @@ fling(direction: UiDirection, speed: number): Promise\<void>;
 | 参数名    | 类型                          | 必填 | 说明                                                         |
 | --------- | ----------------------------- | ---- | ------------------------------------------------------------ |
 | direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                             |
-| speed     | number                        | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed     | number                        | 是   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -3126,7 +3126,7 @@ mouseMoveWithTrack(from: Point, to: Point, speed?: number): Promise\<void>
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
 | to     | [Point](#point9) | 是   | 终点坐标。                                                   |
-| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -3163,7 +3163,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
 | from   | [Point](#point9) | 是   | 起始点坐标。                                                 |
 | to     | [Point](#point9) | 是   | 终点坐标。                                                   |
-| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed  | number           | 否   | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 
 **错误码：**
 
@@ -3292,7 +3292,7 @@ penClick(point: Point): Promise\<void>
 **示例：**
 
 ```ts
- import { Driver } from '@kit.TestKit';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.penClick({x: 100, y: 100});
@@ -3363,7 +3363,7 @@ penDoubleClick(point: Point): Promise\<void>
 **示例：**
 
 ```ts
- import { Driver } from '@kit.TestKit';
+import { Driver } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   await driver.penDoubleClick({x: 100, y: 100});
@@ -3386,7 +3386,7 @@ penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number):
 | ------ |-----------------------------------------------|----|--------------------------------------------|
 | startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                  |
 | endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                  |
-| speed      | number | 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。 |
+| speed      | number | 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
 | pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。            |
 
 **错误码：**
@@ -3423,7 +3423,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 | 参数名 | 类型                                            | 必填 | 说明                                                                 |
 | ------ |-----------------------------------------------|----|--------------------------------------------------------------------|
 | pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列, **仅支持单指操作, 该场景PointerMatrix中fingers必须设置为1**。 |
-| speed      | number| 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：像素点/秒。                         |
+| speed      | number| 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。                         |
 | pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                      |
 
 **错误码：**
@@ -3438,7 +3438,7 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 **示例：**
 
 ```ts
- import { Driver, PointerMatrix } from '@kit.TestKit';
+import { Driver, PointerMatrix } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let pointer = PointerMatrix.create(1,8);
