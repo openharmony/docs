@@ -628,7 +628,7 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:59 gpuPss=0
     order:60 graphicPss=10800
     order:61 heapAlloc=0
-    order:62 heapFree=
+    order:62 heapFree=0
     order:63 heapSize=0
     order:64 memAvailable=1137784
     order:65 memFree=682592
