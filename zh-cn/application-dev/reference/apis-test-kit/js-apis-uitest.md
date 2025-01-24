@@ -270,8 +270,8 @@ id(id: string): On
 **示例：**
 
 ```ts
- import { MatchPattern, On, ON } from '@kit.TestKit';
- let on:On = ON.id('123'); // 使用静态构造器ON创建On对象，指定目标控件的id属性。
+import { MatchPattern, On, ON } from '@kit.TestKit';
+let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控件的id属性值
 ```
 
 ### type<sup>9+</sup>
