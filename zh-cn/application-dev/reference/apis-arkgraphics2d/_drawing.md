@@ -620,15 +620,15 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_DestroyTextStyle](#oh_drawing_destroytextstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 释放被OH_Drawing_TextStyle对象占据的内存。 |
 | void [OH_Drawing_SetTextStyleColor](#oh_drawing_settextstylecolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置文本颜色。 |
 | void [OH_Drawing_SetTextStyleFontSize](#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置字号。 |
-| void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
-| void [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字体基线位置。 |
+| void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
+| void [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置文本样式的字体基线位置。 |
 | void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置装饰。 |
 | void [OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 新增指定装饰，可同时显示多种装饰线。 |
 | void [OH_Drawing_RemoveTextStyleDecoration](#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 删除指定装饰。 |
 | void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。 |
 | void [OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。 |
 | void [OH_Drawing_SetTextStyleFontFamilies](#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置字体类型。 |
-| void [OH_Drawing_SetTextStyleFontStyle](#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置字体风格。 |
+| void [OH_Drawing_SetTextStyleFontStyle](#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字体样式。 |
 | void [OH_Drawing_SetTextStyleLocale](#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*) | 设置文本语言类型。 |
 | void [OH_Drawing_SetTextStyleForegroundBrush](#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 设置前景色画刷。 |
 | void [OH_Drawing_TextStyleGetForegroundBrush](#oh_drawing_textstylegetforegroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 返回设置的前景色画刷。 |
@@ -654,8 +654,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | double [OH_Drawing_TypographyGetLongestLineWithIndent](#oh_drawing_typographygetlongestlinewithindent) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最长行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0.0。 |
 | double [OH_Drawing_TypographyGetMinIntrinsicWidth](#oh_drawing_typographygetminintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最小固有宽度。 |
 | double [OH_Drawing_TypographyGetMaxIntrinsicWidth](#oh_drawing_typographygetmaxintrinsicwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取最大固有宽度。 |
-| double [OH_Drawing_TypographyGetAlphabeticBaseline](#oh_drawing_typographygetalphabeticbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取字母文字基线。 |
-| double [OH_Drawing_TypographyGetIdeographicBaseline](#oh_drawing_typographygetideographicbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取表意文字基线。 |
+| double [OH_Drawing_TypographyGetAlphabeticBaseline](#oh_drawing_typographygetalphabeticbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取排版样式字母文字基线。 |
+| double [OH_Drawing_TypographyGetIdeographicBaseline](#oh_drawing_typographygetideographicbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取排版样式表意文字基线。 |
 | void [OH_Drawing_TypographyHandlerAddPlaceholder](#oh_drawing_typographyhandleraddplaceholder) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) \*) | 设置占位符。 |
 | bool [OH_Drawing_TypographyDidExceedMaxLines](#oh_drawing_typographydidexceedmaxlines) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本是否超过最大行。 |
 | [OH_Drawing_TextBox](#oh_drawing_textbox) \* [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t, size_t, [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle), [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle)) | 获取指定范围内的文本框。 |
@@ -683,8 +683,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_SetTextStyleEllipsisModal](#oh_drawing_settextstyleellipsismodal) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置文本的省略号样式。 |
 | void [OH_Drawing_SetTypographyTextBreakStrategy](#oh_drawing_settypographytextbreakstrategy) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本的中断策略。 |
 | void [OH_Drawing_SetTypographyTextWordBreakType](#oh_drawing_settypographytextwordbreaktype) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置单词的断词方式。 |
-| void [OH_Drawing_SetTypographyTextEllipsisModal](#oh_drawing_settypographytextellipsismodal) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本的省略号样式。 |
-| void [OH_Drawing_SetTypographyTextEllipsis](#oh_drawing_settypographytextellipsis) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, const char \*ellipsis) | 设置省略号样式。 |
+| void [OH_Drawing_SetTypographyTextEllipsisModal](#oh_drawing_settypographytextellipsismodal) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置排版样式省略模式。 |
+| void [OH_Drawing_SetTypographyTextEllipsis](#oh_drawing_settypographytextellipsis) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, const char \*ellipsis) | 设置排版样式省略号文本。 |
 | double [OH_Drawing_TypographyGetLineHeight](#oh_drawing_typographygetlineheight) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | 获取指定行的行高 |
 | double [OH_Drawing_TypographyGetLineWidth](#oh_drawing_typographygetlinewidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | 获取指定行的行宽。 |
 | void [OH_Drawing_SetTypographyTextSplitRatio](#oh_drawing_settypographytextsplitratio) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, float textSplitRatio) | 设置文本划分比率。 |
@@ -705,19 +705,19 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_DestroyLineMetrics](#oh_drawing_destroylinemetrics) ([OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 释放行位置信息对象占用的内存。 |
 | bool [OH_Drawing_TypographyGetLineMetricsAt](#oh_drawing_typographygetlinemetricsat) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行位置信息对象。 |
 | bool [OH_Drawing_TypographyGetLineInfo](#oh_drawing_typographygetlineinfo) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int, bool, bool, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行的位置信息或指定行第一个字符的位置信息。 |
-| void [OH_Drawing_SetTypographyTextFontWeight](#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
-| void [OH_Drawing_SetTypographyTextFontStyle](#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置字体风格。 |
+| void [OH_Drawing_SetTypographyTextFontWeight](#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置排版样式默认字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
+| void [OH_Drawing_SetTypographyTextFontStyle](#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置排版样式的默认字体样式。 |
 | void [OH_Drawing_SetTypographyTextFontFamily](#oh_drawing_settypographytextfontfamily) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, const char \*) | 设置字体家族的名称。 |
 | void [OH_Drawing_SetTypographyTextFontSize](#oh_drawing_settypographytextfontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版字号。 |
 | void [OH_Drawing_SetTypographyTextFontHeight](#oh_drawing_settypographytextfontheight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版字体高度。 |
 | void [OH_Drawing_SetTypographyTextHalfLeading](#oh_drawing_settypographytexthalfleading) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否为一半行间距。 |
 | void [OH_Drawing_SetTypographyTextUseLineStyle](#oh_drawing_settypographytextuselinestyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否启用行样式。 |
-| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
-| void [OH_Drawing_SetTypographyTextLineStyleFontStyle](#oh_drawing_settypographytextlinestylefontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版行样式风格。 |
+| void [OH_Drawing_SetTypographyTextLineStyleFontWeight](#oh_drawing_settypographytextlinestylefontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置排版样式中支柱样式的文本样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
+| void [OH_Drawing_SetTypographyTextLineStyleFontStyle](#oh_drawing_settypographytextlinestylefontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本排版样式中支柱样式的字体样式。 |
 | void [OH_Drawing_SetTypographyTextLineStyleFontFamilies](#oh_drawing_settypographytextlinestylefontfamilies) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int, const char \*fontFamilies[]) | 设置文本排版行样式字体类型。 |
 | void [OH_Drawing_SetTypographyTextLineStyleFontSize](#oh_drawing_settypographytextlinestylefontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版行样式字号。 |
 | void [OH_Drawing_SetTypographyTextLineStyleFontHeight](#oh_drawing_settypographytextlinestylefontheight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版行样式字体高度。 |
-| void [OH_Drawing_SetTypographyTextLineStyleHalfLeading](#oh_drawing_settypographytextlinestylehalfleading) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版行样式是否为一半行间距。 |
+| void [OH_Drawing_SetTypographyTextLineStyleHalfLeading](#oh_drawing_settypographytextlinestylehalfleading) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版行样式中支柱样式是否开启一半行间距。 |
 | void [OH_Drawing_SetTypographyTextLineStyleSpacingScale](#oh_drawing_settypographytextlinestylespacingscale) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, double) | 设置文本排版行样式间距比例。 |
 | void [OH_Drawing_SetTypographyTextLineStyleOnly](#oh_drawing_settypographytextlinestyleonly) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, bool) | 设置文本排版是否仅启用行样式。 |
 | [OH_Drawing_TextShadow](#oh_drawing_textshadow) \* [OH_Drawing_CreateTextShadow](#oh_drawing_createtextshadow) (void) | 创建指向字体阴影对象的指针。 |
@@ -733,20 +733,20 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*) | 释放由被字体阴影对象OH_Drawing_TextShadow构成的vector占据的内存。 |
 | [OH_Drawing_FontConfigInfo](_o_h___drawing___font_config_info.md) \* [OH_Drawing_GetSystemFontConfigInfo](#oh_drawing_getsystemfontconfiginfo) ([OH_Drawing_FontConfigInfoErrorCode](#oh_drawing_fontconfiginfoerrorcode) \*) | 获取系统字体配置信息。 |
 | void [OH_Drawing_DestroySystemFontConfigInfo](#oh_drawing_destroysystemfontconfiginfo) ([OH_Drawing_FontConfigInfo](_o_h___drawing___font_config_info.md) \*) | 释放系统字体配置信息占用的的内存。 |
-| void [OH_Drawing_SetTextStyleFontStyleStruct](#oh_drawing_settextstylefontstylestruct) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*drawingTextStyle, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) fontStyle) | 设置字体样式，包括字体字重、字体宽度和字体斜度。 |
-| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) [OH_Drawing_TextStyleGetFontStyleStruct](#oh_drawing_textstylegetfontstylestruct) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*drawingTextStyle) | 获取字体样式，包括字体字重、字体宽度和字体斜度。 |
-| void [OH_Drawing_SetTypographyStyleFontStyleStruct](#oh_drawing_settypographystylefontstylestruct) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*drawingStyle, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) fontStyle) | 设置文本字体样式，包括字体字重、字体宽度和字体斜度。 |
-| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) [OH_Drawing_TypographyStyleGetFontStyleStruct](#oh_drawing_typographystylegetfontstylestruct) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*drawingStyle) | 获取文本字体样式，包括字体字重、字体宽度和字体斜度。 |
+| void [OH_Drawing_SetTextStyleFontStyleStruct](#oh_drawing_settextstylefontstylestruct) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*drawingTextStyle, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) fontStyle) | 设置文本样式中支柱样式的字体样式，包括字体字重、字体宽度和字体斜度。 |
+| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) [OH_Drawing_TextStyleGetFontStyleStruct](#oh_drawing_textstylegetfontstylestruct) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*drawingTextStyle) | 获取文本风格中支柱样式的字体样式，包括字体字重、字体宽度和字体斜度。 |
+| void [OH_Drawing_SetTypographyStyleFontStyleStruct](#oh_drawing_settypographystylefontstylestruct) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*drawingStyle, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) fontStyle) | 设置段落样式中默认文本样式的字体样式，包括字体字重、字体宽度和字体斜度。 |
+| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) [OH_Drawing_TypographyStyleGetFontStyleStruct](#oh_drawing_typographystylegetfontstylestruct) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*drawingStyle) | 获取段落样式中默认文本样式的字体样式，包括字体字重、字体宽度和字体斜度。 |
 | void [OH_Drawing_TextStyleSetBackgroundRect](#oh_drawing_textstylesetbackgroundrect) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md) \*, int styleId) | 设置文本背景矩形框和样式id。样式id仅当背景框为圆角矩形时有效。 |
 | void [OH_Drawing_TypographyHandlerAddSymbol](#oh_drawing_typographyhandleraddsymbol) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, uint32_t symbol) | 设置排版创建过程中的符号。 |
-| void [OH_Drawing_TextStyleAddFontFeature](#oh_drawing_textstyleaddfontfeature) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*tag, int value) | 添加文本字体特征。 |
+| void [OH_Drawing_TextStyleAddFontFeature](#oh_drawing_textstyleaddfontfeature) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*tag, int value) | 设置文本样式中指定字体特征是否启用。 |
 | void [OH_Drawing_TextStyleAddFontVariation](#oh_drawing_textstyleaddfontvariation) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*, const float) | 添加可变字体属性。对应的字体文件（.ttf文件）需要支持可变调节，此接口才能生效。当对应的字体不支持可变调节时，此接口调用不生效。 |
-| [OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \* [OH_Drawing_TextStyleGetFontFeatures](#oh_drawing_textstylegetfontfeatures) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字体特征map容器中的所有内容。 |
+| [OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \* [OH_Drawing_TextStyleGetFontFeatures](#oh_drawing_textstylegetfontfeatures) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式的字体特征map容器中所有内容。 |
 | void [OH_Drawing_TextStyleDestroyFontFeatures](#oh_drawing_textstyledestroyfontfeatures) ([OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \*, size_t fontFeatureSize) | 释放存放字体特征所有内容的结构体数组所占用的空间。 |
-| size_t [OH_Drawing_TextStyleGetFontFeatureSize](#oh_drawing_textstylegetfontfeaturesize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字体特征map容器的大小。 |
-| void [OH_Drawing_TextStyleClearFontFeature](#oh_drawing_textstyleclearfontfeature) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 清除字体特征map容器中的所有内容。 |
+| size_t [OH_Drawing_TextStyleGetFontFeatureSize](#oh_drawing_textstylegetfontfeaturesize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式中字体特征map容器的大小。 |
+| void [OH_Drawing_TextStyleClearFontFeature](#oh_drawing_textstyleclearfontfeature) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 清除指定文本样式的字体特征map容器中所有内容。 |
 | double [OH_Drawing_TextStyleGetBaselineShift](#oh_drawing_textstylegetbaselineshift) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取文本的基线漂移。 |
-| void [OH_Drawing_TextStyleSetBaselineShift](#oh_drawing_textstylesetbaselineshift) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double lineShift) | 设置文本的基线漂移。 |
+| void [OH_Drawing_TextStyleSetBaselineShift](#oh_drawing_textstylesetbaselineshift) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double lineShift) | 设置文本样式基线偏移。 |
 | void [OH_Drawing_TypographyTextSetHeightBehavior](#oh_drawing_typographytextsetheightbehavior) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) heightMode) | 设置文本高度修饰符模式。 |
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) [OH_Drawing_TypographyTextGetHeightBehavior](#oh_drawing_typographytextgetheightbehavior) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本高度修饰符模式。 |
 | [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \* [OH_Drawing_TypographyGetLineFontMetrics](#oh_drawing_typographygetlinefontmetrics) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t lineNumber, size_t \*fontMetricsSize) | 从目标行获取所有字体指标。 |
@@ -767,8 +767,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量。 |
 | void [OH_Drawing_TypographyUpdateFontSize](#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新文本中的字体大小。 |
 | bool [OH_Drawing_TypographyTextGetLineStyle](#oh_drawing_typographytextgetlinestyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版是否启用行样式。 |
-| [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TypographyTextlineStyleGetFontWeight](#oh_drawing_typographytextlinestylegetfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版行样式字重。 |
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TypographyTextlineStyleGetFontStyle](#oh_drawing_typographytextlinestylegetfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版行样式风格。 |
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TypographyTextlineStyleGetFontWeight](#oh_drawing_typographytextlinestylegetfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取排版样式中支柱样式字重。 |
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TypographyTextlineStyleGetFontStyle](#oh_drawing_typographytextlinestylegetfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版样式中支柱样式的字体样式。 |
 | char \*\* [OH_Drawing_TypographyTextlineStyleGetFontFamilies](#oh_drawing_typographytextlinestylegetfontfamilies) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版行样式字体家族名。 |
 | void [OH_Drawing_TypographyTextlineStyleDestroyFontFamilies](#oh_drawing_typographytextlinestyledestroyfontfamilies) (char \*\*fontFamilies, size_t fontFamiliesNum) | 释放字体类型占用的内存。 |
 | double [OH_Drawing_TypographyTextlineStyleGetFontSize](#oh_drawing_typographytextlinestylegetfontsize) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版行样式字号。 |
@@ -780,22 +780,22 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_TextAlign](#oh_drawing_textalign) [OH_Drawing_TypographyGetTextAlign](#oh_drawing_typographygettextalign) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本对齐方式。 |
 | [OH_Drawing_TextDirection](#oh_drawing_textdirection) [OH_Drawing_TypographyGetTextDirection](#oh_drawing_typographygettextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本方向。 |
 | size_t [OH_Drawing_TypographyGetTextMaxLines](#oh_drawing_typographygettextmaxlines) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本的最大行数。 |
-| char \* [OH_Drawing_TypographyGetTextEllipsis](#oh_drawing_typographygettextellipsis) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取设置的省略号内容。 |
+| char \* [OH_Drawing_TypographyGetTextEllipsis](#oh_drawing_typographygettextellipsis) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取指定排版样式设置的省略号文本。 |
 | void [OH_Drawing_TypographyDestroyEllipsis](#oh_drawing_typographydestroyellipsis) (char \*ellipsis) | 释放省略号名称列表占用的内存。 |
 | bool [OH_Drawing_TypographyStyleEquals](#oh_drawing_typographystyleequals) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*from, [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*to) | 判断排版样式是否相同。 |
 | uint32_t [OH_Drawing_TextStyleGetColor](#oh_drawing_textstylegetcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取文本颜色。 |
 | [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle) [OH_Drawing_TextStyleGetDecorationStyle](#oh_drawing_textstylegetdecorationstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取文本装饰样式。 |
-| [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TextStyleGetFontWeight](#oh_drawing_textstylegetfontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字重。 |
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TextStyleGetFontStyle](#oh_drawing_textstylegetfontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字体风格。 |
-| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) [OH_Drawing_TextStyleGetBaseline](#oh_drawing_textstylegetbaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字体基线位置。 |
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TextStyleGetFontWeight](#oh_drawing_textstylegetfontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式字重。 |
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TextStyleGetFontStyle](#oh_drawing_textstylegetfontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式的字体样式。 |
+| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) [OH_Drawing_TextStyleGetBaseline](#oh_drawing_textstylegetbaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式的字体基线位置。 |
 | char \*\* [OH_Drawing_TextStyleGetFontFamilies](#oh_drawing_textstylegetfontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, size_t \*num) | 获取字体类型名称列表。 |
-| void [OH_Drawing_TextStyleDestroyFontFamilies](#oh_drawing_textstyledestroyfontfamilies) (char \*\*fontFamilies, size_t num) | 释放字体类型名称列表占用的内存。 |
-| double [OH_Drawing_TextStyleGetFontSize](#oh_drawing_textstylegetfontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字号。 |
-| double [OH_Drawing_TextStyleGetLetterSpacing](#oh_drawing_textstylegetletterspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取文本的字符间距。 |
-| double [OH_Drawing_TextStyleGetWordSpacing](#oh_drawing_textstylegetwordspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取文本的单词间距。 |
-| double [OH_Drawing_TextStyleGetFontHeight](#oh_drawing_textstylegetfontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取字体高度。 |
-| bool [OH_Drawing_TextStyleGetHalfLeading](#oh_drawing_textstylegethalfleading) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取当前文档是否设置为一半行间距。 |
-| const char \* [OH_Drawing_TextStyleGetLocale](#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取语言文本语言类型。 |
+| void [OH_Drawing_TextStyleDestroyFontFamilies](#oh_drawing_textstyledestroyfontfamilies) (char \*\*fontFamilies, size_t num) | 释放长度为num的字体家族名称列表占用的内存。|
+| double [OH_Drawing_TextStyleGetFontSize](#oh_drawing_textstylegetfontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式字号。 |
+| double [OH_Drawing_TextStyleGetLetterSpacing](#oh_drawing_textstylegetletterspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式的字符间距。 |
+| double [OH_Drawing_TextStyleGetWordSpacing](#oh_drawing_textstylegetwordspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式的单词间距。 |
+| double [OH_Drawing_TextStyleGetFontHeight](#oh_drawing_textstylegetfontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式行高缩放系数。 |
+| bool [OH_Drawing_TextStyleGetHalfLeading](#oh_drawing_textstylegethalfleading) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取指定文本样式一半行间距设置开启状态。 |
+| const char \* [OH_Drawing_TextStyleGetLocale](#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 获取语言环境设置。 |
 | void [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*) | 释放文本框占用的内存。 |
 | void [OH_Drawing_SetTextShadow](#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](#oh_drawing_point) \*offset, double blurRadius) | 设置字体阴影对象的参数。 |
 | [OH_Drawing_LineTypography](#oh_drawing_linetypography) \* [OH_Drawing_CreateLineTypography](#oh_drawing_createlinetypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*handler) | 创建一个排版行对象[OH_Drawing_LineTypography](#oh_drawing_linetypography)的指针，排版行对象保存着文本内容以及样式的载体， 可以用于计算单行排版信息。 |
@@ -13921,7 +13921,7 @@ void OH_Drawing_SetTextStyleBaseLine (OH_Drawing_TextStyle* , int  )
 
 **描述**
 
-设置字体基线位置。
+设置文本样式的字体基线位置。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14159,12 +14159,12 @@ void OH_Drawing_SetTextStyleFontSize (OH_Drawing_TextStyle* , double  )
 ### OH_Drawing_SetTextStyleFontStyle()
 
 ```
-void OH_Drawing_SetTextStyleFontStyle (OH_Drawing_TextStyle* , int  )
+void OH_Drawing_SetTextStyleFontStyle (OH_Drawing_TextStyle* , int)
 ```
 
 **描述**
 
-设置字体风格。
+为指定文本样式设置字体风格。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14186,7 +14186,7 @@ void OH_Drawing_SetTextStyleFontStyleStruct (OH_Drawing_TextStyle* drawingTextSt
 
 **描述**
 
-设置字体样式，包括字体字重、字体宽度和字体斜度。
+设置文本样式中支柱样式的字体样式，包括字体字重、字体宽度和字体斜度。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14197,18 +14197,18 @@ void OH_Drawing_SetTextStyleFontStyleStruct (OH_Drawing_TextStyle* drawingTextSt
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 | 
+| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) | 支柱样式中字体样式对象，包括字体字重、字体宽度和字体斜度信息。 |
 
 
 ### OH_Drawing_SetTextStyleFontWeight()
 
 ```
-void OH_Drawing_SetTextStyleFontWeight (OH_Drawing_TextStyle* , int  )
+void OH_Drawing_SetTextStyleFontWeight (OH_Drawing_TextStyle* , int)
 ```
 
 **描述**
 
-设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
+为指定文本样式设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14362,7 +14362,7 @@ void OH_Drawing_SetTypographyStyleFontStyleStruct (OH_Drawing_TypographyStyle* d
 
 **描述**
 
-设置文本字体样式，包括字体字重、字体宽度和字体斜度。
+设置排版样式中默认文本样式的字体样式，包括字体字重、字体宽度和字体斜度。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14372,8 +14372,8 @@ void OH_Drawing_SetTypographyStyleFontStyleStruct (OH_Drawing_TypographyStyle* d
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
-| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) | 字体样式对象，包括字体字重、字体宽度和字体斜度信息。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) | 设置排版样式中文本样式的支柱样式的字体样式，包括字体字重、字体宽度和字体斜度。 |
 
 
 ### OH_Drawing_SetTypographyStyleTextStrutStyle()
@@ -14472,7 +14472,7 @@ void OH_Drawing_SetTypographyTextEllipsis (OH_Drawing_TypographyStyle* style, co
 
 **描述**
 
-设置省略号样式。
+设置排版样式省略号文本。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14489,12 +14489,12 @@ void OH_Drawing_SetTypographyTextEllipsis (OH_Drawing_TypographyStyle* style, co
 ### OH_Drawing_SetTypographyTextEllipsisModal()
 
 ```
-void OH_Drawing_SetTypographyTextEllipsisModal (OH_Drawing_TypographyStyle* , int  )
+void OH_Drawing_SetTypographyTextEllipsisModal (OH_Drawing_TypographyStyle* , int)
 ```
 
 **描述**
 
-设置文本的省略号样式。
+设置排版样式省略模式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14577,12 +14577,12 @@ void OH_Drawing_SetTypographyTextFontSize (OH_Drawing_TypographyStyle* , double 
 ### OH_Drawing_SetTypographyTextFontStyle()
 
 ```
-void OH_Drawing_SetTypographyTextFontStyle (OH_Drawing_TypographyStyle* , int  )
+void OH_Drawing_SetTypographyTextFontStyle (OH_Drawing_TypographyStyle* , int)
 ```
 
 **描述**
 
-设置字体风格。
+设置排版样式的默认字体样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14590,21 +14590,21 @@ void OH_Drawing_SetTypographyTextFontStyle (OH_Drawing_TypographyStyle* , int  )
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
-| int | 设置字体风格，设置1为斜体，设置0或其它为非斜体，具体可见[OH_Drawing_FontStyle](#oh_drawing_fontstyle)枚举。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 |
+| int | 设置字体风格，设置1为斜体，设置0或其它为非斜体，具体可见[OH_Drawing_FontStyle](#oh_drawing_fontstyle)枚举。 |
 
 
 ### OH_Drawing_SetTypographyTextFontWeight()
 
 ```
-void OH_Drawing_SetTypographyTextFontWeight (OH_Drawing_TypographyStyle* , int  )
+void OH_Drawing_SetTypographyTextFontWeight (OH_Drawing_TypographyStyle* , int)
 ```
 
 **描述**
 
-设置文本排版字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
+设置段落样式默认字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14614,8 +14614,8 @@ void OH_Drawing_SetTypographyTextFontWeight (OH_Drawing_TypographyStyle* , int  
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
-| int | 设置字重，设置0字重为thin，设置1字重为extra-light，设置2字重为light，设置4字重为medium，设置5字重为semi-bold， 设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见[OH_Drawing_FontWeight](#oh_drawing_fontweight)枚举。 | 
+| OH_Drawing_TypographyStyle | 指向段落样式对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| int | 设置字重，设置0字重为thin，设置1字重为extra-light，设置2字重为light，设置4字重为medium，设置5字重为semi-bold， 设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见[OH_Drawing_FontWeight](#oh_drawing_fontweight)枚举。 |
 
 
 ### OH_Drawing_SetTypographyTextHalfLeading()
@@ -14715,7 +14715,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontStyle (OH_Drawing_TypographyStyle*
 
 **描述**
 
-设置文本排版行样式风格。
+设置文本排版样式中支柱样式的字体样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14732,12 +14732,12 @@ void OH_Drawing_SetTypographyTextLineStyleFontStyle (OH_Drawing_TypographyStyle*
 ### OH_Drawing_SetTypographyTextLineStyleFontWeight()
 
 ```
-void OH_Drawing_SetTypographyTextLineStyleFontWeight (OH_Drawing_TypographyStyle* , int  )
+void OH_Drawing_SetTypographyTextLineStyleFontWeight (OH_Drawing_TypographyStyle* , int)
 ```
 
 **描述**
 
-设置文本排版行样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
+设置排版样式中支柱样式的文本样式字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14747,7 +14747,7 @@ void OH_Drawing_SetTypographyTextLineStyleFontWeight (OH_Drawing_TypographyStyle
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | int | 设置字重，设置0字重为thin，设置1字重为extra-light，设置2字重为light，设置4字重为medium，设置5字重为semi-bold， 设置6字重为bold，设置7字重为extra-bold，设置8字重为black，设置3或其它字重为normal/regular，具体可见[OH_Drawing_FontWeight](#oh_drawing_fontweight)枚举。 | 
 
 
@@ -14759,7 +14759,7 @@ void OH_Drawing_SetTypographyTextLineStyleHalfLeading (OH_Drawing_TypographyStyl
 
 **描述**
 
-设置文本排版行样式是否为一半行间距。
+设置文本排版行样式中支柱样式是否开启一半行间距。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14769,7 +14769,7 @@ void OH_Drawing_SetTypographyTextLineStyleHalfLeading (OH_Drawing_TypographyStyl
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向文本排版样式对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 | bool | 设置一半行间距是否生效，true表示生效，false表示不生效。 | 
 
 
@@ -15446,7 +15446,7 @@ void OH_Drawing_TextStyleAddFontFeature (OH_Drawing_TextStyle* , const char* tag
 
 **描述**
 
-添加文本字体特征。
+设置文本样式中指定字体特征是否启用。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15514,7 +15514,7 @@ void OH_Drawing_TextStyleClearFontFeature (OH_Drawing_TextStyle* )
 
 **描述**
 
-清除字体特征map容器中的所有内容。
+清除指定文本样式的字体特征map容器中所有内容。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15545,18 +15545,18 @@ void OH_Drawing_TextStyleClearShadows (OH_Drawing_TextStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向字体样式对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 |
 
 
 ### OH_Drawing_TextStyleDestroyFontFamilies()
 
 ```
-void OH_Drawing_TextStyleDestroyFontFamilies (char** fontFamilies, size_t num )
+void OH_Drawing_TextStyleDestroyFontFamilies (char** fontFamilies, size_t num)
 ```
 
 **描述**
 
-释放字体类型名称列表占用的内存。
+释放长度为num的字体家族名称列表占用的内存。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15566,8 +15566,8 @@ void OH_Drawing_TextStyleDestroyFontFamilies (char** fontFamilies, size_t num )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char\*\* | 指向字体类型名称列表的指针。 | 
-| size_t | 字体类型名称列表的数量。 | 
+| char\*\* | 指向字体家族名称列表的指针。 |
+| size_t | 字体家族名称列表的长度。 |
 
 
 ### OH_Drawing_TextStyleDestroyFontFeatures()
@@ -15644,7 +15644,7 @@ OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline (OH_Drawing_TextStyle* )
 
 **描述**
 
-获取字体基线位置。
+获取指定文本样式的字体基线位置。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15654,7 +15654,7 @@ OH_Drawing_TextBaseline OH_Drawing_TextStyleGetBaseline (OH_Drawing_TextStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向文本样式对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
 
 **返回：**
 
@@ -15770,7 +15770,7 @@ OH_Drawing_FontFeature* OH_Drawing_TextStyleGetFontFeatures (OH_Drawing_TextStyl
 
 **描述**
 
-获取字体特征map容器中的所有内容。
+获取指定文本样式的字体特征map容器中所有内容。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15795,7 +15795,7 @@ size_t OH_Drawing_TextStyleGetFontFeatureSize (OH_Drawing_TextStyle* )
 
 **描述**
 
-获取字体特征map容器的大小。
+获取指定文本样式中字体特征map容器的大小。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15820,7 +15820,7 @@ double OH_Drawing_TextStyleGetFontHeight (OH_Drawing_TextStyle* )
 
 **描述**
 
-获取字体高度。
+获取指定文本样式行高缩放系数。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15830,7 +15830,7 @@ double OH_Drawing_TextStyleGetFontHeight (OH_Drawing_TextStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向字体样式对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
 
 **返回：**
 
@@ -15867,12 +15867,12 @@ bool OH_Drawing_TextStyleGetFontMetrics (OH_Drawing_Typography* , OH_Drawing_Tex
 ### OH_Drawing_TextStyleGetFontSize()
 
 ```
-double OH_Drawing_TextStyleGetFontSize (OH_Drawing_TextStyle* )
+double OH_Drawing_TextStyleGetFontSize (OH_Drawing_TextStyle*)
 ```
 
 **描述**
 
-获取字号。
+获取指定文本样式字号。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15897,7 +15897,7 @@ OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle (OH_Drawing_TextStyle* )
 
 **描述**
 
-获取字体风格。
+获取指定文本样式的字体样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15907,7 +15907,7 @@ OH_Drawing_FontStyle OH_Drawing_TextStyleGetFontStyle (OH_Drawing_TextStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向字体样式对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
 
 **返回：**
 
@@ -15922,7 +15922,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_TextStyleGetFontStyleStruct (OH_Drawing_Te
 
 **描述**
 
-获取字体样式，包括字体字重、字体宽度和字体斜度。
+获取文本样式中支柱样式的字体样式，包括字体字重、字体宽度和字体斜度。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15942,12 +15942,12 @@ OH_Drawing_FontStyleStruct OH_Drawing_TextStyleGetFontStyleStruct (OH_Drawing_Te
 ### OH_Drawing_TextStyleGetFontWeight()
 
 ```
-OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight (OH_Drawing_TextStyle* )
+OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight (OH_Drawing_TextStyle*)
 ```
 
 **描述**
 
-获取字重。
+获取指定文本样式字重。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15957,7 +15957,7 @@ OH_Drawing_FontWeight OH_Drawing_TextStyleGetFontWeight (OH_Drawing_TextStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向文本样式对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
 
 **返回：**
 
@@ -16011,12 +16011,12 @@ void OH_Drawing_TextStyleGetForegroundPen (OH_Drawing_TextStyle* , OH_Drawing_Pe
 ### OH_Drawing_TextStyleGetHalfLeading()
 
 ```
-bool OH_Drawing_TextStyleGetHalfLeading (OH_Drawing_TextStyle* )
+bool OH_Drawing_TextStyleGetHalfLeading (OH_Drawing_TextStyle*)
 ```
 
 **描述**
 
-获取当前文档是否设置为一半行间距。
+获取指定文本样式一半行间距开关状态。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16026,22 +16026,22 @@ bool OH_Drawing_TextStyleGetHalfLeading (OH_Drawing_TextStyle* )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TextStyle | 指向字体风格对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
+| OH_Drawing_TextStyle | 指向文本样式对象[OH_Drawing_TextStyle](#oh_drawing_textstyle)的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
 
 **返回：**
 
-bool 返回当前文档设置为一半行间距的结果，true表示设置为一半行间距，false表示未设置为一半行间距。
+bool 返回当前文本样式一半行间距的开关状态，true表示开启一半行间距，false表示未开启一半行间距。
 
 
 ### OH_Drawing_TextStyleGetLetterSpacing()
 
 ```
-double OH_Drawing_TextStyleGetLetterSpacing (OH_Drawing_TextStyle* )
+double OH_Drawing_TextStyleGetLetterSpacing (OH_Drawing_TextStyle*)
 ```
 
 **描述**
 
-获取文本的字符间距。
+获取指定文本样式的字符间距。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16061,12 +16061,12 @@ double 返回字符间距大小。
 ### OH_Drawing_TextStyleGetLocale()
 
 ```
-const char* OH_Drawing_TextStyleGetLocale (OH_Drawing_TextStyle* )
+const char* OH_Drawing_TextStyleGetLocale (OH_Drawing_TextStyle*)
 ```
 
 **描述**
 
-获取文本语言类型。
+获取语言环境设置。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16162,12 +16162,12 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadowWithIndex (OH_Drawing_TextSt
 ### OH_Drawing_TextStyleGetWordSpacing()
 
 ```
-double OH_Drawing_TextStyleGetWordSpacing (OH_Drawing_TextStyle* )
+double OH_Drawing_TextStyleGetWordSpacing (OH_Drawing_TextStyle*)
 ```
 
 **描述**
 
-获取文本的单词间距。
+获取指定文本样式的单词间距。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16319,7 +16319,7 @@ void OH_Drawing_TextStyleSetBaselineShift (OH_Drawing_TextStyle* , double lineSh
 
 **描述**
 
-设置文本的基线漂移。
+设置文本样式基线偏移。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16330,7 +16330,7 @@ void OH_Drawing_TextStyleSetBaselineShift (OH_Drawing_TextStyle* , double lineSh
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_TextStyle | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](#oh_drawing_createtextstyle)获取。 | 
-| double | 文本的基线漂移。 | 
+| double | 文本的基线偏移。 |
 
 
 ### OH_Drawing_TextStyleSetPlaceholder()
@@ -16529,7 +16529,7 @@ double OH_Drawing_TypographyGetAlphabeticBaseline (OH_Drawing_Typography* )
 
 **描述**
 
-获取字母文字基线。
+获取排版样式字母文字基线。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16658,7 +16658,7 @@ double OH_Drawing_TypographyGetIdeographicBaseline (OH_Drawing_Typography* )
 
 **描述**
 
-获取表意文字基线。
+获取排版样式表意文字基线。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17124,7 +17124,7 @@ char* OH_Drawing_TypographyGetTextEllipsis (OH_Drawing_TypographyStyle* )
 
 **描述**
 
-获取设置的省略号内容。
+获取指定排版样式设置的省略号文本。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17571,7 +17571,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_TypographyStyleGetFontStyleStruct (OH_Draw
 
 **描述**
 
-获取文本字体样式，包括字体字重、字体宽度和字体斜度。
+获取排版样式中默认文本样式的字体样式，包括字体字重、字体宽度和字体斜度。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17581,7 +17581,7 @@ OH_Drawing_FontStyleStruct OH_Drawing_TypographyStyleGetFontStyleStruct (OH_Draw
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_TypographyStyle | 指向文本风格对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
+| OH_Drawing_TypographyStyle | 指向排版样式对象[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)的指针，由[OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle)获取。 | 
 
 **返回：**
 
@@ -17840,7 +17840,7 @@ OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle (OH_Drawing_
 
 **描述**
 
-获取文本排版行样式风格。
+获取文本排版样式中支柱样式的字体样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17854,18 +17854,18 @@ OH_Drawing_FontStyle OH_Drawing_TypographyTextlineStyleGetFontStyle (OH_Drawing_
 
 **返回：**
 
-返回获取文本排版行样式风格。1为斜体，0或其它为非斜体，具体可见[OH_Drawing_FontStyle](#oh_drawing_fontstyle)枚举。
+获取文本排版样式中支柱样式的字体样式。1为斜体，0或其它为非斜体，具体可见[OH_Drawing_FontStyle](#oh_drawing_fontstyle)枚举。
 
 
 ### OH_Drawing_TypographyTextlineStyleGetFontWeight()
 
 ```
-OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight (OH_Drawing_TypographyStyle* )
+OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight (OH_Drawing_TypographyStyle*)
 ```
 
 **描述**
 
-获取文本排版行样式字重。
+获取排版样式中支柱样式字重。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
