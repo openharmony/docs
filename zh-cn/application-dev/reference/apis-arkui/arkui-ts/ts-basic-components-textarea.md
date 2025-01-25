@@ -2055,3 +2055,61 @@ struct TextAreaExample {
 ```
 ![textCustomPaste](figures/textarea_custom_paste.PNG)
 
+### 示例17（设置最小字体范围与最大字体范围）
+
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// xxx.ets
+@Entry
+@Component
+export struct TextAreaExample11 {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+  @State changeValue: string = 'abcde';
+  @State currentFontSizeScale : string = "";
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale;
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (!err) {
+        this.currentFontSizeScale = scale.toString();
+      }
+    });
+  }
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("字体倍数：" + this.currentFontSizeScale)
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        })
+          .minFontScale(this.minFontScale)
+          .maxFontScale(this.maxFontScale)
+      }.width('100%')
+      Row(){
+        Button("2倍").onClick(() => {
+          this.setFontScale(2)
+        }).alignSelf(ItemAlign.Start)
+        Button("1倍")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(1)
+          }).alignSelf(ItemAlign.Start)
+        Button("0.85")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(0.85)
+          }).alignSelf(ItemAlign.Start)
+      }.margin({ top: 30 })
+    }
+  }
+}
+```
+
+![textAreaMaxAndMinFontScale](figures/textAreaMaxAndMinFontScale.gif)
