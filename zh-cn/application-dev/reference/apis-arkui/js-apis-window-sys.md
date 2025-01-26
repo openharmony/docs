@@ -27,24 +27,24 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_INPUT_METHOD<sup>(deprecated)</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 从API version 9开始支持，从API version 13开始废弃，无替代窗口类型，输入法相关控制都请调用[输入法框架侧接口](../../inputmethod/inputmethod-application-guide.md)执行。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_KEYGUARD<sup>9+</sup>          | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_WALLPAPER<sup>9+</sup>         | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_DESKTOP<sup>9+</sup>           | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_POINTER<sup>9+</sup>           | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**窗口类别：** 系统窗口。 |
-| TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager<br>**窗口类别：** 系统窗口。 |
+| TYPE_INPUT_METHOD<sup>(deprecated)</sup>      | 2      | 表示输入法窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 从API version 9开始支持，从API version 13开始废弃，无替代窗口类型，输入法相关控制都请调用[输入法框架侧接口](../../inputmethod/inputmethod-application-guide.md)执行。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_STATUS_BAR<sup>9+</sup>        | 3      | 表示状态栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_PANEL<sup>9+</sup>             | 4      | 表示通知栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_KEYGUARD<sup>9+</sup>          | 5      | 表示锁屏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_VOLUME_OVERLAY<sup>9+</sup>    | 6      | 表示音量条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_NAVIGATION_BAR<sup>9+</sup>    | 7      | 表示导航栏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_WALLPAPER<sup>9+</sup>         | 9      | 表示壁纸。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_DESKTOP<sup>9+</sup>           | 10      | 表示桌面。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_LAUNCHER_RECENT<sup>9+</sup>   | 11      | 表示多任务中心。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_LAUNCHER_DOCK<sup>9+</sup>     | 12      | 表示桌面Dock栏。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_VOICE_INTERACTION<sup>9+</sup> | 13      | 表示智慧语音。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_POINTER<sup>9+</sup>           | 14      | 表示鼠标。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_FLOAT_CAMERA<sup>9+</sup>      | 15      | 表示相机类型悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_SCREENSHOT<sup>9+</sup>        | 17      | 表示截屏窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_SYSTEM_TOAST<sup>11+</sup>     | 18      | 表示顶层提示窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core<br>**类别：** 系统窗口。 |
+| TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager<br>**类别：** 系统窗口。 |
 
 ## WindowMode<sup>7+</sup>
 
