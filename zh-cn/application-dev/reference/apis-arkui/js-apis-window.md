@@ -2092,9 +2092,9 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取当前应用窗口内容规避的区域。如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能系统窗口获取避让区后，该方法亦对系统窗口生效。
 
-该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口。
+该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建系统窗口并调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，对系统窗口做布局避让时可调用该接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3494,8 +3494,8 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启当前应用窗口系统规避区变化的监听。
-<!--RP7-->常见的触发避让区回调的场景如下：应用窗口在全屏模式、悬浮模式、分屏模式之间的切换；应用窗口旋转；多折叠设备在屏幕折叠态和展开态之间的切换；应用窗口在多设备之间的流转。<!--RP7End-->
+开启当前应用窗口系统规避区变化的监听。调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能系统窗口获取避让区后，该方法亦对系统窗口生效。
+<!--RP7-->常见的触发避让区回调的场景如下：窗口在全屏模式、悬浮模式、分屏模式之间的切换；应用窗口旋转；多折叠设备在屏幕折叠态和展开态之间的切换；应用窗口在多设备之间的流转。<!--RP7End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
