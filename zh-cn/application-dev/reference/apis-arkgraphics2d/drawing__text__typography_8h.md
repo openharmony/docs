@@ -93,7 +93,7 @@
 | int [OH_Drawing_TypographyGetEffectiveAlignment](_drawing.md#oh_drawing_typographygeteffectivealignment) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文字对齐方式。  | 
 | void [OH_Drawing_SetTypographyTextMaxLines](_drawing.md#oh_drawing_settypographytextmaxlines) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本最大行数。  | 
 | [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \* [OH_Drawing_CreateTextStyle](_drawing.md#oh_drawing_createtextstyle) (void) | 创建指向OH_Drawing_TextStyle对象的指针。  | 
-| [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \* [OH_Drawing_TypographyGetTextStyle](_drawing.md#oh_drawing_typographygettextstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取字体风格。  | 
+| [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \* [OH_Drawing_TypographyGetTextStyle](_drawing.md#oh_drawing_typographygettextstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取指定排版样式中设置的文本样式。  | 
 | void [OH_Drawing_DestroyTextStyle](_drawing.md#oh_drawing_destroytextstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 释放被OH_Drawing_TextStyle对象占据的内存。  | 
 | void [OH_Drawing_SetTextStyleColor](_drawing.md#oh_drawing_settextstylecolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置文本颜色。  | 
 | void [OH_Drawing_SetTextStyleFontSize](_drawing.md#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置字号。  | 
@@ -104,7 +104,7 @@
 | void [OH_Drawing_RemoveTextStyleDecoration](_drawing.md#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 删除指定装饰。  | 
 | void [OH_Drawing_SetTextStyleDecorationColor](_drawing.md#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。  | 
 | void [OH_Drawing_SetTextStyleFontHeight](_drawing.md#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。  | 
-| void [OH_Drawing_SetTextStyleFontFamilies](_drawing.md#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置字体类型。  | 
+| void [OH_Drawing_SetTextStyleFontFamilies](_drawing.md#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。  | 
 | void [OH_Drawing_SetTextStyleFontStyle](_drawing.md#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字体风格。  | 
 | void [OH_Drawing_SetTextStyleLocale](_drawing.md#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const char \*) | 设置文本语言类型。  | 
 | void [OH_Drawing_SetTextStyleForegroundBrush](_drawing.md#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 设置前景色画刷。  | 
@@ -174,7 +174,7 @@
 | void [OH_Drawing_DestroyFontDescriptor](_drawing.md#oh_drawing_destroyfontdescriptor) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*) | 释放字体描述对象占用的内存。  | 
 | [OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \* [OH_Drawing_CreateFontParser](_drawing.md#oh_drawing_createfontparser) (void) | 构造字体解析对象，用于解析系统字体。  | 
 | void [OH_Drawing_DestroyFontParser](_drawing.md#oh_drawing_destroyfontparser) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*) | 释放字体解析对象占用的内存。  | 
-| char \*\* [OH_Drawing_FontParserGetSystemFontList](_drawing.md#oh_drawing_fontparsergetsystemfontlist) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*, size_t \*) | 获取系统字体名称列表，此接口仅在2in1设备上可用。  | 
+| char \*\* [OH_Drawing_FontParserGetSystemFontList](_drawing.md#oh_drawing_fontparsergetsystemfontlist) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*, size_t \*) | 获取系统字体名称列表，此接口仅在2in1、phone设备上可用。  | 
 | void [OH_Drawing_DestroySystemFontList](_drawing.md#oh_drawing_destroysystemfontlist) (char \*\*, size_t) | 释放系统字体名称列表占用的内存。  | 
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_FontParserGetFontByName](_drawing.md#oh_drawing_fontparsergetfontbyname) ([OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) \*, const char \*) | 根据传入的系统字体名称获取系统字体的相关信息。  | 
 | [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \* [OH_Drawing_TypographyGetLineMetrics](_drawing.md#oh_drawing_typographygetlinemetrics) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取行位置信息。  | 
@@ -228,7 +228,7 @@
 | [OH_Drawing_TextHeightBehavior](_drawing.md#oh_drawing_textheightbehavior) [OH_Drawing_TypographyTextGetHeightBehavior](_drawing.md#oh_drawing_typographytextgetheightbehavior) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本高度修饰符模式。  | 
 | [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \* [OH_Drawing_TypographyGetLineFontMetrics](_drawing.md#oh_drawing_typographygetlinefontmetrics) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, size_t lineNumber, size_t \*fontMetricsSize) | 从目标行获取所有字体指标。  | 
 | void [OH_Drawing_TypographyDestroyLineFontMetrics](_drawing.md#oh_drawing_typographydestroylinefontmetrics) ([OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 释放指定行所有字体度量结构体集合所占用的所有空间。  | 
-| bool [OH_Drawing_TextStyleIsEqual](_drawing.md#oh_drawing_textstyleisequal) (const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style, const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*comparedStyle) | 判断两个字体风格对象是否相等。  | 
+| bool [OH_Drawing_TextStyleIsEqual](_drawing.md#oh_drawing_textstyleisequal) (const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style, const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*comparedStyle) | 判断两个文本样式对象是否相等，字宽属性不参与对比。  | 
 | bool [OH_Drawing_TextStyleIsEqualByFont](_drawing.md#oh_drawing_textstyleisequalbyfont) (const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style, const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*comparedStyle) | 判断两个字体风格对象的字体样式属性是否相等。  | 
 | bool [OH_Drawing_TextStyleIsAttributeMatched](_drawing.md#oh_drawing_textstyleisattributematched) (const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style, const [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*comparedStyle, [OH_Drawing_TextStyleType](_drawing.md#oh_drawing_textstyletype) textStyleType) | 判断两个字体风格对象是否有一样的文本样式类型。  | 
 | void [OH_Drawing_TextStyleSetPlaceholder](_drawing.md#oh_drawing_textstylesetplaceholder) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style) | 设置占位符。  | 
