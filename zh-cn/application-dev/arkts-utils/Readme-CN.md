@@ -63,6 +63,7 @@
             - [ArkUI数据更新场景](makeobserved-sendable.md)
             - [C++线程间数据共享场景](native-interthread-shared.md)
             - [TaskPool指定任务并发度场景](taskpool-async-task-guide.md)
+            - [ArkUI瀑布流渲染场景](taskpool-waterflow.md)
 - [ArkTS跨语言交互](arkts-cross-language-interaction.md)
 - ArkTS运行时
     - [ArkTS运行时概述](arkts-runtime-overview.md)
