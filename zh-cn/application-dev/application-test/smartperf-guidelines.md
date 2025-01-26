@@ -159,18 +159,18 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----| :-----| :--------------------- |
-| -N    |是| 设置采集次数，一秒采集一次    |
-| -PKG  |否| 设置包名                |
-| -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息 <br>不设置应用包名时，采集整机CPU信息     |
-| -g    |否| 采集gpu的频点和负载信息   |
-| -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名        |
-| -t    |否| 采集GPU温度、系统芯片温度           |
-| -r    |否| 采集内存。<br>设置应用包名时，采集整机和应用内存信息 <br>不设置应用包名时，采集整机内存信息             |
-| -snapshot |否| 屏幕截图             |
-| -net |否| 采集网络速率              |
-| -VIEW |否| 设置图层，需要先获取应用图层名                |
-| -d    |否| 采集DDR                 |
-| -sections|否| 设置分段采集          |
+| -N    |是| 设置采集次数，一秒采集一次。    |
+| -PKG  |否| 设置包名。                |
+| -c    |否| 采集cpu的频点和使用率。<br>设置应用包名时，采集整机和应用CPU信息。 <br>不设置应用包名时，采集整机CPU信息。     |
+| -g    |否| 采集gpu的频点和负载信息。   |
+| -f    |否| 采集指定应用的fps以及屏幕刷新率，必须设置应用包名。        |
+| -t    |否| 采集GPU温度、系统芯片温度。           |
+| -r    |否| 采集内存。<br>设置应用包名时，采集整机和应用内存信息。 <br>不设置应用包名时，采集整机内存信息。             |
+| -snapshot |否| 屏幕截图。             |
+| -net |否| 采集网络速率。              |
+| -VIEW |否| 设置图层，需要先获取应用图层名。                |
+| -d    |否| 采集DDR。                 |
+| -sections|否| 设置分段采集。          |
 <!--RP2--><!--RP2End-->
 
 ##### 使用示例
@@ -180,43 +180,51 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
     # SP_daemon -N 2 -c
 
-    order:0 timestamp=1503078645909
-    order:1 cpu0Frequency=1992000
-    order:2 cpu0Usage=34.042553
-    order:3 cpu0idleUsage=65.957447
-    order:4 cpu0ioWaitUsage=0.000000
-    order:5 cpu0irqUsage=0.000000
-    order:6 cpu0niceUsage=0.000000
-    order:7 cpu0softIrqUsage=0.000000
-    order:8 cpu0systemUsage=15.957447
-    order:9 cpu0userUsage=18.085106
-    order:10 cpu1Frequency=1992000
-    order:11 cpu1Usage=43.877551
-    order:12 cpu1idleUsage=56.122449
-    order:13 cpu1ioWaitUsage=0.000000
-    order:14 cpu1irqUsage=0.000000
-    order:15 cpu1niceUsage=0.000000
-    order:16 cpu1softIrqUsage=0.000000
-    order:17 cpu1systemUsage=17.346939
-    order:18 cpu1userUsage=26.530612
-    order:19 cpu2Frequency=1992000
-    order:20 cpu2Usage=38.043478
-    order:21 cpu2idleUsage=61.956522
-    order:22 cpu2ioWaitUsage=0.000000
-    order:23 cpu2irqUsage=0.000000
-    order:24 cpu2niceUsage=0.000000
-    order:25 cpu2softIrqUsage=0.000000
-    order:26 cpu2systemUsage=11.956522
-    order:27 cpu2userUsage=26.086957
-    order:28 cpu3Frequency=1992000
-    order:29 cpu3Usage=68.421053
-    order:30 cpu3idleUsage=31.578947
-    order:31 cpu3ioWaitUsage=0.000000
-    order:32 cpu3irqUsage=0.000000
-    order:33 cpu3niceUsage=0.000000
-    order:34 cpu3softIrqUsage=0.000000
-    order:35 cpu3systemUsage=13.684211
-    order:36 cpu3userUsage=54.736842
+    order:0 timestamp=1501839064260
+    order:1 TotalcpuUsage=0.502513
+    order:2 TotalcpuidleUsage=99.497487
+    order:3 TotalcpuioWaitUsage=0.000000
+    order:4 TotalcpuirqUsage=0.000000
+    order:5 TotalcpuniceUsage=0.000000
+    order:6 TotalcpusoftIrqUsage=0.000000
+    order:7 TotalcpusystemUsage=0.251256
+    order:8 TotalcpuuserUsage=0.251256
+    order:9 cpu0Frequency=1992000
+    order:10 cpu0Usage=1.000000
+    order:11 cpu0idleUsage=99.000000
+    order:12 cpu0ioWaitUsage=0.000000
+    order:13 cpu0irqUsage=0.000000
+    order:14 cpu0niceUsage=0.000000
+    order:15 cpu0softIrqUsage=0.000000
+    order:16 cpu0systemUsage=0.000000
+    order:17 cpu0userUsage=1.000000
+    order:18 cpu1Frequency=1992000
+    order:19 cpu1Usage=0.000000
+    order:20 cpu1idleUsage=100.000000
+    order:21 cpu1ioWaitUsage=0.000000
+    order:22 cpu1irqUsage=0.000000
+    order:23 cpu1niceUsage=0.000000
+    order:24 cpu1softIrqUsage=0.000000
+    order:25 cpu1systemUsage=0.000000
+    order:26 cpu1userUsage=0.000000
+    order:27 cpu2Frequency=1992000
+    order:28 cpu2Usage=1.000000
+    order:29 cpu2idleUsage=99.000000
+    order:30 cpu2ioWaitUsage=0.000000
+    order:31 cpu2irqUsage=0.000000
+    order:32 cpu2niceUsage=0.000000
+    order:33 cpu2softIrqUsage=0.000000
+    order:34 cpu2systemUsage=1.000000
+    order:35 cpu2userUsage=0.000000
+    order:36 cpu3Frequency=1992000
+    order:37 cpu3Usage=0.000000
+    order:38 cpu3idleUsage=100.000000
+    order:39 cpu3ioWaitUsage=0.000000
+    order:40 cpu3irqUsage=0.000000
+    order:41 cpu3niceUsage=0.000000
+    order:42 cpu3softIrqUsage=0.000000
+    order:43 cpu3systemUsage=0.000000
+    order:44 cpu3userUsage=0.000000
 
     ...
 
@@ -227,53 +235,61 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 - 采集2次整机CPU大中小核频率、各核使用率以及进程CPU使用率、负载
 
   ```
-    # SP_daemon -N 2 -PKG com.ohos.settings -c
+    # SP_daemon -N 2 -PKG ohos.samples.ecg -c
 
 
 
-    order:0 timestamp=1503078694916
-    order:1 ProcAppName=com.ohos.settings
-    order:2 ProcCpuLoad=0
-    order:3 ProcCpuUsage=0
-    order:4 ProcId=0
-    order:5 ProcSCpuUsage=0
-    order:6 ProcUCpuUsage=0
-    order:7 cpu0Frequency=1992000
-    order:8 cpu0Usage=31.868132
-    order:9 cpu0idleUsage=68.131868
-    order:10 cpu0ioWaitUsage=0.000000
-    order:11 cpu0irqUsage=0.000000
-    order:12 cpu0niceUsage=0.000000
-    order:13 cpu0softIrqUsage=0.000000
-    order:14 cpu0systemUsage=15.384615
-    order:15 cpu0userUsage=16.483516
-    order:16 cpu1Frequency=1992000
-    order:17 cpu1Usage=44.791667
-    order:18 cpu1idleUsage=55.208333
-    order:19 cpu1ioWaitUsage=0.000000
-    order:20 cpu1irqUsage=0.000000
-    order:21 cpu1niceUsage=0.000000
-    order:22 cpu1softIrqUsage=0.000000
-    order:23 cpu1systemUsage=13.541667
-    order:24 cpu1userUsage=31.250000
-    order:25 cpu2Frequency=1992000
-    order:26 cpu2Usage=37.894737
-    order:27 cpu2idleUsage=62.105263
-    order:28 cpu2ioWaitUsage=0.000000
-    order:29 cpu2irqUsage=0.000000
-    order:30 cpu2niceUsage=0.000000
-    order:31 cpu2softIrqUsage=1.052632
-    order:32 cpu2systemUsage=13.684211
-    order:33 cpu2userUsage=23.157895
-    order:34 cpu3Frequency=1992000
-    order:35 cpu3Usage=81.632653
-    order:36 cpu3idleUsage=18.367347
-    order:37 cpu3ioWaitUsage=0.000000
-    order:38 cpu3irqUsage=0.000000
-    order:39 cpu3niceUsage=0.000000
-    order:40 cpu3softIrqUsage=0.000000
-    order:41 cpu3systemUsage=15.306122
-    order:42 cpu3userUsage=66.326531
+    order:0 timestamp=1501839151499
+    order:1 ProcAppName=ohos.samples.ecg
+    order:2 ProcCpuLoad=0.000000
+    order:3 ProcCpuUsage=36.177645
+    order:4 ProcId=2111
+    order:5 ProcSCpuUsage=8.982036
+    order:6 ProcUCpuUsage=27.195609
+    order:7 TotalcpuUsage=62.500000
+    order:8 TotalcpuidleUsage=37.500000
+    order:9 TotalcpuioWaitUsage=0.000000
+    order:10 TotalcpuirqUsage=0.000000
+    order:11 TotalcpuniceUsage=0.000000
+    order:12 TotalcpusoftIrqUsage=0.000000
+    order:13 TotalcpusystemUsage=21.614583
+    order:14 TotalcpuuserUsage=40.885417
+    order:15 cpu0Frequency=1992000
+    order:16 cpu0Usage=77.083333
+    order:17 cpu0idleUsage=22.916667
+    order:18 cpu0ioWaitUsage=0.000000
+    order:19 cpu0irqUsage=0.000000
+    order:20 cpu0niceUsage=0.000000
+    order:21 cpu0softIrqUsage=0.000000
+    order:22 cpu0systemUsage=21.875000
+    order:23 cpu0userUsage=55.208333
+    order:24 cpu1Frequency=1992000
+    order:25 cpu1Usage=57.731959
+    order:26 cpu1idleUsage=42.268041
+    order:27 cpu1ioWaitUsage=0.000000
+    order:28 cpu1irqUsage=0.000000
+    order:29 cpu1niceUsage=0.000000
+    order:30 cpu1softIrqUsage=0.000000
+    order:31 cpu1systemUsage=21.649485
+    order:32 cpu1userUsage=36.082474
+    order:33 cpu2Frequency=1992000
+    order:34 cpu2Usage=59.793814
+    order:35 cpu2idleUsage=40.206186
+    order:36 cpu2ioWaitUsage=0.000000
+    order:37 cpu2irqUsage=0.000000
+    order:38 cpu2niceUsage=0.000000
+    order:39 cpu2softIrqUsage=0.000000
+    order:40 cpu2systemUsage=19.587629
+    order:41 cpu2userUsage=40.206186
+    order:42 cpu3Frequency=1992000
+    order:43 cpu3Usage=55.789474
+    order:44 cpu3idleUsage=44.210526
+    order:45 cpu3ioWaitUsage=0.000000
+    order:46 cpu3irqUsage=0.000000
+    order:47 cpu3niceUsage=0.000000
+    order:48 cpu3softIrqUsage=0.000000
+    order:49 cpu3systemUsage=23.157895
+    order:50 cpu3userUsage=32.631579
 
     ...
 
@@ -375,12 +391,11 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
     # SP_daemon -N 2 -snapshot
 
-    order:0 timestamp=1705041753321
-    order:1 capture=data/local/tmp/capture/screenCap_1705041753321.png
-
-    /data/local/tmp/capture created!
-
-    order:0 timestamp=1705041754324
+    order:0 timestamp=1501837609657
+    order:1 capture=data/local/tmp/capture/screenCap_1501837609657.png
+    
+    
+    order:0 timestamp=1501837610657
     order:1 capture=NA
 
     command exec finished!
@@ -421,12 +436,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:0 timestamp=1705306472232
     order:1 fps=43
     order:2 fpsJitters=602261688;;8352083;;8267708;;8305209;;8298437;;8308854;;8313542;;8569271;;8061458;;8300521;;8308333;;8309896;;8429167;;8241667;;8258333;;8318229;;8312500;;8304167;;41760937;;16418750;;8298959;;8319270;;8308334;;8313541;;8302605;;8320312;;8298958;;8326042;;8321354;;8301042;;8310417;;8309895;;8308855;;8331250;;8286458;;8343229;;8278125;;8311458;;8306250;;8312500;;8320834;;8346875;;8283333
-    order:3 refreshrate=120
+    order:3 refreshrate=69
 
     order:0 timestamp=1705306473234
     order:1 fps=40
     order:2 fpsJitters=674427313;;8191145;;8310417;;8319271;;8301562;;8318750;;8302084;;8314062;;8333334;;8283854;;8307812;;8311979;;8310417;;8307813;;8309375;;8323958;;8306250;;8308333;;8317709;;8296875;;8721875;;7895833;;8320833;;8340625;;8276563;;8409896;;8216145;;8310938;;8301042;;8362500;;8252604;;8317708;;8376042;;8256250;;8292187;;8303125;;8313542;;8310417;;8520312
-    order:3 refreshrate=120
+    order:3 refreshrate=69
     ...
 
     command exec finished!
@@ -445,12 +460,12 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
     order:0 timestamp=1705306822850
     order:1 fps=15
     order:2 fpsJitters=876291843;;8314062;;8308334;;8314583;;8310417;;8308333;;8326042;;8314583;;8292708;;8492709;;8143750;;8340104;;8294271;;8302604;;8297396
-    order:3 refreshrate=120
+    order:3 refreshrate=69
  
     order:0 timestamp=1705306823852
     order:1 fps=12
     order:2 fpsJitters=906667363;;8279167;;8311458;;8315625;;8291146;;8313021;;8323438;;8293750;;8303125;;8313541;;8301563;;8317708
-    order:3 refreshrate=120
+    order:3 refreshrate=69
     ...
 
     command exec finished!
@@ -482,53 +497,62 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
     # SP_daemon -N 10 -c -g -t -r -d -net -snapshot
 
-    order:0 timestamp=1502725274844
-    order:1 cpu0Frequency=1992000
-    order:2 cpu0Usage=37.634409
-    order:3 cpu0idleUsage=62.365591
-    order:4 cpu0ioWaitUsage=0.000000
-    order:5 cpu0irqUsage=0.000000
-    order:7 cpu0softIrqUsage=1.075269
-    order:8 cpu0systemUsage=17.204301
-    order:9 cpu0userUsage=19.354839
-    order:10 cpu1Frequency=1992000
-    order:11 cpu1Usage=87.878788
-    order:12 cpu1idleUsage=12.121212
-    order:13 cpu1ioWaitUsage=0.000000
-    order:14 cpu1irqUsage=0.000000
-    order:15 cpu1niceUsage=0.000000
-    order:16 cpu1softIrqUsage=0.000000
-    order:17 cpu1systemUsage=15.151515
-    order:18 cpu1userUsage=72.727273
-    order:19 cpu2Frequency=1992000
-    order:20 cpu2Usage=45.544554
-    order:21 cpu2idleUsage=54.455446
-    order:22 cpu2ioWaitUsage=0.000000
-    order:23 cpu2irqUsage=0.000000
-    order:24 cpu2niceUsage=0.000000
-    order:25 cpu2softIrqUsage=0.990099
-    order:26 cpu2systemUsage=14.851485
-    order:27 cpu2userUsage=29.702970
-    order:28 cpu3Frequency=1992000
-    order:29 cpu3Usage=39.175258
-    order:30 cpu3idleUsage=60.824742
-    order:31 cpu3ioWaitUsage=0.000000
-    order:32 cpu3irqUsage=0.000000
-    order:33 cpu3niceUsage=0.000000
-    order:34 cpu3softIrqUsage=1.030928
-    order:35 cpu3systemUsage=14.432990
-    order:36 cpu3userUsage=23.711340
-    order:37 gpuFrequency=300000000
-    order:38 gpuLoad=25.000000
-    order:39 gpu-thermal=43750.000000
-    order:40 soc-thermal=45.555000
-    order:41 memAvailable=1118792
-    order:42 memFree=688032
-    order:43 memTotal=1990104
-    order:44 ddrFrequency=0
-    order:45 networkDown=0
-    order:46 networkUp=0
-    order:47 capture=data/local/tmp/capture/screenCap_1502725274893.png
+    order:0 timestamp=1501837838664
+    order:1 TotalcpuUsage=0.751880
+    order:2 TotalcpuidleUsage=99.248120
+    order:3 TotalcpuioWaitUsage=0.000000
+    order:4 TotalcpuirqUsage=0.000000
+    order:5 TotalcpuniceUsage=0.000000
+    order:6 TotalcpusoftIrqUsage=0.000000
+    order:7 TotalcpusystemUsage=0.501253
+    order:8 TotalcpuuserUsage=0.250627
+    order:9 cpu0Frequency=1992000
+    order:10 cpu0Usage=0.000000
+    order:11 cpu0idleUsage=100.000000
+    order:12 cpu0ioWaitUsage=0.000000
+    order:13 cpu0irqUsage=0.000000
+    order:14 cpu0niceUsage=0.000000
+    order:15 cpu0softIrqUsage=0.000000
+    order:16 cpu0systemUsage=0.000000
+    order:17 cpu0userUsage=0.000000
+    order:18 cpu1Frequency=1992000
+    order:19 cpu1Usage=0.000000
+    order:20 cpu1idleUsage=100.000000
+    order:21 cpu1ioWaitUsage=0.000000
+    order:22 cpu1irqUsage=0.000000
+    order:23 cpu1niceUsage=0.000000
+    order:24 cpu1softIrqUsage=0.000000
+    order:25 cpu1systemUsage=0.000000
+    order:26 cpu1userUsage=0.000000
+    order:27 cpu2Frequency=1992000
+    order:28 cpu2Usage=1.000000
+    order:29 cpu2idleUsage=99.000000
+    order:30 cpu2ioWaitUsage=0.000000
+    order:31 cpu2irqUsage=0.000000
+    order:32 cpu2niceUsage=0.000000
+    order:33 cpu2softIrqUsage=0.000000
+    order:34 cpu2systemUsage=1.000000
+    order:35 cpu2userUsage=0.000000
+    order:36 cpu3Frequency=1992000
+    order:37 cpu3Usage=0.000000
+    order:38 cpu3idleUsage=100.000000
+    order:39 cpu3ioWaitUsage=0.000000
+    order:40 cpu3irqUsage=0.000000
+    order:41 cpu3niceUsage=0.000000
+    order:42 cpu3softIrqUsage=0.000000
+    order:43 cpu3systemUsage=0.000000
+    order:44 cpu3userUsage=0.000000
+    order:45 gpuFrequency=200000000
+    order:46 gpuLoad=0.000000
+    order:47 gpu-thermal=40000.000000
+    order:48 soc-thermal=40.625000
+    order:49 memAvailable=1142820
+    order:50 memFree=687988
+    order:51 memTotal=1935948
+    order:52 ddrFrequency=800000000
+    order:53 networkDown=0
+    order:54 networkUp=0
+    order:55 capture=data/local/tmp/capture/screenCap_1501837838669.png
 
     ...
 
@@ -542,78 +566,86 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   ```
     # SP_daemon -N 10 -PKG ohos.samples.ecg -c -g -t -f -r -d -net -snapshot
 
-    order:0 timestamp=1502725340425
-    order:1 ProcAppName=com.ohos.settings
+    order:0 timestamp=1501837949706
+    order:1 ProcAppName=ohos.samples.ecg
     order:2 ProcCpuLoad=0.000000
-    order:3 ProcCpuUsage=35.950135
-    order:4 ProcId=3912
-    order:5 ProcSCpuUsage=6.721698
-    order:6 ProcUCpuUsage=29.228437
-    order:7 cpu0Frequency=1992000
-    order:8 cpu0Usage=64.539007
-    order:9 cpu0idleUsage=35.460993
-    order:10 cpu0ioWaitUsage=0.000000
-    order:11 cpu0irqUsage=0.000000
-    order:12 cpu0niceUsage=0.000000
-    order:13 cpu0softIrqUsage=0.000000
-    order:14 cpu0systemUsage=26.241135
-    order:15 cpu0userUsage=38.297872
-    order:16 cpu1Frequency=1992000
-    order:17 cpu1Usage=73.758865
-    order:18 cpu1idleUsage=26.241135
-    order:19 cpu1ioWaitUsage=0.000000
-    order:20 cpu1irqUsage=0.000000
-    order:21 cpu1niceUsage=0.000000
-    order:22 cpu1softIrqUsage=0.000000
-    order:23 cpu1systemUsage=29.078014
-    order:24 cpu1userUsage=44.680851
-    order:25 cpu2Frequency=1992000
-    order:26 cpu2Usage=75.172414
-    order:27 cpu2idleUsage=24.827586
-    order:28 cpu2ioWaitUsage=0.000000
-    order:29 cpu2irqUsage=0.000000
-    order:30 cpu2niceUsage=0.000000
-    order:31 cpu2softIrqUsage=0.000000
-    order:32 cpu2systemUsage=18.620690
-    order:33 cpu2userUsage=56.551724
-    order:34 cpu3Frequency=1992000
-    order:35 cpu3Usage=80.419580
-    order:36 cpu3idleUsage=19.580420
-    order:37 cpu3ioWaitUsage=0.000000
-    order:38 cpu3irqUsage=0.000000
-    order:39 cpu3niceUsage=0.000000
-    order:40 cpu3softIrqUsage=0.699301
-    order:41 cpu3systemUsage=21.678322
-    order:42 cpu3userUsage=58.041958
-    order:43 gpuFrequency=800000000
-    order:44 gpuLoad=45.000000
-    order:45 gpu-thermal=44375.000000
-    order:46 soc-thermal=46.111000
-    order:47 fps=40
-    order:48 fpsJitters=14482127;;28966003;;28971836;;14484751;;28952878;;28970962;;14480959;;28968337;;14476001;;28967461;;28968045;;14477751;;28966878;;28975337;;14475126;;28962795;;28967461;;14496710;;28953169;;28966003;;14483002;;28963961;;28965711;;28964836;;28966295;;14550085;;28898628;;28964544;;28975628;;14497293;;28938878;;43454546;;28966003;;28973295;;28959878;;28964252;;14476585;;28965128;;28970670;;14478626
-    order:49 refreshrate=69
-    order:50 arktsHeapPss=8482
-    order:51 gpuPss=0
-    order:52 graphicPss=10800
-    order:53 heapAlloc=0
-    order:54 heapFree=0
-    order:55 heapSize=0
-    order:56 memAvailable=1113084
-    order:57 memFree=681968
-    order:58 memTotal=1990104
-    order:59 nativeHeapPss=24630
-    order:60 privateClean=7072
-    order:61 privateDirty=43304
-    order:62 pss=71001
-    order:63 sharedClean=93024
-    order:64 sharedDirty=45060
-    order:65 stackPss=1784
-    order:66 swap=0
-    order:67 swapPss=0
-    order:68 ddrFrequency=0
-    order:69 networkDown=0
-    order:70 networkUp=0
-    order:71 capture=data/local/tmp/capture/screenCap_1502725341222.png
+    order:3 ProcCpuUsage=38.775000
+    order:4 ProcId=1960
+    order:5 ProcSCpuUsage=8.875000
+    order:6 ProcUCpuUsage=29.900000
+    order:7 TotalcpuUsage=85.416667
+    order:8 TotalcpuidleUsage=14.583333
+    order:9 TotalcpuioWaitUsage=0.000000
+    order:10 TotalcpuirqUsage=0.000000
+    order:11 TotalcpuniceUsage=0.000000
+    order:12 TotalcpusoftIrqUsage=0.000000
+    order:13 TotalcpusystemUsage=33.072917
+    order:14 TotalcpuuserUsage=52.343750
+    order:15 cpu0Frequency=1992000
+    order:16 cpu0Usage=92.929293
+    order:17 cpu0idleUsage=7.070707
+    order:18 cpu0ioWaitUsage=0.000000
+    order:19 cpu0irqUsage=0.000000
+    order:20 cpu0niceUsage=0.000000
+    order:21 cpu0softIrqUsage=0.000000
+    order:22 cpu0systemUsage=40.404040
+    order:23 cpu0userUsage=52.525253
+    order:24 cpu1Frequency=1992000
+    order:25 cpu1Usage=82.291667
+    order:26 cpu1idleUsage=17.708333
+    order:27 cpu1ioWaitUsage=0.000000
+    order:28 cpu1irqUsage=0.000000
+    order:29 cpu1niceUsage=0.000000
+    order:30 cpu1softIrqUsage=0.000000
+    order:31 cpu1systemUsage=29.166667
+    order:32 cpu1userUsage=53.125000
+    order:33 cpu2Frequency=1992000
+    order:34 cpu2Usage=81.111111
+    order:35 cpu2idleUsage=18.888889
+    order:36 cpu2ioWaitUsage=0.000000
+    order:37 cpu2irqUsage=0.000000
+    order:38 cpu2niceUsage=0.000000
+    order:39 cpu2softIrqUsage=0.000000
+    order:40 cpu2systemUsage=31.111111
+    order:41 cpu2userUsage=50.000000
+    order:42 cpu3Frequency=1992000
+    order:43 cpu3Usage=85.858586
+    order:44 cpu3idleUsage=14.141414
+    order:45 cpu3ioWaitUsage=0.000000
+    order:46 cpu3irqUsage=0.000000
+    order:47 cpu3niceUsage=0.000000
+    order:48 cpu3softIrqUsage=0.000000
+    order:49 cpu3systemUsage=32.323232
+    order:50 cpu3userUsage=53.535354
+    order:51 gpuFrequency=200000000
+    order:52 gpuLoad=29.000000
+    order:53 gpu-thermal=41875.000000
+    order:54 soc-thermal=45.000000
+    order:55 fps=40
+    order:56 fpsJitters=14482127;;28966003;;28971836;;14484751;;28952878;;28970962;;14480959;;28968337;;14476001;;28967461;;28968045;;14477751;;28966878;;28975337;;14475126;;28962795;;28967461;;14496710;;28953169;;28966003;;14483002;;28963961;;28965711;;28964836;;28966295;;14550085;;28898628;;28964544;;28975628;;14497293;;28938878;;43454546;;28966003;;28973295;;28959878;;28964252;;14476585;;28965128;;28970670;;14478626
+    order:57 refreshrate=69
+    order:58 arktsHeapPss=10970
+    order:59 gpuPss=0
+    order:60 graphicPss=10800
+    order:61 heapAlloc=0
+    order:62 heapFree=0
+    order:63 heapSize=0
+    order:64 memAvailable=1137784
+    order:65 memFree=682592
+    order:66 memTotal=1935948
+    order:67 nativeHeapPss=21398
+    order:68 privateClean=24816
+    order:69 privateDirty=44932
+    order:70 pss=91587
+    order:71 sharedClean=100512
+    order:72 sharedDirty=36832
+    order:73 stackPss=1444
+    order:74 swap=0
+    order:75 swapPss=0
+    order:76 ddrFrequency=800000000
+    order:77 networkDown=0
+    order:78 networkUp=0
+    order:79 capture=data/local/tmp/capture/screenCap_1501837950216.png
 
     ...
 
@@ -633,8 +665,8 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次            |
-| -stop |是| 结束采集，执行后会生成采集报告              |
+| -start |是| 开始采集，该命令参数后可添加基础采集命令，一秒采集一次。            |
+| -stop |是| 结束采集，执行后会生成采集报告。              |
 
 ##### 使用示例
   
@@ -642,13 +674,17 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    开始采集
    # SP_daemon -start -c
    SP_daemon Collection begins
+    
+    
    command exec finished!
    #
       
    结束采集
    # SP_daemon -stop
    SP_daemon Collection ended
-   Output Path: data/local/tmp/smartperf/1/t_index_info_csv
+   Output Path: data/local/tmp/smartperf/1/t_index_info.csv
+    
+    
    command exec finished!
    #
    ```
@@ -691,52 +727,52 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
     | 数据项    | 说明             |备注|
     | :-----| :--------------------- |:-----|
-    | cpuFrequency      | CPU大中小核频率        |单位：Hz|
-    | cpuUasge          | CPU各核使用率          |%|
-    | cpuidleUsage      | CPU空闲态使用率        |%| 
-    | cpuioWaitUsage    | 等待I/O的使用率        |%|
-    | cpuirqUsage       | 硬中断的使用率         |%|  
-    | cpuniceUsage      | 低优先级用户态使用率    |%|
-    | cpusoftIrqUsage   | 软中断的使用率         |%| 
-    | cpusystemUsage    | 系统/内核态使用率      |%|
-    | cpuuserUsage      | 用户态使用率           |%| 
-    | ProcId            | 进程id                |-|
-    | ProcAppName       | app包名                |-| 
-    | ProcCpuLoad       | 进程CPU负载占比        |%|
-    | ProcCpuUsage      | 进程CPU使用率          |%| 
-    | ProcUCpuUsage     | 进程用户态CPU使用率     |%|
-    | ProcSCpuUsage     | 进程内核态CPU使用率     |%| 
-    | gpuFrequ          | 整机GPU的频率          |%|
-    | gpuLoad           | 整机GPU的负载占比      |%|
-    | currentNow        | 当前读到的电流值       |单位：mA| 
-    | voltageNow        | 当前读到的电压值       |单位：μV| 
-    | fps               | 每秒帧数              |单位：fps|
-    | fpsJitters        | 每一帧绘制间隔        |单位：ns|
-    | refreshrate       | 屏幕刷新率            |单位：Hz|
-    | networkDown       | 下行速率              |单位：byte/s|
-    | networkUp         | 上行速率              |单位：byte/s|
-    | ddrFrequency      | DDR频率               |单位：Hz|
-    | gpu-thermal       | GPU温度              |单位：°C|
-    | soc-thermal       | 系统芯片温度          |单位：°C|
-    | memAvailable      | 整机可用内存         |单位：KB|
-    | memFree           | 整机空闲内存         |单位：KB|
-    | memTotal          | 整机总内存           |单位：KB|
-    | pss               | 进程实际使用内存      |单位：KB|
-    | sharedClean       | 共享的未改写页面      |单位：KB|
-    | sharedDirty       | 共享的已改写页面      |单位：KB|
-    | priviateClean     | 私有的未改写页面      |单位：KB|
-    | privateDirty      | 私有的已改写页面      |单位：KB|
-    | swapTotal         | 总的交换内存          |单位：KB|
-    | swapPss           | 交换的pss内存        |单位：KB|
-    | HeapSize          | 堆内存大小           |单位：KB|
-    | HeapAlloc         | 可分配的堆内存大小    |单位：KB|
-    | HeapFree          | 剩余的堆内存大小      |单位：KB|
-    | gpuPss            | 使用的gpu内存大小     |单位：KB|
-    | graphicPss        | 使用的图形内存大小     |单位：KB|
-    | arktsHeapPss      | 使用的arkts内存大小    |单位：KB|
-    | nativeHeapPss     | 使用的native内存大小   |单位：KB|
-    | stackPss          | 使用的栈内存大小       |单位：KB|
-    | timeStamp         | 当前时间戳            |对应采集时间| 
+    | cpuFrequency      | CPU大中小核频率。        |单位：Hz|
+    | cpuUasge          | CPU各核使用率。          |%|
+    | cpuidleUsage      | CPU空闲态使用率。        |%| 
+    | cpuioWaitUsage    | 等待I/O的使用率。        |%|
+    | cpuirqUsage       | 硬中断的使用率。         |%|  
+    | cpuniceUsage      | 低优先级用户态使用率。    |%|
+    | cpusoftIrqUsage   | 软中断的使用率。         |%| 
+    | cpusystemUsage    | 系统/内核态使用率。      |%|
+    | cpuuserUsage      | 用户态使用率。           |%| 
+    | ProcId            | 进程id。                |-|
+    | ProcAppName       | app包名。                |-| 
+    | ProcCpuLoad       | 进程CPU负载占比。        |%|
+    | ProcCpuUsage      | 进程CPU使用率。          |%| 
+    | ProcUCpuUsage     | 进程用户态CPU使用率。     |%|
+    | ProcSCpuUsage     | 进程内核态CPU使用率。     |%| 
+    | gpuFrequ          | 整机GPU的频率。          |%|
+    | gpuLoad           | 整机GPU的负载占比。      |%|
+    | currentNow        | 当前读到的电流值。       |单位：mA| 
+    | voltageNow        | 当前读到的电压值。       |单位：μV| 
+    | fps               | 每秒帧数。              |单位：fps|
+    | fpsJitters        | 每一帧绘制间隔。        |单位：ns|
+    | refreshrate       | 屏幕刷新率。            |单位：Hz|
+    | networkDown       | 下行速率。              |单位：byte/s|
+    | networkUp         | 上行速率。              |单位：byte/s|
+    | ddrFrequency      | DDR频率。               |单位：Hz|
+    | gpu-thermal       | GPU温度。              |单位：°C|
+    | soc-thermal       | 系统芯片温度。          |单位：°C|
+    | memAvailable      | 整机可用内存。         |单位：KB|
+    | memFree           | 整机空闲内存。         |单位：KB|
+    | memTotal          | 整机总内存。           |单位：KB|
+    | pss               | 进程实际使用内存。      |单位：KB|
+    | sharedClean       | 共享的未改写页面。      |单位：KB|
+    | sharedDirty       | 共享的已改写页面。      |单位：KB|
+    | priviateClean     | 私有的未改写页面。      |单位：KB|
+    | privateDirty      | 私有的已改写页面。      |单位：KB|
+    | swapTotal         | 总的交换内存。          |单位：KB|
+    | swapPss           | 交换的pss内存。        |单位：KB|
+    | HeapSize          | 堆内存大小。           |单位：KB|
+    | HeapAlloc         | 可分配的堆内存大小。    |单位：KB|
+    | HeapFree          | 剩余的堆内存大小。      |单位：KB|
+    | gpuPss            | 使用的gpu内存大小。     |单位：KB|
+    | graphicPss        | 使用的图形内存大小。     |单位：KB|
+    | arktsHeapPss      | 使用的arkts内存大小。    |单位：KB|
+    | nativeHeapPss     | 使用的native内存大小。   |单位：KB|
+    | stackPss          | 使用的栈内存大小。       |单位：KB|
+    | timeStamp         | 当前时间戳。            |对应采集时间| 
     <!--RP6--><!--RP6End-->
 
 ### 场景化采集
@@ -747,17 +783,17 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -editor|是|    场景化采集标识，后可添加参数配置项         |
-| -responseTime|否|    响应时延         |
-| -completeTime|否|    完成时延         |
-| -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次       |
+| -editor|是|    场景化采集标识，后可添加参数配置项。         |
+| -responseTime|否|    响应时延。         |
+| -completeTime|否|    完成时延。         |
+| -fpsohtest|否|    validator用于获取fps，1秒采集一次，默认采集10次。       |
 
 #### 使用示例
 
-- 应用响应时延
+- 应用响应时延（命令仅支持RK）
 
   ```
-   # SP_daemon -editor responseTime com.ohos.settings ohtest
+   # SP_daemon -editor responseTime ohos.samples.ecg ohtest
    time:544ms
 
    command exec finished!
@@ -766,10 +802,10 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
   >
   >- 采集前先进入应用内，在命令框回车后切换至应用内页面，等待打印采集结果。
 
-- 应用完成时延
+- 应用完成时延（命令仅支持RK）
 
   ```
-   # SP_daemon -editor completeTime com.ohos.settings ontest
+   # SP_daemon -editor completeTime ohos.samples.ecg ohtest
    time:677ms
 
    command exec finished!
@@ -796,14 +832,14 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
 | 命令参数   |必选| 说明                   |
 | :-----|:-----| :--------------------- |
-| -screen |否| 采集屏幕分辨率和刷新率               |
-| -deviceinfo|否| 获取设备信息              |
-| -server|否|    启停采集用来拉起daemon进程           |
-| -clear|否|    清除所有SP_daemon进程           |
-| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)          |
-| -editorServer|否|    editor工具用来拉起daemon进程         |
-| -recordcapacity|否|    获取当前设备电量         |
-| -profilerfps |否| 采集当前界面fps          |
+| -screen |否| 采集屏幕分辨率和刷新率。               |
+| -deviceinfo|否| 获取设备信息。              |
+| -server|否|    启停采集用来拉起daemon进程。           |
+| -clear|否|    清除所有SP_daemon进程。           |
+| -ohtestfps|否|    validator用于获取fps，可设置采集次数(1秒采集一次)。          |
+| -editorServer|否|    editor工具用来拉起daemon进程。         |
+| -recordcapacity|否|    获取当前设备电量。         |
+| -profilerfps |否| 采集当前界面fps。          |
 
 #### 使用示例
 
@@ -811,7 +847,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   ```
    # SP_daemon -screen
-   activeMode: 1260x2720, refreshrate=120
+   activeMode: 720x1280, refreshrate=69
+    
+    
    command exec finished!
    #
   ```
@@ -831,15 +869,16 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    cpu_c1_max: 1992000
    cpu_c1_min: 408000
    cpu_cluster_name: policy0
+   daemonPerfVersion: 1.0.5
    deviceTypeName: rk3568
-   fullname: OpenHarmony-5.0.2.43
+   fullname: OpenHarmony-5.1.0.46
    gpu_max_freq: 800000000
    gpu_min_freq: 200000000
    model: ohos
    name: OpenHarmony 3.2
-   sn: 7001005458323933328a26dbb7bd3900
-   version: OpenHarmony 5.0.2.43
-
+   sn: 150100424a5444345209d941bec6b900
+   version: OpenHarmony 5.1.0.46
+    
    command exec finished!
    #
   ```
@@ -852,9 +891,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    # pidof SP_daemon
    7024
    #
-  
-   command exec finished!
-   #
   ```
   >**说明**
   >
@@ -864,13 +900,13 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   ```
    # pidof SP_daemon
-   9923 11402   
+   2725   
    # SP_daemon -clear
+    
+    
+   command exec finished!
    #
    # pidof SP_daemon
-   #
-  
-   command exec finished!
    #
   ```
   >**说明**
@@ -894,9 +930,6 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
    fps:41|1501926693532
    SP_daemon exec finished!
    #
-  
-   command exec finished!
-   #
   ```
   >**说明**
   >
@@ -907,11 +940,9 @@ SmartPerf Device是一款基于系统开发的性能功耗测试工具，操作�
 
   ```
    # SP_daemon -editorServer
-   Socket Process called!
-   Socket TCP Init called!
-   Socket Process called!
-   Socket Process called!
-   —
+    
+    
+   command exec finished!
   ```
 
 
