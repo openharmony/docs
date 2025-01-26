@@ -34,12 +34,12 @@
 以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见[后台代理提醒](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)文档。
 | 接口名 | 描述 |
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知 |
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知 |
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒 |
-| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒 |
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot） |
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot） |
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知。 |
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知。 |
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。 |
+| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒。 |
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot）。 |
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot）。 |
 
 
 ## 开发步骤
