@@ -108,9 +108,9 @@ Text组件的minFontSize、maxFontSize接口。
 
 如果在Text使用子组件或属性字符串场景下，设置了minFontSize、maxFontSize，变更后自适应字号生效，导致字号变化，如果需要保持之前的字号，可以删除minFontSize、maxFontSize属性设置。
 
-## cl.arkui.3 当AttributeModifer的applyNormalAttribute方法中instance参数设置为资源类型数据时更新的行为发生变更
+## cl.arkui.3 当AttributeModifier的applyNormalAttribute方法中instance参数设置为资源类型数据时更新的行为发生变更
 
-当开发者使用资源文件作为AttributeModifer的applyNormalAttribute方法中instance对象的入参时，无法通过配置资源文件更新参数，该行为与系统资源的规格不一致。
+当开发者使用资源文件作为AttributeModifier的applyNormalAttribute方法中instance对象的入参时，无法通过配置资源文件更新参数，该行为与系统资源的规格不一致。
 
 **变更影响**
 
