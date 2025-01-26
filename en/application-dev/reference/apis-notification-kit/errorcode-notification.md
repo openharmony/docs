@@ -365,7 +365,7 @@ The application is restricted by the enterprise-customized devices.
 
 **Solution**
 
-The application is under permission control of [MDM (Mobile Device Management)](../../mdm/mdm-kit-admin.md) and it cannot exit the permission control list automatically.
+The application is under permission control of [Enterprise Device Manager](../../mdm/mdm-kit-admin.md) and it cannot exit the permission control list automatically.
 
 ## 2300007 Network Access Failure
 
