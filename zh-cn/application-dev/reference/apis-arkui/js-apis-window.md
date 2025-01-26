@@ -2,6 +2,13 @@
 
 窗口提供管理窗口的一些基础能力，包括对当前窗口的创建、销毁、各属性设置，以及对各窗口间的管理调度。
 
+OpenHarmony的窗口模块将窗口界面分为系统窗口、应用窗口两种基本类型。
+- **应用窗口**：应用窗口区别于系统窗口，指与应用显示相关的窗口。根据显示内容的不同，应用窗口又分为应用主窗口、应用子窗口两种类型。
+  - 应用主窗口：应用主窗口用于显示应用界面，会在"任务管理界面"显示。 
+  - 应用子窗口：应用子窗口为应用的辅助窗口，不会在"任务管理界面"显示。应用子窗口的生命周期跟随应用主窗口。
+- **UIExtension窗口**：[ExtensionAbility组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/extensionability-overview-V5)使用的窗口。
+- **系统窗口**：系统窗口指完成系统特定功能的窗口，除应用窗口和UIExtension窗口外，均属于系统窗口，如模态窗、悬浮窗、音量条、壁纸、通知栏、状态栏、导航栏等。
+
 该模块提供以下窗口相关的常用功能：
 
 - [Window](#window)：当前窗口实例，窗口管理器管理的基本单元。
@@ -2136,7 +2143,7 @@ try {
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
-设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，系统窗口主要包括：[WindowType](#windowtype7)表格中系统窗口类别的窗口类型和[@ohos.window (窗口)(系统接口) WindowType](https://gitee.com/openharmony/docs/blob/b64947ea02239df97dc7bd6600640c975be1a77c/zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md#windowtype7)表格中的所有窗口类型。非系统窗口调用该接口返回错误码1300004。
+设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，非系统窗口调用该接口返回错误码1300004。
 
 该接口一般适用于此场景：应用于创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
 
@@ -2165,6 +2172,13 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  decorEnabled: true,
+  ctx: this.context
+};
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
@@ -2173,7 +2187,7 @@ try {
       return;
     }
     windowClass = data;
-    windowClass.setUIContent("pages/Index");
+    windowClass.setUIContent("pages/Test");
     let enabled = true;
     let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
     promise.then(() => {
@@ -2192,7 +2206,7 @@ try {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，系统窗口主要包括：[WindowType](#windowtype7)表格中系统窗口类别的窗口类型和[@ohos.window (窗口)(系统接口) WindowType](https://gitee.com/openharmony/docs/blob/b64947ea02239df97dc7bd6600640c975be1a77c/zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md#windowtype7)表格中的所有窗口类型。非系统窗口调用该接口返回错误码1300004。
+获取当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，非系统窗口调用该接口返回错误码1300004。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2218,6 +2232,13 @@ isSystemAvoidAreaEnabled(): boolean
 **示例：**
 
 ```ts
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  decorEnabled: true,
+  ctx: this.context
+};
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
@@ -2226,7 +2247,7 @@ try {
       return;
     }
     windowClass = data;
-    windowClass.setUIContent("pages/Index");
+    windowClass.setUIContent("pages/Test");
     let enabled = true;
     let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
     promise.then(() => {
