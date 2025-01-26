@@ -440,7 +440,8 @@ import {
   EditorMenuOptions,
   ExpandedMenuOptions,
   EditorEventInfo,
-  SelectionMenuOptions
+  SelectionMenuOptions,
+  SymbolGlyphModifier
 } from '@kit.ArkUI'
 
 @Entry
