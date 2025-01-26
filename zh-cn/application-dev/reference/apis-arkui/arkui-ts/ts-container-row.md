@@ -103,6 +103,18 @@ reverse(isReversed: Optional\<boolean\>)
 
 设置水平方向的布局属性，如间距、对齐方式等。
 
+```json
+// resources/base/element/string.json
+{
+  "string": [
+    {
+      "name": "stringSpace",
+      "value": "5"
+    }
+  ]
+}
+```
+
 ```ts
 // xxx.ets
 @Entry
