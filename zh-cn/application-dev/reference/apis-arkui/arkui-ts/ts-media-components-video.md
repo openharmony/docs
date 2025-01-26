@@ -188,7 +188,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 
 ### onStart
 
-onStart(event:()&nbsp;=&gt;&nbsp;void)
+onStart(event:&nbsp;VoidCallback)
 
 播放时触发该事件。
 
@@ -196,9 +196,15 @@ onStart(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放的回调函数。        |
+
 ### onPause
 
-onPause(event:()&nbsp;=&gt;&nbsp;void)
+onPause(event:&nbsp;VoidCallback)
 
 暂停时触发该事件。
 
@@ -206,15 +212,27 @@ onPause(event:()&nbsp;=&gt;&nbsp;void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频暂停的回调函数。        |
+
 ### onFinish
 
-onFinish(event:()&nbsp;=&gt;&nbsp;void)
+onFinish(event:&nbsp;VoidCallback)
 
 播放结束时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放结束的回调函数。        |
 
 ### onError
 
@@ -238,7 +256,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onPrepared(callback: Callback\<PreparedInfo>)
 
 视频准备完成时触发该事件。
 
@@ -250,11 +268,11 @@ onPrepared(callback:(event:&nbsp;{&nbsp;duration:&nbsp;number&nbsp;})&nbsp;=&gt;
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| duration | number | 是   | 当前视频的时长，单位为秒。 |
+| callback | Callback\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
-onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onSeeking(callback: Callback\<PlaybackInfo>)
 
 操作进度条过程时上报时间信息。
 
@@ -266,11 +284,11 @@ onSeeking(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
-onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onSeeked(callback: Callback\<PlaybackInfo>)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -282,11 +300,11 @@ onSeeked(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
-onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;void)
+onUpdate(callback: Callback\<PlaybackInfo>)
 
 播放进度变化时触发该事件。
 
@@ -298,11 +316,11 @@ onUpdate(callback:(event:&nbsp;{&nbsp;time:&nbsp;number&nbsp;})&nbsp;=&gt;&nbsp;
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
-onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})&nbsp;=&gt;&nbsp;void)
+onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
@@ -314,7 +332,43 @@ onFullscreenChange(callback:(event:&nbsp;{&nbsp;fullscreen:&nbsp;boolean&nbsp;})
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| fullscreen | boolean | 是   | 为true表示进入全屏播放状态，为false则表示非全屏播放。 |
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
+
+### FullscreenInfo<sup>14+</sup>对象说明
+
+用于描述当前视频是否进入全屏播放状态。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
+
+### PreparedInfo<sup>14+</sup>对象说明
+
+用于描述当前视频的时长。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
+
+### PlaybackInfo<sup>14+</sup>对象说明
+
+用于描述当前视频播放的进度。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
 
 ## VideoController
 
@@ -517,6 +571,11 @@ struct VideoCreateComponent {
             console.info('onUpdate is ' + e.time)
           }
         })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
+          }
+        })
 
       Row() {
         Button('src').onClick(() => {
@@ -569,6 +628,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -635,6 +698,7 @@ struct ImageAnalyzerExample {
 以下示例展示了如何使Video组件能够播放拖入的视频。
 
 ```ts
+// xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry
