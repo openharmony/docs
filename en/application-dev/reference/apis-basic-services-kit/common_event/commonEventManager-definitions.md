@@ -688,6 +688,30 @@ When the device exits the forced sleep mode, the event notification service is t
 
 **Value**: "usual.event.EXIT_FORCE_SLEEP"
 
+### COMMON_EVENT_ENTER_HIBERNATE<sup>15+</sup>
+
+Indicates that the device is about to enter the hibernation mode.
+
+When the device is about to enter the hibernation mode, the event notification service is triggered to publish this event. This event should be processed within one second.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.ENTER_HIBERNATE"
+
+### COMMON_EVENT_EXIT_HIBERNATE<sup>15+</sup>
+
+Indicates that the device exits the hibernation mode.
+
+When the device exits the hibernation mode, the event notification service is triggered to publish this event.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.EXIT_HIBERNATE"
+
 
 
 
@@ -949,7 +973,6 @@ When the system language is set, the event notification service is triggered to 
 **Required subscriber permissions**: none
 
 **Value**: usual.event.LOCALE_CHANGED
-
 
 
 
@@ -1671,6 +1694,8 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **Value**: "usual.event.bluetooth.host.REQ_ENABLE"
 
+
+
 ### COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE
 (Reserved, not supported yet) Indicates the common event about the request for the user to disable Bluetooth.
 
@@ -1689,6 +1714,8 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 **Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.SCAN_MODE_UPDATE"
+
+
 
 
 ### COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED
@@ -1934,4 +1961,6 @@ Indicates the common event of that the SPN information had changed.
 **Required subscriber permissions**: none
 
 **Value**: "usual.event.SPN_INFO_CHANGED"
+
+<!--no_check-->
 
