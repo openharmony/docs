@@ -594,7 +594,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | double [OH_Drawing_TextLineGetOffsetForStringIndex](#oh_drawing_textlinegetoffsetforstringindex) (OH_Drawing_TextLine \*line, int32_t index) | 获取文本行对象中指定字符串索引处的偏移量。 |
 | void [OH_Drawing_TextLineEnumerateCaretOffsets](#oh_drawing_textlineenumeratecaretoffsets) (OH_Drawing_TextLine \*line, [Drawing_CaretOffsetsCallback](#drawing_caretoffsetscallback) callback) | 枚举文本行对象中每个字符的偏移量和索引值，传递给用户自定义的回调函数，用户可以使用偏移量和索引值进行其他操作。 |
 | double [OH_Drawing_TextLineGetAlignmentOffset](#oh_drawing_textlinegetalignmentoffset) (OH_Drawing_TextLine \*line, double alignmentFactor, double alignmentWidth) | 获取文本行对象根据对齐因子和对齐宽度计算对齐后所需的偏移量。 |
-| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetRunStringIndices](#oh_drawing_getrunstringindices) (OH_Drawing_Run \*run, int64_t start, int64_t length) | 获取渲染单元指定范围内字形的字符索引，该索引是相对于整个段落的偏移。 |
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetRunStringIndices](#oh_drawing_getrunstringindices) (OH_Drawing_Run \*run, int64_t start, int64_t length) | 获取渲染单元指定范围内字形的字符索引数组，该索引是相对于整个段落的偏移。 |
 | uint64_t [OH_Drawing_GetRunStringIndicesByIndex](#oh_drawing_getrunstringindicesbyindex) ([OH_Drawing_Array](#oh_drawing_array) \*stringIndices, size_t index) | 获取字符索引数组中指定下标的字符索引值。 |
 | void [OH_Drawing_DestroyRunStringIndices](#oh_drawing_destroyrunstringindices) ([OH_Drawing_Array](#oh_drawing_array) \*stringIndices) | 释放字形的字符索引数组对象指针。 |
 | void [OH_Drawing_GetRunStringRange](#oh_drawing_getrunstringrange) (OH_Drawing_Run \*run, uint64_t \*location, uint64_t \*length) | 获取渲染单元生成字形的字符范围。 |
@@ -3735,7 +3735,7 @@ OH_Drawing_Array* OH_Drawing_TextLineGetGlyphRuns (OH_Drawing_TextLine* line)
 
 **返回：**
 
-指向文本渲染单元**OH_Drawing_Run**数组[OH_Drawing_Array](#oh_drawing_array)的指针。
+指向文本渲染单元**OH_Drawing_Run**数组[OH_Drawing_Array](#oh_drawing_array)的指针，不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroyRuns](#oh_drawing_destroyruns)接口释放该对象的指针。
 
 ### OH_Drawing_DestroyRuns()
 
@@ -3881,7 +3881,7 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds (OH_Drawing_TextLine* line)
 
 **返回：**
 
-指向文本行对象的图像边界[OH_Drawing_Rect](#oh_drawing_rect)的指针。
+指向文本行对象的图像边界[OH_Drawing_Rect](#oh_drawing_rect)的指针，不再需要[OH_Drawing_Rect](#oh_drawing_rect)时，请使用[OH_Drawing_RectDestroy](#oh_drawing_rectdestroy)接口释放该对象的指针。
 
 ### OH_Drawing_TextLineGetTrailingSpaceWidth()
 
@@ -4067,7 +4067,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath (const OH_Drawing_Font* font, co
 | font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 |
 | text | 指示要获取轮廓路径的文本字符串。 |
 | byteLength | 指示要获取对应文本路径的字节长度，如果此字节长度大于text字符串的字节长度，会发生未定义行为。 |
-| encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引。 |
+| encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引，具体类型格式可见[OH_Drawing_TextEncoding](#oh_drawing_textencoding)。 |
 | x | 指示文本在绘图区域内以原点为起始位置的X坐标。 |
 | y | 指示文本在绘图区域内以原点为起始位置的Y坐标。 |
 | path | 返回获取到的文字轮廓路径对象，作为出参使用。 |
@@ -4109,7 +4109,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices (OH_Drawing_Run* run, int64_t s
 
 **描述**
 
-获取渲染单元指定范围内字形的字符索引，该索引是相对于整个段落的偏移。
+获取渲染单元指定范围内字形的字符索引数组，该索引是相对于整个段落的偏移。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4125,7 +4125,7 @@ OH_Drawing_Array* OH_Drawing_GetRunStringIndices (OH_Drawing_Run* run, int64_t s
 
 **返回：**
 
-返回字形的字符索引数组。
+返回字形的字符索引数组[OH_Drawing_Array](#oh_drawing_array)对象的指针，不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroyRunStringIndices](#oh_drawing_destroyrunstringindices)接口释放该对象的指针。
 
 
 ### OH_Drawing_GetRunStringIndicesByIndex()
@@ -4320,7 +4320,7 @@ OH_Drawing_Array* OH_Drawing_GetRunGlyphs (OH_Drawing_Run* run, int64_t start, i
 
 **返回：**
 
-返回指向渲染单元字形数组[OH_Drawing_Array](#oh_drawing_array)对象的指针。
+返回指向渲染单元字形数组[OH_Drawing_Array](#oh_drawing_array)对象的指针，不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroyRunGlyphs](#oh_drawing_destroyrunglyphs)接口释放该对象的指针。
 
 
 ### OH_Drawing_GetRunGlyphsByIndex()
@@ -4393,7 +4393,7 @@ OH_Drawing_Array* OH_Drawing_GetRunPositions (OH_Drawing_Run* run, int64_t start
 
 **返回：**
 
-返回指向渲染单元字形位置数组[OH_Drawing_Array](#oh_drawing_array)对象的指针。
+返回指向渲染单元字形位置数组[OH_Drawing_Array](#oh_drawing_array)对象的指针，不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroyRunPositions](#oh_drawing_destroyrunpositions)接口释放该对象的指针。
 
 ### OH_Drawing_GetRunPositionsByIndex()
 
@@ -4578,7 +4578,7 @@ OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType (OH_Drawing_SystemFont
 
 **返回：**
 
-返回对应字体类型的字体名称数组[OH_Drawing_Array](#oh_drawing_array)的指针。
+返回对应字体类型的字体名称数组[OH_Drawing_Array](#oh_drawing_array)的指针，不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroySystemFontFullNames](#oh_drawing_destroysystemfontfullnames)接口释放该对象的指针。
 
 ### OH_Drawing_GetFontDescriptorByFullName()
 
@@ -4603,7 +4603,7 @@ OH_Drawing_FontDescriptor* OH_Drawing_GetFontDescriptorByFullName (const OH_Draw
 
 **返回：**
 
-指向字体描述符对象[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的指针。
+指向字体描述符对象[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的指针，不再需要[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)时，请使用[OH_Drawing_DestroyFontDescriptor](#oh_drawing_destroyfontdescriptor)接口释放该对象的指针。
 
 ### OH_Drawing_TypefaceCreateFromFileWithArguments()
 
