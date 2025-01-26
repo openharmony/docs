@@ -112,8 +112,8 @@
 | [OH_NativeXComponent_TouchPoint::timeStamp](#timestamp-12)&nbsp;=&nbsp;0 | 当前触摸事件的时间戳。                    |
 | [OH_NativeXComponent_TouchPoint::isPressed](#ispressed)&nbsp;=&nbsp;false | 当前点是否被按下。                      |
 | [OH_NativeXComponent_TouchEvent::id](#id-22)&nbsp;=&nbsp;0 | 手指的唯一标识符。                      |
-| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23)&nbsp;=&nbsp;0.0 | 触摸点相对于屏幕左边缘的x坐标。               |
-| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23)&nbsp;=&nbsp;0.0 | 触摸点相对于屏幕上边缘的y坐标。               |
+| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。               |
+| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。               |
 | [OH_NativeXComponent_TouchEvent::x](#x-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent组件左边缘的x坐标。     |
 | [OH_NativeXComponent_TouchEvent::y](#y-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent组件上边缘的y坐标。     |
 | [OH_NativeXComponent_TouchEvent::type](#type-22)&nbsp;=&nbsp;OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。                     |
