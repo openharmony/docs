@@ -20,7 +20,7 @@ import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color }
 
 ## ProgressButtonV2
 
-文本下载按钮，可显示具体下载进度。
+文本下载按钮，可显示具体下载进度。使用状态管理v2。
 
 ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback, isEnabled: boolean, colorOptions: ProgressButtonV2Color})
 
@@ -30,14 +30,14 @@ ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型                                                            | 必填 | 装饰器类型             | 说明                                                                   |
-| -------- |---------------------------------------------------------------|----|-------------------|----------------------------------------------------------------------|
-| progress | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。                                                          |
-| content | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                             |
-| progressButtonWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Require <br/>\@Once  | 下载按钮的宽度。<br/>默认值：44vp。                                               |
-| onClicked | [ClickCallback](#clickcallback)                               | 否  | \@Param               | 下载按钮的点击回调。默认值  () => {};                                             |
-| isEnabled | boolean                                                       | 否  | \@Param       | 下载按钮是否可以点击。<br> isEnabled为true时，表示可以点击。<br> isEnabled为false时，表示不可点击。 |
-| colorOptions | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param       | 下载按钮颜色选项。默认值undefined。                                               |
+| 名称 | 类型                                                            | 必填 | 装饰器类型             | 说明                                                                           |
+| -------- |---------------------------------------------------------------|----|-------------------|------------------------------------------------------------------------------|
+| progress | number                                                        | 是  | \@Require <br/>\@Param | 下载按钮的当前进度值。                                                                  |
+| content | [ResourceStr](ts-types.md#resourcestr)                        | 是  | \@Require <br/>\@Param | 下载按钮的文本。                                                                     |
+| progressButtonWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Require <br/>\@Once  | 下载按钮的宽度。<br/>默认值：44vp。                                                       |
+| onClicked | [ClickCallback](#clickcallback)                               | 否  | \@Param               | 下载按钮的点击回调。默认值  () => {};                                                     |
+| isEnabled | boolean                                                       | 否  | \@Param       | 下载按钮是否可以点击。<br> isEnabled为true时，表示可以点击。<br> isEnabled为false时，表示不可点击。默认值true。 |
+| colorOptions | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param       | 下载按钮颜色选项。默认值undefined。                                                       |
 
 ## ClickCallback
 
@@ -48,11 +48,6 @@ type ClickCallback = () => void
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-
-| 名称 | 类型              | 说明                                                             |
-| -------- | ------- |----------------------------------------------------------------|
-| ClickCallback | () => void  | 下载按钮的当前进度值。                            |
 
 ### ProgressButtonV2Color
 下载按钮颜色选项

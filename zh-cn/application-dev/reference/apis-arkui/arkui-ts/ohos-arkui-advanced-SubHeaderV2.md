@@ -280,9 +280,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction
+  promptAction,
+  TextModifier
 } from '@kit.ArkUI'
-import { TextModifier } from '@ohos.arkui.modifier'
 
 @Entry
 @ComponentV2
@@ -339,9 +339,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction
+  promptAction,
+  TextModifier
 } from '@kit.ArkUI'
-import { TextModifier } from '@ohos.arkui.modifier'
 
 @Entry
 @ComponentV2
@@ -466,9 +466,10 @@ import {
   SubHeaderV2,
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
-  SubHeaderV2Title }
-  from '@kit.ArkUI'
-import { promptAction,SymbolGlyphModifier } from '@kit.ArkUI'
+  SubHeaderV2Title,
+  promptAction,
+  SymbolGlyphModifier
+} from '@kit.ArkUI'
 
 @Entry
 @ComponentV2
@@ -513,7 +514,6 @@ import {
   promptAction,
   SymbolGlyphModifier
 } from '@kit.ArkUI'
-
 
 @Entry
 @ComponentV2
@@ -598,7 +598,6 @@ import {
   promptAction
 } from '@kit.ArkUI'
 
-
 @Entry
 @ComponentV2
 struct SubHeaderExample {
@@ -653,9 +652,9 @@ import {
   SubHeaderV2OperationType,
   SubHeaderV2OperationItem,
   SubHeaderV2Title,
-  promptAction
+  promptAction,
+  TextModifier
 } from '@kit.ArkUI'
-import { TextModifier } from '@ohos.arkui.modifier'
 
 @Entry
 @ComponentV2
@@ -800,9 +799,9 @@ import {
   SubHeaderV2,
   SubHeaderV2Title,
   SubHeaderV2OperationItem,
-  promptAction
+  promptAction,
+  TextModifier
 } from '@kit.ArkUI'
-import { TextModifier } from '@ohos.arkui.modifier'
 
 @Entry
 @ComponentV2
