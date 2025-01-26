@@ -4,9 +4,12 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 5.x Releases
+    - [OpenHarmony v5.0.2 Release (2025-01-22)](release-notes/OpenHarmony-v5.0.2-release.md)
+    - [OpenHarmony v5.0.1 Release (2024-11-22)](release-notes/OpenHarmony-v5.0.1-release.md)
     - [OpenHarmony v5.0.0 Release (2024-09-29)](release-notes/OpenHarmony-v5.0.0-release.md)
     - [OpenHarmony v5.0 Beta1 (2024-06-20)](release-notes/OpenHarmony-v5.0-beta1.md)
   - OpenHarmony 4.x Releases
+    - [OpenHarmony v4.1 Release (2024-04-22)](release-notes/OpenHarmony-v4.1-release.md)
     - [OpenHarmony v4.1 Beta1 (2023-12-31)](release-notes/OpenHarmony-v4.1-beta1.md)
     - [OpenHarmony v4.0 Release (2023-10-26)](release-notes/OpenHarmony-v4.0-release.md)
     - [OpenHarmony v4.0 Beta2 (2023-08-03)](release-notes/OpenHarmony-v4.0-beta2.md)
