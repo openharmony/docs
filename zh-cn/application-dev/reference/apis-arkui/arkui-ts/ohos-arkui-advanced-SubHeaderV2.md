@@ -1,7 +1,7 @@
 # SubHeaderV2
 
 
-子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。使用状态管理v2。
+子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。使用状态管理v2。V1强调组件层级的状态管理，而V2则增强了对数据对象的深度观察与管理能力，不再局限于组件层级。通过V2，开发者能够更灵活地控制数据和状态，实现更高效的UI刷新。
 
 
 > **说明：**
@@ -26,8 +26,6 @@ import { SubHeader } from '@kit.ArkUI'
 
 ## SubHeader
 
-子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
-
 SubHeaderV2({
 icon?: SubHeaderV2IconType,
 title?: SubHeaderV2Title,
@@ -35,6 +33,8 @@ select?: SubHeaderV2Select,
 operationType?: SubHeaderV2OperationType,
 operationItems?: SubHeaderV2OperationItem
 })
+
+子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。使用状态管理v2。
 
 **装饰器类型：** @ComponentV2
 
@@ -44,14 +44,16 @@ operationItems?: SubHeaderV2OperationItem
 
 | 名称 | 类型                                                      | 必填 | 装饰器类型 | 说明                                     |
 | -------- |---------------------------------------------------------| -------- | -------- |----------------------------------------|
-| icon| [SubHeaderV2IconType](#subheaderv2icontype)             | 否 | @Param | 图标设置项。默认值undefined。                    |
-| title| [SubHeaderV2Title](#subheaderv2title)                   | 否 | @Param| 标题设置项。默认值undefined。                    |
-| select| [SubHeaderV2Select](#subheaderv2select)                 | 否 | @Param | select内容以及事件。默认值undefined。             |
+| icon| [SubHeaderV2IconType](#subheaderv2icontype)             | 否 | @Param | 图标设置项。<br />默认值：undefined              |
+| title| [SubHeaderV2Title](#subheaderv2title)                   | 否 | @Param| 标题设置项。<br />默认值：undefined              |
+| select| [SubHeaderV2Select](#subheaderv2select)                 | 否 | @Param | select内容以及事件。<br />默认值：undefined       |
 | operationType | [SubHeaderV2OperationType](#subheaderv2operationtype)   | 否 | @Param| 操作区元素样式。<br />默认值：OperationType.BUTTON |
-| operationItems | [SubHeaderV2OperationItem](#subheaderv2operationitem)[] | 否 | @Param| 操作区的设置项。默认值undefined。                  |
-| titleBuilder | [SubHeaderV2TitleBuilder](#subheaderv2titlebuilder)                            | 否 | @BuildParam| 自定义标题区内容。默认值() => void                 |
+| operationItems | [SubHeaderV2OperationItem](#subheaderv2operationitem)[] | 否 | @Param| 操作区的设置项。<br />默认值：undefined            |
+| titleBuilder | [SubHeaderV2TitleBuilder](#subheaderv2titlebuilder)                            | 否 | @BuildParam| 自定义标题区内容。<br />默认值：() => void          |
 
 ## SubHeaderV2IconType
+
+type SubHeaderV2IconType = ResourceStr | SymbolGlyphModifier
 
 图标内容的联合类型。
 
@@ -65,8 +67,11 @@ operationItems?: SubHeaderV2OperationItem
 | SymbolGlyphModifier | Symbol类型，用于定义Symbol图标。 |
 
 ## SubHeaderV2Title
+标题设置项
 
 **装饰器类型：** @ObservedV2
+
+### 属性
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -74,10 +79,10 @@ operationItems?: SubHeaderV2OperationItem
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明                           |
 | -------- | -------- | -------- | -------- |------------------------------|
-| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 标题内容。默认值undefined。                        |
-| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 副标题内容。默认值undefined。                       |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。默认值undefined。   |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。默认值undefined。 |
+| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 标题内容。<br />默认值：undefined                        |
+| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | @Trace | 副标题内容。<br />默认值：undefined                       |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined   |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | @Trace | 设置副标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ### constructor
 
@@ -89,9 +94,9 @@ constructor(options: SubHeaderV2TitleOptions)
 
 **参数：**
 
-| 名称    | 类型             | 必填 | 说明             |
-| --------- | -------------------- | ------ | ------------------ |
-| options | SubHeaderV2TitleOptions | 是   | 标题内容信息。 |
+| 名称    | 类型                                                  | 必填 | 说明             |
+| --------- |-----------------------------------------------------| ------ | ------------------ |
+| options | [SubHeaderV2TitleOptions](#subheaderV2titleoptions) | 是   | 标题内容信息。 |
 
 ## SubHeaderV2TitleOptions
 
@@ -103,10 +108,10 @@ constructor(options: SubHeaderV2TitleOptions)
 
 | 属性 | 类型 | 必填  | 说明                          |
 | -------- | -------- | -------- |-----------------------------|
-| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。默认值undefined。                       |
-| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。默认值undefined。                      |
-| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。默认值undefined。 |
-| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。默认值undefined。 |
+| primaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 标题内容。<br />默认值：undefined                       |
+| secondaryTitle|  [ResourceStr](ts-types.md#resourcestr)  | 否 | 副标题内容。<br />默认值：undefined                      |
+| primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
+| secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
 
 ### SubHeaderV2Select
 
@@ -123,7 +128,7 @@ select内容以及事件。
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | @Trace | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 |@Trace | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
 | selectedContent | string                                                           | 否 | @Trace | 设置下拉按钮本身的文本内容。默认值''                                                       |
-| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 默认值undefined。                                               |
+| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)                                   | 否 | @Trace | 下拉菜单选中某一项的回调。 <br />默认值：undefined                                               |
 
 ### constructor
 
@@ -152,13 +157,13 @@ select内容以及事件构造函数。
 | options | [SelectOption](ts-basic-components-select.md#selectoption对象说明)[] | 是 | 下拉选项内容。                                                                   |
 | selectedIndex | number                                                           | 否 | 设置下拉菜单初始选项的索引。<br />第一项的索引为0。<br />当不设置selected属性时，<br />默认选择值为-1，菜单项不选中。 |
 | selectedContent | string                                                           | 否 | 设置下拉按钮本身的文本内容。默认值''。                                                      |
-| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。默认值undefined。                                                |
+| onSelect | [SubHeaderV2SelectOnSelect](#subheaderv2selectonselect)          | 否 | 下拉菜单选中某一项的回调。<br />默认值：undefined                                                |
 
 ## SubHeaderV2SelectOnSelect
 
-下拉菜单选中某一项的回调类型。
-
 type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) => void
+
+下拉菜单选中某一项的回调类型。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -168,8 +173,8 @@ type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) =
 
 |参数名 | 类型      |必填                                             | 说明                  |
 | ------------------------------- |---------|-------------|---------------------|
-| selectIndex | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的索引。默认值undefined。           |
-| selectContent | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的值。默认值undefined。 |
+| selectIndex | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的索引。<br />默认值：undefined           |
+| selectContent | number  |否 | 下拉菜单选中某一项的回调类型。表示选中项的值。<br />默认值：undefined |
 
 ## SubHeaderV2OperationType
 
@@ -187,6 +192,8 @@ type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) =
 | LOADING |  3  |  加载动画。 |
 
 ## SubHeaderV2OperationItemType
+
+type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 操作区元素内容的联合类型。
 
@@ -213,7 +220,7 @@ type SubHeaderV2SelectOnSelect = (selectIndex: number, selectContent?: string) =
 | -------- | -------- | -------- | -------- |-----------------------------------------------------|
 | content |  [SubHeaderV2OperationItemType](#subheaderv2operationitemtype)  | 是 | @Trace | 操作区元素内容。                                            |
 | action | SubHeaderV2OperationItemAction | 否 | @Trace | 操作区事件。默认值() => void。                                |
-| accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 默认值undefined。                     |
+| accessibilityText |[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍描述。 <br />默认值：undefined                     |
 | accessibilityLevel |[string](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription|[ResourceStr](ts-types.md#resourcestr) | 否 |@Trace | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 
@@ -253,7 +260,7 @@ type SubHeaderV2OperationItemAction = () => void;
 |--------------------------|---------------------------------------------| -------- |-----------------------------------------------------|
 | value                    | [SubHeaderV2IconType](#subheaderv2icontype) | 是 | 文本内容。                                               |
 | action                   | [SubHeaderV2OperationItemAction](#subheaderv2operationitemaction)         | 否 | 选项操作事件。默认值() => void。                               |
-| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。默认值undefined。                      |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍描述。<br />默认值：undefined                      |
 | accessibilityLevel       | [string](ts-types.md#resourcestr)           | 否 | 子标题右侧icon图标无障碍重要性。<br>默认值: “yes”。                   | 
 | accessibilityDescription | [ResourceStr](ts-types.md#resourcestr)      | 否 | 子标题右侧icon图标无障碍说明，用于为用户进一步说明当前组件。<br>默认值：“单指双击即可执行”。 |
 
@@ -666,9 +673,9 @@ struct SubHeaderExample {
 
   aboutToAppear(): void {
     this.title = new SubHeaderV2Title({
-      primaryTitle: 'primaryTitle',
+      primaryTitle: '一级标题',
       primaryTitleModifier: this.primaryModifier,
-      secondaryTitle: 'secondaryTitle',
+      secondaryTitle: '二级标题',
       secondaryTitleModifier: this.secondaryModifier
     });
     this.operationItems4 = [new SubHeaderV2OperationItem({
