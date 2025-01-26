@@ -89,7 +89,7 @@ isPointInPath(path?: Path2D, x: number, y: number): boolean
 **返回值：** 
 | 类型      | 说明            |
 | ------- | ------------- |
-| boolean | 指定点是否在路径的区域内。 |
+| boolean | 指定点是否在路径的区域内。返回true时，指定点在路径区域内。返回false时，指定点不在路径路径区域内。 |
 
 **示例：** 
 ```html
