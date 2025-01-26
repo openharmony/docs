@@ -185,7 +185,7 @@ anonymous enum
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| UI_MOUSE_EVENT_ACTION_UNKNOWN  | 无效行为  | 
+| UI_MOUSE_EVENT_ACTION_UNKNOWN  | 无效行为。  | 
 | UI_MOUSE_EVENT_ACTION_PRESS  | 鼠标按键按下。  | 
 | UI_MOUSE_EVENT_ACTION_RELEASE  | 鼠标按键松开。  | 
 | UI_MOUSE_EVENT_ACTION_MOVE  | 鼠标移动。  | 
