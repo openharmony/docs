@@ -1,12 +1,15 @@
 # ProgressButtonV2
 
 
-文本下载按钮，可显示具体下载进度。使用状态管理v2。V1强调组件层级的状态管理，而V2则增强了对数据对象的深度观察与管理能力，不再局限于组件层级。通过V2，开发者能够更灵活地控制数据和状态，实现更高效的UI刷新。
+文本下载按钮，可显示具体的下载进度。
+
+该组件基于状态管理V2实现，相较于状态管理V1，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制文本下载按钮的数据和状态，实现更高效的用户界面刷新。
 
 
 > **说明：**
 >
-> 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件基于状态管理V2实现。
+> - 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
@@ -17,7 +20,7 @@ import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color }
 
 ## ProgressButtonV2
 
-文本下载按钮，可显示具体下载进度。使用状态管理v2。
+文本下载按钮，可显示具体下载进度。
 
 ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback, isEnabled: boolean, colorOptions: ProgressButtonV2Color})
 
@@ -43,14 +46,14 @@ ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: 
 
 type ClickCallback = () => void
 
-下载按钮的点击回调
+下载按钮的点击回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## ProgressButtonV2Color
-下载按钮颜色选项
+下载按钮颜色选项。
 
 **装饰器类型：**\@ObservedV2
 
@@ -70,7 +73,7 @@ type ClickCallback = () => void
 ### constructor
 constructor(options: ProgressButtonV2ColorOptions);
 
-下载按钮颜色选项构造函数
+下载按钮颜色选项构造函数。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 

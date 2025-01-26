@@ -1,11 +1,15 @@
 # SubHeaderV2
 
 
-子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。使用状态管理v2。V1强调组件层级的状态管理，而V2则增强了对数据对象的深度观察与管理能力，不再局限于组件层级。通过V2，开发者能够更灵活地控制数据和状态，实现更高效的UI刷新。
+子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
+
+该组件基于状态管理V2实现，相较于状态管理V1，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制子标题的数据和状态，实现更高效的用户界面刷新。
+
 
 
 > **说明：**
 >
+> - 该组件基于状态管理V2实现。
 > 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -34,7 +38,7 @@ operationType?: SubHeaderV2OperationType,
 operationItems?: SubHeaderV2OperationItem
 })
 
-子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。使用状态管理v2。
+子标题，用于列表项顶部，将该组列表划分为一个区块，子标题名称用来概括该区块内容。也可以用于内容项顶部，子标题名称用来概括该区块内容。
 
 **装饰器类型：** @ComponentV2
 
@@ -113,7 +117,7 @@ constructor(options: SubHeaderV2TitleOptions)
 | primaryTitleModifier|  [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置标题文本属性，如设置副标题颜色、字体大小、字重等。<br />默认值：undefined |
 | secondaryTitleModifier|   [TextModifier](ts-universal-attributes-attribute-modifier.md)  | 否 | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br />默认值：undefined |
 
-### SubHeaderV2Select
+## SubHeaderV2Select
 
 select内容以及事件。
 
