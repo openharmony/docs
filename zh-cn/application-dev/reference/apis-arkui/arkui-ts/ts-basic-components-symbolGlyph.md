@@ -611,4 +611,5 @@ struct Index {
   }
 }
 ```
+
 ![symbol](figures/symbolGlyph_symbolEffect.gif)
