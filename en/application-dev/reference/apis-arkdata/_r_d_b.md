@@ -18,7 +18,6 @@ The relational database (RDB) store manages data based on relational models. The
 | Name| Description|
 | -------- | -------- |
 | [oh_cursor.h](oh__cursor_8h.md) | Defines APIs for accessing the result set obtained by querying an RDB store.<br>**File to include**: <database/rdb/oh_cursor.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
-| [oh_data_values_buckets.h](oh__data__values__buckets_8h.md) | Defines structs, APIs, and enums related to stored data values.<br>**File to include**: <database/rdb/oh_data_values_buckets.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_predicates.h](oh__predicates_8h.md) | Defines the predicates for RDB stores.<br>**File to include**: <database/rdb/oh_predicates.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [oh_value_object.h](oh__value__object_8h.md) | Defines the APIs for type conversion.<br>**File to include**: <database/rdb/oh_value_object.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
 | [relational_store.h](relational__store_8h.md) | Defines APIs for managing an RDB store. The APIs not marked as supporting vector stores support only RDB stores.<br>**File to include**: <database/rdb/relational_store.h><br>**Library**: libnative_rdb_ndk.z.so<br>|
