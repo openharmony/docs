@@ -3546,11 +3546,10 @@ Obtains the function key status.
 
 **Returns**
 
-**OH_Input_GetFunctionKeyState** status code, specifically.
-The execution result of  **OH_Input_GetFunctionKeyState** .
+Execution result of  **OH_Input_GetFunctionKeyState** ,specifically:
 
- **INPUT_SUCCESS ** The operation is successful.
+ **INPUT_SUCCESS** The operation is successful.
 
- **INPUT_PARAMETER_ERROR ** Invalid keycode.
+ **INPUT_PARAMETER_ERROR** Invalid keycode.
 
- **INPUT_DEVICE_NOT_EXIST ** No keyboard device connected.
+ **INPUT_DEVICE_NOT_EXIST** No keyboard device connected.
