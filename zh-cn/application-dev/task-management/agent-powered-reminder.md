@@ -14,7 +14,7 @@
 
 ### 约束与限制
 
-- **个数限制**：一个三方应用支持最多30个有效提醒<!--Del-->，一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒<!--DelEnd-->。
+- **个数限制**：一个三方应用支持最多30个有效提醒<!--Del-->，一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒。<!--DelEnd-->。
 
 > **说明：**
 >
@@ -34,12 +34,12 @@
 以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见[后台代理提醒](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)文档。
 | 接口名 | 描述 |
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知 |
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知 |
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒 |
-| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒 |
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot） |
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot） |
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知。 |
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知。 |
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。 |
+| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒。 |
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot）。 |
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot）。 |
 
 
 ## 开发步骤
@@ -51,9 +51,9 @@
 3. 导入模块。
    
    ```ts
-   import { reminderAgentManager } from '@kit.BackgroundTasksKit';
-   import { notificationManager } from '@kit.NotificationKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
+    import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+    import { notificationManager } from '@kit.NotificationKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
