@@ -28,18 +28,16 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 控件属性支持的匹配模式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称                    | 值 | 说明                                        |
-|-----------------------|---|-------------------------------------------|
-| EQUALS                | 0 | 等于给定值。                                    |
-| CONTAINS              | 1 | 包含给定值。                                    |
-| STARTS_WITH           | 2 | 以给定值开始。                                   |
-| ENDS_WITH             | 3 | 以给定值结束。                                   |
-| REG_EXP<sup>16+</sup> | 4 | 正则表达式匹配。<br /> 从API version 16开始，该接口支持使用。 |
-| REG_EXP_ICASE<sup>16+</sup>          | 5 | 正则表达式匹配,忽略大小写。<br /> 从API version 16开始，该接口支持使用。                            |
+| 名称                    | 值 | 说明                                                                  |
+|-----------------------|---|---------------------------------------------------------------------|
+| EQUALS                | 0 | 等于给定值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| CONTAINS              | 1 | 包含给定值。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
+| STARTS_WITH           | 2 | 以给定值开始。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| ENDS_WITH             | 3 | 以给定值结束。 <br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| REG_EXP<sup>16+</sup> | 4 | 正则表达式匹配。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。       |
+| REG_EXP_ICASE<sup>16+</sup>          | 5 | 正则表达式匹配,忽略大小写。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
@@ -1798,7 +1796,7 @@ getHint(): Promise\<string>
 **示例：**
 
 ```ts
- import { Component, Driver, ON } from '@kit.TestKit';
+import { Component, Driver, ON } from '@kit.TestKit';
 async function demo() {
   let driver: Driver = Driver.create();
   let button: Component = await driver.findComponent(ON.type('TextInput'));
