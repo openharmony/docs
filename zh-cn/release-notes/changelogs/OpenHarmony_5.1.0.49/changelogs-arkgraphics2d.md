@@ -1,6 +1,6 @@
 # ArkGraphics2D变更说明
 
-## cl.arkgraphics2d 新增非法unicode显示进行优化
+## cl.arkgraphics2d 新增非法unicode显示优化
 
 **访问级别**
 
