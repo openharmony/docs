@@ -3545,7 +3545,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 
 **返回：**
 
-OH_Input_GetFunctionKeyState 的返回值。
+OH_Input_GetFunctionKeyState 状态码，具体如下：
 
 INPUT_SUCCESS 表示获取状态成功。
 
