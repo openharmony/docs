@@ -31,7 +31,7 @@
 | duration                       | number  | -      | 否    | 子组件切换的动画时长。                              |
 | vertical                       | boolean | false  | 否    | 是否为纵向滑动，纵向滑动时采用纵向的指示器。                   |
 | cachedsize<sup>7+</sup>        | number  | -1     | 否    | swiper延迟加载时item最少缓存数量。-1表示全部缓存。          |
-| scrolleffect<sup>7+</sup>      | string  | spring | 否    | 滑动效果。目前支持如下：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发送一定的变化<br/>-&nbsp;none：滑动到边缘后无效果。<br/>该属性仅在loop属性为false时生效。 |
+| scrolleffect<sup>7+</sup>      | string  | spring | 否    | 滑动效果。目前支持如下：<br/>-&nbsp;spring：弹性物理动效，滑动到边缘后可以根据初始速度或通过触摸事件继续滑动一段距离，松手后回弹。<br/>-&nbsp;fade：渐隐物理动效，滑动到边缘后展示一个波浪形的渐隐，根据速度和滑动距离的变化渐隐也会发送一定的变化。<br/>-&nbsp;none：滑动到边缘后无效果。<br/>该属性仅在loop属性为false时生效。 |
 
 
 ## 样式
