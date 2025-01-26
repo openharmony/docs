@@ -4439,7 +4439,7 @@
 
 ### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
-允许应用读取“华为账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
+允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
 
 **权限级别**：system_basic
 
