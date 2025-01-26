@@ -2239,3 +2239,111 @@ struct TextInputExample {
 
 ![textInputEditMenuOptions](figures/textInputEditMenuOptions.gif)
 
+### 示例15（输入框支持输入状态变化等回调）
+
+该示例通过onEditChange、onCopy、onCut、onPaste、onContentScroll接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State editStatus: boolean = false;
+  @State copyValue: string = "";
+  @State cutValue: string = "";
+  @State pasteValue: string = "";
+  @State totalOffsetX: number = 0;
+  @State totalOffsetY: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "TextInput支持输入状态变化时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .caretPosition(10)// 设置TextInput光标位置
+          .selectionMenuHidden(true)// 设置TextInput不弹出系统文本选择菜单
+          .onEditChange((status: boolean) => {
+            this.editStatus = status;
+          })
+          .defaultFocus(true)// 设置TextInput默认获焦
+          .enableKeyboardOnFocus(false)// 设置TextInput通过点击以外的方式获焦时，不主动拉起软键盘
+          .selectAll(false)
+
+        Text("editStatus:" + this.editStatus).height(30)
+
+        TextInput({ text: "TextInput支持复制操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCopy((copyValue: string) => {
+            this.copyValue = copyValue;
+          })
+
+        Text("copyValue:" + this.copyValue).height(30)
+
+        TextInput({ text: "TextInput支持剪切操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCut((cutValue: string) => {
+            this.cutValue = cutValue;
+          })
+
+        Text("cutValue:" + this.cutValue).height(30)
+
+        TextInput({ text: "TextInput支持粘贴操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onPaste((pasteValue: string) => {
+            this.pasteValue = pasteValue;
+          })
+
+        Text("pasteValue:" + this.pasteValue).height(30)
+
+        TextInput({ text: "TextInput支持文本内容滚动时回调: 文本内容宽度超出输入框宽度，滚动文本查看偏移量变化" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+            this.totalOffsetX = totalOffsetX;
+            this.totalOffsetY = totalOffsetY;
+          })
+
+        Text("totalOffsetX:" + this.totalOffsetX + "  totalOffsetY:" + this.totalOffsetY).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![TextInputEditChange](figures/TextInputEditChange.png)
