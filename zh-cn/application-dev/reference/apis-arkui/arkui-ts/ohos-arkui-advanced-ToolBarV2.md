@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件基于状态管理V2实现。 <br />
+> - 该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，不兼容[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，若应用基于状态管理V1，建议使用[ToolBar](ohos-arkui-advanced-ToolBar.md)实现工具栏 <br />
 > - 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
@@ -19,9 +19,10 @@ import { ToolBarV2 } from '@kit.ArkUI';
 
 
 ## ToolBarV2
-工具栏。
 
 ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifier: DividerModifier, toolBarModifier: ToolBarV2Modifier})
+
+工具栏。
 
 **装饰器类型：**@ComponentV2
 
@@ -44,6 +45,8 @@ ToolbarV2({toolBarList: ToolBarV2Item\[], activatedIndex?: number, dividerModifi
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性：
 
 | 名称                           | 类型                                              | 必填 | 装饰器类型  | 说明                                                                                                                                                                                                        |
 | ---------------------------- | ----------------------------------------------- | -- | :----- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -89,9 +92,9 @@ ToolBarV2Item的构造函数。
 
 ## ToolBarV2ItemAction
 
-工具栏子项点击事件回调类型。
-
 type ToolBarV2ItemAction = (index: number) => void
+
+工具栏子项点击事件回调类型。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -112,6 +115,8 @@ type ToolBarV2ItemAction = (index: number) => void
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性：
 
 | 名称                  | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
 |:--------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
@@ -156,6 +161,8 @@ ToolBarV2ItemText的构造函数。
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性：
 
 | 名称                 | 类型                                                          | 必填 | 装饰器类型  | 说明                                                       |
 |:-------------------|:------------------------------------------------------------| :- | :----- |:---------------------------------------------------------|
@@ -321,6 +328,8 @@ ToolBarV2SymbolGlyph定义Symbol图标的属性。
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性：
 
 | 名称        | 类型                                                                   | 必填 | 装饰器类型  | 说明                                                                                   |
 | :-------- | :------------------------------------------------------------------- | :- | :----- | :----------------------------------------------------------------------------------- |
