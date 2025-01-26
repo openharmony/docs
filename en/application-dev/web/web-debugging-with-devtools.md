@@ -348,7 +348,7 @@ The port forwarding may be invalid due to the following reasons:
     - If the web page is normally displayed, the port forwarding is successful. On the Chrome debugging page, perform the operation of [Waiting for the Page to Be Debugged](#waiting-for-the-page-to-be-debugged). 
     ![chrome_localhost](figures/devtools_resources_chrome_localhost.jpg)
 
-    - If an error page is displayed, port forwarding fails. For details about the solution, see [What should I do if port forwarding fails](#what-should-i-do-if-port-forwarding-fails). 
+    - If an error page is displayed, port forwarding fails. For details about the solution, see <!--Del-->[<!--DelEnd-->What should I do if port forwarding fails<!--Del-->](#what-should-i-do-if-port-forwarding-fails)<!--DelEnd-->. 
     ![chrome_localhost_refused](figures/devtools_resources_chrome_localhost_refused.jpg)
 
   * If the **http://localhost:9222/json** page is normally displayed on Chrome, but the debugging target cannot be found on the Chrome debugging page, perform the following operations:
