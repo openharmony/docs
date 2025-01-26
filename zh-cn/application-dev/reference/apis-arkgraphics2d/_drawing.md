@@ -658,8 +658,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | double [OH_Drawing_TypographyGetIdeographicBaseline](#oh_drawing_typographygetideographicbaseline) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取表意文字基线。 |
 | void [OH_Drawing_TypographyHandlerAddPlaceholder](#oh_drawing_typographyhandleraddplaceholder) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*, [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) \*) | 设置占位符。 |
 | bool [OH_Drawing_TypographyDidExceedMaxLines](#oh_drawing_typographydidexceedmaxlines) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本是否超过最大行，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，如果没有通过[OH_Drawing_SetTypographyTextMaxLines](#oh_drawing_settypographytextmaxlines)接口设置最大行，则返回false。 |
-| [OH_Drawing_TextBox](#oh_drawing_textbox) \* [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t, size_t, [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle), [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle)) | 获取指定范围内的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。 |
-| [OH_Drawing_TextBox](#oh_drawing_textbox) \* [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取占位符的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。 |
+| [OH_Drawing_TextBox](#oh_drawing_textbox) \* [OH_Drawing_TypographyGetRectsForRange](#oh_drawing_typographygetrectsforrange) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t, size_t, [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle), [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle)) | 获取指定范围内的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，使用完该接口后需要使用 [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox)接口释放[OH_Drawing_TextBox](#oh_drawing_textbox)。 |
+| [OH_Drawing_TextBox](#oh_drawing_textbox) \* [OH_Drawing_TypographyGetRectsForPlaceholders](#oh_drawing_typographygetrectsforplaceholders) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取占位符的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，使用完该接口后需要使用[OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox)接口释放[OH_Drawing_TextBox](#oh_drawing_textbox)。 |
 | float [OH_Drawing_GetLeftFromTextBox](#oh_drawing_getleftfromtextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*, int) | 获取文本框左侧位置。 |
 | float [OH_Drawing_GetRightFromTextBox](#oh_drawing_getrightfromtextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*, int) | 获取文本框右侧位置。 |
 | float [OH_Drawing_GetTopFromTextBox](#oh_drawing_gettopfromtextbox) ([OH_Drawing_TextBox](#oh_drawing_textbox) \*, int) | 获取文本框顶部位置。 |
@@ -749,7 +749,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_TextStyleSetBaselineShift](#oh_drawing_textstylesetbaselineshift) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double lineShift) | 设置文本的基线漂移。 |
 | void [OH_Drawing_TypographyTextSetHeightBehavior](#oh_drawing_typographytextsetheightbehavior) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) heightMode) | 设置文本高度修饰符模式。 |
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) [OH_Drawing_TypographyTextGetHeightBehavior](#oh_drawing_typographytextgetheightbehavior) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本高度修饰符模式。 |
-| [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \* [OH_Drawing_TypographyGetLineFontMetrics](#oh_drawing_typographygetlinefontmetrics) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t lineNumber, size_t \*fontMetricsSize) | 从目标行获取所有字体度量信息，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，否则会返回空指针。 |
+| [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \* [OH_Drawing_TypographyGetLineFontMetrics](#oh_drawing_typographygetlinefontmetrics) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t lineNumber, size_t \*fontMetricsSize) | 从目标行获取所有字体度量信息，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，否则会返回空指针，使用完该接口后需要使用 [OH_Drawing_TypographyDestroyLineFontMetrics](_drawing.md#oh_drawing_typographydestroylinefontmetrics)接口释放[OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) |
 | void [OH_Drawing_TypographyDestroyLineFontMetrics](#oh_drawing_typographydestroylinefontmetrics) ([OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 释放指定行所有字体度量结构体集合所占用的所有空间。 |
 | bool [OH_Drawing_TextStyleIsEqual](#oh_drawing_textstyleisequal) (const [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*style, const [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*comparedStyle) | 判断两个字体风格对象是否相等。 |
 | bool [OH_Drawing_TextStyleIsEqualByFont](#oh_drawing_textstyleisequalbyfont) (const [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*style, const [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*comparedStyle) | 判断两个字体风格对象的字体样式属性是否相等。 |
@@ -16750,7 +16750,7 @@ OH_Drawing_Font_Metrics* OH_Drawing_TypographyGetLineFontMetrics (OH_Drawing_Typ
 
 **返回：**
 
-返回当前行的所有字符度量。
+返回当前行的所有字体度量信息。
 
 
 ### OH_Drawing_TypographyGetLineHeight()
@@ -17021,7 +17021,7 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForPlaceholders (OH_Drawing_Typ
 
 **描述**
 
-获取占位符的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。
+获取占位符的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，使用完该接口后需要使用[OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox)接口释放[OH_Drawing_TextBox](#oh_drawing_textbox)。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17045,7 +17045,7 @@ OH_Drawing_TextBox* OH_Drawing_TypographyGetRectsForRange (OH_Drawing_Typography
 
 **描述**
 
-获取指定范围内的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。
+获取指定范围内的文本框，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用，使用完该接口后需要使用 [OH_Drawing_TypographyDestroyTextBox](#oh_drawing_typographydestroytextbox)接口释放[OH_Drawing_TextBox](#oh_drawing_textbox)。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17785,7 +17785,7 @@ void OH_Drawing_TypographyTextlineStyleDestroyFontFamilies (char** fontFamilies,
 ### OH_Drawing_TypographyTextlineStyleGetFontFamilies()
 
 ```
-char** OH_Drawing_TypographyTextlineStyleGetFontFamilies (OH_Drawing_TypographyStyle* , size_t* num )
+char** OH_Drawing_TypographyTextlineStyleGetFontFamilies (OH_Drawing_TypographyStyle* , size_t* num)
 ```
 
 **描述**
@@ -17955,7 +17955,7 @@ double OH_Drawing_TypographyTextlineStyleGetHeightScale (OH_Drawing_TypographySt
 
 **返回：**
 
-返回文本排版中字体高度规模。
+返回文本排版行样式的行高缩放系数。
 
 
 ### OH_Drawing_TypographyTextlineStyleGetSpacingScale()
