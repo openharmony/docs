@@ -14,7 +14,7 @@
 
 ### 约束与限制
 
-- **个数限制**：一个三方应用支持最多30个有效提醒<!--Del-->，一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒。<!--DelEnd-->。
+- **个数限制**：一个三方应用支持最多30个有效提醒<!--Del-->，一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒<!--DelEnd-->。
 
 > **说明：**
 >
@@ -51,9 +51,9 @@
 3. 导入模块。
    
    ```ts
-    import { reminderAgentManager } from '@kit.BackgroundTasksKit';
-    import { notificationManager } from '@kit.NotificationKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
+   import { reminderAgentManager } from '@kit.BackgroundTasksKit';
+   import { notificationManager } from '@kit.NotificationKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 定义目标提醒代理。开发者根据实际需要，选择定义如下类型的提醒。
