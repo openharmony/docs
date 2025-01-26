@@ -4384,6 +4384,9 @@ struct Index {
           let richEditorSelection = this.controller.getSelection();
           let start = richEditorSelection.start ? richEditorSelection.start : 0;
           let end = richEditorSelection.end ? richEditorSelection.end : 0;
+          if (start < 0 || end <= start) {
+            return;
+          }
           // 获取组件展示的属性字符串
           this.richEditorStyledString = this.controller.getStyledString();
           this.richEditorStyledString.removeString(start, end - start);
@@ -4411,6 +4414,9 @@ struct Index {
           let richEditorSelection = this.controller.getSelection();
           let start = richEditorSelection.start ? richEditorSelection.start : 0;
           let end = richEditorSelection.end ? richEditorSelection.end : 0;
+          if (start < 0 || end <= start) {
+            return;
+          }
           // 获取组件展示的属性字符串
           this.richEditorStyledString = this.controller.getStyledString();
           this.richEditorStyledString.setStyle({
