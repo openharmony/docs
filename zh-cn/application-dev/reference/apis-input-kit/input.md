@@ -3541,7 +3541,7 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 | 名称 | 描述 | 
 | -------- | -------- |
 | keyCode | 功能键值。支持的功能键包含CapsLock键。  |
-| 功能键状态 | 0表示功能键关闭，1表示功能键打开。  | 
+| state | 功能键状态。 0表示功能键关闭，1表示功能键打开。  | 
 
 **返回：**
 
