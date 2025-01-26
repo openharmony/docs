@@ -19,16 +19,23 @@ import { window } from '@kit.ArkUI';
 
 ## WindowType<sup>7+</sup>
 
-窗口类型枚举。
+窗口类型枚举。窗口提供4种窗口类型，包括应用子窗口、系统告警窗、悬浮窗口、模态窗口。
+
+窗口类型被分为3个类别：
+
+- 应用窗口：应用主窗口和应用子窗口。
+- UIExtension窗口：指[ExtensionAbility组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/extensionability-overview-V5)使用的窗口。
+- 系统窗口：除应用窗口和UIEXTENSION窗口外，其他类别均属于系统窗口，包括：系统告警窗口、悬浮窗、模态窗口、音量条、壁纸、通知栏、状态栏、导航栏等。除系统告警窗口、悬浮窗和模态窗口，其他系统窗口类型详情可见[@ohos.window (窗口)(系统接口)](https://gitee.com/openharmony/docs/blob/b64947ea02239df97dc7bd6600640c975be1a77c/zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md)。
+
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。                               |
-| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。<br>**窗口类别：** 应用窗口。                                                   |
+| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。<br>**窗口类别：** 系统窗口。                              |
+| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**窗口类别：** 系统窗口。   |
+| TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**窗口类别：** 系统窗口。   |
 
 ## Configuration<sup>9+</sup>
 
@@ -2136,7 +2143,7 @@ try {
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
-设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
+设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，系统窗口的概念可见[WindowType](#windowtype7)。
 
 该接口一般适用于此场景：应用于创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
 
@@ -2165,41 +2172,26 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    let config: window.Configuration = {
-      name: "test",
-      windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context
-    };
-    try {
-      window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to create the system dialog window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        windowClass = data;
-        windowClass.setUIContent("pages/Index");
-        let enabled = true;
-        let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
-        promise.then(() => {
-          let type = window.AvoidAreaType.TYPE_SYSTEM;
-          let avoidArea = windowClass.getWindowAvoidArea(type);
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to obtain the system dialog window avoid area. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      });
-    } catch (exception) {
-      console.error(`Failed to create the system dialog window. Cause code: ${exception.code}, message: ${exception.message}`);
+try {
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to create the system window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
+    windowClass = data;
+    windowClass.setUIContent("pages/Index");
+    let enabled = true;
+    let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
+    promise.then(() => {
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      let avoidArea = windowClass.getWindowAvoidArea(type);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to obtain the system window avoid area. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  });
+} catch (exception) {
+  console.error(`Failed to create the system window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -2207,7 +2199,7 @@ export default class EntryAbility extends UIAbility {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
+获取当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，系统窗口的概念可见[WindowType](#windowtype7)。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2233,40 +2225,25 @@ isSystemAvoidAreaEnabled(): boolean
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    let config: window.Configuration = {
-      name: "test",
-      windowType: window.WindowType.TYPE_DIALOG,
-      ctx: this.context
-    };
-    try {
-      window.createWindow(config, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to create the system dialog window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
-        }
-        windowClass = data;
-        windowClass.setUIContent("pages/Index");
-        let enabled = true;
-        let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
-        promise.then(() => {
-          let enable = windowClass.isSystemAvoidAreaEnabled();
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to obtain whether the system dialog window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      });
-    } catch (exception) {
-      console.error(`Failed to create the system dialog window. Cause code: ${exception.code}, message: ${exception.message}`);
+try {
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to create the system window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
     }
-  }
+    windowClass = data;
+    windowClass.setUIContent("pages/Index");
+    let enabled = true;
+    let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
+    promise.then(() => {
+      let enable = windowClass.isSystemAvoidAreaEnabled();
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to obtain whether the system window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  });
+} catch (exception) {
+  console.error(`Failed to create the system window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
