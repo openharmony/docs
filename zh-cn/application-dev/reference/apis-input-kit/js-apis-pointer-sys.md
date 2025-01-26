@@ -28,7 +28,7 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为7。   |
+| speed    | number                    | 是    | 鼠标移动速度，范围1-20，默认为10。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **错误码：**
@@ -70,7 +70,7 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为7。 |
+| speed | number | 是    | 鼠标移动速度，范围1-20，默认为10。 |
 
 **返回值**：
 
@@ -113,7 +113,7 @@ setPointerSpeedSync(speed: number): void
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为7。 |
+| speed | number | 是    | 鼠标移动速度，范围1-20，默认为10。 |
 
 **错误码**：
 
