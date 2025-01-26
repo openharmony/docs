@@ -37,7 +37,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | STARTS_WITH           | 2 | 以给定值开始。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
 | ENDS_WITH             | 3 | 以给定值结束。 <br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
 | REG_EXP<sup>16+</sup> | 4 | 正则表达式匹配。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。       |
-| REG_EXP_ICASE<sup>16+</sup>          | 5 | 正则表达式匹配,忽略大小写。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| REG_EXP_ICASE<sup>16+</sup>          | 5 | 正则表达式匹配，忽略大小写。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 ## ResizeDirection<sup>9+</sup>
 
 窗口调整大小的方向。
@@ -182,9 +182,9 @@ UI事件的相关信息。
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称       | 类型   | 可读 | 可写 | 说明                                          |
-| ---------- | ------ | ---- |----|---------------------------------------------|
-| stay | boolean | 是   | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false(不停留1s)。        |
-| speed       | number | 是   | 是  | 滑动速率，范围：200-40000，不在范围内设为默认值为2000，单位：pixel/s。 |
+| ---------- | ------ |----|----|---------------------------------------------|
+| stay | boolean | 否  | 是  | 触摸板多指滑动结束是否停留1s后再抬起，默认为false(不停留1s)。        |
+| speed       | number | 否  | 是  | 滑动速率，取值范围为200-40000，默认值为2000，不在范围内设为默认值为2000，单位：pixel/s。 |
 
 ## On<sup>9+</sup>
 
