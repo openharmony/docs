@@ -3545,10 +3545,10 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 
 **返回：**
 
-OH_Input_GetFunctionKeyState 状态码，具体如下：
+OH_Input_GetFunctionKeyState的执行结果。
 
-{ **INPUT_SUCCESS** } 表示获取状态成功。
+ **INPUT_SUCCESS** 表示获取状态成功。
 
-{ **INPUT_PARAMETER_ERROR** } 表示参数错误。
+ **INPUT_PARAMETER_ERROR** 表示参数错误。
 
-{ **INPUT_DEVICE_NOT_EXIST** } 表示键盘设备不存在。
+ **INPUT_DEVICE_NOT_EXIST** 表示键盘设备不存在。
