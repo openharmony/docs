@@ -11,9 +11,13 @@ This topic describes the JS Crash exception capture scenario, JS Crash fault ana
 The following describes the fields in a process crash log.
 
 ```
+Device info:XXX <- Device information
 Build info:XXX-XXXX X.X.X.XX(XXXXXXXX) <- Build information
+Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697 <- Feature information
+Timestamp:XXXX-XX-XX XX:XX:XX.XXX <- Timestamp
 Module name:com.example.myapplication <- Module name
 Version:1.0.0 <- Version number
+VersionCode:1000000 <- Version code
 Pid:579 <- Process ID
 Uid:0 <- User ID
 Reason:TypeError <- Cause
@@ -23,9 +27,9 @@ SourceCode:
         var a = b.c;   <- Location of the problematic code
                 ^
 Stacktrace:
-    at onPageShow (entry/src/main/ets/pages/Index.ets:7:13)  <- Call stack of the error code
-           ^                                      ^
-         The error occurs at line 7, column 13 in the entry/src/main/ets/pages/Index.ets file.
+    at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)  <- Call stack of the error code
+           ^        ^                              ^
+         Function name Module bundle name The row and column numbers in the file
 ```
 
 You can identify the cause of the crash, mostly application issues, based on Error message and Stacktrace in the logs.
@@ -66,7 +70,7 @@ The process crash log is a type of fault log managed together with the app freez
 <!--Del-->
 - Method 3: Shell
 
-    When a process crashes, you can find fault logs in **/data/log/faultlog/faultlogger/** on the device. The log files are named in the format of **jscrash-process name-process UID-time (seconds)**. They contain information such as the device name, system version, and process crash call stack.
+    When a process crashes, you can find fault logs in **/data/log/faultlog/faultlogger/** on the device. The log files are named in the format of **jscrash-process name-process UID-time (milliseconds).log**. They contain information such as the device name, system version, and process crash call stack.
 
     ![](figures/jscrash.png)
 <!--DelEnd-->
@@ -84,6 +88,7 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     VersionCode:1000000
@@ -98,7 +103,7 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
                     throw new ErrOr("JSERROR");
                           ^
     Stacktrace:
-        at anonymous (entry/src/main/ets/pages/Index.ets:13:19)
+        at anonymous entry (entry/src/main/ets/pages/Index.ets:13:19)
     ```
 
 2. If "Stack Cannot get SourceMap info, dump raw stack" is displayed in the call stack, as shown in the following example, the system fails to retrieve information from SourceMap and only displays the row number of the problematic code in the compiled code in an eTS stack. You can click the link to identify where the error occurred in the compiled code.
@@ -106,9 +111,10 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:a370fceb59011d96e41e97bda139b1851c911012ab8c386d1a2d63986d6d226d
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
-    Versioncode:1000000
+    VersionCode:1000000
     PreInstalled:No
     Foreground:Yes
     Pid:39185
@@ -118,14 +124,15 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Error message:JSERROR
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-        at anonymous (entry/src/main/ets/paqes/Index.ts:49:49)
+        at anonymous entry (entry/src/main/ets/pages/Index.ts:49:49)
     ```
 
-3. If "SourceMap is not initialized yet" is displayed in the call stack, as shown in the following example, SourceMap has not been initialized and the row number of the problematic code in the compiled code in an eTS stack is displayed. In this case, this log is added to notify developers. You can click the link to identify where the error occurred in the compiled code.
+3. If "SourceMap is not initialized yet" is displayed in the call stack, as shown in the following example, SourceMap has not been initialized and the row number of the problematic code in the compiled code in an eTS stack is displayed. In this case, this log is added to notify developers. You can click the link to identify where the error occurred in the compiled code. The following is an example.
     ```
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:377ef8529301363f373ce837d0bf83aacfc46112502143237e2f4026e86a0510
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     Versioncode:1000000
@@ -141,14 +148,15 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
                       ^
     Stacktrace:
     SourceMap is not initialized yet
-    at anonymous (entry/src/main/ets/pages/Index.ts:49:49)
+    at anonymous entry (entry/src/main/ets/pages/Index.ts:49:49)
     ```
 
-4. The native stack is printed in the call stack, as shown in the following example. Generally, the **libark_jsruntime.so** dynamic library is at the top of the stack. This is because JS exceptions are thrown by the VM. Search for the error from the top down. Generally, the next frame of **libace_napi.z.so** is the location where an exception is thrown.
+4. The native stack is printed in the call stack, as shown in the following example. Generally, the **libark_jsruntime.so** dynamic library is at the top of the stack. This is because JS exceptions are thrown by the VM. Search for the error from the top down. Generally, the next frame of **libace_napi.z.so** is the location where an exception is thrown. The following is an example.
     ```
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:89f2b64b24d642b0fc64e3a7cf68ca39fecaa580ff5736bb9d6706ea4cdf2c93
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     VersionCode:1000000
@@ -161,20 +169,20 @@ In JS Crash fault logs, the **StackTrace** field provides the call stack informa
     Error message:Cannot find module 'com.xxx.xxx/entry/EntryAbility' , which is application Entry Point
     Stacktrace:
     SourceMap is not initialized yet
-    #01 pc 000000000028ba3b /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #02 pc 00000000001452ff /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #03 pC 0000000000144c9f /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #04 pc 00000000001c617b /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #05 pc 00000000004c3cb7 /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #06 pc 00000000004c045f /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #07 pc 000000000038034f /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #08 pc 00000000004b2d9b /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #09 pc 0000000000037e7f /system/libó4/platformsdk/libace_napi.z.so(10ceafd39b5354314d2fe3059b8f9e4f)
+    #01 pc 000000000028ba3b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #02 pc 00000000001452ff /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #03 pC 0000000000144c9f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #04 pc 00000000001c617b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #05 pc 00000000004c3cb7 /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #06 pc 00000000004c045f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #07 pc 000000000038034f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #08 pc 00000000004b2d9b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #09 pc 0000000000037e7f /system/lib64/platformsdk/libace_napi.z.so(10ceafd39b5354314d2fe3059b8f9e4f)
     #10 pc 00000000000484cf /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014) <- Location where an exception is thrown
-    #11 pc 000000000004fce7 /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
-    #12 pc 000000000004e9fb /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
-    #13 pc 000000000004eb7b /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
-    #14 pc 000000000004f5c7 /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #11 pc 000000000004fce7 /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #12 pc 000000000004e9fb /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #13 pc 000000000004eb7b /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #14 pc 000000000004f5c7 /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
     #15 pc 00000000000303cf /system/lib64/platformsdk/libuiabilitykit_native.z.so(3203F4CCe84a43b519d0a731dfOdb1a3)
     ```
 
@@ -216,6 +224,7 @@ Error message:Cannot read property xxx of undefined
     Device info:xxxx
     Build info:xxxx
     Fingerprint:9851196f9fed7fd818170303296ae7a5767c9ab11f38fd8b0072f0e32c42ea39
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0.29
     VersionCode:10000029
@@ -228,10 +237,10 @@ Error message:Cannot read property xxx of undefined
     Error message:Cannot read property needRenderTranslate of undefined
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-        at updateGestureValue (phone/src/main/ets/SceneBoard/recent/scenepanel/recentpanel/RecentGesture.ts:51:51)
-        at onRecentGestureActionBegin (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:5609:5609)
-        at anonymous (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:555:555)
-        at anonymous (phone/src/main/ets/SceneBoard/recent/RecentEventView.ts:183:183)
+        at updateGestureValue entry (phone/src/main/ets/SceneBoard/recent/scenepanel/recentpanel/RecentGesture.ts:51:51)
+        at onRecentGestureActionBegin entry (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:5609:5609)
+        at anonymous entry (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:555:555)
+        at anonymous entry (phone/src/main/ets/SceneBoard/recent/RecentEventView.ts:183:183)
     ```
 
 2. Analyze log information.
@@ -307,10 +316,10 @@ To solve this problem, locate the problematic code line based on the fault log a
     Error code:2501000
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-      at onStart (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:50:1)
-      at NetSpeedController (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:43:43)
-      at getInstance (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/staticcommon/basiccommon/src/main/ets/component/utils/SingletonHelper.ts:17:17)
-      at func_main_0 (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:325:325)
+      at onStart entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:50:1)
+      at NetSpeedController entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:43:43)
+      at getInstance entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/staticcommon/basiccommon/src/main/ets/component/utils/SingletonHelper.ts:17:17)
+      at func_main_0 entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:325:325)
     ```
 
 2. Analyze log information.

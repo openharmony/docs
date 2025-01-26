@@ -138,8 +138,8 @@ The form cannot be operated by the current application.
 
 **处理步骤**
 
-1. 检查传入卡片ID所有权
-2. 升级权限为SystemApp
+1. 检查传入卡片ID所有权。
+2. 升级权限为SystemApp。
 
 ## 16501004 指定的ability未安装
 

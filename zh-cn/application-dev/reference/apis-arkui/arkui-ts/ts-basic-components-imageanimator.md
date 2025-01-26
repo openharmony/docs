@@ -167,6 +167,22 @@ iterations(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | number | 是   | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 
+### monitorInvisibleArea<sup>16+</sup>
+
+monitorInvisibleArea(monitorInvisibleArea: boolean)
+
+设置组件是否通过系统[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的可见性判定判断组件的暂停和播放。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                   |
+| ------ | ------ | ---- | ------------------------------------------------------ |
+| monitorInvisibleArea  | boolean | 是 | 当设置为true时，组件将基于系统的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见性判定，控制组件的暂停与播放。<br/> 当组件的运行状态为[AnimationStatus](ts-appendix-enums.md#animationstatus)的Running时，若判定组件不可见，则自动执行暂停操作；若判定为可见，则自动恢复播放。<br/>默认值：false <br/> **说明：**当该属性由true动态修改为false时，组件将依据当前的[AnimationStatus](ts-appendix-enums.md#animationstatus)状态进行处理。<br/> 例如，若当前状态为Running且因[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的不可见回调暂停，则在属性由true改为false后，组件会从上次暂停的位置重新开始播放。|
+
 ## ImageFrameInfo对象说明
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。

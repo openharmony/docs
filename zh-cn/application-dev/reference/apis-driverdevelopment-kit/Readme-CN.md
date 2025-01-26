@@ -12,14 +12,17 @@
   - 模块
     - [BASE DDK](_base_ddk.md)
     - [HID DDK](_hid_ddk.md)
+    - [Serial DDK](_serial_ddk.md)
     - [USB DDK](_usb_ddk.md)
   - 头文件
     - [ddk_api.h](ddk_api.md)
     - [ddk_types.h](ddk_types.md)
-    - [usb_ddk_api.h](usb__ddk__api_8h.md)
-    - [usb_ddk_types.h](usb__ddk__types_8h.md)
     - [hid_ddk_api.h](hid__ddk__api_8h.md)
     - [hid_ddk_types.h](hid__ddk__types_8h.md)
+    - [usb_ddk_api.h](usb__ddk__api_8h.md)
+    - [usb_ddk_types.h](usb__ddk__types_8h.md)
+    - [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md)
+    - [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
   - 结构体
     - [DDK_Ashmem](_ddk_ashmem.md)
     - [UsbConfigDescriptor](_usb_config_descriptor.md)
@@ -40,4 +43,6 @@
     - [Hid_EventTypeArray](_hid___event_type_array.md)
     - [Hid_KeyCodeArray](_hid___key_code_array.md)
     - [Hid_MscEventArray](_hid___msc_event_array.md)
+    - [Hid_RawDevInfo](_hid___raw_dev_info.md)
     - [Hid_RelAxesArray](_hid___rel_axes_array.md)
+    - [UsbSerial_Params](_usb_serial___params.md)

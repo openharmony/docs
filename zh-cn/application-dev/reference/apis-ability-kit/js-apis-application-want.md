@@ -14,7 +14,7 @@ import Want from '@ohos.application.Want';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityBase
+**系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称        | 类型                 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
@@ -30,7 +30,7 @@ import Want from '@ohos.application.Want';
 
 **示例：**
 
-- 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
+- 基础用法(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)。
 
     ```ts
     import Want from '@ohos.application.Want';
@@ -53,7 +53,7 @@ import Want from '@ohos.application.Want';
     }
     ```
 
-- 通过自定字段传递数据, 以下为当前支持类型。(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)
+- 通过自定字段传递数据, 以下为当前支持类型(在UIAbility对象中调用，其中示例中的context为UIAbility的上下文对象)。
 
     * 字符串（String）
         ```ts

@@ -12,7 +12,7 @@ The **CommonEvent** module provides common event capabilities, including the cap
 ## Modules to Import
 
 ```ts
-import CommonEvent from '@ohos.commonEvent';
+import commonEvent from '@ohos.commonEvent';
 ```
 
 ## Support
@@ -21,13 +21,13 @@ A system common event is an event that is published by a system service or syste
 
 For details about the definitions of all system common events, see [System Common Events](./common_event/commonEvent-definitions.md).
 
-## CommonEvent.publishAsUser<sup>(deprecated)</sup>
+## commonEvent.publishAsUser<sup>(deprecated)</sup>
 
 publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): void
 
 Publishes a common event to a specific user. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [commonEventManager.publishAsUser](js-apis-commonEventManager-sys.md#commoneventmanagerpublishasuser) instead.
 
 **System capability**: SystemCapability.Notification.CommonEvent
@@ -60,16 +60,16 @@ function publishCB(err:Base.BusinessError) {
 let userId = 100;
 
 // Publish a common event.
-CommonEvent.publishAsUser("event", userId, publishCB);
+commonEvent.publishAsUser("event", userId, publishCB);
 ```
 
-## CommonEvent.publishAsUser<sup>(deprecated)</sup>
+## commonEvent.publishAsUser<sup>(deprecated)</sup>
 
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback\<void>): void
 
 Publishes a common event with given attributes to a specific user. This API uses an asynchronous callback to return the result.
 
-> **NOTE**<br>
+> **NOTE**
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [commonEventManager.publishAsUser](js-apis-commonEventManager-sys.md#commoneventmanagerpublishasuser-1) instead.
 
 **System capability**: SystemCapability.Notification.CommonEvent
@@ -111,7 +111,7 @@ function publishCB(err:Base.BusinessError) {
 let userId = 100;
 
 // Publish a common event.
-CommonEvent.publishAsUser("event", userId, options, publishCB);
+commonEvent.publishAsUser("event", userId, options, publishCB);
 ```
 
 
@@ -161,7 +161,7 @@ function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManag
         console.info("createSubscriber");
         subscriber = commonEventSubscriber;
         // Subscribe to a common event.
-        CommonEvent.subscribe(subscriber, subscribeCB);
+        commonEvent.subscribe(subscriber, subscribeCB);
     }
 }
 
@@ -175,8 +175,8 @@ function unsubscribeCB(err:Base.BusinessError) {
 }
 
 // Create a subscriber.
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+commonEvent.createSubscriber(subscribeInfo, createCB);
 
 // Unsubscribe from the common event.
-CommonEvent.unsubscribe(subscriber, unsubscribeCB);
+commonEvent.unsubscribe(subscriber, unsubscribeCB);
 ```

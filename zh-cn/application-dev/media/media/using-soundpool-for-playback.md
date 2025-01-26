@@ -53,11 +53,18 @@ SoundPool当前支持播放1MB以下的音频资源，大小超过1MB的长音�
     });
     ```
 
-3. 调用on('playFinished')方法，用于监听“播放完成”。
+3. 调用on('playFinished')或者on('playFinishedWithStreamId')方法，用于监听“播放完成”。
+
+    当仅单独注册'playFinished'事件回调或者'playFinishedWithStreamId'事件回调时，当音频播放完成的时候，都会触发注册的回调。
+
+    当同时注册'playFinished'事件回调和'playFinishedWithStreamId'事件回调时，当音频播放完成的时候，仅会触发'playFinishedWithStreamId'事件回调，不会触发'playFinished'事件回调。
 
     ```ts
     soundPool.on('playFinished', () => {
       console.info("receive play finished message");
+    });
+    soundPool.on('playFinishedWithStreamId', (streamId) => {
+      console.info("receive play finished message, streamId: " + streamId);
     });
     ```
 
@@ -261,7 +268,12 @@ function loadCallback() {
 }
 //设置播放完成监听
 function finishPlayCallback() {
-  // 播放完成回调
+  // 播放完成回调，'playFinished'回调和'playFinishedWithStreamId'回调可以根据需要选择一个注册，当音频播放完毕时，会触发注册的回调。
+  // 当同时注册'playFinished'回调和'playFinishedWithStreamId'回调的时候，当音频播放完毕，仅会触发'playFinishedWithStreamId'回调，不会触发'playFinished'事件回调。
+  soundPool.on('playFinishedWithStreamId', (streamId) => {
+    console.info("receive play finished message, streamId: " + streamId);
+    // 可进行下次播放
+  })
   soundPool.on('playFinished', () => {
     console.info("receive play finished message");
     // 可进行下次播放
@@ -303,6 +315,7 @@ async function release() {
 //关闭监听
 function setOffCallback() {
   soundPool.off('loadComplete');
+  soundPool.off('playFinishedWithStreamId');
   soundPool.off('playFinished');
   soundPool.off('error');
 }

@@ -39,9 +39,9 @@ Creates a **DeviceManager** instance. The **DeviceManager** instance is the entr
 
 **Return value**
 
-| Type                                       | Description       |
-| ------------------------------------------- | --------- |
-| [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
+  | Type                                       | Description       |
+  | ------------------------------------------- | --------- |
+  | [DeviceManager](#devicemanager) | **DeviceManager** instance created.|
 
 **Error codes**
 
@@ -112,7 +112,6 @@ Represents the basic information about a distributed device.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
-**Parameters**
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
 | deviceId               | string                    | Yes   | Device ID. The value is the result of obfuscating the udid-hash (hash value of the UDID), **appid**, and salt using the SHA-256 algorithm.|
@@ -125,7 +124,6 @@ Represents the basic information about a distributed device.
 Enumerates the device states.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
-**Parameters**
 
 | Name        | Value | Description             |
 | ----------- | ---- | --------------- |
@@ -150,9 +148,9 @@ Obtains all trusted devices synchronously.
 
 **Return value**
 
-| Type                                       | Description       |
-| ------------------------------------------- | --------- |
-| Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
+  | Type                                       | Description       |
+  | ------------------------------------------- | --------- |
+  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | List of trusted devices obtained.|
 
 **Error codes**
 
@@ -166,7 +164,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -191,9 +189,9 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                   |
-| -------- | ---------------------------------------- | ---- | --------------------- |
-| callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+  | Name      | Type                                    | Mandatory  | Description                   |
+  | -------- | ---------------------------------------- | ---- | --------------------- |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
 
 **Error codes**
 
@@ -206,7 +204,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -237,9 +235,9 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
 **Return value**
 
-| Type                                                      | Description                              |
-| ---------------------------------------------------------- | ---------------------------------- |
-| Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
+  | Type                                                      | Description                              |
+  | ---------------------------------------------------------- | ---------------------------------- |
+  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -252,7 +250,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -276,9 +274,9 @@ Obtains the network ID of the local device.
 
 **Return value**
 
-| Type                     | Description             |
-| ------------------------- | ---------------- |
-| string | Network ID of the local device obtained.|
+  | Type                     | Description             |
+  | ------------------------- | ---------------- |
+  | string | Network ID of the local device obtained.|
 
 **Error codes**
 
@@ -291,7 +289,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -316,9 +314,9 @@ Obtains the local device name.
 
 **Return value**
 
-| Type                     | Description             |
-| ------------------------- | ---------------- |
-| string                    | Name of the local device obtained.|
+  | Type                     | Description             |
+  | ------------------------- | ---------------- |
+  | string                    | Name of the local device obtained.|
 
 **Error codes**
 
@@ -331,7 +329,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -356,9 +354,9 @@ Obtains the local device type.
 
 **Return value**
 
-| Type                     | Description             |
-| ------------------------- | ---------------- |
-| number                    | <!--RP1-->Local device type obtained.<!--RP1End--> |
+  | Type                     | Description             |
+  | ------------------------- | ---------------- |
+  | number                    | <!--RP1-->Local device type obtained.<!--RP1End--> |
 
 **Error codes**
 
@@ -371,7 +369,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -396,9 +394,9 @@ Obtains the local device ID. The value is the result of obfuscating the udid-has
 
 **Return value**
 
-| Type                     | Description             |
-| ------------------------- | ---------------- |
-| string                    | Local device ID obtained.|
+  | Type                     | Description             |
+  | ------------------------- | ---------------- |
+  | string                    | Local device ID obtained.|
 
 **Error codes**
 
@@ -411,7 +409,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -436,15 +434,15 @@ Obtains the device name based on the network ID of the specified device.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-| Type                     | Description             |
-| ------------------------- | ---------------- |
-| string                    | Device name obtained.|
+  | Type                     | Description             |
+  | ------------------------- | ---------------- |
+  | string                    | Device name obtained.|
 
 **Error codes**
 
@@ -458,7 +456,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -485,15 +483,15 @@ Obtains the device type based on the network ID of the specified device.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description       |
-| -------- | ---------------------------------------- | ---- | --------- |
-| networkId| string                                   | Yes  | Network ID of the device.|
+  | Name      | Type                                    | Mandatory  | Description       |
+  | -------- | ---------------------------------------- | ---- | --------- |
+  | networkId| string                                   | Yes  | Network ID of the device.|
 
 **Return value**
 
-| Type                     | Description             |
-| ------------------------- | ---------------- |
-| number                    | <!--RP2-->Device type obtained.<!--RP2End--> |
+  | Type                     | Description             |
+  | ------------------------- | ---------------- |
+  | number                    | <!--RP2-->Device type obtained.<!--RP2End--> |
 
 **Error codes**
 
@@ -507,7 +505,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -526,7 +524,7 @@ For details about how to initialize **dmInstance** in the example, see [distribu
 
 startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
-Starts to discover devices nearby. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered. In Wi-Fi scenarios, only the devices in the same LAN can be discovered.
+Starts to discover devices nearby. The discovery process takes 2 minutes. A maximum of 99 devices can be discovered. In Wi-Fi scenarios, only the devices in the same LAN can be discovered.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -534,10 +532,10 @@ Starts to discover devices nearby. The discovery process lasts 2 minutes. A maxi
 
 **Parameters**
 
-| Name           | Type                       | Mandatory  | Description   |
-| ------------- | ------------------------------- | ---- | -----  |
-| discoverParam  | {[key:&nbsp;string]:&nbsp;Object;}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
-| filterOptions | {[key:&nbsp;string]:&nbsp;Object;}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>- **availableStatus(0-1)**: status of the device to discover. The value **0** means the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: distance of the device to discover, in cm. This parameter is not used in Wi-Fi scenarios.<br>**authenticationStatus(0-1)**: authentication status of the device to discover.<br>- **0**: The device is not authenticated.<br>The value **1** means the device has been authenticated.<br>- **authorizationType(0-2)**: authorization type of the device to discover.<br>- **0**: The device is authenticated by a temporarily agreed session key.<br>- **1**: The device is authenticated by a key of the same account.<br>- **2**: The device is authenticated by a credential key of different accounts.|
+  | Name           | Type                       | Mandatory  | Description   |
+  | ------------- | ------------------------------- | ---- | -----  |
+  | discoverParam  | {[key:&nbsp;string]:&nbsp;Object;}      | Yes  | Identifier of the device to discover. It specifies the type of the target to discover.<br>**discoverTargetType**: The default discovery target is device. The value is **1**.|
+  | filterOptions | {[key:&nbsp;string]:&nbsp;Object;}          | No  | Options for filtering the devices to discover. The default value is **undefined**, which means to discover offline devices. The options include the following:<br>- **availableStatus(0-1)**: status of the device to discover. The value **0** means the device is untrusted.<br>- **0**: The device is offline. The client needs to call **bindTarget** to bind the device.<br>- **1**: The device is online and can be connected.<br>**discoverDistance(0-100)**: distance of the device to discover, in cm. This parameter is not used in Wi-Fi scenarios.<br>**authenticationStatus(0-1)**: authentication status of the device to discover.<br>- **0**: The device is not authenticated.<br>The value **1** means the device has been authenticated.<br>- **authorizationType(0-2)**: authorization type of the device to discover.<br>- **0**: The device is authenticated by a temporarily agreed session key.<br>- **1**: The device is authenticated by a key of the same account.<br>- **2**: The device is authenticated by a credential key of different accounts.|
 
 **Error codes**
 
@@ -552,7 +550,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -605,7 +603,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -629,11 +627,11 @@ Binds a device.
 
 **Parameters**
 
-| Name    | Type                                               | Mandatory | Description        |
-| ---------- | --------------------------------------------------- | ----- | ------------ |
-| deviceId   | string                                              | Yes   | Device ID.  |
-| bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>- **bindType**: binding type, which is mandatory. The value **1** means PIN authentication.<br>- **targetPkgName**: bundle name of the target to bind.<br>- **appName**: application that attempts to bind the target.<br>- **appOperation**: reason for the application to bind the target.<br>- **customDescription**: detailed description of the operation. |
-| callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
+  | Name    | Type                                               | Mandatory | Description        |
+  | ---------- | --------------------------------------------------- | ----- | ------------ |
+  | deviceId   | string                                              | Yes   | Device ID.  |
+  | bindParam  | {[key:&nbsp;string]:&nbsp;Object;}                             | Yes   | Authentication parameters. You can determine the key-value pair to be passed in. By default, the following keys are carried:<br>**bindType**: binding type, which is mandatory.<br>The value **1** means PIN authentication.<br>**targetPkgName**: bundle name of the target to bind.<br>**appName**: application that attempts to bind the target.<br>**appOperation**: reason for the application to bind the target.<br>**customDescription**: detailed description of the operation.  |
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string;&nbsp;}&gt; | Yes   | Callback used to return the authentication result.|
 
 **Error codes**
 
@@ -648,7 +646,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -692,9 +690,9 @@ Unbinds a device.
 
 **Parameters**
 
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| deviceId | string                    | Yes  | Device ID.|
+  | Name  | Type                     | Mandatory| Description      |
+  | -------- | ------------------------- | ---- | ---------- |
+  | deviceId | string                    | Yes  | Device ID.|
 
 **Error codes**
 
@@ -708,7 +706,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -733,10 +731,10 @@ Subscribes to the device state changes. The application (identified by the bundl
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.|
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.|
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
 
 **Error codes**
 
@@ -749,7 +747,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -786,10 +784,10 @@ Unsubscribes from the device state changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes   | Event type. The value **'deviceStateChange'** indicates device state changes.       |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[deviceStateChange](#devicestatechange);&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
@@ -802,7 +800,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -839,10 +837,10 @@ Subscribes to the **'discoverSuccess'** event. The application will be notified 
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                        |
-| -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.|
-| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
+  | Name      | Type                                    | Mandatory  | Description                        |
+  | -------- | ---------------------------------------- | ---- | -------------------------- |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.|
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | Yes   | Callback invoked when a device is successfully discovered.              |
 
 **Error codes**
 
@@ -855,7 +853,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -891,10 +889,10 @@ Unsubscribes from the **'discoverSuccess'** event.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                         |
-| -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.                |
-| callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
+  | Name      | Type                                    | Mandatory  | Description                         |
+  | -------- | ---------------------------------------- | ---- | --------------------------- |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverSuccess'**.                |
+  | callback | Callback&lt;{&nbsp;device:&nbsp;[DeviceBasicInfo](#devicebasicinfo);&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
@@ -942,10 +940,10 @@ Subscribes to device name changes. The application will be notified when the nam
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
-| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | Yes   | Callback used to return the device name change.                |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | Yes   | Callback used to return the device name change.                |
 
 **Error codes**
 
@@ -958,7 +956,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -988,10 +986,10 @@ Unsubscribes from the device name changes.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
-| callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | No   | Callback to unregister.                |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceNameChange**.|
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string;}&gt; | No   | Callback to unregister.                |
 
 **Error codes**
 
@@ -1004,7 +1002,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1034,10 +1032,10 @@ Subscribes to the **'discoverFailure'** event. The application will be notified 
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description                            |
-| -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.|
-| callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
+  | Name      | Type                                    | Mandatory  | Description                            |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.|
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | Yes   | Callback invoked when a device fails to be discovered.                |
 
 **Error codes**
 
@@ -1050,7 +1048,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1080,10 +1078,10 @@ Unsubscribes from the **'discoverFailure'** event.
 
 **Parameters**
 
-| Name      | Type                                    | Mandatory  | Description               |
-| -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.    |
-| callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | No   | Callback to unregister.|
+  | Name      | Type                                    | Mandatory  | Description               |
+  | -------- | ---------------------------------------- | ---- | ----------------- |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **'discoverFailure'**.    |
+  | callback | Callback&lt;{&nbsp;reason:&nbsp;number;&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
@@ -1096,7 +1094,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1126,10 +1124,10 @@ Subscribes to the dead events of the **DeviceManager** service. The application 
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
-| callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
+  | callback | Callback&lt;{}&gt; | No   | Callback invoked when the **DeviceManager** service is terminated unexpectedly.                       |
 
 **Error codes**
 
@@ -1142,7 +1140,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1168,10 +1166,10 @@ Unsubscribes from the dead events of the **DeviceManager** service.
 
 **Parameters**
 
-| Name      | Type                   | Mandatory  | Description                                      |
-| -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
-| callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
+  | Name      | Type                   | Mandatory  | Description                                      |
+  | -------- | ----------------------- | ---- | ---------------------------------------- |
+  | type     | string                  | Yes   | Event type, which has a fixed value of **'serviceDie'**.|
+  | callback | Callback&lt;{}&gt; | No   | Callback to unregister.                    |
 
 **Error codes**
 
@@ -1184,7 +1182,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [distributedDeviceManager.createDeviceManager](#distributeddevicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [Creating a DeviceManager Instance](#distributeddevicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 

@@ -454,8 +454,6 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的页面栈。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -484,7 +482,7 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enableDragBar  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
+| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
 
 ### enableModeChangeAnimation<sup>15+</sup>
 
@@ -500,7 +498,7 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enableModeChangeAnimation  | Optional&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值:true<br/>true:开启单双栏切换动效。<br/>false:关闭单双栏切换动效。|
+| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值:true<br/>true:开启单双栏切换动效。<br/>false:关闭单双栏切换动效。|
 
 ## 事件
 
@@ -1779,7 +1777,6 @@ struct NavigationExample {
 
 ```ts
 // Index.ets
-
 @Entry
 @Component
 struct NavigationExample {
@@ -2521,7 +2518,6 @@ export class CustomTransition {
 
 ```ts
 // Index.ets
-
 @Entry
 @Component
 struct NavigationExample {
@@ -2701,7 +2697,6 @@ export struct PageOne {
 ```
 ```ts
 // PageTwo.ets
-
 class resultClass {
   constructor(count: number) {
     this.count = count;
@@ -3003,13 +2998,13 @@ struct NavigationExample1 {
 ```
 ```ts
 // PageOne.ets
-  @Builder
-  export function PageOneBuilder(name: string) {
-    NavDestination() {
-      Text("this is " + name)
-    }
-    .title(name)
+@Builder
+export function PageOneBuilder(name: string) {
+  NavDestination() {
+    Text("this is " + name)
   }
+  .title(name)
+}
 ```
 ```json
 // 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}

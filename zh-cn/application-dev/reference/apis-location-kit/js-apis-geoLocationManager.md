@@ -227,7 +227,7 @@ GNSS围栏的配置参数。目前只支持圆形围栏。
 | speed | number | 否 | 否 |表示速度信息，单位米每秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | timeStamp | number | 否 | 否 | 表示位置时间戳，UTC格式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | direction | number | 否 | 否 | 表示航向信息。单位是“度”，取值范围为0到360。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| timeSinceBoot | number | 否 | 否 | 表示位置时间戳，开机时间格式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| timeSinceBoot | number | 否 | 否 | 表示获取位置成功的时间戳，值表示从本次开机到获取位置成功所经过的时间，单位为纳秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additions | Array&lt;string&gt;| 否 | 是 | 附加信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additionSize | number| 否 | 是 | 附加信息数量。取值范围为大于等于0。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | additionsMap<sup>12+</sup> | Map&lt;string, string&gt;| 否 | 是 | 附加信息。具体内容和顺序与additions一致。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -924,7 +924,7 @@ on(type: 'satelliteStatusChange', callback: Callback&lt;SatelliteStatusInfo&gt;)
           let satelliteConstellation: geoLocationManager.SatelliteConstellationCategory = satelliteConstellations[i];
         }
         if (satelliteAdditionalInfos != undefined) {
-          // 表示卫星的ID为 ${satelliteId} 的卫星的附加信息
+          // 表示卫星的ID为 ${satelliteId} 的卫星的附加信息；表示是否在最新的位置解算中使用了本卫星，是否具有星历数据，是否具有年历数据，是否具有载波频率信息等。
           let satelliteAdditionalInfo: Number = satelliteAdditionalInfos[i];
         }
       }

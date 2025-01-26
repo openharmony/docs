@@ -22,8 +22,11 @@
     - [ArkWeb_CookieManagerAPI](_ark_web___cookie_manager_a_p_i.md)
     - [ArkWeb_JavaScriptBridgeData](_ark_web___java_script_bridge_data.md)
     - [ArkWeb_JavaScriptObject](_ark_web___java_script_object.md)
+    - [ArkWeb_JavaScriptValueAPI](_ark_web___java_script_value_a_p_i.md)
     - [ArkWeb_ProxyMethod](_ark_web___proxy_method.md)
+    - [ArkWeb_ProxyMethodWithResult](_ark_web___proxy_method_with_result.md)
     - [ArkWeb_ProxyObject](_ark_web___proxy_object.md)
+    - [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md)
     - [ArkWeb_WebMessageAPI](_ark_web___web_message_a_p_i.md)
     - [ArkWeb_WebMessagePortAPI](_ark_web___web_message_port_a_p_i.md)
 - Error Codes

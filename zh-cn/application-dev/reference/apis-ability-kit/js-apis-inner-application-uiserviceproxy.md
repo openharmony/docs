@@ -5,7 +5,7 @@ UIServiceProxy提供代理能力，可以从UIServiceExtension客户端发送数
 
 > **说明：**
 >
->  - 本模块首批接口从API version 13开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>  - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >  - 本模块接口仅可在Stage模型下使用。
 >  - 本模块接口需要在主线程中使用，不要在Worker、TaskPool等子线程中使用。
 
@@ -26,14 +26,15 @@ sendData(data: Record\<string, Object>): void
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 >
 
+**原子化服务API**：从 API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名 | 类型                   | 只读 | 可选 | 说明           |
-| ------ | ---------------------- | ---- | ------------ | ------------ |
-| data   | Record\<string, Object> | 是 | 否  | 待发送给UIServiceExtension服务端的数据。 |
+| 参数名 | 类型                   | 必填 | 说明           |
+| ------ | ---------------------- | ---- | ------------ |
+| data   | Record\<string, Object> | 是 | 待发送给UIServiceExtension服务端的数据。 |
 
 **错误码：**
 
@@ -47,7 +48,7 @@ sendData(data: Record\<string, Object>): void
 **示例：**
 
 ```ts
-import { common } from '@kit.AbilityKit';
+import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 const TAG: string = '[Extension] ';

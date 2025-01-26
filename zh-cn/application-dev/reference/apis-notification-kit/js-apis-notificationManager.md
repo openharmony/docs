@@ -892,6 +892,8 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 
 当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **参数：**
@@ -913,6 +915,7 @@ setBadgeNumber(badgeNumber: number): Promise\<void\>
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -939,6 +942,8 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 当角标设定个数取值0时，表示清除角标。取值大于99时，通知角标将显示99+。
 
+该接口不支持tv和wearable设备。
+
 **系统能力**：SystemCapability.Notification.Notification
 
 **参数：**
@@ -955,6 +960,7 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |

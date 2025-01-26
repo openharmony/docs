@@ -43,6 +43,8 @@ You can customize this API as required. The **if/else** syntax is supported.
 
 ## Example
 
+This example demonstrates how to dynamically set the gestures bound to a component using **gestureModifier**.
+
 ```ts
 // xxx.ets
 class MyButtonModifier implements GestureModifier {
@@ -88,4 +90,3 @@ struct Index {
   }
 }
 ```
-<!--no_check-->

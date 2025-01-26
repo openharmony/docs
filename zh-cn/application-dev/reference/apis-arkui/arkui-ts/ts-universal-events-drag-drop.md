@@ -261,6 +261,18 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | PREVIEW_LANDING_STARTED | 4 | 拖拽落回动效发起阶段。(落回动效发起时触发) |
 | PREVIEW_LANDING_FINISHED | 5 | 拖拽落回动效结束阶段。(落回动效结束时触发) |
 | ACTION_CANCELED_BEFORE_DRAG | 6 | 拖拽浮起落位动效中断。(已满足READY_TO_TRIGGER_DRAG_ACTION状态后，未达到动效阶段，手指抬手时触发) |
+| PREPARING_FOR_DRAG_DETECTION<sup>16+</sup>  | 7 | 拖拽准备完成，可发起拖拽阶段。(按下350ms时触发) |
+## executeDropAnimation<sup>16+</sup>
+
+设置一个自定义落位动效的执行函数，仅在useCustomDropAnimation为true时有效。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名     | 类型  | 描述             |
+| ------ | ------ | ---------------- |
+| customDropAnimation | Callback\<void\>  |  在独立的接口中实现自定义落位动效。<br/> **说明：** <br/>1. 该接口仅在 onDrop 回调中使用有效。<br/> 2. 使用前需设置 useCustomDropAnimation 为 true，否则该接口不生效。<br/> 3. 不要在动画callback中实现与动效无关的逻辑，避免影响执行效率。|
 
 ## 示例
 
@@ -280,7 +292,6 @@ struct Index {
   @State imageWidth: number = 100;
   @State imageHeight: number = 100;
   @State imgState: Visibility = Visibility.Visible;
-  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
   @State backGroundColor: Color = Color.Transparent;
@@ -370,18 +381,6 @@ struct Index {
           .width('100%')
           .height(80)
           .textFont({ size: 20 })
-        Column() {
-          Text('change video source')
-        }.draggable(true)
-        .onDragStart((event) => {
-          let video: unifiedDataChannel.Video = new unifiedDataChannel.Video();
-          video.videoUri = '/resources/rawfile/01.mp4';
-          let data: unifiedDataChannel.UnifiedData = new unifiedDataChannel.UnifiedData(video);
-          (event as DragEvent).setData(data);
-          return { builder: () => {
-            this.pixelMapBuilder()
-          }, extraInfo: 'extra info' };
-        })
 
         Column() {
           Text('this is abstract')
@@ -446,12 +445,6 @@ struct Index {
             })
           })
 
-        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
-          .width('100%')
-          .height(200)
-          .controls(true)
-          .allowDrop([uniformTypeDescriptor.UniformDataType.VIDEO])
-
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
@@ -478,3 +471,90 @@ struct Index {
 }
 ```
 ![events-drag-drop](figures/events-drag-drop.png) 
+
+## 示例（自定义落位动效）
+
+通过自定义接口executeDropAnimation，实现落位动效。
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction } from '@kit.ArkUI';
+
+
+@Entry
+@Component
+struct DropAnimationExample {
+  @State targetImage: string = '';
+  @State targetText: string = 'Drag Text';
+  @State hyperLinkText: string = 'HyperLink';
+  @State hyperLinkContent: string = 'HyperLink';
+  @State imageWidth: number = 100;
+  @State imageHeight: number = 100;
+  @State imgState: Visibility = Visibility.Visible;
+  @State videoSrc: string = 'resource://RAWFILE/02.mp4';
+  @State abstractContent: string = "abstract";
+  @State textContent: string = "";
+
+  customDropAnimation =
+    () => {
+      this.getUIContext().animateTo({ duration: 1000, curve: Curve.EaseOut, playMode: PlayMode.Normal }, () => {
+        this.imageWidth = 200;
+        this.imageHeight = 200;
+        this.imgState = Visibility.None;
+      })
+    }
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.app_icon'))
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 ,top: 40})
+          .visibility(this.imgState)
+          .onDragStart((event) => {
+          })
+          .onDragEnd((event) => {
+            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+            }
+          })
+      }.width('45%')
+      .height('100%')
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width(180)
+          .height(40)
+          .textAlign(TextAlign.Center)
+          .margin(10)
+          .backgroundColor('rgb(240,250,255)')
+        Column() {
+          Image(this.targetImage)
+            .width(this.imageWidth)
+            .height(this.imageHeight)
+        }
+        .draggable(true)
+        .margin({ left: 15 })
+        .border({ color: Color.Black, width: 1 })
+        .allowDrop([udmfType.UniformDataType.IMAGE])
+        .onDrop((dragEvent: DragEvent) => {
+          let records: Array<udmf.UnifiedRecord> = dragEvent.getData().getRecords();
+          let rect: Rectangle = dragEvent.getPreviewRect();
+          this.imageWidth = Number(rect.width);
+          this.imageHeight = Number(rect.height);
+          this.targetImage = (records[0] as udmf.Image).imageUri;
+          dragEvent.useCustomDropAnimation = true;
+          dragEvent.executeDropAnimation(this.customDropAnimation)
+        })
+      }.width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+    }
+    .height('100%')
+  }
+}
+```
+![executeDropAnimation](figures/executeDropAnimation.gif)

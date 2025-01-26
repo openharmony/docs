@@ -28,7 +28,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_Drawing_SystemFontType](_drawing.md#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3 } | 字体类型的枚举。  |
+| [OH_Drawing_SystemFontType](_drawing.md#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3, CUSTOMIZED = 1 &lt;&lt; 4 } | 字体类型的枚举。  |
 
 
 ### 函数

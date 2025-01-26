@@ -52,6 +52,8 @@ Invoked when the component size changes.
 
 ## Example
 
+This example demonstrates how to set a size change event for a **Text** component. When the size of the **Text** component changes, the **onSizeChange** event is triggered, allowing you to obtain relevant parameters.
+
 ```ts
 // xxx.ets
 @Entry

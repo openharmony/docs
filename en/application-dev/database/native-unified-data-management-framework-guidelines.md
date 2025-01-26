@@ -8,9 +8,9 @@ The Unified Data Management Framework (UDMF) defines the language and data stand
 
 ## Basic Concepts
 
-- UTD<br>A Uniform Type Descriptor (UTD) defines data of the same type to eliminate data type ambiguity. It contains the data type ID and types to which the current data type belongs. The UTD is generally used to filter or identify the data type in scenarios such as file preview and file sharing.
+- UTD<br>A Uniform Type Descriptor (UTD) defines data of the same type to eliminate data type ambiguity. It contains the data type ID and types to which the current data type belongs. The UTD is generally used to filter or identify the data type in scenarios, such as file preview and file sharing.
 
-- UDS<br>A uniform data struct (UDS) defines the data of a certain type (specified by a UTD). Uniform data structs allow unified parsing standards to be used in data interaction, which minimizes the adaptation workload. Uniform data structs are used for data interaction across applications and devices, such as, the drag-and-drop operations.
+- UDS<br> A uniform data struct (UDS) defines the data of a certain type (specified by a UTD). Uniform data structs allow unified parsing standards to be used in data interaction, which minimizes the adaptation workload. Uniform data structs are used for data interaction across applications and devices, such as, the drag-and-drop operations.
 
 - Unified record<br>A unified record is abstract definition of a piece of data supported by the UDMF, for example, a text record or an image record.
 
@@ -31,36 +31,36 @@ The Unified Data Management Framework (UDMF) defines the language and data stand
 
 For details about the APIs, see [UDMF](../reference/apis-arkdata/_u_d_m_f.md).
 
-| API                                                          | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| OH_Utd* OH_Utd_Create(const char* typeId)                    | Creates a pointer to an **OH_Utd** instance.                 |
-| void OH_Utd_Destroy(OH_Utd* pThis)                           | Destroys the pointer to an **OH_Utd** instance.              |
-| const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | Obtains the uniform data types by file name extension.       |
-| const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | Obtains the uniform data types by MIME type.                 |
-| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)               | Checks whether two UTDs are the same.                        |
-| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | Destroys a UTD list.                                         |
-| OH_UdsHyperlink* OH_UdsHyperlink_Create()                    | Creates a pointer to an **OH_UdsHyperlink** instance.        |
-| void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis)         | Destroys the pointer to an **OH_UdsHyperlink** instance.     |
-| const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis)  | Obtains the UTD ID from an **OH_UdsHyperlink** instance.     |
-| const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis)   | Obtains the URL from an **OH_UdsHyperlink** instance.        |
-| const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis) | Obtains the link description from an **OH_UdsHyperlink** instance. |
-| int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url) | Sets the URL for an **OH_UdsHyperlink** instance.            |
-| int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | Sets the link description for an **OH_UdsHyperlink** instance. |
-| OH_UdmfData* OH_UdmfData_Create()                            | Creates a pointer to an **OH_UdmfData** instance.            |
-| void OH_UdmfData_Destroy(OH_UdmfData* pThis)                 | Destroys the pointer to an **OH_UdmfData** instance.         |
-| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | Add an **OH_UdmfRecord** to an **OH_UdmfData** instance.     |
-| bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | Checks whether the specified type exists in an **OH_UdmfData** instance. |
-| OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | Obtains all data records from an **OH_UdmfData** instance.   |
-| OH_UdmfRecord* OH_UdmfRecord_Create()                        | Creates a pointer to an **OH_UdmfRecord** instance.          |
-| void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)             | Destroys the pointer to an **OH_UdmfRecord** instance.       |
-| int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | Adds hyperlink data to an **OH_UdmfRecord** instance.        |
-| char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count) | Obtains all data types in an **OH_UdmfRecord** instance.     |
-| int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | Obtains the hyperlink data from an **OH_UdmfRecord** instance. |
-| int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | Obtains data from the UDMF database.                         |
-| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | Sets data in the UDMF database.                              |
-| OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create()        | Creates a pointer to the unified data provider instance.     |
-| int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | Sets a callback for the unified data provider.               |
-| int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | Sets the unified data provider in an **OH_UdmfRecord** instance. |
+| API                                                    | Description                                                       |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| OH_Utd* OH_Utd_Create(const char* typeId)                    | Creates a pointer to an **OH_Utd** instance.               |
+| void OH_Utd_Destroy(OH_Utd* pThis)                           | Destroys the pointer to an **OH_Utd** instance.                   |
+| const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | Obtains the uniform data types by file name extension.                       |
+| const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | Obtains the uniform data types by MIME type.                         |
+| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)               | Checks whether two UTDs are the same.                           |
+| void OH_Utd_DestroyStringList(const char** list, unsigned int count) | Destroys a UTD list.                                       |
+| OH_UdsHyperlink* OH_UdsHyperlink_Create()                    | Creates a pointer to an **OH_UdsHyperlink** instance.|
+| void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis)         | Destroys the pointer to an **OH_UdsHyperlink** instance.    |
+| const char* OH_UdsHyperlink_GetType(OH_UdsHyperlink* pThis)  | Obtains the UTD ID from an **OH_UdsHyperlink** instance.                  |
+| const char* OH_UdsHyperlink_GetUrl(OH_UdsHyperlink* pThis)   | Obtains the URL from an **OH_UdsHyperlink** instance.                           |
+| const char* OH_UdsHyperlink_GetDescription(OH_UdsHyperlink* pThis) | Obtains the link description from an **OH_UdsHyperlink** instance.                      |
+| int OH_UdsHyperlink_SetUrl(OH_UdsHyperlink* pThis, const char* url) | Sets the URL for an **OH_UdsHyperlink** instance.                           |
+| int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | Sets the link description for an **OH_UdsHyperlink** instance.                      |
+| OH_UdmfData* OH_UdmfData_Create()                            | Creates a pointer to an **OH_UdmfData** instance.                |
+| void OH_UdmfData_Destroy(OH_UdmfData* pThis)                 | Destroys the pointer to an **OH_UdmfData** instance.                    |
+| int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | Add an **OH_UdmfRecord** to an **OH_UdmfData** instance.             |
+| bool OH_UdmfData_HasType(OH_UdmfData* pThis, const char* type) | Checks whether the specified type exists in an **OH_UdmfData** instance.              |
+| OH_UdmfRecord** OH_UdmfData_GetRecords(OH_UdmfData* pThis, unsigned int* count) | Obtains all data records from an **OH_UdmfData** instance.                          |
+| OH_UdmfRecord* OH_UdmfRecord_Create()                        | Creates a pointer to an **OH_UdmfRecord** instance.              |
+| void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)             | Destroys the pointer to an **OH_UdmfRecord** instance.                  |
+| int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | Adds hyperlink data to an **OH_UdmfRecord** instance.                        |
+| char** OH_UdmfRecord_GetTypes(OH_UdmfRecord* pThis, unsigned int* count) | Obtains all data types in an **OH_UdmfRecord** instance.                        |
+| int OH_UdmfRecord_GetHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | Obtains the hyperlink data from an **OH_UdmfRecord** instance.                        |
+| int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData) | Obtains data from the UDMF database.                                   |
+| int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData, char* key, unsigned int keyLen) | Sets data in the UDMF database.                                   |
+| OH_UdmfRecordProvider* OH_UdmfRecordProvider_Create()        | Creates a pointer to the unified data provider instance.                         |
+| int OH_UdmfRecordProvider_SetData(OH_UdmfRecordProvider* provider, void* context, const OH_UdmfRecordProvider_GetData callback, const UdmfData_Finalize finalize) | Sets a callback for the unified data provider.                             |
+| int OH_UdmfRecord_SetProvider(OH_UdmfRecord* pThis, const char* const* types, unsigned int count, OH_UdmfRecordProvider* provider) | Sets the unified data provider in an **OH_UdmfRecord** instance.                    |
 
 
 ## Adding Dynamic Link Libraries
@@ -84,7 +84,7 @@ libudmf.so
 ```
 ## Obtaining Plaintext Data in Different Ways
 
-To use the UTD to obtain plaintext data, perform the following steps:
+The following walks you through on how to use the UTD to obtain plaintext data.
 1. Obtain **typeId** of the UTD based on the file name extension **.txt**.
 2. Obtain **typeId** of the UTD based on the MIME type **text/plain**.
 3. Use the **typeId**s obtained to create two UTD instances.

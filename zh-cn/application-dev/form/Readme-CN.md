@@ -14,15 +14,17 @@
         - [卡片使用自定义绘制能力](arkts-ui-widget-page-custom-drawing.md)
       - 开发卡片事件
         - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
-        - [使用router事件跳转到指定UIAbility](arkts-ui-widget-event-router.md)
-        - [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
+        - [拉起卡片提供方的UIAbility(router事件)](arkts-ui-widget-event-router.md)
+        - [拉起卡片提供方的UIAbility到后台(call事件)](arkts-ui-widget-event-call.md)
         - [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
         - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
       - 卡片数据交互
         - [卡片内容更新](arkts-ui-widget-interaction-overview.md)
-        - [卡片定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+        - [卡片定时刷新](arkts-ui-widget-update-by-time.md)
+        - [卡片定点刷新](arkts-ui-widget-update-by-time-point.md)
         <!--Del-->
         - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
+        - [卡片条件刷新](arkts-ui-widget-update-by-conditions.md)
         <!--DelEnd-->
         - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
         - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)

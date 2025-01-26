@@ -36,17 +36,81 @@
 ## 底部/侧边导航栏
 
 在sm和md断点下，导航栏在底部；在lg断点下，导航栏在左侧。可以通过[Tab组件](../../reference/apis-arkui/arkui-ts/ts-container-tabs.md)的barPosition和vertical属性控制TabBar的位置，同时还可以通过barWidth和barHeight属性控制TabBar的尺寸。
-
-  
 ```ts
-import Home from '../common/Home';//组件请参考相关实例
+//BreakpointSystem.ets
+import mediaQuery from '@ohos.mediaquery'
+
+export default class BreakpointSystem {
+  private currentBreakpoint: string = 'md'
+  private smListener?: mediaQuery.MediaQueryListener
+  private mdListener?:mediaQuery.MediaQueryListener
+  private lgListener?: mediaQuery.MediaQueryListener
+
+  private updateCurrentBreakpoint(breakpoint: string) {
+    if (this.currentBreakpoint !== breakpoint) {
+      this.currentBreakpoint = breakpoint
+      AppStorage.Set<string>('currentBreakpoint', this.currentBreakpoint)
+    }
+  }
+
+  private isBreakpointSM = (mediaQueryResult:mediaQuery.MediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.updateCurrentBreakpoint('sm')
+    }
+  }
+
+  private isBreakpointMD = (mediaQueryResult:mediaQuery.MediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.updateCurrentBreakpoint('md')
+    }
+  }
+
+  private isBreakpointLG = (mediaQueryResult:mediaQuery.MediaQueryResult) => {
+    if (mediaQueryResult.matches) {
+      this.updateCurrentBreakpoint('lg')
+    }
+  }
+
+  public register() {
+    this.smListener = mediaQuery.matchMediaSync('(320vp<=width<600vp)')
+    this.smListener.on('change', this.isBreakpointSM)
+    this.mdListener = mediaQuery.matchMediaSync('(600vp<=width<840vp)')
+    this.mdListener.on('change', this.isBreakpointMD)
+    this.lgListener = mediaQuery.matchMediaSync('(840vp<=width)')
+    this.lgListener.on('change', this.isBreakpointLG)
+  }
+
+  public unregister() {
+    this.smListener?.off('change', this.isBreakpointSM)
+    this.mdListener?.off('change', this.isBreakpointMD)
+    this.lgListener?.off('change', this.isBreakpointLG)
+  }
+}
+```
+
+```ts
+import Home from '../common/Home'; //组件请参考相关实例
 import TabBarItem from '../common/TabBarItem';
+import BreakpointSystem from '../common/BreakpointSystem'
 
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0;
-  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
+  @State currentIndex: number = 0
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  private onTabChange = (index: number) => {
+    this.currentIndex = index
+  }
+
+  aboutToAppear() {
+    this.breakpointSystem.register()
+  }
+
+  aboutToDisappear() {
+    this.breakpointSystem.unregister()
+  }
+
   @Builder
   tabItem(index: number, title: Resource, icon: Resource, iconSelected: Resource) {
     TabBarItem({
@@ -64,18 +128,34 @@ struct Index {
       // 首页
       TabContent() {
         Home()
-      }.tabBar(this.tabItem(0, $r('app.string.tabBar1'), $r('app.media.ic_home_normal'), $r('app.media.ic_home_actived')))
-      TabContent() {}.tabBar(this.tabItem(1, $r('app.string.tabBar2'), $r('app.media.ic_app_normal'), $r('app.media.ic_app_actived')))
-      TabContent() {}.tabBar(this.tabItem(2, $r('app.string.tabBar3'), $r('app.media.ic_game_normal'), $r('app.media.ic_mine_actived')))
-      TabContent() {}.tabBar(this.tabItem(3, $r('app.string.tabBar4'), $r('app.media.ic_search_normal'), $r('app.media.ic_search_actived')))
-      TabContent() {}.tabBar(this.tabItem(4, $r('app.string.tabBar4'), $r('app.media.ic_mine_normal'), $r('app.media.ic_mine_actived')))
+      }
+      .tabBar(this.tabItem(0, $r('app.string.tabBar1'), $r('app.media.ic_home_normal'),
+        $r('app.media.ic_home_actived')))
+
+      TabContent() {
+      }.tabBar(this.tabItem(1, $r('app.string.tabBar2'), $r('app.media.ic_app_normal'), $r('app.media.ic_app_actived')))
+
+      TabContent() {
+      }
+      .tabBar(this.tabItem(2, $r('app.string.tabBar3'), $r('app.media.ic_game_normal'),
+        $r('app.media.ic_mine_actived')))
+
+      TabContent() {
+      }
+      .tabBar(this.tabItem(3, $r('app.string.tabBar4'), $r('app.media.ic_search_normal'),
+        $r('app.media.ic_search_actived')))
+
+      TabContent() {
+      }
+      .tabBar(this.tabItem(4, $r('app.string.tabBar4'), $r('app.media.ic_mine_normal'),
+        $r('app.media.ic_mine_actived')))
     }
     .backgroundColor('#F1F3F5')
     .barMode(BarMode.Fixed)
     .barWidth(this.currentBreakpoint === "lg" ? 96 : '100%')
     .barHeight(this.currentBreakpoint === "lg" ? '60%' : 56)
     // 设置TabBar放置在水平或垂直方向
-    .vertical(this.currentBreakpoint === "lg") 
+    .vertical(this.currentBreakpoint === "lg")
   }
 }
 ```
@@ -84,20 +164,57 @@ struct Index {
 
   
 ```ts
+interface GeneratedObjectLiteralInterface_1 {
+  NORMAL: string;
+  SELECTED: string;
+}
+
+const TitleColor: GeneratedObjectLiteralInterface_1 = {
+  NORMAL: '#999',
+  SELECTED: '#0A59F7'
+}
+
 @Component
 export default struct TabBarItem {
-  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md'
+  @Prop currentIndex: number
+  private index?:number
+  private icon?:Resource
+  private iconSelected?:Resource
+  private title?:Resource
+
+  private getIcon() {
+    return this.currentIndex === this.index ? this.iconSelected : this.icon
+  }
+
+  private getFontColor() {
+    return this.currentIndex === this.index ? TitleColor.SELECTED : TitleColor.NORMAL
+  }
 
   build() {
     if (this.currentBreakpoint !== 'md' ) {
-      // sm及lg断点下，tabBarItem中的图标和文字垂直排布
       Column() {
-       // ...
+        Image(this.getIcon())
+          .width(24)
+          .height(24)
+          .margin(5)
+          .objectFit(ImageFit.Contain)
+        Text(this.title)
+          .fontColor(this.getFontColor())
+          .fontSize(12)
+          .fontWeight(500)
       }.justifyContent(FlexAlign.Center).height('100%').width('100%')
     } else {
-      // md断点下，tabBarItem中的图标和文字水平排布
       Row() {
-       // ...
+        Image(this.getIcon())
+          .width(24)
+          .height(24)
+          .margin(5)
+          .objectFit(ImageFit.Contain)
+        Text(this.title)
+          .fontColor(this.getFontColor())
+          .fontSize(12)
+          .fontWeight(500)
       }.justifyContent(FlexAlign.Center).height('100%').width('100%')
     }
   }
@@ -203,9 +320,165 @@ export default struct IndexSwiper {
 
 ## 快捷入口
 
-在不同的断点下，快捷入口的5个图标始终均匀排布，这是典型的均分能力使用场景。
+在不同的断点下，快捷入口的5个图标始终均匀排布，这是典型的均分能力使用场景。图标资源文件[获取](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket/entry/src/main/resources)。
+```ts
+// /model/HomeData   在resourse文件中放置以下资源文件，
+interface AppItem{
+  id:string;
+  title:Resource;
+  image:Resource;
+}
 
-  
+const appList:AppItem[] = [
+  { id: '0', title: $r('app.string.public_app1'), image: $r('app.media.ic_public_app1') },
+  { id: '1', title: $r('app.string.public_app2'), image: $r('app.media.ic_public_app2') },
+  { id: '2', title: $r('app.string.public_app3'), image: $r('app.media.ic_public_app3') },
+  { id: '3', title: $r('app.string.public_app4'), image: $r('app.media.ic_public_app4') },
+  { id: '4', title: $r('app.string.public_app5'), image: $r('app.media.ic_public_app5') },
+  { id: '5', title: $r('app.string.public_app6'), image: $r('app.media.ic_public_app6') },
+  { id: '6', title: $r('app.string.public_app7'), image: $r('app.media.ic_public_app7') },
+  { id: '7', title: $r('app.string.public_app8'), image: $r('app.media.ic_public_app8') },
+  { id: '8', title: $r('app.string.public_app9'), image: $r('app.media.ic_public_app9') },
+  { id: '9', title: $r('app.string.public_app10'), image: $r('app.media.ic_public_app10') },
+  { id: '10', title: $r('app.string.public_app1'), image: $r('app.media.ic_public_app1') },
+  { id: '11', title: $r('app.string.public_app1'), image: $r('app.media.ic_public_app1') },
+  { id: '12', title: $r('app.string.public_app2'), image: $r('app.media.ic_public_app2') },
+  { id: '13', title: $r('app.string.public_app3'), image: $r('app.media.ic_public_app3') },
+  { id: '14', title: $r('app.string.public_app4'), image: $r('app.media.ic_public_app4') },
+  { id: '15', title: $r('app.string.public_app5'), image: $r('app.media.ic_public_app5') },
+  { id: '16', title: $r('app.string.public_app6'), image: $r('app.media.ic_public_app6') },
+  { id: '17', title: $r('app.string.public_app7'), image: $r('app.media.ic_public_app7') },
+  { id: '18', title: $r('app.string.public_app8'), image: $r('app.media.ic_public_app8') },
+  { id: '19', title: $r('app.string.public_app9'), image: $r('app.media.ic_public_app9') },
+  { id: '20', title: $r('app.string.public_app10'), image: $r('app.media.ic_public_app10') }
+]
+
+const gameList:AppItem[] = [
+  { id: '21', title: $r('app.string.public_game1'), image: $r('app.media.ic_public_game1') },
+  { id: '22', title: $r('app.string.public_game2'), image: $r('app.media.ic_public_game2') },
+  { id: '23', title: $r('app.string.public_game3'), image: $r('app.media.ic_public_game3') },
+  { id: '24', title: $r('app.string.public_game4'), image: $r('app.media.ic_public_game4') },
+  { id: '25', title: $r('app.string.public_game5'), image: $r('app.media.ic_public_game5') },
+  { id: '26', title: $r('app.string.public_game6'), image: $r('app.media.ic_public_game6') },
+  { id: '27', title: $r('app.string.public_game7'), image: $r('app.media.ic_public_game7') },
+  { id: '28', title: $r('app.string.public_game8'), image: $r('app.media.ic_public_game8') },
+  { id: '29', title: $r('app.string.public_game9'), image: $r('app.media.ic_public_game9') },
+  { id: '30', title: $r('app.string.public_game10'), image: $r('app.media.ic_public_game10') },
+  { id: '31', title: $r('app.string.public_game1'), image: $r('app.media.ic_public_game1') },
+  { id: '32', title: $r('app.string.public_game2'), image: $r('app.media.ic_public_game2') },
+  { id: '33', title: $r('app.string.public_game3'), image: $r('app.media.ic_public_game3') },
+  { id: '34', title: $r('app.string.public_game4'), image: $r('app.media.ic_public_game4') },
+  { id: '35', title: $r('app.string.public_game5'), image: $r('app.media.ic_public_game5') },
+  { id: '36', title: $r('app.string.public_game6'), image: $r('app.media.ic_public_game6') },
+  { id: '37', title: $r('app.string.public_game7'), image: $r('app.media.ic_public_game7') },
+  { id: '38', title: $r('app.string.public_game8'), image: $r('app.media.ic_public_game8') },
+  { id: '39', title: $r('app.string.public_game9'), image: $r('app.media.ic_public_game9') },
+  { id: '40', title: $r('app.string.public_game10'), image: $r('app.media.ic_public_game10') }
+]
+
+const entranceIcons:AppItem[]= [
+  { id: '41',title: $r('app.string.home_categories'), image: $r('app.media.ic_home_categories') },
+  { id: '42',title: $r('app.string.home_top'), image: $r('app.media.ic_home_top') },
+  { id: '43',title: $r('app.string.home_fast'), image: $r('app.media.ic_home_fast') },
+  { id: '44',title: $r('app.string.home_flower'), image: $r('app.media.ic_home_flower') },
+  { id: '45',title: $r('app.string.home_education'), image: $r('app.media.ic_home_education') },
+]
+
+export { entranceIcons, appList, gameList }
+```
+
+
+
+
+```ts
+//model/HomeDataType
+interface AllIcons {
+  image: Resource,
+  title: Resource,
+}
+
+interface AppItem  {
+  id: string,
+  title: Resource,
+  image: Resource
+}
+
+class MyAppSource implements IDataSource {
+  private dataArray: AppItem[] = []
+  private listeners: DataChangeListener[] = []
+
+  constructor(element: AppItem[]) {
+    for (let index = 0; index < element.length; index++) {
+      this.dataArray.push(element[index])
+    }
+  }
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): AppItem {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: AppItem): void {
+    this.dataArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(data: AppItem): void {
+    this.dataArray.push(data)
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+export { AllIcons, MyAppSource, AppItem }
+
+```
+
 ```ts
 import { entranceIcons } from '../model/HomeData';
 import { AllIcons } from '../model/HomeDataType';
@@ -324,6 +597,25 @@ export default struct IndexApps {
 将上述各页面主要部分组合在一起后，即可完成整体页面开发。
 
   
+```ts
+entry/src/main/ets                         // 代码区
+|---model
+|   |---HomeData.ets                       // 主页用到的图片资源
+|   |---HomeDataType.ets                   // 事件监听函数
+|---pages                                  
+|   |---index.ets                          // 首页
+|---common                                    
+|   |---BreakpointSystem.ets               // 媒体查询
+|   |---Home.ets                           // 主容器
+|   |---IndexApps.ets                      // app模块(包含安装，展示图片，更多功能)
+|   |---IndexContent.ets                   // 内容模块
+|   |---IndexEntrance.ets                  // 下一步模块(箭头跳转组件)
+|   |---IndexHeader.ets                    // 头部组件
+|   |---IndexSwiper.ets                    // 轮播图   
+|   |---TabBarItem.ets                     // 导航栏     
+entry/src/main/resources                   // 资源文件
+```
+
 ```ts
 import IndexSwiper from './IndexSwiper';
 import IndexEntrance from './IndexEntrance';

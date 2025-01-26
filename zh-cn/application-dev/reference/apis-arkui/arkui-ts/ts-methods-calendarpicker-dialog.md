@@ -48,6 +48,7 @@ static show(options?: CalendarDialogOptions)
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions对象说明)&nbsp;\|&nbsp;[ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10枚举说明) | 否   | 设置弹窗背板的阴影。<br /> 当设备为2in1时，默认场景下获焦阴影值为ShadowStyle.OUTER_FLOATING_MD，失焦为ShadowStyle.OUTER_FLOATING_SM                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | enableHoverMode<sup>14+</sup>     | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| markToday<sup>16+</sup>       | boolean | 否   | 设置日历选择器在系统当前日期时，是否保持高亮显示。<br />默认值：false。true表示日历选择器在系统当前日期时，保持高亮显示。false表示日历选择器在系统当前日期时，不保持高亮显示。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## 示例
 
@@ -242,3 +243,68 @@ struct CalendarPickerDialogExample {
 ```
 
 ![CalendarPickerDialog](figures/CalendarPickerDialogDemo4.png)
+
+### 示例5（设置开始日期和结束日期）
+
+该示例通过start和end设置日历选择器弹窗的开始日期和结束日期。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerDialogExample {
+  private selectedDate: Date = new Date('2025-01-01')
+  private startDate: Date = new Date('2024-01-10')
+  private endDate: Date = new Date('2025-1-10')
+
+  build() {
+    Column() {
+      Text('月历日期选择器').fontSize(30)
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({
+            start: this.startDate,
+            end: this.endDate,
+            selected: this.selectedDate,
+          })
+        })
+    }.width('100%').margin({ top: 350 })
+  }
+}  
+```
+
+![CalendarPickerDialog](figures/calendar_picker_dialog_start_end.gif)
+
+### 示例6（设置日历选择器弹窗在系统当前日期时，保持高亮显示和禁用日期区间）
+
+该示例通过markToday设置日历选择器弹窗在系统当前日期时，开启保持高亮显示，同时，通过disabledDateRange设置日历选择器弹窗的禁用日期区间。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CalendarPickerExample {
+  private disabledDateRange: DateRange[] = [
+    { start: new Date('2025-01-01'), end: new Date('2025-01-02') },
+    { start: new Date('2025-01-09'), end: new Date('2025-01-10') },
+    { start: new Date('2025-01-15'), end: new Date('2025-01-16') },
+    { start: new Date('2025-01-19'), end: new Date('2025-01-19') },
+    { start: new Date('2025-01-22'), end: new Date('2025-01-25') }
+  ]
+
+  build() {
+    Column() {
+      Button("Show CalendarPicker Dialog")
+        .margin(20)
+        .onClick(() => {
+          console.info("CalendarDialog.show")
+          CalendarPickerDialog.show({ markToday: true, disabledDateRange: this.disabledDateRange })
+        })
+    }.width('100%').margin({ top: 350 })
+  }
+}
+```
+
+![CalendarPickerDialog](figures/calendar_picker_dialog_mark_disabled.gif)

@@ -26,7 +26,7 @@
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_CoerceToBool
 
@@ -39,15 +39,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CoerceToBool注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CoerceToBool},
-};
-static JSVM_CallbackStruct *method = param;
-// CoerceToBool方法别名，ArkTS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"coerceToBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CoerceToBool的样例方法
 static JSVM_Value CoerceToBool(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -65,21 +56,22 @@ static JSVM_Value CoerceToBool(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return boolean;
 }
+// CoerceToBool注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CoerceToBool},
+};
+static JSVM_CallbackStruct *method = param;
+// CoerceToBool方法别名，ArkTS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"coerceToBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `coerceToBool("123")`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'CoerceToBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'CoerceToBool: %{public}s', error.message);
-}
+预期结果
+```
+SVM OH_JSVM_CoerceToBool success:1
 ```
 
 ### OH_JSVM_CoerceToNumber
@@ -93,15 +85,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CoerceToNumber注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CoerceToNumber},
-};
-static JSVM_CallbackStruct *method = param;
-// CoerceToNumber方法别名，ArkTS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"coerceToNumber", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CoerceToNumber的样例方法
 static JSVM_Value CoerceToNumber(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -119,21 +102,22 @@ static JSVM_Value CoerceToNumber(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return number;
 }
+// CoerceToNumber注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CoerceToNumber},
+};
+static JSVM_CallbackStruct *method = param;
+// CoerceToNumber方法别名，ArkTS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"coerceToNumber", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(coerceToNumber(true))JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `coerceToNumber(true)`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'CoerceToNumber: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'CoerceToNumber: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_CoerceToNumber success:1
 ```
 
 ### OH_JSVM_CoerceToObject
@@ -147,15 +131,6 @@ cpp 部分代码：
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CoerceToObjec注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CoerceToObject},
-};
-static JSVM_CallbackStruct *method = param;
-// CoerceToObject方法别名，ArkTS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"coerceToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CoerceToObject的样例方法
 static JSVM_Value CoerceToObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -172,21 +147,22 @@ static JSVM_Value CoerceToObject(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return obj;
 }
+// CoerceToObjec注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CoerceToObject},
+};
+static JSVM_CallbackStruct *method = param;
+// CoerceToObject方法别名，ArkTS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"coerceToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(coerceToObject(123))JS";
 ```
 
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `coerceToObject(123)`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'CoerceToObject001: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'CoerceToObject001: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_CoerceToObject success
 ```
 
 ### OH_JSVM_CoerceToString
@@ -200,15 +176,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// CoerceToString注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CoerceToString},
-};
-static JSVM_CallbackStruct *method = param;
-// CoerceToString方法别名，ArkTS侧调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"coerceToString", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_CoerceToString的样例方法
 static JSVM_Value CoerceToString(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -225,21 +192,22 @@ static JSVM_Value CoerceToString(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return str;
 }
+// CoerceToString注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = CoerceToString},
+};
+static JSVM_CallbackStruct *method = param;
+// CoerceToString方法别名，ArkTS侧调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"coerceToString", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(coerceToString(22222))JS";
 ```
 
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `coerceToString(22222)`;
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'CoerceToString: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'CoerceToString: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_CoerceToString success
 ```
 
 ### OH_JSVM_GetBoolean
@@ -253,15 +221,6 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetBoolean注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetBoolean},
-};
-static JSVM_CallbackStruct *method = param;
-// GetBoolean方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getBoolean", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetBoolean的样例方法
 static JSVM_Value GetBoolean(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -290,32 +249,25 @@ static JSVM_Value GetBoolean(JSVM_Env env, JSVM_CallbackInfo info)
     // 返回结果
     return returnValue;
 }
+// GetBoolean注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetBoolean},
+};
+static JSVM_CallbackStruct *method = param;
+// GetBoolean方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getBoolean", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative1 = R"JS(getBoolean(1, 2))JS";
+const char *srcCallNative2 = R"JS(getBoolean(1, 1))JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let data = 1;
-  let compareData = 2;
-  let script: string = `getBoolean(${data}, ${compareData})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetBoolean: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetBoolean: %{public}s', error.message);
-}
-try {
-  let data = 1;
-  let compareData = 1;
-  let script: string = `getBoolean(${data}, ${compareData})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetBoolean: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetBoolean: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_CoerceToNumber success:0
+JSVM resultType equal
+JSVM OH_JSVM_CoerceToNumber success:1
 ```
 
 ### OH_JSVM_GetValueBool
@@ -329,15 +281,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetValueBool注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetValueBool},
-};
-static JSVM_CallbackStruct *method = param;
-// GetValueBool方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetValueBool的样例方法
 static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -357,39 +300,26 @@ static JSVM_Value GetValueBool(JSVM_Env env, JSVM_CallbackInfo info)
     OH_JSVM_GetBoolean(env, result, &boolJv);
     return boolJv;
 }
+// GetValueBool注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetValueBool},
+};
+static JSVM_CallbackStruct *method = param;
+// GetValueBool方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(getValueBool("abc"))JS";
+const char *srcCallNative = R"JS(getValueBool(true))JS";
+const char *srcCallNative = R"JS(getValueBool(false))JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-// 分别传入布尔值和非布尔值检测接口,传入布尔值将返回原布尔值,传入其他类型返回undefined
-try {
-  let data = `"abc"`;
-  let script: string = `getValueBool(${data})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetValueBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetValueBool: %{public}s', error.message);
-}
-try {
-  let data = true;
-  let script: string = `getValueBool(${data})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetValueBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetValueBool: %{public}s', error.message);
-}
-try {
-  let data = false;
-  let script: string = `getValueBool(${data})`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetValueBool: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetValueBool: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_GetValueBool fail:7
+JSVM OH_JSVM_GetValueBool success:1
+JSVM OH_JSVM_GetValueBool success:0
 ```
 
 ### OH_JSVM_GetGlobal
@@ -403,15 +333,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetGlobal注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetGlobal},
-};
-static JSVM_CallbackStruct *method = param;
-// GetGlobal方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getGlobal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetGlobal的样例方法
 static JSVM_Value GetGlobal(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -428,21 +349,22 @@ static JSVM_Value GetGlobal(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return global;
 }
+// GetGlobal注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetGlobal},
+};
+static JSVM_CallbackStruct *method = param;
+// GetGlobal方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getGlobal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(getGlobal())JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-let script: string = `getGlobal()`
-try {
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetGlobal: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetGlobal: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_GetGlobal success
 ```
 
 ### OH_JSVM_GetNull
@@ -456,15 +378,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetNull注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetNull},
-};
-static JSVM_CallbackStruct *method = param;
-// GetNull方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getNull", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetNull的样例方法
 static JSVM_Value GetNull(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Value nullValue = nullptr;
@@ -476,21 +389,22 @@ static JSVM_Value GetNull(JSVM_Env env, JSVM_CallbackInfo info) {
     }
     return nullValue;
 }
+// GetNull注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetNull},
+};
+static JSVM_CallbackStruct *method = param;
+// GetNull方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getNull", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(getNull())JS";
 ```
 
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `getNull()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetNull: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetNull: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_GetNull success
 ```
 
 ### OH_JSVM_GetUndefined
@@ -504,15 +418,6 @@ cpp 部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-// GetUndefined注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetUndefined},
-};
-static JSVM_CallbackStruct *method = param;
-// GetUndefined方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"getUndefined", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_GetUndefined的样例方法
 static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -530,21 +435,20 @@ static JSVM_Value GetUndefined(JSVM_Env env, JSVM_CallbackInfo info)
     }
     return value;
 }
+// GetUndefined注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetUndefined},
+};
+static JSVM_CallbackStruct *method = param;
+// GetUndefined方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"getUndefined", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+// 样例测试js
+const char *srcCallNative = R"JS(getUndefined())JS";
 ```
 
-接口声明
-
-ArkTS 侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `getUndefined()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'JSVM', 'GetUndefined: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'JSVM', 'GetUndefined: %{public}s', error.message);
-}
+预期结果
+```
+JSVM OH_JSVM_GetUndefined success
 ```

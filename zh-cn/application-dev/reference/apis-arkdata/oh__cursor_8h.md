@@ -30,12 +30,11 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype) | 数据库字段类型。  |
-| [OH_Cursor](_r_d_b.md#oh_cursor) | 表示结果集。  |
+| typedef struct [OH_Cursor](_o_h___cursor.md) [OH_Cursor](_r_d_b.md#oh_cursor) | 表示结果集。 | 
 
+### 函数
 
-### 枚举
-
-| 名称 | 描述 |
+| 名称 | 描述 | 
 | -------- | -------- |
-| [OH_ColumnType](_r_d_b.md#oh_columntype-1) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB, TYPE_ASSET, TYPE_ASSETS<br/>} | 数据库字段类型。  |
+| int [OH_Cursor_GetFloatVectorCount](_r_d_b.md#oh_cursor_getfloatvectorcount) ([OH_Cursor](_o_h___cursor.md) \*cursor, int32_t columnIndex, size_t \*length) | 获取当前行中指定列的浮点数数组大小。 | 
+| int [OH_Cursor_GetFloatVector](_r_d_b.md#oh_cursor_getfloatvector) ([OH_Cursor](_o_h___cursor.md) \*cursor, int32_t columnIndex, float \*val, size_t inLen, size_t \*outLen) | 以浮点数数组的形式获取当前行中指定列的值。 | 

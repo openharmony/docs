@@ -51,6 +51,34 @@ Allows an application to interact across local accounts.
 
 **Changelog**: This permission is available only to system applications in API versions 7 to 13. From API version 14, it is available to normal enterprise applications.
 
+### ohos.permission.GET_WIFI_CONFIG
+
+Allows an application to obtain the Wi-Fi configuration.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 8
+
+**Changelog**: This permission is available only to system applications in API versions 8 to 14. From API version 15, it is available to normal enterprise applications.
+
+### ohos.permission.SET_WIFI_CONFIG
+
+Allows an application to configure Wi-Fi information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 8
+
+**Changelog**: This permission is available only to system applications in API versions 8 to 14. From API version 15, it is available to normal enterprise applications.
+
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
 
 Allows an application to obtain domain account information.
@@ -96,6 +124,18 @@ Allows a system application or carrier application to set the eSIM nickname and 
 
 **Changelog**: Since API 14, the permission level is changed to system_basic, and this permission is available only to normal enterprise applications instead of all applications.
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+Allows an application to manage Wi-Fi connections.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ## ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT
 
 Allows an application to access the user CA certificates of enterprise devices.
@@ -115,37 +155,82 @@ With this permission, the enterprise application can install private CA certific
 
 Allows an application to obtain domain account server configurations.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 16
+
+## ohos.permission.MANAGE_NET_FIREWALL
+
+Allows a system application to configure firewall rules.
+
+Currently,this permission is available only to the applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
 
 <!--Del-->
 **AEnable via ACL**：true<!--DelEnd-->
 
-**Valid since**：16
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.GET_NET_FIREWALL
+
+Allows a system application to obtain firewall rules and firewall interception records.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**AEnable via ACL**：true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
 
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
 
 Allows an application to manage domain account server configurations.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
-**Enable via ACL**：true<!--DelEnd-->
+**Enable via ACL**: true<!--DelEnd-->
 
-**Valid since**：16
+**Valid since**: 16
 
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
 Allows an application to manage domain accounts.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
 <!--Del-->
-**Enable via ACL**：true<!--DelEnd-->
+**Enable via ACL**: true<!--DelEnd-->
 
-**Valid since**：16
+**Valid since**: 16
+
+## ohos.permission.GET_SIGNATURE_INFO
+
+Allows an application to obtain signature information of application packages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 16

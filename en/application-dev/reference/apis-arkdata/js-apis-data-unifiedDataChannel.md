@@ -873,8 +873,11 @@ Enumerates the data channel types supported by the UDMF. It is used to identify 
 | Name      | Value        | Description     |
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | Public data channel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| DRAG<sup>14+</sup> | 'Drag' | Channel in which data can be dragged and dropped.<br>**Model restriction**: This API can be used only in the stage model.|
 
 ## Options
+
+type Options = { intention?: Intention; key?: string; }
 
 Defines the data operation performed by the UDMF. It includes two optional parameters: **intention** and **key**. The two parameters have no default value, and can be left unspecified. For details, see the parameter description of the specific API.
 
@@ -883,12 +886,10 @@ Defines the data operation performed by the UDMF. It includes two optional param
 **System capability**: SystemCapability.DistributedDataManager.UDMF.Core
 
 
-| Name      | Type                   | Read-Only| Optional| Description                                                                                                                                                                                                                               |
-|-----------|-------------------------|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| intention | [Intention](#intention) | No | Yes | Type of the data channel related to the data operation.                                                                                                                                                                                                                 |
-| key       | string                  | No | Yes | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
-
-
+| Name     | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| intention | [Intention](#intention) | No  | Type of the data channel related to the data operation.                            |
+| key       | string                  | No  | Unique identifier of the data object in the UDMF, which can be obtained from the value returned by [insertData](#unifieddatachannelinsertdata).<br>The key consists of **udmf:/**, **intention**, **bundleName**, and **groupId** with a (/) in between, for example, **udmf://DataHub/com.ohos.test/0123456789**.<br>**udmf:/** is fixed, **DataHub** is an enum of **intention**, **com.ohos.test** is the bundle name, and **0123456789** is a group ID randomly generated.|
 
 ## unifiedDataChannel.insertData
 
@@ -1350,5 +1351,87 @@ try {
 } catch (e) {
   let error: BusinessError = e as BusinessError;
   console.error(`Query data throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.setAppShareOptions<sup>14+</sup>
+
+setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
+
+Sets [ShareOptions](#shareoptions12) for the application data. Currently, only the drag-and-drop data channel is supported.
+
+**Required permissions**: ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                          |
+|----------|----------------------------|----|------------------------------|
+| intention | [Intention](#intention) | Yes | Type of the data channel. Currently, only the data channel of the **DRAG** type is supported.|
+| shareOptions | [ShareOptions](#shareoptions12) | Yes | Usage scope of the [UnifiedData](#unifieddata).|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [UDMF Error Codes](errorcode-udmf.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 20400001     | Settings already exist.                                      |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  unifiedDataChannel.setAppShareOptions(unifiedDataChannel.Intention.DRAG, unifiedDataChannel.ShareOptions.IN_APP);
+  console.info(`[UDMF]setAppShareOptions success. `);
+}catch (e){
+  let error: BusinessError = e as BusinessError;
+  console.error(`[UDMF]setAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
+}
+```
+
+## unifiedDataChannel.removeAppShareOptions<sup>14+</sup>
+
+removeAppShareOptions(intention: Intention): void
+
+Removes the **ShareOptions** set by [setAppShareOptions](#unifieddatachannelsetappshareoptions14).
+
+**Required permissions**: ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+**Parameters**
+
+| Name   | Type                   | Mandatory| Description                                                        |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| intention | [Intention](#intention) | Yes  | Type of the data channel. Currently, only the data channel of the **DRAG** type is supported.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**                                                |
+| ------------ | ------------------------------------------------------------ |
+| 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  unifiedDataChannel.removeAppShareOptions(unifiedDataChannel.Intention.DRAG);
+  console.info(`[UDMF]removeAppShareOptions success. `);
+}catch (e){
+  let error: BusinessError = e as BusinessError;
+  console.error(`[UDMF]removeAppShareOptions throws an exception. code is ${error.code},message is ${error.message} `);
 }
 ```

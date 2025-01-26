@@ -12,14 +12,14 @@
 | OH_Location_IsLocatingEnabled(bool* enabled)     | 查询位置开关是否开启。                                 |
 | OH_Location_StartLocating(const Location_RequestConfig* requestConfig) | 启动定位并订阅位置变化。 |
 | Location_ResultCode OH_Location_StopLocating(const Location_RequestConfig* requestConfig) | 停止定位并取消订阅位置变化。 |
-| OH_LocationInfo_GetBasicInfo(Location_Info* location)   | 获取位置基本信息。 |
-| OH_LocationInfo_GetAdditionalInfo(Location_Info* location, char* additionalInfo, uint32_t length) | 获取位置信息中的附加信息。 |
+| OH_LocationInfo_GetBasicInfo(Location_Info* location)   | 从定位结果中获取基本信息，如经纬度、海拔、速度等信息。 |
+| OH_LocationInfo_GetAdditionalInfo(Location_Info* location, char* additionalInfo, uint32_t length) | 从定位结果中获取附加信息。附加信息是一个JSON格式的字符串。 |
 | OH_Location_CreateRequestConfig(void) | 创建一个位置请求参数结构体实例。    |
 | OH_Location_DestroyRequestConfig(Location_RequestConfig* requestConfig) | 销毁位置请求参数实例并回收内存。  |
-| OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig, Location_UseScene useScene) | 设置位置请求参数中的用户活动场景。     |
-| OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* requestConfig, Location_PowerConsumptionScene powerConsumptionScene) | 设置位置请求参数中的功耗场景。      |
-| OH_LocationRequestConfig_SetInterval(Location_RequestConfig* requestConfig, int interval) | 设置位置请求参数中的位置上报间隔。                               |
-| OH_LocationRequestConfig_SetCallback(Location_RequestConfig* requestConfig, Location_InfoCallback callback, void* userData) | 设置回调函数。     |
+| OH_LocationRequestConfig_SetUseScene(Location_RequestConfig* requestConfig, Location_UseScene useScene) | 设置发起定位时的用户活动场景。<br/>如果设置了useScene，则powerConsumptionScene无效。<br/>如果未设置useScene，且设置了powerConsumptionScene，则该参数生效。<br/>如果两个参数都不设置，则默认useScene为LOCATION_USE_SCENE_DAILY_LIFE_SERVICE,powerConsumptionCenario参数无效。     |
+| OH_LocationRequestConfig_SetPowerConsumptionScene(Location_RequestConfig* requestConfig, Location_PowerConsumptionScene powerConsumptionScene) | 设置发起定位时的功耗场景。      |
+| OH_LocationRequestConfig_SetInterval(Location_RequestConfig* requestConfig, int interval) | 设置定位结果上报时间间隔。                               |
+| OH_LocationRequestConfig_SetCallback(Location_RequestConfig* requestConfig, Location_InfoCallback callback, void* userData) | 设置用于接收位置上报的回调函数。     |
 
 
 ## 开发步骤
@@ -38,9 +38,9 @@
 3. 在napi_init.cpp文件中编码，首先导入模块。
 
    ```c
-   #include "sensors/oh_location.h"
-   #include "sensors/oh_location_type.h"
    #include "napi/native_api.h"
+   #include "LocationKit/oh_location.h"
+   #include "LocationKit/oh_location_type.h"
    #include "hilog/log.h"
    ```
 
@@ -51,8 +51,8 @@
     static napi_value OhLocationIsEnabled(napi_env env, napi_callback_info info)
     {
         bool isEnabled = false;
-        auto resultCode = OH_Location_IsLocatingEnabled(&isEnabled);
-        napi_value result = nullptr;
+        int resultCode = OH_Location_IsLocatingEnabled(&isEnabled);
+        napi_value result = NULL;
         napi_get_boolean(env, isEnabled, &result);
         return result;
     }
@@ -61,7 +61,7 @@
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            {"ohLocationIsEnabled", nullptr, OhLocationIsEnabled, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"ohLocationIsEnabled", NULL, OhLocationIsEnabled, NULL, NULL, NULL, napi_default, NULL},
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -74,30 +74,30 @@
 
     ```c
     // 定义一个请求参数
-    struct Location_RequestConfig *requestConfig = NULL;
+    struct Location_RequestConfig *g_requestConfig = NULL;
 
     // 定义一个回调函数用来接收位置信息
     void reportLocation(Location_Info* location, void* userData)
     {
-        auto baseInfo = OH_LocationInfo_GetBasicInfo(location);
-        char additionalInfo[] = "";
-        auto addition = OH_LocationInfo_GetAdditionalInfo(location, additionalInfo, 0);
+        Location_BasicInfo baseInfo = OH_LocationInfo_GetBasicInfo(location);
+        char additionalInfo[1024] = "";
+        Location_ResultCode result = OH_LocationInfo_GetAdditionalInfo(location, additionalInfo, 1024);
         return;
     }
 
     // 订阅位置信息
     static napi_value OhLocationStartLocating(napi_env env, napi_callback_info info)
     {
-        if (g_requestConfig == nullptr) {
+        if (g_requestConfig == NULL) {
             g_requestConfig = OH_Location_CreateRequestConfig();
         }
         OH_LocationRequestConfig_SetUseScene(g_requestConfig, LOCATION_USE_SCENE_NAVIGATION);
-        OH_LocationRequestConfig_SetPowerConsumptionScene(g_requestConfig, LOCATION_HIGH_POWER_CONSUMPTION);
         OH_LocationRequestConfig_SetInterval(g_requestConfig, 1);
+        void *userdata = (void *)"mydata"; // 用户自定义任意类型，callback 透传返回
         OH_LocationRequestConfig_SetCallback(g_requestConfig, reportLocation, (void *)(1));
         OH_Location_StartLocating(g_requestConfig);
         int32_t ret = 0;
-        napi_value result = nullptr;
+        napi_value result = NULL;
         napi_create_int32(env, ret, &result);
         return result;
     }
@@ -106,12 +106,12 @@
     static napi_value OhLocationStopLocating(napi_env env, napi_callback_info info)
     {
         OH_Location_StopLocating(g_requestConfig);
-        if (g_requestConfig != nullptr) {
+        if (g_requestConfig != NULL) {
             OH_Location_DestroyRequestConfig(g_requestConfig);
-            g_requestConfig = nullptr;
+            g_requestConfig = NULL;
         }
         int32_t ret = 0;
-        napi_value result = nullptr;
+        napi_value result = NULL;
         napi_create_int32(env, ret, &result);
         return result;
     }
@@ -121,8 +121,8 @@
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            {"ohLocationStartLocating", nullptr, OhLocationStartLocating, nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"ohLocationStopLocating", nullptr, OhLocationStopLocating, nullptr, nullptr, nullptr, napi_default, nullptr},
+            {"ohLocationStartLocating", NULL, OhLocationStartLocating, NULL, NULL, NULL, napi_default, NULL},
+            {"ohLocationStopLocating", NULL, OhLocationStopLocating, NULL, NULL, NULL, napi_default, NULL},
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;

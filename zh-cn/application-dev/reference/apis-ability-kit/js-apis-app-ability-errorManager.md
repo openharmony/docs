@@ -23,7 +23,7 @@ on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -84,7 +84,7 @@ on(type: 'globalErrorOccurred', observer: GlobalObserver): void
 
 在进程中的任一线程注册errormanager.on接口，支持捕获其他子线程（如：taskpool）中的异常,应用崩溃时进程不会退出，建议在回调函数执行完后，增加同步退出操作。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -139,7 +139,7 @@ off(type: 'globalErrorOccurred', observer?: GlobalObserver): void
 
 注销错误观测器，即取消以前注册的callback监听，取消之后无法实现全局监听。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -194,7 +194,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 注销错误观测器。使用callback异步返回。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -244,7 +244,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 注销错误观测器。使用Promise异步返回。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -299,7 +299,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
 注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -339,7 +339,7 @@ on(type: 'globalUnhandledRejectionDetected', observer: GlobalObserver): void
 
 在进程中任一线程注册被拒绝promise监听器，注册后可以捕获到当前进程中未被捕获到的promise rejection。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -389,7 +389,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 注册被拒绝promise监听器。注册后可以捕获到当前线程中未被捕获到的promise rejection。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -438,7 +438,7 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 
 注销主线程消息处理监听器。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -471,7 +471,7 @@ off(type: 'globalUnhandledRejectionDetected', observer?: GlobalObserver): void
 
 注销被拒绝promise监听器，注销后无法监听进程中的promise异常。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -526,7 +526,7 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 注销被拒绝promise监听器。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -597,13 +597,41 @@ let promise1 = new Promise<void>(() => {}).then(() => {
 errorManager.off("unhandledRejection", observer);
 ```
 
+## ErrorObserver
+
+type ErrorObserver = _ErrorObserver.default
+
+ErrorObserver模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ErrorObserver.default](js-apis-inner-application-errorObserver.md) | ErrorObserver模块。 |
+
+## LoopObserver<sup>12+</sup>
+
+type LoopObserver = _LoopObserver
+
+LoopObserver模块。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_LoopObserver](js-apis-inner-application-loopObserver.md) | LoopObserver模块。 |
+
 ## UnhandledRejectionObserver<sup>12+</sup>
 
 type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) => void
 
 定义异常监听，用于捕获Promise异步操作失败的原因。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

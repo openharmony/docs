@@ -12,7 +12,7 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
 
     | 参数名        | 类型   | 必填 | 说明                                                         |
     | ------------- | ------ | ---- | ------------------------------------------------------------ |
-    | sceneType     | number | 否   | 意图，默认为1，按航班号查询场景填1或不填。                     |
+    | sceneType     | number | 否   | 意图场景，表明本次请求对应的操作意图。默认为1，按航班号查询场景填1或不填。                     |
     | flightNo      | string | 是   | 航班号，航司二位代码+数字。 |
     | departureDate | string | 否   | 航班出发时间：YYYY-MM-DD。                                     |
 
@@ -20,7 +20,7 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
 
     | 参数名               | 类型                   | 必填 | 说明                                                     |
     | -------------------- | ---------------------- | ---- | -------------------------------------------------------- |
-    | sceneType            | number                 | 是   | 意图，按起降地查询场景填2。                                        |
+    | sceneType            | number                 | 是   | 意图场景，表明本次请求对应的操作意图。按起降地查询场景填2。                                        |
     | originLocation      | string                 | 是   | 出发地。                                                 |
     | destinationLocation  | string                  | 是   | 目的地。                                                 |
     | departureDate | string                  | 否   | 航班出发时间：YYYY-MM-DD。                                                 |
@@ -28,7 +28,7 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
 
 ## 拉起方开发步骤
 
-1. 导入ohos.app.ability.common模块。 
+1. 导入相关模块。 
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
@@ -102,7 +102,7 @@ startAbilityByType接口中type字段为flight，支持按航班号查询、按�
 2. 解析参数并做对应处理。
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
     在参数**want.uri**中会携带目标方配置的linkFeature对应的uri;

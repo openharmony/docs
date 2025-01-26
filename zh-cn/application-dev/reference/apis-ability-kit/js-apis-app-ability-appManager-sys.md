@@ -32,7 +32,7 @@ import { appManager } from '@kit.AbilityKit';
 
 表示被保活应用的应用类型。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -46,7 +46,7 @@ import { appManager } from '@kit.AbilityKit';
 
 表示应用保活的设置方类型。
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -59,9 +59,9 @@ import { appManager } from '@kit.AbilityKit';
 
 定义应用保活信息，可以通过[getKeepAliveBundles](#appmanagergetkeepalivebundles14)获取当前应用的相关信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ------------------------- | ------ | ---- | ---- | --------- |
@@ -594,7 +594,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -656,7 +656,7 @@ killProcessWithAccount(bundleName: string, accountId: number, clearPageStack: bo
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -722,7 +722,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1410,7 +1410,7 @@ try {
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称                 | 值  | 说明                               |
 | -------------------- | --- | --------------------------------- |
@@ -1790,9 +1790,9 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 
 为指定用户下的应用设置或取消保活。使用Promise异步回调。本接口当前仅支持2in1设备。
 
-**需要权限**: ohos.permission.MANAGE_APP_KEEP_ALIVE
+**需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
-**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
 
@@ -1854,9 +1854,9 @@ getKeepAliveBundles(type: KeepAliveAppType, userId?: number): Promise\<Array\<Ke
 获取指定用户下指定类型的保活应用信息。该应用信息由[KeepAliveBundleInfo](#keepalivebundleinfo14)定义。
 使用Promise异步回调。本接口当前仅支持2in1设备。
 
-**需要权限**: ohos.permission.MANAGE_APP_KEEP_ALIVE
+**需要权限**：ohos.permission.MANAGE_APP_KEEP_ALIVE
 
-**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
 
@@ -1913,9 +1913,9 @@ killProcessesInBatch(pids: Array\<number>): Promise\<void>
 
 批量查杀进程。本接口当前仅支持2in1设备。
 
-**需要权限**: ohos.permission.KILL_APP_PROCESSES
+**需要权限**：ohos.permission.KILL_APP_PROCESSES
 
-**系统能力**: SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。
 

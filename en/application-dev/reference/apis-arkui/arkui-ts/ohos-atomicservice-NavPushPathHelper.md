@@ -1,4 +1,4 @@
-# @ohos.atomicservice.NavPushPathHelper (Subpackage Routing Utility Class)
+# NavPushPathHelper
 
 On the initial launch, the atomic service only downloads and installs the main package and its dependencies. Therefore, if the [NavDestination](ts-basic-components-navdestination.md) resides in a different HSP subpackage that is not a dependency of the main package, you'll need to use **NavPushPathHelper** to download and install the corresponding HSP subpackage first. After that, push the specified **NavDestination** page information onto the stack. This way, you enable [Navigation](ts-basic-components-navigation.md) to support dynamic loading of the HSP subpackage before the navigation occurs.
 
@@ -26,7 +26,7 @@ Encapsulates all navigation APIs for [NavPathStack](ts-basic-components-navigati
 
 ### constructor
 
-constructor(navPathStack: NavPathStack): void
+constructor(navPathStack: NavPathStack)
 
 A constructor used to create a **NavPushPathHelper** object.
 
@@ -36,7 +36,7 @@ A constructor used to create a **NavPushPathHelper** object.
 
 **Parameters**
 
-| Name  | Type                           | Mandatory  | Description                  |
+| Name  | Type                           | Mandatory  |  Description        |
 | ---- | ----------------------------- | ---- | -------------------- |
 | navPathStack | [NavPathStack](ts-basic-components-navigation.md#navpathstack10) | Yes   | [Navigation](ts-basic-components-navigation.md) stack.|
 
@@ -52,7 +52,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 
 **Parameters**
 
-| Name  | Type                           | Mandatory  | Description                  |
+| Name  | Type                           | Mandatory  | Description                |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Information about the [NavDestination](ts-basic-components-navdestination.md) page.|
@@ -84,7 +84,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 
 **Parameters**
 
-| Name  | Type                           | Mandatory  | Description                  |
+| Name  | Type                           | Mandatory  | Description                 |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Information about the [NavDestination](ts-basic-components-navdestination.md) page.|
@@ -106,7 +106,7 @@ For details about the error codes, see [Router Error Codes](../errorcode-router.
 
 ### pushPathByName
 
-pushPathByName(moduleName: string, name: string, param: unknown, animated?: boolean): Promise\<void\>
+pushPathByName(moduleName: string, name: string, param: Object, animated?: boolean): Promise\<void\>
 
 Checks for the target subpackgae and, if it is not present, initiates a download using the specified module name. Once the subpackage is downloaded, the API pushes the [NavDestination](ts-basic-components-navdestination.md) page, as indicated by **name**, onto the navigation stack, along with the data specified by **param**. This API uses a promise to return the result.
 
@@ -120,7 +120,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
-| param | unknown | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
+| param | Object | Yes   | Settings of the [NavDestination](ts-basic-components-navdestination.md) page.|
 | animated | boolean | No   | Whether to support transition animation.<br>Default value: **true**|
 
 **Return value**
@@ -201,7 +201,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -219,7 +219,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 
 **Parameters**
 
-| Name  | Type                           | Mandatory  | Description                  |
+| Name  | Type                           | Mandatory  | Description                 |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Information about the [NavDestination](ts-basic-components-navdestination.md) page.|
@@ -237,7 +237,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed.   |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -274,7 +274,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed.  |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -292,7 +292,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 
 **Parameters**
 
-| Name   | Type     | Mandatory  | Description                   |
+| Name   | Type     | Mandatory  | Description                 |
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |
@@ -312,7 +312,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 | ID  | Error Message|
 | --------- | ------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameters types. 3. Parameter verification failed.  |
 | 100001    | Internal error.|
 | 100005    | Builder function not registered. |
 | 100006    | NavDestination not found.|
@@ -330,7 +330,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 
 **Parameters**
 
-| Name  | Type                           | Mandatory  | Description                  |
+| Name | Type                           | Mandatory  | Description                  |
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | Yes   | Parameters of the page to replace the top of the navigation stack.|
@@ -394,7 +394,7 @@ Checks for the target subpackgae and, if it is not present, initiates a download
 
 **Parameters**
 
-| Name   | Type     | Mandatory  | Description                   |
+| Name   | Type     | Mandatory  | Description                  |
 | ----- | ------- | ---- | --------------------- |
 | moduleName | string | Yes   | Module name of the package where the [NavDestination](ts-basic-components-navdestination.md) page is located.|
 | name  | string  | Yes   | Name of the [NavDestination](ts-basic-components-navdestination.md) page.  |

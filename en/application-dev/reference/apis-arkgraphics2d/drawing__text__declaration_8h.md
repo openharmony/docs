@@ -33,3 +33,5 @@ The **drawing_text_declaration.h** file declares the structs related to text in 
 | typedef struct [OH_Drawing_Range](_drawing.md#oh_drawing_range)  [OH_Drawing_Range](_drawing.md#oh_drawing_range) | Defines a struct used to receive the start position and end position of a glyph.| 
 | typedef struct [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow)  [OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) | Defines a struct used to manage text shadows.| 
 | typedef struct [OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser)  [OH_Drawing_FontParser](_drawing.md#oh_drawing_fontparser) | Defines a struct used to parse system font files.| 
+| typedef struct [OH_Drawing_TextLine](_drawing.md#oh_drawing_textline) [OH_Drawing_TextLine](_drawing.md#oh_drawing_textline) | Defines a struct used to manage text lines.|
+| typedef struct [OH_Drawing_Run](_drawing.md#oh_drawing_run) [OH_Drawing_Run](_drawing.md#oh_drawing_run) | Defines a struct used to manage runs.|

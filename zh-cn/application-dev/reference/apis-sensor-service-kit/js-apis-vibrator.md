@@ -829,11 +829,14 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称         | 值                    | 说明                         |
-| ------------ | --------------------- | ---------------------------- |
-| EFFECT_SOFT  | 'haptic.effect.soft'  | 较松散的振动效果，频率偏低。 |
-| EFFECT_HARD  | 'haptic.effect.hard'  | 较沉重的振动效果，频率居中。 |
-| EFFECT_SHARP | 'haptic.effect.sharp' | 较尖锐的振动效果，频率偏高。 |
+| 名称                                | 值                      | 说明                         |
+| ----------------------------------- | ----------------------- | ---------------------------- |
+| EFFECT_SOFT                         | 'haptic.effect.soft'    | 较松散的振动效果，频率偏低。 |
+| EFFECT_HARD                         | 'haptic.effect.hard'    | 较沉重的振动效果，频率居中。 |
+| EFFECT_SHARP                        | 'haptic.effect.sharp'   | 较尖锐的振动效果，频率偏高。 |
+| EFFECT_NOTICE_SUCCESS<sup>16+</sup> | 'haptic.notice.success' | 描述成功通知的振动效果。     |
+| EFFECT_NOTICE_FAILURE<sup>16+</sup> | 'haptic.notice.fail'    | 描述失败通知的振动效果。     |
+| EFFECT_NOTICE_WARNING<sup>16+</sup> | 'haptic.notice.warning' | 描述警告通知的振动效果。     |
 
 ## VibratorStopMode
 

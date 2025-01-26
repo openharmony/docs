@@ -450,7 +450,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 **日志格式 - 打印系统框架业务自定义信息**
 
-（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 15开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_memssage接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
+（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 16开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_memssage接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
 
 1. 字符串类型信息
 
@@ -497,7 +497,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 3. 回调类型信息
 
-    从API 15开始从LastFatalMessage字段调整到ExtraCrashInfo(Callback)字段
+    从API 16开始从LastFatalMessage字段调整到ExtraCrashInfo(Callback)字段
 
     ```text
     ...
@@ -508,7 +508,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 4. 回栈类型信息
 
-    从API 15开始从LastFatalMessage字段调整到ExtraCrashInfo(Unwindstack)字段
+    从API 16开始从LastFatalMessage字段调整到ExtraCrashInfo(Unwindstack)字段
 
     ```text
     ...

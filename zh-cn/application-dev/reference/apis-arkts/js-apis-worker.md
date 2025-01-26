@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
+Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -39,7 +39,7 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 | type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
 | name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级，默认值为 undefined 。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 
 ## ThreadWorkerPriority<sup>16+</sup>
