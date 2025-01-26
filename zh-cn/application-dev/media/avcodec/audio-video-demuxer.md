@@ -313,16 +313,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. 销毁解封装实例。
       ```c++
-      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
-      source = NULL;
-      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      source = nullptr;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }
-      demuxer = NULL;
+      demuxer = nullptr;
       close(fd);
       ```
 
