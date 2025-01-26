@@ -20,9 +20,9 @@ import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color }
 
 ## ProgressButtonV2
 
-文本下载按钮，可显示具体下载进度。
-
 ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: LengthMetrics, onClicked: ClickCallback, isEnabled: boolean, colorOptions: ProgressButtonV2Color})
+
+文本下载按钮，可显示具体下载进度。
 
 **装饰器类型：**\@ComponentV2
 

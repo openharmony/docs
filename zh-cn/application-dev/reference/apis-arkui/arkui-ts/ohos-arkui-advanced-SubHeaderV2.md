@@ -123,6 +123,8 @@ select内容以及事件。
 
 **装饰器类型：** @ObservedV2
 
+### 属性
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -214,6 +216,8 @@ type SubHeaderV2OperationItemType = ResourceStr | SymbolGlyphModifier
 
 操作区的设置项。
 
+### 属性
+
 **装饰器类型：** @ObservedV2
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
@@ -244,9 +248,9 @@ constructor(options: SubHeaderV2OperationItemOptions)
 
 ## SubHeaderV2OperationItemAction
 
-操作区的设置项的回调事件类型。
+type SubHeaderV2OperationItemAction = () => void
 
-type SubHeaderV2OperationItemAction = () => void;
+操作区的设置项的回调事件类型。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -270,9 +274,9 @@ type SubHeaderV2OperationItemAction = () => void;
 
 ## SubHeaderV2TitleBuilder
 
-自定义标题区内容的回调事件类型。
+type SubHeaderV2TitleBuilder= () => void
 
-type SubHeaderV2TitleBuilder= () => void;
+自定义标题区内容的回调事件类型。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
