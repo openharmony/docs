@@ -80,8 +80,8 @@
 | 属性           | 类型     | 说明             |
 | ------------ | ------ | -------------- |
 | scale        | number | 缩放比例。           |
-| pinchCenterX | number | 捏合中心点X轴坐标，单位px |
-| pinchCenterY | number | 捏合中心点Y轴坐标，单位px |
+| pinchCenterX | number | 捏合中心点X轴坐标，单位px。 |
+| pinchCenterY | number | 捏合中心点Y轴坐标，单位px。 |
 
 **表6** DragEvent对象属性列表(继承BaseEvent)<sup>7+</sup>
 
