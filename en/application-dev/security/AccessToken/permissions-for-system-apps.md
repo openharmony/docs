@@ -4426,6 +4426,18 @@ Allows a system application to obtain the group information of Family Sharing.
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+Allows an application to read the data of HUAWEI ID Suggestions and start the UIExtensionAbility of the account suggestion list.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
