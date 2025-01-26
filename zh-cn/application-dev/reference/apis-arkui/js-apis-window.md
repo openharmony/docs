@@ -2178,7 +2178,7 @@ try {
     let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
     promise.then(() => {
       let type = window.AvoidAreaType.TYPE_SYSTEM;
-      let avoidArea = windowClass.getWindowAvoidArea(type);
+      let avoidArea = windowClass?.getWindowAvoidArea(type);
     }).catch((err: BusinessError) => {
       console.error(`Failed to obtain the system window avoid area. Cause code: ${err.code}, message: ${err.message}`);
     });
@@ -2230,7 +2230,7 @@ try {
     let enabled = true;
     let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
     promise.then(() => {
-      let enable = windowClass.isSystemAvoidAreaEnabled();
+      let enable = windowClass?.isSystemAvoidAreaEnabled();
     }).catch((err: BusinessError) => {
       console.error(`Failed to obtain whether the system window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
     });
