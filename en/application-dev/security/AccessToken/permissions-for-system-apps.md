@@ -4428,7 +4428,7 @@ Allows a system application to obtain the group information of Family Sharing.
 
 ### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
-Allows an application to read the data of HUAWEI ID Suggestions and start the UIExtensionAbility of the account suggestion list.
+Allows an application to read the data of Account Suggestions and start the UIExtensionAbility of the account suggestion list.
 
 **Permission level**: system_basic
 
