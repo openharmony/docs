@@ -3541,14 +3541,14 @@ Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
 | 名称 | 描述 | 
 | -------- | -------- |
 | keyCode | 功能键值。支持的功能键包含CapsLock键。  |
-| state | 功能键状态。0表示功能键关闭，1表示功能键打开。  | 
+| 功能键状态 | 0表示功能键关闭，1表示功能键打开。  | 
 
 **返回：**
 
 OH_Input_GetFunctionKeyState 状态码，具体如下：
 
-INPUT_SUCCESS 表示获取状态成功。
+ **INPUT_SUCCESS**  表示获取状态成功。
 
-INPUT_PARAMETER_ERROR 表示参数错误。
+ **INPUT_PARAMETER_ERROR**  表示参数错误。
 
-INPUT_DEVICE_NOT_EXIST 表示键盘设备不存在。
+ **INPUT_DEVICE_NOT_EXIST**  表示键盘设备不存在。
