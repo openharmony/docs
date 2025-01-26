@@ -79,6 +79,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```c
 #include "napi/native_api.h"
 
+#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
@@ -119,6 +120,7 @@ typedef struct DemoNdkPlayer {
 } DemoNdkPlayer;
 
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
+    int32_t ret;
     switch (state) {
         case AV_IDLE: // 成功调用reset接口后触发该状态机上报
 //            ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
@@ -306,6 +308,7 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
 // ets文件调用播放方法时，传入文件路径 testNapi.play("/data/test/test.mp3")
 static napi_value Play(napi_env env, napi_callback_info info)
 {
+    int32_t ret = -1;
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     
@@ -348,6 +351,7 @@ static napi_value Play(napi_env env, napi_callback_info info)
 
     // 通过新接口设置信息监听回调函数和错误监听回调函数，不用再调用OH_AVPlayer_SetPlayerCallback。
     // 业务播放实例不再使用后，再释放对象。
+    OH_AVPlayer *player = OH_AVPlayer_Create();
     DemoNdkPlayer *demoNdkPlayer = new DemoNdkPlayer({
         .player = player,
         .url = url,
