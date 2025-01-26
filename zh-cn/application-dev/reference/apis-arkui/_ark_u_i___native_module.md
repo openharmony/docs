@@ -2177,8 +2177,8 @@ enum ArkUI_ErrorCode
 | ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR | 当前节点对应的祖先节点中存在无法获焦节点。 |
 | ARKUI_ERROR_CODE_FOCUS_NON_EXISTENT | 当前节点不存在。 |
 | ARKUI_ERROR_CODE_NON_SCROLLABLE_CONTAINER  | 非滚动类容器。  | 
-| ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH  | 存储区大小不足  | 
-| ARKUI_ERROR_CODE_INVALID_STYLED_STRING  | 无效的属性字符串  | 
+| ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH  | 存储区大小不足。  | 
+| ARKUI_ERROR_CODE_INVALID_STYLED_STRING  | 无效的属性字符串。  | 
 
 
 ### ArkUI_FinishCallbackType
@@ -2296,11 +2296,11 @@ enum ArkUI_FontWeight
 | ARKUI_FONT_WEIGHT_W800  | 800  | 
 | ARKUI_FONT_WEIGHT_W900  | 900  | 
 | ARKUI_FONT_WEIGHT_BOLD  | 字体较粗。  | 
-| ARKUI_FONT_WEIGHT_NORMAL  | 字体粗细正常  | 
+| ARKUI_FONT_WEIGHT_NORMAL  | 字体粗细正常。  | 
 | ARKUI_FONT_WEIGHT_BOLDER  | 字体非常粗。  | 
 | ARKUI_FONT_WEIGHT_LIGHTER  | 字体较细。  | 
 | ARKUI_FONT_WEIGHT_MEDIUM  | 字体粗细适中。  | 
-| ARKUI_FONT_WEIGHT_REGULAR  | 字体粗细正常  | 
+| ARKUI_FONT_WEIGHT_REGULAR  | 字体粗细正常。  | 
 
 
 ### ArkUI_GestureDirection
