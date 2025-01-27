@@ -36,7 +36,7 @@ OpenHarmony的窗口模块将窗口界面分为应用窗口、UIExtension窗口�
 - **应用窗口**：应用窗口区别于系统窗口，指与应用显示相关的窗口。根据显示内容的不同，应用窗口又分为应用主窗口、应用子窗口两种类型。
   - 应用主窗口：应用主窗口用于显示应用界面，会在"任务管理界面"显示。 
   - 应用子窗口：应用子窗口为应用的辅助窗口，不会在"任务管理界面"显示。应用子窗口的生命周期跟随应用主窗口。
-- **UIExtension窗口**：[ExtensionAbility组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/extensionability-overview-V5)使用的窗口。
+- **UIExtension窗口**：[ExtensionAbility组件](../application-models/extensionability-overview.md)使用的窗口。
 - **系统窗口**：系统窗口指完成系统特定功能的窗口，除应用窗口和UIExtension窗口外，均属于系统窗口，如模态窗、悬浮窗、音量条、壁纸、通知栏、状态栏、导航栏等。
 
 

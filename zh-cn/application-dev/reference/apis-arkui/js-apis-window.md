@@ -6,7 +6,7 @@ OpenHarmony的窗口模块将窗口界面分为应用窗口、UIExtension窗口�
 - **应用窗口**：应用窗口区别于系统窗口，指与应用显示相关的窗口。根据显示内容的不同，应用窗口又分为应用主窗口、应用子窗口两种类型。
   - 应用主窗口：应用主窗口用于显示应用界面，会在"任务管理界面"显示。 
   - 应用子窗口：应用子窗口为应用的辅助窗口，不会在"任务管理界面"显示。应用子窗口的生命周期跟随应用主窗口。
-- **UIExtension窗口**：[ExtensionAbility组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/extensionability-overview-V5)使用的窗口。
+- **UIExtension窗口**：[ExtensionAbility组件](../../application-models/extensionability-overview.md)使用的窗口。
 - **系统窗口**：系统窗口指完成系统特定功能的窗口，除应用窗口和UIExtension窗口外，均属于系统窗口，如模态窗、悬浮窗、音量条、壁纸、通知栏、状态栏、导航栏等。
 
 该模块提供以下窗口相关的常用功能：
@@ -2101,7 +2101,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能系统窗口获取避让区后，该方法亦对系统窗口生效。
 
-该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建系统窗口并调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，对系统窗口做布局避让时可调用该接口。
+该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建系统窗口并调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，对系统窗口做布局避让时可调用该接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2145,7 +2145,7 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
 设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，非系统窗口调用该接口返回错误码1300004。
 
-该接口一般适用于此场景：应用于创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
+当创建的系统窗口时，需要先调用该接口使能系统窗口获取避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区或者[on('avoidareachange')](#onavoidareachange9)监听避让区变化。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2172,6 +2172,8 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "test",
@@ -2232,6 +2234,8 @@ isSystemAvoidAreaEnabled(): boolean
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let windowClass: window.Window | undefined = undefined;
 let config: window.Configuration = {
   name: "test",
