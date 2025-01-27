@@ -21,6 +21,10 @@ stateStyles is an attribute method that sets the style based on the internal sta
 
 - selected<sup>10+</sup>
 
+> **NOTE**
+>
+> Currently, only the **Tab** button and arrow buttons on the external keyboard can be used to trigger the focused state. Sequential keyboard navigation is not supported for nested scrollable components.
+
 
 ## Application Scenarios
 
@@ -144,4 +148,3 @@ By default, the button is displayed in green in the normal state. When you press
   **Figure 3** Change of the styles in focused state by a click 
 
 ![Video_2023-03-17_144605](figures/Video_2023-03-17_144605.gif)
-

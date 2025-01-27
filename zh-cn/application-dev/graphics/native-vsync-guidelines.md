@@ -65,4 +65,5 @@ libnative_vsync.so
 4. **销毁OH_NativeVSync实例**。
     ```c++
     OH_NativeVSync_Destroy(nativeVSync); // 如不需要接收VSync信号，请及时销毁OH_NativeVSync实例
+    nativeVSync = nullptr; // 销毁后需要及时将OH_NativeVSync实例指针变量置空，避免销毁后继续使用导致野指针异常
     ```

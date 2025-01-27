@@ -121,6 +121,30 @@
 
 **起始版本**：13
 
+### ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
+
+允许系统应用读取“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+允许系统应用修改“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -3797,30 +3821,6 @@
 
 **起始版本**：12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-允许系统应用配置防火墙规则。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.GET_NET_FIREWALL
-
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 允许系统应用拉起用户凭据录入控件。
@@ -4313,6 +4313,18 @@
 
 **起始版本**：16
 
+### ohos.permission.SEND_REMOTE_MESSAGE
+
+允许应用通过Push服务发送远程消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。
@@ -4416,6 +4428,30 @@
 ### ohos.permission.GET_FAMILY_INFO
 
 允许系统应用获取“家人共享”中的群组信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+允许系统应用获取融合感知数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
 
 **权限级别**：system_basic
 

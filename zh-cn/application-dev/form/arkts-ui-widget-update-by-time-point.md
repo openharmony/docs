@@ -62,9 +62,9 @@
 在触发定点刷新后，系统会调用FormExtensionAbility的[onUpdateForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onupdateform)生命周期回调，在回调中，可以使用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)进行提供方刷新卡片。`onUpdateForm`生命周期回调的使用请参见[卡片生命周期管理](./arkts-ui-widget-lifecycle.md)。
 
 > **说明：**
-> 1. 当同时配置了定时刷新updateDuration和定点刷新scheduledUpdateTime时，定时刷新的优先级更高且定点刷新不会执行。如果想要配置定点刷新，则需要将updateDuration配置为0。
+> 1. 当同时配置了定时刷新`updateDuration`和定点刷新`scheduledUpdateTime`时，定时刷新的优先级更高且定点刷新不会执行。如果想要配置定点刷新，则需要将`updateDuration`配置为0。
 > 2. `multiScheduledUpdateTime`的配置最多可设置24个时间。
-> 3. `multiScheduledUpdateTime`生效依赖`scheduledUpdateTime`字段的配置，即单定点刷新`scheduledUpdateTime`配置生效时，多定点刷新`multiScheduledUpdateTime`配置才会生效。
+> 3. 同时配置了单定点和多定点刷新，多定点刷新配置生效，单定点刷新配置不生效。
 > 4. 考虑到向前兼容的问题，尽量保留`scheduledUpdateTime`字段，不要直接删除。
 
 **约束限制：**

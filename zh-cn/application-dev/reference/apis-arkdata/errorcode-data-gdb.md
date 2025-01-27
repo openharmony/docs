@@ -45,7 +45,7 @@ Database corrupted.
 
 目前暂不支持图数据库的备份、恢复，如果可以接受数据库数据丢失，则可尝试删除数据库后重新创建。
 
-## 31300002 数据库关闭
+## 31300002 数据库或事务关闭
 
 **错误信息**
 
@@ -53,15 +53,17 @@ Already closed.
 
 **错误描述**
 
-数据库关闭。
+数据库或事务关闭。
 
 **可能原因**
 
-执行当前操作时，已调用过[close](js-apis-data-graphStore-sys.md#close)接口关闭图数据库或者开库未成功。
+1. 执行当前操作时，已调用过[close](js-apis-data-graphStore-sys.md#close)接口关闭图数据库或者开库未成功。
+2. 执行当前操作时，已调用过[commit](js-apis-data-graphStore-sys.md#commit)接口提交事务或者调用过[rollback](js-apis-data-graphStore-sys.md#rollback)接口回滚事务。
 
 **处理步骤**
 
-使用[getStore](js-apis-data-graphStore-sys.md#graphstoregetstore)接口重新开库，注意入参应与前一次成功开库时的入参保持一致。
+1. 使用[getStore](js-apis-data-graphStore-sys.md#graphstoregetstore)接口重新开库，注意入参应与前一次成功开库时的入参保持一致。
+2. 使用[createTransaction](js-apis-data-graphStore-sys.md#createtransaction)接口重新创建事务。
 
 ## 31300003 数据库BUSY
 
@@ -77,11 +79,13 @@ The database is busy.
 
 1. 同一应用多个进程同时打开了同一个数据库，进行读写操作。
 2. 进程内多线程同时进行读写操作，导致某一线程读写操作超时。
+3. 存在一个事务调用过[write](js-apis-data-graphStore-sys.md#write)接口写入数据但未提交或回滚。
 
 **处理步骤**
 
 1. 避免进程并发操作数据库。
 2. 等待一段时间重试。
+3. 提交或回滚未关闭的事务。
 
 ## 31300004 数据库内存不足
 
@@ -117,64 +121,65 @@ The database is full.
 
 **处理步骤**
 
-使用[write](js-apis-data-graphStore-sys.md#write)接口删除同系列数据后再插入。
+使用[GraphStore.write](js-apis-data-graphStore-sys.md#write-1)或[Transaction.write](js-apis-data-graphStore-sys.md#write)接口删除同系列数据后再插入。
 
-## 31300006 顶点和边的类型或属性重复
-
-**错误信息**
-
-Duplicate type or properties name of vertex and edge.
-
-**错误描述**
-
-顶点和边的类型或属性重复。
-
-**可能原因**
-
-1. 不同顶点使用了相同的类型或属性。
-2. 不同边使用了相同的类型或属性。
-
-**处理步骤**
-
-使用[write](js-apis-data-graphStore-sys.md#write)接口创建图时，检查建图语句中顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否存在上述冲突。
-
-## 31300007 未定义顶点和边的类型或属性
+## 31300006 存在重复的图名、顶点的类型或属性、边的类型或属性
 
 **错误信息**
 
-The type or properties of vertex and edge is not defined.
+A duplicate graph name, vertex or edge type, or vertex or edge property name exists.
 
 **错误描述**
 
-未定义顶点和边的类型或属性。
+存在重复的图名、顶点的类型或属性、边的类型或属性。
 
 **可能原因**
 
-存在顶点和边的类型或属性未被定义。
+1. 数据库内已存在同名的图。
+2. 不同顶点使用了相同的类型或属性。
+3. 不同边使用了相同的类型或属性。
 
 **处理步骤**
 
-使用[write](js-apis-data-graphStore-sys.md#write)接口插入顶点和边时，检查本次插入的顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否在创建图时已定义。
+使用[GraphStore.write](js-apis-data-graphStore-sys.md#write-1)或[Transaction.write](js-apis-data-graphStore-sys.md#write)接口创建图时，检查建图语句中图名、顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否存在上述冲突。
 
-## 31300008 顶点和边的类型或属性不符合约束
+## 31300007 未定义图名、顶点和边的类型或属性
 
 **错误信息**
 
-The type or properties name of vertex and edge does not conform to constraint.
+The graph name, vertex or edge type, or vertex or edge property is not defined.
 
 **错误描述**
 
-顶点和边的类型或属性不符合约束。
+未定义图名、顶点和边的类型或属性。
 
 **可能原因**
 
-1. 主键冲突。
-2. 唯一索引冲突。
-3. 语法约束冲突。
+存在图名、顶点和边的类型或属性未被定义。
 
 **处理步骤**
 
-使用[write](js-apis-data-graphStore-sys.md#write)接口创建图时，检查建图语句中顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否符合上述约束。
+使用[GraphStore.write](js-apis-data-graphStore-sys.md#write-1)或[Transaction.write](js-apis-data-graphStore-sys.md#write)接口创建图或插入顶点和边时，检查本次创建图的图名或插入的顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否在创建图时已定义。
+
+## 31300008 图名、顶点和边的类型或属性不符合约束
+
+**错误信息**
+
+The graph name, vertex or edge type, or vertex or edge property name does not conform to constraints.
+
+**错误描述**
+
+图名、顶点和边的类型或属性不符合约束。
+
+**可能原因**
+
+1. 图名长度超过上限（128字节）。
+2. 主键冲突。
+3. 唯一索引冲突。
+
+**处理步骤**
+
+使用[GraphStore.write](js-apis-data-graphStore-sys.md#write-1)或[Transaction.write](js-apis-data-graphStore-sys.md#write)接口创建图时，检查建图语句中图名、顶点的类型（[Vertex.labels](js-apis-data-graphStore-sys.md#vertex)）或属性（[Vertex.properties](js-apis-data-graphStore-sys.md#vertex)）以及边的类型（[Edge.type](js-apis-data-graphStore-sys.md#edge)）或属性（[Edge.labels](js-apis-data-graphStore-sys.md#edge)）是否符合上述约束。
 
 ## 31300009 GQL语句语法错误
 
@@ -212,23 +217,23 @@ GQL语句语义错误。
 
 参照行业标准，检查修改确保GQL语句语义正确。
 
-## 31300012 顶点和边的类型或属性数量超过了上限
+## 31300012 图、顶点和边的类型或属性数量超过了上限
 
 **错误信息**
 
-The number of types or properties of vertex and edge exceeds the upper limit.
+The number of graph names, vertex or edge types, or vertex or edge properties exceeds the limit.
 
 **错误描述**
 
-顶点和边的类型或属性数量超过了上限。
+图、顶点和边的类型或属性数量超过了上限。
 
 **可能原因**
 
-顶点和边的类型或属性数量超过了上限。
+图、顶点和边的类型或属性数量超过了上限。
 
 **处理步骤**
 
-减少顶点和边的类型或属性数量。顶点和边的属性上限均为1024个。
+减少顶点和边的类型或属性数量。同一个数据库内，仅可创建一个图，顶点和边的属性上限均为1024个。
 
 ## 31300013 冲突约束已存在
 

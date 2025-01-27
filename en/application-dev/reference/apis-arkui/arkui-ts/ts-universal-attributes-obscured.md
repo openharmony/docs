@@ -25,6 +25,8 @@ Sets how the component content is obscured.
 
 ## Example
 
+This example demonstrates how to obscure the content of **Text** and **Image** components using the **obscured** API.
+
 ```ts
 // xxx.ets
 @Entry

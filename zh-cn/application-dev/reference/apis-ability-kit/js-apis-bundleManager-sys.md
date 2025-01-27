@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
 
-本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-BundleInfo-sys.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 >
@@ -142,6 +142,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | 名称 | 值 | 说明 |
 |----------------|---|---|
 | FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态，1表示指定用户安装了，0表示未安装。|
+| FLAG_OTHER_INSTALLED<sup>15+</sup>|  0x00000010 | 表示除指定用户外，其他用户的应用安装状态，1表示其他用户安装了，0表示未安装。|
+| FLAG_PREINSTALLED_APP<sup>15+</sup>|  0x00000020 | 表示应用的预置属性，1表示预置应用，0表示非预置应用。|
+| FLAG_PREINSTALLED_APP_UPDATE<sup>15+</sup>|  0x00000040 | 表示该预置应用是否已更新，1表示该预置应用更新了，0表示未更新。|
 
 ## 接口
 
@@ -2064,7 +2067,9 @@ try {
 
 cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 
-以异步方法根据给定的bundleName和appIndex清理BundleCache，使用Promise形式返回结果。
+根据给定的bundleName和appIndex清理BundleCache，使用Promise异步回调。
+
+调用方清理自身缓存数据时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 

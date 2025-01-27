@@ -1263,17 +1263,29 @@ int OH_Cursor_GetFloatVector (OH_Cursor *cursor, int32_t columnIndex, float *val
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_STEP_RESULT_CLOSED表示查询到的结果集已经关闭。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误: 访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误: 数据库文件被锁定。
+
 返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误: 数据库内存不足。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误: 磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 **参见：**
@@ -1304,18 +1316,31 @@ int OH_Cursor_GetFloatVectorCount (OH_Cursor *cursor, int32_t columnIndex, size_
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_STEP_RESULT_CLOSED表示查询到的结果集已经关闭。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误: 访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误: 数据库文件被锁定。
+
 返回RDB_E_SQLITE_LOCKED表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误: 数据库内存不足。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误: 磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 ### OH_Rdb_CreateTransaction()
@@ -1481,7 +1506,11 @@ int OH_Rdb_IsTokenizerSupported (Rdb_Tokenizer tokenizer, bool *isSupported )
 
 **返回：**
 
-返回接口操作执行的状态码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回接口操作执行的状态码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetTokenizer()
@@ -1538,20 +1567,35 @@ int OH_RdbTrans_BatchInsert (OH_Rdb_Transaction *trans, const char *table, const
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 ### OH_RdbTrans_Commit()
@@ -1575,16 +1619,27 @@ int OH_RdbTrans_Commit (OH_Rdb_Transaction *trans)
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
 
 ### OH_RdbTrans_Delete()
@@ -1610,20 +1665,35 @@ int OH_RdbTrans_Delete (OH_Rdb_Transaction *trans, const OH_Predicates *predicat
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 ### OH_RdbTrans_CreateOptions()
@@ -1666,7 +1736,11 @@ int OH_RdbTrans_Destroy (OH_Rdb_Transaction *trans)
 
 **返回：**
 
-返回错误码。 返回RDB_OK表示成功。 返回RDB_E_INVALID_ARGS表示无效参数。
+返回错误码。
+
+返回RDB_OK表示成功。
+
+返回RDB_E_INVALID_ARGS表示无效参数。
 
 
 ### OH_RdbTrans_DestroyOptions()
@@ -1690,7 +1764,9 @@ int OH_RdbTrans_DestroyOptions (OH_RDB_TransOptions *opitons)
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -1718,20 +1794,35 @@ int OH_RdbTrans_Execute (OH_Rdb_Transaction *trans, const char *sql, const OH_Da
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 **参见：**
@@ -1763,20 +1854,35 @@ int OH_RdbTrans_Insert (OH_Rdb_Transaction *trans, const char *table, const OH_V
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 ### OH_RdbTrans_Query()
@@ -1851,16 +1957,27 @@ int OH_RdbTrans_Rollback (OH_Rdb_Transaction *trans)
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
 
 
@@ -1888,20 +2005,35 @@ int OH_RdbTrans_Update (OH_Rdb_Transaction *trans, const OH_VBucket *row, const 
 **返回：**
 
 返回执行结果。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_ERROR表示数据库常见错误。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_ALREADY_CLOSED表示数据库已经关闭。
+
 返回RDB_E_WAL_SIZE_OVER_LIMIT表示WAL日志文件大小超过默认值。
+
 返回RDB_E_SQLITE_FULL表示SQLite错误码：数据库已满。
+
 返回RDB_E_SQLITE_CORRUPT表示数据库损坏。
+
 返回RDB_E_SQLITE_PERM表示SQLite错误码：访问权限被拒绝。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库文件被锁定。
+
 返回RDB_E_SQLITE_BUSY表示SQLite错误码：数据库中的表被锁定。
+
 返回RDB_E_SQLITE_NOMEM表示SQLite错误码：数据库内存不足。
+
 返回RDB_E_SQLITE_READONLY表示SQLite错误码：尝试写入只读数据库。
+
 返回RDB_E_SQLITE_IOERR表示SQLite错误码：磁盘I/O错误。
+
 返回RDB_E_SQLITE_TOO_BIG表示SQLite错误码：TEXT或BLOB超出大小限制。
+
 返回RDB_E_SQLITE_MISMATCH表示SQLite错误码：数据类型不匹配。
 
 ### OH_RdbTransOption_SetType()
@@ -1926,7 +2058,9 @@ int OH_RdbTransOption_SetType (OH_RDB_TransOptions *opitons, OH_RDB_TransType ty
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -1971,7 +2105,11 @@ int OH_Value_Destroy (OH_Data_Value *value)
 
 **返回：**
 
-返回错误码。 返回RDB_OK表示成功。 返回RDB_E_INVALID_ARGS表示无效参数。
+返回错误码。
+
+返回RDB_OK表示成功。
+
+返回RDB_E_INVALID_ARGS表示无效参数。
 
 
 ### OH_Value_GetAsset()
@@ -1996,9 +2134,13 @@ int OH_Value_GetAsset (OH_Data_Value *value, Data_Asset *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 ### OH_Value_GetAssets()
@@ -2025,9 +2167,13 @@ int OH_Value_GetAssets (OH_Data_Value *value, Data_Asset **val, size_t inLen, si
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 **参见：**
@@ -2057,9 +2203,13 @@ int OH_Value_GetAssetsCount (OH_Data_Value *value, size_t *length )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2086,9 +2236,13 @@ int OH_Value_GetBlob (OH_Data_Value *value, const uint8_t **val, size_t *length 
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2116,9 +2270,13 @@ int OH_Value_GetFloatVector (OH_Data_Value *value, float *val, size_t inLen, siz
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 **参见：**
@@ -2148,9 +2306,13 @@ int OH_Value_GetFloatVectorCount (OH_Data_Value *value, size_t *length )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS返回。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2176,9 +2338,13 @@ int OH_Value_GetInt (OH_Data_Value *value, int64_t *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2204,9 +2370,13 @@ int OH_Value_GetReal (OH_Data_Value *value, double *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2232,9 +2402,13 @@ int OH_Value_GetText (OH_Data_Value *value, const char **val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 ### OH_Value_GetType()
@@ -2259,7 +2433,9 @@ int OH_Value_GetType (OH_Data_Value *value, OH_ColumnType *type )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2288,9 +2464,13 @@ int OH_Value_GetUnlimitedInt (OH_Data_Value *value, int *sign, uint64_t *trueFor
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 **参见：**
@@ -2320,9 +2500,13 @@ int OH_Value_GetUnlimitedIntBand (OH_Data_Value *value, size_t *length )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 ### OH_Value_IsNull()
@@ -2347,7 +2531,9 @@ int OH_Value_IsNull (OH_Data_Value *value, bool *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2373,7 +2559,9 @@ int OH_Value_PutAsset (OH_Data_Value *value, const Data_Asset *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2400,7 +2588,9 @@ int OH_Value_PutAssets (OH_Data_Value *value, const Data_Asset * const * val, si
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2427,7 +2617,9 @@ int OH_Value_PutBlob (OH_Data_Value *value, const unsigned char *val, size_t len
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2454,7 +2646,9 @@ int OH_Value_PutFloatVector (OH_Data_Value *value, const float *val, size_t leng
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 ### OH_Value_PutInt()
@@ -2479,7 +2673,9 @@ int OH_Value_PutInt (OH_Data_Value *value, int64_t val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2504,7 +2700,9 @@ int OH_Value_PutNull (OH_Data_Value *value)
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2530,7 +2728,9 @@ int OH_Value_PutReal (OH_Data_Value *value, double val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2556,7 +2756,9 @@ int OH_Value_PutText (OH_Data_Value *value, const char *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2584,7 +2786,9 @@ int OH_Value_PutUnlimitedInt (OH_Data_Value *value, int sign, const uint64_t *tr
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 ### OH_Values_Count()
@@ -2609,7 +2813,9 @@ int OH_Values_Count (OH_Data_Values *values, size_t *count )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2655,7 +2861,9 @@ int OH_Values_Destroy (OH_Data_Values *values)
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -2682,7 +2890,9 @@ int OH_Values_Get (OH_Data_Values *values, int index, OH_Data_Value **val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 ### OH_Values_GetAsset()
@@ -2708,9 +2918,13 @@ int OH_Values_GetAsset (OH_Data_Values *values, int index, Data_Asset *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2739,9 +2953,13 @@ int OH_Values_GetAssets (OH_Data_Values *values, int index, Data_Asset **val, si
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 **参见：**
@@ -2772,9 +2990,13 @@ int OH_Values_GetAssetsCount (OH_Data_Values *values, int index, size_t *length 
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2802,9 +3024,13 @@ int OH_Values_GetBlob (OH_Data_Values *values, int index, const uint8_t **val, s
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 ### OH_Values_GetFloatVector()
@@ -2832,9 +3058,13 @@ int OH_Values_GetFloatVector (OH_Data_Values *values, int index, float *val, siz
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 **参见：**
@@ -2865,9 +3095,13 @@ int OH_Values_GetFloatVectorCount (OH_Data_Values *values, int index, size_t *le
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2894,9 +3128,13 @@ int OH_Values_GetInt (OH_Data_Values *values, int index, int64_t *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 ### OH_Values_GetReal()
@@ -2922,9 +3160,13 @@ int OH_Values_GetReal (OH_Data_Values *values, int index, double *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2951,9 +3193,13 @@ int OH_Values_GetText (OH_Data_Values *values, int index, const char **val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -2980,7 +3226,9 @@ int OH_Values_GetType (OH_Data_Values *values, int index, OH_ColumnType *type )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3010,9 +3258,13 @@ int OH_Values_GetUnlimitedInt (OH_Data_Values *values, int index, int *sign, uin
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 **参见：**
@@ -3043,9 +3295,13 @@ int OH_Values_GetUnlimitedIntBand (OH_Data_Values *values, int index, size_t *le
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
+
 返回RDB_E_DATA_TYPE_NULL表示存储数据为空。
+
 返回RDB_E_TYPE_MISMATCH表示数据类型不匹配。
 
 
@@ -3072,7 +3328,9 @@ int OH_Values_IsNull (OH_Data_Values *values, int index, bool *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 ### OH_Values_Put()
@@ -3097,7 +3355,9 @@ int OH_Values_Put (OH_Data_Values *values, const OH_Data_Value *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3123,7 +3383,9 @@ int OH_Values_PutAsset (OH_Data_Values *values, const Data_Asset *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3150,7 +3412,9 @@ int OH_Values_PutAssets (OH_Data_Values *values, const Data_Asset * const * val,
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3177,7 +3441,9 @@ int OH_Values_PutBlob (OH_Data_Values *values, const unsigned char *val, size_t 
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3204,7 +3470,9 @@ int OH_Values_PutFloatVector (OH_Data_Values *values, const float *val, size_t l
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3230,7 +3498,9 @@ int OH_Values_PutInt (OH_Data_Values *values, int64_t val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3255,7 +3525,9 @@ int OH_Values_PutNull (OH_Data_Values *values)
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3281,7 +3553,9 @@ int OH_Values_PutReal (OH_Data_Values *values, double val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3307,7 +3581,9 @@ int OH_Values_PutText (OH_Data_Values *values, const char *val )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3335,7 +3611,9 @@ int OH_Values_PutUnlimitedInt (OH_Data_Values *values, int sign, const uint64_t 
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 ### OH_VBucket_PutFloatVector()
@@ -3362,7 +3640,10 @@ int OH_VBucket_PutFloatVector (OH_VBucket *bucket, const char *field, const floa
 **返回：**
 
 返回操作是否成功，出错时返回对应的错误码。
-RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -3394,7 +3675,9 @@ int OH_VBucket_PutUnlimitedInt (OH_VBucket *bucket, const char *field, int sign,
 **返回：**
 
 返回操作是否成功，出错时返回对应的错误码。
+
 RDB_OK 表示成功。
+
 RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
@@ -3444,7 +3727,9 @@ int OH_VBuckets_Destroy (OH_Data_VBuckets *buckets)
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3470,7 +3755,9 @@ int OH_VBuckets_PutRow (OH_Data_VBuckets *buckets, const OH_VBucket *row )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3496,7 +3783,9 @@ int OH_VBuckets_PutRows (OH_Data_VBuckets *buckets, const OH_Data_VBuckets *rows
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 
@@ -3522,7 +3811,9 @@ int OH_VBuckets_RowCount (OH_Data_VBuckets *buckets, size_t *count )
 **返回：**
 
 返回错误码。
+
 返回RDB_OK表示成功。
+
 返回RDB_E_INVALID_ARGS表示无效参数。
 
 ### OH_Rdb_CreateOrOpen()
@@ -3574,7 +3865,13 @@ int OH_Rdb_BeginTransWithTrxId (OH_Rdb_Store *store, int64_t *trxId )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 **参见：**
 
@@ -3602,7 +3899,11 @@ int OH_Rdb_CommitByTrxId (OH_Rdb_Store *store, int64_t trxId )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功. RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。 当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。 当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。 当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功. RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 **参见：**
 
@@ -3651,7 +3952,11 @@ int OH_Rdb_DeleteStoreV2 (const OH_Rdb_ConfigV2 *config)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -3678,7 +3983,11 @@ int OH_Rdb_DestroyConfig (OH_Rdb_ConfigV2 *config)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_ExecuteByTrxId()
@@ -3703,7 +4012,13 @@ int OH_Rdb_ExecuteByTrxId (OH_Rdb_Store *store, int64_t trxId, const char *sql )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。 当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。 当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。 当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。 当store或者sql为NULL时。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数，可能情况如下： 传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。当store或者sql为NULL时。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 **参见：**
 
@@ -3730,7 +4045,11 @@ const int *OH_Rdb_GetSupportedDbType (int *typeCount)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_RollBackByTrxId()
@@ -3754,7 +4073,13 @@ int OH_Rdb_RollBackByTrxId (OH_Rdb_Store *store, int64_t trxId )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数, 可能情况如下： 传入参数为空指针。 当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。 当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。 当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数, 可能情况如下：传入参数为空指针。当前事务ID不是调用[OH_Rdb_BeginTransWithTrxId](#oh_rdb_begintranswithtrxid)获得的。当前事务ID已经调用[OH_Rdb_CommitByTrxId](#oh_rdb_commitbytrxid)提交。当前事务ID已经调用[OH_Rdb_RollBackByTrxId](#oh_rdb_rollbackbytrxid)回滚。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 **参见：**
 
@@ -3782,7 +4107,11 @@ int OH_Rdb_SetArea (OH_Rdb_ConfigV2 *config, int area )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetBundleName()
@@ -3806,7 +4135,11 @@ int OH_Rdb_SetBundleName (OH_Rdb_ConfigV2 *config, const char *bundleName )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetDatabaseDir()
@@ -3830,7 +4163,11 @@ int OH_Rdb_SetDatabaseDir (OH_Rdb_ConfigV2 *config, const char *databaseDir )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。。
 
 
 ### OH_Rdb_SetDbType()
@@ -3854,7 +4191,13 @@ int OH_Rdb_SetDbType (OH_Rdb_ConfigV2 *config, int dbType )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。 RDB_E_NOT_SUPPORTED 表示不支持当前操作。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
+
+RDB_E_NOT_SUPPORTED 表示不支持当前操作。
 
 
 ### OH_Rdb_SetEncrypted()
@@ -3878,7 +4221,11 @@ int OH_Rdb_SetEncrypted (OH_Rdb_ConfigV2 *config, bool isEncrypted )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetModuleName()
@@ -3902,7 +4249,11 @@ int OH_Rdb_SetModuleName (OH_Rdb_ConfigV2 *config, const char *moduleName )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetSecurityLevel()
@@ -3926,7 +4277,11 @@ int OH_Rdb_SetSecurityLevel (OH_Rdb_ConfigV2 *config, int securityLevel )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 
 ### OH_Rdb_SetStoreName()
@@ -3950,7 +4305,11 @@ int OH_Rdb_SetStoreName (OH_Rdb_ConfigV2 *config, const char *storeName )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。 RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 ### OH_Rdb_Backup()
 
@@ -3973,7 +4332,11 @@ int OH_Rdb_Backup (OH_Rdb_Store *store, const char *databasePath )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4000,7 +4363,11 @@ int OH_Rdb_BeginTransaction (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4027,7 +4394,11 @@ int OH_Rdb_CloseStore (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4058,7 +4429,11 @@ int OH_Rdb_CloudSync (OH_Rdb_Store *store, Rdb_SyncMode mode, const char *tables
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4085,7 +4460,11 @@ int OH_Rdb_Commit (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4233,7 +4612,11 @@ int OH_Rdb_Execute (OH_Rdb_Store *store, const char *sql )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4518,7 +4901,11 @@ int OH_Rdb_Restore (OH_Rdb_Store *store, const char *databasePath )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4545,7 +4932,11 @@ int OH_Rdb_RollBack (OH_Rdb_Store *store)
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4576,7 +4967,11 @@ int OH_Rdb_SetDistributedTables (OH_Rdb_Store *store, const char *tables[], uint
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4604,7 +4999,11 @@ int OH_Rdb_SetVersion (OH_Rdb_Store *store, int version )
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4633,7 +5032,11 @@ int OH_Rdb_Subscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_Dat
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4650,7 +5053,7 @@ int OH_Rdb_SubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressObs
 
 **描述**
 
-订阅RDB存储的自动同步进度。 当收到自动同步进度的通知时，将调用回调。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+订阅RDB存储的自动同步进度。当收到自动同步进度的通知时，将调用回调。RDB_OK表示成功。RDB_E_INVALID_ARGS表示无效参数。
 
 **起始版本：** 11
 
@@ -4720,7 +5123,11 @@ int OH_Rdb_Unsubscribe (OH_Rdb_Store *store, Rdb_SubscribeType type, const Rdb_D
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 
@@ -4750,7 +5157,11 @@ int OH_Rdb_UnsubscribeAutoSyncProgress (OH_Rdb_Store *store, const Rdb_ProgressO
 
 **返回：**
 
-返回操作是否成功，出错时返回对应的错误码。RDB_OK 表示成功。 RDB_E_INVALID_ARGS 表示无效参数。
+返回操作是否成功，出错时返回对应的错误码。
+
+RDB_OK 表示成功。
+
+RDB_E_INVALID_ARGS 表示无效参数。
 
 **参见：**
 

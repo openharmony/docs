@@ -18,11 +18,11 @@ The following illustrates how to view the lunar calendar date corresponding to t
 
     ```ts
       let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "gregory");
-      // Set the date for the Calendar object.
+      // Set the date and time of the Calendar object to 2022.06.13 08:00:00.
       calendar.setTime(new Date(2022, 5, 13, 8, 0, 0));
       calendar.setTime(10540800000);
 
-      // Set the year, month, day, hour, minute, and second for the Calendar object.
+      // Set the date and time of the Calendar object to 2022.06.13 08:00:00.
       calendar.set(2022, 5, 13, 8, 0, 0);
 
       // Set the time zone for the Calendar object.
@@ -65,7 +65,7 @@ The following illustrates how to view the lunar calendar date corresponding to t
 
     ```ts
       let calendar : i18n.Calendar = i18n.getCalendar("zh-Hans", "chinese");
-      // Pass the Gregorian calendar information to the Calendar object.
+      // Pass the Gregorian calendar information to the Calendar object, with the date and time being 2023.07.25 08:00:00.
       calendar.setTime(new Date(2023, 6, 25, 8, 0, 0));
       // Obtain the year, month, and day of the lunar calendar.
       calendar.get("year"); // Year expressed in a heavenly stem and earthly branch, which is 40 in this example. The value ranges from 1 to 60.
