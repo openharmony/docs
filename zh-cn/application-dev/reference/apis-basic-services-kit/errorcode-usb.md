@@ -90,7 +90,7 @@ Database operation exception.
 
 尝试重新调用接口。
 
-## 1440006 不支持的USB设备侧功能
+## 14400006 不支持的USB设备侧功能
 
 **错误信息**
 
