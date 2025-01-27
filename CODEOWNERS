@@ -333,9 +333,9 @@ zh-cn/application-dev/device/usb-overview.md @li-yan339 @Kevin-Lau @liuhonggang1
 zh-cn/application-dev/device/usb-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [开发-Basic Services Kit-升级服务]
-zh-cn/application-dev/basic-services/update/Readme-CN.md @nezha-father
-zh-cn/application-dev/basic-services/update/sample-server-overview.md  @nezha-father
-zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @nezha-father
+zh-cn/application-dev/basic-services/update/Readme-CN.md @zhang_yixin13
+zh-cn/application-dev/basic-services/update/sample-server-overview.md  @zhang_yixin13
+zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @zhang_yixin13
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/calendarmanager @liuqian677 @jt_123456 @edollar
@@ -454,9 +454,9 @@ zh-cn/application-dev/ai/mindspore-lite-offline-model-guidelines.md @ge-yafang @
 
 
 [开发-Multimodal Awareness Kit]
-zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @nezha-father @cococoler @alien0208
-zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @nezha-father @cococoler @alien0208
-zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 
 
 [开发-Network Kit]
@@ -489,17 +489,17 @@ zh-cn/application-dev/security/ @zengyawen
 
 
 [开发-Sensor Service Kit]
-zh-cn/application-dev/device/sensor-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
-zh-cn/application-dev/device/sensor-guidelines.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensorservice-kit-intro.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-guidelines.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-overview-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
+zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [开发-Telephony Kit]
@@ -1170,8 +1170,8 @@ zh-cn/application-dev/apis-mindspore-lite-kit/apis/_mind_spore.md  @ge-yafang @p
 
 
 [API参考-Multimodal Awareness Kit]
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @nezha-father @cococoler @alien0208
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 
 
 [API参考-Network Kit]
@@ -1201,22 +1201,22 @@ zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zeng
 
 
 [API参考-Sensor Service Kit]
-zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [API参考-Telephony Kit]

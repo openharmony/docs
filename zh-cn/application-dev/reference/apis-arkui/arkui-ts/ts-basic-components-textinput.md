@@ -833,7 +833,7 @@ maxFontSize(value: number | string | Resource)
 
 ### halfLeading<sup>16+</sup>
 
-halfLeading(halfLeading: boolean)
+halfLeading(halfLeading: Optional\<boolean>)
 
 设置文本是否将行间距平分至行的顶部与底部。
 
@@ -845,7 +845,7 @@ halfLeading(halfLeading: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>16+</sup>
 
@@ -1034,7 +1034,7 @@ cancelButton(value: CancelButtonSymbolOptions)
 
 ### ellipsisMode<sup>16+</sup>
 
-ellipsisMode(value: EllipsisMode)
+ellipsisMode(mode: Optional\<EllipsisMode>)
 
 设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
 
@@ -1048,7 +1048,7 @@ EllipsisMode仅在内联模式下生效。
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| value  | [EllipsisMode](ts-basic-components-richeditor#ellipsismode16) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
++| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-basic-components-richeditor#ellipsismode16)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
 ### keyboardAppearance<sup>15+</sup>
 
@@ -1066,7 +1066,7 @@ keyboardAppearance(appearance: KeyboardAppearance)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
-### stopBackPress<sup>16+</sup>
+### stopBackPress(isStopped: Optional\<boolean>)
 
 stopBackPress(isStopped: boolean)
 
@@ -1080,7 +1080,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## InputType枚举说明
 
@@ -1398,6 +1398,22 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillChange<sup>16+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+在文本内容将要发生变化时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -2527,3 +2543,112 @@ struct EllipsisModeExample {
 ```
 
 ![textInputEllipsisMode](figures/textInputEllipsisMode.png)
+
+### 示例17（输入框支持输入状态变化等回调）
+
+该示例通过onEditChange、onCopy、onCut、onPaste、onContentScroll接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State editStatus: boolean = false;
+  @State copyValue: string = "";
+  @State cutValue: string = "";
+  @State pasteValue: string = "";
+  @State totalOffsetX: number = 0;
+  @State totalOffsetY: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "TextInput支持输入状态变化时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .caretPosition(10)// 设置TextInput光标位置
+          .selectionMenuHidden(true)// 设置TextInput不弹出系统文本选择菜单
+          .onEditChange((status: boolean) => {
+            this.editStatus = status;
+          })
+          .defaultFocus(true)// 设置TextInput默认获焦
+          .enableKeyboardOnFocus(false)// 设置TextInput通过点击以外的方式获焦时，不主动拉起软键盘
+          .selectAll(false)
+
+        Text("editStatus:" + this.editStatus).height(30)
+
+        TextInput({ text: "TextInput支持复制操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCopy((copyValue: string) => {
+            this.copyValue = copyValue;
+          })
+
+        Text("copyValue:" + this.copyValue).height(30)
+
+        TextInput({ text: "TextInput支持剪切操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCut((cutValue: string) => {
+            this.cutValue = cutValue;
+          })
+
+        Text("cutValue:" + this.cutValue).height(30)
+
+        TextInput({ text: "TextInput支持粘贴操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onPaste((pasteValue: string) => {
+            this.pasteValue = pasteValue;
+          })
+
+        Text("pasteValue:" + this.pasteValue).height(30)
+
+        TextInput({ text: "TextInput支持文本内容滚动时回调: 文本内容宽度超出输入框宽度，滚动文本查看偏移量变化" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+            this.totalOffsetX = totalOffsetX;
+            this.totalOffsetY = totalOffsetY;
+          })
+
+        Text("totalOffsetX:" + this.totalOffsetX + "  totalOffsetY:" + this.totalOffsetY).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![TextInputEditChange](figures/TextInputEditChange.png)

@@ -4449,6 +4449,18 @@
 
 **起始版本**：16
 
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
