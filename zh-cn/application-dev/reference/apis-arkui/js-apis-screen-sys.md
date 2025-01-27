@@ -516,6 +516,51 @@ screen.stopMirror(mirrorScreenIds).then(() => {
 });
 ```
 
+## screen.makeUnique<sup>16+</sup>
+
+makeUnique(uniqueScreen: Array&lt;number&gt;): Promise&lt;Array&lt;number&gt;&gt;
+
+将屏幕设置为异源模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型   | 必填 | 说明          |
+| --------- | ------ | ---- | ------------- |
+| uniqueScreen  | Array&lt;number&gt; | 是   | 异源屏幕id集合。其中id应为大于等于0的整数，否则返回401错误码。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回异源屏幕的displayId集合，其中id应为大于等于0的整数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[屏幕错误码](errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.|
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1400001 | Invalid display or screen. |
+| 1400003 | This display manager service works abnormally. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let uniqueScreenIds: Array<number> = [1001, 1002, 1003];
+screen.makeUnique(uniqueScreenIds).then((data: Array<number>) => {
+  console.info('Succeeded in making unique screens.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to make unique screens. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## screen.createVirtualScreen
 
 createVirtualScreen(options:VirtualScreenOption, callback: AsyncCallback&lt;Screen&gt;): void
