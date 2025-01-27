@@ -120,7 +120,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 ```ts
 //Index.ets
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
