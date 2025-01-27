@@ -4426,6 +4426,18 @@ Allows a system application to obtain the group information of Family Sharing.
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+Allows a system application to obtain fusion awareness data.
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
