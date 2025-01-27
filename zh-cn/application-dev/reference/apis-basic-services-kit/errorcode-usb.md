@@ -90,24 +90,6 @@ Database operation exception.
 
 尝试重新调用接口。
 
-## 14400006 不支持的USB设备侧功能
-
-**错误信息**
-
-Unsupported operation. The function is not supported.
-
-**错误描述**
-
-不支持的操作。当前设备不支持该USB设备侧功能切换。
-
-**可能原因**
-
-不是正确的USB设备侧功能。
-
-**处理步骤**
-
-使用正确的USB设备侧功能。
-
 ## 14401001 目标USB配件未匹配
 
 **错误信息**
@@ -200,7 +182,7 @@ Insufficient memory.
 
 **错误描述**
 
-libusb在做内存申请时无内存可用，libusb单次传输，数据大小最大为1kb。
+libusb在做内存申请时无内存可用，libusb单次传输，数据大小最大为1KB。
 
 **处理步骤**
 
@@ -210,7 +192,7 @@ libusb在做内存申请时无内存可用，libusb单次传输，数据大小�
 
 **错误信息**
 
-Other USB error. Possible causes:<br>1.Unrecognized discard error code.
+Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误描述**
 
@@ -233,3 +215,21 @@ If the transfer is not in progress, already complete, or already cancelled.
 **处理步骤**
 
 重新发起新的传输请求。
+
+## 14400012 不支持的USB设备侧功能
+
+**错误信息**
+
+Unsupported operation. The function is not supported.
+
+**错误描述**
+
+不支持的操作。当前设备不支持该USB设备侧功能切换。
+
+**可能原因**
+
+不是正确的USB设备侧功能。
+
+**处理步骤**
+
+使用正确的USB设备侧功能。
