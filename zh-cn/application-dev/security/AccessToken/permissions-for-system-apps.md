@@ -4441,7 +4441,7 @@
 
 允许系统应用获取融合感知数据。
 
-**权限级别**：system_basic
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
