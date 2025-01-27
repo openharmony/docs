@@ -120,10 +120,12 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 ```ts
 //Index.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct KeyboardAvoidExample {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column() {
       Row().height("50%").width("100%").backgroundColor(Color.Gray)
