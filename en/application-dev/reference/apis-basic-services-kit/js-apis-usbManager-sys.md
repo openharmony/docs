@@ -262,7 +262,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 let ret: Array<usbManager.USBPort> = usbManager.getPorts();
 ```
 
-## getSupportedModes(deprecated)
+## getSupportedModes<sup>(deprecated)</sup>
 
 getSupportedModes(portId: number): PortModeType
 
@@ -394,7 +394,7 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 **Example**
 
 ```ts
-import bundleManager from '@ohos.bundle.bundleManager';
+import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 let devicesName: string = "1-1";
 let tokenId: string = "";
@@ -697,7 +697,6 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
-
 **Return value**
 
 | Type               | Description         |

@@ -61,7 +61,7 @@ Provides data items for setting the display effects.
 | ANIMATOR_DURATION_SCALE       | string | Yes  | Yes  | Scale factor for the animation duration. This affects the start delay and duration of all such animations.<br>If the value is **0**, the animation ends immediately. The default value is **1**.                                                 |
 | TRANSITION_ANIMATION_SCALE    | string | Yes  | Yes  | Scale factor for transition animations.<br>The value **0** indicates that the transition animations are disabled.                                                                               |
 | WINDOW_ANIMATION_SCALE        | string | Yes  | Yes  | Scale factor for normal window animations.<br>The value **0** indicates that window animations are disabled.                                                                             |
-| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br><br>**0**: Display color inversion is disabled.                                                       |
+| DISPLAY_INVERSION_STATUS      | string | Yes  | Yes  | Whether display color inversion is enabled.<br>**1**: Display color inversion is enabled.<br>**0**: Display color inversion is disabled.                                                       |
 
 ## general (Not Supported)
 
@@ -300,6 +300,14 @@ ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (avai
 | ---------------- | ----------------------------------- |
 | Promise\<string> | Promise used to return the result. Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
+| ------- | -------- |
+| 201 | Permission denied. |
+
 **Example**
 
 ```js
@@ -340,7 +348,7 @@ settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, (err, valu
     console.error(`Failed to get the setting. ${err.message} `);
     return;
   }
-  console.log(`callback:value -> ${JSON.stringify(value)}`)
+  console.log(`callback:value -> ${value}`)
 });
 ```
 
@@ -373,7 +381,7 @@ Obtains the value of a data item in the database. This API uses a promise to ret
 import settings from '@ohos.settings';
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS).then((value) => {
-  console.log(`promise:value -> ${JSON.stringify(value)}`)
+  console.log(`promise:value -> ${value}`)
 });
 ```
 
@@ -397,7 +405,7 @@ ohos.permission.MANAGE_SECURE_SETTINGS for reading the USER_SECURITY field (avai
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                | Yes  | Application context. Only UIAbilityContext and ExtensionContext are supported.<br>For details about the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | name     | string                 | Yes  | Name of the target data item. Data items can be classified as follows:<br> - Existing data items in the database<br>- Custom data items|
-|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only).|
+|domainName| string                 | Yes  | Domain name to set.<br> - **domainName.DEVICE_SHARED**:<br>shared device domain<br>- **domainName.USER_PROPRERTY**:<br>user property domain<br> - **domainName.USER_SECURITY**:<br>&nbsp;&nbsp;Indicates the user security attribute domain (for system applications only). |
 
 **Return value**
 
@@ -413,7 +421,7 @@ import settings from '@ohos.settings';
 // Update the value of SCREEN_BRIGHTNESS_STATUS. (As this data item exists in the database, the getValue API will update its value.)
 const context: Context =  getContext(this);
 settings.getValue(context, settings.display.SCREEN_BRIGHTNESS_STATUS, settings.domainName.DEVICE_SHARED).then((value) => {
-  console.log(`Promise:value -> $ {JSON.stringify(value)}`);
+  console.log(`Promise:value -> ${value}`);
 });
 ```
 
@@ -562,6 +570,14 @@ ohos.permission.MANAGE_SECURE_SETTINGS for writing the USER_SECURITY field (avai
 | ---------------- | ----------------------------------- |
 | boolean          | Result indicating whether the value is set successfully. Returns **true** if the value is set successfully; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message |
+| ------- | -------- |
+| 201 | Permission denied. |
+
 **Example**
 
 ```js
@@ -643,7 +659,7 @@ Unregisters the observer under the specified domain name. This API returns the r
 import settings from '@ohos.settings';
 
 const context: Context =  getContext(this);
-let ret = settings.setValueSync(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
+let ret = settings.unregisterKeyObserver(context, settings.display.SCREEN_BRIGHTNESS_STATUS,  settings.domainName.DEVICE_SHARED);
 ```
 
 ## settings.enableAirplaneMode (Not Supported)
@@ -681,8 +697,6 @@ settings.enableAirplaneMode(isEnabled, (err:Error) => {
 enableAirplaneMode(enable: boolean): Promise\<void>
 
 Enables or disables airplane mode. This API uses a promise to return the result.
-
-This API is not supported currently.
 
 **System capability**: SystemCapability.Applications.Settings.Core
 
