@@ -90,6 +90,24 @@ Database operation exception.
 
 尝试重新调用接口。
 
+## 14400012 不支持的USB设备侧功能
+
+**错误信息**
+
+Unsupported operation. The function is not supported.
+
+**错误描述**
+
+不支持的操作。当前设备不支持该USB设备侧功能切换。
+
+**可能原因**
+
+不是正确的USB设备侧功能。
+
+**处理步骤**
+
+使用正确的USB设备侧功能。
+
 ## 14401001 目标USB配件未匹配
 
 **错误信息**
@@ -131,34 +149,6 @@ Cannot reopen the accessory.
 **处理步骤**
 
 配件已被打开，继续执行后续开发操作。
-
-## 14400006 I/O错误
-
-**错误信息**
-
-Transmission I/O error.
-
-**错误描述**
-
-libusb实际读/写操作失败。
-
-**处理步骤**
-
-尝试重新操作。
-
-## 14400007 资源繁忙
-
-**错误信息**
-
-Resource busy.
-
-**错误描述**
-
-资源被占用。
-
-**处理步骤**
-
-检查claimInterface()接口是否调用成功。
 
 ## 14400008 没有设备(连接已断开)
 
@@ -216,20 +206,30 @@ If the transfer is not in progress, already complete, or already cancelled.
 
 重新发起新的传输请求。
 
-## 14400012 不支持的USB设备侧功能
+## 144000012 I/O错误
 
 **错误信息**
 
-Unsupported operation. The function is not supported.
+Transmission I/O error.
 
 **错误描述**
 
-不支持的操作。当前设备不支持该USB设备侧功能切换。
-
-**可能原因**
-
-不是正确的USB设备侧功能。
+libusb实际读/写操作失败。
 
 **处理步骤**
 
-使用正确的USB设备侧功能。
+尝试重新操作。
+
+## 14400007 资源繁忙
+
+**错误信息**
+
+Resource busy.
+
+**错误描述**
+
+资源被占用。
+
+**处理步骤**
+
+检查claimInterface()接口是否调用成功。
