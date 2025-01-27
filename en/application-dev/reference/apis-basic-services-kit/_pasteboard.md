@@ -36,7 +36,7 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | Name| Description|
 | -------- | -------- |
 | [Pasteboard_NotifyType](#pasteboard_notifytype) { NOTIFY_LOCAL_DATA_CHANGE = 1, NOTIFY_REMOTE_DATA_CHANGE = 2 } | Enumerates the data change types of the pasteboard. |
-| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003<br>} | Enumerates the error codes. |
+| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003, ERR_COPY_FILE_ERROR = 12900007, ERR_PROGRESS_START_ERROR = 12900008, ERR_PROGRESS_ABNORMAL = 12900009, ERR_GET_DATA_FAILED = 12900010,<br>} | Enumerates the error codes. |
 
 
 ### Functions
@@ -57,7 +57,6 @@ The **Pasteboard** module supports copying and pasting multiple types of data, i
 | OH_UdmfData \* [OH_Pasteboard_GetData](#oh_pasteboard_getdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, int \*status) | Obtains data from the pasteboard. |
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | Writes the unified data object to the pasteboard. |
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | Clears data from the pasteboard. |
-
 
 ## Type Description
 
@@ -169,7 +168,6 @@ Enumerates the error codes.
 | ERR_DEVICE_NOT_SUPPORTED  | The device capability is not supported. |
 | ERR_INNER_ERROR  | Internal error. |
 | ERR_BUSY  | System busy. |
-
 
 ### Pasteboard_NotifyType
 

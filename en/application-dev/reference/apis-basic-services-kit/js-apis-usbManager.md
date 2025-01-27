@@ -90,7 +90,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 
 Connects to the USB device based on the device information returned by **getDevices()**.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device information, and then call [usbManager.getDevices](#usbmanagergetdevices) to request the device access permission.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and device information, and then call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -406,7 +406,7 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 
 Sets a USB interface.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.connectDevice](#usbmanagerconnectdevice) to claim a USB interface.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and interfaces, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.claimInterface](#usbmanagerclaiminterface) to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -675,7 +675,7 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 Performs bulk transfer.
 
-Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call [usbManager.claimInterface](#usbmanagerclaiminterface) to claim a USB interface.
+Before you do this, call [usbManager.getDevices](#usbmanagergetdevices) to obtain the USB device list and endpoints, call [usbManager.requestRight](#usbmanagerrequestright) to request the device access permission, call [usbManager.connectDevice](#usbmanagerconnectdevice) to obtain **devicepipe** as an input parameter, and call **usb.bulkTransfer** to claim a USB interface.
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -703,6 +703,10 @@ For details about the error codes, see [USB Service Error Codes](errorcode-usb.m
 | Promise&lt;number&gt; | Promise used to return the result, which is the size of the transmitted or received data block if the transfer is successful, or **-1** if an exception has occurred.|
 
 **Example**
+
+> **NOTE**
+>
+> The following sample code is only a basic process for calling the **bulkTransfer** API. In actual calling, you must comply with the device-related protocols to ensure correct data transmission and device compatibility.
 
 ```ts
 // Call usbManager.getDevices to obtain a data set. Then, obtain a USB device and its access permission.
