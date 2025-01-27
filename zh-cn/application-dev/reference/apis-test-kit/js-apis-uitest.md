@@ -246,10 +246,10 @@ id(id: string): On
 
 **参数：**
 
-| 参数名                   | 类型   | 必填 | 说明             |
-|-----------------------| ------ |----| ---------------- |
-| id                    | string | 是  | 指定控件的id值。 |
-| pattern<sup>16+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+| 参数名                   | 类型   | 必填 | 说明                                    |
+|-----------------------| ------ |----|---------------------------------------|
+| id                    | string | 是  | 指定控件的id值。                             |
+| pattern<sup>16+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -288,10 +288,10 @@ type(tp: string): On
 
 **参数：**
 
-| 参数名                   | 类型   | 必填 | 说明           |
-|-----------------------| ------ | ---- | -------------- |
-| tp                    | string | 是   | 指定控件类型。|
-| pattern<sup>16+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+| 参数名                   | 类型   | 必填 | 说明                                    |
+|-----------------------| ------ | ---- |---------------------------------------|
+| tp                    | string | 是   | 指定控件类型。                               |
+| pattern<sup>16+</sup> | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
@@ -814,16 +814,16 @@ hint(val: string, pattern?: MatchPattern): On
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明         |
-| ------ | ------ |----|------------|
-| val     | string | 是  | 指定控件提示值。   |
-| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式,默认为[EQUALS](#matchpattern)。 |
+| 参数名 | 类型   | 必填 | 说明                                    |
+| ------ | ------ |----|---------------------------------------|
+| val     | string | 是  | 指定控件提示值。                              |
+| pattern | [MatchPattern](#matchpattern) | 否  | 指定的文本匹配模式，默认为[EQUALS](#matchpattern)。 |
 
 **返回值：**
 
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | 返回指定目标控件的控件类型属性的On对象。 |
+| [On](#on9) | 指定目标控件类型属性的On对象。 |
 
 **错误码：**
 
@@ -1514,11 +1514,11 @@ scrollSearch(on: On): Promise\<Component>
 
 **参数：**
 
-| 参数名                    | 类型       | 必填 | 说明                           |
-|------------------------| ---------- | ---- |------------------------------|
-| on                     | [On](#on9) | 是   | 目标控件的属性要求。                   |
-| vertical<sup>16+</sup> |    boolean | 否 | 滑动查找方向是否为纵向。默认为true。         |
-| offset<sup>16+</sup>   | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(pixel)。 |
+| 参数名                    | 类型       | 必填 | 说明                                |
+|------------------------| ---------- | ---- |-----------------------------------|
+| on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
+| vertical<sup>16+</sup> |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
+| offset<sup>16+</sup>   | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(pixel)。    |
 
 **返回值：**
 
@@ -3236,15 +3236,15 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 **参数：**
 
-| 参数名 | 类型                                            | 必填 | 说明                       |
-| ------ |-----------------------------------------------|----|--------------------------|
-| fingers      | number                                        | 是  | 触摸板多指滑动的手指数。 取值范围为3~4。 |
-| direction | [UiDirection](#uidirection10)                 | 是  | 触摸板多指滑动的方向。               |
-| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势附加选项。         |
+| 参数名 | 类型                                            | 必填 | 说明                    |
+| ------ |-----------------------------------------------|----|-----------------------|
+| fingers      | number                                        | 是  | 触摸板多指滑动的手指数。取值范围为3~4。 |
+| direction | [UiDirection](#uidirection10)                 | 是  | 触摸板多指滑动的方向。           |
+| options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势附加选项。        |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3280,7 +3280,7 @@ penClick(point: Point): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码。](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3316,7 +3316,7 @@ penLongClick(point: Point, pressure?: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码。](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3351,7 +3351,7 @@ penDoubleClick(point: Point): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码。](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3372,7 +3372,7 @@ async function demo() {
 
 penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number): Promise\<void>
 
-模拟手写笔的滑动操作
+模拟手写笔的滑动操作。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3380,16 +3380,16 @@ penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number):
 
 **参数：**
 
-| 参数名 | 类型                                            | 必填 | 说明                                         |
-| ------ |-----------------------------------------------|----|--------------------------------------------|
-| startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                  |
-| endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                  |
-| speed      | number | 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。 |
-| pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。            |
+| 参数名 | 类型                                            | 必填 | 说明                                                     |
+| ------ |-----------------------------------------------|----|--------------------------------------------------------|
+| startPoint      | [Point](#point9) | 是  | 起始位置的坐标点。                                              |
+| endPoint      | [Point](#point9) | 是  | 结束位置的坐标点。                                              |
+| speed      | number | 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：pixel/s。 |
+| pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。                        |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3420,13 +3420,13 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 
 | 参数名 | 类型                                            | 必填 | 说明                                                                 |
 | ------ |-----------------------------------------------|----|--------------------------------------------------------------------|
-| pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列, **仅支持单指操作, 该场景PointerMatrix中fingers必须设置为1**。 |
-| speed      | number| 否  | 滑动速率，范围：200-40000，不在范围内设为默认值为600，单位：pixel/s。                         |
-| pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                      |
+| pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列，仅支持单指操作，PointerMatrix中的操作手指个数fingers必须设置为1。 |
+| speed      | number| 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：pixel/s。             |
+| pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
