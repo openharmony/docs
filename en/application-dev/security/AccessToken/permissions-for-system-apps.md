@@ -4430,13 +4430,13 @@ Allows a system application to obtain the group information of Family Sharing.
 
 Allows a system application to obtain fusion awareness data.
 
-**权限级别**：system_basic
+**Permission level**: system_core
 
-**授权方式**：system_grant
+**Authorization mode**: system_grant
 
-**ACL使能**：true
+**Enable via ACL**: true
 
-**起始版本**：16
+**Valid since**: 16
 
 ### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
