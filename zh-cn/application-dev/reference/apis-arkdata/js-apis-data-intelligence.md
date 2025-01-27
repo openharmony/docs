@@ -32,9 +32,9 @@ import { intelligence } from '@kit.ArkData';
 
 模型版本枚举。
 
-| 名称       | 说明                   |
-| ---------- | ---------------------- |
-| BASIC_MODEL     | 基本嵌入模型。   |
+| 名称       | 值                   | 说明                   |
+| ---------- | ---------- | ---------------------- |
+| BASIC_MODEL     | 0     | 基本嵌入模型版本   |
 
 ## Image
 
@@ -94,7 +94,7 @@ let config:intelligence.ModelConfig = {
   isNpuAvailable:false,
   cachePath:"test"
 }
-let textEmbedding:intelligence.TextEmbedding | null = null;
+let textEmbedding:intelligence.TextEmbedding;
 
 intelligence.getTextEmbeddingModel(config)
   .then((data:intelligence.TextEmbedding) => {
@@ -268,7 +268,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 
 textEmbedding.loadModel();
-let batchTexts = {'text1','text2'};
+let batchTexts = ['text1','text2'];
 textEmbedding.getEmbedding(batchTexts)
   .then((data:Array&lt;Array&lt;number&gt;&gt;) => {
     console.info("getEmbedding success");
@@ -316,7 +316,7 @@ let config:intelligence.ModelConfig = {
     isNpuAvailable:false,
     cachePath:"image"
    }
-let imageembedding:intelligence.ImageEmbedding | null = null;
+let imageembedding:intelligence.ImageEmbedding;
 
 intelligence.getImageEmbeddingModel(config)
   .then((data:intelligence.ImageEmbedding) => {
@@ -444,7 +444,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 imageembedding.loadModel();
 let image = 'image uri';
 textEmbedding.getEmbedding(image)
-  .then(() => {
+  .then((data:Array&lt;number&gt;) => {
     console.info("getEmbedding success");
   })
   .catch((err:BusinessError) => {
@@ -494,7 +494,7 @@ let config:intelligence.SplitConfig = {
 let text = 'text';
 
 intelligence.splitText(text, config)
-  .then((data) => {
+  .then((data:Array&lt;string&gt;) => {
     console.info("get result success");
   })
   .catch((err:BusinessError) => {
