@@ -29,8 +29,8 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 1. 订阅操作手感知事件
 
    ```
-   motion.on('operatingHandChanged', (data) => {
-     console.log('data ='+ JSON.stringify(data));
+   motion.on('operatingHandChanged', (data:motion.OperatingHandStatus) => {
+     console.info('on success' + data);
    })
    
    ```
@@ -38,8 +38,8 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 2. 取消订阅操作手感知事件
 
    ```
-   motion.off('operatingHandChanged', (data) => {
-     console.log('data ='+ JSON.stringify(data));
+   motion.off('operatingHandChanged', (data:motion.OperatingHandStatus) => {
+     console.info('off success' + data);
    })
    
    ```
@@ -47,8 +47,8 @@ import { motion } from '@kit.MultimodalAwarenessKit';
 3. 获取最新操作手状态
 
    ```
-   let data = motion.getRecentOperatingHandStatus();
-   console.log('data ='+ JSON.stringify(data));
+   let data:motion.OperatingHandStatus = motion.getRecentOperatingHandStatus();
+   console.info('get success' + data);
    ```
 
    
