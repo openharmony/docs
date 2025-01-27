@@ -53,13 +53,13 @@
      
    ```ts
 
-   let textConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"test"
    }
 
-   intelligence.getTextEmbeddingModel(textConfig)
+   intelligence.getTextEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
       })
@@ -72,13 +72,13 @@
      
    ```ts
 
-   let textConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"test"
    }
 
-   intelligence.getTextEmbeddingModel(textConfig)
+   intelligence.getTextEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel()
@@ -98,13 +98,13 @@
      
    ```ts
 
-   let textConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"test"
    }
 
-   intelligence.getTextEmbeddingModel(textConfig)
+   intelligence.getTextEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel();
@@ -125,13 +125,13 @@
      
    ```ts
 
-   let textConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"test"
    }
 
-   intelligence.getTextEmbeddingModel(textConfig)
+   intelligence.getTextEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel();
@@ -153,18 +153,18 @@
      
    ```ts
 
-   let textConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"test"
    }
 
-   intelligence.getTextEmbeddingModel(textConfig)
+   intelligence.getTextEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel();
-        let text = {'text1','text2'};
-        data.getEmbedding(text)
+        let batchTexts = ['text1','text2'];
+        data.getEmbedding(batchTexts)
          .then(() => {
           console.info("getEmbedding success");
          })
@@ -181,13 +181,13 @@
      
    ```ts
 
-   let imageConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"image"
    }
 
-   intelligence.getImageEmbeddingModel(imageConfig)
+   intelligence.getImageEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
       })
@@ -200,13 +200,13 @@
      
    ```ts
 
-   let imageConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"image"
    }
 
-   intelligence.getImageEmbeddingModel(imageConfig)
+   intelligence.getImageEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel()
@@ -226,13 +226,13 @@
      
    ```ts
 
-   let imageConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"image"
    }
 
-   intelligence.getImageEmbeddingModel(imageConfig)
+   intelligence.getImageEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel();
@@ -253,18 +253,18 @@
      
    ```ts
 
-   let imageConfig = {
+   let config = {
     version:1,
     isNpuAvailable:false,
     cachePath:"image"
    }
 
-   intelligence.getImageEmbeddingModel(imageConfig)
+   intelligence.getImageEmbeddingModel(config)
       .then((data) => {
         console.info("get result success");
         data.loadModel();
-        let uri = 'image uri';
-        data.getEmbedding(uri)
+        let image = 'image uri';
+        data.getEmbedding(image)
          .then(() => {
           console.info("getEmbedding success");
          })
@@ -281,14 +281,14 @@
      
    ```ts
 
-   let SplitConfig = {
+   let config = {
     size:10,
     overlapRatio:0.1
    }
 
    let text = 'text';
 
-   intelligence.splitText(text, SplitConfig)
+   intelligence.splitText(text, config)
       .then((data) => {
         console.info("get result success");
       })
