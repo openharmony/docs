@@ -26,7 +26,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
           "abilities": [
             "EntryAbility"
           ],
-          "when":"always"
+          "when":"inuse"
         }
       },
       {
@@ -36,7 +36,7 @@ Web组件可以通过W3C标准协议接口拉起摄像头和麦克风，通过[o
           "abilities": [
             "EntryAbility"
           ],
-          "when":"always"
+          "when":"inuse"
         }
       }
     ],
