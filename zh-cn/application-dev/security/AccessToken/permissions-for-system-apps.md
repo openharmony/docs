@@ -4437,6 +4437,18 @@
 
 **起始版本**：16
 
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+允许系统应用获取融合感知数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
 允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。

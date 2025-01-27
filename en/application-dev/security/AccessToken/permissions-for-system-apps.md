@@ -4426,6 +4426,18 @@ Allows a system application to obtain the group information of Family Sharing.
 
 **Valid since**: 16
 
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+Allows a system application to obtain fusion awareness data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
 
 Allows an application to read the data of Account Suggestions and start the UIExtensionAbility of the account suggestion list.
