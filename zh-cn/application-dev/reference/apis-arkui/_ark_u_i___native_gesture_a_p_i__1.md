@@ -21,7 +21,7 @@
 | ArkUI_GestureRecognizer \*(\* [createTapGesture](#createtapgesture) )(int32_t countNum, int32_t fingersNum) | 创建敲击手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createTapGestureWithDistance](#createtapgesturewithdistance) )(int32_t countNum, int32_t fingersNum, int32_t distance) | 创建带移动范围限制的敲击手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createLongPressGesture](#createlongpressgesture) )(int32_t fingersNum, bool repeatResult, int32_t durationNum) | 创建长按手势。  | 
-| ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | 创建拖动手势。  | 
+| ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | 创建拖动手势。directions默认值为NONE。  | 
 | ArkUI_GestureRecognizer \*(\* [createPinchGesture](#createpinchgesture) )(int32_t fingersNum, double distanceNum) | 创建捏合手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createRotationGesture](#createrotationgesture) )(int32_t fingersNum, double angleNum) | 创建旋转手势。  | 
 | ArkUI_GestureRecognizer \*(\* [createSwipeGesture](#createswipegesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double speedNum) | 创建滑动手势。  | 

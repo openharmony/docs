@@ -68,7 +68,7 @@ Provides basic parameters for creating a badge.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> This parameter cannot be set in percentage. If it is set to an invalid value, the default value **(0,0)** which indicates the upper left corner of the component, will be used.|
+| position | [BadgePosition](#badgeposition)\|[Position<sup>10+</sup>](ts-types.md#position) | No| Position to display the badge relative to the parent component.<br>Default value: **BadgePosition.RightTop**<br>**NOTE**<br> With the **Position** type, percentage values are not supported. If an invalid value is set, the default value **(0,0)** which indicates the upper left corner of the component, will be used.<br>With the **BadgePosition** type, the position is mirrored based on the [Direction](ts-appendix-enums.md#direction) property.|
 | style | [BadgeStyle](#badgestyle) | Yes| Style of the badge, including the font color, font size, badge color, and badge size.|
 
 
@@ -84,8 +84,8 @@ Inherits from [BadgeParam](#badgeparam) and has all attributes of **BadgeParam**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
-| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, 4294967296 is added or subtracted so that the value is within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| count | number | Yes| Number of notifications.<br>**NOTE**<br>If the value is less than or equal to 0 and less than the value of **maxCount**, no badge is displayed.<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, it will be adjusted by adding or subtracting 4294967296 to bring it back within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
+| maxCount | number | No| Maximum number of notifications. When the maximum number is reached, only **maxCount+** is displayed.<br>Default value: **99**<br>Value range: [-2147483648, 2147483647]<br>If the value is out of the range, it will be adjusted by adding or subtracting 4294967296 to bring it back within the range. If the value is not an integer, it is rounded off to the nearest integer. For example, 5.5 is rounded off to 5.|
 
 ## BadgeParamWithString
 
@@ -150,7 +150,8 @@ This example illustrates the varying visual effects of the **Badge** component w
 @Entry
 @Component
 struct BadgeExample {
-  @Builder tabBuilder(index: number) {
+  @Builder
+  tabBuilder(index: number) {
     Column() {
       if (index === 2) {
         Badge({
@@ -178,7 +179,8 @@ struct BadgeExample {
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 
-  @Builder itemBuilder(value: string) {
+  @Builder
+  itemBuilder(value: string) {
     Row() {
       Image('common/public_icon.svg').width(32).height(32).opacity(0.6)
       Text(value)
@@ -284,7 +286,12 @@ struct BadgeExample {
         .backgroundColor('#FFFFFF')
         .borderRadius(24)
         .padding({ top: 4, bottom: 4 })
-        .divider({ strokeWidth: 0.5, color: 'rgba(0,0,0,0.1)', startMargin: 60, endMargin: 12 })
+        .divider({
+          strokeWidth: 0.5,
+          color: 'rgba(0,0,0,0.1)',
+          startMargin: 60,
+          endMargin: 12
+        })
       }.width('100%').backgroundColor('#F1F3F5').padding({ bottom: 12 })
     }.width('100%')
   }
@@ -311,11 +318,12 @@ struct Index {
         style: {},
         position: BadgePosition.RightTop,
       }) {
-        Image($r("app.media.icon"))
-        .width(50)
-        .height(50)
+        Image($r("app.media.startIcon"))
+          .width(50)
+          .height(50)
       }
       .width(55)
+
       Button('count 0').onClick(() => {
         this.badgeCount = 0
       })
@@ -323,7 +331,7 @@ struct Index {
         this.badgeCount = 1
       })
     }
-    .margin({top: 20})
+    .margin({ top: 20 })
   }
 }
 ```

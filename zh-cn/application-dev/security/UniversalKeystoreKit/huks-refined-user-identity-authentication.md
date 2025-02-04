@@ -121,6 +121,7 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
+   let keyAlias = 'test_sm4_key_alias';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
    let IV = '1234567890123456';
    let handle = 0;

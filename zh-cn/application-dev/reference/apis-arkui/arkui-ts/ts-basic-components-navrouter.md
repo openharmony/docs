@@ -44,7 +44,7 @@ NavRouter(value: RouteInfo)
 
 | 参数名     | 类型                                | 必填   | 说明          |
 | ------- | ----------------------------------- | ---- | ------------- |
-| value   | [RouteInfo](#routeinfo10对象说明) | 是    | 路由信息 |
+| value   | [RouteInfo](#routeinfo10对象说明) | 是    | 路由信息。 |
 
 ## 属性
 

@@ -3,6 +3,9 @@
 \@Provider and \@Consumer are used for synchronizing data across the component levels in a two-way manner, so that you are free from the constraints of the component levels.
 \@Provider and \@Consumer are decorators in state management V2, so they can be used only in \@ComponentV2. A compilation error will be reported if they are used in \@Component.
 
+
+Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md).
+
 >**NOTE**
 >
 >\@Provider and \@Consumer decorators are supported since API version 12.
@@ -55,7 +58,7 @@ If you are not familiar with \@Provide and \@Consume in state management V1, ple
 | \@Consumer Property Decorator| Description                                                        |
 | --------------------- | ------------------------------------------------------------ |
 | Decorator parameters           | **aliasName?: string**: alias. The default value is the attribute name. The nearest \@Provider is searched upwards.   |
-| Supported type | Member variables in the custom component.<br>Property types include number, string, boolean, class, Array, Date, Map, and Set.<br>Arrow function. |
+| Supported type         | Member variables in the custom component.<br> Property types include number, string, boolean, class, Array, Date, Map, and Set.<br> Arrow function.|
 | Initialization from the parent component     | Forbidden.|
 | Local initialization        | Required.|
 | Observation capability        | Be equivalent to \@Trace. Changes will be synchronized to the corresponding \@Provider.|
@@ -309,31 +312,31 @@ If \@Provider has duplicate names in the component tree, \@Consumer will search 
 ```ts
 @Entry
 @ComponentV2
-struct Parent {
+struct Index {
   @Provider() val: number = 10;
 
   build() {
     Column() {
-      AComp()
+      Parent()
     }
   }
 }
 
 @ComponentV2
-struct AComp {
+struct Parent {
   @Provider() val: number = 20;
   @Consumer("val") val2: number = 0; // 10
 
   build() {
     Column() {
       Text(`${this.val2}`)
-      A1Comp()
+      Child()
     }
   }
 }
 
 @ComponentV2
-struct A1Comp {
+struct Child {
   @Consumer() val: number = 0; // 20
 
   build() {
@@ -346,53 +349,51 @@ struct A1Comp {
 
 In the preceding example:
 
-- In **AComp**, \@Consumer searches upwards to find **@Provider() val: number = 10** defined in the **Parent** component. Therefore, the value is initialized to 10.
-- In **A1Comp**, \@Consumer searches upwards to find **@Provider() val: number = 20** defined in **AComp** and stops searching when it is found. Therefore, the value is initialized to 20.
+- In **Parent**, \@Consumer searches upwards to find **@Provider() val: number = 10** defined in **Index**. Therefore, the value is initialized to 10.
+- In **Child**, \@Consumer searches upwards to find **@Provider() val: number = 20** defined in **Parent** and stops searching when it is found. Therefore, the value is initialized to 20.
 
 ### Initializing \@Param by \@Provider and \@Consumer
 
-- Click **Text(\`@Consumer val: ${this.val}\`)** to trigger the change of **@Consumer() val**. This change will be synchronized to **@Provider() val** in the **Parent** component, triggering the re-render of the **Text(@Param val2: ${this.val2})** in the **Child** component.
-- The change of **@Consumer() val** is also synchronized to **A1Comp**, triggering the re-render of **Text(A1Comp @Param val ${this.val})**.
+- Click **Text(\`Parent @Consumer val: ${this.val}\`)** to trigger the change of **@Consumer() val**. This change will be synchronized to **@Provider() val** in **Index**, triggering the re-render of the **Text(Parent @Param val2: ${this.val2})** in the **Child** component.
+- The change of **Parent @Consumer() val** is also synchronized to **Child**, triggering the re-render of **Text(Child @Param val ${this.val})**.
 
 ```ts
 @Entry
 @ComponentV2
-struct Parent {
+struct Index {
   @Provider() val: number = 10;
 
   build() {
     Column() {
-      AComp({ val2: this.val })
+      Parent({ val2: this.val })
     }
   }
 }
 
 @ComponentV2
-struct AComp {
+struct Parent {
   @Consumer() val: number = 0;
   @Param val2: number = 0;
 
   build() {
     Column() {
-      Text(`AComp @Consumer val: ${this.val}`).fontSize(30).onClick(() => {
+      Text(`Parent @Consumer val: ${this.val}`).fontSize(30).onClick(() => {
         this.val++;
       })
-      Text(`AComp @Param val2: ${this.val2}`).fontSize(30)
-      A1Comp({ val: this.val })
+      Text(`Parent @Param val2: ${this.val2}`).fontSize(30)
+      Child({ val: this.val })
     }.border({ width: 2, color: Color.Green })
   }
 }
 
 @ComponentV2
-struct A1Comp {
+struct Child {
   @Param val: number = 0;
 
   build() {
     Column() {
-      Text(`A1Comp @Param val ${this.val}`).fontSize(30)
+      Text(`Child @Param val ${this.val}`).fontSize(30)
     }.border({ width: 2, color: Color.Pink })
   }
 }
 ```
-
-<!--no_check-->

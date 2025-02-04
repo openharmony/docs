@@ -56,7 +56,8 @@ FormComponent (value: FormInfo)
 | 参数名    | 参数类型                        | 必填 | 参数描述                                                                |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
 | id        | number                 | 是   | 卡片标识（number类型）。<br/>**说明：**<br>如果获取到的id为-1，说明id大于等于2^53，需要使用idString获取。                                        |
-| idString      | string                          | 是   | 卡片标识（string类型）。<br/>                                                              |
+| idString      | string            | 是           | 卡片标识（string类型）。                             |
+| isLocked<sup>16+</sup>  |boolean  | 是           | 标识卡片是否为[管控状态](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate16)，true表示管控状态，false表示非管控状态。     |
 
 ## FormDimension
 

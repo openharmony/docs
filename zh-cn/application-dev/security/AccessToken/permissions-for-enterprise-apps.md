@@ -151,6 +151,40 @@
 
 **起始版本**：16
 
+## ohos.permission.MANAGE_NET_FIREWALL
+
+允许系统应用配置防火墙规则。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.GET_NET_FIREWALL
+
+允许系统应用查询防火墙规则和查询防火墙拦截记录。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+
 ## ohos.permission.GET_DOMAIN_ACCOUNT_SERVER_CONFIGS
 
 允许应用获取域账号服务器配置。
@@ -180,6 +214,19 @@
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
 允许应用管理域账号。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：16
+
+## ohos.permission.GET_SIGNATURE_INFO
+
+允许应用获取应用包的签名信息。
 
 **权限级别**：system_basic
 
