@@ -736,7 +736,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 
 ## usbManager.usbSubmitTransfer<sup>16+</sup>
 
-usbSubmitTransfer(transfer: USBDataTransferParams): void;&gt;
+usbSubmitTransfer(transfer: USBDataTransferParams): void;
 
 提交异步传输请求。
 
