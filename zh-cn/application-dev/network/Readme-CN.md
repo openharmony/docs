@@ -5,6 +5,7 @@
 - Network Kit数据传输能力<!--network-kit-data-transmission-->
     - [HTTP数据请求](http-request.md)
     - [WebSocket连接](websocket-connection.md)
+    - [WebSocket连接(C/C++)](native-websocket-guidelines.md)
     - [Socket连接](socket-connection.md)
     - [MDNS](net-mdns.md)
 
