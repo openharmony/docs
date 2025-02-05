@@ -1348,7 +1348,7 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
 
 ## hdc错误码
 
-### E003001 （命令行）指定的应用名称非法
+### E003001 （命令行）指定的包名非法
 
 **错误信息**
 
@@ -1356,21 +1356,21 @@ Invalid bundle name: _bundlename_
 
 **错误描述**
 
-命令`hdc shell [-b bundlename] [command]`指定的 _bundlename_ 不是debug（可调试）应用，或应用目录不存在。
+命令`hdc shell [-b bundlename] [command]`指定的 _bundlename_ 不是已安装的可调试应用包名，或应用目录不存在。
 
 **可能原因**
 
 * 场景一：指定的应用未安装到设备上。
 
-* 场景二：指定的应用不是以debug模式构建的应用。
+* 场景二：指定包名的应用，不是以debug模式构建的应用。
 
-* 场景三：指定的应用没有启动。
+* 场景三：指定包名的应用没有启动。
 
 **处理步骤**
 
-* 场景一：确认命令指定的应用已安装到设备上。
+* 场景一：确认命令指定包名的应用已安装到设备上。
 
-   a.可执行`hdc shell "bm dump -a | grep bundlename"`查询应用是否已安装到设备上，预期返回信息为 _bundlename_；
+   a.可执行`hdc shell "bm dump -a | grep bundlename"`查询对应包名的应用是否已安装到设备上，预期返回信息为 _bundlename_；
    
    以应用名`com.example.myapplication`为例，查询命令如下：
 
@@ -1384,19 +1384,19 @@ Invalid bundle name: _bundlename_
    com.example.myapplication
    ```
 
-   b.如应用为debug应用，但未安装到设备上，可执行`hdc install [app_path]`安装应用；
+   b.如应用为可调试应用，但未安装到设备上，可执行`hdc install [app_path]`安装应用；
 
-   c.如应用不是debug应用，而是release类型的应用，将不支持指定 _bundlename_ 执行命令相关功能。
+   c.如应用不是可调试应用，而是release类型的应用，将不支持指定 _bundlename_ 执行命令相关功能。
 
-* 场景二：确认命令指定的应用是以debug模式构建的应用，可执行`hdc shell "bm dump -n bundlename | grep debug"`查询，预期返回信息为`"appProvisionType": "debug", "debug": true`。
+* 场景二：确认命令指定的应用是以debug模式构建的可调试应用，可执行`hdc shell "bm dump -n bundlename | grep debug"`查询，预期返回信息为`"appProvisionType": "debug", "debug": true`。
 
-   以应用名`com.example.myapplication`为例，可执行如下命令查询：
+   以包名`com.example.myapplication`为例，可执行如下命令查询：
 
    ```shell
    hdc shell "bm dump -n com.example.myapplication | grep debug"
    ```
 
-   以debug模式构建的应用，预期返回信息：
+   如包名对应的应用是以debug模式构建的可调试应用，预期返回信息：
 
    ```shell
    "appProvisionType": "debug",
@@ -1415,7 +1415,7 @@ Invalid bundle name: _bundlename_
    hdc shell "mount |grep com.example.myapplication"
    ```
 
-   如已挂载相应的资源目录，预期返回多行挂载信息（返回内容以实际挂载情况为准，此处不作展示）。
+   如已挂载相应的资源目录，预期返回挂载信息（返回内容以实际挂载情况为准，此处不作展示）。
 
    如未挂载相应的资源目录，预期无返回信息。
 
@@ -1501,7 +1501,7 @@ The parameter is missing, correct your input by referring below: _Usage_
 
 确认命令的 _bundlename_ 、 _command_ 参数均不为空。
 
-### E005101 （文件传输）指定的应用名称非法
+### E005101 （文件传输）指定的包名非法
 
 **错误信息**
 
@@ -1509,15 +1509,15 @@ Invalid bundle name: _bundlename_
 
 **错误描述**
 
-命令`hdc file send/recv [-b bundlename] [localpath] [remotepath]`指定的 _bundlename_ 不是debug（可调试）应用，或应用目录不存在。
+命令`hdc file send/recv [-b bundlename] [localpath] [remotepath]`指定的 _bundlename_ 不是已安装的可调试应用包名，或应用目录不存在。
 
 **可能原因**
 
-同错误码[E003001](#e003001-命令行指定的应用名称非法)
+同错误码[E003001](#e003001-命令行指定的包名非法)
 
 **处理步骤**
 
-同错误码[E003001](#e003001-命令行指定的应用名称非法)
+同错误码[E003001](#e003001-命令行指定的包名非法)
 
 ### E005102 非法的远程路径
 
