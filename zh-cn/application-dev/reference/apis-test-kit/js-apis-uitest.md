@@ -3228,7 +3228,7 @@ async function demo() {
 
 touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
 
-模拟触摸板多指滑动手势。
+模拟触摸板多指滑动手势，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3242,9 +3242,15 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 | direction | [UiDirection](#uidirection10)                 | 是  | 触摸板多指滑动的方向。           |
 | options      | [TouchPadSwipeOptions](#touchpadswipeoptions16) | 否  | 触摸板多指滑动手势附加选项。        |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3266,7 +3272,7 @@ async function demo() {
 
 penClick(point: Point): Promise\<void>
 
-模拟手写笔点击操作。
+模拟手写笔点击操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3278,9 +3284,15 @@ penClick(point: Point): Promise\<void>
 | ------ |-----------------------------------------------|----|---------|
 | point      | [Point](#point9) | 是   | 点击的坐标点。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码。](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3301,7 +3313,7 @@ async function demo() {
 
 penLongClick(point: Point, pressure?: number): Promise\<void>
 
-模拟手写笔长按操作。
+模拟手写笔长按操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3314,9 +3326,15 @@ penLongClick(point: Point, pressure?: number): Promise\<void>
 | point      | [Point](#point9) | 是  | 长按的坐标点。                       |
 | pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码。](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3337,7 +3355,7 @@ async function demo() {
 
 penDoubleClick(point: Point): Promise\<void>
 
-模拟手写笔双击操作。
+模拟手写笔双击操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3349,9 +3367,16 @@ penDoubleClick(point: Point): Promise\<void>
 | ------ |-----------------------------------------------|----|---------|
 | point      | [Point](#point9) | 是  | 双击的坐标点。 |
 
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码。](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
