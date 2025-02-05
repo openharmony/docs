@@ -136,6 +136,38 @@ typedef struct ArkUI_AccessibilityProviderCallbacks {
 
 13
 
+### ArkUI_AccessibilityProviderCallbacksWithInstance
+
+```C
+typedef struct ArkUI_AccessibilityProviderCallbacksWithInstance {
+    int32_t (*findAccessibilityNodeInfosById)(const char* instanceId, int64_t elementId, ArkUI_AccessibilitySearchMode mode, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
+    int32_t (*findAccessibilityNodeInfosByText)(const char* instanceId, int64_t elementId, const char* text, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
+    int32_t (*findFocusedAccessibilityNode)(const char* instanceId, int64_t elementId, ArkUI_AccessibilityFocusType focusType, int32_t requestId, ArkUI_AccessibilityElementInfo* elementinfo);
+    int32_t (*findNextFocusAccessibilityNode)(const char* instanceId, int64_t elementId, ArkUI_AccessibilityFocusMoveDirection direction, int32_t requestId, ArkUI_AccessibilityElementInfo* elementList);
+    int32_t (*executeAccessibilityAction)(const char* instanceId, int64_t elementId, ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId);
+    int32_t (*clearFocusedFocusAccessibilityNode)(const char* instanceId);
+    int32_t (*getAccessibilityNodeCursorPosition)(const char* instanceId, int64_t elementId, int32_t requestId, int32_t* index);
+} ArkUI_AccessibilityProviderCallbacksWithInstance;
+```
+
+**描述:**
+
+适配多实例场景三方操作provider回调函数结构定义，需要三方平台实现的相关函数，通过OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance注册到系统侧。
+
+| 回调函数                                                     | 函数功能                             |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [findAccessibilityNodeInfosById](#findaccessibilitynodeinfosbyid-1) | 由接入方平台实现的回调函数，注册给系统侧调用。基于指定的节点，查询所需的节点信息。支持多实例场景。 |
+| [findAccessibilityNodeInfosByText](#findaccessibilitynodeinfosbytext-1) | 由接入方平台实现的回调函数，注册给系统侧调用。基于指定的节点，查询满足指定组件文本内容的节点信息。支持多实例场景。 |
+| [findFocusedAccessibilityNode](#findfocusedaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查找已经聚焦的节点。支持多实例场景。  |
+| [findNextFocusAccessibilityNode](#findnextfocusaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查询指定方向的节点。支持多实例场景。  |
+| [executeAccessibilityAction](#executeaccessibilityaction-1)    | 由接入方平台实现的回调函数，注册给系统侧调用。对指定节点执行指定的操作。支持多实例场景。  |
+| [clearFocusedFocusAccessibilityNode](#clearfocusedfocusaccessibilitynode-1) | 由接入方平台实现的回调函数，注册给系统侧调用。 清除当前获焦的节点。支持多实例场景。  |
+| [getAccessibilityNodeCursorPosition](#getaccessibilitynodecursorposition-1) | 由接入方平台实现的回调函数，注册给系统侧调用。获取当前组件中（文本组件）光标位置。支持多实例场景。 |
+
+**起始版本：**
+
+15
+
 ### ArkUI_AccessibilityActionArguments
 
 **描述:**
@@ -417,6 +449,185 @@ int32_t (*getAccessibilityNodeCursorPosition)(int64_t elementId, int32_t request
 **返回：**
 
  [ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+ 
+### findAccessibilityNodeInfosById
+
+```C
+int32_t (*findAccessibilityNodeInfosById)(const char* instanceId, int64_t elementId, ArkUI_AccessibilitySearchMode mode, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。基于指定的节点，查询所需的节点信息。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| instanceId  | 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+| elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
+| mode        | 查询模式，支持如下查询类型：[ArkUI_AccessibilitySearchMode](#arkui_accessibilitysearchmode)。 |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
+| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+
+### findAccessibilityNodeInfosByText
+
+```C
+int32_t (*findAccessibilityNodeInfosByText)(const char* instanceId, int64_t elementId, const char* text, int32_t requestId, ArkUI_AccessibilityElementInfoList* elementList);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。基于指定的节点，查询满足指定组件文本内容的节点信息。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| instanceId  | 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+| elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
+| text        | 指定文本，匹配节点中无障碍属性的文本内容。                   |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
+| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+
+### findFocusedAccessibilityNode
+
+```C
+int32_t (*findFocusedAccessibilityNode)(const char* instanceId, int64_t elementId, ArkUI_AccessibilityFocusType focusType, int32_t requestId, ArkUI_AccessibilityElementInfo* elementinfo);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查找已经聚焦的节点。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| instanceId  | 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+| elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
+| focusType   | 无障碍焦点类型[ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
+| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+
+
+
+### findNextFocusAccessibilityNode
+
+```C
+int32_t (*findNextFocusAccessibilityNode)(const char* instanceId, int64_t elementId, ArkUI_AccessibilityFocusMoveDirection direction, int32_t requestId, ArkUI_AccessibilityElementInfo* elementList);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。从指定节点查询指定方向的节点。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| instanceId  | 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+| elementId   | 指定节点的id，从该节点出发进行搜索查询。当指定为-1时，代表从组件树的根节点进行查询。 |
+| focusType   | 无障碍焦点类型[ArkUI_AccessibilityFocusType](#arkui_accessibilityfocustype)。 |
+| requestId   | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
+| elementList | 查询结果，接入方根据查收调节将结果返回。                     |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+
+### executeAccessibilityAction
+
+```C
+int32_t (*executeAccessibilityAction)(const char* instanceId, int64_t elementId, ArkUI_Accessibility_ActionType action, ArkUI_AccessibilityActionArguments *actionArguments, int32_t requestId);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。对指定节点执行指定的操作（[ArkUI_Accessibility_ActionType](#arkui_accessibility_actiontype)）。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称            | 描述                                                         |
+| --------------- | ------------------------------------------------------------ |
+| instanceId      | 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+| elementId       | 指定节点的id。                                               |
+| action          | 执行操作类型[ArkUI_Accessibility_ActionType](#arkui_accessibility_actiontype)。 |
+| requestId       | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
+| actionArguments | Action辅助配置信息。                                         |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+
+### clearFocusedFocusAccessibilityNode
+
+```C
+int32_t (*clearFocusedFocusAccessibilityNode)(const char* instanceId);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。 清除当前获焦的节点。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**  
+
+| 名称            | 描述                                                         |
+| --------------- | ------------------------------------------------------------ |
+| instanceId | 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+
+### getAccessibilityNodeCursorPosition
+
+```C
+int32_t (*getAccessibilityNodeCursorPosition)(const char* instanceId, int64_t elementId, int32_t requestId, int32_t* index);
+```
+
+**描述：**
+
+由接入方平台实现的回调函数，注册给系统侧调用。获取当前组件中（文本组件）光标位置。支持多实例场景。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| instanceId| 指定当前接入的第三方实例的id，id与接入方调用方法[OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance](#oh_arkui_accessibilityproviderregistercallbackwithinstance)传入的instanceId一致。 |
+| elementId | 指定节点的id。                                               |
+| requestId | 请求id，用于关联请求过程，方便问题定位。建议日志打印时附带输出该信息，方便定位。 |
+| index     | 返回光标位置结果。                                           |
+
+**返回：**
+
+[ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
 
 
 
@@ -437,6 +648,32 @@ int32_t OH_ArkUI_AccessibilityProviderRegisterCallback(
 
 | 名称      | 描述                       |
 | --------- | -------------------------- |
+| provider  | 三方平台接入provider句柄。 |
+| callbacks | 回调函数实现。             |
+
+**返回：**
+
+ [ArkUI_AcessbilityErrorCode](#arkui_acessbilityerrorcode)
+ 
+ 
+### OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance
+
+```C
+int32_t OH_ArkUI_AccessibilityProviderRegisterCallbackWithInstance(const char* instanceId,
+    ArkUI_AccessibilityProvider* provider, ArkUI_AccessibilityProviderCallbacksWithInstance* callbacks);
+```
+
+**描述：**
+
+多实例场景第三方平台注册回调函数。
+
+**起始版本：** 15
+
+**参数：**
+
+| 名称      | 描述                       |
+| --------- | -------------------------- |
+| instanceId| 三方平台接入的实例ID，用于区分多实例场景中不同的第三方实例，ID由三方平台指定与维护。 |
 | provider  | 三方平台接入provider句柄。 |
 | callbacks | 回调函数实现。             |
 
