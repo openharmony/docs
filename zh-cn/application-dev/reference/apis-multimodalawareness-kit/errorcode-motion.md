@@ -1,8 +1,8 @@
 # 动作感知错误码
 
-> 说明：
+> **说明：**
 >
-> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/errorcode-universal.md)。
+> 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
 ## 31500001 服务异常
 
