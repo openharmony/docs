@@ -2544,6 +2544,26 @@ struct Index {
 }
 ```
 
+### getTextMenuController<sup>16+</sup>
+
+getTextMenuController(): TextMenuController
+
+获取[TextMenuController](#textmenucontroller16)对象，可通过该对象控制文本选择菜单。
+
+**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[TextMenuController](#textmenucontroller16)| 获取TextMenuController对象。|
+
+**示例：**
+
+参考[TextMenuController](#textmenucontroller16)接口示例。
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
@@ -9424,6 +9444,66 @@ struct Index {
       }
       return true;
     })
+  }
+}
+```
+
+## TextMenuController<sup>16+</sup>
+以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
+
+### setMenuOptions<sup>16+</sup>
+
+setMenuOptions(options: TextMenuOptions): void
+
+设置菜单选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| options | [TextMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#textmenuoptions16对象说明)| 是    | 设置菜单选项。<br />默认值:{showMode: TextMenuShowMode.DEFAULT} |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 设置在对应的UIContext下优先使用独立窗口显示文本选择菜单
+    this.getUIContext()
+      .getTextMenuController()
+      .setMenuOptions(
+        {
+          showMode: TextMenuShowMode.PREFER_WINDOW
+        }
+      )
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+
+        Text("这是一个Text，长按弹出文本选择菜单")
+          .height(60)
+          .copyOption(CopyOptions.InApp)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+      }.width('100%')
+    }
+    .height('100%')
   }
 }
 ```
