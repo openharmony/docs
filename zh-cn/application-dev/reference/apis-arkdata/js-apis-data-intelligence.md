@@ -1,6 +1,6 @@
 # @ohos.data.intelligence (智慧数据平台)
 
-智慧数据平台（ArkData Intelligence Platform，AIP）提供端侧的数据智慧化能力，完成数据+AI智能在端侧闭环。作为端侧智慧化能力底座，将构建以下能力：
+智慧数据平台（ArkData Intelligence Platform，AIP）提供端侧的数据智慧化能力，完成数据和AI智能在端侧闭环。作为端侧智慧化能力底座，将构建以下能力：
 - 多模态嵌入模型：支持文字、图片多模态数据嵌入模型，由传统文本检索到多模态检索（PPT、图片、音频等）。
 - 多模态数据存储：支持端侧向量、倒排索引等多模态数据存储，避免将原始数据发送到服务器进行处理，减少了数据泄露的风险。
 - 知识检索：逐步构建语义索引、知识图谱、召回、重排等能力，支持用户知识的语义化检索。
@@ -25,8 +25,8 @@ import { intelligence } from '@kit.ArkData';
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
 | version    | [ModelVersion](#modelversion)           | 是   |模型的版本。 |
-| isNpuAvailable | boolean                | 是   | 指示是否使用 NPU。
-| cachePath | string                | 否   | 如果使用 NPU 进行加速，则需要本地路径进行模型缓存。
+| isNpuAvailable | boolean                | 是   | 指示是否使用 NPU，true表示使用，false表示不使用。 |
+| cachePath | string                | 否   | 如果使用 NPU 进行加速，则需要本地路径进行模型缓存。格式为/xxx/xxx/xxx/，长度上限为512 tokens。 |
 
 ## ModelVersion
 
@@ -34,7 +34,7 @@ import { intelligence } from '@kit.ArkData';
 
 | 名称       | 值                   | 说明                   |
 | ---------- | ---------- | ---------------------- |
-| BASIC_MODEL     | 0     | 基本嵌入模型版本   |
+| BASIC_MODEL     | 0     | 基本嵌入模型版本。   |
 
 ## Image
 
@@ -44,7 +44,7 @@ type Image = string;
 
 | 类型                         | 说明                  |
 | ---------------------------- | --------------------- |
-| string; | 图像的类型的URI。 |
+| string | 图像的类型的URI地址。长度上限为512 tokens。 |
 
 ## SplitConfig
 
@@ -52,8 +52,8 @@ type Image = string;
 
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| size    |       number     | 是   |块的最大大小。 |
-| overlapRatio | number                | 是   | 相邻块之间的重叠比率。
+| size    |       number     | 是   |块的最大大小，可取任意值。 |
+| overlapRatio | number                | 是   | 相邻块之间的重叠比率。范围为0-1。 |
 
 
 ## intelligence.getTextEmbeddingModel
@@ -66,23 +66,23 @@ getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置 |
+| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;[TextEmbedding](#textembedding)&gt; | 多模态嵌入模型的文本嵌入函数 |
+| Promise&lt;[TextEmbedding](#textembedding)&gt; | Promise对象。返回TextEmbedding对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -116,23 +116,22 @@ intelligence.getTextEmbeddingModel(config)
 
 loadModel(): Promise&lt;void&gt;
 
-加载嵌入模型，使用callback异步回调。
+加载嵌入模型，使用Promise异步回调。
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -152,23 +151,22 @@ textEmbedding.loadModel()
 
 releaseModel(): Promise&lt;void&gt;
 
-释放嵌入模型，使用callback异步回调。
+释放嵌入模型，使用Promise异步回调。
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -190,29 +188,29 @@ getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt;
 
 获取给定文本的嵌入向量。
 
-该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用。
+该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用getEmbedding。
 
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| text | string | 是   | 嵌入模型的输入文本 |
+| text | string | 是   | 嵌入模型的输入文本。长度上限为512 tokens。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 用于返回embedding结果的promise |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回向量化结果的数组对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -237,29 +235,29 @@ getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;numb
 
 获取给定批次文本的嵌入向量。
 
-该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用。
+该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用getEmbedding。
 
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| batchTexts | Array&lt;string&gt; | 是   | 嵌入模型的文本输入批次 |
+| batchTexts | Array&lt;string&gt; | 是   | 嵌入模型的文本输入批次。单个文本长度上限为512 tokens。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | 用于返回embedding结果的promise |
+| Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | Promise对象。返回向量化结果的数组对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -288,23 +286,23 @@ getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置 |
+| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;[ImageEmbedding](#imageembedding)&gt; | 多模态嵌入模型的图像嵌入函数 |
+| Promise&lt;[ImageEmbedding](#imageembedding)&gt; | Promise对象。返回ImageEmbedding对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -338,23 +336,22 @@ intelligence.getImageEmbeddingModel(config)
 
 loadModel(): Promise&lt;void&gt;
 
-加载嵌入模型，使用callback异步回调。
+加载嵌入模型，使用Promise异步回调。
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -374,23 +371,22 @@ imageembedding.loadModel()
 
 releaseModel(): Promise&lt;void&gt;
 
-释放嵌入模型，使用callback异步回调。
+释放嵌入模型，使用Promise异步回调。
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -418,23 +414,23 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| image | [Image](#image) | 是   | 嵌入模型的输入图像 |
+| image | [Image](#image) | 是   | 嵌入模型的输入图像类型的URI地址。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 用于返回embedding结果的promise |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回向量化结果的数组对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 
@@ -462,24 +458,24 @@ splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| text | string | 是   | 用于分块的文本 |
-| config | [SplitConfig](#splitconfig) | 是   | 文本分块的配置 |
+| text | string | 是   | 用于分块的文本，可取任意值。 |
+| config | [SplitConfig](#splitconfig) | 是   | 文本分块的配置。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | 返回结果的数组 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回分块结果的数组对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
 
 | **错误码ID** | **错误信息**                                                                                                                                    |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801          | Capability not supported. |
-| 31300000     | Inner error.                                                                                                                                    |
+| 31300000     | Inner error. |                                                                                                                                    |
 
 **示例：**
 

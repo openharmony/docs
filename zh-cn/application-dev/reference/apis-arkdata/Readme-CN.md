@@ -90,4 +90,5 @@
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [用户首选项错误码](errorcode-preferences.md)
   - [统一数据管理框架错误码](errorcode-udmf.md)
+  - [智慧数据平台错误码](errorcode-intelligence.md)
 
