@@ -438,7 +438,7 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 ### onResult<sup>16+</sup>
 
-onResult(callback:&nbsp;Callback\<ESObject\>)
+onResult(callback:&nbsp;Optional\<Callback\<ESObject\>\>)
 
 NavDestination返回时触发该回调。
 
@@ -449,7 +449,7 @@ NavDestination返回时触发该回调。
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------- |
-|callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
+|callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
 
 ## NavDestinationCommonTitle
 
