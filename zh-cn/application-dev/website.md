@@ -1388,12 +1388,13 @@
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
-      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
-        - [DRM系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
-        - [DRM会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
-      - 数字版权保护开发指导(C/C++)<!--drm-native-->
-        - [DRM系统管理(C/C++)](media/drm/native-drm-mediakeysystem-management.md)
-        - [DRM会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
+      - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
+      - [数字版权保护(C/C++)](media/drm/drm-c-dev-guide.md)
+      <!--Del-->
+      - [DRM解决方案开发指导](media/drm/drm-solution-dev-guide.md)
+      <!--DelEnd-->
+      - [基于AVPlayer播放DRM节目(ArkTS)](media/drm/drm-avplayer-arkts-integration.md)
+      - [基于AVCodec播放DRM节目(C/C++)](media/drm/drm-avcodec-integration.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
