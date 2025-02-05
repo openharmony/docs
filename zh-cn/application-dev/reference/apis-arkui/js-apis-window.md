@@ -6444,6 +6444,54 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
+### getWindowDecorVisible<sup>15+</sup>
+
+getWindowDecorVisible(): boolean
+
+查询窗口标题栏是否可见，对存在标题栏和三键区的窗口形态生效。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 返回的窗口标题栏是否可见，true为可见，false为不可见。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp', 121);
+windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
+  let errCode: number = err.code;
+  if (errCode) {
+    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in loading the content.');
+  // 调用getWindowDecorVisible接口
+  try {
+      let isVisible = windowClass?.getWindowDecorVisible();
+      console.info(`Succeeded in getting the visibility of window decor: ${isVisible}`);
+  } catch (exception) {
+      console.error(`Failed to get the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+});
+```
+
 ### setWindowTitle<sup>15+</sup>
 
 setWindowTitle(titleName: string): Promise&lt;void&gt;
