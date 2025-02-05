@@ -71,6 +71,7 @@
 | [OH_ArkUI_GetModuleInterface](#oh_arkui_getmoduleinterface)(nativeAPIVariantKind, structType, structPtr) | 基于结构体类型获取对应结构体指针的宏函数。  | 
 | **MAX_NODE_SCOPE_NUM** | 1000 | 
 | **MAX_COMPONENT_EVENT_ARG_NUM** | 12 | 
+| **UDMF_KEY_BUFFER_LEN** | 512 | 
 
 
 ### 类型定义
@@ -132,6 +133,7 @@
 | typedef struct [ArkUI_SwiperIndicator](#arkui_swiperindicator) [ArkUI_SwiperIndicator](#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
 | typedef struct [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
 | typedef struct [ArkUI_StyledString](#arkui_styledstring) [ArkUI_StyledString](#arkui_styledstring) | 定义文本组件支持的格式化字符串数据对象。  | 
+| typedef struct [OH_UdmfGetDataParams](#oh_udmfgetdataparams) [OH_UdmfGetDataParams](#oh_udmfgetdataparams) | 从UDMF获取数据时的参数。  | 
 
 
 ### 枚举
@@ -759,6 +761,9 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | void OH_ArkUI_FocusClear([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext); | 将当前焦点清除到根容器节点。 |
 | void OH_ArkUI_FocusActivate([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool isActive, bool isAutoInactive); | 设置当前界面的焦点激活态，获焦节点显示焦点框。|
 | void OH_ArkUI_FocusSetAutoTransfer([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool autoTransfer); | 设置页面切换时，焦点转移行为。 | 
+| void [OH_ArkUI_DragEvent_StartDataLoading](#oh_arkui_dragevent_startdataloading)([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, [OH_UdmfGetDataParams](#oh_udmfgetdataparams)\* options, char\* key, unsigned int keyLen); | 异步获取拖拽数据。 | 
+| void OH_ArkUI_[CancelDataLoading](#oh_arkui_canceldataloading)([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key); | 取消异步获取拖拽数据。 | 
+| void OH_ArkUI_[DisableDropDataPrefetchOnNode](#oh_arkui_disabledropdataprefetchonnode)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable); | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。 | 
 
 
 ## 宏定义说明
@@ -1452,6 +1457,18 @@ typedef struct OH_UdmfData OH_UdmfData
 UDMF 统一数据定义。
 
 **起始版本：** 12
+
+
+### OH_UdmfGetDataParams
+
+```
+typedef struct OH_UdmfGetDataParams OH_UdmfGetDataParams
+```
+**描述：**
+
+从UDMF获取数据时的参数。
+
+**起始版本：** 16
 
 
 ## 枚举类型说明
@@ -15013,6 +15030,81 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 | 名称 | 描述 | 
 | -------- | -------- |
 | node | 指定的节点。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_DragEvent_StartDataLoading()
+
+```
+int32_t OH_ArkUI_DragEvent_StartDataLoading (ArkUI_DragEvent* event, OH_UdmfGetDataParams* options, char* key, unsigned int keyLen)
+```
+**描述：**
+
+异步获取拖拽数据。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。  | 
+| options | 从UDMF获取数据时的参数。  | 
+| key | 数据的唯一标识，当事件触发时在回调参数中携带回来。  | 
+| keyLen | key的长度，需要大于等于UDMF_KEY_BUFFER_LEN。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_CancelDataLoading()
+
+```
+int32_t OH_ArkUI_CancelDataLoading (ArkUI_ContextHandle uiContext, const char* key)
+```
+**描述：**
+
+取消异步获取拖拽数据。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| uiContext | uiContext对象，用以绑定实例。| 
+| key | 数据的唯一标识。| 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_DisableDropDataPrefetchOnNode()
+
+```
+int32_t OH_ArkUI_DisableDropDataPrefetchOnNode (ArkUI_NodeHandle node, bool disable)
+```
+**描述：**
+
+异步获取拖拽数据。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 指定的节点。  | 
+| disable | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。当使用OH_ArkUI_DragEvent_StartDataLoading获取数据时，需设置为true。 | 
+
 
 **返回：**
 
