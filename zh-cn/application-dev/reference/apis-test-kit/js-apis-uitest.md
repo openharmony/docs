@@ -3397,7 +3397,7 @@ async function demo() {
 
 penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number): Promise\<void>
 
-模拟手写笔的滑动操作。
+模拟手写笔的滑动操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3412,9 +3412,15 @@ penSwipe(startPoint: Point, endPoint: Point, speed?: number, pressure?: number):
 | speed      | number | 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：pixel/s。 |
 | pressure      | number | 否  | 手写笔滑动操作的压力，默认为1.0，取值范围为0.0到1.0。                        |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -3435,7 +3441,7 @@ async function demo() {
 
 injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: number): Promise\<void>
 
-模拟手写笔多点连续注入操作。
+模拟手写笔多点连续注入操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -3443,15 +3449,22 @@ injectPenPointerAction(pointers: PointerMatrix, speed?: number, pressure?: numbe
 
 **参数：**
 
-| 参数名 | 类型                                            | 必填 | 说明                                                                 |
-| ------ |-----------------------------------------------|----|--------------------------------------------------------------------|
-| pointers | [PointerMatrix](#pointermatrix9) | 是  | 滑动轨迹，包括操作手指个数和滑动坐标序列，仅支持单指操作，PointerMatrix中的操作手指个数fingers必须设置为1。 |
-| speed      | number| 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：pixel/s。             |
-| pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                  |
+| 参数名 | 类型                                            | 必填 | 说明                                                                |
+| ------ |-----------------------------------------------|----|-------------------------------------------------------------------|
+| pointers | [PointerMatrix](#pointermatrix9) | 是  |滑动轨迹，包括操作手指个数和滑动坐标序列。当前仅支持单指操作，PointerMatrix中的操作手指个数fingers必须设置为1。 |
+| speed      | number| 否  | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：pixel/s。            |
+| pressure      | number | 否  | 手写笔多点连续注入的压力，默认为1.0，取值范围为0.0到1.0。                                 |
+
+
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | 无返回值的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
