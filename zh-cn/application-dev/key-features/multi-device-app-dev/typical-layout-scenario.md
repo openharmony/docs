@@ -1030,7 +1030,7 @@ struct CustomDialogB {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 | 图片长宽比不变，最长边充满全屏 |
+| 图片长宽比不变，最长边充满全屏。 | 图片长宽比不变，最长边充满全屏。 | 图片长宽比不变，最长边充满全屏。 |
 | ![大图浏览sm](figures/大图浏览sm.png) | ![大图浏览md](figures/大图浏览md.png) | ![大图浏览lg](figures/大图浏览lg.png) |
 
 **实现方案**
@@ -1061,7 +1061,7 @@ struct BigImage {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 列表项尺寸固定，超出内容可滚动查看 | 列表项尺寸固定，剩余空间均分 | 列表项尺寸固定，剩余空间均分 |
+| 列表项尺寸固定，超出内容可滚动查看。 | 列表项尺寸固定，剩余空间均分。 | 列表项尺寸固定，剩余空间均分。 |
 | ![操作入口sm](figures/操作入口sm.png) | ![操作入口md](figures/操作入口md.png) | ![操作入口lg](figures/操作入口lg.png) |
 
 
@@ -1126,7 +1126,7 @@ export default struct OperationEntries {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 标题和搜索框两行显示 | 标题和搜索框一行显示 | 标题和搜索框一行显示 |
+| 标题和搜索框两行显示。 | 标题和搜索框一行显示。 | 标题和搜索框一行显示。 |
 | ![顶部布局sm](figures/顶部布局sm.png) | ![顶部布局md](figures/顶部布局md.png) | ![顶部布局lg](figures/顶部布局lg.png) |
 
 **实现方案**
@@ -1204,7 +1204,7 @@ export default struct Header {
 
   | sm | md | lg | 
 | -------- | -------- | -------- |
-| 栅格总列数为4，内容占满所有列 | 栅格总列数为8，内容占中间6列。 | 栅格总列数为12，内容占中间8列。 | 
+| 栅格总列数为4，内容占满所有列。 | 栅格总列数为8，内容占中间6列。 | 栅格总列数为12，内容占中间8列。 | 
 | ![indent_sm](figures/indent_sm.jpg) | ![indent_md](figures/indent_md.jpg) | ![indent_lg](figures/indent_lg.jpg) | 
 
 
@@ -1294,7 +1294,7 @@ struct ItemContent {
 
   | sm | md | lg | 
 | -------- | -------- | -------- |
-| 图片和文字上下布局 | 图片和文字左右布局 | 图片和文字左右布局 | 
+| 图片和文字上下布局。 | 图片和文字左右布局。 | 图片和文字左右布局。 | 
 | ![diversion_sm](figures/diversion_sm.jpg) | ![diversion_md](figures/diversion_md.jpg) | ![diversion_lg](figures/diversion_lg.jpg) | 
 
 
@@ -1357,7 +1357,7 @@ struct DiversionSample {
 
 | sm | md | lg |
 | -------- | -------- | -------- |
-| 单列显示，共8个元素<br>可以通过上下滑动查看不同的元素 | 双列显示，共8个元素 | 双列显示，共8个元素 |
+| 单列显示，共8个元素<br>可以通过上下滑动查看不同的元素。 | 双列显示，共8个元素。 | 双列显示，共8个元素。 |
 | ![repeat_sm](figures/repeat_sm.jpg) | ![repeat_md](figures/repeat_md.jpg)  | ![repeat_lg](figures/repeat_lg.jpg) |
 
 

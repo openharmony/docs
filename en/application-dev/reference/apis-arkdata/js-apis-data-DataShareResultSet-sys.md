@@ -9,7 +9,8 @@ The **DataShareResultSet** module provides APIs for accessing the result set obt
 > - The APIs provided by this module are system APIs.
 >
 > - The APIs of this module can be used only in the stage model.
-
+>
+> - The system allows a maximum of 32 data share result sets. Release the data share result sets that are no longer used in a timely manner.
 
 ## Modules to Import
 

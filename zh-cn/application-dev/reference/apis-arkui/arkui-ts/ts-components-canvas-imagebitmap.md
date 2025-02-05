@@ -87,7 +87,7 @@ close(): void
   struct ImageExample {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -112,7 +112,7 @@ close(): void
 
 通过PixelMap创建ImageBitmap对象。
 
-  ```ts
+```ts
 // xxx.ets
 @Entry
 @Component
@@ -139,7 +139,7 @@ struct Demo {
     .height('100%')
   }
 }
-  ```
+```
 
   ![zh-cn_image_0000001194352442](figures/zh-cn_image_0000001194352444.png)
 
@@ -147,6 +147,10 @@ struct Demo {
 ### 示例3（支持并发线程绘制）
 
 通过创建Worker线程，实现并发线程绘制。
+
+> **说明：**
+>
+> DevEco Studio的预览器不支持显示在worker线程中绘制的内容。
 
 ```ts
 import { worker } from '@kit.ArkTS';
@@ -157,7 +161,7 @@ struct imageBitmapExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   private myWorker = new worker.ThreadWorker('entry/ets/workers/Worker.ts');
-  private img:ImageBitmap = new ImageBitmap("common/images/example.jpg")
+  private img: ImageBitmap = new ImageBitmap("common/images/example.jpg")
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -183,9 +187,9 @@ struct imageBitmapExamplePage {
 Worker线程在onmessage中接收到主线程postMessage发送的ImageBitmap，并进行绘制。
 
 ```ts
-workerPort.onmessage = function (e: MessageEvents) {
+workerPort.onmessage = (e: MessageEvents) => {
   if (e.data.myImage) {
-    let img = e.data.myImage
+    let img: ImageBitmap = e.data.myImage
     let offCanvas = new OffscreenCanvas(600, 600)
     let offContext = offCanvas.getContext("2d")
     offContext.drawImage(img, 0, 0, 500, 500, 0, 0, 400, 200)

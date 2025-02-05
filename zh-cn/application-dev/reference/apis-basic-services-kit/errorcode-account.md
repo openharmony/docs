@@ -33,7 +33,7 @@ The system service works abnormally.
 
 **错误信息**
 
-Invalid parameter. 
+Invalid parameter.
 
 **可能原因**
 
@@ -116,11 +116,11 @@ Multi-user is not supported.
 **可能原因**
 
 该错误码表示不支持多用户，可能原因如下:
-当前设备不支持多用户，无法创建账号
+当前设备不支持多用户，无法创建账号。
 
 **处理步骤**
 
-无法创建其他账号，请取消创建
+无法创建其他账号，请取消创建。
 
 ## 12300006 不支持的账号类型
 
@@ -131,17 +131,17 @@ The account type is not supported.
 **可能原因**
 
 该错误码表示提供了不支持的账号类型，可能原因如下:
-当前设备不支持创建指定类型的账号
+当前设备不支持创建指定类型的账号。
 
 **处理步骤**
 
-请创建其他类型的账号
+请创建其他类型的账号。
 
 ## 12300007 账号数量已达上限
 
 **错误信息**
 
-The number of accounts has reached the upper limit.  
+The number of accounts has reached the upper limit.
 
 **可能原因**
 
@@ -228,7 +228,7 @@ The event listener has not been registered.
 
 **处理步骤**
 
-请使用注册的监听器执行解注册操作
+请使用注册的监听器执行解注册操作。
 
 ## 12300013 网络异常
 

@@ -76,7 +76,7 @@ windowAnimationManager.setController(controller);
 
 minimizeWindowWithAnimation(windowTarget: WindowAnimationTarget, callback: AsyncCallback&lt;WindowAnimationFinishedCallback&gt;): void
 
-最小化动画目标窗口，并返回动画完成的回调。使用callback异步回调
+最小化动画目标窗口，并返回动画完成的回调。使用callback异步回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -354,7 +354,7 @@ onScreenUnlock(finishCallback: [WindowAnimationFinishedCallback](#windowanimatio
 
 onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, floatingWindowTargets: Array&lt;WindowAnimationTarget&gt;): void
 
-动画目标窗口更新时的回调
+动画目标窗口更新时的回调。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 

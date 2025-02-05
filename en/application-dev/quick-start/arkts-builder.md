@@ -1,9 +1,10 @@
 # \@Builder Decorator: Custom Builder Function
 
-ArkUI provides the \@Builder decorator that is a lightweight UI element reuse mechanism. This custom component has a fixed internal UI structure and passes the data only to the user. You can abstract reused UI elements into a method and call the method in the **build** method.
+ArkUI provides the \@Builder decorator that is a lightweight UI element reuse mechanism. This decorator has a fixed internal UI structure and passes the data only to the user. You can abstract reused UI elements into a method and call the method in the **build** method.
 
 For simplicity, here we refer to an \@Builder decorated function also as a custom builder function.
 
+Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md).
 
 > **NOTE**
 >
@@ -850,79 +851,6 @@ struct Parent {
         this.objParam.num_value = 1;
       })
     }
-  }
-}
-```
-
-### Component Used in the \@Builder Function Is Not Added to a Root Node
-
-When using the **if** statement in the \@Builder function, if the created component is not added to the **Column** or **Row** root node, the component cannot be created.
-
-[Negative Example]
-
-```ts
-const showComponent: boolean = true;
-@Builder function OverlayNode() {
-  // The Text component is not created without adding it to the Column or Row root node.
-  if (showComponent) {
-      Text("This is overlayNode Blue page")
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .height(100)
-        .textAlign(TextAlign.End)
-    } else {
-      Text("This is overlayNode Red page")
-        .fontSize(20)
-        .fontColor(Color.Red)
-    }
-}
-
-@Entry
-@Component
-struct OverlayExample {
-
-  build() {
-    RelativeContainer() {
-      Text('Hello World')
-        .overlay(OverlayNode(), { align: Alignment.Center})
-    }
-    .height('100%')
-    .width('100%')
-  }
-}
-```
-
-[Positive Example]
-
-```ts
-const showComponent: boolean = true;
-@Builder function OverlayNode() {
-  Column() {
-    if (showComponent) {
-      Text("This is overlayNode Blue page")
-        .fontSize(20)
-        .fontColor(Color.Blue)
-        .height(100)
-        .textAlign(TextAlign.End)
-    } else {
-      Text("This is overlayNode Red page")
-        .fontSize(20)
-        .fontColor(Color.Red)
-    }
-  }
-}
-
-@Entry
-@Component
-struct OverlayExample {
-
-  build() {
-    RelativeContainer() {
-      Text('Hello World')
-        .overlay(OverlayNode(), { align: Alignment.Center})
-    }
-    .height('100%')
-    .width('100%')
   }
 }
 ```

@@ -11,79 +11,79 @@ When you need to pass values between parent and child components, choosing the r
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class MyClass {
+  public num: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(num: number) {
+    this.num = num;
   }
 }
 
 @Component
 struct PropChild {
-  The @Prop testNum: ClassA; // @Prop makes a deep copy.
+  @Prop testClass: MyClass; // @Prop makes a deep copy.
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild testNum ${this.testClass.num}`)
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testClass: MyClass[] = [new MyClass(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testClass[0].num}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testClass[0].num += 1;
         })
 
-      // PropChild does not change the value of @Prop testNum: ClassA. Therefore, @ObjectLink is a better choice.
-      PropChild({ testNum: this.testNum[0] })
+      // PropChild does not change the value of @Prop testClass: MyClass. Therefore, @ObjectLink is a better choice.
+      PropChild({ testClass: this.testClass[0] })
     }
   }
 }
 ```
 
-In the preceding example, the **PropChild** component does not change the value of **\@Prop testNum: ClassA**. In this case, \@ObjectLink is a better choice, because \@Prop makes a deep copy and increases performance overhead.
+In the preceding example, the **PropChild** component does not change the value of **\@Prop testClass: MyClass**. In this case, \@ObjectLink is a better choice, because \@Prop makes a deep copy and increases performance overhead.
 
 [Correct Usage]
 
 ```ts
 @Observed
-class ClassA {
-  public c: number = 0;
+class MyClass {
+  public num: number = 0;
 
-  constructor(c: number) {
-    this.c = c;
+  constructor(num: number) {
+    this.num = num;
   }
 }
 
 @Component
 struct PropChild {
-  @ObjectLink testNum: ClassA; // @ObjectLink does not make a deep copy.
+  @ObjectLink testClass: MyClass; // @ObjectLink does not make a deep copy.
 
   build() {
-    Text(`PropChild testNum ${this.testNum.c}`)
+    Text(`PropChild testNum ${this.testClass.num}`)
   }
 }
 
 @Entry
 @Component
 struct Parent {
-  @State testNum: ClassA[] = [new ClassA(1)];
+  @State testClass: MyClass[] = [new MyClass(1)];
 
   build() {
     Column() {
-      Text(`Parent testNum ${this.testNum[0].c}`)
+      Text(`Parent testNum ${this.testClass[0].num}`)
         .onClick(() => {
-          this.testNum[0].c += 1;
+          this.testClass[0].num += 1;
         })
 
       // When a child component does not need to be changed locally, @ObjectLink is preferred over @Prop, whose deep copy can result in an increase in overhead.
-      PropChild({ testNum: this.testNum[0] })
+      PropChild({ testClass: this.testClass[0] })
     }
   }
 }
@@ -98,42 +98,42 @@ struct Parent {
 ```ts
 @Entry
 @Component
-struct CompA {
+struct MyComponent {
   @State needsUpdate: boolean = true;
-  realState1: Array<number> = [4, 1, 3, 2]; // No state variable decorator is used.
-  realState2: Color = Color.Yellow;
+  realStateArr: Array<number> = [4, 1, 3, 2]; // No state variable decorator is used.
+  realState: Color = Color.Yellow;
 
-  updateUI1(param: Array<number>): Array<number> {
+  updateUIArr(param: Array<number>): Array<number> {
     const triggerAGet = this.needsUpdate;
     return param;
   }
-  updateUI2(param: Color): Color {
+  updateUI(param: Color): Color {
     const triggerAGet = this.needsUpdate;
     return param;
   }
   build() {
     Column({ space: 20 }) {
-      ForEach(this.updateUI1(this.realState1),
+      ForEach(this.updateUIArr(this.realStateArr),
         (item: Array<number>) => {
           Text(`${item}`)
         })
       Text("add item")
         .onClick(() => {
-          // Changing realState1 does not trigger UI update.
-          this.realState1.push(this.realState1[this.realState1.length-1] + 1);
+          // Changing realStateArr does not trigger UI re-render.
+          this.realStateArr.push(this.realStateArr[this.realStateArr.length-1] + 1);
 
-          // Trigger the UI update.
+          // Trigger the UI re-render.
           this.needsUpdate = !this.needsUpdate;
         })
       Text("chg color")
         .onClick(() => {
-          // Changing realState2 does not trigger UI update.
-          this.realState2 = this.realState2 == Color.Yellow ? Color.Red : Color.Yellow;
+          // Changing realState does not trigger UI re-render.
+          this.realState = this.realState == Color.Yellow ? Color.Red : Color.Yellow;
 
-          // Trigger the UI update.
+          // Trigger the UI re-render.
           this.needsUpdate = !this.needsUpdate;
         })
-    }.backgroundColor(this.updateUI2(this.realState2))
+    }.backgroundColor(this.updateUI(this.realState))
     .width(200).height(500)
   }
 }
@@ -141,40 +141,40 @@ struct CompA {
 
 The preceding example has the following pitfalls:
 
-- The application wants to control the UI update logic, but in ArkUI, the UI update logic should be implemented by the framework detecting changes to the application state variables.
+- The application wants to control the UI re-render logic, but in ArkUI, this logic should be implemented by the framework detecting changes to the application state variables.
 
-- **this.needsUpdate** is a custom state variable that should be applied only to the UI component to which it is bound. Because **this.realState1** and **this.realState2** are regular variables (not decorated), their changes do not trigger UI re-render.
+- **this.needsUpdate** is a custom state variable that should be applied only to the UI component to which it is bound. Because **this.realStateArr** and **this.realState** are regular variables (not decorated), their changes do not trigger UI re-render.
 
 - However, in this application, an attempt is made to update these two regular variables through **this.needsUpdate**. This approach is nonviable and may result in poor re-render performance.
 
 [Correct Usage]
 
-To address this issue, decorate the **realState1** and **realState2** variables with \@State. Then, the variable **needsUpdate** is no longer required.
+To address this issue, decorate the **realStateArr** and **realState** variables with \@State. Then, the variable **needsUpdate** is no longer required.
 
 
 ```ts
 @Entry
 @Component
 struct CompA {
-  @State realState1: Array<number> = [4, 1, 3, 2];
-  @State realState2: Color = Color.Yellow;
+  @State realStateArr: Array<number> = [4, 1, 3, 2];
+  @State realState: Color = Color.Yellow;
   build() {
     Column({ space: 20 }) {
-      ForEach(this.realState1,
+      ForEach(this.realStateArr,
         (item: Array<number>) => {
           Text(`${item}`)
         })
       Text("add item")
         .onClick(() => {
-          // Changing realState1 triggers UI update.
-          this.realState1.push(this.realState1[this.realState1.length-1] + 1);
+          // Changing realStateArr triggers UI re-render.
+          this.realStateArr.push(this.realStateArr[this.realStateArr.length-1] + 1);
         })
       Text("chg color")
         .onClick(() => {
-          // Changing realState2 triggers UI update.
-          this.realState2 = this.realState2 == Color.Yellow ? Color.Red : Color.Yellow;
+          // Changing realState triggers UI re-render.
+          this.realState = this.realState == Color.Yellow ? Color.Red : Color.Yellow;
         })
-    }.backgroundColor(this.realState2)
+    }.backgroundColor(this.realState)
     .width(200).height(500)
   }
 }
@@ -196,6 +196,7 @@ struct Title {
   @ObjectLink translateObj: Translate;
   build() {
     Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       Image($r('app.media.icon'))
         .width(50)
         .height(50)
@@ -256,6 +257,7 @@ class Translate {
 struct Title {
   build() {
     Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       Image($r('app.media.icon'))
         .width(50)
         .height(50)
@@ -295,7 +297,7 @@ struct Page1 {
 ## Properly Controlling the Number of Components Associated with Object State Variables
 
 
-When a complex object is defined as a state variable, take care to control the number of components associated with the object - a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md) and [Proper Use of State Management](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/properly-use-state-management-to-develope.md).
+When a complex object is defined as a state variable, take care to control the number of components associated with the object—a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see [Precisely Controlling Render Scope](https://gitee.com/openharmony/docs/blob/master/en/application-dev/performance/precisely-control-render-scope.md) and [Proper Use of State Management](https://gitee.com/openharmony/docs/blob/master/en/application-dev/quick-start/properly-use-state-management-to-develope.md).
 
 ## Querying the Number of Components Associated with a State Variable
 
@@ -309,6 +311,8 @@ Avoid frequent reads of state variables inside a loop, such as the **for** and *
 [Incorrect Usage]
 
 ```ts
+import hilog from '@ohos.hilog';
+
 @Entry
 @Component
 struct Index {
@@ -341,6 +345,8 @@ struct Index {
 [Correct Usage]
 
 ```ts
+import hilog from '@ohos.hilog';
+
 @Entry
 @Component
 struct Index {
@@ -398,7 +404,7 @@ struct Index {
 
   build() {
     Column() {
-      Button ('Print Log')
+      Button('Print Log')
         .onClick(() => {
           this.appendMsg('Change State Variables');
         })
@@ -445,7 +451,7 @@ struct Index {
 
   build() {
     Column() {
-      Button ('Print Log')
+      Button('Print Log')
         .onClick(() => {
           this.appendMsg('Change Temporary Variables');
         })
@@ -472,6 +478,5 @@ In this case, temporary variables are used instead of state variables, triggerin
 [Summary]
 | **Computation Method**| **Time Required (for Reference Only)** | **Description**|
 | ------ | ------- | ------------------------------------- |
-| Changing state variables | 1.01ms | Increases unnecessary query and rendering of ArkUI, causing poor performance.|
-| Using temporary variables for computing | 0.63ms | Streamlines ArkUI behaviors and improve application performance.|
-<!--no_check-->
+| Changing state variables | 1.01 ms| Increases unnecessary query and rendering of ArkUI, causing poor performance.|
+| Using temporary variables for computing | 0.63 ms| Streamlines ArkUI behaviors and improve application performance.|

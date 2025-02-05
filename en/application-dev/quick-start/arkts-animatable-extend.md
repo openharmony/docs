@@ -1,6 +1,6 @@
 # \@AnimatableExtend Decorator: Definition of Animatable Attributes
 
-The @AnimatableExtend decorator is used to define an attribute method for the non-animatable attribute of a component. During animation execution, a frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute. Additionally, you can implement frame-by-frame layout effects by modifying the values of animatable properties in the per-frame callback function.
+The @AnimatableExtend decorator is used to define an attribute method for the non-animatable attribute of a component. During animation execution, a frame-by-frame callback is used to change the value of the non-animatable attribute so that an animation effect can be applied to the attribute. Additionally, you can implement frame-by-frame layout effects by changing the values of animatable properties in the per-frame callback function.
 
 - Animatable attribute: If an attribute method is called before the **animation** attribute, and changing the value of this attribute can make the animation effect specified by the **animation** attribute take effect, then this attribute is called animatable attribute. For example, **height**, **width**, **backgroundColor**, **translate**, and **fontSize** (of the **Text** component) are all animatable attributes.
 
@@ -29,13 +29,14 @@ The @AnimatableExtend decorator is used to define an attribute method for the no
 - In the \@AnimatableExtend decorated function body, only the attribute methods of the component specified in brackets immediately following \@AnimatableExtend can be called.
 
 ### Available APIs
-To perform animation when complex data types are involved, you must implement the addition, subtraction, multiplication, and equivalence judgment functions in the **AnimatableArithmetic\<T\>** API.
-| Name| Input Parameter Type| Return Value Type | Description |
-| -------- | --------  |--------   |--------  |
-| plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Addition function.|
-| subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Subtraction function.|
-| multiply | number | AnimatableArithmetic\<T\> | Multiplication function.|
-| equals | AnimatableArithmetic\<T\> | boolean | Equivalence judgment function.|
+The **AnimatableArithmetic** API defines the animation operation rules for non-number data types. To animate non-number data (such as arrays, structs, and colors), implement the addition, subtraction, multiplication, and equality judgment functions in the **AnimatableArithmetic\<T\>** API.
+In this way, the data can be involved in an interpolation operation of the animation and identify whether the data changes, that is, the non-number data is defined as the types that implement the **AnimatableArithmetic\<T\>** API.
+| Name| Input Parameter Type| Return Value Type| Description |
+| -------- | -------- |-------- |-------- |
+| plus | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Defines the addition rule of the data type.|
+| subtract | AnimatableArithmetic\<T\> | AnimatableArithmetic\<T\> | Defines the subtraction rule of the data type.|
+| multiply | number | AnimatableArithmetic\<T\> | Defines the multiplication rule of the data type.|
+| equals | AnimatableArithmetic\<T\> | boolean | Defines the equality judgment rule of the data type.|
 
 ## Example
 
@@ -96,6 +97,7 @@ class Point {
   }
 }
 
+// PointVector implements the AnimatableArithmetic<T> API.
 class PointVector extends Array<Point> implements AnimatableArithmetic<PointVector> {
   constructor(value: Array<Point>) {
     super();
@@ -160,13 +162,14 @@ struct AnimatablePropertyExample {
     Column() {
       Polyline()
         .animatablePoints(this.points)
-        .animation({duration: 1000, curve: Curve.Ease})
+        .animation({duration: 1000, curve: Curve.Ease}) // Set animation parameters.
         .size({height:220, width:300})
         .fill(Color.Green)
         .stroke(Color.Red)
         .backgroundColor('#eeaacc')
       Button("Play")
         .onClick(() => {
+          // points is a data type that implements the animation protocol. During the animation, points can be changed from the previous PointVector data to the new one based on the defined operation rules and animation parameters to generate the PointVector data of each frame and then generate an animation.
           this.points = new PointVector([
             new Point(50, Math.random() * 200),
             new Point(100, Math.random() * 200),

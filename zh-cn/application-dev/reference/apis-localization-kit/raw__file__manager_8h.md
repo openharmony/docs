@@ -5,10 +5,6 @@
 
 提供资源管理rawfile相关功能，可以使用ResourceManager打开rawfile进行后续相关操作，像搜索和读取等。
 
-**系统能力：** SystemCapability.Global.ResourceManager
-
-**库：** librawfile.z.so
-
 **起始版本：** 8
 
 **相关模块：**[Rawfile](rawfile.md)
@@ -21,7 +17,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef struct [NativeResourceManager](rawfile.md#nativeresourcemanager)[NativeResourceManager](rawfile.md#nativeresourcemanager) | 代表native侧的ResourceManager。  | 
+| typedef struct [NativeResourceManager](rawfile.md#nativeresourcemanager) [NativeResourceManager](rawfile.md#nativeresourcemanager) | 代表native侧的ResourceManager。  | 
 
 
 ### 函数

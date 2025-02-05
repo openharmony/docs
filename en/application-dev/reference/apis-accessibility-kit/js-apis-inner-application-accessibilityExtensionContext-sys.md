@@ -250,3 +250,49 @@ axContext.startAbility(want).then(() => {
   console.error(`startAbility failed to enable ability, Code is ${err.code}, message is ${err.message}`);
 });
 ```
+
+### getElements<sup>16+</sup>
+
+getElements(windowId: number, elementId?: number): Promise<Array&lt;AccessibilityElement&gt;>;
+
+Obtains node elements in batches.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| windowId | number | Yes| Window ID to be obtained.|
+| elementId | number | No| Element ID to be obtained. If this parameter is passed in, the list of all child nodes under the current node is obtained. Otherwise, all nodes in the window are obtained.|
+
+**Return value**
+| Type                                 | Description                    |
+| ----------------------------------- | ---------------------- |
+| Promise<Array&lt;AccessibilityElement&gt;> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
+
+**Example**
+
+```ts
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowId: number = 10;
+let elementId: number = 10;
+
+axContext.getElements(windowId, elementId).then((data:AccessibilityElement[]) => {
+  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
+});
+```

@@ -2,8 +2,10 @@
 A Harmony Archive (HAR) is a static shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles). It enables modules and projects to share code of ArkUI components, resources, and more.
 
 ## When to Use
-- As a second-party library for internal applications, by being released to an [OHPM](https://ohpm.openharmony.cn/#/en/home) private repository.
-- As a third-party library for external applications, by being released to the [OHPM](https://ohpm.openharmony.cn/#/en/home) central repository.
+- Supports intra-application sharing or, after being released, intra-application sharing.
+- As a second-party library for internal applications, by being released to the [OHPM private repository](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-ohpm-repo-V13).
+- As a third-party library for external applications, by being released to the [OHPM central repository](https://ohpm.openharmony.cn/#/en/home).
+- When multiple HAPs or HSPs reference the same HAR, the application package may contain multiple copies of code and resource files for the HAPs or HSPs, resulting in an unwelcome large package size.
 
 ## Constraints
 
@@ -14,7 +16,7 @@ A Harmony Archive (HAR) is a static shared package that can contain code, C++ li
 - An HAR can depend on other HARs, but does not support cyclic dependency or dependency transfer.
 
 ## Creating an HAR
-Create an HAR module in DevEco Studio. For details, see <!--RP1-->[Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-V13#section643521083015)<!--RP1End-->.
+Create an HAR module in DevEco Studio. For details, see [Creating a HAR Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-V13#section643521083015).
 
 
 ## Developing an HAR
@@ -132,7 +134,7 @@ Specifically, DevEco Studio collects resource files from the HAP module and its 
 
 You can reference the ArkUI components, APIs, and resources in an HAR.
 
-To start with, configure the dependency on the HAR. For details, see <!--RP2-->[Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5)<!--RP2End-->.
+Before referencing the HAR, you need to configure the dependency on it. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-import-V13).
 
 ### Referencing ArkUI Components
 
@@ -288,17 +290,11 @@ struct Index {
 ```
 ## Building an HAR
 
-As aforementioned, an HAR can be used as a second-party or third-party library for other applications.
+HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation.md#enabling-code-obfuscation).
 
 To better protect your source code, enable obfuscation for the HAR so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
 
-> **NOTE**
-> 
-> If the obfuscation capability is not enabled during HAR building, the build product is the source code file.<br>
-> Obfuscation is only available for ArkTS projects in the stage model. 
-> When obfuscation is enabled, the resource ID is **-1**, and APIs that obtain resources by ID, such as [ResourceManager](../reference/apis-localization-kit/js-apis-resource-manager.md), do not take effect.
-
-The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Code Obfuscation](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-build-obfuscation-V5). The configuration is as follows:
+The obfuscation capability is enabled by default for the HAR module. When the compilation module is release, simple code obfuscation is automatically performed for the HAR module of API version 10 or later. **Since DevEco Studio 5.0.3.600, the code obfuscation is disabled by default when a project is created.** You can enable this feature by setting **enable** in the **ruleOptions** field in the **build-profile.json5** file of the HAR module. For details, see [Code Obfuscation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-build-obfuscation-V13). The configuration is as follows:
 
   ```json
   {
@@ -365,4 +361,8 @@ After the ArkTS file in the HAR module is built, the product is a JS file by def
 
 ## Publishing an HAR
 
-For details, see <!--RP3-->[Publishing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-publish-V5)<!--RP3End-->.
+For details, see [Publishing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-har-publish-V13).
+
+##  
+
+-  

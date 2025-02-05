@@ -1,6 +1,6 @@
 # getTarget接口：获取状态管理框架代理前的原始对象
 
-为了获取状态管理框架代理前的原始对象，开发者可以使用[getTarget接口](../reference/apis-arkui/js-apis-StateManagement.md#gettarget12)。
+为了获取状态管理框架代理前的原始对象，开发者可以使用[getTarget接口](../reference/apis-arkui/js-apis-StateManagement.md#gettarget)。
 
 在阅读本文档前，建议提前阅读：[\@Observed](./arkts-observed-and-objectlink.md)，[\@ObservedV2](./arkts-new-observedV2-and-trace.md)。
 
@@ -25,7 +25,7 @@
 
 ## 限制条件
 
-- getTarget仅支持对象类型传参
+- getTarget仅支持对象类型传参。
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
