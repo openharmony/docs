@@ -1063,8 +1063,8 @@ Error: fail to verify pkcs7 file.
 验证pkcs7文件失败。
 
 **可能原因**
-<!--RP3-->
-应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。<!--RP3End-->
+
+应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。
 
 **处理步骤**
 
