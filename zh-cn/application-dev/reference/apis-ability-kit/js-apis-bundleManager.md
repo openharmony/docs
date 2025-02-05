@@ -11,6 +11,14 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
+## 权限列表
+
+| 权限                                       | 权限等级     | 描述            |
+| ------------------------------------------ | ------------ | ------------------|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
+
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
+
 ## 枚举
 
 ### BundleFlag
@@ -1366,7 +1374,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let uid = 20010005;
 
 try {
-    bundleManager.getAppCloneIdentity(uid).then((res: bundleManager.AppCloneIdentity) => {
+    bundleManager.getAppCloneIdentity(uid).then((res) => {
         hilog.info(0x0000, 'testTag', 'getAppCloneIdentity res = %{public}s', JSON.stringify(res));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', err.message);
@@ -1374,6 +1382,54 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', message);
+}
+```
+
+### bundleManager.getSignatureInfo<sup>16+</sup>
+
+getSignatureInfo(uid: number): SignatureInfo
+
+根据给定的uid获取对应的[SignatureInfo](./js-apis-bundleManager-bundleInfo.md#signatureinfo)。
+
+**需要权限：** ohos.permission.GET_SIGNATURE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                |
+| ---- | ------ | ---- | ------------------ |
+| uid  | number | 是   | 表示应用程序的UID。 |
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| [SignatureInfo](./js-apis-bundleManager-bundleInfo.md#signatureinfo) | 返回SignatureInfo对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | ---------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let uid = 20010005; // uid需要替换为对应应用程序的UID。
+try {
+    let data = bundleManager.getSignatureInfo(uid);
+    hilog.info(0x0000, 'testTag', 'getSignatureInfo successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getSignatureInfo failed. Cause: %{public}s', message);
 }
 ```
 
@@ -1617,7 +1673,7 @@ skill信息。
 | ------------------------------------------------------------ | -------------- |
 | [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |skill信息。 |
 
-### SkillUri<sup>12+</sup>
+### SkillUrl<sup>12+</sup>
 
 type SkillUrl = _Skill.SkillUri
 

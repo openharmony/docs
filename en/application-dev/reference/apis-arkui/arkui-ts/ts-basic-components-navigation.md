@@ -4,9 +4,13 @@ The **Navigation** component is the root view container for navigation. It typic
 
 > **NOTE**
 >
-> This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
+> - This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
-> Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
+> - Since API version 11, this component supports the safe area attribute by default, with the default attribute value being **expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.KEYBOARD, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])**. You can override this attribute to change the default behavior. In earlier versions, you need to use the [expandSafeArea](ts-universal-attributes-expand-safe-area.md) attribute to implement the safe area feature.
+>
+> - When [NavBar](#navbar12) is nested within a **Navigation** component, the lifecycle of the inner **Navigation** component does not synchronize with the outer **Navigation** component or the lifecycle of a [modal](ts-universal-attributes-modal-transition.md).
+>
+> - If no main title or subtitle is set for **Navigation** and there is no back button, the title bar is not displayed.
 
 
 ## Child Components
@@ -121,7 +125,7 @@ Sets the display mode of the page title bar.
 
 toolBar(value: object | CustomBuilder)
 
-Sets the content of the toolbar. If this attribute is not set, no toolbar is displayed. Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area. If the text is too long, it is scaled down level by level, wrapped in two lines, and then clipped with an ellipsis (...).
+Sets the content of the toolbar. If this attribute is not set, no toolbar is displayed. Toolbar items are evenly distributed on the bottom toolbar, with text and icons evenly spaced in each content area. If any item contains overlong text and there are fewer than five items, the toolbar will reduce the text size progressively, wrap the text over two lines if necessary, and then clip the text with an ellipsis (...) to fit.
 
 This API is deprecated since API version 10. You are advised to use [toolbarConfiguration](#toolbarconfiguration10) instead.
 
@@ -152,8 +156,6 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 Sets the content of the toolbar. If this attribute is not set, no toolbar is displayed.
 
-**Widget capability**: Since API version 10, this API is supported in ArkTS widgets.
-
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -162,7 +164,7 @@ Sets the content of the toolbar. If this attribute is not set, no toolbar is dis
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   |  Array&lt;[ToolbarItem](#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. When the value type is Array&lt;[ToolbarItem](#toolbaritem10), the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, the behavior of the toolbar is determined by the display mode: (1) If the display mode is [Split](#navigationmode9), the toolbar follows the same rules as in portrait mode. (2) If the display mode is [Stack](#navigationmode9), this attribute must be used together with Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt; of the **menus** attribute; in this configuration, the toolbar at the bottom is automatically hidden, and all items on the toolbar are relocated to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
+| value   |  Array&lt;[ToolbarItem](#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. When configured with Array&lt;[ToolbarItem](#toolbaritem10)&gt;, the toolbar follows the rules below:<br>Toolbar items are evenly distributed on the bottom toolbar, with text and icons evenly spaced in each content area.<br>- If any item contains overlong text and there are fewer than five items, the toolbar will: 1. Increase the item width to accommodate the text until the toolbar spans the screen width; 2. Reduce the text size progressively; 3. Wrap the text over two lines; 4. Clip the text with an ellipsis (...).<br>In portrait mode, the toolbar shows a maximum of five icons, with any additional icons placed under an automatically generated **More** icon. In landscape mode, the behavior of the toolbar is determined by the display mode: (1) If the display mode is [Split](#navigationmode9), the toolbar follows the same rules as in portrait mode. (2) If the display mode is [Stack](#navigationmode9), the toolbar must be used together with Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt; of the **menus** attribute; in this configuration, the bottom toolbar is automatically hidden, and all items on the toolbar are relocated to the menu in the upper right corner of the screen.<br>When configured with [CustomBuilder](ts-types.md#custombuilder8), the toolbar does not follow the above rules, except for evenly distributing items at the bottom of the toolbar.|
 | options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | No  | Toolbar options.                                                |
 
 ### hideToolBar
@@ -432,7 +434,7 @@ Sets the style of the system status bar when the home page of the **Navigation**
 
 | Name| Type        | Mandatory| Description              |
 | ------ | -------------- | ---- | ------------------ |
-| style  | Optional&lt;[SystemBarStyle](../js-apis-window.md#systembarstyle12)&gt; | Yes  | Style of the system status bar.|
+| style  | Optional&lt;[SystemBarStyle](#systembarstyle12)&gt; | Yes  | Style of the system status bar.|
 
 >  **Instructions**
 >
@@ -460,7 +462,7 @@ Sets whether the **Navigation** component is recoverable. If set to recoverable,
 
 | Name| Type        | Mandatory| Description              |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | No  | Whether the **Navigation** component is recoverable. By default, it is not recoverable.|
+| recoverable  | Optional&lt;boolean&gt; | Yes  | Whether the **Navigation** component is recoverable. By default, it is not recoverable.<br>Default value: **false**<br>**true**: The **Navigation** component is recoverable.<br>**false**: The **Navigation** component is not recoverable.|
 
 >  **Instructions**
 >
@@ -482,7 +484,23 @@ Sets whether to display a drag bar in split-column scenarios.
 
 | Name| Type        | Mandatory| Description              |
 | ------ | -------------- | ---- | ------------------ |
-| enableDragBar  | Optional&lt;boolean&gt; | No  | Whether to enable the drag bar. By default, there is no drag bar.|
+| enableDragBar  | Optional&lt;boolean&gt; | Yes  | Whether to enable the drag bar. By default, there is no drag bar.<br>Default value: **false**<br>**true**: Enable the drag bar.<br>**false**: Disable the drag bar.|
+
+### enableModeChangeAnimation<sup>15+</sup>
+
+enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
+
+Sets whether to enable the animation for switching between single and double column modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description              |
+| ------ | -------------- | ---- | ------------------ |
+| enableModeChangeAnimation  | Optional&lt;boolean&gt; | Yes  | Whether to enable the animation for switching between single and double column modes.<br>Default value: **true**<br>**true**: Enable the animation.<br>**false**: Disable the animation.|
 
 ## Events
 
@@ -560,18 +578,28 @@ Callback of the custom transition animation.
 
 ## NavPathStack<sup>10+</sup>
 
-Implements a navigation stack, which allows for inheritance since API version 12. You can add new properties and methods in derived classes, or you can override the methods of the base **NavPathStack** class. Objects of the derived class can be used in place of objects of the base **NavPathStack** class. For details, see [Example](#example-10).
+Implements a navigation stack, which allows for inheritance since API version 12. You can add new properties and methods in derived classes, or you can override the methods of the base **NavPathStack** class. Objects of the derived class can be used in place of objects of the base **NavPathStack** class. For details, see [Example 10](#example-10-defining-a-derived-class-of-navpathstack).
 
 > **NOTE**
 >
-> When multiple page stack operations are triggered in succession, the intermediate states are bypassed, and only the final result of the stack operations is rendered.<br>
+> 1. When multiple page stack operations are triggered in succession, the intermediate states are bypassed, and only the final result of the stack operations is rendered.<br>
 > For example, if a Page1 is popped and then immediately pushed back, the system considers that the states before and after these operations are identical, leading to no actual change in the stack. To ensure that a new instance of Page1 is pushed onto the stack despite the consecutive operations, use the **NEW_INSTANCE** mode.
+>
+> 2. Avoid relying on lifecycle event listeners as a means to manage the navigation stack.
+
+### constructor
+
+constructor()
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 ### pushPath<sup>10+</sup>
 
 pushPath(info: NavPathInfo, animated?: boolean): void
 
-Pushes the navigation destination page specified by **info** to the navigation stack.
+Pushes the navigation destination page specified by **info** onto the navigation stack.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -642,7 +670,7 @@ Pushes the navigation destination page specified by **name**, with the data spec
 
 pushDestination(info: NavPathInfo, animated?: boolean): Promise&lt;void&gt;
 
-Pushes the navigation destination page specified by **info** to the navigation stack. This API uses a promise to return the result.
+Pushes the navigation destination page specified by **info** onto the navigation stack. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1062,7 +1090,7 @@ Returns the navigation stack to the page specified by **index** and invokes the 
 
 moveToTop(name: string, animated?: boolean): number
 
-Moves the first navigation destination page that matches **name** from the bottom of the navigation stack to the top of the stack
+Moves the first navigation destination page that matches **name** from the bottom of the navigation stack to the top of the stack.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1150,8 +1178,8 @@ Obtains the parameter information of the navigation destination page specified b
 
 | Type       | Description                        |
 | --------- | -------------------------- |
-| unknown   | Returns the parameter information of the matching navigation destination page.|
-| undefined | Returns **undefined** if the passed index is invalid.    |
+| unknown   | Parameter information of the matching navigation destination page.|
+| undefined | Returned if the provided index is invalid.    |
 
 ### getParamByName<sup>10+</sup>
 
@@ -1561,15 +1589,13 @@ Defines the name of the navigation home page.
 
 Enumerates the layout styles of the title bar and toolbar. Note that this API is not supported for the toolbar in **NavDestination**.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name   | Description|
 |---------|------|
-|STANDARD | In this mode, the title bar or toolbar is laid out above the content area.|
-|STACK | In this mode, the title bar or toolbar is overlaid on top of the content area.|
-|SAFE_AREA_PADDING<sup>14+</sup> | In this mode, the title bar or toolbar is configured to respect the [component-level safe area](./ts-universal-attributes-size.md#safeareapadding14).|
+|STANDARD | In this mode, the title bar or toolbar is laid out above the content area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+|STACK | In this mode, the title bar or toolbar is overlaid on top of the content area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+|SAFE_AREA_PADDING<sup>14+</sup> | In this mode, the title bar or toolbar is configured to respect the [component-level safe area](./ts-universal-attributes-size.md#safeareapadding14).<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## NavigationTitleOptions<sup>11+</sup>
 
@@ -1588,15 +1614,13 @@ Enumerates the layout styles of the title bar and toolbar. Note that this API is
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the toolbar. If this parameter is not set, the default color is used.|
-| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | No   | Background blur style of the toolbar. If this parameter is not set, the background blur effect is disabled.|
-| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12)        | No   | Layout style of the toolbar.|
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the toolbar. If this parameter is not set, the default color is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | No   | Background blur style of the toolbar. If this parameter is not set, the background blur effect is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12)        | No   | Layout style of the toolbar.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## LaunchMode<sup>12+</sup>
 
@@ -1622,13 +1646,27 @@ Enumerates the layout styles of the title bar and toolbar. Note that this API is
 | launchMode | [LaunchMode](#launchmode12)  | No   | Navigation stack operation mode.<br>Default value: **LaunchMode.STANDARD**|
 | animated   | boolean  | No   | Whether to support transition animation.<br>Default value: **true**|
 
+## SystemBarStyle<sup>12+</sup>
+
+type SystemBarStyle = SystemBarStyle
+
+Describes the properties of the status bar. These properties are valid for the page-level status bar.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type    | Description              |
+| -------- | ------------------ |
+| [SystemBarStyle](../js-apis-window.md#systembarstyle12)   | Color of the text on the status bar. The default value is **'#0xE5FFFFFF'**.|
+
 ## Example
 
 The outcome of the sample code may vary depending on the actual device used. The system routing table does not work with DevEco Studio Previewer, cross-platform functionality, or emulators.
 
-### Example 1
+### Example 1: Implementing a Navigation Page Layout
 
-This example demonstrates the page layout of the **Navigation** component.
+This example demonstrates the layout of a navigation page, including the title bar (**title**), menu bar (**menus**), content area, and toolbar (**toolbarConfiguration**).
 
 ```ts
 // xxx.ets
@@ -1735,7 +1773,7 @@ struct NavigationExample {
 
 
 
-### Example 2
+### Example 2: Using NavPathStack Methods
 
 This example demonstrates the use of methods in **NavPathStack** and route interception.
 
@@ -1909,7 +1947,7 @@ export struct PageOne {
               JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
             console.log('Obtains the indexes of all the navigation destination pages that match name.',
               JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
-            console.log('Obtained the stack size', JSON.stringify (this.pageInfos.size ()))
+            console.log('Obtained the stack size', JSON.stringify(this.pageInfos.size()))
           })
       }.width('100%').height('100%')
     }.title('pageOne')
@@ -1998,7 +2036,7 @@ export struct PageTwo {
 ```
 ![navigation.gif](figures/navigation.gif)
 
-### Example 3
+### Example 3: Setting an Interactive Transition Animation
 
 This sample demonstrates how to set a custom transition animation and an interactive transition animation for each **NavDestination** page.
 
@@ -2477,9 +2515,9 @@ export class CustomTransition {
 ```
 ![navigation_interactive_transition](figures/navigation_interactive_transition.gif)
 
-### Example 4
+### Example 4: Implementing a Navigation Component with Parameter Returning
 
-This example primarily demonstrates how to use **Navigation** to return to the previous page with parameters.
+This example demonstrates how to use the APIs in **NavPathStack** to pass parameters back to the previous page.
 
 ```ts
 // Index.ets
@@ -2766,7 +2804,7 @@ export struct PageTwo {
 ```
 ![navigationWithOnPop.gif](figures/navigationWithOnPop.gif)
 
-### Example 5
+### Example 5: Setting the Background Color and Blur Effect
 
 This example demonstrates how to set the background color and background blur effect for the title bar of the home page in **Navigation**, as well as for the toolbar and the title bars on the **NavDestination** pages.
 
@@ -2923,9 +2961,9 @@ struct Index {
 ```
 ![navigationColorBlur.gif](figures/navigationColorBlur.gif)
 
-### Example 6
+### Example 6: Obtaining the Outer Stack for a Nested Navigation Component
 
-This example shows how to obtain the parent navigation path stack for a nested **Navigation** component.
+This example shows how to obtain the parent **NavPathStack** for a nested **Navigation** component.
 
 ```ts
 @Entry
@@ -2991,7 +3029,7 @@ struct NavigationExample1 {
 ```
 ![navPathStackGetParent.gif](figures/navPathStackGetParent.gif)
 
-### Example 7
+### Example 7: Obtaining the Stack Through onReady
 
 This example demonstrates the following:
 
@@ -3102,9 +3140,9 @@ struct NavigationExample2 {
 ```
 ![navigationOnReady1.gif](figures/navigationOnReady1.gif)
 
-### Example 8
+### Example 8: Using NavDestination Lifecycle Callbacks
 
-This example demonstrates the lifecycle timing of **NavDestination**.
+This example demonstrates the timing of the **NavDestination** component lifecycle callbacks: **onAppear**, **onDisappear**, **onShown**, **onHidden**, **onWillAppear**, **onWillDisappear**, **onWillShow**, and **onWillHide**.
 
 ```ts
 @Builder
@@ -3222,7 +3260,7 @@ struct NavigationExample3 {
 ![navigationOnReady2.gif](figures/navigationOnReady2.gif)
 
 
-### Example 9
+### Example 9: Configuring the Title Bar Stack Layout
 
 This example demonstrates the stack layout of the title bar in the **Navigation** component.
 
@@ -3293,7 +3331,7 @@ struct NavigationExample {
 ![titlebar_stack.gif](figures/titlebar_stack.gif)
 
 
-### Example 10
+### Example 10: Defining a Derived Class of NavPathStack
 
 This example demonstrates how to define a derived class of **NavPathStack** and the basic usage of the derived class in **Navigation**.
 
@@ -3414,7 +3452,7 @@ struct PageOne {
 ```
 ![derive_stack.gif](figures/derive_stack.gif)
 
-### Example 11
+### Example 11: Using Symbol Icons
 
 This example shows how to use symbol icons in **Navigation** and **NavDestination**.
 
@@ -3538,7 +3576,7 @@ export struct NavigationMenu {
 ```
 ![navigation_symbol.gif](figures/navigation_symbol.gif)
 
-### Example 12
+### Example 12: Setting the Custom Title Bar Margin
 
 This example demonstrates how to set custom title bar padding in **Navigation** and **NavDestination**, and how to modify the main title and subtitle text styles through **TextModifier**.
 
@@ -3760,9 +3798,9 @@ export struct NavDestinationExample {
 ```
 ![titlebarPaddingAndModifier.gif](figures/titlebarPaddingAndModifier.gif)
 
-### Example 13
+### Example 13: Implementing a Custom Transition Animation
 
-This example shows how to create custom transition animations for navigation between pages.
+This example shows how to implement a custom transition animation for navigation between pages.
 ```ts
 // Index.ets
 import { AnimateCallback, CustomTransition } from './CustomTransitionUtils'

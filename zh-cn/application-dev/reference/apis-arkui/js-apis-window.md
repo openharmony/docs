@@ -761,6 +761,78 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## window.shiftAppWindowPointerEvent<sup>15+</sup>
+shiftAppWindowPointerEvent(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
+
+在同应用内窗口分合场景下，需要将输入事件从源窗口转移到目标窗口，使用Promise异步回调，仅在2in1设备上，针对主窗和子窗生效。
+
+在2in1设备上，源窗口需要处于鼠标按下状态，否则调用此接口将不生效。输入事件转移后，会向源窗口补发鼠标抬起事件，并且向目标窗口补发鼠标按下事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                    |
+| -------------- | ------ | ----- | ----------------------- |
+| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。            |
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。             |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Blank('160')
+          .color(Color.Blue)
+          .onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              try {
+                let sourceWindowId = 1;
+                let targetWindowId = 2;
+                let promise = window.shiftAppWindowPointerEvent(sourceWindowId, targetWindowId);
+                promise.then(() => {
+                  console.info('Succeeded in shifting app window pointer event');
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to shift app window pointer event. Cause code: ${err.code}, message: ${err.message}`);
+                });
+              } catch (exception) {
+                console.error(`Failed to shift app pointer event. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            }
+          })
+      }.width('100%')
+    }.height('100%').width('100%')
+  }
+}
+```
+
 ## window.getWindowsByCoordinate<sup>14+</sup>
 
 getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
@@ -1473,8 +1545,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
-| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| x        | number                    | 是 | 窗口在x轴方向移动到的坐标位置，单位为px，值为正表示位置在x轴右侧；值为负表示位置在x轴左侧；值为0表示位置在x轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y        | number                    | 是 | 窗口在y轴方向移动到的坐标位置，单位为px，值为正表示位置在y轴下侧；值为负表示位置在y轴上侧；值为0表示位置在y轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
@@ -1524,8 +1596,8 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
-| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| x | number | 是 | 窗口在x轴方向移动到的坐标位置，单位为px，值为正表示位置在x轴右侧；值为负表示位置在x轴左侧；值为0表示位置在x轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y | number | 是 | 窗口在y轴方向移动到的坐标位置，单位为px，值为正表示位置在y轴下侧；值为负表示位置在y轴上侧；值为0表示位置在y轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
 
 **返回值：**
 
@@ -1577,8 +1649,8 @@ moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
-| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| x | number | 是 | 窗口在x轴方向移动到的坐标位置，单位为px，值为正表示位置在x轴右侧；值为负表示位置在x轴左侧；值为0表示位置在x轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y | number | 是 | 窗口在y轴方向移动到的坐标位置，单位为px，值为正表示位置在y轴下侧；值为负表示位置在y轴上侧；值为0表示位置在y轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
 
 **返回值：**
 
@@ -2954,7 +3026,7 @@ try {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。
+根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3001,7 +3073,7 @@ windowClass.loadContent('pages/page2', storage, (err: BusinessError) => {
 
 loadContent(path: string, storage: LocalStorage): Promise&lt;void&gt;
 
-根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。
+根据当前工程中某个页面的路径为窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3051,7 +3123,7 @@ promise.then(() => {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。
+为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3125,7 +3197,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面内容，使用callback异步回调。
+为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -3195,7 +3267,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。
+为当前窗口加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -5797,7 +5869,9 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能，使用Promise异步回调，仅2in1设备可用。
+主窗口调用，实现最大化功能，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6182,7 +6256,7 @@ setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;Win
 | 参数名       | 类型                          | 必填 | 说明                           |
 | :----------- | :---------------------------- | :--- | :----------------------------- |
 | windowLimits | [WindowLimits](#windowlimits11) | 是   | 目标窗口的尺寸限制，单位为px。 |
-| isForcible | boolean | 是   | 是否强制设置窗口的尺寸限制。<br>设置为true，表示窗口宽高的最小值不受系统限制（但最小值不能小于40vp，小于40vp时则设置为40vp），窗口宽高的最大值仍取决于系统限制。<br>设置为false，则表示窗口宽高的最小值和最大值都取决于系统限制。|
+| isForcible | boolean | 是   | 是否强制设置窗口的尺寸限制。<br>设置为true，表示窗口宽高最小值以系统限制值和40vp两者中的低数值为准，窗口宽高的最大值仍取决于系统限制。<br>设置为false，表示窗口宽高的最小值和最大值都取决于系统限制。|
 
 **返回值：**
 
@@ -6431,7 +6505,7 @@ try {
 
 setWindowTitleMoveEnabled(enabled: boolean): void
 
-禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，仅对2in1设备生效，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。
+禁止/使能主窗或子窗标题栏默认移动窗口和双击最大化的功能，仅对2in1设备生效，当禁用标题栏默认移动窗口和双击最大化的功能时，可使用[startMoving()](#startmoving14)在应用热区中发起拖拽移动，使用[maximize()](#maximize12)实现最大化功能。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -6457,12 +6531,14 @@ setWindowTitleMoveEnabled(enabled: boolean): void
 **示例：**
 
 ```ts
-try {
-  let enabled = false;
-  windowClass.setWindowTitleMoveEnabled(enabled);
-} catch (exception) {
-  console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let enabled = false;
+    windowClass.setWindowTitleMoveEnabled(enabled);
+  } catch (exception) {
+    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
 ```
 
 ### setSubWindowModal<sup>12+</sup>
@@ -6664,7 +6740,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
-设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。
+设置装饰栏按钮样式，仅对2in1设备的主窗和使能窗口标题的子窗生效。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -6692,19 +6768,21 @@ setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 ```ts
 import { ConfigurationConstant } from '@kit.AbilityKit';
 
-try {
-  let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
-  let style: window.DecorButtonStyle = {
-    colorMode: colorMode,
-    buttonBackgroundSize: 24,
-    spacingBetweenButtons: 12,
-    closeButtonRightMargin: 20
-  };
-  windowClass.setDecorButtonStyle(style);
-  console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
-} catch (exception) {
-  console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
-}
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    let colorMode : ConfigurationConstant.ColorMode = ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT;
+    let style: window.DecorButtonStyle = {
+      colorMode: colorMode,
+      buttonBackgroundSize: 24,
+      spacingBetweenButtons: 12,
+      closeButtonRightMargin: 20
+    };
+    windowClass.setDecorButtonStyle(style);
+    console.info('Succeeded in setting the style of button. Data: ' + JSON.stringify(style));
+  } catch (exception) {
+    console.error(`Failed to set the style of button. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
 ```
 
 ### getDecorButtonStyle<sup>14+</sup>
@@ -7646,6 +7724,139 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### setWindowShadowRadius<sup>16+</sup>
+
+setWindowShadowRadius(radius: number): void
+
+设置子窗或悬浮窗窗口边缘阴影的模糊半径，此接口仅支持在2in1设备或平板设备上使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                          |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，单位为px，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.  |
+
+**示例：**
+
+```ts
+try {
+  windowClass.setWindowShadowRadius(4.0);
+} catch (exception) {
+  console.error(`Failed to set shadow. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setWindowCornerRadius<sup>16+</sup>
+
+setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
+
+设置子窗或悬浮窗的圆角半径值，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+圆角半径值过大将会导致三键（最大化、最小化、关闭按钮）位置被裁切，且会导致热区不易识别，请根据窗口大小设置合适的圆角半径值。
+
+在调用此接口之前调用[getWindowCornerRadius()](#getwindowcornerradius16)接口可以获得窗口默认圆角半径值。
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                 |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| cornerRadius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，单位为vp，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.  |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try{
+  let promise = windowClass.setWindowCornerRadius(1.0f);
+  promise.then(() => {
+    console.info('Succeeded in setting window corner radius.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set window corner radius. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
+```
+
+### getWindowCornerRadius<sup>16+</sup>
+
+getWindowCornerRadius(): number;
+
+获取子窗或悬浮窗的圆角半径值，在未调用[setWindowCornerRadius()](#setwindowcornerradius16)接口设置窗口圆角半径值时，调用此接口可获取窗口默认圆角半径值。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| number | 当前子窗或悬浮窗的圆角半径值，单位为vp。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation.  |
+
+**示例：**
+
+```ts
+try {
+  let cornerRadius = windowClass.getWindowCornerRadius();
+} catch (exception) {
+  console.error(`Failed to get corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
@@ -8010,8 +8221,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                              |
 | -------- | ------------------------- | ---- | ------------------------------------------------- |
-| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
-| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| x        | number                    | 是   | 窗口在x轴方向移动到的坐标位置，单位为px，值为正表示位置在x轴右侧；值为负表示位置在x轴左侧；值为0表示位置在x轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y        | number                    | 是   | 窗口在y轴方向移动到的坐标位置，单位为px，值为正表示位置在y轴下侧；值为负表示位置在y轴上侧；值为0表示位置在x轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                        |
 
 **示例：**
@@ -8047,8 +8258,8 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ------ | ------ | ---- | ------------------------------------------------- |
-| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
-| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入，浮点数输入将向下取整。 |
+| x      | number | 是   | 窗口在x轴方向移动到的坐标位置，单位为px，值为正表示位置在x轴右侧；值为负表示位置在x轴左侧；值为0表示位置在x轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
+| y      | number | 是   | 窗口在y轴方向移动到的坐标位置，单位为px，值为正表示位置在y轴下侧；值为负表示位置在y轴上侧；值为0表示位置在y轴坐标原点。该参数仅支持整数输入，浮点数输入将向下取整。 |
 
 **返回值：**
 
@@ -8765,7 +8976,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前窗口加载具体页面内容，使用callback异步回调。
+为当前窗口加载具体页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 > **说明：**
 >
@@ -8799,7 +9010,7 @@ windowClass.loadContent('pages/page2/page3', (err: BusinessError) => {
 
 loadContent(path: string): Promise&lt;void&gt;
 
-为当前窗口加载具体页面内容，使用Promise异步回调。
+为当前窗口加载具体页面内容，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 > **说明：**
 >
@@ -10257,7 +10468,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。
+为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10318,7 +10529,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, storage?: LocalStorage): Promise&lt;void&gt;
 
-为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。
+为当前WindowStage的主窗口加载具体页面内容，通过LocalStorage传递状态属性给加载的页面，使用Promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10383,7 +10594,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage的主窗口加载具体页面内容，使用callback异步回调。
+为当前WindowStage的主窗口加载具体页面内容，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10440,7 +10651,7 @@ export default class EntryAbility extends UIAbility {
 
 loadContentByName(name: string, storage: LocalStorage, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。
+为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10524,7 +10735,7 @@ export struct Index {
 
 loadContentByName(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。
+为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，使用callback异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -10604,7 +10815,7 @@ export struct Index {
 
 loadContentByName(name: string, storage?: LocalStorage): Promise&lt;void&gt;;
 
-为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用promise异步回调。
+为当前WindowStage加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，通过LocalStorage传递状态属性给加载的页面，使用promise异步回调。建议在UIAbility启动过程中使用该接口，多次调用该接口会先销毁旧的页面内容（即UIContent）再加载新的页面内容，请谨慎使用。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -11246,6 +11457,72 @@ export default class EntryAbility extends UIAbility {
       });
     } catch (exception) {
       console.error(`Failed to check whether the window support the rect auto-save. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### setSupportedWindowModes<sup>15+</sup>
+
+setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>): Promise&lt;void&gt;
+
+设置主窗的窗口支持模式，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | 是   | 设置主窗的窗口支持模式。<br>- FULL_SCREEN：支持全屏模式。<br>- FLOATING：支持悬浮窗模式。<br>- SPLIT：支持分屏模式。通常需要配合FULL_SCREEN或FLOATING一起使用，不建议只配置SPLIT。当仅配置SPLIT时，不会改变当前窗口所处的显示模式，支持进入分屏模式。<br> 注：数组中SupportWindowMode字段取值不应该与该UIAbility对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段取值或者[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)中[属性](../apis-ability-kit/js-apis-app-ability-startOptions.md#属性)的supportWindowModes字段取值冲突。当取值冲突时，最终以该参数设置的窗口支持模式为准。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility, bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    try {
+      let promise = windowStage.setSupportedWindowModes([
+        bundleManager.SupportWindowMode.FULL_SCREEN,
+        bundleManager.SupportWindowMode.SPLIT,
+        bundleManager.SupportWindowMode.FLOATING
+      ]);
+      promise.then(() => {
+        console.info('Succeeded in setting window support modes');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set window support modes. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set window support modes. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 }

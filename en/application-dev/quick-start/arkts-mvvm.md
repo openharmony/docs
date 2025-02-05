@@ -2,6 +2,9 @@
 
 After understanding the concept of state management, you may be eager to develop your own applications. However, if you do not pay attention to the project structure during application development, the relationship between components becomes blurred as the project becomes larger and more state variables are designed. When you develop a new function, the costs of development and maintenance will increase exponentially. Therefore, this document describes the MVVM mode and the relationship between the UI development mode of ArkUI and the MVVM, and provides guidance for you to design your own project structures. In this way, product development and maintenance are easier during product iteration and upgrade.
 
+
+This topic covers most decorators of the state management V1. You are advised to read [State Management Overview](./arkts-state-management-overview.md) and topics related to decorators of V1 in advance.
+
 ## Introduction
 
 ### Concepts
@@ -16,7 +19,7 @@ The UI development mode of ArkUI belongs to the MVVM mode. By introducing the co
 
 ### ArkUI Development
 
-The UI development mode of ArkUI is the MVVM mode, in which the state management plays the role of ViewModel to update the UI and data. The following figure shows the overall architecture.
+The UI development mode of ArkUI is the MVVM mode, in which the state variables play the role of ViewModel to re-render the UI and data. The following figure shows the overall architecture.
 
 ![MVVM image](./figures/MVVM_architecture.png)
 
@@ -101,11 +104,13 @@ struct Index {
       // To-Do list
       Row({space: 15}) {
         if (this.isFinished) {
+          // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
           Image($r('app.media.finished'))
             .width(28)
             .height(28)
         }
         else {
+          // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
           Image($r('app.media.unfinished'))
             .width(28)
             .height(28)
@@ -184,11 +189,13 @@ struct ThingsComponent1 {
     // Task 1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -213,14 +220,16 @@ struct ThingsComponent2 {
   @Prop isFinished: boolean;
 
   build() {
-    // Task 2
+    // Task 1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -318,11 +327,13 @@ struct ThingsComponent {
     // Task 1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         Image($r('app.media.finished'))
           .width(28)
           .height(28)
       }
       else {
+        // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         Image($r('app.media.unfinished'))
           .width(28)
           .height(28)
@@ -459,9 +470,11 @@ struct ThingsComponent {
     // Task 1
     Row({space: 15}) {
       if (this.isFinished) {
+        // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         this.displayIcon($r('app.media.finished'));
       }
       else {
+        // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
         this.displayIcon($r('app.media.unfinished'));
       }
       Text(`${this.things}`)
@@ -537,7 +550,7 @@ The previous section describes how to organize code in non-MVVM mode. As the cod
     * shares ------ Stores common components.
     * service ------ Data services.
       * app.ts ------ Service entry.
-      * LoginMode ----- Login page.
+      * LoginViewMode ----- Login page
       * xxxModel ------ Other pages.
 
 ### Layered Design
@@ -649,16 +662,18 @@ The code is as follows:
   }
   ```
 
+  
+
   * AllchooseComponent.ets
 
   ```typescript
-@Component
+  @Component
   export struct MultiChooseComponent {
     @Link isFinished: boolean;
   
     build() {
       Row() {
-        Button ('Multiselect', {type: ButtonType.Capsule})
+        Button('Multiselect', {type: ButtonType.Capsule})
           .onClick(() => {
             this.isFinished = !this.isFinished;
           })
@@ -672,11 +687,11 @@ The code is as follows:
     }
   }
   ```
-  
+
   * ThingsComponent
 
   ```typescript
-@Component
+  @Component
   export struct ThingsComponent {
     @Prop isFinished: boolean;
     @Prop things: string;
@@ -694,9 +709,11 @@ The code is as follows:
       // Task 1
       Row({space: 15}) {
         if (this.isFinished) {
+          // 'app.media.finished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
           this.displayIcon($r('app.media.finished'));
         }
         else {
+          // 'app.media.unfinished' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
           this.displayIcon($r('app.media.unfinished'));
         }
         Text(`${this.things}`)
@@ -719,11 +736,11 @@ The code is as follows:
   }
   
   ```
-  
+
   ThingsViewModel.ets
 
   ```typescript
-@Observed
+  @Observed
   export class TodoListData {
     planList: string[] = [
       '7:30 Get up'
@@ -736,7 +753,7 @@ The code is as follows:
     ];
   }
   ```
-  
+
   After the code is split in MVVM mode, the project structure and responsibilities of each module are clearer. If a new page needs to use the event component, you only need to import the corresponding component because the local data is fixed and the logic at the Model layer is not written. You can reconstruct your project structures based on the example.
 
   The following figure shows the effect.

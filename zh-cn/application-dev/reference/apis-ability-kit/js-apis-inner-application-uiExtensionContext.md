@@ -48,7 +48,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -66,8 +66,7 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -155,8 +154,7 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -236,7 +234,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden.  |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -254,8 +252,7 @@ startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -331,7 +328,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -349,8 +346,7 @@ startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;):
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -440,8 +436,7 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -525,7 +520,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
+| 16000010 | The call with the continuation and prepare continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -543,8 +538,7 @@ startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityRes
 | 16000077 | The number of app instances reaches the limit. |
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
-| 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
+| 16000080 | Creating a new instance is not supported. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1071,6 +1065,7 @@ export default class UIExtAbility extends UIExtensionAbility {
 ```
 
 ## UIExtensionContext.openAtomicService<sup>12+<sup>
+
 openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;AbilityResult&gt;
 
 跳出式启动[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)，并返回结果。使用Promise异步回调。
@@ -1150,6 +1145,7 @@ export default class EntryAbility extends UIExtensionAbility {
 ```
 
 ## UIExtensionContext.openLink<sup>12+<sup>
+
 openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;AbilityResult&gt;): Promise&lt;void&gt;
 
 通过AppLinking启动UIAbility，使用Promise异步回调。
@@ -1197,7 +1193,7 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist.        |
 | 16000012 | The application is controlled.        |
 | 16000013 | The application is controlled by EDM.       |
@@ -1205,7 +1201,6 @@ openLink(link:string, options?: OpenLinkOptions, callback?: AsyncCallback&lt;Abi
 | 16000069 | The extension cannot start the third party application. |
 | 16200001 | The caller has been released. |
 | 16000053 | The ability is not on the top of the UI. |
-| 16000082 | The UIAbility is being started. |
 
 **示例：**
 
@@ -1274,7 +1269,8 @@ export default class UIExtAbility extends UIExtensionAbility {
 }
 ```
 
-## UIExtensionContext.startUIServiceExtensionAbility<sup>13+<sup>
+## UIExtensionContext.startUIServiceExtensionAbility<sup>14+<sup>
+
 startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 启动一个UIServiceExtensionAbility。
@@ -1284,14 +1280,13 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
 
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名   | 类型                                                                         |只读 | 可选 | 说明                      |
-| -------- | ---------------------------------------------------------------------------- | ---- |  ---- |------------------------- |
-| want     | [Want](js-apis-app-ability-want.md)                                        | 是 | 否  | 启动UIServiceExtensionAbility的Want参数信息。 |
+| 参数名   | 类型                                                                         | 必填 | 说明                      |
+| -------- | --------------------------------------------------------------------------- | --- |------------------------- |
+| want     | [Want](js-apis-app-ability-want.md)                                        | 是 | 启动UIServiceExtensionAbility的Want参数信息。 |
 
 **返回值：**
 
@@ -1307,16 +1302,16 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 | -------- | ----------------------------------------------------------------------------------------------------------- |
 | 201 | The application does not have permission to call the interface. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 801 | The Ability is not supported. |
+| 801 | Capability not supported. |
 | 16000001 | The specified ability does not exist.                                                                       |
 | 16000002 | Incorrect ability type.                                                                                     |
-| 16000004 | Failed to start the invisible ability.                                                                          |
+| 16000004 | Failed to start the invisible ability.                                                                      |
 | 16000005 | The specified process does not have the permission.                                                         |
-| 16000006 | Cross-user operations are not allowed.                                                                      |
 | 16000008 | The crowdtesting application expires.                                                                       |
 | 16000011 | The context does not exist.                                                                                 |
 | 16000012 | The application is controlled.                                                                              |
-| 16000013 | The application is controlled by EDM.                                                                       |
+| 16000013 | The EDM prohibits the application from launching.                                                           |
+| 16000019 | No matching ability is found.                                                                               |
 | 16000050 | Internal error.                                                                                             |
 | 16200001 | The caller has been released.                                                                               |
 
@@ -1358,7 +1353,8 @@ struct Index {
 }
 ```
 
-## UIExtensionContext.connectUIServiceExtensionAbility<sup>13+<sup>
+## UIExtensionContext.connectUIServiceExtensionAbility<sup>14+<sup>
+
 connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnectCallback) : Promise&lt;UIServiceProxy&gt;
 
 连接到UIServiceExtensionAbility。
@@ -1368,15 +1364,14 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 >
 
-
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名               | 类型                             | 只读 | 可选 | 说明                 |
-| -------------------- | -------------------------------- | ---- | -------------------- |  -------------------- |
-| want                 | Want                             | 是  | 否 | 用于连接的Want信息。 |
-| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 是 |否  | 连接UIServiceExtensionAbility回调。     |
+| 参数名               | 类型                             | 必填 | 说明                 |
+| -------------------- | -------------------------------- | ---- |  -------------------- |
+| want                 | Want                             | 是 | 用于连接的Want信息。 |
+| callback | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 是 | 连接UIServiceExtensionAbility回调。     |
 
 **返回值：**
 
@@ -1392,15 +1387,15 @@ connectUIServiceExtensionAbility(want: Want, callback: UIServiceExtensionConnect
 | -------- | ---------------------------------- |
 | 201      | The application does not have permission to call the interface.        |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16000001 | The specified ability does not  |
+| 801      | Capability not supported.                                              |
+| 16000001 | The specified ability does not exist.                                  |
 | 16000002 | Incorrect ability type.                                                |
-| 16000004 | Failed to start the invisible ability.                                     |
+| 16000004 | Failed to start the invisible ability.                                 |
 | 16000005 | The specified process does not have the permission.                    |
-| 16000006 | Cross-user operations are not allowed.                                 |
 | 16000008 | The crowdtesting application expires.                                  |
 | 16000011 | The context does not exist.                                            |
+| 16000013 | The EDM prohibits the application from launching.                      |
 | 16000050 | Internal error.                                                        |
-| 16000053 | The ability is not on the top of the UI.                               |
 | 16000055 | Installation-free timed out.                                           |
 
 **示例：**
@@ -1448,19 +1443,19 @@ struct Page_UIServiceExtensionAbility {
 }
 ```
 
-## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>13+<sup>
+## UIExtensionContext.disconnectUIServiceExtensionAbility<sup>14+<sup>
+
 disconnectUIServiceExtensionAbility(proxy: UIServiceProxy): Promise&lt;void&gt;
 
 断开UIServiceExtensionAbility。
-
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
-| 参数名               | 类型                             | 只读 | 可选 | 说明                 |
-| -------------------- | -------------------------------- | ---- | -------------------- | -------------------- |
-| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是 | 否  | [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13)返回的Proxy。 |
+| 参数名               | 类型                             | 必填 | 说明                 |
+| -------------------- | -------------------------------- | ---- | -------------------- |
+| proxy  | [UIServiceProxy](js-apis-inner-application-uiserviceproxy.md)  | 是  | [connectUIServiceExtensionAbility](#uiextensioncontextconnectuiserviceextensionability13)返回的Proxy。 |
 
 **返回值：**
 

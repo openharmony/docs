@@ -45,6 +45,24 @@ Sets the background color of the component.
 | ------ | ------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the component.|
 
+## backgroundColor<sup>16+</sup>
+
+backgroundColor(color: Optional\<ResourceColor>)
+
+Sets the background color of the component. Compared to [backgroundColor](#backgroundcolor), the **color** parameter supports the **undefined** type.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                 | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Background color of the component.<br>If **color** is **undefined**, the background color reverts to the default transparent color.|
+
 >  **NOTE**
 >
 >  If the background color is specified through **inactiveColor** in [backgroundBlurStyle](#backgroundblurstyle9), avoid setting the background color again using **backgroundColor**.
@@ -67,6 +85,25 @@ Sets the background image of the component.
 | ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
 | repeat | [ImageRepeat](ts-appendix-enums.md#imagerepeat) | No  | Whether the background image is repeated. By default, the background image is not repeated. If the set image has a transparent background and **backgroundColor** is set, the image is overlaid on the background color.|
+
+## backgroundImage<sup>16+</sup>
+
+backgroundImage(src: ResourceStr | PixelMap, options?: BackgroundImageOptions)
+
+Sets the background image of the component. Compared to [backgroundImage](#backgroundimage), this API supports the **BackgroundImageOptions** type, but not the **ImageRepeat** type.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                           | Mandatory| Description                                                        |
+| ------ | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| src    | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)          | Yes  | Image address, which can be the address of an online or local image, a Base64 encoded string, or a pixel map. SVG images are not supported.|
+| options | [BackgroundImageOptions](ts-universal-attributes-image-effect.md#BackgroundImageOptions) | No  | Whether to load the background image synchronously.<br>**NOTE**<br><br>By default, the image is loaded asynchronously.|
 
 ## backgroundImageSize
 
@@ -142,8 +179,27 @@ Defines the blur style to apply between the background and content of a componen
 
 | Name               | Type                                                        | Mandatory| Description                                                        |
 | --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value                 | [BlurStyle](#blurstyle9)                 | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
+| value                 | [BlurStyle](#blurstyle9)                                     | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.|
 | options<sup>10+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
+
+## backgroundBlurStyle<sup>16+</sup>
+
+backgroundBlurStyle(style: Optional\<BlurStyle>, options?: BackgroundBlurStyleOptions)
+
+Defines the blur style to apply between the background and content of a component. It encapsulates various blur radius, mask color, mask opacity, saturation, and brightness values through enum values. Compared to [backgroundBlurStyle<sup>9+</sup>](#backgroundblurstyle9), the **style** parameter supports the **undefined** type.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name               | Type                                                        | Mandatory| Description                                                        |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style                 | Optional\<[BlurStyle](#blurstyle9)>                          | Yes  | Settings of the background blur style, including the blur radius, mask color, mask opacity, saturation, and brightness.<br>If **style** is **undefined**, the background blur reverts to its default state (that is, no blur).|
+| options<sup>16+</sup> | [BackgroundBlurStyleOptions](#backgroundblurstyleoptions10)| No  | Background blur options.                                              |
 
 >  **NOTE**
 >
@@ -163,10 +219,29 @@ Applies a background blur effect to the component.
 
 **Parameters**
 
-| Name               | Type                                             | Mandatory| Description                                                        |
-| --------------------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value                 | number                                            | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
+| Name               | Type                                                        | Mandatory| Description                                                        |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value                 | number                                                       | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.|
 | options<sup>11+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
+
+## backdropBlur<sup>16+</sup>
+
+backdropBlur(radius: Optional\<number>, options?: BlurOptions)
+
+Applies a background blur effect to the component. Compared to [backdropBlur](#backdropblur), the **radius** parameter supports the **undefined** type.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name               | Type                                                        | Mandatory| Description                                                        |
+| --------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| radius                | Optional\<number>                                            | Yes  | Background blur effect to apply to the component. The input parameter is the blur radius. The larger the radius is, the more blurred the background is. If the value is **0**, the background is not blurred.<br>If **radius** is **undefined**, the background blur reverts to its default state (that is, no blur).|
+| options<sup>16+</sup> | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) | No  | Grayscale parameters.                                                |
 
 >  **NOTE**
 >
@@ -184,9 +259,25 @@ Sets the background effect of the component, including the blur radius, brightne
 
 **Parameters**
 
-| Name | Type                                                        | Mandatory| Description                                      |
-| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
+| Name | Type                                                 | Mandatory| Description                                      |
+| ------- | ----------------------------------------------------- | ---- | ------------------------------------------ |
 | options | [BackgroundEffectOptions](#backgroundeffectoptions11) | Yes  | Background effect, including saturation, brightness, and color.|
+
+## backgroundEffect<sup>16+</sup> 
+
+backgroundEffect(options: Optional\<BackgroundEffectOptions>)
+
+Sets the background effect of the component, including the blur radius, brightness, saturation, and color. Compared to [backgroundEffect<sup>11+</sup>](#backgroundeffect11), the **options** parameter supports the **undefined** type.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[BackgroundEffectOptions](#backgroundeffectoptions11)> | Yes  | Background effect, including saturation, brightness, and color.<br>If **options** is **undefined**, the background reverts to its default state with no effect.|
 
 ## BackgroundEffectOptions<sup>11+</sup>
 Describes the background effect.
@@ -203,7 +294,7 @@ Describes the background effect.
 | color        | [ResourceColor](ts-types.md#resourcecolor)         |   No  |   Color.<br>Default value: transparent |
 | adaptiveColor | [AdaptiveColor](ts-universal-attributes-foreground-blur-style.md#adaptivecolor10) |   No | Adaptive color mode used for the background blur effect.<br>Default value: **DEFAULT** When set to **AVERAGE**, the adaptive color mode takes effect only when the color has transparency.  |
 | blurOptions  | [BlurOptions](ts-universal-attributes-foreground-blur-style.md#bluroptions11) |   No  |   Grayscale blur.<br>Default value: **[0, 0]** |
-| policy<sup>14+</sup>    | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
+| policy<sup>14+</sup>    | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
 
 ## backgroundImageResizable<sup>12+</sup>
@@ -236,9 +327,20 @@ Inherited from [BlurStyleOptions](ts-universal-attributes-foreground-blur-style.
 
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| policy<sup>14+</sup>  | [BlurStyleActivePolicy](ts-appendix-enums.md#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
+| policy<sup>14+</sup>  | [BlurStyleActivePolicy](#blurstyleactivepolicy14) | No   | Blur activation policy.<br> Default value: **BlurStyleActivePolicy.ALWAYS_ACTIVE**|
 | inactiveColor<sup>14+</sup>  | [ResourceColor](ts-types.md#resourcecolor) | No   | Background color of the components within the window after the window loses focus (in which case, the blur effect on the components within the window is removed).|
 
+## BlurStyleActivePolicy<sup>14+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value|Description                           |
+| ------ | ----------------------------- |----------------------------- |
+| FOLLOWS_WINDOW_ACTIVE_STATE| 0|The blur effect changes according to the window's focus state; it is inactive when the window is not in focus and active when the window is in focus.|
+|  ALWAYS_ACTIVE  | 1|The blur effect is always active.|
+| ALWAYS_INACTIVE |2 |The blur effect is always inactive.|
 
 ## backgroundBrightness<sup>12+</sup> 
 
@@ -255,6 +357,22 @@ Sets the background brightness of the component.
 | Name| Type                                                        | Mandatory| Description                                                |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
 | params | [BackgroundBrightnessOptions](#backgroundbrightnessoptions12) | Yes  | Parameters for setting the background brightness.|
+
+## backgroundBrightness<sup>16+</sup> 
+
+backgroundBrightness(options: Optional\<BackgroundBrightnessOptions>)
+
+Sets the background brightness of the component. Compared to [backgroundBrightness<sup>12+</sup>](#backgroundbrightness12), the **options** parameter supports the **undefined** type.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                                        | Mandatory| Description                                                        |
+| ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| options | Optional\<[BackgroundBrightnessOptions](#backgroundbrightnessoptions12)> | Yes  | Parameters for setting the background brightness.<br>If **options** is **undefined**, the background reverts to its default state with no brightness effect.|
 
 ## BackgroundBrightnessOptions<sup>12+</sup>
 

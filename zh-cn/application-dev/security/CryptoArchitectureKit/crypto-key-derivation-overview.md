@@ -37,3 +37,11 @@ HKDF包含三个模式，提取（EXTRACT_ONLY）、拓展（EXPAND_ONLY）、�
 | HKDF | SHA384 | [EXPAND_ONLY\|EXTRACT_ONLY\|EXTRACT_AND_EXPAND] | HKDF\|SHA384 | 12+ | 
 | HKDF | SHA512 | [EXPAND_ONLY\|EXTRACT_ONLY\|EXTRACT_AND_EXPAND] | HKDF\|SHA512 | 12+ | 
 | HKDF | SM3 | [EXPAND_ONLY\|EXTRACT_ONLY\|EXTRACT_AND_EXPAND] | HKDF\|SM3 | 12+ | 
+
+## SCRYPT算法
+
+SCRYPT算法是一种密钥派生函数（KDF），主要用于从输入的密码和盐值生成加密密钥。这个算法主要包含三个主要的参数：n、r和p。n是迭代次数，r是块大小，p是并行性。通过调整这些参数，可以根据不同的安全需求和硬件性能进行优化。
+
+| 密钥派生算法 | 字符串参数 | API版本 | 
+| -------- | -------- | -------- |
+| SCRYPT | SCRYPT | 16+ | 

@@ -1347,145 +1347,157 @@ Enumerates the MIFARE Ultralight tag types.
 | TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight.  |
 | TYPE_ULTRALIGHT_C | 2      | MIFARE Ultralight C.|
 
-## NfcATag
+## NfcATag<sup>7+</sup>
 
 type NfcATag = _NfcATag
 
 Defines an **NfcATag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_NfcATag](./js-apis-nfctech.md#nfcatag) | Object that implements access to NFC-A (ISO 15693) properties and I/O operations on a tag. |
 
-## NfcBTag
+## NfcBTag<sup>7+</sup>
 
 type NfcBTag = _NfcBTag
 
 Obtains an **NfcBTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_NfcBTag](./js-apis-nfctech.md#nfcbtag) | Object that implements access to NFC-B (ISO 14443-3B) properties and I/O operations on a tag. |
 
-## NfcFTag
+## NfcFTag<sup>7+</sup>
 
 type NfcFTag = _NfcFTag
 
 Obtains an **NfcFTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_NfcFTag](./js-apis-nfctech.md#nfcftag) | Object that implements access to NFC-F (ISO 6319-4) properties and I/O operations on a tag. |
 
-## NfcVTag
+## NfcVTag<sup>7+</sup>
 
 type NfcVTag = _NfcVTag
 
 Obtains an **NfcVTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
-| [_NfcATag](./js-apis-nfctech.md#nfcvtag) | Object that implements access to NFC-V (ISO 15693) properties and I/O operations on a tag. |
+| [_NfcVTag](./js-apis-nfctech.md#nfcvtag) | Object that implements access to NFC-V (ISO 15693) properties and I/O operations on a tag. |
 
-## IsoDepTag
+## IsoDepTag<sup>9+</sup>
 
 type IsoDepTag = _IsoDepTag
 
 Obtains an **IsoDepTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | Object that implements access to ISO-DEP (ISO 14443-4) properties and I/O operations on a tag. |
 
-## NdefTag
+## NdefTag<sup>9+</sup>
 
 type NdefTag = _NdefTag
 
 Obtains an **NdefTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_NdefTag](./js-apis-nfctech.md#ndeftag9) | Object that implements access to NDEF tags. |
 
-## MifareClassicTag
+## MifareClassicTag<sup>9+</sup>
 
 type MifareClassicTag = _MifareClassicTag
 
 Obtains a **MifareClassicTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_MifareClassicTag](./js-apis-nfctech.md#mifareclassictag9) | Object that implements access to MIFARE Classic properties and I/O operations on a tag.|
 
-## MifareUltralightTag
+## MifareUltralightTag<sup>9+</sup>
 
 type MifareUltralightTag = _MifareUltralightTag;
 
 Obtains a **MifareUltralightTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_MifareUltralightTag](./js-apis-nfctech.md#mifareultralighttag9) | Object that implements access to MIFARE Ultralight properties and I/O operations on a tag.|
 
-## NdefFormatableTag
+## NdefFormatableTag<sup>9+</sup>
 
 type NdefFormatableTag = _NdefFormatableTag
 
 Obtains a **NdefFormatableTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | Object that implements formatting of NDEF formattable tags. |
 
-## BarcodeTag
+## BarcodeTag<sup>16+</sup>
 
 type BarcodeTag = _BarcodeTag
 
 Obtains a **BarcodeTag** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 16.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | Object that implements access to the barcode tag properties and I/O operations on a tag.|
 
-## NdefMessage
+## NdefMessage<sup>9+</sup>
 
 type NdefMessage = _NdefMessage
 
 Obtains an **NdefMessage** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_NdefMessage](./js-apis-nfctech.md#ndefmessage9) | Obtains all NDEF records.|
 
-## TagSession
+## TagSession<sup>7+</sup>
 
 type TagSession = _TagSession
 
 Obtains a **TagSession** object.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |

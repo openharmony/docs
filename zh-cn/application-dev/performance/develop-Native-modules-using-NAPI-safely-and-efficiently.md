@@ -10,7 +10,7 @@ N-API 是 Node.js Addon Programming Interface 的缩写，是 Node.js 提供的�
 
 ## 对象生命周期管理
 
-在进行 N-API 调用时，引擎堆中对象的句柄 handle 会作为 napi_value 返回，对象的生命周期由这些句柄控制。对象的句柄会与一个 scope 保持一致，默认情况下，对象当前所在 native 方法是 handle 的 scope。在应用 native 模块实际开发过程中，需要对象有比当前所在 native 方法更短或更长的 scope。本文描述了管理对象生命周期的 N-API 接口，开发者通过这些接口可以合理的管理对象生命周期，满足业务诉求。
+在进行 N-API 调用时，引擎堆中对象的句柄 handle 会作为 [napi_value](https://nodejs.org/api/n-api.html#napi_value) 返回，对象的生命周期由这些句柄控制。对象的句柄会与一个 scope 保持一致，默认情况下，对象当前所在 native 方法是 handle 的 scope。在应用 native 模块实际开发过程中，需要对象有比当前所在 native 方法更短或更长的 scope。本文描述了管理对象生命周期的 N-API 接口，开发者通过这些接口可以合理的管理对象生命周期，满足业务诉求。
 
 ### 缩短对象生命周期
 

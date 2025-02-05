@@ -9,7 +9,7 @@
 
 > 从API version 9开始不再维护，建议使用[bundleManager-ApplicationInfo](js-apis-bundleManager-applicationInfo.md)替代。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力**: SystemCapability.BundleManager.BundleFramework
 
 
 

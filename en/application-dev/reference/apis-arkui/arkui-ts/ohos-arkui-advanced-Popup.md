@@ -170,8 +170,8 @@ struct PopupExample {
 
 ![](figures/popup_7.png)
 
-### Example 2: Implementing a Mirror Effect
-This example shows how to achieve a mirror effect for a popup by configuring **direction**.
+### Example 2: Implementing a Mirroring Effect
+This example shows how to achieve a mirroring effect for a popup by configuring **direction**.
 
 ```ts
 // xxx.ets

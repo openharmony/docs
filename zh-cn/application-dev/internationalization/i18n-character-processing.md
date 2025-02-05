@@ -185,4 +185,48 @@ let isBoundary = iterator.isBoundary(9); // isBoundary: true
 // 获取BreakIterator对象处理的文本
 let breakText = iterator.getLineBreakText(); // breakText: Apple is my favorite fruit.
 ```
+
+### 文件路径镜像处理
+
+文件路径镜像处理是指对输入路径进行本地化处理。通过I18NUtil类的[getUnicodeWrappedFilePath](../reference/apis-localization-kit/js-apis-i18n.md#getunicodewrappedfilepath16)接口实现，具体开发步骤如下。
+
+1. 导入模块。
+```ts
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { i18n, intl } from '@kit.LocalizationKit';
+```
+
+2. 调用文件路径镜像处理接口。
+```ts
+  try {
+    let path : string = "/data/out/tmp"; // 定义路径
+    let delimiter : string = "/"; // 定义路径分隔符
+    let locale : intl.Locale = new intl.Locale("ar"); // 定义本地化locale对象
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // 调用接口
+  } catch (error) {
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+```
+
+
+**开发实例**
+```ts
+// 导入模块
+import { BusinessError } from '@kit.BasicServicesKit';
+import { i18n, intl } from '@kit.LocalizationKit';
+
+try {
+    // 传入镜像语言，对路径进行镜像处理
+    let path : string = "/data/out/tmp";
+    let delimiter : string = "/";
+    let locale : intl.Locale = new intl.Locale("ar");
+    let mirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, locale); // mirrorPath: tmp/out/data/
+
+    // 传入非镜像语言，不处理路径
+    let localeZh : intl.Locale = new intl.Locale("zh");
+    let unMirrorPath : string = i18n.I18NUtil.getUnicodeWrappedFilePath(path, delimiter, localeZh); // unMirrorPath: /data/out/tmp
+} catch (error) {
+    console.error(`call I18NUtil.getUnicodeWrappedFilePath failed, error code: ${error.code}, message: ${error.message}.`);
+}
+```
 <!--RP1--><!--RP1End-->

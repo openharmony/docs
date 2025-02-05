@@ -636,7 +636,7 @@ ws.off('open', callback1);
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
-Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
+Enables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).
@@ -668,7 +668,7 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
-Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result. The maximum length of each message is 4 KB. If the length exceeds 4 KB, the message is automatically fragmented.
+Disables listening for the **message** events of a WebSocket connection. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 > The data in **AsyncCallback** can be in the format of string (API version 6) or ArrayBuffer (API version 8).

@@ -1,6 +1,6 @@
 # @ohos.bundle.bundleManager (bundleManager模块)(系统接口)
 
-本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-BundleInfo-sys.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
+本模块提供应用信息查询能力，支持[BundleInfo](js-apis-bundleManager-bundleInfo.md)、[ApplicationInfo](js-apis-bundleManager-ApplicationInfo-sys.md)、[AbilityInfo](js-apis-bundleManager-abilityInfo.md)、[ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)等信息的查询。
 
 > **说明：**
 >
@@ -142,6 +142,9 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | 名称 | 值 | 说明 |
 |----------------|---|---|
 | FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态，1表示指定用户安装了，0表示未安装。|
+| FLAG_OTHER_INSTALLED<sup>15+</sup>|  0x00000010 | 表示除指定用户外，其他用户的应用安装状态，1表示其他用户安装了，0表示未安装。|
+| FLAG_PREINSTALLED_APP<sup>15+</sup>|  0x00000020 | 表示应用的预置属性，1表示预置应用，0表示非预置应用。|
+| FLAG_PREINSTALLED_APP_UPDATE<sup>15+</sup>|  0x00000040 | 表示该预置应用是否已更新，1表示该预置应用更新了，0表示未更新。|
 
 ## 接口
 
@@ -1855,11 +1858,105 @@ try {
 }
 ```
 
+### bundleManager.getAllBundleCacheSize<sup>15+</sup>
+
+getAllBundleCacheSize(): Promise\<number>
+
+以异步方法获取全局缓存，使用Promise形式返回结果。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<number> | Promise对象。返回全局缓存大小，以字节为单位。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    bundleManager.getAllBundleCacheSize().then((data) => {
+        hilog.info(0x0000, 'testTag','getAllBundleCacheSize successful. Data: ' + JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllBundleCacheSize failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllBundleCacheSize failed: %{public}s', message);
+}
+```
+
+### bundleManager.cleanAllBundleCache<sup>15+</sup>
+
+cleanAllBundleCache(): Promise\<void>
+
+以异步方法清理全局缓存，使用Promise形式返回。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.REMOVE_CACHE_FILES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                                   |
+| -------- | ---------------------------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+try {
+    bundleManager.cleanAllBundleCache().then((data) => {
+        hilog.info(0x0000, 'testTag','cleanAllBundleCache successful.');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'cleanAllBundleCache failed: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'cleanAllBundleCache failed: %{public}s', message);
+}
+```
+
 ### bundleManager.cleanBundleCacheFiles
 
 cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
 以异步方法根据给定的bundleName清理BundleCache，使用callback形式返回结果。
+
+调用方清理自身缓存数据时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1914,6 +2011,8 @@ cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
 以异步方法根据给定的bundleName清理BundleCache，使用Promise形式返回结果。
 
+调用方清理自身缓存数据时不需要权限。
+
 **系统接口：** 此接口为系统接口。
 
 **需要权限：** ohos.permission.REMOVE_CACHE_FILES
@@ -1964,11 +2063,13 @@ try {
 }
 ```
 
-### bundleManager.cleanBundleCacheFiles
+### bundleManager.cleanBundleCacheFiles<sup>15+</sup>
 
 cleanBundleCacheFiles(bundleName: string, appIndex: number): Promise\<void>
 
-以异步方法根据给定的bundleName和appIndex清理BundleCache，使用Promise形式返回结果。
+根据给定的bundleName和appIndex清理BundleCache，使用Promise异步回调。
+
+调用方清理自身缓存数据时不需要权限。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4668,14 +4769,16 @@ getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo
 
 ```ts
 import { bundleManager } from '@kit.AbilityKit';
-import { Base } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-bundleManager.getAllPreinstalledApplicationInfo().then((data: Array<bundleManager.PreinstalledApplicationInfo>) => {
-    console.info("GetAllPreinstalledApplicationInfo success, data is :" + JSON.stringify(data));
-
-}).catch((err: Base.BusinessError) => {
-    console.error("GetAllPreinstalledApplicationInfo success errCode is :" + JSON.stringify(err.code));
-});
+try {
+    let data = bundleManager.getAllPreinstalledApplicationInfo();
+    hilog.info(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo success, Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed: %{public}s', message);
+}
 ```
 
 ### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>

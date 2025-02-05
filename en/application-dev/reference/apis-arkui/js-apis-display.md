@@ -47,18 +47,28 @@ Enumerates the orientations of a display.
 
 ## FoldStatus<sup>10+</sup>
 
-Enumerates the fold statuses of a foldable device.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
+Enumerates the fold statuses of a foldable device. For dual-fold axis devices, when oriented with the charging port at the bottom, the hinges are identified from right to left as the first and second fold axes, respectively.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN | 0 | The fold status of the device is unknown.|
-| FOLD_STATUS_EXPANDED | 1 | The device is fully open.|
-| FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed).|
-| FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed.|
+| FOLD_STATUS_UNKNOWN<sup>12+</sup> | 0 | The fold status of the device is unknown.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_EXPANDED<sup>12+</sup> | 1 | The device is fully open. For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_FOLDED<sup>12+</sup> | 2 | The device is folded (completely closed). For dual-fold axis devices, the first fold axis is folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_HALF_FOLDED<sup>12+</sup> | 3 | The device is half-folded, somehow between fully open and completely closed. For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is folded.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 11 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_EXPANDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 21 | For dual-fold axis devices, the first fold axis is fully open, and the second fold axis is half-folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 12 | For dual-fold axis devices, the first fold axis is folded, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 22 | For dual-fold axis devices, the first fold axis is folded, and the second fold axis is fully folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_EXPANDED<sup>15+</sup> | 13 | For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is fully open.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| FOLD_STATUS_HALF_FOLDED_WITH_SECOND_HALF_FOLDED<sup>15+</sup> | 23 | For dual-fold axis devices, the first fold axis is half-folded, and the second fold axis is half-folded.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+
+>**NOTE**
+
+> Devices with only one fold axis can be in the **FOLD_STATUS_EXPANDED**, **FOLD_STATUS_FOLDED**, or **FOLD_STATUS_HALF_FOLDED** state.
+
+> Devices with two fold axes can be in any of the states provided in the table above, except for **FOLD_STATUS_UNKNOWN**, which indicates an unusable fold status.
 
 ## FoldDisplayMode<sup>10+</sup>
 
@@ -78,7 +88,7 @@ Enumerates the display modes of a foldable device.
 
 >**NOTE**<br>
 >&bullet; For large-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_MAIN** state.<br>
->&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
+>&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_MAIN** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -697,7 +707,7 @@ display.off('foldStatusChange', callback);
 
 on(type: 'foldAngleChange', callback: Callback&lt;Array&lt;number&gt;&gt;): void
 
-Subscribes to folding angle change events of the foldable device.
+Subscribes to folding angle change events of the foldable device. Note that there are two folding angles for dual-fold axis devices. When oriented with the charging port at the bottom, the hinges are identified from right to left as the first and second fold axes, respectively.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -708,7 +718,7 @@ Subscribes to folding angle change events of the foldable device.
 | Name  | Type                                     | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | Yes| Event type. The event **'foldAngleChange'** is triggered when the folding angle of the device changes.|
-| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees).|
+| callback | Callback&lt;Array&lt;number&gt;&gt; | Yes| Callback used to return the folding angle (0–180 degrees). For dual-fold axis devices, the array contains two angles. The first value represents the folding angle of the first fold axis, while the second value represents the folding angle of the second fold axis.|
 
 **Error codes**
 
@@ -1086,7 +1096,7 @@ Implements a **Display** instance, with properties and APIs defined.
 
 Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 

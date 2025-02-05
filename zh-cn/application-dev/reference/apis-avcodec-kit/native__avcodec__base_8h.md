@@ -97,6 +97,7 @@
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](_codec_base.md#oh_avcodec_mimetype_audio_amr_wb) | AMR_WB音频解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_OPUS](_codec_base.md#oh_avcodec_mimetype_audio_opus) | OPUS音频编解码器的MIME类型。<!--Del-->（此规格暂未开放）<!--DelEnd-->  | 
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_G711MU](_codec_base.md#oh_avcodec_mimetype_audio_g711mu) | G711MU音频编解码器的MIME类型。 | 
+| const char \* [OH_AVCODEC_MIMETYPE_AUDIO_RAW](_codec_base.md#oh_avcodec_mimetype_audio_raw) | RAW音频码流的MIME类型。 |
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](_codec_base.md#oh_avcodec_mimetype_audio_ape) |APE音频解码器的MIME类型。                         |
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](_codec_base.md#oh_avcodec_mimetype_video_vvc) | VVC(H.266)视频编解码器的MIME类型。 | 
 | const char \* [OH_AVCODEC_MIMETYPE_SUBTITLE_SRT](_codec_base.md#oh_avcodec_mimetype_subtitle_srt) |SRT字幕解封装器的MIME类型。                         |
@@ -175,6 +176,8 @@
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](_codec_base.md#oh_md_key_video_encoder_qp_min) | 描述视频编码器允许的最小量化参数的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE](_codec_base.md#oh_md_key_video_encoder_qp_average) | 描述视频帧平均量化参数的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_ENCODER_MSE](_codec_base.md#oh_md_key_video_encoder_mse)     |描述视频帧平方误差的键，值类型为double。  |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](_codec_base.md#oh_md_key_video_encoder_repeat_previous_frame_after)    | 如果在上一帧提交给编码器之后没有新的帧可用，则会以毫秒为单位重复提交最后一帧，值类型为int32_t。 |
+| const char \* [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](_codec_base.md#oh_md_key_video_encoder_repeat_previous_max_count)    | 描述编码器在没有新的帧可用的情况下，可以对之前的帧进行重复编码的最大次数，值类型为int32_t。|
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](_codec_base.md#oh_md_key_decoding_timestamp) | AVBuffer中携带的音视频或字幕的sample对应的解码时间戳的键，以微秒为单位，值类型为int64_t。  |
 | const char \* [OH_MD_KEY_BUFFER_DURATION](_codec_base.md#oh_md_key_buffer_duration) | AVBuffer中携带的音视频或字幕的sample对应的持续时间的键，以微秒为单位，值类型为int64_t。       |
 | const char \* [OH_MD_KEY_START_TIME](_codec_base.md#oh_md_key_start_time) | 媒体文件中第一帧起始位置的开始时间的键，以微秒为单位，值类型为int64_t。     |

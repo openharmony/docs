@@ -281,7 +281,7 @@ Formats the date and time.
 
 | Name | Type  | Mandatory  | Description     |
 | ---- | ---- | ---- | ------- |
-| date | Date | Yes   | Date and time to be formatted.|
+| date | Date | Yes   | Date and time. Note: The month starts from **0**. For example, **0** indicates January.|
 
 **Return value**
 
@@ -291,7 +291,7 @@ Formats the date and time.
 
 **Example**
   ```ts
-  let date = new Date(2021, 11, 17, 3, 24, 0);
+  let date = new Date (2021, 11, 17, 3, 24, 0); // The date and time is 2021.12.17 03:24:00.
   // Use locale en-GB to create a DateTimeFormat object.
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
@@ -317,8 +317,8 @@ Formats date and time ranges.
 
 | Name      | Type  | Mandatory  | Description      |
 | --------- | ---- | ---- | -------- |
-| startDate | Date | Yes   | Start date and time.|
-| endDate   | Date | Yes   | End date and time.|
+| startDate | Date | Yes   | Start date and time. Note: The month starts from **0**. For example, **0** indicates January.|
+| endDate   | Date | Yes   | End date and time. Note: The month starts from **0**. For example, **0** indicates January.|
 
 **Return value**
 
@@ -328,7 +328,7 @@ Formats date and time ranges.
 
 **Example**
   ```ts
-  let startDate = new Date(2021, 11, 17, 3, 24, 0);
+  let startDate = new Date(2021, 11, 17, 3, 24, 0); // The date and time is 2021.12.17 03:24:00.
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // Use locale en-GB to create a DateTimeFormat object.
   let datefmt = new intl.DateTimeFormat("en-GB");

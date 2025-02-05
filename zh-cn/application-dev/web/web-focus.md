@@ -54,7 +54,7 @@ Web组件焦点、焦点链和走焦的详情说明请参考[ArkUI焦点基础�
 
 - Web组件不可见：ArkWeb获焦后，应用前后台切换、页面切换、Navigation导航等场景，ArkWeb会失焦再获焦。
 
-- Web组件加载网页：ArkWeb通过src、loadUrl、loadData加载网页，默认会获取焦点，此时应用侧onFocus、w3c focus事件均会上报。
+- Web组件加载网页：ArkWeb通过src、loadUrl、loadData加载网页，默认会获取焦点，但如果此时web组件为不可获焦状态则会获焦失败（常见的不可获焦状态原因有：过场动画过程中父组件不可获焦、应用侧设置了web组件或其父组件不可获焦属性等），应用侧可以调用主动请求焦点接口[requestFocus](../reference/apis-arkweb/js-apis-webview.md#requestfocus)再次尝试使web组件获焦。当获焦成功后，应用侧onFocus、w3c focus事件均会上报。
 
 - autofocus样式：设置了autofocus样式的元素网页完成加载时默认获焦。若该元素支持文字输入，则输入框会有光标闪烁，但不拉起软键盘。
 

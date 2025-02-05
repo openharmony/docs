@@ -447,7 +447,7 @@ try {
 
 getTime(isNanoseconds?: boolean): number
 
- 使用同步方式获取自Unix纪元以来经过的时间。
+ 使用同步方式获取自Unix纪元以来到当前系统时间所经过的时间。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -461,7 +461,7 @@ getTime(isNanoseconds?: boolean): number
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
-| number | 自Unix纪元以来经过的时间。 |
+| number | 自Unix纪元以来到当前系统时间所经过的时间。 |
 
 **示例：**
 

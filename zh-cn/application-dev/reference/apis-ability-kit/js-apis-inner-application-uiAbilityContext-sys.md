@@ -29,11 +29,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncC
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -123,11 +123,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOp
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -221,11 +221,11 @@ startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartO
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -319,7 +319,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -390,7 +390,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -463,11 +463,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -543,11 +543,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -618,7 +618,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -687,7 +687,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -755,11 +755,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 > 
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -830,11 +830,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 > 
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -900,16 +900,18 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 
 将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
 
+当前仅在phone、tablet设备上生效。
+
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -996,11 +998,11 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1090,11 +1092,11 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1188,11 +1190,11 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1281,7 +1283,7 @@ setMissionIcon(icon: image.PixelMap, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1337,7 +1339,7 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1405,7 +1407,7 @@ startRecentAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1485,7 +1487,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1568,7 +1570,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1651,11 +1653,11 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限。
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
 
-**需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1750,7 +1752,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1825,9 +1827,10 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1907,7 +1910,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1999,7 +2002,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2073,6 +2076,7 @@ requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。 
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统接口**：此接口为系统接口。

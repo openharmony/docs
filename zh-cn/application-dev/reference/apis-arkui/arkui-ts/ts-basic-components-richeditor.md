@@ -100,9 +100,7 @@ copyOptions(value: CopyOptions)
 
 copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选择弹框。如果通过bindSelectionMenu等方式自定义文本选择菜单，则会弹出自定义的菜单。
 
-设置copyOptions为CopyOptions.None，复制、剪切、搜索、帮写功能不生效。
-
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+设置copyOptions为CopyOptions.None，复制、剪切、翻译、搜索、帮写功能不生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -112,7 +110,7 @@ copyOptions不为CopyOptions.None时，长按组件内容，会弹出文本选�
 
 | 参数名 | 类型                                             | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice <br />**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| value  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 是   | 组件支持文本内容是否可复制粘贴。<br />默认值：CopyOptions.LocalDevice |
 
 ### enableDataDetector<sup>11+</sup>
 
@@ -319,7 +317,7 @@ barState(state: BarState)
 
 ### maxLength<sup>16+</sup>
 
-maxLength(value: number)
+maxLength(value: Optional\<number\>)
 
 设置文本的最大输入字符数。
 
@@ -331,11 +329,11 @@ maxLength(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 文本的最大输入字符数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。<br/>**说明：** <br/>当不设置该属性或设置异常值时，取默认值，设置小数时，取整数部分。 |
 
 ### maxLines<sup>16+</sup>
 
-maxLines(value: number)
+maxLines(value: Optional\<number\>)
 
 设置文本可显示的最大行数。
 
@@ -347,7 +345,7 @@ maxLines(value: number)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入 <br/>取值范围：(0, +∞) |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -362,6 +360,36 @@ enableHapticFeedback(isEnabled: boolean)
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | isEnabled  | boolean | 是   | 是否支持触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。<br/>设置为true后是否生效，还取决于系统的硬件是否支持。 |
+
+### keyboardAppearance<sup>16+</sup>
+
+keyboardAppearance(appearance: KeyboardAppearance)
+
+设置键盘外观。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: Optional&lt;boolean&gt;)
+
+设置是否阻止返回键向其它组件或应用侧传递。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。默认值：true |
 
 ## 事件
 
@@ -712,6 +740,7 @@ Span类型信息。
 | IMAGE | 1 | Span为图像类型。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | MIXED | 2 | Span为图文混合类型。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | BUILDER<sup>12+</sup> | 3 | Span为BuilderSpan类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>16+</sup> | 4 | 默认类型，不指定Span类型时生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -726,6 +755,7 @@ Span类型信息。
 | LONG_PRESS  | 通过长按触发菜单弹出。   |
 | RIGHT_CLICK | 通过鼠标右键触发菜单弹出。 |
 | SELECT | 通过鼠标选中触发菜单弹出。 |
+| DEFAULT<sup>16+</sup> | 默认类型，不指定响应类型时生效。|
 
 ## RichEditorTextStyleResult
 
@@ -1446,8 +1476,6 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 定义RichEditor的范围。
 
-继承自[RichEditorRange](#richeditorrange)。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1681,6 +1709,8 @@ SymbolSpan样式选项。
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
+| dragBackgroundColor<sup>16+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。 |
+| isDragShadowNeeded<sup>16+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
 
 ## RichEditorSpan<sup>12+</sup>
 
@@ -1708,6 +1738,8 @@ RichEditor span信息。
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
+| onMenuShow<sup>16+</sup> | [MenuCallBack](#menucallback16) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| onMenuHide<sup>16+</sup> | [MenuCallBack](#menucallback16) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1804,6 +1836,23 @@ type MenuOnAppearCallback = (start: number, end: number) => void
 | start | number | 是   | 选中内容的起始位置。 |
 | end    | number         | 是   | 选中内容的终止位置。         |
 
+## MenuCallback<sup>16+</sup>
+
+type MenuCallback = (start: number, end: number) => void
+
+自定义选择菜单显示或隐藏时触发的回调事件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                             | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
+| start | number | 是   | 选中内容的起始位置。 |
+| end    | number         | 是   | 选中内容的终止位置。         |
+
 ## PasteEventCallback<sup>12+</sup>
 
 type PasteEventCallback = (event?: PasteEvent) => void
@@ -1835,7 +1884,35 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | status  | boolean                            | 是   | 表示鼠标是否悬浮在组件上，鼠标进入组件时为true，离开组件时为false。|
-| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | 是   | 设置阻塞事件冒泡属性。 |
+| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。 |
+
+## RichEditorTextSpan
+
+文本Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                            | 类型                                       | 必填   | 说明                     |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
+| spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | 是    | Span位置。|
+| value                         | string                                   | 是    | 文本Span内容。|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本Span样式信息。|
+
+## RichEditorImageSpan
+
+图片Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称               | 类型                                                                | 必填  | 说明               |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## 示例
 
@@ -4413,6 +4490,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.removeString(start, end - start);
@@ -4440,6 +4520,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.setStyle({
@@ -4604,7 +4687,7 @@ struct RichEditorExample {
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
 ### 示例23（组件部分常用属性）
-通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。
+通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress16)属性设置是否阻止返回键向其它组件或应用侧传递。
 
 ```ts
 // xxx.ets
@@ -4657,6 +4740,7 @@ struct RichEditor_example {
         .barState(this.bs[this.bs_num])
         .enableKeyboardOnFocus(this.e)
         .enableHapticFeedback(true)
+        .stopBackPress(false);
 
       RichEditor(this.options1).width(300)
 
@@ -4842,3 +4926,61 @@ struct RichEditorExample {
 }
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
+
+### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
+通过addBuilderSpan，可以在拖拽场景下，对自定义布局的拖拽背板及拖拽投影的参数进行设置。
+
+```ts
+// xxx.ets
+import { ColorMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct richEditorNew03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  build() {
+    Column({ space: 10 }) {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
+              isDragShadowNeeded: false
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
+                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
+              isDragShadowNeeded: true
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, { offset: -1 })
+          })
+          .borderWidth(1)
+          .width("100%")
+          .height("50%")
+          .margin(50)
+      }
+      .width('100%')
+      .margin({top:100})
+    }
+  }
+
+  @Builder
+  placeholderBuilder() {
+    Row() {
+      Text('是BuilderSpan，不是纯文本内容')
+        .fontSize(22)
+        .copyOption(CopyOptions.InApp)
+    }
+  }
+}
+```
+![StyledString](figures/builderspan_drag_config.gif)

@@ -2784,7 +2784,7 @@ getOsAccountName(): Promise&lt;string&gt;
   }
   ```
 
-### getForegroundOsAccountLocalId<sup>14+</sup>
+### getForegroundOsAccountLocalId<sup>15+</sup>
 
 getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
@@ -2820,7 +2820,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
   }
   ```
 
-### getOsAccountDomainInfo<sup>14+</sup>
+### getOsAccountDomainInfo<sup>15+</sup>
 
 getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 

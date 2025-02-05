@@ -28,6 +28,8 @@ onDidBuild函数在执行自定义组件的build()函数之后执行，开发者
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## aboutToDisappear
 
 aboutToDisappear?(): void
@@ -172,6 +174,48 @@ struct Child {
   }
 }
 ```
+
+## aboutToReuse<sup>16+</sup>
+
+aboutToReuse?(): void
+
+当一个状态管理V2的可复用自定义组件从复用池被取出重新加入到节点树时，触发aboutToReuse生命周期回调。
+
+详细内容请参考[\@ReusableV2](../../../quick-start/arkts-new-reusableV2.md)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local condition: boolean = true;
+  build() {
+    Column() {
+      Button('回收/复用').onClick(()=>{this.condition=!this.condition;}) // 点击切换回收/复用状态
+      if (this.condition) {
+        ReusableV2Component()
+      }
+    }
+  }
+}
+@ReusableV2
+@ComponentV2
+struct ReusableV2Component {
+  @Local message: string = 'Hello World';
+  aboutToReuse() {
+    console.log('ReusableV2Component aboutToReuse'); // 复用时被调用
+  }
+  build() {
+    Column() {
+      Text(this.message)
+    }
+  }
+}
+```
+
 
 ## aboutToRecycle<sup>10+</sup>
 
