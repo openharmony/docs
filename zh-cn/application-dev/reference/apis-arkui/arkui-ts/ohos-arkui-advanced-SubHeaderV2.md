@@ -100,7 +100,7 @@ constructor(options: SubHeaderV2TitleOptions)
 
 | 名称    | 类型                                                  | 必填 | 说明             |
 | --------- |-----------------------------------------------------| ------ | ------------------ |
-| options | [SubHeaderV2TitleOptions](#subheaderV2titleoptions) | 是   | 标题内容信息。 |
+| options | [SubHeaderV2TitleOptions](#subheaderv2titleoptions) | 是   | 标题内容信息。 |
 
 ## SubHeaderV2TitleOptions
 
