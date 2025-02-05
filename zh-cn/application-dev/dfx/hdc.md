@@ -469,7 +469,7 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    **参数：**
    | 参数 | 说明 |
    | -------- | -------- |
-   | [-b _bundlename_] | 指定包名，<br>在指定包名的应用数据目录内以非交互式模式执行命令。<br>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话，<br>未配置此参数默认执行路径为系统根目录。 |
+   | [-b _bundlename_] | 指定可调试应用包名，<br>在可调试应用数据目录内，以非交互式模式执行命令。<br>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话，<br>未配置此参数默认执行路径为系统根目录。 |
    | [command] | 需要在设备侧执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前许多命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
    **返回值：**
@@ -497,7 +497,7 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
 
    > **说明：**
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的应用为“以debug模式构建的应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
 
 ## 应用管理
 
@@ -600,7 +600,7 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    >
    > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到包名为com.example.myapplication应用数据目录，传输到相对路径data/storage/el2/base/下，并重命名为b.txt。
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的应用为“以debug模式构建的应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
 
 2. 从远端设备发送文件至本地，命令格式如下：
 
@@ -635,7 +635,7 @@ hdc -s IP:8710 [command] // 其中IP为服务端IP，8710为第一步服务端�
    >
    > 使用方法中，`hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt   a.txt`指定了-b参数，将传输名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下的文件b.txt到本地当前目录下，并重命名为a.txt。
    >
-   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的应用为“以debug模式构建的应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
 
 ## 端口转发
 
