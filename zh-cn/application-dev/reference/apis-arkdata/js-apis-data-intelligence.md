@@ -22,6 +22,8 @@ import { intelligence } from '@kit.ArkData';
 
 管理嵌入模型的配置。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
 | version    | [ModelVersion](#modelversion)           | 是   |模型的版本。 |
@@ -31,6 +33,8 @@ import { intelligence } from '@kit.ArkData';
 ## ModelVersion
 
 模型版本枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 | 名称       | 值                   | 说明                   |
 | ---------- | ---------- | ---------------------- |
@@ -42,6 +46,8 @@ type Image = string;
 
 表示string类型的数据。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 | 类型                         | 说明                  |
 | ---------------------------- | --------------------- |
 | string | 图像的类型的URI地址。长度上限为512 tokens。 |
@@ -49,6 +55,8 @@ type Image = string;
 ## SplitConfig
 
 管理文本块进程配置。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 | 名称     | 类型              | 必填 | 说明                                                         |
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
@@ -60,7 +68,9 @@ type Image = string;
 
 getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
 
-获取文本嵌入模型。
+获取文本嵌入模型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 **参数：**
 
@@ -72,7 +82,7 @@ getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;[TextEmbedding](#textembedding)&gt; | Promise对象。返回TextEmbedding对象。 |
+| Promise&lt;[TextEmbedding](#textembedding)&gt; | 返回TextEmbedding对象。 |
 
 **错误码：**
 
@@ -112,11 +122,15 @@ intelligence.getTextEmbeddingModel(config)
 
 下列接口都需先使用[intelligence.getTextEmbeddingModel](#intelligencegettextembeddingmodel)获取到TextEmbedding实例，再通过此实例调用对应接口。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 ### loadModel
 
 loadModel(): Promise&lt;void&gt;
 
 加载嵌入模型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 **返回值**：
 
@@ -152,6 +166,8 @@ textEmbedding.loadModel()
 releaseModel(): Promise&lt;void&gt;
 
 释放嵌入模型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 **返回值**：
 
@@ -190,6 +206,8 @@ getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt;
 
 该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用getEmbedding。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
@@ -200,7 +218,7 @@ getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回向量化结果的数组对象。 |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回向量化结果的数组对象。 |
 
 **错误码：**
 
@@ -237,6 +255,8 @@ getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;numb
 
 该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用getEmbedding。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
@@ -247,7 +267,7 @@ getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;numb
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | Promise对象。返回向量化结果的数组对象。 |
+| Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | 返回向量化结果的数组对象。 |
 
 **错误码：**
 
@@ -280,7 +300,9 @@ textEmbedding.getEmbedding(batchTexts)
 
 getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
 
-获取图像嵌入模型。
+获取图像嵌入模型。使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 **参数：**
 
@@ -292,7 +314,7 @@ getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;[ImageEmbedding](#imageembedding)&gt; | Promise对象。返回ImageEmbedding对象。 |
+| Promise&lt;[ImageEmbedding](#imageembedding)&gt; | 返回ImageEmbedding对象。 |
 
 **错误码：**
 
@@ -332,11 +354,15 @@ intelligence.getImageEmbeddingModel(config)
 
 下列接口都需先使用[intelligence.getImageEmbeddingModel](#intelligencegetimageembeddingmodel)获取到ImageEmbedding实例，再通过此实例调用对应接口。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 ### loadModel
 
 loadModel(): Promise&lt;void&gt;
 
 加载嵌入模型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 **返回值**：
 
@@ -372,6 +398,8 @@ imageembedding.loadModel()
 releaseModel(): Promise&lt;void&gt;
 
 释放嵌入模型，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
 **返回值**：
 
@@ -410,6 +438,8 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 
 该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
@@ -420,7 +450,7 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise对象。返回向量化结果的数组对象。 |
+| Promise&lt;Array&lt;number&gt;&gt; | 返回向量化结果的数组对象。 |
 
 **错误码：**
 
@@ -454,6 +484,8 @@ splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt;
 
 获取文本的分块。
 
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
 **参数：**
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
@@ -465,7 +497,7 @@ splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回分块结果的数组对象。 |
+| Promise&lt;Array&lt;string&gt;&gt; | 返回分块结果的数组对象。 |
 
 **错误码：**
 
