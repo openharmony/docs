@@ -113,7 +113,7 @@ connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 14400001 | Permission denied. Call requestRight to get the permission first. |
+| 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first.|
 
 **示例：**
 
@@ -263,7 +263,9 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 
 注册通信接口。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
+1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及interfaces；
+2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -359,7 +361,9 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 
 设置设备配置。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
+1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息以及config；
+2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)得到devicepipe作为参数。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -675,7 +679,11 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 
 批量传输。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
+1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后；
+4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5.调用usbManager.bulkTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -742,7 +750,11 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;
 
 本接口为异步接口，调用后立刻返回，实际读写操作的结果以回调的方式返回。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
+1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后；
+4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5.调用usbManager.usbSubmitTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -750,7 +762,7 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。|
+| transfer | [UsbDataTransferParams](#usbdatatransferparams16) | 是 | 作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。|
 
 **错误码：**
 
@@ -758,18 +770,12 @@ usbSubmitTransfer(transfer: USBDataTransferParams): void;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
-| 14400006 | Transmission I/O error. |
 | 14400007 | Resource busy. |
 | 14400008 | No such device (it may have been disconnected). |
 | 14400009 | Insufficient memory. |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| &lt;void&gt; | 无 |
+| 14400012 | Transmission I/O error. |
 
 **示例：**
 
@@ -823,11 +829,15 @@ try {
 
 ## usbManager.usbCancelTransfer<sup>16+</sup>
 
-usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
+usbCancelTransfer(transfer: USBDataTransferParams): void;
 
 取消异步传输请求。
 
-需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；再调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；然后调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后，再次获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；再调用usb.bulkTransfer接口。
+1.需要调用[usbManager.getDevices](#usbmanagergetdevices)获取设备信息列表以及endpoint；
+2.调用[usbManager.requestRight](#usbmanagerrequestright)获取设备请求权限；
+3.调用[usbManager.connectDevice](#usbmanagerconnectdevice)接口得到返回数据devicepipe之后；
+4.获取接口[usbManager.claimInterface](#usbmanagerclaiminterface)；
+5.调用usbManager.usbCancelTransfer接口。
 
 **系统能力：**  SystemCapability.USB.USBManager
 
@@ -843,7 +853,7 @@ usbCancelTransfer(transfer: USBDataTransferParams): void;&gt;
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401 | Parameter error. Possible causes:<br>1.Mandatory parameters are left unspecified.<br>2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes:Mandatory parameters are left unspecified; Incorrect parameter types. |
 | 14400001 | Access right denied. Call requestRight to get the USBDevicePipe access right first. |
 | 14400008 | No such device (it may have been disconnected). |
 | 14400010 | Other USB error. Possible causes:<br>1.Unrecognized discard error code. |
@@ -1382,7 +1392,7 @@ USB配件句柄。
 
 ## UsbDataTransferParams<sup>16+</sup>
 
-作为通用USB数据传输接口，客户端需要填充这个对象中的参数，提交它用以发起传输请求。
+作为通用USB数据传输接口，客户端需要填充这个对象中的参数，用以发起传输请求。
 
 **系统能力：** SystemCapability.USB.USBManager
 
@@ -1401,7 +1411,7 @@ USB配件句柄。
 
 ## UsbTransferFlags<sup>16+</sup>
 
-Usb传输标志。
+USB传输标志。
 
 **系统能力：** SystemCapability.USB.USBManager
 
