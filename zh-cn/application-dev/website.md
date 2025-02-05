@@ -1128,6 +1128,8 @@
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
+        - 压缩与解压<!--compress-->
+          - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
