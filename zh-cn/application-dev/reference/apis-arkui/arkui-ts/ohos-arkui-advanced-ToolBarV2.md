@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，不兼容[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，若应用基于状态管理V1，建议使用[ToolBar](ohos-arkui-advanced-ToolBar.md)实现工具栏 <br />
+> - 该组件基于[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)实现，相较于[状态管理V1](../../../quick-start/arkts-state-management-overview.md#状态管理v1)，状态管理V2增强了对数据对象的深度观察与管理能力，不再局限于组件层级。借助状态管理V2，开发者可以通过该组件更灵活地控制工具栏的数据和状态，实现更高效的用户界面刷新。<br>
 > - 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
