@@ -236,7 +236,7 @@ let on:On = ON.text('123'); // 使用静态构造器ON创建On对象，指定目
 
 ### id<sup>9+</sup>
 
-id(id: string): On
+id(id: string, pattern?: MatchPattern): On
 
 指定目标控件id属性，返回On对象自身。
 
@@ -274,7 +274,7 @@ let on:On = ON.id('id', MatchPattern.REG_EXP_ICASE) // 忽略大小写匹配控�
 
 ### type<sup>9+</sup>
 
-type(tp: string): On
+type(tp: string, pattern?: MatchPattern): On
 
 指定目标控件的控件类型属性，返回On对象自身。
 
@@ -827,7 +827,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1504,7 +1504,7 @@ async function demo() {
 
 ### scrollSearch<sup>9+</sup>
 
-scrollSearch(on: On): Promise\<Component>
+scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 
 在控件上滑动查找目标控件(适用支持滑动的控件)。
 
@@ -1518,7 +1518,7 @@ scrollSearch(on: On): Promise\<Component>
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical<sup>16+</sup> |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset<sup>16+</sup>   | number| 否 | 从滑动起点/终点到组件边框的偏移, 默认80(pixel)。    |
+| offset<sup>16+</sup>   | number| 否 | 滑动起点/终点到组件边框的偏移, 默认80，单位：pixel。    |
 
 **返回值：**
 
@@ -1786,7 +1786,7 @@ getHint(): Promise\<string>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码和uitest测试框架错误码](errorcode-uitest.md)。
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
