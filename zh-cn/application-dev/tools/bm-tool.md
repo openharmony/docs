@@ -458,7 +458,7 @@ HAP包没有签名。
 **处理步骤**
 
 1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section18815157237)。在连接设备后，重新为应用进行签名。
-2. 使用手动签名，请参考<!--RP1-->[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section297715173233)<!--RP1End-->。
+2. 使用手动签名，请参考[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-signing-V5#section297715173233)。
 <br></br>
 
 ### 9568347 解析本地so文件失败
@@ -478,7 +478,7 @@ Error: install parse native so failed.
 >
 > - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
 > - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
-<!--RP4--><!--RP4End-->
+<!--RP1--><!--RP1End-->
 
 **处理步骤**
 
