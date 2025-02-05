@@ -1,4 +1,4 @@
-# 基于AVCodec开发DRM节目播放功能（C/C++）
+# 基于AVCodec播放DRM节目(C/C++)
 
 ## 功能介绍
 
@@ -15,7 +15,6 @@
 | ts       | AVC(H.264)  |
 | mp4      | AVC(H.264)  |
 <!--RP1--><!--RP1End-->
-
 
 **适用场景**
 
@@ -41,6 +40,7 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
 >
 
 ## 开发步骤
+
 1. 导入DRM Kit接口。
 
     ```c++
@@ -61,6 +61,7 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
         printf("OH_MediaKeySystem_GetMediaKeySystems failed.");
     }
     ```
+
     获取到设备支持的DRM解决方案的名称和唯一标识的列表后，同DRM信息做匹配，创建对应的DRM解决方案。DRM信息可通过[媒体数据解析](../avcodec/audio-video-demuxer.md#开发步骤)开发步骤第4步获取，
 
     或者直接解析媒体协议或媒体数据得到DRM解决方案唯一标识及pssh数据以生成DRM信息。
@@ -131,6 +132,7 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
         printf("OH_MediaKeySession_ProcessMediaKeyResponse failed.");
     }
     ```
+
     根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](../avcodec/audio-decoding.md#开发步骤)第4步)、设置视频解密配置(详见[视频解码开发指南开发步骤Surface模式](../avcodec/video-decoding.md#surface模式)第4步或[Buffer模式](../avcodec/video-decoding.md#buffer模式)第4步)，实现DRM内容解密。
 
 7. 销毁MediaKeySession实例。
