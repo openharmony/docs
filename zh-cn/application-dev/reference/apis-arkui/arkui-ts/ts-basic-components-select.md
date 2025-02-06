@@ -72,7 +72,7 @@ selected(numCount: Optional<number | Resource>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| numCount | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)<sup>11+</sup>> | 是   | 下拉菜单初始选项的索引。<br/>当numCount的值为undefined时，选中第一项。 |
+| numCount | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;[Resource](ts-types.md#resource)> | 是   | 下拉菜单初始选项的索引。<br/>当numCount的值为undefined时，选中第一项。 |
 
 ### value
 
@@ -98,7 +98,7 @@ value(resStr: Optional\<ResourceStr>)
 
 设置下拉按钮本身的文本内容。当菜单选中时默认会替换为菜单项文本内容。与[value](#value)相比，resStr参数新增了对undefined类型的支持。
 
-从API version 16开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -108,7 +108,7 @@ value(resStr: Optional\<ResourceStr>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resStr | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceStr](ts-types.md#resourcestr)<sup>11+</sup>> | 是   | 下拉按钮本身的文本内容。<br/>当resStr的值为undefined时，维持上次取值。 |
+| resStr | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceStr](ts-types.md#resourcestr)> | 是   | 下拉按钮本身的文本内容。<br/>当resStr的值为undefined时维持上次取值。 |
 
 ### controlSize<sup>12+</sup>
 
@@ -148,7 +148,7 @@ controlSize(size: Optional\<ControlSize>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ControlSize](ts-basic-components-button.md#controlsize11枚举说明)<sup>11+</sup>> | 是   | Select组件的尺寸。<br/>当size的值为undefined时，默认值:ControlSize.NORMAL |
+| size   | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ControlSize](ts-basic-components-button.md#controlsize11枚举说明)> | 是   | Select组件的尺寸。<br/>当size的值为undefined时，默认值:ControlSize.NORMAL |
 
 controlSize、width、height接口作用优先级：
 
@@ -235,7 +235,7 @@ font(selectFont: Optional\<Font>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉按钮本身的文本样式。<br/>API Version 11及以前默认值：<br/>{<br/>size:&nbsp;`$r('sys.float.ohos_id_text_size_button1')`,<br/>weight:&nbsp;FontWeight.Medium<br/>} <br/>API Version 12以后，如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。<br/>当selectFont的值为undefined时，恢复为系统文本样式。 |
+| selectFont | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Font](ts-types.md#font)> | 是   | 下拉按钮本身的文本样式。<br/>如果设置controlSize的值为：controlSize.SMALL，size默认值是`$r('sys.float.ohos_id_text_size_button2')`，否则为`$r('sys.float.ohos_id_text_size_button1')`。<br/>当selectFont的值为undefined时，恢复为系统文本样式。 |
 
 ### fontColor
 
@@ -395,7 +395,7 @@ optionBgColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单项的背景色。<br/>当resColor的值为undefined时，默认值：<br/>API version 11之前，默认值为Color.White。<br/>API version 11及之后，默认值为Color.Transparent。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单项的背景色。<br/>当resColor的值为undefined时，默认值为Color.Transparent。 |
 
 ### optionFont
 
@@ -621,7 +621,7 @@ optionHeight(value: Dimension)
 
 optionHeight(height: Optional\<Dimension>)
 
-设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。与[optionHeight](#optionheight11)相比<sup>11+</sup>，height参数新增了对undefined类型的支持。
+设置下拉菜单显示的最大高度，不支持设置百分比。下拉菜单的默认最大高度是屏幕可用高度的80%，设置的菜单最大高度不能超过默认最大高度。与[optionHeight](#optionheight11)<sup>11+</sup>相比，height参数新增了对undefined类型的支持。
 
 当设置为异常值或零时，属性不生效，下拉菜单最大高度设为默认值，即下拉菜单最大高度默认值为屏幕可用高度的80%。
 
@@ -667,7 +667,7 @@ menuBackgroundColor(resColor: Optional\<ResourceColor>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单的背景色。<br/>当resColor的值为undefined时，默认值：<br/>API version 11之前，默认值为$r('sys.color.ohos_id_color_card_bg')。<br/>API version 11及之后，默认值为Color.Transparent。 |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 下拉菜单的背景色。<br/>当resColor的值为undefined时，默认值为Color.Transparent。 |
 
 ### menuBackgroundBlurStyle<sup>11+</sup>
 
@@ -771,7 +771,7 @@ onSelect(callback: Optional\<OnSelectCallback> )
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback16)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnSelectCallback](#onselectcallback16)> | 是   | 下拉菜单选中某一项的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnSelectCallback<sup>16+</sup>
 
