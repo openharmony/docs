@@ -18,7 +18,7 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 - 当Repeat与自定义组件/@Builder函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
 - template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
 - totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
-- 在容器组件内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
+- 在滚动容器组件（List、Grid、Swiper、WaterFlow）内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
 - Repeat组件的virtualScroll场景不支持V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 键值生成规则
@@ -104,7 +104,7 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 > **注意：** 
 >
-> 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
 ## cachedCount规则
 
