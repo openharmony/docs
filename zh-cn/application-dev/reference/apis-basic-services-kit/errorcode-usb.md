@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission first.
+Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
 
 **错误描述**
 
@@ -162,7 +162,7 @@ Resource busy.
 
 **处理步骤**
 
-检查claimInterface()接口是否调用成功。
+检查[usbManager.claimInterface](./js-apis-usbManager.md#usbmanagerclaiminterface)接口是否调用成功。
 
 ## 14400008 没有设备(连接已断开)
 
