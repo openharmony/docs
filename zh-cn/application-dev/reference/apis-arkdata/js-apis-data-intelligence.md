@@ -28,7 +28,7 @@ import { intelligence } from '@kit.ArkData';
 | ---------- | --------------------- | ---- | ------------------------------------------------------------ |
 | version    | [ModelVersion](#modelversion)           | 是   |模型的版本。 |
 | isNpuAvailable | boolean                | 是   | 指示是否使用 NPU，true表示使用，false表示不使用。 |
-| cachePath | string                | 否   | 如果使用 NPU 进行加速，则需要本地路径进行模型缓存。格式为/xxx/xxx/xxx/，长度上限为512 tokens。 |
+| cachePath | string                | 否   | 如果使用 NPU 进行加速，则需要本地路径进行模型缓存。格式为/xxx/xxx/xxx/，长度上限为512 tokens。默认值为""。 |
 
 ## ModelVersion
 
@@ -46,7 +46,7 @@ type Image = string;
 
 表示string类型的数据。
 
-**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 类型                         | 说明                  |
 | ---------------------------- | --------------------- |
@@ -436,7 +436,7 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 
 获取给定图像的嵌入向量。
 
-该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用。
+该接口需先调用[loadModel](#loadmodel)加载嵌入模型，加载成功后调用getEmbedding。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
