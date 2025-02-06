@@ -1,4 +1,4 @@
-# Using Pasteboard for Delayed Copy and Paste
+# Using the Delayed Copy and Paste Function of the Pasteboard
 
 ## When to Use
 
