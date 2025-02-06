@@ -37,6 +37,8 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 - 非匿名密钥证明：可以看到调用方设备信息，有权限管控，需申请[ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key)权限。
 <!--RP2End-->
 
+当前模拟器<!--Del-->和开发板<!--DelEnd-->支持匿名证书，调试环境中使用的证书非真实设备证书，云侧需要区分该场景，避免误用。
+
 ## 支持的算法
 
 以下为密钥证明支持的规格说明。
