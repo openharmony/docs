@@ -46,7 +46,6 @@ export default class EntryAbility extends UIAbility {
         let screenDensity = config.screenDensity;
         let displayId = config.displayId;
         let hasPointerDevice = config.hasPointerDevice;
-        let fontId = config.fontId;
         let fontSizeScale = config.fontSizeScale;
         let fontWeightScale = config.fontWeightScale;
         let mcc = config.mcc;
