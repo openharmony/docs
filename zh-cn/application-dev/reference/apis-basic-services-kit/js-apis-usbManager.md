@@ -744,7 +744,7 @@ for (let i = 0; i < device.configs[0].interfaces.length; i++) {
 
 ## usbManager.usbSubmitTransfer<sup>16+</sup>
 
-usbSubmitTransfer(transfer: USBDataTransferParams): void;
+usbSubmitTransfer(transfer: USBDataTransferParams): void
 
 提交异步传输请求。
 
@@ -1400,14 +1400,14 @@ USB配件句柄。
 | ---------- | ------ | ----- |----- |
 | pipe | [UsbDevicePipe](#usbdevicepipe) | 是 | 用于确定设备。 |
 | flags | [UsbTransferFlags](#usbtransferflags16) |是 | USB传输标志。 |
-| endpoint | number | 是 | 端点地址。 |
+| endpoint | number | 是 | 端点地址，正整数。 |
 | type | [UsbEndpointTransferType](#usbendpointtransfertype16) |是 | 传输类型。 |
-| timeout | number | 是 | 设置超时。 |
-| length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度）。 |
+| timeout | number | 是 | 超时时间，单位为毫秒。 |
+| length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度），单位为字节。 |
 | callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
 | buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
-| isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数。 |
+| isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数，单位为个数。 |
 
 ## UsbTransferFlags<sup>16+</sup>
 
@@ -1442,7 +1442,7 @@ Usb异步传输回调。
 
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
-| actualLength | number | 读写操作的实际长度值 |
+| actualLength | number | 读写操作的实际长度值，单位为字节 |
 | status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态 |
 | isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息 |
 
@@ -1471,6 +1471,6 @@ libusb实际处理完成后通过回调返回的状态码。
 
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
-| length | number | 读写操作的期望长度值 |
-| actualLength | number| 读写操作的实际长度值 |
+| length | number | 读写操作的期望长度值，单位为字节 |
+| actualLength | number| 读写操作的实际长度值，单位为字节 |
 | status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码 |
