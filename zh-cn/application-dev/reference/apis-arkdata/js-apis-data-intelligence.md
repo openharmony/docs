@@ -42,7 +42,7 @@ import { intelligence } from '@kit.ArkData';
 
 ## Image
 
-type Image = string;
+type Image = string
 
 表示string类型的数据。
 
