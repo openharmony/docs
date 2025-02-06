@@ -4610,7 +4610,7 @@ inputMethodController.recvMessage();
 
 ## ImmersiveMode<sup>15+</sup>
 
-输入法沉浸模式枚举。
+枚举，输入法沉浸模式。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
