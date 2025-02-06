@@ -6444,7 +6444,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
-### getWindowDecorVisible<sup>15+</sup>
+### getWindowDecorVisible<sup>16+</sup>
 
 getWindowDecorVisible(): boolean
 
@@ -6472,24 +6472,22 @@ getWindowDecorVisible(): boolean
 **示例：**
 
 ```ts
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-let storage: LocalStorage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp', 121);
-windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
-  let errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in loading the content.');
-  // 调用getWindowDecorVisible接口
-  try {
-      let isVisible = windowClass?.getWindowDecorVisible();
-      console.info(`Succeeded in getting the visibility of window decor: ${isVisible}`);
-  } catch (exception) {
-      console.error(`Failed to get the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
-  }
-});
+
+let windowClass: window.Window | undefined = undefined;
+let isVisible: boolean | undefined = undefined;
+try {
+  let promise = window.getLastWindow(this.context);
+  promise.then((data) => {
+    windowClass = data;
+    isVisible = windowClass.getWindowDecorVisible();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get decor visibility. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setWindowTitle<sup>15+</sup>
