@@ -34,7 +34,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 
 >  **说明：**
 >
->  设置expandSafeArea属性进行组件绘制扩展时，组件不能设置固定宽高尺寸（百分比除外）。
+>  设置expandSafeArea属性进行组件绘制扩展时，建议组件尺寸不要设置固定宽高（百分比除外），当设置固定宽高时，扩展安全区域的方向只支持[SafeAreaEdge.TOP, SafeAreaEdge.START]，扩展后的组件尺寸保持不变。
 >
 >  安全区域不会限制内部组件的布局和大小，不会裁剪内部组件。
 >
@@ -48,7 +48,7 @@ expandSafeArea(types?: Array&lt;SafeAreaType&gt;, edges?: Array&lt;SafeAreaEdge&
 >   
 >  组件延伸到安全区域下，在安全区域处的事件，如点击事件等可能会被系统拦截，优先给状态栏等系统组件响应。
 >  
->  滚动类容器内的组件不建议设置expandSafeArea属性，如果设置，需要按照组件嵌套关系，将当前节点到滚动类祖先容器间所有直接节点设置expandSafeArea属性，否则expandSafeArea属性在滚动后可能会失效，写法参考[示例5](#示例5滚动类容器扩展安全区)。
+>  滚动类容器内的组件不建议设置expandSafeArea属性，如果设置，需要按照组件嵌套关系，将当前节点到滚动类祖先容器间所有直接节点设置expandSafeArea属性，否则expandSafeArea属性在滚动后可能会失效，写法参考[示例6](#示例6滚动类容器扩展安全区)。
 > 
 >  expandSafeArea属性仅作用于当前组件，不会向父组件或子组件传递，因此使用过程中，所有相关组件均需配置。
 > 
@@ -70,7 +70,7 @@ setKeyboardAvoidMode(value: KeyboardAvoidMode): void
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 是   | 配置虚拟键盘抬起时页面的避让模式。<br />默认值：KeyboardAvoidMode.OFFSET，键盘抬起时默认页面避让模式为上抬模式。 |
+| value  | [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | 是   | 配置虚拟键盘抬起时页面的避让模式。<br />默认值：KeyboardAvoidMode.OFFSET，键盘抬起时默认页面避让模式为上抬模式。 |
 
 >  **说明：**
 >
@@ -90,7 +90,7 @@ getKeyboardAvoidMode(): KeyboardAvoidMode
 
 | 名称                                                 | 说明                               |
 | ---------------------------------------------------- | ---------------------------------- |
-| [KeyboardAvoidMode](ts-types.md#keyboardavoidmode11) | 返回虚拟键盘抬起时的页面避让模式。 |
+| [KeyboardAvoidMode](../js-apis-arkui-UIContext.md#keyboardavoidmode11) | 返回虚拟键盘抬起时的页面避让模式。 |
 
 ## 示例
 
@@ -119,7 +119,40 @@ struct SafeAreaExample1 {
 
 ![expandSafeArea1](figures/expandSafeArea1.png)
 
-### 示例2（键盘避让时固定背景图位置）
+### 示例2（同时设置固定宽高和expandSafeArea属性）
+
+该示例展示了同时设置固定宽高和expandSafeArea属性的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SafeAreaExample2 {
+  @State text: string = ''
+  controller: TextInputController = new TextInputController()
+
+  build() {
+    Column() {
+      TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
+        .placeholderFont({ size: 14, weight: 400 })
+        .width(320).height(40).offset({y: 120})
+        .fontSize(14).fontColor(Color.Black)
+        .backgroundColor(Color.White)
+    }
+    .height('780')
+    .width('100%')
+    .backgroundColor('rgb(179,217,235)')
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+  }
+}
+```
+
+如下图：Column组件扩展至了顶部状态栏[SafeAreaEdge.TOP]，未扩展至底部导航条[SafeAreaEdge.BOTTOM]，扩展后的组件高度与设置的高度一致。
+
+![expandSafeArea2](figures/expandSafeArea2.png)
+
+
+### 示例3（键盘避让时固定背景图位置）
 
 该示例通过为背景图组件设置expandSafeArea属性，来实现拉起键盘进行避让时，背景图保持不动的效果。
 
@@ -127,7 +160,7 @@ struct SafeAreaExample1 {
 // xxx.ets
 @Entry
 @Component
-struct SafeAreaExample2 {
+struct SafeAreaExample3 {
   @State text: string = ''
   controller: TextInputController = new TextInputController()
 
@@ -155,9 +188,9 @@ struct SafeAreaExample2 {
 }
 ```
 
-![expandSafeArea2](figures/expandSafeArea2.png)
+![expandSafeArea3](figures/expandSafeArea3.png)
 
-### 示例3（设置键盘避让模式为压缩）
+### 示例4（设置键盘避让模式为压缩）
 
 该示例通过调用setKeyboardAvoidMode设置键盘避让模式为RESIZE模式，实现键盘抬起时page的压缩效果。
 
@@ -191,7 +224,7 @@ struct KeyboardAvoidExample1 {
     Column() {
       Row().height("30%").width("100%").backgroundColor(Color.Gray)
       TextArea().width("100%").borderWidth(1)
-      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
+      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor('rgb(179,217,235)').layoutWeight(1)
     }.width('100%').height("100%")
   }
 }
@@ -199,7 +232,7 @@ struct KeyboardAvoidExample1 {
 
 ![keyboardAvoidMode1](figures/keyboardAvoidMode1.jpg)
 
-### 示例4（设置键盘避让模式为上抬）
+### 示例5（设置键盘避让模式为上抬）
 
 该示例通过调用setKeyboardAvoidMode设置键盘避让模式为OFFSET模式，实现键盘抬起时page的上抬效果。但当输入光标距离屏幕底部的高度大于键盘高度时，page不会抬起，如本例中所示。
 
@@ -233,15 +266,15 @@ struct KeyboardAvoidExample2 {
     Column() {
       Row().height("30%").width("100%").backgroundColor(Color.Gray)
       TextArea().width("100%").borderWidth(1)
-      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor(Color.Pink).layoutWeight(1)
+      Text("I can see the bottom of the page").width("100%").textAlign(TextAlign.Center).backgroundColor('rgb(179,217,235)').layoutWeight(1)
     }.width('100%').height("100%")
   }
 }
 ```
 
-![keyboardAvoidMode1](figures/keyboardAvoidMode2.jpg)
+![keyboardAvoidMode2](figures/keyboardAvoidMode2.jpg)
 
-### 示例5（滚动类容器扩展安全区）
+### 示例6（滚动类容器扩展安全区）
 
 该示例通过在滚动类容器内调用expandSafeArea属性实现沉浸式效果。
 
@@ -304,4 +337,4 @@ struct ExpandSafeAreaTest {
   }
 }
 ```
-![expandSafeArea3](figures/expandSafeArea3.jpg)
+![expandSafeArea4](figures/expandSafeArea4.png)

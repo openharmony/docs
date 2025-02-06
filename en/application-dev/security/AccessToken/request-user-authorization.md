@@ -17,14 +17,6 @@ This topic elaborates steps 3 and 4.
 
 ## Constraints
 
-- A check for the required permission is mandatory each time before the operation that requires the permission is performed.
-  
-  You can use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted specific permissions to your application. This API returns [PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
-
-- Each time before an API that requires a user_grant permission is called, use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the user has already granted the permission.
-
-  After a permission is granted, the user may revoke the permission in **Settings**. Therefore, the previous authorization status cannot be persistent.
-
 - For a user_grant permission, show a rationale to the user in a UI element, clearly explaining why your application needs the permission. Based on the rationale, the user then determines whether to grant the permission.
 
 - Frequent pop-up windows may disturb user experience and are not recommended. If a user rejects the authorization, the window for requesting user authorization will not be displayed again. The application needs to provide information to guide the user to manually grant the permission in **Settings**.
@@ -33,6 +25,17 @@ This topic elaborates steps 3 and 4.
 
   The system permission pop-up window cannot be obscured by other components. The information in the pop-up window must be completely displayed so that the user can identify and complete authorization.
   If the system permission pop-up window is displayed in the same position as another component, the system permission pop-up window takes precedence over the other component by default.
+
+- A check for the required permission is mandatory each time before the operation that requires the permission is performed.
+  
+  You can use [checkAccessToken()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted specific permissions to your application. This API returns [PERMISSION_GRANTED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus) or [PERMISSION_DENIED](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#grantstatus). For details, see the example given below.
+
+- Each time before an API that requires a user_grant permission is called, use [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) to check whether the user has already granted the permission.
+
+  After a permission is granted, the user may revoke the permission in **Settings**. Therefore, the previous authorization status cannot be persistent.
+
+- When requesting permissions using **onWindowStageCreate()**, the application needs to wait until the **loadContent()** or **setUIContent()** API is complete or call [requestPermissionsFromUser()](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestpermissionsfromuser9) in **loadContent()** or **setUIContent()**. Otherwise, **requestPermissionsFromUser()** will fail before **Content** is loaded.
+  <!--RP1--><!--RP1End-->
 
 ## How to Develop
 

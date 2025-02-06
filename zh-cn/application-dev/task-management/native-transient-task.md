@@ -168,6 +168,10 @@
 
 配置`CMakeLists.txt`，本模块需要用到的共享库是`libtransient_task.so`，在工程自动生成的`CMakeLists.txt`中的`target_link_libraries`中添加此共享库。
 
+   ```txt
+   target_link_libraries(entry PUBLIC libace_napi.z.so libtransient_task.so)
+   ```
+
 ## 测试步骤
 
 1. 连接设备并运行程序。

@@ -491,7 +491,7 @@ Invalid media operation.
 
 **Possible Cause**
 
-The target image format does not support this operation.
+The current image format does not support this operation.
 
 **Solution**
 
@@ -505,7 +505,7 @@ Invalid MIME type for the image source.
 
 **Possible Cause**
 
-The target image format does not support this operation.
+The current image format does not support this operation.
 
 **Solution**
 

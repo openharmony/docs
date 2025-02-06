@@ -36,7 +36,7 @@
 | typedef struct [OH_AudioSessionManager](_o_h_audio.md#oh_audiosessionmanager) [OH_AudioSessionManager](_o_h_audio.md#oh_audiosessionmanager) | 声明音频会话管理器。  | 
 | typedef struct [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) [OH_AudioSession_Strategy](_o_h_audio.md#oh_audiosession_strategy) | 音频会话策略。  | 
 | typedef struct [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) [OH_AudioSession_DeactivatedEvent](_o_h_audio.md#oh_audiosession_deactivatedevent) | 音频会话已停用事件。  | 
-| typedef int32_t(\* [OH_AudioSession_DeactivatedCallback](_o_h_audio.md#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | 这个函数指针将指向用于监听音频会话停用事件的回调函数。  | 
+| typedef int32_t (\*[OH_AudioSession_DeactivatedCallback](_o_h_audio.md#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | 这个函数指针将指向用于监听音频会话停用事件的回调函数。  | 
 
 
 ### 枚举

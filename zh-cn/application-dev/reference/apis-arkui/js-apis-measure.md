@@ -22,7 +22,7 @@ import { MeasureText } from '@kit.ArkUI'
 
 ## MeasureText.measureText
 
-measureText(options: MeasureOptions): number
+static measureText(options: MeasureOptions): number
 
 计算指定文本的宽度。
 
@@ -55,8 +55,9 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  @State textWidth: number = MeasureText.measureText({ // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
-    textContent: "Hello word",
+  @State textWidth: number = MeasureText.measureText({
+    // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
+    textContent: "Hello World",
     fontSize: '50px'
   })
 
@@ -74,7 +75,7 @@ struct Index {
 
 ## MeasureText.measureTextSize<sup>10+</sup>
 
-measureTextSize(options: MeasureOptions): SizeOptions
+static measureTextSize(options: MeasureOptions): SizeOptions
 
 计算指定文本的宽度和高度。
 
@@ -107,10 +108,12 @@ import { MeasureText } from '@kit.ArkUI'
 @Entry
 @Component
 struct Index {
-  textSize : SizeOptions = MeasureText.measureTextSize({ // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
-    textContent: "Hello word",
+  textSize: SizeOptions = MeasureText.measureTextSize({
+    // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
+    textContent: "Hello World",
     fontSize: '50px'
   })
+
   build() {
     Row() {
       Column() {

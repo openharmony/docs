@@ -141,9 +141,9 @@ try {
 
 ## How do I listen for window size changes? (API version 9)
 
-**Solution**
+After obtaining a **Window** instance, you can call [window.on('windowSizeChange')](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7) to listen for window size changes.
 
-Obtain a **Window** instance, and call **on('windowSizeChange')** to listen for window size changes.
+Note that this event is not triggered if the window size does not change. For example, if the window is rotated by 180 degrees without any size change, the callback is not invoked. In this case, listen for the [display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange) event and obtain the window size through the **display** interface within the callback.
 
 ```
 try {
@@ -154,10 +154,6 @@ try {
     console.error('Failed to enable the listener for window size changes. Cause: ' + JSON.stringify(exception));
 }
 ```
-
-**References**
-
-[window.on\("windowSizeChange"\)](../reference/apis-arkui/js-apis-window.md#onwindowsizechange7)
 
 ## How do I listen for orientation status changes of the device screen? (API version 10)
 
@@ -253,5 +249,60 @@ struct ScreenTest {
 [Setting the Window Orientation](../reference/apis-arkui/js-apis-window.md#setpreferredorientation9) 
 
 [Subscribing to Display Changes](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## Why a window instance cannot be used to obtain the updated window size in the display.on('change') callback? (API version 10)
+
+**Solution**
+
+The rotation action involves two modules, [@ohos.window](../reference/apis-arkui/js-apis-window.md) and [@ohos.display](../reference/apis-arkui/js-apis-display.md), which are running in separate processes. The sequence of updates following a rotation results in a temporal discrepancy: the display module updates by simply swapping width and height values, whereas the window module requires the completion of the ArkUI layout to determine the window size, which is a more time-consuming process. Consequently, attempting to retrieve the window information via the **Window** instance within the display change event will reflect outdated dimensions. As such, applications should register for the **display.on('change')** event and obtain screen dimensions such as width, height, and orientation from the **Display** instance within the callback.
+ 
+**Example (incorrect)**
+
+```ts
+// The display module updates first.
+display.on('change', async (data) => {
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation);
+  let windowClass: window.Window = await window.getLastWindow(this.context);
+  // The window module updates later. The original width and height are obtained.
+  let windowProperties = windowClass.getWindowProperties();
+  console.info('Width: ' + windowProperties.windowRect.width +
+    ', height: ' + windowProperties.windowRect.height);
+  // Ensure that the related Window instance, that is, windowClass, has been obtained.
+  windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+});
+```
+
+**Correct example**
+
+```ts
+display.on('change', (data) => {
+  console.info('Succeeded in enabling the listener for display changes. Data: ' +
+  JSON.stringify(data));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation + 'width: ' +
+  newDisplay.width + ', height: ' + newDisplay.height);
+});
+```
+
+**References**
+
+[display.on('change')](../reference/apis-arkui/js-apis-display.md#displayonaddremovechange)
+
+## How do I obtain the screen orientation and avoidAreaChange information at the same time? (API version 10)
+
+You can use [on('avoidAreaChange')](../reference/apis-arkui/js-apis-window.md#onavoidareachange9) to listen for avoidance area changes and obtain **avoidAreaChange** from the callback. You can obtain the screen orientation information through the **Display** instance.
+
+```ts
+// Ensure that the related Window instance, that is, windowClass, has been obtained.
+windowClass.on('avoidAreaChange', async (data) => {
+  console.info('Succeeded in enabling the listener for avoid area changes. Type: ' +
+    JSON.stringify(data.type) + ', area ' + JSON.stringify(data.area));
+  let newDisplay: display.Display = display.getDefaultDisplaySync();
+  console.info('Orientation: ' + newDisplay.orientation);
+  let windowClass: window.Window = await window.getLastWindow(this.context);
+  windowClass.getWindowAvoidArea(window.AvoidAreaType.TYPE_CUTOUT);
+});
+```
 
 <!--no_check-->

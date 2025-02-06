@@ -83,7 +83,7 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 | 名称                         | 值   | 说明                                                              |
 | --------------------------- | ---- |-----------------------------------------------------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0    | 相机位置未指定。                                                        |
+| CAMERA_POSITION_UNSPECIFIED | 0    | 相对于设备屏幕没有固定的朝向的相机。                                                        |
 | CAMERA_POSITION_BACK        | 1    | 后置相机。                                                           |
 | CAMERA_POSITION_FRONT       | 2    | 前置相机。                                                           |
 | CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | 折叠态相机。<br/> 从API version 11开始支持，从API version 12开始废弃。 |
@@ -7888,7 +7888,7 @@ enableAutoDeviceSwitch(enabled: boolean): void
 
 | 错误码ID   | 错误信息                                                                                                                                       |
 |----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
 | 7400102  | Operation not allowed.                                                                                                                         |
 | 7400103  | Session not config.                                                                                                                            |
 | 7400201  | Camera service fatal error.                                                                                                                    |

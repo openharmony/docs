@@ -269,8 +269,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**参数：** 
-
 | 名称                        | 类型                            | 可读 | 可写 | 说明               |
 | --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
 | direction                   | [Direction](#direction)         | 是   | 是   | 屏幕方向。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。         |
@@ -291,8 +289,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 **系统能力**：SystemCapability.Global.ResourceManager
 
-**参数：**
-
 | 名称            | 类型                            | 可读   | 可写   | 说明       |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
 | screenDensity | [ScreenDensity](#screendensity) | 是    | 否    | 当前设备屏幕密度。 |
@@ -301,37 +297,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 ## RawFileDescriptor<sup>8+</sup>
 
-表示rawfile文件所在hap的descriptor信息。
+type RawFileDescriptor = _RawFileDescriptor
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Global.ResourceManager
 
-**参数：**
-
-| 名称     | 类型    | 可读   | 可写  | 说明           |
-| ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | 文件描述符。 |
-| offset | number  | 是    | 否 | 起始偏移量。      |
-| length | number  | 是    | 否 | 文件长度。       |
+| 类型    | 说明   |
+| ------  | ---- | 
+|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|表示rawfile文件所在hap的descriptor信息。|
 
 ## Resource<sup>9+</sup>
 
-表示的资源信息。
+type Resource = _Resource
 
-**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力：** 以下各项对应的系统能力均为SystemCapability.Global.ResourceManager
+**系统能力：** SystemCapability.Global.ResourceManager
 
-**参数：**
-
-| 名称         | 类型     | 可读   | 可写  |说明          |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | 是    | 否 | 应用的bundle名称。 |
-| moduleName | string | 是    | 否 | 应用的module名称。 |
-| id         | number | 是    | 否 | 资源的id值。      |
-| params     | any[] | 是    | 否 | 其他资源参数（可选）。      |
-| type       | number | 是    | 否 | 资源的类型（可选）。      |
+| 类型    | 说明   |
+| ------  | ---- | 
+|[_Resource](resource.md#resource-1)|表示资源信息。|
 
 ## ResourceManager
 
@@ -341,7 +327,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 >
 > - ResourceManager涉及到的方法，仅限基于TS扩展的声明式开发范式使用。
 >
-> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过r(资源地址).id的方式获取，例如r('app.string.test').id。
+> - 资源文件在工程的resources目录中定义，通过resId、resName、resource对象等可以获取对应的字符串、字符串数组等，resId可通过`$r(资源地址).id`的方式获取，例如`$r('app.string.test').id`。
 >
 > - resource对象适用于多工程应用内的跨包访问，因resource对象需创建对应module的context获取资源，故相比于入参为resId、resName的接口耗时长。
 >
@@ -410,7 +396,7 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
 | resId | number | 是    | 资源ID值。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -513,7 +499,7 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | 参数名      | 类型                     | 必填   | 说明   |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | 是    | 资源信息。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -612,7 +598,7 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | 参数名     | 类型     | 必填   | 说明   |
 | ------- | ------ | ---- | ---- |
 | resName | string | 是    | 资源名称。 |
-| args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字\\$d、%数字\\$f、%数字\\$s<br>说明：%%转义为%; %数字\\$d表示使用第几个参数<br>举例：%%d格式化后为%d字符串; %1\\$d表示使用第一个参数|
+| ...args | Array<string \| number> | 否    | 格式化字符串资源参数。<br>支持参数类型：%d、%f、%s、%%、%数字`$d`、%数字`$f`、%数字`$s`。<br>说明：%%转义为%; %数字`$d`表示使用第几个参数。<br>举例：%%d格式化后为%d字符串; %1`$d`表示使用第一个参数。|
 
 **返回值：**
 
@@ -1155,7 +1141,7 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
@@ -3490,23 +3476,24 @@ getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableD
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3554,6 +3541,7 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
   ```ts
   import { resourceManager } from '@kit.LocalizationKit'
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3561,21 +3549,21 @@ getDrawableDescriptor(resource: Resource, density?: number, type?: number): Draw
     id: $r('app.media.icon').id
   };
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3620,23 +3608,24 @@ getDrawableDescriptorByName(resName: string, density?: number, type?: number): D
 **示例：**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon');
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -5532,7 +5521,7 @@ getOverrideConfiguration() : Configuration
 
 | 类型                            | 说明             |
 | ------------------------------- | ---------------- |
-| [Configuration](#configuration) | 差异化资源的配置 |
+| [Configuration](#configuration) | 差异化资源的配置。 |
 
 **示例：**
 
@@ -5784,13 +5773,13 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                        | 说明             |
 | ------------------------- | -------------- |
-| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容。 |
 
 **示例：** 
   ```ts
@@ -5820,8 +5809,8 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明                       |
 | -------- | --------------------------- | ---- | ------------------------ |
-| resId    | number                      | 是    | 资源ID值                    |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+| resId    | number                      | 是    | 资源ID值。                    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
@@ -5851,13 +5840,13 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
+| resId | number | 是    | 资源ID值。 |
 
 **返回值：**
 
 | 类型                    | 说明                   |
 | --------------------- | -------------------- |
-| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码。 |
 
 **示例：** 
   ```ts
@@ -5891,14 +5880,14 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 | 参数名   | 类型     | 必填   | 说明    |
 | ----- | ------ | ---- | ----- |
-| resId | number | 是    | 资源ID值 |
-| num   | number | 是    | 数量值   |
+| resId | number | 是    | 资源ID值。 |
+| num   | number | 是    | 数量值。   |
 
 **返回值：**
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
+| Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串。 |
 
 **示例：** 
   ```ts
@@ -5932,9 +5921,9 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 | 参数名      | 类型                          | 必填   | 说明                              |
 | -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | 是    | 资源ID值                           |
-| num      | number                      | 是    | 数量值                             |
-| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
+| resId    | number                      | 是    | 资源ID值。                           |
+| num      | number                      | 是    | 数量值。                             |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串。 |
 
 **示例：** 
   ```ts
@@ -5964,8 +5953,8 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 参数名      | 类型                              | 必填   | 说明                      |
 | -------- | ------------------------------- | ---- | ----------------------- |
-| path     | string                          | 是    | rawfile文件路径             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
+| path     | string                          | 是    | rawfile文件路径。             |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容。 |
 
 **示例：** 
   ```ts
@@ -5995,13 +5984,13 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                        | 说明          |
 | ------------------------- | ----------- |
-| Promise&lt;Uint8Array&gt; | rawfile文件内容 |
+| Promise&lt;Uint8Array&gt; | rawfile文件内容。 |
 
 **示例：** 
   ```ts
@@ -6031,8 +6020,8 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 | 参数名      | 类型                                       | 必填   | 说明                               |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
-| path     | string                                   | 是    | rawfile文件路径                      |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
+| path     | string                                   | 是    | rawfile文件路径。                      |
+| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor。 |
 
 **示例：** 
   ```ts
@@ -6065,13 +6054,13 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor。 |
 
 **示例：** 
   ```ts
@@ -6104,8 +6093,8 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明          |
 | -------- | ------------------------- | ---- | ----------- |
-| path     | string                    | 是    | rawfile文件路径 |
-| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
+| path     | string                    | 是    | rawfile文件路径。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 异步回调。        |
 
 **示例：** 
   ```ts
@@ -6132,13 +6121,13 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| path | string | 是    | rawfile文件路径 |
+| path | string | 是    | rawfile文件路径。 |
 
 **返回值：**
 
 | 类型                  | 说明   |
 | ------------------- | ---- |
-| Promise&lt;void&gt; | 无返回值 |
+| Promise&lt;void&gt; | 无返回值。 |
 
 **示例：** 
   ```ts
@@ -6181,6 +6170,13 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
         {
         "name": "test",
         "value": [
+          {
+            "value": "strarray_test"
+          }
+        ]
+        }
+    ]
+    }
     ```  
 
 - 示例代码中用到的'app.plural.test'文件内容如下：

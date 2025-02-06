@@ -164,25 +164,25 @@ This error code is reported when the parent window is invalid.
 1. Ensure that the subwindow is bound to the parent window.
 2. Ensure that the status of the parent window is normal.
 
-## 1300010 Invalid Operation in the Full-Screen Window
+## 1300010 Unsupported Operation in the Current Window Mode
 
 **Error Message**
 
-The operation is not supported in full-screen mode.
+The operation in the current window status is invalid.
 
 **Description**
 
-This error code is reported when you perform an invalid operation in the full-screen window.
+This error code is reported when the operation is not supported in the current window mode.
 
 **Possible Causes**
 
-1. Perform the move operation in the full-screen window.
-2. Perform the resize operation in the full-screen window.
+1. Perform the move operation in the full-screen or split-screen window.
+2. Perform the resize operation in the full-screen or split-screen window.
 
 **Solution**
 
-1. Do not move the full-screen window.
-2. Do not resize the full-screen window.
+1. Do not move the full-screen or split-screen window.
+2. Do not resize the full-screen or split-screen window.
 
 ## 1300011 Failure in Destroying a PiP Window
 
@@ -244,7 +244,7 @@ This error code is reported when creating a PiP window fails.
 
 **Error Message**
 
-Pip internal error.
+PiP internal error.
 
 **Description**
 

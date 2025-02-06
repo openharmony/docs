@@ -6,15 +6,13 @@
 > 
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应，开发者只需要将这些组件的draggable属性设置为true，即可使用默认拖拽能力。<!--RP1--><!--RP1End-->
+ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应。开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
-- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)
+- 默认支持拖出能力的组件（可从组件上拖出数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Text](ts-basic-components-text.md)、[Image](ts-basic-components-image.md)、<!--Del-->[FormComponent](ts-basic-components-formcomponent-sys.md)、<!--DelEnd-->[Hyperlink](ts-container-hyperlink.md)，开发者可通过设置这些组件的[draggable](ts-universal-attributes-drag-drop.md#draggable)属性来控制对默认拖拽能力的使用。
 
-- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)、[Video](ts-media-components-video.md)
+- 默认支持拖入能力的组件（目标组件可响应拖入数据）：[Search](ts-basic-components-search.md)、[TextInput](ts-basic-components-textinput.md)、[TextArea](ts-basic-components-textarea.md)、[RichEditor](ts-basic-components-richeditor.md)，开发者可通过设置这些组件的[allowDrop](ts-universal-attributes-drag-drop.md#allowdrop)属性为null来禁用对默认拖入能力的支持。
 
-开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
-
-其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
+<!--RP1--><!--RP1End-->其他组件需要开发者将draggable属性设置为true，并在onDragStart等接口中实现数据传输相关内容，才能正确处理拖拽。
 
 > **说明：**
 >
@@ -461,3 +459,179 @@ struct dragPreviewOptionsDemo{
 ```
 
 ![imageModifier.gif](figures/imageModifier.gif)
+
+### 示例7（图片拖拽设置）
+
+该示例展示了不同图片（在线图片资源、本地图片资源和PixelMap）在拖拽时组件的设置。
+使用网络图片时，需要申请权限ohos.permission.INTERNET。具体申请方式请参考[声明权限](../../../security/AccessToken/declare-permissions.md)。
+
+```ts
+// xxx.ets
+import { uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { request } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { buffer } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct ImageDrag {
+  @State targetImage1: string | PixelMap | null = null;
+  @State targetImage2: string | PixelMap | null = null;
+  @State targetImage3: string | PixelMap | null = null;
+  context = getContext(this) as common.UIAbilityContext;
+  filesDir = this.context.filesDir;
+
+  public async createPixelMap(pixelMap: unifiedDataChannel.SystemDefinedPixelMap): Promise<image.PixelMap | null> {
+    let mWidth: number = (pixelMap.details?.width ?? -1) as number;
+    let mHeight: number = (pixelMap.details?.width ?? -1) as number;
+    let mPixelFormat: image.PixelMapFormat =
+      (pixelMap.details?.['pixel-format'] ?? image.PixelMapFormat.UNKNOWN) as image.PixelMapFormat;
+    let mItemPixelMapData: Uint8Array = pixelMap.rawData;
+    const opts: image.InitializationOptions = {
+      editable: false, pixelFormat: mPixelFormat, size: {
+        height: mHeight,
+        width: mWidth
+      }
+    };
+    const buffer: ArrayBuffer = mItemPixelMapData.buffer.slice(mItemPixelMapData.byteOffset,
+      mItemPixelMapData.byteLength + mItemPixelMapData.byteOffset);
+    try {
+      let pixelMap: image.PixelMap = await image.createPixelMap(buffer, opts);
+      return pixelMap;
+    } catch (err) {
+      console.error('dragtest--> getPixelMap', err);
+      return null;
+    }
+  }
+
+  build() {
+    Column() {
+      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
+        // 在线图片资源拖出
+        Column() {
+          Text('Online Image').fontSize(14)
+          Image('https://www.example.com/xxx.png') // 请填写一个具体的网络图片地址
+            .objectFit(ImageFit.Contain).draggable(true)
+            .onDragStart(() => {})
+            .width(100).height(100)
+        }
+        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+
+        // 本地图片资源拖出
+        Column() {
+          Text('Local Image').fontSize(14)
+          Image($r('app.media.example'))
+            .objectFit(ImageFit.Contain).draggable(true)
+            .onDragStart(() => {})
+            .width(100).height(100)
+        }
+        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+
+        // PixelMap拖出
+        Column() {
+          Text('PixelMap').fontSize(14)
+          Image(this.context.resourceManager.getDrawableDescriptor($r('app.media.example').id).getPixelMap())
+            .objectFit(ImageFit.Contain).draggable(true)
+            .onDragStart(() => {})
+            .width(100).height(100)
+        }
+        .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+        .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+      }
+
+      // 落入数据类型为Image
+      Text('Data type is Image').fontSize(14).margin({ top: 10 })
+      Column() {
+        Image(this.targetImage1)
+          .objectFit(ImageFit.Contain)
+          .width('70%').height('70%')
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+          .onDrop((event: DragEvent, extraParams: string) => {
+            // 通过extraParams获取图片
+            let arr: Record<string, object> = JSON.parse(extraParams) as Record<string, object>;
+            let uri = arr['extraInfo'];
+            if (typeof uri == 'string') {
+              this.targetImage1 = uri;
+
+              try {
+                request.downloadFile(this.context, {
+                  url: uri,
+                  filePath: this.filesDir + '/example.png'
+                }).then((downloadTask: request.DownloadTask) => {
+                  let file = fileIo.openSync(this.filesDir + '/example.png', fileIo.OpenMode.READ_WRITE);
+                  let arrayBuffer = new ArrayBuffer(1024);
+                  let readLen = fileIo.readSync(file.fd, arrayBuffer);
+                  let buf = buffer.from(arrayBuffer, 0, readLen);
+                  console.info(`The content of file: ${buf.toString()}`);
+                  fileIo.closeSync(file);
+                })
+              } catch (error) {}
+            }
+          })
+      }
+      .width('70%').height('25%')
+      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+
+      Column() {
+        Image(this.targetImage2)
+          .objectFit(ImageFit.Contain)
+          .width('70%').height('70%')
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+          .onDrop((event: DragEvent, extraParams: string) => {
+            // 通过uniformTypeDescriptor获取图片
+            let data: UnifiedData = event.getData();
+            let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+            if (records[0].getType() ===uniformTypeDescriptor.UniformDataType.IMAGE) {
+              let image: unifiedDataChannel.Image = records[0] as unifiedDataChannel.Image;
+              this.targetImage2 = image.imageUri;
+            }
+          })
+      }
+      .width('70%').height('25%')
+      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+
+      // 落入数据类型为PixelMap
+      Text('Data type is PixelMap').fontSize(14).margin({ top: 10 })
+      Column() {
+        Image(this.targetImage3)
+          .objectFit(ImageFit.Contain)
+          .width('70%').height('70%')
+          .allowDrop([uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP])
+          .onDrop(async (event: DragEvent, extraParams: string) => {
+            // 通过uniformTypeDescriptor获取图片
+            let data: UnifiedData = event.getData();
+            let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+            if (records[0].getType() ===uniformTypeDescriptor.UniformDataType.OPENHARMONY_PIXEL_MAP) {
+              let record: unifiedDataChannel.SystemDefinedPixelMap = records[0] as unifiedDataChannel.SystemDefinedPixelMap;
+              this.targetImage3 = await this.createPixelMap(record);
+
+              // 落盘到本地
+              const imagePackerApi = image.createImagePacker();
+              let packOpts : image.PackingOption = { format: "image/jpeg", quality:98 };
+              const path : string = this.context.cacheDir + "/pixel_map.jpg";
+              let file = fileIo.openSync(path, fileIo.OpenMode.CREATE | fileIo.OpenMode.READ_WRITE);
+              imagePackerApi.packToFile(this.targetImage3, file.fd, packOpts).then(() => {
+                // 直接打包进文件
+              }).catch((error : BusinessError) => {
+                console.error('Failed to pack the image. And the error is: ' + error);
+              })
+            }
+          })
+      }
+      .width('70%').height('25%')
+      .border({ width: 2, color: Color.Gray, radius: 5, style: BorderStyle.Dotted })
+      .alignItems(HorizontalAlign.Center).justifyContent(FlexAlign.Center)
+
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![imageDrag.gif](figures/imageDrag.gif)

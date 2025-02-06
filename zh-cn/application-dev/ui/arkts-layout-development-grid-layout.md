@@ -46,16 +46,16 @@
 - 针对断点位置，开发者根据实际使用场景，通过一个单调递增数组设置。由于breakpoints最多支持六个断点，单调递增数组长度最大为5。
 
 
-  ```ts
+    ```ts
   breakpoints: {value: ['100vp', '200vp']}
-  ```
+    ```
 
-  表示启用xs、sm、md共3个断点，小于100vp为xs，100vp-200vp为sm，大于200vp为md。
+   表示启用xs、sm、md共3个断点，小于100vp为xs，100vp-200vp为sm，大于200vp为md。
 
 
-  ```ts
+    ```ts
   breakpoints: {value: ['320vp', '520vp', '840vp', '1080vp']}
-  ```
+    ```
 
   表示启用xs、sm、md、lg、xl共5个断点，小于320vp为xs，320vp-520vp为sm，520vp-840vp为md，840vp-1080vp为lg，大于1080vp为xl。
 
@@ -65,7 +65,9 @@
 
 
 ```ts
-@State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+@State bgColors: ResourceColor[] =
+    ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+      'rgb(255,192,0)', 'rgb(170,10,33)'];
 ...
 GridRow({
   breakpoints: {
@@ -73,7 +75,7 @@ GridRow({
     reference: BreakpointsReference.WindowSize
   }
 }) {
-   ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
+   ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
      GridCol({
        span: {
          xs: 2, // 在最小宽度类型设备上，栅格子组件占据的栅格容器2列。
@@ -102,21 +104,23 @@ GridRow中通过columns设置栅格布局的总列数。
 - columns默认值为12，即在未设置columns时，任何断点下，栅格布局被分成12列。
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown,Color.Red, Color.Orange, Color.Yellow, Color.Green];
-  ...
-  GridRow() {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
-      GridCol() {
-        Row() {
-            Text(`${index}`)
-        }.width('100%').height('50')
-      }.backgroundColor(item)
-    })
-  }           
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)', 'rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)'];
+    ...
+    GridRow() {
+      ForEach(this.bgColors, (item:ResourceColor, index?:number|undefined) => {
+        GridCol() {
+          Row() {
+              Text(`${index}`)
+          }.width('100%').height('50')
+        }.backgroundColor(item)
+      })
+    }           
+    ```
 
-  ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
+    ![zh-cn_image_0000001563060709](figures/zh-cn_image_0000001563060709.png)
 
 - 当columns为自定义值，栅格布局在任何尺寸设备下都被分为columns列。下面分别设置栅格布局列数为4和8，子元素默认占一列，效果如下：
 
@@ -128,12 +132,14 @@ GridRow中通过columns设置栅格布局的总列数。
     }
   }
   let BorderWH:Record<string,Color|number> = { 'color': Color.Blue, 'width': 2 }
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
   @State currentBp: string = 'unknown';
   ...
   Row() {
     GridRow({ columns: 4 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+      ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
         GridCol() {
           Row() {
             Text(`${index}`)
@@ -153,7 +159,7 @@ GridRow中通过columns设置栅格布局的总列数。
   
   Row() {
     GridRow({ columns: 8 }) {
-      ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+      ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
           GridCol() {
             Row() {
               Text(`${index}`)
@@ -177,9 +183,11 @@ GridRow中通过columns设置栅格布局的总列数。
 - 当columns类型为GridRowColumnOption时，支持下面六种不同尺寸（xs, sm, md, lg, xl, xxl）设备的总列数设置，各个尺寸下数值可不同。
 
   ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
   GridRow({ columns: { sm: 4, md: 8 }, breakpoints: { value: ['200vp', '300vp', '400vp', '500vp', '600vp'] } }) {
-    ForEach(this.bgColors, (item:Color, index?:number|undefined) => {
+    ForEach(this.bgColors, (item: ResourceColor, index?:number|undefined) => {
       GridCol() {
         Row() {
           Text(`${index}`)
@@ -201,20 +209,20 @@ GridRow中通过columns设置栅格布局的总列数。
 - 子组件默认从左往右排列。
 
 
-  ```ts
+    ```ts
   GridRow({ direction: GridRowDirection.Row }){}
-  ```
+    ```
 
-  ![zh-cn_image_0000001511740488](figures/zh-cn_image_0000001511740488.png)
+    ![zh-cn_image_0000001511740488](figures/zh-cn_image_0000001511740488.png)
 
 - 子组件从右往左排列。
 
 
-  ```ts
+    ```ts
   GridRow({ direction: GridRowDirection.RowReverse }){}
-  ```
+    ```
 
-  ![zh-cn_image_0000001562940517](figures/zh-cn_image_0000001562940517.png)
+    ![zh-cn_image_0000001562940517](figures/zh-cn_image_0000001562940517.png)
 
 
 ### 子组件间距
@@ -224,20 +232,20 @@ GridRow中通过gutter属性设置子元素在水平和垂直方向的间距。
 - 当gutter类型为number时，同时设置栅格子组件间水平和垂直方向边距且相等。下例中，设置子组件水平与垂直方向距离相邻元素的间距为10。
 
 
-  ```ts
-   GridRow({ gutter: 10 }){}
-  ```
+    ```ts
+  GridRow({ gutter: 10 }){}
+    ```
 
-  ![zh-cn_image_0000001511740476](figures/zh-cn_image_0000001511740476.png)
+    ![zh-cn_image_0000001511740476](figures/zh-cn_image_0000001511740476.png)
 
 - 当gutter类型为GutterOption时，单独设置栅格子组件水平垂直边距，x属性为水平方向间距，y为垂直方向间距。
 
 
-  ```ts
+    ```ts
   GridRow({ gutter: { x: 20, y: 50 } }){}
-  ```
+    ```
 
-  ![zh-cn_image_0000001511900456](figures/zh-cn_image_0000001511900456.png)
+    ![zh-cn_image_0000001511900456](figures/zh-cn_image_0000001511900456.png)
 
 
 ## 子组件GridCol
@@ -247,34 +255,34 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 - 设置span。
 
 
-  ```ts
+    ```ts
   let Gspan:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ span: 2 }){}
   GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
   GridCol(){}.span(2)
   GridCol(){}.span(Gspan)
-  ```
+    ```
 
 - 设置offset。
 
 
-  ```ts
+    ```ts
   let Goffset:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ offset: 2 }){}
   GridCol({ offset: { xs: 2, sm: 2, md: 2, lg: 2 } }){}
   GridCol(){}.offset(Goffset) 
-  ```
+    ```
 
 - 设置order。
 
 
-  ```ts
+    ```ts
   let Gorder:Record<string,number> = { 'xs': 1, 'sm': 2, 'md': 3, 'lg': 4 }
   GridCol({ order: 2 }){}
   GridCol({ order: { xs: 1, sm: 2, md: 3, lg: 4 } }){}
   GridCol(){}.order(2)
   GridCol(){}.order(Gorder)
-  ```
+    ```
 
 
 ### span
@@ -284,42 +292,46 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 - 当类型为number时，子组件在所有尺寸设备下占用的列数相同。
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
-  GridRow({ columns: 8 }) {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ span: 2 }) {      
-        Row() {
-          Text(`${index}`)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+    GridRow({ columns: 8 }) {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ span: 2 }) {      
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                
+    ```
 
-  ![zh-cn_image_0000001511421264](figures/zh-cn_image_0000001511421264.png)
+    ![zh-cn_image_0000001511421264](figures/zh-cn_image_0000001511421264.png)
 
 - 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置，各个尺寸下数值可不同。
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
-  GridRow({ columns: 8 }) {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
-        Row() {
-          Text(`${index}`)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+    GridRow({ columns: 8 }) {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
+          Row() {
+            Text(`${index}`)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                
+    ```
 
-  ![zh-cn_image_0000001511740492](figures/zh-cn_image_0000001511740492.gif)
+    ![zh-cn_image_0000001511740492](figures/zh-cn_image_0000001511740492.gif)
 
 
 ### offset
@@ -329,45 +341,49 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 - 当类型为number时，子组件偏移相同列数。
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
-  GridRow() {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ offset: 2 }) {      
-        Row() {
-          Text('' + index)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                
-  ```
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+    GridRow() {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ offset: 2 }) {      
+          Row() {
+            Text('' + index)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                
+    ```
 
-  ![zh-cn_image_0000001563060705](figures/zh-cn_image_0000001563060705.png)
+    ![zh-cn_image_0000001563060705](figures/zh-cn_image_0000001563060705.png)
 
   栅格默认分成12列，每一个子组件默认占1列，偏移2列，每个子组件及间距共占3列，一行放四个子组件。
 
 - 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件所占列数设置,各个尺寸下数值可不同。
 
 
-  ```ts
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
-  ...
+    ```ts
+  @State bgColors: ResourceColor[] =
+      ['rgb(213,213,213)', 'rgb(150,150,150)', 'rgb(0,74,175)', 'rgb(39,135,217)', 'rgb(61,157,180)', 'rgb(23,169,141)',
+        'rgb(255,192,0)', 'rgb(170,10,33)'];
+    ...
+  
+    GridRow() {
+      ForEach(this.bgColors, (color:ResourceColor, index?:number|undefined) => {
+        GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
+          Row() {
+            Text('' + index)
+          }.width('100%').height('50vp')          
+        }
+        .backgroundColor(color)
+      })
+    }                 
+    ```
 
-  GridRow() {
-    ForEach(this.bgColors, (color:Color, index?:number|undefined) => {
-      GridCol({ offset: { xs: 1, sm: 2, md: 3, lg: 4 } }) {      
-        Row() {
-          Text('' + index)
-        }.width('100%').height('50vp')          
-      }
-      .backgroundColor(color)
-    })
-  }                 
-  ```
-
-  ![zh-cn_image_0000001562700433](figures/zh-cn_image_0000001562700433.gif)
+    ![zh-cn_image_0000001562700433](figures/zh-cn_image_0000001562700433.gif)
 
 
 ### order
@@ -379,62 +395,62 @@ GridCol组件作为GridRow组件的子组件，通过给GridCol传参或者设�
 - 当类型为number时，子组件在任何尺寸下排序次序一致。
 
 
-  ```ts
+    ```ts
   GridRow() {
     GridCol({ order: 4 }) {
       Row() {
         Text('1')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Red)
+    }.backgroundColor('rgb(213,213,213)')
     GridCol({ order: 3 }) {
       Row() {
         Text('2')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Orange)
+    }.backgroundColor('rgb(150,150,150)')
     GridCol({ order: 2 }) {
       Row() {
         Text('3')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Yellow)
+    }.backgroundColor('rgb(0,74,175)')
     GridCol({ order: 1 }) {
       Row() {
         Text('4')
       }.width('100%').height('50vp')
-    }.backgroundColor(Color.Green)
-  }            
-  ```
+    }.backgroundColor('rgb(39,135,217)')
+  }
+    ```
 
-  ![zh-cn_image_0000001511580892](figures/zh-cn_image_0000001511580892.png)
+    ![zh-cn_image_0000001511580892](figures/zh-cn_image_0000001511580892.png)
 
 - 当类型为GridColColumnOption时，支持六种不同尺寸（xs, sm, md, lg, xl, xxl）设备中子组件排序次序设置。在xs设备中，子组件排列顺序为1234；sm为2341，md为3412，lg为2431。
 
 
-  ```ts
-  GridRow() {
-    GridCol({ order: { xs:1, sm:5, md:3, lg:7}}) {
-      Row() {
-        Text('1')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Red)
-    GridCol({ order: { xs:2, sm:2, md:6, lg:1} }) {
-      Row() {
-        Text('2')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Orange)
-    GridCol({ order: { xs:3, sm:3, md:1, lg:6} }) {
-      Row() {
-        Text('3')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Yellow)
-    GridCol({ order: { xs:4, sm:4, md:2, lg:5} }) {
-      Row() {
-        Text('4')
-      }.width('100%').height('50vp')
-    }.backgroundColor(Color.Green)
-  } 
-  ```
+    ```ts
+    GridRow() {
+      GridCol({ order: { xs:1, sm:5, md:3, lg:7}}) {
+        Row() {
+          Text('1')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Red)
+      GridCol({ order: { xs:2, sm:2, md:6, lg:1} }) {
+        Row() {
+          Text('2')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Orange)
+      GridCol({ order: { xs:3, sm:3, md:1, lg:6} }) {
+        Row() {
+          Text('3')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Yellow)
+      GridCol({ order: { xs:4, sm:4, md:2, lg:5} }) {
+        Row() {
+          Text('4')
+        }.width('100%').height('50vp')
+      }.backgroundColor(Color.Green)
+    } 
+    ```
 
-  ![zh-cn_image_0000001511900444](figures/zh-cn_image_0000001511900444.gif)
+    ![zh-cn_image_0000001511900444](figures/zh-cn_image_0000001511900444.gif)
 
 
 ## 栅格组件的嵌套使用

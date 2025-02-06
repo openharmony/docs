@@ -26,6 +26,7 @@
 | OH_JSVM_IsError              | 查询JSVM_Value以检查它是否表示错误对象。|
 | OH_JSVM_GetAndClearLastException    | 清理并返回最后一个JS异常。|
 | OH_JSVM_IsExceptionPending   | 判断当前是否有异常。|
+| OH_JSVM_GetLastErrorInfo     | 获取最后一次发生的错误信息。|
 
 ## 使用示例
 
@@ -33,7 +34,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ### OH_JSVM_Throw
 
-用于在JSVM-NAPI模块中抛出JavaScript异常的函数。当在本机代码中发生错误或检测到不符合预期的情况时，可以使用此接口来抛出一个Javascript异常，使其能够被捕获并处理。
+用于抛出JavaScript Error对象。当在本机代码中发生错误或检测到不符合预期的情况时，可以使用此接口来抛出一个Javascript Error，使其能够被捕获并处理。示例参考OH_JSVM_CreateError。
 
 ### OH_JSVM_CreateError
 
@@ -553,7 +554,7 @@ JSVM API OH_JSVM_IsExceptionPending: SUCCESS
 
 ### OH_JSVM_GetLastErrorInfo
 
-用于获取调用JSVM接口最后一次发生的错误信息（接口返回值不为JSVM_OK），包括错误码、错误消息以及错误进栈信息，即使存在挂起的JavaScript异常，也可以调用此API。
+用于获取调用JSVM接口最后一次发生的错误信息（接口返回值不为JSVM_OK），包括错误码、错误消息以及错误堆栈信息，即使存在挂起的JavaScript异常，也可以调用此API。
 注意: 通过OH_JSVM_ThrowError等接口主动触发的Error不会被该接口获取，除非调用接口时返回值不为JSVM_OK。
 
 cpp部分代码

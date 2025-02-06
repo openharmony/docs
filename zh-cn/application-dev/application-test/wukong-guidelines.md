@@ -41,7 +41,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
 3. PC被检测设备连接后，才可执行命令行，支持单个和多个设备。
 
-4. 所有命令行执行前需要先进入shell模式
+4. 所有命令行执行前需要先进入shell模式。
 
 ## 功能特性及命令说明
 
@@ -114,7 +114,12 @@ wukong部件架构图以及部件内子模块职责如下所述。
     -r, --rotate               rotate event percent
     -e, --allow ability        the ability name of allowlist
     -E, --block ability        the ability name of blocklist
+    -Y, --blockCompId          the id list of block component
+    -y, --blockCompType        the type list of block component
     -I, --screenshot           get screenshot(only in random input)
+    -B, --checkBWScreen        black and white screen detection
+    -U, --Uri                  set Uri pages
+    -x, --Uri-type             set Uri-type
   # wukong special -help    //wukong专项测试帮助菜单
   usage: wukong special [<arguments>]
   These are wukong special arguments list:
@@ -272,7 +277,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 命令中各参数含义：
 | 命令           | 参数值      |说明        |
 | -------------- | -------------- | -------------- |
-| wukong exec | -           | 主命令。                |
+| wukong focus | -           | 主命令。                |
 | -s     | 10           | 参数设置随机种子，10为种子值。  |
 | -i  | 1000           | 参数设置应用拉起间隔为1000ms。 |
 | -a  | 0.28          | 参数设置应用随机拉起测试比例28%。    |

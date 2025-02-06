@@ -42,6 +42,10 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 
 Executes a call to an InsightIntent. This API uses an asynchronous callback to return the result.
 
+When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
+
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
+
 **Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -120,6 +124,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 Executes a call to an InsightIntent. This API uses a promise to return the result.
+
+When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
+
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
 
 **Model restriction**: This API can be used only in the stage model.
 

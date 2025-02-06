@@ -42,7 +42,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API invocation.
+The ability with the specified type does not support the API call.
 
 **Solution**
 
@@ -84,7 +84,7 @@ Visibility verification fails.
 **Solution**
 
 1. Check whether [exported](../../quick-start/module-configuration-file.md#abilities) under the **Ability** field in the **module.json5** file of the ability is set to **true**. If this parameter is set to **true**, the ability can be started by other applications. If this parameter is set to **false**, the ability cannot be started by other applications.
-2. To start the ability for which **exported** is set to **false**, the caller must request the **ohos.permission.START_INVISIBLE_ABILITY** permission, which is available only for system applications.
+2. To start the ability for which **exported** is set to **false**, the caller must request the ohos.permission.START_INVISIBLE_ABILITY permission, which is available only for system applications.
 
 ## 16000005 Process Permission Verification Failure
 
@@ -174,7 +174,7 @@ An ability cannot be started or stopped in Wukong mode.
 
 **Solution**
 
-Exit Wukong mode, and then start or stop the ability. An ability cannot be started or stopped in Wukong mode.
+Exit Wukong mode, and then start or stop the ability.  
 
 ## 16000010 Continuation Flag Forbidden
 
@@ -194,7 +194,7 @@ The continuation flag is not allowed for the API call.
 
 Remove the continuation flag.
 
-## 16000011 Context Not Exist
+## 16000011 Context Does Not Exist
 
 **Error Message**
 
@@ -288,7 +288,7 @@ No action is required. Wait for the previous abilities to finish startup.
 
 **Error Message**
 
-The application is not allow jumping to other applications when api version is above 11.
+Redirection to a third-party application is not allowed in API version 11 or later.
 
 **Description**
 
@@ -308,9 +308,15 @@ Can not match any component.
 
 A matching ability is not found during implicit startup.
 
+**Possible Causes**
+
+1. The parameter settings for implicit startup are incorrect.
+2. The specified HAP is not installed.
+
 **Solution**
 
-Modify the items used for matching in implicit startup.
+1. Correct the parameter settings for implicit startup.
+2. Install the specified HAP.
 
 ## 16000050 Internal Error
 
@@ -512,7 +518,7 @@ Sandbox applications cannot authorize URIs.
 
 Use a non-sandbox application.
 
-## 16000061 Unsupport Operation
+## 16000061 Unsupported Operation
 
 **Error Message**
 
@@ -941,7 +947,7 @@ This error code is reported when the ability type invoked by the API is incorrec
 
 **Possible Causes**
 
-The ability with the specified type does not support the API invocation.
+The ability with the specified type does not support the API call.
 
 **Solution**
 
@@ -1008,7 +1014,7 @@ Check whether the caller has registered.
 
 **Error Message**
 
-Method registered. The method has registered.
+The method has been registered.
 
 **Description**
 

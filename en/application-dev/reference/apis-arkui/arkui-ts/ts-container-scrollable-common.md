@@ -125,7 +125,7 @@ Sets the friction coefficient. It applies only to gestures in the scrolling area
 
 flingSpeedLimit(speedLimit: number): T
 
-Sets the maximum starting fling speed when the fling animation starts. If this attribute is set to a value less than or equal to 0, the default value is used.
+Sets the maximum initial velocity at the start of the fling animation that occurs after gesture-driven scrolling ends. If this attribute is set to a value less than or equal to 0, the default value is used.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -135,7 +135,7 @@ Sets the maximum starting fling speed when the fling animation starts. If this a
 
 | Name    | Type  | Mandatory| Description                           |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | Yes  | Maximum starting fling speed when the fling animation starts.<br>Default value: **12000**<br>Unit: vp/s|
+| speedLimit | number | Yes  | Maximum initial velocity at the start of the fling animation.<br>Default value: **12000**<br>Unit: vp/s|
 
 
 ## Events

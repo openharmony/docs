@@ -41,7 +41,7 @@ Binds a navigation stack to the **Navigation** component.
 
 | Name      | Type                           | Mandatory  | Description  |
 | --------- | ------------------------------- | ---- | ------ |
-| pathInfos | [NavPathStack](#navpathstack10) | No   | Information about the navigation stack.|
+| pathInfos | [NavPathStack](#navpathstack10) | Yes   | Information about the navigation stack.|
 
 ## Attributes
 
@@ -162,7 +162,7 @@ Sets the content of the toolbar. If this attribute is not set, no toolbar is dis
 
 | Name | Type                                                        | Mandatory| Description                                                        |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   |  Array&lt;[ToolbarItem](#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. When the value type is Array&lt;[ToolbarItem](#toolbaritem10), the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, this attribute must be used together with Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt; of the **menus** attribute; the toolbar at the bottom is automatically hidden, and all items on the toolbar are moved to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
+| value   |  Array&lt;[ToolbarItem](#toolbaritem10)&gt;  \| [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the toolbar. When the value type is Array&lt;[ToolbarItem](#toolbaritem10), the toolbar exhibits the following features:<br>Items are evenly distributed on the toolbar at the bottom. Text and icons are evenly distributed in each content area.<br>If any item contains overlong text and there are fewer than five items, the following measures are taken: 1. Increase the item's width to accommodate the text until it is as large as the screen width; 2. Scale down the text level by level; 3. Wrap the text in two lines; 4. Clip the text with an ellipsis (...).<br>The toolbar shows a maximum of five icons in portrait mode, with excess icons (if any) placed under the automatically generated **More** icon. In landscape mode, the behavior of the toolbar is determined by the display mode: (1) If the display mode is [Split](#navigationmode9), the toolbar follows the same rules as in portrait mode. (2) If the display mode is [Stack](#navigationmode9), this attribute must be used together with Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt; of the **menus** attribute; in this configuration, the toolbar at the bottom is automatically hidden, and all items on the toolbar are relocated to the menu in the upper right corner of the screen.<br>When the value type is [CustomBuilder](ts-types.md#custombuilder8), and the toolbar does not exhibit the preceding features except that items are evenly distributed on the toolbar at the bottom.|
 | options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | No  | Toolbar options.                                                |
 
 ### hideToolBar
@@ -181,6 +181,23 @@ Specifies whether to hide the toolbar.
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
 
+### hideToolBar<sup>13+</sup>
+
+hideToolBar(hide: boolean, animated: boolean)
+
+Sets whether to hide the toolbar and whether to animate the visibility change.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | boolean | Yes  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Show the toolbar.|
+| animated  | boolean | Yes  | Whether to animate the visibility change.<br>Default value: **false**<br>**true**: Animate the visibility change.<br>**false**: Do not animate the visibility change.|
+
 ### hideTitleBar
 
 hideTitleBar(value: boolean)
@@ -197,11 +214,28 @@ Specifies whether to hide the title bar.
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar.|
 
+### hideTitleBar<sup>13+</sup>
+
+hideTitleBar(hide: boolean, animated: boolean)
+
+Sets whether to hide the title bar and whether to animate the visibility change.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | boolean | Yes  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Show the title bar.|
+| animated  | boolean | Yes  | Whether to animate the visibility change.<br>Default value: **false**<br>**true**: Animate the visibility change.<br>**false**: Do not animate the visibility change.|
+
 ### hideBackButton
 
 hideBackButton(value: boolean)
 
-Specifies whether to hide the back button in the title bar. The back button is available only when [titleMode](#titlemode) is set to **NavigationTitleMode.Mini**.
+Sets whether to hide the back button in the title bar. The back button is available only when [titleMode](#titlemode) is set to **NavigationTitleMode.Mini**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -314,7 +348,7 @@ Builder for a **NavDestination** component. The **builder** function is used, wi
 
 | Name | Type                                  | Mandatory| Description                    |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | Yes  | Builder for a **NavDestination** component.|
+| builder | (name: string, param: unknown) => void | Yes  | Builder for a **NavDestination** component. **name**: name of the navigation destination page. **param**: detailed parameters of the navigation destination page.|
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -380,7 +414,7 @@ Ignores the layout safe area by allowing the component to extend into the non-sa
 >  **NOTE**
 >   
 >  After **LayoutSafeArea** is set:  
->  When **LayoutSafeAreaType.SYSTEM** is set, the component can extend into the non-safe area if its boundaries overlap with it. For example, if the device's status bar is 100 high, the component must have an absolute vertical offset between 0 and 100 to extend into the non-safe area. 
+>  When **LayoutSafeAreaType.SYSTEM** is set, the component can extend into the non-safe area if its boundaries overlap with it. For example, if the device's status bar is 100 high, the component can extend into the non-safe area only when there is an absolute vertical offset between 0 and 100. 
 >   
 >  If the component extends into the non-safe area, events triggered within that area (such as click events) might be intercepted by the system. This allows the system to prioritize responses to system components such as the status bar.
 
@@ -418,7 +452,7 @@ Sets the style of the system status bar when the home page of the **Navigation**
 
 onTitleModeChange(callback: (titleMode: NavigationTitleMode) =&gt; void)
 
-Called when [titleMode](#titlemode) is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.
+Triggered when [titleMode](#titlemode) is set to **NavigationTitleMode.Free** and the title bar mode changes as content scrolls.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -434,7 +468,7 @@ Called when [titleMode](#titlemode) is set to **NavigationTitleMode.Free** and t
 
 onNavBarStateChange(callback: (isVisible: boolean) =&gt; void) 
 
-Called when the navigation bar visibility status changes.
+Triggered when the navigation bar visibility status changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -450,7 +484,7 @@ Called when the navigation bar visibility status changes.
 
 onNavigationModeChange(callback: (mode: NavigationMode) =&gt; void) 
 
-Called when the **Navigation** component is displayed for the first time or its display mode switches between single-column and dual-column.
+Triggered when the **Navigation** component is displayed for the first time or its display mode switches between single-column and dual-column.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -464,7 +498,7 @@ Called when the **Navigation** component is displayed for the first time or its 
 
 ### customNavContentTransition<sup>11+</sup>
 
-customNavContentTransition(delegate(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
+customNavContentTransition(delegate:(from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => NavigationAnimatedTransition | undefined)
 
 Callback of the custom transition animation.
 
@@ -489,6 +523,11 @@ Callback of the custom transition animation.
 ## NavPathStack<sup>10+</sup>
 
 Implements a navigation stack, which allows for inheritance since API version 12. You can add new properties and methods in derived classes, or you can override the methods of the base **NavPathStack** class. Objects of the derived class can be used in place of objects of the base **NavPathStack** class. For details, see [Example](#example-10).
+
+> **NOTE**
+>
+> When multiple page stack operations are triggered in succession, the intermediate states are bypassed, and only the final result of the stack operations is rendered.<br>
+> For example, if a Page1 is popped and then immediately pushed back, the system considers that the states before and after these operations are identical, leading to no actual change in the stack. To ensure that a new instance of Page1 is pushed onto the stack despite the consecutive operations, use the **NEW_INSTANCE** mode.
 
 ### pushPath<sup>10+</sup>
 
@@ -1116,7 +1155,7 @@ Disables or enables the transition animation in the **Navigation** component.
 
 | Name   | Type    | Mandatory  | Description                   |
 | ----- | ------ | ---- | ---------------------- |
-| value | boolean | No   | Whether to disable the transition animation.<br>Default value: **false**|
+| value | boolean | Yes  | Whether to disable the transition animation.<br>Default value: **false**|
 
 ### getParent<sup>11+</sup>
 
@@ -1162,14 +1201,23 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
 | Name   | Type     | Mandatory  | Description                  |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | Yes   | Name of the navigation destination page.  |
-| param | unknown | No   | Detailed parameters of the navigation destination page.|
+| param | unknown | Yes   | Detailed parameters of the navigation destination page.|
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | No| Callback returned when **pop** is called on the navigation destination page.|
 | isEntry<sup>12+</sup> | boolean | No| Whether the navigation destination page is the entry page.<br>Default value: **false**<br>The value of this parameter is reviewed or reset under the following conditions:<br>- When a global back event is triggered on the current navigation destination page.<br> - When the application is switched to the background.<br>**NOTE**<br>The navigation destination page serving as an entry does not respond to the in-app global back events; instead, it directly triggers the global back event between applications.|
+
+### Properties
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type     | Mandatory  | Description                  |
+| ----- | ------- | ---- | --------------------- |
+| name  | string  | Yes   | Name of the navigation destination page.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| param | unknown | No   | Detailed parameters of the navigation destination page.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | No| Callback returned when [pop](#pop11) is called on the navigation destination page. It is invoked only after the **result** parameter is set in [pop](#pop11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isEntry<sup>12+</sup> | boolean | No| Whether the navigation destination page is the entry page.<br>Default value: **false**<br>The value of this parameter is reviewed or reset under the following conditions:<br>- When a global back event is triggered on the current navigation destination page.<br> - When the application is switched to the background.<br>**NOTE**<br>The navigation destination page serving as an entry does not respond to the in-app global back events; instead, it directly triggers the global back event between applications.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## PopInfo<sup>11+</sup>
 
@@ -1178,8 +1226,6 @@ Provides the callback information returned when a page is popped out of the navi
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
 
 | Name| Type| Mandatory| Description|
 |------|-----|-----|-----|
@@ -1193,8 +1239,6 @@ Provides the destination information.
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-**Parameters**
 
 | Name | Type | Mandatory | Description |
 |-------|-------|------|-------|
@@ -1212,12 +1256,11 @@ Defines the custom transition animation protocol. You need to implement this pro
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
 | Name| Type| Mandatory| Description|
 |------|-----|-----|------|
 | timeout | number | No| Animation timeout time.<br> Unit: ms<br> Default value: no default value for interactive animations; 1000 ms for non-interactive animations.|
 | transition | (transitionProxy : [NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | Yes| Callback for executing the custom transition animation.<br> **transitionProxy**: proxy for the custom transition animation.|
-| onTransitionEnd | (success: boolean):void | No| Callback invoked when the transition is complete.<br> **success**: whether the transition is successful.|
+| onTransitionEnd | (success: boolean) => void | No| Callback invoked when the transition is complete.<br> **success**: whether the transition is successful.|
 | isInteractive<sup>12+</sup> | boolean | No| Whether the transition animation is interactive.<br> Default value: **false**|
 
 ## NavigationTransitionProxy <sup>11+</sup>
@@ -1319,7 +1362,7 @@ Implements an interception callback triggered when the display mode of the **Nav
 | ------ | ------ | ---- | ---------------- |
 | mode | [NavigationMode](#navigationmode9) | Yes|  Display mode of the navigation bar.|
 
-### NavBar<sup>12+</sup>
+## NavBar<sup>12+</sup>
 
 type NavBar = 'navBar'
 
@@ -1329,11 +1372,13 @@ Defines the name of the navigation home page.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Type      | Description                                      |
-| -------- | ---------------------------------------- |
-| "navBar"   | Navigation home page.|
+| Type    | Description            |
+| -------- | ---------------- |
+| 'navBar' | Navigation home page.|
 
 ## NavigationMenuItem
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
@@ -1341,7 +1386,7 @@ Defines the name of the navigation home page.
 | icon   | string        | No   | Icon path of the menu item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isEnabled<sup>12+</sup>   | boolean        | No   | Enabled status.<br>**true** (default): enabled<br>**false**: disabled<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | action | () =&gt; void | No   | Callback invoked when the menu item is selected.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | No   |Symbol icon for a single option on the menu bar. It has higher priority than **icon**.|
+| symbolIcon<sup>12+</sup> |  [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)  | No   |Symbol icon for a single option on the menu bar. It has higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## ToolbarItem<sup>10+</sup>
 
@@ -1356,8 +1401,8 @@ Defines the name of the navigation home page.
 | action     | () =&gt; void                            | No   | Callback invoked when the toolbar item is selected.                           |
 | status     | [ToolbarItemStatus](#toolbaritemstatus10) | No   | Status of the toolbar item.<br>Default value: **ToolbarItemStatus.NORMAL**|
 | activeIcon | ResourceStr                              | No   | Icon path of the toolbar item in the active state.               |
-| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | No   | Symbol icon for a single option on the toolbar. It has higher priority than **icon**.              |
-| activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | No   | Symbol icon for a single option on the menu bar when it is in active state. It has higher priority than **icon**.               |
+| symbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)        | No   | Symbol icon for a single option on the toolbar. It has higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.          |
+| activeSymbolIcon<sup>12+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md)              | No   | Symbol icon for a single option on the menu bar when it is in active state. It has higher priority than **icon**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.           |
 
 ## ToolbarItemStatus<sup>10+</sup>
 
@@ -1403,7 +1448,7 @@ Defines the name of the navigation home page.
 | Name     | Type                                      | Mandatory  | Description      |
 | ------- | ---------------------------------------- | ---- | -------- |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Content of the title bar.|
-| height  | [TitleHeight](#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.|
+| height  | [TitleHeight](ts-appendix-enums.md#titleheight9) \| [Length](ts-types.md#length) | Yes   | Height of the title bar.|
 
 ## NavBarPosition<sup>9+</sup>
 
@@ -1427,17 +1472,6 @@ Defines the name of the navigation home page.
 | Stack | The navigation bar and content area are displayed independently of each other, which are equivalent to two pages.                    |
 | Split | The navigation bar and content area are displayed in different columns.<br>The values of **navBarWidthRange** are represented by [minNavBarWidth,maxNavBarWidth].<br>1. When the value of **navBarWidth** is beyond the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **navBarWidth** < Value of **minNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] > Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **maxNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Result of [Component width - Value of **minContentWidth** - Divider width (1 vp)] < Value of **maxNavBarWidth**: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **navBarWidth** > Value of **maxNavBarWidth** and Component width - Value of **minContentWidth** - Divider width (1 vp) is within the value range specified by **navBarWidthRange**: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>2. When the value of **navBarWidth** is within the value range specified by **navBarWidthRange**, **navBarWidth** is set according to the following rules:<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to that of **minNavBarWidth**.<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) > = Component width: The value of **navBarWidth** is changed to Component width - Value of **minContentWidth** - Divider width (1 vp).<br>Value of **minNavBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width and Value of **navBarWidth** + Value of **minContentWidth** + Divider width (1 vp) < Component width: The value of **navBarWidth** is the set value. <br>3. When the component size is decreased, the content area is shrunk until its width reaches the value defined by **minContentWidth**, and then the navigation bar is shrunk until its width reaches the value defined by **minNavBarWidth**; if the component size is further decreased, the content area is further shrunk until it disappears, and then navigation bar is shrunk.<br>4. When the navigation bar is set to a fixed size and the component size is continuously decreased, the navigation bar is shrunk.<br>5. If only **navBarWidth** is set, the width of the navigation bar is fixed at the value of **navBarWidth**, and the divider cannot be dragged.|
 | Auto  | In API version 9 and earlier versions: If the window width is greater than or equal to 520 vp, the Split mode is used; otherwise, the Stack mode is used.<br>In API version 10 and later versions: If the window width is greater than or equal to 600 vp, the Split mode is used; otherwise, the Stack mode is used. 600 vp = minNavBarWidth (240 vp) + minContentWidth (360 vp).|
-
-## TitleHeight<sup>9+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name         | Description                        |
-| ----------- | -------------------------- |
-| MainOnly    | Recommended height (56 vp) of the title bar when only the main title is available.     |
-| MainWithSub | Recommended height (82 vp) of the title bar when both the main title and subtitle exist.|
 
 ## NavigationOperation<sup>11+</sup>
 
@@ -1464,15 +1498,18 @@ Defines the name of the navigation home page.
 
 ## NavigationTitleOptions<sup>11+</sup>
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name    | Type           | Mandatory  | Description             |
 | ------ | ------------- | ---- | --------------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | No   | Background color of the title bar. If this parameter is not set, the default color is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | No   | Background blur style of the title bar. If this parameter is not set, the background blur effect is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12)        | No   | Layout of the title bar.<br>Default value: **BarStyle.STANDARD**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| barStyle<sup>12+</sup>   | [BarStyle](#barstyle12)        | No   | Layout style of the title bar.<br>Default value: **BarStyle.STANDARD**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | paddingStart<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | No   | Padding at the start of the title bar.<br>Only supported in one of the following scenarios:<br>1. Displaying the back icon, that is, [hideBackButton](#hidebackbutton) is **false**<br>2. Using a non-custom title, that is, the [title value](#title) type is **ResourceStr** or **NavigationCommonTitle**<br>Default value:<br>LengthMetrics.resource(**$r('sys.float.margin_left')**)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | paddingEnd<sup>12+</sup>   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)        | No   | Padding at the end of the title bar.<br>Only supported in one of the following scenarios:<br>1. Using a non-custom menu, that is, the [menu value](#menus) is Array&lt;NavigationMenuItem&gt;<br>2. Using a non-custom menu without a menu in the upper right corner, that is, the [title value](#title) type is **ResourceStr** or **NavigationCommonTitle**<br>Default value:<br>LengthMetrics.resource(**$r('sys.float.margin_right')**)<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | mainTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | No| Main title attribute modifier.<br>Notes for using this modifier:<br>1. Attribute settings configured by this modifier will override the system's default attribute settings. For example, if the modifier is used to set font size attributes, such as **fontSize**, **maxFontSize**, and **minFontSize**, the settings will take precedence over the system's default settings for size-related attributes.<br>2. If no modifier is used or an invalid value is set, the system reverts to its default settings.<br>3. In [Free](#navigationtitlemode) mode, setting the font size will disable the effect where the main title's size changes in response to content scrolling.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 | subTitleModifier<sup>13+</sup>   | [TextModifier](./ts-universal-attributes-attribute-modifier.md)  | No| Subtitle attribute modifier.<br>Notes for using this modifier:<br>1. Attribute settings configured by this modifier will override the system's default attribute settings. For example, if the modifier is used to set font size attributes, such as **fontSize**, **maxFontSize**, and **minFontSize**, the settings will take precedence over the system's default settings for size-related attributes.<br>2. If no modifier is used or an invalid value is set, the system reverts to its default settings.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| enableHoverMode<sup>13+</sup>   | boolean | No| Whether to enable the hover mode.<br>Observe the following when using this API:<br>1. Make sure the **Navigation** component is in full screen.<br>2. When the title bar is in [Free](#navigationtitlemode) display mode or in [STANDARD](#barstyle12) layout style, this API has no effect.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
@@ -1511,7 +1548,7 @@ Defines the name of the navigation home page.
 
 ## Example
 
-The sample effect is subject to the actual device.
+The outcome of the sample code may vary depending on the actual device used. The system routing table does not work with DevEco Studio Previewer, cross-platform functionality, or emulators.
 
 ### Example 1
 
@@ -1530,7 +1567,8 @@ struct NavigationExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   @State currentIndex: number = 0
 
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text('Title')
         .fontColor('#182431')
@@ -1546,7 +1584,8 @@ struct NavigationExample {
     }.alignItems(HorizontalAlign.Start)
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     Row() {
       Image('resources/base/media/ic_public_add.svg')
         .width(24)
@@ -1635,8 +1674,9 @@ struct NavigationExample {
 
   registerInterception() {
     this.pageInfos.setInterception({
+      // Interception before page redirection, allowing for stack operations. The setting takes effect in the current redirection.
       willShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
-                 operation: NavigationOperation, animated: boolean) => {
+        operation: NavigationOperation, animated: boolean) => {
         if (!this.isUseInterception) {
           return;
         }
@@ -1644,15 +1684,16 @@ struct NavigationExample {
           console.log("target page is navigation home");
           return;
         }
-        // redirect target page.Change pageTwo to pageOne.
+        // Redirect the target page from pageTwo to pageOne.
         let target: NavDestinationContext = to as NavDestinationContext;
         if (target.pathInfo.name === 'pageTwo') {
           target.pathStack.pop();
           target.pathStack.pushPathByName('pageOne', null);
         }
       },
+      // Callback invoked after the page is navigated. Stack operations in this callback are effective in the next navigation.
       didShow: (from: NavDestinationContext | "navBar", to: NavDestinationContext | "navBar",
-                operation: NavigationOperation, isAnimated: boolean) => {
+        operation: NavigationOperation, isAnimated: boolean) => {
         if (!this.isUseInterception) {
           return;
         }
@@ -1667,6 +1708,7 @@ struct NavigationExample {
           console.log(`current transition is to ${(to as NavDestinationContext).pathInfo.name}`);
         }
       },
+      // Callback invoked when the display mode of the Navigation component switches between single-column and dual-column.
       modeChange: (mode: NavigationMode) => {
         if (!this.isUseInterception) {
           return;
@@ -1705,8 +1747,8 @@ struct NavigationExample {
 ```
 ```ts
 // PageOne.ets
-class TmpClass{
-  count:number=10
+class TmpClass {
+  count: number = 10
 }
 
 @Builder
@@ -1716,7 +1758,6 @@ export function PageOneBuilder(name: string, param: Object) {
 
 @Component
 export struct PageOne {
-
   pageInfos: NavPathStack = new NavPathStack()
 
   build() {
@@ -1735,7 +1776,8 @@ export struct PageOne {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pageInfos.pushPath({ name: 'pageOne' }, { launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON }) // Search from the bottom to the top of the stack. If the page with the specified name exists, move that page to the top of the stack.
+            this.pageInfos.pushPath({ name: 'pageOne' },
+              { launchMode: LaunchMode.MOVE_TO_TOP_SINGLETON }) // Search from the bottom to the top of the stack. If the page with the specified name exists, move that page to the top of the stack.
           })
         Button('popToname', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1743,7 +1785,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.popToName('pageTwo') // Pop the first navigation destination page that matches the value of name to the top of the navigation stack.
-            console.log('popToName' + JSON.stringify(this.pageInfos), 'Return value' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
+            console.log('popToName' + JSON.stringify(this.pageInfos),
+              'Return value' + JSON.stringify(this.pageInfos.popToName('pageTwo')))
           })
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1759,7 +1802,8 @@ export struct PageOne {
           .margin(20)
           .onClick(() => {
             this.pageInfos.moveToTop('pageTwo') // Move to the top of the navigation stack the first navigation destination page that matches the value of name.
-            console.log('moveToTop' + JSON.stringify(this.pageInfos), 'Return value' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
+            console.log('moveToTop' + JSON.stringify(this.pageInfos),
+              'Return value' + JSON.stringify(this.pageInfos.moveToTop('pageTwo')))
           })
         Button('moveIndexToTop', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
@@ -1783,9 +1827,12 @@ export struct PageOne {
           .onClick(() => {
             console.log('-------------------')
             console.log('Obtained the names of all pages in the navigation stack', JSON.stringify(this.pageInfos.getAllPathName()))
-            console.log('Obtained parameter information of the navigation destination page specified by index', JSON.stringify(this.pageInfos.getParamByIndex(1)))
-            console.log('Obtained parameter information of all the navigation destination pages specified by name', JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
-            console.log('Obtained the index information of all the navigation destination pages specified by name', JSON.stringify(this.pageInfos.getIndexByName('pageOne'))))
+            console.log('Obtained the parameter information of the navigation destination page specified by index.',
+              JSON.stringify(this.pageInfos.getParamByIndex(1)))
+            console.log('Obtained the parameter information of all the navigation destination pages that match name.',
+              JSON.stringify(this.pageInfos.getParamByName('pageTwo')))
+            console.log('Obtains the indexes of all the navigation destination pages that match name.',
+              JSON.stringify(this.pageInfos.getIndexByName('pageOne')))
             console.log ('Obtained the stack size', JSON.stringify (this.pageInfos.size ()))
           })
       }.width('100%').height('100%')
@@ -1810,7 +1857,6 @@ export function PageTwoBuilder(name: string, param: Object) {
 @Component
 export struct PageTwo {
   pathStack: NavPathStack = new NavPathStack()
-
   private menuItems: Array<NavigationMenuItem> = [
     {
       value: "1",
@@ -1932,7 +1978,7 @@ struct NavigationExample {
         return customAnimation;
       }
       let customAnimation: NavigationAnimatedTransition = {
-        onTransitionEnd: (isSuccess: boolean)=>{
+        onTransitionEnd: (isSuccess: boolean) => {
           console.log(`current transition result is ${isSuccess}`)
         },
         timeout: 7000,
@@ -1981,7 +2027,7 @@ struct NavigationExample {
 
 ```ts
 // PageOne.ets
-import {CustomTransition} from './CustomNavigationUtils';
+import { CustomTransition } from './CustomNavigationUtils';
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
@@ -2091,11 +2137,11 @@ export struct PageOne {
 ```
 ```ts
 // PageTwo.ets
-import {CustomTransition} from './CustomNavigationUtils'
+import { CustomTransition } from './CustomNavigationUtils'
 
 @Builder
 export function PageTwoBuilder(name: string, param: Object) {
-  PageTwo({param: param as number})
+  PageTwo({ param: param as number })
 }
 
 @Component
@@ -2107,13 +2153,13 @@ export struct PageTwo {
   param: number = 0;
 
   registerCallback() {
-    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean)=>{
+    CustomTransition.getInstance().registerNavParam(this.pageId, (isPush: boolean, isExit: boolean) => {
       if (isPush) {
-        this.translateX =  '100%'
+        this.translateX = '100%'
       } else {
         this.translateX = '0';
       }
-    }, (isPush: boolean, isExit: boolean)=>{
+    }, (isPush: boolean, isExit: boolean) => {
       if (isPush) {
         this.translateX = '0';
       } else {
@@ -2121,19 +2167,23 @@ export struct PageTwo {
       }
     }, (isPush: boolean, isExit: boolean) => {
       this.translateX = '0';
-    }, (operation: NavigationOperation)=>{
+    }, (operation: NavigationOperation) => {
       if (operation == NavigationOperation.PUSH) {
         this.translateX = '100%';
-        animateTo({duration: 500, onFinish: ()=>{
-          this.translateX = '0';
-        }}, ()=>{
+        animateTo({
+          duration: 500, onFinish: () => {
+            this.translateX = '0';
+          }
+        }, () => {
           this.translateX = '0'
         })
       } else {
         this.translateX = '0';
-        animateTo({duration: 500, onFinish: ()=>{
-          this.translateX = "0"
-        }}, ()=>{
+        animateTo({
+          duration: 500, onFinish: () => {
+            this.translateX = "0"
+          }
+        }, () => {
           this.translateX = '100%';
         })
       }
@@ -2149,14 +2199,14 @@ export struct PageTwo {
           .margin(20)
           .onClick(() => {
             // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack.
-            this.pageInfos.pushPath({name:'pageOne', param: CustomTransition.getInstance().getAnimationId()})
+            this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() })
           })
       }
       .size({ width: '100%', height: '100%' })
     }
     .title('pageTwo')
     .gesture(PanGesture()
-      .onActionStart((event: GestureEvent)=> {
+      .onActionStart((event: GestureEvent) => {
         this.rectWidth = event.target.area.width as number;
         if (event.offsetX < 0) {
           this.pageInfos.pushPath({ name: 'pageOne', param: CustomTransition.getInstance().getAnimationId() });
@@ -2168,14 +2218,14 @@ export struct PageTwo {
         let rate = event.fingerList[0].localX / this.rectWidth;
         CustomTransition.getInstance().updateProgress(rate);
       })
-      .onActionEnd((event: GestureEvent)=> {
+      .onActionEnd((event: GestureEvent) => {
         let rate = event.fingerList[0].localX / this.rectWidth;
         CustomTransition.getInstance().finishInteractiveAnimation(rate);
       }))
     .onAppear(() => {
       this.registerCallback();
     })
-    .onDisAppear(()=>{
+    .onDisAppear(() => {
       CustomTransition.getInstance().unRegisterNavParam(this.pageId);
     })
     .onReady((context: NavDestinationContext) => {
@@ -2185,13 +2235,13 @@ export struct PageTwo {
         this.registerCallback();
       }
     })
-    .translate({x: this.translateX})
+    .translate({ x: this.translateX })
     .backgroundColor(Color.Yellow)
   }
 }
 ```
 ```ts
-// CustomNavigationUtils.ts
+// CustomNavigationUtils.ets
 // Custom API to save the transition animation callback and parameters related to a page.
 export interface AnimateCallback {
   finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
@@ -2200,12 +2250,13 @@ export interface AnimateCallback {
   interactive: ((operation: NavigationOperation) => void | undefined) | undefined;
   timeout: (number | undefined) | undefined;
 }
+
 const customTransitionMap: Map<string, AnimateCallback> = new Map();
 
 export class CustomTransition {
   static delegate = new CustomTransition();
   interactive: boolean = false;
-  proxy: NavigationTransitionProxy| undefined = undefined;
+  proxy: NavigationTransitionProxy | undefined = undefined;
   private animationId: number = 0;
   operation: NavigationOperation = NavigationOperation.PUSH
 
@@ -2222,9 +2273,9 @@ export class CustomTransition {
    * timeout: timeout for ending the transition.
    */
   registerNavParam(name: string, startCallback: (operation: boolean, isExit: boolean) => void,
-    endCallback:(operation: boolean, isExit: boolean) => void,
+    endCallback: (operation: boolean, isExit: boolean) => void,
     onFinish: (operation: boolean, isExit: boolean) => void,
-    interactiveCallback: (operation: NavigationOperation) =>void,
+    interactiveCallback: (operation: NavigationOperation) => void,
     timeout: number): void {
     if (customTransitionMap.has(name)) {
       let param = customTransitionMap.get(name);
@@ -2237,8 +2288,13 @@ export class CustomTransition {
         return;
       }
     }
-    let params: AnimateCallback = {timeout: timeout, start: startCallback, finish: endCallback, onFinish: onFinish,
-      interactive: interactiveCallback};
+    let params: AnimateCallback = {
+      timeout: timeout,
+      start: startCallback,
+      finish: endCallback,
+      onFinish: onFinish,
+      interactive: interactiveCallback
+    };
     customTransitionMap.set(name, params);
   }
 
@@ -2376,8 +2432,8 @@ struct NavigationExample {
 // PageOne.ets
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class TmpClass{
-  count:number = 10
+class TmpClass {
+  count: number = 10
 }
 
 class ParamWithOp {
@@ -2407,10 +2463,13 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
-            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
-              this.message = '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}); // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack. Use the onPop callback to receive the page processing result.
+          .onClick(() => {
+            this.pageInfo.pushPath({
+              name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
+                this.message =
+                  '[pushPath]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+              }
+            }); // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack. Use the onPop callback to receive the page processing result.
           })
 
         Button('pushPathByName', { stateEffect: true, type: ButtonType.Capsule })
@@ -2419,8 +2478,9 @@ export struct PageOne {
           .margin(10)
           .onClick(() => {
             let tmp = new TmpClass()
-            this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo)=>{
-              this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+            this.pageInfo.pushPathByName('pageTwo', tmp, (popInfo) => {
+              this.message =
+                '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }); // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack. Use the onPop callback to receive the page processing result.
           })
 
@@ -2428,14 +2488,17 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
             // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack. Use the onPop callback to receive the page processing result.
-            this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo)=>{
-              this.message = '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }}).catch((error: BusinessError)=>{
+            this.pageInfo.pushDestination({
+              name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
+                this.message =
+                  '[pushDestination]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
+              }
+            }).catch((error: BusinessError) => {
               console.error(`[pushDestination]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestination]success.');
             });
           })
@@ -2444,14 +2507,15 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
             // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack. Use the onPop callback to receive the page processing result.
-            this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo)=>{
-              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
-            }).catch((error: BusinessError)=>{
+            this.pageInfo.pushDestinationByName('pageTwo', tmp, (popInfo) => {
+              this.message = '[pushDestinationByName]last page is: ' + popInfo.info.name + ', result: ' +
+              JSON.stringify(popInfo.result);
+            }).catch((error: BusinessError) => {
               console.error(`[pushDestinationByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            }).then(() => {
               console.error('[pushDestinationByName]success.');
             });
           })
@@ -2460,8 +2524,8 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
-            this.pageInfo.pushPath({name: 'pageTwo', param: new ParamWithOp()}); // Push the navigation destination page specified by name to the navigation stack.
+          .onClick(() => {
+            this.pageInfo.pushPath({ name: 'pageTwo', param: new ParamWithOp() }); // Push the navigation destination page specified by name to the navigation stack.
           })
 
         Button('pushPathByNameWithoutOnPop', { stateEffect: true, type: ButtonType.Capsule })
@@ -2477,13 +2541,13 @@ export struct PageOne {
           .width('80%')
           .height(40)
           .margin(10)
-          .onClick(()=>{
+          .onClick(() => {
             let tmp = new TmpClass()
             // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack. Use the onPop callback to receive the page processing result.
-            this.pageInfo.pushDestination({name: 'pageTwo', param: new ParamWithOp()})
-              .catch((error: BusinessError)=>{
-              console.error(`[pushDestinationWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-            }).then(()=>{
+            this.pageInfo.pushDestination({ name: 'pageTwo', param: new ParamWithOp() })
+              .catch((error: BusinessError) => {
+                console.error(`[pushDestinationWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
+              }).then(() => {
               console.error('[pushDestinationWithoutOnPop]success.');
             });
           })
@@ -2496,9 +2560,9 @@ export struct PageOne {
             let tmp = new TmpClass()
             // Push the navigation destination page specified by name, with the data specified by param, to the navigation stack.
             this.pageInfo.pushDestinationByName('pageTwo', tmp)
-              .catch((error: BusinessError)=>{
+              .catch((error: BusinessError) => {
                 console.error(`[pushDestinationByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
-              }).then(()=>{
+              }).then(() => {
               console.error('[pushDestinationByNameWithoutOnPop]success.');
             });
           })
@@ -2513,7 +2577,7 @@ export struct PageOne {
       }.width('100%').height('100%')
     }.title('pageOne')
     .onBackPressed(() => {
-      this.pageInfo.pop({number: 1}) // Pop the top element out of the navigation stack.
+      this.pageInfo.pop({ number: 1 }) // Pop the top element out of the navigation stack.
       return true
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
@@ -2528,6 +2592,7 @@ class resultClass {
   constructor(count: number) {
     this.count = count;
   }
+
   count: number = 10
 }
 
@@ -2556,7 +2621,8 @@ export struct PageTwo {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.pathStack.popToName('pageOne', new resultClass(11)); // Move the first navigation destination page that matches name to the top of the navigation stack, and pass in the processing result to the onPop callback of push.
+            this.pathStack.popToName('pageOne',
+              new resultClass(11)); // Move the first navigation destination page that matches name to the top of the navigation stack, and pass in the processing result to the onPop callback of push.
           })
 
         Button('popToIndex', { stateEffect: true, type: ButtonType.Capsule })
@@ -2638,17 +2704,22 @@ let BLUR_STYLE_2: BlurStyle = BlurStyle.BACKGROUND_THICK;
 struct BackComponent {
   build() {
     Row() {
-      Column() {}
+      Column() {
+      }
       .height('100%')
       .backgroundColor("#3D9DB4")
       .layoutWeight(9)
-      Column() {}
+
+      Column() {
+      }
       .height('100%')
-      .backgroundColor("17A98D")
+      .backgroundColor("#17A98D")
       .layoutWeight(9)
-      Column() {}
+
+      Column() {
+      }
       .height('100%')
-      .backgroundColor("FFC000")
+      .backgroundColor("#FFC000")
       .layoutWeight(9)
     }
     .height('100%')
@@ -2663,12 +2734,12 @@ struct ColorAndBlur {
 
   build() {
     NavDestination() {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         BackComponent()
           .width('100%')
           .height('100%')
         Column() {
-          Stack({alignContent: Alignment.Center}) {
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch color")
               .onClick(() => {
                 this.useColor1 = !this.useColor1;
@@ -2676,7 +2747,8 @@ struct ColorAndBlur {
           }
           .width('100%')
           .layoutWeight(1)
-          Stack({alignContent: Alignment.Center}) {
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch blur")
               .onClick(() => {
                 this.useBlur1 = !this.useBlur1;
@@ -2715,12 +2787,12 @@ struct Index {
 
   build() {
     Navigation(this.stack) {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         BackComponent()
           .width('100%')
           .height('100%')
         Column() {
-          Stack({alignContent: Alignment.Center}) {
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch color")
               .onClick(() => {
                 this.useColor1 = !this.useColor1;
@@ -2728,7 +2800,8 @@ struct Index {
           }
           .width('100%')
           .layoutWeight(1)
-          Stack({alignContent: Alignment.Center}) {
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("switch blur")
               .onClick(() => {
                 this.useBlur1 = !this.useBlur1;
@@ -2736,10 +2809,11 @@ struct Index {
           }
           .width('100%')
           .layoutWeight(1)
-          Stack({alignContent: Alignment.Center}) {
+
+          Stack({ alignContent: Alignment.Center }) {
             Button("push page")
               .onClick(() => {
-                this.stack.pushPath({name: "page"})
+                this.stack.pushPath({ name: "page" })
               })
           }
           .width('100%')
@@ -2761,9 +2835,9 @@ struct Index {
     })
     // You can set the background color and background blur style of the toolbar.
     .toolbarConfiguration([
-      {value: "a"},
-      {value: "b"},
-      {value: "c"}
+      { value: "a" },
+      { value: "b" },
+      { value: "c" }
     ], {
       backgroundColor: this.useColor1 ? COLOR1 : COLOR2,
       backgroundBlurStyle: this.useBlur1 ? BLUR_STYLE_1 : BLUR_STYLE_2
@@ -2785,7 +2859,7 @@ struct NavigationExample1 {
 
   build() {
     Navigation() {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Navigation(this.childNavStack) {
           Button('push Path to parent Navigation', { stateEffect: true, type: ButtonType.Capsule })
             .width('80%')
@@ -2794,7 +2868,7 @@ struct NavigationExample1 {
             .onClick(() => {
               // The parent the parent navigation path stack can be obtained.
               let parentStack = this.childNavStack.getParent();
-              parentStack?.pushPath({ name: "pageOne"})
+              parentStack?.pushPath({ name: "pageOne" })
             })
         }
         .clip(true)
@@ -2854,6 +2928,7 @@ class PageParam {
   constructor(num_: number) {
     this.num = num_;
   }
+
   num: number = 0;
 }
 
@@ -2879,7 +2954,7 @@ struct PageOne {
           .onClick(() => {
             if (this.stack) {
               let p = new PageParam(this.paramNum + 1);
-              this.stack.pushPath({name: "pageOne", param: p});
+              this.stack.pushPath({ name: "pageOne", param: p });
             }
           })
         Button('pop', { stateEffect: true, type: ButtonType.Capsule })
@@ -2910,11 +2985,11 @@ struct PageOne {
 @Entry
 @Component
 struct NavigationExample2 {
-  private stack : NavPathStack = new NavPathStack();
+  private stack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.stack) {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -2976,7 +3051,7 @@ struct PageOneComponent {
           .margin(20)
           .onClick(() => {
             if (this.stack) {
-              this.stack.pushPath({name: "pageOne"});
+              this.stack.pushPath({ name: "pageOne" });
             }
           })
         Button('pop', { stateEffect: true, type: ButtonType.Capsule })
@@ -2991,14 +3066,30 @@ struct PageOneComponent {
       .height('100%')
     }
     .title('pageOne')
-    .onAppear(() => { this.eventStr += "<onAppear>"; })
-    .onDisAppear(() => { this.eventStr += "<onDisAppear>"; })
-    .onShown(() => { this.eventStr += "<onShown>"; })
-    .onHidden(() => { this.eventStr += "<onHidden>"; })
-    .onWillAppear(() => { this.eventStr += "<onWillAppear>"; })
-    .onWillDisappear(() => { this.eventStr += "<onWillDisappear>"; })
-    .onWillShow(() => { this.eventStr += "<onWillShow>"; })
-    .onWillHide(() => { this.eventStr += "<onWillHide>"; })
+    .onAppear(() => {
+      this.eventStr += "<onAppear>";
+    })
+    .onDisAppear(() => {
+      this.eventStr += "<onDisAppear>";
+    })
+    .onShown(() => {
+      this.eventStr += "<onShown>";
+    })
+    .onHidden(() => {
+      this.eventStr += "<onHidden>";
+    })
+    .onWillAppear(() => {
+      this.eventStr += "<onWillAppear>";
+    })
+    .onWillDisappear(() => {
+      this.eventStr += "<onWillDisappear>";
+    })
+    .onWillShow(() => {
+      this.eventStr += "<onWillShow>";
+    })
+    .onWillHide(() => {
+      this.eventStr += "<onWillHide>";
+    })
     // onReady is called before onAppear.
     .onReady((ctx: NavDestinationContext) => {
       try {
@@ -3014,11 +3105,11 @@ struct PageOneComponent {
 @Entry
 @Component
 struct NavigationExample3 {
-  private stack : NavPathStack = new NavPathStack();
+  private stack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.stack) {
-      Stack({alignContent: Alignment.Center}) {
+      Stack({ alignContent: Alignment.Center }) {
         Button('pushPath', { stateEffect: true, type: ButtonType.Capsule })
           .width('80%')
           .height(40)
@@ -3073,8 +3164,7 @@ struct NavigationExample {
         Column() {
           Scroll(this.scrollerForScroll) {
             Column() {
-              Image($r('app.media.image_1'))
-                // Set the height to be the same as that of the title bar to better observe the stack effect.
+              Image($r('app.media.image_1'))// Set the height to be the same as that of the title bar to observe the STACK effect.
                 .height(138)
                 .width('100%')
               Button('BarStyle.STANDARD')
@@ -3171,7 +3261,10 @@ class DerivedNavPathStack extends NavPathStack {
 
 class param {
   info: string = "__default_param__";
-  constructor(info: string) { this.info = info }
+
+  constructor(info: string) {
+    this.info = info
+  }
 }
 
 @Entry
@@ -3224,6 +3317,7 @@ struct PageOne {
           .fontSize(20)
           .textAlign(TextAlign.Start)
       }.backgroundColor(Color.Pink)
+
       Button('to Page One').margin(20).onClick(() => {
         this.derivedStack.pushPath({
           name: 'pageOne',
@@ -3254,51 +3348,55 @@ import { SymbolGlyphModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct NavigationExample {
-  @Provide('navPathStack') navPathStack:NavPathStack = new NavPathStack();
-  @State menuItems:Array<NavigationMenuItem> = [
+  @Provide('navPathStack') navPathStack: NavPathStack = new NavPathStack();
+  @State menuItems: Array<NavigationMenuItem> = [
     {
-      value:'menuItem1',
-      icon:'resources/base/media/ic_public_ok.svg' // Icon resource path.
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg' // Icon resource path.
     },
     {
-      value:'menuItem2',
-      icon:'resources/base/media/ic_public_ok.svg', // Icon resource path.
-      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      value: 'menuItem2',
+      icon: 'resources/base/media/ic_public_ok.svg', // Icon resource path.
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
+        .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
     },
     {
-      value:'menuItem3',
+      value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
     },
   ]
-
-  @State toolItems:Array<ToolbarItem>= [
+  @State toolItems: Array<ToolbarItem> = [
     {
-      value:'toolItem1',
-      icon:'resources/base/media/ic_public_ok.svg', // Icon resource path.
-      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
-      status:ToolbarItemStatus.ACTIVE,
-      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
-      action:()=>{}
+      value: 'toolItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // Icon resource path.
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
+      status: ToolbarItemStatus.ACTIVE,
+      activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,
+        Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action: () => {
+      }
     },
     {
-      value:'toolItem2',
-      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
-      status:ToolbarItemStatus.ACTIVE,
+      value: 'toolItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status: ToolbarItemStatus.ACTIVE,
       activeIcon: 'resources/base/media/ic_public_more.svg', // Icon resource path.
-      action:()=>{}
+      action: () => {
+      }
     },
     {
-      value:'toolItem3',
-      symbolIcon:new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
-      status:ToolbarItemStatus.ACTIVE,
+      value: 'toolItem3',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_star')),
+      status: ToolbarItemStatus.ACTIVE,
       activeSymbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_lungs')),
-      action:()=>{}
+      action: () => {
+      }
     }
   ]
 
   @Builder
-  myRouter(name:string,param?:Object) {
-    if(name === 'NavigationMenu') {
+  myRouter(name: string, param?: Object) {
+    if (name === 'NavigationMenu') {
       NavigationMenu();
     }
   }
@@ -3306,7 +3404,7 @@ struct NavigationExample {
   build() {
     Navigation(this.navPathStack) {
       Column() {
-        Button('Go').onClick(()=> {
+        Button('Go').onClick(() => {
           this.navPathStack.pushPathByName('NavigationMenu', null);
         })
       }
@@ -3321,30 +3419,34 @@ struct NavigationExample {
 }
 
 @Component
-export struct NavigationMenu{
-  @Consume('navPathStack') navPathStack:NavPathStack;
-  @State menuItems:Array<NavigationMenuItem> = [
+export struct NavigationMenu {
+  @Consume('navPathStack') navPathStack: NavPathStack;
+  @State menuItems: Array<NavigationMenuItem> = [
     {
-      value:'menuItem1',
-      icon:'resources/base/media/ic_public_ok.svg', // Icon resource path.
-      action:()=>{}
+      value: 'menuItem1',
+      icon: 'resources/base/media/ic_public_ok.svg', // Icon resource path.
+      action: () => {
+      }
     },
     {
-      value:'menuItem2',
-      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red,Color.Green]).renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
-      action:()=>{}
+      value: 'menuItem2',
+      symbolIcon: new SymbolGlyphModifier($r('sys.symbol.ohos_folder_badge_plus')).fontColor([Color.Red, Color.Green])
+        .renderingStrategy(SymbolRenderingStrategy.MULTIPLE_COLOR),
+      action: () => {
+      }
     },
     {
-      value:'menuItem3',
+      value: 'menuItem3',
       symbolIcon: new SymbolGlyphModifier($r('sys.symbol.repeat_1')),
-      action:()=>{}
+      action: () => {
+      }
     },
   ]
 
   build() {
-    NavDestination(){
+    NavDestination() {
       Row() {
-        Column(){
+        Column() {
         }
         .width('100%')
       }
@@ -3370,6 +3472,7 @@ import { TextModifier } from '@ohos.arkui.modifier';
 
 class MainTitleTextModfier extends TextModifier {
   useStyle1: boolean = true;
+
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
       console.log(`testTag mainTitle use style1`);
@@ -3377,7 +3480,7 @@ class MainTitleTextModfier extends TextModifier {
       instance.fontSize(35)
       instance.fontWeight(FontWeight.Bolder)
       instance.fontStyle(FontStyle.Normal)
-      instance.textShadow({radius: 5, offsetX: 9})
+      instance.textShadow({ radius: 5, offsetX: 9 })
     } else {
       console.log(`testTag mainTitle use style2`);
       instance.fontColor('#FF23A98D')
@@ -3385,13 +3488,14 @@ class MainTitleTextModfier extends TextModifier {
       instance.heightAdaptivePolicy(TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST)
       instance.fontWeight(FontWeight.Lighter)
       instance.fontStyle(FontStyle.Italic)
-      instance.textShadow({radius: 3, offsetX: 3})
+      instance.textShadow({ radius: 3, offsetX: 3 })
     }
   }
 }
 
 class SubTitleTextModfier extends TextModifier {
   useStyle1: boolean = true;
+
   applyNormalAttribute(instance: TextModifier): void {
     if (this.useStyle1) {
       console.log(`testTag subTitle use style1`);
@@ -3399,14 +3503,14 @@ class SubTitleTextModfier extends TextModifier {
       instance.fontSize(15)
       instance.fontWeight(FontWeight.Bolder)
       instance.fontStyle(FontStyle.Normal)
-      instance.textShadow({radius: 5, offsetX: 9})
+      instance.textShadow({ radius: 5, offsetX: 9 })
     } else {
       console.log(`testTag subTitle use style2`);
       instance.fontColor('#FF23A98D')
       instance.fontSize(10)
       instance.fontWeight(FontWeight.Lighter)
       instance.fontStyle(FontStyle.Italic)
-      instance.textShadow({radius: 3, offsetX: 3})
+      instance.textShadow({ radius: 3, offsetX: 3 })
     }
   }
 }
@@ -3442,33 +3546,34 @@ struct NavigationExample {
             this.paddingStart = LengthMetrics.vp(32);
             this.paddingEnd = LengthMetrics.vp(32);
           })
-          .margin({top: 70})
+          .margin({ top: 70 })
           .width(180)
         Button('apply padding 20vp')
           .onClick(() => {
             this.paddingStart = LengthMetrics.vp(20);
             this.paddingEnd = LengthMetrics.vp(20);
           })
-          .margin({top: 40})
+          .margin({ top: 40 })
           .width(180)
         Button('pushPage')
           .onClick(() => {
-            this.navPathStack.pushPath({name: 'NavDestinationExample'})
+            this.navPathStack.pushPath({ name: 'NavDestinationExample' })
           })
-          .margin({top: 40})
+          .margin({ top: 40 })
           .width(180)
         Row() {
           Text(`apply Modifier`)
-          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.applyModifier, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.applyModifier = isOn;
           })
         }
         .padding({ top: 95, left: 5, right: 5 })
         .width(180)
         .justifyContent(FlexAlign.SpaceBetween)
+
         Row() {
           Text(`use Style1`)
-          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.useStyle1, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.mainTitleModifier.useStyle1 = isOn;
             this.subTitleModifier.useStyle1 = isOn;
             this.useStyle1 = isOn;
@@ -3483,7 +3588,7 @@ struct NavigationExample {
     }
     .titleMode(NavigationTitleMode.Full)
     .title(
-      {main: "Title", sub: "subTitle"},
+      { main: "Title", sub: "subTitle" },
       this.applyModifier ?
         {
           paddingStart: this.paddingStart,
@@ -3491,9 +3596,9 @@ struct NavigationExample {
           mainTitleModifier: this.mainTitleModifier,
           subTitleModifier: this.subTitleModifier,
         } : {
-          paddingStart: this.paddingStart,
-          paddingEnd: this.paddingEnd
-        })
+        paddingStart: this.paddingStart,
+        paddingEnd: this.paddingEnd
+      })
     .navDestination(this.myRouter)
   }
 }
@@ -3526,27 +3631,28 @@ export struct NavDestinationExample {
             this.paddingStart = LengthMetrics.vp(32);
             this.paddingEnd = LengthMetrics.vp(32);
           })
-          .margin({top: 150})
+          .margin({ top: 150 })
           .width(180)
         Button('apply padding 20vp')
           .onClick(() => {
             this.paddingStart = LengthMetrics.vp(20);
             this.paddingEnd = LengthMetrics.vp(20);
           })
-          .margin({top: 40})
+          .margin({ top: 40 })
           .width(180)
         Row() {
           Text(`apply Modifier`)
-          Toggle({isOn: this.applyModifier, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.applyModifier, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.applyModifier = isOn;
           })
         }
         .padding({ top: 95, left: 5, right: 5 })
         .width(180)
         .justifyContent(FlexAlign.SpaceBetween)
+
         Row() {
           Text(`use Style1`)
-          Toggle({isOn: this.useStyle1, type: ToggleType.Switch}).onChange((isOn: boolean) => {
+          Toggle({ isOn: this.useStyle1, type: ToggleType.Switch }).onChange((isOn: boolean) => {
             this.mainTitleModifier.useStyle1 = isOn;
             this.subTitleModifier.useStyle1 = isOn;
             this.useStyle1 = isOn;
@@ -3561,7 +3667,7 @@ export struct NavDestinationExample {
     }
     .hideTitleBar(false)
     .title(
-      {main: "Title", sub: "subTitle"},
+      { main: "Title", sub: "subTitle" },
       this.applyModifier ?
         {
           paddingStart: this.paddingStart,
@@ -3577,3 +3683,249 @@ export struct NavDestinationExample {
 }
 ```
 ![titlebarPaddingAndModifier.gif](figures/titlebarPaddingAndModifier.gif)
+
+### Example 13
+
+This example shows how to create custom transition animations for navigation between pages.
+```ts
+// Index.ets
+import { AnimateCallback, CustomTransition } from './CustomTransitionUtils'
+
+@Entry
+@Component
+struct NavigationCustomTransitionExample {
+  pageInfos: NavPathStack = new NavPathStack();
+
+  aboutToAppear() {
+    this.pageInfos.pushPath({ name: 'PageOne' }, false);
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+    }
+    .hideNavBar(true)
+    .customNavContentTransition((from: NavContentInfo, to: NavContentInfo, operation: NavigationOperation) => {
+      // No custom animation for the home page
+      if (from.index === -1 || to.index === -1) {
+        return undefined;
+      }
+
+      let customAnimation: NavigationAnimatedTransition = {
+        timeout: 2000,
+        // When the transition starts, the system calls this method and passes in the transition context proxy object.
+        transition: (transitionProxy: NavigationTransitionProxy) => {
+          if (!from.navDestinationId || !to.navDestinationId) {
+            return;
+          }
+          // Obtain the corresponding transition animation callback from the CustomTransition class based on the sequence of subpages.
+          let fromParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(from.navDestinationId);
+          let toParam: AnimateCallback = CustomTransition.getInstance().getAnimateParam(to.navDestinationId);
+          // Push animation
+          if (operation == NavigationOperation.PUSH) {
+            if (fromParam.start && toParam.start) {
+              // Set the animation start for both pages in the push transition.
+              fromParam.start(true, true);
+              toParam.start(true, false);
+            }
+            animateTo({
+              duration: 500, curve: Curve.Friction, onFinish: () => {
+                // Manually call the finishTransition API after the animation ends. Otherwise, the system will automatically call the API after the specified timeout period.
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (fromParam.finish && toParam.finish) {
+                // Set the animation end for both pages in the push transition.
+                fromParam.finish(true, true);
+                toParam.finish(true, false);
+              }
+
+            })
+          } else if (operation == NavigationOperation.POP) {
+            // Pop animation
+            if (fromParam.start && toParam.start) {
+              // Set the animation start for both pages in the pop transition.
+              fromParam.start(false, true);
+              toParam.start(false, false);
+            }
+            animateTo({
+              duration: 500, curve: Curve.Friction, onFinish: () => {
+                // Manually call the finishTransition API after the animation ends. Otherwise, the system will automatically call the API after the specified timeout period.
+                transitionProxy.finishTransition();
+              }
+            }, () => {
+              if (fromParam.finish && toParam.finish) {
+                // Set the animation end for both pages in the pop transition.
+                fromParam.finish(false, true);
+                toParam.finish(false, false);
+              }
+            })
+          } else {
+            // No animation for the replacement operation
+          }
+        }
+      };
+      return customAnimation;
+    })
+  }
+}
+
+
+// PageOne
+@Builder
+export function PageOneBuilder() {
+  PageContainer({ title: "PageOne" })
+}
+
+// PageTwo
+@Builder
+export function PageTwoBuilder() {
+  PageContainer({ title: "PageTwo" })
+}
+
+@Component
+export struct PageContainer {
+  pageInfos: NavPathStack = new NavPathStack();
+  @State translateY: string = '0';
+  pageId: string = '';
+  title: string = ''
+
+  registerCallback() {
+    CustomTransition.getInstance().registerNavParam(this.pageId,
+      // Set the start point of the transition animation based on the transition type.
+      (isPush: boolean, isExit: boolean) => {
+        if (isPush) {
+          if (isExit) {
+            this.translateY = '0';
+          } else {
+            this.translateY = '100%';
+          }
+        } else {
+          if (isExit) {
+            this.translateY = '0';
+          } else {
+            this.translateY = '0';
+          }
+        }
+      },
+      // Set the end point of the transition animation based on the transition type.
+      (isPush: boolean, isExit: boolean) => {
+        if (isPush) {
+          if (isExit) {
+            this.translateY = '0';
+          } else {
+            this.translateY = '0';
+          }
+        } else {
+          if (isExit) {
+            this.translateY = '100%';
+          } else {
+            this.translateY = '0';
+          }
+        }
+      });
+  }
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('push next page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfos.pushPath({ name: this.title == 'PageOne' ? "PageTwo" : "PageOne" })
+          })
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title(this.title)
+    .onDisAppear(() => {
+      // Unregister the custom transition animation parameters when the page is destroyed.
+      CustomTransition.getInstance().unRegisterNavParam(this.pageId);
+    })
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfos = context.pathStack;
+      if (context.navDestinationId) {
+        this.pageId = context.navDestinationId;
+        // Register the custom transition animation parameters when the page is created.
+        this.registerCallback();
+      }
+    })
+    .translate({ y: this.translateY })
+    .backgroundColor(this.title == 'PageOne' ? '#F1F3F5' : '#ff11dee5')
+  }
+}
+```
+```ts
+// The CustomNavigationUtils.ts file defines a utility class for managing custom animation parameters for different pages.
+
+// Custom API to save the transition animation callback and parameters related to a page.
+export interface AnimateCallback {
+  start: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined;
+  finish: ((isPush: boolean, isExit: boolean) => void | undefined) | undefined
+}
+
+const customTransitionMap: Map<string, AnimateCallback> = new Map();
+
+export class CustomTransition {
+  static delegate = new CustomTransition();
+
+  static getInstance() {
+    return CustomTransition.delegate;
+  }
+
+  /* Register animation callbacks for a page.
+   * name: unique ID of the target page
+   * startCallback: used to set the page state at the start of the animation.
+   * endCallback: used to set the page state at the end of the animation.
+   */
+  registerNavParam(name: string, startCallback: (isPush: boolean, isExit: boolean) => void,
+    endCallback: (isPush: boolean, isExit: boolean) => void): void {
+    if (customTransitionMap.has(name)) {
+      let param = customTransitionMap.get(name);
+      if (param != undefined) {
+        param.start = startCallback;
+        param.finish = endCallback;
+        return;
+      }
+    }
+    let params: AnimateCallback = { start: startCallback, finish: endCallback };
+    customTransitionMap.set(name, params);
+  }
+
+  unRegisterNavParam(name: string): void {
+    customTransitionMap.delete(name);
+  }
+
+  getAnimateParam(name: string): AnimateCallback {
+    let result: AnimateCallback = {
+      start: customTransitionMap.get(name)?.start,
+      finish: customTransitionMap.get(name)?.finish
+    };
+    return result;
+  }
+}
+```
+
+```json
+// Configure {"routerMap": "$profile:route_map"} in the project configuration file module.json5.
+// route_map.json
+{
+  "routerMap": [
+    {
+      "name": "PageOne",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "PageTwo",
+      "pageSourceFile": "src/main/ets/pages/Index.ets",
+      "buildFunction": "PageTwoBuilder"
+    }
+  ]
+}
+```
+![navigationCustomTransition.gif](figures/navigationCustomTransition.gif)

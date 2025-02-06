@@ -2,11 +2,13 @@
 
 To avoid losing complex types of the properties when serializing classes, you can use the \@Type Decorator to decorate class.
 
+
+\@Type is used to mark class properties. Used together with **PersistenceV2**, \@Type can prevent class loss during serialization. Before reading this topic, you are advised to read [PersistenceV2](./arkts-new-persistencev2.md).
+
 >**NOTE**
 >
 >\@Type is supported since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
 
 
 ## Overview
@@ -24,7 +26,30 @@ To avoid losing complex types of the properties when serializing classes, you ca
 
 ## Constraints
 
-1. \@Type can be used only in classes.
+1. \@Type can be used only in classes decorated by \@ObservedV2 and cannot be used in custom components.
+
+```ts
+class Sample {
+  data: number = 0;
+}
+@ObservedV2
+class Info {
+  @Type(Sample)
+  @Trace sample: Sample = new Sample(); // Correct usage.
+}
+@Observed
+class Info2 {
+  @Type(Sample)
+  sample: Sample = new Sample(); // Incorrect usage. @Type cannot be used in the @Observed decorated class. Otherwise, an error is reported during compilation.
+}
+@ComponentV2
+struct Index {
+  @Type(Sample)
+  sample: Sample = new Sample(); // Incorrect usage. @Type cannot be used in the custom component.
+  build() {
+  }
+}
+```
 
 2. Types such as collections.Set and collections.Map are not supported.
 

@@ -43,7 +43,7 @@ static connect<T extends object>(
 >
 >3. Ensure that the data types match the key. If different types of data are connected to the same key, the application exception occurs. 
 >
->4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. If use invalid characters or null characters, undefined behavior may occur.
+>4. You are advised to use meaningful values for keys. The values can contain letters, digits, and underscores (_) and a maximum of 255 characters. Using invalid characters or null characters will result in undefined behavior.
 >
 >5. When match the key with the [\@Observed](arkts-observed-and-objectlink.md) object, specify the key or customize the **name** attribute.
 

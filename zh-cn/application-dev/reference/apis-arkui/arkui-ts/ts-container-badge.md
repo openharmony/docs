@@ -68,7 +68,7 @@ Badge(value: BadgeParamWithString)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否| 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。（0，0）为组件左上角位置。|
+| position | [BadgePosition](#badgeposition枚举说明)\|[Position<sup>10+</sup>](ts-types.md#position) | 否| 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop <br/>**说明：** <br/> Position作为入参，不支持设置百分比；设置为非法值时，默认（0,0）处理。（0，0）为组件左上角位置。<br/>BadgePosition作为入参时，会跟随[Direction](ts-appendix-enums.md#direction)属性控制镜像显示。|
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 
@@ -84,7 +84,7 @@ BadgeParamWithNumber继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
+| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0且小于maxCount时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 | maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99<br/>取值范围：[-2147483648,2147483647]，超出范围时会加上或减去4294967296，使得值仍在范围内，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 
 ## BadgeParamWithString对象说明
@@ -150,7 +150,8 @@ BadgeParamWithString继承自[BadgeParam](#badgeparam对象说明)，具有Badge
 @Entry
 @Component
 struct BadgeExample {
-  @Builder tabBuilder(index: number) {
+  @Builder
+  tabBuilder(index: number) {
     Column() {
       if (index === 2) {
         Badge({
@@ -178,7 +179,8 @@ struct BadgeExample {
     }.width('100%').height('100%').justifyContent(FlexAlign.Center)
   }
 
-  @Builder itemBuilder(value: string) {
+  @Builder
+  itemBuilder(value: string) {
     Row() {
       Image('common/public_icon.svg').width(32).height(32).opacity(0.6)
       Text(value)
@@ -284,7 +286,12 @@ struct BadgeExample {
         .backgroundColor('#FFFFFF')
         .borderRadius(24)
         .padding({ top: 4, bottom: 4 })
-        .divider({ strokeWidth: 0.5, color: 'rgba(0,0,0,0.1)', startMargin: 60, endMargin: 12 })
+        .divider({
+          strokeWidth: 0.5,
+          color: 'rgba(0,0,0,0.1)',
+          startMargin: 60,
+          endMargin: 12
+        })
       }.width('100%').backgroundColor('#F1F3F5').padding({ bottom: 12 })
     }.width('100%')
   }
@@ -311,11 +318,12 @@ struct Index {
         style: {},
         position: BadgePosition.RightTop,
       }) {
-        Image($r("app.media.icon"))
-        .width(50)
-        .height(50)
+        Image($r("app.media.startIcon"))
+          .width(50)
+          .height(50)
       }
       .width(55)
+
       Button('count 0').onClick(() => {
         this.badgeCount = 0
       })
@@ -323,7 +331,7 @@ struct Index {
         this.badgeCount = 1
       })
     }
-    .margin({top: 20})
+    .margin({ top: 20 })
   }
 }
 ```

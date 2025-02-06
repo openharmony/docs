@@ -1,7 +1,7 @@
 # ToolBar
 
 
-The **Toolbar** component is used to host a set of action options related to the current screen, displayed at the bottom of the screen. It can display five child components. When there are six or more child components, the first four are displayed and the others are moved to the **More** option on the toolbar.
+The **Toolbar** component is designed to present a set of action options related to the current screen, displayed at the bottom of the screen. It can display up to five child components. If there are six or more child components, the first four are shown directly, and the additional ones are grouped under a **More** item on the rightmost side of the toolbar.
 
 
 > **NOTE**
@@ -11,8 +11,8 @@ The **Toolbar** component is used to host a set of action options related to the
 
 ## Modules to Import
 
-```
-import { ToolBar, ToolBarOptions, toolBarModifier, ItemState } from '@kit.ArkUI'
+```ts
+import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 ```
 
 
@@ -27,50 +27,56 @@ The [universal attributes](ts-universal-attributes-size.md) are supported.
 
 Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsController, dividerModifier: DividerModifier, toolBarModifier: ToolBarModifier})
 
-**Decorator**: @Component
+**Decorator**: \@Component
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name                           | Type                                                     | Mandatory | Decorator      | Description                                                                                                  |
-|-------------------------------|-----------------------------------------------------------|-----|-------------|------------------------------------------------------------------------------------------------------|
-| toolBarList                   | [ToolBarOptions](#toolbaroptions)                         | Yes  | @ObjectLink | Toolbar list.                                                                                              |
-| activateIndex                 | number                                                    | No  | @Prop       | Index of the active option.<br>Default value: **-1**                                                                                 |
-| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)     | Yes  | -           | Toolbar controller.                                                                                         |
-| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | No  | @Prop       | Modifier for the toolbar header divider, which can be used to customize the divider's height, color, and other attributes.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                        |
-| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13) | No  | @Prop       | Modifier for the toolbar, which can be used to set the toolbar's height, background color, padding (which only takes effect when there are fewer than five toolbar items), and whether to display the pressed state.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| Name                         | Type                                                        | Mandatory| Decorator | Description                                                        |
+| ----------------------------- | ------------------------------------------------------------ | ---- | ----------- | ------------------------------------------------------------ |
+| toolBarList                   | [ToolBarOptions](#toolbaroptions)                            | Yes  | @ObjectLink | Toolbar list.                                                |
+| activateIndex                 | number                                                       | No  | @Prop       | Index of the active item.<br>Default value: **-1**                             |
+| controller                    | [TabsController](ts-container-tabs.md#tabscontroller)        | Yes  | -           | Toolbar controller.                                              |
+| dividerModifier<sup>13+</sup> | [DividerModifier](ts-universal-attributes-attribute-modifier.md) | No  | @Prop       | Modifier for the toolbar header divider, which can be used to customize the divider's height, color, and other attributes.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| toolBarModifier<sup>13+</sup> | [ToolBarModifier](#toolbarmodifier13)                        | No  | @Prop       | Modifier for the toolbar, which can be used to set the toolbar's height, background color, padding (which only takes effect when there are fewer than five toolbar items), and whether to display the pressed state.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## ToolBarOptions
 
-Inherits from **Array<[ToolBarOption](#toolbaroption)>**.
+Inherits Array<[ToolBarOption](#toolbaroption)>.
+
+**Decorator Type**: \@Observed
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 ## ToolBarOption
+
+**Decorator Type**: \@Observed
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name                                | Type                                                       | Mandatory| Description                                                                                                          |
 |------------------------------------|-----------------------------------------------------------| -------- |--------------------------------------------------------------------------------------------------------------|
-| content                            | [ResourceStr](ts-types.md#resourcestr)                    | Yes| Text of the toolbar option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                               |
-| action                             | () =&gt; void                                   | No| Click event of the toolbar option.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                              |
-| icon                               | [Resource](ts-types.md#resource)                          | No| Icon of the toolbar option.<br>If **toolBarSymbolOptions** has input parameters, **icon** is ineffective.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
-| state                              | [ItemState](#itemstate)                                   | No| State of the toolbar option.<br>Default value: **ENABLE**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                |
-| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | No| Icon fill color of the toolbar option.<br>Default value: **$r('sys.color.icon_primary')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.     |
-| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | No| Icon fill color of the toolbar option in the activated state.<br>Default value: **$r('sys.color.icon_emphasize')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
-| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | No| Font color of the toolbar option.<br>Default value: **$r('sys.color.font_primary')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.       |
-| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | No| Font color of the toolbar option in the activated state.<br>Default value: **$r('sys.color.font_emphasize')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
-| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | No| Icon symbol options of the toolbar option.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                    |
+| content                            | [ResourceStr](ts-types.md#resourcestr)                    | Yes| Text of the toolbar item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                               |
+| action                             | () =&gt; void                                   | No| Click event of the toolbar item.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                              |
+| icon                               | [Resource](ts-types.md#resource)                          | No| Icon of the toolbar item.<br>If **toolBarSymbolOptions** has input parameters, **icon** is ineffective.<br>**Atomic service API**: This API can be used in atomic services since API version 11.       |
+| state                              | [ItemState](#itemstate)                                   | No| State of the toolbar item.<br>Default value: **ENABLE**<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                |
+| iconColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | No| Icon fill color of the toolbar item.<br>Default value: **$r('sys.color.icon_primary')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.     |
+| activatedIconColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | No| Icon fill color of the toolbar item in the activated state.<br>Default value: **$r('sys.color.icon_emphasize')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| textColor<sup>13+</sup>            | [ResourceColor](ts-types.md#resourcecolor)                | No| Font color of the toolbar item.<br>Default value: **$r('sys.color.font_primary')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.       |
+| activatedTextColor<sup>13+</sup>   | [ResourceColor](ts-types.md#resourcecolor)                | No| Font color of the toolbar item in the activated state.<br>Default value: **$r('sys.color.font_emphasize')**<br>**Atomic service API**: This API can be used in atomic services since API version 13.  |
+| toolBarSymbolOptions<sup>13+</sup> | [ToolBarSymbolGlyphOptions](#toolbarsymbolglyphoptions13) | No| Icon symbol options of the toolbar item.<br>**Atomic service API**: This API can be used in atomic services since API version 13.                                    |
 
 ## ToolBarModifier<sup>13+</sup>
-Provides APIs for setting the toolbar's height (**height**), background color (**backgroundColor**), left and right padding (**padding**, which only takes effect when there are fewer than five items), and whether to display the pressed state (**stateEffect**).
+Provides APIs for setting the height (**height**), background color (**backgroundColor**), left and right padding (**padding**, which only takes effect when there are fewer than five items) of the toolbar, and whether to display the pressed state effect (**stateEffect**).
 
 **Atomic service API**: This API can be used in atomic services since API version 13.
 
 ### backgroundColor
 
-backgroundColor?(backgroundColor: ResourceColor): ToolBarModifier
+backgroundColor(backgroundColor: ResourceColor): ToolBarModifier
 
 Sets the background color of the toolbar. By overriding this API, you can implement custom drawing for the background color of the toolbar.
 
@@ -136,11 +142,13 @@ Sets whether to display the pressed state effect.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| ENABLE | 1 | The toolbar option is enabled.|
-| DISABLE | 2 | The toolbar option is disabled.|
-| ACTIVATE | 3 | The toolbar option is activated.|
+| ENABLE | 1 | The toolbar item is enabled.|
+| DISABLE | 2 | The toolbar item is disabled.|
+| ACTIVATE | 3 | The toolbar item is activated.|
 
 ## ToolBarSymbolGlyphOptions<sup>13+</sup>
 
@@ -152,14 +160,16 @@ Defines the icon symbol options.
 
 | Name  | Type      | Mandatory| Description                                                                                      |
 | ------ | ---------- | ---- |------------------------------------------------------------------------------------------|
-| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon symbol of the toolbar option in normal state.<br>Default value: **fontColor: $r('sys.color.icon_primary'), fontSize: 24vp** |
-| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon symbol of the toolbar option in activated state.<br>Default value: **fontColor: $r('sys.color.icon_emphasize'), fontSize: 24vp**|
+| normal | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon symbol of the toolbar item in normal state.<br>Default value: **fontColor: $r('sys.color.icon_primary'), fontSize: 24vp** |
+| activated| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | No  | Icon symbol of the toolbar item in activated state.<br>Default value: **fontColor: $r('sys.color.icon_emphasize'), fontSize: 24vp**|
 
 ## Events
 The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
 
+### Example 1: Setting Toolbar Items to Different States
+This example shows the various display effects when the **state** property of toolbar items is set to **ENABLE**, **DISABLE**, or **ACTIVATE**.
 ```ts
 import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI'
 
@@ -169,7 +179,7 @@ struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions()
   aboutToAppear() {
     this.toolbarList.push({
-      content:'Cut Super Long Text',
+      content: 'Cut Super Long Text',
       icon: $r('sys.media.ohos_ic_public_share'),
       action: () => {
       },
@@ -189,7 +199,7 @@ struct Index {
       state:ItemState.ACTIVATE
     })
     this.toolbarList.push({
-      content:'Select All',
+      content: 'Select All',
       icon: $r('sys.media.ohos_ic_public_select_all'),
       action: () => {
       },
@@ -225,6 +235,8 @@ struct Index {
 
 ![en-us_image_toolbar_example01](figures/en-us_image_toolbar_example01.png)
 
+### Example 2 (Customizing the Toolbar Style)
+In this example, you can set the ToolBarModifier attribute to customize the toolbar height, background color, and pressing effect.
 ```ts
 import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarModifier, ItemState, LengthMetrics } from '@kit.ArkUI';
 
@@ -232,7 +244,7 @@ import { SymbolGlyphModifier, DividerModifier, ToolBar, ToolBarOptions, ToolBarM
 @Component
 struct Index {
   @State toolbarList: ToolBarOptions = new ToolBarOptions();
-  @State toolBarModifier: ToolBarModifier =
+  private toolBarModifier: ToolBarModifier =
   new ToolBarModifier().height(LengthMetrics.vp(52)).backgroundColor(Color.Transparent).stateEffect(false);
   @State dividerModifier: DividerModifier = new DividerModifier().height(0);
 

@@ -31,9 +31,6 @@ fs.writeSync(file.fd, 'upload file test');
 fs.closeSync(file);
 
 // 上传任务配置项
-let header = new Map<Object, string>();
-header.set('key1', 'value1');
-header.set('key2', 'value2');
 let files: Array<request.File> = [
 //uri前缀internal://cache 对应cacheDir目录
   { filename: 'test.txt', name: 'test', uri: 'internal://cache/test.txt', type: 'txt' }
@@ -41,7 +38,10 @@ let files: Array<request.File> = [
 let data: Array<request.RequestData> = [{ name: 'name', value: 'value' }];
 let uploadConfig: request.UploadConfig = {
   url: 'https://xxx',
-  header: header,
+  header: {
+    'key1':'value1',
+    'key2':'value2'
+  },
   method: 'POST',
   files: files,
   data: data
@@ -95,6 +95,10 @@ let config: request.agent.Config = {
   mode: request.agent.Mode.FOREGROUND,
   overwrite: true,
   method: "POST",
+  headers: {
+    'key1':'value1',
+    'key2':'value2'
+  },
   data: attachments,
   saveas: "./"
 };
@@ -110,6 +114,8 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   })
   task.on('completed', async() => {
     console.warn(`/Request upload completed`);
+    //该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+    request.agent.remove(task.tid);
   })
 }).catch((err: BusinessError) => {
   console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
@@ -168,18 +174,21 @@ try {
 // pages/xxx.ets
 // 将网络资源文件下载到应用文件目录并读取一段内容
 import { BusinessError, request } from '@kit.BasicServicesKit';
+let context = getContext(this) as common.UIAbilityContext;
+let filesDir = context.filesDir;
 
 let config: request.agent.Config = {
   action: request.agent.Action.DOWNLOAD,
   url: 'https://xxxx/test.txt',
+  saveas: 'xxxx.txt',
   gauge: true,
   overwrite: true,
   network: request.agent.Network.WIFI,
 };
-request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+request.agent.create(context, config).then((task: request.agent.Task) => {
   task.start((err: BusinessError) => {
     if (err) {
-      console.error(`Failed to start the upload task, Code: ${err.code}  message: ${err.message}`);
+      console.error(`Failed to start the download task, Code: ${err.code}  message: ${err.message}`);
       return;
     }
   });
@@ -188,6 +197,14 @@ request.agent.create(getContext(), config).then((task: request.agent.Task) => {
   })
   task.on('completed', async() => {
     console.warn(`/Request download completed`);
+    let file = fs.openSync(filesDir + '/xxxx.txt', fs.OpenMode.READ_WRITE);
+    let arrayBuffer = new ArrayBuffer(1024);
+    let readLen = fs.readSync(file.fd, arrayBuffer);
+    let buf = buffer.from(arrayBuffer, 0, readLen);
+    console.info(`The content of file: ${buf.toString()}`);
+    fs.closeSync(file);
+    //该方法需用户管理任务生命周期，任务结束后调用remove释放task对象
+    request.agent.remove(task.tid);
   })
 }).catch((err: BusinessError) => {
   console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);

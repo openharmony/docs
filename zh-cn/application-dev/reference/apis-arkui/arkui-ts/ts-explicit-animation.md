@@ -26,7 +26,7 @@ animateTo(value: AnimateParam, event: () => void): void
 > - 如果在[aboutToAppear](./ts-custom-component-lifecycle.md#abouttoappear)中调用动画，自定义组件内的build还未执行，内部组件还未创建，动画时机过早，动画属性没有初值无法对组件产生动画。
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
 > - 也可以使用[组件内转场](./ts-transition-animation-component.md)，在组件出现和消失时做动画。
-> - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animationTo实现组件消失动画效果。
+> - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animateTo实现组件消失动画效果。
 
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |

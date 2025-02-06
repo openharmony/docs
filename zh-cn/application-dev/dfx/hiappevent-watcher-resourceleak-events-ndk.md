@@ -218,7 +218,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 7. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”。接口示例代码如下：
+   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存内存泄漏，需要同步在“开发者选项”中打开“系统资源泄漏日志”，并重启设备。接口示例代码如下：
 
    ```ts
     import hidebug from "@ohos.hidebug";
@@ -226,28 +226,29 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     @Entry
     @Component
     struct Index {
-    @State leakedArray: string[][] = [];
+      @State leakedArray: string[][] = [];
 
-    build() {
-      Column() {
-        Row() {
-          Column() {
-            Button("pss leak")
-              .onClick(() => {
-                hidebug.setAppResourceLimit("pss_memory", 1024, true);
-                for (let i = 0; i < 20 * 1024; i++) {
-                  this.leakedArray.push(new Array(1).fill("leak"));
-                }
-              })
+      build() {
+        Column() {
+          Row() {
+            Column() {
+              Button("pss leak")
+                .onClick(() => {
+                  hidebug.setAppResourceLimit("pss_memory", 1024, true);
+                  for (let i = 0; i < 20 * 1024; i++) {
+                    this.leakedArray.push(new Array(1).fill("leak"));
+                  }
+                })
+            }
           }
+          .height('100%')
+          .width('100%')
         }
-        .height('100%')
-        .width('100%')
       }
     }
    ```
 
-8. 点击IDE界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
+8. 点击DevEco Studio界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
    同一个应用，24小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启设备。
 
 9. 内存泄漏事件上报后，可以在Log窗口看到对系统事件数据的处理日志：

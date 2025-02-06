@@ -24,7 +24,7 @@ Creates an image or video asset with the specified file name. This API uses an a
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -78,7 +78,7 @@ Creates an image or video asset with the specified file name. This API uses a pr
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -136,7 +136,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -194,7 +194,7 @@ Creates an image or video asset with the specified file name and options. This A
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -255,7 +255,7 @@ Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -313,7 +313,7 @@ Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -3677,7 +3677,7 @@ Creates an asset change request with the specified file name.
 The file name must comply with the following specifications:
 - The file name consists of a valid file name and an image or video file name extension.
 - The file name cannot exceed 255 characters.
-- The file name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The file name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
 
@@ -4352,7 +4352,7 @@ Creates a **MediaAlbumChangeRequest** instance.
 
 The album name must comply with the following specifications:
 - The album name cannot exceed 255 characters.
-- The album name cannot contain any of the following characters:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+- The album name cannot contain any of the following characters:<br>. .. \ / : * ? " ' ` < > | { } [ ]
 - The album name is case-insensitive.
 - Duplicate album names are not allowed.
 
@@ -5711,7 +5711,7 @@ Obtains the face identifier on the cover of a portrait album or group photo albu
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+| Promise&lt;string&gt; | Promise used to return **tag_id** of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
 
 **Error codes**
 
@@ -6088,7 +6088,7 @@ Enumerates the types of segmented video enhancement.
 
 ## CloudEnhancementTaskStage<sup>13+</sup>
 
-Enumerates the cloud enhancement task states, which are returned by [CloudEnhancementTaskState] (#cloudenhancement13).
+Enumerates the cloud enhancement task states, which are returned by [CloudEnhancementTaskState](#cloudenhancement13).
 
 **System API**: This is a system API.
 

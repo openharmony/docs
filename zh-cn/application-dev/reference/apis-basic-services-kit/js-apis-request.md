@@ -449,6 +449,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 | -------- | -------- | -------- | -------- |
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为字节。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为字节。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
@@ -770,9 +771,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                        |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
-| path | string | 是 | 文件路径                                                                                                                                      |
+| path | string | 是 | 文件路径。                                         |
 | responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息。此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
-| message | string | 是 | 上传任务结果描述信息                                                                                                                                |
+| message | string | 是 | 上传任务结果描述信息。                           |
 
 其中，responseCode包含的返回码值如下：
 
@@ -1105,6 +1106,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
 | totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+
 
 **错误码：**
 
@@ -2589,6 +2591,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | tid | string | 是 | 任务id，在系统上是唯一的，由系统自动生成。 |
 | config | [Config](#config10) | 是 | 任务的配置信息。 |
 
+> **说明：**
+>
+> Task对象及其挂载回调函数会在调用remove方法后释放并被系统自动回收。
 
 ### on('progress')<sup>10+</sup>
 
@@ -3968,11 +3973,11 @@ pause(): Promise&lt;void&gt;
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err: BusinessError) => {
-      console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
     });
     console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4320,13 +4325,15 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config, (err: BusinessError, task: request.agent.Task) => {
+  request.agent.create(getContext(), config, async (err: BusinessError, task: request.agent.Task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-    task.start();
+    await task.start();
+    //用户需要手动调用remove从而结束task对象的生命周期
+    request.agent.remove(task.tid);
   });
   ```
 
@@ -4408,9 +4415,11 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+  request.agent.create(getContext(), config).then(async (task: request.agent.Task) => {
     console.info(`Succeeded in creating a download task. result: ${task.config}`);
-    task.start();
+    await task.start();
+    //用户需要手动调用remove从而结束task对象的生命周期
+    request.agent.remove(task.tid);
   }).catch((err: BusinessError) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -4458,9 +4467,9 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
   import { BusinessError } from '@kit.BasicServicesKit';
 
   request.agent.getTask(getContext(), "123456").then((task: request.agent.Task) => {
-    console.info(`Succeeded in querying a upload task. result: ${task.tid}`);
+    console.info(`Succeeded in querying a task. result: ${task.tid}`);
   }).catch((err: BusinessError) => {
-    console.error(`Failed to query a upload task, Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query a task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -4468,7 +4477,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
 
 remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
-移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用callback异步回调。
+移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用callback异步回调。在调用后任务对象和其回调函数会被释放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4510,7 +4519,7 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
 
 remove(id: string): Promise&lt;void&gt;
 
-移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止，使用Promise异步回调。
+移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用Promise异步回调。在调用后任务对象和其回调函数会被释放。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

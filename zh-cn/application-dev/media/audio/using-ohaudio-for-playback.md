@@ -35,14 +35,14 @@ OHAudio提供OH_AudioStreamBuilder接口，遵循构造器设计模式，用于�
 
 使用[OH_AudioStreamBuilder_Create](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_create)创建构造器示例：
 
-```
+```cpp
 OH_AudioStreamBuilder* builder;
 OH_AudioStreamBuilder_Create(&builder, streamType);
 ```
 
 在音频业务结束之后，开发者应该执行[OH_AudioStreamBuilder_Destroy](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_destroy)接口来销毁构造器。
 
-```
+```cpp
 OH_AudioStreamBuilder_Destroy(builder);
 ```
 
@@ -54,7 +54,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 1. 创建构造器
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder* builder;
     OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RENDERER);
     ```
@@ -63,7 +63,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
-    ```c++
+    ```cpp
     // 设置音频采样率
     OH_AudioStreamBuilder_SetSamplingRate(builder, 48000);
     // 设置音频声道
@@ -96,7 +96,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
       从API version 12开始可通过[OH_AudioStreamBuilder_SetFrameSizeInCallback](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setframesizeincallback)设置audioDataSize的大小。
 
-      ```c++
+      ```cpp
       // 自定义写入数据函数
       static OH_AudioData_Callback_Result NewAudioRendererOnWriteData(
           OH_AudioRenderer* renderer,
@@ -165,7 +165,7 @@ OH_AudioStreamBuilder_Destroy(builder);
       > 
       > - 回调函数结束后，音频服务会把缓冲中数据放入队列里等待播放，因此请勿在回调外再次更改缓冲中的数据。对于最后一帧，如果数据不够填满缓冲长度，开发者需要使用剩余数据拼接空数据的方式，将缓冲填满，避免缓冲内的历史脏数据对播放效果产生不良的影响。
 
-      ```c++
+      ```cpp
       // 自定义写入数据函数
       int32_t MyOnWriteData(
           OH_AudioRenderer* renderer,
@@ -222,7 +222,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
    - 请确保[OH_AudioRenderer_Callbacks](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_callbacks)的每一个回调都被**自定义的回调方法**或**空指针**初始化。
    
-     ```c++
+     ```cpp
      // 自定义写入数据函数
      int32_t MyOnWriteData(
          OH_AudioRenderer* renderer,
@@ -257,7 +257,7 @@ OH_AudioStreamBuilder_Destroy(builder);
    
    - 使用前，初始化并清零结构体。
    
-     ```c++
+     ```cpp
      // 自定义写入数据函数
      int32_t MyOnWriteData(
          OH_AudioRenderer* renderer,
@@ -290,7 +290,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 4. 构造播放音频流
 
-    ```c++
+    ```cpp
     OH_AudioRenderer* audioRenderer;
     OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
     ```
@@ -311,9 +311,23 @@ OH_AudioStreamBuilder_Destroy(builder);
 
     构造器不再使用时，需要释放相关资源。
 
-    ```c++
+    ```cpp
     OH_AudioStreamBuilder_Destroy(builder);
     ```
+
+## 设置音频流音量
+
+开发者可使用[OH_AudioRenderer_SetVolume](../../reference/apis-audio-kit/_o_h_audio.md#oh_audiorenderer_setvolume)接口设置当前音频流音量值。
+
+开发示例
+
+```cpp
+// 要设置的音量值，音量值的范围是[0.0, 1.0]
+float volume = 0.5f;
+
+// 设置当前音频流音量值
+OH_AudioStream_Result OH_AudioRenderer_SetVolume(audioRenderer, volume);
+```
 
 ## 设置低时延模式
 
@@ -326,7 +340,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 开发示例
 
-```C
+```cpp
 OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 ```
 
@@ -344,7 +358,7 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 
 开发示例
 
-```C
+```cpp
 OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 ```
 
@@ -358,7 +372,7 @@ OH_AudioStreamBuilder_SetChannelLayout(builder, CH_LAYOUT_STEREO);
 
 开发示例
 
-```C
+```cpp
 // 自定义同时写入PCM数据和元数据函数
 int32_t MyOnWriteDataWithMetadata(
     OH_AudioRenderer* renderer,

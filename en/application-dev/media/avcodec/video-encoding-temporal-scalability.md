@@ -112,7 +112,7 @@ This section describes only the steps that are different from the basic encoding
     // 1.1 Obtain the handle to the capability of the video encoder. The following uses H.264 as an example.
     OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 1.2 Check whether the global temporal scalability feature is supported.
-    bool isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
+    bool isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_TEMPORAL_SCALABILITY);
     ```
 
     If the feature is supported, it can be enabled.
@@ -212,7 +212,7 @@ This section describes only the steps that are different from the basic encoding
     // 1.1 Obtain the handle to the capability of the encoder. The following uses H.264 as an example.
     OH_AVCapability *cap = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 1.2 Check whether the LTR feature is supported.
-    isSupported = OH_AVCapability_isFeatureSupported(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
+    isSupported = OH_AVCapability_IsFeatureSupported(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
     // 1.3 Determine the number of supported LTR frames.
     if (isSupported) {
         OH_AVFormat *properties = OH_AVCapability_GetFeatureProperties(cap, VIDEO_ENCODER_LONG_TERM_REFERENCE);
@@ -243,6 +243,7 @@ This section describes only the steps that are different from the basic encoding
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR, 1);
         OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR, 4);
         OH_AVBuffer_SetParameter(buffer, format);
+        OH_AVFormat_Destroy(format);
         // Notify the encoder that the buffer input is complete.
         OH_VideoEncoder_PushInputBuffer(codec, index);
     }

@@ -297,7 +297,7 @@ on(event: string, callback: Callback<emitter.EventData>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据达到writableHighWatermark时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
+| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据清空时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\> | 是 | 回调函数，返回事件传输的数据。 |
 
 **错误码：**
@@ -344,7 +344,7 @@ off(event: string, callback?: Callback<emitter.EventData>): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据达到writableHighWatermark时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
+| event    | string   | 是 | 事件回调类型，支持的事件包括：`'close'` \| `'drain' `\|`'error'` \| `'finish'` 。<br/>\- `'close'`：完成[end()](#end)调用，结束写入操作，触发该事件。<br/>\- `'drain'`：在可写流缓冲区中数据清空时触发该事件。<br/>\- `'error'`：在可写流发生异常时触发该事件。<br/>\- `'finish'`：在数据缓冲区全部写入到目标后触发该事件。 |
 | callback | Callback\<[emitter.EventData](../apis-basic-services-kit/js-apis-emitter.md#eventdata)\>   | 否 | 回调函数。 |
 
 **错误码：**
@@ -652,7 +652,7 @@ console.info('Readable data is', dataChunk); // Readable data is test
 
 resume(): Readable
 
-将流的读取模式从暂停切换到流动模式。
+将流的读取模式从暂停切换到流动模式，可用接口isPaused判断是否切换到流动模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -678,14 +678,14 @@ class TestReadable extends stream.Readable {
 
 let readableStream = new TestReadable();
 readableStream.resume();
-console.info("Readable test resume", readableStream.isPaused()); // Readable test resume false
+console.info("Readable test resume", !readableStream.isPaused()); // 切换流动模式成功时，此处日志将打印"Readable test resume true"
 ```
 
 ### pause
 
 pause(): Readable
 
-将流的读取模式从流动切换到暂停模式。
+将流的读取模式从流动切换到暂停模式，可用接口isPaused判断是否切换到暂停模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -917,6 +917,7 @@ readable.unpipe(writable);
 readable.on('data', () => {
   console.info("Readable test unpipe data event called");
 });
+// unpipe成功断开连接之后，data事件将不会触发，不会打印"Readable test unpipe data event called"
 ```
 
 ### on
@@ -1011,6 +1012,7 @@ readable.setEncoding('utf8');
 readable.on('readable', read);
 readable.off('readable');
 readable.push('test');
+// off注销对readable事件的监听后，read函数不会被调用，"read() called"也不会被打印
 ```
 
 ### doInitialize

@@ -355,6 +355,7 @@ Removes a system account. This API uses an asynchronous callback to return the r
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **Example**
 
@@ -413,6 +414,7 @@ Removes a system account. This API uses a promise to return the result.
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **Example**
 
@@ -912,17 +914,17 @@ Obtains the ID of the foreground system account.
 
 **System API**: This is a system API.
 
-**System capability**: SystemCapability.Account.OsAccount
+**Required permissions**: SystemCapability.Account.OsAccount
 
 **Return value**
 
-| Type                  | Description                                                              |
+| Type                                                       | Description                                          |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. return the ID of the foreground system account obtained.|
+| Promise&lt;number&gt; | Promise used to return the result. |
 
 **Error codes**
 
-| ID| Error Message      |
+| ID | Error Message                  |
 | -------- | ------------- |
 | 202 | Not system application.|
 | 12300001 | The system service works abnormally. |
@@ -1011,7 +1013,7 @@ Creates a system account. This API uses a promise to return the result.
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | Yes  | Name of the system account to create.|
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12. |
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1125,7 +1127,7 @@ Creates a system account and associates it with the specified domain account. Th
 | ---------- | ---------------------------------------- | ---- | -------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
-| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12. |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1534,7 +1536,7 @@ Subscribes to the system account activation states, including the states of the 
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates a system account is activated, and **activating** indicates a system account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates that a system account is activated, and **activating** indicates that a system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
 | callback | Callback&lt;number&gt;     | Yes  | Callback used to return the ID of the system account being activated or activated.   |
 
@@ -3582,7 +3584,7 @@ Authenticates a domain account.
 
 authWithPopup(callback: IUserAuthCallback): void
 
-Authenticates this domain account in a pop-up window.
+Authenticates this domain account with a dialog box.
 
 **System API**: This is a system API.
 
@@ -3635,7 +3637,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 authWithPopup(localId: number, callback: IUserAuthCallback): void
 
-Authenticates a domain account in a pop-up window.
+Authenticates this domain account with a dialog box.
 
 **System API**: This is a system API.
 
@@ -5561,8 +5563,8 @@ Represents the system account information.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default. |
-| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**. |
+| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default.|
+| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**.|
 
 ## OsAccountType
 
@@ -5572,7 +5574,7 @@ Enumerates the system account types.
 
 | Name  | Value| Description        |
 | ------ | ------ | ----------- |
-| PRIVATE<sup>12+</sup> | 1024  | Privacy account. Only one privacy account is allowed.<br>**System API**: This is a system API. |
+| PRIVATE<sup>12+</sup> | 1024  | Privacy account. Only one privacy account is allowed.<br>**System API**: This is a system API.  |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -5582,9 +5584,9 @@ Represents domain account information.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default. |
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**. |
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default. |
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default.|
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5654,7 +5656,7 @@ Defines the options for obtaining domain account information.
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | Yes  | Domain account name.|
 | domain      | string | No  | Domain name, which is **undefined** by default.|
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs. The default value is **undefined**.|
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs, which is **undefined** by default.|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5691,7 +5693,7 @@ Represents the optional parameter used to create a system account.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5703,7 +5705,7 @@ Represents a set of optional parameters for creating a system account bound to t
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 

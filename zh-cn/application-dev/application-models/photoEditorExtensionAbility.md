@@ -112,7 +112,6 @@
             return null;
           }
           this.originalImage = pixmap;
-          fileIo.closeSync(file);
           return pixmap;
         } catch(e) {
           hilog.info(0x0000, TAG, `ReadImage failed:${e}`);
@@ -235,7 +234,6 @@
       let timeStamp = Date.now();
       // 将用户图片拷贝到应用沙箱路径
       fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
-      fileIo.closeSync(file);
 
       this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
       this.originalImage = fileUri.getUriFromPath(this.filePath);
@@ -320,7 +318,6 @@ struct Index {
         return null;
       }
       this.editedImage = pixmap;
-      fileIo.closeSync(file);
       return pixmap;
     } catch(e) {
       hilog.info(0x0000, TAG, `readImage failed:${e}`);
@@ -369,7 +366,6 @@ struct Index {
               let timeStamp = Date.now();
               // 将用户图片拷贝到应用沙箱路径
               fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
-              fileIo.closeSync(file);
 
               this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
               this.originalImage = fileUri.getUriFromPath(this.filePath);

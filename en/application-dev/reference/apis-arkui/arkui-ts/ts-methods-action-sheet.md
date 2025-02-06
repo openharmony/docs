@@ -92,7 +92,9 @@ Provides information about the action to dismiss the dialog box.
 >
 > For clarity in UI execution context, use the [showActionSheet](../js-apis-arkui-UIContext.md#showactionsheet) API in [UIContext](../js-apis-arkui-UIContext.md#uicontext).
 
-### Example 1
+### Example 1: Displaying an Action Sheet
+
+This example demonstrates how to display an action sheet when a button is touched.
 
 ```ts
 @Entry
@@ -159,7 +161,9 @@ struct ActionSheetExample {
 
 ![en-us_image_action](figures/en-us_image_action.gif)
 
-### Example 2
+### Example 2: Opening an Action Sheet Outside the Main Window
+
+This example demonstrates how to configure an action sheet to display outside the main window by setting **showInSubWindow** to **true**.
 
 ```ts
 @Entry
@@ -228,8 +232,9 @@ struct ActionSheetExample {
 
 ![en-us_image_action_showinsubwindow](figures/en-us_image_action_showinsubwindow.jpg)
 
-### Example 3
-This example sets a 3s entrance animation and a 100 ms exit animation for the action sheet.
+### Example 3: Setting the Action Sheet Animation
+This example illustrates how to use the **transition** API to create custom animation effects for the dialog box's appearance and disappearance.
+
 ```ts
 @Entry
 @Component
@@ -286,7 +291,7 @@ struct ActionSheetExample {
 
 ![en-us_image_action_animation](figures/en-us_image_action_animation.gif)
 
-### Example 4
+### Example 4: Setting the Action Sheet Style
 This example demonstrates how to set styles of an action sheet, including the width, height, background color, and shadow.
 ```ts
 @Entry

@@ -1,6 +1,6 @@
 # @ohos.screen (Screen) (System API)
 
-The **Screen** module implements basic screen management. You can use the APIs of this module to obtain a **Screen** object, listen for screen changes, and create and destroy virtual screens.
+The Screen module implements basic screen management. You can use the APIs of this module to obtain a Screen object, listen for screen changes, and create and destroy virtual screens.
 
 > **NOTE**
 >
@@ -970,6 +970,108 @@ screen.setScreenRotationLocked(isLocked, (err: BusinessError) => {
 });
 ```
 
+## screen.setMultiScreenMode<sup>13+</sup>
+
+setMultiScreenMode(primaryScreenId: number, secondaryScreenId: number, secondaryScreenMode: MultiScreenMode): Promise&lt;void&gt;
+
+Sets the display mode (mirror or extend) of the secondary screen. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name      | Type                | Mandatory| Description               |
+| ------------ | ------------------- | ---- |--------------------|
+| primaryScreenId   | number           | Yes | ID of the primary screen. The value must be an integer.|
+| secondaryScreenId | number           | Yes | ID of the secondary screen. The value must be an integer.|
+| secondaryScreenMode | [MultiScreenMode](#multiscreenmode13)  | Yes | Display mode of the secondary screen.|
+
+**Return value**
+
+| Type              | Description                    |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let primaryScreenId: number = 0;
+let secondaryScreenId: number = 12;
+let screenMode: screen.MultiScreenMode = screen.MultiScreenMode.SCREEN_MIRROR;
+screen.setMultiScreenMode(primaryScreenId, secondaryScreenId, screenMode).then(() => {
+  console.info('Succeeded in setting multi screen mode. Data: ');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set multi screen mode. Code:${err.code},message is ${err.message}`);
+});
+```
+
+## screen.setMultiScreenRelativePosition<sup>13+</sup>
+
+setMultiScreenRelativePosition(mainScreenOptions: MultiScreenPositionOptions, secondaryScreenOptions: MultiScreenPositionOptions): Promise&lt;void&gt;
+
+Sets the positions of the primary and secondary screens in extend mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Parameters**
+
+| Name      | Type                | Mandatory| Description              |
+| ------------ | ------------------- | ---- |--------------------|
+| mainScreenOptions      | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | Yes | Position of the primary screen.|
+| secondaryScreenOptions | [MultiScreenPositionOptions](#multiscreenpositionoptions13)  | Yes | Position of the secondary screen.|
+
+**Return value**
+
+| Type               | Description                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Display Error Codes](errorcode-display.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 202     | Permission verification failed, non-system application uses system API. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 1400003 | This display manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let mainScreenOptions: screen.MultiScreenPositionOptions = {
+  id : 0,
+  startX : 0,
+  startY : 0
+};
+
+let secondaryScreenOptions: screen.MultiScreenPositionOptions = {
+  id : 12,
+  startX : 1000,
+  startY : 1000
+};
+
+screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions).then(() => {
+  console.info('Succeeded in setting multi screen relative position. Data: ');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set multi screen relative position. Code:${err.code},message is ${err.message}`);
+});
+```
+
 ## ExpandOption
 
 Defines the parameters for expanding a screen.
@@ -981,6 +1083,29 @@ Defines the parameters for expanding a screen.
 | screenId | number   | Yes  | Yes  | Screen ID. The value must be an integer.         |
 | startX   | number   | Yes  | Yes  | Start X coordinate of the screen. The value must be an integer.|
 | startY   | number   | Yes  | Yes  | Start Y coordinate of the screen. The value must be an integer.|
+
+## MultiScreenMode<sup>13+</sup>
+
+Enumerates the display modes of secondary screens.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name             | Value | Description                           |
+| ------------------ | ---- | -------------------------------- |
+| SCREEN_MIRROR      | 0    | Mirror mode.|
+| SCREEN_EXTAND      | 1    | Extend mode.|
+
+## MultiScreenPositionOptions<sup>13+</sup>
+
+Describes the screen position information.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+| Name   | Type    | Readable| Writable | Description               |
+| -------- | -------- | ---- | ---- | ------------------- |
+| id       | number   | Yes  | Yes  | Screen ID. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
+| startX   | number   | Yes  | Yes  | Start X coordinate of the screen. The upper left vertex of the bounding rectangle formed by the two screens is used as the origin, with the positive direction being rightwards. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
+| startY   | number   | Yes  | Yes  | Start Y coordinate of the screen. The upper left vertex of the bounding rectangle formed by the two screens is used as the origin, with the positive direction being downwards. The value must be a positive integer. Any non-positive integer values will be considered invalid and result in an error.|
 
 ## VirtualScreenOption
 
@@ -1403,15 +1528,15 @@ Enumerates the screen orientations.
 
 ## ScreenSourceMode<sup>10+</sup>
 
-Enumerates the display content source modes of the screen.
+Enumerates the sources of the content displayed on the screen.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name              | Value  | Description                            |
 | ------------------ | ---- | -------------------------------- |
-| SCREEN_MAIN         | 0    | The primary screen is displayed (default).|
-| SCREEN_MIRROR       | 1    | The mirror is displayed.        |
-| SCREEN_EXTEND       | 2    | The extended screen is displayed.        |
+| SCREEN_MAIN         | 0    | Content from the primary screen (default).|
+| SCREEN_MIRROR       | 1    | Content from a mirror screen.        |
+| SCREEN_EXTEND       | 2    | Content from an extend screen.        |
 | SCREEN_ALONE        | 3    | The source is unspecified.    |
 
 ## ScreenModeInfo

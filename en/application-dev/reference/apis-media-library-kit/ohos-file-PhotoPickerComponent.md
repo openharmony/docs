@@ -1,6 +1,6 @@
 # @ohos.file.PhotoPickerComponent (PhotoPickerComponent)
 
-The **PhotoPickerComponent** component embedded in the UI of an application allows the application to access images or videos in the user directory without any permission. This component grants the application only the read permission.
+The **PhotoPickerComponent** embedded in the UI of an application allows the application to access images or videos in the user directory without any permission. This component grants the application only the read permission.
 The user can directly tap this component to select images or videos.
 
 > **NOTE**
@@ -44,7 +44,7 @@ Allows the application to access images or videos in the user directory without 
 
 > **NOTE**
 > 
->If **PhotoPickerComponent** is used with the **Tabs** component, the swipe gestures of the **Tabs** component conflict with those of the photo browser page. To prevent this problem, you can disable the swipe operation for the **Tabs** component in **onEnterPhotoBrowser()** and enable it in **onExitPhotoBrowser()**. This conflict will be resolved in later versions.
+> If **PhotoPickerComponent** is used with the **Tabs** component, the swipe gestures of the **Tabs** component conflict with those of the photo browser page. To prevent this problem, you can disable the swipe operation for the **Tabs** component in **onEnterPhotoBrowser()** and enable it in **onExitPhotoBrowser()**. This conflict will be resolved in later versions.
 
 **Decorator**: @Component
 
@@ -59,13 +59,13 @@ Allows the application to access images or videos in the user directory without 
 | pickerOptions           | [PickerOptions](#pickeroptions)                                                  | No  | - | Configuration of Picker.                                                                                                                                                                                                                                                                                                                                                    |
 | onSelect                | (uri: string) => void                                                            | No  | - | Callback to be invoked when an image is selected by using **PhotoPickerComponent**. This callback returns the URI of the image selected to the application.                                                                                                                                                                                                                                                                                                                           |
 | onDeselect              | (uri: string) => void                                                            | No  | - | Callback to be invoked when an image is deselected by using **PhotoPickerComponent**. This callback returns the URI of the image deselected to the application.                                                                                                                                                                                                                                                                                                                     |
-| onItemClicked           | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean | No  | - | Callback to be invoked when an item in a Picker component is clicked.<br>For an image (thumbnail item), if **true** is returned, the image is selected. Otherwise, the image is not selected and the URI is not granted with the permission. <br/>For a camera item, if **true** is returned, the system camera is started. Otherwise, the camera is not started and the application handles the request.                                                                                                                                                                                                                                      |
+| onItemClicked           | (itemInfo: [ItemInfo](#iteminfo), clickType: [ClickType](#clicktype)) => boolean | No  | - | Callback to be invoked when an item in a **PhotoPickerComponent** is clicked.<br>For an image (thumbnail item), if **true** is returned, the image is selected. Otherwise, the image is not selected and the URI is not granted with the permission. For a camera item, if **true** is returned, the system camera is started. Otherwise, the camera is not started and the application handles the request.                                                                                                                                                                                                                                           |
 | onEnterPhotoBrowser     | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | No  | - | Callback to be invoked when the photo browser page is displayed. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                    |
 | onExitPhotoBrowser      | (photoBrowserInfo: [PhotoBrowserInfo](#photobrowserinfo)) => boolean             | No  | - | Callback to be invoked when the photo browser page exits. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                      |
 | onPickerControllerReady | () => void                                                                       | No  | - | Callback to be invoked when **pickerController** is available.<br>The **PickerController** APIs can be called only after this callback is invoked.                                                                                                                                                                                                                                                                                              |
 | onPhotoBrowserChanged   | (browserItemInfo: [BaseItemInfo](#baseiteminfo)) => boolean                      | No  | - | Callback to be invoked when the photo browser page is swiped left or right. The callback returns photo browser information to the application.                                                                                                                                                                                                                                                                                                                                    |
 | onSelectedItemsDeleted<sup>13+</sup>  | [ItemsDeletedCallback](#itemsdeletedcallback13)                                  | No  | - | Callback to be invoked when the selected items are deleted. This callback returns information about the deleted items to the application.                                                                                                                                                                                                                                                                                                                             |
-| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets exceeds the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT. |
+| onExceedMaxSelected<sup>13+</sup>     | [ExceedMaxSeletedCallback](#exceedmaxseletedcallback13)                          | No  | - | Callback to be invoked when the number of selected media assets exceeds the limit (maximum number of selected images, selected videos, or selected items).<br>- If the number of selected images reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).PHOTO_MAX_COUNT.<br>- If the number of selected videos reaches the maximum but does not reach the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).VIDEO_MAX_COUNT.<br>- If the number of selected media assets reaches the maximum count of selected items, **exceedMaxCountType** in the callback is [MaxCountType](#maxcounttype).TOTAL_MAX_COUNT.|
 | onCurrentAlbumDeleted<sup>13+</sup>   | [CurrentAlbumDeletedCallback](#currentalbumdeletedcallback13)                    | No  | - | Callback to be invoked when the current album is deleted.<br>The album is specified by **currentAlbumUri** in pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, currentAlbumUri).<br>To refresh the grid page to display the default album after the current album is deleted, you can set the title bar name to the default album name, for example, **Photos and videos**, **Photos**, or **Videos**, and call pickerContorller.[setData](#setdata)([DataType](#datatype).SET_ALBUM_URI, '') with an empty string.                                 |
 | pickerController        | [PickerController](#pickercontroller)                                            | No  | @ObjectLink | Instance used to send data to **PhotoPickerComponent**.                                                                                                                                                                                                                                                                                                                            |
 
@@ -80,7 +80,7 @@ Defines the configuration of Picker. It inherits from [BaseSelectOptions](js-api
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | Name                             | Type                                     | Mandatory | Description                                                                      |
-|---------------------------------|-----------------------------------------|-----|--------------------------------------------------------------------------|
+|-------------------------|-----------------------------------------|-----|--------|
 | checkBoxColor                   | string                                  | No  | Background color of the check box. The value is an 8-digit hexadecimal color code.                                                  |
 | backgroundColor                 | string                                  | No  | Background color of the Picker grid page. The value is an 8-digit hexadecimal color code.                                            |
 | isRepeatSelectSupported         | boolean                                 | No  | Whether to support repeat selection of a single image. The value **true** means a single image can be repeatedly selected.                                                  |
@@ -92,7 +92,7 @@ Defines the configuration of Picker. It inherits from [BaseSelectOptions](js-api
 | maxPhotoSelectNumber            | number                                  | No  | Maximum number of images that can be selected. The maximum value is **500**, which is limited by **MaxSelected**.                                          |
 | maxVideoSelectNumber            | number                                  | No  | Maximum number of videos that can be selected. The maximum value is **500**, which is limited by **MaxSelected**.                                          |
 | isSlidingSelectionSupported<sup>13+</sup>     | boolean                                 | No  | Whether to support sliding selection (selecting multiple items by sliding finger across the screen). It is not supported by default. This parameter is not available for repeat selection.                                           |
-| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. <br/>The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component. |
+| photoBrowserCheckboxPosition<sup>13+</sup>    | [number, number]                        | No  | Position of the check box on the photo browser page. The first parameter specifies the offset in the X direction, and the second parameter specifies the offset in the Y direction. The value range is 0-1, which indicates the offset (from 0% to 100%) to the upper left corner of the component.|
 
 ## ItemsDeletedCallback<sup>13+</sup>
 
@@ -108,7 +108,7 @@ Called when the selected items are deleted.
 
 | Name| Type                                        | Mandatory| Description      |
 | -------- |--------------------------------------------| -------- |----------|
-| baseItemInfos | Array&lt;[BaseItemInfo](#baseiteminfo)&gt; | Yes| Basic information about the selected items. |
+| baseItemInfos | Array&lt;[BaseItemInfo](#baseiteminfo)&gt; | Yes| Basic information about the selected items.|
 
 ## ExceedMaxSeletedCallback<sup>13+</sup>
 
@@ -138,7 +138,7 @@ Called when the current album is deleted.
 
 ## PickerController
 
-Defines an instance used to send data to the **PhotoPicker** component.
+Defines an instance used to send data to the **PhotoPickerComponent**.
 
 **Decorator Type**: @Observed
 
@@ -161,7 +161,7 @@ Sends data of the specified type to **PhotoPickerComponent**.
 |  Name       | Type                                   | Mandatory | Description |
 | ------------------------- | ------------------ | ----- | --------------- |
 | dataType | [DataType](#datatype) | Yes| Type of the data to send.|
-| data | Object | Yes| Data to send.|
+| data | Object | Yes| Data to send.| 
 
 ### setMaxSelected
 
@@ -177,13 +177,13 @@ Sets the maximum number of images, videos, or images and videos that can be sele
 
 |  Name       | Type                                   | Mandatory | Description    |
 | ------------------------- | ------------------ | ----- | --------------- |
-| maxSelected | [MaxSelected](#maxselected) | Yes| Maximum number of media assets that can be selected at a time. |
+| maxSelected | [MaxSelected](#maxselected) | Yes| Maximum number of media assets that can be selected at a time.|
 
 ### setPhotoBrowserItem
 
 setPhotoBrowserItem(uri: string, photoBrowserRange?: PhotoBrowserRange): void
 
-Switches from the Picker component to the photo browser page or from the photo browser page to the image to be viewed.
+Switches from the **PhotoPickerComponent** to the photo browser page or from the photo browser page to the image to be viewed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -194,7 +194,7 @@ Switches from the Picker component to the photo browser page or from the photo b
 |  Name       | Type                                   | Mandatory | Description |
 | ------------------------- | ------------------ | ----- | --------------- |
 | uri | string | Yes| URI of the image to view. Only the images selected by the user are supported.|
-| photoBrowserRange | [PhotoBrowserRange](#photobrowserrange) | No| View range on the photo browser page. <br/>The value can be **ALL** or **SELECTED_ONLY**. <br/>The default value is **ALL**, which means to view all images and videos. |
+| photoBrowserRange | [PhotoBrowserRange](#photobrowserrange) | No| View range on the photo browser page. The value can be **ALL** or **SELECTED_ONLY**. The default value is **ALL**, which means to view all images and videos.| 
 
 ### exitPhotoBrowser<sup>13+</sup>
 
@@ -264,7 +264,7 @@ Represents information about the photo browser page.
 
 | Name    | Type   | Mandatory | Description    |
 |----------|--------|-----|---------|
-| animatorParams | [AnimatorParams](#animatorparams) | No  | Animation for entering or exiting the photo browser page. |
+| animatorParams | [AnimatorParams](#animatorparams) | No  | Animation for entering or exiting the photo browser page.|
 
 ## AnimatorParams
 
@@ -289,11 +289,11 @@ Represents the maximum number of media assets that can be selected at a time.
 
 | Name    | Type   | Mandatory | Description    |
 |----------|--------|-----|---------|
-| data | Map&lt;[MaxCountType](#maxcounttype), number&gt; | No            | Maximum number of media assets (images, videos, or both) that can be selected at a time. |
+| data | Map&lt;[MaxCountType](#maxcounttype), number&gt; | No            | Maximum number of media assets (images, videos, or both) that can be selected at a time.|
 
 ## DataType
 
-Enumerates the types of data sent from **PickerController** to the **PhotoPicker** component.
+Enumerates the types of data sent from **PickerController** to the **PhotoPickerComponent**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -301,8 +301,8 @@ Enumerates the types of data sent from **PickerController** to the **PhotoPicker
 
 | Name               | Value  | Description                                                                                                                |
 |-------------------|-----|--------------------------------------------------------------------------------------------------------------------|
-| SET_SELECTED_URIS | 1   | Send a list of selected items to instruct the Picker component to refresh the selection status. A string array needs to be passed in.<br>For example, after an image is deleted from an application's page, the application calls **setData()** to notify the Picker component of the remaining selected items. Then, the Picker component refreshes the check box status.|
-| SET_ALBUM_URI | 2   | Maximum number of images, videos, and total media assets that can be selected. |
+| SET_SELECTED_URIS | 1   | Send a list of selected items to instruct the **PhotoPickerComponent** to refresh the selection status. A string array needs to be passed in.<br>For example, after an image is deleted from an application's page, the application calls **setData()** to notify the **PhotoPickerComponent** of the remaining selected items. Then, the **PhotoPickerComponent** refreshes the check box status.|
+| SET_ALBUM_URI | 2   | Maximum number of images, videos, and total media assets that can be selected.|
 
 ## ItemType
 
@@ -314,7 +314,7 @@ Enumerates the types of the item clicked.
 
 | Name               | Value  | Description        |
 |-------------------|-----|------------|
-| THUMBNAIL | 0   | Image or video thumbnail. |
+| THUMBNAIL | 0   | Image or video (thumbnail).|
 | CAMERA | 1   | Camera item.   |
 
 ## ClickType
@@ -332,7 +332,7 @@ Enumerates the click operation types.
 
 ## PickerOrientation
 
-Enumerates the sliding preview directions of the Picker grid page. This capability is not supported currently.
+Enumerates the sliding preview directions of the Picker grid page. (This capability is not supported currently.)
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -372,7 +372,7 @@ Enumerates the Picker color modes.
 
 ## ReminderMode
 
-Enumerates the types of the reminder when the number of selected items exceeds the maximum.
+Enumerates the types of the reminder when the number of selected items reaches the maximum.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -394,9 +394,9 @@ Enumerates the types of the maximum count.
 
 | Name               | Value  | Description                       |
 |-------------------|-----|---------------------------|
-| TOTAL_MAX_COUNT | 0   | Total number of media assets (images and videos) that can be selected. |
-| PHOTO_MAX_COUNT | 1   | Total number of images that can be selected. The value cannot be greater than **Total_MAX_Count**. |
-| VIDEO_MAX_COUNT | 2   | Total number of videos that can be selected. The value cannot be greater than **Total_MAX_Count**. |
+| TOTAL_MAX_COUNT | 0   | Total number of media assets (images and videos) that can be selected.                |
+| PHOTO_MAX_COUNT | 1   | Total number of images that can be selected. The value cannot be greater than **Total_MAX_Count**.|
+| VIDEO_MAX_COUNT | 2   | Total number of videos that can be selected. The value cannot be greater than **Total_MAX_Count**.|
 
 ## PhotoBrowserRange
 
@@ -567,7 +567,7 @@ struct PickerDemo {
         if (this.isBrowserShow) {
           // Back button of the application on the photo browser page.
           Row() {
-            Button ("Exit photo browser image").width ('33%').height ('8%').onClick (() => {
+            Button("Exit photo browser page").width('33%').height('8%').onClick(() => {
               this.pickerController.exitPhotoBrowser();
             })
           }.margin({ bottom: 20 })
@@ -610,7 +610,7 @@ struct PickerDemo {
             }, (uri: string) => JSON.stringify(uri))
           }
         } else {
-          Button ('Preview').width ('33%').height('5%').onClick(() => {
+          Button('Preview').width('33%').height('5%').onClick(() => {
             if (this.selectUris.length > 0) {
               this.pickerController.setPhotoBrowserItem(this.selectUris[0], PhotoBrowserRange.SELECTED_ONLY);
             }

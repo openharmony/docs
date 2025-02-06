@@ -954,6 +954,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
     }
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -1006,6 +1008,8 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
   connection.getNetCapabilities(netHandle).then((data: connection.NetCapabilities) => {
     console.info("Succeeded to get data: " + JSON.stringify(data));
   })
+}).catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
 });
 ```
 
@@ -2708,3 +2712,45 @@ connection.getDefaultNet().then((netHandle: connection.NetHandle) => {
 | address | string | 是 |地址。                       |
 | family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。|
 | port    | number | 否 |端口，取值范围\[0, 65535]。   |
+
+## HttpRequest
+
+type HttpRequest = http.HttpRequest
+
+获取一个HTTP请求。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| http.HttpRequest | 定义HTTP请求任务。在调用HttpRequest提供的API之前。 |
+
+## TCPSocket
+
+type TCPSocket = socket.TCPSocket
+
+获取一个TCPSocket对象。
+
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| socket.TCPSocket | 定义一个TCPSocket连接。     |
+
+## UDPSocket
+
+type UDPSocket = socket.UDPSocket
+
+获取一个UDPSocket对象。
+
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| socket.UDPSocket | 定义UDPSocket连接。     |

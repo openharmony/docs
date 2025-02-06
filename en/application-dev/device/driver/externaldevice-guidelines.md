@@ -12,7 +12,7 @@ Peripheral management applies to all devices that can be ported to the OpenHarmo
 
 DevEco Studio, as the driver development tool, allows you to develop, debug, and package drivers.
 
-Download and install DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-create-new-project-V5) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-tools-overview-V5).
+[Download and install](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-software-install-V5) DevEco Studio and verify basic operations to ensure that it can function properly. For details, see [Creating and Running a Project](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-create-new-project-V5) in [DevEco Studio User Guide](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-tools-overview-V5).
 
 ### SDK Version Configuration
 
@@ -143,7 +143,7 @@ The following sample code is a demo that illustrates how to develop both the cli
     }
     ```
 
-6. Define the **sendMessageRequest** API, and use it to perform IPC with the remote driver object.
+6. Defines the **sendMessageRequest** API, and use it to perform IPC with the remote driver object.
 
     ```ts
     private async communicateWithRemote(): Promise<void> {

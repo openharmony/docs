@@ -18,7 +18,7 @@ import { PiPWindow } from '@kit.ArkUI';
 
 isPiPEnabled(): boolean
 
-Checks whether the PiP feature is enabled.
+Checks whether the PiP feature is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -28,7 +28,7 @@ Checks whether the PiP feature is enabled.
 
 | Type      | Description                                 |
 |----------|-------------------------------------|
-| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is enabled, and **false** means the opposite.|
+| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -180,12 +180,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { PiPWindow } from '@kit.ArkUI';
+import { PiPWindow, UIContext } from '@kit.ArkUI';
 import { typeNode } from '@ohos.arkui.node';
 
 let pipController: PiPWindow.PiPController | undefined = undefined;
 let xComponentController: XComponentController = new XComponentController();
-let xComponent = typeNode.createNode(this.getUIContext(), "XComponent");
+let context: UIContext | undefined = undefined; // You can pass UIContext or use this.getUIContext () in the layout to assign a valid value to context.
+let xComponent = typeNode.createNode(context, 'XComponent');
 xComponent.initialize({
   id:'xcomponent',
   type:XComponentType.SURFACE,

@@ -242,14 +242,26 @@ Web组件指定共享渲染进程。
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER, 该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview, false表示创建正常模式的webview。<br> 默认值：false |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token, 多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
 
+## WebviewController<sup>9+</sup>
+
+type WebviewController = WebviewController
+
+提供Web控制器的方法。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 类型     | 说明       |
+| ------ | ---------- |
+| [WebviewController](js-apis-webview.md#webviewcontroller)  | 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。 |
+
 ## 属性
 
-通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[focusOnTouch](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusontouch9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
+通用属性仅支持[aspectRatio](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio)、[backdropBlur](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backdropblur)、[backgroundColor](../apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor)、[bindContentCover](../apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)、[bindContextMenu](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)、[bindMenu ](../apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)、[bindSheet](../apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)、[borderColor](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#bordercolor)、[borderRadius](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderradius)、[borderStyle](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderstyle)、[borderWidth](../apis-arkui/arkui-ts/ts-universal-attributes-border.md#borderwidth)、[clip](../apis-arkui/arkui-ts/ts-universal-attributes-sharp-clipping.md#clip)、[constraintSize](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#constraintsize)、[defaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9)、[focusable](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focusable)、[tabIndex](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabindex9)、[groupDefaultFocus](../apis-arkui/arkui-ts/ts-universal-attributes-focus.md#groupdefaultfocus9)、[displayPriority](../apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority)、[enabled](../apis-arkui/arkui-ts/ts-universal-attributes-enable.md#enabled)、[flexBasis](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexbasis)、[flexShrink](../apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink)、[layoutWeight](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight)、[id](../apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)、[gridOffset](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[gridSpan](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[useSizeType](../apis-arkui/arkui-ts/ts-universal-attributes-grid.md)、[height](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#height)、[touchable](../apis-arkui/arkui-ts/ts-universal-attributes-click.md)、[margin](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#margin)、[markAnchor](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#markanchor)、[offset](../apis-arkui/arkui-ts/ts-universal-attributes-location.md#offset)、[width](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#width)、[zIndex](../apis-arkui/arkui-ts/ts-universal-attributes-z-order.md#zindex)、[visibility](../apis-arkui/arkui-ts/ts-universal-attributes-visibility.md#visibility)、[scale](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#scale)、[translate](../apis-arkui/arkui-ts/ts-universal-attributes-transformation.md#translate)、[responseRegion](../apis-arkui/arkui-ts/ts-universal-attributes-touch-target.md#responseregion)、[size](../apis-arkui/arkui-ts/ts-universal-attributes-size.md#size)、[opacity](../apis-arkui/arkui-ts/ts-universal-attributes-opacity.md#opacity)、[shadow](../apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md#shadow)、[sharedTransition](../apis-arkui/arkui-ts/ts-transition-animation-shared-elements.md)、[transition](../apis-arkui/arkui-ts/ts-transition-animation-component.md)。
 
 ### domStorageAccess
 
@@ -401,6 +413,14 @@ javaScriptProxy(javaScriptProxy: JavaScriptProxy)
     testObj = new TestObj();
     build() {
       Column() {
+        Button('deleteJavaScriptRegister')
+          .onClick(() => {
+            try {
+              this.controller.deleteJavaScriptRegister("objName");
+            } catch (error) {
+              console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+            }
+          })
         Web({ src: 'www.example.com', controller: this.controller })
           .javaScriptAccess(true)
           .javaScriptProxy({
@@ -656,7 +676,7 @@ databaseAccess(databaseAccess: boolean)
 
 geolocationAccess(geolocationAccess: boolean)
 
-设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)
+设置是否开启获取地理位置权限，默认开启。具体使用方式参考[管理位置权限](../../web/web-geolocation-permission.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1987,7 +2007,7 @@ nestedScroll(value: NestedScrollOptions)
 > - 设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
 > - 支持设置不同的向前向后两个方向上的嵌套滚动模式。
 > - 默认scrollForward和scrollBackward模式为[NestedScrollMode.SELF_FIRST](../apis-arkui/arkui-ts/ts-appendix-enums.md#nestedscrollmode10)。
-> - 支持嵌套滚动的容器：Grid、List、Scroll、Swiper、Tabs、WaterFlow。
+> - 支持嵌套滚动的容器：[Grid](../apis-arkui/arkui-ts/ts-container-grid.md)、[List](../apis-arkui/arkui-ts/ts-container-list.md)、[Scroll](../apis-arkui/arkui-ts/ts-container-scroll.md)、[Swiper](../apis-arkui/arkui-ts/ts-container-swiper.md)、[Tabs](../apis-arkui/arkui-ts/ts-container-tabs.md)、[WaterFlow](../apis-arkui/arkui-ts/ts-container-waterflow.md)。
 > - 支持嵌套滚动的输入事件：使用手势、鼠标、触控板。
 > - 嵌套滚动场景下，由于Web滚动到边缘时会优先触发过滚动的过界回弹效果，建议设置overScrollMode为OverScrollMode.NEVER，避免影响此场景的用户体验。
 
@@ -2214,6 +2234,7 @@ metaViewport(enabled: boolean)
 > - 如果设置为异常值将无效。
 > - 如果设备为2in1，不支持viewport属性。设置为true或者false均不会解析viewport属性，进行默认布局。
 > - 如果设备为Tablet，设置为true或false均会解析meta标签viewport-fit属性。当viewport-fit=cover时，可通过CSS属性获取安全区域大小。
+> - 当前通过UserAgent中是否含有"Mobile"字段来判断是否开启前端HTML页面中meta标签的viewport属性。当UserAgent中不含有"Mobile"字段时，meta标签中viewport属性默认关闭，此时可通过显性设置metaViewport属性为true来覆盖关闭状态。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2494,7 +2515,7 @@ Web组件自定义文本选择菜单。
 
 | 参数名              | 类型                              | 必填   | 说明          |
 | ------------------- | ------------------------------   | ------ | ------------- |
-| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions对象说明) | 是     | Web自定义文本菜单选项。<br>菜单项数量，及菜单的content大小、icon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。<br>菜单中系统自带的id枚举值（[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)）在Web中仅支持CUT、COPY、PASTE、SELECT_ALL四项。<br>onMenuItemClick函数中textRange参数在web中无意义，传入值为-1。|
+| editMenu | [EditMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#editmenuoptions) | 是     | Web自定义文本菜单选项。<br>菜单项数量，及菜单的content大小、icon图标尺寸，与ArkUI [Menu](../apis-arkui/arkui-ts/ts-basic-components-menu.md)组件保持一致。<br>菜单中系统自带的id枚举值（[TextMenuItemId](../apis-arkui/arkui-ts/ts-text-common.md#textmenuitemid12)）在Web中仅支持CUT、COPY、PASTE、SELECT_ALL四项。<br>onMenuItemClick函数中textRange参数在web中无意义，传入值为-1。|
 
 **示例**
 
@@ -4512,7 +4533,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
             }
             console.info(TAG, `x: ${this.offsetX}, y: ${this.offsetY}`);
             this.showMenu = true;
-            this.offsetX = 250;
+            this.offsetX = 0;
             this.offsetY = Math.max(px2vp(event?.param.y() ?? 0) - 0, 0);
             return true;
           })
@@ -6528,6 +6549,14 @@ type WebKeyboardCallback = (keyboardCallbackInfo: WebKeyboardCallbackInfo) => We
 
 控制自定义键盘的输入、删除、关闭等操作。示例代码参考[onInterceptKeyboardAttach](#oninterceptkeyboardattach12)。
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+WebKeyboardController的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### insertText<sup>12+</sup>
 
 insertText(text: string): void
@@ -6596,6 +6625,26 @@ close(): void
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
 
+### constructor
+
+constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
+
+ConsoleMessage的构造函数。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[constructor](#constructor9)代替。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+ConsoleMessage的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### getLineNumber
 
 getLineNumber(): number
@@ -6656,6 +6705,14 @@ getSourceId(): string
 
 Web组件返回的弹窗确认或弹窗取消功能对象。示例代码参考[onAlert事件](#onalert)。
 
+### constructor
+
+constructor()
+
+JsResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### handleCancel
 
 handleCancel(): void
@@ -6694,6 +6751,8 @@ handlePromptConfirm(result: string): void
 
 constructor()
 
+FullScreenExitHandler的构造函数。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ### exitFullScreen<sup>9+</sup>
@@ -6707,6 +6766,14 @@ exitFullScreen(): void
 ## ControllerHandler<sup>9+</sup>
 
 设置用户新建Web组件的WebviewController对象。示例代码参考[onWindowNew事件](#onwindownew9)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+ControllerHandler的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6727,6 +6794,14 @@ setWebController(controller: WebviewController): void
 ## WebResourceError
 
 Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+
+### constructor
+
+constructor()
+
+WebResourceError的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getErrorCode
 
@@ -6759,6 +6834,14 @@ getErrorInfo(): string
 ## WebResourceRequest
 
 Web组件获取资源请求对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
+
+### constructor
+
+constructor()
+
+WebResourceRequest的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getRequestHeader
 
@@ -6858,6 +6941,14 @@ Web组件返回的请求/响应头对象。
 ## WebResourceResponse
 
 Web组件资源响应对象。示例代码参考[onHttpErrorReceive事件](#onhttperrorreceive)。
+
+### constructor
+
+constructor()
+
+WebResourceResponse的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getReasonMessage
 
@@ -7077,6 +7168,14 @@ setResponseIsReady(IsReady: boolean): void
 
 通知Web组件的文件选择结果。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+FileSelectorResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### handleFileList<sup>9+</sup>
 
 handleFileList(fileList: Array\<string\>): void
@@ -7094,6 +7193,14 @@ handleFileList(fileList: Array\<string\>): void
 ## FileSelectorParam<sup>9+</sup>
 
 Web组件获取文件对象。示例代码参考[onShowFileSelector事件](#onshowfileselector9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+FileSelectorParam的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getTitle<sup>9+</sup>
 
@@ -7155,6 +7262,14 @@ isCapture(): boolean
 
 Web组件返回的http auth认证请求确认或取消和使用缓存密码认证功能对象。示例代码参考[onHttpAuthRequest事件](#onhttpauthrequest9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+HttpAuthHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### cancel<sup>9+</sup>
 
 cancel(): void
@@ -7202,6 +7317,14 @@ isHttpAuthInfoSaved(): boolean
 
 Web组件返回的SSL错误通知事件用户处理功能对象。示例代码参考[onSslErrorEventReceive事件](#onsslerroreventreceive9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+SslErrorHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### handleCancel<sup>9+</sup>
 
 handleCancel(): void
@@ -7221,6 +7344,14 @@ handleConfirm(): void
 ## ClientAuthenticationHandler<sup>9+</sup>
 
 Web组件返回的SSL客户端证书请求事件用户处理功能对象。示例代码参考[onClientAuthenticationRequest事件](#onclientauthenticationrequest9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+ClientAuthenticationHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### confirm<sup>9+</sup>
 
@@ -7274,6 +7405,14 @@ ignore(): void
 ## PermissionRequest<sup>9+</sup>
 
 Web组件返回授权或拒绝权限功能的对象。示例代码参考[onPermissionRequest事件](#onpermissionrequest9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+PermissionRequest的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### deny<sup>9+</sup>
 
@@ -7329,6 +7468,14 @@ grant(resources: Array\<string\>): void
 
 Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
 
+### constructor<sup>10+</sup>
+
+constructor()
+
+ScreenCaptureHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### deny<sup>10+</sup>
 
 deny(): void
@@ -7373,7 +7520,17 @@ grant(config: ScreenCaptureConfig): void
 
 通知Web组件事件消费结果，支持的事件参考[触摸事件的类型](../apis-arkui/arkui-ts/ts-appendix-enums.md#touchtype)。如果应用不消费该事件，则设置为false，事件被Web组件消费。应用消费了该事件，设置为true，Web组件不消费。示例代码参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
 
+### constructor<sup>12+</sup>
+
+constructor()
+
+EventResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### setGestureEventResult<sup>12+</sup>
+
+设置手势事件消费结果。
 
 setGestureEventResult(result: boolean): void
 
@@ -7438,6 +7595,14 @@ setGestureEventResult(result: boolean): void
 ## WebContextMenuParam<sup>9+</sup>
 
 实现长按页面元素或鼠标右键弹出来的菜单信息。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
+
+### constructor<sup>9+</sup>
+
+constructor()
+
+WebContextMenuParam的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### x<sup>9+</sup>
 
@@ -7639,6 +7804,14 @@ getPreviewHeight(): number
 
 实现长按页面元素或鼠标右键弹出来的菜单所执行的响应事件。示例代码参考[onContextMenuShow事件](#oncontextmenushow9)。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+WebContextMenuResult的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### closeContextMenu<sup>9+</sup>
 
 closeContextMenu(): void
@@ -7669,6 +7842,10 @@ paste(): void
 
 执行与此上下文菜单相关的粘贴操作。
 
+> **说明：**
+>
+> 需要配置权限：ohos.permission.READ_PASTEBOARD。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 ### cut<sup>9+</sup>
@@ -7694,6 +7871,8 @@ Web组件返回授权或拒绝权限功能的对象。示例代码参考[onGeolo
 ### constructor
 
 constructor()
+
+JsGeolocation的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7755,10 +7934,10 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 | 名称      | 值 | 说明                                   |
 | ------- | -- | ------------------------------------ |
-| Default<sup>9+</sup> | 0 | 使用未过期的cache加载资源，如果cache中无该资源则从网络中获取。 |
-| None    | 1 | 加载资源使用cache，如果cache中无该资源则从网络中获取。     |
-| Online  | 2 | 加载资源不使用cache，全部从网络中获取。               |
-| Only    | 3 | 只从cache中加载资源。                        |
+| Default<sup>9+</sup> | 0 | 优先使用未过期cache加载资源，无效或无cache时从网络获取。 |
+| None    | 1 | 优先使用cache(含过期)加载资源，无cache时从网络获取。     |
+| Online  | 2 | 强制从网络获取最新资源，不使用任何cache。               |
+| Only    | 3 | 仅使用本地cache加载资源。                        |
 
 ## FileSelectorMode<sup>9+</sup>枚举说明
 
@@ -7797,7 +7976,11 @@ onRenderExited接口返回的渲染进程退出的具体原因。
 
 ## OnContextMenuHideCallback<sup>11+</sup>
 
+type OnContextMenuHideCallback = () => void
+
 上下文菜单自定义隐藏的回调。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ## SslError<sup>9+</sup>枚举说明
 
@@ -7875,6 +8058,14 @@ Web屏幕捕获的配置。
 
 通过DataResubmissionHandler可以重新提交表单数据或取消提交表单数据。
 
+### constructor<sup>9+</sup>
+
+constructor()
+
+DataResubmissionHandler的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### resend<sup>9+</sup>
 
 resend(): void
@@ -7950,6 +8141,18 @@ cancel(): void
 let webController: WebController = new WebController()
 ```
 
+### constructor
+
+constructor()
+
+WebController的构造函数。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### getCookieManager<sup>(deprecated)</sup>
 
 getCookieManager(): WebCookie
@@ -7964,7 +8167,7 @@ getCookieManager(): WebCookie
 
 | 类型        | 说明                                       |
 | --------- | ---------------------------------------- |
-| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookiedeprecated)定义。 |
+| WebCookie | Web组件cookie管理对象，参考[WebCookie](#webcookie)定义。 |
 
 **示例：**
 
@@ -8702,9 +8905,17 @@ clearHistory(): void
   }
   ```
 
-## WebCookie<sup>(deprecated)</sup>
+## WebCookie
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有Web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
+
+### constructor
+
+constructor()
+
+WebCookie的构造函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### setCookie<sup>(deprecated)</sup>
 
@@ -9546,7 +9757,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](js-apis-webview.md#webviewcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 | permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 

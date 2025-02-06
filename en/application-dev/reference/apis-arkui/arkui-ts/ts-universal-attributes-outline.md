@@ -1,6 +1,8 @@
 # Outline
 
-You can set outline attributes for components.
+You can set outline attributes for components. Drawn outside the component, the outline does not affect the component's layout or increases its size.
+
+![outlineTest](figures/outlineTest.PNG)
 
 >  **NOTE**
 >
@@ -165,8 +167,8 @@ To reference this object, at least one parameter must be passed.
 
 | Name    | Type                                    | Mandatory  | Description     |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left outline.<br>Color of the right outline for right-to-left scripts.|
-| right  | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the right outline.<br>Color of the left outline for right-to-left scripts.|
+| start | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left outline for left-to-right scripts.<br>Color of the right outline for right-to-left scripts.|
+| end | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the right outline for left-to-right scripts.<br>Color of the left outline for right-to-left scripts.|
 | top    | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the top outline.|
 | bottom | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the bottom outline.|
 

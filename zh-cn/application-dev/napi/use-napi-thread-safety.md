@@ -17,29 +17,33 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
 
 1. 在Native入口定义线程安全函数。
    ```c++
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+   #include <future>
+
    struct CallbackData {
        napi_threadsafe_function tsfn;
        napi_async_work work;
    };
-   
+
    static napi_value StartThread(napi_env env, napi_callback_info info)
    {
        size_t argc = 1;
        napi_value jsCb = nullptr;
        CallbackData *callbackData = nullptr;
        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
-   
+
        // 创建一个线程安全函数
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "Thread-safe Function Demo", NAPI_AUTO_LENGTH, &resourceName);
-       napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr, 
+       napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr,
            callbackData, CallJs, &callbackData->tsfn);
-   
+
        // 创建一个异步任务
        // ExecuteWork会执行在一个由libuv创建的非JS线程上，此处使用napi_create_async_work是为了模拟在非JS线程场景使用napi_call_threadsafe_function接口向JS线程提交任务
        napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData,
            &callbackData->work);
-   
+
        // 将异步任务加入到异步队列中
        napi_queue_async_work(env, callbackData->work);
        return nullptr;
@@ -79,7 +83,7 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        reinterpret_cast<std::promise<std::string> *>(data)->set_value(std::string(buf));
        return nullptr;
    }
-   
+
    static napi_value RejectedCallback(napi_env env, napi_callback_info info)
    {
        void *data = nullptr;
@@ -90,11 +94,11 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
            std::make_exception_ptr(std::runtime_error("Error in jsCallback")));
        return nullptr;
    }
-   
+
    static void CallJs(napi_env env, napi_value jsCb, void *context, void *data)
    {
        if (env == nullptr) {
-           return;	
+           return;
        }
        napi_value undefined = nullptr;
        napi_value promise = nullptr;
@@ -138,7 +142,12 @@ napi_create_threadsafe_function是Node-API接口之一，用于创建一个线�
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   
+   ```
+
+   ``` ts
+   // 接口对应的.d.ts描述
+    export const startThread: (callback: () => Promise<string>) => void;
+
    // ArkTS侧调用接口
    import nativeModule from 'libentry.so'; // 通过import的方式，引入Native能力
 

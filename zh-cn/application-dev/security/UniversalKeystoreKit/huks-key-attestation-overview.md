@@ -8,12 +8,18 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 | 密钥属主 | 格式 | 说明 | 
 | -------- | -------- | -------- |
 | HAP应用| {appId:"xxx", bundleName:"xxx"} | bundleName为应用包名 | 
-| 系统服务| {processName:"xxx", APL:"system_basic \| system_core"} | APL为系统服务等级 |
+| 系统服务| {processName:"xxx", APL:"system_basic \| system_core"} | APL为[系统服务等级](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念) |
 
 >**说明：**
 > 1. 当调用方为系统服务且APL等级为normal时，暂不支持密钥证明，此种情况下，processName与APL字段将置空。
 > 2. 密钥证明功能在模拟器场景不支持。
+> 3. 支持生成密钥和导入密钥进行密钥证明，业务方在服务器侧需要通过业务证书中的密钥来源字段校验密钥来源是否符合预期。密钥来源字段的OID及其取值为：`1.3.6.1.4.1.2011.2.376.2.1.5`   
 
+密钥来源及对应OID字段的值如下表：
+| 密钥来源 | OID字段对应的值 |
+| -------- | -------- |
+| 导入 | 1 |
+| 生成 | <!--RP1-->2<!--RP1End--> | 
 
 密钥证明过程如下：
 
@@ -24,11 +30,11 @@ HUKS为密钥提供合法性证明能力，主要应用于非对称密钥的公�
 
 3. 将证书链传输至受信任的服务器，并在服务器上解析和验证证书链的有效性和单个证书是否吊销。
 
-<!--RP1-->
+<!--RP2-->
 当前提供了两种密钥证明方式。
 - 匿名密钥证明：不会泄露设备信息，没有权限管理。面向所有应用开放。为了保护用户设备信息，三方应用开发者只能使用匿名密钥证明。
 - 非匿名密钥证明：可以看到调用方设备信息，有权限管控，需申请[ohos.permission.ATTEST_KEY](../AccessToken/permissions-for-system-apps.md#ohospermissionattest_key)权限。
-<!--RP1End-->
+<!--RP2End-->
 
 ## 支持的算法
 

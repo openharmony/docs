@@ -30,7 +30,7 @@ CounterComponent({&nbsp;options:&nbsp;CounterOptions&nbsp;})
 
 **参数**：
 
-| 参数名   | 类型                              | 必填 | 装饰器类型 | 说明                    |
+| 名称   | 类型                              | 必填 | 装饰器类型 | 说明                    |
 | ------- | --------------------------------- | ---- | ---------- | ----------------------- |
 | options | [CounterOptions](#counteroptions) | 是   | @Prop      | 定义counter组件的类型。 |
 
@@ -286,7 +286,7 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### 示例4（日期内联型Counter）
 
-该示例通过设置type为CounterType.INLINE_DATE以及dateOptions，实现日期内联型Counter。
+该示例通过设置type为CounterType.INLINE_DATE以及dateOptions，实现日期内联型Counter，用户可以手动输入日期。
 
 ```ts
 import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';

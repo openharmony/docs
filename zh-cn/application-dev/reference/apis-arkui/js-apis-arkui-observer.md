@@ -202,6 +202,7 @@ TabContent页面的切换信息。
 | tabContentId | string                                             | 是   | TabContent组件的id。                          |
 | tabContentUniqueId | number                                       | 是   | TabContent组件的uniqueId。                    |
 | state        | [TabContentState](#tabcontentstate12)              | 是   | TabContent组件的状态。                        |
+| index        | number                                             | 是   | TabContent组件的下标索引。                        |
 | id           | string                                             | 是   | Tabs组件的id。                                |
 | uniqueId     | number                                             | 是   | Tabs组件的uniqueId。                          |
 
@@ -723,6 +724,7 @@ struct Index {
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
       Button('注册屏幕像素密度变化监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           this.message = '已注册监听'
           observer.on('densityUpdate', this.getUIContext(), this.densityUpdateCallback);
@@ -808,6 +810,7 @@ struct Index {
   build() {
     Column() {
       Button('注册绘制指令下发监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('willDraw', this.getUIContext(), this.willDrawCallback);
         })
@@ -891,6 +894,7 @@ struct Index {
   build() {
     Column() {
       Button('注册布局完成监听')
+        .margin({ bottom: 10 })
         .onClick(() => {
           observer.on('didLayout', this.getUIContext(), this.didLayoutCallback);
         })

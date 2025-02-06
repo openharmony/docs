@@ -374,19 +374,6 @@ let data: abilityAccessCtrl.GrantStatus = atManager.checkAccessTokenSync(tokenID
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
-### GrantStatus
-
-表示授权状态的枚举。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.Security.AccessToken
-
-| 名称               |    值 | 说明        |
-| ------------------ | ----- | ----------- |
-| PERMISSION_DENIED  | -1    | 表示未授权。 |
-| PERMISSION_GRANTED | 0     | 表示已授权。 |
-
 ### requestPermissionOnSetting<sup>12+</sup>
 
 requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permissions&gt;): Promise&lt;Array&lt;GrantStatus&gt;&gt;
@@ -504,7 +491,20 @@ atManager.requestGlobalSwitch(context, abilityAccessCtrl.SwitchType.CAMERA).then
 });
 ```
 
-### SwitchType<sup>12+</sup>
+## GrantStatus
+
+表示授权状态的枚举。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 名称               |    值 | 说明        |
+| ------------------ | ----- | ----------- |
+| PERMISSION_DENIED  | -1    | 表示未授权。 |
+| PERMISSION_GRANTED | 0     | 表示已授权。 |
+
+## SwitchType<sup>12+</sup>
 
 表示全局开关类型。
 

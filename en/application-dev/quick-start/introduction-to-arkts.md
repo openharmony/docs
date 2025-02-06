@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to ArkTS
 
 Welcome to the tutorial for ArkTS, a TypeScript-based programming language designed specifically to build high-performance mobile applications!
 

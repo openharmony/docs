@@ -28,7 +28,9 @@
       - [Popup](arkts-popup-and-menu-components-popup.md)
       - [Menu](arkts-popup-and-menu-components-menu.md)
   - Setting Component Navigation and Page Routing
+    - [Component Navigation and Page Routing Overview](arkts-navigation-introduction.md)
     - [Component Navigation (Navigation) (Recommended)](arkts-navigation-navigation.md)
+    - [Navigation Transition](arkts-navigation-transition.md)
     - [Page Routing (@ohos.router) (Not Recommended)](arkts-routing.md)
     - [Transition from Router to Navigation](arkts-router-to-navigation.md)
   - Using Text
@@ -38,7 +40,7 @@
     - [Symbol Glyph (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [Styled String (StyledString/MutableStyledString)](arkts-styled-string.md)
   - Using Dialog Boxes
-    - [Modal Dialog Box (ModelDialog)](arkts-modal-dialog.md)
+    - [Modal Dialog Box (ModalDialog)](arkts-modal-dialog.md)
     - [Global Custom Dialog Box Independent of UI Components (Recommended)](arkts-uicontext-custom-dialog.md)
     - [Custom Dialog Box (CustomDialog)](arkts-common-components-custom-dialog.md)
   - Using Graphics
@@ -53,7 +55,6 @@
     - Transition Animation
       - [Transition Animation Overview](arkts-transition-overview.md)
       - [Enter/Exit Transition](arkts-enter-exit-transition.md)
-      - [Navigation Transition](arkts-navigation-transition.md)
       - [Modal Transition](arkts-modal-transition.md)
       - [Shared Element Transition](arkts-shared-element-transition.md)
       - [Screen Rotation Animation Enhancement](arkts-rotation-transition-animation.md)   
@@ -98,7 +99,7 @@
   - [Using the Mirroring Capability](arkts-mirroring-display.md)
   - [Supporting Aging-Friendly Design](arkui-support-for-aging-adaptation.md)
   - Setting the Theme
-    - [Setting Theme Skinning](theme_skinning.md)
+    - [Configuring In-Application Theme Skinning](theme_skinning.md)
   - [Using the UI Context API for UI Operations (UIContext)](arkts-global-interface.md)
   <!--Del-->
     - [Cross-Process Application Capability Extension (UIExtension, for System Applications Only)](arkts-ui-extension-components.md)

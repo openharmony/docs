@@ -63,15 +63,15 @@ pageTransition() {
 ```
 
 
-Assume that the page stack is in the multi-instance mode, that is, duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
+Assume that the page navigation is in the multi-instance mode, which means that duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
 
 
 | Route Operation                        | Page A Transition Effect                           | Page B Transition Effect                           |
 | ---------------------------- | ---------------------------------- | ---------------------------------- |
-| **router.pushUrl** – redirection from page A to new page B| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
-| **router.back** – redirection from page B back to page A      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
-| **router.pushUrl** – redirection from page B to new page A| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
-| **router.back** – redirection from page A back to page B      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.pushUrl**, navigating from page A to a new instance of page B| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.back**, returning from page B back to page A      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.pushUrl**, navigating from page B to a new instance of page A| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.back**, returning from page A back to page B      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
 
 
 If you want the page accessed by **router.pushUrl** to always slide in from the right and the page exited by **router.back** to always slide out from the right, the third and fourth cases in the preceding table do not meet the requirements. In this case, you need to define four page transition effects.
@@ -119,15 +119,15 @@ pageTransition() {
 ```
 
 
-The preceding code defines page transition effects for all possibles scenarios. Assume that the page stack is in the multi-instance mode, that is, duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
+The preceding code defines page transition effects for all possibles scenarios. Assume that the page navigation is in the multi-instance mode, which means that duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
 
 
 | Route Operation                        | Page A Transition Effect                                 | Page B Transition Effect                                 |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
-| **router.pushUrl** – redirection from page A to new page B.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Push** takes effect. The page slides out from the left of the screen.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Push** takes effect. The page slides in from the right of the screen.|
-| **router.back** – redirection from page B back to page A.      | The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Pop** takes effect. The page slides in from the left of the screen.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Pop** takes effect. The page slides out from the right of the screen.|
-| **router.pushUrl** – redirection from page B to new page A.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Push** takes effect. The page slides in from the right of the screen.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Push** takes effect. The page slides out from the left of the screen.|
-| **router.back** – redirection from page A back to page B.      | The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Pop** takes effect. The page slides out from the right of the screen.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Pop** takes effect. The page slides in from the left of the screen.|
+| **router.pushUrl**, navigating from page A to a new instance of page B| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Push** takes effect. The page slides out from the left of the screen.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Push** takes effect. The page slides in from the right of the screen.|
+| **router.back**, returning from page B back to page A      | The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Pop** takes effect. The page slides in from the left of the screen.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Pop** takes effect. The page slides out from the right of the screen.|
+| **router.pushUrl**, navigating from page B to a new instance of page A| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Push** takes effect. The page slides in from the right of the screen.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Push** takes effect. The page slides out from the left of the screen.|
+| **router.back**, returning from page A back to page B      | The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Pop** takes effect. The page slides out from the right of the screen.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Pop** takes effect. The page slides in from the left of the screen.|
 
 
 >**NOTE**
@@ -157,7 +157,6 @@ In the following example, page transition animations are defined using [router.p
 
 ```ts
 // PageTransitionSrc1
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionSrc1 {
@@ -174,12 +173,12 @@ struct PageTransitionSrc1 {
         Button("pushUrl")
           .onClick(() => {
             // Navigate to the next page, which is a push operation.
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
             // Return to the previous page, which is equivalent to the pop operation.
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -209,7 +208,6 @@ struct PageTransitionSrc1 {
 
 ```ts
 // PageTransitionDst1
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionDst1 {
@@ -226,12 +224,12 @@ struct PageTransitionDst1 {
         Button("pushUrl")
           .onClick(() => {
             // Navigate to the next page, which is a push operation.
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {
             // Return to the previous page, which is equivalent to the pop operation.
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -267,7 +265,6 @@ In the following example, **type** is set to **RouteType.None**.
 
 ```ts
 // PageTransitionSrc2
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionSrc2 {
@@ -284,12 +281,12 @@ struct PageTransitionSrc2 {
         Button("pushUrl")
           .onClick(() => {
             // Navigate to the next page, which is a push operation.
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
           })
         Button("back")
           .onClick(() => {
             // Return to the previous page, which is equivalent to the pop operation.
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -313,7 +310,6 @@ struct PageTransitionSrc2 {
 
 ```ts
 // PageTransitionDst2
-import { router } from "@kit.ArkUI";
 @Entry
 @Component
 struct PageTransitionDst2 {
@@ -330,12 +326,12 @@ struct PageTransitionDst2 {
         Button("pushUrl")
           .onClick(() => {
             // Navigate to the next page, which is a push operation.
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
           })
         Button("back")
           .onClick(() => {
             // Return to the previous page, which is equivalent to the pop operation.
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }

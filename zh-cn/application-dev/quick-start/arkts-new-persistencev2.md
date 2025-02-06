@@ -4,9 +4,9 @@
 
 PersistenceV2是应用程序中的可选单例对象。此对象的作用是持久化存储UI相关的数据，以确保这些属性在应用程序重新启动时的值与应用程序关闭时的值相同。
 
-PersistentV2提供状态变量持久化能力，开发者可以通过connect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
+PersistenceV2提供状态变量持久化能力，开发者可以通过connect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
 
-在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)
+在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#persistencev2)。
 
 >**说明：**
 >
@@ -44,13 +44,13 @@ static connect<T extends object>(
 
 >**说明：**
 >
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+>1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
 >
->2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+>2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
 >
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+>3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配。
 >
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+>4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
@@ -94,7 +94,7 @@ static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 
 >**说明：**
 >
->由于非[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据；
+>由于非[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据。
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
@@ -117,19 +117,19 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 ## 使用限制
 
-1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable；
+1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
 
-2、不支持collections.Set、collections.Map等类型；
+2、不支持collections.Set、collections.Map等类型。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型；
+3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
-4、单个key支持数据大小约8k，过大会导致持久化失败；
+4、单个key支持数据大小约8k，过大会导致持久化失败。
 
-5、持久化的数据必须是class对象，不能是容器（如Array、Set、Map），不能是buildin的构造对象（如Date、Number）；
+5、持久化的数据必须是class对象，不能是容器（如Array、Set、Map），不能是buildin的构造对象（如Date、Number）。
 
-6、不支持循环引用的对象；
+6、不支持循环引用的对象。
 
-7、只有[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变会触发自动持久化，如V1状态变量、[\@Observed](arkts-observed-and-objectlink.md)对象、普通数据的改变不会触发持久化；
+7、只有[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变会触发自动持久化，如V1状态变量、[\@Observed](arkts-observed-and-objectlink.md)对象、普通数据的改变不会触发持久化。
 
 8、不宜大量持久化数据，可能会导致页面卡顿。
 
@@ -255,7 +255,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [

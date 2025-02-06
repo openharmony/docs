@@ -32,11 +32,9 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, 
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION | Success| Location accurate to 5 kilometers|
 | 9 and later| ohos.permission.APPROXIMATELY_LOCATION and ohos.permission.LOCATION| Success| Location accurate to meters|
 
-To access the device location information when running in the background, an application needs to request for the **ohos.permission.LOCATION_IN_BACKGROUND** permission or a continuous task of the background mode. In this way, the system continues to report device location information after your application moves to the background.
+To access the device location information when running in the background, an application needs to request for a continuous task of the LOCATION type. In this way, the system continues to report device location information after your application moves to the background. For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
-
-For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
@@ -53,7 +51,7 @@ Geocoding address information.
 
 **System capability**: SystemCapability.Location.Location.Geocoder
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | isFromMock | Boolean | No| Yes| **true**: The geographic address is obtained from the mock reverse geocoding function.<br>**false**: The geographic address is not obtained from the mock reverse geocoding function.<br>**System API**: This is a system API.|
 
@@ -64,7 +62,7 @@ Location information.
 
 **System capability**: SystemCapability.Location.Location.Core
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | isFromMock | Boolean | No| Yes| **true**: The location information is obtained from the mock location function.<br>**false**: The location information is not obtained from the location simulation function.<br>**System API**: This is a system API.|
 
@@ -77,7 +75,7 @@ Defines the configuration of the mock reverse geocoding function.
 
 **System API**: This is a system API.
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | location |  [ReverseGeoCodeRequest](js-apis-geoLocationManager.md#reversegeocoderequest) | No| No| Latitude and longitude information.|
 | geoAddress |  [GeoAddress](#geoaddress) | No| No|Geographical name.|
@@ -91,7 +89,7 @@ Defines the configuration of the mock location function.
 
 **System API**: This is a system API.
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | timeInterval | number | No| No| Time interval at which mock locations are reported, in seconds.|
 | locations | Array&lt;[Location](#location)&gt; | No| No| Array of mocked locations.|
@@ -104,7 +102,7 @@ Defines the configuration for obtaining the required data of the location servic
 
 **System API**: This is a system API.
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | type | [LocatingRequiredDataType](#locatingrequireddatatype10) | No| No| Type of the required data.|
 | needStartScan |  boolean | No| No| **true**: Scanning needs to be initiated.<br>**false**: Scanning does not need to be initiated.|
@@ -120,7 +118,7 @@ Defines the required data of the location service, including the Wi-Fi or Blueto
 
 **System API**: This is a system API.
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | wifiData | [WifiScanInfo](#wifiscaninfo10) | No| Yes| Wi-Fi scanning result.|
 | bluetoothData |  [BluetoothScanInfo](#bluetoothscaninfo10) | No| Yes| Bluetooth scanning result.|
@@ -134,7 +132,7 @@ Defines the Wi-Fi scanning information, including the SSID, BSSID, and RSSI of t
 
 **System API**: This is a system API.
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | No| No| Service set identifier (SSID) of a Wi-Fi hotspot, in UTF-8 format.|
 | bssid | string | No| No| Base station subsystem identifier (BSSID) of a Wi-Fi hotspot.|
@@ -151,7 +149,7 @@ Defines the Bluetooth scanning information.
 
 **System API**: This is a system API.
 
-| Name| Type| Read Only| Optional| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | deviceName | string | No| No| Name of a Bluetooth device.|
 | macAddress | string | No| No| MAC address of a Bluetooth device.|
@@ -203,7 +201,7 @@ Defines the location icon status.
 
 ## geoLocationManager.on('locatingRequiredDataChange')<sup>10+</sup>
 
-on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+on(type: 'locatingRequiredDataChange', config: LocatingRequiredDataConfig, callback: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void
 
 Subscribes to changes in the required data of the location service, including Wi-Fi and Bluetooth scanning information. An application can then determine whether to enable Wi-Fi and Bluetooth scanning based on the return result. This API uses an asynchronous callback to return the result.
 
@@ -237,22 +235,21 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
-      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+      console.info('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locatingRequiredDataChange')<sup>10+</sup>
 
-off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void;
+off(type: 'locatingRequiredDataChange', callback?: Callback&lt;Array&lt;LocatingRequiredData&gt;&gt;): void
 
 Unsubscribes from changes in the required data of the location service and stops Wi-Fi and Bluetooth scanning.
 
@@ -284,22 +281,21 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   let callback = (code:Array<geoLocationManager.LocatingRequiredData>):void => {
-      console.log('locatingRequiredDataChange: ' + JSON.stringify(code));
+      console.info('locatingRequiredDataChange: ' + JSON.stringify(code));
   }
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.on('locatingRequiredDataChange', config, callback);
       geoLocationManager.off('locatingRequiredDataChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.enableLocation
 
-enableLocation(callback: AsyncCallback&lt;void&gt;): void;
+enableLocation(callback: AsyncCallback&lt;void&gt;): void
 
 Enables the location service. This API uses an asynchronous callback to return the result.
 
@@ -331,7 +327,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
   try {
       geoLocationManager.enableLocation((err) => {
           if (err) {
@@ -339,7 +334,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
           }
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
@@ -377,22 +372,22 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   try {
       geoLocationManager.enableLocation().then(() => {
-          console.log('promise, enableLocation succeed');
+          console.info('promise, enableLocation succeed');
       })
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, enableLocation: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.disableLocation
 
-disableLocation(): void;
+disableLocation(): void
 
 Disables the location service.
 
@@ -420,13 +415,13 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.disableLocation();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 ## geoLocationManager.enableLocationMock
 
-enableLocationMock(): void;
+enableLocationMock(): void
 
 Enables the mock location function.
 
@@ -452,14 +447,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.enableLocationMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.disableLocationMock
 
-disableLocationMock(): void;
+disableLocationMock(): void
 
 Disables the mock location function.
 
@@ -485,14 +480,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.disableLocationMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setMockedLocations
 
-setMockedLocations(config: LocationMockConfig): void;
+setMockedLocations(config: LocationMockConfig): void
 
 Sets the mock location information. The mock locations will be reported at the interval specified in this API.
 
@@ -536,14 +531,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.enableLocationMock();
       geoLocationManager.setMockedLocations(config);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.enableReverseGeocodingMock
 
-enableReverseGeocodingMock(): void;
+enableReverseGeocodingMock(): void
 
 Enables the mock reverse geocoding function.
 
@@ -568,14 +563,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.enableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.disableReverseGeocodingMock
 
-disableReverseGeocodingMock(): void;
+disableReverseGeocodingMock(): void
 
 Disables the mock geocoding function.
 
@@ -600,14 +595,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.disableReverseGeocodingMock();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setReverseGeocodingMockInfo
 
-setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void;
+setReverseGeocodingMockInfo(mockInfos: Array&lt;ReverseGeocodingMockInfo&gt;): void
 
 Sets information of the mock reverse geocoding function, including the mapping between a location and geographical name. If the location is contained in the configurations during reverse geocoding query, the corresponding geographical name will be returned.
 
@@ -649,14 +644,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
       geoLocationManager.enableReverseGeocodingMock();
       geoLocationManager.setReverseGeocodingMockInfo(mockInfos);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.isLocationPrivacyConfirmed
 
-isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean;
+isLocationPrivacyConfirmed(type: LocationPrivacyType): boolean
 
 Checks whether a user agrees with the privacy statement of the location service. This API can only be called by system applications.
 
@@ -694,14 +689,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       let isConfirmed = geoLocationManager.isLocationPrivacyConfirmed(1);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.setLocationPrivacyConfirmStatus
 
-setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void;
+setLocationPrivacyConfirmStatus(type: LocationPrivacyType, isConfirmed: boolean): void
 
 Sets the user confirmation status for the privacy statement of the location service. This API can only be called by system applications.
 
@@ -737,14 +732,14 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       geoLocationManager.setLocationPrivacyConfirmStatus(1, true);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getLocatingRequiredData<sup>10+</sup>
 
-getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;;
+getLocatingRequiredData(config: LocatingRequiredDataConfig): Promise&lt;Array&lt;LocatingRequiredData&gt;&gt;
 
 Obtains the required data of the location service. This API uses a promise to return the result.
 
@@ -782,24 +777,24 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
-  import { BusinessError } from '@kit.BasicServicesKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
   let config:geoLocationManager.LocatingRequiredDataConfig = {'type': 1, 'needStartScan': true, 'scanInterval': 10000};
   try {
       geoLocationManager.getLocatingRequiredData(config).then((result) => {
-          console.log('getLocatingRequiredData return: ' + JSON.stringify(result));
+          console.info('getLocatingRequiredData return: ' + JSON.stringify(result));
       })  
-      .catch((error:BusinessError.BusinessError) => {
+      .catch((error:BusinessError) => {
           console.error('promise, getLocatingRequiredData: error=' + JSON.stringify(error));
       });
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.on('locationIconStatusChange')<sup>12+</sup>
 
-on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void;
+on(type: 'locationIconStatusChange', callback: Callback&lt;LocationIconStatus&gt;): void
 
 Subscribes to status changes of the location icon. This API uses an asynchronous callback to return the result.
 
@@ -830,19 +825,19 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   let callback = (code: geoLocationManager.LocationIconStatus):void => {
-      console.log('LocationIconStatus: ' + JSON.stringify(code));
+      console.info('LocationIconStatus: ' + JSON.stringify(code));
   }
   try {
       geoLocationManager.on('locationIconStatusChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.off('locationIconStatusChange')<sup>12+</sup>
 
-off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void;
+off(type: 'locationIconStatusChange', callback?: Callback&lt;LocationIconStatus&gt;): void
 
 Unsubscribes from status changes of the location icon.
 
@@ -873,20 +868,20 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   ```ts
   import { geoLocationManager } from '@kit.LocationKit';
   let callback = (code: geoLocationManager.LocationIconStatus):void => {
-      console.log('LocationIconStatus: ' + JSON.stringify(code));
+      console.info('LocationIconStatus: ' + JSON.stringify(code));
   }
   try {
       geoLocationManager.on('locationIconStatusChange', callback);
 	  geoLocationManager.off('locationIconStatusChange', callback);
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
 
 
 ## geoLocationManager.getLocationIconStatus<sup>12+</sup>
 
-getLocationIconStatus(): LocationIconStatus;
+getLocationIconStatus(): LocationIconStatus
 
 Obtains the current location icon status.
 
@@ -917,6 +912,6 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   try {
       let iconStatus = geoLocationManager.getLocationIconStatus();
   } catch (err) {
-      console.error("errCode:" + JSON.stringify(err));
+      console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```

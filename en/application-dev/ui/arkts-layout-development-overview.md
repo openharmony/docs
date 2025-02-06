@@ -57,6 +57,7 @@ The declarative UI provides the following common layouts. Choose a layout that b
 | [List](arkts-layout-development-create-list.md) (List)     | Use lists to display structured, scrollable information efficiently. In ArkUI, the list allows you to lay out elements in the horizontal or vertical layout and is able to adapt to the number of elements in the cross axis direction. It can scroll when the content overflows. Use this layout when you are presenting similar data types or data type sets, such as images and text.|
 | [Grid](arkts-layout-development-create-grid.md) (Grid)     | The grid excels at spacing elements evenly and defining the relationship between the elements. The grid layout controls the number of cells occupied by child components, number of rows or columns that child components span, and how the child components and spacing are adjusted proportionally when the grid container size changes. Use this layout in scenarios where space needs to be allocated evenly or based on a fixed proportion, such as calculators, albums, and calendars.|
 | [Looping](arkts-layout-development-create-looping.md) (Swiper)| Use this layout when you want to implement ad rotation and image preview.      |
+| [Tabs](arkts-navigation-tabs.md)| The **Tabs** component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users receive at a time.      |
 
 
 ## Layout Position
@@ -71,9 +72,30 @@ Attributes such as **position** and **offset** affect the position of the layout
 
 ## Constraints on Child Components
 
-| Constraint| Description                                                    | Implementation                                                    |
-| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Stretching              | When the size of a container component changes, the increased or decreased amount of space is allocated to the specified area in the container component.| [flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow) and [flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink) attributes:<br>1. **flexGrow** defines the grow factor of a flex item.<br>2. **flexShrink** defines the shrink factor of a flex item.|
-| Scaling              | The width and height of a child component change with the container component, with its aspect ratio fixed at the preset value.| The [aspectRatio](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio) attribute specifies the aspect ratio of the current component. The formula is as follows: aspectRatio = width/height.|
-| Proportion              | The proportion capability indicates that the width and height of child components change with the parent container component based on the preset proportion.| Two implementation modes are available with the universal attributes:<br>1. Set the width and height of the child components to a percentage of the width and height of the parent component.<br>2. Use the [layoutWeight](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight) attribute to enable the child components to adaptively occupy the remaining space.|
-| Hiding              | The hiding capability refers to that the visibility of a child component in a container component is subject to its preset display priority and the size of the container component. Child components with the same display priority are displayed or hidden at the same time.| The [displayPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority) attribute is used to control component visibility.|
+* Stretching: When the size of a container component changes, the increased or decreased amount of space is allocated to the specified area in the container component.
+
+  [flexGrow](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexgrow) and [flexShrink](../reference/apis-arkui/arkui-ts/ts-universal-attributes-flex-layout.md#flexshrink) attributes:
+  1. **flexGrow** defines the grow factor of a flex item.
+  2. **flexShrink** defines the shrink factor of a flex item.
+
+* Scaling: The width and height of a child component change with the container component, with its aspect ratio fixed at the preset value.
+
+  The [aspectRatio](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#aspectratio) attribute specifies the aspect ratio of the current component. The formula is as follows: aspectRatio = width/height.
+
+* Proportion: The width and height of child components to adjust dynamically in response to changes in the size of the container component, according to the preset proportion value.
+
+  Two implementation modes are available with the universal attributes:
+  1. Set the width and height of the child components as percentages.
+
+      | Parent and Ancestor Component Setting| Child Component Percentage Reference|
+      |---|---|
+      | The parent component sets the width or height, and the ancestor component does not specify the parent's width or height.| Based on the parent component's width and height|
+      | The parent component sets the width or height, and the ancestor component specifies the parent's width or height.| Based on the parent component's width and height specified by the ancestor component|
+      | The parent component does not the set width or height, and the ancestor component specifies the parent's width or height| Based on the parent component's width and height specified by the ancestor component|
+      | The parent component does not set the width or height, and the ancestor component does not specify the parent's width or height| Based on the percentage reference inherited from the parent component. Since the parent component does not specify the width or height, this reference is passed down from the ancestor component.|
+  2. Use the [layoutWeight](../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md#layoutweight) attribute to enable the child components to adaptively occupy the remaining space.
+
+* Hiding: The child components in a container component are shown or hidden according to their preset display priority as the container component's size changes. Child components with the same display priority are shown or hidden at the same time.
+
+  This feature is governed by the [displayPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-layout-constraints.md#displaypriority) attribute, which dictates the visibility of components.
+

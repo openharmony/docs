@@ -267,7 +267,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value NapiTypeof(napi_env env, napi_callback_info info)
+static napi_value NapiTypeOf(napi_env env, napi_callback_info info)
 {
     // 接受一个入参
     size_t argc = 1;
@@ -320,7 +320,7 @@ static napi_value NapiTypeof(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiTypeof : <T>(value: T) => string | void;
+export const napiTypeOf : <T>(value: T) => string | void;
 ```
 
 ArkTS侧示例代码
@@ -330,25 +330,25 @@ import hilog from '@ohos.hilog'
 import testNapi from 'libentry.so'
 try {
   let varUndefined: undefined;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varUndefined));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varUndefined));
   let varNull: null = null;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varNull));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varNull));
   let varTrue= true;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varTrue));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varTrue));
   let varNum = 1;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varNum));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varNum));
   let varString = "str";
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varString));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varString));
   class Obj {
     id: number = 0
     name: string = ""
   }
   let varObject: Obj = {id: 1, name: "LiLei"};
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varObject));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varObject));
   const addNum = (a: number, b: number): number => a * b;
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(addNum));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(addNum));
   let varBigint = BigInt("1234567890123456789012345678901234567890");
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeof(varBigint));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_typeof: %{public}s', testNapi.napiTypeOf(varBigint));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_typeof error: %{public}s', error.message);
 }
@@ -363,7 +363,7 @@ cpp部分代码
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value NapiInstanceof(napi_env env, napi_callback_info info)
+static napi_value NapiInstanceOf(napi_env env, napi_callback_info info)
 {
     // 接受两个入参
     size_t argc = 2;
@@ -388,7 +388,7 @@ static napi_value NapiInstanceof(napi_env env, napi_callback_info info)
 
 ```ts
 // index.d.ts
-export const napiInstanceof: (date: Object, construct: Object) => boolean | void;
+export const napiInstanceOf: (date: Object, construct: Object) => boolean | void;
 ```
 
 ArkTS侧示例代码
@@ -412,8 +412,8 @@ try {
     message: string = ""
   }
   let obj: Obj = { data: 0, message: "hello world"};
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceof(person, Person));
-  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceof(obj, Person));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceOf(person, Person));
+  hilog.info(0x0000, 'testTag', 'Test Node-API napi_instanceof: %{public}s', testNapi.napiInstanceOf(obj, Person));
 } catch (error) {
   hilog.error(0x0000, 'testTag', 'Test Node-API napi_instanceof error: %{public}s', error.message);
 }
@@ -503,7 +503,7 @@ class Obj {
   message: string = ""
 }
 let objA: Obj = { data: 0, message: "hello world"};
-let objB: Obj = { data: 10, message: "typetag"};
+let objB: Obj = { data: 10, message: "typeTag"};
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objA -> 0: %{public}s', testNapi.setTypeTagToObject(objA, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_type_tag_object objB -> 0: %{public}s', testNapi.setTypeTagToObject(objB, 0));
 hilog.info(0x0000, 'testTag', 'Test Node-API napi_check_object_type_tag objA -> 0: %{public}s', testNapi.checkObjectTypeTag(objA, 0));

@@ -1,6 +1,6 @@
 # @ohos.window (Window) (System API)
 
-The **Window** module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
+The Window module provides basic window management capabilities, such as creating and destroying the current window, setting properties for the current window, and managing and scheduling windows.
 
 This module provides the following common window-related functions:
 
@@ -613,7 +613,7 @@ const callback = (bool: boolean) => {
 try {
   window.on('gestureNavigationEnabledChange', callback);
   window.off('gestureNavigationEnabledChange', callback);
-  // If multiple callbacks are enabled in on(), they will all be disabled.
+  // Unregister all the callbacks that have been registered through on().
   window.off('gestureNavigationEnabledChange');
 } catch (exception) {
   console.error(`Failed to enable or disable the listener for gesture navigation status changes. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -3110,7 +3110,7 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-Sets whether to hide non-system floating windows. This API uses an asynchronous callback to return the result.
+Sets whether to hide non-system floating windows. This API uses a promise to return the result.
 
 A non-system floating window is a floating window created by a non-system application. By default, the main window of a system application can be displayed together with a non-system floating window. This means that the main window may be blocked by an upper-layer non-system floating window. If the **shouldHide** parameter is set to **true**, all non-system floating windows are hidden, so that the main window will never be blocked by a non-system floating window.
 
@@ -3433,6 +3433,58 @@ promise.then(() => {
 });
 ```
 
+### requestFocus<sup>13+</sup>
+
+requestFocus(isFocused: boolean): Promise&lt;void&gt;
+
+Allows this window to proactively request to gain or lose focus. This API uses a promise to return the result. A value is returned as long as the API is successfully called. The return value does not indicate that the window has gained or lost focus. You can use [on('windowEvent')](js-apis-window.md#onwindowevent10) to listen for the focus status of the window.
+
+When a focus request is sent, whether the window can successfully gain focus depends on its capability of being focused and its current visibility. To gain focus, the window must be capable of receiving focus and in a visible state (actively displayed and not hidden or destroyed).
+
+Conversely, once a blur request is sent, the window will lose focus without any conditions.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| isFocused | boolean | Yes  | Whether to gain or lose focus. The value **true** means to gain focus, and **false** means to lose focus.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 202     | Permission verification failed. A non-system application calls a system API. |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isFocused: boolean = true;
+let promise = windowClass.requestFocus(isFocused);
+promise.then(() => {
+  console.info('Succeeded in requesting focus.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to request focus. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## SubWindowOptions<sup>11+</sup>
 
 Describes the parameters used for creating a subwindow.
@@ -3454,6 +3506,8 @@ Before calling any of the following APIs, you must use [onWindowStageCreate()](.
 disableWindowDecor(): void
 
 Disables window decorators.
+
+When window decorators are disabled and the main window transitions into full-screen mode, hovering the cursor over the hot zone of the top window's title bar will cause a floating title bar to appear.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -3799,50 +3853,3 @@ try {
   console.error(`HideWindowWithCustomAnimation error code: ${error.code}, message: ${error.message}` );
 }
 ```
-
-## ExtensionWindowAttribute<sup>12+</sup>
-
-Enumerates the attributes of a window for a UI ServiceExtensionAbility.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-| Name     | Value| Description        |
-| ---------- | ----- | ----------- |
-| SYSTEM_WINDOW  | 0 | System window|
-| SUB_WINDOW  | 1 | Subwindow.|
-
-## SystemWindowOptions<sup>12+</sup>
-
-Describes the parameters for creating a system window.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-| Name| Type                     | Read Only |Optional| Description      |
-| ------ | ------------------------- | ---- | ---- |---------- |
-| windowType   | [WindowType](#windowtype7) | No  | No  | Window type. There is no default value. If null is passed in, the window fails to be created.|
-
-## ExtensionWindowConfig<sup>12+</sup>
-
-Describes the parameters for creating a window for a UI ServiceExtensionAbility.
-
-**Model restriction**: This API can be used only in the stage model.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Window.SessionManager
-
-| Name| Type                     | Read Only |Optional| Description      |
-| ------ | ------------------------- | ---- | ---- |---------- |
-| windowName   | string | No| No | Window name.|
-| windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute12) | No| No  | Window attribute. It specifies whether the created window is a subwindow or a system window. When **windowAttribute** is set to **SUB_WINDOW**, **subWindowOptions** is mandatory. When **windowAttribute** is set to **SYSTEM_WINDOW**, **systemWindowOptions** is mandatory. Otherwise, the window fails to be created.|
-| windowRect   | [Rect](js-apis-window.md#rect7) | No| No  | Rectangular area of the window.|
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | No| Yes| Parameters used for creating a subwindow. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SUB_WINDOW**. Otherwise, the window fails to be created.|
-| systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions12) | No| Yes| Parameters for creating a system window. There is no default value. This parameter is mandatory when **windowAttribute** is set to **SYSTEM_WINDOW**. Otherwise, the window fails to be created.|

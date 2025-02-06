@@ -23,7 +23,7 @@ on(type: 'error', observer: ErrorObserver): number
 
 注册错误观测器。注册后可以捕获到应用产生的js crash，应用崩溃时进程不会退出。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -84,7 +84,7 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void
 
 注销错误观测器。使用callback异步返回。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -134,7 +134,7 @@ off(type: 'error', observerId: number): Promise\<void>
 
 注销错误观测器。使用Promise异步返回。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -189,7 +189,7 @@ on(type: 'loopObserver', timeout: number, observer: LoopObserver): void
 
 注册主线程消息处理耗时监听器。注册后可以捕获到应用主线程处理消息的具体执行时间。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -229,7 +229,7 @@ on(type: 'unhandledRejection', observer: UnhandledRejectionObserver): void
 
 注册被拒绝promise监听器。注册后可以捕获到当前线程中未被捕获到的promise rejection。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -278,7 +278,7 @@ off(type: 'loopObserver', observer?: LoopObserver): void
 
 注销主线程消息处理监听器。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -311,7 +311,7 @@ off(type: 'unhandledRejection', observer?: UnhandledRejectionObserver): void
 
 注销被拒绝promise监听器。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -388,7 +388,7 @@ type UnhandledRejectionObserver = (reason: Error | any, promise: Promise\<any>) 
 
 定义异常监听，用于捕获Promise异步操作失败的原因。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

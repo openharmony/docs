@@ -72,6 +72,7 @@
         - [Lazy Import](arkts-lazy-import.md)
         - [Dynamically Loading a Native Module in Synchronous Mode](js-apis-load-native-module.md)
         - [Loading Modules Using Node-API](load-module-base-nodeapi.md)
+        - [Module Loading Side Effects and Optimization](arkts-module-side-effects.md)
 - ArkTS Compilation Toolchain
     - [ArkTS Compilation Toolchain Overview](compilation-tool-chain-overview.md)
     - Ark Bytecode

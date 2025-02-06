@@ -27,10 +27,14 @@ try {
 
 Import the **\@ohos.window** module, obtain a **Window** object, and use **getWindowProperties()** of the object to obtain the window properties. The **windowRect** field in the properties specifies the window width and height.
 
+To obtain the window width and height information on a page, timing is crucial. The [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear) phase in the page lifecycle does not indicate that the window is visible. It only indicates that the component has been created. As such, the window size information (specified by **windowRect**) obtained in this phase may be incorrect. To obtain the correct window width and height, you are advised to obtain the information in the [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) phase, which is triggered once the window is visible.
+
 **Example**
 
 ```
 import window from '@ohos.window';
+
+// To obtain the window width and height on a page, you are advised to place the following code in the onPageShow phase instead of aboutToAppear of the page lifecycle.
 let windowClass = null;
 try {    
     let promise = window.getLastWindow(this.context);

@@ -157,8 +157,6 @@ WorkInfo参数用于设置应用条件，参数设置时需遵循以下规则：
            {
              "name": "MyWorkSchedulerExtensionAbility",
              "srcEntry": "./ets/WorkSchedulerExtension/WorkSchedulerExtension.ets",
-             "label": "$string:WorkSchedulerExtensionAbility_label",
-             "description": "$string:WorkSchedulerExtensionAbility_desc",
              "type": "workScheduler"
            }
          ]

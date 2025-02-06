@@ -1,6 +1,6 @@
 # makeObserved接口：将非观察数据变为可观察数据
 
-为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved12)。
+为了将普通不可观察数据变为可观察数据，开发者可以使用[makeObserved接口](../reference/apis-arkui/js-apis-StateManagement.md#makeobserved)。
 
 
 makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档前，建议提前阅读：[\@Trace](./arkts-new-observedV2-and-trace.md)。
@@ -29,7 +29,7 @@ makeObserved可以在\@Trace无法标记的情况下使用。在阅读本文档�
 
 - makeObserved仅支持非空的对象类型传参。
   - 不支持undefined和null：返回自身，不做任何处理。
-  - 非Object类型：编译拦截报错
+  - 非Object类型：编译拦截报错。
 
   ```ts
   import { UIUtils } from '@kit.ArkUI';
@@ -171,7 +171,7 @@ export class SendableData  {
   name: string = 'Tom';
   age: number = 20;
   gender: number = 1;
-  // .... more other properties
+  // ....更多其他属性
   likes: number = 1;
   follow: boolean = false;
 }
@@ -275,32 +275,32 @@ struct Index {
       /****************************改变数据长度的api**************************/
       Scroll(this.scroller) {
         Column({space: 10}) {
-          // push 操作
+          // push: 新增新元素
           Button('push').onClick(() => {
             this.arrCollect.push(new Info(30));
           })
-          // pop: remove the last one
+          // pop: 删除最后一个
           Button('pop').onClick(() => {
             this.arrCollect.pop();
           })
-          // shift: remove the first one
+          // shift: 删除第一个
           Button('shift').onClick(() => {
             this.arrCollect.shift();
           })
-          // unshift: insert the new item in the start of the array
+          // unshift: 在数组的开头插入新项
           Button('unshift').onClick(() => {
             this.arrCollect.unshift(new Info(50));
           })
-          // splice: Removes elements from the array at the specified position
+          // splice: 从数组的指定位置删除元素
           Button('splice').onClick(() => {
             this.arrCollect.splice(1);
           })
 
-          // Shrinks the ArkTS array to the given arrayLength.
+          // shrinkTo: 将数组长度缩小到给定的长度
           Button('shrinkTo').onClick(() => {
             this.arrCollect.shrinkTo(1);
           })
-          // Extends the ArkTS array to the given arrayLength,
+          // extendTo: 将数组长度扩展到给定的长度
           Button('extendTo').onClick(() => {
             this.arrCollect.extendTo(6, new Info(20));
           })
@@ -313,7 +313,7 @@ struct Index {
           Button('sort').onClick(() => {
             this.arrCollect.sort((a: Info, b: Info) => b.id - a.id);
           })
-          // fill: filling the section identified by start and end with value
+          // fill: 用值填充指定部分
           Button('fill').onClick(() => {
             this.arrCollect.fill(new Info(5), 0, 2);
           })

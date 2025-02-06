@@ -6,6 +6,12 @@
 >
 > 该组件从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 导入模块
+
+```
+import { AtomicServiceNavigation } from '@kit.ArkUI';
+```
+
 ## 子组件
 
 可以包含子组件。
@@ -62,9 +68,11 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
-| TitleOptions | [BarStyle<sup>12+</sup>](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+| barStyle | [BarStyle<sup>12+</sup>](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
 
 ## NavDestinationBuilder
+
+type NavDestinationBuilder = (name: string, param?: Object) => void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -37,7 +37,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 
   ```ts
-  TextArea({text:"我是TextArea我是TextArea我是TextArea我是TextArea"}).width(300)
+  TextArea({ text: "我是TextArea我是TextArea我是TextArea我是TextArea" }).width(300)
   ```
 
   ![zh-cn_image_0000001511580836](figures/zh-cn_image_0000001511580836.png)
@@ -73,7 +73,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 
 
   ```ts
-  TextInput({placeholder:'我是提示文本'})
+  TextInput({ placeholder: '我是提示文本' })
   ```
 
   ![zh-cn_image_0000001511900400](figures/zh-cn_image_0000001511900400.png)
@@ -82,7 +82,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 - 设置输入框当前的文本内容。
 
   ```ts
-  TextInput({placeholder:'我是提示文本',text:'我是当前文本内容'})
+  TextInput({ placeholder: '我是提示文本', text: '我是当前文本内容' })
   ```
 
   ![zh-cn_image_0000001562820761](figures/zh-cn_image_0000001562820761.png)
@@ -90,7 +90,7 @@ TextInput有9种可选类型，分别为Normal基本输入模式、Password密�
 - 添加backgroundColor改变输入框的背景颜色。
 
   ```ts
-  TextInput({placeholder:'我是提示文本',text:'我是当前文本内容'})
+  TextInput({ placeholder: '我是提示文本', text: '我是当前文本内容' })
     .backgroundColor(Color.Pink)
   ```
 
@@ -124,12 +124,12 @@ struct TextInputSample {
   build() {
     Column() {
       TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
-        .onSubmit((EnterKeyType)=>{
-          console.info(EnterKeyType+'输入法回车键的类型值')
+        .onSubmit((EnterKeyType) => {
+          console.info(EnterKeyType + '输入法回车键的类型值');
         })
       TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        .onSubmit((EnterKeyType)=>{
-          console.info(EnterKeyType+'输入法回车键的类型值')
+        .onSubmit((EnterKeyType) => {
+          console.info(EnterKeyType + '输入法回车键的类型值');
         })
       Button('Sign in').width(150).margin({ top: 20 })
     }.padding(20)
@@ -148,7 +148,7 @@ struct TextInputSample {
 @Entry
 @Component
 struct Index {
-  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7']
+  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7'];
 
   build() {
     Scroll() {

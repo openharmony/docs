@@ -81,6 +81,7 @@
 - 定义在组件内的\@Styles可以通过this访问组件的常量和状态变量，并可以在\@Styles里通过事件来改变状态变量的值，示例如下：
 
   ```ts
+  @Entry
   @Component
   struct FancyUse {
     @State heightValue: number = 100;
@@ -99,24 +100,6 @@
 
 ## 限制条件
 
-- 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
-
-```ts
-// 错误写法
-@Styles function backgroundColorStyle() {
-  if (true) {
-    .backgroundColor(Color.Red)
-  }
-}
-
-// 正确写法
-@Styles function backgroundColorStyle() {
-  .backgroundColor(Color.Red)
-}
-```
-
-## 限制条件
-
 - \@Styles方法不能有参数，编译期会报错，提醒开发者@Styles方法不支持参数。
 
   ```ts
@@ -128,6 +111,22 @@
   // 正确写法
   @Styles function globalFancy () {
     .width(value)
+  }
+  ```
+
+- 不支持在\@Styles方法内使用逻辑组件，在逻辑组件内的属性不生效。
+
+  ```ts
+  // 错误写法
+  @Styles function backgroundColorStyle() {
+    if (true) {
+      .backgroundColor(Color.Red)
+    }
+  }
+
+  // 正确写法
+  @Styles function backgroundColorStyle() {
+    .backgroundColor(Color.Red)
   }
   ```
 

@@ -115,6 +115,8 @@ The file format is not supported.
 
 Use a supported format.
 
+For details about the supported formats, see [Media Kit Overview](../../media/media/media-kit-intro.md).
+
 ## 5400107 Audio Focus Conflict
 
 **Error Message**

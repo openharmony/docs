@@ -22,6 +22,8 @@ add(attributes: AssetMap): Promise\<void>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | attributes | [AssetMap](#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
@@ -54,7 +56,7 @@ add(attributes: AssetMap): Promise\<void>
 | 24000014 | The file operation failed.                           |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -93,6 +95,8 @@ addSync(attributes: AssetMap): void
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | attributes | [AssetMap](#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
@@ -119,7 +123,7 @@ addSync(attributes: AssetMap): void
 | 24000014 | The file operation failed.                           |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -152,6 +156,8 @@ remove(query: AssetMap): Promise\<void>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
@@ -180,7 +186,7 @@ remove(query: AssetMap): Promise\<void>
 | 24000013 | Calling the Access Token service failed.   |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -214,6 +220,8 @@ removeSync(query: AssetMap): void
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
@@ -236,7 +244,7 @@ removeSync(query: AssetMap): void
 | 24000013 | Calling the Access Token service failed.   |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -265,6 +273,8 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 更新符合条件的一条关键资产，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名             | 类型     | 必填 | 说明                                                         |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
@@ -297,7 +307,7 @@ update(query: AssetMap, attributesToUpdate: AssetMap): Promise\<void>
 | 24000013 | Calling the Access Token service failed.   |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -333,6 +343,8 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名             | 类型     | 必填 | 说明                                                         |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | query              | [AssetMap](#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
@@ -358,7 +370,7 @@ updateSync(query: AssetMap, attributesToUpdate: AssetMap): void
 | 24000013 | Calling the Access Token service failed.   |
 | 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -389,6 +401,8 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.query](#assetquery)、[asset.postQuery](#assetpostquery)。使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
@@ -421,7 +435,7 @@ preQuery(query: AssetMap): Promise\<Uint8Array>
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -455,6 +469,8 @@ preQuerySync(query: AssetMap): Uint8Array
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
@@ -486,7 +502,7 @@ preQuerySync(query: AssetMap): Uint8Array
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -515,6 +531,8 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQuery](#assetprequery)，在本函数后调用[asset.postQuery](#assetpostquery)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
@@ -547,7 +565,7 @@ query(query: AssetMap): Promise\<Array\<AssetMap>>
 | 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -585,6 +603,8 @@ querySync(query: AssetMap): Array\<AssetMap>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | query    | [AssetMap](#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
@@ -616,7 +636,7 @@ querySync(query: AssetMap): Array\<AssetMap>
 | 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -653,6 +673,8 @@ postQuery(handle: AssetMap): Promise\<void>
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuery](#assetprequery)执行成功返回的挑战值。 |
@@ -677,7 +699,7 @@ postQuery(handle: AssetMap): Promise\<void>
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -706,6 +728,8 @@ postQuerySync(handle: AssetMap): void
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | handle | [AssetMap](#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQuerySync](#assetprequerysync12)执行成功返回的挑战值。 |
@@ -724,7 +748,7 @@ postQuerySync(handle: AssetMap): void
 | 24000012 | Calling the OS Account service failed.     |
 | 24000013 | Calling the Access Token service failed.   |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -803,6 +827,12 @@ type Value = boolean | number | Uint8Array;
 
 **系统能力：** SystemCapability.Security.Asset
 
+| 类型    | 说明                                             |
+| ------- | ------------------------------------------------|
+| boolean | 表示值类型为布尔类型，取值范围为true或false。      |
+| number  | 表示值类型为数字，取值范围为Tag对应的枚举值或数值。 |
+| Uint8Array | 表示值类型为字节数组，内容由业务自定义。        |
+
 ## AssetMap
 
 type AssetMap = Map\<Tag, Value>
@@ -810,6 +840,10 @@ type AssetMap = Map\<Tag, Value>
 关键资产属性的键-值对集合。
 
 **系统能力：** SystemCapability.Security.Asset
+
+| 类型             | 说明                                                              |
+| ---------------- | ------------------------------------------------------------------|
+| Map\<Tag, Value> | 表示值类型是Map，键值对取值范围分别参考[Tag](#tag)和[Value](#value)。|
 
 ## Accessibility
 

@@ -23,9 +23,9 @@ clamp函数定义如下：
 
 **弃用：** 从API version 11开始，此接口废弃。
 
-**替代：** 推荐使用[NN_QuantParam](_neural_nework_runtime.md#nn_quantparam)。
+**替代：** 推荐使用[NN_QuantParam](_neural_network_runtime.md#nn_quantparam)。
 
-**相关模块：** [NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：** [NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总

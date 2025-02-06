@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供NativeVsync功能。
+提供获取系统vsync回调的功能，可用于实现应用的绘制帧率与系统帧率同步。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -147,6 +147,10 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 
 获取vsync周期。
 
+vsync周期是在每次使用OH_NativeVSync_RequestFrame接口请求vsync信号后收到OH_NativeVSync_FrameCallback回调的时候才会更新。
+
+首次使用该接口获取vsync周期之前，需要先使用OH_NativeVSync_RequestFrame接口请求vsync信号，在收到OH_NativeVSync_FrameCallback回调之后，才可以通过该接口获取到vsync周期。
+
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
 **参数:**
@@ -154,7 +158,7 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 | 名称 | 描述 |
 | -------- | -------- |
 | nativeVsync | 一个指向OH_NativeVSync实例的指针。|
-| period | 用于获取vsync周期的变量。 |
+| period | 表示vsync周期，作为出参使用。 |
 
 **返回:**
 
@@ -183,7 +187,7 @@ OH_NativeVSync* OH_NativeVSync_Create (const char * name, unsigned int length )
 | 名称 | 描述 |
 | -------- | -------- |
 | name | 表示一个名字，与创建的OH_NativeVSync实例关联。 |
-| length | name的长度。 |
+| length | name的长度（字符数）。 |
 
 **返回:**
 
@@ -200,6 +204,8 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 **描述:**
 
 销毁OH_NativeVSync实例。
+
+销毁后的OH_NativeVSync指针不能再继续使用，否则会有野指针问题，尤其需要注意多线程并发时对于OH_NativeVSync指针的管理。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 

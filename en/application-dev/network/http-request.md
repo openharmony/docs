@@ -193,3 +193,122 @@ httpRequest.requestInStream("EXAMPLE_URL", streamInfo).then((data: number) => {
 });
 ```
 
+## Certificate Pinning
+
+You can preset application-level certificates or a public key hash values for certificate pinning. This way, an HTTPS connection can be established only when the preset certificate is used.
+
+Both modes are configured in the configuration file, which is available at `src/main/resources/base/profile/network_config.json`. In the configuration file, you can create mapping between preset certificates and network servers.
+
+If you do not know the certificate mapping a server domain name, you can use the following command to obtain the certificate. When running the command, change `www.example.com` to the server domain name and `www.example.com.pem` to the name of the obtained certificate file.
+
+```
+openssl s_client -servername www.example.com -connect www.example.com:443 \
+    < /dev/null | sed -n "/-----BEGIN/,/-----END/p" > www.example.com.pem
+```
+
+If you are using a Windows environment, you need to:
+
+* Replace `/dev/null` with `NUL`.
+* Press **Enter** to exit. This is different from OpenSSL of Linux, which may exit until the user enters a value.
+* If the **sed** command is not present, copy the content between `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` (with these two lines included) in the command output and save it.
+
+### Presetting Application-level Certificates
+
+Presetting application-level certificates means to embed the original certificate files in the application. Currently, certificate files in the **.crt** and **.pem** formats are supported.
+
+> **NOTE**
+>
+> Currently, certificate pinning has been enabled for the ohos.net.http and Image components, and the hash values of all certificates in the certificate chain are matched. If any certificate is updated on the server, the verification fails. Therefore, if any certificate on the server has been updated, upgrade the application to the latest version as soon as possible. Otherwise, network connection may fail.
+
+### Presetting Certificate Public Key Hash Values
+
+You can create mapping between public key hash values and domain name certificates in the configuration file. This way, access to the domain name is allowed only if the used domain name certificate matches the preset public key hash value.
+
+The public key hash value of the domain name certificate can be calculated using the following command. Assume that the domain name certificate is obtained using the preceding OpenSSL command and saved in the `www.example.com.pem` file. The line that starts with # is treated as a comment.
+
+```
+# Extract the public key from the certificate.
+openssl x509 -in www.example.com.pem -pubkey -noout > www.example.com.pubkey.pem
+# Convert the public key from the pem format to the der format.
+openssl asn1parse -noout -inform pem -in www.example.com.pubkey.pem -out www.example.com.pubkey.der
+# Calculate the SHA256 of the public key and convert it to Base64.
+openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
+```
+
+### Example of the JSON Configuration File
+
+The following is an example of presetting application-level certificates:
+
+```json
+{
+  "network-security-config": {
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "/etc/security/certificates"
+        }
+      ]
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "example.com"
+          }
+        ],
+        "trust-anchors": [
+          {
+            "certificates": "/data/storage/el1/bundle/entry/resources/resfile"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+The following is an example of presetting certificate public key hash values:
+```
+{
+  "network-security-config": {
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "server.com"
+          }
+        ],
+        "pin-set": {
+          "expiration": "2024-11-08",
+          "pin": [
+            {
+              "digest-algorithm": "sha256",
+              "digest": "FEDCBA987654321"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+**Description of fields**
+
+| Field                     | Type           | Description                                  |   
+| --------------------------| --------------- | -------------------------------------- |
+|network-security-config    | object          |Network security configuration. The value can contain zero or one **base-config** and must contain one **domain-config**.|
+|base-config                | object          |Application security configuration. The value must contain one **trust-anchors**.                         |
+|domain-config              | array           |Domain security configuration. The value can contain any number of items. An item must contain one **domains** and can contain zero or one **trust-anchors** and **pin-set**.|
+|trust-anchors              | array           |Trusted CA. The value can contain any number of items. An item must contain one **certificates**.|
+|certificates               | string          |CA certificate path.|
+|domains                    | array           |Domain. The value can contain any number of items. An item must contain one **name** (string: domain name) and can contain zero or one **include-subdomains**.|
+|include-subdomains         | boolean         |Whether a rule applies to subdomains.|
+|pin-set                    | object          |Certificate public key hash setting. The value must contain one **pin** and can contain zero or one **expiration**.|
+|expiration                 | string          |Expiration time of the certificate public key hash.|
+|pin                        | array           |Certificate public key hash. The value can contain any number of items. An item must contain one **digest-algorithm** and **digest**.|
+|digest-algorithm           | string          |Digest algorithm used to generate hashes. Currently, only `sha256` is supported.                                   |
+|digest                     | string          |Public key hash.|
+

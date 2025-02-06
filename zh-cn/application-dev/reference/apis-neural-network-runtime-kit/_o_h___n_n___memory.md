@@ -9,9 +9,9 @@
 
 **弃用：** 从API version 11开始，此接口废弃。
 
-**替代：** 推荐使用[NN_Tensor](_neural_nework_runtime.md#nn_tensor)。
+**替代：** 推荐使用[NN_Tensor](_neural_network_runtime.md#nn_tensor)。
 
-**相关模块：**[NeuralNeworkRuntime](_neural_nework_runtime.md)
+**相关模块：**[NeuralNeworkRuntime](_neural_network_runtime.md)
 
 
 ## 汇总

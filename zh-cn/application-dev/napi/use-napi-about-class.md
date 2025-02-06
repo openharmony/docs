@@ -138,13 +138,17 @@ static napi_value Wrap(napi_env env, napi_callback_info info)
     OH_LOG_INFO(LOG_APP, "Node-API wrap");
     // 初始化Node-API模块的object
     struct Object *obj = new struct Object();
-    obj->name = "lilei";
+    obj->name = "liLei";
     obj->age = 18;
     size_t argc = 1;
     napi_value toWrap;
     // 调用napi_wrap将Node-API模块的object绑定到ArkTS object上
     napi_get_cb_info(env, info, &argc, &toWrap, NULL, NULL);
-    napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
+    napi_status status = napi_wrap(env, toWrap, reinterpret_cast<void *>(obj), DerefItem, NULL, NULL);
+    if (status != napi_ok) {
+        // 主动释放内存
+        delete obj;
+    }
 
     return toWrap;
 }

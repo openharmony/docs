@@ -1,4 +1,4 @@
-# Universal Keystore Kit
+# Universal Keystore Kit (Key Management Service)
 
 - [Introduction to Universal Keystore Kit](huks-overview.md)
 - [Basic Concepts of HUKS](huks-concepts.md)
@@ -43,8 +43,10 @@
       - [HUKS Access Control Development](huks-user-identity-authentication.md)
       - [Refined Access Control Development](huks-refined-user-identity-authentication.md)
   - HMAC
-    - [HMAC (ArkTS)](huks-hmac-arkts.md)
-    - [HMAC (C/C++)](huks-hmac-ndk.md)
+    - [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md)
+    - Development
+      - [HMAC(ArkTS)](huks-hmac-arkts.md)
+      - [HMAC(C/C++)](huks-hmac-ndk.md)
 - Key Deletion
   - [Deleting a Key (ArkTS)](huks-delete-key-arkts.md)
   - [Deleting a Key (C/C++)](huks-delete-key-ndk.md)

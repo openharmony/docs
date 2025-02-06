@@ -1078,8 +1078,6 @@ It is not allowed to install enterprise applications through a specific installa
 
 Due to policy control, enterprise applications cannot be installed through the specific API.
 
-**Solution**
-
 ## 17700072 Launch Want Does Not Exist
 
 **Error Message**

@@ -23,7 +23,7 @@
 ## 使用场景
 
 ### 自定义组件间双向绑定
-1. Index中构造Star子组件，双向绑定父子组件中的value，初始化子组件的`@Param value`和`@Event $value`
+1. Index中构造Star子组件，双向绑定父子组件中的value，初始化子组件的`@Param value`和`@Event $value`。
 - 双向绑定语法糖可视为：
 
     ```

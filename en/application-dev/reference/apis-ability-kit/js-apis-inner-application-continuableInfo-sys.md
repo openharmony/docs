@@ -16,5 +16,6 @@ The **ContinuableInfo** module provides the mission continuation information to 
 | Name      | Type  | Read-Only  | Mandatory  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
 | srcDeviceId | string | No   | Yes   | ID of the source device.|
-| bundleName | string | No   | Yes   | Name of the bundle to which the mission belongs.|
+| bundleName | string | No   | Yes   | Bundle name of the target application to which the mission belongs.|
+| srcBundleName<sup>12+</sup> | string | No   | No   | Bundle name of the source application to which the mission belongs. The value is the same as that of **bundleName** by default.|
 | continueType<sup>12+</sup> | string | No   | No   | Continuation type of the application to which the mission belongs.|

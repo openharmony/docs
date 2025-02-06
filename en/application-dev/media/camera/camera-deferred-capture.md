@@ -56,68 +56,68 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    > **NOTE**
    > 
    > If the **photoAssetAvailable** callback has been registered and the **photoAvailable** callback is registered after the session starts, the stream will be restarted. In this case, only the **photoAssetAvailable** callback takes effect. Therefore, you are not advised to register both **photoAvailable** and **photoAssetAvailable**.
-   
+
    ```ts
-      function photoAssetAvailableCallback(err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void {
-        if (err) {
-          console.error(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
-          return;
-        }
-        console.info('photoOutPutCallBack photoAssetAvailable');
-        // You can call media library APIs through photoAsset to customize image processing.
-        // Processing method 1: Call the media library API to save the image in the first phase. After the image in the second phase is ready, the media library proactively replaces the image flushed.
-        mediaLibSavePhoto(photoAsset);
-        // Processing method 2: Call the media library API to request an image and register the buffer callback to receive the first-phase or second-phase image.
-        mediaLibRequestBuffer(photoAsset);
-      }
-      
+   function photoAssetAvailableCallback(err: BusinessError, photoAsset: photoAccessHelper.PhotoAsset): void {
+     if (err) {
+       console.error(`photoAssetAvailable error: ${JSON.stringify(err)}.`);
+       return;
+     }
+     console.info('photoOutPutCallBack photoAssetAvailable');
+     // You can call media library APIs through photoAsset to customize image processing.
+     // Processing method 1: Call the media library API to save the image in the first phase. After the image in the second phase is ready, the media library proactively replaces the image flushed.
+     mediaLibSavePhoto(photoAsset);
+     // Processing method 2: Call the media library API to request an image and register the buffer callback to receive the first-phase or second-phase image.
+     mediaLibRequestBuffer(photoAsset);
+   }
+
    function onPhotoOutputPhotoAssetAvailable(photoOutput: camera.PhotoOutput): void {
-        photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
-      }
-      
+     photoOutput.on('photoAssetAvailable', photoAssetAvailableCallback);
+   }
+
    let context = getContext(this);
-      let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-      
+   let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+
    async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
-        try {
-          let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
-          assetChangeRequest.saveCameraPhoto();
-          await phAccessHelper.applyChanges(assetChangeRequest);
-          console.info('apply saveCameraPhoto successfully');
-        } catch (err) {
-          console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
-        }
-      }
-      
+     try {
+       let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+       assetChangeRequest.saveCameraPhoto();
+       await phAccessHelper.applyChanges(assetChangeRequest);
+       console.info('apply saveCameraPhoto successfully');
+     } catch (err) {
+       console.error(`apply saveCameraPhoto failed with error: ${err.code}, ${err.message}`);
+     }
+   }
+
    class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-        onDataPrepared(data: ArrayBuffer) {
-          if (data === undefined) {
-            console.error('Error occurred when preparing data');
-            return;
-          }
-          // The application can customize the processing after obtaining the image buffer.
-          console.info('on image data prepared');
-        }
-      }
-      
+     onDataPrepared(data: ArrayBuffer) {
+       if (data === undefined) {
+         console.error('Error occurred when preparing data');
+         return;
+       }
+       // The application can customize the processing after obtaining the image buffer.
+       console.info('on image data prepared');
+     }
+   }
+
    async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
-        let requestOptions: photoAccessHelper.RequestOptions = {
-          // Configure the image return mode based on service requirements.
-          // FAST_MODE: callback for receiving the first-phase image
-          // HIGH_QUALITY_MODE: callback for receiving the second-phase image
-          // BALANCE_MODE: callback for receiving both images
-          deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
-        }
-        const handler = new MediaDataHandler();
-        await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
-        console.info('requestImageData successfully');
-      }
+     let requestOptions: photoAccessHelper.RequestOptions = {
+       // Configure the image return mode based on service requirements.
+       // FAST_MODE: callback for receiving the first-phase image
+       // HIGH_QUALITY_MODE: callback for receiving the second-phase image
+       // BALANCE_MODE: callback for receiving both images
+       deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
+     }
+     const handler = new MediaDataHandler();
+     await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
+     console.info('requestImageData successfully');
+   }
    ```
-   
+
    For details about the API used to flush images, see [saveCameraPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#savecameraphoto12).
-   
+
    For details about the APIs used to request images, see [requestImageData](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestimagedata11) and [onDataPrepared](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#ondataprepared11).
-   
+
 4. The session configuration and photo capture triggering mode are the same as those in the common photo capture mode. For details, see steps 4-5 in [Photo Capture (ArkTS)](camera-shooting.md).
 
 ## Status Listening

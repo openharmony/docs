@@ -18,28 +18,30 @@
 在开发此功能前，开发者应根据实际需求申请相关权限：
 - 当需要使用麦克风时，需要申请**ohos.permission.MICROPHONE**麦克风权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 - 当需要使用相机拍摄时，需要申请**ohos.permission.CAMERA**相机权限。申请方式请参考：[向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
-- 当需要读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
-- 当需要保存图片或视频文件时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
-  
-> **说明：** 
-> 
+- 当需要从图库读取图片或视频文件时，请优先使用媒体库[Picker选择媒体资源](../medialibrary/photoAccessHelper-photoviewpicker.md)。
+- 当需要保存图片或视频文件至图库时，请优先使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)。
+
+> **说明：**
+>
 > 仅应用需要克隆、备份或同步用户公共目录的图片、视频类文件时，可申请ohos.permission.READ_IMAGEVIDEO、ohos.permission.WRITE_IMAGEVIDEO权限来读写音频文件，申请方式请参考<!--RP1-->[申请受控权限](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->。
 
 
 ## 开发步骤及注意事项
 
 > **说明：**
-> 
+>
 > AVRecorder只负责视频数据的处理，需要与视频数据采集模块配合才能完成视频录制。视频数据采集模块需要通过Surface将视频数据传递给AVRecorder进行数据处理。当前常用的数据采集模块为相机模块，具体请参考[相机-录像](../camera/camera-recording.md)。
+> 文件的创建与存储，请参考[应用文件访问与管理](../../file-management/app-file-access.md)，默认存储在应用的沙箱路径之下，如需存储至图库，请使用[安全控件保存媒体资源](../medialibrary/photoAccessHelper-savebutton.md)对沙箱内文件进行存储。
+
 
 AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/js-apis-media.md#avrecorder9)。
 
 1. 创建AVRecorder实例，实例创建完成进入idle状态。
-     
+
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    let avRecorder: media.AVRecorder;
    media.createAVRecorder().then((recorder: media.AVRecorder) => {
      avRecorder = recorder;
@@ -49,21 +51,21 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```
 
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
-   | 事件类型 | 说明 | 
+   | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变 | 
-   | error | 必要事件，监听播放器的错误信息 | 
+   | stateChange | 必要事件，监听播放器的state属性改变 |
+   | error | 必要事件，监听播放器的错误信息 |
 
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+
    // 状态上报回调函数
-   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
    })
    // 错误上报回调函数
-   avRecorder.on('error', (err: BusinessError) => {
+   this.avRecorder.on('error', (err: BusinessError) => {
      console.error('error happened, error message is ' + err);
    })
    ```
@@ -78,15 +80,16 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    >
    > - prepare接口的入参avConfig中仅设置视频相关的配置参数，如示例代码所示。
    >   如果添加了音频参数，系统将认为是“音频+视频录制”。
-   > 
+   >
    > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)，视频比特率、分辨率、帧率以实际硬件设备支持的范围为准。
-   > 
+   >
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
 
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+   import { fileIo as fs } form '@kit.CoreFileKit';
+
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
      videoBitrate : 200000, // 视频比特率
@@ -94,14 +97,20 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      videoFrameWidth : 640,  // 视频分辨率的宽
      videoFrameHeight : 480, // 视频分辨率的高
      videoFrameRate : 30 // 视频帧率
-   }
+   };
+   
+   const context: Context = getContext(this); // 参考应用文件访问与管理
+   let filePath: string = context.filesDir + '/example.mp4';
+   let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+   let fileFd = videoFile.fd; // 获取文件fd
+  
    let avConfig: media.AVRecorderConfig = {
      videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
      profile : avProfile,
-     url : 'fd://35', // 参考应用文件访问与管理开发示例新建并读写一个文件
+     url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件
      rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
-   }
-   avRecorder.prepare(avConfig).then(() => {
+   };
+   this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
    }, (error: BusinessError) => {
      console.error('avRecorder prepare failed');
@@ -112,11 +121,11 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    调用getInputSurface()接口，接口的返回值SurfaceID用于传递给视频数据输入源模块。常用的输入源模块为相机，以下示例代码中，采用相机作为视频输入源为例。
 
      输入源模块通过SurfaceID可以获取到Surface，通过Surface可以将视频数据流传递给AVRecorder，由AVRecorder再进行视频数据的处理。
-     
+
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
-   
-   avRecorder.getInputSurface().then((surfaceId: string) => {
+
+   this.avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success');
    }, (error: BusinessError) => {
      console.error('avRecorder getInputSurface failed');
@@ -142,13 +151,17 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
 参考以下示例，完成“开始录制-暂停录制-恢复录制-停止录制”的完整流程。
 
-  
+
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+
 
 const TAG = 'VideoRecorderDemo:';
 export class VideoRecorderDemo {
+  const context: Context = getContext(this);
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";
   private avProfile: media.AVRecorderProfile = {
@@ -158,14 +171,27 @@ export class VideoRecorderDemo {
     videoFrameWidth : 640,  // 视频分辨率的宽
     videoFrameHeight : 480, // 视频分辨率的高
     videoFrameRate : 30 // 视频帧率
-  }
+  };
   private avConfig: media.AVRecorderConfig = {
     videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV, // 视频源类型，支持YUV和ES两种格式
     profile : this.avProfile,
     url : 'fd://35', //  参考应用文件访问与管理开发示例新建并读写一个文件
     rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
-  }
+  };
 
+  private uriPath: string = ''; // 文件uri，可用于安全控件保存媒体资源
+  private filePath: string = ''; // 文件路径
+  private fileFd: number = 0;
+  
+  // 创建文件以及设置avConfig.url
+  async createAndSetFd() {
+    const path: string = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应
+    const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    this.avConfig.url = 'fd://' + videoFile.fd; // 设置url
+    this.fileFd = videoFile.fd; // 文件fd
+    this.filePath = path;
+  }
+  
   // 注册avRecorder回调函数
   setAvRecorderCallback() {
     if (this.avRecorder != undefined) {
@@ -217,7 +243,7 @@ export class VideoRecorderDemo {
     await this.startCameraOutput();
     // 6. 启动录制
     await this.avRecorder.start();
-    
+
   }
 
   // 暂停录制对应的流程
@@ -249,11 +275,22 @@ export class VideoRecorderDemo {
       // 3.释放录制实例
       await this.avRecorder.release();
       // 4.文件录制完成后，关闭fd,实现略
+      await fs.close(this.fileFd);
       // 5.释放相机相关实例
       await this.releaseCamera();
     }
   }
 
+  // 安全控件保存媒体资源至图库
+  async saveRecorderAsset() {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    // 需要确保uriPath对应的资源存在
+    this.uriPath = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
+      photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
+    await phAccessHelper.applyChanges(assetChangeRequest);
+  }
+  
   // 一个完整的【开始录制-暂停录制-恢复录制-停止录制】示例
   async videoRecorderDemo() {
     await this.startRecordingProcess();         // 开始录制
@@ -261,6 +298,8 @@ export class VideoRecorderDemo {
     await this.pauseRecordingProcess();         //暂停录制
     await this.resumeRecordingProcess();        // 恢复录制
     await this.stopRecordingProcess();          // 停止录制
+    // 安全控件保存媒体资源至图库
+    await this.saveRecorderAsset();
   }
 }
 ```

@@ -1,5 +1,9 @@
 # OpenSL ES
 
+> **NOTE**
+>
+> OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK 8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended. [Switch from OpenSL ES to OHAudio](../../media/audio/replace-opensles-by-ohaudio.md).
+
 ## Introduction
 
 Open Sound Library for Embedded Systems (OpenSL ES) is a set of audio acceleration standards for embedded systems. It provides objects and APIs for developers to implement high-performance, low-latency audio features. OpenHarmony implements some native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications. The table [Supported APIs](#supported-apis) list these APIs.

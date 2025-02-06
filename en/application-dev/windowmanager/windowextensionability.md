@@ -20,9 +20,9 @@ The **WindowExtensionAbility** class provides **onConnect()**, **onDisconnect()*
 
 - The **onWindowReady()** callback is invoked when a window is created for the UIAbility.
 
-- The **onConnect()** callback is invoked when the AbilityComponent corresponding to the window connects to the UIAbility.
+- The **onConnect()** callback is invoked when the UIExtensionComponent corresponding to the window connects to the UIAbility.
 
-- The **onDisconnect()** callback is invoked when the AbilityComponent disconnects from the UIAbility.
+- The **onDisconnect()** callback is invoked when the UIExtensionComponent disconnects from the UIAbility.
 
 
 **How to Develop**
@@ -38,15 +38,15 @@ To implement an embedded application, manually create a WindowExtensionAbility i
    ```ts
     import { WindowExtensionAbility, window } from '@kit.ArkUI';
     import { Want } from '@kit.AbilityKit';
+    import {BusinessError} from '@kit.BasicServiceKit';
 
     export default class WindowExtAbility extends WindowExtensionAbility {
         onWindowReady(window: window.Window) {
-            window.loadContent('WindowExtAbility/pages/index1').then(() => {
-                window.getProperties().then((pro) => {
-                    console.info("WindowExtension " + JSON.stringify(pro));
-                })
-                window.show();
-            })
+            window.setUIContent('WindowExtAbility/pages/index1',(err:BusinessError) => {
+              let pro = window.getWindowProperties();
+              console.log('WindowExtension pro: ${JSON.stringify(pro)}');
+              window.showWindow();
+            });
         }
 
         onConnect(want: Want) {
@@ -81,13 +81,13 @@ To implement an embedded application, manually create a WindowExtensionAbility i
 
 ## Starting an Embedded UIAbility
 
-System applications can load the created WindowExtensionAbility through the AbilityComponent.
+System applications can load the created WindowExtensionAbility through the UIExtensionComponent.
 
 **How to Develop**
 
-1. To connect to an embedded application, add the AbilityComponent to the corresponding pages in the DevEco Studio project.
+1. To connect to an embedded application, add the UIExtensionComponent to the corresponding pages in the DevEco Studio project.
 
-2. Set **bundleName** and **abilityName** in the AbilityComponent.
+2. Set **bundleName** and **abilityName** in the UIExtensionComponent.
 
 3. Set the width and height. The sample code is as follows:
 
@@ -100,7 +100,9 @@ struct Index {
   build() {
     Row() {
       Column() {
-        AbilityComponent({ abilityName: "WindowExtAbility", bundleName: "com.example.WindowExtAbility"})
+        UIExtensionComponent({
+          abilityName: "WindowExtAbility",
+          bundleName: "com.example.WindowExtAbility"})
           .width(500)
           .height(500)
       }

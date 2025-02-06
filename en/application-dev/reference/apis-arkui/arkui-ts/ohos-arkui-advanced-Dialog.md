@@ -1,4 +1,4 @@
-#  Dialog
+#  Dialog Box (Dialog)
 
 
 The dialog box is a modal window that commands attention while retaining the current context. It is frequently used to draw the user's attention to vital information or prompt the user to complete a specific task. As all modal windows, this component requires the user to interact before exiting.
@@ -38,22 +38,21 @@ Displays an image-attached confirmation dialog box. If necessary, the confirmati
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name                         | Type                                                    | Mandatory| Decorator| Description                                                        |
+| Name                         | Type                                                        | Mandatory| Decorator| Description                                                        |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
-| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes  | -          | Dialog box controller.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -          | Dialog box controller.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | imageRes                      | [ResourceStr<sup>12+</sup>](ts-types.md#resourcestr) \| [PixelMap<sup>12+</sup>](../../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | -          | Image to be displayed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | imageSize                     | [SizeOptions](ts-types.md#sizeoptions)                       | No  | -          | Image size.<br>Default value: **64*64vp**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title                         | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isChecked                     | boolean                                                      | No  | \@Prop     | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | No  | -          | Event triggered when the selected status of the check box changes. You are advised to use **onCheckedChange<sup>12+</sup>** instead.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                |
+| checkAction<sup>12+</sup>     | (isChecked: boolean) => void                                 | No  | -          | Event triggered when the selected status of the check box changes. You are advised to use **onCheckedChange<sup>12+</sup>** instead.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | No  | -          | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | No  | -          | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -          | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| -     | Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                |
 
 ## SelectDialog
 
@@ -65,17 +64,16 @@ Displays a dialog box from which the user can select options presented in a list
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name               | Type                                                    | Mandatory| Description                                                        |
+| Name               | Type                                                        | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes  | Dialog box controller.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Dialog box controller.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title               | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | content             | [ResourceStr](ts-types.md#resourcestr)                       | No  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | selectedIndex       | number                                                       | No  | Index of the selected option in the dialog box.<br>Default value: **-1**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | confirm             | [ButtonOptions](#buttonoptions)                              | No  | Button at the bottom of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | radioContent        | Array&lt;[SheetInfo](ts-methods-action-sheet.md#sheetinfo)&gt; | Yes  | List of subitems in the dialog box. You can set text and a select callback for each subitem.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                      |
 
 ## ConfirmDialog
 
@@ -87,19 +85,18 @@ Displays an error dialog box that informs the user of an operational error (for 
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name                         | Type                                                    | Mandatory| Decorator| Description                                                        |
+| Name                         | Type                                                        | Mandatory| Decorator| Description                                                        |
 | ----------------------------- | ------------------------------------------------------------ | ---- | ---------- | ------------------------------------------------------------ |
-| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes  | -          | Controller of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| controller                    | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -          | Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | title                         | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | -          | Title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | content                       | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | checkTips                     | [ResourceStr](ts-types.md#resourcestr)                       | No  | -          | Content of the check box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isChecked                     | boolean                                                      | No  | \@Prop     | Whether to select the check box. The value **true** means to select the checkbox , and **false** means the opposite.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event indicating that the selected status of the check box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                |
+| onCheckedChange<sup>12+</sup> | Callback\<boolean>                                           | No  | -          | Event triggered when the selected status of the check box changes.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | primaryButton                 | [ButtonOptions](#buttonoptions)                              | No  | -          | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | secondaryButton               | [ButtonOptions](#buttonoptions)                              | No  | -          | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | theme<sup>12+</sup>           | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -          | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| themeColorMode<sup>12+</sup>  | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| -     | Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                |
 
 
 ## AlertDialog
@@ -112,17 +109,16 @@ Displays an alert dialog box to prompt the user to confirm an action that is irr
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name                        | Type                                                    | Mandatory| Description                                                        |
+| Name                        | Type                                                        | Mandatory| Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller                   | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes  | Controller of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | No  | Primary title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                            |
-| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | No  | Secondary title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                            |
+| controller                   | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| primaryTitle<sup>12+</sup>   | [ResourceStr](ts-types.md#resourcestr)                       | No  | Primary title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| secondaryTitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr)                       | No  | Secondary title of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | content                      | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | primaryButton                | [ButtonOptions](#buttonoptions)                              | No  | Left button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | secondaryButton              | [ButtonOptions](#buttonoptions)                              | No  | Right button of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | theme<sup>12+</sup>          | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## LoadingDialog
@@ -135,13 +131,12 @@ Displays a loading dialog box to inform the user of the operation progress.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name               | Type                                                    | Mandatory| Description                                                        |
+| Name               | Type                                                        | Mandatory| Description                                                        |
 | ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes  | Controller of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| Controller         | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | content             | [ResourceStr](ts-types.md#resourcestr)                       | No  | Content of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | theme<sup>12+</sup> | [Theme](../js-apis-arkui-theme.md#theme)\| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| themeColorMode<sup>12+</sup> | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| Theme color mode of the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## CustomContentDialog<sup>12+</sup>
@@ -156,18 +151,17 @@ Displays a dialog box that contains custom content and operation area.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
-| Name               | Type                                                    | Mandatory| Description                                                        |
-| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes  | Controller of the dialog box.                                              |
-| contentBuilder      | () => void                                                   | Yes  | Content of the dialog box.                                                |
-| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | No  | Primary title of the dialog box.                                                |
-| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | No  | Secondary title of the dialog box.                                            |
-| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding12)     | No  | Padding of the content area of the dialog box.                                        |
-| contentAreaPadding  | [Padding](ts-types.md#padding)                               | No  | Padding of the content area of the dialog box. This attribute does not take effect when **localizedContentAreaPadding** is set.|
-| buttons             | Array<[ButtonOptions](#buttonoptions)>                       | No  | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.                         |
-| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.|
+| Name               | Type                                                    | Mandatory| Decorator| Description                                                        |
+| ------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| controller          | [CustomDialogController](ts-methods-custom-dialog-box.md#customdialogcontroller) | Yes| -  | Controller of the dialog box.<br>**NOTE**<br>If not decorated by @Require, this parameter is not subject to mandatory validation during construction.                                              |
+| contentBuilder      | () => void                                                   | Yes  | @BuilderParam | Content of the dialog box.                                                |
+| primaryTitle        | [ResourceStr](ts-types.md#resourcestr)                       | No  | -  | Primary title of the dialog box.                                                |
+| secondaryTitle      | [ResourceStr](ts-types.md#resourcestr)                       | No  | -  | Secondary title of the dialog box.                                            |
+| localizedContentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | No  | -  | Padding of the content area of the dialog box.                                        |
+| contentAreaPadding  | [Padding](ts-types.md#padding)                               | No  | -  | Padding of the content area of the dialog box. This attribute does not take effect when **localizedContentAreaPadding** is set.|
+| buttons             | [ButtonOptions](#buttonoptions)[]                     | No  | -  | Buttons in the operation area of the dialog box. A maximum of four buttons are allowed.                         |
+| theme | [Theme](../js-apis-arkui-theme.md#theme) \| [CustomTheme](../js-apis-arkui-theme.md#customtheme) | No  | -  | Theme information, which can be a custom theme or a **Theme** instance obtained from **onWillApplyTheme**.|
+| themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| - | Theme color mode of the dialog box.|
 
 
 ## ButtonOptions
@@ -193,9 +187,8 @@ The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
 
-### Example 1
-
-This example shows a dialog box with an image above and text below.
+### Example 1: Dialog Box with an Image Above Text
+This example implements a dialog box with an image above the text content, through the use of **imageRes**, **content**, and other properties.
 
 ```ts
 import { TipsDialog } from '@kit.ArkUI';
@@ -233,7 +226,7 @@ struct Index {
     Row() {
       Stack() {
         Column(){
-          Button ("Text Below Image")
+          Button("Text Below Image")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -269,9 +262,8 @@ struct Index {
 
 ![TipsDialog](figures/TipsDialog.png)
 
-### Example 2
-
-This example illustrates a dialog box that contains only a list.
+### Example 2: List-only Dialog Box
+This example presents a dialog box consisting solely of a list defined with **selectedIndex** and **radioContent**.
 
 ```ts
 import { SelectDialog } from '@kit.ArkUI'
@@ -333,9 +325,8 @@ struct Index {
 
 ![SelectDialog](figures/SelectDialog.png)
 
-### Example 3
-
-This example demonstrates a dialog box with text and check boxes.
+### Example 3: Dialog Box with Text and Check Boxes
+This example illustrates a dialog box that combines text content with check boxes defined with **content** and **checkTips**.
 
 ```ts
 import { ConfirmDialog } from '@kit.ArkUI'
@@ -373,7 +364,7 @@ struct Index {
     Row() {
       Stack() {
         Column(){
-          Button ("Text + Check Box Dialog Box")
+          Button("Text + Check Box Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -391,9 +382,8 @@ struct Index {
 
 ![2024-06-03](figures/2024-06-03_150422.png)
 
-### Example 4
-
-This example shows a dialog box that only contains text.
+### Example 4: Text-only Dialog Box
+This example demonstrates a simple text-only dialog box defined with **primaryTitle**, **secondaryTitle**, and **content**.
 
 ```ts
 import { AlertDialog } from '@kit.ArkUI'
@@ -443,9 +433,8 @@ struct Index {
 
 ![AlertDialog](figures/AlertDialog.png)
 
-### Example 5
-
-This example showcases the use of a progress bar in a dialog box.
+### Example 5: Loading Dialog Box
+This example implements a loading dialog box that contains a progress indicator.
 
 ```ts
 import { LoadingDialog } from '@kit.ArkUI'
@@ -463,7 +452,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button ("Progress Dialog Box")
+          Button("Progress Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -481,9 +470,8 @@ struct Index {
 
 ![LoadingDialog](figures/LoadingDialog.png)
 
-### Example 6
-
-This example presents a dialog box that follows the specified theme style.
+### Example 6: Dialog Box with a Custom Theme
+This example presents a dialog box with a custom theme, through the use of **content**, **theme**, and other properties.
 
 ```ts
 import { CustomColors, CustomTheme, LoadingDialog } from '@kit.ArkUI'
@@ -534,9 +522,46 @@ struct Index {
 
 ![loading_dialog_with_theme](figures/advanced_dialog_loading_dialog_with_theme.png)
 
-### Example 7
+### Example 7: Dialog Box in Custom Color Mode
+This example presents a dialog box in the specified light or dark mode, through the use of **content**, **themeColorMode**, and other properties.
 
-This example implements a custom dialog box.
+```ts
+import { LoadingDialog } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: LoadingDialog({
+      content: 'Text',
+      themeColorMode: ThemeColorMode.DARK, // Set the color mode to dark mode.
+    })
+  });
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          Button('Dialog')
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogController.open();
+            })
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+
+![loading_dialog_with_colorMode](figures/advanced_dialog_loading_dialog_with_colorMode.png)
+
+### Example 8: Dialog Box with Custom Content
+This example implements a dialog box with custom content defined with **contentBuilder** and **buttons**.
 
 ```ts
 import { CustomContentDialog } from '@kit.ArkUI'
@@ -559,7 +584,7 @@ struct Index {
 
   build() {
     Column() {
-      Button ("Dialog Box with Custom Content")
+      Button("Dialog Box with Custom Content")
         .onClick(() => {
           this.dialogController.open()
         })

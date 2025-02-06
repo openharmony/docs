@@ -15,6 +15,9 @@ This topic walks you through on how to import an AES 256-bit key and an RSA 2048
 
 3. Use [huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9) to import the key.
 
+    For details about **HuksParam** and **HuksOptions**, see [HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) and [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions).
+
+### Importing an AES256 Key
 ```ts
 /* Import an AES 256-bit key in plaintext. This example uses callback-based APIs. */
 import { huks } from '@kit.UniversalKeystoreKit'
@@ -26,8 +29,8 @@ let plainTextSize32 = new Uint8Array([
 ]);
 /* 1. Set the key alias. */
 let keyAlias = 'AES256Alias_sample';
-/* 2. Encapsulate the key property set and key material. */
 
+/* 2. Encapsulate the key property set and key material. */
 let properties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -59,7 +62,7 @@ try {
   console.error(`callback: importKeyItem input arg invalid` + JSON.stringify(error));
 }
 ```
-
+### Importing an RSA2048 Key Pair
 ```ts
 /* Import an RSA 2048-bit key in plaintext. This example uses callback-based APIs. */
 import { huks } from '@kit.UniversalKeystoreKit'
@@ -149,8 +152,57 @@ try {
   console.error(`callback: importKeyItem input arg invalid` + error);
 }
 ```
+### Importing the Public Key of an X25519 Key Pair
+```ts
+/* Import the public key of an X25519 key pair. This example uses callback-based APIs. */
+import { huks } from '@kit.UniversalKeystoreKit'
+// X25519 public key data. The private key and public key in the X25519 key pair are both 32 bytes (256 bits). For details about the algorithm, see related cryptography materials.
+let x25519KeyPubMaterial = new Uint8Array([
+  0x30, 0x2A, 0x30, 0x05, 0x06, 0x03, 0x2B, 0x65, 0x6E, 0x03, 0x21, 0x00, 0xD2, 0x36, 0x9E, 0xCF,
+  0xF0, 0x61, 0x5B, 0x73, 0xCE, 0x4F, 0xF0, 0x40, 0x2B, 0x89, 0x18, 0x3E, 0x06, 0x33, 0x60, 0xC6
+]);
 
-
+/* 1. Set the key alias. */
+let keyAlias = 'X25519_Pub_import_sample';
+/* 2. Encapsulate the key property set and key material. */
+let properties: Array<huks.HuksParam> = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_X25519
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_CURVE25519_KEY_SIZE_256
+  },
+  {
+    // This tag indicates the usage of the imported key, which cannot be changed after the import.
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_VERIFY
+  },
+  {
+    // This tag indicates the type of the key to be imported.
+    tag: huks.HuksTag.HUKS_TAG_IMPORT_KEY_TYPE,
+    // The value indicates the public key to import. If the value is HUKS_KEY_TYPE_KEY_PAIR, a key pair is to be imported.
+    value: huks.HuksImportKeyType.HUKS_KEY_TYPE_PUBLIC_KEY
+  },
+]
+let options: huks.HuksOptions = {
+  properties: properties,
+  inData: x25519KeyPubMaterial
+};
+/* 3. Import the key in plaintext. */
+try {
+  huks.importKeyItem(keyAlias, options, (error, data) => {
+    if (error) {
+      console.error(`callback: importKeyItem failed` + error);
+    } else {
+      console.info(`callback: importKeyItem success`);
+    }
+  });
+} catch (error) {
+  console.error(`callback: importKeyItem input arg invalid` + error);
+}
+```
 ## Verification
 
 Use [huks.isKeyItemExist](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksiskeyitemexist9) to check whether the key exists. If the key exists, the key is successfully imported.

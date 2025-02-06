@@ -26,7 +26,7 @@
 3. 调用[MediaAssetChangeRequest.createAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createassetrequest11)接口新建一个创建资产的变更请求，指定待创建资产的子类型为动态照片。
 4. 调用[MediaAssetChangeRequest.addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)接口指定动态照片的图片和视频内容。
    
-   以下示例以从应用沙箱fileUri指定动态照片的图片和视频内容为例。
+   以下示例以从应用沙箱的[应用文件](../../file-management/app-file-access.md)fileUri指定动态照片的图片和视频内容为例。
    
    开发者可根据实际情况，通过ArrayBuffer的方式指定资源内容，参考[MediaAssetChangeRequest.addResource(type: ResourceType, data: ArrayBuffer)](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)。
 
@@ -85,15 +85,15 @@ struct Index {
 
 ## 获取动态照片对象
 
-- 应用可以通过picker的方式获取用户媒体库里的动态照片对象，后续可用于在应用内播放动态照片，或是读取动态照片资源进行其他操作（如上传到应用共享给他人浏览等）。
+- 应用可以通过Picker的方式获取用户媒体库里的动态照片对象，后续可用于在应用内播放动态照片，或是读取动态照片资源进行其他操作（如上传到应用共享给他人浏览等）。
 
-- 应用也可以通过传入应用沙箱的图片和视频fileUri的方式构造应用本地的动态照片对象。
+- 应用也可以通过传入应用沙箱的[应用文件](../../file-management/app-file-access.md)图片和视频fileUri的方式构造应用本地的动态照片对象。
 
 获取到动态照片对象后，如需播放动态照片请使用[MovingPhotoView组件](movingphotoview-guidelines.md)。
 
 ### 获取媒体库动态照片对象
 
-1. 通过Picker选择动态照片uri。
+1. 通过Picker选择动态照片的[媒体文件](../../file-management/user-file-uri-intro.md#媒体文件uri)uri。
 2. 调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)和[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取uri对应的PhotoAsset资产。
 3. 调用[MediaAssetManager.requestMovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestmovingphoto12)获取PhotoAsset对应的动态照片对象（MovingPhoto）。
 
@@ -162,7 +162,7 @@ async function example() {
 
 ## 读取动态照片资源
 
-对于一个动态照片对象，应用可以通过[MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12)的接口导出图片和视频到应用沙箱，或者读取图片或视频的ArrayBuffer内容。
+对于一个动态照片对象，应用可以通过[MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12)导出图片和视频到应用沙箱，或者读取图片或视频的ArrayBuffer内容。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';

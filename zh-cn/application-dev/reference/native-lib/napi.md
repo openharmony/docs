@@ -45,8 +45,8 @@ libace_napi.z.so
 |FUNC|napi_fatal_error|引发致命错误以立即终止进程。|10|
 |FUNC|napi_open_handle_scope|创建一个上下文环境使用。|10|
 |FUNC|napi_close_handle_scope|关闭传入的上下文环境，关闭后，全部在其中声明的引用都将被关闭。|10|
-|FUNC|napi_open_escapable_handle_scope|创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。|10|
-|FUNC|napi_close_escapable_handle_scope|关闭传入的可逃逸的handel scope。|10|
+|FUNC|napi_open_escapable_handle_scope|创建出一个可逃逸的handle scope，可将范围内声明的值返回到父作用域。|10|
+|FUNC|napi_close_escapable_handle_scope|关闭传入的可逃逸的handle scope。|10|
 |FUNC|napi_escape_handle|提升传入的js object的生命周期到其父作用域。|10|
 |FUNC|napi_create_reference|为`Object`创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。|10|
 |FUNC|napi_delete_reference|删除传入的reference。|10|
@@ -79,9 +79,9 @@ libace_napi.z.so
 |FUNC|napi_get_value_external|获取先前通过napi_create_external()传递的外部数据指针。|10|
 |FUNC|napi_get_value_int32|获取给定js `Number`对应的C int32值。|10|
 |FUNC|napi_get_value_int64|获取给定js `Number`对应的C int64值。|10|
-|FUNC|napi_get_value_string_latin1|获取给定js vaule对应的ISO-8859-1编码的字符串。|10|
-|FUNC|napi_get_value_string_utf8|获取给定js vaule对应的UTF8编码的字符串。|10|
-|FUNC|napi_get_value_string_utf16|获取给定js vaule对应的UTF16编码的字符串。|10|
+|FUNC|napi_get_value_string_latin1|获取给定js value对应的ISO-8859-1编码的字符串。|10|
+|FUNC|napi_get_value_string_utf8|获取给定js value对应的UTF8编码的字符串。|10|
+|FUNC|napi_get_value_string_utf16|获取给定js value对应的UTF16编码的字符串。|10|
 |FUNC|napi_get_value_uint32|获取给定js `Number`对应的C uint32值。|10|
 |FUNC|napi_get_boolean|根据给定的C boolean值，获取js bool对象。|10|
 |FUNC|napi_get_global|获取`global`对象。|10|
@@ -252,7 +252,7 @@ libace_napi.z.so
 
 **说明：**
 
-- 在OpenHarmory中，如果创建强引用时注册了napi_finalize回调函数，调用该接口的时候会触发该napi_finalize回调。
+- 在OpenHarmony中，如果创建强引用时注册了napi_finalize回调函数，调用该接口的时候会触发该napi_finalize回调。
 
 ### napi_create_symbol
 
@@ -509,7 +509,7 @@ libace_napi.z.so
 
 - promise的then方法的resolve或者reject回调中出现异常时，如果promise没有catch块，代码会继续执行不会崩溃；如果promise有catch块，则异常会被该catch块捕获。
 
-### napi_reject_deffered
+### napi_reject_deferred
 
 **说明：**
 
@@ -583,7 +583,7 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，size小于等于0时返回napi_invalid_arg。
 
 - OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
 
@@ -597,9 +597,9 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，length小于等于0时返回napi_invalid_arg。
 
-- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+- OpenHarmony中，length大于2097152时返回napi_invalid_arg并打印错误日志。
 
 - OpenHarmony中，data为nullptr时返回napi_invalid_arg。
 
@@ -611,9 +611,9 @@ libace_napi.z.so
 
 - OpenHarmony中创建的buffer类型为ArrayBufferLike。
 
-- OpenHarmony中，size为0时返回napi_invalid_arg。
+- OpenHarmony中，length小于等于0时返回napi_invalid_arg。
 
-- OpenHarmony中，size大于2097152时返回napi_invalid_arg并打印错误日志。
+- OpenHarmony中，length大于2097152时返回napi_invalid_arg并打印错误日志。
 
 - 标准库中，因未知原因导致创建失败时将返回napi_generic_failure，OpenHarmony中返回napi_pending_exception。
 

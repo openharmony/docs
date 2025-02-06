@@ -94,4 +94,4 @@ struct Index {
 ```
 
 
-![img.png](img.png)
+![img.png](./figures/img.png)

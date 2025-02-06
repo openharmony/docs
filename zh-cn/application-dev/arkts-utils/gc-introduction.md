@@ -136,19 +136,19 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 - 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数
 - 限制参数：对应的空间阈值
-- 说明：对象申请空间到达对应空间阈值时触发GC
+- 说明：对象申请空间到达对应空间阈值时触发GC。
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT
 
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
 - 限制参数：`globalSpaceNativeLimit`
-- 说明：影响是否进行全量mark，以及是否开始并发mark
+- 说明：影响是否进行全量mark，以及是否开始并发mark。
 
 #### 切换后台触发GC
 
 - 函数方法：`ChangeGCParams`
-- 说明：切换后台主动触发一次Full GC
+- 说明：切换后台主动触发一次Full GC。
 - 典型日志：`app is inBackground`，`app is not inBackground`
   GC 日志中可区分GCReason::SWITCH_BACKGROUND
 
@@ -169,13 +169,13 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 #### 第一次OldGC后阈值的调整
 
 - 函数方法：`AdjustOldSpaceLimit`
-- 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制
+- 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制。
 - 典型日志：`"AdjustOldSpaceLimit oldSpaceAllocLimit_: " << oldSpaceAllocLimit << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_;`
 
 #### 第二次及以后的OldGC对old Space/global space阈值调整，以及增长因子的调整
 
 - 函数方法：`RecomputeLimits`
-- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子
+- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子。
 - 典型日志：`"RecomputeLimits oldSpaceAllocLimit_: " << newOldSpaceLimit_ << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_ << " globalSpaceNativeLimit_:" << globalSpaceNativeLimit_;`
 
 #### PartialGC的Cset 选择策略
@@ -226,7 +226,22 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 ## 日志解释
 
+### 开启全量日志
+
+默认情况下详细的GC日志仅在GC耗时超过40ms的情况下才会打印，如果需要开启所有GC执行的日志需要使用命令在设备中开启。
+
+**使用样例：**
+
+```shell
+# 设置开启GC全量日志参数，开启参数为0x905d，关闭GC全量日志，设置为默认值为0x105c
+hdc shell param set persist.ark.properties 0x905d
+# 重启生效
+hdc shell reboot
+```
+
 ### 典型日志
+
+以下日志为一次GC完整执行后的统计信息，具体到GC的类型不同会有一些差异。开发者可以在导出的日志文件中搜索关键词`[gc]`查看GC相关的日志,也可以查看关键词`ArkCompiler`查看更为全面虚拟机相关的日志。
 
 ```
 // GC前对象实际占用大小（region实际占用大小）->GC后对象实际占用大小（region实际占用大小），总耗时（+concurrentMark耗时），GC触发原因。

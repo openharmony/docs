@@ -24,7 +24,7 @@ on(type: 'systemAutoStartup', callback: AutoStartupCallback): void
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -60,7 +60,7 @@ off(type: 'systemAutoStartup', callback?: AutoStartupCallback): void
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -96,7 +96,7 @@ setApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<void\>
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -140,7 +140,7 @@ setApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -192,7 +192,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo, callback: AsyncCallback\<voi
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -236,7 +236,7 @@ cancelApplicationAutoStartup(info: AutoStartupInfo): Promise\<void\>
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -288,7 +288,7 @@ queryAllAutoStartupApplications(callback: AsyncCallback\<Array\<AutoStartupInfo\
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -326,7 +326,7 @@ try {
 
 **需要权限**：ohos.permission.MANAGE_APP_BOOT
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 

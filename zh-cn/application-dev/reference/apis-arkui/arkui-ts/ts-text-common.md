@@ -90,7 +90,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 行信息、文本样式信息、以及字体属性信息。 |
+| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。 |
 
 ## PositionWithAffinity<sup>12+</sup>
 
@@ -103,7 +103,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 | 名称      | 类型                   | 只读 | 可选 | 说明                      |
 | --------- | --------------------- | ---- | ---- | ------------------------ |
 | position  | number                | 是   | 否   | 字形相对于组件内容的索引，整数。  |
-| affinity  | [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 是   | 是   | 位置亲和度。             |
+| affinity  | [Affinity](#affinity12) | 是   | 是   | 位置亲和度。             |
 
 ## TextMenuItemId<sup>12+</sup>
 
@@ -183,7 +183,7 @@ equals(id: TextMenuItemId): boolean
 | icon | [ResourceStr](ts-types.md#resourcestr) | 否   | 菜单图标。<br/>不支持网络图片。 |
 | id | [TextMenuItemId](#textmenuitemid12) | 是   | 菜单id。 |
 
-## EditMenuOptions对象说明
+## EditMenuOptions
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -242,8 +242,6 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
-
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
 | start | number | 否 | 起始索引。 |
@@ -272,13 +270,13 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称  | 说明                               |
-| ----- | -------------------------------------- |
-| PHONE_NUMBER  | 电话号码 |
-| URL | 链接 |
-| EMAIL | 邮箱 |
-| ADDRESS | 地址 |
-| DATE_TIME<sup>12+</sup> | 时间 |
+| 名称  | 值   | 说明                               |
+| ----- | ----- | --------------------------------- |
+| PHONE_NUMBER  | 0 | 电话号码 |
+| URL | 1 | 链接 |
+| EMAIL | 2 | 邮箱 |
+| ADDRESS | 3 | 地址 |
+| DATE_TIME<sup>12+</sup> | 4 | 时间 |
 
 ## TextDeleteDirection<sup>12+</sup>枚举说明
 
@@ -341,6 +339,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | onDetectResultUpdate   | (result: string) => void | 否   | 文本识别成功后，触发onDetectResultUpdate回调。<br/>-&nbsp;result：文本识别的结果，Json格式。 |
 | color<sup>12+</sup>   | [ResourceColor](ts-types.md#resourcecolor) | 否   | 设置文本识别成功后的实体颜色。<br/>默认值：'#ff0a59f7' |
 | decoration<sup>12+</sup>  | [DecorationStyleInterface](ts-universal-styled-string.md#decorationstyleinterface对象说明)| 否   | 设置文本识别成功后的实体装饰线样式。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.Underline,<br/>&nbsp;color:&nbsp;与实体颜色一致,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>} |
+
 ## PreviewText<sup>12+</sup>
 
 预上屏信息。
@@ -366,7 +365,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 
 | 名称     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。 |
+| enableVariableFontWeight | boolean | 否   | 是否支持字重无极调节。<br/>默认值：false |
 
 ## OnDidChangeCallback<sup>12+</sup>
 
@@ -382,8 +381,8 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
-| rangeAfter | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
+| rangeBefore | [TextRange](#textrange12) | 是 | 文本变化前将要被替换的文本范围。 |
+| rangeAfter | [TextRange](#textrange12) | 是 | 文本变化后新增内容的文本范围。 |
 
 ## StyledStringChangedListener<sup>12+</sup>
 
@@ -395,7 +394,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| onWillChange | Callback<[StyledStringChangeValue](ts-basic-components-richeditor.md#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
+| onWillChange | Callback<[StyledStringChangeValue](#styledstringchangevalue12), boolean> | 否 | 文本内容将要变化回调函数。 |
 | onDidChange | [OnDidChangeCallback](#ondidchangecallback12) | 否 | 文本内容完成变化回调函数。 |
 
 ## StyledStringChangeValue<sup>12+</sup>
@@ -408,7 +407,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| range | [TextRange](#textrange12) | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 | previewText | [StyledString](ts-universal-styled-string.md#styledstring) | 否 | 预览样式字符串。 |
 
@@ -450,7 +449,7 @@ selectionStart和selectionEnd均为-1时表示全选。
 | -------------- | ------ | ---- | ------- |
 | selectionStart | number | 是    | 选中开始位置。 |
 | selectionEnd   | number | 是    | 选中结束位置。 |
-| options<sup>12+</sup>   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
+| options   | [SelectionOptions](ts-types.md#selectionoptions12对象说明) | 否    | 选择项配置。 |
 
 ### closeSelectionMenu<sup>12+</sup>
 
@@ -476,7 +475,7 @@ getLayoutManager(): LayoutManager
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-| [LayoutManager](ts-text-common.md#LayoutManager) | 布局管理器对象。 |
+| [LayoutManager](ts-text-common.md#layoutmanager12) | 布局管理器对象。 |
 
 ## TextEditControllerEx<sup>12+</sup>
 
@@ -594,7 +593,7 @@ setStyledString(styledString: StyledString): void
 
 ### getStyledString<sup>12+</sup>
 
-getStyledString(): MutableStyledString;
+getStyledString(): MutableStyledString
 
 获取富文本组件显示的属性字符串。
 
@@ -621,3 +620,31 @@ getStyledString(): MutableStyledString;
 | type | [TextDecorationType](ts-appendix-enums.md#textdecorationtype) | 是   | 装饰线类型。 |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 是   | 装饰线颜色。 |
 | style | [TextDecorationStyle](ts-appendix-enums.md#textdecorationstyle12) | 否   | 装饰线样式。 |
+
+## LineMetrics<sup>12+</sup>
+
+type LineMetrics = LineMetrics
+
+用于描述文本布局中单行文字的度量信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                              | 说明   |
+| --------------------------------- | --------------------------------- |
+| [LineMetrics](../../apis-arkgraphics2d/js-apis-graphics-text.md#linemetrics) | 用于描述文本布局中单行文字的度量信息。 |
+
+## Affinity<sup>12+</sup>
+
+type Affinity = Affinity
+
+位置亲和度枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                              | 说明   |
+| --------------------------------- | --------------------------------- |
+| [Affinity](../../apis-arkgraphics2d/js-apis-graphics-text.md#affinity) | 位置亲和度枚举。 |

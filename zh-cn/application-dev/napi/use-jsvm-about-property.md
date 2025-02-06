@@ -180,7 +180,7 @@ JSVM OH_JSVM_GetProperty success
 
 ### OH_JSVM_HasProperty
 
-检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误
+检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误。
 
 cpp部分代码
 
@@ -609,6 +609,7 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         char *buf = (char *)malloc(length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult1, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM defineStringPropertiesExample success:%{public}s", buf);
+        free(buf);
     }
     // 调用obj的getterCallback()并将结果字符串返回给JavaScript
     static std::string srcGetter;
@@ -620,6 +621,7 @@ static JSVM_Value DefineProperties(JSVM_Env env, JSVM_CallbackInfo info) {
         char *buf = (char *)malloc(length + 1);
         OH_JSVM_GetValueStringUtf8(env, jsVmResult2, buf, length + 1, &length);
         OH_LOG_INFO(LOG_APP, "JSVM getterCallback success:%{public}s", buf);
+        free(buf);
     }
     return jsVmResult;
 }

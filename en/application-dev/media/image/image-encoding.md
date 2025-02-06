@@ -76,6 +76,8 @@ During encoding, you can pass in a file path so that the encoded memory data is 
        // Pack the image into the file.
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
+   }).finally(()=>{
+     fs.closeSync(file.fd);
    })
    ```
 
@@ -91,6 +93,8 @@ During encoding, you can pass in a file path so that the encoded memory data is 
        // Pack the image into the file.
    }).catch((error : BusinessError) => { 
      console.error('Failed to pack the image. And the error is: ' + error); 
+   }).finally(()=>{
+     fs.closeSync(file.fd);
    })
    ```
 
