@@ -74,6 +74,8 @@ export function getOrCreateNode(uiContext: UIContext): BuilderNode<[Params]> | n
 import { FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI'
 import { getOrCreateNode } from "./common"
 
+const TEST_TAG: string = "NodeContainer";
+
 class MyNodeController extends NodeController {
   private isShow: boolean = false;
 
@@ -91,19 +93,19 @@ class MyNodeController extends NodeController {
   }
 
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width + " height : " + size.height)
+    console.log(TEST_TAG + " aboutToResize width : " + size.width + " height : " + size.height)
   }
 
   aboutToAppear() {
-    console.log("aboutToAppear")
+    console.log(TEST_TAG + " aboutToAppear")
   }
 
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.log(TEST_TAG + " aboutToDisappear");
   }
 
   onTouchEvent(event: TouchEvent) {
-    console.log("onTouchEvent");
+    console.log(TEST_TAG + " onTouchEvent");
   }
 
   toShow() {
@@ -193,6 +195,7 @@ class NodeContentCtrl {
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
   textNode: Array<typeNode.Text> = new Array();
+
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext);
     return this.rootNode;
@@ -222,6 +225,7 @@ struct Index {
   @State message: string = 'Hello World';
   controller = new NodeContentCtrl(this.getUIContext());
   myNodeController = new MyNodeController();
+
   build() {
     Row() {
       Column() {
@@ -230,30 +234,37 @@ struct Index {
           .onClick(() => {
             this.controller.AddNode()
           })
+          .margin(10)
         Button("RemoveBack")
           .onClick(() => {
             this.controller.RemoveNode()
           })
+          .margin(10)
         Button("RemoveFront")
           .onClick(() => {
             this.controller.RemoveFront()
           })
+          .margin(10)
       }
       .width('50%')
+
       Column() {
         NodeContainer(this.myNodeController)
         Button("AddToNodeContainer")
           .onClick(() => {
             this.myNodeController.AddNode(this.myNodeController.rootNode, this.getUIContext())
           })
+          .margin(10)
         Button("RemoveBack")
           .onClick(() => {
             this.myNodeController.RemoveNode(this.myNodeController.rootNode)
           })
+          .margin(10)
         Button("RemoveFront")
           .onClick(() => {
             this.myNodeController.RemoveFront(this.myNodeController.rootNode)
           })
+          .margin(10)
       }
       .width('50%')
     }
