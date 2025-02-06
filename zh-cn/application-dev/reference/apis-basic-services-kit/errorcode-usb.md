@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight to get the permission first.
+Permission denied. Call requestRight or requestAccessoryRight to get the permission first.
 
 **错误描述**
 
