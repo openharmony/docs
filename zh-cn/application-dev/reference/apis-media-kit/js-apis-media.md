@@ -1533,6 +1533,53 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 });
 ```
 
+### getPlaybackPosition<sup>12+</sup>
+
+getPlaybackPosition(): number
+
+获取当前播放位置，可以在prepared/playing/paused/completed状态调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| number | 返回当前播放位置的时间，单位：毫秒（ms）|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+let playbackPosition: number = 0;
+media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
+  if (player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    if (avPlayer) {
+      try {
+        playbackPosition = await avPlayer.getPlaybackPosition();
+        console.info(`AVPlayer getPlaybackPosition = ${playbackPosition}`);
+      } catch (error) {
+        console.error(`error = ${error}`);
+      }
+    }
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
+
 ### selectTrack<sup>12+</sup>
 
 selectTrack(index: number, mode?: SwitchMode): Promise\<void>
