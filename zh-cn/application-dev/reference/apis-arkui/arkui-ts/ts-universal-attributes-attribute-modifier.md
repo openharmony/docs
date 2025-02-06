@@ -32,6 +32,10 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+>  **说明：**
+>
+>  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。从API version 16开始，如果对instance对象的同一属性重复设置相同的资源类型对象，将会生效并触发更新。
+
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
