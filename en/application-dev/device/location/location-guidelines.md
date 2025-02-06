@@ -10,6 +10,8 @@ Real-time location of the device is recommended for location-sensitive services.
 
 The following table lists the APIs used to obtain the device location information. For details, see (../../reference/apis-location-kit/js-apis-geoLocationManager.md).
 
+This module supports only the WGS-84 coordinate system.
+
 **Table 2** APIs for obtaining device location information
 
 | API| Description| 
@@ -19,6 +21,7 @@ The following table lists the APIs used to obtain the device location informatio
 | [getCurrentLocation(request: CurrentLocationRequest &#124; SingleLocationRequest, callback: AsyncCallback&lt;Location&gt;): void](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation) | Obtains the current location. This API uses an asynchronous callback to return the result. | 
 | [getCurrentLocation(request?: CurrentLocationRequest &#124; SingleLocationRequest): Promise&lt;Location&gt;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation-2) | Obtains the current location. This API uses a promise to return the result. | 
 | [getLastLocation(): Location](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagergetlastlocation) | Obtains the last known device location.| 
+| [isLocationEnabled(): boolean](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerislocationenabled) | Checks whether the location switch is enabled.| 
 
 ## How to Develop
 
@@ -29,7 +32,20 @@ The following table lists the APIs used to obtain the device location informatio
    ```ts
    import { geoLocationManager } from '@kit.LocationKit';
    ```
-3. Obtain the current location of the device. It is mainly used in scenarios such as viewing of the current location, signing in/out, and service recommendation.
+3. Call **isLocationEnabled** to check whether the location switch is enabled. 
+   The return result is a Boolean value. The value **true** indicates that the location switch is enabled, and the value **false** indicates the opposite.
+
+   ```ts
+   import { geoLocationManager } from '@kit.LocationKit';
+   try {
+       let locationEnabled = geoLocationManager.isLocationEnabled();
+   } catch (err) {
+       console.error("errCode:" + err.code + ", message:"  + err.message);
+   }
+   ```
+   If the location switch is not enabled, launch a dialog box asking the user to enable the switch. For details, see [Setting the Global Switch](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12).
+
+4. Obtain the current location of the device. It is mainly used in scenarios such as viewing of the current location, signing in/out, and service recommendation.
    - Method 1: Obtain the latest location in the system cache.<br>
       If the system does not have a cached location, an error code is returned.<br>
       Using this API to obtain the device location can reduce the system power consumption.<br>
@@ -74,7 +90,11 @@ The following table lists the APIs used to obtain the device location informatio
          console.error("errCode:" + JSON.stringify(err));
        }
       ```
-4. Obtain the device location continuously. It is mainly used in scenarios such as navigation, movement track, and travel.<br>
+   The coordinates obtained by this module are in the WGS-84 coordinate system. If you need to use coordinates in other coordinate systems, perform a coordinate system conversion.
+   
+   <!--RP1-->   You can use the SDK capabilities provided by a third-party map to implement coordinate system conversion.<!--RP1End-->
+   
+5. Obtain the device location continuously. It is mainly used in scenarios such as navigation, movement track, and travel.<br>
    Instantiate a [ContinuousLocationRequest](../../reference/apis-location-kit/js-apis-geoLocationManager.md#continuouslocationrequest12) object to notify the system of the type of location service to be provided for applications and the interval for reporting location information.<br>
    - Set the location scenario by using **locationScenario**.<br>
       You are advised to set **locationScenario** based on the application scenario. For details about the enum values of this parameter, see [UserActivityScenario](../../reference/apis-location-kit/js-apis-geoLocationManager.md#useractivityscenario12). For example, if **locationScenario** is set to **NAVIGATION**, the application will obtain the device location in both the indoor and outdoor scenarios for navigation.<br>

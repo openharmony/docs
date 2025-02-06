@@ -1,5 +1,6 @@
 # Introduction to AVCodec Kit
 Audio and Video Codec (AVCodec) Kit provides capabilities such as audio and video codec, media file muxing and demuxing, and media data input.
+For performance reasons, AVCodec Kit provides only C APIs.
 
 ## Capability Scope
 - Media data input: Media applications can pass in the FD of a file or the URL of a stream for subsequent processing such as media information parsing.
@@ -66,4 +67,4 @@ Audio and Video Codec (AVCodec) Kit provides capabilities such as audio and vide
 
   ![](figures/avcodec-muxer-demuxer-logic.png)
 
-  For details about the development guide, see [Audio and Video Demuxing](audio-video-demuxer.md) and [Audio and Video Muxing](audio-video-muxer.md).
+  For details about the development guide, see [Media Data Demuxing](audio-video-demuxer.md) and [Media Data Muxing](audio-video-muxer.md).

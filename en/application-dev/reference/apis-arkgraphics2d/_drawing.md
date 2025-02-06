@@ -3317,7 +3317,7 @@ OH_Drawing_ErrorCode OH_Drawing_ErrorCodeGet ()
 
 **Description**
 
-Obtains the error code of the module.
+Obtains the latest error code of the module. After the function is successfully executed, the error code returned by this function will not be modified.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3338,8 +3338,6 @@ OH_Drawing_Brush* OH_Drawing_BrushCopy (OH_Drawing_Brush* brush)
 Copies an existing [OH_Drawing_Brush](#oh_drawing_brush) object to create a new one.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3370,8 +3368,6 @@ void OH_Drawing_FilterSetImageFilter (OH_Drawing_Filter* , OH_Drawing_ImageFilte
 Sets an **OH_Drawing_ImageFilter** object for an **OH_Drawing_Filter** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Filter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3427,8 +3423,6 @@ Creates an **OH_Drawing_ImageFilter** object with a color filter effect.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **colorFilter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -3480,7 +3474,6 @@ Maps a source point array to a destination point array by means of matrix transf
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Matrix**, **src**, and **dst** is NULL or **count** is less than or equal to 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3510,7 +3503,6 @@ Maps a rectangle to the smallest rectangle that can enclose the vertices to whic
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Matrix**, **src**, and **dst** is NULL, OH_DRAWING_ERROR_INVALID_PARAMETER is returned.
 
@@ -3543,7 +3535,6 @@ Adds a polygon to a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **points** is NULL or **count** is **0**, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3572,8 +3563,6 @@ void OH_Drawing_PathAddCircle (OH_Drawing_Path* path, float x, float y, float ra
 Adds a circle to a path in the specified direction.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3608,7 +3597,6 @@ Parses the path represented by an SVG string.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **str** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3640,8 +3628,6 @@ Obtains the minimum bounds that enclose a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Path** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -3667,8 +3653,6 @@ bool OH_Drawing_PathIsClosed (OH_Drawing_Path* path, bool forceClosed )
 Checks whether a path is closed.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3700,7 +3684,6 @@ Obtains the coordinates and tangent at a distance from the start point of a path
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **path**, **position**, or **tangent** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3735,7 +3718,6 @@ Combines two paths based on the specified operation mode.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **other** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3770,7 +3752,6 @@ Obtains a transformation matrix at a distance from the start point of a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3807,7 +3788,6 @@ Obtains the source path outline drawn using a pen and represents it using a dest
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Pen**, **src**, and **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3841,8 +3821,6 @@ OH_Drawing_Pen* OH_Drawing_PenCopy (OH_Drawing_Pen* pen)
 Copies an existing [OH_Drawing_Pen](#oh_drawing_pen) object to create a new one.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3944,7 +3922,6 @@ Obtains the union of two rectangles.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **rect** or **other** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -3975,8 +3952,6 @@ bool OH_Drawing_RegionContains (OH_Drawing_Region* region, int32_t x, int32_t y 
 Checks whether a region contains the specified point.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **region** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4009,7 +3984,6 @@ Combines two regions based on the specified operation mode.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **region** or **other** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4044,7 +4018,6 @@ Sets a region to the area described by the path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **region**, **path**, or **clip** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4102,7 +4075,6 @@ Creates an **OH_Drawing_ShaderEffect** object that generates a linear gradient b
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **startPt**, **endPt**, and **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4141,8 +4113,6 @@ Creates an **OH_Drawing_ShaderEffect** object that generates a radial gradient b
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_TileMode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -4180,7 +4150,6 @@ Creates an **OH_Drawing_ShaderEffect** object that generates a gradient between 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **startPt**, **endPt**, and **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4222,8 +4191,6 @@ Obtains the unique identifier of a text blob. The identifier is a non-zero value
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_TextBlob** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4253,8 +4220,6 @@ Sets the shadow layer for a pen. The shadow layer effect takes effect only when 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4280,8 +4245,6 @@ void OH_Drawing_BrushSetShadowLayer (OH_Drawing_Brush* , OH_Drawing_ShadowLayer*
 Sets the shadow layer for a brush. The shadow layer effect takes effect only when text is drawn.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4309,7 +4272,6 @@ Creates an **OH_Drawing_ShadowLayer** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **blurRadius** is less than or equal to **0**, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
 
@@ -4364,8 +4326,6 @@ Sets whether to request that baselines be snapped to pixels when the current can
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4391,8 +4351,6 @@ bool OH_Drawing_FontIsBaselineSnap (const OH_Drawing_Font* )
 Checks whether baselines are requested to be snapped to pixels when the current canvas matrix is axis aligned.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4423,8 +4381,6 @@ Sets a font edging effect.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_FontEdging** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -4452,8 +4408,6 @@ OH_Drawing_FontEdging OH_Drawing_FontGetEdging (const OH_Drawing_Font* )
 Obtains the font edging effect.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4485,8 +4439,6 @@ Sets whether to forcibly use auto hinting, that is, whether to always hint glyph
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4512,8 +4464,6 @@ bool OH_Drawing_FontIsForceAutoHinting (const OH_Drawing_Font* )
 Checks whether auto hinting is forcibly used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4544,8 +4494,6 @@ Sets whether to use sub-pixel rendering for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4571,8 +4519,6 @@ bool OH_Drawing_FontIsSubpixel (const OH_Drawing_Font* )
 Checks whether sub-pixel rendering is used for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4603,8 +4549,6 @@ Obtains the text size.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4634,7 +4578,6 @@ Converts text into glyph indices.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Font**, **text**, and **glyphs** is NULL, **byteLength** is **0**, or **maxGlyphCount** is less than or equal to 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4670,7 +4613,6 @@ Obtains the width of each glyph in a string of text.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Font**, **glyphs**, and **widths** is NULL or **count** is less than or equal to 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4699,8 +4641,6 @@ bool OH_Drawing_FontIsLinearText (const OH_Drawing_Font* )
 Checks whether linear scaling is used for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4731,8 +4671,6 @@ Obtains the horizontal skew factor of a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4761,8 +4699,6 @@ bool OH_Drawing_FontIsFakeBoldText (const OH_Drawing_Font* )
 Checks whether fake bold is used for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4793,8 +4729,6 @@ Sets a horizontal scale factor for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4820,8 +4754,6 @@ float OH_Drawing_FontGetScaleX (const OH_Drawing_Font* )
 Obtains the horizontal scale factor of a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4852,8 +4784,6 @@ Sets a font hinting effect.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_FontHinting** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -4881,8 +4811,6 @@ OH_Drawing_FontHinting OH_Drawing_FontGetHinting (const OH_Drawing_Font* )
 Obtains the font hinting effect.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4913,8 +4841,6 @@ Sets whether to use bitmaps in a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -4940,8 +4866,6 @@ bool OH_Drawing_FontIsEmbeddedBitmaps (const OH_Drawing_Font* )
 Checks whether bitmaps are used in a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -4971,8 +4895,6 @@ void OH_Drawing_BitmapBuild (OH_Drawing_Bitmap* , const uint32_t width, const ui
 Initializes the width and height of a bitmap and sets the pixel format for the bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Bitmap** or **OH_Drawing_BitmapFormat** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5021,7 +4943,6 @@ Creates an **OH_Drawing_Bitmap** object, with the address of the memory for stor
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Image_Info** or **pixels** is NULL or **rowBytes** is **0**, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5075,8 +4996,6 @@ Obtains the alpha component of a bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5105,8 +5024,6 @@ OH_Drawing_ColorFormat OH_Drawing_BitmapGetColorFormat (OH_Drawing_Bitmap* )
 Obtains the pixel format of a bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5137,8 +5054,6 @@ Obtains the height of a bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5168,8 +5083,6 @@ Obtains the image information of a bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Bitmap** or **OH_Drawing_Image_Info** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5195,8 +5108,6 @@ void* OH_Drawing_BitmapGetPixels (OH_Drawing_Bitmap* )
 Obtains the pixel address of a bitmap. You can use this address to obtain the pixel data of the bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5227,8 +5138,6 @@ Obtains the width of a bitmap.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5256,8 +5165,6 @@ bool OH_Drawing_BitmapReadPixels (OH_Drawing_Bitmap* , const OH_Drawing_Image_In
 Reads pixels of a rectangle in a bitmap to the specified buffer.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Bitmap**, **dstInfo**, and **dstPixels** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5333,8 +5240,6 @@ Obtains the alpha value of a brush. This value is used by the alpha channel when
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5363,8 +5268,6 @@ uint32_t OH_Drawing_BrushGetColor (const OH_Drawing_Brush* )
 Obtains the color of a brush. The color is used by the brush to fill in a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5395,8 +5298,6 @@ Obtains the filter of a brush. The filter is a container that holds a mask filte
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Brush** or **OH_Drawing_Filter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5422,8 +5323,6 @@ bool OH_Drawing_BrushIsAntiAlias (const OH_Drawing_Brush* )
 Checks whether anti-aliasing is enabled for a brush. Anti-aliasing makes the pixels around the shape edges semi-transparent.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5454,8 +5353,6 @@ Resets a brush to the initial state. All configured attributes are cleared.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5480,8 +5377,6 @@ void OH_Drawing_BrushSetAlpha (OH_Drawing_Brush* , uint8_t alpha )
 Sets the alpha value for a brush. This value is used by the alpha channel when the brush fills in a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5509,8 +5404,6 @@ Enables or disables anti-aliasing for a brush. Anti-aliasing makes the pixels ar
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5536,8 +5429,6 @@ void OH_Drawing_BrushSetBlendMode (OH_Drawing_Brush* , OH_Drawing_BlendMode  )
 Sets a blender for a brush. The blender implements the specified blend mode.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5567,8 +5458,6 @@ Sets the color for a brush. The color is used by the brush to fill in a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5594,8 +5483,6 @@ void OH_Drawing_BrushSetFilter (OH_Drawing_Brush* , OH_Drawing_Filter*  )
 Sets a filter for a brush. The filter is a container that holds a mask filter and color filter.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5623,8 +5510,6 @@ Sets the shader effect for a brush.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5650,8 +5535,6 @@ void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas* , const OH_Drawing_Brush* 
 Attaches a brush to a canvas so that the canvas can use the style and color of the brush to fill in a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5679,8 +5562,6 @@ Attaches a pen to a canvas so that the canvas can use the style and color of the
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5706,8 +5587,6 @@ void OH_Drawing_CanvasBind (OH_Drawing_Canvas* , OH_Drawing_Bitmap*  )
 Binds a bitmap to a canvas so that the content drawn on the canvas is output to the bitmap. (This process is called CPU rendering.) A canvas bound to a bitmap is a non-recording canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5735,8 +5614,6 @@ Clears a canvas by using a given color.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5762,8 +5639,6 @@ void OH_Drawing_CanvasClipPath (OH_Drawing_Canvas* , const OH_Drawing_Path* , OH
 Clips a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5795,8 +5670,6 @@ Clips a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **clipOp** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -5826,8 +5699,6 @@ Clips a rounded rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_RoundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **clipOp** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -5856,8 +5727,6 @@ void OH_Drawing_CanvasConcatMatrix (OH_Drawing_Canvas* , OH_Drawing_Matrix*  )
 Preconcats the existing matrix with the passed-in matrix. The drawing operation triggered before this function is called is not affected.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -5925,8 +5794,6 @@ Detaches the brush from a canvas so that the canvas can no longer use the previo
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5952,8 +5819,6 @@ Detaches the pen from a canvas so that the canvas can no longer use the style an
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -5978,8 +5843,6 @@ void OH_Drawing_CanvasDrawArc (OH_Drawing_Canvas* , const OH_Drawing_Rect* , flo
 Draws an arc.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6009,8 +5872,6 @@ Draws a background filled with a brush.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Brush** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6036,8 +5897,6 @@ void OH_Drawing_CanvasDrawBitmap (OH_Drawing_Canvas* , const OH_Drawing_Bitmap* 
 Draws a bitmap. A bitmap, also referred to as a dot matrix image, a pixel map image, or a grid image, includes single points called pixels (image elements).
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6066,8 +5925,6 @@ void OH_Drawing_CanvasDrawBitmapRect (OH_Drawing_Canvas* , const OH_Drawing_Bitm
 Draws a portion of a bitmap onto a specified area of the canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Canvas**, **OH_Drawing_Bitmap**, and **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6098,8 +5955,6 @@ Draws a circle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Point** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **radius** is less than or equal to 0, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -6129,8 +5984,6 @@ Draws an image onto a specified area of the canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If any of **OH_Drawing_Canvas**, **OH_Drawing_Image**, and **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6158,8 +6011,6 @@ void OH_Drawing_CanvasDrawImageRectWithSrc (OH_Drawing_Canvas* , const OH_Drawin
 Draws a portion of an image onto a specified area of the canvas. The area selected by the source rectangle is scaled and translated to the destination rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Canvas**, **OH_Drawing_Image**, **src**, and **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6191,8 +6042,6 @@ Draws a line segment.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6222,8 +6071,6 @@ Draws an oval.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6250,8 +6097,6 @@ Draws a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6277,8 +6122,6 @@ void OH_Drawing_CanvasDrawPixelMapRect (OH_Drawing_Canvas* , OH_Drawing_PixelMap
 Draws a portion of a pixel map onto a specified area of the canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Canvas**, **OH_Drawing_PixelMap**, and **dst** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6309,7 +6152,6 @@ Draws multiple points. You can draw a single point, a line segment, or an open p
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Point2D** is NULL or **count** is **0**, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6341,8 +6183,6 @@ Draws a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6368,8 +6208,6 @@ void OH_Drawing_CanvasDrawRegion (OH_Drawing_Canvas* , const OH_Drawing_Region* 
 Draws a region.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Region** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6397,8 +6235,6 @@ Draws a rounded rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_RoundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6424,8 +6260,6 @@ void OH_Drawing_CanvasDrawShadow (OH_Drawing_Canvas* , OH_Drawing_Path* , OH_Dra
 Draws a spot shadow and uses a given path to outline the ambient shadow.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6461,8 +6295,6 @@ Draws a text blob. If the typeface used to construct **OH_Drawing_TextBlob** doe
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_TextBlob** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6491,7 +6323,6 @@ Draws a triangular grid described by a vertex array.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Canvas** or **positions** is NULL, **vertexCount** is less than 3, or **indexCount** is less than 3 but not 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6528,8 +6359,6 @@ Obtains the canvas height.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6559,8 +6388,6 @@ Obtains the bounds of the cropping region of a canvas. This function cannot be u
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6586,8 +6413,6 @@ uint32_t OH_Drawing_CanvasGetSaveCount (OH_Drawing_Canvas* )
 Obtains the number of canvas statuses (canvas matrices) saved in the stack.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6618,8 +6443,6 @@ Obtains the 3x3 matrix of a canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6645,8 +6468,6 @@ int32_t OH_Drawing_CanvasGetWidth (OH_Drawing_Canvas* )
 Obtains the canvas width.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6676,8 +6497,6 @@ bool OH_Drawing_CanvasReadPixels (OH_Drawing_Canvas* , OH_Drawing_Image_Info* , 
 Copies pixel data from a canvas to a specified address. This function cannot be used for recorded canvases.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Canvas**, **OH_Drawing_Image_Info**, and **dstPixels** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6713,8 +6532,6 @@ Copies pixel data from a canvas to an image. This function cannot be used for re
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6747,8 +6564,6 @@ Resets the matrix of a canvas to an identity matrix.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6773,8 +6588,6 @@ void OH_Drawing_CanvasRestore (OH_Drawing_Canvas* )
 Restores the canvas status (canvas matrix) saved on the top of the stack.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6801,8 +6614,6 @@ Restores to a given number of canvas statuses (canvas matrices).
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6828,8 +6639,6 @@ void OH_Drawing_CanvasRotate (OH_Drawing_Canvas* , float degrees, float px, floa
 Rotates a canvas by a given angle. A positive value indicates a clockwise rotation, and a negative value indicates a counterclockwise rotation.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6859,8 +6668,6 @@ Saves the current canvas status (canvas matrix) to the top of the stack.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6885,8 +6692,6 @@ void OH_Drawing_CanvasSaveLayer (OH_Drawing_Canvas* , const OH_Drawing_Rect* , c
 Saves the matrix and cropping region, and allocates a bitmap for subsequent drawing. If you call [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore), the changes made to the matrix and clipping region are discarded, and the bitmap is drawn.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -6915,8 +6720,6 @@ Scales a canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6944,8 +6747,6 @@ Sets the matrix status for a canvas.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Canvas** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -6971,8 +6772,6 @@ void OH_Drawing_CanvasSkew (OH_Drawing_Canvas* , float sx, float sy )
 Skews a canvas. This function premultiplies the current canvas matrix by a skew transformation matrix and applies the resulting matrix to the canvas. The skew transformation matrix is as follows: \|1 sx 0\| \|sy 1 0\| \|0 0 1\|
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -7000,8 +6799,6 @@ void OH_Drawing_CanvasTranslate (OH_Drawing_Canvas* , float dx, float dy )
 Translates a canvas by a given distance.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Canvas** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -7055,8 +6852,6 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateCompose (OH_Drawing_ColorFil
 Creates an **OH_Drawing_ColorFilter** object by combining another two color filters.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **colorFilter1** or **colorFilter2** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -7125,8 +6920,6 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateMatrix (const float matrix[2
 Creates an **OH_Drawing_ColorFilter** object with a given 5x4 color matrix.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -7284,7 +7077,6 @@ Creates an **OH_Drawing_PathEffect** object with a dashed line effect. The dashe
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **intervals** is NULL or **count** is less than or equal to 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -7855,8 +7647,6 @@ Obtains an **OH_Drawing_ColorFilter** object from an **OH_Drawing_Filter** objec
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Filter** or **OH_Drawing_ColorFilter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -7882,8 +7672,6 @@ void OH_Drawing_FilterSetColorFilter (OH_Drawing_Filter* , OH_Drawing_ColorFilte
 Sets an **OH_Drawing_ColorFilter** object for an **OH_Drawing_Filter** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Filter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -7911,8 +7699,6 @@ Sets an **OH_Drawing_MaskFilter** object for an **OH_Drawing_Filter** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Filter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -7938,8 +7724,6 @@ int OH_Drawing_FontCountText (OH_Drawing_Font* , const void* text, size_t byteLe
 Obtains the number of glyphs represented by text.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Font** or **text** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -8009,8 +7793,6 @@ Obtains the measurement information about a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Font** or **OH_Drawing_Font_Metrics** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8040,8 +7822,6 @@ OH_Drawing_Typeface* OH_Drawing_FontGetTypeface (OH_Drawing_Font* )
 Obtains the typeface of a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -8366,8 +8146,6 @@ Sets fake bold for a font by increasing the stroke width.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8393,8 +8171,6 @@ void OH_Drawing_FontSetLinearText (OH_Drawing_Font* , bool isLinearText )
 Sets linear scaling for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -8422,8 +8198,6 @@ Sets the font size.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8450,8 +8224,6 @@ Sets a horizontal skew factor for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -8477,8 +8249,6 @@ void OH_Drawing_FontSetTypeface (OH_Drawing_Font* , OH_Drawing_Typeface*  )
 Sets the typeface for a font.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -8957,8 +8727,6 @@ Builds an image from a bitmap by sharing or copying bitmap pixels. If the bitmap
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Image** or **OH_Drawing_Bitmap** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9029,8 +8797,6 @@ Obtains the image height, that is, the number of pixel lines.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Image** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9060,8 +8826,6 @@ Obtains the image information. After this function is called, the passed-in imag
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Image** or **OH_Drawing_Image_Info** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9087,8 +8851,6 @@ int32_t OH_Drawing_ImageGetWidth (OH_Drawing_Image* )
 Obtains the image width, that is, the number of pixels in each line.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Image** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9192,7 +8954,6 @@ Multiplies two matrices to produce a new matrix.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **total**, **a**, and **b** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9342,8 +9103,6 @@ Obtains a matrix value of a given index, which ranges from 0 to 8.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **index** is less than 0 or greater than 8, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -9376,8 +9135,6 @@ Inverts a matrix and returns the result.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Matrix** or **inverse** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9407,8 +9164,6 @@ bool OH_Drawing_MatrixIsEqual (OH_Drawing_Matrix* , OH_Drawing_Matrix* other )
 Checks whether two **OH_Drawing_Matrix** objects are equal.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Matrix** or **other** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9440,8 +9195,6 @@ Checks whether an **OH_Drawing_Matrix** object is an identity matrix.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9471,8 +9224,6 @@ Post multiplies a matrix by an identity matrix that rotates a given degree aroun
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9500,8 +9251,6 @@ void OH_Drawing_MatrixPostScale (OH_Drawing_Matrix* , float sx, float sy, float 
 Post multiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9533,8 +9282,6 @@ Post multiplies a matrix by an identity matrix that translates by a given distan
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 
@@ -9562,8 +9309,6 @@ void OH_Drawing_MatrixPreRotate (OH_Drawing_Matrix* , float degree, float px, fl
 Premultiplies a matrix by an identity matrix that rotates by a given degree around the rotation point (px, py).
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9593,8 +9338,6 @@ void OH_Drawing_MatrixPreScale (OH_Drawing_Matrix* , float sx, float sy, float p
 Premultiplies a matrix by an identity matrix that scales with the factor (sx, sy) at the scale point (px, py).
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9626,8 +9369,6 @@ Premultiplies a matrix by an identity matrix that translates by a given distance
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9655,8 +9396,6 @@ Resets a matrix to an identity matrix: | 1 0 0 | | 0 1 0 | | 0 0 0 1 |.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9681,8 +9420,6 @@ void OH_Drawing_MatrixRotate (OH_Drawing_Matrix* , float degree, float px, float
 Sets a matrix as an identity matrix and rotates it by a given degree around the rotation point (px, py).
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9712,8 +9449,6 @@ Sets a matrix as an identity matrix and scales it with the factor (sx, sy) at th
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9742,8 +9477,6 @@ void OH_Drawing_MatrixSetMatrix (OH_Drawing_Matrix* , float scaleX, float skewX,
 Sets matrix parameters for an **OH_Drawing_Matrix** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9779,8 +9512,6 @@ Generates a transformation matrix by setting source points and destination point
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **count** is less than 0 or greater than 4, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -9815,7 +9546,6 @@ Scales a matrix to map a source rectangle to a destination rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **OH_Drawing_Matrix**, **src**, and **dst** is NULL, OH_DRAWING_ERROR_INVALID_PARAMETER is returned.
 
@@ -9848,8 +9578,6 @@ Sets a matrix as an identity matrix and translates it by a given distance (dx, d
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9877,7 +9605,6 @@ Creates an **OH_Drawing_MemoryStream** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **data** is NULL or **length** is **0**, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9931,8 +9658,6 @@ Adds an arc to a path as the start of a new contour. The arc added is part of th
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Path** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -9959,8 +9684,6 @@ void OH_Drawing_PathAddOval (OH_Drawing_Path* , const OH_Drawing_Rect* , OH_Draw
 Adds an oval to a path in the specified direction.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Path** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -9989,8 +9712,6 @@ void OH_Drawing_PathAddOvalWithInitialPoint (OH_Drawing_Path* , const OH_Drawing
 Adds an oval to a path. **OH_Drawing_Rect** specifies the outer tangent rectangle of the oval, and **OH_Drawing_PathDirection** specifies whether the drawing is clockwise or anticlockwise.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Path** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10022,7 +9743,6 @@ Transforms the points in a **src** path by a matrix and adds the new one to the 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_Path** or **src** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10051,7 +9771,6 @@ Transforms the points in a **src** path by a matrix and adds the new one to the 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **src** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10083,7 +9802,6 @@ Adds a **src** path to the current path with the specified adding mode.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **src** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10114,7 +9832,6 @@ Translates a **src** path by an offset and adds the new one to the current path 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **path** or **src** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10146,8 +9863,6 @@ void OH_Drawing_PathAddRect (OH_Drawing_Path* , float left, float top, float rig
 Adds a rectangle contour to a path in the specified direction.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10181,8 +9896,6 @@ Adds a rectangle contour to a path in the specified direction.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Path** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_PathDirection** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -10213,8 +9926,6 @@ Adds a rounded rectangle to a path in the specified direction.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Path** or **roundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_PathDirection** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -10243,8 +9954,6 @@ void OH_Drawing_PathArcTo (OH_Drawing_Path* , float x1, float y1, float x2, floa
 Draws an arc to a path. This is done by using angle arc mode. In this mode, a rectangle that encloses an ellipse is specified first, and then a start angle and a sweep angle are specified. The arc is a portion of the ellipse defined by the start angle and the sweep angle. By default, a line segment from the last point of the path to the start point of the arc is also added.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10277,8 +9986,6 @@ Closes a path by drawing a line segment from the current point to the start poin
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10303,8 +10010,6 @@ void OH_Drawing_PathConicTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float 
 Draws a conic curve from the last point of a path to the target point. If the path is empty, the start point (0, 0) is used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10336,8 +10041,6 @@ Checks whether a coordinate point is included in this path. For details, see [OH
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10368,8 +10071,6 @@ OH_Drawing_Path* OH_Drawing_PathCopy (OH_Drawing_Path* )
 Copies an existing [OH_Drawing_Path](#oh_drawing_path) object to create a new one.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10418,8 +10119,6 @@ void OH_Drawing_PathCubicTo (OH_Drawing_Path* , float ctrlX1, float ctrlY1, floa
 Draws a cubic Bezier curve from the last point of a path to the target point. If the path is empty, the start point (0, 0) is used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10494,8 +10193,6 @@ Obtains the length of a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10526,8 +10223,6 @@ Draws a line segment from the last point of a path to the target point. If the p
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10554,8 +10249,6 @@ void OH_Drawing_PathMoveTo (OH_Drawing_Path* , float x, float y )
 Sets the start point of a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10584,8 +10277,6 @@ Translates a path by an offset along the X axis and Y axis and adds the new one 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10613,8 +10304,6 @@ void OH_Drawing_PathQuadTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float e
 Draws a quadratic Bezier curve from the last point of a path to the target point. If the path is empty, the start point (0, 0) is used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10645,8 +10334,6 @@ Draws a conic curve from the last point of a path to a point relative to the las
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10676,8 +10363,6 @@ void OH_Drawing_PathRCubicTo (OH_Drawing_Path* , float ctrlX1, float ctrlY1, flo
 Draws a cubic Bezier curve from the last point of a path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10710,8 +10395,6 @@ Resets path data.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10736,8 +10419,6 @@ void OH_Drawing_PathRLineTo (OH_Drawing_Path* , float x, float y )
 Draws a line segment from the last point of a path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10766,8 +10447,6 @@ Sets the start position relative to the last point of a path. If the path is emp
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10794,8 +10473,6 @@ void OH_Drawing_PathRQuadTo (OH_Drawing_Path* , float ctrlX, float ctrlY, float 
 Draws a quadratic Bezier curve from the last point of a path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10826,8 +10503,6 @@ Sets the fill type for a path.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_PathFillType** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -10856,8 +10531,6 @@ Transforms the points in a path by a matrix.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Path** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10883,8 +10556,6 @@ void OH_Drawing_PathTransformWithPerspectiveClip (OH_Drawing_Path* src, const OH
 Transforms the points in a **src** path by a matrix and uses the new one to replace the **dst** path. If the **dst** path does not exist, the **src** path is replaced.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **src** or **OH_Drawing_Matrix** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -10954,8 +10625,6 @@ Obtains the alpha value of a pen. This value is used by the alpha channel when t
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -10984,8 +10653,6 @@ OH_Drawing_PenLineCapStyle OH_Drawing_PenGetCap (const OH_Drawing_Pen* )
 Obtains the line cap style of a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11016,8 +10683,6 @@ Obtains the color of a pen. The color is used by the pen to outline a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11047,8 +10712,6 @@ Obtains the filter of a pen. The filter is a container that holds a mask filter 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Pen** or **OH_Drawing_Filter** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11074,8 +10737,6 @@ OH_Drawing_PenLineJoinStyle OH_Drawing_PenGetJoin (const OH_Drawing_Pen* )
 Obtains the line join style of a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11104,8 +10765,6 @@ float OH_Drawing_PenGetMiterLimit (const OH_Drawing_Pen* )
 Obtains the stroke miter limit of a polyline drawn by a pen. When the corner type is bevel, a beveled corner is displayed if the miter limit is exceeded, and a mitered corner is displayed if the miter limit is not exceeded.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11136,8 +10795,6 @@ Obtains the width of a pen. The width describes the thickness of the outline of 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11166,8 +10823,6 @@ bool OH_Drawing_PenIsAntiAlias (const OH_Drawing_Pen* )
 Checks whether anti-aliasing is enabled for a pen. Anti-aliasing makes the pixels around the shape edges semi-transparent.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11198,8 +10853,6 @@ Resets a pen to the initial state.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11224,8 +10877,6 @@ void OH_Drawing_PenSetAlpha (OH_Drawing_Pen* , uint8_t alpha )
 Sets the alpha value for a pen. This value is used by the alpha channel when the pen outlines a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11253,8 +10904,6 @@ Enables or disables anti-aliasing for a pen. Anti-aliasing makes the pixels arou
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11280,8 +10929,6 @@ void OH_Drawing_PenSetBlendMode (OH_Drawing_Pen* , OH_Drawing_BlendMode  )
 Sets a blender for a pen. The blender implements the specified blend mode.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11311,8 +10958,6 @@ Sets the line cap style for a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If **OH_Drawing_PenLineCapStyle** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -11341,8 +10986,6 @@ Sets the color for a pen. The color is used by the pen to outline a shape.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11369,8 +11012,6 @@ Sets a filter for a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11396,8 +11037,6 @@ void OH_Drawing_PenSetJoin (OH_Drawing_Pen* , OH_Drawing_PenLineJoinStyle  )
 Sets the line join style for a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11427,8 +11066,6 @@ Sets the stroke miter limit for a polyline drawn by a pen. When the corner type 
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11454,8 +11091,6 @@ void OH_Drawing_PenSetPathEffect (OH_Drawing_Pen* , OH_Drawing_PathEffect*  )
 Sets the path effect for a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11483,8 +11118,6 @@ Sets the shader effect for a pen.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11510,8 +11143,6 @@ void OH_Drawing_PenSetWidth (OH_Drawing_Pen* , float width )
 Sets the width for a pen. The value **0** is treated as an unusually thin width. During drawing, the width of 0 is always drawn as 1 pixel wide, regardless of any scaling applied to the canvas. Negative values are also regarded as the value **0** during the drawing process.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Pen** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11586,7 +11217,6 @@ Copies a source rectangle to create a new one.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **sRect** or **dRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11663,8 +11293,6 @@ Obtains the Y coordinate of the lower right corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11693,8 +11321,6 @@ float OH_Drawing_RectGetHeight (OH_Drawing_Rect* )
 Obtains the height of a rectangle. The height is calculated by using the Y coordinate of the lower right corner of the rectangle minus the Y coordinate of the upper left corner.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11725,8 +11351,6 @@ Obtains the X coordinate of the upper left corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11755,8 +11379,6 @@ float OH_Drawing_RectGetRight (OH_Drawing_Rect* )
 Obtains the X coordinate of the lower right corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11787,8 +11409,6 @@ Obtains the Y coordinate of the upper left corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11817,8 +11437,6 @@ float OH_Drawing_RectGetWidth (OH_Drawing_Rect* )
 Obtains the width of a rectangle. The width is calculated by using the X coordinate of the lower right corner of the rectangle minus the X coordinate of the upper left corner.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11849,7 +11467,6 @@ Checks whether two rectangles intersect and if yes, sets **rect** to the area of
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **rect** or **other** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11881,8 +11498,6 @@ Sets the vertical coordinate of the lower right corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11908,8 +11523,6 @@ void OH_Drawing_RectSetLeft (OH_Drawing_Rect* rect, float left )
 Sets the horizontal coordinate of the upper left corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -11937,8 +11550,6 @@ Sets the horizontal coordinate of the lower right corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -11964,8 +11575,6 @@ void OH_Drawing_RectSetTop (OH_Drawing_Rect* rect, float top )
 Sets the vertical coordinate of the upper left corner of a rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -12033,7 +11642,6 @@ Sets the boundary for an **OH_Drawing_Region** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **region** or **rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -12120,7 +11728,6 @@ Creates an **OH_Drawing_RoundRect** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -12174,8 +11781,6 @@ Obtains the radii of the specified rounded corner in a rounded rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_RoundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -12206,8 +11811,6 @@ Sets the radii of the specified rounded corner in a rounded rectangle.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_RoundRect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -12235,7 +11838,6 @@ Creates an **OH_Drawing_SamplingOptions** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_MipmapMode** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
 
@@ -13367,8 +12969,6 @@ Creates an **OH_Drawing_ShaderEffect** object for an image shader. You are advis
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If either **OH_Drawing_Image** or **OH_Drawing_SamplingOptions** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 If either **tileX** or **tileY** is not set to one of the enumerated values, **OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE** is returned.
@@ -13404,7 +13004,6 @@ Creates an **OH_Drawing_ShaderEffect** object that generates a linear gradient b
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **startPt**, **endPt**, and **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13442,7 +13041,6 @@ Creates an **OH_Drawing_ShaderEffect** object that generates a radial gradient b
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13480,7 +13078,6 @@ Creates an **OH_Drawing_ShaderEffect** object that generates a sweep gradient ba
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **centerPt** or **colors** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13538,8 +13135,6 @@ Creates an **OH_Drawing_Surface** object using the GPU context to manage the con
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_GpuContext** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -13592,8 +13187,6 @@ Obtains a canvas from an **OH_Drawing_Surface** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_Surface** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -13623,7 +13216,6 @@ Allocates a run to store glyphs and positions. The pointer returned does not nee
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_TextBlobBuilder** or **OH_Drawing_Font** is NULL or **count** is less than or equal to 0, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13693,8 +13285,6 @@ Makes an **OH_Drawing_TextBlob** object from an **OH_Drawing_TextBlobBuilder**.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **OH_Drawing_TextBlobBuilder** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -13724,7 +13314,6 @@ Creates an **OH_Drawing_TextBlob** object from the text. The coordinates of each
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If any of **text**, **OH_Drawing_Point2D**, and **OH_Drawing_Font** is NULL or **byteLength** is **0**, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13761,7 +13350,6 @@ Creates an **OH_Drawing_TextBlob** object from a string.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **str** or **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13795,8 +13383,6 @@ OH_Drawing_TextBlob* OH_Drawing_TextBlobCreateFromText (const void * text, size_
 Creates an **OH_Drawing_TextBlob** object from the text.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **text** or **OH_Drawing_Font** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -13852,8 +13438,6 @@ void OH_Drawing_TextBlobGetBounds (OH_Drawing_TextBlob* , OH_Drawing_Rect*  )
 Obtains the bounds of an **OH_Drawing_TextBlob** object.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If either **OH_Drawing_TextBlob** or **OH_Drawing_Rect** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
@@ -14816,8 +14400,6 @@ Creates an **OH_Drawing_Typeface** object through a file.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
 
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
-
 If **path** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.NativeDrawing
@@ -14847,8 +14429,6 @@ OH_Drawing_Typeface* OH_Drawing_TypefaceCreateFromStream (OH_Drawing_MemoryStrea
 Creates an **OH_Drawing_Typeface** object through a memory stream. If the memory stream is an invalid font file, a null pointer is returned. After the memory stream is passed in, the ownership is transferred and you cannot release it.
 
 Error codes may be generated in the call. You can view the error code by calling [OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget).
-
-If the operation is successful, **OH_DRAWING_SUCCESS** is returned.
 
 If **OH_Drawing_MemoryStream** is NULL, **OH_DRAWING_ERROR_INVALID_PARAMETER** is returned.
 

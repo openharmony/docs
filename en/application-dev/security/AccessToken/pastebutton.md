@@ -12,7 +12,7 @@ The following figure shows the effect of **PasteButton** component.
 
 ## Constraints
 
-- The temporary authorization will be automatically revoked when the screen turns off, the app switches to the background, or the app exits.
+- The temporary authorization will be automatically revoked when the screen turns off, the application switches to the background, or the application exits.
 
 - During the authorization period, there is no limit on the number of API calls.
 

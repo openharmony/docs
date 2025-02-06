@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-注入事件提供注入输入事件功能，比如注入鼠标点击事件，键盘组合键等。使用场景例如：当用户需要验证应用的组合键功能时，开发者可以通过注入组合键事件判断功能是否生效。
+注入事件提供注入输入事件功能，比如注入鼠标点击事件、键盘组合键等。使用场景例如：当用户需要验证应用的组合键功能时，开发者可以通过注入组合键事件判断功能是否生效。
 
 ## 导入模块
 
@@ -22,7 +22,7 @@ import { inputEventClient } from '@kit.InputKit';
 
 ## 开发步骤
 
-应用调用Home键返回桌面，测试是可以调用[injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
+应用调用Home键返回桌面，调用[injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
 
 ```js
 try {

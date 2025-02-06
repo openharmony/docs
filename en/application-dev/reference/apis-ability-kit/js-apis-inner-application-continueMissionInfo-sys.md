@@ -17,6 +17,7 @@ The ContinueMissionInfo module defines the parameters required for initiating mi
 | -------- | ------ | ---- | ---- | ------- |
 | srcDeviceId | string | No   | Yes   | ID of the source device.|
 | dstDeviceId | string | No   | Yes   | ID of the target device.|
-| bundleName | string | No   | Yes   | Name of the bundle to which the mission belongs.|
+| bundleName | string | No   | Yes   | Bundle name of the target application to which the mission belongs.|
 | wantParam | Record<string, Object> | No   | Yes   | Extended parameters.|
+| srcBundleName<sup>12+</sup> | string | No   | No   | Bundle name of the source application to which the mission belongs. The value is the same as that of **bundleName** by default.|
 | continueType<sup>12+</sup> | string | No   | No   | Continuation type of the application to which the mission belongs.|

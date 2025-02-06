@@ -31,16 +31,11 @@ Hierarchical pages are specialized container components, such as **Page**, **Dia
 An application always has at least one hierarchical page in focus. When this hierarchical page is closed or no longer visible, the focus shifts to another, ensuring smooth user interaction.
 
 
-
 > **NOTE**
 >
 > The **Popup** component does not capture focus if it has **focusable** set to **false**.
 >
 > The **NavBar** and **NavDestination** components do not restrict focus movement and share the focus scope of their immediate parent hierarchical page.
-
-
-
-
 
 **Root Container**
 
@@ -55,8 +50,6 @@ Pressing **Tab** with focus on the root container activates focus and passes it 
 ### Focus Traversal Guidelines
 
 Focus traversal can be divided into active and passive based on how it is triggered.
-
-
 
 **Active Focus Traversal**
 
@@ -235,8 +228,6 @@ Components can be classified into the following types based on their focusabilit
 - Non-focusable components: Components that do not allow for interactions, such as **Blank** and **Circle**, cannot be made focusable, even with the **focusable** attribute applied.
 
 
-
-
 ```ts
 enabled(value: boolean)
 ```
@@ -256,8 +247,6 @@ focusOnTouch(value: boolean)
 ```
 
 Sets whether the component is focusable on touch.
-
-
 
 
 >**NOTE**
@@ -446,7 +435,7 @@ The default focus within a container is affected by [focus priority](#focus-grou
 
 **Differences Between defaultFocus and FocusPriority**
 
-[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9) specifies the initial focus when the page loads. [FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md) defines the order in which child components gain focus within a container. Behavior is undefined when both attributes are set in some scenarios. For example, a page's initial display cannot simultaneously meet the focus requirements of a component with **defaultFocus** and a high-priority component.
+[defaultFocus](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#defaultfocus9) specifies the initial focus when the page loads. [FocusPriority](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#focuspriority12) defines the order in which child components gain focus within a container. Behavior is undefined when both attributes are set in some scenarios. For example, a page's initial display cannot simultaneously meet the focus requirements of a component with **defaultFocus **and a high-priority component.
 
 Example
 
@@ -791,6 +780,44 @@ The preceding example includes two steps:
 - The input box is set with a focus group, which means that when the **Tab** key is pressed, the focus quickly moves out from the input, and when arrow keys are used, the focus stays within the input.
 - The **Column** component in the upper left corner does not have a focus group set. Therefore, focus can only be traversed one by one with the **Tab** key.
 
+## Focus and Key Events
+
+When a component is in focus and has either an **onClick** or **TapGesture** event defined, pressing the **Enter** key or spacebar triggers the associated event callback.
+
+>  **NOTE**
+>
+>  1. If the **onClick** or **TapGesture** event is triggered by pressing the **Enter** key or spacebar, the event does not bubble up by default. This means that the parent component's corresponding [key event](../reference/apis-arkui/arkui-ts/ts-universal-events-key.md) is not triggered synchronously.
+>  2. The key event (**onKeyEvent**) bubbles up by default, which means that it will also trigger the parent component's key event callback.
+>  3. If the component has both an **onClick** event and an **onKeyEvent**, pressing the **Enter** key or spacebar trigger both events.
+>  4. The component's response to the **onClick** event is independent of whether the focus is activated or not.
+
+```
+@Entry
+@Component
+struct FocusOnclickExample {
+  @State count: number = 0
+  @State name: string = 'Button'
+
+  build() {
+    Column() {
+      Button(this.name)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+          if (this.count <= 0) {
+            this.name = "count is negative number"
+          } else if (this.count % 2 === 0) {
+            this.name = "count is even number"
+          } else {
+            this.name = "count is odd number"
+          }
+        }).height(60)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+![focus-4](figures/focus-4.gif)
+
 ## Component Focusability
 
 
@@ -886,4 +913,3 @@ The preceding example includes two steps:
 | Media Component                                    | Focusable| Default Value of focusable|
 | ---------------------------------------- | ----- | ------------ |
 | [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md) | Yes    | true         |
-<!--no_check-->

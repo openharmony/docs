@@ -30,28 +30,28 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        double args = 0;
        double result = 0;
    };
-   
+
    static napi_value AsyncWork(napi_env env, napi_callback_info info)
    {
       size_t argc = 1;
       napi_value args[1];
       napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-   
+
       napi_value promise = nullptr;
       napi_deferred deferred = nullptr;
       napi_create_promise(env, &deferred, &promise);
-   
+
       auto callbackData = new CallbackData();
       callbackData->deferred = deferred;
       napi_get_value_double(env, args[0], &callbackData->args);
-   
+
       napi_value resourceName = nullptr;
       napi_create_string_utf8(env, "AsyncCallback", NAPI_AUTO_LENGTH, &resourceName);
       // 创建异步任务
       napi_create_async_work(env, nullptr, resourceName, ExecuteCB, CompleteCB, callbackData, &callbackData->asyncWork);
       // 将异步任务加入队列
       napi_queue_async_work(env, callbackData->asyncWork);
-   
+
       return promise;
    }
    ```
@@ -79,7 +79,7 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        } else {
            napi_reject_deferred(env, callbackData->deferred, result);
        }
-   
+
        napi_delete_async_work(env, callbackData->asyncWork);
        delete callbackData;
    }
@@ -101,7 +101,7 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
 
     ```ts
    // 接口对应的.d.ts描述
-   export const asyncWork(data: number): Promise<number>;
+   export const asyncWork: (data: number) => Promise<number>;
 
    // ArkTS侧调用接口
    nativeModule.asyncWork(1024).then((result) => {
@@ -122,8 +122,8 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
      double args[2] = {0};
      double result = 0;
    };
-   
-   napi_value AsyncWork(napi_env env, napi_callback_info info) 
+
+   napi_value AsyncWork(napi_env env, napi_callback_info info)
    {
        size_t argc = 3;
        napi_value args[3];
@@ -137,8 +137,8 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "asyncWorkCallback", NAPI_AUTO_LENGTH, &resourceName);
        // 创建异步任务
-       napi_create_async_work(env, nullptr, resourceName, ExecuteCB, CompleteCB, 
-                              asyncContext, &asyncContext->asyncWork); 
+       napi_create_async_work(env, nullptr, resourceName, ExecuteCB, CompleteCB,
+                              asyncContext, &asyncContext->asyncWork);
        // 将异步任务加入队列
        napi_queue_async_work(env, asyncContext->asyncWork);
        return nullptr;
@@ -148,7 +148,7 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
 2. 定义异步任务的第一个回调函数，该函数在工作线程中执行，处理具体的业务逻辑。
 
    ```cpp
-   static void ExecuteCB(napi_env env, void *data) 
+   static void ExecuteCB(napi_env env, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
        callbackData->result = callbackData->args[0] + callbackData->args[1];
@@ -158,7 +158,7 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
 3. 定义异步任务的第二个回调函数，该函数在主线程执行，将结果传递给ArkTS侧。
 
    ```cpp
-   static void CompleteCB(napi_env env, napi_status status, void *data) 
+   static void CompleteCB(napi_env env, napi_status status, void *data)
    {
        CallbackData *callbackData = reinterpret_cast<CallbackData *>(data);
        napi_value callbackArg[1] = {nullptr};
@@ -193,13 +193,12 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
 
    ```ts
    // 接口对应的.d.ts描述
-   export const asyncWork(arg1: number, arg2: number,
-     callback: (result: number) => void): void;
+   export const asyncWork: (arg1: number, arg2: number, callback: (result: number) => void) => void;
 
    // ArkTS侧调用接口
    let num1: number = 123;
    let num2: number = 456;
    nativeModule.asyncWork(num1, num2, (result) => {
      hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
-   }); 
+   });
    ```

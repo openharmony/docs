@@ -22,7 +22,7 @@ constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<Style
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 |说明 |
 | -------- | -------- | -------- | -------- |
 | value | string \| [ImageAttachment](#imageattachment) \| [CustomSpan](#customspan) | 是 | 属性字符串文本内容。<br/>**说明：** <br/>当value值为ImageAttachment或CustomSpan时，styles参数不生效。  |
 | styles | Array<[StyleOptions](#styleoptions对象说明)> | 否 | 属性字符串初始化选项。<br/>**说明：** <br/>start为异常值时，按默认值0处理。<br/>当start的值合法且length为异常值时，length的值为属性字符串长度与start的值的差值。<br/>StyledStringKey与StyledStringValue不匹配时，不生效。<br/>styledKey参数无默认值。 |
@@ -122,7 +122,7 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围属性字符串的下标。 |
 | length | number | 是   | 指定范围属性字符串的长度。 |
-| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 否   | 指定范围属性字符串样式的枚举值。 |
+| styledKey | [StyledStringKey](#styledstringkey枚举说明) | 否   | 指定范围属性字符串样式的枚举值。 |
 
 **返回值：**
 
@@ -317,7 +317,7 @@ removeStyle(start: number , length: number , styledKey: StyledStringKey): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | start | number | 是   | 指定范围开始位置的下标。 |
 | length | number | 是   | 指定范围的长度。 |
-| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型枚举值。 |
+| styledKey | [StyledStringKey](#styledstringkey枚举说明) | 是   | 样式类型枚举值。 |
 
 **错误码**：
 
@@ -435,6 +435,32 @@ appendStyledString(other: StyledString): void
 | ------- | --------------------------------- | ---- | ------------------------------------------------------------ |
 | other | [StyledString](#styledstring) | 是   | 新的属性字符串对象。|
 
+
+## StyledStringValue
+
+type StyledStringValue = TextStyle | DecorationStyle | BaselineOffsetStyle | LetterSpacingStyle |
+TextShadowStyle | GestureStyle | ImageAttachment | ParagraphStyle | LineHeightStyle | UrlStyle | CustomSpan | UserDataSpan | BackgroundColorStyle
+
+样式对象类型，用于设置属性字符串的样式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型  | 说明   |
+| ------ | ---------- |
+| [TextStyle](#textstyle) | 文本字体样式。 |
+| [DecorationStyle](#decorationstyle) | 文本装饰线样式。 |
+| [BaselineOffsetStyle](#baselineoffsetstyle) | 文本基线偏移量样式。 |
+| [LetterSpacingStyle](#letterspacingstyle) | 文本字符间距样式。 |
+| [LineHeightStyle](#lineheightstyle) | 文本行高样式。 |
+| [TextShadowStyle](#textshadowstyle) | 文本阴影样式。 |
+| [GestureStyle](#gesturestyle) | 事件手势样式。 |
+| [ParagraphStyle](#paragraphstyle) | 文本段落样式。 |
+| [ImageAttachment](#imageattachment) | 图片样式。 |
+| [CustomSpan](#customspan) | 自定义绘制Span样式。 |
+| [UserDataSpan](#userdataspan) | UserDataSpan样式。 |
+
 ## StyleOptions对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -443,8 +469,8 @@ appendStyledString(other: StyledString): void
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | 否   | 设置属性字符串样式的开始位置。 |
 | length | number | 否   | 设置属性字符串样式的长度。 |
-| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型的枚举值。 |
-| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
+| styledKey | [StyledStringKey](#styledstringkey枚举说明) | 是   | 样式类型的枚举值。 |
+| styledValue | [StyledStringValue](#styledstringvalue) | 是   | 样式对象。 |
 
 ## SpanStyle对象说明
 
@@ -454,8 +480,8 @@ appendStyledString(other: StyledString): void
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | start | number | 是   | 匹配属性字符串样式的开始位置。 |
 | length | number | 是   | 匹配属性字符串样式的长度。 |
-| styledKey | [StyledStringKey](#styledstringkey12枚举说明) | 是   | 样式类型的枚举值。 |
-| styledValue | [StyledStringValue](ts-types.md#styledstringvalue12) | 是   | 样式对象。 |
+| styledKey | [StyledStringKey](#styledstringkey枚举说明) | 是   | 样式类型的枚举值。 |
+| styledValue | [StyledStringValue](#styledstringvalue) | 是   | 样式对象。 |
 
 ## TextStyle
 
@@ -903,13 +929,11 @@ constructor(value?: ParagraphStyleInterface)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## StyledStringKey<sup>12+</sup>枚举说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+## StyledStringKey枚举说明
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                            |
+| 名称     | 说明                         |
 | ------ | ----------------------------- |
 | FONT | 字体样式键。[TextStyle](./ts-universal-styled-string.md#textstyle)所属键。|
 | DECORATION | 文本装饰线样式键。[DecorationStyle](./ts-universal-styled-string.md#decorationstyle)所属键。|

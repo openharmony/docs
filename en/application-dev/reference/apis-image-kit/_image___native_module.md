@@ -7,6 +7,14 @@ The Image_NativeModule module provides image processing capabilities, including 
 
 The APIs of this module do not need to be imported through the JS interface. You can directly use the NDK to develop the features.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using Image_NativeModule to Decode Images](../../media/image/image-source-c.md)
+- [Using Image_NativeModule to Receive Images](../../media/image/image-receiver-c.md)
+- [Using Image_NativeModule for PixelMap Operations](../../media/image/pixelmap-c.md)
+- [Using Image_NativeModule to Process Image Information](../../media/image/image-info-c.md)
+- [Using Image_NativeModule to Encode Images](../../media/image/image-packer-c.md)
+
 **Since**: 12
 
 
@@ -444,7 +452,7 @@ The fields in this struct cannot be directly operated. Instead, they must be man
 ### OH_ImageReceiver_OnCallback
 
 ```
-typedef void(* OH_ImageReceiver_OnCallback) (OH_ImageReceiverNative *receiver)
+typedef void(*OH_ImageReceiver_OnCallback) (OH_ImageReceiverNative *receiver)
 ```
 
 **Description**
@@ -797,10 +805,10 @@ Enumerates the antialiasing levels used for scaling PixelMaps.
 
 | Value| Description|
 | -------- | -------- |
-| OH_PixelmapNative_AntiAliasing_NONE  | Nearest neighbor.  |
-| OH_PixelmapNative_AntiAliasing_LOW  | Bilinear interpolation.  |
-| OH_PixelmapNative_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled.  |
-| OH_PixelmapNative_AntiAliasing_HIGH  | Cubic convolution.  |
+| OH_PixelmapNative_AntiAliasing_NONE  | Nearest neighbor interpolation.  | 
+| OH_PixelmapNative_AntiAliasing_LOW  | Bilinear interpolation.  | 
+| OH_PixelmapNative_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled. You are advised to use this value when zooming out an image.  | 
+| OH_PixelmapNative_AntiAliasing_HIGH  | Cubic interpolation.  | 
 
 
 ### PIXELMAP_ALPHA_TYPE
@@ -1340,7 +1348,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageNative_Release()
 
 ```
-Image_ErrorCode OH_ImageNative_Release(OH_ImageNative *image)
+Image_ErrorCode OH_ImageNative_Release (OH_ImageNative * image)
 ```
 
 **Description**
@@ -1363,7 +1371,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImagePackerNative_Create()
 
 ```
-Image_ErrorCode OH_ImagePackerNative_Create(OH_ImagePackerNative **imagePacker)
+Image_ErrorCode OH_ImagePackerNative_Create (OH_ImagePackerNative ** imagePacker)
 ```
 
 **Description**
@@ -1386,7 +1394,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImagePackerNative_PackToDataFromImageSource()
 
 ```
-Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource(OH_ImagePackerNative *imagePacker, OH_PackingOptions *options, OH_ImageSourceNative *imageSource, uint8_t *outData, size_t *size)
+Image_ErrorCode OH_ImagePackerNative_PackToDataFromImageSource (OH_ImagePackerNative * imagePacker, OH_PackingOptions * options, OH_ImageSourceNative * imageSource, uint8_t * outData, size_t * size )
 ```
 
 **Description**
@@ -1492,7 +1500,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImagePackerNative_Release()
 
 ```
-Image_ErrorCode OH_ImagePackerNative_Release(OH_ImagePackerNative *imagePacker)
+Image_ErrorCode OH_ImagePackerNative_Release (OH_ImagePackerNative * imagePacker)
 ```
 
 **Description**
@@ -1515,7 +1523,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_Create()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_Create(OH_ImageReceiverOptions* options, OH_ImageReceiverNative** receiver)
+Image_ErrorCode OH_ImageReceiverNative_Create (OH_ImageReceiverOptions * options, OH_ImageReceiverNative ** receiver )
 ```
 
 **Description**
@@ -1539,7 +1547,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_GetCapacity()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_GetCapacity(OH_ImageReceiverNative* receiver, int32_t* capacity)
+Image_ErrorCode OH_ImageReceiverNative_GetCapacity (OH_ImageReceiverNative * receiver, int32_t * capacity )
 ```
 
 **Description**
@@ -1567,7 +1575,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_GetReceivingSurfaceId()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNative* receiver, uint64_t* surfaceId)
+Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId (OH_ImageReceiverNative * receiver, uint64_t * surfaceId )
 ```
 
 **Description**
@@ -1595,7 +1603,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_GetSize()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_GetSize(OH_ImageReceiverNative* receiver, Image_Size* size)
+Image_ErrorCode OH_ImageReceiverNative_GetSize (OH_ImageReceiverNative * receiver, Image_Size * size )
 ```
 
 **Description**
@@ -1623,7 +1631,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_Off()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_Off(OH_ImageReceiverNative* receiver)
+Image_ErrorCode OH_ImageReceiverNative_Off (OH_ImageReceiverNative * receiver)
 ```
 
 **Description**
@@ -1652,7 +1660,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_On()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_On(OH_ImageReceiverNative* receiver, OH_ImageReceiver_OnCallback callback)
+Image_ErrorCode OH_ImageReceiverNative_On (OH_ImageReceiverNative * receiver, OH_ImageReceiver_OnCallback callback )
 ```
 
 **Description**
@@ -1682,12 +1690,16 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_ReadLatestImage()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage(OH_ImageReceiverNative* receiver, OH_ImageNative** image)
+Image_ErrorCode OH_ImageReceiverNative_ReadLatestImage (OH_ImageReceiverNative * receiver, OH_ImageNative ** image )
 ```
 
 **Description**
 
 Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
+
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback is triggered. When the [OH_ImageNative](#oh_imagenative) object returned by this function is no longer needed, call [OH_ImageNative_Release](#oh_imagenative_release) to release the object. New data can be received only after the release.
 
 **Since**: 12
 
@@ -1710,12 +1722,16 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_ReadNextImage()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_ReadNextImage(OH_ImageReceiverNative* receiver, OH_ImageNative** image)
+Image_ErrorCode OH_ImageReceiverNative_ReadNextImage (OH_ImageReceiverNative * receiver, OH_ImageNative ** image )
 ```
 
 **Description**
 
 Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
+
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback is triggered. When the [OH_ImageNative](#oh_imagenative) object returned by this function is no longer needed, call [OH_ImageNative_Release](#oh_imagenative_release) to release the object. New data can be received only after the release.
 
 **Since**: 12
 
@@ -1738,7 +1754,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverNative_Release()
 
 ```
-Image_ErrorCode OH_ImageReceiverNative_Release(OH_ImageReceiverNative* receiver)
+Image_ErrorCode OH_ImageReceiverNative_Release (OH_ImageReceiverNative * receiver)
 ```
 
 **Description**
@@ -1765,7 +1781,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverOptions_Create()
 
 ```
-Image_ErrorCode OH_ImageReceiverOptions_Create(OH_ImageReceiverOptions **options)
+Image_ErrorCode OH_ImageReceiverOptions_Create (OH_ImageReceiverOptions ** options)
 ```
 
 **Description**
@@ -1788,7 +1804,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverOptions_GetCapacity()
 
 ```
-Image_ErrorCode OH_ImageReceiverOptions_GetCapacity(OH_ImageReceiverOptions* options, int32_t* capacity)
+Image_ErrorCode OH_ImageReceiverOptions_GetCapacity (OH_ImageReceiverOptions * options, int32_t * capacity )
 ```
 
 **Description**
@@ -1812,7 +1828,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverOptions_GetSize()
 
 ```
-Image_ErrorCode OH_ImageReceiverOptions_GetSize(OH_ImageReceiverOptions* options, Image_Size* size)
+Image_ErrorCode OH_ImageReceiverOptions_GetSize (OH_ImageReceiverOptions * options, Image_Size * size )
 ```
 
 **Description**
@@ -1836,7 +1852,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverOptions_Release()
 
 ```
-Image_ErrorCode OH_ImageReceiverOptions_Release(OH_ImageReceiverOptions* options)
+Image_ErrorCode OH_ImageReceiverOptions_Release (OH_ImageReceiverOptions * options)
 ```
 
 **Description**
@@ -1863,7 +1879,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageReceiverOptions_SetCapacity()
 
 ```
-Image_ErrorCode OH_ImageReceiverOptions_SetCapacity(OH_ImageReceiverOptions* options, int32_t capacity)
+Image_ErrorCode OH_ImageReceiverOptions_SetCapacity (OH_ImageReceiverOptions * options, int32_t capacity )
 ```
 
 **Description**
@@ -3149,7 +3165,7 @@ Image_ErrorCode OH_PixelmapNative_CreatePixelmap (uint8_t * data, size_t dataLen
 
 **Description**
 
-Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing.
+Creates a PixelMap based on properties. By default, the BGRA_8888 format is used for data processing. For details about other formats, see [OH_PixelmapInitializationOptions_SetSrcPixelFormat](#oh_pixelmapinitializationoptions_setsrcpixelformat).
 
 **Since**: 12
 
@@ -3439,7 +3455,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_PixelmapNative_SetMetadata()
 
 ```
-Image_ErrorCode OH_PixelmapNative_SetMetadata(OH_PixelmapNative *pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue *value)
+Image_ErrorCode OH_PixelmapNative_SetMetadata (OH_PixelmapNative * pixelmap, OH_Pixelmap_HdrMetadataKey key, OH_Pixelmap_HdrMetadataValue * value )
 ```
 
 **Description**
@@ -3464,7 +3480,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_PixelmapNative_ToSdr()
 
 ```
-Image_ErrorCode OH_PixelmapNative_ToSdr(OH_PixelmapNative *pixelmap)
+Image_ErrorCode OH_PixelmapNative_ToSdr (OH_PixelmapNative * pixelmap)
 ```
 
 **Description**
@@ -3487,7 +3503,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_PixelmapNative_Translate()
 
 ```
-Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x, float y)
+Image_ErrorCode OH_PixelmapNative_Translate (OH_PixelmapNative * pixelmap, float x, float y )
 ```
 
 **Description**
@@ -3512,7 +3528,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_PixelmapNative_WritePixels()
 
 ```
-Image_ErrorCode OH_PixelmapNative_WritePixels(OH_PixelmapNative *pixelmap, uint8_t *source, size_t bufferSize)
+Image_ErrorCode OH_PixelmapNative_WritePixels (OH_PixelmapNative * pixelmap, uint8_t * source, size_t bufferSize )
 ```
 
 **Description**
@@ -5368,3 +5384,5 @@ static const char* OHOS_IMAGE_PROPERTY_YCBCR_SUB_SAMPLING = "YCbCrSubSampling"
 Subsampling factors used for the chrominance components of a YCbCr image.
 
 **Since**: 12
+
+

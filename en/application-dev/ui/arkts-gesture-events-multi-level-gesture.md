@@ -8,13 +8,13 @@ This topic describes the default response sequence of multi-level gesture events
 
 ### Touch Event
 
-The touch event (**onTouch**) is the foundation of all gestures. It comes in four types: Down, Move, Up, and Cancel. A gesture is a sequence of touch events. For example, tap gestures include Down and Up events, and swipe gestures include Down, Move, and Up events. Touch events have the most particularity:
+The [touch event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md) (**onTouch**) is the foundation of all gestures, comprising four types: Down, Move, Up, and Cancel. Gestures are built from the touch events. For example, a tap consists of a Down event followed by an Up event, while a swipe involves a Down event, a sequence of Move events, and finally an Up event. Touch events have unique characteristics:
 
-1. If a component that has the **onTouch** listener added is touched, it receives the callback of the **onTouch** event. Detection of a touch is subject to the touch target and touch control.
+1. Components that have registered for **onTouch** events receive callbacks for these events when touched, influenced by touch targets and touch control settings.
 
-2. The callback of the **onTouch** event is in a closed-loop manner. If a component receives a Down event whose finger ID is 0, it will also receive a Move event and an Up event whose finger ID is 0.
+2. The **onTouch** event callbacks follow a closed-loop pattern. If a component receives a Down event with a specific finger ID (such as **0**), it will also receive subsequent Move and Up events for that same finger ID.
 
-3. The callback of the **onTouch** event follows consistency. If a component receives the Down event whose finger ID is 0 but does not receive the Down event whose finger ID is 1, it will receive other touch events whose finger ID is 0, but not touch events whose finger ID is 1.
+3. The **onTouch** event callbacks maintain consistency. If a component receives a Down event for finger ID 0 but not for finger ID 1, it will only receive touch events for finger ID 0 and will not receive any subsequent touch events for finger ID 1.
 
 For common container components (such as **Column**), **onTouch** events can be received by parent and child components at the same time, and how they are received by sibling components is subject to the layout.
 
@@ -160,7 +160,7 @@ ComponentA() {
 .gesture(TapGesture({count: 1}))
 .hitTestBehavior(HitTestMode.None)
 ```
-With **HitTestMode.None**, the node does not respond to the hit test of a touch event, but its child node and sibling node are considered during the hit test.
+With **HitTestMode.None**, the node neither receives touch events nor interferes with the touch testing of its sibling components or child components.
 
 If **hitTestBehavior** is not set for component A, a touch in the target touch of component B triggers the **onTouch** events of components A and B, as well as the tap gesture of component B.
 

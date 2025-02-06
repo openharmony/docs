@@ -266,10 +266,10 @@ Hash algorithm.
 ## Function Description
 
 
-### OH_NetStack_VerifyCertification()
+### OH_NetStack_CertVerification()
 
 ```
-uint32_t OH_NetStack_VerifyCertification (const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
+uint32_t OH_NetStack_CertVerification(const struct NetStack_CertBlob * cert, const struct NetStack_CertBlob * caCert )
 ```
 
 **Description**

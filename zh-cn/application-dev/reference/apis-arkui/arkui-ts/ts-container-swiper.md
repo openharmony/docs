@@ -127,7 +127,7 @@ indicator(value: DotIndicator | DigitIndicator | boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [DotIndicator](#dotindicator10对象说明)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10对象说明)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
+| value  | [DotIndicator](#dotindicator10)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 
 ### loop
 
@@ -284,7 +284,7 @@ indicatorStyle(value?: IndicatorStyle)
 
 设置导航点样式。
 
-从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10对象说明)代替。
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -440,7 +440,7 @@ indicatorInteractive(value: boolean)
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
-从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10对象说明)代替。
+从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -570,7 +570,7 @@ finishAnimation(callback?: () => void)
 | -------- | ---------- | ---- | -------- |
 | callback | () => void | 否    | 动画结束的回调。 |
 
-## Indicator<sup>10+</sup>对象说明
+## Indicator<sup>10+</sup>
 
 设置导航点距离Swiper组件距离。由于导航点有默认交互区域，交互区域高度为32vp, 所以无法让显示部分完全贴底。
 
@@ -580,16 +580,113 @@ finishAnimation(callback?: () => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### 属性
+### left
 
-| 名称    | 类型                         | 必填  | 说明                                     |
-| ------ | ---------------------------- | ---- | ---------------------------------------- |
-| left   | [Length](ts-types.md#length) | 是    | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：高于right属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的的边界值。|
-| top    | [Length](ts-types.md#length) | 是    | 设置导航点顶部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致<br/>设置为0时：按照0位置布局计算<br/>优先级：高于bottom属性<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。|
-| right  | [Length](ts-types.md#length) | 是    | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐<br/>设置为0时：按照0位置布局计算<br/>优先级：低于left属性<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围 时，取最近的边界值。|
-| bottom | [Length](ts-types.md#length) | 是    | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致<br/>设置为0时：按照0位置布局计算<br/>优先级：低于top属性<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。|
-| start<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| end<sup>12+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+left(value: Length): T
+
+导航点左侧相对于Swiper的位置。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于right属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的的边界值。 |
+
+### top
+
+top(value: Length): T
+
+导航点顶部相对于Swiper的位置。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置导航点顶部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于bottom属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
+
+### right
+
+right(value: Length): T
+
+导航点右侧相对于Swiper的位置。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于left属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围 时，取最近的边界值。 |
+
+### bottom
+
+bottom(value: Length): T
+
+导航点底部相对于Swiper的位置。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
+
+### start<sup>12+</sup>
+
+start(value: LengthMetrics): T
+
+在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp |
+
+### end<sup>12+</sup>
+
+end(value: LengthMetrics): T
+
+在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### dot
 
@@ -615,24 +712,203 @@ static digit(): DigitIndicator
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## DotIndicator<sup>10+</sup>对象说明
+## DotIndicator<sup>10+</sup>
 
-圆点指示器属性及功能继承自[Indicator](#indicator10对象说明)。
+构造圆点指示器样式，继承自[Indicator](#indicator10)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                        | 类型                                   | 必填 | 说明                                                     |
-| ----------------------------- | ------------------------------------------ | ------ | ------------------------------------------------------------ |
-| itemWidth                     | [Length](ts-types.md#length)               | 是     | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| itemHeight                    | [Length](ts-types.md#length)               | 是     | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| selectedItemWidth             | [Length](ts-types.md#length)               | 是     | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| selectedItemHeight            | [Length](ts-types.md#length)               | 是     | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| mask                          | boolean                                    | 是     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| color                         | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| selectedColor                 | [ResourceColor](ts-types.md#resourcecolor) | 是     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| maxDisplayCount<sup>12+</sup> | number                                     | 是     | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+### itemWidth
+
+itemWidth(value: Length): DotIndicator
+
+Swiper组件圆点导航指示器的宽，不支持设置百分比。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### itemHeight
+
+itemHeight(value: Length): DotIndicator
+
+Swiper组件圆点导航指示器的高，不支持设置百分比。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### selectedItemWidth
+
+selectedItemWidth(value: Length): DotIndicator
+
+选中Swiper组件圆点导航指示器的宽，不支持设置百分比。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置选中Swiper组件圆点导航指示器的宽，不支持设置百分比。<br/>默认值：12<br/>单位：vp |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### selectedItemHeight
+
+selectedItemHeight(value: Length): DotIndicator
+
+选中Swiper组件圆点导航指示器的高，不支持设置百分比。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                         | 必填 | 说明                                                         |
+| ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [Length](ts-types.md#length) | 是   | 设置选中Swiper组件圆点导航指示器的高，不支持设置百分比。<br/>默认值：6<br/>单位：vp |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### mask
+
+mask(value: boolean): DotIndicator
+
+是否显示Swiper组件圆点导航指示器的蒙版样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### color
+
+color(value: ResourceColor): DotIndicator
+
+Swiper组件圆点导航指示器的颜色。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### selectedColor
+
+selectedColor(value: ResourceColor): DotIndicator
+
+选中Swiper组件圆点导航指示器的颜色。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+
+### maxDisplayCount<sup>12+</sup>
+
+maxDisplayCount(maxDisplayCount: number): DotIndicator
+
+圆点导航点指示器样式下，导航点显示个数最大值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名          | 类型   | 必填 | 说明                                                         |
+| --------------- | ------ | ---- | ------------------------------------------------------------ |
+| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。 |
+
+**返回值：** 
+
+| 类型                            | 说明         |
+| ------------------------------- | ------------ |
+| [DotIndicator](#dotindicator10) | 圆点指示器。 |
 
 ### constructor
 
@@ -650,9 +926,9 @@ DotIndicator的构造函数。
 >
 >按压导航点时，导航点会放大至1.33倍显示，因此非按压态时导航点的可见范围边界至实际范围边界存在一定距离，该距离会随着itemWidth、itemHeight、selectedItemWidth、selectedItemHeight等参数变大而变大。
 
-## DigitIndicator<sup>10+</sup>对象说明
+## DigitIndicator<sup>10+</sup>
 
-数字指示器属性及功能继承自[Indicator](#indicator10对象说明)。
+构造数字指示器样式，继承自[Indicator](#indicator10)。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -660,12 +936,105 @@ DotIndicator的构造函数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 类型                                     | 必填  | 说明                                     |
-| ----------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| fontColor         | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
-| selectedFontColor | [ResourceColor](ts-types.md#resourcecolor) | 是    | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
-| digitFont         | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 是    | 设置Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点指示器的字重。<br/>默认值：FontWeight.Normal |
-| selectedDigitFont | {<br/>size?:[Length](ts-types.md#length)<br/>weight?:number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string<br/>} | 是    | 设置选中Swiper组件数字导航点的字体样式：<br/>\- size：数字导航点选中指示器的字体大小，不支持设置百分比。<br/>默认值：14vp<br/>\- weight：数字导航点选中指示器的字重。<br/>默认值：FontWeight.Normal |
+### fontColor
+
+fontColor(value: ResourceColor): DigitIndicator
+
+Swiper组件数字导航点的字体颜色。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
+### selectedFontColor
+
+selectedFontColor(value: ResourceColor): DigitIndicator
+
+选中Swiper组件数字导航点的字体颜色。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                                         |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置选中Swiper组件数字导航点的字体颜色。<br/>默认值：'\#ff182431' |
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
+### digitFont
+
+digitFont(value: Font): DigitIndicator
+
+Swiper组件数字导航点的字体样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 设置Swiper组件数字导航点的字体样式。<br/>只支持Font中size和weight参数，family和style设置不生效。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+
+### selectedDigitFont
+
+selectedDigitFont(value: Font): DigitIndicator
+
+选中Swiper组件数字导航点的字体样式。
+
+**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                     | 必填 | 说明                                                         |
+| ------ | ------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Font](ts-types.md#font) | 是   | 设置选中Swiper组件数字导航点的字体样式。<br/>默认值：<br/>{&nbsp;size:&nbsp;14,&nbsp;weight:&nbsp;FontWeight.Normal&nbsp;} |
+
+>**说明：**
+>
+>按组翻页时，数字导航点显示的子节点数量，不包括占位节点。
+
+**返回值：** 
+
+| 类型                                | 说明         |
+| ----------------------------------- | ------------ |
+| [DigitIndicator](#digitindicator10) | 数字指示器。 |
 
 ### constructor
 
@@ -807,7 +1176,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 使用说明：
 
-1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
+1、循环场景下，设置prevMargin和nextMargin属性，使得Swiper前后端显示同一页面时，该接口不生效。<br>2、在页面跟手滑动和离手后执行切换动画的过程中，会对视窗内所有页面逐帧触发[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)回调。例如，当视窗内有下标为0、1的两个页面时，会每帧触发两次index值分别为0和1的回调。<br>3、设置displayCount属性的swipeByGroup参数为true时，若同组中至少有一个页面在视窗内时，则会对同组中所有页面触发回调，若同组所有页面均不在视窗内时，则会一起下渲染树。<br>4、在页面跟手滑动和离手后执行切换动画的过程中，默认动画（页面滑动）依然会发生，若希望页面不滑动，可以设置主轴方向上负的位移（translate属性）来抵消页面滑动。例如：当displayCount属性值为2，视窗内有下标为0、1的两个页面时，页面水平滑动过程中，可以逐帧设置第0页的translate属性在x轴上的值为-position * mainAxisLength来抵消第0页的位移，设置第1页的translate属性在x轴上的值为-(position - 1) * mainAxisLength来抵消第1页的位移。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -817,7 +1186,7 @@ customContentTransition(transition: SwiperContentAnimatedTransition)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12对象说明) | 是 | Swiper自定义切换动画相关信息。 |
+| transition | [SwiperContentAnimatedTransition](#swipercontentanimatedtransition12) | 是 | Swiper自定义切换动画相关信息。 |
 
 ### onContentDidScroll<sup>12+</sup>
 
@@ -853,7 +1222,7 @@ Swiper组件动画相关信息集合。
 | targetOffset | number | 否 | 否 | Swiper动画目标元素在主轴方向上，相对于Swiper起始位置的位移。单位VP，默认值为0。|
 | velocity | number | 否 | 否 | Swiper离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
-## SwiperContentAnimatedTransition<sup>12+</sup>对象说明
+## SwiperContentAnimatedTransition<sup>12+</sup>
 
 Swiper自定义切换动画相关信息。
 
@@ -863,10 +1232,10 @@ Swiper自定义切换动画相关信息。
 
 | 名称 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
-| transition | Callback<[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)> | 是 | 自定义切换动画具体内容。 |
+| timeout | number | 否 | Swiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)的finishTransition接口通知Swiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即将该页面节点下渲染树。单位ms，默认值为0。 |
+| transition | Callback<[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)> | 是 | 自定义切换动画具体内容。 |
 
-## SwiperContentTransitionProxy<sup>12+</sup>对象说明
+## SwiperContentTransitionProxy<sup>12+</sup>
 
 Swiper自定义切换动画执行过程中，返回给开发者的proxy对象。开发者可通过该对象获取自定义动画视窗内的页面信息，同时，也可以通过调用该对象的finishTransition接口通知Swiper组件页面自定义动画已结束。
 
@@ -904,7 +1273,7 @@ finishTransition(): void
 
 type ContentDidScrollCallback = (selectedIndex: number, index: number, position: number, mainAxisLength: number) => void
 
-Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12对象说明)中的说明。
+Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#swipercontenttransitionproxy12)中的说明。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

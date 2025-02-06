@@ -26,7 +26,7 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) | Defines an enum for bit rate modes of an encoder. | 
+| typedef enum [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) [OH_BitrateMode](_a_v_capability.md#oh_bitratemode) | Defines an enum for the bit rate modes of an encoder.  | 
 | typedef struct [OH_AVRange](_o_h___a_v_range.md) [OH_AVRange](_a_v_capability.md#oh_avrange) | Defines the value range, which contains the minimum value and maximum value. | 
 | typedef enum [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory) | Defines an enum for codec categories. | 
 | typedef enum [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature) | Defines an enum for optional features that can be used in specific codec scenarios. | 
@@ -36,7 +36,7 @@ The **native_avcapability.h** file declares the native APIs used to query the co
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) { <br>BITRATE_MODE_CBR = 0, <br>BITRATE_MODE_VBR = 1, <br>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. | 
+| [OH_BitrateMode](_a_v_capability.md#oh_bitratemode-1) { <br/>BITRATE_MODE_CBR = 0, <br/>BITRATE_MODE_VBR = 1, <br/>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder.  | 
 | [OH_AVCodecCategory](_a_v_capability.md#oh_avcodeccategory-1) { HARDWARE = 0, SOFTWARE } | Enumerates the codec categories. | 
 | [OH_AVCapabilityFeature](_a_v_capability.md#oh_avcapabilityfeature-1) {<br> VIDEO_ENCODER_TEMPORAL_SCALABILITY = 0, <br>VIDEO_ENCODER_LONG_TERM_REFERENCE = 1, <br>VIDEO_LOW_LATENCY = 2 <br>} | Enumerates the optional features that can be used in specific codec scenarios. | 
 

@@ -50,7 +50,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("Message sent successfully");
+      console.log("Message send successfully");
     } else {
       console.log("Failed to send the message. Err:" + JSON.stringify(err));
     }

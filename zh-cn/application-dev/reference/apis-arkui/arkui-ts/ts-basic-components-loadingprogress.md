@@ -95,6 +95,22 @@ contentModifier(modifier: ContentModifier\<LoadingProgressConfiguration>)
 | ------ | ------ | ------ |-------------------------------- |
 | enableloading | boolean | true |LoadingProgress动画是否显示。<br/>默认值：true。 |
 
+## LoadingProgressStyle<sup>(deprecated)</sup>枚举说明
+
+从API version 8开始废弃。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 说明                                     |
+| ---------------------- | ---------------------------------------- |
+| Default       | 默认加载样式。API version 8及以后不支持设置。            |
+| Circular      | 环形加载样式。API version 8及以后不支持设置。            |
+| Orbital       | 彗星形加载样式。API version 8及以后默认为彗星形样式。         |
+
 ## 示例
 
 ### 示例1（设置颜色）
@@ -124,9 +140,7 @@ struct LoadingProgressExample {
 该示例通过contentModifier接口，实现了定制内容区的功能，并通过enableLoading接口实现了通过按钮切换是否显示LoadingProgress的效果。
 
 ```ts
-//该示例实现了自定义LoadingProgress的功能，实现了通过按钮切换是否显示LoadingProgress。点击按钮，config.enableLoading切换为false, 不显示LoadingProgress。
 // xxx.ets
-import { hilog } from '@kit.PerformanceAnalysisKit'
 import { promptAction } from '@kit.ArkUI'
 
 class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfiguration> {
@@ -141,7 +155,8 @@ class MyLoadingProgressStyle implements ContentModifier<LoadingProgressConfigura
   }
 }
 
-let arr1: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
+let arr1: string[] =
+  ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"]
 let arr2: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 @Builder
@@ -172,7 +187,7 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
     Row() {
       Column() {
         Gauge({
-          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading?50:30, min: 11, max: 100
+          value: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 50 : 30, min: 11, max: 100
         }) {
           Column() {
             Text('60')
@@ -188,7 +203,6 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
               .maxLines(1)
           }.width('100%').height('100%')
         }
-
         .colors(((config.contentModifier as MyLoadingProgressStyle).enableLoading) ? Color.Grey : 0x2577e3)
         .width(200)
         .strokeWidth(18)
@@ -222,7 +236,10 @@ function buildLoadingProgress(config: LoadingProgressConfiguration) {
       .width('100%')
       .friction(0.6)
 
-      .lanes({ minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80, maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading?40:80 })
+      .lanes({
+        minLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80,
+        maxLength: (config.contentModifier as MyLoadingProgressStyle).enableLoading ? 40 : 80
+      })
       .scrollBar(BarState.Off)
     }
 

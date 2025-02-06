@@ -132,18 +132,6 @@ decoration(value: DecorationStyleInterface)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface对象说明) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
 
-
-## TextRange<sup>12+</sup>
-
-文本范围。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -- | -- | -- | -- |
-| start | number | 否 | 起始索引。 |
-| end | number | 否 | 结束索引。 |
-
 ## 示例
 
 该示例通过fontColor、fontSize、fontStyle、fontWeight属性展示了不同样式的文本效果。

@@ -8,7 +8,7 @@
 
 ## 上传下载接口
 
-目前系统内提供给文件上传下载可用的模块有[@ohos.net.http](../reference/apis-network-kit/js-apis-http.md)模块和[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块。[@ohos.net.http](../reference/apis-network-kit/js-apis-http.md)模块提供基础的HTTP数据请求能力，功能较为基础，本文不做介绍。[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块主要给应用提供上传下载文件、后台传输代理的基础能力。它具备任务管理系统的默认并发功能，简化下载功能的实现和管理，提升数据传输的安全，整合通知机  制，新增任务状态与进度查询功能，具有灵活性、高效性、可扩展性、可靠性、一致性和安全性的优势。
+目前系统内提供给文件上传下载可用的模块有[@ohos.net.http](../reference/apis-network-kit/js-apis-http.md)模块和[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块。[@ohos.net.http](../reference/apis-network-kit/js-apis-http.md)模块提供基础的HTTP数据请求能力，功能较为基础，本文不做介绍。[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块主要给应用提供上传下载文件、后台传输代理的基础能力。它具备任务管理系统的默认并发功能，简化下载功能的实现和管理，提升数据传输的安全，整合通知机制，新增任务状态与进度查询功能，具有灵活性、高效性、可扩展性、可靠性、一致性和安全性的优势。
 
 具体来说，[@ohos.request](../reference/apis-basic-services-kit/js-apis-request.md)模块包括以下功能：
 

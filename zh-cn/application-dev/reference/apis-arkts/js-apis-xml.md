@@ -27,7 +27,7 @@ XmlSerializer的构造函数。
 >
 > buffer是一个用户根据需要自定义大小的缓存区域，用于临时存储生成的XML文本。在使用过程中务必确保所设置的缓存区足够大，使其可以容纳生成文本的所有内容。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -63,7 +63,7 @@ setAttributes(name: string, value: string): void
 >
 > 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的属性名称以及添加多个同名的属性名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -107,7 +107,7 @@ addEmptyElement(name: string): void
 >
 > 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -144,7 +144,7 @@ setDeclaration(): void
 
 编写带有编码的文件声明。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -174,7 +174,7 @@ startElement(name: string): void
 >
 >- 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的元素名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -218,7 +218,7 @@ endElement(): void
 >
 > 调用该接口前必须先调用[startElement](#startelement)接口写入元素开始标记。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -248,7 +248,7 @@ setNamespace(prefix: string, namespace: string): void
 >
 > 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许添加数字开头的前缀以及对同一个元素设置多个命名空间。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -289,7 +289,7 @@ setComment(text: string): void
 
 写入注释内容。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -330,7 +330,7 @@ setCDATA(text: string): void
 >
 > 该接口对所添加数据不做标准XML校验处理，请确保所添加的数据符合标准XML规范。比如不允许在CDATA标签中添加包含"\]\]\>"字符串的数据。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -367,7 +367,7 @@ setText(text: string): void
 
 写入标签值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -407,7 +407,7 @@ setDocType(text: string): void
 
 写入文档类型。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -448,7 +448,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 构造并返回一个XmlPullParser对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -474,8 +474,8 @@ import { util } from '@kit.ArkTS';
 
 let strXml = '<title>Happy</title>'
 let textEncoder = new util.TextEncoder();
-let arrbuffer = textEncoder.encodeInto(strXml);
-let that = new xml.XmlPullParser(arrbuffer.buffer as object as ArrayBuffer, 'UTF-8');
+let uint8Array = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(uint8Array.buffer as object as ArrayBuffer, 'UTF-8');
 ```
 
 ### parse
@@ -484,7 +484,7 @@ parse(option: ParseOptions): void
 
 该接口用于解析xml。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -538,7 +538,7 @@ that.parse(options);
 
 xml解析选项。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 
@@ -562,7 +562,7 @@ getColumnNumber(): number
 
 获取当前列号，从1开始。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -602,7 +602,7 @@ getDepth(): number
 >
 > 标签内的空白事件深度与标签的深度保持一致。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -642,7 +642,7 @@ getLineNumber(): number
 
 获取当前行号，从1开始。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -678,7 +678,7 @@ getName(): string
 
 获取当前元素名称。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -713,7 +713,7 @@ getNamespace(): string
 
 获取当前元素的命名空间。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -752,7 +752,7 @@ getPrefix(): string
 
 获取当前元素前缀。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -792,7 +792,7 @@ getText(): string
 
 获取当前事件的文本内容。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -827,7 +827,7 @@ isEmptyElementTag(): boolean
 
 判断当前元素是否为空元素。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -866,7 +866,7 @@ isWhitespace(): boolean
 
 判断当前事件是否仅包含空格字符。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -905,7 +905,7 @@ getAttributeCount(): number
 
 获取当前开始标记的属性数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -938,7 +938,7 @@ console.log(str);
 
 事件类型枚举。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang
 

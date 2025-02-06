@@ -30,7 +30,7 @@ import { sendablePreferences } from '@kit.ArkData';
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16 * 1024 * 1024个字节。 |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
 
 ## sendablePreferences.getPreferences
 
@@ -312,7 +312,7 @@ Preferences实例配置选项。
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string\|null | 否   | 应用组ID，需要向应用市场获取，暂不支持。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
+| dataGroupId | string\|null | 否   | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应共享沙箱路径下创建Preferences实例。<!--RP1End--><br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
 
 
 ## Preferences
@@ -490,6 +490,8 @@ put(key: string, value: lang.ISendable): Promise&lt;void&gt;
 
   > **说明：**
   >
+  > 当value中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
+  >
   > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -538,6 +540,8 @@ putSync(key: string, value: lang.ISendable): void
 将数据写入缓存的Preferences实例中，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
   > **说明：**
+  >
+  > 当value中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
   >
   > 当对应的键已经存在时，putSync()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
@@ -738,6 +742,10 @@ flush(): Promise&lt;void&gt;
 
 将缓存的Preferences实例中的数据异步存储到共享用户首选项的持久化文件中，使用Promise异步回调。
 
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
@@ -836,6 +844,10 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
+  > **说明：**
+  >
+  > 当调用[removePreferencesFromCache](#sendablepreferencesremovepreferencesfromcache)或者[deletePreferences](#sendablepreferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#sendablepreferencesgetpreferences)后需要重新订阅数据变更。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
@@ -877,7 +889,15 @@ preferences.flush().then(() => {
 
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
-订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
+订阅进程间数据变更，多个进程持有同一个首选项文件时，在任意一个进程（包括本进程）执行[flush](#flush)方法，持久化文件发生变更后，触发callback回调。
+
+本接口提供给申请了[dataGroupId](#options)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
+
+  > **说明：**
+  >
+  > 同一持久化文件在当前进程订阅进程间数据变更的最大数量为50次，超过最大限制后会订阅失败。建议在触发callback回调后及时取消订阅。
+  >
+  > 当调用[removePreferencesFromCache](#sendablepreferencesremovepreferencesfromcache)或者[deletePreferences](#sendablepreferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#sendablepreferencesgetpreferences)后需要重新订阅数据变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -922,6 +942,10 @@ preferences.flush().then(() => {
 on(type: 'dataChange', keys: Array&lt;string&gt;, callback: Callback&lt;lang.ISendable&gt;): void
 
 精确订阅数据变更，只有被订阅的key值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
+
+  > **说明：**
+  >
+  > 当调用[removePreferencesFromCache](#sendablepreferencesremovepreferencesfromcache)或者[deletePreferences](#sendablepreferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#sendablepreferencesgetpreferences)后需要重新订阅数据变更。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1013,6 +1037,8 @@ preferences.flush().then(() => {
 off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅进程间数据变更。
+
+本接口提供给申请了[dataGroupId](#options)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

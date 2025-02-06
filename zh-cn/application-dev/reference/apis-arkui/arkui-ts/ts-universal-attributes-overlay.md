@@ -22,12 +22,12 @@ overlay(value: string | CustomBuilder | ComponentContent, options?: OverlayOptio
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。 |
+| value   | string&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup>&nbsp;\| [ComponentContent](../js-apis-arkui-ComponentContent.md)<sup>12+</sup> | 是   | 遮罩文本内容或自定义组件构造函数。<br/>**说明：**<br/>自定义组件作为浮层时，不支持键盘走焦到自定义组件中。通过CustomBuilder设置浮层时，浮层中的内容会在页面刷新时销毁并重新创建，存在一定的性能损耗，页面频繁刷新的场景推荐使用ComponentContent方式设置浮层。 |
 | options | [OverlayOptions](#overlayoptions12) | 否   | 浮层的定位。<br/>**说明：**<br/>需要解析为Json格式。<br/>API version 12之前，options: <br/>{<br/>align?:&nbsp;[Alignment](ts-appendix-enums.md#alignment),&nbsp;<br/>offset?:&nbsp;{x?:&nbsp;number, y?:&nbsp;number}<br/>} |
 
 >  **说明：**
 >
->  overlay节点不支持onAppear和onDisappear等和节点生命周期相关的事件。
+>  overlay节点不支持onAppear和onDisappear等和节点挂载/卸载相关的事件。
 
 ## OverlayOptions<sup>12+</sup>
 
@@ -109,7 +109,7 @@ struct OverlayExample {
 ```
 ![zh-cn_image_0000001210111632](figures/zh-cn_image_0000001210111632.png)
 
-### 示例3（通过ComponentContext设置浮层）
+### 示例3（通过ComponentContent设置浮层）
 
 该示例通过overlay传入了ComponentContent使backgroundColor不断发生变化。
 

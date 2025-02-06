@@ -1,8 +1,8 @@
 # OpenSL ES
 
 > **NOTE**
-> OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended.
-> You are advised to [switch from OpenSL ES to OHAudio](../../media/audio/replace-opensles-by-ohaudio.md) for development.
+>
+> OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK 8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended. [Switch from OpenSL ES to OHAudio](../../media/audio/replace-opensles-by-ohaudio.md).
 
 ## Introduction
 

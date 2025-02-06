@@ -11,7 +11,7 @@ Popups can be defined with [PopupOptions](../reference/apis-arkui/arkui-ts/ts-un
 
 Text popups are usually used to display text only and do not allow for user interactions. Bind the **Popup** attribute to a component. When the **show** parameter in the **bindPopup** attribute is set to **true**, a popup is displayed.
 
-If you bind the **Popup** attribute to a **\<Button>** component, each time the **\<Button>** button is clicked, the Boolean value of **handlePopup** changes. When it changes to **true**, the popup is displayed.
+If you bind the **Popup** attribute to a **Button** component, each time the **Button** button is clicked, the Boolean value of **handlePopup** changes. When it changes to **true**, the popup is displayed.
 
 ```ts
 @Entry

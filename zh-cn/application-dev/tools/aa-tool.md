@@ -6,6 +6,16 @@ Ability assistant（Ability助手，简称为aa），是用于启动应用和启
 
 在使用本工具前，开发者需要先获取<!--Del-->[<!--DelEnd-->hdc工具<!--Del-->](../../device-dev/subsystems/subsys-toolchain-hdc-guide.md)<!--DelEnd-->，执行hdc shell。
 
+本文中命令介绍均基于交互式命令环境。如果直接执行hdc shell [aa命令]，则需要采用""来包裹aa命令，确保命令中的传参能被正确识别。示例如下：
+
+```bash
+# 启动命令
+hdc shell "aa start -A ohos.want.action.viewData -U 'https://www.example.com'"
+
+# 应用调试/调优命令
+hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
+```
+
 ## aa工具命令列表
 
 | 命令 | 描述 |
@@ -83,7 +93,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       ```json
       {
         "name": "TargetAbility",
-        ......
+        // ......
         "exported": true,
         "skills": [
           {

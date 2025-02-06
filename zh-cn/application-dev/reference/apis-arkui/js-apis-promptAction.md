@@ -416,21 +416,35 @@ openCustomDialog(options: CustomDialogOptions): Promise&lt;number&gt;
 
 ```ts
 import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 @Entry
 @Component
 struct Index {
   private customDialogComponentId: number = 0
 
-  @Builder customDialogComponent() {
+  @Builder
+  customDialogComponent() {
     Column() {
       Text('弹窗').fontSize(30)
       Row({ space: 50 }) {
         Button("确认").onClick(() => {
-          promptAction.closeCustomDialog(this.customDialogComponentId)
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
         })
         Button("取消").onClick(() => {
-          promptAction.closeCustomDialog(this.customDialogComponentId)
+          try {
+            promptAction.closeCustomDialog(this.customDialogComponentId)
+          } catch (error) {
+            let message = (error as BusinessError).message;
+            let code = (error as BusinessError).code;
+            console.error(`closeCustomDialog error code is ${code}, message is ${message}`);
+          }
         })
       }
     }.height(200).padding(5).justifyContent(FlexAlign.SpaceBetween)
@@ -459,6 +473,9 @@ struct Index {
             }).then((dialogId: number) => {
               this.customDialogComponentId = dialogId
             })
+              .catch((error: BusinessError) => {
+                console.error(`openCustomDialog error code is ${error.code}, message is ${error.message}`)
+              })
           })
       }
       .width('100%')
@@ -702,7 +719,7 @@ closeCustomDialog(dialogId: number): void
 | onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。 |
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。 |
 | onWillDisappear<sup>12+</sup> | () => void | 否 | 弹窗退出动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onDateAccept/onCancel/onDateChange)>>onWillDisappear>>onDidDisappear。<br />2.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。 |
-| keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](#keyboardavoidmode12枚举说明) | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| keyboardAvoidMode<sup>12+</sup> |[KeyboardAvoidMode](./arkui-ts/ts-types.md#keyboardavoidmode12枚举说明)  | 否 | 用于设置弹窗是否在拉起软键盘时进行自动避让。<br/>默认值：KeyboardAvoidMode.DEFAULT<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -731,17 +748,6 @@ Dialog关闭的信息。
 | TOUCH_OUTSIDE | 1    | 点击遮障层时。                                               |
 | CLOSE_BUTTON  | 2    | 点击关闭按钮。                                               |
 | SLIDE_DOWN    | 3    | 下拉关闭。<br/>**说明：** <br/>该接口仅支持在[半模态转场](./arkui-ts/ts-universal-attributes-sheet-transition.md)中使用。 |
-
-## KeyboardAvoidMode<sup>12+</sup>枚举说明
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称    | 值   | 说明                                             |
-| ------- | ---- | ------------------------------------------------ |
-| DEFAULT | 0    | 默认避让软键盘并在到达极限高度之后进行高度压缩。 |
-| NONE    | 1    | 不避让软键盘。                                   |
 
 ## Button
 

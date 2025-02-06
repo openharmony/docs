@@ -140,6 +140,18 @@ type Offset = Vector2
 
 ## Matrix4
 
+type Matrix4 = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
+设置四阶矩阵。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型                                                         | 说明                                 |
+| ------------------------------------------------------------ | ------------------------------------ |
+| [number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number,<br/>number,number,number,number] | 参数为长度为16（4\*4）的number数组。 |
+
 用于设置组件的变换信息，该类型为一个 4x4 矩阵，使用一个长度为16的`number[]`进行表示，例如：
 ```ts
 const transform: Matrix4 = [
@@ -723,14 +735,15 @@ get alpha(): number
 import { ColorMetrics } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getBlendColor(baseColor: ResourceColor):ColorMetrics {
-  let sourceColor:ColorMetrics;
+function getBlendColor(baseColor: ResourceColor): ColorMetrics {
+  let sourceColor: ColorMetrics;
   try {
     //在使用ColorMetrics的resourceColor和blendColor需要追加捕获异常处理
     //可能返回的arkui子系统错误码有401和180003
     sourceColor = ColorMetrics.resourceColor(baseColor).blendColor(ColorMetrics.resourceColor("#19000000"));
   } catch (error) {
-    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " + (error as BusinessError).message);
+    console.log("getBlendColor failed, code = " + (error as BusinessError).code + ", message = " +
+    (error as BusinessError).message);
     sourceColor = ColorMetrics.resourceColor("#19000000");
   }
   return sourceColor;
@@ -745,7 +758,7 @@ struct ColorMetricsSample {
         .width('80%')
         .align(Alignment.Center)
         .height(50)
-        .backgroundColor(getBlendColor($r("app.color.background_red")).color)
+        .backgroundColor(getBlendColor(Color.Red).color)
     }
     .width('100%')
     .height('100%')

@@ -52,7 +52,7 @@ The table below lists the common APIs used for application window development. F
 
 ## Setting the Main Window of an Application
 
-In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [module.json5 file](../quick-start/module-configuration-file.md#abilities).
+In the stage model, the main window of an application is created and maintained by a **UIAbility** instance. In the **onWindowStageCreate** callback of the **UIAbility** instance, use **WindowStage** to obtain the main window of the application and set its properties. You can also set the properties (for example, **maxWindowWidth**) in the [abilities tag of the module.json5 file](../quick-start/module-configuration-file.md#abilities).
 
 ### How to Develop
 
@@ -112,6 +112,13 @@ export default class EntryAbility extends UIAbility {
 ## Setting a Subwindow of an Application
 
 You can create an application subwindow, such as a dialog box, and set its properties.
+
+> **NOTE**
+>
+> Due to the following limitations, using subwindows is not recommended in mobile device scenarios. Instead, you are advised to use the [overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md) capability of components. 
+> - Subwindows on mobile devices are constrained within the main window's boundaries, mirroring the limitations of components. 
+> - In split-screen or freeform window mode, components, when compared with subwindows, offer better real-time adaptability to changes in the main window's position and size. 
+> - On certain platforms, system configurations may restrict subwindows to default system animations and rounded shadows, offering no customization options for applications and thereby limiting their versatility.
 
 ### How to Develop
 

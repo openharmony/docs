@@ -409,6 +409,20 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     hidumper -p
     ```
 
+    > **注意**
+    >
+    > 该命令在release版本只支持导出debug应用的进程信息。
+    >
+    > 如何区分debug/release版本：
+    >
+    > 命令1：执行hdc shell "param get|grep const.debuggable"查看输出为0还是1。
+    >
+    > 命令2：执行hdc shell "param get|grep const.product.software.version"查看当前版本是否包含"log"字符串。
+    >
+    > release版本:命令1执行结果为0且命令2不包含"log"字符串
+    >
+    > debug版本:非release版本即为debug版本
+
     **使用样例：**
 
     ```
@@ -644,15 +658,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 该命令仅限debug版本使用，release版本不可用。
     >
-    > 如何区分debug/release版本：
-    >
-    > 命令1：执行hdc shell "param get|grep const.debuggable"查看输出为0还是1。
-    >
-    > 命令2：执行hdc shell "param get|grep const.product.software.version"查看当前版本是否包含"log"字符串。
-    >
-    > release版本:命令1执行结果为0且命令2不包含"log"字符串
-    >
-    > debug版本:非release版本即为debug版本
+    > 如何区分debug/release版本：请查看`hidumper -p`中说明。
 
     **使用样例：**
 
@@ -714,7 +720,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
     >
     > 该命令在release版本只支持导出debug应用的快照信息。
     >
-    > 如何区分debug和release版本：同上。
+    > 如何区分debug和release版本：请查看`hidumper -p`中说明。
     >
     > 导出的jsheap文件一般位于/data/log/faultlog/temp或/data/log/reliability/resource_leak/memory_leak下
 

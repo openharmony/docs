@@ -42,17 +42,19 @@ Use the **build** API of **BuilderNode** to create a built-in component tree. Th
 >
 > In scenarios where @Builder is nested within another @Builder in the **build** method, ensure that the parameters of the nested @Builder match the input parameters provided to the **build** method.
 > 
-> For scenarios where @Builder is nested within another @Builder, if the parameter types do not match, you must include the [BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md) field as a parameter for the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md) method.
+> For scenarios where @Builder is nested within another @Builder, if the parameter types do not match, you must include the [BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12) field as a parameter for the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12) method.
+> 
+> To operate objects in a BuilderNode, ensure that the reference to the BuilderNode is not garbage collected. Once a BuilderNode object is collected by the virtual machine, its FrameNode and RenderNode objects will also be dereferenced from the backend nodes. This means that any FrameNode objects obtained from a BuilderNode will no longer correspond to any actual node if the BuilderNode is garbage collected.
 
 Create offline nodes and built-in component trees, and use them in conjunction with FrameNodes.
 
 The root node of the BuilderNode is directly used as the return value of [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) of [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md).
 
 ```ts
-import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI'
+import { BuilderNode, FrameNode, NodeController, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -88,7 +90,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -111,10 +113,10 @@ When combining a BuilderNode with a RenderNode, note the following:
 If you mount the RenderNode from the BuilderNode under another RenderNode, you must explicitly specify [selfIdeaSize](../reference/apis-arkui/js-apis-arkui-builderNode.md#renderoptions) as the layout constraint for the BuilderNode. This approach to mounting nodes is not recommended.
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext, RenderNode } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -162,7 +164,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -194,10 +196,10 @@ To update nodes within a BuilderNode:
  
 
 ```ts
-import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI"
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -259,7 +261,7 @@ class TextNodeController extends NodeController {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private textNodeController: TextNodeController = new TextNodeController(this.message);
   private count = 0;
 
@@ -295,7 +297,9 @@ A **BuilderNode** object is mapped to a backend entity node, and its memory rele
 
 ## Injecting a Touch Event
 
-Use the [postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent) API in the BuilderNode to inject a [touch event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md) into the bound component for event simulation and forwarding. 
+Use the [postTouchEvent](../reference/apis-arkui/js-apis-arkui-builderNode.md#posttouchevent) API in the BuilderNode to inject a [touch event](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md) into the bound component for event simulation and forwarding.
+
+ 
 
 The following example forwards a touch event from one **Column** component to another in the BuilderNode, so that when the lower **Column** component is touched, the upper **Column** component also receives the same touch event. The API returns **true** if the button's event is successfully recognized.
 
@@ -303,7 +307,7 @@ The following example forwards a touch event from one **Column** component to an
 import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 class Params {
-  text: string = "this is a text"
+  text: string = "this is a text";
 }
 
 @Builder
@@ -368,4 +372,3 @@ struct MyComponent {
   }
 }
 ```
-<!--no_check-->

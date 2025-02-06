@@ -50,7 +50,7 @@ format(format: string,  ...args: Object[]): string
 | %s     | 将参数转换为字符串，用于除Object，BigInt和-0之外的所有值。|
 | %d     | 将参数作为十进制整数进行格式化输出，用于除Symbol和BigInt之外的所有值。|
 | %i     | 将字符串转换为十进制整数，用于除BigInt和Symbol之外的所有值。|
-| %f     | 将字符串转换为浮点数，用于除Bigint和Symbol之外的所有值。|
+| %f     | 将字符串转换为浮点数，用于除BigInt和Symbol之外的所有值。|
 | %j     | 将JavaScript对象转换为JSON字符串进行格式化输出。|
 | %o     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示，但不包含对象的原型链信息。|
 | %O     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示。|
@@ -159,6 +159,7 @@ errnoToString(errno: number): string
 let errnum = -1; // -1 : a system error number
 let result = util.errnoToString(errnum);
 console.info("result = " + result);
+// 输出结果：result = operation not permitted
 ```
 
 **部分错误码及信息示例：**
@@ -179,7 +180,7 @@ console.info("result = " + result);
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果 Promise 已解决，则为 null），第二个参数将是已解决的值。
+对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数将是已解决的值。
 
 > **说明：**
 >
@@ -220,6 +221,7 @@ cb(1, (err : Object, ret : string) => {
   if (err) throw new Error;
   console.info(ret);
 });
+// 输出结果：hello world
 ```
 
 ## util.promisify<sup>9+</sup>
@@ -263,6 +265,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
   try {
     let res: string = await addCall();
     console.info(res);
+    // 输出结果：hello world
   } catch (err) {
     console.info(err);
   }
@@ -380,9 +383,8 @@ parseUUID(uuid: string): Uint8Array
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.info(JSON.stringify(uuid));
-// 输出：
-// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+console.info("uuid = " + uuid);
+// 输出结果：uuid = 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
 
 ## util.printf<sup>(deprecated)</sup>
@@ -415,6 +417,7 @@ printf(format: string,  ...args: Object[]): string
 ```ts
 let res = util.printf("%s", "hello world!");
 console.info(res);
+// 输出结果：hello world!
 ```
 
 
@@ -448,6 +451,7 @@ getErrorString(errno: number): string
 let errnum = -1; // -1 : a system error number
 let result = util.getErrorString(errnum);
 console.info("result = " + result);
+// 输出结果：result = operation not permitted
 ```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
@@ -481,7 +485,7 @@ getHash(object: object): number
 
 获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -517,7 +521,7 @@ let result1 = util.getHash(obj);
 console.info('result1 is ' + result1);
 let result2 = util.getHash(obj);
 console.info('result2 is ' + result2);
-// 输出：result1 与 result2 的值相等，且为随机的Hash值。
+// 输出结果：result1 与 result2 的值相等，且为随机的Hash值。
 ```
 
 
@@ -525,7 +529,7 @@ console.info('result2 is ' + result2);
 
 解码相关选项参数，存在两个属性fatal和ignoreBOM。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -538,7 +542,7 @@ console.info('result2 is ' + result2);
 
 解码是否使用流处理方式。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -550,7 +554,7 @@ console.info('result2 is ' + result2);
 
 解码是否跟随附加数据块相关选项参数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -832,6 +836,8 @@ TextDecoder的构造函数。
 ```ts
 let textDecoder = new util.TextDecoder();
 let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// 输出结果：retStr = utf-8
 ```
 ### create<sup>9+</sup>
 
@@ -839,7 +845,7 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 替代有参构造功能。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -867,6 +873,8 @@ let textDecoderOptions: util.TextDecoderOptions = {
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
 let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// 输出结果：retStr = utf-8
 ```
 
 ### decodeToString<sup>12+</sup>
@@ -875,7 +883,7 @@ decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
 
 通过输入参数解码后输出对应文本。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -914,6 +922,7 @@ let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
 let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
 let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
 console.info("retStr = " + retStr);
+// 输出结果：retStr = abc
 ```
 
 ### decodeWithStream<sup>(deprecated)</sup>
@@ -926,7 +935,7 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 >
 > 从API version 9开始支持，从API version 12开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -972,6 +981,7 @@ uint8[5] = 0x63;
 console.info("input num:");
 let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
+// 输出结果：retStr = abc
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -1051,6 +1061,7 @@ uint8[5] = 0x63;
 console.info("input num:");
 let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
+// 输出结果：retStr = abc
 ```
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
@@ -1059,7 +1070,7 @@ console.info("retStr = " + retStr);
 
 编码后的文本。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
@@ -1089,7 +1100,7 @@ constructor()
 
 TextEncoder的构造函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1105,7 +1116,7 @@ constructor(encoding?: string)
 
 TextEncoder的构造函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1135,7 +1146,7 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1165,7 +1176,7 @@ encodeInto(input?: string): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1204,7 +1215,7 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 对字符串进行编码，将结果写入dest数组。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1759,7 +1770,7 @@ RationalNumber的构造函数。
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[parserationalnumber<sup>9+</sup>](#parserationalnumber9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[parseRationalNumber<sup>9+</sup>](#parserationalnumber9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1806,6 +1817,8 @@ compareTo(another: RationalNumber): number​
 let rationalNumber = new util.RationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.compareTo(rational);
+console.info("result = " + result);
+// 输出结果：result = -1
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
@@ -1833,12 +1846,7 @@ static getCommonDivisor(number1: number,number2: number): number
 | -------- | -------- |
 | number | 返回两个给定数字的最大公约数。 |
 
-**示例：**
 
-```ts
-let rationalNumber = new util.RationalNumber(1,2);
-let result = util.RationalNumber.getCommonDivisor(4,6);
-```
 
 ## LRUCache<sup>9+</sup>
 
@@ -2260,7 +2268,7 @@ console.info('result = ' + result);
 
 values(): V[]
 
-获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表 。
+获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2661,6 +2669,8 @@ class Temperature{
 let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
+console.info("range = " + range);
+// 输出结果：range = [30, 40]
 ```
 
 ### toString<sup>9+</sup>
@@ -2702,6 +2712,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.toString();
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### intersect<sup>9+</sup>
@@ -2818,6 +2830,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.intersect(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
 ```
 
 ### getUpper<sup>9+</sup>
@@ -2859,6 +2873,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getUpper();
+console.info("result = " + result);
+// 输出结果：result = 40
 ```
 
 ### getLower<sup>9+</sup>
@@ -2900,6 +2916,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getLower();
+console.info("result = " + result);
+// 输出结果：result = 30
 ```
 
 ### expand<sup>9+</sup>
@@ -2958,6 +2976,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
@@ -3016,6 +3036,8 @@ let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
 let result = range.expand(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
@@ -3072,6 +3094,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### contains<sup>9+</sup>
@@ -3128,6 +3152,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.contains(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = true
 ```
 
 ### contains<sup>9+</sup>
@@ -3186,6 +3212,8 @@ let tempLess = new Temperature(20);
 let tempMore = new Temperature(45);
 let rangeSec = new util.ScopeHelper(tempLess, tempMore);
 let result = range.contains(rangeSec);
+console.info("result = " + result);
+// 输出结果：result = false
 ```
 
 ### clamp<sup>9+</sup>
@@ -3242,6 +3270,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.clamp(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = 35
 ```
 
 ## Base64Helper<sup>9+</sup>
@@ -3256,7 +3286,7 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **示例：**
 
@@ -3270,7 +3300,7 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3279,7 +3309,7 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
-| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC 表示 Base64编码。<br/>util.Type.BASIC_URL_SAFE 表示 Base64URL编码。 |
+| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC表示Base64编码。<br/>util.Type.BASIC_URL_SAFE表示Base64URL编码。 |
 
 **返回值：**
 
@@ -3301,6 +3331,8 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
   let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
   let result = base64Helper.encodeSync(array);
+  console.info("result = " + result);
+  // 输出结果：result = 99,122,69,122
   ```
 
 
@@ -3310,7 +3342,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3341,6 +3373,12 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
   let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
   let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  输出结果：result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+  aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+  aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+  */
   ```
 
 
@@ -3350,7 +3388,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 通过输入参数解码后输出对应Uint8Array对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3359,7 +3397,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64解码。<br/>- 当参数取值为util.Type.MIME，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64解码。<br/>- 当参数取值为util.Type.MIME，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
 
@@ -3381,6 +3419,10 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
   let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
   let result = base64Helper.decodeSync(buff, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  输出结果：result = 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+  */
   ```
 
 
@@ -3390,7 +3432,7 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 通过输入参数异步编码后输出对应Uint8Array对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3399,7 +3441,7 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
-| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC 表示 Base64编码。<br/>util.Type.BASIC_URL_SAFE表示 Base64URL编码。 |
+| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC表示Base64编码。<br/>util.Type.BASIC_URL_SAFE表示Base64URL编码。 |
 
 **返回值：**
 
@@ -3422,6 +3464,7 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
   let array = new Uint8Array([115,49,51]);
   base64Helper.encode(array).then((val) => {
     console.info(val.toString());
+    // 输出结果：99,122,69,122
   })
   ```
 
@@ -3441,7 +3484,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -3464,6 +3507,12 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
   base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
     console.info(val);
+    /*
+    输出结果：TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+    aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+    aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+    */
+
   })
   ```
 
@@ -3483,7 +3532,7 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8Array对象或者字符串。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示Base64解码。<br/>- 当参数取值为util.Type.MIME时，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示Base64解码。<br/>- 当参数取值为util.Type.MIME时，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
 
@@ -3506,6 +3555,9 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
   base64Helper.decode(array, util.Type.MIME).then((val) => {
     console.info(val.toString());
+    /*
+    输出结果：77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+    */
   })
   ```
 
@@ -3519,7 +3571,7 @@ constructor(encoding?: string)
 
 StringDecoder的构造函数。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3549,7 +3601,7 @@ write(chunk: string | Uint8Array): string
 
 返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3579,7 +3631,8 @@ write(chunk: string | Uint8Array): string
   let decoder = new util.StringDecoder('utf-8');
   let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
   const decoded = decoder.write(input);
-  console.info("decoder:", decoded);// 你好
+  console.info("decoded:", decoded);
+  // 输出结果：decoded: 你好
   ```
 
 ### end<sup>12+</sup>
@@ -3588,7 +3641,7 @@ end(chunk?: string | Uint8Array): string
 
 结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
 
-**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3617,10 +3670,12 @@ end(chunk?: string | Uint8Array): string
   ```ts
   let decoder = new util.StringDecoder('utf-8');
   let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
-  const decoded = decoder.write(input.slice(0, 5));
-  const decodedend = decoder.end(input.slice(5));
-  console.info("decoded:", decoded);// 你
-  console.info("decodedend:", decodedend);// 好
+  const writeString = decoder.write(input.slice(0, 5));
+  const endString = decoder.end(input.slice(5));
+  console.info("writeString:", writeString);
+  // 输出结果：writeString: 你
+  console.info("endString:", endString);
+  // 输出结果：endString: 好
   ```
 
 ## Type<sup>10+</sup>
@@ -3632,10 +3687,10 @@ Base64编码格式枚举。
 
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| MIME  | 1 | 表示MIME编码格式。**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。|
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。|
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。 |
+| BASIC | 0 | 表示BASIC编码格式。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## types<sup>8+</sup>
@@ -5019,6 +5074,8 @@ isSharedArrayBuffer(value: Object): boolean
   pro.put(2,10);
   pro.put(1,8);
   let result = pro.length;
+  console.info("result = " + result);
+  // 输出结果：result = 2
   ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -5042,7 +5099,7 @@ constructor(capacity?: number)
 **示例：**
 
   ```ts
-  let lrubuffer : util.LruBuffer<number,number> = new util.LruBuffer();
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   ```
 
 ### updateCapacity<sup>(deprecated)</sup>
@@ -5096,6 +5153,8 @@ toString(): string
   pro.get(2);
   pro.remove(20);
   let result = pro.toString();
+  console.info("result = " + result);
+  // 输出结果：result = Lrubuffer[ maxSize = 64, hits = 1, misses = 0, hitRate = 100% ]
   ```
 
 ### getCapacity<sup>(deprecated)</sup>
@@ -5121,6 +5180,8 @@ getCapacity(): number
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.getCapacity();
+  console.info("result = " + result);
+  // 输出结果：result = 64
   ```
 
 ### clear<sup>(deprecated)</sup>
@@ -5168,6 +5229,8 @@ getCreateCount(): number
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(1,8);
   let result = pro.getCreateCount();
+  console.info("result = " + result);
+  // 输出结果：result = 0
   ```
 
 ### getMissCount<sup>(deprecated)</sup>
@@ -5195,6 +5258,8 @@ getMissCount(): number
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMissCount();
+  console.info("result = " + result);
+  // 输出结果：result = 0
   ```
 
 ### getRemovalCount<sup>(deprecated)</sup>
@@ -5223,6 +5288,8 @@ getRemovalCount(): number
   pro.updateCapacity(2);
   pro.put(50,22);
   let result = pro.getRemovalCount();
+  console.info("result = " + result);
+  // 输出结果：result = 0
   ```
 
 ### getMatchCount<sup>(deprecated)</sup>
@@ -5250,6 +5317,8 @@ getMatchCount(): number
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info("result = " + result);
+  // 输出结果：result = 1
   ```
 
 ### getPutCount<sup>(deprecated)</sup>
@@ -5276,6 +5345,8 @@ getPutCount(): number
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.getPutCount();
+  console.info("result = " + result);
+  // 输出结果：result = 1
   ```
 
 ### isEmpty<sup>(deprecated)</sup>
@@ -5302,6 +5373,8 @@ isEmpty(): boolean
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.isEmpty();
+  console.info("result = " + result);
+  // 输出结果：result = false
   ```
 
 ### get<sup>(deprecated)</sup>
@@ -5334,6 +5407,8 @@ get(key: K): V | undefined
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result  = pro.get(2);
+  console.info("result = " + result);
+  // 输出结果：result = 10
   ```
 
 ### put<sup>(deprecated)</sup>
@@ -5366,6 +5441,8 @@ put(key: K,value: V): V
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.put(2,10);
+  console.info("result = " + result);
+  // 输出结果：result = 10
   ```
 
 ### values<sup>(deprecated)</sup>
@@ -5394,6 +5471,8 @@ values(): V[]
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
   let result = pro.values();
+  console.info("result = " + result);
+  // 输出结果：result = anhu,grfb
   ```
 
 ### keys<sup>(deprecated)</sup>
@@ -5420,6 +5499,8 @@ keys(): K[]
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.keys();
+  console.info("result = " + result);
+  // 输出结果：result = 2
   ```
 
 ### remove<sup>(deprecated)</sup>
@@ -5452,6 +5533,8 @@ remove(key: K): V | undefined
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.remove(20);
+  console.info("result = " + result);
+  // 输出结果：result = undefined
   ```
 
 ### afterRemoval<sup>(deprecated)</sup>
@@ -5486,8 +5569,11 @@ class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
       console.info('key: ' + key);
+      // 输出结果：key: 11
       console.info('value: ' + value);
+      // 输出结果：value: 1
       console.info('newValue: ' + newValue);
+      // 输出结果：newValue: null
     }
   }
 }
@@ -5528,6 +5614,8 @@ contains(key: K): boolean
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.contains(20);
+  console.info('result = ' + result);
+  // 输出结果：result = false
   ```
 
 ### createDefault<sup>(deprecated)</sup>
@@ -5659,6 +5747,8 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
+  console.info("range = " + range);
+  // 输出结果：range = [30, 40]
   ```
 
 ### toString<sup>(deprecated)</sup>
@@ -5702,6 +5792,8 @@ toString(): string
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.toString();
+  console.info("result = " + result);
+  // 输出结果：result = [30, 40]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -5754,6 +5846,8 @@ intersect(range: Scope): Scope
   let tempMidS = new Temperature(39);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
   let result = range.intersect(rangeFir );
+  console.info("result = " + result);
+  // 输出结果：result = [35, 39]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -5806,6 +5900,8 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
   let tempMidS = new Temperature(39);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.intersect(tempMiDF, tempMidS);
+  console.info("result = " + result);
+  // 输出结果：result = [35, 39]
   ```
 
 ### getUpper<sup>(deprecated)</sup>
@@ -5849,6 +5945,8 @@ getUpper(): ScopeType
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.getUpper();
+  console.info("result = " + result);
+  // 输出结果：result = 40
   ```
 
 ### getLower<sup>(deprecated)</sup>
@@ -5892,6 +5990,8 @@ getLower(): ScopeType
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.getLower();
+  console.info("result = " + result);
+  // 输出结果：result = 30
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -5944,6 +6044,8 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
   let tempMidS = new Temperature(39);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.expand(tempMiDF, tempMidS);
+  console.info("result = " + result);
+  // 输出结果：result = [30, 40]
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -5996,6 +6098,8 @@ expand(range: Scope): Scope
   let range = new util.Scope(tempLower, tempUpper);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
   let result = range.expand(rangeFir);
+  console.info("result = " + result);
+  // 输出结果：result = [30, 40]
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -6046,6 +6150,8 @@ expand(value: ScopeType): Scope
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.expand(tempMiDF);
+  console.info("result = " + result);
+  // 输出结果：result = [30, 40]
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -6096,6 +6202,8 @@ contains(value: ScopeType): boolean
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.contains(tempMiDF);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -6148,6 +6256,8 @@ contains(range: Scope): boolean
   let tempMore = new Temperature(45);
   let rangeSec = new util.Scope(tempLess, tempMore);
   let result = range.contains(rangeSec);
+  console.info("result = " + result);
+  // 输出结果：result = false
   ```
 
 ### clamp<sup>(deprecated)</sup>
@@ -6199,6 +6309,8 @@ clamp(value: ScopeType): ScopeType
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.clamp(tempMiDF);
+  console.info("result = " + result);
+  // 输出结果：result = 35
   ```
 
 
@@ -6256,6 +6368,8 @@ encodeSync(src: Uint8Array): Uint8Array
   let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = base64.encodeSync(array);
+  console.info("result = " + result);
+  // 输出结果：result = 99,122,69,122
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -6288,6 +6402,8 @@ encodeToStringSync(src: Uint8Array): string
   let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
   let result = base64.encodeToStringSync(array);
+  console.info("result = " + result);
+  // 输出结果：result = czEz
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -6320,6 +6436,8 @@ decodeSync(src: Uint8Array | string): Uint8Array
   let base64 = new util.Base64();
   let buff = 'czEz';
   let result = base64.decodeSync(buff);
+  console.info("result = " + result);
+  // 输出结果：result = 115,49,51
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -6353,6 +6471,7 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
   let array = new Uint8Array([115,49,51]);
   base64.encode(array).then((val) => {
     console.info(val.toString());
+    // 输出结果：99,122,69,122
   })
   ```
 
@@ -6387,6 +6506,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
   let array = new Uint8Array([115,49,51]);
   base64.encodeToString(array).then((val) => {
       console.info(val);
+      // 输出结果：czEz
   })
   ```
 
@@ -6422,5 +6542,6 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
   let array = new Uint8Array([99,122,69,122]);
   base64.decode(array).then((val) => {
     console.info(val.toString());
+    // 输出结果：115,49,51
   })
   ```

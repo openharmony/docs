@@ -1,6 +1,6 @@
 # @ohos.display (Display)
 
-The **Display** module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
+The Display module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
 > **NOTE**
 >
@@ -14,7 +14,7 @@ import { display } from '@kit.ArkUI';
 
 ## DisplayState
 
-Enumerates the display states.
+Enumerates the states of a display.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -32,7 +32,7 @@ Enumerates the display states.
 
 ## Orientation<sup>10+</sup>
 
-Enumerates the orientations of the display.
+Enumerates the orientations of a display.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -47,7 +47,7 @@ Enumerates the orientations of the display.
 
 ## FoldStatus<sup>10+</sup>
 
-Enumerates the folding statuses of a foldable device.
+Enumerates the fold statuses of a foldable device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -55,7 +55,7 @@ Enumerates the folding statuses of a foldable device.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| FOLD_STATUS_UNKNOWN | 0 | The folding status of the device is unknown.|
+| FOLD_STATUS_UNKNOWN | 0 | The fold status of the device is unknown.|
 | FOLD_STATUS_EXPANDED | 1 | The device is fully open.|
 | FOLD_STATUS_FOLDED | 2 | The device is folded (completely closed).|
 | FOLD_STATUS_HALF_FOLDED | 3 | The device is half-folded, somehow between fully open and completely closed.|
@@ -75,6 +75,10 @@ Enumerates the display modes of a foldable device.
 | FOLD_DISPLAY_MODE_MAIN | 2 | The main screen of the device is displayed.|
 | FOLD_DISPLAY_MODE_SUB | 3 | The subscreen of the device is displayed.|
 | FOLD_DISPLAY_MODE_COORDINATION | 4 | Both screens of the device are displayed in collaborative mode.|
+
+>**NOTE**<br>
+>&bullet; For large-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_FULL** state, and the outer screen is in the **FOLD_DISPLAY_MODE_MAIN** state.<br>
+>&bullet; For small-screen inward-foldable devices, the inner screen is the **FOLD_DISPLAY_MODE_MAIN** state, and the outer screen is in the **FOLD_DISPLAY_MODE_SUB** state.
 
 ## FoldCreaseRegion<sup>10+</sup>
 
@@ -106,7 +110,7 @@ Describes a rectangle on the display.
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
-Describes the curved area (an area that is not intended for displaying content) on the waterfall display.
+Describes the curved area on a waterfall display.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -114,14 +118,14 @@ Describes the curved area (an area that is not intended for displaying content) 
 
 | Name  | Type     | Readable| Writable| Description              |
 | ------ | ------------- | ---- | ---- | ------------------ |
-| left   | [Rect](#rect9) | Yes  | No  | Bounding rectangle for the curved area, which is located on the left of the display surface.|
-| top    | [Rect](#rect9) | Yes  | No  | Bounding rectangle for the curved area, which is located at the top of the display surface.|
-| right  | [Rect](#rect9) | Yes  | No  | Bounding rectangle for the curved area, which is located on the right of the display surface.|
-| bottom | [Rect](#rect9) | Yes  | No  | Bounding rectangle for the curved area, which is located at the bottom of the display surface.|
+| left   | [Rect](#rect9) | Yes  | No  | Rectangle of the curved area on the left of the waterfall display.|
+| top    | [Rect](#rect9) | Yes  | No  | Rectangle of the curved area on the top of the waterfall display.|
+| right  | [Rect](#rect9) | Yes  | No  | Rectangle of the curved area on the right of the waterfall display.|
+| bottom | [Rect](#rect9) | Yes  | No  | Rectangle of the curved area at the bottom of the waterfall display.|
 
 ## CutoutInfo<sup>9+</sup>
 
-Describes the cutout, which is an area that is not intended for displaying content on the display.
+Describes the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -129,8 +133,8 @@ Describes the cutout, which is an area that is not intended for displaying conte
 
 | Name                       | Type     | Readable| Writable| Description              |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Bounding rectangle for punch holes and notches.|
-| waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes| No| Curved area on the waterfall display.|
+| boundingRects                | Array\<[Rect](#rect9)> | Yes  | No  | Unusable areas (bounding rectangles) designed for punch holes and notches.|
+| waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | Yes| No| Curved area on a waterfall display.|
 
 ## DisplayPhysicalResolution<sup>12+</sup>
 Describes the display mode of a foldable device and the corresponding physical screen resolution information.
@@ -173,7 +177,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types. 3. Parameter verification failed.|
 | 1400003 | This display manager service works abnormally. |
 
 **Example**
@@ -430,7 +434,7 @@ display.off('remove', callback);
 ## display.isFoldable<sup>10+</sup>
 isFoldable(): boolean
 
-Checks whether the device is foldable.
+Checks whether the current device is foldable.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -462,7 +466,7 @@ ret = display.isFoldable();
 ## display.getFoldStatus<sup>10+</sup>
 getFoldStatus(): FoldStatus
 
-Obtains the folding status of the foldable device.
+Obtains the fold status of the foldable device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -472,7 +476,7 @@ Obtains the folding status of the foldable device.
 
 | Type| Description|
 | ----------------------------------------------- | ------------------------------------------------------- |
-| [FoldStatus](#foldstatus10) | Folding status of the device.|
+| [FoldStatus](#foldstatus10) | Fold status of the device.|
 
 **Error codes**
 
@@ -559,7 +563,13 @@ console.info('Succeeded in obtaining current fold crease region. Data: ' + JSON.
 
 on(type: 'foldStatusChange', callback: Callback&lt;FoldStatus&gt;): void
 
-Subscribes to folding status change events of the foldable device.
+Subscribes to fold status change events of the foldable device.
+
+Note that [display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10) subscribes to display mode change events of the foldable device.
+
+The two are different. In terms of time sequence, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
+
+To check whether the content is displayed on the inner or outer screen of the foldable device, use [display.on('foldDisplayModeChange')](#displayonfolddisplaymodechange10).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -569,8 +579,8 @@ Subscribes to folding status change events of the foldable device.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
-| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | Yes  | Callback used to return the folding status.|
+| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the fold status of the device changes.|
+| callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | Yes  | Callback used to return the fold status.|
 
 **Error codes**
 
@@ -586,6 +596,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
+/**
+ * The callback parameter used for subscription must be passed as an object.
+ * If an anonymous function is used for registration, a new underlying object is created each time the function is called, causing memory leakage.
+*/
 let callback: Callback<display.FoldStatus> = (data: display.FoldStatus) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
 };
@@ -596,7 +610,7 @@ display.on('foldStatusChange', callback);
 
 off(type: 'foldStatusChange', callback?: Callback&lt;FoldStatus&gt;): void
 
-Unsubscribes from folding status change events of the foldable device.
+Unsubscribes from fold status change events of the foldable device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -606,7 +620,7 @@ Unsubscribes from folding status change events of the foldable device.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the folding status of the device changes.|
+| type     | string                                   | Yes  | Event type. The event **'foldStatusChange'** is triggered when the fold status of the device changes.|
 | callback | Callback&lt;[FoldStatus](#foldstatus10)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
 
 **Error codes**
@@ -705,7 +719,7 @@ display.off('foldAngleChange');
 
 on(type: 'captureStatusChange', callback: Callback&lt;boolean&gt;): void
 
-Subscribes to screen capture, projection, or recording status changes.
+Subscribes to screen capture, casting, or recording status changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -715,8 +729,8 @@ Subscribes to screen capture, projection, or recording status changes.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, projection, or recording status changes.|
-| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the screen capture, projection, or recording status change. The value **true** means that the device starts screen capture, projection, or recording, and **false** means that the device stops screen capture, projection, or recording.|
+| type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
+| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the screen capture, casting, or recording status change. The value **true** means that the device starts screen capture, casting, or recording, and **false** means that the device stops screen capture, casting, or recording.|
 
 **Error codes**
 
@@ -742,7 +756,7 @@ display.on('captureStatusChange', callback);
 
 off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 
-Unsubscribes from screen capture, projection, or recording status changes.
+Unsubscribes from screen capture, casting, or recording status changes.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -752,7 +766,7 @@ Unsubscribes from screen capture, projection, or recording status changes.
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |-------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, projection, or recording status changes.|
+| type     | string                                   | Yes| Event type. The event **'captureStatusChange'** is triggered when the screen capture, casting, or recording status changes.|
 | callback | Callback&lt;boolean&gt; | No| Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified type will be unregistered.|
 
 **Error codes**
@@ -773,7 +787,7 @@ display.off('captureStatusChange');
 ## display.isCaptured<sup>12+</sup>
 isCaptured(): boolean
 
-Checks whether the device screen is being captured, projected, or recorded.
+Checks whether the display is being captured, projected, or recorded.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -783,7 +797,7 @@ Checks whether the device screen is being captured, projected, or recorded.
 
 | Type| Description|
 | ----------------------------------------------- | ------------------------------------------------------- |
-| boolean | **true**: The device screen is being captured, projected, or recorded.<br> **false**: The device screen is not being captured, projected, or recorded.|
+| boolean | **true**: The display is being captured, projected, or recorded.<br> **false**: The display is not being captured, projected, or recorded.|
 
 **Error codes**
 
@@ -807,6 +821,10 @@ ret = display.isCaptured();
 on(type: 'foldDisplayModeChange', callback: Callback&lt;FoldDisplayMode&gt;): void
 
 Subscribes to display mode change events of the foldable device.
+
+Subscribes to display mode change events of the foldable device. Note that [display.on('foldStatusChange')](#displayonfoldstatuschange10) subscribes to fold status change events of the foldable device. 
+
+The two are different. In terms of time sequence, the fold status changes first, and the bottom layer matches the display mode status based on the fold status.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -833,9 +851,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { Callback } from '@kit.BasicServicesKit';
 
+/**
+ * The callback parameter used for subscription must be passed as an object.
+ * If an anonymous function is used for registration, a new underlying object is created each time the function is called, causing memory leakage.
+*/
 let callback: Callback<display.FoldDisplayMode> = (data: display.FoldDisplayMode) => {
   console.info('Listening enabled. Data: ' + JSON.stringify(data));
-};
+}; 
 display.on('foldDisplayModeChange', callback);
 ```
 
@@ -1017,7 +1039,7 @@ Implements a **Display** instance, with properties and APIs defined.
 
 Before calling any API in **Display**, you must use [getAllDisplays()](#displaygetalldisplays9) or [getDefaultDisplaySync()](#displaygetdefaultdisplaysync9) to obtain a **Display** instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1028,19 +1050,19 @@ Before calling any API in **Display**, you must use [getAllDisplays()](#displayg
 | alive | boolean | Yes| No| Whether the display is alive.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                    |
 | state | [DisplayState](#displaystate) | Yes| No| State of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                     |
 | refreshRate | number | Yes| No| Refresh rate of the display, in hz. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                            |
-| rotation | number | Yes| No| Clockwise rotation angle of the screen of the display.<br>The value **0** indicates that the screen of the display rotates clockwise by 0°.<br>The value **1** indicates that the screen of the display rotates clockwise by 90°.<br>The value **2** indicates that the screen of the display rotates clockwise by 180°.<br>The value **3** indicates that the screen of the display rotates clockwise by 270°.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| width | number | Yes| No| Screen width of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| height | number | Yes| No| Screen height of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| rotation | number | Yes| No| Clockwise rotation angle of the display.<br>The value **0** indicates that the display rotates clockwise by 0°.<br>The value **1** indicates that the display rotates clockwise by 90°.<br>The value **2** indicates that the display rotates clockwise by 180°.<br>The value **3** indicates that the display rotates clockwise by 270°.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| width | number | Yes| No| Width of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
+| height | number | Yes| No| Height of the display, in px. The value must be an integer.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
 | densityDPI | number | Yes| No| Physical pixel density of the display, that is, the number of pixels per inch. The value is a floating point number, in px. The value range is [80.0, 640.0]. Generally, the value is **160.0** or **480.0**. The actual value depends on the optional values provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                  |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | Yes| No| Orientation of the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | densityPixels | number | Yes| No| Logical pixel density of the display, which is the scaling coefficient between physical pixels and logical pixels. The calculation method is as follows:<br>![densityPixels](figures/densityPixels.jpg)<br>The value is a floating point number and is restricted by the range of **densityDPI**. The value range is [0.5, 4.0]. Generally, the value is **1.0** or **3.0**. The actual value depends on the density DPI provided by the device in use.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                 |
 | scaledDensity | number | Yes| No| Scaling factor for fonts displayed on the display. The value must be a floating point number. Generally, the value is the same as that of **densityPixels**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                   |
-| xDPI | number | Yes| No| Exact physical dots per inch of the screen in the horizontal direction. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| yDPI | number | Yes| No| Exact physical dots per inch of the screen in the vertical direction. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| xDPI | number | Yes| No| Exact physical pixels per inch of the display in the X dimension. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| yDPI | number | Yes| No| Exact physical pixels per inch of the display in the Y dimension. The value must be a floating point number.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 | colorSpaces<sup>11+</sup> | Array<[colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md)> | Yes| No| All color spaces supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                               |
 | hdrFormats<sup>11+</sup> | Array<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md)> | Yes| No| All HDR formats supported by the display.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                              |
-| availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on the screen of a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
-| availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on the screen of a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| availableWidth<sup>12+</sup> | number | Yes| No| Width of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
+| availableHeight<sup>12+</sup> | number | Yes| No| Height of the available area on a 2-in-1 device, in px. The value is an integer greater than 0.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                   |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
@@ -1123,7 +1145,7 @@ promise.then((data: display.CutoutInfo) => {
 ### getAvailableArea<sup>12+</sup>
 getAvailableArea(): Promise&lt;Rect&gt;
 
-Obtains the available area of the screen of the current 2-in-1 device. This API uses a promise to return the result.
+Obtains the available area of the display of the current device. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1167,7 +1189,7 @@ try {
 ### on('availableAreaChange')<sup>12+</sup>
 on(type: 'availableAreaChange', callback: Callback&lt;Rect&gt;): void
 
-Subscribes to changes of the available area on the screen of the current 2-in-1 device. This API uses an asynchronous callback to return the result.
+Subscribes to changes of the available area on the display of the current device. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1177,7 +1199,7 @@ Subscribes to changes of the available area on the screen of the current 2-in-1 
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes.|
+| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the display changes.|
 | callback | Callback&lt;[Rect](#rect9)&gt; | Yes  | Callback used to return the new available area.|
 
 **Error codes**
@@ -1212,7 +1234,7 @@ try {
 
 off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 
-Unsubscribes from changes of the available area on the screen of the current 2-in-1 device.
+Unsubscribes from changes of the available area on the display of the current device.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1222,7 +1244,7 @@ Unsubscribes from changes of the available area on the screen of the current 2-i
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the screen changes.|
+| type     | string                                   | Yes  | Event type. The event **'availableAreaChange'** is triggered when the available area of the display changes.|
 | callback | Callback&lt;[Rect](#rect9)&gt; | No  | Callback used for unsubscription. If no value is passed in, all subscriptions to the specified event are canceled.|
 
 **Error codes**

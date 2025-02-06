@@ -233,7 +233,7 @@ struct Index {
     Row() {
       Stack() {
         Column(){
-          Button ("Text Below Image")
+          Button("Text Below Image")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -373,7 +373,7 @@ struct Index {
     Row() {
       Stack() {
         Column(){
-          Button ("Text + Check Box Dialog Box")
+          Button("Text + Check Box Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -463,7 +463,7 @@ struct Index {
     Row() {
       Stack() {
         Column() {
-          Button ("Progress Dialog Box")
+          Button("Progress Dialog Box")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -559,7 +559,7 @@ struct Index {
 
   build() {
     Column() {
-      Button ("Dialog Box with Custom Content")
+      Button("Dialog Box with Custom Content")
         .onClick(() => {
           this.dialogController.open()
         })

@@ -89,7 +89,7 @@ struct SpringMotionDemo {
             if(event){
               if (event.type === TouchType.Move) {
                 // When the user places or moves their finger on the screen, use the responsiveSpringMotion curve.
-                animateTo({ curve: curves.responsiveSpringMotion() }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.responsiveSpringMotion() }, () => {
                   // Subtract the radius so that the center of the ball moves to where the finger is placed.
                   this.positionX = event.touches[0].windowX - this.diameter / 2;
                   this.positionY = event.touches[0].windowY - this.diameter / 2;
@@ -97,7 +97,7 @@ struct SpringMotionDemo {
                 })
               } else if (event.type === TouchType.Up) {
                 // Step 4: Set the end value of the state variable for after the user lifts their finger (or fingers), and use springMotion for movement toward the new value. The springMotion animation inherits the previous velocity.
-                animateTo({ curve: curves.springMotion() }, () => {
+                this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
                   this.positionX = 100;
                   this.positionY = 100;
                   console.info(`touchUp, animateTo x:100, y:100`);

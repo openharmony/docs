@@ -3,6 +3,9 @@
 
 For details about scenarios and related concepts, see [HUKS Access Control Overview](huks-identity-authentication-overview.md).
 
+> **NOTE**
+> 
+> For symmetric encryption and decryption, only the AES/CBC, AES/GCM, and SM4/CBC modes support fine-grained access control.
 
 ## How to Develop
 
@@ -111,6 +114,7 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 /*
  * Set the key alias and encapsulate the key property set.
  */
+let IV = '1234567890123456';
 let srcKeyAlias = 'test_sm4_key_alias';
 let handle: number;
 let challenge: Uint8Array;
@@ -138,6 +142,14 @@ let properties: Array<huks.HuksParam> = [{
   value: StringToUint8Array(IV),
 }];
 
+function StringToUint8Array(str: string) {
+  let arr: number[] = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
 let huksOptions: huks.HuksOptions = {
   properties: properties,
   inData: new Uint8Array(new Array())
@@ -163,7 +175,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
     }
   });
 }
-
+/* Initialize the session in the HUKS and obtain the challenge value. */
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
   let throwObject: throwObject = { isThrow: false };
@@ -185,7 +197,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.error(`promise: doInit input arg invalid, ` + JSON.stringify(error));
   }
 }
-
+/* Call UserIAM to start fingerprint authentication and trigger the access control process in HUKS. */
 function userIAMAuthFinger(huksChallenge: Uint8Array) {
   // Obtain an authentication object.
   let authTypeList: userAuth.UserAuthType[] = [authType];

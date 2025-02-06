@@ -6,12 +6,11 @@
 
 当前所有Picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
 
-如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
-
+如果开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 保存图片或视频类文件
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)在后续版本不再演进，建议使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，建议使用[Media Library Kit（媒体文件管理服务）中能力来保存媒体库资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
 
@@ -54,15 +53,16 @@
    })
    ```
 
-> **注意**：
-> <br>**1**、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
-> <br>**2**、使用Picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
-> <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
+   > **注意**：
+   >
+   > 1、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
+   > 2、使用Picker的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口获取到URI的权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
+   > 3、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
+   > 4、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
 4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
 
-   ```ts 
+   ```ts
    const uri = '';
    //这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
@@ -98,6 +98,7 @@
    ```
 
 3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-5)接口拉起FilePicker界面进行文件保存。
+
    ```ts
    let uri: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -111,11 +112,12 @@
      console.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-> **注意**：
-> <br>**1**、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
-> <br>**2**、使用Picker获取的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)URI权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
-> <br>**3**、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
-> <br>**4**、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
+
+   > **注意**：
+   > 1、建议不在Picker的回调里直接使用此URI进行打开文件操作，需要定义一个全局变量保存URI。
+   > 2、使用Picker获取的[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)URI权限是临时读写权限,待退出应用后台后，获取的临时权限就会失效。
+   > 3、如果想要获取持久化权限(仅在2in1设备上生效)，请参考[文件持久化授权访问](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)。
+   > 4、可以通过便捷方式，直接将文件保存到[Download](#download模式保存文件)目录下。
 
 4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符(fd)。
 
@@ -133,9 +135,11 @@
    fs.closeSync(file);
  
    ```
+
 ## DOWNLOAD模式保存文件
 
-用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会拉起授权接口，用户确认后会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
+用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
+
 1. 导入选择器模块和文件管理模块。
 
    ```ts
@@ -155,7 +159,7 @@
    ```
 
 3. 创建文件选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-1)接口拉起FilePicker模态窗界面进行文件保存。用户点击同意，即可在download目录下创建对应应用的专属目录，返回该目录的URI。
-   
+
    ```ts
    let uri: string = '';
    // 请确保 getContext(this) 返回结果为 UIAbilityContext
@@ -170,4 +174,3 @@
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-

@@ -16,7 +16,7 @@
 
 
 - 应用框架相关Kit开放能力：Ability Kit（程序框架服务）、ArkUI（方舟UI框架）等。
-- 应用服务相关Kit开放能力：Account Kit（华为帐号服务）、Location Kit（位置服务）等。
+- 应用服务相关Kit开放能力：Calendar Kit（日历服务）、Location Kit（位置服务）等。
 - 系统相关Kit开放能力：Network Kit（网络服务）、Universal Keystore Kit（密钥管理服务）等。
 - 媒体相关Kit开放能力：Audio Kit（音频服务）、Media Library Kit（媒体文件管理服务）等。
 - 图形相关Kit开放能力：ArkGraphics 2D（方舟2D图形服务）等。
@@ -25,11 +25,11 @@
 ## 工具
 
 DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
-在[工具](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421)部分，讲解了DevEco Studio工具的详细用法，包括使用该工具进行工程创建、应用签名、应用调试、应用安装运行的指导。
+在[工具](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-create-new-project-V5#section1826317225311)部分，讲解了DevEco Studio工具的详细用法，包括使用该工具进行工程创建、应用签名、应用调试、应用安装运行的指导。
 
 ## 示例教程
 
-我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
+我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-5.0.0-Release/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
 
 ## API参考
 

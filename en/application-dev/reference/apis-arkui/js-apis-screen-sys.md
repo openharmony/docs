@@ -1,6 +1,6 @@
 # @ohos.screen (Screen) (System API)
 
-The **Screen** module implements basic screen management. You can use the APIs of this module to obtain a **Screen** object, listen for screen changes, and create and destroy virtual screens.
+The Screen module implements basic screen management. You can use the APIs of this module to obtain a Screen object, listen for screen changes, and create and destroy virtual screens.
 
 > **NOTE**
 >
@@ -1403,15 +1403,15 @@ Enumerates the screen orientations.
 
 ## ScreenSourceMode<sup>10+</sup>
 
-Enumerates the display content source modes of the screen.
+Enumerates the sources of the content displayed on the screen.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 | Name              | Value  | Description                            |
 | ------------------ | ---- | -------------------------------- |
-| SCREEN_MAIN         | 0    | The primary screen is displayed (default).|
-| SCREEN_MIRROR       | 1    | The mirror is displayed.        |
-| SCREEN_EXTEND       | 2    | The extended screen is displayed.        |
+| SCREEN_MAIN         | 0    | Content from the primary screen (default).|
+| SCREEN_MIRROR       | 1    | Content from a mirror screen.        |
+| SCREEN_EXTEND       | 2    | Content from an extend screen.        |
 | SCREEN_ALONE        | 3    | The source is unspecified.    |
 
 ## ScreenModeInfo

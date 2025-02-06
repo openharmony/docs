@@ -458,6 +458,30 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 });
 ```
 
+## SoundPool<sup>10+</sup>
+
+type SoundPool = _SoundPool
+
+音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+| 类型     | 说明                       |
+| -------- | ------------------------------ |
+| [SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
+
+## PlayParameters<sup>10+</sup>
+
+type PlayParameters = _PlayParameters
+
+表示音频池播放参数设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+| 类型     | 说明                       |
+| -------- | ------------------------------ |
+| [PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
+
 ## AVErrorCode<sup>9+</sup>
 
 [媒体错误码](errorcode-media.md)类型枚举
@@ -531,6 +555,7 @@ Codec MIME类型枚举。
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_LANGUAGE<sup>12+</sup>  | 'language'  | 表示字幕语言，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示track名称，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示视频轨类型，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -558,10 +583,10 @@ Codec MIME类型枚举。
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
-| BUFFERING_START   | 1    | 表示开始缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| BUFFERING_END     | 2    | 表示结束缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
-| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| BUFFERING_START   | 1    | 表示开始缓冲。当上报BUFFERING_START时，播放器会暂停播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| BUFFERING_END     | 2    | 表示结束缓冲。当上报BUFFERING_END时，播放器会恢复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| BUFFERING_PERCENT | 3    | 表示缓冲百分比。可参考该事件感知缓冲进度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| CACHED_DURATION   | 4    |  表示已缓冲数据预估可播放时长，单位为毫秒（ms）。缓冲区中的数据变化量大于500ms，上报一次。可参考该事件做进度条。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## StateChangeReason<sup>9+</sup>
 
@@ -789,6 +814,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 
@@ -832,6 +858,7 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
@@ -1520,6 +1547,7 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
@@ -1576,6 +1604,7 @@ deselectTrack(index: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { media } from '@kit.MediaKit';
@@ -2485,6 +2514,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit'
 import { common } from '@kit.AbilityKit'
@@ -2526,6 +2556,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit'
 
@@ -4263,6 +4294,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
@@ -7487,6 +7519,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 **示例2：**
 
+<!--code_no_check-->
 ```ts
 import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';

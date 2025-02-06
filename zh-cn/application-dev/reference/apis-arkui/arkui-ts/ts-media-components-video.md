@@ -518,6 +518,11 @@ struct VideoCreateComponent {
             console.info('onUpdate is ' + e.time)
           }
         })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
+          }
+        })
 
       Row() {
         Button('src').onClick(() => {
@@ -570,6 +575,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -626,6 +635,46 @@ struct ImageAnalyzerExample {
             this.aiController.getImageAnalyzerSupportTypes()
         }).margin(5)
       }
+    }
+  }
+}
+```
+
+### 示例3（播放拖入的视频）
+
+以下示例展示了如何使Video组件能够播放拖入的视频。
+
+```ts
+// xxx.ets
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+
+@Entry
+@Component
+struct Index {
+  @State videoSrc: Resource | string = $rawfile('video1.mp4');
+  private controller: VideoController = new VideoController();
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        controller: this.controller
+      })
+        .width('100%')
+        .height(600)
+        .onPrepared(() => {
+          // 在onPrepared回调中执行controller的start方法，确保视频源更换后直接开始播放。
+          this.controller.start();
+        })
+        .onDrop((e: DragEvent) => {
+          // 外部视频拖入应用Video组件范围，松手后触发通过onDrop注册的回调。
+          // 在DragEvent中会包含拖入的视频源信息，取出后赋值给状态变量videoSrc即可改变Video的视频源。
+          let record = e.getData().getRecords()[0];
+          if (record.getType() == uniformTypeDescriptor.UniformDataType.VIDEO) {
+            let videoInfo = record as unifiedDataChannel.Video;
+            this.videoSrc = videoInfo.videoUri;
+          }
+        })
     }
   }
 }

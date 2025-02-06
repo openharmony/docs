@@ -74,15 +74,15 @@ The stacking order of child elements in the **Stack** component is set through t
 ```ts
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
-    Text ('Stacked element 1').textAlign (TextAlign.End).fontSize (20)
+    Text('Stacked element 1').textAlign(TextAlign.End).fontSize(20)
   }.width(100).height(100).backgroundColor(0xffd306)
 
   Column() {
-    Text ('Stacked element 2').fontSize (20)
+    Text('Stacked element 2').fontSize(20)
   }.width(150).height(150).backgroundColor(Color.Pink)
 
   Column() {
-    Text ('Stacked element 3').fontSize (20)
+    Text('Stacked element 3').fontSize(20)
   }.width(200).height(200).backgroundColor(Color.Grey)
 }.width(350).height(350).backgroundColor(0xe0e0e0)
 ```
@@ -95,15 +95,15 @@ In the preceding figure, the size of the stacked element 3 is greater than that 
 ```ts
 Stack({ alignContent: Alignment.BottomStart }) {
   Column() {
-    Text ('Stacked element 1').fontSize (20)
+    Text('Stacked element 1').fontSize(20)
   }.width(100).height(100).backgroundColor(0xffd306).zIndex(2)
 
   Column() {
-    Text ('Stacked element 2').fontSize (20)
+    Text('Stacked element 2').fontSize(20)
   }.width(150).height(150).backgroundColor(Color.Pink).zIndex(1)
 
   Column() {
-    Text ('Stacked element 3').fontSize (20)
+    Text('Stacked element 3').fontSize(20)
   }.width(200).height(200).backgroundColor(Color.Grey)
 }.width(350).height(350).backgroundColor(0xe0e0e0)
 ```
@@ -138,9 +138,9 @@ struct StackSample {
       }.width('100%').height('100%')
 
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
-        Text ('Contacts').fontSize (16)
-        Text ('Settings').fontSize (16)
-        Text ('Messaging').fontSize (16)
+        Text('Contacts').fontSize(16)
+        Text('Settings').fontSize(16)
+        Text('Messaging').fontSize(16)
       }
       .width('50%')
       .height(50)
@@ -154,3 +154,4 @@ struct StackSample {
 
 
 ![en-us_image_0000001511421368](figures/en-us_image_0000001511421368.png)
+<!--RP1--><!--RP1End-->

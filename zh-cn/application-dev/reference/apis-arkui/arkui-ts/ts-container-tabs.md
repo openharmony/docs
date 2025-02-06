@@ -33,7 +33,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 | 参数名         | 类型                              | 必填   | 说明                                     |
 | ----------- | --------------------------------- | ---- | ---------------------------------------- |
 | barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
-| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
 
 ## BarPosition枚举说明
@@ -150,7 +150,7 @@ barWidth(value: Length)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9对象说明)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9对象说明)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置SubTabBarStyle和BottomTabBarStyle的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabBarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的宽度值。<br/>默认值：<br/>未设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)和[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)的TabBar且vertical属性为false时，默认值为Tabs的宽度。<br/>未设置SubTabBarStyle和BottomTabBarStyle的TabBar且vertical属性为true时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为56vp。<br/>设置BottomTabBarStyle样式且vertical属性为true时，默认值为96vp。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为Tabs的宽度。 |
 
 ### barHeight
 
@@ -166,7 +166,7 @@ barHeight(value: Length)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9对象说明)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9对象说明)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为48vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp, 从API Version 12开始，默认值变更为48vp。 |
 
 ### animationDuration
 
@@ -542,7 +542,7 @@ customContentTransition(delegate: (from: number, to: number) => TabContentAnimat
 
 | 类型                                                         | 说明                     |
 | ------------------------------------------------------------ | ------------------------ |
-| [TabContentAnimatedTransition](#tabcontentanimatedtransition11对象说明)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
+| [TabContentAnimatedTransition](#tabcontentanimatedtransition11)&nbsp;\|&nbsp;undefined | 自定义切换动画相关信息。 |
 
 ### onContentWillChange<sup>12+</sup>
 
@@ -593,7 +593,7 @@ Tabs组件动画相关信息集合。
 | targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
 | velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
 
-## TabContentAnimatedTransition<sup>11+</sup>对象说明
+## TabContentAnimatedTransition<sup>11+</sup>
 
 Tabs自定义切换动画相关信息。
 
@@ -1383,18 +1383,19 @@ struct TabsCustomAnimationExample {
 @Entry
 @Component
 struct TabsExample {
+  @State selectedIndex: number = 2
   @State currentIndex: number = 2
   private controller: TabsController = new TabsController()
   @Builder tabBuilder(title: string,targetIndex: number) {
     Column(){
-      Text(title).fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+      Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)
     .justifyContent(FlexAlign.Center)
   }
   build() {
     Column() {
-      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+      Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
         TabContent() {
           Column(){
             Text('首页的内容')
@@ -1426,6 +1427,7 @@ struct TabsExample {
       .animationDuration(0)
       .onChange((index: number) => {
         this.currentIndex = index
+        this.selectedIndex = index
       })
       .width(360)
       .height(600)
@@ -1500,6 +1502,8 @@ import { CommonUtil } from '../common/CommonUtil'
 @Entry
 @Component
 struct TabsExample {
+  @State colorArray: [string, string][] =
+    [['green', '#00CB87'], ['blue', '#007DFF'], ['yellow', '#FFBF00'], ['pink', '#E67C92']]
   @State currentIndex: number = 0
   @State animationDuration: number = 300
   @State indicatorLeftMargin: number = 0
@@ -1507,6 +1511,12 @@ struct TabsExample {
   private tabsWidth: number = 0
   private textInfos: [number, number][] = []
   private isStartAnimateTo: boolean = false
+
+  aboutToAppear():void {
+    for (let i = 0; i < this.colorArray.length; i++) {
+      this.textInfos.push([0, 0]);
+    }
+  }
 
   @Builder
   tabBuilder(index: number, name: string) {
@@ -1518,6 +1528,9 @@ struct TabsExample {
         .id(index.toString())
         .onAreaChange((oldValue: Area, newValue: Area) => {
           this.textInfos[index] = [newValue.globalPosition.x as number, newValue.width as number]
+          if (!this.isStartAnimateTo && this.currentIndex === index && this.tabsWidth > 0) {
+            this.setIndicatorAttr(this.textInfos[this.currentIndex][0], this.textInfos[this.currentIndex][1])
+          }
         })
     }.width('100%')
   }
@@ -1525,21 +1538,11 @@ struct TabsExample {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Tabs({ barPosition: BarPosition.Start }) {
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#00CB87')
-        }.tabBar(this.tabBuilder(0, 'green'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#007DFF')
-        }.tabBar(this.tabBuilder(1, 'blue'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#FFBF00')
-        }.tabBar(this.tabBuilder(2, 'yellow'))
-
-        TabContent() {
-          Column().width('100%').height('100%').backgroundColor('#E67C92')
-        }.tabBar(this.tabBuilder(3, 'pink'))
+        ForEach(this.colorArray, (item: [string, string], index:number) => {
+          TabContent() {
+            Column().width('100%').height('100%').backgroundColor(item[1])
+          }.tabBar(this.tabBuilder(index, item[0]))
+        })
       }
       .onAreaChange((oldValue: Area, newValue: Area)=> {
         this.tabsWidth = newValue.width as number
@@ -1585,7 +1588,8 @@ struct TabsExample {
     let nextIndex = index
     if (index > 0 && (CommonUtil.getIsRTL() ? event.currentOffset < 0 : event.currentOffset > 0)) {
       nextIndex--
-    } else if (index < 3 && (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
+    } else if (index < this.textInfos.length - 1 &&
+        (CommonUtil.getIsRTL() ? event.currentOffset > 0 : event.currentOffset < 0)) {
       nextIndex++
     }
     let indexInfo = this.textInfos[index]

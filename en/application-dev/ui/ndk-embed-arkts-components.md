@@ -1,7 +1,7 @@
 # Embedding ArkTS Components
 
 
-ArkUI on the native side offers a subset of ArkTS features, excluding certain capabilities such as declarative UI syntax, custom struct components, and advanced UI components.
+ArkUI on the native side offers a subset of ArkTS features, which excludes certain capabilities such as declarative UI syntax, custom struct components, and some advanced UI components.
 
 
 For scenarios requiring ArkTS-specific features, ArkUI provides a mechanism to embed ArkTS components using [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md). This involves encapsulating ArkTS components and passing them to the native side, where they are converted into **ArkUI_NodeHandle** objects through the [OH_ArkUI_GetNodeHandleFromNapiValue](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_getnodehandlefromnapivalue) API for component mounting.
@@ -202,9 +202,9 @@ The following example introduces the ArkTS **Refresh** component based on the [I
 
    ```cpp
    // native_init.cpp
+   #include "napi/native_api.h"
    #include "ArkUIMixedRefresh.h"
    #include "NativeEntry.h"
-   #include "napi/native_api.h"
    
    EXTERN_C_START
    static napi_value Init(napi_env env, napi_value exports) {

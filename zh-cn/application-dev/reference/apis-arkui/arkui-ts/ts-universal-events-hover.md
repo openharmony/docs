@@ -22,7 +22,7 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 | 参数名              | 类型                                | 必填 | 说明                                                         |
 | ------------------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | isHover             | boolean                             | 是   | 表示鼠标或手写笔是否悬浮在组件上，鼠标或手写笔进入组件时为true,&nbsp;离开组件时为false。 |
-| event<sup>11+</sup> | [HoverEvent](#hoverevent11对象说明) | 是   | 设置阻塞事件冒泡属性。                                       |
+| event<sup>11+</sup> | [HoverEvent](#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。                                       |
 
 **返回值：**
 
@@ -30,11 +30,11 @@ onHover(event: (isHover: boolean, event: HoverEvent) => void): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## HoverEvent<sup>11+</sup>对象说明
+## HoverEvent<sup>10+</sup>对象说明
 
 继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

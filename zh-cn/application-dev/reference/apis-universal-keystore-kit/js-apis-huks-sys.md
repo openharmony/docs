@@ -18,7 +18,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 
 指定用户身份生成密钥，使用Promise方式异步返回结果。基于密钥不出TEE原则，通过promise不会返回密钥材料内容，只用于表示此次调用是否成功。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Security.Huks.Extension
 
@@ -28,7 +28,7 @@ generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | 是   | 用户ID。                 |
 | keyAlias | string                      | 是   | 密钥别名。               |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+| options  | [HuksOptions](js-apis-huks.md#huksoptions) | 是   | 用于存放生成key所需的[属性标签](native__huks__type_8h.md#枚举)。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
 **错误码：**
 

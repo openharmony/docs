@@ -217,18 +217,18 @@ test100
 ### 修改内置全局变量或原型链（ArkTS内禁止修改对象原型与内置方法）
 **副作用产生场景**
 
-某些第三方库，如polyfills（兼容性填充库）或框架可能会修改内置的全局对象或原型链，以便在较旧的浏览器或运行环境中支持现代的JavaScript特性。Polyfills通过向内置对象（如Array、String、Object）的原型链添加方法来实现。
+某些第三方库或框架可能会修改内置的全局对象或原型链，以便在较旧的浏览器或运行环境中支持现代的JavaScript特性。这可能会影响其他代码的运行。
 ```typescript
-// polyfill.ets
-export let data = "data from polyfill"
+// modifyPrototype.ts
+export let data = "data from modifyPrototype"
 Array.prototype.includes = function (value) {
     return this.indexOf(value) !== -1;
 };
 
 // main.ets
-import { data } from "./polyfill" // 此时修改了Array的原型链
+import { data } from "./modifyPrototype" // 此时修改了Array的原型链
 let arr = [1, 2, 3, 4];
-console.log(arr.includes(1)); // 此时调用的是polyfill.ets中的Array.prototype.includes方法
+console.log("arr.includes(1) = " + arr.includes(1)); // 此时调用的是modifyPrototype.ts中的Array.prototype.includes方法
 function maybeNotCalledAtAll() {
     console.log(data);
 }

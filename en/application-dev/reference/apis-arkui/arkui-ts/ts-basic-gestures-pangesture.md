@@ -125,7 +125,7 @@ struct PanGestureExample {
         })
       )
 
-      Button ('Set PanGesture Trigger Condition')
+      Button('Set PanGesture Trigger Condition')
         .onClick(() => {
           // Set the pan gesture to be triggered by two fingers moving in any direction.
           this.panOption.setDirection(PanDirection.All)

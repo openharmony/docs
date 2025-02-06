@@ -3,7 +3,9 @@
 
 ## Overview
 
-The AVDemuxer module provides the APIs for extracting samples from media streams.
+The AVDemuxer module provides the APIs for extracting [samples](../../media/avcodec/audio-video-demuxer.md) from media streams.
+
+For details about the development guide and sample, see [Media Data Demuxing](../../media/avcodec/audio-video-demuxer.md).
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -35,9 +37,9 @@ The AVDemuxer module provides the APIs for extracting samples from media streams
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_Destroy](#oh_avdemuxer_destroy) (OH_AVDemuxer \*demuxer) | Destroys an **OH_AVDemuxer** instance and clears internal resources.| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | Selects a track from which the demuxer reads sample data.|
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_UnselectTrackByID](#oh_avdemuxer_unselecttrackbyid) (OH_AVDemuxer \*demuxer, uint32_t trackIndex) | Deselects a track. The demuxer no longer reads sample data from a track after it is deselected.|
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSample](#oh_avdemuxer_readsample) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*info) | Reads the sample and related information from the specified track. (This API is deprecated in API version 11.) |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSample](#oh_avdemuxer_readsample) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*info) | Reads the sample and related information from the specified track. (This function is deprecated from API version 11.) |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_ReadSampleBuffer](#oh_avdemuxer_readsamplebuffer) (OH_AVDemuxer \*demuxer, uint32_t trackIndex, [OH_AVBuffer](_core.md#oh_avbuffer) \*sample) | Reads the sample of the specified track.|
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SeekToTime](#oh_avdemuxer_seektotime) (OH_AVDemuxer \*demuxer, int64_t millisecond, [OH_AVSeekMode](_codec_base.md#oh_avseekmode) mode) | Seeks to the specified time for all the selected tracks based on a seek mode. | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SeekToTime](#oh_avdemuxer_seektotime) (OH_AVDemuxer \*demuxer, int64_t millisecond, [OH_AVSeekMode](_codec_base.md#oh_avseekmode) mode) | Seeks to the specified time for all the selected tracks based on a [seek mode](_codec_base.md#oh_avseekmode-1). |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SetMediaKeySystemInfoCallback](#oh_avdemuxer_setmediakeysysteminfocallback) (OH_AVDemuxer \*demuxer, DRM_MediaKeySystemInfoCallback callback) | Sets an asynchronous callback for obtaining the media key system information. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback](#oh_avdemuxer_setdemuxermediakeysysteminfocallback) (OH_AVDemuxer \*demuxer, Demuxer_MediaKeySystemInfoCallback callback) | Sets an asynchronous callback for obtaining the media key system information. | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVDemuxer_GetMediaKeySystemInfo](#oh_avdemuxer_getmediakeysysteminfo) (OH_AVDemuxer \*demuxer, DRM_MediaKeySystemInfo \*mediaKeySystemInfo) | Obtains the media key system information. | 
@@ -73,7 +75,6 @@ Defines a pointer to the callback function for the media key system information.
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
 **Since**: 11
-
 
 ## Function Description
 
@@ -133,7 +134,7 @@ The destroyed instance cannot be used until it is re-created. You are advised to
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -164,7 +165,7 @@ The media key system information can be obtained only after [Demuxer_MediaKeySys
 
 **Returns**
 
-Returns either of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -205,7 +206,7 @@ You must select a track before reading the sample. After this API is called, the
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -237,7 +238,7 @@ OH_AVErrCode OH_AVDemuxer_ReadSampleBuffer (OH_AVDemuxer *demuxer, uint32_t trac
 
 Reads the sample and related information from the specified track.
 
-You must select a track before reading the sample. After this API is called, the demuxer automatically proceeds to the next frame.
+You can use [OH_AVDemuxer_SelectTrackByID](#oh_avdemuxer_selecttrackbyid) to select a track before reading the sample. After this API is called, the demuxer automatically proceeds to the next frame.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -253,7 +254,7 @@ You must select a track before reading the sample. After this API is called, the
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -282,7 +283,7 @@ OH_AVErrCode OH_AVDemuxer_SeekToTime (OH_AVDemuxer *demuxer, int64_t millisecond
 
 **Description**
 
-Seeks to the specified time for all the selected tracks based on a seek mode.
+Seeks to the specified time for all the selected tracks based on a [seek mode](_codec_base.md#oh_avseekmode-1).
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -298,7 +299,7 @@ Seeks to the specified time for all the selected tracks based on a seek mode.
 
 **Returns**
 
-Returns any of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
+Returns one of the following result codes defined in [OH_AVErrCode](_core.md#oh_averrcode):
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -306,7 +307,7 @@ Returns any of the following result codes defined in [OH_AVErrCode](_core.md#oh_
 
     1. The value of **demuxer** is a null pointer or does not point to a demuxer instance.
     2. The demuxer is not correctly initialized.
-    2. The value of **millisecond** is out of range.
+    3. The value of **millisecond** is out of range.
 
 **AV_ERR_OPERATE_NOT_PERMIT**:
 
@@ -346,7 +347,7 @@ When **OH_AVDemuxer_ReadSample** is called, only the data in the selected track 
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -382,7 +383,7 @@ Sets a callback for obtaining the media key system information.
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -413,7 +414,7 @@ Sets a callback for obtaining the media key system information.
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 
@@ -449,7 +450,7 @@ If the same track is deselected multiple times, **AV_ERR_OK** is returned and th
 
 **Returns**
 
-Returns any of the following result codes:
+Returns one of the following result codes:
 
 **AV_ERR_OK**: The operation is successful.
 

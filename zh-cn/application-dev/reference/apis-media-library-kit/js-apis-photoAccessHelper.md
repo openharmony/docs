@@ -962,7 +962,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 
 | 参数名   | 类型                                                                   | 必填 | 说明                      |
 | -------- |----------------------------------------------------------------------| ---- | ------------------------- |
-| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：** 仅支持处理图片、视频uri。 |
+| srcFileUris | Array&lt;string&gt; | 是 | 需保存到媒体库中的图片/视频文件对应的[媒体库uri](../../file-management/user-file-uri-intro.md#媒体文件uri)。<br>**注意：**<br>- 仅支持处理图片、视频uri。<br>- 不支持手动拼接的uri，需调用接口获取，获取方式参考[媒体文件uri获取方式](../../file-management/user-file-uri-intro.md#媒体文件uri获取方式)。  |
 | photoCreationConfigs | Array&lt;[PhotoCreationConfig](#photocreationconfig12)&gt; | 是 | 保存图片/视频到媒体库的配置，包括保存的文件名等，与srcFileUris保持一一对应。 |
 
 **返回值：**
@@ -1046,7 +1046,7 @@ createAssetWithShortTermPermission(photoCreationConfig: PhotoCreationConfig): Pr
 **示例：**
 
 ```ts
-import fs from '@ohos.file.fs';
+import { fileIo } from '@kit.CoreFileKit';
 
 async function example() {
     console.info('createAssetWithShortTermPermissionDemo.');
@@ -1060,22 +1060,22 @@ async function example() {
         };
 
         let resultUri: string = await phAccessHelper.createAssetWithShortTermPermission(photoCreationConfig);
-        let resultFile: fs.File = fs.openSync(resultUri, fs.OpenMode.READ_WRITE);
+        let resultFile: fileIo.File = fileIo.openSync(resultUri, fileIo.OpenMode.READ_WRITE);
         // 实际场景请使用真实的uri和文件大小
-        let srcFile:  fs.File = fs.openSync("file://test.jpg", fs.OpenMode.READ_ONLY);
+        let srcFile:  fileIo.File = fileIo.openSync("file://test.jpg", fileIo.OpenMode.READ_ONLY);
         let bufSize: number = 2000000;
         let readSize: number = 0;
         let buf = new ArrayBuffer(bufSize);
-        let readLen = fs.readSync(srcFile.fd, buf, {
+        let readLen = fileIo.readSync(srcFile.fd, buf, {
             offset: readSize,
             length: bufSize
         });
         if (readLen > 0) {
             readSize += readLen;
-            fs.writeSync(resultFile.fd, buf, { length: readLen });
+            fileIo.writeSync(resultFile.fd, buf, { length: readLen });
         }
-        fs.closeSync(srcFile);
-        fs.closeSync(resultFile);
+        fileIo.closeSync(srcFile);
+        fileIo.closeSync(resultFile);
     } catch (err) {
         console.error('createAssetWithShortTermPermission failed, errCode is ' + err.code + ', errMsg is ' + err.message);
     }
@@ -1737,7 +1737,7 @@ select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用promise异步返回形式，传入可选参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
 
-**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris具有永久授权，可通过调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1792,7 +1792,7 @@ select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用callback异步返回形式，传入参数PhotoSelectOptions对象，返回PhotoSelectResult对象。
 
-**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris具有永久授权，可通过调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1844,7 +1844,7 @@ select(callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
 通过选择模式拉起photoPicker界面，用户可以选择一个或多个图片/视频。接口采用callback异步返回形式，返回PhotoSelectResult对象。
 
-**注意**：此接口返回的PhotoSelectResult对象中的photoUris只能通过临时授权的方式调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
+**注意**：此接口返回的PhotoSelectResult对象中的photoUris具有永久授权，可通过调用[photoAccessHelper.getAssets接口](#getassets)去使用，具体使用方式参见用户文件uri介绍中的[媒体文件uri的使用方式](../../file-management/user-file-uri-intro.md#媒体文件uri的使用方式)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4277,7 +4277,7 @@ map支持返回的信息：
 import { image } from '@kit.ImageKit';
 
 class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.ImageSource> {
-  onDataPrepared(data: image.ImageSource, map: Map<string, string>) {
+  onDataPrepared = (data: image.ImageSource, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4288,7 +4288,7 @@ class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<image.Imag
 }
 
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
-  onDataPrepared(data: ArrayBuffer, map: Map<string, string>) {
+  onDataPrepared = (data: ArrayBuffer, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4299,7 +4299,7 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
 }
 
 class MovingPhotoHandler implements photoAccessHelper.MediaAssetDataHandler<photoAccessHelper.MovingPhoto> {
-  onDataPrepared(data: photoAccessHelper.MovingPhoto, map: Map<string, string>) {
+  onDataPrepared = (data: photoAccessHelper.MovingPhoto, map: Map<string, string>) => {
     if (data === undefined) {
       console.error('Error occurred when preparing data');
       return;
@@ -4715,21 +4715,21 @@ PhotoAsset的成员类型。
 
 | 名称          | 值              | 说明                                                       |
 | ------------- | ------------------- | ---------------------------------------------------------- |
-| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。           |
+| URI           | 'uri'                 | 文件uri。<br>注意：查询照片时，该字段仅支持使用[DataSharePredicates.equalTo](../apis-arkdata/js-apis-data-dataSharePredicates.md#equalto10)谓词。            |
 | PHOTO_TYPE    | 'media_type'           | 媒体文件类型。                                              |
 | DISPLAY_NAME  | 'display_name'        | 显示名字。                                                   |
 | SIZE          | 'size'                | 文件大小（单位：字节）。                                                   |
-| DATE_ADDED    | 'date_added'          | 添加日期（添加文件时间距1970年1月1日的秒数值）。             |
-| DATE_MODIFIED | 'date_modified'       | 修改日期（修改文件时间距1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。 |
+| DATE_ADDED    | 'date_added'          | 文件创建时的Unix时间戳（单位：秒）。             |
+| DATE_MODIFIED | 'date_modified'       | 文件修改时的Unix时间戳（单位：秒）。修改文件名不会改变此值，当文件内容发生修改时才会更新。 |
 | DURATION      | 'duration'            | 持续时间（单位：毫秒）。                                    |
 | WIDTH         | 'width'               | 图片宽度（单位：像素）。                                    |
 | HEIGHT        | 'height'              | 图片高度（单位：像素）。                                      |
-| DATE_TAKEN    | 'date_taken'          | 拍摄日期（文件拍照时间距1970年1月1日的秒数值）。                |
+| DATE_TAKEN    | 'date_taken'          | 拍摄时的Unix时间戳（单位：秒）。                |
 | ORIENTATION   | 'orientation'         | 文件的旋转角度，单位为度。                                             |
 | FAVORITE      | 'is_favorite'            | 收藏。                                                    |
 | TITLE         | 'title'               | 文件标题。                                                   |
-| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 添加日期（添加文件时间距1970年1月1日的毫秒数值）。<br>注意：查询照片时，不支持基于该字段排序。  |
-| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | 修改日期（修改文件时间距1970年1月1日的毫秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新）。<br>注意：查询照片时，不支持基于该字段排序。 |
+| DATE_ADDED_MS<sup>12+</sup>  | 'date_added_ms'          | 文件创建时的Unix时间戳（单位：毫秒）。<br>注意：查询照片时，不支持基于该字段排序。  |
+| DATE_MODIFIED_MS<sup>12+</sup>  | 'date_modified_ms'    | 文件修改时的Unix时间戳（单位：毫秒）。修改文件名不会改变此值，当文件内容发生修改时才会更新。<br>注意：查询照片时，不支持基于该字段排序。 |
 | PHOTO_SUBTYPE<sup>12+</sup>   | 'subtype'               | 媒体文件的子类型。                                                   |
 | DYNAMIC_RANGE_TYPE<sup>12+</sup>   | 'dynamic_range_type'               | 媒体文件的动态范围类型。                                                  |
 | COVER_POSITION<sup>12+</sup>   | 'cover_position'               | 动态照片的封面位置，具体表示封面帧所对应的视频时间戳（单位：微秒）。 |

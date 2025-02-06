@@ -254,7 +254,9 @@ privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: priva
 
 startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;
 
-应用开始使用某项权限，可监听应用在前后台使用权限，并将使用权限的记录落盘，由系统服务调用。使用Promise异步回调。
+系统应用调用此接口，能够传递应用在前后台的权限使用情况，并依据应用的生命周期做出相应的响应。使用Promise异步回调。
+
+当应用开始使用某项权限时，隐私服务将通知隐私指示器该应用正在使用该权限；当应用退出时，隐私服务将通知隐私指示器该应用已停止使用该权限，并清除相应的缓存。
 
 **需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
 

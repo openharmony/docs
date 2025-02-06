@@ -12,7 +12,7 @@
 本文中T和S的含义如下：
 
 
-| 类型   | 描述                                     |
+| 类型   | 说明                                     |
 | ---- | -------------------------------------- |
 | T    | Class，number，boolean，string和这些类型的数组形式。 |
 | S    | number，boolean，string。                 |
@@ -21,6 +21,10 @@
 ## AppStorage
 
 AppStorage具体UI使用说明，详见[AppStorage(应用全局的UI状态存储)](../../../quick-start/arkts-appstorage.md)
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### ref<sup>12+</sup>
 
@@ -42,7 +46,7 @@ static ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 **返回值：**
 
-| 类型                                   | 描述                                                         |
+| 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
 | [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | AppStorage中propName对应属性的引用，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
@@ -79,7 +83,7 @@ static setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 
 **返回值：**
 
-| 类型                      | 描述                                                         |
+| 类型                      | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ |
 | [AbstractProperty&lt;T&gt;](#abstractproperty) | AbstractProperty&lt;T&gt;的实例，为AppStorage中propName对应属性的引用。 |
 
@@ -114,7 +118,7 @@ static link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **返回值：**
 
-| 类型                                | 描述                                                         |
+| 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
@@ -149,7 +153,7 @@ static setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
+| 类型                                  | 说明                                       |
 | ----------------------------------- | ---------------------------------------- |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
 
@@ -179,7 +183,7 @@ static prop&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **返回值：**
 
-| 类型                                | 描述                                                         |
+| 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
@@ -215,7 +219,7 @@ static setAndProp&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **返回值：**
 
-| 类型                                  | 描述                                      |
+| 类型                                  | 说明                                      |
 | ----------------------------------- | --------------------------------------- |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例。 |
 
@@ -244,7 +248,7 @@ static has(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
+| 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 如果propName对应的属性在AppStorage中存在，则返回true。不存在则返回false。 |
 
@@ -272,7 +276,7 @@ static get&lt;T&gt;(propName: string): T | undefined
 
 **返回值：**
 
-| 类型                     | 描述                                                        |
+| 类型                     | 说明                                                        |
 | ------------------------ | ----------------------------------------------------------- |
 | T&nbsp;\|&nbsp;undefined | AppStorage中propName对应的属性，如果不存在则返回undefined。 |
 
@@ -305,7 +309,7 @@ static set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果AppStorage中不存在propName对应的属性，或设值失败，则返回false。设置成功则返回true。 |
 
@@ -325,7 +329,7 @@ static setOrCreate&lt;T&gt;(propName: string, newValue: T): void
 如果propName不存在，则创建propName属性，值为newValue。setOrCreate只可以创建单个AppStorage的键值对，如果想创建多个AppStorage键值对，可以多次调用此方法。从API version 12开始，newValue可以为null或undefined。
 
 > **说明：**<br/>
-> 从API version 12 version 开始，AppStorage支持[Map](../../../quick-start/arkts-appstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-appstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../quick-start/arkts-appstorage.md#appstorage支持联合类型)。
+> 从API version 12开始，AppStorage支持[Map](../../../quick-start/arkts-appstorage.md#装饰map类型变量)、[Set](../../../quick-start/arkts-appstorage.md#装饰set类型变量)、[Date类型](../../../quick-start/arkts-appstorage.md#装饰date类型变量)，支持null、undefined以及[联合类型](../../../quick-start/arkts-appstorage.md#appstorage支持联合类型)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -352,7 +356,17 @@ static delete(propName: string): boolean
 
 在AppStorage中删除该属性的前提是必须保证该属性没有订阅者。如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者为[link](#link10)、[prop](#prop10)等接口绑定的propName，以及[\@StorageLink('propName')](../../../quick-start/arkts-appstorage.md#storagelink)和[\@StorageProp('propName')](../../../quick-start/arkts-appstorage.md#storageprop)。如果自定义组件中使用\@StorageLink('propName')和\@StorageProp('propName')或者[SubscribedAbstractProperty](#subscribedabstractproperty)实例依旧对propName有同步关系，则该属性不能从AppStorage中删除。
+属性的订阅者为：
+
+1. [\@StorageLink](../../../quick-start/arkts-appstorage.md#storagelink)、[\@StorageProp](../../../quick-start/arkts-appstorage.md#storageprop)装饰的变量。
+
+2. 通过[link](#link10)、[prop](#prop10)、[setAndLink](#setandlink10)、[setAndProp](#setandprop10)接口返回的[SubscribedAbstractProperty](#subscribedabstractproperty)的实例。
+
+如果想要删除这些订阅者，可以通过以下方式：
+
+1. 删除\@StorageLink、\@StorageProp所在的自定义组件。删除自定义组件请参考[自定义组件的删除](../../../quick-start/arkts-page-custom-components-lifecycle.md#自定义组件的删除)。
+
+2. 对link、prop、setAndLink、setAndProp接口返回的SubscribedAbstractProperty的实例调用[aboutToBeDeleted](#abouttobedeleted10)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -366,7 +380,7 @@ static delete(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
+| 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 如果AppStorage中有对应的属性，且该属性已经没有订阅者，则删除成功，返回true。如果属性不存在，或者该属性还存在订阅者，则返回false。 |
 
@@ -393,7 +407,7 @@ static keys(): IterableIterator&lt;string&gt;
 
 **返回值：**
 
-| 类型                             | 描述                 |
+| 类型                             | 说明                 |
 | ------------------------------ | ------------------ |
 | IterableIterator&lt;string&gt; | AppStorage中所有的属性名。 |
 
@@ -418,7 +432,7 @@ static clear(): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果AppStorage中的属性已经没有订阅者则删除成功，返回true。否则返回false。 |
 
@@ -441,7 +455,7 @@ static size(): number
 
 **返回值：**
 
-| 类型     | 描述                  |
+| 类型     | 说明                  |
 | ------ | ------------------- |
 | number | 返回AppStorage中属性的数量。 |
 
@@ -475,7 +489,7 @@ static Link(propName: string): any
 
 **返回值：**
 
-| 类型                             | 描述                                                         |
+| 类型                             | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
 | any | 返回双向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
@@ -507,7 +521,7 @@ static SetAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstrac
 
 **返回值：**
 
-| 类型                                  | 描述                                       |
+| 类型                                  | 说明                                       |
 | ----------------------------------- | ---------------------------------------- |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，和AppStorage中propName对应属性的双向绑定的数据。 |
 
@@ -539,7 +553,7 @@ static Prop(propName: string): any
 
 **返回值：**
 
-| 类型                             | 描述                                                         |
+| 类型                             | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ |
 | any | 返回单向绑定的数据，如果AppStorage中不存在对应的propName，则返回undefined。 |
 
@@ -571,7 +585,7 @@ static SetAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstrac
 
 **返回值：**
 
-| 类型                                  | 描述                                      |
+| 类型                                  | 说明                                      |
 | ----------------------------------- | --------------------------------------- |
 | [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例。 |
 
@@ -600,7 +614,7 @@ static Has(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
+| 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 如果propName对应的属性在AppStorage中存在，则返回true。不存在则返回false。 |
 
@@ -628,7 +642,7 @@ static Get&lt;T&gt;(propName: string): T | undefined
 
 **返回值：**
 
-| 类型                     | 描述                                                         |
+| 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
 | T&nbsp;\|&nbsp;undefined | AppStorage中propName对应的属性值，如果不存在则返回undefined。 |
 
@@ -658,7 +672,7 @@ static Set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果AppStorage中不存在propName对应的属性，或者设置的newValue是undefined或者null，返回false。设置成功则返回true。 |
 
@@ -717,7 +731,7 @@ static Delete(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                                       |
+| 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
 | boolean | 如果AppStorage中有对应的属性，且该属性已经没有订阅者，则删除成功，返回true。如果属性不存在，或者该属性还存在订阅者，则返回false。 |
 
@@ -744,7 +758,7 @@ static Keys(): IterableIterator&lt;string&gt;
 
 **返回值：**
 
-| 类型                             | 描述                 |
+| 类型                             | 说明                 |
 | ------------------------------ | ------------------ |
 | IterableIterator&lt;string&gt; | AppStorage中所有的属性名。 |
 
@@ -768,7 +782,7 @@ static staticClear(): boolean
 
 **返回值：**
 
-| 类型      | 描述                                |
+| 类型      | 说明                                |
 | ------- | --------------------------------- |
 | boolean | 删除所有的属性，如果当前有状态变量依旧引用此属性，返回false。 |
 
@@ -793,7 +807,7 @@ static Clear(): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果AppStorage中的属性已经没有订阅者则删除成功，返回true。否则返回false。 |
 
@@ -823,7 +837,7 @@ static IsMutable(propName: string): boolean
 
 **返回值：**
 
-| 类型      | 描述                               |
+| 类型      | 说明                               |
 | ------- | -------------------------------- |
 | boolean | 返回AppStorage中propNam对应的属性是否是可变的。 |
 
@@ -847,7 +861,7 @@ static Size(): number
 
 **返回值：**
 
-| 类型     | 描述                  |
+| 类型     | 说明                  |
 | ------ | ------------------- |
 | number | 返回AppStorage中属性的数量。 |
 
@@ -863,7 +877,11 @@ let res: number = AppStorage.Size(); // 1
 
 LocalStorage具体UI使用说明，详见[LocalStorage(页面级UI状态存储)](../../../quick-start/arkts-localstorage.md)
 
+**卡片能力：** 从API version 9开始，支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### constructor<sup>9+</sup>
 
@@ -906,12 +924,12 @@ static getShared(): LocalStorage
 
 **返回值：**
 
-| 类型                             | 描述                |
+| 类型                             | 说明                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](#localstorage9) | 返回LocalStorage实例。 |
 
 **示例：**
-getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../../quick-start/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个视图)
+getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../../quick-start/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ### has<sup>9+</sup>
@@ -934,7 +952,7 @@ has(propName: string): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果propName对应的属性在LocalStorage中存在，则返回true。不存在则返回false。 |
 
@@ -966,7 +984,7 @@ get&lt;T&gt;(propName: string): T | undefined
 
 **返回值：**
 
-| 类型                     | 描述                                                         |
+| 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
 | T&nbsp;\|&nbsp;undefined | LocalStorage中propName对应的属性值，如果不存在则返回undefined。 |
 
@@ -1003,7 +1021,7 @@ set&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果LocalStorage中不存在propName对应的属性，返回false。设置成功返回true。 |
 
@@ -1043,7 +1061,7 @@ setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果LocalStorage中存在propName，则更新其值为newValue，返回true。<br/>如果LocalStorage中不存在propName，则创建propName，并初始化其值为newValue，返回true。 |
 
@@ -1077,7 +1095,7 @@ public ref\<T\>(propName: string): AbstractProperty\<T\>&nbsp;|&nbsp;undefined
 
 **返回值：**
 
-| 类型                                   | 描述                                                         |
+| 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
 | [AbstractProperty&lt;T&gt;](#abstractproperty) \| undefined | LocalStorage中propName对应属性的引用，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
@@ -1115,7 +1133,7 @@ public setAndRef&lt;T&gt;(propName: string, defaultValue: T): AbstractProperty&l
 
 **返回值：**
 
-| 类型                      | 描述                                                         |
+| 类型                      | 说明                                                         |
 | ------------------------- | ------------------------------------------------------------ |
 | [AbstractProperty&lt;T&gt;](#abstractproperty) | AbstractProperty&lt;T&gt;的实例，为LocalStorage中propName对应属性的引用。 |
 
@@ -1152,7 +1170,7 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 **返回值：**
 
-| 类型                                | 描述                                                         |
+| 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据，如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
@@ -1191,7 +1209,7 @@ setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProper
 
 **返回值：**
 
-| 类型                                | 描述                                                         |
+| 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [SubscribedAbstractProperty&lt;T&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;T&gt;的实例，与LocalStorage中propName对应属性的双向绑定的数据。 |
 
@@ -1224,7 +1242,7 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 **返回值：**
 
-| 类型                                | 描述                                                         |
+| 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。如果LocalStorage中不存在对应的propName，则返回undefined。 |
 
@@ -1263,7 +1281,7 @@ setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProper
 
 **返回值：**
 
-| 类型                                | 描述                                                         |
+| 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
 | [SubscribedAbstractProperty&lt;S&gt;](#subscribedabstractproperty) | SubscribedAbstractProperty&lt;S&gt;的实例，和LocalStorage中propName对应属性的单向绑定的数据。 |
 
@@ -1282,7 +1300,17 @@ delete(propName: string): boolean
 
 在[LocalStorage](../../../quick-start/arkts-localstorage.md)中删除propName对应的属性。在LocalStorage中删除属性的前提是该属性已经没有订阅者，如果有订阅者，则返回false。如果没有订阅者则删除成功并返回true。
 
-属性的订阅者为[link](#link9)，[prop](#prop9)等接口绑定的propName，以及[\@LocalStorageLink('propName')](../../../quick-start/arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp('propName')](../../../quick-start/arkts-localstorage.md#localstorageprop)。如果自定义组件中使用\@LocalStorageLink('propName')和\@LocalStorageProp('propName')或者SubscribedAbstractProperty实例（link和prop接口的返回类型）依旧对propName有同步关系，则该属性不能从LocalStorage中删除。
+属性的订阅者为：
+
+1. [\@LocalStorageLink](../../../quick-start/arkts-localstorage.md#localstoragelink)、[\@LocalStorageProp](../../../quick-start/arkts-localstorage.md#localstorageprop)装饰的变量。
+
+2. 通过[link](#link9)、[prop](#prop9)、[setAndLink](#setandlink9)、[setAndProp](#setandprop9)接口返回的[SubscribedAbstractProperty](#subscribedabstractproperty)的实例。
+
+如果想要删除这些订阅者，可以通过以下方式：
+
+1. 删除\@LocalStorageLink、\@LocalStorageProp所在的自定义组件。删除自定义组件请参考[自定义组件的删除](../../../quick-start/arkts-page-custom-components-lifecycle.md#自定义组件的删除)。
+
+2. 对link、prop、setAndLink、setAndProp接口返回的SubscribedAbstractProperty的实例调用[aboutToBeDeleted](#abouttobedeleted10)接口。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1298,7 +1326,7 @@ delete(propName: string): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果LocalStorage中有对应的属性，且该属性已经没有订阅者，则删除成功，返回true。如果属性不存在，或者该属性还存在订阅者，则返回false。 |
 
@@ -1328,7 +1356,7 @@ keys(): IterableIterator&lt;string&gt;
 
 **返回值：**
 
-| 类型                             | 描述                   |
+| 类型                             | 说明                   |
 | ------------------------------ | -------------------- |
 | IterableIterator&lt;string&gt; | LocalStorage中所有的属性名。 |
 
@@ -1354,7 +1382,7 @@ size(): number
 
 **返回值：**
 
-| 类型   | 描述                         |
+| 类型   | 说明                         |
 | ------ | ---------------------------- |
 | number | LocalStorage中属性的数量。 |
 
@@ -1383,7 +1411,7 @@ clear(): boolean
 **返回值：**
 
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果LocalStorage中的属性已经没有任何订阅者，则删除成功，并返回true。否则返回false。 |
 
@@ -1414,7 +1442,7 @@ static GetShared(): LocalStorage
 
 **返回值：**
 
-| 类型                             | 描述                |
+| 类型                             | 说明                |
 | ------------------------------ | ----------------- |
 | [LocalStorage](#localstorage9) | 返回LocalStorage实例。 |
 
@@ -1424,6 +1452,10 @@ let storage: LocalStorage = LocalStorage.GetShared();
 ```
 
 ## AbstractProperty
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### get<sup>12+</sup>
 
@@ -1437,7 +1469,7 @@ get(): T
 
 **返回值：**
 
-| 类型 | 描述                                        |
+| 类型 | 说明                                        |
 | ---- | ------------------------------------------- |
 | T    | AppStorage/LocalStorage中所引用属性的数据。 |
 
@@ -1504,7 +1536,7 @@ info(): string
 
 **返回值：**
 
-| 类型   | 描述                                          |
+| 类型   | 说明                                          |
 | ------ | --------------------------------------------- |
 | string | AppStorage/LocalStorage中所引用属性的属性名。 |
 
@@ -1518,6 +1550,11 @@ ref1?.info(); //  ref1.info()='PropA'
 
 ## SubscribedAbstractProperty
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### get<sup>9+</sup>
 
@@ -1533,7 +1570,7 @@ abstract get(): T
 
 **返回值：**
 
-| 类型   | 描述                              |
+| 类型   | 说明                              |
 | ---- | ------------------------------- |
 | T    | AppStorage/LocalStorage同步属性的数据。 |
 
@@ -1606,6 +1643,22 @@ let link = AppStorage.setAndLink('PropB', 49); // PropA -> 47, PropB -> 49
 link.aboutToBeDeleted();
 ```
 
+### info
+
+info(): string;
+
+返回属性名称。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型   |说明     |
+|---------|-------------|
+|string    |属性名称。    |
+
 
 ## PersistentStorage
 
@@ -1670,7 +1723,7 @@ persistProp具体使用，见[从AppStorage中访问PersistentStorage初始化�
 
 static deleteProp(key: string): void
 
-[persistProp](#persistprop10)的逆向操作。将key对应的属性从PersistentStorage中删除，后续[AppStorage](../../../quick-start/arkts-appstorage.md)的操作，对[PersistentStorage](../../../quick-start/arkts-persiststorage.md)不会再有影响。
+[persistProp](#persistprop10)的逆向操作。将key对应的属性从PersistentStorage中删除，后续[AppStorage](../../../quick-start/arkts-appstorage.md)的操作，对[PersistentStorage](../../../quick-start/arkts-persiststorage.md)不会再有影响。该操作会将对应的key从持久化文件中删除，如果希望再次持久化，可以再次调用[persistProp](#persistprop10)接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1722,7 +1775,7 @@ static keys(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型                | 描述                               |
+| 类型                | 说明                               |
 | ------------------- | ---------------------------------- |
 | Array&lt;string&gt; | 返回所有持久化属性的属性名的数组。 |
 
@@ -1831,7 +1884,7 @@ static Keys(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型                | 描述                               |
+| 类型                | 说明                               |
 | ------------------- | ---------------------------------- |
 | Array&lt;string&gt; | 返回所有持久化属性的属性名的数组。 |
 
@@ -1886,7 +1939,7 @@ static envProp&lt;S&gt;(key: string, value: S): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果key对应的属性在AppStorage中存在，则返回false。不存在则在AppStorage中用value作为默认值创建key对应的属性，返回true。 |
 
@@ -1933,7 +1986,7 @@ static keys(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型                  | 描述          |
+| 类型                  | 说明          |
 | ------------------- | ----------- |
 | Array&lt;string&gt; | 返回关联的系统项数组。 |
 
@@ -1972,7 +2025,7 @@ static EnvProp&lt;S&gt;(key: string, value: S): boolean
 
 **返回值：**
 
-| 类型    | 描述                                                         |
+| 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
 | boolean | 如果key对应的属性在AppStorage中存在，则返回false。不存在则在AppStorage中用value作为默认值创建key对应的属性，返回true。 |
 
@@ -2023,7 +2076,7 @@ static Keys(): Array&lt;string&gt;
 
 **返回值：**
 
-| 类型                  | 描述          |
+| 类型                  | 说明          |
 | ------------------- | ----------- |
 | Array&lt;string&gt; | 返回关联的系统项数组。 |
 

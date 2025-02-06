@@ -45,14 +45,14 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
 
     // 将传入的napi_value类型的参数转化为double类型
-    double valueLift;
+    double valueLeft;
     double valueRight;
-    napi_get_value_double(env, args[0], &valueLift);
+    napi_get_value_double(env, args[0], &valueLeft);
     napi_get_value_double(env, args[1], &valueRight);
 
     // 将转化后的double值相加并转成napi_value返回给ArkTS代码使用
     napi_value sum;
-    napi_create_double(env, valueLift + valueRight, &sum);
+    napi_create_double(env, valueLeft + valueRight, &sum);
 
     return sum;
 }
@@ -127,7 +127,7 @@ cpp部分代码
 static napi_value CreateObjectWithProperties(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
-    napi_value argv[1] = nullptr;
+    napi_value argv[1] = {nullptr};
     // 获取解析传递的参数
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     // 声明了一个napi_property_descriptor数组desc，其中包含了一个名为"name"的属性，其值为传入的第一个参数argv[0]。
@@ -173,7 +173,7 @@ cpp部分代码
 static napi_value CreateObjectWithNameProperties(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
-    napi_value argv[1] = nullptr;
+    napi_value argv[1] = {nullptr};
     // 获取解析传递的参数
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
     napi_value obj = nullptr;
@@ -319,6 +319,7 @@ cpp部分代码
 
 ```cpp
 #include <bits/alltypes.h>
+#include <hilog/log.h>
 #include <mutex>
 #include <unordered_set>
 #include <uv.h>
@@ -463,7 +464,7 @@ private:
     std::mutex numberSetMutex_{};
 };
 
-void FinializeCallback(napi_env env, void *data, void *hint)
+void FinializerCallback(napi_env env, void *data, void *hint)
 {
     return;
 }
@@ -487,7 +488,10 @@ napi_value AttachCallback(napi_env env, void* value, void* hint)
         {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, object, sizeof(desc) / sizeof(desc[0]), desc);
     // 将JS对象object和native对象value生命周期进行绑定
-    napi_wrap(env, object, value, FinializeCallback, nullptr, nullptr);
+    napi_status status = napi_wrap(env, object, value, FinializerCallback, nullptr, nullptr);
+    if (status != napi_ok) {
+        OH_LOG_INFO(LOG_APP, "Node-API attachCallback is failed.");
+    }
     // JS对象携带native信息
     napi_coerce_to_native_binding_object(env, object, DetachCallback, AttachCallback, value, hint);
     return object;
@@ -504,7 +508,10 @@ static napi_value Init(napi_env env, napi_value exports)
         {"clear", nullptr, Object::Clear, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     auto object = Object::GetInstance();
-    napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializeCallback, nullptr, nullptr);
+    napi_status status = napi_wrap(env, exports, reinterpret_cast<void*>(object), FinializerCallback, nullptr, nullptr);
+    if (status != napi_ok) {
+        delete object;
+    }
     napi_coerce_to_native_binding_object(env, exports, DetachCallback, AttachCallback, reinterpret_cast<void*>(object),
                                          nullptr);
     return exports;
@@ -580,31 +587,36 @@ function clear() {
   console.info("set size is " + size + " after clear");
 }
 
-let address:number = testNapi.getAddress();
-console.info("host thread address is " + address);
+async function test01(): Promise<void> {
+    let address:number = testNapi.getAddress();
+    console.info("host thread address is " + address);
 
-let task1 = new taskpool.Task(getAddress);
-await taskpool.execute(task1);
+    let task1 = new taskpool.Task(getAddress);
+    await taskpool.execute(task1);
 
-let task2 = new taskpool.Task(store, 1, 2, 3);
-await taskpool.execute(task2);
+    let task2 = new taskpool.Task(store, 1, 2, 3);
+    await taskpool.execute(task2);
 
-let task3 = new taskpool.Task(store, 4, 5, 6);
-await taskpool.execute(task3);
+    let task3 = new taskpool.Task(store, 4, 5, 6);
+    await taskpool.execute(task3);
 
-let task4 = new taskpool.Task(erase, 3);
-await taskpool.execute(task4);
+    let task4 = new taskpool.Task(erase, 3);
+    await taskpool.execute(task4);
 
-let task5 = new taskpool.Task(erase, 5);
-await taskpool.execute(task5);
+    let task5 = new taskpool.Task(erase, 5);
+    await taskpool.execute(task5);
 
-let task6 = new taskpool.Task(clear);
-await taskpool.execute(task6);
+    let task6 = new taskpool.Task(clear);
+    await taskpool.execute(task6);
+}
+
+test01();
 ```
 
 **注意事项**
 
 对ArkTs对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A。
+
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 ## 事件循环
@@ -684,7 +696,7 @@ static napi_value AboutSerialize(napi_env env, napi_callback_info info)
     napi_valuetype valuetype;
     napi_typeof(env, number, &valuetype);
     if (valuetype != napi_number) {
-        napi_throw_error(env, nullptr, "Node-API Wrong type of argment. Expects a number.");
+        napi_throw_error(env, nullptr, "Node-API Wrong type of argument. Expects a number.");
         return nullptr;
     }
     // 调用napi_delete_serialization_data方法删除序列化数据
@@ -832,6 +844,32 @@ static napi_value DefineSendableClass(napi_env env) {
         nullptr, sizeof(props) / sizeof(props[0]), props, nullptr, &sendableClass);
 
     return sendableClass;
+}
+
+EXTERN_C_START
+static napi_value Init(napi_env env, napi_value exports)
+{
+    napi_property_descriptor desc[] = {};
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+    napi_value cons = DefineSendableClass(env);
+    napi_set_named_property(env, exports, "SendableClass", cons);
+    return exports;
+}
+EXTERN_C_END
+
+static napi_module demoModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = Init,
+    .nm_modname = "entry",
+    .nm_priv = ((void*)0),
+    .reserved = { 0 },
+};
+
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
+    napi_module_register(&demoModule);
 }
 ```
 

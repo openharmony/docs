@@ -78,7 +78,7 @@ import { display } from '@kit.ArkUI';
 
 >**说明：**<br>
 >&bullet; 对于大屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_MAIN。<br>
->&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_FULL，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
+>&bullet; 对于小屏内折产品，内屏显示状态为FOLD_DISPLAY_MODE_MAIN，外屏显示状态为FOLD_DISPLAY_MODE_SUB。
 
 ## FoldCreaseRegion<sup>10+</sup>
 

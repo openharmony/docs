@@ -106,7 +106,7 @@
 
 #### -enable-property-obfuscation
 
-开启属性混淆。 如果使用这个选项，那么所有的属性名都会被混淆，除了下面场景:
+开启属性混淆。 如果使用这个选项，那么所有的属性名都会被混淆，除了下面场景：
 
 * 被`import/export`直接导入或导出的类、对象的属性名不会被混淆。例如下面例子中的属性名`data`不会被混淆。
 
@@ -122,12 +122,12 @@
     @Component struct MyExample {
         @State message: string = "hello";
         data: number[] = [];
-        ...
+        // ...
     }
     ```
 
 * 被[保留选项](#保留选项)指定的属性名不会被混淆。
-* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中
+* SDK API列表中的属性名不会被混淆。SDK API列表是构建时从SDK中自动提取出来的一个名称列表，其缓存文件为systemApiCache.json，路径为工程目录下build/default/cache/{...}/release/obfuscation中。
 * 字符串字面量属性名不会被混淆。例如下面例子中的`"name"`和`"age"`不会被混淆。
 
     ```
@@ -135,7 +135,7 @@
     person["age"] = 22;
     ```
 
-    如果想混淆字符串字面量属性名，需要在该选项的基础上再使用`-enable-string-property-obfuscation`选项。例如
+    如果想混淆字符串字面量属性名，需要在该选项的基础上再使用`-enable-string-property-obfuscation`选项。例如：
 
     ```
     -enable-property-obfuscation
@@ -144,8 +144,8 @@
 
     **注意**：  
 
-    **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z, A-Z, 0-9, _`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
-    **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中
+    **1.** 如果代码里面有字符串属性名包含特殊字符(除了`a-z，A-Z，0-9，_`之外的字符)，例如`let obj = {"\n": 123, "": 4, " ": 5}`，建议不要开启`-enable-string-property-obfuscation`选项，因为可能无法通过[保留选项](#保留选项)来指定保留这些名字。  
+    **2.** SDK API的属性白名单中不包含声明文件中使用的字符串常量值，例如示例中的字符串'ohos.want.action.home'未包含在属性白名单中。
 
     ```
     // SDK API文件@ohos.app.ability.wantConstant片段：
@@ -156,11 +156,11 @@
     let params = obj['ohos.want.action.home'];
     ```
 
-    因此在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home'], 那么需要使用keep选项保留。
+    因此在开启了`-enable-string-property-obfuscation`选项时，如果想保留代码中使用的SDK API字符串常量的属性不被混淆，例如obj['ohos.want.action.home']，那么需要使用keep选项保留。
 
 #### -enable-toplevel-obfuscation
 
-开启顶层作用域名称混淆。如果使用这个选项，那么所有的顶层作用域的名称都会被混淆，除了下面场景:
+开启顶层作用域名称混淆。如果使用这个选项，那么所有的顶层作用域的名称都会被混淆，除了下面场景：
 
 * 被`import/export`的名称不会被混淆。
 * 当前文件找不到声明的名称不会被混淆。
@@ -178,7 +178,7 @@ import { foo } from '../directory/filename';
 const module = import('../directory/filename');
 ```
 
-除了下面场景:
+除了下面场景：
 
 * oh-package.json5文件中'main'、'types'字段配置的文件/文件夹名称不会被混淆。
 * 模块内module.json5文件中'srcEntry'字段配置的文件/文件夹名称不会被混淆。
@@ -200,7 +200,7 @@ const module = import('../directory/filename');
 
 #### -enable-export-obfuscation
 
-开启直接导入或导出的类或对象的名称和属性名混淆。如果使用这个选项，那么模块中的直接导入或导出的名称都会被混淆，除了下面场景:
+开启直接导入或导出的类或对象的名称和属性名混淆。如果使用这个选项，那么模块中的直接导入或导出的名称都会被混淆，除了下面场景：
 
 * 远程HAR(真实路径在oh_modules中的包)中导出的类或对象的名称和属性名不会被混淆。
 * 被[保留选项](#保留选项)指定的名称与属性名不会被混淆。
@@ -254,7 +254,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 该选项应该在增量编译场景中被使用。
 
 默认情况下，DevEco Studio会在临时的缓存目录中保存缓存文件，并且在增量编译场景中自动应用该缓存文件。  
-缓存目录：build/default/cache/{...}/release/obfuscation
+缓存目录：build/default/cache/{...}/release/obfuscation。
 
 #### -remove-comments
 
@@ -269,7 +269,7 @@ release模式构建的应用栈信息仅包含代码行号，不包含列号，�
 
 #### `-keep-property-name` [,identifiers,...]
 
-指定想保留的属性名，支持使用名称类通配符。例如下面的例子:
+指定想保留的属性名，支持使用名称类通配符。例如下面的例子：
 
 ```
 -keep-property-name
@@ -280,7 +280,7 @@ lastName
 
 > **注意**：
 >
-> - 该选项在开启`-enable-property-obfuscation`时生效
+> - 该选项在开启`-enable-property-obfuscation`时生效。
 >
 > - 属性白名单作用于全局。即代码中出现多个重名属性，只要与`-keep-property-name`配置白名单名称相同，均不会被混淆。
 
@@ -313,7 +313,7 @@ obj['v'] = 0;
 console.info(obj['v']);        // 在开启字符串字面量属性名混淆时'v'会被正确地混淆，但是建议保留
 ```
 
-对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`, 如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
+对于间接导出的场景，例如`export MyClass`和`let a = MyClass; export {a};`，如果不想混淆它们的属性名，那么需要使用[保留选项](#保留选项)来保留这些属性名。另外，对于直接导出的类或对象的属性的属性名，例如下面例子中的`name`和`age`，如果不想混淆它们，那么也需要使用[保留选项](#保留选项)来保留这些属性名。
 
 ```
 export class MyClass {
@@ -364,7 +364,7 @@ class A {
 
 #### `-keep-global-name` [,identifiers,...]
 
-指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如，
+指定要保留的顶层作用域或导入和导出元素的名称，支持使用名称类通配符。例如：
 
 ```
 -keep-global-name
@@ -389,7 +389,7 @@ export namespace Ns {
 
 在JavaScript中全局变量是`globalThis`的属性。如果在代码中使用`globalThis`去访问全局变量，那么该变量名应该被保留。
 
-示例:
+示例：
 
 ```
 var a = 0;
@@ -416,7 +416,7 @@ import { testNapi, testNapi1 as myNapi } from 'library.so' // testNapi 和 testN
 
 #### `-keep-file-name` [,identifiers,...]
 
-指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如，
+指定要保留的文件/文件夹的名称(不需要写文件后缀)，支持使用名称类通配符。例如：
 
 ```
 -keep-file-name
@@ -458,7 +458,7 @@ const module2 = import(moduleName)
 
 #### `-keep-comments` [,identifiers,...]
 
-保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
+保留编译生成的声明文件中class，function，namespace，enum，struct，interface，module，type及属性上方的JsDoc注释，支持使用名称类通配符。例如想保留声明文件中Human类上方的JsDoc注释，可进行以下配置：
 
 ```
 -keep-comments
@@ -467,8 +467,8 @@ Human
 
 **注意**：
 
-1. 该选项在开启`-remove-comments`时生效
-2. 当编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留：
+1. 该选项在开启`-remove-comments`时生效。
+2. 当编译生成的声明文件中class，function，namespace，enum，struct，interface，module，type及属性的名称被混淆时，该元素上方的JsDoc注释无法通过`-keep-comments`保留。例如当在`-keep-comments`中配置了exportClass时，如果exportClass类名被混淆，其JsDoc注释无法被保留：
 
 ```
 /*
@@ -636,7 +636,7 @@ class A {
 
 ### 注释
 
-可以使用`#`在混淆规则文件中进行注释。每行以`#`开头的文本会被当做是注释，例如下面的例子:
+可以使用`#`在混淆规则文件中进行注释。每行以`#`开头的文本会被当做是注释，例如下面的例子：
 
 ```
 # white list for MainAbility.ets
@@ -755,7 +755,7 @@ end-for
     2. 待上述选项应用适配成功后，开启`-enable-property-obfuscation`选项。此选项开启后以下场景需要适配：
         1. 若代码中存在静态定义，动态访问的情况或者动态定义，静态访问的情况，需要使用`-keep-property-name`保留属性名称。示例：
             ```
-            // 静态定义，动态访问: 属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
+            // 静态定义，动态访问：属性名在对象定义时是静态的，但访问时通过动态构建属性名（通常使用字符串拼接）来访问
             const obj = {
               staticName: value  // 静态定义属性
             };
@@ -763,7 +763,7 @@ end-for
             console.log(obj[fieldName]);  // 使用方括号语法动态访问属性
             ```
             ```
-            // 动态定义，静态访问: 属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
+            // 动态定义，静态访问：属性名通过动态表达式在对象定义时确定，但访问时直接使用点语法（假设你知道属性名的结果）
             const obj = {
               [dynamicExpression]: value  // 动态定义属性
             };
@@ -814,7 +814,7 @@ end-for
 | -keep-global-name            | 保留顶层作用域的名称 | 4.0.9.2 |
 | -keep-file-name              | 保留HAR包的文件/文件夹的名称 <br> 保留HAP/HSP包的文件/文件夹的名称 | 4.1.5.3 <br> 5.0.0.19 |
 | -keep-dts                    | 保留指定路径的.d.ts文件中的名称 | 4.0.9.2 |
-| -keep-comments               | 保留编译生成的声明文件中class, function, namespace, enum, struct, interface, module, type及属性上方的JsDoc注释 | 4.1.5.3 |
+| -keep-comments               | 保留编译生成的声明文件中class，function，namespace，enum，struct，interface，module，type及属性上方的JsDoc注释 | 4.1.5.3 |
 | -keep                        | 保留指定路径中的所有名称 | 5.0.0.18 |
 | 通配符                       | 名称类和路径类的保留选项支持通配符 | 5.0.0.24 |
 
@@ -976,7 +976,7 @@ declare a2 {
 }
 ```
 
-报错内容为 `SyntaxError: Unexpected token`
+报错内容为 `SyntaxError: Unexpected token`。
 
 **解决方案：** 使用`-keep-global-name`选项将`__global`配置到白名单中。
 
@@ -1021,7 +1021,7 @@ AppAbility
 
 #### 使用-keep-global-name选项配置白名单时，可能会出现的问题
 
-报错内容为 `Cannot read properties of undefined (reading 'has')`
+报错内容为 `Cannot read properties of undefined (reading 'has')`。
 
 **解决方案：** 将SDK更新至最低4.1.6.3版本。
 
@@ -1037,3 +1037,73 @@ AppAbility
 
 1. 将HAP与HSP共同依赖的本地源码HAR改造为[字节码HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section179161312181613)，这样此HAR在被依赖时不会被二次混淆。
 2. 将HAP与HSP共同依赖的本地源码HAR以[release模式构建打包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section19788284410)，这样此HAR在被依赖时，其文件名与对外接口不会被混淆。
+
+#### 同时开启-enable-property-obfuscation和-keep选项可能会出现的问题
+
+**问题现象**
+
+使用如下混淆配置：
+
+```
+-enable-property-obfuscation
+-keep
+./file1.ts
+```
+
+并且在`file2.ts`中导入`file1.ts`的接口。此时，接口中有属性的类型为对象类型，该对象类型的属性在`file1.ts`中被保留，在`file2.ts`中被混淆，从而导致调用时引发功能异常。示例如下：
+
+```
+// 混淆前
+// file1.ts
+export interface MyInfo {
+  age: number;
+  address: {
+    city1: string;
+  }
+}
+
+// file2.ts
+import { MyInfo } from './file1';
+const person: MyInfo = {
+  age: 20,
+  address: {
+    city1: "shanghai"
+  }
+}
+
+// 混淆后，file1.ts的代码被保留
+// file2.ts
+import { MyInfo } from './file1';
+const person: MyInfo = {
+  age: 20,
+  address: {
+    i: "shanghai"
+  }
+}
+```
+
+**问题原因**
+
+`-keep`选项保留`file1.ts`文件时，`file1.ts`中代码不会被混淆。对于导出属性（如address）所属类型内的属性，不会被自动收集在属性白名单中。因此，该类型内的属性在其他文件中被使用时，会被混淆。
+
+**解决方案**
+
+方案一：使用`interface`定义该属性的类型，并使用`export`进行导出，这样该属性会被自动被收集到属性白名单中。示例如下：
+
+```
+// file1.ts
+export interface AddressType {
+  city1: string
+}
+export interface MyInfo {
+  age: number;
+  address: AddressType;
+}
+```
+
+方案二：使用`-keep-property-name`选项，将未直接导出的类型内的属性配置到属性白名单中。示例如下：
+
+```
+-keep-property-name
+city1
+```

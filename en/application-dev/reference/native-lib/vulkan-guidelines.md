@@ -70,7 +70,7 @@ libvulkan.so
 
 2. Obtain an **OHNativeWindow** instance.
 
-   The **OHNativeWindow** instance is obtained from the **XComponent**. For details about how to use the **XComponent**, see [XComponent Development](../../ui/napi-xcomponent-guidelines.md).
+   The **OHNativeWindow** instance is obtained from the **XComponent**. For details about how to use the **XComponent**, see [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md).
 
    1. Add an **XComponent** to **ets/pages/Index.ets**.
 
@@ -133,5 +133,3 @@ libvulkan.so
    ```
 
 For details about how to use Vulkan, visit the [Vulkan official website](https://www.vulkan.org/).
-
- <!--no_check--> 

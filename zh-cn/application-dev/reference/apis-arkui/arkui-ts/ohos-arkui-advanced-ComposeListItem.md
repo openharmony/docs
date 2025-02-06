@@ -58,14 +58,14 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| BADGE | 1 | 左侧图标为badge类型，图标大小为8\*8dp。 |
-| NORMAL_ICON | 2 | 左侧图标为小图标类型，图标大小为16\*16dp。 |
-| SYSTEM_ICON | 3 | 左侧图标为系统图标类型，图标大小为24\*24dp。 |
-| HEAD_SCULPTURE | 4 | 左侧图标为头像类型，图标大小为40\*40dp。 |
-| APP_ICON | 5 | 左侧图标为应用图标类型，图标大小为64\*64dp。 |
-| PREVIEW | 6 | 左侧图标为预览图类型，图标大小为96\*96dp。 |
-| LONGITUDINAL | 7 | 左侧图标为横向特殊比例（宽比高大），保持最长边为96dp。 |
-| VERTICAL | 8 | 左侧图标为竖向特殊比例（高比宽大），保持最长边为96dp。 |
+| BADGE | 1 | 左侧图标为badge类型，图标大小为8\*8vp。 |
+| NORMAL_ICON | 2 | 左侧图标为小图标类型，图标大小为16\*16vp。 |
+| SYSTEM_ICON | 3 | 左侧图标为系统图标类型，图标大小为24\*24vp。 |
+| HEAD_SCULPTURE | 4 | 左侧图标为头像类型，图标大小为40\*40vp。 |
+| APP_ICON | 5 | 左侧图标为应用图标类型，图标大小为64\*64vp。 |
+| PREVIEW | 6 | 左侧图标为预览图类型，图标大小为96\*96vp。 |
+| LONGITUDINAL | 7 | 左侧图标为横向特殊比例（宽比高大），保持最长边为96vp。 |
+| VERTICAL | 8 | 左侧图标为竖向特殊比例（高比宽大），保持最长边为96vp。 |
 
 ## OperateItem
 
@@ -73,14 +73,14 @@ ComposeListItem({contentItem?: ContentItem, operateItem?: OperateItem})
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| arrow | [OperateIcon](#operateicon) | 否 | 右侧元素为箭头，大小为12\*24dp。 |
-| icon | [OperateIcon](#operateicon) | 否 | 右侧元素的第一个图标，大小为24\*24dp。 |
-| subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素的第二个图标，大小为24\*24dp。 |
+| arrow | [OperateIcon](#operateicon) | 否 | 右侧元素为箭头，大小为12\*24vp。 |
+| icon | [OperateIcon](#operateicon) | 否 | 右侧元素的第一个图标，大小为24\*24vp。 |
+| subIcon | [OperateIcon](#operateicon) | 否 | 右侧元素的第二个图标，大小为24\*24vp。 |
 | button | [OperateButton](#operatebutton) | 否 | 右侧元素为按钮。 |
 | switch | [OperateCheck](#operatecheck) | 否 | 右侧元素为开关。 |
-| checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24dp。 |
-| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24dp。 |
-| image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48dp。 |
+| checkbox | [OperateCheck](#operatecheck) | 否 | 右侧元素为多选框，大小为24\*24vp。 |
+| radio | [OperateCheck](#operatecheck) | 否 | 右侧元素为单选，大小为24\*24vp。 |
+| image | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为图片，大小为48\*48vp。 |
 | text | [ResourceStr](ts-types.md#resourcestr) | 否 | 右侧元素为文字。 |
 
 ## OperateIcon

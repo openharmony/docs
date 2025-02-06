@@ -4,17 +4,7 @@ You can call the native APIs provided by the AudioCodec module to encode audio, 
 
 PCM data can be from any source. For example, you can use a microphone to record audio data or import edited PCM data. After audio encoding, you can output streams in the desired format and encapsulate the streams into a target file.
 
-Currently, the following encoding capabilities are supported:
-
-| Container Format| Audio Encoding Type      |
-| -------- | :--------------- |
-| mp4      | AAC, FLAC       |
-| m4a      | AAC              |
-| flac     | FLAC            |
-| aac      | AAC              |
-| mp3      | MP3              |
-| raw      | G711mu           |
-<!--RP1--><!--RP1End-->
+For details about the supported encoding capabilities, see [AVCodec Supported Formats](avcodec-support-formats.md#audio-encoding).
 
 **Usage Scenario**
 
@@ -24,6 +14,9 @@ Currently, the following encoding capabilities are supported:
 - Audio editing
 
   Export edited PCM data, and encode the data into streams in the desired format.
+> **NOTE**
+>
+> AAC encoders adopt the VBR mode by default, which may differ in the configured parameters.
 
 ## How to Develop
 
@@ -175,7 +168,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    <!--RP3--><!--RP3End-->
 
    The code snippet below shows the API call process, where AAC encoding at the bit rate of 32000 bit/s is carried out on the PCM audio with the 44100 Hz sampling rate, 2-channel stereo, and SAMPLE_S16LE sampling format.
-
     ```cpp
     int32_t ret;
     // (Mandatory) Configure the audio sampling rate.
@@ -273,8 +265,6 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     ```
 
 7. Call **OH_AudioCodec_PushInputBuffer()** to write the data to encode.
-   
-   To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
 
    For AAC encoding, set **SAMPLES_PER_FRAME** to the number of PCM samples every 20 ms, that is, sampling rate x 0.02.
 
@@ -321,6 +311,14 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
         // Exception handling.
     }
     ```
+   In the preceding example, **attr.flags** indicates the type of the buffer flag.
+   
+   To indicate the End of Stream (EOS), pass in the **AVCODEC_BUFFER_FLAGS_EOS** flag.
+   | Value| Description| 
+   | -------- | -------- |
+   | AVCODEC_BUFFER_FLAGS_NONE | Common frame.| 
+   | AVCODEC_BUFFER_FLAGS_EOS | The buffer is an end-of-stream frame.| 
+   | AVCODEC_BUFFER_FLAGS_CODEC_DATA | The buffer contains codec-specific data.| 
 
 8. Call **OH_AudioCodec_FreeOutputBuffer()** to output the encoded stream.
 

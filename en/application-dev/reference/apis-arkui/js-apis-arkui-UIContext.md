@@ -2571,7 +2571,7 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button ('Subscribe to Screen Pixel Density Changes')
+      Button('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener registered'
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
@@ -2617,12 +2617,12 @@ struct Index {
       Text(this.message)
         .fontSize(24)
         .fontWeight(FontWeight.Bold)
-      Button ('Subscribe to Screen Pixel Density Changes')
+      Button('Subscribe to Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener registered'
           this.getUIContext().getUIObserver().on('densityUpdate', this.densityUpdateCallback);
         })
-      Button ('Unsubscribe from Screen Pixel Density Changes')
+      Button('Unsubscribe from Screen Pixel Density Changes')
         .onClick(() => {
           this.message = 'Listener not registered'
           this.getUIContext().getUIObserver().off('densityUpdate', this.densityUpdateCallback);
@@ -5710,7 +5710,7 @@ struct DragControllerPage {
     Column() {
 
       Column() {
-        Text ("Test")
+        Text("Test")
       }
       .width(100)
       .height(100)

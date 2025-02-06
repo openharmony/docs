@@ -286,7 +286,7 @@ struct NumberStyleExample {
 ![numberstyle](figures/numberstyle.gif)
 ### 示例4（日期内联型Counter）
 
-该示例通过设置type为CounterType.INLINE_DATE以及dateOptions，实现日期内联型Counter。
+该示例通过设置type为CounterType.INLINE_DATE以及dateOptions，实现日期内联型Counter，用户可以手动输入日期。
 
 ```ts
 import { CounterType, CounterComponent, DateData } from '@kit.ArkUI';

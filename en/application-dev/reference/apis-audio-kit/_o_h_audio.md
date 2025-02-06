@@ -5,6 +5,12 @@
 
 The **OHAudio** module provides C APIs of the audio module.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using OHAudio for Audio Playback](../../media/audio/using-ohaudio-for-playback.md)
+- [Using OHAudio for Audio Recording](../../media/audio/using-ohaudio-for-recording.md)
+- [Using AudioSession to Manage Audio Focus](../../media/audio/using-ohaudio-for-session.md)
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 10
@@ -333,6 +339,7 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to write audio data.
+The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
 
 This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#OH_AudioStreamBuilder_SetFrameSizeInCallback).
 
@@ -351,7 +358,11 @@ This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Str
 
 **Returns**
 
-Audio data callback result.
+Returns one of the result codes defined in [OH_AudioData_Callback_Result](#oh_audiodata_callback_result):
+
+**AUDIO_DATA_CALLBACK_RESULT_INVALID**: The audio data callback result is invalid, and the audio data will not be played.
+
+**AUDIO_DATA_CALLBACK_RESULT_VALID**: The audio data callback result is valid, and the audio data will be played.
 
 **See**
 
@@ -563,8 +574,8 @@ Enumerates the audio data callback results.
 
 | Value| Description| 
 | -------- | -------- |
-| AUDIO_DATA_CALLBACK_RESULT_INVALID  | The data is invalid.  | 
-| AUDIO_DATA_CALLBACK_RESULT_VALID  | The data is valid.  | 
+| AUDIO_DATA_CALLBACK_RESULT_INVALID  | The audio data callback result is invalid, and the audio data will not be played.  | 
+| AUDIO_DATA_CALLBACK_RESULT_VALID  | The audio data callback result is valid, and the audio data will be played.  | 
 
 
 ### OH_AudioDevice_ChangeType
@@ -2920,7 +2931,7 @@ Obtains available devices based on the device flag.
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | deviceFlag | Device flag, which is used to filter the target device. For details about the available options, see [OH_AudioDevice_Flag](#oh_audiodevice_flag).| 
 | audioDeviceDescriptorArray | Pointer to the audio device descriptor array, which is [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md). Do not release the pointer to the **audioDeviceDescriptorArray** struct separately. Instead, call [OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices) to release the **DeviceDescriptor** array.|
 
@@ -3008,7 +3019,6 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 **AUDIOCOMMON_RESULT_ERROR_NO_MEMORY**: The memory is insufficient.
 
 
-
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
 
 ```
@@ -3026,7 +3036,7 @@ Registers a callback to listen for device changes of an audio routing manager.
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | deviceFlag | Device flag. For details about the available options, see [OH_AudioDevice_Flag](#oh_audiodevice_flag).| 
 | callback | Callback function used to return the changed audio device descriptor. For details, see [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback).| 
 
@@ -3059,7 +3069,7 @@ Releases audio devices available for an audio routing manager.
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | audioDeviceDescriptorArray | Pointer to the array of audio devices, which are obtained by calling [OH_AudioRoutingManager_GetDevices](#oh_audioroutingmanager_getdevices).| 
 
 **Returns**
@@ -3090,7 +3100,7 @@ Unregisters the callback used to listen for device changes of an audio routing m
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | callback | Callback function used to return the changed audio device descriptor. For details, see [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback).| 
 
 **Returns**
@@ -3346,7 +3356,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **StreamType** parameter is set to an invalid value.
-  3. The **OHAudioRenderer** instance fails to be created.
+  3. The **OHAudioCapturer** instance fails to be created.
 
 
 ### OH_AudioStreamBuilder_GenerateRenderer()

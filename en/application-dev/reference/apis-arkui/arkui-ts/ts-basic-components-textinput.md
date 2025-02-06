@@ -1377,7 +1377,7 @@ struct TextInputExample {
         .showError('Error')
         .showUnit(this.itemEnd)
 
-      Text (`User name: ${this.Text}`)
+      Text(`User name: ${this.Text}`)
         .width('95%')
       TextInput({ placeholder: 'Enter user name', text: this.Text })
         .showUnderline(true)

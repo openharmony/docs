@@ -164,7 +164,7 @@ This error code is reported when the parent window is invalid.
 1. Ensure that the subwindow is bound to the parent window.
 2. Ensure that the status of the parent window is normal.
 
-## 1300010 Invalid Operation in the Full-Screen Window
+## 1300010 Invalid Operation in the Full-Screen Window Mode
 
 **Error Message**
 
@@ -244,7 +244,7 @@ This error code is reported when creating a PiP window fails.
 
 **Error Message**
 
-Pip internal error.
+PiP internal error.
 
 **Description**
 

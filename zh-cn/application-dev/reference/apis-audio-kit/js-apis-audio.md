@@ -1249,7 +1249,10 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 设置指定流的音量，使用callback方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
+> 
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
+> 
+> 应用无法直接调节系统音量，建议应用通过系统音量面板组件，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。具体样例和介绍请查看[AVVolumePanel参考文档](ohos-multimedia-avvolumepanel.md)。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1286,7 +1289,10 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 设置指定流的音量，使用Promise方式异步返回结果。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
+>
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
+>
+> 应用无法直接调节系统音量，建议应用通过系统音量面板组件，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。具体样例和介绍请查看[AVVolumePanel参考文档](ohos-multimedia-avvolumepanel.md)。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -3188,6 +3194,46 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
 });
+```
+
+### off('micStateChange')<sup>12+</sup>
+
+off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): void
+
+取消监听系统麦克风状态更改事件，使用callback方式返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | 是  | 监听事件，固定为：'micStateChange'。 |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 否  | 回调函数，返回变更后的麦克风状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听
+audioVolumeGroupManager.off('micStateChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
+let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+});
+
+audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
+
+audioVolumeGroupManager.off('micStateChange', micStateChangeCallback);
 ```
 
 ### isVolumeUnadjustable<sup>10+</sup>

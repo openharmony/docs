@@ -1,12 +1,15 @@
 # Styled String (StyledString/MutableStyledString)
 
-Styled strings, implemented by **StyledString** or **MutableStyledString** (collectively referred to as **StyledString**, with **MutableStyledString** inheriting from **StyledString**), are powerful markup objects that can be used to set text styles at the character or paragraph level. By attaching a **StyledString** to a text component, you can modify the text in various ways, including changing the font size, adding font colors, making the text clickable, and customizing the drawing of text, among others. For details, see [Styled String](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md).
+Styled strings, implemented by **StyledString** or **MutableStyledString** (collectively referred to as **StyledString**, with **MutableStyledString** inheriting from **StyledString**), are powerful markup objects designed to set text styles at the character or paragraph level. By binding a **StyledString** object to a text component, you can modify the text in various ways, including changing the font size, adding font colors, making the text clickable, and customizing the drawing of text, among others. For details, see [Styled String](../reference/apis-arkui/arkui-ts/ts-universal-styled-string.md).
 
-Styled strings provide a variety of style objects that cover various common text formatting styles. You can also create **CustomSpan** objects to apply custom styles.
+Styled strings provide a variety of style objects that cover various common text formatting styles, such as text decorative lines, line height, and text shadows. You can also create **CustomSpan** objects to apply custom styles.
 
 ## Creating and Applying a StyledString Object
 
-  You can attach a **StyledString** object to a text component using the **setStyledString(StyledString)** API provided by **TextController**. You are advised to call the API in the **onPageShow** callback for immediate display of the styled string text content. Avoid calling it in **aboutToAppear**, as the component may have not yet been mounted to the node tree at the time **aboutToAppear** is executed, preventing the styled string text content from appearing upon page load.
+  You can bind a **StyledString** object to a text component using the [setStyledString](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#setstyledstring12) API provided by **TextController**. You are advised to call the API in the [onPageShow](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow) callback for immediate display of the styled string text content.
+  > **NOTE**
+  >
+  > Avoid calling the **setStyledString** API in **aboutToAppear**, as the component may have not yet been mounted to the node tree at the time **aboutToAppear** is executed, preventing the styled string text content from appearing upon page load.
 
   ```ts
   @Entry
@@ -78,7 +81,7 @@ Styled strings offer multiple style objects, such as [TextStyle](../reference/ap
   ```
   ![StyledString_TextStyle](figures/StyledString_TextStyle.png)
 
-- Creating and applying a **TextShadow** object
+- Creating and applying a **TextShadowStyle** object
 
   ```ts
   // xxx.ets
@@ -348,12 +351,12 @@ The following example shows how to attach images and text to the same **MutableS
     }
 
     private async getPixmapFromMedia(resource: Resource) {
-      let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+      let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
         bundleName: resource.bundleName,
         moduleName: resource.moduleName,
         id: resource.id
       })
-      let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+      let imageSource = image.createImageSource(unit8Array?.buffer?.slice(0, unit8Array?.buffer?.byteLength))
       let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
         desiredPixelFormat: image.PixelMapFormat.RGBA_8888
       })
@@ -574,6 +577,8 @@ struct styled_string_demo6 {
 ![CustomSpanDemo](figures/StyledString_CustomSpan_Scene.PNG)
 
 ## Example
+
+This example shows how to implement an expired membership notification using **ParagraphStyle**, **LineHeightStyle**, and **TextStyle** objects.
 
 ```ts
 import { LengthMetrics } from '@kit.ArkUI';

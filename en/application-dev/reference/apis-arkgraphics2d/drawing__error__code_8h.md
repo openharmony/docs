@@ -35,4 +35,4 @@ The **drawing_error_code.h** file declares the functions related to the error co
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](_drawing.md#oh_drawing_errorcodeget) () | Obtains the error code of the module.| 
+| [OH_Drawing_ErrorCode](_drawing.md#oh_drawing_errorcode)  [OH_Drawing_ErrorCodeGet](_drawing.md#oh_drawing_errorcodeget) () | Obtains the latest error code of the module. After the function is successfully executed, the error code returned by this function will not be modified.| 

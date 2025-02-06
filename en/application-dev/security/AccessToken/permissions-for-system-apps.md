@@ -2603,7 +2603,7 @@ Allows an application to intercept input events.
 
 ### ohos.permission.RECORD_VOICE_CALL
 
-Allows the application to record voice calls.
+Allows an application to record voice calls.
 
 **Permission level**: system_core
 
@@ -3591,7 +3591,7 @@ Allows an application to access the mappings between applications and domain nam
 
 ### ohos.permission.ALLOW_CONNECT_CAR
 
-Allows an application to connect to an automobile head unit.
+Allows an application to connect to a telematics device.
 
 **Permission level**: system_basic
 
@@ -4181,7 +4181,7 @@ Allows an application to read the pasteboard.
 
 Allows an application to access the **Desktop** directory and its subdirectories in the user directory.
 
-Currently, this permission is available only for 2-in-1 device applications.
+Currently, this permission is available only to 2-in-1 device applications.
 
 **Permission level**: system_basic
 

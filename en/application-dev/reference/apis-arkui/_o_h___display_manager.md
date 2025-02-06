@@ -9,15 +9,13 @@ The OH_DisplayManager module provides the display management capability.
 
 **Since**: 12
 
-
 ## Summary
-
 
 ### Files
 
 | Name| Description| 
 | -------- | -------- |
-| [oh_display_info.h](oh__display__info_8h.md) | Declares the common enums and definitions of the display manager.| 
+| [oh_display_info.h](oh__display__info_8h.md) | Declares the common enums and definitions of the display.| 
 | [oh_display_manager.h](oh__display__manager_8h.md) | Declares the functions for basic display management. You can call the functions to obtain various information about the default display and listen for display status changes, such as rotation, folding, and unfolding.| 
 
 
@@ -26,8 +24,8 @@ The OH_DisplayManager module provides the display management capability.
 | Name| Description| 
 | -------- | -------- |
 | struct  [NativeDisplayManager_Rect](_native_display_manager___rect.md) | Describes a rectangle.| 
-| struct  [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) | Describes the curved area on the waterfall display.| 
-| struct  [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) | Describes the cutout, which is an area that is not intended for displaying content on the display.| 
+| struct  [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) | Describes the curved area on a waterfall display.| 
+| struct  [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) | Describes the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.| 
 
 
 ### Types
@@ -39,10 +37,10 @@ The OH_DisplayManager module provides the display management capability.
 | typedef enum [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) | Defines an enum for the status codes returned by the display manager interface.| 
 | typedef enum [NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) [NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) | Defines an enum for the display modes of a foldable device.| 
 | typedef struct [NativeDisplayManager_Rect](_native_display_manager___rect.md) [NativeDisplayManager_Rect](#nativedisplaymanager_rect) | Defines a struct for a rectangle.| 
-| typedef struct [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) [NativeDisplayManager_WaterfallDisplayAreaRects](#nativedisplaymanager_waterfalldisplayarearects) | Defines a struct for the curved area on the waterfall display.| 
-| typedef struct [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) [NativeDisplayManager_CutoutInfo](#nativedisplaymanager_cutoutinfo) | Defines a struct for the cutout, which is an area that is not intended for displaying content on the display.| 
-| typedef void(\* [OH_NativeDisplayManager_DisplayChangeCallback](#oh_nativedisplaymanager_displaychangecallback)) (uint64_t displayId) | Defines a callback function used to listen for status changes of a display.| 
-| typedef void(\* [OH_NativeDisplayManager_FoldDisplayModeChangeCallback](#oh_nativedisplaymanager_folddisplaymodechangecallback)) ([NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) displayMode) | Defines a callback function used to listen for folded/unfolded state changes of a display.| 
+| typedef struct [NativeDisplayManager_WaterfallDisplayAreaRects](ive_display_manager___waterfall_display_area_rects.md) [NativeDisplayManager_WaterfallDisplayAreaRects](#nativedisplaymanager_waterfalldisplayarearects) | Defines a struct for the curved area on a waterfall display.| 
+| typedef struct [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) [NativeDisplayManager_CutoutInfo](#nativedisplaymanager_cutoutinfo) | Defines a struct for the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.| 
+| typedef void(\* [OH_NativeDisplayManager_DisplayChangeCallback](#oh_nativedisplaymanager_displaychangecallback)) (uint64_t displayId) | Defines a callback function to listen for status changes of a display.| 
+| typedef void(\* [OH_NativeDisplayManager_FoldDisplayModeChangeCallback](#oh_nativedisplaymanager_folddisplaymodechangecallback)) ([NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) displayMode) | Defines a callback function to listen for folded/unfolded state changes of a display.| 
 
 
 ### Enums
@@ -68,12 +66,12 @@ The OH_DisplayManager module provides the display management capability.
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayRefreshRate](#oh_nativedisplaymanager_getdefaultdisplayrefreshrate) (uint32_t \*refreshRate) | Obtains the refresh rate of the default display.| 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayDensityDpi](#oh_nativedisplaymanager_getdefaultdisplaydensitydpi) (int32_t \*densityDpi) | Obtains the physical pixel density of the default display.| 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayDensityPixels](#oh_nativedisplaymanager_getdefaultdisplaydensitypixels) (float \*densityPixels) | Obtains the logical pixel density of the default display.| 
-| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayScaledDensity](#oh_nativedisplaymanager_getdefaultdisplayscaleddensity) (float \*scaledDensity) | Obtains the scale factor of the font displayed on the default display.| 
-| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayDensityXdpi](#oh_nativedisplaymanager_getdefaultdisplaydensityxdpi) (float \*xDpi) | Obtains the number of physical pixels that are displayed horizontally per inch on the default display.| 
-| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayDensityYdpi](#oh_nativedisplaymanager_getdefaultdisplaydensityydpi) (float \*yDpi) | Obtains the number of physical pixels that are displayed vertically per inch on the default display.| 
-| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_createdefaultdisplaycutoutinfo) ([NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) \*\*cutoutInfo) | Obtains the cutout information of the default display.| 
-| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_destroydefaultdisplaycutoutinfo) ([NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) \*cutoutInfo) | Destroys the cutout information of the default display.| 
-| bool [OH_NativeDisplayManager_IsFoldable](#oh_nativedisplaymanager_isfoldable) () | Checks whether the device is foldable.| 
+| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayScaledDensity](#oh_nativedisplaymanager_getdefaultdisplayscaleddensity) (float \*scaledDensity) | Obtains the scale factor of fonts displayed on the default display.| 
+| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayDensityXdpi](#oh_nativedisplaymanager_getdefaultdisplaydensityxdpi) (float \*xDpi) | Obtains the number of physical pixels per inch on the default display in the X dimension.| 
+| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetDefaultDisplayDensityYdpi](#oh_nativedisplaymanager_getdefaultdisplaydensityydpi) (float \*yDpi) | Obtains the number of physical pixels per inch on the default display in the Y dimension.| 
+| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_createdefaultdisplaycutoutinfo) ([NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) \*\*cutoutInfo) | Obtains the unusable area of the default display, including punch hole, notch, and curved area of a waterfall display.| 
+| [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_DestroyDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_destroydefaultdisplaycutoutinfo) ([NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md) \*cutoutInfo) | Destroys the unusable area of the default display, including punch hole, notch, and curved area of a waterfall display.| 
+| bool [OH_NativeDisplayManager_IsFoldable](#oh_nativedisplaymanager_isfoldable) () | Checks whether the current device is foldable.| 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_GetFoldDisplayMode](#oh_nativedisplaymanager_getfolddisplaymode) ([NativeDisplayManager_FoldDisplayMode](#nativedisplaymanager_folddisplaymode) \*displayMode) | Obtains the display mode of the foldable device.| 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_RegisterDisplayChangeListener](#oh_nativedisplaymanager_registerdisplaychangelistener) ([OH_NativeDisplayManager_DisplayChangeCallback](#oh_nativedisplaymanager_displaychangecallback) displayChangeCallback, uint32_t \*listenerIndex) | Registers a listener for status changes (such as rotation, refresh rate, DPI, and resolution changes) of the display.| 
 | [NativeDisplayManager_ErrorCode](#nativedisplaymanager_errorcode) [OH_NativeDisplayManager_UnregisterDisplayChangeListener](#oh_nativedisplaymanager_unregisterdisplaychangelistener) (uint32_t listenerIndex) | Cancels the listening for status changes of the display.| 
@@ -92,7 +90,7 @@ typedef struct NativeDisplayManager_CutoutInfo NativeDisplayManager_CutoutInfo
 
 **Description**
 
-Defines a struct for the cutout, which is an area that is not intended for displaying content on the display.
+Defines a struct for the unusable area of a display, including punch hole, notch, and curved area of a waterfall display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -182,7 +180,7 @@ typedef struct NativeDisplayManager_WaterfallDisplayAreaRects NativeDisplayManag
 
 **Description**
 
-Defines a struct for the curved area on the waterfall display.
+Defines a struct for the curved area on a waterfall display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -197,7 +195,7 @@ typedef void(* OH_NativeDisplayManager_DisplayChangeCallback) (uint64_t displayI
 
 **Description**
 
-Defines a callback function used to listen for status changes of a display.
+Defines a callback function to listen for status changes of a display.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -218,7 +216,7 @@ typedef void(* OH_NativeDisplayManager_FoldDisplayModeChangeCallback) (NativeDis
 
 **Description**
 
-Defines a callback function used to listen for folded/unfolded state changes of a display.
+Defines a callback function to listen for folded/unfolded state changes of a display.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -339,7 +337,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_CreateDefaultDisplayCutou
 
 **Description**
 
-Obtains the cutout information of the default display.
+Obtains the unusable area of the default display, including punch hole, notch, and curved area of a waterfall display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -349,7 +347,7 @@ Obtains the cutout information of the default display.
 
 | Name| Description| 
 | -------- | -------- |
-| cutoutInfo | Double pointer to the cutout information. For details, see [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md).| 
+| cutoutInfo | Double pointer to the unusable area information, which is encapsulated in [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md).| 
 
 **Returns**
 
@@ -364,7 +362,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_DestroyDefaultDisplayCuto
 
 **Description**
 
-Destroys the cutout information of the default display.
+Destroys the unusable area of the default display, including punch hole, notch, and curved area of a waterfall display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -374,7 +372,7 @@ Destroys the cutout information of the default display.
 
 | Name| Description| 
 | -------- | -------- |
-| cutoutInfo | Pointer to the cutout information object obtained by calling [OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_createdefaultdisplaycutoutinfo). For details, see [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md).| 
+| cutoutInfo | Pointer to the unusable area information object, which is obtained by calling [OH_NativeDisplayManager_CreateDefaultDisplayCutoutInfo](#oh_nativedisplaymanager_createdefaultdisplaycutoutinfo). For details, see [NativeDisplayManager_CutoutInfo](_native_display_manager___cutout_info.md).| 
 
 **Returns**
 
@@ -399,7 +397,7 @@ Obtains the physical pixel density of the default display.
 
 | Name| Description| 
 | -------- | -------- |
-| densityDpi | Pointer to the physical pixel density, that is, the number of pixels per inch. The value is a floating point number, in px. The actual value depends on the options provided in device settings.  | 
+| densityDpi | Pointer to the physical pixel density, that is, the number of pixels per inch. The value is an integer, in px. The actual value depends on the options provided in device settings.  | 
 
 **Returns**
 
@@ -439,7 +437,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityX
 
 **Description**
 
-Obtains the number of physical pixels that are displayed horizontally per inch on the default display.
+Obtains the number of physical pixels per inch on the default display in the X dimension.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -449,7 +447,7 @@ Obtains the number of physical pixels that are displayed horizontally per inch o
 
 | Name| Description| 
 | -------- | -------- |
-| xDpi | Pointer to the number of physical pixels displayed horizontally per inch. The value is a floating point number.| 
+| xDpi | Pointer to the number of physical pixels per inch in the X dimension. The value is a floating point number.| 
 
 **Returns**
 
@@ -464,7 +462,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayDensityY
 
 **Description**
 
-Obtains the number of physical pixels that are displayed vertically per inch on the default display.
+Obtains the number of physical pixels per inch on the default display in the Y dimension.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -474,7 +472,7 @@ Obtains the number of physical pixels that are displayed vertically per inch on 
 
 | Name| Description| 
 | -------- | -------- |
-| yDpi | Pointer to the number of physical pixels displayed vertically per inch. The value is a floating point number.| 
+| yDpi | Pointer to the number of physical pixels per inch in the Y dimension. The value is a floating point number.| 
 
 **Returns**
 
@@ -614,7 +612,7 @@ NativeDisplayManager_ErrorCode OH_NativeDisplayManager_GetDefaultDisplayScaledDe
 
 **Description**
 
-Obtains the scale factor of the font displayed on the default display.
+Obtains the scale factor of fonts displayed on the default display.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -714,7 +712,7 @@ bool OH_NativeDisplayManager_IsFoldable ()
 
 **Description**
 
-Checks whether the device is foldable.
+Checks whether the current device is foldable.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -744,7 +742,7 @@ Registers a listener for status changes (such as rotation, refresh rate, DPI, an
 | Name| Description| 
 | -------- | -------- |
 | displayChangeCallback | Callback function triggered when the display status is changed. For details, see [OH_NativeDisplayManager_DisplayChangeCallback](#oh_nativedisplaymanager_displaychangecallback).| 
-| listenerIndex | Pointer to the index of the listener registered. It is used as an input parameter of [OH_NativeDisplayManager_UnregisterDisplayChangeListener](#oh_nativedisplaymanager_unregisterdisplaychangelistener).| 
+| listenerIndex | Pointer to the index of the listener registered. It can be used as an input parameter of [OH_NativeDisplayManager_UnregisterDisplayChangeListener](#oh_nativedisplaymanager_unregisterdisplaychangelistener).| 
 
 **Returns**
 
@@ -770,7 +768,7 @@ Registers a listener for folded/unfolded state changes of the display.
 | Name| Description| 
 | -------- | -------- |
 | displayModeChangeCallback | Callback function triggered when the folded/unfolded state of the display is changed. For details, see [OH_NativeDisplayManager_FoldDisplayModeChangeCallback](#oh_nativedisplaymanager_folddisplaymodechangecallback).| 
-| listenerIndex | Pointer to the index of the listener registered. It is used as an input parameter of [OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener](#oh_nativedisplaymanager_unregisterfolddisplaymodechangelistener).| 
+| listenerIndex | Pointer to the index of the listener registered. It can be used as an input parameter of [OH_NativeDisplayManager_UnregisterFoldDisplayModeChangeListener](#oh_nativedisplaymanager_unregisterfolddisplaymodechangelistener).| 
 
 **Returns**
 

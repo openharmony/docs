@@ -42,7 +42,7 @@ JSVM-API提供了一组功能，使开发人员能够在JSVM-API模块中创建�
 
 ## 使用示例
 
-JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++及ArkTS相关代码进行展示。
+JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
 
 ### OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope
 
@@ -51,29 +51,11 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 cpp部分代码
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// HandleScopeTest、HandleScope、HandleScopeFor注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = HandleScopeTest},
-    {.data = nullptr, .callback = HandleScope},
-    {.data = nullptr, .callback = HandleScopeFor},
-};
-static JSVM_CallbackStruct *method = param;
-// HandleScopeTest、HandleScope、HandleScopeFor方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"handleScopeTest", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"handleScope", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"handleScopeFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-static int DIFF_VALUE_HUNDRED_THOUSAND = 100000;
 // OH_JSVM_OpenHandleScope、OH_JSVM_CloseHandleScope的三种样例方法
-static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info)
-{
+static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info) {
     // 在for循环中频繁调用JSVM接口创建js对象时，要加handle_scope及时释放不再使用的资源。
     // 下面例子中，每次循环结束局部变量res的生命周期已结束，因此加scope及时释放其持有的js对象，防止内存泄漏
+    constexpr uint32_t DIFF_VALUE_HUNDRED_THOUSAND = 10000;
     JSVM_Value checked = nullptr;
     for (int i = 0; i < DIFF_VALUE_HUNDRED_THOUSAND; i++) {
         JSVM_HandleScope scope = nullptr;
@@ -95,123 +77,33 @@ static JSVM_Value HandleScopeFor(JSVM_Env env, JSVM_CallbackInfo info)
     return checked;
 }
 
-static JSVM_Value HandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // 注意：
-    // 以下代码中obj是在句柄作用域内创建的，然后通过OH_JSVM_OpenHandleScope关闭了句柄作用域。
-    // 但在此情况下可以正常返回出去。
-    // 这是因为在这段代码中，obj是通过将其返回作为函数的返回值的方式，
-    // 而不需要在句柄作用域之外继续使用obj。因此，代码中obj能够正常返回出去。
-    // 通过调用OH_JSVM_OpenHandleScope来创建一个句柄作用域
-    JSVM_HandleScope scope = nullptr;
-    JSVM_Status status = OH_JSVM_OpenHandleScope(env, &scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_OpenHandleScope: failed");
-        return nullptr;
-    }
-    // 在句柄作用域内创建一个obj
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    // 在对象中添加属性
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "test handleScope", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // 关闭句柄作用域，自动释放在该作用域内创建的对象句柄
-    status = OH_JSVM_CloseHandleScope(env, scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseHandleScope: failed");
-        return nullptr;
-    }
-    OH_LOG_INFO(LOG_APP, "JSVM HandleScopeTest: success");
-    return obj;
-}
+// HandleScopeFor注册回调
+static JSVM_CallbackStruct param[] = {
+    {.callback = HandleScopeFor, .data = nullptr},
+};
 
-static JSVM_Value HandleScope(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    // 通过调用OH_JSVM_OpenHandleScope来创建一个句柄作用域
-    JSVM_HandleScope scope = nullptr;
-    JSVM_Status status = OH_JSVM_OpenHandleScope(env, &scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_OpenHandleScope: failed");
-        return nullptr;
-    }
-    // 在句柄作用域内创建一个obj
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    // 在对象中添加属性
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "handleScope", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // 关闭句柄作用域，自动释放在该作用域内创建的对象句柄
-    status = OH_JSVM_CloseHandleScope(env, scope);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseHandleScope: failed");
-        return nullptr;
-    }
-    // 关闭句柄作用域之后继续在对象中添加属性，jsvm中原先设置的name失效
-    OH_JSVM_CreateStringUtf8(env, "001", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "id", value);
-    // 此处的obj的name失效
-    bool result = true;
-    OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_HasProperty(env, obj, value, &result);
-    if (!result) {
-        OH_LOG_INFO(LOG_APP, "JSVM HandleScope: success");
-    }
-    return obj;
-}
+static JSVM_CallbackStruct *method = param;
+// HandleScopeFor方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"HandleScopeFor", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+const char *srcCallNative = "HandleScopeFor()";
 ```
 
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `handleScopeTest()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM handleScopeTest: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM handleScopeTest error: %{public}s', error.message);
-}
-try {
-  let script: string = `handleScope()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM handleScope: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM handleScope error: %{public}s', error.message);
-}
-try {
-  let script: string = `handleScopeFor()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM handleScopeFor: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM handleScopeFor error: %{public}s', error.message);
-}
+预期输出
+```
+JSVM HandleScopeFor: success
 ```
 
 ### OH_JSVM_OpenEscapableHandleScope、OH_JSVM_CloseEscapableHandleScope、OH_JSVM_EscapeHandle
 
-通过接口OH_JSVM_OpenEscapableHandleScope创建出一个可逃逸的handel scope，可将范围内声明的值返回到父作用域。需要使用OH_JSVM_CloseEscapableHandleScope进行关闭。OH_JSVM_EscapeHandle用于提升传入的JavaScript对象的生命周期到其父作用域。
-通过上述接口可以更灵活的使用管理传入的JavaScript对象，特别是在处理跨作用域的值传递时非常有用。
+通过接口 OH_JSVM_OpenEscapableHandleScope 创建出一个可逃逸的 handel scope，可将 1 个范围内声明的值返回到父作用域。创建的 scope 需使用 OH_JSVM_CloseEscapableHandleScope 进行关闭。OH_JSVM_EscapeHandle 将传入的 JavaScript 对象的生命周期提升到其父作用域。
+通过上述接口可以更灵活的使用管理传入的 JavaScript 对象，特别是在处理跨作用域的值传递时非常有用。
 
-cpp部分代码
+cpp 部分代码
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// EscapableHandleScopeTest注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = EscapableHandleScopeTest},
-};
-static JSVM_CallbackStruct *method = param;
-// EscapableHandleScopeTest方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"escapableHandleScopeTest", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
 // OH_JSVM_OpenEscapableHandleScope、OH_JSVM_CloseEscapableHandleScope、OH_JSVM_EscapeHandle的样例方法
 static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -238,118 +130,66 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseEscapableHandleScope: failed");
         return nullptr;
     }
-    // 在作用域外继续使用escapedObj 此时的escapedObj已逃逸，可以设置成功，在ArkTS侧可以取到东西
-    OH_JSVM_CreateStringUtf8(env, "001", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_SetNamedProperty(env, obj, "id", value);
+    // 此时的escapedObj已逃逸，可以在作用域外继续使用escapedObj
     bool result = false;
-    OH_JSVM_CreateStringUtf8(env, "id", JSVM_AUTO_LENGTH, &value);
-    OH_JSVM_HasProperty(env, obj, value, &result);
+    OH_JSVM_CreateStringUtf8(env, "name", JSVM_AUTO_LENGTH, &value);
+    OH_JSVM_HasProperty(env, escapedObj, value, &result);
     if (result) {
         OH_LOG_INFO(LOG_APP, "JSVM EscapableHandleScopeTest: success");
     }
     return escapedObj;
 }
+
+// EscapableHandleScopeTest注册回调
+static JSVM_CallbackStruct param[] = {
+    {.callback = EscapableHandleScopeTest, .data = nullptr},
+};
+static JSVM_CallbackStruct *method = param;
+// EscapableHandleScopeTest方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"escapableHandleScopeTest", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+const char *srcCallNative = "escapableHandleScopeTest()";
 ```
 
-接口声明
+预期输出
 
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `escapableHandleScopeTest()`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM escapableHandleScopeTest: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM escapableHandleScopeTest error: %{public}s', error.message);
-}
+```
+JSVM EscapableHandleScopeTest: success
 ```
 
-### OH_JSVM_CreateReference、OH_JSVM_DeleteReference
+### OH_JSVM_CreateReference、OH_JSVM_DeleteReference、OH_JSVM_GetReferenceValue
 
-为Object创建一个reference，以延长其生命周期。调用者需要自己管理reference生命周期。可以调用OH_JSVM_DeleteReference删除传入的reference。
+1. 调用 OH_JSVM_CreateReference 为 JavaScript 变量创建一个引用，以延长其生命周期。
+2. 调用 OH_JSVM_GetReferenceValue 获取与引用关联的 JavaScript 变量。
+3. 调用 OH_JSVM_DeleteReference 删除传入的引用。
+
+调用者需要自己管理引用生命周期，引用有效期间 JavaScript 变量不会被垃圾回收处理。
 
 ### OH_JSVM_ReferenceRef、OH_JSVM_ReferenceUnref
 
-增加/减少 传入的reference的引用计数，并获取新的计数。
-
-### OH_JSVM_GetReferenceValue
-
-获取与reference相关联的JavaScript Object。
-
-### OH_JSVM_AddFinalizer
-
-当JavaScript Object中的对象被垃圾回收时调用注册的OH_JSVM_AddFinalizer回调。
+增加/减少 传入的引用的引用计数，并获取新的计数。当引用计数被置为 0 后，对于可以被设置为弱引用的 JavaScript 类型（对象、函数、外部变量），引用将被置为弱引用，在垃圾回收机制认为必要的时候该变量会被回收，当变量被回收后，调用 OH_JSVM_GetReferenceValue 会获得 JavaScript NULL；对于不可被置为弱引用的 JavaScript 类型，该引用会被清除，调用 OH_JSVM_GetReferenceValue 会获得 JavaScript NULL。
 
 cpp部分代码
 
 ```cpp
-// hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
-// CreateReference、UseReference、DeleteReference注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = CreateReference},
-    {.data = nullptr, .callback = UseReference},
-    {.data = nullptr, .callback = DeleteReference},
-};
-static JSVM_CallbackStruct *method = param;
-// CreateReference、UseReference、DeleteReference方法别名，供JS调用
-static JSVM_PropertyDescriptor descriptor[] = {
-    {"createReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"useReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-    {"deleteReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
-};
-// OH_JSVM_CreateReference、OH_JSVM_AddFinalizer的样例方法
-static JSVM_Value CreateReference(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    JSVM_Ref g_ref = nullptr;
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "CreateReference", JSVM_AUTO_LENGTH, &value);
-    // 将键值对添加到对象中
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // 创建对JavaScript对象的引用
-    JSVM_Status status = OH_JSVM_CreateReference(env, obj, 1, &g_ref);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateReference: failed");
-        return nullptr;
-    }
-    JSVM_Finalize jSVM_Finalize = nullptr;
-    OH_JSVM_AddFinalizer(env, obj, nullptr, jSVM_Finalize, nullptr, &g_ref);
-    // 增加传入引用的引用计数并返回生成的引用计数
-    uint32_t result;
-    OH_JSVM_ReferenceRef(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceRef, count = %{public}d.", result);
-    if (result != 2) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_ReferenceRef: failed");
-        return nullptr;
-    }
-    OH_LOG_INFO(LOG_APP, "JSVM CreateReference success");
-    return obj;
-}
-// OH_JSVM_ReferenceRef、OH_JSVM_GetReferenceValue的样例方法
 static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    JSVM_Ref g_ref = nullptr;
+    // 创建 JavaScript 对象
     JSVM_Value obj = nullptr;
     OH_JSVM_CreateObject(env, &obj);
     JSVM_Value value = nullptr;
     OH_JSVM_CreateStringUtf8(env, "UseReference", JSVM_AUTO_LENGTH, &value);
-    // 将键值对添加到对象中
     OH_JSVM_SetNamedProperty(env, obj, "name", value);
+    
+    JSVM_Ref g_ref = nullptr;
     // 创建对JavaScript对象的引用
     JSVM_Status status = OH_JSVM_CreateReference(env, obj, 1, &g_ref);
     if (status != JSVM_OK) {
         return nullptr;
     }
-    JSVM_Finalize jSVM_Finalize = nullptr;
-    OH_JSVM_AddFinalizer(env, obj, nullptr, jSVM_Finalize, nullptr, &g_ref);
+
     // 增加传入引用的引用计数并返回生成的引用计数
     uint32_t result;
     OH_JSVM_ReferenceRef(env, g_ref, &result);
@@ -358,6 +198,15 @@ static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_ReferenceRef: failed");
         return nullptr;
     }
+
+    //  减少传入引用的引用计数并返回生成的引用计数
+    uint32_t num;
+    OH_JSVM_ReferenceUnref(env, g_ref, &num);
+    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceUnref, count = %{public}d.", num);
+    if (num != 1) {
+        return nullptr;
+    }
+
     JSVM_Value object = nullptr;
     // 通过调用OH_JSVM_GetReferenceValue获取引用的JavaScript对象
     status = OH_JSVM_GetReferenceValue(env, g_ref, &object);
@@ -365,80 +214,82 @@ static JSVM_Value UseReference(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_GetReferenceValue: failed");
         return nullptr;
     }
-    // 将获取到的对象返回
-    OH_LOG_INFO(LOG_APP, "JSVM UseReference success");
-    return object;
-}
-// OH_JSVM_ReferenceUnref、OH_JSVM_DeleteReference的样例方法
-static JSVM_Value DeleteReference(JSVM_Env env, JSVM_CallbackInfo info)
-{
-    JSVM_Ref g_ref = nullptr;
-    JSVM_Value obj = nullptr;
-    OH_JSVM_CreateObject(env, &obj);
-    JSVM_Value value = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "DeleteReference", JSVM_AUTO_LENGTH, &value);
-    // 将键值对添加到对象中
-    OH_JSVM_SetNamedProperty(env, obj, "name", value);
-    // 创建对JavaScript对象的引用
-    JSVM_Status status = OH_JSVM_CreateReference(env, obj, 1, &g_ref);
-    if (status != JSVM_OK) {
-        OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CreateReference: failed");
-        return nullptr;
-    }
-    JSVM_Finalize jSVM_Finalize = nullptr;
-    OH_JSVM_AddFinalizer(env, obj, nullptr, jSVM_Finalize, nullptr, &g_ref);
-    // 增加传入引用的引用计数并返回生成的引用计数
-    uint32_t result;
-    OH_JSVM_ReferenceRef(env, g_ref, &result);
-    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceRef, count = %{public}d.", result);
-    if (result != 2) {
-        return nullptr;
-    }
-    // 减少传入引用的引用计数并返回生成的引用计数
-    uint32_t num;
-    OH_JSVM_ReferenceUnref(env, g_ref, &num);
-    OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_ReferenceUnref, count = %{public}d.", num);
-    if (num != 1) {
-        return nullptr;
-    }
-    // 通过调用OH_JSVM_DeleteReference删除对JavaScript对象的引用
+
+    // 不再使用引用，通过调用OH_JSVM_DeleteReference删除对JavaScript对象的引用
     status = OH_JSVM_DeleteReference(env, g_ref);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_DeleteReference: failed");
         return nullptr;
     }
-    JSVM_Value returnResult = nullptr;
-    OH_JSVM_CreateStringUtf8(env, "OH_JSVM_DeleteReference success", JSVM_AUTO_LENGTH, &returnResult);
-    OH_LOG_INFO(LOG_APP, "JSVM DeleteReference success");
-    return returnResult;
+
+    // 将获取到的对象返回
+    OH_LOG_INFO(LOG_APP, "JSVM UseReference success");
+    return object;
+}
+
+// CreateReference、UseReference、DeleteReference注册回调
+static JSVM_CallbackStruct param[] = {
+    {.callback = UseReference, .data = nullptr},
+};
+static JSVM_CallbackStruct *method = param;
+// CreateReference、UseReference、DeleteReference方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"useReference", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+const char *srcCallNative = "useReference()";
+```
+
+预期结果
+
+```
+JSVM OH_JSVM_ReferenceRef, count = 2.
+JSVM OH_JSVM_ReferenceUnref, count = 1.
+JSVM UseReference success
+```
+
+### OH_JSVM_AddFinalizer
+为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
+Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
+
+cpp 部分代码
+
+```cpp
+static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
+    // 打开 handlescope
+    JSVM_HandleScope handleScope;
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+    // 创建 object 并设置回调
+    JSVM_Value obj;
+    CHECK_RET(OH_JSVM_CreateObject(env, &obj));
+    CHECK_RET(OH_JSVM_AddFinalizer(
+        env, obj, nullptr,
+        [](JSVM_Env env, void *data, void *hint) -> void {
+            // Finalizer 方法，可在该方法中清理 Native 对象
+            OH_LOG_INFO(LOG_APP, "JSVM: finalizer called.");
+        },
+        nullptr, nullptr));
+    OH_LOG_INFO(LOG_APP, "JSVM: finalizer added.");
+    // 关闭 handlescope，触发 GC，GC 时 Finalizer 会被调用
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    OH_LOG_INFO(LOG_APP, "JSVM: before call gc.");
+    CHECK_RET(OH_JSVM_MemoryPressureNotification(env, JSVM_MemoryPressureLevel::JSVM_MEMORY_PRESSURE_LEVEL_CRITICAL));
+    OH_LOG_INFO(LOG_APP, "JSVM: after call gc.");
+
+    return 0;
+}
+
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+    if (AddFinalizer(vm, env) != 0) {
+        OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
+    }
 }
 ```
 
-ArkTS侧示例代码
-
-```ts
-import hilog from "@ohos.hilog"
-// 通过import的方式，引入Native能力。
-import napitest from "libentry.so"
-try {
-  let script: string = `createReference();`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM createReference: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM createReference error: %{public}s', error.message);
-}
-try {
-  let script: string = `useReference();`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM useReference: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM useReference error: %{public}s', error.message);
-}
-try {
-  let script: string = `deleteReference();`;
-  let result = napitest.runJsVm(script);
-  hilog.info(0x0000, 'testJSVM', 'Test JSVM deleteReference: %{public}s', result);
-} catch (error) {
-  hilog.error(0x0000, 'testJSVM', 'Test JSVM deleteReference error: %{public}s', error.message);
-}
+预期结果
+```
+JSVM: finalizer added.
+JSVM: before call gc.
+JSVM: finalizer called.
+JSVM: after call gc.
 ```

@@ -55,7 +55,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.addAllowedInstallBundlesSync(wantTemp, appIds, 100);
@@ -104,7 +104,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.removeAllowedInstallBundlesSync(wantTemp, appIds, 100);
@@ -204,7 +204,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.addDisallowedInstallBundlesSync(wantTemp, appIds, 100);
@@ -252,7 +252,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.removeDisallowedInstallBundlesSync(wantTemp, appIds, 100)
@@ -352,7 +352,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.addDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
@@ -400,7 +400,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 try {
   bundleManager.removeDisallowedUninstallBundlesSync(wantTemp, appIds, 100);
@@ -521,6 +521,7 @@ bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
 install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam): Promise\<void>
 
 指定设备管理应用安装指定路径下的应用包。使用promise异步回调。
+注意：此接口只能安装分发类型为enterprise_mdm和enterprise_normal类型的应用。
 
 **需要权限：** ohos.permission.ENTERPRISE_INSTALL_BUNDLE
 

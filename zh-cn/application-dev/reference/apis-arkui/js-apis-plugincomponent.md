@@ -1,6 +1,6 @@
 # @ohos.pluginComponent (PluginComponentManager)
 
-用于给插件组件的使用者请求组件与数据，使用者发送组件模板和数据。
+用于给插件组件的使用方请求组件与数据，使用方发送组件模板和数据。
 
 >  **说明：**
 >
@@ -23,7 +23,7 @@ Plugin组件模板参数。
 | 参数    | 类型   | 必填 | 描述                        |
 | ------- | ------ | ---- | --------------------------- |
 | source  | string | 是   | 组件模板名。                |
-| ability | string | 是   | 提供者Ability的bundleName。 |
+| ability | string | 是   | 提供方Ability的bundleName。 |
 
 ## PluginComponentManager
 
@@ -62,7 +62,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 | 名称        | 类型                                  | 必填   | 说明                                       |
 | --------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| want      | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件使用方Ability信息。                          |
 | name      | string                              | 是    | 组件名称。                                    |
 | data      | [KVObject](#kvobject)               | 是    | 组件数据值。                                   |
 | extraData | [KVObject](#kvobject)               | 是    | 附加数据值。                                   |
@@ -80,7 +80,7 @@ type KVObject = { [key: string]: number | string | boolean | [] | KVObject }
 
 | 名称       | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
+| want     | [Want](../apis-ability-kit/js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
 | name     | string                              | 是    | 请求组件名称。                                  |
 | data     | [KVObject](#kvobject)               | 是    | 附加数据。                                    |
 | jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
@@ -186,7 +186,7 @@ function onRequestListener(source: Want, name: string, data: pluginComponentMana
 
 push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
-组件提供者向组件使用者主动发送组件与数据。
+组件提供方向组件使用方主动发送组件与数据。
 
 **模型约束：** 此接口仅适用于FA模型。
 
@@ -197,7 +197,7 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 **参数：**
 | 参数名      | 类型                                | 必填   | 说明           |
 | -------- | --------------------------------- | ---- | ------------ |
-| param    | [PushParameters](#pushparameters) | 是    | 组件使用者的详细信息。  |
+| param    | [PushParameters](#pushparameters) | 是    | 组件使用方的详细信息。  |
 | callback | AsyncCallback&lt;void&gt;         | 是    | 此次接口调用的异步回调。 |
 
 **示例：**
@@ -230,7 +230,7 @@ pluginComponentManager.push(
 
 request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackParameters&gt;): void
 
-组件使用者向组件提供者主动请求组件。
+组件使用方向组件提供方主动请求组件。
 
 **模型约束：** 此接口仅适用于FA模型。
 
@@ -276,7 +276,7 @@ pluginComponentManager.request(
 
 on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): void
 
-提供者监听"request"类型的事件，给使用者返回通过request接口主动请求的数据；使用者监听"push"类型的事件，接收提供者通过push接口主动推送的数据。
+提供方监听"request"类型的事件，给使用方返回通过request接口主动请求的数据；使用方监听"push"类型的事件，接收提供方通过push接口主动推送的数据。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -286,7 +286,7 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 
 | 参数名       | 类型                                       | 必填   | 说明                                       |
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| eventType | string                                   | 是    | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供者向使用者主动推送数据。<br/>"request”：指组件使用者向提供者主动请求数据。 |
+| eventType | string                                   | 是    | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供方向使用方主动推送数据。<br/>"request”：指组件使用方向提供方主动请求数据。 |
 | callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | 是    | 对应监听回调，push事件对应回调类型为[OnPushEventCallback](#onpusheventcallback)，request事件对应回调类型为[OnRequestEventCallback](#onrequesteventcallback) 。 |
 
 **示例：**

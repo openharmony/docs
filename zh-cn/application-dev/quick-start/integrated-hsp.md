@@ -17,17 +17,21 @@
     // created_party_project/build-profile.json5
     {
       "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS",
+            "buildOption": {
+              "strictMode": {
+                "useNormalizedOHMUrl": true
+              }
             }
+            // ...
           }
-        }
+        ]
+        // ...
       }
     }
     ```
@@ -72,17 +76,19 @@
     // user_project/build-profile.json5
     {
       "app": {
-        "products": {
-          "name": "default",
-          "signingConfig": "default",
-          "compatibleSdkVersion": "5.0.0(12)",
-          "runtimeOS": "HarmonyOS",
-          "buildOption": {
-            "strictMode": {
-              "useNormalizedOHMUrl": true
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS",
+            "buildOption": {
+              "strictMode": {
+                "useNormalizedOHMUrl": true
+              }
             }
           }
-        }
+        ]
       }
     }
     ```

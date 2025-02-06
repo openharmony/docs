@@ -647,6 +647,14 @@ struct WebComponent {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objTestName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: '', controller: this.controller })
         .javaScriptAccess(true)
         .onControllerAttached(() => {
@@ -1582,6 +1590,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 > **说明：**
 >
+> - registerJavaScriptProxy需要和deleteJavaScriptRegister接口配合使用，防止内存泄漏。
 > - 请尽可能只在可信的URL及安全通信HTTPS场景下进行registerJavaScriptProxy注册。在非可信的Web组件中注入JavaScript对象，可能会导致应用被恶意攻击。
 > - 在注册registerJavaScriptProxy后，应用会将JavaScript对象暴露给所有的页面frames。
 > - 同一方法在同步与异步列表中重复注册，将默认异步调用。
@@ -1593,7 +1602,7 @@ registerJavaScriptProxy提供了应用与Web组件加载的网页之间强大的
 
 | 参数名     | 类型       | 必填 | 说明                                        |
 | ---------- | -------------- | ---- | ------------------------------------------------------------ |
-| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以声明方法，也可以声明属性，但是不支持h5直接调用。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
+| object     | object         | 是   | 参与注册的应用侧JavaScript对象。可以单独声明方法和属性，但无法同时进行注册与使用。对象只包含属性时，H5可以访问对象中的属性。对象只包含方法时，H5可以访问对象中的方法。<br>方法的参数和返回类型可以为string，number，boolean。<br>方法的参数和返回类型支持Dictionary，Array，最多嵌套10层，每层1w个数据。<br>方法的参数和返回类型支持Object，需要在Object里添加属性methodNameListForJsProxy:[fun1, fun2]，fun1和fun2为可被调用的方法。<br>方法的参数支持Function，Promise，它们的Callback不能有返回值。<br>方法的返回类型支持Promise，Promise的Callback不能有返回值。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 | name       | string         | 是   | 注册对象的名称，与window中调用的对象名一致。注册后window对象可以通过此名字访问应用侧JavaScript对象。 |
 | methodList | Array\<string> | 是   | 参与注册的应用侧JavaScript对象的同步方法。                       |
 | asyncMethodList<sup>12+</sup> | Array\<string> | 否   | 参与注册的应用侧JavaScript对象的异步方法，默认为空。异步方法无法获取返回值。  |
@@ -1619,7 +1628,7 @@ class TestObj {
   constructor() {
   }
 
-  test(testStr:string): string {
+  test(testStr: string): string {
     console.log('Web Component str' + testStr);
     return testStr;
   }
@@ -1628,12 +1637,12 @@ class TestObj {
     console.log('Web Component toString');
   }
 
-  testNumber(testNum:number): number {
+  testNumber(testNum: number): number {
     console.log('Web Component number' + testNum);
     return testNum;
   }
 
-  asyncTestBool(testBol:boolean): void {
+  asyncTestBool(testBol: boolean): void {
     console.log('Web Component boolean' + testBol);
   }
 }
@@ -1686,9 +1695,22 @@ struct Index {
       Button('Register JavaScript To Window')
         .onClick(() => {
           try {
+            // 同时注册同步和异步函数
             this.controller.registerJavaScriptProxy(this.testObjtest, "objName", ["test", "toString", "testNumber"], ["asyncTestBool"]);
+            // 仅注册同步函数
             this.controller.registerJavaScriptProxy(this.webTestObj, "objTestName", ["webTest", "webString"]);
+            // 仅注册异步函数
             this.controller.registerJavaScriptProxy(this.asyncTestObj, "objAsyncName", [], ["asyncTest", "asyncString"]);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+            this.controller.deleteJavaScriptRegister("objTestName");
+            this.controller.deleteJavaScriptRegister("objAsyncName");
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
@@ -4545,6 +4567,8 @@ restoreWebState(state: Uint8Array): void
 
 当前Webview从序列化数据中恢复页面状态历史记录。
 
+如果state过大，可能会导致异常。建议state大于512k时，放弃恢复页面状态历史记录。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -5154,11 +5178,15 @@ export default class EntryAbility extends UIAbility {
     webview.WebviewController.initializeWebEngine();
     // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
     webview.WebviewController.prefetchResource(
-      {url:"https://www.example1.com/post?e=f&g=h",
-        method:"POST",
-        formData:"a=x&b=y",},
-      [{headerKey:"c",
-        headerValue:"z",},],
+      {
+        url: "https://www.example1.com/post?e=f&g=h",
+        method: "POST",
+        formData: "a=x&b=y",
+      },
+      [{
+        headerKey: "c",
+        headerValue: "z",
+      },],
       "KeyX", 500);
     AppStorage.setOrCreate("abilityWant", want);
     console.log("EntryAbility onCreate done");
@@ -5190,17 +5218,22 @@ import { webview } from '@kit.ArkWeb';
 @Component
 struct WebComponent {
   controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
-      Web({ src: "https://www.example.com/", controller: this.controller})
+      Web({ src: "https://www.example.com/", controller: this.controller })
         .onAppear(() => {
           // 预获取时，需要將"https://www.example1.com/post?e=f&g=h"替换成真实要访问的网站地址。
           webview.WebviewController.prefetchResource(
-            {url:"https://www.example1.com/post?e=f&g=h",
-              method:"POST",
-              formData:"a=x&b=y",},
-            [{headerKey:"c",
-              headerValue:"z",},],
+            {
+              url: "https://www.example1.com/post?e=f&g=h",
+              method: "POST",
+              formData: "a=x&b=y",
+            },
+            [{
+              headerKey: "c",
+              headerValue: "z",
+            },],
             "KeyX", 500);
         })
         .onPageEnd(() => {
@@ -6701,6 +6734,15 @@ struct Index {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
+      Button('deleteJavaScriptRegister')
+        .onClick(() => {
+          try {
+            this.controller.deleteJavaScriptRegister("objName");
+            this.controller.deleteJavaScriptRegister("objTestName");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
     }
@@ -7964,7 +8006,7 @@ struct WebComponent {
 
 webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): void
 
-获取网页全量绘制结果。（本地资源网页暂不支持）
+获取网页全量绘制结果。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -11752,7 +11794,7 @@ struct WebComponent {
 | isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。           |
 | isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。           |
 | isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源，支持生成code cache。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -16040,6 +16082,11 @@ struct WebComponent {
 | status | boolean | 否 |  snapshot的状态，正常为true，失败为false，获取全量绘制结果失败，返回size的长宽都为0，map为空。|
 | size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)   | 否 | web绘制的真实尺寸，number类型，单位vp。|
 | imagePixelMap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否 | 全量绘制结果image.pixelMap格式。|
+
+> **说明：**
+>
+> 仅支持对渲染进程上的资源进行截图：静态图片和文本。
+> 不支持动态视频，如果页面有视频则截图时会显示该视频的占位图片。
 
 ## ScrollType<sup>12+</sup>
 

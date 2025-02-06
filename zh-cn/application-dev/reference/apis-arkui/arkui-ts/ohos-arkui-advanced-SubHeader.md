@@ -54,7 +54,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | secondaryTitleModifier<sup>12+</sup> | [TextModifier](ts-universal-attributes-attribute-modifier.md) | 否 | - | 设置副标题文本属性，如设置标题颜色、字体大小、字重等。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | titleBuilder<sup>12+</sup> | () => void | 否 | @BuildParam | 自定义标题区内容<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 子标题外边距，不支持设置负数。<br />默认值：<br /> `{start: LengthMetrics.resource(` <br /> `$r('sys.float.margin_left'))`, <br /> `end: LengthMetrics.resource(` <br /> `$r('sys.float.margin_right'))}`<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetircs.vp(12), end: LengthMetrics.vp(12)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| contentPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12) | 否 | @Prop | 子标题内边距。<br />默认值：<br />左侧为副标题或副标题加图标时：<br /> {start: LengthMetrics.vp(12), end: LengthMetrics.vp(12)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 
 ## OperationType
@@ -108,7 +108,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 该示例主要演示子标题左侧为icon、secondaryTitle，右侧operationType为按钮类型。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -116,12 +116,13 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
-        icon: $r('app.media.ic_public_community_messages'),
+        icon: $r('sys.media.ohos_ic_public_email'),
         secondaryTitle: '二级标题',
         operationType: OperationType.BUTTON,
-        operationItem: [{ value: '操作',
+        operationItem: [{
+          value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            promptAction.showToast({ message: 'demo' });
           }
         }]
       })
@@ -130,13 +131,13 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题1](figures/zh-cn_image_subheader_example01.png)
+![zh-cn_image_subheader_example01](figures/zh-cn_image_subheader_example01.png)
 
 ### 示例2（双行文本内容型子标题）
 该示例主要演示子标题左侧为primaryTitle、secondaryTitle，右侧operationType类型为TEXT_ARROW。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -147,9 +148,10 @@ struct SubHeaderExample {
         primaryTitle: '一级标题',
         secondaryTitle: '二级标题',
         operationType: OperationType.TEXT_ARROW,
-        operationItem: [{ value: '更多',
+        operationItem: [{
+          value: '更多',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            promptAction.showToast({ message: 'demo' });
           }
         }]
       })
@@ -160,11 +162,12 @@ struct SubHeaderExample {
 
 ![子标题2](figures/zh-cn_image_subheader_example02.png)
 
+
 ### 示例3（spinner型内容型子标题）
 该示例主要演示子标题左侧为select，右侧operationType类型为ICON_GROUP。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -172,29 +175,31 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
+        // 左侧为select选择器
         select: {
           options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
-          value: 'selectdemo',
+          value: 'selectDemo',
           selected: 2,
-          onSelect: (index: number, value?: string) => {
-            promptAction.showToast({ message: 'demo' })
+          onSelect: () => {
+            promptAction.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
+        // 右侧为三个icon图标
         operationItem: [{
-          value: $r('app.media.ic_public_community_messages'),
+          value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
             promptAction.showToast({ message: 'demo' })
           }
         }, {
-          value: $r('app.media.ic_public_community_messages'),
+          value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            promptAction.showToast({ message: 'demo' });
           }
         }, {
-          value: $r('app.media.ic_public_community_messages'),
+          value: $r('sys.media.ohos_ic_public_email'),
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            promptAction.showToast({ message: 'demo' });
           }
         }]
       })
@@ -203,14 +208,14 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_subheader_example03.png)
+![zh-cn_image_subheader_example03](figures/zh-cn_image_subheader_example03.png)
 
 ### 示例4（设置左侧symbol图标）
 该示例主要演示子标题左侧icon设置symbol图标。
 
 ```ts
 
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -218,15 +223,17 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
+        // 设置icon为symbol图标
         icon: $r('sys.symbol.ohos_wifi'),
         iconSymbolOptions: {
           effectStrategy: SymbolEffectStrategy.HIERARCHICAL,
         },
         secondaryTitle: '标题',
         operationType: OperationType.BUTTON,
-        operationItem: [{ value: '操作',
+        operationItem: [{
+          value: '操作',
           action: () => {
-            promptAction.showToast({ message: 'demo' })
+            promptAction.showToast({ message: 'demo' });
           }
         }]
       })
@@ -241,7 +248,7 @@ struct SubHeaderExample {
 该示例主要演示子标题operationType设置为OperationType.ICON_GROUP，operationItem的value设置为symbol图标。
 
 ```ts
-import { promptAction, OperationType, SubHeader } from '@kit.ArkUI'
+import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -249,31 +256,34 @@ struct SubHeaderExample {
   build() {
     Column() {
       SubHeader({
+        // 设置左侧select
         select: {
           options: [{ value: 'aaa' }, { value: 'bbb' }, { value: 'ccc' }],
-          value: 'selectdemo',
+          value: 'selectDemo',
           selected: 2,
-          onSelect: (index: number, value?: string) => {
-            promptAction.showToast({ message: 'demo' })
+          onSelect: () => {
+            promptAction.showToast({ message: 'demo' });
           }
         },
         operationType: OperationType.ICON_GROUP,
+        // 设置右侧icon
         operationItem: [{
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon1' })
+            promptAction.showToast({ message: 'icon1' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon2' })
+            promptAction.showToast({ message: 'icon2' });
           }
         }, {
           value: $r('sys.symbol.ohos_lungs'),
           action: () => {
-            promptAction.showToast({ message: 'icon3' })
+            promptAction.showToast({ message: 'icon3' });
           }
         }],
+        // 设置右侧icon图标symbol样式
         operationSymbolOptions: [{
           fontWeight: FontWeight.Lighter,
         }, {
@@ -289,7 +299,7 @@ struct SubHeaderExample {
 }
 ```
 
-![子标题5](figures/zh-cn_image_subheader_example05.png)
+![zh-cn_image_subheader_example05](figures/zh-cn_image_subheader_example05.png)
 
 ### 示例6（自定义标题内容）
 该示例主要演示SubHeader设置titleBuilder自定义标题内容的效果。
@@ -300,17 +310,19 @@ import { promptAction, OperationType, SubHeader } from '@kit.ArkUI';
 @Entry
 @Component
 struct SubHeaderExample {
+  // 自定义左侧标题
   @Builder
   TitleBuilder(): void {
     Text('自定义标题')
       .fontSize(24)
-      .fontColor(Color.Red)
+      .fontColor(Color.Blue)
       .fontWeight(FontWeight.Bold)
   }
 
   build() {
     Column() {
       SubHeader({
+        // 调用TitleBuilder
         titleBuilder: () => {
           this.TitleBuilder();
         },
@@ -321,7 +333,7 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多信息',
           action: () => {
-            promptAction.showToast({ message: 'demo'})
+            promptAction.showToast({ message: 'demo' });
           }
         }]
       })
@@ -329,8 +341,7 @@ struct SubHeaderExample {
   }
 }
 ```
-
-![子标题6](figures/zh-cn_image_subheader_example06.png)
+![zh-cn_image_subheader_example06](figures/zh-cn_image_subheader_example06.png)
 
 ### 示例7（自定义标题样式）
 该示例主要演示SubHeader设置标题和副标题字体样式以及标题内外边距的效果。
@@ -341,8 +352,9 @@ import { promptAction, OperationType, SubHeader, LengthMetrics, TextModifier } f
 @Entry
 @Component
 struct SubHeaderExample {
-  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
-  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Red);
+  // 设置主副标题文本颜色
+  @State primaryModifier: TextModifier = new TextModifier().fontColor(Color.Blue);
+  @State secondaryModifier: TextModifier = new TextModifier().fontColor(Color.Blue);
 
   build() {
     Column() {
@@ -355,9 +367,10 @@ struct SubHeaderExample {
         operationItem: [{
           value: '更多信息',
           action: () => {
-            promptAction.showToast({ message: 'demo'})
+            promptAction.showToast({ message: 'demo' });
           }
         }],
+        // 标题内外间距
         contentMargin: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) },
         contentPadding: { start: LengthMetrics.vp(20), end: LengthMetrics.vp(20) }
       })
@@ -365,5 +378,4 @@ struct SubHeaderExample {
   }
 }
 ```
-
-![子标题7](figures/zh-cn_image_subheader_example07.png)
+![zh-cn_image_subheader_example07](figures/zh-cn_image_subheader_example07.png)

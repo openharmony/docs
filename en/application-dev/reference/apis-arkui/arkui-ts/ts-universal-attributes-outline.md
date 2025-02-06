@@ -1,6 +1,8 @@
 # Outline
 
-You can set outline attributes for components.
+You can set outline attributes for components. Drawn outside the component, the outline does not affect the component's layout or increases its size.
+
+![outlineTest](figures/outlineTest.PNG)
 
 >  **NOTE**
 >
@@ -96,7 +98,7 @@ Sets the color of the outline.
 
 outlineRadius(value: Dimension | OutlineRadiuses)
 
-Sets the rounded corner radius of the outline.
+Sets the radius of the outline corners.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 11.
 
@@ -108,7 +110,7 @@ Sets the rounded corner radius of the outline.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | Yes  | Rounded corner radius of the outline. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
+| value  | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | Yes  | Radius of the outline corners. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
 
 ## OutlineOptions
 
@@ -120,7 +122,7 @@ Sets the rounded corner radius of the outline.
 | ------ | ----------------------|-------------------------------------- | ------------------------------------------------------------ |
 | width  | [Dimension](ts-types.md#dimension10) \| [EdgeOutlineWidths](#edgeoutlinewidths) | No| Outline thickness. This parameter cannot be set in percentage.<br>Default value: **0**|
 | color  | [ResourceColor](ts-types.md#resourcecolor) \| [EdgeColors](#edgecolors) \| [LocalizedEdgeColors](#localizededgecolors12)<sup>12+</sup> |No| Outline color.<br>Default value: **Color.Black**                  |
-| radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | No| Rounded corner radius of the outline. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
+| radius | [Dimension](ts-types.md#dimension10) \| [OutlineRadiuses](#outlineradiuses) | No| Radius of the outline corners. This parameter cannot be set in percentage.<br>Default value: **0**<br>Maximum effective value: Component width/2 + outlineWidth or component height/2 + outlineWidth|
 | style  | [OutlineStyle](#outlinestyle11) \| [EdgeOutlineStyles](#edgeoutlinestyles) |No| Outline style.<br>Default value: **OutlineStyle.SOLID**           |
 
 ## EdgeOutlineWidths
@@ -165,8 +167,8 @@ To reference this object, at least one parameter must be passed.
 
 | Name    | Type                                    | Mandatory  | Description     |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left outline.<br>Color of the right outline for right-to-left scripts.|
-| right  | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the right outline.<br>Color of the left outline for right-to-left scripts.|
+| start | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the left outline.<br>For right-to-left scripts, this indicates the color of the right outline.|
+| end | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the right outline.<br>For right-to-left scripts, this indicates the color of the left outline.|
 | top    | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the top outline.|
 | bottom | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the bottom outline.|
 
@@ -180,10 +182,10 @@ To reference this object, at least one parameter must be passed.
 
 | Name         | Type                        | Mandatory  | Description      |
 | ----------- | ---------------------------- | ---- | -------- |
-| topLeft     | [Dimension](ts-types.md#dimension10) | No   | Radius of the upper-left rounded corner.|
-| topRight    | [Dimension](ts-types.md#dimension10) | No   | Radius of the upper-right rounded corner.|
-| bottomLeft  | [Dimension](ts-types.md#dimension10) | No   | Radius of the lower-left rounded corner.|
-| bottomRight | [Dimension](ts-types.md#dimension10) | No   | Radius of the lower-right rounded corner.|
+| topLeft     | [Dimension](ts-types.md#dimension10) | No   | Radius of the upper-left corner.|
+| topRight    | [Dimension](ts-types.md#dimension10) | No   | Radius of the upper-right corner.|
+| bottomLeft  | [Dimension](ts-types.md#dimension10) | No   | Radius of the lower-left corner.|
+| bottomRight | [Dimension](ts-types.md#dimension10) | No   | Radius of the lower-right corner.|
 
 ## EdgeOutlineStyles
 
@@ -202,7 +204,9 @@ To reference this object, at least one parameter must be passed.
 
 ## Example
 
-### Example 1
+### Example 1: Using Outline Attributes
+
+This example demonstrates how to implement component outlines using the outline attributes.
 
 ```ts
 // xxx.ets
@@ -247,10 +251,12 @@ struct OutlineExample {
 
 ![en-us_image_0000001219982706](figures/en-us_image_0000001219982706.png)
 
-### Example 2
+### Example 2: Using the LocalizedEdgeColors Type
+
+This example sets the **color** property of the **outline** attribute to the LocalizedEdgeColors type.
+
 ```ts
 // xxx.ets
-// The color parameter of the outline attribute is of the LocalizedEdgeColors type.
 
 @Entry
 @Component

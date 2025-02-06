@@ -74,18 +74,13 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 ## 示例
 该示例展示了工具栏子项state属性分别设置ENABLE、DISABLE、ACTIVATE状态的不同显示效果。
 ```ts
-import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
-
-enum ItemState {
-  ENABLE = 1,
-  DISABLE = 2,
-  ACTIVATE = 3
-}
+import { ToolBar, ToolBarOptions, ItemState } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State toolbarList: ToolBarOptions = new ToolBarOptions()
+  @State toolbarList: ToolBarOptions = new ToolBarOptions();
+
   aboutToAppear() {
     this.toolbarList.push({
       content: '剪贴我是超超超超超超超超超长样式',
@@ -98,14 +93,14 @@ struct Index {
       icon: $r('sys.media.ohos_ic_public_copy'),
       action: () => {
       },
-      state:ItemState.DISABLE
+      state: ItemState.DISABLE
     })
     this.toolbarList.push({
       content: '粘贴',
       icon: $r('sys.media.ohos_ic_public_paste'),
       action: () => {
       },
-      state:ItemState.ACTIVATE
+      state: ItemState.ACTIVATE
     })
     this.toolbarList.push({
       content: '全选',
@@ -126,6 +121,7 @@ struct Index {
       },
     })
   }
+
   build() {
     Row() {
       Stack() {
@@ -135,8 +131,10 @@ struct Index {
             toolBarList: this.toolbarList,
           })
         }
-      }.align(Alignment.Bottom)
-      .width('100%').height('100%')
+      }
+      .align(Alignment.Bottom)
+      .width('100%')
+      .height('100%')
     }
   }
 }

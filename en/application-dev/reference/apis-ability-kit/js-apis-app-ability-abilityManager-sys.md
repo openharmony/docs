@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager) (System API)
 
-The AbilityManager module provides APIs for obtaining, adding, and updating ability running information and state information.
+The AbilityManager module provides APIs for obtaining, adding, and updating ability information and running status information.
 
 > **NOTE**
 >

@@ -64,7 +64,7 @@ Adds a contact. This API uses an asynchronous callback to return the result.
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact:Contact, callback:AsyncCallback&lt;number&gt;): void
 
@@ -160,7 +160,7 @@ Adds a contact. This API uses a promise to return the result.
   });
 ```
 
-## contact.addContact(deprecated)<sup>7+</sup>
+## contact.addContact<sup>(deprecated)7+</sup>
 
 addContact(contact: Contact): Promise&lt;number&gt;
 
@@ -245,7 +245,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
   });
 ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
@@ -324,7 +324,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   });
   ```
 
-## contact.deleteContact(deprecated)<sup>7+</sup>
+## contact.deleteContact<sup>(deprecated)7+</sup>
 
 deleteContact(key: string): Promise&lt;void&gt;
 
@@ -411,7 +411,7 @@ Updates a contact based on the specified contact information. This API uses an a
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
@@ -470,7 +470,7 @@ Updates a contact based on the specified contact information. This API uses an a
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | contact  | [Contact](#contact)                     | Yes  | Contact information. Contact ID, which is mandatory.                                        |
-| attrs    | [ContactAttributes](#contactattributes) | Yes  | List of contact attributes.                                          |
+| attrs    | [ContactAttributes](#contactattributes) | No  | List of contact attributes.                                          |
 | callback | AsyncCallback&lt;void&gt;               | Yes  | Callback used to return the result. If the operation is successful, the ID of the updated contact is returned. If the operation fails, an error code is returned.    |
 
 **Error codes**
@@ -505,7 +505,7 @@ Updates a contact based on the specified contact information. This API uses an a
   });
   ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallback&lt;void&gt;): void
 
@@ -606,7 +606,7 @@ Updates a contact based on the specified contact information and attributes. Thi
   });
 ```
 
-## contact.updateContact(deprecated)<sup>7+</sup>
+## contact.updateContact<sup>(deprecated)7+</sup>
 
 updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
@@ -695,7 +695,7 @@ Checks whether the ID of this contact is in the local address book. This API use
   });
   ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -773,7 +773,7 @@ Checks whether the ID of this contact is in the local address book. This API use
   });
 ```
 
-## contact.isLocalContact(deprecated)<sup>7+</sup>
+## contact.isLocalContact<sup>(deprecated)7+</sup>
 
 isLocalContact(id: number): Promise&lt;boolean&gt;
 
@@ -851,7 +851,7 @@ Checks whether a contact is included in my card. This API uses an asynchronous c
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
@@ -930,7 +930,7 @@ Checks whether a contact is included in my card. This API uses a promise to retu
   });
 ```
 
-## contact.isMyCard(deprecated)<sup>7+</sup>
+## contact.isMyCard<sup>(deprecated)7+</sup>
 
 isMyCard(id: number): Promise&lt;boolean&gt;
 
@@ -1007,7 +1007,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1082,7 +1082,7 @@ Queries my card. This API uses an asynchronous callback to return the result.
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1164,7 +1164,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
   });
 ```
 
-## contact.queryMyCard(deprecated)<sup>7+</sup>
+## contact.queryMyCard<sup>(deprecated)7+</sup>
 
 queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1204,7 +1204,7 @@ Queries my card based on the specified contact attributes. This API uses a promi
   ```
 
 
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1236,7 +1236,7 @@ Selects a contact. This API uses an asynchronous callback to return the result.
   ```
 
 
-## contact.selectContact(deprecated)<sup>7+</sup>
+## contact.selectContact<sup>(deprecated)7+</sup>
 
 selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -1448,7 +1448,7 @@ Queries a contact based on the specified key. This API uses an asynchronous call
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1499,7 +1499,7 @@ Queries a contact based on the specified key and holder. This API uses an asynch
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | Yes  | Application context. For the application context of the stage model, see [Context](../apis-ability-kit/js-apis-inner-application-context.md).|
 | key      | string                                   | Yes  | Contact key. Each contact corresponds to one key.                      |
-| holder   | [Holder](#holder)                        | Yes  | Application that creates the contacts.                                      |
+| holder   | [Holder](#holder)                        | No  | Application that creates the contacts.                                      |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | Yes  | Callback used to return the result. If the operation is successful, the queried contact is returned. If the operation fails, an error code is returned.  |
 
 **Error codes**
@@ -1528,7 +1528,7 @@ Queries a contact based on the specified key and holder. This API uses an asynch
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1610,7 +1610,7 @@ Queries a contact based on the specified key and attributes. This API uses an as
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1695,7 +1695,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
   });
 ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): void
 
@@ -1789,7 +1789,7 @@ Queries a contact based on the specified key, holder, and attributes. This API u
   });
   ```
 
-## contact.queryContact(deprecated)<sup>7+</sup>
+## contact.queryContact<sup>(deprecated)7+</sup>
 
 queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
@@ -1873,7 +1873,7 @@ Queries all contacts. This API uses an asynchronous callback to return the resul
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -1950,7 +1950,7 @@ Queries contacts based on the specified holder. This API uses an asynchronous ca
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2030,7 +2030,7 @@ Queries contacts based on the specified attributes. This API uses an asynchronou
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2113,7 +2113,7 @@ Queries contacts based on the specified holder and attributes. This API uses an 
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2204,7 +2204,7 @@ Queries contacts based on the specified holder and attributes. This API uses a p
   });
   ```
 
-## contact.queryContacts(deprecated)<sup>7+</sup>
+## contact.queryContacts<sup>(deprecated)7+</sup>
 
 queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2289,7 +2289,7 @@ Queries contacts based on the specified phone number. This API uses an asynchron
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2369,7 +2369,7 @@ Queries contacts based on the specified phone number and holder. This API uses a
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2451,7 +2451,7 @@ Queries contacts based on the specified phone number and attributes. This API us
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2536,7 +2536,7 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2630,7 +2630,7 @@ Queries contacts based on the specified phone number, holder, and attributes. Th
   });
   ```
 
-## contact.queryContactsByPhoneNumber(deprecated)<sup>7+</sup>
+## contact.queryContactsByPhoneNumber<sup>(deprecated)7+</sup>
 
 queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -2716,7 +2716,7 @@ Queries contacts based on the specified email address. This API uses an asynchro
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2795,7 +2795,7 @@ Queries a contact based on the specified email and holder. This API uses an asyn
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2877,7 +2877,7 @@ Queries a contact based on the specified email and attributes. This API uses an 
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -2962,7 +2962,7 @@ Queries a contact based on the specified email, holder, and attributes. This API
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
@@ -3056,7 +3056,7 @@ Queries a contact based on the specified email, holder, and attributes. This API
   });
   ```
 
-## contact.queryContactsByEmail(deprecated)<sup>7+</sup>
+## contact.queryContactsByEmail<sup>(deprecated)7+</sup>
 
 queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;Contact&gt;&gt;
 
@@ -3141,7 +3141,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3218,7 +3218,7 @@ Queries all groups of this contact based on the specified holder. This API uses 
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
@@ -3304,7 +3304,7 @@ Queries all groups of this contact based on the specified holder. This API uses 
   });
   ```
 
-## contact.queryGroups(deprecated)<sup>7+</sup>
+## contact.queryGroups<sup>(deprecated)7+</sup>
 
 queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
@@ -3385,7 +3385,7 @@ Queries all applications that have created contacts. This API uses an asynchrono
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
@@ -3461,7 +3461,7 @@ Queries all applications that have created contacts. This API uses a promise to 
   });
   ```
 
-## contact.queryHolders(deprecated)<sup>7+</sup>
+## contact.queryHolders<sup>(deprecated)7+</sup>
 
 queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
@@ -3533,7 +3533,7 @@ Queries the key of a contact based on the specified contact ID. This API uses an
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3612,7 +3612,7 @@ Queries the key of a contact based on the specified contact ID and holder. This 
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): void
 
@@ -3700,7 +3700,7 @@ Queries the key of a contact based on the specified contact ID and holder. This 
   });
   ```
 
-## contact.queryKey(deprecated)<sup>7+</sup>
+## contact.queryKey<sup>(deprecated)7+</sup>
 
 queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
@@ -3767,9 +3767,9 @@ Defines a contact.
 
 ### Constant
 
-| Name              | Value  | Description            |
-| ------------------ | ---- | ---------------- |
-| INVALID_CONTACT_ID | -1   | Default contact ID.|
+| Name              | Value  |Read-only  | Description            |
+| ------------------ | ---- | ---- | ---------------- |
+| INVALID_CONTACT_ID | -1   |Yes  | Default contact ID.|
 
 
 ### Attributes
@@ -3937,11 +3937,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type  | Readable| Writable| Description        |
-| ----------- | ------ | ---- | ---- | ------------ |
-| bundleName  | string | Yes  | No  | Bundle name. The value is **com.ohos.contacts**.|
-| displayName | string | Yes  | No  | Application name.  |
-| holderId    | number | Yes  | Yes  | Application ID.    |
+| Name       | Type  | Readable| Writable| Mandatory| Description        |
+| ----------- | ------ | ---- | ---- | ---- | ------------ |
+| bundleName  | string | Yes  | No  | Yes  | Bundle name. The value is **com.ohos.contacts**.|
+| displayName | string | Yes  | No  | No  | Application name.  |
+| holderId    | number | Yes  | Yes  | No  | Application ID.    |
 
 
 **Example**

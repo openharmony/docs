@@ -14,7 +14,13 @@
 
 ### 约束与限制
 
-- **个数限制**：一个三方应用支持最多30个有效提醒（有效即发布成功），一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒。
+- **个数限制**：一个三方应用支持最多30个有效提醒<!--Del-->，一个系统应用支持最多10000个有效提醒，整个系统最多支持12000个有效提醒<!--DelEnd-->。
+
+> **说明：**
+>
+> 当到达设置的提醒时间点时，通知中心会弹出相应提醒。若未点击提醒上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
+>
+> 当代理提醒是周期性提醒时，如设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
 
 - **跳转限制**：点击提醒通知后跳转的应用必须是申请代理提醒的本应用。
 
@@ -28,12 +34,12 @@
 以下是代理提醒的相关接口，下表均以Promise形式为例，更多接口及使用方式请见[后台代理提醒](../reference/apis-backgroundtasks-kit/js-apis-reminderAgentManager.md)文档。
 | 接口名 | 描述 |
 | -------- | -------- |
-| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知 |
-| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知 |
-| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒 |
-| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒 |
-| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot） |
-| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot） |
+| publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | 发布一个定时提醒类通知。 |
+| cancelReminder(reminderId: number): Promise&lt;void&gt; | 取消一个指定的提醒类通知。 |
+| getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | 获取当前应用设置的所有有效的提醒。 |
+| cancelAllReminders(): Promise&lt;void&gt; | 取消当前应用设置的所有提醒。 |
+| addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | 注册一个提醒类需要使用的通知通道（NotificationSlot）。 |
+| removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | 删除指定的通知通道（NotificationSlot）。 |
 
 
 ## 开发步骤

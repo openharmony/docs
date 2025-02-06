@@ -1,15 +1,15 @@
-# AttributeModifier
+# 属性修改器 (AttributeModifier)
 
 ## 概述
-声明式语法引入了[@Styles](../quick-start/arkts-style.md)和[@Extend](../quick-start/arkts-extend.md)两个装饰器，可以解决部分复用的问题，但是存在以下受限场景：
+声明式语法引入了[@Styles](../quick-start/arkts-style.md)和[@Extend](../quick-start/arkts-extend.md)两个装饰器，可以解决复用相同自定义样式的问题，但是存在以下受限场景：
 - @Styles和@Extend均是编译期处理，不支持跨文件的导出复用。
 - @Styles仅能支持通用属性、事件，不支持组件特有的属性。
 - @Styles虽然支持在多态样式下使用，但不支持传参，无法对外开放一些属性。
 - @Extend虽然能支持特定组件的私有属性、事件，但同样不支持跨文件导出复用。
-- @Styles、@Extend对于属性设置，无法支持业务逻辑编写，动态决定是否设置某些属性。只能通过三元表达式对所有可能设置的属性进行全量设置，设置大量属性时效率低下。
+- @Styles、@Extend对于属性设置，无法支持业务逻辑编写，动态决定是否设置某些属性，只能通过三元表达式对所有可能设置的属性进行全量设置，设置大量属性时效率较低。
 
 
-为了解决上述问题，ArkUI引入了AttributeModifier的机制，可以通过Modifier对象动态修改属性。能力对比如下：
+为了解决上述问题，ArkUI引入了AttributeModifier机制，可以通过Modifier对象动态修改属性。能力对比如下：
 |  能力  |  @Styles  |  @Extend  |  AttributeModifier  |
 | :-----: | :-----: | :-----: | :-----: |
 |  跨文件导出  |  不支持  |  不支持  |  支持  |
@@ -21,7 +21,7 @@
 |  多态样式  |  支持  |  不支持  |  支持  |
 |  业务逻辑  |  不支持  |  不支持  |  支持  |
 
-可以看出，AttributeModifier的能力和灵活性更好，当前持续在构建全量的属性、事件设置能力。未来，AttributeModifier可以替代@Styles和@Extend几乎所有的能力，建议上述场景都使用AttributeModifier。
+可以看出，与@Styles和@Extend相比，AttributeModifier提供了更强的能力和灵活性，且在持续完善全量的属性和事件设置能力，因此推荐优先使用AttributeModifier。
 
 ## 接口定义
 
@@ -41,7 +41,7 @@ declare interface AttributeModifier<T> {
 }
 ```
 
-`AttributeModifier`是一个接口，需要开发者实现`ApplyXxxAttribute`的方法。`Xxx`表示多态的场景，支持默认态、按压态、焦点态、禁用态、选择态。其中，`T`是组件的属性类型，开发者可以在回调中获取到属性对象，通过该对象设置属性。
+`AttributeModifier`是一个接口，开发者需要实现其中的`applyXxxAttribute`方法来实现对应场景的属性设置。`Xxx`表示多态的场景，支持默认态（`Normal`）、按压态（`Pressed`）、焦点态（`Focused`）、禁用态（`Disabled`）、选择态（`Selected`）。`T`是组件的属性类型，开发者可以在回调中获取到属性对象，通过该对象设置属性。
 
 ```ts
 declare class CommonMethod<T> {
@@ -49,21 +49,21 @@ declare class CommonMethod<T> {
 }
 ```
 
-在组件的通用方法上，增加了`attributeModifier`传入自定义的Modifier。由于组件在实例化时会明确`T`的类型，所以调用该方法时，`T`必须是组件对应的Attribute类型，或者是`CommonAttribute`。
+组件的通用方法增加了`attributeModifier`方法，支持传入自定义的Modifier。由于组件在实例化时会明确`T`的类型，所以调用该方法时，`T`必须指定为组件对应的Attribute类型，或者是`CommonAttribute`。
 
-## 行为规格
+## 使用说明
 
-- 组件通用方法`attributeModifier`支持传入一个实现`AttributeModifier<T>`接口的实例，`T`必须是组件对应的Attribute类型，或者是`CommonAttribute`。
+- 组件通用方法`attributeModifier`支持传入一个实现`AttributeModifier<T>`接口的实例，`T`必须指定为组件对应的Attribute类型，或者是`CommonAttribute`。
 - 在组件首次初始化或者关联的状态变量发生变化时，如果传入的实例实现了对应接口，会触发`applyNormalAttribute`。
 - 回调`applyNormalAttribute`时，会传入组件属性对象，通过该对象可以设置当前组件的属性/事件。
 - 暂未支持的属性/事件，执行时会抛异常。
-- 属性变化触发`ApplyXxxAttribute`函数时，该组件之前已设置的属性，在本次变化后未设置的属性会恢复为属性的默认值。
+- 属性变化触发`applyXxxAttribute`函数时，该组件之前已设置的属性，在本次变化后未设置的属性会恢复为属性的默认值。
 - 可以通过该接口使用多态样式的功能，例如如果需要在组件进入按压态时设置某些属性，就可以通过自定义实现`applyPressedAttribute`方法完成。
 - 一个组件上同时使用属性方法和`applyNormalAttribute`设置相同的属性，遵循属性覆盖原则，即后设置的属性生效。
 - 一个Modifier实例对象可以在多个组件上使用。
-- 一个组件上多次使用applyNormalAttribute设置不同的Modifier实例，每次状态变量刷新均会按顺序执行这些实例的方法属性设置，同样遵循属性覆盖原则。
+- 一个组件上多次使用`applyNormalAttribute`设置不同的Modifier实例，每次状态变量刷新均会按顺序执行这些实例的方法属性设置，同样遵循属性覆盖原则。
 
-## 属性设置与修改
+## 设置和修改组件属性
 
 AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编写，并且通过状态变量触发刷新。
 
@@ -82,11 +82,11 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
       // instance为Button的属性对象，可以通过instance对象对属性进行修改
       if (this.isDark) { // 支持业务逻辑的编写
         // 属性变化触发apply函数时，变化前已设置并且变化后未设置的属性会恢复为默认值
-        instance.backgroundColor(Color.Black)
+        instance.backgroundColor('#707070')
       } else {
         // 支持属性的链式调用
-        instance.backgroundColor(Color.Red)
-          .borderColor(Color.Black)
+        instance.backgroundColor('#17A98D')
+          .borderColor('#707070')
           .borderWidth(2)
       }
     }
@@ -120,7 +120,7 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
   ```
   ![AttributeModifier](figures/AttributeModifier01.gif)
 
-一个组件上同时使用属性方法和`applyNormalAttribute`设置相同的属性，遵循属性覆盖原则，即后设置的属性生效。
+当一个组件上同时使用属性方法和`applyNormalAttribute`设置相同的属性时，遵循属性覆盖原则，即后设置的属性生效。
 
   ```ts
   // button_modifier.ets
@@ -133,10 +133,10 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
 
     applyNormalAttribute(instance: ButtonAttribute): void {
       if (this.isDark) {
-        instance.backgroundColor(Color.Black)
+        instance.backgroundColor('#707070')
       } else {
-        instance.backgroundColor(Color.Red)
-          .borderColor(Color.Black)
+        instance.backgroundColor('#17A98D')
+          .borderColor('#707070')
           .borderWidth(2)
       }
     }
@@ -156,7 +156,7 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
         Column() {
           // 先设置属性，后设置modifier，按钮颜色会跟随modifier的值改变
           Button("Button")
-            .backgroundColor(Color.Blue)
+            .backgroundColor('#2787D9')
             .attributeModifier(this.modifier)
             .onClick(() => {
               this.modifier.isDark = !this.modifier.isDark
@@ -170,7 +170,7 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
   ```
   ![AttributeModifier](figures/AttributeModifier03.gif) 
 
-一个组件上多次使用applyNormalAttribute设置不同的Modifier实例，每次状态变量刷新均会按顺序执行这些实例的方法属性设置，遵循属性覆盖原则，即后设置的属性生效。
+当一个组件上多次使用`applyNormalAttribute`设置不同的Modifier实例时，每次状态变量刷新均会按顺序执行这些实例的方法属性设置，遵循属性覆盖原则，即后设置的属性生效。
 
   ```ts
   // button_modifier.ets
@@ -242,22 +242,22 @@ AttributeModifier可以分离UI与样式，支持参数传递及业务逻辑编�
 
 ## 设置多态样式、事件
 
-使用`AttributeModifier`设置多态样式、事件，实现事件逻辑的复用，支持默认态、按压态、焦点态、禁用态、选择态。例如如果需要在组件进入按压态时设置某些属性，就可以通过自定义实现`applyPressedAttribute`方法完成。
+使用`AttributeModifier`设置多态样式、事件，实现事件逻辑的复用，支持默认态（`Normal`）、按压态（`Pressed`）、焦点态（`Focused`）、禁用态（`Disabled`）、选择态（`Selected`）。例如如果需要在组件进入按压态时设置某些属性，就可以通过自定义实现`applyPressedAttribute`方法完成。
 
   ```ts
   // button_modifier.ets
   export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
     applyNormalAttribute(instance: ButtonAttribute): void {
       // instance为Button的属性对象，设置正常状态下属性值
-      instance.backgroundColor(Color.Red)
-        .borderColor(Color.Black)
+      instance.backgroundColor('#17A98D')
+        .borderColor('#707070')
         .borderWidth(2)
     }
 
     applyPressedAttribute(instance: ButtonAttribute): void {
       // instance为Button的属性对象，设置按压状态下属性值
-      instance.backgroundColor(Color.Green)
-        .borderColor(Color.Orange)
+      instance.backgroundColor('#2787D9')
+        .borderColor('#FFC000')
         .borderWidth(5)
     }
   }

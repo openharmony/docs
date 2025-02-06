@@ -1,15 +1,16 @@
-# 自定义弹窗 (CustomDialog)
+# 基础自定义弹出框 (CustomDialog)(不推荐)
+CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹出框。具体用法请参考[自定义弹出框](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)。
 
-CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更新等与用户交互响应操作。开发者可以通过CustomDialogController类显示自定义弹窗。具体用法请参考[自定义弹窗](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md)。
+> **说明：**
+> 
+> 当前，ArkUI弹出框均为非页面级弹出框，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹出框将不会自动关闭。若需实现在跳转页面时覆盖弹出框的场景，建议使用Navigation。具体使用方法，请参考[组件导航子页面显示类型的弹窗类型](arkts-navigation-navigation.md#页面显示类型)。
 
->  **说明：**
->
-> 当前，ArkUI弹窗均为非页面级弹窗，在页面路由跳转时，如果开发者未调用close方法将其关闭，弹窗将不会自动关闭。若需实现在跳转页面时覆盖弹窗的场景，建议使用Navigation。具体使用方法，请参考[组件导航子页面显示类型的弹窗类型](arkts-navigation-navigation.md#页面显示类型)。
+弹出框（CustomDialog）可以通过配置[isModal](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)来实现模态和非模态弹窗。isModal为true的时候，弹出框为模态弹窗。isModal为false时，弹出框为非模态弹窗。
 
-## 创建自定义弹窗
+## 创建自定义弹出框
 
-1. 使用\@CustomDialog装饰器装饰自定义弹窗，可在此装饰器内自定义弹窗内容。
-
+1. 使用\@CustomDialog装饰器装饰自定义弹出框，可在此装饰器内自定义弹出框内容。CustomDialogController需在@Component内定义。
+   
    ```ts
    @CustomDialog
    struct CustomDialogExample {
@@ -21,14 +22,12 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
        Column() {
          Text('我是内容')
            .fontSize(20)
-           .margin({ top: 10, bottom: 10 })
-       }
+       }.height(60).justifyContent(FlexAlign.Center)
      }
    }
    ```
-
-3. 创建构造器，与装饰器呼应相连。
-
+2. 创建构造器，与装饰器呼应相连。
+   
    ```ts
     @Entry
     @Component
@@ -38,9 +37,8 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
       })
     }
    ```
-
-4. 点击与onClick事件绑定的组件使弹窗弹出。
-
+3. 点击与onClick事件绑定的组件使弹出框弹出。
+   
    ```ts
    @Entry
    @Component
@@ -48,7 +46,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      dialogController: CustomDialogController = new CustomDialogController({
        builder: CustomDialogExample(),
      })
-
+   
      build() {
        Column() {
          Button('click me')
@@ -59,24 +57,22 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      }
    }
    ```
-
+   
    ![zh-cn_image_0000001562700493](figures/zh-cn_image_0000001562700493.png)
 
+## 弹出框的交互
 
-## 弹窗的交互
-
-弹窗可用于数据交互，完成用户一系列响应操作。
-
+弹出框可用于数据交互，完成用户一系列响应操作。
 
 1. 在\@CustomDialog装饰器内添加按钮，同时添加数据函数。
-
+   
    ```ts
    @CustomDialog
    struct CustomDialogExample {
      cancel?: () => void
      confirm?: () => void
      controller: CustomDialogController
-
+   
      build() {
        Column() {
          Text('我是内容').fontSize(20).margin({ top: 10, bottom: 10 })
@@ -100,43 +96,42 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      }
    }
    ```
-
 2. 页面内需要在构造器内进行接收，同时创建相应的函数操作。
-
-     ```ts
+   
+   ```ts
    @Entry
    @Component
    struct CustomDialogUser {
-       dialogController: CustomDialogController = new CustomDialogController({
-         builder: CustomDialogExample({
-           cancel: ()=> { this.onCancel() },
-           confirm: ()=> { this.onAccept() },
-         }),
-       })
-
-       onCancel() {
-         console.info('Callback when the first button is clicked')
-       }
-
-       onAccept() {
-         console.info('Callback when the second button is clicked')
-       }
-
-       build() {
-         Column() {
-           Button('click me')
-             .onClick(() => {
-               this.dialogController.open()
-             })
-         }.width('100%').margin({ top: 5 })
-       }
+     dialogController: CustomDialogController = new CustomDialogController({
+       builder: CustomDialogExample({
+         cancel: ()=> { this.onCancel() },
+         confirm: ()=> { this.onAccept() },
+       }),
+     })
+   
+     onCancel() {
+       console.info('Callback when the first button is clicked')
      }
+   
+     onAccept() {
+       console.info('Callback when the second button is clicked')
+     }
+   
+     build() {
+       Column() {
+         Button('click me')
+           .onClick(() => {
+             this.dialogController.open()
+           })
+       }.width('100%').margin({ top: 5 })
+     }
+   }
    ```
-
-      ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
-
-   3.可通过弹窗中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。
-
+   
+   ![zh-cn_image_0000001511421320](figures/zh-cn_image_0000001511421320.png)
+   
+   3.可通过弹出框中的按钮实现路由跳转，同时获取跳转页面向当前页传入的参数。
+   
    ```ts
    // Index.ets
    @CustomDialog
@@ -147,7 +142,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      }
      confirm: () => void = () => {
      }
-
+   
      build() {
        Column({ space: 20 }) {
          if (this.textValue != '') {
@@ -180,7 +175,7 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
        }.borderRadius(10).padding({ top: 20 })
      }
    }
-
+   
    @Entry
    @Component
    struct CustomDialogUser {
@@ -196,12 +191,12 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
          textValue: $textValue
        })
      })
-
+   
      // 在自定义组件即将析构销毁时将dialogController置空
      aboutToDisappear() {
        this.dialogController = null // 将dialogController置空
      }
-
+   
      onPageShow() {
        const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // 获取传递过来的参数对象
        if (params) {
@@ -209,19 +204,19 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
          this.textValue = params.info as string; // 获取info属性的值
        }
      }
-
+   
      onCancel() {
        console.info('Callback when the first button is clicked')
      }
-
+   
      onAccept() {
        console.info('Callback when the second button is clicked')
      }
-
+   
      exitApp() {
        console.info('Click the callback in the blank area')
      }
-
+   
      build() {
        Column() {
          Button('click me')
@@ -234,35 +229,36 @@ CustomDialog是自定义弹窗，可用于广告、中奖、警告、软件更�
      }
    }
    ```
-
+   
    ```ts
    // Index2.ets
    @Entry
    @Component
    struct Index2 {
      @State message: string = '点击返回';
+
      build() {
        Column() {
          Button(this.message)
-           .fontSize(50)
-           .fontWeight(FontWeight.Bold).onClick(() => {
-           this.getUIContext().getRouter().back({
-             url: 'pages/Index',
-             params: {
-               info: 'Hello World'
-             }
+           .type(ButtonType.Capsule)
+           .onClick(() => {
+              this.getUIContext().getRouter().back({
+                url: 'pages/Index',
+                params: {
+                info: 'Hello World'
+              }
            });
          })
        }.width('100%').height('100%').margin({ top: 20 })
      }
    }
    ```
-
+   
    ![DialogRouter](figures/DialogRouter.gif)
 
-## 弹窗的动画
+## 弹出框的动画
 
-弹窗通过定义openAnimation控制弹窗出现动画的持续时间，速度等参数。
+弹出框通过定义openAnimation控制弹出框出现动画的持续时间，速度等参数。
 
 ```ts
 @CustomDialog
@@ -321,8 +317,9 @@ struct CustomDialogUser {
 
 ![openAnimator](figures/openAnimator.gif)
 
-## 弹窗的样式
-弹窗通过定义宽度、高度、背景色、阴影等参数来控制样式。
+## 弹出框的样式
+
+弹出框通过定义宽度、高度、背景色、阴影等参数来控制样式。
 
 ```ts
 @CustomDialog
@@ -375,11 +372,12 @@ struct CustomDialogUser {
   }
 }
 ```
+
 ![custom_style](figures/custom_style.gif)
 
-## 嵌套自定义弹窗
+## 嵌套自定义弹出框
 
-通过第一个弹窗打开第二个弹窗时，最好将第二个弹窗定义在第一个弹窗的父组件处，通过父组件传给第一个弹窗的回调来打开第二个弹窗。
+通过第一个弹出框打开第二个弹出框时，最好将第二个弹出框定义在第一个弹出框的父组件处，通过父组件传给第一个弹出框的回调来打开第二个弹出框。
 
 ```ts
 @CustomDialog
@@ -479,16 +477,17 @@ struct CustomDialogUser {
   }
 }
 ```
+
 ![nested_dialog](figures/nested_dialog.gif)
 
-由于自定义弹窗在状态管理侧有父子关系，如果将第二个弹窗定义在第一个弹窗内，那么当父组件（第一个弹窗）被销毁（关闭）时，子组件（第二个弹窗）内无法再继续创建新的组件。
+由于自定义弹出框在状态管理侧有父子关系，如果将第二个弹出框定义在第一个弹出框内，那么当父组件（第一个弹出框）被销毁（关闭）时，子组件（第二个弹出框）内无法再继续创建新的组件。
 
 ## 相关实例
 
-针对自定义弹窗开发，有以下相关实例可供参考：
+针对自定义弹出框开发，有以下相关实例可供参考：
 
-- [自定义弹窗（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
-
-- [构建多种样式弹窗（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
-
+- [自定义弹出框（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog)
+- [构建多种样式弹出框（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultipleDialog)
 - [目标管理（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TargetManagement)
+
+

@@ -788,7 +788,7 @@ Called when the input in the text box changes.
 
 onEditChange(callback: (isEditing: boolean) =&gt; void)
 
-Called when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. If the value of **isEditing** is **true**, the text box is in the editing state.
+Triggered when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. If the value of **isEditing** is **true**, the text box is in the editing state.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -804,7 +804,7 @@ Called when the input status changes. The text box is in the editing state when 
 
 onCopy(callback: (value: string) =&gt; void)
 
-Invoked when a copy operation is performed.
+Triggered when a copy operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -820,7 +820,7 @@ Invoked when a copy operation is performed.
 
 onCut(callback: (value: string) =&gt; void)
 
-Invoked when a cut operation is performed.
+Triggered when a cut operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -836,7 +836,7 @@ Invoked when a cut operation is performed.
 
 onPaste(callback: (value: string, event: PasteEvent) =&gt; void)
 
-Invoked when a paste operation is performed.
+Triggered when a paste operation is performed.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -853,7 +853,7 @@ Invoked when a paste operation is performed.
 
 onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
 
-Invoked when the position of the text selection changes or when the cursor position changes during the editing state.
+Triggered when the position of the text selection changes or when the cursor position changes during the editing state.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -870,7 +870,7 @@ Invoked when the position of the text selection changes or when the cursor posit
 
 onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
 
-Called when the text content is scrolled.
+Triggered when the text content is scrolled.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -887,7 +887,7 @@ Called when the text content is scrolled.
 
 onSubmit(callback: (enterKey: EnterKeyType) =&gt; void)
 
-Called when the Enter key on the keyboard is pressed.
+Triggered when the Enter key on the soft keyboard is pressed.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1085,8 +1085,10 @@ Enumerates the content types for autofill.
 
 ## Example
 
-### Example 1
-This example demonstrates the basic usage of **TextArea**.
+### Example 1: Setting and Obtaining the Cursor Position
+
+This example demonstrates how to use the controller to set and obtain the cursor position within a text box.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1134,16 +1136,16 @@ struct TextAreaExample {
 
 ![textArea](figures/textArea.gif)
 
-### Example 2
-This example shows how to set the **maxLength** and **showCounter** attributes.
+### Example 2: Implementing a Counter
+
+This example showcases the implementation of a counter feature using the **maxLength** and **showCounter** attributes.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = 'test'
-  @State counterVisible: boolean = false
-  @State maxNumber: number = -1
+  @State text: string = ''
   controller: TextAreaController = new TextAreaController()
 
   build() {
@@ -1159,9 +1161,12 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .fontColor('#182431')
-        .maxLength(4)
-        .showCounter(true)
         .backgroundColor('#FFFFFF')
+        .maxLength(4)
+        .showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
+          // The character counter is in this format: Number of characters that have been entered/Maximum number of characters allowed, which is specified by maxLength().
+          // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
+          // When highlightBorder is set to false, the text box border turns red when the number of entered characters reaches the maximum. The default value is true.
         .onChange((value: string) => {
           this.text = value
         })
@@ -1170,11 +1175,13 @@ struct TextAreaExample {
 }
 ```
 
-![maxLength](figures/maxLength.png)
+![TextAreaCounter](figures/TextAreaCounter.gif)
 
 
-### Example 3
-This example illustrates how to bind a custom keyboard to the **TextArea** component.
+### Example 3: Implementing a Custom Keyboard
+
+This example demonstrates how to implement a custom keyboard using the **customKeyboard** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1216,60 +1223,33 @@ struct TextAreaExample {
 
 ![customKeyboard](figures/textAreaCustomKeyboard.png)
 
-### Example 4
-This example illustrates the use of a character counter with the **TextArea** component.
+### Example 4: Setting the Enter Key Type
+
+This example shows how to use the **enterKeyType** attribute to dynamically change the effect of the Enter key on the soft keyboard.
+
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
   @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
-
-  build() {
-    Column() {
-      TextArea({ text: this.text, controller: this.controller })
-        .placeholderFont({ size: 16, weight: 400 })
-        .width(336)
-        .height(56)
-        .maxLength(6)
-		.showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
-		// The character counter is in this format: Number of characters that have been entered/Maximum number of characters allowed, which is specified by maxLength().
-        // The character counter is displayed when the number of characters that have been entered is greater than the maximum number of characters multiplied by 50% (threshold percentage).
-        // When highlightBorder is set to false, the text box border turns red when the number of entered characters reaches the maximum. The default value is true.
-        .onChange((value: string) => {
-          this.text = value
-        })
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
-  }
-}
-```
-
-![TextAreaCounter](figures/TextAreaCounter.jpg)
-
-
-### Example 5
-This example shows how to set the **enterKeyType** attribute.
-```ts
-// xxx.ets
-@Entry
-@Component
-struct TextInputExample {
-  @State Text: string = ''
-  @State enterTypes: Array<EnterKeyType> = [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next, EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
+  @State enterTypes: Array<EnterKeyType> =
+    [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
+      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
   @State index: number = 0
+
   build() {
     Column({ space: 20 }) {
-      TextArea({ placeholder: 'Enter user name', text: this.Text })
+      TextArea({ placeholder: 'Enter user name', text: this.text })
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.Text = value
+          this.text = value
         })
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
         })
-      Button ('Change EnterKeyType').onClick () => {
+      Button('Change EnterKeyType').onClick(() => {
         this.index = (this.index + 1) % this.enterTypes.length;
       })
 
@@ -1281,8 +1261,9 @@ struct TextInputExample {
 ![TextAreaEnterKeyType](figures/area_enterkeytype.gif)
 
 
-### Example 6
-This example shows how to set the **wordBreak** attribute for the **TextArea** component.
+### Example 5: Setting Text Wrapping Rules
+
+This example demonstrates the effects of different text wrapping rules using the **wordBreak** attribute.
 
 ```ts
 // xxx.ets
@@ -1298,13 +1279,20 @@ struct TextAreaExample {
         .fontSize(16)
         .border({ width: 1 })
         .wordBreak(WordBreak.NORMAL)
-      Text ("WordBreakType as BREAK_ALL") .fontSize (16).fontColor (0xFF0000)
+      Text("WordBreakType as BREAK_ALL: ").fontSize(16).fontColor(0xFF0000)
       TextArea({
         text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
       })
         .fontSize(16)
         .border({ width: 1 })
-        .wordBreak(WordBreak.BREAK_ALL)    
+        .wordBreak(WordBreak.BREAK_ALL)
+      Text("WordBreakType as BREAK_ALL: ").fontSize(16).fontColor(0xFF0000)
+      TextArea({
+        text: 'The TextArea component automatically wraps text so that each line does not have more than the width of the component.\nIf the component does not have its height set, it adapts its height to the content. If the component does not have its width set, it takes the maximum available width.'
+      })
+        .fontSize(16)
+        .border({ width: 1 })
+        .wordBreak(WordBreak.BREAK_ALL)
       Text("WordBreakType as BREAK_WORD: ").fontSize(16).fontColor(0xFF0000)
       TextArea({
         text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
@@ -1319,9 +1307,9 @@ struct TextAreaExample {
 
 ![TextAreaWordBreak](figures/TextAreaWordBreak.jpeg)
 
-### Example 7
+### Example 6: Setting the Text Style
 
-This example shows how to use the **lineHeight**, **letterSpacing**, and **decoration** attributes.
+This example showcases various text styles by using the **lineHeight**, **letterSpacing**, and **decoration** attributes.
 
 ```ts
 // xxx.ets
@@ -1367,14 +1355,16 @@ struct TextAreaExample {
 
 ![TextAreaDecoration](figures/textarea_decoration.png)
 
-### Example 8
-This example shows how to set the **fontFeature** attribute, with a comparison between the ss01-enabled and ss01-disabled effects.
+### Example 7: Setting Text Feature Effects
+
+This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct textArea {
-  @State text1: string = 'This is ss01 on: 0123456789'
+struct TextAreaExample {
+  @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
   build() {
@@ -1395,11 +1385,12 @@ struct textArea {
 ```
 ![fontFeature](figures/textAreaFontFeature.png)
 
-### Example 9
+### Example 8: Setting Custom Keyboard Avoidance
 
-This example shows how to support custom keyboard avoidance.
+This example illustrates the implementation of a custom keyboard that automatically adjusts its position to avoid covering the text box.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextAreaExample {
@@ -1462,9 +1453,9 @@ struct TextAreaExample {
 ```
 ![CustomTextAreaType](figures/textAreaCustomKeyboard.gif)
 
-### Example 10
+### Example 9: Setting Text Auto-Adaptation
 
-This example shows how to set **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy**.
+This example showcases the implementation of text auto-adaptation features using the **minFontSize**, **maxFontSize**, and **heightAdaptivePolicy** attributes.
 
 ```ts
 // xxx.ets
@@ -1503,16 +1494,17 @@ struct TextAreaExample {
 
 ![TextAreaAdaptFont](figures/textarea_adapt_font.png)
 
-### Example 11
+### Example 10: Setting the Text Line Spacing
 
-This example shows how to set the **lineSpacing** attribute, with a comparison of line spacing effects.
+This example demonstrates how to use the **lineSpacing** attribute to set different line spacing values for text presentation.
 
 ```ts
+// xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component
-struct LineSpacingExample {
+struct TextAreaExample {
   build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
         Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
@@ -1540,9 +1532,9 @@ struct LineSpacingExample {
 
 ![lineSpacing](figures/TextArea_lineSpacing.png)
 
-### Example 12
+### Example 11: Setting Autofill
 
-This example shows how to use autofill.
+This example illustrates how to implement the autofill feature for text input using the **contentType** and **enableAutoFill** attributes.
 
 ```ts
 // xxx.ets
@@ -1576,51 +1568,51 @@ struct TextAreaExample {
 
 ![CustomTextAreaType](figures/textAreaAutoFillFeature.png)
 
-### Example 13
+### Example 12: Setting Line Break Rules
 
-This example shows how to set the **lineBreakStrategy** attribute, with a comparison of line break rules.
+This example demonstrates the effects of different line break rules using the **wordBreak** attribute.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct TextExample1 {
-  @State message1: string = "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
-    "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-    "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+struct TextAreaExample {
+  @State message1: string =
+    "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
+      "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
+  @State lineBreakStrategyIndex: number = 0
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
-      Text('LineBreakStrategy.GREEDY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
+      Text('lineBreakStrategy').fontSize(9).fontColor(0xCCCCCC)
+      TextArea({ text: this.message1 })
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
         .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.GREEDY)
-      Text('LineBreakStrategy.HIGH_QUALITY').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.HIGH_QUALITY)
-      Text('LineBreakStrategy.BALANCED').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
-      TextArea({text: this.message1})
-        .fontSize(12)
-        .border({ width: 1 })
-        .padding(10)
-        .width('100%')
-        .lineBreakStrategy(LineBreakStrategy.BALANCED)
+        .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
+      Row() {
+        Button('Current lineBreakStrategy value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+          this.lineBreakStrategyIndex++
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0
+          }
+        })
+      }.padding({ top: 10 })
     }.height(700).width(370).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
 
-![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.PNG)
+![textAreaLineBreakStrategy](figures/textAreaLineBreakStrategy.gif)
 
-### Example 14
+### Example 13: Setting Insert and Delete Callbacks
 
-This example shows how to use the insert and delete callbacks.
+This example showcases the implementation of insert and delete operations using the **onWillInsert**, **onDidInsert**, **onWillDelete**, and **onDidDelete** APIs.
 
 ```ts
 // xxx.ets
@@ -1674,9 +1666,9 @@ struct TextAreaExample {
 
 ![TextAreaInsertAndDelete](figures/TextAreaInsertAndDelete.PNG)
 
-### Example 15
+### Example 14: Setting Custom Menu Extensions
 
-This example shows how to set **editMenuOptions**.
+This example demonstrates how to use the **editMenuOptions** API to create custom menu extensions for text settings. It includes customizing text content, icons, and callbacks for these extensions.
 
 ```ts
 // xxx.ets
@@ -1686,15 +1678,6 @@ struct TextAreaExample {
   @State text: string = 'TextArea editMenuOptions'
 
   onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select All"
-      }
-    })
     let item1: TextMenuItem = {
       content: 'Custom 1',
       icon: $r('app.media.startIcon'),

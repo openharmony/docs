@@ -1,7 +1,7 @@
 # Key Derivation (ArkTS)
 
 
-This topic walks you through on how to derive a 256-bit key using HKDF. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
+This topic uses HKDF and PBKDF as examples to describe how to derive keys. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
 
 ## How to Develop
@@ -364,7 +364,6 @@ import { huks } from '@kit.UniversalKeystoreKit';
  * Set the key alias and encapsulate the key property set.
  */
 let srcKeyAlias = "pbkdf2_Key";
-let password = "myPassword";
 let salt = "mySalt";
 let iterationCount = 10000;
 let derivedKeySize = 32;
@@ -665,7 +664,6 @@ async function testDerive() {
   await publicGenKeyFunc(srcKeyAlias, huksOptions);
   /* Perform key derivation. */
   await publicInitFunc(srcKeyAlias, initOptions);
-  initOptions.inData = StringToUint8Array(password);
   await publicUpdateFunc(handle, initOptions);
   await publicFinishFunc(handle, finishOptions);
   await publicDeleteKeyFunc(srcKeyAlias, huksOptions);

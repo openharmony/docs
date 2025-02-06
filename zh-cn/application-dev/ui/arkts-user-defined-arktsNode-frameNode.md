@@ -2,9 +2,15 @@
 
 ## 概述
 
-对于拥有自定义前端的第三方框架，需将特定的DSL转换为ArkUI的声明式描述。此转换过程需要依赖额外的数据驱动，绑定至[Builder](../quick-start/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示。[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)的设计初衷正是为了解决上述问题。
+对于拥有自定义前端的第三方框架（如JSON、XML、DOM树等），需将特定的DSL转换为ArkUI的声明式描述。如下图描述了JSON定义的前端框架和ArkUI声明式描述的对应关系。
 
-FrameNode表示组件树中的实体节点，与自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)相配合，实现在占位容器内构建一棵自定义的节点树。该节点树支持动态操作，如节点的增加、修改和删除。基础的FrameNode具备设置通用属性和事件回调的功能，同时提供完整的自定义能力，涵盖自定义测量、布局和绘制等方面。
+![zh-cn_image_frame-node01](figures/frame-node01.png)
+
+上述转换过程需要依赖额外的数据驱动，绑定至[Builder](../quick-start/arkts-builder.md)中，较为复杂且性能欠佳。这类框架通常依赖于ArkUI的布局、事件处理、基础的节点操作和自定义能力。大部分组件通过自定义实现，但需结合使用部分系统组件以实现混合显示，如下图示例既使用了FrameNode的自定义方法进行绘制，又使用了系统组件Column及其子组件Text，通过BuilderNode的方式将其挂载到根节点的FrameNode上混合显示。
+
+![zh-cn_image_frame-node02](figures/frame-node02.png)
+
+[FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md)的设计初衷正是为了解决上述转换问题。FrameNode表示组件树中的实体节点，与自定义占位容器组件[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md)相配合，实现在占位容器内构建一棵自定义的节点树。该节点树支持动态操作，如节点的增加、修改和删除。基础的FrameNode具备设置通用属性和事件回调的功能，同时提供完整的自定义能力，涵盖自定义测量、布局和绘制等方面。
 
 除此之外，ArkUI还提供了获取和遍历系统组件对应代理FrameNode对象的能力（下文简称代理节点）。代理节点能够用于遍历整个UI的树形结构，支持获取系统组件节点的详细信息，以及额外注册组件的事件监听回调。
 
@@ -539,6 +545,8 @@ class MyFrameNode extends FrameNode {
           x: vp2px(100),
           y: vp2px(this.offsetY)
         });
+        let layoutPosition = child.getLayoutPosition();
+        console.log("child position:" + JSON.stringify(layoutPosition));
       }
     }
     this.setLayoutPosition(position);
@@ -550,10 +558,10 @@ class MyFrameNode extends FrameNode {
     pen.setStrokeWidth(15);
     pen.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
     canvas.attachPen(pen);
-    canvas.drawRect({  
-      left: 50, 
-      right: this.width + 50, 
-      top: 50, 
+    canvas.drawRect({
+      left: 50,
+      right: this.width + 50,
+      top: 50,
       bottom: this.width + 50,
     });
     canvas.detachPen();
@@ -633,3 +641,711 @@ FrameNode提供了查询接口用于返回实体节点的基础信息。具体�
 > - 节点信息：[getId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getid12) ，[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)，[getNodeType](../reference/apis-arkui/js-apis-arkui-frameNode.md#getnodetype12)，[getOpacity](../reference/apis-arkui/js-apis-arkui-frameNode.md#getopacity12)，[isVisible](../reference/apis-arkui/js-apis-arkui-frameNode.md#isvisible12)，[isClipToFrame](../reference/apis-arkui/js-apis-arkui-frameNode.md#iscliptoframe12)，[isAttached](../reference/apis-arkui/js-apis-arkui-frameNode.md#isattached12)，[getInspectorInfo](../reference/apis-arkui/js-apis-arkui-frameNode.md#getinspectorinfo12)，[getCustomProperty](../reference/apis-arkui/js-apis-arkui-frameNode.md#getcustomproperty12)
 >
 > 2、无法获取UINode类型节点，例如：JsView节点、[Span](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-span.md)、[ContainerSpan](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-containerspan.md)、[ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)、[ForEach](../../application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)、[LazyForEach](../../application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)、if/else组件等。
+
+## 获取节点位置偏移信息
+
+FrameNode提供了查询节点相对窗口、父组件以及屏幕位置偏移的信息接口（[getPositionToWindow](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontowindow12)，[getPositionToParent](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontoparent12)，[getPositionToScreen](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontoscreen12)，[getPositionToWindowWithTransform](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontowindowwithtransform12)，[getPositionToParentWithTransform](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontoparentwithtransform12)，[getPositionToScreenWithTransform](../reference/apis-arkui/js-apis-arkui-frameNode.md#getpositiontoscreenwithtransform12)，[getLayoutPosition](../reference/apis-arkui/js-apis-arkui-frameNode.md#getlayoutposition12)，[getUserConfigBorderWidth](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigborderwidth12)，[getUserConfigPadding](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigpadding12)，[getUserConfigMargin](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuserconfigmargin12)）。
+
+```ts
+import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
+
+const TEST_TAG : string = "FrameNode"
+class MyNodeController extends NodeController {
+  public frameNode: FrameNode | null = null;
+  private rootNode: FrameNode | null = null;
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.frameNode =  new FrameNode(uiContext);
+    this.rootNode.appendChild(this.frameNode);
+    return this.rootNode;
+  }
+  getPositionToWindow()
+  {
+    let positionToWindow = this.rootNode?.getPositionToWindow(); // 获取FrameNode相对于窗口的位置偏移
+    console.log(TEST_TAG + JSON.stringify(positionToWindow));
+  }
+  getPositionToParent()
+  {
+    let positionToParent = this.rootNode?.getPositionToParent(); // 获取FrameNode相对于父组件的位置偏移
+    console.log(TEST_TAG + JSON.stringify(positionToParent));
+  }
+  getPositionToScreen()
+  {
+    let positionToScreen = this.rootNode?.getPositionToScreen(); // 获取FrameNode相对于屏幕的位置偏移
+    console.log(TEST_TAG + JSON.stringify(positionToScreen));
+  }
+  getPositionToWindowWithTransform()
+  {
+    let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform(); // 获取FrameNode相对于窗口带有绘制属性的位置偏移
+    console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
+  }
+  getPositionToParentWithTransform()
+  {
+    let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform(); // 获取FrameNode相对于父组件带有绘制属性的位置偏移
+    console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
+  }
+  getPositionToScreenWithTransform()
+  {
+    let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform(); // 获取FrameNode相对于屏幕带有绘制属性的位置偏移
+    console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Button("getPositionToWindow")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToWindow();
+        })
+      Button("getPositionToParent")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToParent();
+        })
+      Button("getPositionToScreen")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToScreen();
+        })
+      Button("getPositionToParentWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToParentWithTransform();
+        })
+      Button("getPositionToWindowWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToWindowWithTransform();
+        })
+      Button("getPositionToScreenWithTransform")
+        .width(300)
+        .onClick(()=>{
+          this.myNodeController.getPositionToScreenWithTransform();
+        })
+      Column(){
+        Text("This is a NodeContainer.")
+          .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          .width('100%').fontSize(16)
+        NodeContainer(this.myNodeController)
+          .borderWidth(1)
+          .width(300)
+          .height(100)
+      }
+    }
+    .padding({ left: 35, right: 35, top: 35, bottom: 35 })
+    .width("100%")
+    .height("100%")
+  }
+}
+```
+
+## 通过typeNode创建具体类型的FrameNode节点
+
+通过TypeNode创建具体类型的FrameNode节点，可以根据属性获取接口来检索用户设置的属性信息。
+
+```ts
+import { NodeController, FrameNode, UIContext, BuilderNode, typeNode } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = "";
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .id("buildText")
+      .border({width:1})
+      .padding(1)
+      .fontSize(25)
+      .fontWeight(FontWeight.Bold)
+      .margin({ top: 10 })
+      .visibility(Visibility.Visible)
+      .opacity(0.7)
+      .customProperty("key1", "value1")
+      .width(300)
+  }
+}
+
+const TEST_TAG : string = "FrameNode"
+class MyNodeController extends NodeController {
+  public frameNode: typeNode.Column | null = null;
+  public uiContext: UIContext | undefined = undefined;
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[Params]> | null = null;
+  public textTypeNode: typeNode.Text | null = null;
+  private message: string = "DEFAULT";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.uiContext = uiContext;
+    this.frameNode = typeNode.createNode(uiContext, "Column");
+    this.frameNode.attribute
+      .width("100%")
+      .height("100%")
+    this.rootNode.appendChild(this.frameNode);
+    this.textNode = new BuilderNode(uiContext);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    this.frameNode.appendChild(this.textNode.getFrameNode());
+    this.textTypeNode = typeNode.createNode(uiContext, "Text");
+    this.textTypeNode.initialize("textTypeNode")
+      .fontSize(25)
+      .visibility(Visibility.Visible)
+      .id("textTypeNode")
+    this.frameNode.appendChild(this.textTypeNode);
+    return this.rootNode;
+  }
+  removeChild(frameNode: FrameNode)
+  {
+    let parent = frameNode.getParent();
+    if (parent) {
+      parent.removeChild(frameNode);
+
+    }
+  }
+  getUserConfigBorderWidth(frameNode: FrameNode)
+  {
+    let userConfigBorderWidth = frameNode?.getUserConfigBorderWidth(); // 获取用户设置的边框宽度
+    console.log(TEST_TAG + JSON.stringify(userConfigBorderWidth));
+  }
+  getUserConfigPadding(frameNode: FrameNode)
+  {
+    let userConfigPadding = frameNode?.getUserConfigPadding(); // 获取用户设置的内边距
+    console.log(TEST_TAG + JSON.stringify(userConfigPadding));
+  }
+  getUserConfigMargin(frameNode: FrameNode)
+  {
+    let userConfigMargin = frameNode?.getUserConfigMargin(); // 获取用户设置的外边距
+    console.log(TEST_TAG + JSON.stringify(userConfigMargin));
+  }
+  getUserConfigSize(frameNode: FrameNode)
+  {
+    let userConfigSize = frameNode?.getUserConfigSize(); // 获取用户设置的宽高
+    console.log(TEST_TAG + JSON.stringify(userConfigSize));
+  }
+  getId(frameNode: FrameNode)
+  {
+    let id = frameNode?.getId(); // 获取用户设置的节点ID
+    console.log(TEST_TAG + id);
+  }
+  getUniqueId(frameNode: FrameNode)
+  {
+    let uniqueId = frameNode?.getUniqueId(); // 获取系统分配的唯一标识的节点UniqueID
+    console.log(TEST_TAG + uniqueId);
+  }
+  getNodeType(frameNode: FrameNode)
+  {
+    let nodeType = frameNode?.getNodeType(); // 获取节点的类型
+    console.log(TEST_TAG + nodeType);
+  }
+  getOpacity(frameNode: FrameNode)
+  {
+    let opacity = frameNode?.getOpacity(); // 获取节点的不透明度
+    console.log(TEST_TAG + JSON.stringify(opacity));
+  }
+  isVisible(frameNode: FrameNode)
+  {
+    let visible = frameNode?.isVisible(); // 获取节点是否可见
+    console.log(TEST_TAG + JSON.stringify(visible));
+  }
+  isClipToFrame(frameNode: FrameNode)
+  {
+    let clipToFrame = frameNode?.isClipToFrame(); // 获取节点是否是剪裁到组件区域
+    console.log(TEST_TAG + JSON.stringify(clipToFrame));
+  }
+  isAttached(frameNode: FrameNode)
+  {
+    let attached = frameNode?.isAttached(); // 获取节点是否被挂载到主节点树上
+    console.log(TEST_TAG + JSON.stringify(attached));
+  }
+  getInspectorInfo(frameNode: FrameNode)
+  {
+    let inspectorInfo = frameNode?.getInspectorInfo(); // 获取节点的结构信息
+    console.log(TEST_TAG + JSON.stringify(inspectorInfo));
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+  @State index : number = 0;
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
+      Column(){
+        Text("This is a NodeContainer.")
+          .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+          .width('100%').fontSize(16)
+        NodeContainer(this.myNodeController)
+          .borderWidth(1)
+          .width(300)
+          .height(100)
+      }
+      Button("getUserConfigBorderWidth")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getUserConfigBorderWidth(node);
+            }
+          }
+        })
+      Button("getUserConfigPadding")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getUserConfigPadding(node);
+            }
+          }
+        })
+      Button("getUserConfigMargin")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getUserConfigMargin(node);
+            }
+          }
+        })
+      Button("getUserConfigSize")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getUserConfigSize(node);
+            }
+          }
+        })
+      Button("getId")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getId(node);
+            }
+          }
+        })
+      Button("getUniqueId")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getUniqueId(node);
+            }
+          }
+        })
+      Button("getNodeType")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getNodeType(node);
+            }
+          }
+        })
+      Button("getOpacity")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getOpacity(node);
+            }
+          }
+        })
+      Button("isVisible")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.isVisible(node);
+            }
+          }
+        })
+      Button("isClipToFrame")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.isClipToFrame(node);
+            }
+          }
+        })
+      Button("isAttached")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.isAttached(node);
+            }
+          }
+        })
+      Button("remove Text")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("textTypeNode") || null;
+            if (node) {
+              this.myNodeController.removeChild(node);
+              this.myNodeController.isAttached(node);
+            }
+          }
+        })
+      Button("getInspectorInfo")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              this.myNodeController.getInspectorInfo(node);
+            }
+          }
+        })
+      Button("getCustomProperty")
+        .width(300)
+        .onClick(()=>{
+          const uiContext: UIContext = this.getUIContext();
+          if (uiContext) {
+            const node: FrameNode | null = uiContext.getFrameNodeById("buildText") || null;
+            if (node) {
+              const property = node.getCustomProperty("key1");
+              console.log(TEST_TAG, JSON.stringify(property));
+            }
+          }
+        })
+    }
+    .padding({ left: 35, right: 35, top: 35, bottom: 35 })
+    .width("100%")
+    .height("100%")
+  }
+}
+```
+
+## 解除当前FrameNode对象对实体FrameNode节点的引用关系
+
+使用[dispose](../reference/apis-arkui/js-apis-arkui-frameNode.md#dispose12)接口可以立即解除当前FrameNode对象对实体FrameNode节点的引用关系。
+
+> **说明：**
+>
+> 在调用dispose方法后，FrameNode对象不再对应任何实际的FrameNode节点。此时，若尝试调用以下查询接口：getMeasuredSize、getLayoutPosition、getUserConfigBorderWidth、getUserConfigPadding、getUserConfigMargin、getUserConfigSize，将导致应用程序触发jscrash。
+>
+> 通过[getUniqueId](../reference/apis-arkui/js-apis-arkui-frameNode.md#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniqueId大于0时表示该对象对应一个实体FrameNode节点。
+
+```ts
+import { NodeController, FrameNode, BuilderNode } from '@kit.ArkUI';
+
+@Component
+struct TestComponent {
+  build() {
+    Column() {
+      Text('This is a BuilderNode.')
+        .fontSize(16)
+        .fontWeight(FontWeight.Bold)
+    }
+    .width('100%')
+    .backgroundColor(Color.Gray)
+  }
+
+  aboutToAppear() {
+    console.error('aboutToAppear');
+  }
+
+  aboutToDisappear() {
+    console.error('aboutToDisappear');
+  }
+}
+
+@Builder
+function buildComponent() {
+  TestComponent()
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private builderNode: BuilderNode<[]> | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 200, height: 100 } });
+    this.builderNode.build(new WrappedBuilder(buildComponent));
+
+    const rootRenderNode = this.rootNode.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode.size = { width: 200, height: 200 };
+      rootRenderNode.backgroundColor = 0xff00ff00;
+      rootRenderNode.appendChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+
+    return this.rootNode;
+  }
+
+  disposeFrameNode() {
+    if (this.rootNode !== null && this.builderNode !== null) {
+      this.rootNode.removeChild(this.builderNode.getFrameNode());
+      this.builderNode.dispose();
+
+      this.rootNode.dispose();
+    }
+  }
+
+  removeBuilderNode() {
+    const rootRenderNode = this.rootNode!.getRenderNode();
+    if (rootRenderNode !== null && this.builderNode !== null && this.builderNode.getFrameNode() !== null) {
+      rootRenderNode.removeChild(this.builderNode!.getFrameNode()!.getRenderNode());
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column({ space: 4 }) {
+      NodeContainer(this.myNodeController)
+      Button('FrameNode dispose')
+        .onClick(() => {
+          this.myNodeController.disposeFrameNode();
+        })
+        .width('100%')
+    }
+  }
+}
+```
+
+## FrameNode的数据懒加载能力
+
+提供[NodeAdapter](../reference/apis-arkui/js-apis-arkui-frameNode.md#nodeadapter12)对象替代ArkTS侧的LazyForEach功能，提供自定义节点的数据懒加载功能，实现按需迭代数据。
+
+> **说明：**
+>
+> 入参不能为负数，入参为负数时不做处理。
+
+```ts
+import { FrameNode, NodeController, NodeAdapter, typeNode } from '@kit.ArkUI';
+
+class MyNodeAdapter extends NodeAdapter {
+  uiContext: UIContext
+  cachePool: Array<FrameNode> = new Array();
+  changed: boolean = false
+  reloadTimes: number = 0;
+  data: Array<string> = new Array();
+  hostNode?: FrameNode
+
+  constructor(uiContext: UIContext, count: number) {
+    super();
+    this.uiContext = uiContext;
+    this.totalNodeCount = count;
+    this.loadData();
+  }
+
+  reloadData(count: number): void {
+    this.reloadTimes++;
+    NodeAdapter.attachNodeAdapter(this, this.hostNode);
+    this.totalNodeCount = count;
+    this.loadData();
+    this.reloadAllItems();
+  }
+
+  refreshData(): void {
+    let items = this.getAllAvailableItems()
+    console.log("UINodeAdapter get All items:" + items.length);
+    this.reloadAllItems();
+  }
+
+  detachData(): void {
+    NodeAdapter.detachNodeAdapter(this.hostNode);
+    this.reloadTimes = 0;
+  }
+
+  loadData(): void {
+    for (let i = 0; i < this.totalNodeCount; i++) {
+      this.data[i] = "Adapter ListItem " + i + " r:" + this.reloadTimes;
+    }
+  }
+
+  changeData(from: number, count: number): void {
+    this.changed = !this.changed;
+    for (let i = 0; i < count; i++) {
+      let index = i + from;
+      this.data[index] = "Adapter ListItem " + (this.changed ? "changed:" : "") + index + " r:" + this.reloadTimes;
+    }
+    this.reloadItem(from, count);
+  }
+
+  insertData(from: number, count: number): void {
+    for (let i = 0; i < count; i++) {
+      let index = i + from;
+      this.data.splice(index, 0, "Adapter ListItem " + from + "-" + i);
+    }
+    this.insertItem(from, count);
+    this.totalNodeCount += count;
+    console.log("UINodeAdapter after insert count:" + this.totalNodeCount);
+  }
+
+  removeData(from: number, count: number): void {
+    let arr = this.data.splice(from, count);
+    this.removeItem(from, count);
+    this.totalNodeCount -= arr.length;
+    console.log("UINodeAdapter after remove count:" + this.totalNodeCount);
+  }
+
+  moveData(from: number, to: number): void {
+    let tmp = this.data.splice(from, 1);
+    this.data.splice(to, 0, tmp[0]);
+    this.moveItem(from, to);
+  }
+
+  onAttachToNode(target: FrameNode): void {
+    console.log("UINodeAdapter onAttachToNode id:" + target.getUniqueId());
+    this.hostNode = target;
+  }
+
+  onDetachFromNode(): void {
+    console.log("UINodeAdapter onDetachFromNode");
+  }
+
+  onGetChildId(index: number): number {
+    console.log("UINodeAdapter onGetChildId:" + index);
+    return index;
+  }
+
+  onCreateChild(index: number): FrameNode {
+    console.log("UINodeAdapter onCreateChild:" + index);
+    if (this.cachePool.length > 0) {
+      let cacheNode = this.cachePool.pop();
+      if (cacheNode !== undefined) {
+        console.log("UINodeAdapter onCreateChild reused id:" + cacheNode.getUniqueId());
+        let text = cacheNode?.getFirstChild();
+        let textNode = text as typeNode.Text;
+        textNode?.initialize(this.data[index]).fontSize(20);
+        return cacheNode;
+      }
+    }
+    console.log("UINodeAdapter onCreateChild createNew");
+    let itemNode = typeNode.createNode(this.uiContext, "ListItem");
+    let textNode = typeNode.createNode(this.uiContext, "Text");
+    textNode.initialize(this.data[index]).fontSize(20);
+    itemNode.appendChild(textNode);
+    return itemNode;
+  }
+
+  onDisposeChild(id: number, node: FrameNode): void {
+    console.log("UINodeAdapter onDisposeChild:" + id);
+    if (this.cachePool.length < 10) {
+      if (!this.cachePool.includes(node)) {
+        console.log("UINodeAdapter caching node id:" + node.getUniqueId());
+        this.cachePool.push(node);
+      }
+    } else {
+      node.dispose();
+    }
+  }
+
+  onUpdateChild(id: number, node: FrameNode): void {
+    let index = id;
+    let text = node.getFirstChild();
+    let textNode = text as typeNode.Text;
+    textNode?.initialize(this.data[index]).fontSize(20);
+  }
+}
+
+class MyNodeAdapterController extends NodeController {
+  rootNode: FrameNode | null = null;
+  nodeAdapter: MyNodeAdapter | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+    let listNode = typeNode.createNode(uiContext, "List");
+    listNode.initialize({ space: 3 }).borderWidth(2).borderColor(Color.Black);
+    this.rootNode.appendChild(listNode);
+    this.nodeAdapter = new MyNodeAdapter(uiContext, 100);
+    NodeAdapter.attachNodeAdapter(this.nodeAdapter, listNode);
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct ListNodeTest {
+  adapterController: MyNodeAdapterController = new MyNodeAdapterController();
+
+  build() {
+    Column() {
+      Text("ListNode Adapter");
+      NodeContainer(this.adapterController)
+        .width(300).height(300)
+        .borderWidth(1).borderColor(Color.Black);
+      Row() {
+        Button("Reload")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.reloadData(50);
+          })
+        Button("Change")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.changeData(5, 10)
+          })
+        Button("Insert")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.insertData(10, 10);
+          })
+      }
+
+      Row() {
+        Button("Remove")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.removeData(10, 10);
+          })
+        Button("Move")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.moveData(2, 5);
+          })
+        Button("Refresh")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.refreshData();
+          })
+        Button("Detach")
+          .onClick(() => {
+            this.adapterController.nodeAdapter?.detachData();
+          })
+      }
+    }.borderWidth(1)
+    .width("100%")
+  }
+}
+```

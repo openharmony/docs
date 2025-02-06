@@ -145,7 +145,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageWillDestroy(windowStage: window.WindowStage) {
     // 释放通过windowStage对象获取的资源
-    // 在onWindowStageDestroy()中注销WindowStage事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
+    // 在onWindowStageWillDestroy()中注销WindowStage事件订阅（获焦/失焦、切到前台/切到后台、前台可交互/前台不可交互）
     try {
       if (this.windowStage) {
         this.windowStage.off('windowStageEvent');

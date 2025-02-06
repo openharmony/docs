@@ -69,9 +69,12 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [vkCreateSurfaceOHOS](#vkcreatesurfaceohos) (VkInstance instance, const VkSurfaceCreateInfoOHOS \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface。 |
-| [vkGetNativeBufferPropertiesOHOS](#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, VkNativeBufferPropertiesOHOS \*pProperties) | 获取OH_NativeBuffer属性。 |
-| [vkGetMemoryNativeBufferOHOS](#vkgetmemorynativebufferohos) (VkDevice device, const VkMemoryGetNativeBufferInfoOHOS \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | 获取OH_NativeBuffer。 |
+| VKAPI_ATTR VkResult VKAPI_CALL [vkCreateSurfaceOHOS](#vkcreatesurfaceohos) (VkInstance instance, const [VkSurfaceCreateInfoOHOS](_vk_surface_create_info_o_h_o_s.md) \*pCreateInfo, const VkAllocationCallbacks \*pAllocator, VkSurfaceKHR \*pSurface) | 创建Vulkan Surface。 | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetNativeBufferPropertiesOHOS](#vkgetnativebufferpropertiesohos) (VkDevice device, const struct OH_NativeBuffer \*buffer, [VkNativeBufferPropertiesOHOS](_vk_native_buffer_properties_o_h_o_s.md) \*pProperties) | 获取OH_NativeBuffer属性。 | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetMemoryNativeBufferOHOS](#vkgetmemorynativebufferohos) (VkDevice device, const [VkMemoryGetNativeBufferInfoOHOS](_vk_memory_get_native_buffer_info_o_h_o_s.md) \*pInfo, struct OH_NativeBuffer \*\*pBuffer) | 获取OH_NativeBuffer。 | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkGetSwapchainGrallocUsageOHOS](#vkgetswapchaingrallocusageohos) (VkDevice device, VkFormat format, VkImageUsageFlags imageUsage, uint64_t \*grallocUsage) | 根据给定的Vulkan设备、图像格式和图像使用标志, 返回适当的Gralloc(内存分配器)使用标志。 | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkAcquireImageOHOS](#vkacquireimageohos) (VkDevice device, VkImage image, int32_t nativeFenceFd, VkSemaphore semaphore, VkFence fence) | 用于获取交换链图像的所有权, 并将外部信号的Fence导入到VkSemaphore对象和VkFence对象中。 | 
+| VKAPI_ATTR VkResult VKAPI_CALL [vkQueueSignalReleaseImageOHOS](#vkqueuesignalreleaseimageohos) (VkQueue queue, uint32_t waitSemaphoreCount, const VkSemaphore \*pWaitSemaphores, VkImage image, int32_t \*pNativeFenceFd) | 当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像。 | 
 
 
 ### 变量
@@ -378,6 +381,36 @@ typedef struct VkSurfaceCreateInfoOHOS VkSurfaceCreateInfoOHOS
 ## 函数说明
 
 
+### vkAcquireImageOHOS()
+
+```
+VKAPI_ATTR VkResult VKAPI_CALL vkAcquireImageOHOS (VkDevice device, VkImage image, int32_t nativeFenceFd, VkSemaphore semaphore, VkFence fence )
+```
+
+**描述**
+
+用于获取交换链图像的所有权, 并将外部信号的Fence导入到VkSemaphore对象和VkFence对象中。
+
+**系统能力：** SystemCapability.Graphic.Vulkan
+
+**起始版本：** 10
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| device | VkDevice对象。 | 
+| image | 要获取的Vulkan图像。 | 
+| nativeFenceFd | 原生Fence的文件描述符。 | 
+| semaphore | 表示图像可用状态的Vulkan Semaphore(信号量)。 | 
+| fence | 用于在图像获取完成时进行同步的Vulkan Fence。 | 
+
+**返回：**
+
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示主机内存不足。
+
 ### vkCreateSurfaceOHOS()
 
 
@@ -402,7 +435,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkCreateSurfaceOHOS (VkInstance instance, const V
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示分配VkSurfaceKHR内存失败。
+返回VK_ERROR_SURFACE_LOST_KHR，表示操作NativeWindow失败。
 
 
 ### vkGetMemoryNativeBufferOHOS()
@@ -428,8 +464,9 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetMemoryNativeBufferOHOS (VkDevice device, con
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
-
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示pInfo入参异常，或获取的pBuffer异常。
 
 ### vkGetNativeBufferPropertiesOHOS()
 
@@ -454,8 +491,71 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetNativeBufferPropertiesOHOS (VkDevice device,
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR，表示入参存在异常。
+返回VK_ERROR_OUT_OF_DEVICE_MEMORY，表示设备内存不足。
 
+
+### vkGetSwapchainGrallocUsageOHOS()
+
+```
+VKAPI_ATTR VkResult VKAPI_CALL vkGetSwapchainGrallocUsageOHOS (VkDevice device, VkFormat format, VkImageUsageFlags imageUsage, uint64_t* grallocUsage )
+```
+
+**描述**
+
+根据给定的Vulkan设备、图像格式和图像使用标志, 返回适当的Gralloc(内存分配器)使用标志。
+
+**系统能力：** SystemCapability.Graphic.Vulkan
+
+**起始版本：** 10
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| device | VkDevice对象。 | 
+| format | 图像格式。 | 
+| imageUsage | 图像使用标志。 | 
+| grallocUsage | 出参, 返回Gralloc(内存分配器)使用标志。 | 
+
+**返回：**
+
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_INITIALIZATION_FAILED，表示入参异常。
+
+### vkQueueSignalReleaseImageOHOS()
+
+```
+VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uint32_t waitSemaphoreCount, const VkSemaphore* pWaitSemaphores, VkImage image, int32_t* pNativeFenceFd )
+```
+
+**描述**
+
+当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像。
+
+**系统能力：** SystemCapability.Graphic.Vulkan
+
+**起始版本：** 10
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| queue | Vulkan队列的句柄。 | 
+| waitSemaphoreCount | 等待Semaphore(信号量)的数量。 | 
+| pWaitSemaphores | 指向等待Semaphore(信号量)数组的指针。 | 
+| images | 要释放的Vulkan图像句柄。 | 
+| pNativeFenceFd | 指向Fence的文件描述符的指针。 | 
+
+**返回：**
+
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_DEVICE_LOST，表示Vulkan设备链接丢失。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示主机内存不足。
 
 ## 变量说明
 

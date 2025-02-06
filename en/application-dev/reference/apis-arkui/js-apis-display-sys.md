@@ -1,6 +1,6 @@
 # @ohos.display (Display) (System API)
 
-The **Display** module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
+The Display module provides APIs for managing displays, such as obtaining information about the default display, obtaining information about all displays, and listening for the addition and removal of displays.
 
 > **NOTE**
 >
@@ -88,7 +88,7 @@ Subscribes to privacy mode changes of this display. When there is a privacy wind
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
+| type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating that the privacy mode of the display is changed.|
 | callback | Callback&lt;boolean&gt; | Yes  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
 **Error codes**
@@ -129,7 +129,7 @@ Unsubscribes from privacy mode changes of this display. When there is a privacy 
 
 | Name  | Type                                      | Mandatory| Description                                                   |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
-| type     | string                                   | Yes  | Event type. The value is fixed at 'privateModeChange', indicating the event of display privacy mode changes.|
+| type     | string                                   | Yes  | Event type. The value is fixed at **'privateModeChange'**, indicating that the privacy mode of the display is changed.|
 | callback | Callback&lt;boolean&gt; | No  | Callback used to return whether the privacy mode of the display is changed. The value **true** means that the display changes to the privacy mode, and **false** means the opposite.|
 
 **Error codes**
@@ -235,7 +235,7 @@ Before calling any API in **Display**, you must use [getAllDisplays()](js-apis-d
 ### hasImmersiveWindow<sup>11+</sup>
 hasImmersiveWindow(callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether this screen contains an immersive window. This API uses an asynchronous callback to return the result.
+Checks whether this display contains an immersive window. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -245,7 +245,7 @@ Checks whether this screen contains an immersive window. This API uses an asynch
 
 | Name     | Type                       | Mandatory| Description                                                        |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
+| callback    | AsyncCallback&lt;boolean&gt;   | Yes  | Callback used to return the result. The value **true** means that the display contains an immersive window, and **false** means the opposite.|
 
 **Error codes**
 
@@ -278,7 +278,7 @@ displayClass.hasImmersiveWindow((err: BusinessError, data) => {
 ### hasImmersiveWindow<sup>11+</sup>
 hasImmersiveWindow(): Promise&lt;boolean&gt;
 
-Checks whether this screen contains an immersive window. This API uses a promise to return the result.
+Checks whether this display contains an immersive window. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -288,7 +288,7 @@ Checks whether this screen contains an immersive window. This API uses a promise
 
 | Type               | Description                     |
 | ------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the screen contains immersive windows, and **false** means the opposite.|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the display contains an immersive window, and **false** means the opposite.|
 
 **Error codes**
 

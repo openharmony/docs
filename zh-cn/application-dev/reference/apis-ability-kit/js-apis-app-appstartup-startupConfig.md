@@ -16,7 +16,7 @@ import { StartupConfig } from '@kit.AbilityKit';
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
   | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

@@ -45,10 +45,10 @@ export default {
   getLocation() {        
     geolocation.getLocation({            
       success: function(data) {                
-        console.log('success get location data. latitude:' + data.latitude);            
+        console.info('success get location data. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
       }
     });    
   }
@@ -80,10 +80,10 @@ export default {
   getLocationType() {        
     geolocation.getLocationType({            
       success: function(data) {                
-        console.log('success get location type:' + data.types[0]);            
+        console.info('success get location type:' + data.types[0]);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
        },        
      });    
   },
@@ -117,10 +117,10 @@ export default {
   subscribe() {        
     geolocation.subscribe({            
       success: function(data) {                
-        console.log('get location. latitude:' + data.latitude);            
+        console.info('get location. latitude:' + data.latitude);            
       },            
       fail: function(data, code) {                
-        console.log('fail to get location. code:' + code + ', data:' + data);            
+        console.info('fail to get location. code:' + code + ', data:' + data);            
       },        
     });    
   },

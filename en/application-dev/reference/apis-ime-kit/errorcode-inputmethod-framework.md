@@ -52,11 +52,13 @@ This error code is reported when the API for showing or hiding the keyboard fail
 
 **Possible Causes**
 
-The input method is disconnected from the third-party application due to a service error with the application.
+1. The input method is disconnected from the third-party application due to a service error with the application.
+2. The third-party application is not focused.
 
 **Solution**
 
-Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+1. Bind the input method to the third-party application again: Close the background process of the third-party application, start the application again, and touch a text input box. If the keyboard is displayed properly, the issue is resolved.
+2. Place the third-party application in the foreground and ensure that it is not covered by other applications or windows. Enable the input method by touching a text input box.
 
 ## 12800004 Not an Input Method
 
@@ -142,7 +144,7 @@ This error code is reported when an API of the [input method framework](js-apis-
 
 **Possible Causes**
 
-The input method manager service fails to be obtained.
+The input method manager service fails to be found.
 
 **Solution**
 

@@ -61,33 +61,93 @@ During application development, you are advised to use [on('stateChange')](../..
     });
     ```
 
-2. Call **on('writeData')** to subscribe to the audio data write callback.
+2. Call **on('writeData')** to subscribe to the callback for audio data writing. You are advised to use this function in API version 12, since it returns a callback result.
 
-    ```ts
-    import { BusinessError } from '@kit.BasicServicesKit';
-    import { fileIo as fs } from '@kit.CoreFileKit';
+   - From API version 12, this function returns a callback result, enabling the system to determine whether to play the data in the callback based on the value returned.
 
-    class Options {
-      offset?: number;
-      length?: number;
-    }
+     > **NOTE**
+     > 
+     > - When the amount of data is sufficient to meet the required buffer length of the callback, you should return **audio.AudioDataCallbackResult.VALID**, and the system uses the entire data buffer for playback. Do not return **audio.AudioDataCallbackResult.VALID** in this case, as this leads to audio artifacts such as noise and playback stuttering.
+     > 
+     > - When the amount of data is insufficient to meet the required buffer length of the callback, you are advised to return **audio.AudioDataCallbackResult.INVALID**. In this case, the system does not process this portion of audio data but requests data from the application again. Once the buffer is adequately filled, you can return **audio.AudioDataCallbackResult.VALID**.
+     > 
+     > - Once the callback function finishes its execution, the audio service queues the data in the buffer for playback. Therefore, do not change the buffered data outside the callback. Regarding the last frame, if there is insufficient data to completely fill the buffer, you must concatenate the available data with padding to ensure that the buffer is full. This prevents any residual dirty data in the buffer from adversely affecting the playback effect.
 
-    let bufferSize: number = 0;
-    let path = getContext().cacheDir;
-    // Ensure that the resource exists in the path.
-    let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-    let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-    let writeDataCallback = (buffer: ArrayBuffer) => {
-      let options: Options = {
-        offset: bufferSize,
-        length: buffer.byteLength
-      };
-      fs.readSync(file.fd, buffer, options);
-      bufferSize += buffer.byteLength;
-    };
+     ```ts
+     import { audio } from '@kit.AudioKit';
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { fileIo as fs } from '@kit.CoreFileKit';
 
-    audioRenderer.on('writeData', writeDataCallback);
-    ```
+     class Options {
+       offset?: number;
+       length?: number;
+     }
+
+     let bufferSize: number = 0;
+     let path = getContext().cacheDir;
+     // Ensure that the resource exists in the path.
+     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+
+     let writeDataCallback = (buffer: ArrayBuffer) => {
+       let options: Options = {
+         offset: bufferSize,
+         length: buffer.byteLength
+       };
+
+       try {
+         fs.readSync(file.fd, buffer, options);
+         bufferSize += buffer.byteLength;
+         // The system determines that the buffer is valid and plays the data normally.
+         return audio.AudioDataCallbackResult.VALID;
+       } catch (error) {
+         console.error('Error reading file:', error);
+         // The system determines that the buffer is invalid and does not play the data.
+         return audio.AudioDataCallbackResult.INVALID;
+       }
+     };
+
+     audioRenderer.on('writeData', writeDataCallback);
+     ```
+
+   - In API version 11, this function does not return a callback result, and the system treats all data in the callback as valid by default.
+
+     > **NOTE**
+     > 
+     > - Ensure that the callback's data buffer is completely filled to the necessary length to prevent issues such as audio noise and playback stuttering.
+     > 
+     > - If the amount of data is insufficient to fill the data buffer, you are advised to temporarily halt data writing (without pausing the audio stream), block the callback function, and wait until enough data accumulates before resuming writing, thereby ensuring that the buffer is fully filled. If you need to call AudioRenderer APIs after the callback function is blocked, unblock the callback function first.
+     > 
+     > - If you do not want to play the audio data in this callback function, you can nullify the data block in the callback function. (Once nullified, the system still regards this as part of the written data, leading to silent frames during playback).
+     > 
+     > - Once the callback function finishes its execution, the audio service queues the data in the buffer for playback. Therefore, do not change the buffered data outside the callback. Regarding the last frame, if there is insufficient data to completely fill the buffer, you must concatenate the available data with padding to ensure that the buffer is full. This prevents any residual dirty data in the buffer from adversely affecting the playback effect.
+
+     ```ts
+     import { BusinessError } from '@kit.BasicServicesKit';
+     import { fileIo as fs } from '@kit.CoreFileKit';
+
+     class Options {
+       offset?: number;
+       length?: number;
+     }
+
+     let bufferSize: number = 0;
+     let path = getContext().cacheDir;
+     // Ensure that the resource exists in the path.
+     let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
+     let writeDataCallback = (buffer: ArrayBuffer) => {
+       // If you do not want to play a particular portion of the buffer, you can add a check and clear that specific section of the buffer.
+       let options: Options = {
+         offset: bufferSize,
+         length: buffer.byteLength
+       };
+       fs.readSync(file.fd, buffer, options);
+       bufferSize += buffer.byteLength;
+     };
+
+     audioRenderer.on('writeData', writeDataCallback);
+     ```
 
 3. Call **start()** to switch the AudioRenderer to the **running** state and start rendering.
 
@@ -183,8 +243,17 @@ let writeDataCallback = (buffer: ArrayBuffer) => {
     offset: bufferSize,
     length: buffer.byteLength
   };
-  fs.readSync(file.fd, buffer, options);
-  bufferSize += buffer.byteLength;
+
+  try {
+    fs.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    // This function does not return a callback result in API version 11, but does so in API version 12 and later versions.
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    // This function does not return a callback result in API version 11, but does so in API version 12 and later versions.
+    return audio.AudioDataCallbackResult.INVALID;
+  }
 };
 
 // Create an AudioRenderer instance, and set the events to listen for.

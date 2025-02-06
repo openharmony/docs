@@ -38,7 +38,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -94,7 +94,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -136,7 +136,7 @@ cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -181,7 +181,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -206,13 +206,7 @@ reminderAgentManager.cancelReminder(reminderId).then(() => {
 
 getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
-获取当前应用设置的所有有效（未过期）的代理提醒。使用callback异步回调。
-
-> **说明：**
->
-> 当到达设置的提醒时间点时，通知中心会弹出相应提醒。若未点击提醒上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
->
-> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用callback异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -224,7 +218,7 @@ getValidReminders(callback: AsyncCallback<Array\<ReminderRequest>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -271,13 +265,7 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
 
 getValidReminders(): Promise\<Array\<ReminderRequest>>
 
-获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
-
-> **说明：**
->
-> 当到达设置的提醒时间点时，通知中心会弹出相应提醒。若未点击提醒上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
->
-> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -289,7 +277,7 @@ getValidReminders(): Promise\<Array\<ReminderRequest>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -346,7 +334,7 @@ cancelAllReminders(callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -383,7 +371,7 @@ cancelAllReminders(): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)。
+以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
@@ -576,13 +564,7 @@ reminderAgentManager.removeNotificationSlot(notificationManager.SlotType.CONTENT
 
 getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
-获取当前应用设置的所有有效（未过期）的代理提醒。使用promise异步回调。
-
-> **说明：**
->
-> 当到达设置的提醒时间点时，通知中心会弹出相应提醒。若未点击提醒上的关闭/CLOSE按钮，则代理提醒是有效/未过期的；若点击了关闭/CLOSE按钮，则代理提醒过期。
->
-> 当代理提醒类型是闹钟时，若设置每天提醒，无论是否点击关闭/CLOSE按钮，代理提醒都是有效的。
+获取当前应用设置的所有[有效（未过期）的代理提醒](../../task-management/agent-powered-reminder.md#约束与限制)。使用promise异步回调。
 
 **系统能力**： SystemCapability.Notification.ReminderAgent
 
@@ -594,7 +576,7 @@ getAllValidReminders(): Promise\<Array\<ReminderInfo>>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[reminderAgentManager错误码](errorcode-reminderAgentManager.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |

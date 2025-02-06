@@ -5,13 +5,13 @@
 
 支持创建Native子进程，并在父子进程间建立IPC通道。
 
-**库：** libchild_process.so
+**库**：libchild_process.so
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**起始版本：** 12
+**起始版本**：12
 
-**相关模块：**[ChildProcess](c-apis-ability-childprocess.md)
+**相关模块**：[ChildProcess](c-apis-ability-childprocess.md)
 
 
 ## 汇总

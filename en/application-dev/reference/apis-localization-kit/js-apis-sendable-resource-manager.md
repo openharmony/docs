@@ -116,16 +116,10 @@ Defines a **Resource** object.
 
 ## SendableResource
 
-Defines a **SendableResource** object.
+type SendableResource = _SendableResource
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
-
-| Name        | Type    | Read-Only  | Optional |Description         |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | No   | No| Bundle name of the application.|
-| moduleName | string | No   | No| Module name of the application.|
-| id         | number | No   | No| Resource ID.     |
-| params     | collections.Array<string \| number> | No   | Yes| Other resource parameters, including the resource name, substitution value for the formatting API, and quantifier for the singular-plural formatting API.     |
-| type       | number | No   | Yes| Resource type.     |
+| Type        | Description    |
+| ---------- | ------ | 
+| [_SendableResource](sendableResource.md#sendableresource-1)|Defines a **SendableResource** object.|

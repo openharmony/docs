@@ -18,7 +18,7 @@ import { PiPWindow } from '@kit.ArkUI';
 
 isPiPEnabled(): boolean
 
-Checks whether the PiP feature is enabled.
+Checks whether the PiP feature is supported.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -28,7 +28,7 @@ Checks whether the PiP feature is enabled.
 
 | Type      | Description                                 |
 |----------|-------------------------------------|
-| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is enabled, and **false** means the opposite.|
+| boolean  | Status of the PiP feature. The value **true** means that the PiP feature is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -144,6 +144,73 @@ promise.then((data : PiPWindow.PiPController) => {
 });
 ```
 
+## PiPWindow.create<sup>12+</sup>
+
+create(config: PiPConfiguration, contentNode: typeNode.XComponent): Promise&lt;PiPController&gt;
+
+Creates a PiP controller through a type node. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+ 
+| Name         | Type                                      | Mandatory       | Description                                                                                                                                                                                                                                    |
+|--------------|------------------------------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| config       | [PiPConfiguration](#pipconfiguration)    | Yes        | Options for creating the PiP controller. This parameter cannot be empty, and **context** that is used to construct this parameter cannot be empty. When constructing this parameter, **templateType** (if specified) must be a value defined in [PiPTemplateType](#piptemplatetype), and **controlGroups** (if specified) must match the value of **templateType**. For details, see [PiPControlGroup](#pipcontrolgroup12).|
+| contentNode       | [typeNode.XComponent](js-apis-arkui-frameNode.md#xcomponent12)    | Yes        | Content to be rendered in the PiP window. The parameter value cannot be empty. |
+
+**Return value**
+
+| Type                                                        | Description                      |
+|------------------------------------------------------------|--------------------------|
+| Promise&lt;[PiPController](#pipcontroller)&gt;  | Promise used to return the PiP controller.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                                                                                                        |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| 401   | Params error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { PiPWindow, UIContext } from '@kit.ArkUI';
+import { typeNode } from '@ohos.arkui.node';
+
+let pipController: PiPWindow.PiPController | undefined = undefined;
+let xComponentController: XComponentController = new XComponentController();
+let context: UIContext | undefined = undefined; // You can pass UIContext or use this.getUIContext () in the layout to assign a valid value to context.
+let xComponent = typeNode.createNode(context, 'XComponent');
+xComponent.initialize({
+  id:'xcomponent',
+  type:XComponentType.SURFACE,
+  controller:xComponentController
+});
+let contentWidth: number = 800; // The content width is 800 px.
+let contentHeight: number = 600; // The content height is 600 px.
+let config: PiPWindow.PiPConfiguration = {
+  context: getContext(this),
+  componentController: xComponentController,
+  templateType: PiPWindow.PiPTemplateType.VIDEO_PLAY,
+  contentWidth: contentWidth,
+  contentHeight: contentHeight
+};
+
+let promise : Promise<PiPWindow.PiPController> = PiPWindow.create(config, xComponent);
+promise.then((data : PiPWindow.PiPController) => {
+  pipController = data;
+  console.info(`Succeeded in creating pip controller. Data:${data}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to create pip controller. Cause:${err.code}, message:${err.message}`);
+});
+```
+
 ## PiPConfiguration
 
 Defines the parameters for creating a PiP controller.
@@ -156,10 +223,10 @@ Defines the parameters for creating a PiP controller.
 |---------------------|----------------------------------------------------------------------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context             | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Context environment.                                                                                                                                                                                                                                                                                                                                 |
 | componentController | [XComponentController](arkui-ts/ts-basic-components-xcomponent.md)         | Yes  | Original [XComponent](arkui-ts/ts-basic-components-xcomponent.md) controller.                                                                                                                                                                                                                                                                     |
-| navigationId        | string                                                                     | No  | Navigation ID of the current page.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **Navigation** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the navigation ID. (This navigation mode is not recommended in PiP scenarios.) After a PiP window is started in this scenario, do not switch between pages. Otherwise, exceptions may occur during restoration.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.|
+| navigationId        | string                                                                     | No  | Navigation ID of the current page.<br>1. When the UIAbility uses [Navigation](arkui-ts/ts-basic-components-navigation.md) to manage pages, set the ID of the **Navigation** component for the PiP controller. This ensures that the original page can be restored from the PiP window.<br>2. When the UIAbility uses [Router](js-apis-router.md) to manage pages, you do not need to set the ID of the **Navigation** component for the PiP controller.<br>3. If the UIAbility has only one page, you do not need to set the navigation ID. The original page can be restored from the PiP window.|
 | templateType        | [PiPTemplateType](#piptemplatetype)                                        | No  | Template type, which is used to distinguish video playback, video call, and video meeting scenarios.                                                                                                                                                                                                                                                                                                                 |
-| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window.                                                                |
-| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window.                                                                |
+| contentWidth        | number                                                                     | No  | Width of the original content, in px. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1920. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the width of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).                                                                |
+| contentHeight       | number                                                                     | No  | Height of the original content, in px. It is used to determine the aspect ratio of the PiP window. It is used to determine the aspect ratio of the PiP window. When the PiP controller is created in [typeNode mode](#pipwindowcreate12), the default value is 1080. When the PiP controller is created [not in typeNode mode](#pipwindowcreate), the default value is the height of the [XComponent](arkui-ts/ts-basic-components-xcomponent.md).                                                                |
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | No  | A list of optional component groups of the PiP controller. An application can configure whether to display these optional components. If this parameter is not set for an application, the basic components (for example, play/pause of the video playback component group) are displayed. A maximum of three components can be configured in the list.                                                                                                                                                                                                                                                  |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | No  | Custom UI that can be displayed at the top of the PiP window.                                                                                                                                                                                                                                                                                            |
 

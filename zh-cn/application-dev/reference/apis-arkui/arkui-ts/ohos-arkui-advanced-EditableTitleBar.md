@@ -41,10 +41,10 @@ EditableTitleBar({leftIconStyle: EditableLeftIconType, imageItem?: EditableTitle
 | title | [ResourceStr](ts-types.md#resourcestr) | 是 | - | 标题。<br />默认值：''，表示标题内容为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                  |
 | subtitle<sup>12+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | - | 副标题。<br />默认值：''，表示副标题内容为空。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                |
 | menuItems | Array&lt;[EditableTitleBarMenuItem](#editabletitlebarmenuitem)&gt; | 否 | - | 右侧菜单项目列表。<br />默认值：undefined。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                              |
-| isSaveIconRequired<sup>12+</sup> | boolean | 否 | - | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                              |
+| isSaveIconRequired<sup>12+</sup> | boolean | 是 | - | 是否需要右侧的保存按钮。<br />默认值：true，表示需要右侧的保存按钮。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                              |
 | onSave | ()&nbsp;=&gt;&nbsp;void | 否 | - | 保存时的动作闭包。<br />默认值：() => void。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                             |
 | onCancel | ()&nbsp;=&gt;&nbsp;void | 否 | - | 当左侧按钮类型为&nbsp;Cancel，触发取消时的动作闭包。<br />默认值：() => void。<br />从API version 12开始，当左侧按钮类型为&nbsp;Back，触发返回时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                |
-| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 否 | - | 标题样式。<br />默认值：<br />{<br />safeAreaTypes: [SafeAreaType.SYSTEM],<br />safeAreaEdges: [SafeAreaEdge.TOP], <br />backgroundColor: '#00000000'<br />}。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| options<sup>12+</sup> | [EditableTitleBarOptions](#editabletitlebaroptions12) | 是 | - | 标题样式。<br />默认值：<br />{<br />safeAreaTypes: [SafeAreaType.SYSTEM],<br />safeAreaEdges: [SafeAreaEdge.TOP], <br />backgroundColor: '#00000000'<br />}。<br/>**说明：** 未使用@Require装饰，构造时不强制校验参数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentMargin<sup>12+</sup> | [LocalizedMargin](ts-types.md#localizedmargin12) | 否 | @Prop | 标题栏外边距，不支持设置负数。<br />默认值：<br /> {start: LengthMetrics.resource(`$r('sys.float.margin_left')`), end: LengthMetrics.resource(`$r('sys.float.margin_right')`)}。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                               |
 
 > **说明：**
@@ -108,6 +108,7 @@ struct Index {
     Row() {
       Column() {
         Divider().height(2).color(0xCCCCCC)
+        // 左侧取消按钮，右侧保存按钮。
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
           title: '编辑页面',
@@ -120,12 +121,13 @@ struct Index {
           }
         })
         Divider().height(2).color(0xCCCCCC)
+        // 左侧返回按钮，右侧自定义取消按钮（disabled）、保存按钮。
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '编辑页面',
           menuItems: [
             {
-              value: $r('app.media.ic_public_reduce'),
+              value: $r('sys.media.ohos_ic_public_cancel'),
               isEnabled: false,
               action: () => {
                 promptAction.showToast({ message: 'show toast index 2' });
@@ -142,8 +144,7 @@ struct Index {
   }
 }
 ```
-
-![zh-cn_image_0000001617073302](figures/zh-cn_image_0000001617073302.png)
+![zh-cn_image_editabletitlebar_example01](figures/zh-cn_image_editabletitlebar_example01.png)
 
 ### 示例2（头像与背景模糊标题栏）
 该示例主要演示EditableTitleBar设置背景模糊、头像；取消右侧保存图标及自定义标题栏外边距的效果。
@@ -154,7 +155,7 @@ import { EditableLeftIconType, EditableTitleBar, LengthMetrics, promptAction, ro
 @Entry
 @Component
 struct Index {
-  @State titlebarMargin: LocalizedMargin = {
+  @State titleBarMargin: LocalizedMargin = {
     start: LengthMetrics.vp(35),
     end: LengthMetrics.vp(35),
   };
@@ -174,9 +175,7 @@ struct Index {
             promptAction.showToast({ message: "on save" });
           },
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Cancel,
           title: '主标题',
@@ -184,9 +183,7 @@ struct Index {
           // 取消右侧保存按钮
           isSaveIconRequired: false,
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '主标题',
@@ -196,9 +193,7 @@ struct Index {
             router.back();
           },
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '主标题',
@@ -218,23 +213,21 @@ struct Index {
             router.back();
           },
         })
-
         Divider().height(2).color(0xCCCCCC);
-
         EditableTitleBar({
           leftIconStyle: EditableLeftIconType.Back,
           title: '主标题',
           subtitle: '副标题',
           // 设置可点击头像
           imageItem: {
-            value: $r('app.media.img'),
+            value: $r('sys.media.ohos_ic_normal_white_grid_image'),
             isEnabled: true,
             action: () => {
               promptAction.showToast({ message: "show toast index 2" });
             }
           },
           // 设置标题栏外边距
-          contentMargin: this.titlebarMargin,
+          contentMargin: this.titleBarMargin,
           // 右侧图标配置
           menuItems: [
             {
@@ -254,5 +247,4 @@ struct Index {
   }
 }
 ```
-
-![zh-cn_image_EditableTitleBar](figures/zh-cn_image_EditableTitleBar.png)
+![zh-cn_image_editabletitlebar_example02](figures/zh-cn_image_editabletitlebar_example02.png)

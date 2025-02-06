@@ -52,7 +52,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见示例3；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见示例1。
+布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
@@ -82,7 +82,7 @@ columnsTemplate('repeat(auto-stretch, track-size)')是设置固定列宽值为tr
 其中repeat、auto-fit、auto-fill、auto-stretch为关键字。track-size为列宽，支持的单位包括px、vp、%或有效数字，默认单位为vp，track-size至少包括一个有效列宽。<br/>
 auto-stretch模式只支持track-size为一个有效列宽值，并且track-size只支持px、vp和有效数字，不支持%。
 
-使用效果可以参考示[示例8](#示例8)。
+使用效果可以参考示[示例8](#示例8设置自适应列数)。
 
 设置为'0fr'时，该列的列宽为0，不显示GridItem。设置为其他非法值时，GridItem显示为固定1列。
 
@@ -435,7 +435,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -451,7 +451,7 @@ friction(value: number | Resource)
 
 alignItems(alignment: Optional\<GridItemAlignment\>)
 
-设置Grid中GridItem的对齐方式， 使用方法可以参考[示例9](#示例9)。
+设置Grid中GridItem的对齐方式， 使用方法可以参考[示例9](#示例9以当前行最高的griditem的高度为其他griditem的高度)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -596,7 +596,9 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。
+绑定该事件的网格元素可作为拖拽释放目标，当GridItem停止拖拽时触发。
+
+当拖拽释放位置在网格元素之内时，isSuccess会返回true；在网格元素之外时，isSuccess会返回false。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -734,9 +736,9 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 
 ## 示例
 
-### 示例1
+### 示例1（固定行列Grid）
 
-固定行列的Grid，可以使用GridLayoutOptions中的onGetRectByIndex指定GridItem的位置和大小。
+可以使用GridLayoutOptions中的onGetRectByIndex指定GridItem的位置和大小。
 
 ```ts
 // xxx.ets
@@ -818,7 +820,7 @@ struct GridExample {
 
 ![zh-cn_image_0000001219744183](figures/zh-cn_image_0000001219744183.gif)
 
-### 示例2
+### 示例2（可滚动Grid和滚动事件）
 
 可滚动Grid，包括所有滚动属性和事件。
 
@@ -900,7 +902,7 @@ struct GridExample {
 
 ![scrollerExample2](figures/scrollerExample2.gif)
 
-### 示例3
+### 示例3（可滚动Grid设置跨行跨列节点）
 
 GridLayoutOptions的使用：irregularIndexes与onGetIrregularSizeByIndex。
 
@@ -982,7 +984,7 @@ struct GridExample {
 
 ![gridLayoutOptions](figures/gridLayoutOptions.gif)
 
-### 示例4
+### 示例4（Grid嵌套滚动）
 
 nestedScroll和onScrollFrameBegin的使用。
 
@@ -1158,7 +1160,7 @@ struct GridExample {
 
 ![nestedScrollExample4](figures/nestedScrollExample4.gif)
 
-### 示例5
+### 示例5（Grid拖拽场景）
 
 1.  设置属性editMode\(true\)设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem。
 2.  在[onItemDragStart](#onitemdragstart8)回调中设置拖拽过程中显示的图片。
@@ -1252,7 +1254,7 @@ struct GridExample {
 
 ![gridDrag](figures/gridDrag2.png)
 
-### 示例6
+### 示例6（自适应Grid）
 
 layoutDirection、maxcount、minCount、cellLength的使用。
 
@@ -1299,7 +1301,7 @@ struct GridExample {
 
 ![cellLength](figures/cellLength.gif)
 
-### 示例7
+### 示例7（双指缩放修改Grid列数）
 
 双指缩放修改Grid列数。
 
@@ -1375,8 +1377,8 @@ struct GridExample {
 
 ![pinch](figures/grid-pinch.gif)
 
-### 示例8
-属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例
+### 示例8（设置自适应列数）
+属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例。
 
 ```ts
 @Entry
@@ -1444,7 +1446,7 @@ struct GridColumnsTemplate {
 
 ![gridColumnsTemplate](figures/gridColumnsTemplate.png)
 
-### 示例9
+### 示例9（以当前行最高的GridItem的高度为其他GridItem的高度）
 下面的Grid中包含两列，每列中的GridItem包括高度确定的两个Column和一个高度不确定的Text共三个子组件。
 
 在默认情况下，左右两个GridItem的高度可能是不同的；在设置了Grid的[alignItems](#alignitems12)属性为GridItemAlignment.STRETCH后，一行左右两个GridItem中原本高度较小的GridItem会以另一个高度较大的GridItem的高度作为自己的高度。

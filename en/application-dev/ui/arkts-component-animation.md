@@ -300,7 +300,7 @@ export struct TaskSwitchMainPage {
                 if (this.cardOffset < cardOffsetMax) {
                   this.cardOffset = cardOffsetMax;
                 }
-                // When panning right to a position beyond the rightmost position
+                // When panning right to a position beyond the leftmost position
                 if (this.cardOffset > this.displayWidth / 4) {
                   this.cardOffset = this.displayWidth / 4;
                 }
@@ -346,3 +346,4 @@ export struct TaskSwitchMainPage {
 ```
 
 ![en-us_image_0000001599808406](figures/en-us_image_0000001599808406.gif)
+<!--RP1--><!--RP1End-->

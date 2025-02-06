@@ -1,11 +1,11 @@
 # AttributeUpdater
 
 ## Overview
-When dealing with frequent updates to a large number of attributes, using state variables can lead to significant computational overhead in frontend state management, requiring full updates of all attributes for individual components. Although the **AttributeModifier** mechanism allows for selective updates based on needs, the frontend still applies some default strategies for differentiation (diffing) and resetting attributes.
+When dealing with frequent updates to a large number of attributes, using state variables can lead to significant computational overhead in frontend state management. This is because it requires full updates of all attributes for individual components. Although the [AttributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md) mechanism allows for selective updates based on specific needs, the frontend still applies some default strategies for differentiation (diffing) and resetting attributes.
 
-This is where **AttributeUpdater** comes into the picture. As a special type of **AttributeModifier**, **AttributeUpdater** not only inherits the capabilities of **AttributeModifier** but also provides the capability to obtain the attribute object. By using the attribute object, you can update specific attributes without relying on state variables. With **AttributeUpdater**, you can implement custom update strategies, further improving the performance of attribute updates. However, due to its flexibility, it does not enforce the "single source of truth" rule, and there is a risk of conflicts when the same properties are updated through both **AttributeUpdater** and state variables. You need to ensure the rationality of attribute settings to prevent conflicts.
+This is where **AttributeUpdater** comes into the picture. As a special type of **AttributeModifier**, **AttributeUpdater** not only inherits all the functionality of **AttributeModifier** but also extends its capabilities by allowing access to the attribute object. By using the attribute object, you can update specific attributes without relying on state variables. With **AttributeUpdater**, you can implement custom update strategies, further improving the performance of attribute updates. This flexibility, however, comes with a trade-off: It does not enforce the "single source of truth" rule, which means that there is a risk of conflicts when the same attributes are updated through both **AttributeUpdater** and state variables. To avoid such conflicts, you need to ensure that attribute settings are applied logically and consistently.
 
-## API
+## API Definition
 
 ```ts
 export declare class AttributeUpdater<T, C = Initializer<T>> implements AttributeModifier<T> {

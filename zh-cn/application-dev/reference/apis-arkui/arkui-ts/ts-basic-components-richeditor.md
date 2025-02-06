@@ -265,7 +265,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enterKeyType<sup>12+</sup>
 
@@ -281,7 +281,7 @@ enterKeyType(value: EnterKeyType)
 
 | 参数名 | 类型   | 必填 | 说明                                |
 | ------ | ------ | ---- | ----------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
+| value  |  [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明) | 是   | 键盘输入法回车键类型。<br/>默认为EnterKeyType.NEW_LINE。 |
 
 ### enableKeyboardOnFocus<sup>12+</sup>
 
@@ -799,7 +799,7 @@ RichEditor初始化参数。
 
 | 名称                    | 类型                                       | 必填   | 说明                  |
 | --------------------- | ---------------------------------------- | ---- | ------------------- |
-| rangeBefore | [TextRange](ts-universal-attributes-text-style.md#textrange12) | 是    | 即将被替换内容的开始和结束索引。 |
+| rangeBefore | [TextRange](ts-text-common.md#textrange12)  | 是    | 即将被替换内容的开始和结束索引。 |
 | replacedSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后文本Span的具体信息。 |
 | replacedImageSpans | Array<[RichEditorImageSpanResult](#richeditorimagespanresult)> | 是    | 替换后ImageSpan的具体信息。 |
 | replacedSymbolSpans | Array<[RichEditorTextSpanResult](#richeditortextspanresult)> | 是    | 替换后SymbolSpan的具体信息。 |
@@ -1085,7 +1085,7 @@ addBuilderSpan(value: CustomBuilder, options?: RichEditorBuilderSpanOptions): nu
 > - RichEditor组件添加占位Span，占位Span调用系统的measure方法计算真实的长宽和位置。
 > - 可通过[RichEditorBuilderSpanOptions](#richeditorbuilderspanoptions11)设置此builder在RichEditor中的index（一个文字为一个单位）。
 > - 此占位Span不可获焦，支持拖拽，支持部分通用属性，占位、删除等能力等同于ImageSpan，长度视为一个文字。
-> - 不支持通过[bindSelectionMenu](#bindselectionmenu)设置自定义菜单。
+> - 支持通过[bindSelectionMenu](#bindselectionmenu)设置自定义菜单。
 > - 不支持通过[getSpans](#getspans)，[getSelection](#getselection11)，[onSelect](#onselect)，[aboutToDelete](#abouttodelete)获取builderSpan信息。
 > - 不支持通过[updateSpanStyle](#updatespanstyle)，[updateParagraphStyle](#updateparagraphstyle11)等方式更新builder。
 > - 对此builder节点进行复制或粘贴不生效。
@@ -1805,10 +1805,12 @@ type SubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                             | 必填 | 说明                                                     |
-| -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
-| enterKey | [EnterKeyType](ts-types.md#enterkeytype枚举说明) | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
-| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11对象说明)         | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。         |
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                     |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| enterKey | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype枚举说明)             | 是   | 软键盘输入法回车键类型。具体类型见EnterKeyType枚举说明。 |
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | 是   | 当提交的时候，提供保持RichEditor编辑状态的方法。EnterKeyType指定为NEW_LINE时，默认保持编辑态。         |
 
 ## MenuOnAppearCallback<sup>12+</sup>
 
@@ -1836,6 +1838,34 @@ type PasteEventCallback = (event?: PasteEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | event  | [PasteEvent](#pasteevent11) | 否   | 定义用户粘贴事件。 |
+
+## RichEditorTextSpan
+
+文本Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                            | 类型                                       | 必填   | 说明                     |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
+| spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | 是    | Span位置。|
+| value                         | string                                   | 是    | 文本Span内容。|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本Span样式信息。|
+
+## RichEditorImageSpan
+
+图片Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称               | 类型                                                                | 必填  | 说明               |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## 示例
 
@@ -4409,6 +4439,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.removeString(start, end - start);
@@ -4436,6 +4469,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.setStyle({

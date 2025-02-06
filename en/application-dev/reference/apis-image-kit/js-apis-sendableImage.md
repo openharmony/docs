@@ -451,7 +451,7 @@ async function Demo() {
         pixelMap.readPixels(area).then(() => {
             console.info('Succeeded in reading the image data in the area.'); // Called if the condition is met.
         }).catch((error: BusinessError) => {
-            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`);// Called if no condition is met.
+            console.error(`Failed to read the image data in the area. code is ${error.code}, message is ${error.message}`); // Called if no condition is met.
         })
     }
 }
@@ -2082,6 +2082,8 @@ readLatestImage(): Promise\<Image>
 
 Reads the latest image from the **ImageReceiver** instance. This API uses a promise to return the result.
 
+This API can be called to receive data only after the [on](#on) callback is triggered. When the [Image](#image) object returned by this API is no longer needed, call [release](#release-2) to release the object. New data can be received only after the release.
+
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 
 **Return value**
@@ -2113,6 +2115,8 @@ receiver.readLatestImage().then((img: image.Image) => {
 readNextImage(): Promise\<Image>
 
 Reads the next image from the **ImageReceiver** instance. This API uses a promise to return the result.
+
+This API can be called to receive data only after the [on](#on) callback is triggered. When the [Image](#image) object returned by this API is no longer needed, call [release](#release-2) to release the object. New data can be received only after the release.
 
 **System capability**: SystemCapability.Multimedia.Image.ImageReceiver
 

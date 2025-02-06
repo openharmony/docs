@@ -222,7 +222,7 @@ struct Index {
 
 ## 混用场景介绍   
 
-### V1和V2类相关装饰器的混用
+### V1和V2类相关装饰器混用
 
 **1.V1的自定义组件中使用被\@ObservedV2装饰的类对象**
 
@@ -232,7 +232,7 @@ class Info {
   @Trace myId: number;   		// 有观测能力
   name: string;           		// 无观测能力
   @Track trackId: number = 1; 	// @Track作为V1的装饰器，不能在@ObservedV2中使用，编译时报错；消除编译错误请去掉@Track
-    
+  
   constructor(id?: number, name?: string) {
     this.myId = id || 0;
     this.name = name || 'aaa';
@@ -240,28 +240,28 @@ class Info {
 }
 
 @Observed
-class message extends Info {      // 继承自@ObservedV2装饰的类不可以被Observed装饰，编译时报错；消除编译错误请去掉@Observed
+class message extends Info {	// 继承自@ObservedV2装饰的类不可以被Observed装饰，编译时报错；消除编译错误请去掉@Observed
 }
 
-class MessageInfo extends Info {  // 继承自@ObservedV2装饰的Class不可以被V1的装饰器装饰，运行时报错；消除运行报错请去掉装饰器
+class MessageInfo extends Info {
 }
 
 @Entry
 @Component
 struct Index {
-  info1: Info = new Info();                             // @ObservedV2装饰的Class可以在V1中使用，且被@Trace装饰的类属性具有观测能力
-  @State info2: Info = new Info();                      // @ObservedV2装饰的Class不可以被V1的装饰器装饰，否则编译器报错；消除编译错误请去掉装饰器
+  info1: Info = new Info();                      // @ObservedV2装饰的Class可以在V1中使用，且被@Trace装饰的类属性具有观测能力
+  @State info2: Info = new Info();               // @ObservedV2装饰的Class不可以被V1的装饰器装饰，否则编译器报错；消除编译错误请去掉@State
 
-  @State messageInfo: MessageInfo = new MessageInfo();  // 继承自@ObservedV2的Class不可以被V1装饰器装饰，运行时报错；消除运行错误请去掉装饰器
+  @State messageInfo: MessageInfo = new MessageInfo();  // 继承自@ObservedV2的Class不可以被V1装饰器装饰，运行时报错；消除错误请去掉@State
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}`)                 // name未被@Trace装饰，无法观察变化
+      Text(`info1 name: ${this.info1.name}`)            // name未被@Trace装饰，无法观察变化
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.info1.name += 'b';
         })
-      Text(`info1: ${this.info1.name}`)                // myId被@Trace装饰，可观察变化
+      Text(`info1 id: ${this.info1.myId}`)              // myId被@Trace装饰，可观察变化
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -269,7 +269,7 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`info2: ${this.info2.myId}`)
+      Text(`info2 id: ${this.info2.myId}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -277,9 +277,9 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`messageInfo: ${this.messageInfo.myId}`)   // 继承自@ObservedV2的Class被V1的装饰器装饰时会出现crash，运行时出错
+      Text(`messageInfo id: ${this.messageInfo.myId}`) // 继承自@ObservedV2的Class被V1的装饰器装饰时会出现crash，运行时出错，需要去掉装饰器@State
         .fontSize(50)
-        .fontWeight(FontWeight.Bold) 
+        .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.messageInfo.myId += 1;
         })
@@ -324,17 +324,16 @@ class MessageInfo extends Info {
 struct Index {
   info1: Info = new Info();             // @Observed装饰的Class可以在V2中使用
   @Local info2: Info = new Info();      // @Observe装饰的Class不可以被V2的装饰器装饰，否则编译器报错；消除编译错误请去掉@Local
-  // 继承自@ObservedV2的Class被V2装饰器装饰,V2的组件内装饰器无类属性观测能力，所以不建议在V2中使用@Observed装饰的Class
   @Local messageInfo: MessageInfo = new MessageInfo(); 
   build() {
     Column() {
-      Text(`info1: ${this.info1.name}`)
+      Text(`info1 name: ${this.info1.name}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           this.info1.name += 'b';
         })
-      Text(`info1: ${this.info1.name}`)
+      Text(`info1 id: ${this.info1.myId}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -342,7 +341,7 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      Text(`info2: ${this.info2.myId}`)
+      Text(`info2 id: ${this.info2.myId}`)
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -350,8 +349,8 @@ struct Index {
         })
       Divider()
         .color(Color.Blue)
-      // 继承自@ObservedV2的Class被V2装饰器装饰,V2的组件内装饰器无类属性观测能力，所以不建议在V2中使用@Observed装饰的Class
-      Text(`messageInfo: ${this.messageInfo.myId}`)   
+      // 继承自@ObservedV2的Class被V2装饰器装饰，V2的装饰器无类属性观测能力，所以不建议在V2中使用@Observed装饰的Class
+      Text(`messageInfo id: ${this.messageInfo.myId}`)   
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
@@ -840,7 +839,7 @@ V2的状态变量传递给V1的自定义组件，存在如下限制：
 
 ### 混用场景总结
 
-通过对V1和V2的混用场景详细梳理，可以看到，当V2的代码混用V1的代码时，即V1的组件或者类数据向V2进行传递，大部分V1的能力在V2都是被禁止的。而V1的代码去混用V2代码时，即V2的组件或者类数据向V1传递，做了部分功能开放，例如\@ObserveV2和\@Trace，这也是对V1嵌套类数据的观测能提供的最大的帮助。所以在代码开发时，不鼓励开发者使用V1和V2进行混用开发，但是对于代码迁移上，可以让V1的开发者逐步将代码向V2进行迁移，从而稳步替换V1的功能代码，并且十分不鼓励开发者在V2的代码架构上混用V1的代码。
+通过对V1和V2的混用场景详细梳理，可以看到，当V2的代码混用V1的代码时，即V1的组件或者类数据向V2进行传递，大部分V1的能力在V2都是被禁止的。而V1的代码去混用V2代码时，即V2的组件或者类数据向V1传递，做了部分功能开放，例如\@ObservedV2和\@Trace，这也是对V1嵌套类数据的观测能提供的最大的帮助。所以在代码开发时，不鼓励开发者使用V1和V2进行混用开发，但是对于代码迁移上，可以让V1的开发者逐步将代码向V2进行迁移，从而稳步替换V1的功能代码，并且十分不鼓励开发者在V2的代码架构上混用V1的代码。
 
 ## 补充场景
 
@@ -1040,7 +1039,7 @@ struct Index {
 }
 ```
 
-当使用\@observedV2 + \@Trace可以发现：
+当使用\@ObservedV2 + \@Trace可以发现：
 
-* \@observedV2 + \@Trace将观测能力嵌套到类属性上，所以当类属性被@Trace标记时，无论嵌套多少层都可以观测到变化。
+* \@ObservedV2 + \@Trace将观测能力嵌套到类属性上，所以当类属性被@Trace标记时，无论嵌套多少层都可以观测到变化。
 * \@ObservdV2和\@Observed嵌套混用时，类对象能否被V1的装饰器装饰取决于最外层Class所使用的类装饰器，例如示例中嵌套在深处的\@ObservedV2装饰的Class不影响最外层的Class被V1的装饰器装饰。

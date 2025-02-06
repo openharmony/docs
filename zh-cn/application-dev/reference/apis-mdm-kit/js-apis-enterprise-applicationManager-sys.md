@@ -59,7 +59,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -111,7 +111,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -169,7 +169,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in adding disallowed running bundles');
@@ -218,7 +218,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (err) => {
   if (err) {
@@ -270,7 +270,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (err) => {
   if (err) {
@@ -328,7 +328,7 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
 };
-let appIds: Array<string> = ['com.example.myapplication'];
+let appIds: Array<string> = ['com.example.******_******/******5t5CoBM='];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
   console.info('Succeeded in removing disallowed running bundles');

@@ -35,7 +35,7 @@ struct rotation {
 In the **EntryAbility.ets** file, add processing logic to the **onWindowStageCreate** method to obtain the screen display orientation.
 ```ts
 onWindowStageCreate(windowStage: window.WindowStage): void {
-    // Main window is created, set main page for this ability
+
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 
     let mainWindow: window.Window;
