@@ -1064,6 +1064,7 @@
         - Network Kit数据传输能力<!--network-kit-data-transmission-->
             - [HTTP数据请求](network/http-request.md)
             - [WebSocket连接](network/websocket-connection.md)
+            - [WebSocket连接(C/C++)](network/native-websocket-guidelines.md)
             - [Socket连接](network/socket-connection.md)
             - [MDNS](network/net-mdns.md)
         - Network Kit网络管理能力<!--network-kit-network-management-->
