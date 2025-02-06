@@ -441,6 +441,7 @@ Picker的颜色模式。
 ## VideoPlayerState<sup>14+</sup>
 
 视频播放状态。
+
 **原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
