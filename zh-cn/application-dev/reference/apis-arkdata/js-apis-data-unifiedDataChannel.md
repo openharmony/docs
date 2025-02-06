@@ -506,13 +506,13 @@ let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor
 let hyperlinkValue = hyperlinkRecord.getValue();
 ```
 
-### addEntry<sup>16+</sup>
+### addEntry<sup>15+</sup>
 
 addEntry(type: string, value: ValueType): void
 
 在当前数据记录中添加一条指定数据类型和内容的数据。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -566,13 +566,13 @@ record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
 unifiedData.addRecord(record);
 ```
 
-### getEntry<sup>16+</sup>
+### getEntry<sup>15+</sup>
 
 getEntry(type: string): ValueType
 
 通过数据类型获取当前数据记录中的数据内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -636,13 +636,13 @@ for (let i = 0; i < records.length; i++) {
 }
 ```
 
-### getEntries<sup>16+</sup>
+### getEntries<sup>15+</sup>
 
 getEntries(): Record<string, ValueType>
 
 获取当前数据记录中所有数据的类型和内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -697,13 +697,13 @@ for (let i = 0; i < records.length; i++) {
 }
 ```
 
-### getTypes<sup>16+</sup>
+### getTypes<sup>15+</sup>
 
 getTypes(): Array\<string\>
 
 获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 

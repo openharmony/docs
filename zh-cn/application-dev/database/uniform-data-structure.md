@@ -18,6 +18,9 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
 | [HTML](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#html)                            |         'general.html'          | 富文本  |
 | [OpenHarmonyAppItem](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#openharmonyappitem) | 'openharmony.app-item'    | 图标   |
 | [ContentForm](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#contentform14)            | 'general.content-form'    | 内容卡片 |
+| [Form](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#Form15)                            | 'openharmony.form'    | 系统定义的卡片 |
+| [FileUri](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#FileUri15)                      | 'general.file-uri'    | 文件地址 |
+| [PixelMap](../reference/apis-arkdata/js-apis-data-uniformDataStruct.md#PixelMap15)                    | 'openharmony.pixel-map'    | 系统定义的像素图 |
 
 ## 开发步骤
 
