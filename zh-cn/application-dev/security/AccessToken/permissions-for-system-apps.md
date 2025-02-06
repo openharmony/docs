@@ -121,6 +121,30 @@
 
 **起始版本**：13
 
+### ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
+
+允许系统应用读取“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+允许系统应用修改“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -201,7 +225,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API version 10-11为false；从API version 12开始为true。
 
 **起始版本**：10
 
@@ -387,7 +411,7 @@
 
 ### ohos.permission.ACCESS_SYSTEM_SETTINGS
 
-允许应用接入或拉起系统设置界面
+允许应用接入或拉起系统设置界面。
 
 **权限级别**：system_basic
 
@@ -1379,7 +1403,7 @@
 
 ### ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
-允许应用使用同步任务动画
+允许应用使用同步任务动画。
 
 **权限级别**：system_core
 
@@ -1475,7 +1499,7 @@
 
 ### ohos.permission.LAUNCH_DATA_PRIVACY_CENTER
 
-允许应用从其隐私声明页面跳转至“数据与隐私”页面
+允许应用从其隐私声明页面跳转至“数据与隐私”页面。
 
 **权限级别**：system_basic
 
@@ -2349,7 +2373,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PRIVATE_SPACE_PASSWORD_PROTECT
 
@@ -2361,7 +2385,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
@@ -2373,7 +2397,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.ACCESS_TEXTAUTOFILL_ABILITY
 
@@ -2385,7 +2409,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_LOWPOWER_MANAGER
 
@@ -2397,7 +2421,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_APP_BOOT
 
@@ -2607,13 +2631,13 @@
 
 允许应用修改坚盾守护模式配置。
 
-权限级别: system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**：11
 
 ### ohos.permission.SET_DEVELOPER_MODE
 
@@ -2649,7 +2673,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_PRIVATE_PHOTOS
 
@@ -2681,13 +2705,13 @@
 
 允许应用录制通话内容。
 
-权限级别: system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_APP_INSTALL_INFO
 
@@ -2711,7 +2735,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.ACCESS_HIVIEWX
 
@@ -3087,7 +3111,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
@@ -3103,7 +3127,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_AS_USER
 
-允许U0用户空间业务调用账号开放能力API
+允许U0用户空间业务调用账号开放能力API。
 
 **权限级别**：system_core
 
@@ -3231,7 +3255,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
@@ -3797,30 +3821,6 @@
 
 **起始版本**：12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-允许系统应用配置防火墙规则。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.GET_NET_FIREWALL
-
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 允许系统应用拉起用户凭据录入控件。
@@ -4313,6 +4313,18 @@
 
 **起始版本**：16
 
+### ohos.permission.SEND_REMOTE_MESSAGE
+
+允许应用通过Push服务发送远程消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
 允许系统应用和系统服务调用接口完成加解密操作。
@@ -4424,6 +4436,44 @@
 **ACL使能**：true
 
 **起始版本**：16
+
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+允许系统应用获取融合感知数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.SET_PAC_URL
+
+允许应用设置代理自动配置脚本地址。
+
+应用完成脚本地址配置后，其他应用可读取此脚本并进行解析，根据解析结果决定是否使用代理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
 
 ## system_grant，不允许ACL跨级申请
 
@@ -4571,7 +4621,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API version 10-11为false；从API version 12开始为true。
 
 **起始版本**：10
 
@@ -4675,7 +4725,7 @@
 
 允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
 
-**权限级别** system_basic
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

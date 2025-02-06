@@ -12,6 +12,8 @@ hoverEffect(value: HoverEffect)
 
 Sets the hover effect of the component in hover state.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -22,6 +24,8 @@ Sets the hover effect of the component in hover state.
 
 
 ## Example
+
+This example demonstrates how to set the hover effect for components using **hoverEffect**.
 
 ```ts
 // xxx.ets
@@ -45,7 +49,7 @@ struct HoverExample {
 
         Text('Board').fontSize(20).fontColor(Color.Gray).width('90%').position({ x: 0, y: 380 })
         Column()
-          .width('80%').height(200).backgroundColor(Color.Gray)
+          .width('80%').height(200).backgroundColor(Color.Yellow)
           .hoverEffect(HoverEffect.Highlight)
           .position({ x: 40, y: 420 })
           .onHover((isHover?: boolean) => {
@@ -63,3 +67,4 @@ struct HoverExample {
   }
 }
 ```
+![onHover](figures/onHover.gif)

@@ -20,11 +20,11 @@ DataAbilityHelper二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
-| [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | DataAbilityHelper二级模块。 |
+| [_DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md) | DataAbilityHelper二级模块。 |
 
 
 ## PacMap
@@ -37,7 +37,7 @@ PacMap二级模块。
 
 | 类型 | 说明 |
 | --- | --- |
-| [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | DataAbilityHelper二级模块。 |
+| [_PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | DataAbilityHelper二级模块。 |
 
 
 ## DataAbilityOperation
@@ -48,26 +48,26 @@ DataAbilityOperation二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
-| [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md) | DataAbilityOperation二级模块。 |
+| [_DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md) | DataAbilityOperation二级模块。 |
 
 
 ## DataAbilityResult
 
-export type DataAbilityResult = _DataAbilityResult
+type DataAbilityResult = _DataAbilityResult
 
 DataAbilityResult二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
-| [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md) | DataAbilityResult二级模块。 |
+| [_DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md) | DataAbilityResult二级模块。 |
 
 
 ## AbilityResult
@@ -78,11 +78,11 @@ AbilityResult二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
-| [AbilityResult](js-apis-inner-ability-abilityResult.md) | AbilityResult二级模块。 |
+| [_AbilityResult](js-apis-inner-ability-abilityResult.md) | AbilityResult二级模块。 |
 
 
 ## ConnectOptions
@@ -93,11 +93,11 @@ ConnectOptions二级模块。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
-| [ConnectOptions](js-apis-inner-ability-connectOptions.md) | ConnectOptions二级模块。 |
+| [_ConnectOptions](js-apis-inner-ability-connectOptions.md) | ConnectOptions二级模块。 |
 
 
 ## StartAbilityParameter
@@ -106,13 +106,13 @@ type StartAbilityParameter = _StartAbilityParameter
 
 StartAbilityParameter二级模块。
 
-**系统能力**: SystemCapability.Ability.AbilityRuntime.FAModel
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-**模型约束：** 此接口仅可在FA模型下使用。
+**模型约束**：此接口仅可在FA模型下使用。
 
 | 类型 | 说明 |
 | --- | --- |
-| [StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | StartAbilityParameter二级模块。 |
+| [_StartAbilityParameter](js-apis-inner-ability-startAbilityParameter.md) | StartAbilityParameter二级模块。 |
 
 
 **示例：**

@@ -105,7 +105,6 @@ import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 let clientNumber = -1;
 let serverNumber = -1;
 let acceptClientSocket = (code: BusinessError, number: number) => {
-  console.info('bluetooth error code: ' + code.code);
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
@@ -159,15 +158,13 @@ sppConnect(deviceId: string, options: SppOptions, callback: AsyncCallback&lt;num
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 
-let clientNumber = -1;
 let clientSocket = (code: BusinessError, number: number) => {
   if (code) {
     console.error('sppListen error, code is ' + code);
     return;
   } else {
+    // 获取的number用作客户端后续读/写操作socket的id。
     console.info('bluetooth serverSocket Number: ' + number);
-    // 获取的clientNumber用作客户端后续读/写操作socket的id。
-    clientNumber = number;
   }
 }
 let sppOption:socket.SppOptions = {uuid: '00001810-0000-1000-8000-00805F9B34FB', secure: false, type: 0};

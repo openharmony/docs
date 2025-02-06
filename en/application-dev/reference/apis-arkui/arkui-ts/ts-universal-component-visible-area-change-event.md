@@ -8,7 +8,7 @@ The visible area change event of a component refers to the change in the visual 
 
 ## onVisibleAreaChange
 
-onVisibleAreaChange(ratios: Array&lt;number&gt;, event: (isVisible: boolean, currentRatio: number) => void): T
+onVisibleAreaChange(ratios: Array&lt;number&gt;, event: VisibleAreaChangeCallback): T
 
 Called when the visible area of the component changes.
 
@@ -16,25 +16,32 @@ Called when the visible area of the component changes.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                               | Mandatory | Description                                                        |
+| Name| Type                                               | Mandatory| Description                                                        |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>**NOTE**<br>When the value is close to the boundary 0 or 1, it is rounded off with a round-off error not greater than 0.001. For example, 0.9997 is rounded off to 1. |
-| event  | (isVisible: boolean, currentRatio: number) => void) | Yes  | - **isVisible**: whether the ratio of the component's visible area to its total area is greater than the previous one. The value **true** means that the ratio is greater than the previous one, and **false** means the opposite.<br>- **currentRatio**: ratio of the component's visible area to its total area when this callback is invoked. |
+| ratios | Array&lt;number&gt;                                 | Yes  | Threshold array. Each threshold represents a ratio of the component's visible area (that is, the area of the component that is visible on screen; only the area within the parent component is counted) to the component's total area. This callback is invoked when the ratio of the component's visible area to its total area is greater than or less than the threshold. The value range of the threshold is [0.0, 1.0]. If the threshold set exceeds this range, the value **0.0** or **1.0** will be used.<br>**NOTE**<br>When the value is close to the boundary 0 or 1, it is rounded off with a round-off error not greater than 0.001. For example, 0.9997 is rounded off to 1.|
+| event  | [VisibleAreaChangeCallback](ts-types.md#visibleareachangecallback12) | Yes  | Callback for visible area changes of the component.|
 
 **Return value**
 
-| Type | Description |
+| Type| Description|
 | -------- | -------- |
-| T | Current component. |
+| T | Current component.|
 
 > **NOTE**
 >
-> This API applies only to the scenario where the component's layout area exceeds or is not within the current screen display area. It does not apply to the scenario where the visible area changes due to component stacking (by using [Stack](ts-container-stack.md) or [z-order control](ts-universal-attributes-z-order.md)) or as a result of calling transformation APIs such as **offset** or **translate**. Any area of a component that extends beyond its parent component regarded as an invisible area.
+>
+>- This API only takes into account the relative clipped area ratio of the component with respect to all ancestor nodes (up to the window boundary) and its own area.
+> 
+>- It does not support calculations for obstructions caused by sibling components or by sibling components of any ancestors, such as those managed by [Stack](ts-container-stack.md) or [z-order control](ts-universal-attributes-z-order.md).
+>
+>- It does not support visibility change calculations for nodes that are not in the component tree. For example, preloaded nodes or custom nodes mounted using the [overlay](ts-universal-attributes-overlay.md#overlay) capability.
 
 
 ## Example
+
+This example demonstrates how to set an **onVisibleAreaChange** event for a component, which triggers the callback when the component is fully displayed or completely hidden.
 
 ```ts
 // xxx.ets
@@ -67,14 +74,14 @@ struct ScrollExample {
             .margin({ top: 50, bottom: 20 })
             .backgroundColor(Color.Green)
               // Set ratios to [0.0, 1.0] to invoke the callback when the component is fully visible or invisible on screen.
-            .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-              console.info('Test Text isVisible: ' + isVisible + ', currentRatio:' + currentRatio)
-              if (isVisible && currentRatio >= 1.0) {
+            .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
+              console.info('Test Text isExpanding: ' + isExpanding + ', currentRatio:' + currentRatio)
+              if (isExpanding && currentRatio >= 1.0) {
                 console.info('Test Text is fully visible. currentRatio:' + currentRatio)
                 this.testTextStr = 'Test Text is fully visible'
               }
 
-              if (!isVisible && currentRatio <= 0.0) {
+              if (!isExpanding && currentRatio <= 0.0) {
                 console.info('Test Text is completely invisible.')
                 this.testTextStr = 'Test Text is completely invisible'
               }
@@ -88,14 +95,14 @@ struct ScrollExample {
           }
           .height(200)
           .backgroundColor(Color.Yellow)
-          .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
-            console.info('Test Row isVisible:' + isVisible + ', currentRatio:' + currentRatio)
-            if (isVisible && currentRatio >= 1.0) {
+          .onVisibleAreaChange([0.0, 1.0], (isExpanding: boolean, currentRatio: number) => {
+            console.info('Test Row isExpanding:' + isExpanding + ', currentRatio:' + currentRatio)
+            if (isExpanding && currentRatio >= 1.0) {
               console.info('Test Row is fully visible.')
               this.testRowStr = 'Test Row is fully visible'
             }
 
-            if (!isVisible && currentRatio <= 0.0) {
+            if (!isExpanding && currentRatio <= 0.0) {
               console.info('Test Row is completely invisible.')
               this.testRowStr = 'Test Row is completely invisible'
             }

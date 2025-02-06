@@ -143,13 +143,13 @@ import { window } from '@kit.ArkUI';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 只读 | 必填 | 说明                                          |
+| 名称   | 类型 | 只读 | 可选 | 说明                                          |
 | ------ | -------- | ---- |---- |---------------------------------------------|
-| x      | number   | 否   | 否  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| y      | number   | 否   | 否  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| z      | number   | 否   | 否  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| pivotX | number   | 否   | 否  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| pivotY | number   | 否   | 否  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
+| x      | number   | 否   | 是  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 是  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 是  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 是  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -159,11 +159,11 @@ import { window } from '@kit.ArkUI';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明                         |
+| 名称 | 类型 | 只读 | 可选 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 否  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| y    | number   | 否   | 否  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| z    | number   | 否   | 否  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| x    | number   | 否   | 是  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -2567,7 +2567,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**
@@ -2638,7 +2638,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取。 |
 
 **返回值：**
 

@@ -466,6 +466,12 @@ Error: install parse native so failed.
 
 设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
 
+> **说明：**
+>
+> - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
+> - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
+<!--RP1--><!--RP1End-->
+
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
@@ -611,7 +617,7 @@ Error: install parse profile missing prop.
     hilog -w start
     ```
 
-    落盘位置：/data/log/hilog
+    落盘位置：/data/log/hilog。
 
     打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
 
@@ -1428,3 +1434,20 @@ Error: Failed to uninstall the app because the app is locked.
 **处理步骤**
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
+
+### 9568420 禁止通过bm安装release的预装应用
+**错误信息**
+
+os_integration bundle is not allowed to install for shell.
+
+**错误描述**
+
+禁止通过bm安装release的预装应用
+
+**可能原因**
+
+通过bm安装release的预装应用
+
+**处理步骤**
+
+1. 检查应用是否是release的预装应用。

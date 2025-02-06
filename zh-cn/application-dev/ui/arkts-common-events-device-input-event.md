@@ -332,7 +332,9 @@ Web组件的KeyEvent流程与上述过程有所不同。对于Web组件，不会
 
 ```ts
 onKeyEvent(event: (event: KeyEvent) => void): T
+onKeyEvent(event: Callback<KeyEvent, boolean>): T
 onKeyPreIme(event: Callback<KeyEvent, boolean>): T
+onKeyEventDispatch(event: Callback<KeyEvent, boolean>): T
 ```
 
 
@@ -503,6 +505,48 @@ struct PreImeEventExample {
           return false;
         })
     }
+  }
+}
+```
+
+使用onKeyEventDispatch分发按键事件到子组件，子组件使用onKeyEvent。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('button1').id('button1').onKeyEvent((event) => {
+          console.log("button1");
+          return true
+        })
+        Button('button1').id('button2').onKeyEvent((event) => {
+          console.log("button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('button1');
+        return context.dispatchKeyEvent('button1', event);
+      })
+
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
   }
 }
 ```

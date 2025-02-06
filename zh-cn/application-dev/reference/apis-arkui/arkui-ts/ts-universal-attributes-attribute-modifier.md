@@ -32,6 +32,10 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+>  **说明：**
+>
+>  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。从API version 16开始，如果对instance对象的同一属性重复设置相同的资源类型对象，将会生效并触发更新。
+
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
@@ -63,7 +67,7 @@ applyDisabledAttribute(instance: T) : void
 ### applySelectedAttribute
 applySelectedAttribute(instance: T) : void
 
-组件选中状态的样式
+组件选中状态的样式。
 
 开发者可根据需要自定义实现这些方法，通过传入的参数识别组件类型，对instance设置属性，支持使用if/else语法进行动态设置。
 

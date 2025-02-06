@@ -19,12 +19,13 @@ Provides the constants of all rule types.
 
 **System capability**: SystemCapability.HiviewDFX.HiChecker
 
-| Name                              | Type | Description                                                  |
-| ---------------------------------- | -------- | ------------------------------------------------------ |
-| RULE_CAUTION_PRINT_LOG             | bigint   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
-| RULE_CAUTION_TRIGGER_CRASH         | bigint   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
-| RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
-| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
+| Name                                            | Type     | Value        | Description                                                  |
+| ------------------------------------------------ | -------- | -----------| ------------------------------------------------------ |
+| RULE_CAUTION_PRINT_LOG                           | bigint   | 1ULL << 63 | Alarm rule, which is programmed to print a log when an alarm is generated.                           |
+| RULE_CAUTION_TRIGGER_CRASH                       | bigint   | 1ULL << 62 | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                         |
+| RULE_THREAD_CHECK_SLOW_PROCESS                   | bigint   | 1ULL       | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                     |
+| RULE_CHECK_ABILITY_CONNECTION_LEAK               | bigint   | 1ULL << 33 | Caution rule, which is programmed to detect whether ability leakage has occurred.                     |
+| RULE_CHECK_ARKUI_PERFORMANCE<sup>11+</sup>       | bigint   | 1ULL << 34 | Caution rule, which is programmed to detect the ArkUI performance.                              |
 
 ## hichecker.addCheckRule<sup>9+</sup>
 
@@ -36,13 +37,13 @@ Adds one or more check rules. HiChecker detects unexpected operations or gives f
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be added. |
+| rule   | bigint | Yes  | Rule to be added.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed, only one bigint type parameter is needed  |
 
@@ -72,13 +73,13 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be removed. |
+| rule   | bigint | Yes  | Rule to be removed.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed, only one bigint type parameter is needed  |
 
@@ -108,19 +109,19 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be checked. |
+| rule   | bigint | Yes  | Rule to be checked.|
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
 
 **Error codes**
 
-| ID | Error Message |
+| ID| Error Message|
 | ------- | ----------------------------------------------------------------- |
 | 401 | the parameter check failed, only one bigint type parameter is needed  |
 
@@ -155,9 +156,9 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be added. |
+| rule   | bigint | Yes  | Rule to be added.|
 
 **Example**
 
@@ -184,9 +185,9 @@ Removes one or more rules. The removed rules will become ineffective.
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be removed. |
+| rule   | bigint | Yes  | Rule to be removed.|
 
 **Example**
 
@@ -211,7 +212,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 | Type  | Description                  |
 | ------ | ---------------------- |
-| bigint | Collection of added rules. |
+| bigint | Collection of added rules.|
 
 **Example**
 
@@ -237,15 +238,15 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 **Parameters**
 
-| Name | Type  | Mandatory | Description            |
+| Name| Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
-| rule   | bigint | Yes  | Rule to be checked. |
+| rule   | bigint | Yes  | Rule to be checked.|
 
 **Return value**
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise. |
+| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
 
 **Example**
 

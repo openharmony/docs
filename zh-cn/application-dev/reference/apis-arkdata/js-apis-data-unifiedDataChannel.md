@@ -506,6 +506,257 @@ let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor
 let hyperlinkValue = hyperlinkRecord.getValue();
 ```
 
+### addEntry<sup>16+</sup>
+
+addEntry(type: string, value: ValueType): void
+
+在当前数据记录中添加一条指定数据类型和内容的数据。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                                      |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| type | string | 是   | 要创建的数据类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。 |
+| value | [ValueType](#valuetype12) | 是   | 要创建的数据的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+```
+
+### getEntry<sup>16+</sup>
+
+getEntry(type: string): ValueType
+
+通过数据类型获取当前数据记录中的数据内容。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                                      |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| type | string | 是   | 要获取数据的类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。 |
+
+**返回值：**
+
+| 类型   | 说明                                                   |
+| ------ |------------------------------------------------------|
+| [ValueType](#valuetype12) | 当前数据记录对应的值。 |
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let fileUriRead : uniformDataStruct.FileUri = unifiedDataRecord.getEntry(uniformTypeDescriptor.UniformDataType.FILE_URI) as uniformDataStruct.FileUri
+  if (fileUriRead != undefined) {
+    console.info(`oriUri: ${fileUriRead.oriUri}`);
+  }
+}
+```
+
+### getEntries<sup>16+</sup>
+
+getEntries(): Record<string, ValueType>
+
+获取当前数据记录中所有数据的类型和内容。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**返回值：**
+
+| 类型   | 说明                                                   |
+| ------ |------------------------------------------------------|
+| Record<string, [ValueType](#valuetype12)> | 当前数据记录对应的类型和内容。 |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let entries : Record<string, unifiedDataChannel.ValueType> = unifiedDataRecord.getEntries();
+  let formRead : uniformDataStruct.Form = entries[uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM] as uniformDataStruct.Form
+  if (formRead != undefined) {
+    console.info(`formName: ${formRead.formName}`);
+  }
+}
+```
+
+### getTypes<sup>16+</sup>
+
+getTypes(): Array\<string\>
+
+获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
+
+**返回值：**
+
+| 类型                                     | 说明                      |
+| ---------------------------------------- |-------------------------|
+| Array\<string\> | [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)类型的数组，表示当前记录的数据类型集合。 |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let types : Array<string> = unifiedDataRecord.getTypes();
+  if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM)) {
+    console.info(`types include: ${uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM}`);
+  }
+}
+```
+
 ## Text
 
 文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据，如[PlainText](#plaintext)、[Hyperlink](#hyperlink)、[HTML](#html)等具体子类。

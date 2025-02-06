@@ -1,4 +1,4 @@
-# Internal Structure of the module Tag
+# Structure of the module Tag
 
 
 The **module** tag contains the HAP configuration.

@@ -121,6 +121,30 @@ Allows a system application to display the **Learn more** dialog for detailed in
 
 **Valid since**: 13
 
+### ohos.permission.WRITE_PROTECTION_ADVICE_POLIVY
+
+Allows an application to write the protection advice database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+Allows an application to read the protection advice database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.MANAGE_SETTINGS
 
 Allows an application to set the device-level configuration table and user-level configuration table in **SettingsData**.
@@ -3797,29 +3821,6 @@ Allows an application to connect to a telematics device.
 
 **Valid since**: 12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-Allows a system application to configure firewall rules.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.GET_NET_FIREWALL
-
-Allows a system application to obtain firewall rules and firewall interception records.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
 
 ### ohos.permission.ACCESS_IDM_WIDGET
 
@@ -4424,6 +4425,44 @@ Allows a system application to obtain the group information of Family Sharing.
 **Enable via ACL**: true
 
 **Valid since**: 16
+
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+Allows a system application to obtain fusion awareness data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+Allows an application to read the data of Account Suggestions and start the UIExtensionAbility of the account suggestion list.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.SET_PAC_URL
+
+Allows an application to set the URL of the proxy auto config (PAC) script.
+
+After the script address is configured, other applications can read and parse this script and determine whether to use a proxy based on the parsing result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ## system_grant Permissions (Unavailable via ACL)
 

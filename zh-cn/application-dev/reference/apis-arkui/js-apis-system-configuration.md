@@ -53,4 +53,4 @@ static getLocale(): LocaleResponse
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | language | string | 是    | 否    | 语言。例如：zh。 |
 | countryOrRegion | string | 是    | 否    | 国家或地区。例如：CN。 |
-| dir | string | 是    | 否    | 文字布局方向。取值范围：<br/>-&nbsp;ltr：从左到右；<br/>-&nbsp;rtl：从右到左。 |
+| dir | string | 是    | 否    | 文字布局方向。取值范围：<br/>-&nbsp;ltr：从左到右。<br/>-&nbsp;rtl：从右到左。 |

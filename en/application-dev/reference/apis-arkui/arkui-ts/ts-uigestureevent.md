@@ -53,7 +53,7 @@ Remove a gesture from a component that has been bound with a specific tag throug
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| tag  |  string | Yes  | Gesture processor flag.|
+| tag  |  string | Yes  | Gesture handler flag.|
 
 ### clearGestures
 
@@ -80,6 +80,22 @@ Sets the tag for the gesture handler.
 | Name| Type| Mandatory|Description                                       |
 | ----  | ------  | ------|---------------------------------- |
 | tag   | string  | Yes|Tag of the gesture handler.|
+
+### allowedTypes<sup>14+</sup>
+
+allowedTypes(types: Array\<SourceTool>): T
+
+Sets the event input sources supported by the gesture handler.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory|Description                                       |
+| ----  | ------  | ------|---------------------------------- |
+| types   | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)>  | Yes|Event input sources supported by the gesture handler.|
 
 ## TapGestureHandler
 

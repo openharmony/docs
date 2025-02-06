@@ -5,12 +5,9 @@
 
 Defines the structure of a 25519 key.
 
-**Since:**
-9
+**Since**: 9
 
-**Related Modules:**
-
-[HuksTypeApi](_huks_type_api.md)
+**Related module**: [HuksTypeApi](_huks_type_api.md)
 
 
 ## Summary
@@ -20,19 +17,18 @@ Defines the structure of a 25519 key.
 
 | Name | Description | 
 | -------- | -------- |
-| [keyAlg](#keyalg) | Algorithm of the key.  | 
-| [keySize](#keysize) | Length of the 25519 key.  | 
-| [pubKeySize](#pubkeysize) | Length of the public key.  | 
-| [priKeySize](#prikeysize) | Length of the private key.  | 
-| [reserved](#reserved) | Reserved.  | 
+| enum [OH_Huks_KeyAlg](_huks_type_api.md#oh_huks_keyalg) [keyAlg](#keyalg) | Algorithm of the key. | 
+| uint32_t [keySize](#keysize) | Length of the 25519 key. | 
+| uint32_t [pubKeySize](#pubkeysize) | Length of the public key. | 
+| uint32_t [priKeySize](#prikeysize) | Length of the private key. | 
+| uint32_t [reserved](#reserved) | Reserved field. You are advised to set the value to **0**. | 
 
 
-## Member Variable Description 
+## Member Variable Description
 
 
 ### keyAlg
 
-  
 ```
 enum OH_Huks_KeyAlg OH_Huks_KeyMaterial25519::keyAlg
 ```
@@ -42,7 +38,6 @@ Algorithm of the key.
 
 ### keySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterial25519::keySize
 ```
@@ -52,7 +47,6 @@ Length of the 25519 key.
 
 ### priKeySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterial25519::priKeySize
 ```
@@ -62,7 +56,6 @@ Length of the private key.
 
 ### pubKeySize
 
-  
 ```
 uint32_t OH_Huks_KeyMaterial25519::pubKeySize
 ```
@@ -72,7 +65,6 @@ Length of the public key.
 
 ### reserved
 
-  
 ```
 uint32_t OH_Huks_KeyMaterial25519::reserved
 ```

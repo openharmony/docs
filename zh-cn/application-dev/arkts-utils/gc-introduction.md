@@ -136,19 +136,19 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 
 - 函数方法：`AllocateYoungOrHugeObject`，`AllocateHugeObject`等分配函数
 - 限制参数：对应的空间阈值
-- 说明：对象申请空间到达对应空间阈值时触发GC
+- 说明：对象申请空间到达对应空间阈值时触发GC。
 - 典型日志：日志可区分GCReason::ALLOCATION_LIMIT
 
 #### native绑定大小达到阈值触发GC
 
 - 函数方法：`GlobalNativeSizeLargerThanLimit`
 - 限制参数：`globalSpaceNativeLimit`
-- 说明：影响是否进行全量mark，以及是否开始并发mark
+- 说明：影响是否进行全量mark，以及是否开始并发mark。
 
 #### 切换后台触发GC
 
 - 函数方法：`ChangeGCParams`
-- 说明：切换后台主动触发一次Full GC
+- 说明：切换后台主动触发一次Full GC。
 - 典型日志：`app is inBackground`，`app is not inBackground`
   GC 日志中可区分GCReason::SWITCH_BACKGROUND
 
@@ -169,13 +169,13 @@ HPP GC（High Performance Partial Garbage Collection）,即高性能部分垃圾
 #### 第一次OldGC后阈值的调整
 
 - 函数方法：`AdjustOldSpaceLimit`
-- 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制
+- 说明：根据最小增长步长以及平均存活率调整OldSpace阈值限制。
 - 典型日志：`"AdjustOldSpaceLimit oldSpaceAllocLimit_: " << oldSpaceAllocLimit << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_;`
 
 #### 第二次及以后的OldGC对old Space/global space阈值调整，以及增长因子的调整
 
 - 函数方法：`RecomputeLimits`
-- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子
+- 说明：根据当前GC统计的数据变化重新计算调整`newOldSpaceLimit`，`newGlobalSpaceLimit`，`globalSpaceNativeLimit`和增长因子。
 - 典型日志：`"RecomputeLimits oldSpaceAllocLimit_: " << newOldSpaceLimit_ << " globalSpaceAllocLimit_: " << globalSpaceAllocLimit_ << " globalSpaceNativeLimit_:" << globalSpaceNativeLimit_;`
 
 #### PartialGC的Cset 选择策略

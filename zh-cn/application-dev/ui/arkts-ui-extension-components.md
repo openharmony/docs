@@ -7,8 +7,8 @@ UIExtension允许开发者创建可以嵌入到其他应用窗口上的界面扩
 ## 基本概念
 
 - [UIExtensionComponent](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md)组件
-
-​	在使用方应用定义使用，在是ArkUI提供的提供的组件，可以使用ArkTS的声明式范式在应用中使用。
+	
+  在使用方应用定义使用，在是ArkUI提供的提供的组件，可以使用ArkTS的声明式范式在应用中使用。
 
 - [UIExtensionAbility](../application-models/uiextensionability.md)组件
 
@@ -121,7 +121,7 @@ Native API接口提供能力，在UIExtension场景下也需要考虑是否是�
 
 **安全能力约束**
 
-UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionAbility的应用（提供方），提供了一种通用应用共享能力。UIExtension能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护。（包括CreateModalUIExtension场景）。
+UIExtensionComponent组件（使用方）可以访问调用集成了UIExtensionAbility的应用（提供方），提供了一种通用应用共享能力。UIExtension能力无法独立提供安全保障机制，作为提供服务的应用（提供方）保护自己不被使用方应用攻击，需要提供方应用结合使用其他ArkUI的能力进行安全保护（包括CreateModalUIExtension场景）。
 
 由于UIExtension能力（包含基于UIExtension衍生的相关能力，如提供给系统内CreateModalUIExtension）机制的灵活性，如果提供方应用存在安全方面的诉求，无法在现有UIExtension的场景下解决的，建议优先使用其他方案。如选择继续采用UIExtension能力，提供方应用以及使用方应用都需要承担一定的安全风险。
 

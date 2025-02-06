@@ -59,6 +59,28 @@ import fileShare from '@ohos.fileshare';
 | uri           | string     | 是   | 需要授予或使能权限的URI。                                                                                                                                    |
 | operationMode | number  | 是   | 授予或使能权限的URI访问模式，参考[OperationMode](#operationmode11)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \| fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
 
+## PathPolicyInfo<sup>15+</sup>
+
+需要查询的文件或目录的信息
+
+**系统能力**：SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+| 名称            | 类型       | 必填  | 说明                                                                                                                                                |
+|---------------| ---------|-----|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| path           | string     | 是   | 需要查询的path。                                                                                                                                    |
+| operationMode | OperationMode  | 是   | 需要查询的path的访问模式，参考[OperationMode](#operationmode11)，例如：<br/>  fileShare.OperationMode.READ_MODE ：允许读授权 <br/>  fileShare.OperationMode.READ_MODE  \| fileShare.OperationMode.WRITE_MODE ：允许读写授权 |
+
+## PolicyType<sup>15+</sup>
+
+枚举，所查询策略信息对应的授权模式
+
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+| 名称  | 值   | 说明        |
+| ----- |-----|-----------|
+| TEMPORARY_TYPE  | 0   | 临时授权 |
+| PERSISTENT_TYPE  | 1   | 持久化授权     |
+
 ## fileShare.persistPermission<sup>11+</sup>
 
 persistPermission(policies: Array&lt;PolicyInfo>): Promise&lt;void&gt;

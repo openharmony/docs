@@ -40,6 +40,14 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 | ---------- |  ---------------------------------------- |
 | Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有系统快捷键的列表。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                  |
+| -------- | ------------------------- |
+| 801      | Capability not supported. |
+
 **示例：**
 
 ```js
@@ -71,8 +79,9 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 4200002  | Parameter error. The hotkey has been used by the system. You can call the [inputConsumer.getAllSystemHotkeys](#inputconsumergetallsystemhotkeys14) interface to query all system hotkeys. |
-| 4200003  | Parameter error. The hotkey has been subscribed to by another. |
+| 801 | Capability not supported. |
+| 4200002  | The hotkey has been used by the system. |
+| 4200003  | The hotkey has been subscribed to by another. |
 
 **示例：** 
 
@@ -117,6 +126,7 @@ off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;H
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
 
 **示例：** 
 

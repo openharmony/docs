@@ -22,7 +22,7 @@ onError(code: number, name: string, message: string): void
 
 拉起UIExtensionAbility执行失败的回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -71,7 +71,7 @@ onResult?(parameter: AbilityResult): void
 
 拉起UIExtensionAbility终止时的回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

@@ -12,7 +12,7 @@ If an application is developed using both ArkTS and C++, or the application arch
 
   The figure on the left shows that the application needs to invoke the ArkTS environment and then the C++ environment to build an applet using the ArkTS **PostWebMessage** API. Using the native **PostWebMessage** API is more efficient because the switch between the ArkTS and C++ environments is not required, as shown in the figure on the right.
 
-  ![arkweb_postwebmessage_diff](figures/arkweb_postwebmessage_diff_en.png)
+  ![arkweb_postwebmessage_diff](figures/arkweb_postwebmessage_diff.png)
 
 ## Using the Native API to Implement PostWebMessage
 
@@ -26,7 +26,7 @@ If an application is developed using both ArkTS and C++, or the application arch
   import { webview } from '@kit.ArkWeb';
   // Define a webTag and pass it to WebviewController when it is created to establish the mapping between controller and webTag.
   webTag: string = 'ArkWeb1';
-  controller: webview.WebviewController = new webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController(this.webTag);
   ...
   // Use aboutToAppear() to pass webTag to C++ through the Node-API. The webTag uniquely identifies the C++ ArkWeb component.
   aboutToAppear() {

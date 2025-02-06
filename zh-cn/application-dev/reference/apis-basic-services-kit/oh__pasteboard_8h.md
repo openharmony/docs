@@ -66,6 +66,6 @@
 | int [OH_Pasteboard_SetData](_pasteboard.md#oh_pasteboard_setdata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | 将统一数据对象数据写入剪贴板。  |
 | int [OH_Pasteboard_ClearData](_pasteboard.md#oh_pasteboard_cleardata) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  |
 | char ** [OH_Pasteboard_GetMimeTypes](_pasteboard.md#oh_pasteboard_getmimetypes) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  |
-| OH_UdmfData *[OH_Pasteboard_GetDataWithProgress](_pasteboard.md#oh_pasteboard_getdatawithprogress)([OH_Pasteboard](_pasteboard.md#oh_pasteboard) *pasteboard, [OH_Pasteboard_GetDataParams](_pasteboard.md#oh_pasteboard_getdataparams) *params, int *status) | 获取剪贴板的数据以及粘贴进度。 |
+| OH_UdmfData *[OH_Pasteboard_GetDataWithProgress](_pasteboard.md#oh_pasteboard_getdatawithprogress)([OH_Pasteboard](_pasteboard.md#oh_pasteboard) *pasteboard, [OH_Pasteboard_GetDataParams](_pasteboard.md#oh_pasteboard_getdataparams) *params, int *status) | 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。 |
 | int32_t [OH_Pasteboard_GetChangeCount](_pasteboard.md#oh_pasteboard_getchangecount) ([OH_Pasteboard](_pasteboard.md#oh_pasteboard) \*pasteboard) | 获取剪切板内容的变化次数。  |
 

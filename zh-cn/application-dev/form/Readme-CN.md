@@ -24,6 +24,7 @@
         - [卡片定点刷新](arkts-ui-widget-update-by-time-point.md)
         <!--Del-->
         - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
+        - [卡片条件刷新](arkts-ui-widget-update-by-conditions.md)
         <!--DelEnd-->
         - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
         - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
