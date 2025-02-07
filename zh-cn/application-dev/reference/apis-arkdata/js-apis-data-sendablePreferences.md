@@ -5,7 +5,7 @@
 
 数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括number、string、boolean、bigint以及可序列化的object。
 
-用户首选项的持久化文件存储在[preferencesDir](../../../application-dev/application-models/application-context-stage.md#获取应用文件路径)路径下，创建preferences对象前，需要保证preferencesDir路径可读写。持久化文件存储路径中的[加密等级](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)会影响文件的可读写状态，路径访问限制详见[应用文件目录与应用文件路径](../../../application-dev/file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。
+共享用户首选项的持久化文件存储在[preferencesDir](../../../application-dev/application-models/application-context-stage.md#获取应用文件路径)路径下，创建preferences对象前，需要保证preferencesDir路径可读写。持久化文件存储路径中的[加密等级](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)会影响文件的可读写状态，路径访问限制详见[应用文件目录与应用文件路径](../../../application-dev/file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。
 
 共享用户首选项可以在ArkTS并发实例间（包括主线程、TaskPool&Worker工作线程）传递，传递的行为是引用传递，性能优于普通的[用户首选项](js-apis-data-preferences.md)，可参考[Sendable使用场景](../../arkts-utils/sendable-guide.md)。
 
