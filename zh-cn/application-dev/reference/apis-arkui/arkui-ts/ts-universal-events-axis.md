@@ -40,7 +40,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 | 名称            | 类型                                 | 说明                                                     |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| action              | [AxisAction](#AxisAction)            | 轴事件的动作类型                                    |
+| action              | [AxisAction](#axisaction)            | 轴事件的动作类型                                    |
 | x                   | number                               | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp  |
 | y                   | number                               | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp  |
 | windowX             | number                               | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp |
