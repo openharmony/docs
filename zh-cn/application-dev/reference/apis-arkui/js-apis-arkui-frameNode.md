@@ -676,7 +676,7 @@ isVisible(): boolean
 
 isClipToFrame(): boolean
 
-获取节点是否是剪裁到组件区域。
+获取节点是否是剪裁到组件区域。当调用[dispose](#dispose12)解除对实体FrameNode节点的引用关系之后，返回值为true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
