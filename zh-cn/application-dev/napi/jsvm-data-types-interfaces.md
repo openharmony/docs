@@ -384,9 +384,69 @@ typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg;
 | OH_JSVM_OpenHandleScope| 打开一个Handle scope，确保scope范围内的JSVM_Value不被GC回收 |
 | OH_JSVM_CloseHandleScope| 关闭Handle scope |
 
-场景示例:
-创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境。
+##### JSVM_InitOptions 的使用描述
+通过传入 JSVM_InitOptions 可以初始化具备不同能力的 VM 平台。
 
+场景示例：
+常规模式下初始化 VM 平台
+```c++
+static void NormalInit(bool &vmInit) {
+    if (!vmInit) {
+        // JSVM only need init once
+        JSVM_InitOptions initOptions;
+        memset(&initOptions, 0, sizeof(initOptions));
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+场景示例：
+初始化低内存占用的 VM 平台
+```c++
+static void LowMemoryInit(bool &vmInit) {
+    if (!vmInit) {
+        // JSVM only need init once
+        JSVM_InitOptions initOptions;
+        initOptions.argc = 4;
+        const char* argv[4];
+        argv[1] = "--incremental-marking-hard-trigger=40";
+        argv[2] = "--min-semi-space-size=4";
+        argv[3] = "--max-semi-space-size=1";
+        initOptions.argv = const_cast<char**>(argv);
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+场景示例：
+初始化低GC触发频次的 VM 平台
+```c++
+static void LowGCFrequencyInit(bool &vmInit) {
+    if (!vmInit) {
+        // JSVM only need init once
+        JSVM_InitOptions initOptions;
+        initOptions.argc = 4;
+        const char* argv[4];
+        argv[1] = "--incremental-marking-hard-trigger=80";
+        argv[2] = "--min-semi-space-size=16";
+        argv[3] = "--max-semi-space-size=16";
+        initOptions.argv = const_cast<char**>(argv);
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+执行结果：
+使用以上三个接口可以分别初始化具备不同能力的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。其中，
+调用 LowGCFrequencyInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所触发的 GC 频次更低。调用 LowMemoryInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所占用内存更少。
+
+##### 创建 VM 实例
+
+场景示例:
+创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境
 ```c++
 bool VM_INIT = false;
 
@@ -417,13 +477,11 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
 
 static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
     std::thread t([]() {
-        if (!VM_INIT) {
-            // JSVM only need init once
-            JSVM_InitOptions initOptions;
-            memset(&initOptions, 0, sizeof(initOptions));
-            OH_JSVM_Init(&initOptions);
-            VM_INIT = true;
-        }
+        // 可以根据不同的业务需求初始化具备不同能力的 VM 平台：
+        // 1. 初始化默认的 VM 平台：调用'NormalInit'接口。
+        // 2. 初始化低内存占用的 VM 平台：调用'LowMemoryInit'接口。
+        // 3. 初始化低 GC 触发频次的 VM 平台：调用'LowGCFrequencyInit'接口。
+        NormalInit(VM_INIT);
         // create vm, and open vm scope
         JSVM_VM vm;
         JSVM_CreateVMOptions options;
