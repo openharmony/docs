@@ -806,7 +806,7 @@ let on:On = ON.description('123'); // 使用静态构造器ON创建On对象，�
 
 hint(val: string, pattern?: MatchPattern): On
 
-指定目标控件的提示值属性，返回On对象自身。
+获取指定提示值的控件对象，返回On对象自身。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -823,7 +823,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | 指定目标控件类型属性的On对象。 |
+| [On](#on9) | 指定提示值控件的On对象。 |
 
 **错误码：**
 
@@ -1772,7 +1772,7 @@ async function demo() {
 
 getHint(): Promise\<string>
 
-获取控件对象的默认文本。
+获取控件对象的提示值，使用Promise异步回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -1780,9 +1780,9 @@ getHint(): Promise\<string>
 
 **返回值：**
 
-| 类型             | 说明                    |
-| ---------------- |-----------------------|
-| Promise\<string> | 以Promise形式返回的控件的默认文本。 |
+| 类型             | 说明                   |
+| ---------------- |----------------------|
+| Promise\<string> | 以Promise形式返回控件的提示值。 |
 
 **错误码：**
 
@@ -3222,13 +3222,13 @@ async function demo() {
 
 ### touchPadMultiFingerSwipe<sup>16+</sup>
 
-> 说明
->
-> 该接口仅在2in1设备上生效。
-
 touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: TouchPadSwipeOptions): Promise\<void>
 
 模拟触摸板多指滑动手势，使用Promise异步回调。
+
+> 说明
+>
+> 该接口仅在2in1设备上生效。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
