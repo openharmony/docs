@@ -44,6 +44,8 @@ import { formInfo } from '@kit.FormKit';
 | transparencyEnabled<sup>11+</sup>      | boolean               | 是    | 否     | 卡片是否支持设置背景透明度。<br/>ArkTS卡片由用户配置决定是否支持，JS卡片均不支持。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | supportedShapes<sup>12+</sup>    | Array&lt;number&gt;      | 是    | 否     | 卡片支持的形状。具体可选形状参考[FormShape<sup>12+</sup>](#formshape12) <br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 | previewImages<sup>16+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+| enableBlurBackground<sup>16+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+|renderingMode<sup>16+</sup>|[RenderingMode](#renderingmode16)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## FormType
 
@@ -194,3 +196,16 @@ import { formInfo } from '@kit.FormKit';
 | ----------- | ---- | ------------ |
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
+## RenderingMode<sup>16+</sup>
+
+卡片支持的渲染模式枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 值   | 说明         |
+| ----------- | ---- | ------------ |
+| AUTO_COLOR    | 0    | 表示自动模式。   |
+| FULL_COLOR     | 1   | 表示全色模式。   |
+| SINGLE_COLOR      | 2   | 表示单色模式。   |

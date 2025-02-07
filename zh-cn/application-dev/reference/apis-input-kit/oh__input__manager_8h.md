@@ -184,3 +184,4 @@
 | [Input_Result](input.md#input_result) [OH_Input_RegisterDeviceListener](input.md#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 注册设备热插拔的监听器。  | 
 | [Input_Result](input.md#input_result) [OH_Input_UnregisterDeviceListener](input.md#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | 取消注册设备热插拔的监听。  | 
 | [Input_Result](input.md#input_result) [OH_Input_UnregisterDeviceListeners](input.md#oh_input_unregisterdevicelisteners) () | 取消注册所有的设备热插拔的监听。  | 
+| [Input_Result](input.md#input_result) [OH_Input_GetFunctionKeyState](input.md#oh_input_getfunctionkeystate) (int32_t keyCode, int32_t \*state) | 获取功能键状态。  | 

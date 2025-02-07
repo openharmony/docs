@@ -39,7 +39,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 应用无法直接调节系统音量，可以通过系统音量面板，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。
 
-系统提供了ArkTS组件AVVolumePanel（音量面板），应用可以创建该组件，具样例和介绍请查看[AVVolumePanel参考文档](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)。
+系统提供了ArkTS组件AVVolumePanel（音量面板），应用可以创建该组件，具体样例和介绍请查看[AVVolumePanel参考文档](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)。
 
 ## 音频流音量
 

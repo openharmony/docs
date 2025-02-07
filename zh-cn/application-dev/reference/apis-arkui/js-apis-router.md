@@ -64,18 +64,18 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -84,7 +84,7 @@ class routerParams {
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   })
 } catch (err) {
   console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -126,18 +126,18 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -145,7 +145,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -197,18 +197,18 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -217,7 +217,7 @@ class routerParams {
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   }, router.RouterMode.Standard)
 } catch (err) {
   console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -260,18 +260,18 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -279,7 +279,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -330,9 +330,9 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -381,9 +381,9 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -495,9 +495,9 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -512,7 +512,6 @@ router.replaceUrl({
   }
   console.info('replaceUrl success');
 });
-
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -557,18 +556,18 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -577,7 +576,7 @@ class routerParams {
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   })
 } catch (err) {
   console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -621,18 +620,18 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -640,7 +639,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -692,18 +691,18 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -712,7 +711,7 @@ class routerParams {
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   }, router.RouterMode.Standard)
 } catch (err) {
   console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -755,18 +754,18 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -774,7 +773,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -825,9 +824,9 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -876,9 +875,9 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -938,9 +937,9 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -990,9 +989,9 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -1007,7 +1006,6 @@ router.replaceNamedRoute({
   }
   console.info('replaceNamedRoute success');
 });
-
 ```
 
 ## router.back
@@ -1029,7 +1027,7 @@ back(options?: RouterOptions ): void
 **示例：**
 
 ```ts
-router.back({url:'pages/detail'});    
+router.back({ url: 'pages/detail' });
 ```
 
 ## router.back<sup>12+</sup>
@@ -1046,16 +1044,16 @@ back(index: number, params?: Object): void;
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index | number | 是    | 跳转目标页面的索引值。  |
+| index | number | 是    | 跳转目标页面的索引值。 从栈底到栈顶，index从1开始递增。 |
 | params    | Object      | 否    | 页面返回时携带的参数。 |
 
 **示例：**
 
 ```ts
-router.back(1);    
+router.back(1);
 ```
 ```ts
-router.back(1, {info: '来自Home页'}); //携带参数返回
+router.back(1, { info: '来自Home页' }); //携带参数返回
 ```
 
 ## router.clear
@@ -1071,7 +1069,7 @@ clear(): void
 **示例：**
 
 ```ts
-router.clear();    
+router.clear();
 ```
 
 ## router.getLength
@@ -1093,8 +1091,8 @@ getLength(): string
 **示例：**
 
 ```ts
-let size = router.getLength();        
-console.log('pages stack size = ' + size);    
+let size = router.getLength();
+console.log('pages stack size = ' + size);
 ```
 
 ## router.getState
@@ -1136,7 +1134,7 @@ getStateByIndex(index: number): RouterState | undefined
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index    | number | 是   | 表示要获取的页面索引。  |
+| index    | number | 是   | 表示要获取的页面索引。从栈底到栈顶，index从1开始递增。 |
 
 **返回值：**
 
@@ -1147,7 +1145,7 @@ getStateByIndex(index: number): RouterState | undefined
 **示例：** 
 
 ```ts
-let options:router.RouterState | undefined = router.getStateByIndex(1);
+let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
   console.log('index = ' + options.index);
   console.log('name = ' + options.name);
@@ -1180,7 +1178,7 @@ getStateByUrl(url: string): Array&lt;RouterState&gt;
 **示例：** 
 
 ```ts
-let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+let options: Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
   console.log('index = ' + options[i].index);
   console.log('name = ' + options[i].name);
@@ -1236,7 +1234,7 @@ try {
   router.showAlertBeforeBackPage({
     message: 'Message Info'
   });
-} catch(err) {
+} catch (err) {
   console.error(`showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
@@ -1265,7 +1263,7 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-router.hideAlertBeforeBackPage();    
+router.hideAlertBeforeBackPage();
 ```
 
 ##  router.getParams
@@ -1373,18 +1371,18 @@ import { BusinessError } from '@kit.BasicServicesKit'
 
 // 定义传递参数的类
 class innerParams {
-  array:number[]
+  array: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.array = tuple
   }
 }
 
 class routerParams {
-  text:string
-  data:innerParams
+  text: string
+  data: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.text = str
     this.data = new innerParams(tuple)
   }
@@ -1394,9 +1392,9 @@ class routerParams {
 @Component
 struct Index {
   async routePage() {
-    let options:router.RouterOptions = {
+    let options: router.RouterOptions = {
       url: 'pages/second',
-      params: new routerParams('这是第一页的值' ,[12, 45, 78])
+      params: new routerParams('这是第一页的值', [12, 45, 78])
     }
     try {
       // 建议使用this.getUIContext().getRouter().pushUrl()
@@ -1433,18 +1431,18 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array:number[]
+  array: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.array = tuple
   }
 }
 
 class routerParams {
-  text:string
-  data:innerParams
+  text: string
+  data: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.text = str
     this.data = new innerParams(tuple)
   }
@@ -1502,18 +1500,18 @@ push(options: RouterOptions): void
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -1521,7 +1519,7 @@ class routerParams {
 
 router.push({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 });
 ```
 
@@ -1545,9 +1543,9 @@ replace(options: RouterOptions): void
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }

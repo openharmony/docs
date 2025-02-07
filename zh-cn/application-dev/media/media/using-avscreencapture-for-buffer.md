@@ -480,6 +480,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
     OH_AVScreenCapture_SetDataCallback(capture, OnBufferAvailable, nullptr);
 
+    // 可选 设置光标显示开关，开始录屏前后均可调用
+    OH_AVScreenCapture_ShowCursor(capture, false);
     // 可选 配置录屏旋转，此接口在感知到手机屏幕旋转时调用，如果手机的屏幕实际上没有发生旋转，调用接口是无效的。
     OH_AVScreenCapture_SetCanvasRotation(capture, true);
     // 可选 [过滤音频]

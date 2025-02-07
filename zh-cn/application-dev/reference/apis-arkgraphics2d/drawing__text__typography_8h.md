@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct    [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | 用于描述位占位符跨度的结构体  | 
+| struct    [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) | 用于描述占位符跨度的结构体。  | 
 | struct    [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) | 描述系统字体详细信息的结构体。  | 
 | struct    [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) | 文字行位置信息。  | 
 | struct    [OH_Drawing_FontFallbackInfo](_o_h___drawing___font_fallback_info.md) | 备用字体信息结构体。  | 
@@ -39,14 +39,14 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment-1) [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) | 占位符垂直对齐枚举  | 
-| typedef struct [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) [OH_Drawing_PlaceholderSpan](_drawing.md#oh_drawing_placeholderspan) | 用于描述位占位符跨度的结构体  | 
-| typedef enum [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle-1) [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle) | 文本装饰样式枚举  | 
-| typedef enum [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal-1) [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal) | 省略号样式枚举  | 
-| typedef enum [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy-1) [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy) | 文本的中断策略枚举  | 
-| typedef enum [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype-1) [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype) | 单词的断词方式枚举  | 
-| typedef enum [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle-1) [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle) | 矩形框高度样式枚举  | 
-| typedef enum [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle-1) [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle) | 矩形框宽度样式枚举  | 
+| typedef enum [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment-1) [OH_Drawing_PlaceholderVerticalAlignment](_drawing.md#oh_drawing_placeholderverticalalignment) | 占位符垂直对齐枚举。  | 
+| typedef struct [OH_Drawing_PlaceholderSpan](_o_h___drawing___placeholder_span.md) [OH_Drawing_PlaceholderSpan](_drawing.md#oh_drawing_placeholderspan) | 用于描述占位符跨度的结构体。  | 
+| typedef enum [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle-1) [OH_Drawing_TextDecorationStyle](_drawing.md#oh_drawing_textdecorationstyle) | 文本装饰样式枚举。  | 
+| typedef enum [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal-1) [OH_Drawing_EllipsisModal](_drawing.md#oh_drawing_ellipsismodal) | 省略号样式枚举。  | 
+| typedef enum [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy-1) [OH_Drawing_BreakStrategy](_drawing.md#oh_drawing_breakstrategy) | 文本的中断策略枚举。  | 
+| typedef enum [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype-1) [OH_Drawing_WordBreakType](_drawing.md#oh_drawing_wordbreaktype) | 单词的断词方式枚举。  | 
+| typedef enum [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle-1) [OH_Drawing_RectHeightStyle](_drawing.md#oh_drawing_rectheightstyle) | 矩形框高度样式枚举。  | 
+| typedef enum [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle-1) [OH_Drawing_RectWidthStyle](_drawing.md#oh_drawing_rectwidthstyle) | 矩形框宽度样式枚举。  | 
 | typedef struct [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) [OH_Drawing_FontDescriptor](_drawing.md#oh_drawing_fontdescriptor) | 描述系统字体详细信息的结构体。  | 
 | typedef struct [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) [OH_Drawing_LineMetrics](_drawing.md#oh_drawing_linemetrics) | 文字行位置信息。  | 
 | typedef struct [OH_Drawing_FontFallbackInfo](_o_h___drawing___font_fallback_info.md) [OH_Drawing_FontFallbackInfo](_drawing.md#oh_drawing_fontfallbackinfo) | 备用字体信息结构体。  | 
@@ -275,10 +275,6 @@
 | const char \* [OH_Drawing_TextStyleGetLocale](_drawing.md#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取语言文本语言类型。  | 
 | void [OH_Drawing_TypographyDestroyTextBox](_drawing.md#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](_drawing.md#oh_drawing_textbox) \*) | 释放文本框占用的内存。  | 
 | void [OH_Drawing_SetTextShadow](_drawing.md#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](_drawing.md#oh_drawing_point) \*offset, double blurRadius) | 设置字体阴影对象的参数。  | 
-| [OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \* [OH_Drawing_CreateLineTypography](_drawing.md#oh_drawing_createlinetypography) ([OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate) \*handler) | 创建一个排版行对象[OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography)的指针，排版行对象保存着文本内容以及样式的载体， 可以用于计算单行排版信息。  | 
-| void [OH_Drawing_DestroyLineTypography](_drawing.md#oh_drawing_destroylinetypography) ([OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \*lineTypography) | 释放排版行对象[OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography)占用的内存。  | 
-| size_t [OH_Drawing_LineTypographyGetLineBreak](_drawing.md#oh_drawing_linetypographygetlinebreak) ([OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \*lineTypography, size_t startIndex, double width) | 计算在限定排版宽度的情况下，从指定位置处开始可以排版的字符个数。  | 
-| OH_Drawing_TextLine \* [OH_Drawing_LineTypographyCreateLine](_drawing.md#oh_drawing_linetypographycreateline) ([OH_Drawing_LineTypography](_drawing.md#oh_drawing_linetypography) \*lineTypography, size_t startIndex, size_t count) | 根据指定区间文本内容创建一个指向文本行对象**OH_Drawing_TextLine**的指针。  | 
 | [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \* [OH_Drawing_CreateTextTab](_drawing.md#oh_drawing_createtexttab) ([OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) alignment, float location) | 创建文本制表符对象。  | 
 | void [OH_Drawing_DestroyTextTab](_drawing.md#oh_drawing_destroytexttab) ([OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \*) | 释放文本制表符对象占据的内存。  | 
 | [OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) [OH_Drawing_GetTextTabAlignment](_drawing.md#oh_drawing_gettexttabalignment) ([OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \*) | 获取文本制表符对象的对齐方式。  | 

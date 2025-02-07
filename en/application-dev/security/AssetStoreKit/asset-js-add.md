@@ -33,6 +33,7 @@ The following table describes the attributes of **AssetMap** for adding an asset
 | DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: Uint8Array<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
 | CONFLICT_RESOLUTION   | Type: number<br>Value range: see [ConflictResolution](../../reference/apis-asset-store-kit/js-apis-asset.md#conflictresolution)| No    | Policy for resolving the conflict (for example, duplicate alias). |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to encrypt the customized asset attribute information. By default, the information does not need to be encrypted.|
+| GROUP_ID<sup>16+</sup> | Type: Uint8Array<br>Length: 7-127 bytes| No| Group to which the asset to be added belongs. By default, this parameter is not specified.|
 
 ## Constraints
 
@@ -52,8 +53,10 @@ The following table describes the attributes of **AssetMap** for adding an asset
 > **NOTE**
 >
 > The **asset** module provides an asynchronous API and a synchronous API for adding an asset. The following uses the asynchronous API as an example. For more information about the APIs, see [Asset Store Service](../../reference/apis-asset-store-kit/js-apis-asset.md).
+>
+> For details about how to add an asset to a group, see [Adding an Asset to a Group](asset-js-group-access-control.md#adding-an-asset-to-a-group).
 
-Add an asset with password of **demo_pwd**, alias of **demo_alias**, and additional information of **demo_label** and allow the asset to be accessed after the device is unlocked for the first time.
+Add an asset that is accessible when the user unlocks the device for the first time. The asset includes password **demo_pwd**, alias **demo_alias**, and additional information **demo_label**.
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

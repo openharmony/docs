@@ -125,7 +125,7 @@ Sets the stroke width of the border. This attribute does not take effect when th
 
 | Name| Type                        | Mandatory| Description                                                        |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width of the border.<br>Default value: **24**<br>Unit: vp<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width of the border.<br>Default value: **24**<br>Unit: vp<br>**NOTE**<br>If a value less than 0 is set, the default value is used.<br>If the value exceeds the radius of the ring, the thickness will automatically be adjusted to 12% of the ring's radius to prevent visual issues. Excessively large values may cause the ring to disappear.|
 
 ### trackShadow<sup>10+</sup>
 
@@ -219,7 +219,9 @@ You need a custom class to implement the **ContentModifier** API.
 
 ## Example
 
-### Example 1
+### Example 1: Setting Data Panel Types
+
+This example demonstrates how to set different types of data panels using the **type** attribute.
 
 ```ts
 // xxx.ets
@@ -232,6 +234,7 @@ struct DataPanelExample {
     Column({ space: 5 }) {
       Row() {
         Stack() {
+          // Single-segment circular data panel
           DataPanel({ values: [30], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
             Text('30').fontSize(35).fontColor('#182431')
@@ -246,6 +249,7 @@ struct DataPanelExample {
             .position({ x: 104.42, y: 78.17 })
         }.margin({ right: 44 })
 
+        // Multi-segment circular data panel
         Stack() {
           DataPanel({ values: [50, 12, 8, 5], max: 100, type: DataPanelType.Circle }).width(168).height(168)
           Column() {
@@ -262,6 +266,7 @@ struct DataPanelExample {
         }
       }.margin({ bottom: 59 })
 
+      // Linear data panel
       DataPanel({ values: this.valueArr, max: 100, type: DataPanelType.Line }).width(300).height(20)
     }.width('100%').margin({ top: 5 })
   }
@@ -270,7 +275,9 @@ struct DataPanelExample {
 
 ![dataPanel](figures/dataPanel.PNG)
 
-### Example 2
+### Example 2: Setting Gradient Colors and Shadows
+
+This example demonstrates how to set gradient colors and shadows using the **valueColors** and **trackShadow** attributes.
 
 ```ts
 // xxx.ets
@@ -278,12 +285,18 @@ struct DataPanelExample {
 @Component
 struct LinearGradientDataPanelExample {
   public values1: number[] = [20, 20, 20, 20]
-  public color1: LinearGradient = new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#FFEF629F", offset: 1 }])
-  public color2: LinearGradient = new LinearGradient([{ color: "#FF67F9D4", offset: 0 }, { color: "#FFFF9554", offset: 1 }])
-  public colorShadow1: LinearGradient = new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#65EF629F", offset: 1 }])
-  public colorShadow2: LinearGradient = new LinearGradient([{ color: "#65e26709", offset: 0 }, { color: "#65efbd08", offset: 1 }])
-  public colorShadow3: LinearGradient = new LinearGradient([{ color: "#6572B513", offset: 0 }, { color: "#6508efa6", offset: 1 }])
-  public colorShadow4: LinearGradient = new LinearGradient([{ color: "#65ed08f5", offset: 0 }, { color: "#65ef0849", offset: 1 }])
+  public color1: LinearGradient =
+    new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#FFEF629F", offset: 1 }])
+  public color2: LinearGradient =
+    new LinearGradient([{ color: "#FF67F9D4", offset: 0 }, { color: "#FFFF9554", offset: 1 }])
+  public colorShadow1: LinearGradient =
+    new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#65EF629F", offset: 1 }])
+  public colorShadow2: LinearGradient =
+    new LinearGradient([{ color: "#65e26709", offset: 0 }, { color: "#65efbd08", offset: 1 }])
+  public colorShadow3: LinearGradient =
+    new LinearGradient([{ color: "#6572B513", offset: 0 }, { color: "#6508efa6", offset: 1 }])
+  public colorShadow4: LinearGradient =
+    new LinearGradient([{ color: "#65ed08f5", offset: 0 }, { color: "#65ef0849", offset: 1 }])
   @State color3: string = '#00FF00'
   @State color4: string = '#20FF0000'
   @State bgColor: string = '#08182431'
@@ -291,11 +304,17 @@ struct LinearGradientDataPanelExample {
   @State offsetY: number = 15
   @State radius: number = 5
   @State colorArray: Array<LinearGradient | ResourceColor> = [this.color1, this.color2, this.color3, this.color4]
-  @State shadowColorArray: Array<LinearGradient | ResourceColor> = [this.colorShadow1, this.colorShadow2, this.colorShadow3, this.colorShadow4]
+  @State shadowColorArray: Array<LinearGradient | ResourceColor> =
+    [this.colorShadow1, this.colorShadow2, this.colorShadow3, this.colorShadow4]
 
   build() {
     Column({ space: 5 }) {
-      Text('LinearGradient').fontSize(9).fontColor(0xCCCCCC).textAlign(TextAlign.Start).width('100%').margin({ top: 20, left: 20})
+      Text('LinearGradient')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .textAlign(TextAlign.Start)
+        .width('100%')
+        .margin({ top: 20, left: 20 })
       DataPanel({ values: this.values1, max: 100, type: DataPanelType.Circle })
         .width(300)
         .height(300)
@@ -315,7 +334,63 @@ struct LinearGradientDataPanelExample {
 
 ![LinearGradientDataPanel](figures/LinearGradientDataPanel.PNG)
 
-### Example 3
+### Example 3: Disabling Animations and Shadows
+
+This example demonstrates how to disable animations and shadows using the **closeEffect** attribute.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LinearGradientDataPanelExample {
+  public values1: number[] = [20, 20, 20, 20]
+  public color1: LinearGradient =
+    new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#FFEF629F", offset: 1 }])
+  public color2: LinearGradient =
+    new LinearGradient([{ color: "#FF67F9D4", offset: 0 }, { color: "#FFFF9554", offset: 1 }])
+  public colorShadow1: LinearGradient =
+    new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#65EF629F", offset: 1 }])
+  public colorShadow2: LinearGradient =
+    new LinearGradient([{ color: "#65e26709", offset: 0 }, { color: "#65efbd08", offset: 1 }])
+  public colorShadow3: LinearGradient =
+    new LinearGradient([{ color: "#6572B513", offset: 0 }, { color: "#6508efa6", offset: 1 }])
+  public colorShadow4: LinearGradient =
+    new LinearGradient([{ color: "#65ed08f5", offset: 0 }, { color: "#65ef0849", offset: 1 }])
+  @State color3: string = '#00FF00'
+  @State color4: string = '#20FF0000'
+  @State bgColor: string = '#08182431'
+  @State offsetX: number = 15
+  @State offsetY: number = 15
+  @State radius: number = 5
+  @State colorArray: Array<LinearGradient | ResourceColor> = [this.color1, this.color2, this.color3, this.color4]
+  @State shadowColorArray: Array<LinearGradient | ResourceColor> =
+    [this.colorShadow1, this.colorShadow2, this.colorShadow3, this.colorShadow4]
+
+  build() {
+    Column({ space: 5 }) {
+      Text('LinearGradient')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .textAlign(TextAlign.Start)
+        .width('100%')
+        .margin({ top: 20, left: 20 })
+      DataPanel({ values: this.values1, max: 100, type: DataPanelType.Circle })
+        .width(300)
+        .height(300)
+        .valueColors(this.colorArray)
+        .strokeWidth(30)
+        .closeEffect(true)
+        .trackBackgroundColor(this.bgColor)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![DataPanelCloseEffect](figures/DataPanelCloseEffect.png)
+
+### Example 4: Setting the Custom Content Area
+
+This example shows how to customize the content area of the data panel using the **contentModifier** attribute.
 
 ```ts
 // xxx.ets
@@ -324,12 +399,14 @@ function buildDataPanel(config: DataPanelConfiguration) {
   Column() {
     Column() {
       ForEach(config.values, (item: number, index: number) => {
-        ChildItem({ item: item, index: index, max:config.maxValue})
+        ChildItem({ item: item, index: index, max: config.maxValue })
       }, (item: string) => item)
     }.padding(10)
+
     Column() {
-      Line().width("100%").backgroundColor("#ff373737").margin({bottom:5})
-    }.padding({left: 20, right: 20})
+      Line().width("100%").backgroundColor("#ff373737").margin({ bottom: 5 })
+    }.padding({ left: 20, right: 20 })
+
     Row() {
       Text('Length=' + config.values.length + '    ').margin({ left: 10 }).align(Alignment.Start)
       Text('Max=' + config.maxValue).margin({ left: 10 }).align(Alignment.Start)
@@ -340,7 +417,8 @@ function buildDataPanel(config: DataPanelConfiguration) {
 class DataPanelBuilder implements ContentModifier<DataPanelConfiguration> {
   constructor() {
   }
-  applyContent () : WrappedBuilder<[DataPanelConfiguration]> {
+
+  applyContent(): WrappedBuilder<[DataPanelConfiguration]> {
     return wrapBuilder(buildDataPanel)
   }
 }
@@ -353,8 +431,9 @@ struct Index {
       Text("Data panel").margin({ top: 12 });
       Row() {
         DataPanel({ values: [12.3, 21.1, 13.4, 35.2, 26.0, 32.0], max: 140, type: DataPanelType.Circle })
-          .width(400).height(260)
-          .constraintSize({maxWidth: "100%"})
+          .width(400)
+          .height(260)
+          .constraintSize({ maxWidth: "100%" })
           .padding({ top: 10 })
           .contentModifier(new DataPanelBuilder())
       }.margin(15).backgroundColor("#fff5f5f5")
@@ -378,9 +457,13 @@ struct ChildItem {
   build() {
     RelativeContainer() {
       Row() {
-        Rect().height(25).width(this.item * 600 / this.max).foregroundColor(this.colorArray[this.index]).radius(5)
+        Rect()
+          .height(25)
+          .width(this.item * 600 / this.max)
+          .foregroundColor(this.colorArray[this.index])
+          .radius(5)
           .align(Alignment.Start)
-        Text(" "+this.item)
+        Text(" " + this.item)
           .fontSize(17)
       }
     }.height(28)

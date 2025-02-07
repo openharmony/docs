@@ -54,12 +54,12 @@
 | delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | 根据predicates的指定实例对象从数据库中删除数据。 | 
 | query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | 根据指定条件查询数据库中的数据。 | 
 | deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | 删除数据库。 | 
-
+| isTokenizerSupported(tokenizer: Tokenizer): boolean | 判断当前平台是否支持传入的分词器。 |
 
 ## 开发步骤
 因Stage模型、FA模型的差异，个别示例代码提供了在两种模型下的对应示例；示例代码未区分模型或没有对应注释说明时默认在两种模型下均适用。
 
-关系库数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库损坏（抛出14800011）异常情况，此时需要对数据库进行重建并恢复数据，以保障正常的应用开发，具体可见[关系型数据库损坏重建](data-backup-and-restore.md#关系型数据库损坏重建)。
+关系库数据库操作或者存储过程中，有可能会因为各种原因发生非预期的数据库异常情况（抛出14800011），此时需要对数据库进行重建并恢复数据，以保障正常的应用开发，具体可见[关系型数据库异常重建](data-backup-and-restore.md#关系型数据库异常重建)。
 
 1. 使用关系型数据库实现数据持久化，需要获取一个RdbStore，其中包括建库、建表、升降级等操作。示例代码如下所示：
 
@@ -74,12 +74,19 @@
    // 此处示例在Ability中实现，使用者也可以在其他合理场景中使用
    class EntryAbility extends UIAbility {
      onWindowStageCreate(windowStage: window.WindowStage) {
+       // 若希望使用分词器，可调用isStorageTypeSupported检查希望使用的分词器是否支持当前平台。
+       let tokenType = relationalStore.Tokenizer.ICU_TOKENIZER;
+       let tokenTypeSupported = relationalStore.isTokenizerSupported(tokenType);
+       if (!tokenTypeSupported) {
+         console.error(`ICU_TOKENIZER is not supported on this platform.`);
+       }
        const STORE_CONFIG :relationalStore.StoreConfig= {
          name: 'RdbTest.db', // 数据库文件名
          securityLevel: relationalStore.SecurityLevel.S3, // 数据库安全级别
          encrypt: false, // 可选参数，指定数据库是否加密，默认不加密
          customDir: 'customDir/subCustomDir', // 可选参数，数据库自定义路径。数据库将在如下的目录结构中被创建：context.databaseDir + '/rdb/' + customDir，其中context.databaseDir是应用沙箱对应的路径，'/rdb/'表示创建的是关系型数据库，customDir表示自定义的路径。当此参数不填时，默认在本应用沙箱目录下创建RdbStore实例。
-         isReadOnly: false // 可选参数，指定数据库是否以只读方式打开。该参数默认为false，表示数据库可读可写。该参数为true时，只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。
+         isReadOnly: false, // 可选参数，指定数据库是否以只读方式打开。该参数默认为false，表示数据库可读可写。该参数为true时，只允许从数据库读取数据，不允许对数据库进行写操作，否则会返回错误码801。
+         tokenizer: tokenType // 可选参数，指定用户在全文搜索场景(FTS)下使用哪种分词器。当此参数不填时，则在FTS下仅支持英文分词，不支持其他语言分词。
        };
 
        // 判断数据库版本，如果不匹配则需进行升降级操作

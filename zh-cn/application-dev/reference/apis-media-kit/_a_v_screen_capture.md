@@ -128,6 +128,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)[OH_AVScreenCapture_ShowCursor](#oh_avscreencapture_showcursor) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool showCursor) | 设置光标显示开关。 | 
 
 
 ## 类型定义说明
@@ -1609,6 +1610,39 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+
+
+### OH_AVScreenCapture_ShowCursor()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapture *capture, bool showCursor)
+```
+
+**描述**
+
+设置光标显示开关。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
+| showCursor | 光标显示参数。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置光标失败。
+
 
 ### OH_AVScreenCapture_SkipPrivacyMode()
 

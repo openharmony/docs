@@ -675,11 +675,12 @@ isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
 
 **示例**：
 
@@ -691,6 +692,49 @@ try {
   });
 } catch (error) {
   console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
+
+setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
+
+设置是否使能功能键。
+
+**需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | ------------------------- |
+| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | 是   |  需要设置的功能键id。          |
+| enabled  | boolean | 是   | 设置功能键是开启还是关闭状态。true代表开启状态，false代表关闭状态。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](errorcode-inputdevice.md)。
+
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+| 3900003      | It is prohibited for non-input applications. |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setFunctionKeyEnabled(1, true).then(() => {
+    console.info(`Set capslock state success`);
+  }).catch((error) => {
+    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set capslock enable error`);
 }
 ```
 
@@ -712,7 +756,7 @@ getIntervalSinceLastInput(): Promise&lt;number&gt;
 
 ```js
   inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
-    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+    console.log(`Interval since last input: ${JSON.stringify(timeInterval)}`);
   });
 ```
 
@@ -756,14 +800,14 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 | 类型      |说明      |
 | --------- | ------- |
-| 'touchmajor'  | 表示touchmajor轴。|
-| 'touchminor'  | 表示touchminor轴。|
-| 'toolminor'   | 表示toolminor轴。 |
-| 'toolmajor'   | 表示toolmajor轴。 |
-| 'orientation' | 表示orientation轴。|
-|'pressure'    | 表示pressure轴。  |
-| 'x'          | 表示x轴。         |
-| 'y'           | 表示y轴。         |
+| 'touchmajor'  | 椭圆触摸区域长轴。 |
+| 'touchminor'  | 椭圆触摸区域短轴。 |
+| 'toolminor'   | 工具区域短轴。 |
+| 'toolmajor'   | 工具区域长轴。 |
+| 'orientation' | 方向轴。 |
+|'pressure'    | 压力轴。  |
+| 'x'          | 横坐标轴。         |
+| 'y'           | 纵坐标轴。         |
 |'null'        |  无。             |
 
 ## AxisRange

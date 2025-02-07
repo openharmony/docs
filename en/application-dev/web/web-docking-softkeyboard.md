@@ -86,6 +86,7 @@ On a mobile device, you can set the avoidance mode for the soft keyboard on the 
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 onWindowStageCreate(windowStage: window.WindowStage) {
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');

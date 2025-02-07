@@ -51,7 +51,7 @@
 
 **变更信息**：API version 7-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。
 
-### ohos.permission.GET_WIFI_CONFIG
+## ohos.permission.GET_WIFI_CONFIG
 
 允许应用获取Wi-Fi的配置信息。
 
@@ -65,7 +65,7 @@
 
 **变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
 
-### ohos.permission.SET_WIFI_CONFIG
+## ohos.permission.SET_WIFI_CONFIG
 
 允许应用配置Wi-Fi信息。
 
@@ -109,7 +109,7 @@
 
 **变更信息**：API version 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变更为企业普通应用。
 
-### ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
+## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
 允许系统应用和运营商应用设置eSIM昵称和激活eSIM。
 
@@ -124,7 +124,7 @@
 
 **变更信息**：从API 14开始，权限级别变更为system_basic，开发范围从所有应用变更为企业普通应用。
 
-### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+## ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
 
@@ -150,6 +150,40 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：16
+
+## ohos.permission.MANAGE_NET_FIREWALL
+
+允许系统应用配置防火墙规则。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.GET_NET_FIREWALL
+
+允许系统应用查询防火墙规则和查询防火墙拦截记录。
+
+当前仅2in1设备应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_DOMAIN_ACCOUNT_SERVER_CONFIGS
 
@@ -180,6 +214,19 @@
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
 允许应用管理域账号。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：16
+
+## ohos.permission.GET_SIGNATURE_INFO
+
+允许应用获取应用包的签名信息。
 
 **权限级别**：system_basic
 

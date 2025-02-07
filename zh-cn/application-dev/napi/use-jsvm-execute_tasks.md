@@ -20,7 +20,7 @@
 ## 使用示例
 
 JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应C++相关代码进行展示。
-
+注意：Wasm字节码需要应用拥有JIT权限才能执行，可参考[JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)申请对应权限。
 ### OH_JSVM_PumpMessageLoop && OH_JSVM_PerformMicrotaskCheckpoint
 
 启动任务队列，执行任务。

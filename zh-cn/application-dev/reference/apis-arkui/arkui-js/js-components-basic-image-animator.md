@@ -64,7 +64,7 @@
 | pause    | -    | 暂停播放图片帧动画。                               |
 | stop     | -    | 停止播放图片帧动画。                               |
 | resume   | -    | 继续播放图片帧。                                 |
-| getState | -    | 获取播放状态。<br/>-&nbsp;playing：播放中<br/>-&nbsp;paused：已暂停<br/>-&nbsp;stopped：已停止。 |
+| getState | -    | 获取播放状态。<br/>-&nbsp;playing：播放中。<br/>-&nbsp;paused：已暂停。<br/>-&nbsp;stopped：已停止。 |
 
 
 ## 示例

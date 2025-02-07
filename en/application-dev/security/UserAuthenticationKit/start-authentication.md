@@ -26,9 +26,9 @@ The system provides a unified user authentication widget, which stands out with 
 
 The following figure shows the style of the user authentication widget, which can be set via the [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10) parameter.
 
-<!--RP1-->
+
 ![](figures/user-authentication-widget.png)
-<!--RP1End-->
+
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
 
@@ -161,6 +161,92 @@ try {
   console.info('auth on success');
   userAuthInstance.start();
   console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+**Example 3**
+
+Initiate facial authentication with the authentication trust level greater than or equal to ATL3, and enable the device unlock result to be reused for any type of authentication within the maximum authentication validity of any application.
+
+```ts
+// API version 14
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+// Set authentication parameters.
+let reuseUnlockResult: userAuth.ReuseUnlockResult = {
+  reuseMode: userAuth.ReuseMode.CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT,
+  reuseDuration: userAuth.MAX_ALLOWABLE_REUSE_DURATION,
+}
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+    reuseUnlockResult: reuseUnlockResult,
+  };
+  // Set the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+  };
+  // Obtain a UserAuthInstance object.
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // Subscribe to the authentication result.
+  userAuthInstance.on('result', {
+    onResult(result) {
+      console.info(`userAuthInstance callback result: ${JSON.stringify(result)}`);
+      // Unsubscribe from the authentication result if required.
+      userAuthInstance.off('result');
+    }
+  });
+  console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+**Example 4**
+
+Perform user identity authentication in modal application mode.
+
+```ts
+// API version 16
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Enter password',
+    uiContext: this.getUIContext().getHostContext(),
+  };
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // The authentication result is returned by onResult() only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);

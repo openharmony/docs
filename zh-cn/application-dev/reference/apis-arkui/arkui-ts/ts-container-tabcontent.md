@@ -46,7 +46,7 @@ tabBar(options: string | Resource | CustomBuilder | TabBarOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;<br/>[TabBarOptions<sup>16+</sup>](#tabbaroptions16) | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API version 8版本以上适用）。 |
+| options | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|<br/>[CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup>\|&nbsp;<br/>[TabBarOptions<sup>16+</sup>](#tabbaroptions16) | 是 | TabBar上显示内容。<br/>CustomBuilder:&nbsp;构造器，内部可以传入组件（API version 8版本以上适用）。 |
 
 ### tabBar<sup>9+</sup>
 
@@ -93,7 +93,7 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 >  - 建议对Tabs组件的所有TabContent子组件的tabBar属性，采用统一的参数类型。
 >  - 若TabContent内部有可获焦组件，Tabs组件内TabContent组件和TabBar组件之间的走焦，仅支持使用键盘上下左右控制。
 
-### TabBarOptions<sup>16+</sup>
+## TabBarOptions<sup>16+</sup>
 
 设置页签内的图片和文字内容。
 
@@ -105,8 +105,8 @@ tabBar(content: ComponentContent | SubTabBarStyle | BottomTabBarStyle | string |
 
 | 参数名 | 类型         | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| icon | string | [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。 |
-| text | string | [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。 |
+| icon | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的图片内容。 |
+| text | string \| [ResourceStr](ts-types.md#resourcestr) | 否 | 页签内的文字内容。 |
 
 ## SubTabBarStyle<sup>9+</sup>
 

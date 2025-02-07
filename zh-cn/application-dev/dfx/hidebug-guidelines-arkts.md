@@ -46,9 +46,14 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
    新增一个方法调用hidebug接口，本文以hidebug.getSystemCpuUsage()为例，其他接口可参考[API参考文档](../reference/apis-performance-analysis-kit/js-apis-hidebug.md)。
 
    ```ts
-   import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+   import { hidebug } from '@kit.PerformanceAnalysisKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    function testHidebug(event?: ClickEvent) {
-     hilog.info(0x0000, "testTag", `getCurrentCpuUsage ${hidebug.getSystemCpuUsage()}`);
+     try {
+       console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+     } catch (error) {
+       console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+     }
    }
    ```
 
@@ -80,7 +85,7 @@ HiDebug的具体用法可查看API参考[API参考文档](../reference/apis-perf
 5. 在DevEco Studio的底部，切换到“Log”窗口，设置日志的过滤条件为“testTag”。
    此时窗口将显示通过hidebug.getSystemCpuUsage()接口获取的CPU使用率的相关日志。
    ```Text
-	06-25 19:50:27.485 24645-24645/com.example.myapplication I A00000/testTag: getCurrentCpuUsage 0.10164512338425381
+	08-20 11:06:01.891   1948-1948     A03d00/JSAPP                    com.examp...lication  I     getSystemCpuUsage: 0.4722222222222222
    ```
 
 <!--RP1-->
