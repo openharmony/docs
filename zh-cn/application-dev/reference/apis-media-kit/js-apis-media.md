@@ -2836,7 +2836,7 @@ on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMess
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string | 是 | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
 | payloadTypes | Array\<number> | 是 | SEI信息的订阅负载类型。 |
-| callback | [OnSeiMessageHandle](#OnSeiMessageHandle16) | 是 | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 是 | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
 
 **示例：**
 
@@ -2873,7 +2873,7 @@ off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiM
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
 | payloadTypes | Array\<number> | 否   | SEI信息的订阅负载类型。 |
-| callback | [OnSeiMessageHandle](#OnSeiMessageHandle16) | 否   | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 否   | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
 
 **示例：**
 
