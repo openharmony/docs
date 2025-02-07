@@ -21,7 +21,7 @@ onClick(event: Callback\<ClickEvent>, distanceThreshold: number): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
@@ -40,7 +40,7 @@ onClick(event: (event: ClickEvent) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
@@ -69,7 +69,7 @@ onClick(event: (event: ClickEvent) => void): T
 | displayY<sup>10+</sup> | number                            | 点击位置相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | screenX<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的X坐标。<br>从API Version 10开始不再维护，建议使用windowX代替。 |
 | screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink、Checkbox、CheckboxGroup、Rating、Radio、Toggle。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | targetDisplayId<sup>16+</sup> | number | 事件发生的屏幕ID。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | hand<sup>16+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明16) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
@@ -86,7 +86,7 @@ onClick(event: (event: ClickEvent) => void): T
 | area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
 | id<sup>16+</sup> | [string](ts-universal-attributes-component-id.md) | 开发者设置的节点id。 |
 
-## 示例1（获取点击事件的相关参数）
+## 示例
 
 该示例通过按钮设置了点击事件，点击按钮可获取点击事件的相关参数。
 
@@ -128,46 +128,3 @@ struct ClickExample {
 }
 ```
 ![clilk](figures/click.gif)
-
-## 示例2（设置点击事件阻止默认事件）
-该示例实现了Checkbox组件的点击事件阻止功能，阻止默认事件，保留按压态效果。
-```ts
-@Entry
-@Component
-struct CheckboxExample {
-  @State isClickPreventDefault: boolean = true;
-
-  build() {
-    Row() {
-      Column() {
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Checkbox({ name: 'Checkbox', group: 'checkboxGroup' })
-            .shape(CheckBoxShape.CIRCLE)
-            .onChange((value: boolean) => {
-              console.info('Checkbox change is' + value)
-            })
-            .onClick((event) => {
-              if (event != undefined && this.isClickPreventDefault) {
-                try {
-                  event.preventDefault();
-                } catch (e) {
-                  console.log("onClick ErrorCode" + JSON.stringify(e))
-                  console.log("onClick ErrorMessage" + e.message)
-                }
-              }
-            })
-            .mark({
-              strokeColor: Color.Black,
-              size: 50,
-              strokeWidth: 5
-            })
-            .width(30)
-            .height(30)
-          Text('Checkbox').fontSize(20)
-        }.padding(15)
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-![](figures/checkbox_5.gif)
