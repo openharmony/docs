@@ -1,4 +1,4 @@
-# FenceExtensionAbility
+# 基于FenceExtensionAbility的云侧地理围栏开发指导
 
 ## 概述
 [FenceExtensionAbility](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)是一个地理围栏类型的ExtensionAbility，开发者可以使用该Ability来快速便捷的实现地理围栏拓展能力，协助用户完成快捷交互，提升用户体验。
