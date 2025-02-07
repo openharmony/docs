@@ -13,7 +13,7 @@
   <!--DelEnd-->
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
-  - 已停止维护
+  - 已停止维护的接口
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
     - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
     - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
