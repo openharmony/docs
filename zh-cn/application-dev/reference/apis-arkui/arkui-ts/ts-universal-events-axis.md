@@ -47,7 +47,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 | windowY             | number                               | 鼠标光标相对于当前窗口左上角的Y坐标。<br/>单位：vp |
 | displayX            | number                               | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
 | displayY            | number                               | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
-| scrollStep          | number                               | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮。|
+| scrollStep          | number                               | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
 | propagation                   | () => void | 激活事件冒泡。   |
 | getHorizontalAxisValue        | () => number | 获取此次轴事件的水平轴值。 |
 | getVerticalAxisValue          | () => number | 获取此次轴事件的垂直轴值。 |
