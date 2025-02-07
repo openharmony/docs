@@ -73,6 +73,8 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
+wearable设备上默认值为：'#99ffffff'
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -88,6 +90,8 @@ placeholderColor(value: ResourceColor)
 placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
+
+wearable设备上默认值为：18fp
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -156,6 +160,8 @@ fontColor(value: ResourceColor)
 
 设置字体颜色。
 
+wearable设备上默认值为：'#dbffffff'
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -171,6 +177,8 @@ fontColor(value: ResourceColor)
 fontSize(value: Length)
 
 设置字体大小。
+
+wearable设备上默认值为：18fp
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -389,6 +397,8 @@ showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
+wearable设备上字体大小为：13fp，对齐方式为：居中对齐
+
 当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2设置下划线)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -425,7 +435,7 @@ passwordIcon(value: PasswordIcon)
 
 支持jpg、png、bmp、heic和webp类型的图片格式。
 
-该图标的固定尺寸为24vp，若引用的图标过大或过小，均显示为固定尺寸。
+该图标的固定尺寸为24vp，wearable设备上默认值为28vp，若引用的图标过大或过小，均显示为固定尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -571,6 +581,8 @@ passwordRules(value: string)
 cancelButton(options: CancelButtonOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
+
+wearable设备上默认值为：28vp
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
