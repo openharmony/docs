@@ -98,9 +98,9 @@ In the following example, when a user clicks the **Open Page in New Window** but
   </html>
   ```
 
-**Figure 1** Effect of opening a page in a new window 
+**Figure 1** Effect of opening a page in a new window
 
-![web-open-in-new-window](figures/web-open-in-new-window_en.png)
+![web-open-in-new-window](figures/web-open-in-new-window.png)
 
 
 ## Samples

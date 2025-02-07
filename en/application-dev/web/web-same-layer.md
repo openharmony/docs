@@ -25,7 +25,7 @@ The lifecycle of same-layer tags is associated with front-end tags (\<embed>/\<o
 
 **Figure 1** Overall architecture of same-layer rendering
 
-![web-same-layer](figures/web-same-layer-develop-architecture_en.png)
+![web-same-layer](figures/web-same-layer-develop-architecture.png)
 
 ## Specifications and Constraints
 ### ArkUI Components That Can Be Rendered at the Same Layer
@@ -104,7 +104,7 @@ The [onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-component
 
   **Figure 3** Proper **TextInput** with **Stack**
 
-  ![web-same-layer-develop](figures/web-same-layer-develop-textinput2_en.png)
+  ![web-same-layer-develop](figures/web-same-layer-develop-textinput2.png)
 
 ## Rendering Text Boxes at the Same Layer on Web Pages
 On web pages, you can render the native ArkUI **TextInput** components at the same layer. The following figure shows the effect of three text boxes that are rendered at the same layer.
