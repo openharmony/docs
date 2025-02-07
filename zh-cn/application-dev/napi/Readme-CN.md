@@ -105,6 +105,7 @@
   - 设备管理
     - [USB DDK开发指导](usb-ddk-guidelines.md)
     - [HID DDK开发指导](hid-ddk-guidelines.md)
+    - [USB SERIAL DDK开发指导](usb-serial-ddk-guidelines.md)
   - 包管理
     - [NativeBundle开发指导](native-bundle-guidelines.md)
 - 调试和性能分析
