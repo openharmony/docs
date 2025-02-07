@@ -362,6 +362,7 @@
             - [全局配置项功能场景](arkts-utils/global-configuration-guide.md)
             - [ArkUI数据更新场景](arkts-utils/makeobserved-sendable.md)
             - [C++线程间数据共享场景](arkts-utils/native-interthread-shared.md)
+            - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -1091,10 +1092,10 @@
         - 账号管理<!--account-management-->
           <!--Del-->
           - [账号管理概述](basic-services/account/account-overview.md)
-          - 系统账号 <!--os-account-->       
-            - [管理系统账号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
+          - 系统账号（仅对系统应用开放） <!--os-account-->       
+            - [管理系统账号](basic-services/account/manage-os-account.md)
             - [使用约束管控系统账号](basic-services/account/control-os-account-by-constraints.md)
-            - [管理系统账号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
+            - [管理系统账号凭据](basic-services/account/manage-os-account-credential.md)
           - 域账号（仅对系统应用开放）<!--domain-account-->
             - [管理域账号](basic-services/account/manage-domain-account.md)
             - [认证域账号](basic-services/account/auth-domain-account.md)
@@ -1399,11 +1400,14 @@
         - [使用Image完成图片编码](media/image/image-encoding-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
+      <!--Del-->
+      - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
+      <!--DelEnd-->
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
           - [使用AVPlayer播放视频(ArkTS)](media/media/video-playback.md)
-          - [使用AVPlayer设置播放URL](media/media/playback-url-setting-method.md)
+          - [使用AVPlayer设置播放URL(ArkTS)](media/media/playback-url-setting-method.md)
           - [使用AVPlayer播放流媒体(ArkTS)](media/media/streaming-media-playback-development-guide.md)
           - [使用AVPlayer添加视频外挂字幕(ArkTS)](media/media/video-subtitle.md)
           - [使用SoundPool播放短音频(ArkTS)](media/media/using-soundpool-for-playback.md)
@@ -1499,6 +1503,7 @@
       - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
       - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
       - [地理围栏开发指导](device/location/geofence-guidelines.md)
+      - [相关实例](device/location/app-samples.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
       - [请求通知授权](notification/notification-enable.md)
@@ -2481,6 +2486,9 @@
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+          <!--Del-->
+          - [应用级变量的状态管理（系统接口）](reference/apis-arkui/arkui-ts/ts-state-management-sys.md)
+          <!--DelEnd-->
         - 公共定义<!--arkui-public-definition-->
           - [基础类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
           - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
@@ -2690,56 +2698,55 @@
           - [ArkUI_EventModule](reference/apis-arkui/_ark_u_i___event_module.md)
           - [WindowManager_NativeModule](reference/apis-arkui/_window_manager___native_module.md)
           - [OH_DisplayManager](reference/apis-arkui/_o_h___display_manager.md)
-        - 头文件和结构体<!--arkui-headerfile-struct-->
-          - 头文件<!--arkui-headerfile-->
-            - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
-            - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
-            - [native_animate.h](reference/apis-arkui/native__animate_8h.md)
-            - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
-            - [native_gesture.h](reference/apis-arkui/native__gesture_8h.md)
-            - [native_interface.h](reference/apis-arkui/native__interface_8h.md)
-            - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
-            - [native_node.h](reference/apis-arkui/native__node_8h.md)
-            - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
-            - [native_type.h](reference/apis-arkui/native__type_8h.md)
-            - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
-            - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
-            - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
-            - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
-            - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
-            - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
-            - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
-          - 结构体<!--arkui-struct-->
-            - [ArkUI_AnimateCompleteCallback](reference/apis-arkui/_ark_u_i___animate_complete_callback.md)
-            - [ArkUI_AttributeItem](reference/apis-arkui/_ark_u_i___attribute_item.md)
-            - [ArkUI_ColorStop](reference/apis-arkui/_ark_u_i___color_stop.md)
-            - [ArkUI_ContextCallback](reference/apis-arkui/_ark_u_i___context_callback.md)
-            - [ArkUI_ExpectedFrameRateRange](reference/apis-arkui/_ark_u_i___expected_frame_rate_range.md)
-            - [ArkUI_IntOffset](reference/apis-arkui/_ark_u_i___int_offset.md)
-            - [ArkUI_IntSize](reference/apis-arkui/_ark_u_i___int_size.md)
-            - [ArkUI_Margin](reference/apis-arkui/_ark_u_i___margin.md)
-            - [ArkUI_NativeAnimateAPI_1](reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md)
-            - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
-            - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
-            - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
-            - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
-            - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
-            - [ArkUI_Rect](reference/apis-arkui/_ark_u_i___rect.md)
-            - [ArkUI_RotationOptions](reference/apis-arkui/_ark_u_i___rotation_options.md)
-            - [ArkUI_ScaleOptions](reference/apis-arkui/_ark_u_i___scale_options.md)
-            - [ArkUI_StringAsyncEvent](reference/apis-arkui/_ark_u_i___string_async_event.md)
-            - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
-            - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
-            - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
-            - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
-            - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
-            - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
-            - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
-            - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
-            - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
-            - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
-            - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
-            - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
+        - 头文件<!--arkui-headerfile-->
+          - [drag_and_drop.h](reference/apis-arkui/drag__and__drop_8h.md)
+          - [drawable_descriptor.h](reference/apis-arkui/drawable__descriptor_8h.md)
+          - [native_animate.h](reference/apis-arkui/native__animate_8h.md)
+          - [native_dialog.h](reference/apis-arkui/native__dialog_8h.md)
+          - [native_gesture.h](reference/apis-arkui/native__gesture_8h.md)
+          - [native_interface.h](reference/apis-arkui/native__interface_8h.md)
+          - [native_interface_xcomponent.h](reference/apis-arkui/native__interface__xcomponent_8h.md)
+          - [native_node.h](reference/apis-arkui/native__node_8h.md)
+          - [native_node_napi.h](reference/apis-arkui/native__node__napi_8h.md)
+          - [native_type.h](reference/apis-arkui/native__type_8h.md)
+          - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
+          - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
+          - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
+          - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
+          - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
+          - [oh_display_info.h](reference/apis-arkui/oh__display__info_8h.md)
+          - [oh_display_manager.h](reference/apis-arkui/oh__display__manager_8h.md)
+        - 结构体<!--arkui-struct-->
+          - [ArkUI_AnimateCompleteCallback](reference/apis-arkui/_ark_u_i___animate_complete_callback.md)
+          - [ArkUI_AttributeItem](reference/apis-arkui/_ark_u_i___attribute_item.md)
+          - [ArkUI_ColorStop](reference/apis-arkui/_ark_u_i___color_stop.md)
+          - [ArkUI_ContextCallback](reference/apis-arkui/_ark_u_i___context_callback.md)
+          - [ArkUI_ExpectedFrameRateRange](reference/apis-arkui/_ark_u_i___expected_frame_rate_range.md)
+          - [ArkUI_IntOffset](reference/apis-arkui/_ark_u_i___int_offset.md)
+          - [ArkUI_IntSize](reference/apis-arkui/_ark_u_i___int_size.md)
+          - [ArkUI_Margin](reference/apis-arkui/_ark_u_i___margin.md)
+          - [ArkUI_NativeAnimateAPI_1](reference/apis-arkui/_ark_u_i___native_animate_a_p_i__1.md)
+          - [ArkUI_NativeDialogAPI_1](reference/apis-arkui/_ark_u_i___native_dialog_a_p_i__1.md)
+          - [ArkUI_NativeGestureAPI_1](reference/apis-arkui/_ark_u_i___native_gesture_a_p_i__1.md)
+          - [ArkUI_NativeNodeAPI_1](reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)
+          - [ArkUI_NodeComponentEvent](reference/apis-arkui/_ark_u_i___node_component_event.md)
+          - [ArkUI_NumberValue](reference/apis-arkui/union_ark_u_i___number_value.md)
+          - [ArkUI_Rect](reference/apis-arkui/_ark_u_i___rect.md)
+          - [ArkUI_RotationOptions](reference/apis-arkui/_ark_u_i___rotation_options.md)
+          - [ArkUI_ScaleOptions](reference/apis-arkui/_ark_u_i___scale_options.md)
+          - [ArkUI_StringAsyncEvent](reference/apis-arkui/_ark_u_i___string_async_event.md)
+          - [ARKUI_TextPickerCascadeRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_cascade_range_content.md)
+          - [ARKUI_TextPickerRangeContent](reference/apis-arkui/_a_r_k_u_i___text_picker_range_content.md)
+          - [ArkUI_TranslationOptions](reference/apis-arkui/_ark_u_i___translation_options.md)
+          - [OH_NativeXComponent_Callback](reference/apis-arkui/_o_h___native_x_component___callback.md)
+          - [OH_NativeXComponent_ExpectedRateRange](reference/apis-arkui/_o_h___native_x_component___expected_rate_range.md)
+          - [OH_NativeXComponent_MouseEvent](reference/apis-arkui/_o_h___native_x_component___mouse_event.md)
+          - [OH_NativeXComponent_MouseEvent_Callback](reference/apis-arkui/_o_h___native_x_component___mouse_event___callback.md)
+          - [OH_NativeXComponent_TouchEvent](reference/apis-arkui/_o_h___native_x_component___touch_event.md)
+          - [OH_NativeXComponent_TouchPoint](reference/apis-arkui/_o_h___native_x_component___touch_point.md)
+          - [NativeDisplayManager_CutoutInfo](reference/apis-arkui/_native_display_manager___cutout_info.md)
+          - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
+          - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
@@ -2929,15 +2936,14 @@
           - [OHIPCSkeleton](reference/apis-ipc-kit/_o_h_i_p_c_skeleton.md)
           - [OHIPCErrorCode](reference/apis-ipc-kit/_o_h_i_p_c_error_code.md)
           - [IPCKit](reference/apis-ipc-kit/_i_p_c_kit.md)
-        - 头文件和结构体<!--ipc-headerfile-struct-->
-          - 头文件<!--ipc-headerfile-->
-              - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
-              - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
-              - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
-              - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
-              - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
-          - 结构体<!--ipc-struct-->
-              - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
+        - 头文件<!--ipc-headerfile-->
+            - [ipc_cparcel.h](reference/apis-ipc-kit/ipc__cparcel_8h.md)
+            - [ipc_cremote_object.h](reference/apis-ipc-kit/ipc__cremote__object_8h.md)
+            - [ipc_cskeleton.h](reference/apis-ipc-kit/ipc__cskeleton_8h.md)
+            - [ipc_error_code.h](reference/apis-ipc-kit/ipc__error__code_8h.md)
+            - [ipc_kit.h](reference/apis-ipc-kit/ipc__kit_8h.md)
+        - 结构体<!--ipc-struct-->
+            - [OH_IPC_MessageOption](reference/apis-ipc-kit/_o_h___i_p_c___message_option.md)
       - 错误码<!--ipc-arkts-errcode-->
         - [RPC错误码](reference/apis-ipc-kit/errorcode-rpc.md)
     - Localization Kit（本地化开发服务）<!--localization-api-->
@@ -3379,26 +3385,25 @@
         - C API<!--function-flow-runtime-c-->
           - 模块<!--function-flow-runtime-module-->
             - [FFRT](reference/apis-ffrt-kit/_f_f_r_t.md)
-          - 头文件和结构体<!--function-flow-runtime-headerfile-struct-->
-            - 头文件<!--function-flow-runtime-headerfile-->
-              - [condition_variable.h](reference/apis-ffrt-kit/condition__variable_8h.md)
-              - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
-              - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
-              - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
-              - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
-              - [task.h](reference/apis-ffrt-kit/task_8h.md)
-              - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
-              - [type_def.h](reference/apis-ffrt-kit/type__def_8h.md)
-            - 结构体<!--function-flow-runtime-struct-->
-              - [ffrt_cond_t](reference/apis-ffrt-kit/ffrt__cond__t.md)
-              - [ffrt_condattr_t](reference/apis-ffrt-kit/ffrt__condattr__t.md)
-              - [ffrt_dependence_t](reference/apis-ffrt-kit/ffrt__dependence__t.md)
-              - [ffrt_deps_t](reference/apis-ffrt-kit/ffrt__deps__t.md)
-              - [ffrt_function_header_t](reference/apis-ffrt-kit/ffrt__function__header__t.md)
-              - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
-              - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
-              - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
-              - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
+          - 头文件<!--function-flow-runtime-headerfile-->
+            - [condition_variable.h](reference/apis-ffrt-kit/condition__variable_8h.md)
+            - [loop.h](reference/apis-ffrt-kit/loop_8h.md)
+            - [mutex.h](reference/apis-ffrt-kit/mutex_8h.md)
+            - [queue.h](reference/apis-ffrt-kit/queue_8h.md)
+            - [sleep.h](reference/apis-ffrt-kit/sleep_8h.md)
+            - [task.h](reference/apis-ffrt-kit/task_8h.md)
+            - [timer.h](reference/apis-ffrt-kit/timer_8h.md)
+            - [type_def.h](reference/apis-ffrt-kit/type__def_8h.md)
+          - 结构体<!--function-flow-runtime-struct-->
+            - [ffrt_cond_t](reference/apis-ffrt-kit/ffrt__cond__t.md)
+            - [ffrt_condattr_t](reference/apis-ffrt-kit/ffrt__condattr__t.md)
+            - [ffrt_dependence_t](reference/apis-ffrt-kit/ffrt__dependence__t.md)
+            - [ffrt_deps_t](reference/apis-ffrt-kit/ffrt__deps__t.md)
+            - [ffrt_function_header_t](reference/apis-ffrt-kit/ffrt__function__header__t.md)
+            - [ffrt_mutex_t](reference/apis-ffrt-kit/ffrt__mutex__t.md)
+            - [ffrt_mutexattr_t](reference/apis-ffrt-kit/ffrt__mutexattr__t.md)
+            - [ffrt_queue_attr_t](reference/apis-ffrt-kit/ffrt__queue__attr__t.md)
+            - [ffrt_task_attr_t](reference/apis-ffrt-kit/ffrt__task__attr__t.md)
       - Input Kit（多模输入服务）<!--input-api-->
         - ArkTS API<!--input-arkts-->
           - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis-input-kit/js-apis-inputdevice.md)
