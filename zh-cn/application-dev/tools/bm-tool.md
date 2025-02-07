@@ -1451,3 +1451,16 @@ os_integration bundle is not allowed to install for shell.
 **处理步骤**
 
 1. 检查应用是否是release的预装应用。
+
+### 9568278 安装包的版本号不一致
+**错误信息**
+
+error: install version code not same.
+
+**可能原因**
+1. 设备上安装的应用和安装报错的应用包版本号（versionCode）不一致。
+2. 安装多个包中存在版本号（versionCode）不一致。
+
+**处理步骤**
+1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
+2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。
