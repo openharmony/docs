@@ -3039,10 +3039,10 @@ enum OH_Drawing_TextHeightBehavior
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_HEIGHT_ALL | 高度修饰符设置为段落中第一行顶部和段落中最后一行底部生效[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度 | 
-| TEXT_HEIGHT_DISABLE_FIRST_ASCENT | 高度修饰符设置为禁止段落中第一行顶部生效[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度 | 
-| TEXT_HEIGHT_DISABLE_LAST_ASCENT | 高度修饰符设置为禁止段落中最后一行底部生效[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度 | 
-| TEXT_HEIGHT_DISABLE_ALL | 高度修饰符设置为禁止段落中第一行顶部和段落中最后一行底部生效[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度 | 
+| TEXT_HEIGHT_ALL | 段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
+| TEXT_HEIGHT_DISABLE_FIRST_ASCENT | 禁止段落中第一行顶部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
+| TEXT_HEIGHT_DISABLE_LAST_ASCENT | 禁止段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
+| TEXT_HEIGHT_DISABLE_ALL | 禁止段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
 
 
 ### OH_Drawing_TextStyleType
@@ -18030,4 +18030,4 @@ void OH_Drawing_TypographyUpdateFontSize (OH_Drawing_Typography* , size_t from, 
 | OH_Drawing_Typography | 表示指向文本[OH_Drawing_Typography](#oh_drawing_typography)对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
 | from | 保留字段，暂未使用。 | 
 | to | 保留字段，暂未使用。 | 
-| fontSize | 表示字体的大小。 | 
+| fontSize | 表示更新后的字体大小。 | 
