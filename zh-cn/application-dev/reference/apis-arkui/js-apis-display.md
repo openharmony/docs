@@ -1246,7 +1246,7 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调。 |
 
 **错误码：**
 
