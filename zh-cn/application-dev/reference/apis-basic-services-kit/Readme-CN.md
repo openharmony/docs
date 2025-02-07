@@ -6,8 +6,8 @@
     - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
     <!--Del-->
-    - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
-    - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
+    - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
