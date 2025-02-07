@@ -2,7 +2,7 @@
 
 ## 简介
 
-SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。该工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。关于工具使用的更多内容可查看[SmartPerf-Host调优工具使用指导](../../device-dev/device-test/smartperf-host.md/)。
+SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。该工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。关于工具使用的更多内容可查看[SmartPerf-Host调优工具使用指导](../../device-dev/device-test/smartperf-host.md)。
 
 本文提供一些性能分析示例，介绍如何使用帧率分析和应用启动分析两个模板采集数据、分析数据，从而发现性能优化点。
 
@@ -108,7 +108,8 @@ struct Index {
 
 - App侧有橙色出现，需要审视UI线程的处理逻辑是否过于复杂或低效，以及是否被其它任务抢占资源。
 
-- RS侧有橙色出现，需要审视界面布局是否过于复杂，可以使用布局检查器ArkUI Inspector工具和HiDumper命令行工具辅助分析定位，相关指导可以参考[使用HiDumper命令行工具优化性能](./performance-optimization-using-hidumper.md/)。
+- RS侧有橙色出现，需要审视界面布局是否过于复杂，可以使用布局检查器ArkUI Inspector工具和HiDumper命令行工具辅助分析定位，相关指导可以参考[使用HiDumper命令行工具优化性能](./performance-optimization-using-hidumper.md)。
+
 从图5和图6结合来看可以确定场景示例明显属于App侧的帧卡顿。点击卡顿帧进行详细分析，相应的关联帧会通过线连起来，同时在Current Selection显示它的Details信息，如图7。
 
 **图7** App卡顿帧
@@ -343,5 +344,29 @@ struct Index {
 **图20** aboutToAppear耗时——优化后
 
 ![](./figures/smartperf-host-using-20.png)
+
+### 应用冷启动分析
+
+如果开发者需要对冷启动阶段耗时进行拆解分析，可以使用[SmartPerf的AppStartUp](#appstartup应用启动分析)能力抓取Trace，通过网站上分段点可以快速的分析冷启动过程中的耗时瓶颈。
+
+![](./figures/application_coldstart_smartperf_guidance.png)
+
+1.1、**ProcessTouchEvent**：点击事件处理阶段，对应的trace起点为`H:touchEventDispatch`  
+1.2、**StartUIAbilityBySCB**：拉起应用阶段，对应的trace起点为`H:OHOS::ErrCode OHOS::AAFwk::AbilityManagerClient::StartUIAbilityBySCB`  
+1.3、**LoadAbility**：进程创建阶段，对应的trace起点为`H:virtual void OHOS::AppExecFwk::AppMgrServiceInner::LoadAbility`  
+2.1、**Application Launching**：应用启动阶段，对应的trace起点为`AppMgrServiceInner::AttachApplication##{bundleName}`  
+2.2、**UI Ability Launching**：UIAbility启动阶段，对应的trace打点为`MainThread::HandleLaunchAbility`  
+3、**UI Ability OnForeground**：应用进入前台阶段，对应的trace打点为`AbilityThread::HandleAbilityTransaction`  
+4.1、**First Frame - APP Phase**：App首帧渲染提交阶段，对应的trace打点为应用主线程`H:ReceiveVsync`  
+4.2、**First Frame - Render Phase**：RS首帧渲染提交阶段，对应的trace打点为Render Service主线程中`H:ReceiveVsync`  
+
+冷启动在首帧上屏之前主线程还可能存在以下几个耗时阶段，与各个应用实现相关，可能存在于2.2~4.2中的每一个阶段。  
+1、应用侧业务逻辑处理。例如：验证当前登录信息是否有效、广告引擎初始化、服务初始化等。  
+2、网络请求数据获取。例如：首页框架数据、首页图片数据需从网络端实时获取等。
+
+4.2阶段结束后，应用首帧已完成渲染，等待Buffer来临后即可完成上屏。部分应用此时已可展示首页内容、部分应用仅展示骨架屏信息，等待网络数据返回后会再一次进行反序列化解析，当解析完成后会再次对主页内容进行刷新。
+>**说明：**
+>
+> 具体示例可参考[提升应用冷启动速度](improve-application-cold-start-speed.md)
 
 <!--no_check-->
