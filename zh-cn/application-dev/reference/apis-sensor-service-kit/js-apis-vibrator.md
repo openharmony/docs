@@ -934,7 +934,7 @@ build(): VibratorPattern;
 
 | 类型                                  | 说明                               |
 | ------------------------------------- | ---------------------------------- |
-| [VibratorPattern](#VibratorPattern16) | 构造组合短振或长振的振动序列方法。 |
+| [VibratorPattern](#vibratorpattern16) | 构造组合短振或长振的振动序列方法。 |
 
 **示例**：
 
