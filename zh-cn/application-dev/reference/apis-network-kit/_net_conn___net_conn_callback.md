@@ -43,7 +43,7 @@ typedef void (*OH_NetConn_NetworkAvailable)(NetConn_NetHandle *netHandle)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| netHandle | 网络句柄 |
+| [netHandle](./js-apis-net-connection.md#netHandle) | 网络句柄 |
 
 ### onNetCapabilitiesChange
 
@@ -63,8 +63,8 @@ typedef void (*OH_NetConn_NetCapabilitiesChange)(NetConn_NetHandle *netHandle, N
 
 | 名称 | 描述 |
 | -------- | -------- |
-| netHandle | 网络句柄 |
-| netCapabilities | 网络能力集 |
+| [netHandle](./js-apis-net-connection.md#netHandle) | 网络句柄 |
+| [netCapabilities](./js-apis-net-connection.md#netCapabilities)| 网络能力集 |
 
 ### onConnetionProperties
 
@@ -84,8 +84,8 @@ typedef void (*OH_NetConn_NetConnectionPropertiesChange)(NetConn_NetHandle *netH
 
 | 名称 | 描述 |
 | -------- | -------- |
-| netHandle | 网络句柄 |
-| connConnetionProperties | 网络连接属性 |
+| [netHandle](./js-apis-net-connection.md#netHandle) | 网络句柄 |
+| [ConnectionProperties](./js-apis-net-connection.md#ConnectionProperties)| 网络连接属性 |
 
 ### onNetLost
 
@@ -105,7 +105,7 @@ typedef void (*OH_NetConn_NetLost)(NetConn_NetHandle *netHandle)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| netHandle | 网络句柄 |
+| [netHandle](./js-apis-net-connection.md#netHandle)| 网络句柄 |
 
 ### onNetUnavailable
 
