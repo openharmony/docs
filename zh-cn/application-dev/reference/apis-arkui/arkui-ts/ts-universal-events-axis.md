@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  本模块首批接口从API Version 16开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## onAxisEvent<sup>16+</sup>
 
@@ -38,7 +38,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                 | 描述                                                     |
+| 名称            | 类型                                 | 说明                                                     |
 | ------------------- | ------------------------------------ | -------------------------------------------------------- |
 | action              | [AxisAction](#AxisAction)            | 轴事件的动作类型                                    |
 | x                   | number                               | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp  |
@@ -46,8 +46,8 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 | windowX             | number                               | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp |
 | windowY             | number                               | 鼠标光标相对于当前窗口左上角的Y坐标。<br/>单位：vp |
 | displayX            | number                               | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
-| displayY            | number                               | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
-| scrollStep          | number                               | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮|
+| displayY            | number                               | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
+| scrollStep          | number                               | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮。|
 | propagation                   | () => void | 激活事件冒泡。   |
 | getHorizontalAxisValue        | () => number | 获取此次轴事件的水平轴值。 |
 | getVerticalAxisValue          | () => number | 获取此次轴事件的垂直轴值。 |
@@ -56,7 +56,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 定义轴事件的轴动作类型。
 
-| 名称    | 值   | 描述                               |
+| 名称    | 值   | 说明                               |
 | ------- | ---- | ---------------------------------- |
 | NONE   | 0    | 无轴事件。 |
 | BEGIN  | 1    | 轴事件开始。 |
@@ -66,7 +66,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 ## 示例
 
-该示例通过按钮设置了轴事件事件，在按钮上滚动鼠标滚轮可获取轴事件的相关参数。
+该示例通过按钮设置了轴事件，在按钮上滚动鼠标滚轮可获取轴事件的相关参数。
 
 ```ts
 // xxx.ets
