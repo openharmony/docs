@@ -571,6 +571,54 @@ avSession.startAVPlayback("com.example.myapplication", "121278").then(() => {
   console.error(`startAVPlayback BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
+## avSession.getDistributedSessionController<sup>16+</sup>
+
+getDistributedSessionController(distributedSessionType: DistributedSessionType): Promise<Array\<AVSessionController>>
+
+根据远端会话类型，获取远端分布式会话控制器。结果通过Promise异步回调方式返回。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名    | 类型                                                                      | 必填 | 说明      |
+| --------- |-------------------------------------------------------------------------| ---- |---------|
+| distributedSessionType | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype16) | 是   | 远端会话类型。 |
+
+**返回值：**
+
+| 类型                                                                                 | 说明                                                                    |
+|------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| Promise<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | Promise对象。返回对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID   | 错误信息                                                                                                  |
+|---------|-------------------------------------------------------------------------------------------------------|
+| 201     | permission denied.                                                                                    |
+| 202     | Not System App. Interface caller is not a system app.                                                                                       |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 6600101 | Session service exception.                                                                            |
+| 6600109 | The remote connection is not established.                                                             |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE).then((sessionControllers: Array<avSession.AVSessionController>) => {
+  console.info(`getDistributedSessionController : SUCCESS : sessionControllers.length : ${sessionControllers.length}`);
+}).catch((err: BusinessError) => {
+  console.error(`getDistributedSessionController BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
 
 ## SessionToken
 
@@ -877,6 +925,82 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 
 ```ts
 avSession.off('sessionServiceDie');
+```
+
+
+## avSession.on('distributedSessionChange')
+
+on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback: Callback<Array\<AVSessionController>>): void
+
+最新分布式远端会话变更的监听事件。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                                                  | 必填 | 说明                                                                       |
+| -------- |-------------------------------------------------------------------------------------| ---- |--------------------------------------------------------------------------|
+| type     | string                                                                              | 是   | 事件回调类型，支持的事件为 `'distributedSessionChange'`：最新远端分布式会话的变化事件，检测到最新的会话改变时触发。 |
+| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype16)             | 是   | 远端会话类型。                                                                  |
+| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 是   | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID   | 错误信息                                                                                              |
+|---------|---------------------------------------------------------------------------------------------------|
+| 202     | Not System App. Interface caller is not a system app.                                                                                   |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101 | Session service exception.                                                                        |
+
+**示例：**
+
+```ts
+avSession.on('distributedSessionChange', avSession.DistributedSessionType.TYPE_SESSION_REMOTE, (sessionControllers: Array<avSession.AVSessionController>) => {
+  console.info(`on distributedSessionChange size: ${sessionControllers.length}`);
+});
+```
+
+
+## avSession.off('distributedSessionChange')
+
+off(type: 'distributedSessionChange', distributedSessionType: DistributedSessionType, callback?: Callback<Array\<AVSessionController>>): void
+
+取消最新分布式远端会话变更的监听事件，取消后，不再进行该事件的监听。
+
+**需要权限：** ohos.permission.MANAGE_MEDIA_RESOURCES
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Manager
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                                                                                  | 必填 | 说明                                                            |
+| -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
+| type     | string                                                                              | 是  | 事件回调类型，支持的事件为`'distributedSessionChange'`。                    |
+| distributedSessionType     | [DistributedSessionType](js-apis-avsession.md#distributedsessiontype16)             | 是  | 远端会话类型。                                                       |
+| callback | Callback<Array<[AVSessionController](js-apis-avsession.md#avsessioncontroller10)\>> | 否  | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.multimedia.avsession(多媒体会话)错误码](errorcode-avsession.md)。
+
+| 错误码ID   | 错误信息                                                                                              |
+|---------|---------------------------------------------------------------------------------------------------|
+| 202     | Not System App. Interface caller is not a system app.                                                                                   |
+| 401     | parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101 | Session service exception.                                                                        |
+
+**示例：**
+
+```ts
+avSession.off('distributedSessionChange', avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
 ```
 
 ## avSession.sendSystemAVKeyEvent
