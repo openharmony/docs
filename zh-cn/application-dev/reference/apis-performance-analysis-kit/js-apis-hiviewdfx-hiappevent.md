@@ -358,7 +358,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "0"
 };
 
-hiAppEvent.setEventParam("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -377,7 +377,7 @@ let params: Record<string, hiAppEvent.ParamType> = {
   "sample_count": "21",
   "report_times_per_app": "3",
 };
-hiAppEvent.setEventParam("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
@@ -392,7 +392,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let params: Record<string, hiAppEvent.ParamType> = {
   "log_type": "2"
 };
-hiAppEvent.setEventParam("MAIN_THREAD_JANK", params).then(() => {
+hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
   hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
 }).catch((err: BusinessError) => {
   hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
