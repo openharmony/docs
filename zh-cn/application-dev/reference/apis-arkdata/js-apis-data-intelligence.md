@@ -1,11 +1,10 @@
 # @ohos.data.intelligence (智慧数据平台)
 
 智慧数据平台（ArkData Intelligence Platform，AIP）提供端侧的数据智慧化能力，完成数据和AI智能在端侧闭环。作为端侧智慧化能力底座，将构建以下能力：
-- 多模态嵌入模型：支持文字、图片多模态数据嵌入模型，由传统文本检索到多模态检索（PPT、图片、音频等）。
+- 多模态嵌入模型：使用嵌入模型（Embedding Model）对多模态数据生成向量表征，将文本、图片等数据映射到同一向量空间，支撑基于语义的多模态知识检索。
 - 多模态数据存储：支持端侧向量、倒排索引等多模态数据存储，避免将原始数据发送到服务器进行处理，减少了数据泄露的风险。
 - 知识检索：逐步构建语义索引、知识图谱、召回、重排等能力，支持用户知识的语义化检索。
 - 知识生成与整理：基于用户文档、消息、电子邮件、照片、视频、日历事件、屏幕上下文等数据，支持高效数据整理与知识生成，实现数据到知识的转换。
-- 能力开放：面向业务智慧化需求，结合数据与能力开放原则，从基础能力到知识库构建，逐步、逐层开放ArkData Intelligence Platform能力。
 
 > **说明：**
 >
@@ -32,7 +31,7 @@ getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
 | config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置信息。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -62,11 +61,11 @@ let textEmbedding:intelligence.TextEmbedding;
 
 intelligence.getTextEmbeddingModel(config)
   .then((data:intelligence.TextEmbedding) => {
-    console.info("Succeeded in getTextModel");
+    console.info("Succeeded in getting TextModel");
     textEmbedding = data;
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to getTextModel and code is " + err.code);
+    console.error("Failed to get TextModel and code is " + err.code);
   })
 ```
 
@@ -84,7 +83,7 @@ getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
 | config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置信息。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -114,11 +113,11 @@ let imageEmbedding:intelligence.ImageEmbedding;
 
 intelligence.getImageEmbeddingModel(config)
   .then((data:intelligence.ImageEmbedding) => {
-    console.info("Succeeded in getImageModel");
+    console.info("Succeeded in getting ImageModel");
     imageEmbedding = data;
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to getImageModel and code is " + err.code);
+    console.error("Failed to get ImageModel and code is " + err.code);
   })
 ```
 
@@ -137,7 +136,7 @@ splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt;
 | text | string | 是   | 用于分块的文本，可取任意值。 |
 | config | [SplitConfig](#splitconfig) | 是   | 文本分块的配置信息。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -166,10 +165,10 @@ let text = 'text';
 
 intelligence.splitText(text, splitConfig)
   .then((data:Array<string>) => {
-    console.info("Succeeded in splitText");
+    console.info("Succeeded in splitting Text");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to splitText and code is " + err.code);
+    console.error("Failed to split Text and code is " + err.code);
   })
 ```
 
@@ -199,13 +198,13 @@ intelligence.splitText(text, splitConfig)
 
 type Image = string;
 
-表示图片/图像的URI地址，对应为string类型。
+表示图片的URI地址，对应为string类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 类型                         | 说明                  |
 | ---------------------------- | --------------------- |
-| string | 图像类型的URI地址。长度上限为512个字符。 |
+| string | 图片的URI地址。长度上限为512个字符。 |
 
 ## SplitConfig
 
@@ -235,7 +234,7 @@ loadModel(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -257,10 +256,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 textEmbedding.loadModel()
   .then(() => {
-    console.info("Succeeded in load");
+    console.info("Succeeded in loading Model");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to load and code is " + err.code);
+    console.error("Failed to load Model and code is " + err.code);
   })
 ```
 
@@ -272,7 +271,7 @@ releaseModel(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -294,10 +293,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 textEmbedding.releaseModel()
   .then(() => {
-    console.info("Succeeded in release");
+    console.info("Succeeded in releasing Model");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to release and code is " + err.code);
+    console.error("Failed to release Model and code is " + err.code);
   })
 ```
 
@@ -317,7 +316,7 @@ getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt;
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
 | text | string | 是   | 嵌入模型的输入文本。长度上限为512个字符。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -343,10 +342,10 @@ textEmbedding.loadModel();
 let text = 'text';
 textEmbedding.getEmbedding(text)
   .then((data:Array<number>) => {
-    console.info("Succeeded in getEmbedding");
+    console.info("Succeeded in getting Embedding");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to getEmbedding and code is " + err.code);
+    console.error("Failed to get Embedding and code is " + err.code);
   })
 ```
 
@@ -366,7 +365,7 @@ getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;numb
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
 | batchTexts | Array&lt;string&gt; | 是   | 嵌入模型的文本输入批次。单个文本长度上限为512个字符。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -392,10 +391,10 @@ textEmbedding.loadModel();
 let batchTexts = ['text1','text2'];
 textEmbedding.getEmbedding(batchTexts)
   .then((data:Array<Array<number>>) => {
-    console.info("Succeeded in getEmbedding");
+    console.info("Succeeded in getting Embedding");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to getEmbedding and code is " + err.code);
+    console.error("Failed to get Embedding and code is " + err.code);
   })
 ```
 
@@ -415,7 +414,7 @@ loadModel(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -437,10 +436,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 imageEmbedding.loadModel()
   .then(() => {
-    console.info("Succeeded in load");
+    console.info("Succeeded in loading Model");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to load and code is " + err.code);
+    console.error("Failed to load Model and code is " + err.code);
   })
 ```
 
@@ -452,7 +451,7 @@ releaseModel(): Promise&lt;void&gt;
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -474,10 +473,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 imageEmbedding.releaseModel()
   .then(() => {
-    console.info("Succeeded in release");
+    console.info("Succeeded in releasing Model");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to release and code is " + err.code);
+    console.error("Failed to release Model and code is " + err.code);
   })
 ```
 
@@ -497,7 +496,7 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
 | image | [Image](#image) | 是   | 嵌入模型的输入图像类型的URI地址。 |
 
-**返回值**：
+**返回值：**
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
@@ -519,12 +518,12 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 imageEmbedding.loadModel();
-let image = 'image uri';
+let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
 imageEmbedding.getEmbedding(image)
   .then((data:Array<number>) => {
-    console.info("Succeeded in getEmbedding");
+    console.info("Succeeded in getting Embedding");
   })
   .catch((err:BusinessError) => {
-    console.error("Failed to getEmbedding and code is " + err.code);
+    console.error("Failed to get Embedding and code is " + err.code);
   })
 ```
