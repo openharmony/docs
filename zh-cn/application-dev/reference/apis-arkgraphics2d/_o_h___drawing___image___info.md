@@ -34,7 +34,7 @@ OH_Drawing_AlphaFormat OH_Drawing_Image_Info::alphaType
 
 **描述**
 
-透明度类型[OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)
+透明度类型[OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)。
 
 
 ### colorType
@@ -45,7 +45,7 @@ OH_Drawing_ColorFormat OH_Drawing_Image_Info::colorType
 
 **描述**
 
-颜色类型[OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)
+颜色类型[OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)。
 
 
 ### height
@@ -56,7 +56,7 @@ int32_t OH_Drawing_Image_Info::height
 
 **描述**
 
-高度，单位为像素
+高度，单位为像素。
 
 
 ### width
@@ -67,4 +67,4 @@ int32_t OH_Drawing_Image_Info::width
 
 **描述**
 
-宽度，单位为像素
+宽度，单位为像素。
