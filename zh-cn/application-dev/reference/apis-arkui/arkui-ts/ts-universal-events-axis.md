@@ -22,7 +22,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 | 参数名 | 类型                              | 必填 | 说明                 |
 | ------ | --------------------------------- | ---- | -------------------- |
-| event  | [AxisEvent](#axisevent对象说明) | 是   | 获得[AxisEvent](#axisevent对象说明)对象。 |
+| event  | [AxisEvent](#axisevent) | 是   | 获得[AxisEvent](#axisevent)对象。 |
 
 **返回值：**
 
@@ -30,7 +30,7 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## AxisEvent对象说明
+## AxisEvent
 
 轴事件的对象说明，继承于[BaseEvent](ts-gesture-customize-judge.md#baseevent对象说明)。
 
