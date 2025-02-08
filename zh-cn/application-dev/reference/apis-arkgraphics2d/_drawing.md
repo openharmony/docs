@@ -9203,8 +9203,7 @@ OH_Drawing_TextShadow* OH_Drawing_CreateTextShadow (void )
 
 **描述**
 
-创建指向字体阴影对象的指针。  
-使用完该接口后需要使用[OH_Drawing_DestroyTextShadow](#oh_drawing_destroytextshadow)接口释放字体阴影对象。
+创建指向字体阴影对象的指针。不再需要[OH_Drawing_TextShadow](#oh_drawing_textshadow)时，请使用[OH_Drawing_DestroyTextShadow](#oh_drawing_destroytextshadow)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9242,8 +9241,7 @@ OH_Drawing_Typography* OH_Drawing_CreateTypography (OH_Drawing_TypographyCreate*
 
 **描述**
 
-创建指向OH_Drawing_Typography对象的指针。  
-使用完该接口后需要使用[OH_Drawing_DestroyTypography](#oh_drawing_destroytypography)接口释放文本对象。
+创建指向OH_Drawing_Typography对象的指针。不再需要[OH_Drawing_Typography](#oh_drawing_typography)时，请使用[OH_Drawing_DestroyTypography](#oh_drawing_destroytypography)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9268,8 +9266,7 @@ OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler (OH_Drawing_Typo
 
 **描述**
 
-创建指向OH_Drawing_TypographyCreate对象的指针。  
-使用完该接口后需要使用[OH_Drawing_DestroyTypographyHandler](#oh_drawing_destroytypographyhandler)接口释放OH_Drawing_TypographyCreate对象。
+创建指向OH_Drawing_TypographyCreate对象的指针。不再需要[OH_Drawing_TypographyCreate](#oh_drawing_typographycreate)时，请使用[OH_Drawing_DestroyTypographyHandler](#oh_drawing_destroytypographyhandler)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9295,8 +9292,7 @@ OH_Drawing_TypographyStyle* OH_Drawing_CreateTypographyStyle (void )
 
 **描述**
 
-创建指向OH_Drawing_TypographyStyle对象的指针。  
-使用完该接口后需要使用[OH_Drawing_DestroyTypographyStyle](#oh_drawing_destroytypographystyle)接口释放排版样式对象。
+创建指向OH_Drawing_TypographyStyle对象的指针。不再需要[OH_Drawing_TypographyStyle](#oh_drawing_typographystyle)时，请使用[OH_Drawing_DestroyTypographyStyle](#oh_drawing_destroytypographystyle)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -16120,8 +16116,7 @@ OH_Drawing_TextShadow* OH_Drawing_TextStyleGetShadows (OH_Drawing_TextStyle* )
 
 **描述**
 
-获取字体阴影容器。  
-使用完该接口后需要使用[OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows)接口释放字体阴影数组。
+获取字体阴影容器。不再需要[OH_Drawing_TextShadow](#oh_drawing_textshadow)时，请使用[OH_Drawing_DestroyTextShadows](#oh_drawing_destroytextshadows)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
