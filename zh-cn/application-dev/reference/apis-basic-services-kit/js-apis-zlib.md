@@ -3728,16 +3728,14 @@ async function demo() {
 
 ## Options
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
-| level    | CompressLevel     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。       |
-| memLevel | MemLevel         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。                 |
-| strategy | CompressStrategy | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
-| parallel | ParallelStrategy | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy16)。 |
+| level    | [CompressLevel](#compresslevel)     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| memLevel | [MemLevel](#memlevel)         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| strategy | [CompressStrategy](#compressstrategy) | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| parallel<sup>16+</sup> | [ParallelStrategy](#parallelstrategy16) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy16)。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。        |
 
 ## CompressLevel
 
@@ -5558,7 +5556,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 参数名 | 类型                          | 必填 | 说明                   |
 | ------ | ----------------------------- | ---- | ---------------------- |
 | format | string                        | 是   | 格式化描述符和纯文本。 |
-| args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
+| ...args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
 
 **返回值：**
 

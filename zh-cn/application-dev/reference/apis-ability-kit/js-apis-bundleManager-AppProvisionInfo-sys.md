@@ -1,6 +1,6 @@
 # AppProvisionInfo (系统接口)
 
-应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息，可以通过[getAppProvisionInfo](js-apis-bundleManager.md#bundlemanagergetappprovisioninfo10)获取。
+应用[HarmonyAppProvision配置文件](../../security/app-provision-structure.md)中的信息，可以通过[getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10)获取。
 
 > **说明：**
 >

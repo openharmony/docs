@@ -84,7 +84,7 @@
 | query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | 查询数据库中的数据。           |
 | update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | 更新数据库中的数据记录。         |
 | addTemplate(uri: string, subscriberId: string, template: Template): void | 添加一个指定订阅者的数据模板。      |
-| on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult | 订阅指定URI和模板对应的数据变更事件。 |
+| on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt; | 订阅指定URI和模板对应的数据变更事件。 |
 
 ### 过程数据
 
@@ -140,7 +140,7 @@
    | ----- | ---------------------------------------- | ---- |
    | path  | 指定数据源路径，目前支持关系型数据库，配置为库名/表名              | 是    |
    | type  | 标识数据库类型，目前支持配置为rdb，表示关系型数据库。             | 是    |
-   | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下；<br>2.application表示数据库位于本应用下。 | 否    |
+   | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下。<br>2.application表示数据库位于本应用下。 | 否    |
    | allowLists          | 包括appIdentifier和onlyMain。<br>allowLists中配置被允许访问的应用列表，最多配置256个授权信息。在跨应用数据访问时通过该配置校验数据访问方是否在数据提供方配置的列表内，若不在则拒绝访问。若无allowLists配置则不做白名单校验。不管是否配置allowLists，在[表1](#数据提供方应用的开发)中的读写权限依然会被正常校验。<br>**-appIdentifier：** 字符串，应用的唯一标识，由云端统一分配。数据提供方自行向访问方获取。<br>appIdentifier信息可参考[应用包信息](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md#signatureinfo)。 <br>**-onlyMain：** 布尔值，控制是否仅支持主应用。true: 只允许主应用访问，分身应用不可访问。false: 主应用和分身应用均可访问。 | 否   |
 
    **my_config.json配置样例**

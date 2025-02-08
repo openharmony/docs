@@ -21,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \* [OH_Drawing_FontMgrCreate](_drawing.md#oh_drawing_fontmgrcreate) (void) | 构造字体管理对象。 | 
+| [OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \* [OH_Drawing_FontMgrCreate](_drawing.md#oh_drawing_fontmgrcreate) (void) | 创建字体管理对象，只支持管理系统字体。 | 
 | void [OH_Drawing_FontMgrDestroy](_drawing.md#oh_drawing_fontmgrdestroy) ([OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \*) | 释放字体管理对象占用的内存。 | 
 | int [OH_Drawing_FontMgrGetFamilyCount](_drawing.md#oh_drawing_fontmgrgetfamilycount) ([OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \*) | 获取字体家族的数量。 | 
 | char \* [OH_Drawing_FontMgrGetFamilyName](_drawing.md#oh_drawing_fontmgrgetfamilyname) ([OH_Drawing_FontMgr](_drawing.md#oh_drawing_fontmgr) \*, int index) | 由索引值获取字体家族名称。 | 

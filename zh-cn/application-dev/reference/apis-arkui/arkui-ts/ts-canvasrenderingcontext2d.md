@@ -3726,22 +3726,24 @@ struct AttachDetachExample {
   private scroller: Scroller = new Scroller()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
   private node: FrameNode | null = null
+  private attachCallback: Callback<void> = this.attachFunc.bind(this)
+  private detachCallback: Callback<void> = this.detachFunc.bind(this)
 
-  attachCallback(): void {
+  attachFunc(): void {
     console.info('CanvasRenderingContext2D attached to the canvas frame node.')
     this.node = this.context.canvas
   }
-  detachCallback(): void {
+  detachFunc(): void {
     console.info('CanvasRenderingContext2D detach from the canvas frame node.')
     this.node = null
   }
   aboutToAppear(): void {
-    this.context.on('onAttach', this.attachCallback.bind(this))
-    this.context.on('onDetach', this.detachCallback.bind(this))
+    this.context.on('onAttach', this.attachCallback)
+    this.context.on('onDetach', this.detachCallback)
   }
   aboutToDisappear(): void {
-    this.context.off('onAttach', this.attachCallback)
-    this.context.off('onDetach', this.detachCallback)
+    this.context.off('onAttach')
+    this.context.off('onDetach')
   }
 
   build() {

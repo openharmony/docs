@@ -133,8 +133,10 @@ onDataMoved(from: number, to: number): void
 通知组件数据有移动。将from和to位置的数据进行交换。
 
 > 从API 8开始，建议使用[onDataMove](#ondatamove8)。
+
+> **说明：** 
 >
-> **说明：** 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
+> 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -201,7 +203,9 @@ onDataMove(from: number, to: number): void
 
 通知组件数据有移动。将from和to位置的数据进行交换。数据移动起始位置与数据移动目标位置交换完成后调用。
 
-> **说明：** 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
+> **说明：** 
+>
+> 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -220,7 +224,9 @@ onDataDelete(index: number): void
 
 通知组件删除index位置的数据并刷新LazyForEach的展示内容。删除数据完成后调用。
 
-> **说明：** 需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。
+> **说明：** 
+>
+> 需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -254,7 +260,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 进行批量的数据处理后，调用onDatasetChange接口通知组件按照dataOperations刷新组件。
 
-> **说明：** onDatasetChange接口不能与其他DataChangeListener的更新接口混用。如在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。
+> **说明：** 
+>
+> onDatasetChange接口不能与其他DataChangeListener的更新接口混用。如在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
