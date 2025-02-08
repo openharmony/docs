@@ -50,7 +50,7 @@ Sets the color of the QR code.
 
 | Name| Type                                      | Mandatory| Description        |
 | ------ | ------------------------------------------ | ---- | ------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | QR code color. Default value: **'#ff182431'**<br>|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | QR code color. The default value is **'#ff000000'** and does not change with the system color mode.<br>|
 
 ### backgroundColor
 
@@ -68,7 +68,7 @@ Sets the background color of the QR code.
 
 | Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 11, the default value is changed to **'#ffffffff'**.|
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the QR code.<br>Default value: **Color.White**<br>Since API version 11, the default value is **'#ffffffff'** and does not change with the system color mode.|
 
 ### contentOpacity<sup>11+</sup>
 
@@ -94,6 +94,8 @@ Among the universal events, the [click event](ts-universal-events-click.md), [to
 
 ## Example
 
+This example demonstrates the basic usage of the **QRCode** component. It shows how to set the QR code color using the **color** attribute, the background color using the **backgroundColor** attribute, and the opacity using the **contentOpacity** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -105,11 +107,11 @@ struct QRCodeExample {
       Text('normal').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).width(140).height(140)
 
-      // Set the background color of the QR code.
+      // Set the color of the QR code.
       Text('color').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).color(0xF7CE00).width(140).height(140)
 
-      // Set the background color for the QR code.
+      // Set the background color of the QR code.
       Text('backgroundColor').fontSize(9).width('90%').fontColor(0xCCCCCC).fontSize(30)
       QRCode(this.value).width(140).height(140).backgroundColor(Color.Orange)
 

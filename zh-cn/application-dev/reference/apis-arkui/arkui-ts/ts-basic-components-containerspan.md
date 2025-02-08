@@ -59,6 +59,7 @@ attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
 不支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+### 示例1（设置背景样式）
 
 该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
 
@@ -76,7 +77,7 @@ struct Index {
             .height('40vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
           Span('   Hello World !   ').fontSize('16fp').fontColor(Color.White)
-        }.textBackgroundStyle({color: "#7F007DFF", radius: "12vp"})
+        }.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
       }
     }.width('100%').alignItems(HorizontalAlign.Center)
   }
@@ -84,3 +85,41 @@ struct Index {
 ```
 
 ![imagespan](figures/container_span.png)
+
+### 示例2（通过attributeModifier设置背景样式）
+
+该示例通过attributeModifier属性展示了文本设置背景样式的效果。
+
+```ts
+// xxx.ets
+import { ContainerSpanModifier } from '@ohos.arkui.modifier'
+
+class MyContainerSpanModifier extends ContainerSpanModifier {
+  applyNormalAttribute(instance: ContainerSpanAttribute): void {
+    super.applyNormalAttribute?.(instance);
+    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
+  }
+}
+
+@Entry
+@Component
+struct ContainerSpanModifierExample {
+  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier()
+
+  build() {
+    Column() {
+      Text() {
+        ContainerSpan() {
+          ImageSpan($r('app.media.app_icon'))
+            .width('40vp')
+            .height('40vp')
+            .verticalAlign(ImageSpanAlignment.CENTER)
+          Span(' 我是ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
+        }.attributeModifier(this.containerSpanModifier as MyContainerSpanModifier)
+      }
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+![imagespan](figures/container_attributeModifier.png)

@@ -100,7 +100,7 @@ toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, opt
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| toolbarParam | &nbsp;Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。<br/>使用Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>-工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>-文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，工具栏最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>-竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标中，点击更多图标，可以展示剩余内容。横屏时，如果为[Split](ts-basic-components-navigation.md#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](ts-basic-components-navigation.md#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| toolbarParam | &nbsp;Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。<br/>使用Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>-工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>-文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，工具栏最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后截断。<br/>-竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标中，点击更多图标，可以展示剩余内容。横屏时，如果为[Split](ts-basic-components-navigation.md#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](ts-basic-components-navigation.md#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | options      | [NavigationToolbarOptions](ts-basic-components-navigation.md#navigationtoolbaroptions11) | 否   | 工具栏选项。                                                 |
 
 > **说明：**
@@ -248,8 +248,6 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 配置NavDestination是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该NavDestination。该功能需NavDestination对应的Navigation也配置了可恢复属性。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -283,7 +281,7 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 | scrollers | Array<[Scroller](./ts-container-scroll.md#scroller)> | 是   | 可滚动容器组件的控制器。 |
 
 ### bindToNestedScrollable<sup>14+</sup>
-bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
+bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
 绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
@@ -438,6 +436,21 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### onResult<sup>16+</sup>
+
+onResult(callback:&nbsp;Optional\<Callback\<ESObject\>\>)
+
+NavDestination返回时触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
+
 ## NavDestinationCommonTitle
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -535,7 +548,7 @@ struct MyPageOne {
     NavDestination() {
       Scroll(this.scrollScroller) {
         Column() {
-          List({space: 0, initialIndex: 0, scroller: this.listScroller}) {
+          List({ space: 0, initialIndex: 0, scroller: this.listScroller }) {
             ForEach(this.arr, (item: number, index: number) => {
               ListItem() {
                 Text('' + item)
@@ -543,13 +556,14 @@ struct MyPageOne {
                   .fontSize(16)
                   .textAlign(TextAlign.Center)
                   .width('90%')
-                  .margin({left: '5%'})
+                  .margin({ left: '5%' })
                   .borderRadius(10)
                   .backgroundColor(Color.Gray)
               }
             }, (item: string) => item);
           }.width('100%').height('80%').scrollBar(BarState.Off)
-          .nestedScroll({scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST})
+          .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST })
+
           ForEach(this.arr, (item: number, index: number) => {
             ListItem() {
               Text('' + item)
@@ -557,7 +571,7 @@ struct MyPageOne {
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
                 .width('90%')
-                .margin({top: '5%'})
+                .margin({ top: '5%' })
                 .borderRadius(10)
                 .backgroundColor(Color.Pink)
             }
@@ -569,15 +583,15 @@ struct MyPageOne {
       .scrollable(ScrollDirection.Vertical)
       .edgeEffect(EdgeEffect.Spring)
     }
-    .title('PageOne', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .title('PageOne', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
-    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    ], { backgroundColor: Color.Orange, barStyle: BarStyle.STACK })
     // 绑定有父子关系的可滚动容器组件
-    .bindToNestedScrollable([{parent: this.scrollScroller, child: this.listScroller}])
+    .bindToNestedScrollable([{ parent: this.scrollScroller, child: this.listScroller }])
   }
 }
 
@@ -594,7 +608,7 @@ struct MyPageTwo {
 
   build() {
     NavDestination() {
-      List({scroller: this.listScroller}) {
+      List({ scroller: this.listScroller }) {
         ForEach(this.arr, (item: number, index: number) => {
           ListItem() {
             Text('' + item)
@@ -602,20 +616,20 @@ struct MyPageTwo {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .width('90%')
-              .margin({left: '5%'})
+              .margin({ left: '5%' })
               .borderRadius(10)
               .backgroundColor(Color.Gray)
           }
         }, (item: string) => item);
       }.width('100%')
     }
-    .title('PageTwo', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .title('PageTwo', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
-    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    ], { backgroundColor: Color.Orange, barStyle: BarStyle.STACK })
     // 绑定可滚动容器组件
     .bindToScrollable([this.listScroller])
   }
@@ -639,15 +653,15 @@ struct Index {
     Navigation(this.stack) {
       Column() {
         Button('push PageOne').onClick(() => {
-          this.stack.pushPath({name: 'myPageOne'})
+          this.stack.pushPath({ name: 'myPageOne' })
         })
         Button('push PageTwo').onClick(() => {
-          this.stack.pushPath({name: 'myPageTwo'})
+          this.stack.pushPath({ name: 'myPageTwo' })
         })
       }.height('40%').justifyContent(FlexAlign.SpaceAround)
     }.width('100%')
     .height('100%')
-    .title({main: 'MainTitle', sub: 'subTitle'})
+    .title({ main: 'MainTitle', sub: 'subTitle' })
     .navDestination(this.MyPageMap)
   }
 }

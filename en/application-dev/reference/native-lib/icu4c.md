@@ -1,4 +1,3 @@
-
 # ICU4C
 
 In today's software market, applications need to support multiple languages for efficient development and maintenance. The International Components for Unicode (ICU) library provides powerful and complete multilingual cultural information processing capability to address this demand.
@@ -17,6 +16,8 @@ In today's software market, applications need to support multiple languages for 
 - Code conversion (ucnv.h)
 - Bidirectional text processing (ubidi.h)
 - Domain name conversion (uidna.h)
+- Unicode string processing (ustring.h)
+- ICU text abstract representation (utext.h)
 
 ## Introducing ICU4C Internationalization Capabilities
 

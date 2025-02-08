@@ -1,4 +1,4 @@
-# Launching a UIAbility in the Background Through the call Event
+# Launching the UIAbility of the Widget Provider in the Background Through the call Event
 
 
 There may be cases you want to provide in a widget access to features available in your application running in the foreground, for example, the play, pause, and stop buttons in a music application widget. This is where the **call** capability of the [postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction) API comes in handy. This capability, when used in a widget, can start the specified UIAbility of the widget provider in the background. It also allows the widget to call the specified method of the application and transfer data so that the application, while in the background, can behave accordingly in response to touching of the buttons on the widget.
@@ -7,18 +7,16 @@ There may be cases you want to provide in a widget access to features available 
 >
 > This topic describes development for dynamic widgets. For static widgets, see [FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md).
 
-## Constraints
-
-This action type requires that the widget provider should have the [ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running) permission.
-
 ## How to Develop
+1. Create a dynamic widget.
 
-Typically, the call event is triggered for touching of buttons. Below is an example.
+   Create a dynamic widget named WidgetEventCallCardArkTs.
 
+2. Implement page layout.
 
-- In this example, two buttons are laid out on the widget page. When one button is clicked, the **postCardAction** API is called to send a call event to the target UIAbility. Note that the **method** parameter in the API indicates the method to call in the target UIAbility. It is mandatory and of the string type.
-  
-    ```ts
+   In this example, two buttons are laid out on the widget page. When one button is clicked, the **postCardAction** API is called to send a call event to the target UIAbility. Note that the **method** parameter in the API indicates the method to call in the target UIAbility. It is mandatory and of the string type.
+   ```ts
+    //src/main/ets/widgeteventcallcard/pages/WidgetEventCallCardCard.ets
     @Entry
     @Component
     struct WidgetEventCallCard {
@@ -69,10 +67,11 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
       }
     }
     ```
-  
-- The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained through the [readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring) method. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
-  
+3. Create a UIAbility.
+    
+   The UIAbility receives the call event and obtains the transferred parameters. It then executes the target method specified by the **method** parameter. Other data can be obtained through the [readString](../reference/apis-ipc-kit/js-apis-rpc.md#readstring) method. Listen for the method required by the call event in the **onCreate** callback of the UIAbility.
     ```ts
+    //src/main/ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { promptAction } from '@kit.ArkUI';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -142,4 +141,32 @@ Typically, the call event is triggered for touching of buttons. Below is an exam
         }
       }
     }
+    ```
+4. Configure the background running permission.
+
+   To receive the call event, the widget provider must add the background running permission ([ohos.permission.KEEP_BACKGROUND_RUNNING](../security/AccessToken/permissions-for-all.md#ohospermissionkeep_background_running)) to the top-level module in the **module.json5** file.
+    ```ts
+    //src/main/module.json5
+    "requestPermissions": [
+       {
+         "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+       }
+     ]
+    ```
+5. Configure the UIAbility.
+
+   Add the configuration of the WidgetEventCallEntryAbility to the **abilities** array of the top-level module in the **module.json5** file.
+    ```ts
+    //src/main/module.json5
+   "abilities": [
+     {
+       "name": 'WidgetEventCallEntryAbility',
+       "srcEntry": './ets/widgeteventcallcard/WidgetEventCallEntryAbility/WidgetEventCallEntryAbility.ets',
+       "description": '$string:WidgetEventCallCard_desc',
+       "icon": "$media:app_icon",
+       "label": "$string:WidgetEventCallCard_label",
+       "startWindowIcon": "$media:app_icon",
+       "startWindowBackground": "$color:start_window_background"
+     }
+   ]
     ```

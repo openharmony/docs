@@ -113,7 +113,7 @@ struct Index {
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise的表现需关注，其中并发同步函数会处理返回该Promise并返回结果，如下例所示。
+并发函数中返回Promise的表现需关注，如下例所示，其中testPromise、testPromise1等并发同步函数会处理该Promise并返回结果。
 
 示例：
 

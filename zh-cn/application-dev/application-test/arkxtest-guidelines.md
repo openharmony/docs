@@ -44,15 +44,15 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 #### 编写单元测试脚本
 
-本章节主要描述单元测试框架支持能力，以及能力的使用方法, 具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
+本章节主要描述单元测试框架支持能力，以及能力的使用方法，具体请参考[单元测试框架功能特性](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7)。
 
 在单元测试框架，测试脚本需要包含如下基本元素:
 
-1、依赖导包，以便使用依赖的测试接口。
+1. 依赖导包，以便使用依赖的测试接口。
 
-2、测试代码编写，主要编写测试代码的相关逻辑，如接口调用等。
+2. 测试代码编写，主要编写测试代码的相关逻辑，如接口调用等。
 
-3、断言接口调用，设置测试代码中的检查点，如无检查点，则不可认为一个完整的测试脚本。
+3. 断言接口调用，设置测试代码中的检查点，如无检查点，则不可认为一个完整的测试脚本。
 
 如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
@@ -91,7 +91,7 @@ export default function abilityTest() {
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口，<!--RP1-->具体请参考[API文档](../reference/apis-test-kit/js-apis-uitest.md)<!--RP1End-->。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的场景是：在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
-1. 编写Index.ets页面代码， 作为被测示例demo。
+1. 编写Index.ets页面代码，作为被测示例demo。
 
   ```ts
   @Entry
@@ -173,17 +173,17 @@ export default function abilityTest() {
 
 脚本执行需要连接硬件设备。通过点击按钮执行，当前支持以下执行方式：
 
-1、测试包级别执行，即执行测试包内的全部用例。
+1. 测试包级别执行，即执行测试包内的全部用例。
 
-2、测试套级别执行，即执行describe方法中定义的全部测试用例。
+2. 测试套级别执行，即执行describe方法中定义的全部测试用例。
 
-3、测试方法级别执行，即执行指定it方法也就是单条测试用例。
+3. 测试方法级别执行，即执行指定it方法也就是单条测试用例。
 
 ![](figures/Execute.PNG)
 
 **查看测试结果**
 
-测试执行完毕后可直接在DevEco Studio中查看测试结果，如下图示例所示：
+测试执行完毕后可直接在DevEco Studio中查看测试结果，如下图示例所示。
 
 ![](figures/TestResult.PNG)
 
@@ -203,26 +203,26 @@ export default function abilityTest() {
 
 | 执行参数全写  | 执行参数缩写 | 执行参数含义                           | 执行参数示例                       |
 | ------------- | ------------ | -------------------------------------- | ---------------------------------- |
-| --bundleName  | -b           | 应用Bundle名称                         | - b com.test.example               |
-| --packageName | -p           | 应用模块名，适用于FA模型应用           | - p com.test.example.entry         |
-| --moduleName  | -m           | 应用模块名，适用于STAGE模型应用        | -m entry                           |
-| NA            | -s           | 特定参数，以<key, value>键值对方式传入 | - s unittest /ets/testrunner/OpenHarmonyTestRunner |
+| --bundleName  | -b           | 应用Bundle名称。                       | - b com.test.example               |
+| --packageName | -p           | 应用模块名，适用于FA模型应用。           | - p com.test.example.entry         |
+| --moduleName  | -m           | 应用模块名，适用于STAGE模型应用。        | -m entry                           |
+| NA            | -s           | 特定参数，以<key, value>键值对方式传入。 | - s unittest /ets/testrunner/OpenHarmonyTestRunner |
 
 框架当前支持多种用例执行方式，通过上表中的-s参数后的配置键值对参数传入触发，如下表所示。
 
 | 配置参数名     | 配置参数含义                                                 | 配置参数取值                                               | 配置参数示例                              |
 | ------------ | -----------------------------------------------------------------------------    | ------------------------------------------------------------ | ----------------------------------------- |
-| unittest     | 用例执行所使用OpenHarmonyTestRunner对象  | OpenHarmonyTestRunner或用户自定义runner名称                  | - s unittest OpenHarmonyTestRunner        |
-| class        | 指定要执行的测试套或测试用例                                   | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
-| notClass     | 指定不需要执行的测试套或测试用例                               | {describeName}#{itName}，{describeName}                      | -s notClass attributeTest#testAttributeIt |
-| itName       | 指定要执行的测试用例                                         | {itName}                                                     | -s itName testAttributeIt                 |
-| timeout      | 测试用例执行的超时时间                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
-| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程 | true/false(默认值)                                           | -s breakOnError true                      |
-| random | 测试用例随机顺序执行 | true/false(默认值)                                           | -s random true                      |
-| testType     | 指定要执行用例的用例类型                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
-| level        | 指定要执行用例的用例级别                                      | 0,1,2,3,4                                                    | -s level 0                                |
-| size         | 指定要执行用例的用例规模                                    | small，medium，large                                         | -s size small        
-| stress       | 指定要执行用例的执行次数                                    |  正整数                                         | -s stress 1000                            |
+| unittest     | 用例执行所使用OpenHarmonyTestRunner对象。  | OpenHarmonyTestRunner或用户自定义runner名称                  | - s unittest OpenHarmonyTestRunner        |
+| class        | 指定要执行的测试套或测试用例。                                  | {describeName}#{itName}，{describeName}                      | -s class attributeTest#testAttributeIt    |
+| notClass     | 指定不需要执行的测试套或测试用例。                               | {describeName}#{itName}，{describeName}                      | -s notClass attributeTest#testAttributeIt |
+| itName       | 指定要执行的测试用例。                                         | {itName}                                                     | -s itName testAttributeIt                 |
+| timeout      | 测试用例执行的超时时间。                                        | 正整数（单位ms），如不设置默认为 5000                        | -s timeout 15000                          |
+| breakOnError | 遇错即停模式，当执行用例断言失败或者发生错误时，退出测试执行流程。 | true/false(默认值)                                           | -s breakOnError true                      |
+| random | 测试用例随机顺序执行 | true/false(默认值)。                                           | -s random true                      |
+| testType     | 指定要执行用例的用例类型。                                      | function，performance，power，reliability， security，global，compatibility，user，standard，safety，resilience' | -s testType function                      |
+| level        | 指定要执行用例的用例级别。                                      | 0,1,2,3,4                                                    | -s level 0                                |
+| size         | 指定要执行用例的用例规模。                                    | small，medium，large                                         | -s size small        
+| stress       | 指定要执行用例的执行次数。                                    |  正整数                                         | -s stress 1000                            |
 
 **在cmd窗口执行test命令**
 
@@ -299,7 +299,7 @@ export default function abilityTest() {
 
 **查看测试结果**
 
-- cmd模式执行过程,会打印如下相关日志信息。
+- cmd模式执行过程，会打印如下相关日志信息。
 
  ```
   OHOS_REPORT_STATUS: class=testStop
@@ -324,7 +324,7 @@ export default function abilityTest() {
 | -------           | -------------------------|
 | OHOS_REPORT_SUM    | 当前测试套用例总数。 |
 | OHOS_REPORT_STATUS: class | 当前执行用例测试套名称。|
-| OHOS_REPORT_STATUS: id | 用例执行语言,默认JS。  |
+| OHOS_REPORT_STATUS: id | 用例执行语言，默认JS。  |
 | OHOS_REPORT_STATUS: numtests | 测试包中测试用例总数 。|
 | OHOS_REPORT_STATUS: stream | 当前用例发生错误时，记录错误信息。 |
 | OHOS_REPORT_STATUS: test| 当前用例执行的it name。 |
@@ -347,17 +347,17 @@ export default function abilityTest() {
 | run    | 当前测试包用例总数。 |
 | Failure | 当前测试失败用例个数。 |
 | Error | 当前执行用例发生错误用例个数。  |
-| Pass | 当前执行用例通过用例个数 。|
+| Pass | 当前执行用例通过用例个数。|
 | Ignore | 当前未执行用例个数。 |
 | taskconsuming| 执行当前测试用例总耗时（ms）。 |
 
 > **说明：**
 >
-> 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
+> 当处于breakOnError模式，用例发生错误时，注意查看Ignore以及中断说明。
 
 ## 基于shell命令测试
 
-在开发过程中，若需要快速进行截屏、 录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
+在开发过程中，若需要快速进行截屏、录屏、注入UI模拟操作、获取控件树等操作，可以使用shell命令，更方便完成相应测试。
 
 > **说明：**
 >
@@ -367,8 +367,8 @@ export default function abilityTest() {
 | 命令            | 配置参数   |描述                              |
 |---------------|---------------------------------|---------------------------------|
 | help          | help|  显示uitest工具能够支持的命令信息。            |
-| screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名, 只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
-| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名, 只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件,也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
+| screenCap       |[-p] | 截屏。非必填。<br>指定存储路径和文件名，只支持存放在/data/local/tmp/下。<br>默认存储路径：/data/local/tmp，文件名：时间戳 + .png。 |
+| dumpLayout      |[-p] \<-i \| -a>|支持在daemon运行时执行获取控件树。<br> **-p** ：指定存储路径和文件名，只支持存放在/data/local/tmp/下。默认存储路径：/data/local/tmp，文件名：时间戳 + .json。<br> **-i** ：不过滤不可见控件，也不做窗口合并。<br> **-a** ：保存 BackgroundColor、 Content、FontColor、FontSize、extraAttrs 属性数据。<br> **默认** ：不保存上述属性数据。<br> **-a和-i** 不可同时使用。 |
 | uiRecord        | uiRecord \<record \| read>|录制Ui操作。  <br> **record** ：开始录制，将当前界面操作记录到/data/local/tmp/record.csv，结束录制操作使用Ctrl+C结束录制。  <br> **read** ：读取并且打印录制数据。<br>各参数代表的含义请参考[用户录制操作](#用户录制操作)。|
 | uiInput       | \<help \| click \| doubleClick \| longClick \| fling \| swipe \| drag \| dircFling \| inputText \| keyEvent>| 注入UI模拟操作。<br>各参数代表的含义请参考[注入ui模拟操作](#注入ui模拟操作)。                       |
 | --version | --version|获取当前工具版本信息。                     |
@@ -379,7 +379,7 @@ export default function abilityTest() {
 ```bash
 # 存储路径：/data/local/tmp，文件名：时间戳 + .png。
 hdc shell uitest screenCap
-# 指定存储路径和文件名,存放在/data/local/tmp/下。
+# 指定存储路径和文件名，存放在/data/local/tmp/下。
 hdc shell uitest screenCap -p /data/local/tmp/1.png
 ```
 
@@ -401,7 +401,7 @@ hdc shell uitest uiRecord record
 hdc shell uitest uiRecord read
 ```
 
-以下举例为：record数据中包含的字段及字段含义，仅供参考
+以下举例为：record数据中包含的字段及字段含义，仅供参考。
 
  ```
  {
@@ -453,8 +453,9 @@ hdc shell uitest uiRecord read
 | swipe   | 是    | 模拟慢滑操作。     | 
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 模拟输入框输入文本操作。     |
-| keyEvent   | 是    | 模拟实体按键事件(如：键盘,电源键,返回上一级,返回桌面等)，以及组合按键操作。     | 
+| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
+| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。                           |
+| keyEvent   | 是    | 模拟实体按键事件(如：键盘，电源键，返回上一级，返回桌面等)，以及组合按键操作。     | 
 
 
 #### uiInput click/doubleClick/longClick使用示例
@@ -519,9 +520,9 @@ hdc shell uitest uiInput drag 10 10 100 100 500
 | stepLength        | 否        | 滑动步长。<br> 默认值: 滑动距离/50。为更好的模拟效果，推荐参数缺省/使用默认值。 |
 
 ```shell  
-# 执行左滑操作
+# 执行左滑操作。
 hdc shell uitest uiInput dircFling 0 500
-# 执行向右滑动操作
+# 执行向右滑动操作。
 hdc shell uitest uiInput dircFling 1 600
 # 执行向上滑动操作。
 hdc shell uitest uiInput dircFling 2 
@@ -540,6 +541,17 @@ hdc shell uitest uiInput dircFling 3
 ```shell  
 # 执行输入框输入操作。
 hdc shell uitest uiInput inputText 100 100 hello 
+```
+
+#### uiInput text使用示例
+
+| 配置参数             | 必填       | 描述 |       
+|------|------------------|----------|
+| text   | 是                | 输入文本内容。  |
+
+```shell  
+# 无需输入坐标点，在当前获焦处，执行输入框输入操作。若当前获焦处不支持文本输入，则无实际效果。
+hdc shell uitest uiInput text hello
 ```
 
 #### uiInput keyEvent使用示例
@@ -588,56 +600,56 @@ hdc shell uitest start-daemon
 ### 单元测试脚本实例
 
 #### 单元测试断言功能使用实例
-介绍单元测试框架中支持的断言能力如何使用，具体代码请查看[断言能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/assertExampleTest/assertExample.test.ets)
+介绍单元测试框架中支持的断言能力如何使用，具体代码请查看[断言能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/assertExampleTest/assertExample.test.ets)。
 
 #### 单元测试测试套定义使用实例
-介绍单元测试框架测试套嵌如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)
+介绍单元测试框架测试套嵌如何定义，包括嵌套定义能力，具体代码请参考[测试套嵌套示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/coverExampleTest/coverExample.test.ets)。
 
 #### 单元测试测试应用自定义函数使用实例
-介绍针对应用内自定义函数如何使用框架能力进行测试，具体代码请参考[应用自定义函数测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets)
+介绍针对应用内自定义函数如何使用框架能力进行测试，具体代码请参考[应用自定义函数测试示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/customExampleTest/customExample.test.ets)。
 
 #### 单元测试数据驱动能力使用实例
-介绍测试框架数据驱动能力、脚本重复执行配置功能，具体代码请参考[数据驱动能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/paramExampleTest/paramExample.test.ets)
+介绍测试框架数据驱动能力、脚本重复执行配置功能，具体代码请参考[数据驱动能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/jsunit/entry/src/ohosTest/ets/test/paramExampleTest/paramExample.test.ets)。
 
 ### UI测试脚本实例（控件类）
 
 #### 查找指定控件能力实例
-介绍通过设置控件属性作为查找条件，在应用界面上查找组件对象，具体代码请参考[控件查找示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/Component/findCommentExample.test.ets)
+介绍通过设置控件属性作为查找条件，在应用界面上查找组件对象，具体代码请参考[控件查找示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/Component/findCommentExample.test.ets)。
 
 #### 模拟点击操作事件能力实例
-介绍模拟用户在应用界面上进行点击，长按，双击等事件,具体代码请参考[点击事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/clickEvent.test.ets)
+介绍模拟用户在应用界面上进行点击，长按，双击等事件,具体代码请参考[点击事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/clickEvent.test.ets)。
 
 #### 模拟鼠标操作能力实例
-介绍模拟鼠标左击、右击、滑轮事件,具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)
+介绍模拟鼠标左击、右击、滑轮事件,具体代码请参考[鼠标操作事件示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/MouseEvent.test.ets)。
 
 #### 模拟文本输入能力实例
-介绍模拟输入中文、英文文本内容，使用前提是针对可以输入文本的组件类似文本框等组件进行操作，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)
+介绍模拟输入中文、英文文本内容，使用前提是针对可以输入文本的组件类似文本框等组件进行操作，具体代码请参考[文本输入能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/InputEvent.test.ets)。
 
 #### 截图能力实例
-介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)
+介绍屏幕截图功能，包括指定区域截图能力，具体代码请参考[截图能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScreenCapEvent.test.ets)。
 
 #### 模拟快滑操作能力实例
-介绍模拟快滑操作能力，即在可滑动页面上进行滑动，滑动后手指离开屏幕，具体代码请参考[模拟快滑操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets)
+介绍模拟快滑操作能力，即在可滑动页面上进行滑动，滑动后手指离开屏幕，具体代码请参考[模拟快滑操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/FlingEvent.test.ets)。
 
 #### 模拟慢滑操作能力实例
-介绍模拟慢滑操作能力，即在可滑动页面上进行滑动，滑动后手指仍停留在屏幕，具体代码请参考[模拟慢滑操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets)
+介绍模拟慢滑操作能力，即在可滑动页面上进行滑动，滑动后手指仍停留在屏幕，具体代码请参考[模拟慢滑操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/SwipeEvent.test.ets)。
 
 #### 模拟缩放操作能力实例
-介绍模拟缩放能力，即在支持放大缩小的图片上，模拟双指缩放操作的能力，具体代码请参考[模拟缩放操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/PinchEvent.test.ets)
+介绍模拟缩放能力，即在支持放大缩小的图片上，模拟双指缩放操作的能力，具体代码请参考[模拟缩放操作能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/PinchEvent.test.ets)。
 
 #### 模拟滚动到组件顶端或底端能力实例
-介绍模拟针对滑动类组件，可以模拟操作直接滚动到组件顶端或底端，具体代码请参考[模拟滚动到组件顶端或底端示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScrollerEvent.test.ets)
+介绍模拟针对滑动类组件，可以模拟操作直接滚动到组件顶端或底端，具体代码请参考[模拟滚动到组件顶端或底端示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/ui/ScrollerEvent.test.ets)。
 
 ### UI测试脚本实例（窗口类）
 
 #### 查找指定窗口能力实例
-介绍通过应用报名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)
+介绍通过应用报名查找应用窗口，具体代码请参考[查找指定窗口能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/findCommentExampleTest/window/findWindowExample.test.ets)。
 
 #### 模拟窗口移动能力实例
-介绍模拟移动窗口到指定位置能力，具体代码请参考[模拟窗口移动示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets)
+介绍模拟移动窗口到指定位置能力，具体代码请参考[模拟窗口移动示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/MoveToEvent.test.ets)。
 
 #### 模拟调整窗口大小能力实例
-介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)
+介绍模拟调整窗口大小能力，并可指定调整的具体方向，具体代码请参考[模拟调整窗口大小能力示例](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Project/Test/uitest/entry/src/ohosTest/ets/test/operationExampleTest/window/ReSizeWindow.test.ets)。
 
 <!--DelEnd-->
 
@@ -645,7 +657,7 @@ hdc shell uitest start-daemon
 
 ### 单元测试用例常见问题
 
-**1、用例中增加的打印日志在用例结果之后才打印**
+**1. 用例中增加的打印日志在用例结果之后才打印**
 
 **问题描述**
 
@@ -659,7 +671,7 @@ hdc shell uitest start-daemon
 
 当被调用的异步接口多于一个时，建议将接口调用封装成Promise方式调用。
 
-**2、执行用例时报error：fail to start ability**
+**2. 执行用例时报error：fail to start ability**
 
 **问题描述**
 
@@ -673,7 +685,7 @@ hdc shell uitest start-daemon
 
 检查测试包中是否包含OpenHarmonyTestRunner.abc文件，如没有则重新编译打包后再次执行测试。
 
-**3、执行用例时报用例超时错误**
+**3. 执行用例时报用例超时错误**
 
 **问题描述**
 
@@ -681,22 +693,22 @@ hdc shell uitest start-daemon
 
 **可能原因**
 
-1.用例执行异步接口，但执行过程中没有执行到done函数，导致用例执行一直没有结束，直到超时结束。
+1. 用例执行异步接口，但执行过程中没有执行到done函数，导致用例执行一直没有结束，直到超时结束。
 
-2.用例调用函数耗时过长，超过用例执行设置的超时时间。
+2. 用例调用函数耗时过长，超过用例执行设置的超时时间。
 
-3.用例调用函数中断言失败，抛出失败异常，导致用例执行一直没有结束，直到超时结束。
+3. 用例调用函数中断言失败，抛出失败异常，导致用例执行一直没有结束，直到超时结束。
 
 **解决方法**
 
-1.检查用例代码逻辑，确保即使断言失败场景认可走到done函数，保证用例执行结束。
+1. 检查用例代码逻辑，确保即使断言失败场景认可走到done函数，保证用例执行结束。
 
-2.可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
+2. 可在IDE中Run/Debug Configurations中修改用例执行超时配置参数，避免用例执行超时。
 
-3.检查用例代码逻辑，断言结果，确保断言Pass。
+3. 检查用例代码逻辑，断言结果，确保断言Pass。
 ### UI测试用例常见问题
 
-**1、失败日志有“Get windows failed/GetRootByWindow failed”错误信息**
+**1. 失败日志有“Get windows failed/GetRootByWindow failed”错误信息**
 
 **问题描述**
 
@@ -714,7 +726,7 @@ UI测试用例执行失败，查看hilog日志发现日志中有“Get windows f
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-**2、失败日志有“uitest-api dose not allow calling concurrently”错误信息**
+**2. 失败日志有“uitest-api dose not allow calling concurrently”错误信息**
 
 **问题描述**
 
@@ -722,17 +734,17 @@ UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api do
 
 **可能原因**
 
-1.用例中UI测试框架提供异步接口没有增加await语法糖调用。
+1. 用例中UI测试框架提供异步接口没有增加await语法糖调用。
 
-2.多进程执行UI测试用例，导致拉起多个UITest进程，框架不支持多进程调用。
+2. 多进程执行UI测试用例，导致拉起多个UITest进程，框架不支持多进程调用。
 
 **解决方法**
 
-1.检查用例实现，异步接口增加await语法糖调用。
+1. 检查用例实现，异步接口增加await语法糖调用。
 
-2.避免多进程执行UI测试用例。
+2. 避免多进程执行UI测试用例。
 
-**3、失败日志有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
+**3. 失败日志有“does not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 
 **问题描述** 
 

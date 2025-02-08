@@ -1,5 +1,8 @@
 # 自定义组件成员属性访问限定符使用限制
 
+在状态管理V1中，当组件开发者封装了自定义组件后，由于组件没有明确的输入输出标识，使得调用方无法按照统一的标准判断传入哪些变量作为组件入参。在状态管理V1中，可以使用private限定符来限制当前变量不允许被进行外部初始化。
+
+当组件开发者不希望状态变量被外部初始化时，可以添加private限定符，提醒组件调用方不要初始化该状态变量。但是外部初始化也需要遵循装饰器自身的规则，具体规则见[使用限制](#使用限制)。
 
 ArkTS会对自定义组件的成员变量使用的访问限定符private/public/protected进行校验，当不按规范使用访问限定符private/public/protected时，会产生对应的日志信息。
 
@@ -12,15 +15,15 @@ ArkTS会对自定义组件的成员变量使用的访问限定符private/public/
 
 ## 使用限制
 
-- 对于[\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)，当使用private修饰时，在自定义组件构造时，不允许进行赋值传参，否则会有编译告警日志提示。
+- [\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)的初始化规则为可以被外部初始化，也可以使用本地值进行初始化。当组件开发者不希望当前变量被外部初始化时，可以使用private进行修饰，此时会有编译告警日志提示。
 
-- 对于[\@StorageLink](./arkts-appstorage.md)/[\@StorageProp](./arkts-appstorage.md)/[\@LocalStorageLink](./arkts-localstorage.md)/[\@LocalStorageProp](./arkts-localstorage.md)/[\@Consume](./arkts-provide-and-consume.md)变量，当使用public修饰时，会有编译告警日志提示。
+- [\@StorageLink](./arkts-appstorage.md)/[\@StorageProp](./arkts-appstorage.md)/[\@LocalStorageLink](./arkts-localstorage.md)/[\@LocalStorageProp](./arkts-localstorage.md)/[\@Consume](./arkts-provide-and-consume.md)变量的初始化规则为不可以被外部初始化，当组件开发者希望当前变量被外部初始化而使用public修饰时，这和装饰器本身的初始化规则是相违背的，会有编译告警日志提示。
 
-- 对于[\@Link](./arkts-link.md)/[\@ObjectLink](./arkts-observed-and-objectlink.md)变量，当使用private修饰时，会有编译告警日志提示。
+- [\@Link](./arkts-link.md)/[\@ObjectLink](./arkts-observed-and-objectlink.md)变量的初始化规则为必须被外部初始化，禁止本地初始化。当组件开发者使用private对变量进行修饰时，这和装饰器本身的初始化规则相矛盾，会有编译告警日志提示。
 
 - 由于struct没有继承能力，上述所有的这些变量使用protected修饰时，会有编译告警日志提示。
 
-- 当[\@Require](./arkts-require.md)和private同时修饰自定义组件struct的[\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)时，会有编译告警日志提示。
+- [\@Require](./arkts-require.md)含义是当前被\@Require装饰的变量必须被外部初始化，当\@Require和private同时装饰[\@State](./arkts-state.md)/[\@Prop](./arkts-prop.md)/[\@Provide](./arkts-provide-and-consume.md)/[\@BuilderParam](./arkts-builderparam.md)/常规成员变量(不涉及更新的普通变量)时，他们的含义是自相矛盾的，会有编译告警日志提示。
 
 
 ## 使用场景

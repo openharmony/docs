@@ -144,3 +144,37 @@ let appItem : uniformDataStruct.OpenHarmonyAppItem = {
 }
 console.info('appItem.uniformDataType: ' + appItem.uniformDataType);
 ```
+
+## ContentForm<sup>14+</sup>
+
+Represents data of the content widget type.
+
+**System capability**: SystemCapability.DistributedDataManager.UDMF.Core
+
+| Name        | Type  | Read-Only| Optional| Description                                                                                                                            |
+|------------| ------ | ---- |----|--------------------------------------------------------------------------------------------------------------------------------|
+| uniformDataType | 'general.content-form'| Yes  | No | Uniform data type, which has a fixed value of **general.content-form**.
+| title      | string | No  | No | Title of the content widget.|
+| thumbData  | Uint8Array | No  | Yes | Image data in the content widget.|
+| description| string | No  | Yes | Description of the content widget.|
+| appIcon    | Uint8Array | No  | Yes | Application icon data in the content widget.|
+| appName    | string | No  | Yes | Application name in the content widget.|
+| linkUri    | string | No  | Yes | Hyperlink in the content widget.|
+
+
+**Example**
+
+```ts
+let thumbDataU8Array = new Uint8Array([1, 2, 3, 4, 5]);
+let appIconU8Array = new Uint8Array([6, 7, 8, 9, 10]);
+let contentForm : uniformDataStruct.ContentForm = {
+    uniformDataType : 'general.content-form',
+    title : 'MyTitle',
+    thumbData : thumbDataU8Array,
+    description : 'MyDescription',
+    appName : 'MyAppName',
+    linkUri : 'MyLinkUri',
+    appIcon : appIconU8Array
+}
+console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
+```

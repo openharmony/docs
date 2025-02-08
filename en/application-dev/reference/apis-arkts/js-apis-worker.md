@@ -40,6 +40,24 @@ Provides options that can be set for the Worker instance to create.
 | type | 'classic' \| 'module' | Yes  | Yes| Mode in which the Worker instance executes the script. The **module** type is not supported yet. The default value is **classic**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | name | string   | Yes  | Yes| Name of the Worker thread. The default value is **undefined**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | shared | boolean | Yes  | Yes| Whether sharing of the Worker instance is enabled. Currently, sharing is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | Yes  | Yes| Priority of the Worker thread.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+
+
+## ThreadWorkerPriority<sup>16+</sup>
+
+Enumerates the priorities available for Worker threads. For details about the mappings between priorities and QoS levels, see [QoS Level](../../napi/qos-guidelines.md#qos-level).
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| HIGH   | 0    | High priority, corresponding to **QOS_USER_INITIATED**.|
+| MEDIUM | 1 | Medium priority, corresponding to **QOS_DEFAULT**.|
+| LOW | 2 | Low priority, corresponding to **QOS_UTILITY**.|
+| IDLE | 3 | Background priority, corresponding to **QOS_BACKGROUND**.|
+
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -785,7 +803,7 @@ workerInstance.addEventListener("alert_add", ()=>{
 })
 
 // The event listener created by once is removed after being executed once.
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is not supported yet.
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0}); // timeStamp is not supported yet.
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
@@ -975,7 +993,7 @@ workerInstance.addEventListener("alert_add", ()=>{
 })
 
 // The event listener created by once is removed after being executed once.
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is not supported yet.
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0}); // timeStamp is not supported yet.
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
@@ -1492,6 +1510,21 @@ Holds the data transferred between Worker threads.
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | Yes  | No  | Data transferred between threads.|
 
+## MessageType<sup>7+</sup>
+
+type MessageType = 'message' | 'messageerror';
+
+Defines the message type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+| Type | Description              |
+| ---- | ------------------ |
+| 'message'  | The message type is message, fixed at **'message'**.|
+| 'messageerror'  | The message type is messageerror, fixed at **'messageerror'**.|
+
 ## Worker<sup>(deprecated)</sup>
 
 Before using the following APIs, you must create a Worker instance. The **Worker** class inherits from [EventTarget](#eventtargetdeprecated).
@@ -1900,7 +1933,7 @@ workerInstance.addEventListener("alert_add", ()=>{
 })
 
 // The event listener created by once is removed after being executed once.
-workerInstance.dispatchEvent({type:"alert_once", timeStamp:0});// timeStamp is not supported yet.
+workerInstance.dispatchEvent({type:"alert_once", timeStamp:0}); // timeStamp is not supported yet.
 // The event listener created by on will not be proactively deleted.
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
 workerInstance.dispatchEvent({type:"alert_on", timeStamp:0});
@@ -2330,10 +2363,6 @@ workerPort.onmessage = (d: MessageEvents): void => {
     console.log("post message is function");
   }
   // workerPort.postMessage(func1); A serialization error occurs when passing func1.
-  // let obj1: obj | null = null;
-  // if (obj1) {
-  //   workerPort.postMessage(obj1 as obj);  // A serialization error occurs when passing obj1.
-  // }
   let obj2 = new MyModel();
   workerPort.postMessage(obj2);     // No serialization error occurs when passing obj2.
 }

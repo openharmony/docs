@@ -4,10 +4,15 @@
 AppStorage provides central storage for application UI state attributes. It is bound to the application process and is created by the UI framework at application startup.
 
 
-Unlike LocalStorage, which is usually used for page-level state sharing, AppStorage enables application-wide UI state sharing. AppStorage is equivalent to the hub of the entire application. [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md) data is passed first to AppStorage and then from AppStorage to the UI component.
+Unlike AppStorage, LocalStorage is usually used for page-level state sharing, While AppStorage enables application-wide UI state sharing. AppStorage is equivalent to the hub of the entire application. [PersistentStorage](arkts-persiststorage.md) and [Environment](arkts-environment.md) data is passed first to AppStorage and then from AppStorage to the UI component.
 
 
 This topic describes the AppStorage use scenarios and related decorators: \@StorageProp and \@StorageLink.
+
+
+Different from decorators such as \@State that can be passed only in the component tree, AppStorage aims to provide basic data sharing across abilities in a larger scope. Before reading this topic, you are advised to read [State Management Overview](./arkts-state-management-overview.md) to have a macro understanding of the positioning of AppStorage in the state management framework.
+
+AppStorage also provides APIs for you to manually add, delete, change, and query keys of AppStorage outside the custom component. You are advised to read this topic together with [AppStorage API reference](../reference/apis-arkui/arkui-ts/ts-state-management.md#appstorage).
 
 
 ## Overview
@@ -197,9 +202,9 @@ let link1: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // lin
 let link2: SubscribedAbstractProperty<number> = AppStorage.link('PropA'); // link2.get() == 47
 let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA'); // prop.get() == 47
 
-link1.set(48); // two-way sync: link1.get() == link2.get() == prop.get() == 48
-prop.set(1); // one-way sync: prop.get() == 1; but link1.get() == link2.get() == 48
-link1.set(49); // two-way sync: link1.get() == link2.get() == prop.get() == 49
+link1.set(48); // Two-way synchronization: link1.get() == link2.get() == prop.get() == 48
+prop.set(1); // One-way synchronization: prop.get() == 1; but link1.get() == link2.get() == 48
+link1.set(49); // Two-way synchronization: link1.get() == link2.get() == prop.get() == 49
 
 storage.get<number>('PropA') // == 17
 storage.set('PropA', 101);
@@ -218,7 +223,7 @@ prop.get() // == 49
 
 
 ```ts
-class PropB {
+class Data {
   code: number;
 
   constructor(code: number) {
@@ -227,18 +232,18 @@ class PropB {
 }
 
 AppStorage.setOrCreate('PropA', 47);
-AppStorage.setOrCreate('PropB', new PropB(50));
+AppStorage.setOrCreate('PropB', new Data(50));
 let storage = new LocalStorage();
-storage.setOrCreate('PropA', 48);
-storage.setOrCreate('PropB', new PropB(100));
+storage.setOrCreate('LinkA', 48);
+storage.setOrCreate('LinkB', new Data(100));
 
 @Entry(storage)
 @Component
-struct CompA {
+struct Index {
   @StorageLink('PropA') storageLink: number = 1;
-  @LocalStorageLink('PropA') localStorageLink: number = 1;
-  @StorageLink('PropB') storageLinkObject: PropB = new PropB(1);
-  @LocalStorageLink('PropB') localStorageLinkObject: PropB = new PropB(1);
+  @LocalStorageLink('LinkA') localStorageLink: number = 1;
+  @StorageLink('PropB') storageLinkObject: Data = new Data(1);
+  @LocalStorageLink('LinkB') localStorageLinkObject: Data = new Data(1);
 
   build() {
     Column({ space: 20 }) {
@@ -290,7 +295,8 @@ class ViewData {
 
 @Entry
 @Component
-struct Gallery2 {
+struct Gallery {
+  // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 
@@ -379,7 +385,8 @@ class ViewData {
 
 @Entry
 @Component
-struct Gallery2 {
+struct Gallery {
+  // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
   private preIndex: number = -1
@@ -479,7 +486,8 @@ class ViewData {
 
 @Entry
 @Component
-struct Gallery2 {
+struct Gallery {
+  // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
   dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon'))]
   scroller: Scroller = new Scroller()
 
@@ -539,17 +547,17 @@ In the following example, the type of variable **A** is **number | null**, and t
 ```ts
 @Component
 struct StorLink {
-  @StorageLink("AA") A: number | null = null;
-  @StorageLink("BB") B: number | undefined = undefined;
+  @StorageLink("LinkA") LinkA: number | null = null;
+  @StorageLink("LinkB") LinkB: number | undefined = undefined;
 
   build() {
     Column() {
       Text("@StorageLink initialization, @StorageLink value")
-      Text(this.A + "").fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = 1;
+      Text(this.LinkA + "").fontSize(20).onClick(() => {
+        this.LinkA ? this.LinkA = null : this.LinkA = 1;
       })
-      Text(this.B + "").fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = 1;
+      Text(this.LinkB + "").fontSize(20).onClick(() => {
+        this.LinkB ? this.LinkB = undefined : this.LinkB = 1;
       })
     }
     .borderWidth(3).borderColor(Color.Red)
@@ -559,17 +567,17 @@ struct StorLink {
 
 @Component
 struct StorProp {
-  @StorageProp("AAA") A: number | null = null;
-  @StorageProp("BBB") B: number | undefined = undefined;
+  @StorageProp("PropA") PropA: number | null = null;
+  @StorageProp("PropB") PropB: number | undefined = undefined;
 
   build() {
     Column() {
       Text("@StorageProp initialization, @StorageProp value")
-      Text(this.A + "").fontSize(20).onClick(() => {
-        this.A ? this.A = null : this.A = 1;
+      Text(this.PropA + "").fontSize(20).onClick(() => {
+        this.PropA ? this.PropA = null : this.PropA = 1;
       })
-      Text(this.B + "").fontSize(20).onClick(() => {
-        this.B ? this.B = undefined : this.B = 1;
+      Text(this.PropB + "").fontSize(20).onClick(() => {
+        this.PropB ? this.PropB = undefined : this.PropB = 1;
       })
     }
     .borderWidth(3).borderColor(Color.Blue)
@@ -578,7 +586,7 @@ struct StorProp {
 
 @Entry
 @Component
-struct TestCase3 {
+struct Index {
   build() {
     Row() {
       Column() {

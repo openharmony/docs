@@ -30,6 +30,7 @@ The USB Driver Development Kit (USB DDK) is a toolset that helps you develop USB
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | Sends a pipe request. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | Creates a buffer. To avoid resource leakage, use **OH_Usb_DestroyDeviceMemMap()** to destroy a buffer after use.|
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
+| OH_Usb_GetDevices(struct Usb_DeviceArray *devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
 
 For details about the APIs, see [USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md).
 
@@ -151,4 +152,16 @@ libusb_ndk.z.so
     OH_Usb_ReleaseInterface(interfaceHandle);
     // Release the USB DDK.
     OH_Usb_Release();
+    ```
+7. (Optional) Obtain the USB device ID list.
+
+    After the driver is started, call **OH_Usb_GetDevices** to obtain the device ID that matches the VID in the driver configuration for subsequent application development. (VID is the ID of the device vendor and is configured in the driver application to indicate the applicable devices. The queried device IDs need to be filtered by VID.)
+
+    ```c++
+    OH_Usb_Init();
+    constexpr size_t MAX_USB_DEVICE_NUM = 128;
+    struct Usb_DeviceArray deviceArray;
+    deviceArray.deviceIds = new uint64_t[MAX_USB_DEVICE_NUM];
+    // Obtain the USB device list.
+    OH_Usb_GetDevices(&deviceArray);
     ```

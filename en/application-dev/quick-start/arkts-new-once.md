@@ -4,13 +4,12 @@
 To initialize data only once and deny subsequent changes, you can use \@Once decorator together with \@Param decorator.
 
 
+Before reading this topic, you are advised to read [\@Param](./arkts-new-param.md).
+
 > **NOTE**
 >
 > The \@Once decorator is supported in custom components decorated by \@ComponentV2 since API version 12.
 >
->State management V2 is still under development, and some features may be incomplete or not always work as expected.
-
-
 
 ## Overview
 
@@ -37,7 +36,7 @@ As an auxiliary decorator, the \@Once decorator does not have requirements on th
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Param @Once onceParam: string = "onceParam"; // Correct usage.
     @Once onceStr: string = "Once"; // Incorrect usage. @Once cannot be used independently.
     @Local @Once onceLocal: string = "onceLocal"; // Incorrect usage. @Once cannot be used with @Local.
@@ -52,7 +51,7 @@ As an auxiliary decorator, the \@Once decorator does not have requirements on th
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Param @Once param1: number;
     @Once @Param param2: number;
   }
@@ -66,8 +65,8 @@ As an auxiliary decorator, the \@Once decorator does not have requirements on th
 
 ```ts
 @ComponentV2
-struct CompA {
-  @Param @Once onceParam: string = '';
+struct ChildComponent {
+  @Param @Once onceParam: string = "";
   build() {
   	Column() {
   	  Text(`onceParam: ${this.onceParam}`)
@@ -76,7 +75,7 @@ struct CompA {
 }
 @Entry
 @ComponentV2
-struct CompB {
+struct MyComponent {
   @Local message: string = "Hello World";
   build() {
   	Column() {
@@ -85,7 +84,7 @@ struct CompB {
         .onClick(() => {
           this.message = "Hello Tomorrow";
         })
-      CompA({ onceParam: this.message })
+      ChildComponent({ onceParam: this.message })
   	}
   }
 }

@@ -6,8 +6,8 @@
     - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
     <!--Del-->
-    - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
-    - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
+    - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -34,6 +34,7 @@
     - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
     - [@ohos.print (打印)](js-apis-print.md)
     - [@ohos.request (上传下载)](js-apis-request.md)
+    - [@ohos.request.cacheDownload (缓存下载)](js-apis-request-cacheDownload.md)
     - [@ohos.zlib (Zip模块)](js-apis-zlib.md)
     <!--Del-->
     - [@ohos.app.ability.PrintExtensionAbility (打印扩展能力)(系统接口)](js-apis-app-ability-PrintExtensionAbility-sys.md)

@@ -6,7 +6,7 @@
 >
 > 从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本文仅介绍当前模块的系统接口，其他公开接口参见[@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)
+> 本文仅介绍当前模块的系统接口，其他公开接口参见[@ohos.arkui.uiExtension (uiExtension)](js-apis-arkui-uiExtension.md)。
 
 ## 导入模块
 
@@ -25,6 +25,8 @@ hideNonSecureWindows(shouldHide: boolean): Promise\<void>
 > **说明：**
 >
 > 不安全窗口是指可能遮挡EmbeddedComponent（或UIExtensionComponent）组件的窗口，如全局悬浮窗、宿主子窗口和宿主创建的Dialog窗口（不包括系统应用创建的上述类型窗口）。当EmbeddedComponent（或UIExtensionComponent）组件被用来显示敏感操作提示内容时，可以选择隐藏不安全窗口，保护敏感操作提示内容不会被遮挡。当EmbeddedComponent（或UIExtensionComponent）组件不显示或销毁时需要让不安全窗口重新显示。使用CreateModalUIExtension接口创建的UIExtensionComponent会默认隐藏不安全窗口，若要取消隐藏，需要申请ohos.permission.ALLOW_SHOW_NON_SECURE_WINDOWS权限，并调用本接口将shouldHide设为false。
+> 
+> 此接口在2in1设备上调用不生效。
 
 **系统能力**：SystemCapability.ArkUI.ArkUI.Full
 

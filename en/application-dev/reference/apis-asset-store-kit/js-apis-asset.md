@@ -24,6 +24,8 @@ To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STOR
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
@@ -97,6 +99,8 @@ To set [IS_PERSISTENT](#tag), the application must have the ohos.permission.STOR
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name    | Type    | Mandatory| Description                                                        |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
 | attributes | [AssetMap](#assetmap) | Yes  | Attributes of the asset to add, including the asset plaintext, access control attributes, and custom data.|
@@ -157,6 +161,8 @@ Removes one or more assets. This API uses a promise to return the result.
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
@@ -222,6 +228,8 @@ Removes one or more assets. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to remove, such as the asset alias, access control attributes, and custom data.|
@@ -275,6 +283,8 @@ Updates an asset. This API uses a promise to return the result.
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
@@ -345,6 +355,8 @@ Updates an asset. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name            | Type    | Mandatory| Description                                                        |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
 | query              | [AssetMap](#assetmap) | Yes  | Attributes of the asset to update, such as the asset alias, access control attributes, and custom data.|
@@ -403,6 +415,8 @@ Performs preprocessing for the asset query. This API is used when user authentic
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
@@ -471,6 +485,8 @@ Performs preprocessing for the asset query. This API is used when user authentic
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                  |
 | ------ | -------- | ---- | ------------------------------------------------------ |
 | query  | [AssetMap](#assetmap) | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.|
@@ -533,6 +549,8 @@ Queries one or more assets. If user authentication is required for the access to
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
@@ -605,6 +623,8 @@ Queries one or more assets. If user authentication is required for the access to
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | query    | [AssetMap](#assetmap)           | Yes  | Attributes of the asset to query, such as the asset alias, access control attributes, and custom data.      |
@@ -675,6 +695,8 @@ Performs postprocessing for the asset query. This API is used when user authenti
 
 **System capability**: SystemCapability.Security.Asset
 
+**Parameters**
+
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | handle | [AssetMap](#assetmap) | Yes  | Handle of the query operation, including the challenge value returned by [asset.preQuery](#assetprequery).|
@@ -729,6 +751,8 @@ Performs postprocessing for the asset query. This API is used when user authenti
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
+
+**Parameters**
 
 | Name| Type    | Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
@@ -821,6 +845,7 @@ Enumerate the keys of asset attributes ([AssetMap](#assetmap)), which are in key
 | UPDATE_TIME<sup>12+</sup> | TagType.BYTES &#124; 0x45 | Data update time, in timestamp.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | Additional operation type.|
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | Whether to encrypt the additional asset information customized by the service.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| GROUP_ID<sup>16+</sup> | TagType.BYTES &#124; 0x48 | Group to which the asset belongs.|
 
 ## Value
 
@@ -832,6 +857,12 @@ Represents the value of each attribute in [AssetMap](#assetmap).
 
 **System capability**: SystemCapability.Security.Asset
 
+| Type   | Description                                            |
+| ------- | ------------------------------------------------|
+| boolean | The value is a Boolean value, that is, **true** or **false**.     |
+| number  | The value is a number. It can be an enumerated value or a numeric value.|
+| Uint8Array | The value is a byte array, and the content is defined by the service.       |
+
 ## AssetMap
 
 type AssetMap = Map\<Tag, Value>
@@ -841,6 +872,10 @@ Represents a set of asset attributes in the form of KV pairs.
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Security.Asset
+
+| Type            | Description                                                             |
+| ---------------- | ------------------------------------------------------------------|
+| Map\<Tag, Value> | The value type is Map. For details about the range of the KV pair, see [Tag](#tag) and [Value](#value).|
 
 ## Accessibility
 

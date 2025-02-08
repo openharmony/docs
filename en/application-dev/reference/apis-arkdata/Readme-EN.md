@@ -11,7 +11,6 @@
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.sendableRelationalStore (Shared RDB Store)](js-apis-data-sendableRelationalStore.md)
   - [@ohos.data.unifiedDataChannel (Unified Data Channel)](js-apis-data-unifiedDataChannel.md)
-  - [@ohos.data.unifiedDataChannel (Uniform Data Channel) (System API)](js-apis-data-unifiedDataChannel-sys.md)
   - [@ohos.data.uniformDataStruct (Uniform Data Structs)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (Uniform Data Definition and Description)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
@@ -44,7 +43,11 @@
   - Header Files
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
+    - [oh_data_value.h](oh__data__value_8h.md)
+    - [oh_data_values.h](oh__data__values_8h.md)
+    - [oh_data_values_buckets.h](oh__data__values__buckets_8h.md)
     - [oh_predicates.h](oh__predicates_8h.md)
+    - [oh_rdb_transaction.h](oh__rdb__transaction_8h.md)
     - [oh_value_object.h](oh__value__object_8h.md)
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
@@ -55,6 +58,7 @@
     - [uds.h](uds_8h.md)
     - [utd.h](utd_8h.md)
     - [oh_preferences.h](oh__preferences_8h.md)
+    - [oh_preferences_err_code.h](oh__preferences__err__code_8h.md)
     - [oh_preferences_option.h](oh__preferences__option_8h.md)
     - [oh_preferences_value.h](oh__preferences__value_8h.md)
   - Structs

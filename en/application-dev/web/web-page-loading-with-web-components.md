@@ -4,7 +4,7 @@
 Page loading is a basic capability of the **Web** component. Depending on the data source, page loading falls into three types: loading of network pages, loading of local pages, and loading of HTML rich text data.
 
 
-If you need to obtain online resources when loading a page, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+If you need to load online resources, declare the network access permission in the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
   ```
   "requestPermissions":[
@@ -129,7 +129,7 @@ To reference a local CSS file when loading a local HTML file, perform the follow
 
 Example of loading local page files in the sandbox:
 
-1. Obtain the sandbox path through the constructed singleton object **GlobalContext**.
+1. To obtain the sandbox path through the constructed singleton object **GlobalContext**, you need to enable [fileAccess](../reference/apis-arkweb/ts-basic-components-web.md#fileaccess) in the application.
 
    ```ts
    // GlobalContext.ets
@@ -171,6 +171,7 @@ Example of loading local page files in the sandbox:
        Column() {
          // Load the files in the sandbox.
          Web({ src: url, controller: this.controller })
+         .fileAccess(true)
        }
      }
    }
@@ -210,7 +211,7 @@ Example of loading local page files in the sandbox:
 
 ## Loading HTML Rich Text Data
 
-The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. This API is applicable if you want to display some page sections instead of the entire page. To load a large number of HTML files, set **baseUrl** to data.
+The **Web** component provides the [loadData()](../reference/apis-arkweb/js-apis-webview.md#loaddata) API for you to load HTML rich text data. If you need to display only some page fragments, you can use this feature to quickly load the page. To load a large number of HTML files, set **baseUrl** to data.
 
 ```ts
 // xxx.ets
@@ -266,160 +267,6 @@ struct WebComponent {
 }
 ```
 
-## Dynamically Creating a Web Component
-**Web** components can be created with commands. Components created in this mode are not immediately mounted to the component tree, that is, they are not presented to users (their state is **Hidden** or **InActive**). You can dynamically mount the components as required in subsequent use. It is recommended that the number of **Web** instances started in the background be less than or equal to 200. 
-
-```ts
-// Carrier ability
-// EntryAbility.ets
-import { createNWeb } from "../pages/common"
-onWindowStageCreate(windowStage: window.WindowStage): void {
-  windowStage.loadContent('pages/Index', (err, data) => {
-    // Dynamically create a Web component (UIContext needs to be passed in). The component can be created at any time after loadContent() is called.
-    createNWeb("https://www.example.com", windowStage.getMainWindowSync().getUIContext());
-    if (err.code) {
-      return;
-    }
-  });
-}
-```
-```ts
-// Create a NodeController instance.
-// common.ets
-import { UIContext, NodeController, BuilderNode, Size, FrameNode } from '@kit.ArkUI';
-import { webview } from '@kit.ArkWeb';
-
-// @Builder contains the specific content of the dynamically created component.
-// Data is an input parameter of encapsulation class.
-class Data{
-  url: string = "https://www.example.com";
-  controller: WebviewController = new webview.WebviewController();
-}
-
-@Builder
-function WebBuilder(data:Data) {
-  Column() {
-    Web({ src: data.url, controller: data.controller })
-      .width("100%")
-      .height("100%")
-  }
-}
-
-let wrap = wrapBuilder<Data[]>(WebBuilder);
-
-// NodeController is used to control and report the behavior of the node on the NodeContainer. This function must be used together with NodeContainer.
-export class myNodeController extends NodeController {
-  private rootnode: BuilderNode<Data[]> | null = null;
-  // This function must be overridden. It is used to build the number of nodes and return the number of nodes mounted to the corresponding NodeContainer.
-  // Call it when the NodeContainer is created or call rebuild() to refresh.
-  makeNode(uiContext: UIContext): FrameNode | null {
-    console.log(" uicontext is undefined : "+ (uiContext === undefined));
-    if (this.rootnode != null) {
-      // Return the FrameNode.
-      return this.rootnode.getFrameNode();
-    }
-    // Return null to detach the dynamic component from the bound node.
-    return null;
-  }
-  // Called when the layout size changes.
-  aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width  +  " height : " + size.height );
-  }
-
-  // Called when the NodeContainer bound to the controller is about to appear.
-  aboutToAppear() {
-    console.log("aboutToAppear");
-  }
-
-  // Called when the NodeContainer bound to the controller is about to disappear.
-  aboutToDisappear() {
-    console.log("aboutToDisappear");
-  }
-
-  // This function is a custom function and can be used as an initialization function.
-  // Initialize BuilderNode through UIContext, and then initialize the content in @Builder through the build API in BuilderNode.
-  initWeb(url:string, uiContext:UIContext, control:WebviewController) {
-    if(this.rootnode != null)
-    {
-      return;
-    }
-    // Create a node. UIContext is required.
-    this.rootnode = new BuilderNode(uiContext);
-    // Create a dynamic Web component.
-    this.rootnode.build(wrap, { url:url, controller:control });
-  }
-}
-// Create a map to save the required NodeController.
-let NodeMap:Map<string, myNodeController | undefined> = new Map();
-// Create a map to save the required WebViewController.
-let controllerMap:Map<string, WebviewController | undefined> = new Map();
-
-// UIContext is required for initialization and needs to be obtained from the ability.
-export const createNWeb = (url: string, uiContext: UIContext) => {
-  // Create a NodeController instance.
-  let baseNode = new myNodeController();
-  let controller = new webview.WebviewController() ;
-  // Initialize the custom Web component.
-  baseNode.initWeb(url, uiContext, controller);
-  controllerMap.set(url, controller)
-  NodeMap.set(url, baseNode);
-}
-// Customize the API for obtaining the NodeController.
-export const getNWeb = (url : string) : myNodeController | undefined => {
-  return NodeMap.get(url);
-}
-```
-```ts
-// Use the Page page of the NodeController.
-// Index.ets
-import { getNWeb } from "./common"
-@Entry
-@Component
-struct Index {
-  build() {
-    Row() {
-      Column() {
-        // NodeContainer is used to bind to the NodeController. A rebuild call triggers makeNode.
-        // The Page page is bound to the NodeController through the NodeContainer API to display the dynamic component.
-        NodeContainer(getNWeb("https://www.example.com"))
-          .height("90%")
-          .width("100%")
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-
-```
-**Common troubleshooting procedure**
-1. Check the network permission configuration of the application.
-
-   Check whether the network permission has been added to the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md).
-   ```ts
-   "requestPermissions":[
-       {
-         "name" : "ohos.permission.INTERNET"
-       }
-     ]
-   ```
-2. Check the logic for binding **NodeContainer** to nodes.
-
-   Check whether the node is added to the component tree. You are advised to add **Text** above the existing **Web** component (see the following example). If **Text** is not displayed when a white screen is displayed, check the binding between **NodeContainer** and the node.
-   ```ts
-   @Builder
-   function WebBuilder(data:Data) {
-     Column() {
-       Text('test')
-       Web({ src: data.url, controller: data.controller })
-         .width("100%")
-         .height("100%")
-     }
-   }
-   ```
-3. Check the visibility of the **Web** component.
-
-   If the entire node has been added to the tree, you can view the [WebPattern::OnVisibleAreaChange](../reference/apis-arkui/arkui-ts/ts-universal-component-visible-area-change-event.md#onvisibleareachange) log to check whether the **Web** component is visible. Invisible **Web** components may cause a white screen.
 ## Samples
 
 The following samples are provided to help you better understand how to develop the **Web** component:

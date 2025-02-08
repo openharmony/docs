@@ -385,46 +385,4 @@ try {
     console.info(`Set input device enable error`);
 }
 ```
-## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
-
-setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
-
-设置是否使能功能键。
-
-**需要权限**：ohos.permission.INPUT_KEYBOARD_CONTROLLER
-
-**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
-
-**系统API**：此接口为系统接口。
-
-**参数**：
-
-| 参数名   | 类型    | 必填 | 说明                      |
-| -------- | ------- | ---- | ------------------------- |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | 是   |  需要设置的功能键id。          |
-| enabled  | boolean | 是   | 设置功能键是开启还是关闭状态。true代表开启状态，false代表关闭状态。 |
-
-**错误码**：
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**示例**：
-
-```js
-try {
-  inputDevice.setInputDeviceEnabled(1, true).then(() => {
-    console.info(`Set capslock state success`);
-  }).catch((error) => {
-    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
-  });
-} catch (error) {
-    console.info(`Set capslock enable error`);
-}
-```
 ## 

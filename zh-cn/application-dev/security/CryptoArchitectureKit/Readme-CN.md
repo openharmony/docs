@@ -82,9 +82,13 @@
     - [消息摘要计算SHA256(C/C++)](crypto-generate-message-digest-ndk.md)
     - [消息摘要计算MD5(ArkTS)](crypto-generate-message-digest-md5.md)
     - [消息摘要计算MD5(C/C++)](crypto-generate-message-digest-md5-ndk.md)
-- [消息认证码计算](crypto-compute-mac.md)
+- 消息认证码<!--crypto-compute-mac-->
+  - [消息认证码计算介绍及算法规格](crypto-compute-mac-overview.md)
+  - [消息认证码计算HMAC](crypto-compute-hmac.md)
+  - [消息认证码计算CMAC](crypto-compute-cmac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
 - 密钥派生
   - [密钥派生介绍及算法规格](crypto-key-derivation-overview.md)
   - [使用PBKDF2进行密钥派生](crypto-key-derivation-using-pbkdf2.md)
   - [使用HKDF进行密钥派生](crypto-key-derivation-using-hkdf.md)
+  - [使用SCRYPT进行密钥派生](crypto-key-derivation-using-scrypt.md)

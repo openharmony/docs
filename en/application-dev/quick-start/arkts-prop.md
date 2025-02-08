@@ -3,6 +3,7 @@
 
 One-way synchronization is supported between an \@Prop decorated variable a variable of its parent component. This means that, an \@Prop decorated variable is mutable, and its changes will not be synchronized to the parent component.
 
+Before reading this topic, you are advised to understand the basic usage of [\@State](./arkts-state.md).
 
 > **NOTE**
 >
@@ -38,11 +39,11 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 ## Variable Transfer/Access Rules
 
-| Transfer/Access    | Description                                      |
-| --------- | ---------------------------------------- |
-| Initialization from the parent component  | Optional if local initialization is used and mandatory otherwise. An @Prop decorated variable can be initialized from a regular variable (whose change does not trigger UI refresh) or an [\@State](arkts-state.md), [\@Link](arkts-link.md), @Prop, [\@Provide](arkts-provide-and-consume.md), [\@Consume](arkts-provide-and-consume.md), [\@ObjectLink](arkts-observed-and-objectlink.md), [\@StorageLink](arkts-appstorage.md#storagelink), [\@StorageProp](arkts-appstorage.md#storageprop), [\@LocalStorageLink](arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](arkts-localstorage.md#localstorageprop) decorated variable in its parent component.|
-| Child component initialization | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
-| Access| Private, accessible only within the component.               |
+| Transfer/Access         | Description                                                        |
+| ------------------ | ------------------------------------------------------------ |
+| Initialization from the parent component    | If initialization is performed locally, this operation is optional. The initialization behavior is the same as that in [\@State](./arkts-state.md#). If local initialization cannot be performed, this operation is mandatory. An @Prop decorated variable can be initialized from a regular variable (whose change does not trigger UI re-render). or an [\@State](arkts-state.md), [\@Link](arkts-link.md), @Prop, [\@Provide](arkts-provide-and-consume.md), [\@Consume](arkts-provide-and-consume.md), [\@ObjectLink](arkts-observed-and-objectlink.md), [\@StorageLink](arkts-appstorage.md#storagelink), [\@StorageProp](arkts-appstorage.md#storageprop), [\@LocalStorageLink](arkts-localstorage.md#localstoragelink), or [\@LocalStorageProp](arkts-localstorage.md#localstorageprop) decorated variable in its parent component.|
+| Child component initialization  | \@Prop can be used for initialization of a regular variable or \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Access| Private, accessible only within the component.                |
 
 
   **Figure 1** Initialization rule 
@@ -73,8 +74,8 @@ For the \@Prop decorated variable of a child component, the change synchronizati
 
 - When the decorated variable is of the Object or class type, the value changes of properties at the first layer, that is, the properties that **Object.keys(observedObject)** returns, can be observed.
 
-```
-class ClassA {
+```ts
+class Info {
   public value: string;
   constructor(value: string) {
     this.value = value;
@@ -82,35 +83,35 @@ class ClassA {
 }
 class Model {
   public value: string;
-  public a: ClassA;
-  constructor(value: string, a: ClassA) {
+  public info: Info;
+  constructor(value: string, info: Info) {
     this.value = value;
-    this.a = a;
+    this.info = info;
   }
 }
 
 @Prop title: Model;
 // The value changes at the first layer can be observed.
-this.title.value = 'Hi'
+this.title.value = 'Hi';
 // The value changes at the second layer cannot be observed.
-this.title.a.value = 'ArkUi' 
+this.title.info.value = 'ArkUI';
 ```
 
 In the scenarios of nested objects, if a class is decorated by \@Observed, the value changes of the class property can be observed. For details, see [@Prop Nesting Scenario](#prop-nesting-scenario).
 
 - When the decorated variable is of the array type, the value change of the array as well as the addition, deletion, and update of array items can be observed.
 
-```
+```ts
 // Assume that the object decorated by @State is an array.
-@Prop title: string[]
+@Prop title: string[];
 // The value change of the array itself can be observed.
-this.title = ['1']
+this.title = ['1'];
 // The value change of array items can be observed.
-this.title[0] = '2'
+this.title[0] = '2';
 // The deletion of array items can be observed.
-this.title.pop()
+this.title.pop();
 // The addition of array items can be observed.
-this.title.push('3')
+this.title.push('3');
 ```
 
 For synchronization between \@State and \@Prop decorated variables:
@@ -132,10 +133,10 @@ struct DateComponent {
       Button('child update the new date')
         .margin(10)
         .onClick(() => {
-          this.selectedDate = new Date('2023-09-09')
+          this.selectedDate = new Date('2023-09-09');
         })
       Button(`child increase the year by 1`).onClick(() => {
-        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1)
+        this.selectedDate.setFullYear(this.selectedDate.getFullYear() + 1);
       })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -156,12 +157,12 @@ struct ParentComponent {
       Button('parent update the new date')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate = new Date('2023-07-07')
+          this.parentSelectedDate = new Date('2023-07-07');
         })
       Button('parent increase the day by 1')
         .margin(10)
         .onClick(() => {
-          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1)
+          this.parentSelectedDate.setDate(this.parentSelectedDate.getDate() + 1);
         })
       DatePicker({
         start: new Date('1970-1-1'),
@@ -207,8 +208,6 @@ In this example, the \@Prop decorated **count** variable in the **CountDownCompo
 
 
 Updating **countDownStartValue** in the **ParentComponent** will update the value of the @Prop decorated **count**.
-
-
 
 ```ts
 @Component
@@ -274,8 +273,6 @@ In the preceding example:
 
 The \@State decorated array an array item in the parent component can be used as data source to initialize and update a @Prop decorated variable. In the following example, the \@State decorated array **arr** in the parent component **Index** initializes the \@Prop decorated **value** variable in the child component **Child**.
 
-
-
 ```ts
 @Component
 struct Child {
@@ -285,7 +282,7 @@ struct Child {
     Text(`${this.value}`)
       .fontSize(50)
       .onClick(() => {
-        this.value++
+        this.value++;
       })
   }
 }
@@ -328,8 +325,6 @@ Initial render creates six instances of the **Child** component. Each \@Prop dec
 
 Click **1** six times, 2 five times, and **3** four times on the page. The local values of all variables are then changed to **7**.
 
-
-
 ```
 7
 7
@@ -342,8 +337,6 @@ Click **1** six times, 2 five times, and **3** four times on the page. The local
 
 
 After **replace entire arr** is clicked, the following information is displayed:
-
-
 
 ```
 3
@@ -506,7 +499,7 @@ struct Library {
           if (this.allBooks.length > 0){
             this.allBooks.shift();
           } else {
-            console.log("length <= 0")
+            console.log("length <= 0");
           }
         })
       Button("Mark read for everyone")
@@ -574,7 +567,7 @@ struct MyComponent {
           .margin({ left: 30, top: 12 })
           .fontColor('#FFFFFF, 90%')
           .onClick(() => {
-            this.customCounter2++
+            this.customCounter2++;
           })
       }
 
@@ -609,7 +602,7 @@ struct MainProgram {
             .margin({ left: 30, top: 12 })
             .fontColor('#FFFFFF, 90%')
             .onClick(() => {
-              this.mainCounter++
+              this.mainCounter++;
             })
         }
       }
@@ -627,7 +620,7 @@ In nesting scenario, each layer must be decorated with @Observed, and each layer
 ```ts
 // The following is the data structure of a nested class object.
 @Observed
-class ClassA {
+class Son {
   public title: string;
 
   constructor(title: string) {
@@ -636,13 +629,13 @@ class ClassA {
 }
 
 @Observed
-class ClassB {
+class Father {
   public name: string;
-  public a: ClassA;
+  public son: Son;
 
-  constructor(name: string, a: ClassA) {
+  constructor(name: string, son: Son) {
     this.name = name;
-    this.a = a;
+    this.son = son;
   }
 }
 ```
@@ -652,29 +645,29 @@ The following component hierarchy presents a data structure of nested @Prop.
 ```ts
 @Entry
 @Component
-struct Parent {
-  @State votes: ClassB = new ClassB('Hello', new ClassA('world'))
+struct Person {
+  @State person: Father = new Father('Hello', new Son('world'));
 
   build() {
     Column() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
-        Button('change ClassB name')
+        Button('change Father name')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF, 90%')
           .onClick(() => {
-            this.votes.name = "aaaaa"
+            this.person.name = "Hi";
           })
-        Button('change ClassA title')
+        Button('change Son title')
           .width(312)
           .height(40)
           .margin(12)
           .fontColor('#FFFFFF, 90%')
           .onClick(() => {
-            this.votes.a.title = "wwwww"
+            this.person.son.title = "ArkUI";
           })
-        Text(this.votes.name)
+        Text(this.person.name)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -684,9 +677,9 @@ struct Parent {
           .textAlign(TextAlign.Center)
           .fontColor('#e6000000')
           .onClick(() => {
-            this.votes.name = 'Bye'
+            this.person.name = 'Bye';
           })
-        Text(this.votes.a.title)
+        Text(this.person.son.title)
           .fontSize(16)
           .margin(12)
           .width(312)
@@ -695,9 +688,9 @@ struct Parent {
           .borderRadius(20)
           .textAlign(TextAlign.Center)
           .onClick(() => {
-            this.votes.a.title = "openHarmony"
+            this.person.son.title = "openHarmony";
           })
-        Child1({ vote1: this.votes.a })
+        Child({ child: this.person.son })
       }
 
     }
@@ -707,12 +700,12 @@ struct Parent {
 
 
 @Component
-struct Child1 {
-  @Prop vote1: ClassA = new ClassA('');
+struct Child {
+  @Prop child: Son = new Son('');
 
   build() {
     Column() {
-      Text(this.vote1.title)
+      Text(this.child.title)
         .fontSize(16)
         .margin(12)
         .width(312)
@@ -721,7 +714,7 @@ struct Child1 {
         .borderRadius(20)
         .textAlign(TextAlign.Center)
         .onClick(() => {
-          this.vote1.title = 'Bye Bye'
+          this.child.title = 'Bye Bye';
         })
     }
   }
@@ -736,12 +729,12 @@ struct Child1 {
 >
 > Since API version 11, \@Prop supports the Map type.
 
-In this example, the **value** variable is of the **Map<number, string>** type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
+In this example, the **value** variable is of the Map<number, string> type. When the button is clicked, the value of **message** changes, and the UI is re-rendered.
 
 ```ts
 @Component
 struct Child {
-  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+  @Prop value: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Column() {
@@ -751,19 +744,19 @@ struct Child {
         Divider()
       })
       Button('child init map').onClick(() => {
-        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]])
+        this.value = new Map([[0, "a"], [1, "b"], [3, "c"]]);
       })
       Button('child set new one').onClick(() => {
-        this.value.set(4, "d")
+        this.value.set(4, "d");
       })
       Button('child clear').onClick(() => {
-        this.value.clear()
+        this.value.clear();
       })
       Button('child replace the first one').onClick(() => {
-        this.value.set(0, "aa")
+        this.value.set(0, "aa");
       })
       Button('child delete the first one').onClick(() => {
-        this.value.delete(0)
+        this.value.delete(0);
       })
     }
   }
@@ -772,8 +765,8 @@ struct Child {
 
 @Entry
 @Component
-struct MapSample2 {
-  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]])
+struct MapSample {
+  @State message: Map<number, string> = new Map([[0, "a"], [1, "b"], [3, "c"]]);
 
   build() {
     Row() {
@@ -798,7 +791,7 @@ In this example, the **message** variable is of the **Set\<number\>** type. When
 ```ts
 @Component
 struct Child {
-  @Prop message: Set<number> = new Set([0, 1, 2, 3, 4])
+  @Prop message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Column() {
@@ -807,16 +800,16 @@ struct Child {
         Divider()
       })
       Button('init set').onClick(() => {
-        this.message = new Set([0, 1, 2, 3, 4])
+        this.message = new Set([0, 1, 2, 3, 4]);
       })
       Button('set new one').onClick(() => {
-        this.message.add(5)
+        this.message.add(5);
       })
       Button('clear').onClick(() => {
-        this.message.clear()
+        this.message.clear();
       })
       Button('delete the first one').onClick(() => {
-        this.message.delete(0)
+        this.message.delete(0);
       })
     }
     .width('100%')
@@ -826,8 +819,8 @@ struct Child {
 
 @Entry
 @Component
-struct SetSample11 {
-  @State message: Set<number> = new Set([0, 1, 2, 3, 4])
+struct SetSample {
+  @State message: Set<number> = new Set([0, 1, 2, 3, 4]);
 
   build() {
     Row() {
@@ -865,13 +858,13 @@ struct Child {
       Button('Child change animals into tigers')
         .onClick(() => {
           // Assign the value of an instance of Animals.
-          this.animal = new Animals("Tiger")
+          this.animal = new Animals("Tiger");
         })
 
       Button('Child change animal to undefined')
         .onClick(() => {
           // Assign the value undefined.
-          this.animal = undefined
+          this.animal = undefined;
         })
 
     }.width('100%')
@@ -893,16 +886,16 @@ struct Zoo {
         .onClick(() => {
           // Determine the animal type and update the property.
           if (this.animal instanceof Animals) {
-            this.animal.name = "Dog"
+            this.animal.name = "Dog";
           } else {
-            console.info('num is undefined, cannot change property')
+            console.info('num is undefined, cannot change property');
           }
         })
 
       Button('Parents change animal to undefined')
         .onClick(() => {
           // Assign the value undefined.
-          this.animal = undefined
+          this.animal = undefined;
         })
     }
   }
@@ -1140,3 +1133,4 @@ struct Child {
   }
 }
 ```
+
