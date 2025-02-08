@@ -14,6 +14,7 @@
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
+  - [@ohos.data.intelligence (智慧数据平台)](js-apis-data-intelligence.md)
   <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
   <!--DelEnd-->
@@ -89,4 +90,5 @@
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [用户首选项错误码](errorcode-preferences.md)
   - [统一数据管理框架错误码](errorcode-udmf.md)
+  - [智慧数据平台错误码](errorcode-intelligence.md)
 
