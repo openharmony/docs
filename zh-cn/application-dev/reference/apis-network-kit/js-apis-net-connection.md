@@ -1824,7 +1824,7 @@ connection.clearCustomDnsRules().then(() => {
 
 setPacUrl(pacUrl: string): void
 
-设置系统级自动代理配置（PAC）脚本地址。该接口不会对脚本地址进行校验。
+设置系统级自动代理配置（PAC）脚本地址。
 
 **需要权限**：ohos.permission.SET_PAC_URL
 
@@ -1834,7 +1834,7 @@ setPacUrl(pacUrl: string): void
 
 | 参数名   | 类型                                              | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| pacUrl   | string                                            | 是   | 需要设置的PAC脚本地址。                                        |
+| pacUrl   | string                                            | 是   | 需要设置的PAC脚本地址，该接口不会对脚本地址进行校验。             |
 
 **错误码：**
 
