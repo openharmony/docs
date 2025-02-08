@@ -4312,7 +4312,7 @@ Allows an application to initiate screen recording without displaying the user a
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 15
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
