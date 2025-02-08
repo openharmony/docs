@@ -189,7 +189,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API 10-11为false；从API 12开始为true。
 
 **起始版本**：10
 
@@ -713,7 +713,7 @@
 
 允许应用进行用户公共证书凭据的安装、卸载、授权等操作。
 
-**权限级别**：API version 9-11为system_basic；从API version 12开始为system_core。
+**权限级别**：API 9-11为system_basic；从API 12开始为system_core。
 
 **授权方式**：system_grant
 
@@ -1141,7 +1141,7 @@
 
 **起始版本**：7
 
-**变更信息**：API version 7-11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 7-11为system_core；从API 12开始为system_basic。
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -2647,7 +2647,7 @@
 
 **起始版本**：11
 
-**变更信息**：API version 11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 11为system_core；从API 12开始为system_basic。
 
 ### ohos.permission.RECORD_VOICE_CALL
 
@@ -4347,7 +4347,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API 10-11为false；从API 12开始为true
 
 **起始版本**：10
 
