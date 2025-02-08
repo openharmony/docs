@@ -299,7 +299,7 @@ typedef enum NetConn_ErrorCode NetConn_ErrorCode
 
 网络连接返回值错误码。
 
-**起始版本：** 11
+**起始版本：** 15
 
 
 ## 枚举类型说明
@@ -367,7 +367,6 @@ enum NetConn_ErrorCode
 | NETCONN_PARAMETER_ERROR  | 参数检查失败。           |
 | NETCONN_OPERATION_FAILED | 连接服务失败。           |
 | NETCONN_INTERNAL_ERROR   | 系统内部错误。           |
-
 
 
 ## 函数说明
