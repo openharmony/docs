@@ -25,10 +25,10 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
-| TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。<br>**类别：** 应用子窗口。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。<br>**类别：** 系统窗口。                              |
-| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**类别：** 系统窗口。   |
-| TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>**类别：** 系统窗口。   |
+| TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。<br>                                                   |
+| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。<br>                              |
+| TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>   |
+| TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br>   |
 
 ## Configuration<sup>9+</sup>
 
@@ -2092,9 +2092,9 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能系统窗口获取避让区后，该方法亦对系统窗口生效。
+获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
-该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建系统窗口并调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，对系统窗口做布局避让时可调用该接口。
+该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md/#windowtype7)的类型窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，对系统窗口做布局避让时可调用该接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2136,9 +2136,9 @@ try {
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
-设置当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，系统窗口主要包括：[WindowType](#windowtype7)表格中系统窗口类别的窗口类型和[@ohos.window (窗口)(系统接口) WindowType](https://gitee.com/openharmony/docs/blob/b64947ea02239df97dc7bd6600640c975be1a77c/zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md#windowtype7)表格中的所有窗口类型。非系统窗口调用该接口返回错误码1300004。
+创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md/#windowtype7)的类型窗口时，可以调用该接口使能窗口获取[避让区](#avoidarea7)。
 
-该接口一般适用于此场景：应用于创建的系统窗口希望获取避让区或监听避让区变化时，需要在创建该系统窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)获取避让区。
+该接口一般适用于此场景：应用于创建上述类型窗口并希望获取避让区信息时，需要在创建窗口后调用该接口设置开启系统窗口避让区，再调用[getWindowAvoidArea()](#getwindowavoidarea9)或[on('avoidAreaChange')](#onavoidareachange9)获取或监听避让区。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2165,6 +2165,15 @@ setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  decorEnabled: true,
+  ctx: this.context
+};
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
@@ -2173,7 +2182,7 @@ try {
       return;
     }
     windowClass = data;
-    windowClass.setUIContent("pages/Index");
+    windowClass.setUIContent("pages/Test");
     let enabled = true;
     let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
     promise.then(() => {
@@ -2192,7 +2201,7 @@ try {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取当前系统窗口是否可以获取窗口内容的[避让区](#avoidarea7)，系统窗口主要包括：[WindowType](#windowtype7)表格中系统窗口类别的窗口类型和[@ohos.window (窗口)(系统接口) WindowType](https://gitee.com/openharmony/docs/blob/b64947ea02239df97dc7bd6600640c975be1a77c/zh-cn/application-dev/reference/apis-arkui/js-apis-window-sys.md#windowtype7)表格中的所有窗口类型。非系统窗口调用该接口返回错误码1300004。
+获取悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md/#windowtype7)的类型窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -2218,6 +2227,15 @@ isSystemAvoidAreaEnabled(): boolean
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  decorEnabled: true,
+  ctx: this.context
+};
 try {
   window.createWindow(config, (err: BusinessError, data) => {
     const errCode: number = err.code;
@@ -2226,7 +2244,7 @@ try {
       return;
     }
     windowClass = data;
-    windowClass.setUIContent("pages/Index");
+    windowClass.setUIContent("pages/Test");
     let enabled = true;
     let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
     promise.then(() => {
@@ -3494,7 +3512,7 @@ try {
 
 on(type: 'avoidAreaChange', callback: Callback&lt;AvoidAreaOptions&gt;): void
 
-开启当前应用窗口系统规避区变化的监听。调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能系统窗口获取避让区后，该方法亦对系统窗口生效。
+开启当前应用窗口系统规避区变化的监听。创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md/#windowtype7)的类型窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能获取避让区后，该方法亦生效。
 <!--RP7-->常见的触发避让区回调的场景如下：窗口在全屏模式、悬浮模式、分屏模式之间的切换；应用窗口旋转；多折叠设备在屏幕折叠态和展开态之间的切换；应用窗口在多设备之间的流转。<!--RP7End-->
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
