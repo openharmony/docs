@@ -4,9 +4,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-## onAxisEvent<sup>16+</sup>
+## onAxisEvent
 
 onAxisEvent(event: (event: AxisEvent) => void): T
 
@@ -38,31 +38,51 @@ onAxisEvent(event: (event: AxisEvent) => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                 | 说明                                                     |
-| ------------------- | ------------------------------------ | -------------------------------------------------------- |
-| action              | [AxisAction](#axisaction)            | 轴事件的动作类型                                    |
-| x                   | number                               | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp  |
-| y                   | number                               | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp  |
-| windowX             | number                               | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp |
-| windowY             | number                               | 鼠标光标相对于当前窗口左上角的Y坐标。<br/>单位：vp |
-| displayX            | number                               | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
-| displayY            | number                               | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
-| scrollStep          | number                               | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
-| propagation                   | () => void | 激活事件冒泡。   |
-| getHorizontalAxisValue        | () => number | 获取此次轴事件的水平轴值。 |
-| getVerticalAxisValue          | () => number | 获取此次轴事件的垂直轴值。 |
+### 属性
 
-## AxisAction
+| 名称            | 类型  | 只读|可选                              | 说明                                                    |
+| ------------------- | -----------------------|------|----- | -------------------------------------------------------- |
+| action              | [AxisAction](ts-appendix-enums.md#axisaction16)           | 是   | 否   | 轴事件的动作类型                   |
+| x                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素左边缘的X坐标。<br/>单位：vp  |
+| y                   | number                 | 是   | 否   | 鼠标光标相对于被点击元素上边缘的Y坐标。<br/>单位：vp  |
+| windowX             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的X坐标。<br/>单位：vp |
+| windowY             | number                 | 是   | 否   | 鼠标光标相对于当前窗口左上角的Y坐标。<br/>单位：vp |
+| displayX            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的X坐标。<br/>单位：vp |
+| displayY            | number                 | 是   | 否   | 鼠标光标相对于当前屏幕左上角的Y坐标。<br/>单位：vp |
+| scrollStep          | number                 | 是   | 否   | 鼠标轴滚动步长配置。<br/> **说明：**&nbsp;仅支持鼠标滚轮，取值范围0~65535。|
+| propagation         | Callback\<void>        | 是   | 否   | 激活事件冒泡。   |
 
-定义轴事件的轴动作类型。
+### getHorizontalAxisValue
 
-| 名称    | 值   | 说明                               |
-| ------- | ---- | ---------------------------------- |
-| NONE   | 0    | 无轴事件。 |
-| BEGIN  | 1    | 轴事件开始。 |
-| UPDATE | 2    | 轴事件触发中。 |
-| END    | 3    | 轴事件结束。 |
-| CANCEL | 4    | 轴事件取消。 |
+getHorizontalAxisValue(): number
+
+获取此次轴事件的水平轴值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型              |说明       |
+| ------- | --------------------------------- | 
+| number | 水平轴值。 |
+
+### getVerticalAxisValue
+
+getVerticalAxisValue(): number
+
+获取此次轴事件的水平轴值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型              |说明       |
+| ------- | --------------------------------- | 
+| number | 垂直轴值。 |
 
 ## 示例
 
