@@ -1092,7 +1092,7 @@ NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
 
 **描述**
 
-设置系统级自动代理配置（PAC）脚本地址。该接口不会对脚本地址进行校验。
+设置系统级自动代理配置（PAC）脚本地址。
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
@@ -1102,7 +1102,7 @@ NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pacUrl   |  需要设置的PAC脚本地址。 |
+| pacUrl   |  需要设置的PAC脚本地址，该接口不会对脚本地址进行校验。 |
 
 **返回：**
 
@@ -1114,7 +1114,7 @@ NETCONN_PARAMETER_ERROR - 参数错误.
 
 NETCONN_OPERATION_FAILED - 无法连接到服务.
 
-NETCONN_INTERNAL_ERROR - 内部错误.
+NETCONN_INTERNAL_ERROR - 内部错误，表示设置脚本地址失败.
 
 **Permission：**
 
@@ -1139,7 +1139,7 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| pacUrl   |  需要设置的PAC脚本地址。 |
+| pacUrl   |  获取的PAC脚本地址。 |
 
 **返回：**
 
@@ -1149,4 +1149,4 @@ NETCONN_PERMISSION_DENIED - 参数错误.
 
 NETCONN_OPERATION_FAILED - 无法连接到服务.
 
-NETCONN_INTERNAL_ERROR - 内部错误.
+NETCONN_INTERNAL_ERROR - 内部错误，表示未设置脚本地址或查询失败.
