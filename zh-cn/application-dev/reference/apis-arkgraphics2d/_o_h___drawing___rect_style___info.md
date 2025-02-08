@@ -34,7 +34,7 @@ uint32_t OH_Drawing_RectStyle_Info::color
 ```
 **描述**
 
-矩形框的颜色
+矩形框的颜色。
 
 
 ### leftBottomRadius
@@ -44,7 +44,7 @@ double OH_Drawing_RectStyle_Info::leftBottomRadius
 ```
 **描述**
 
-矩形框的左下半径
+矩形框的左下半径。
 
 
 ### leftTopRadius
@@ -54,7 +54,7 @@ double OH_Drawing_RectStyle_Info::leftTopRadius
 ```
 **描述**
 
-矩形框的左上半径
+矩形框的左上半径。
 
 
 ### rightBottomRadius
@@ -64,7 +64,7 @@ double OH_Drawing_RectStyle_Info::rightBottomRadius
 ```
 **描述**
 
-矩形框的右下半径
+矩形框的右下半径。
 
 
 ### rightTopRadius
@@ -74,4 +74,4 @@ double OH_Drawing_RectStyle_Info::rightTopRadius
 ```
 **描述**
 
-矩形框的右上半径
+矩形框的右上半径。
