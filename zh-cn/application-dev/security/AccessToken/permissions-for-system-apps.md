@@ -4347,7 +4347,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API 10-11为false；从API 12开始为true
+**ACL使能**：API 10-11为false；从API 12开始为true。
 
 **起始版本**：10
 
