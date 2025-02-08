@@ -3,7 +3,7 @@
 
 ## 概述
 
-用于描述位占位符跨度的结构体
+用于描述占位符跨度的结构体。
 
 **起始版本：** 11
 
@@ -35,7 +35,7 @@ OH_Drawing_PlaceholderVerticalAlignment OH_Drawing_PlaceholderSpan::alignment
 
 **描述**
 
-占位符对齐方式
+占位符对齐方式。
 
 
 ### baseline
@@ -46,7 +46,7 @@ OH_Drawing_TextBaseline OH_Drawing_PlaceholderSpan::baseline
 
 **描述**
 
-占位符基线
+占位符基线。
 
 
 ### baselineOffset
@@ -57,7 +57,7 @@ double OH_Drawing_PlaceholderSpan::baselineOffset
 
 **描述**
 
-占位符基线偏移
+占位符基线偏移。
 
 
 ### height
@@ -68,7 +68,7 @@ double OH_Drawing_PlaceholderSpan::height
 
 **描述**
 
-占位符高度
+占位符高度。
 
 
 ### width
@@ -79,4 +79,4 @@ double OH_Drawing_PlaceholderSpan::width
 
 **描述**
 
-占位符宽度
+占位符宽度。
