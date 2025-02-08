@@ -1277,7 +1277,7 @@ measureText(text: string): TextMetrics
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
-            offContext.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
+            offContext.fillText("width:" + offContext.measureText("Hello World!").width, 20, 200)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1288,7 +1288,7 @@ measureText(text: string): TextMetrics
   }
   ```
 
-  ![zh-cn_image_0000001194032480](figures/zh-cn_image_0000001194032480.png)
+  ![offscreencanvasrenderingcontext2d-measureText](figures/offscreencanvasrenderingcontext2d-measureText.jpg)
 
 
 ### stroke
