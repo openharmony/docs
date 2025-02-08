@@ -196,7 +196,7 @@ intelligence.splitText(text, splitConfig)
 
 ## Image
 
-type Image = string;
+type Image = string
 
 表示图片的URI地址，对应为string类型。
 
