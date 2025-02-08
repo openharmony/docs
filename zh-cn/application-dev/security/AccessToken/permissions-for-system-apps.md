@@ -4637,9 +4637,11 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API 10-11为false；从API 12开始为true。
+**ACL使能**：true
 
 **起始版本**：10
+
+**变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
 ### ohos.permission.RESTRICT_APPLICATION_ACTIVE
 
