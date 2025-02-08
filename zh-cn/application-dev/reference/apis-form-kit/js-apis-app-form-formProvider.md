@@ -27,7 +27,7 @@ setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&l
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | 是   | 卡片标识。                               |
-| minute | number | 是   | 指定多久之后更新。单位分钟，大于等于5。     |
+| minute | number | 是   | 指定多久之后更新。大于等于5(单位min)。     |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。 |
 
 **错误码：**
@@ -80,7 +80,7 @@ setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 | 参数名 | 类型    | 必填 | 说明                                   |
 | ------ | ------ | ---- | ------------------------------------- |
 | formId | string | 是   | 卡片标识。                               |
-| minute | number | 是   | 指定多久之后更新。单位分钟，大于等于5。     |
+| minute | number | 是   | 指定多久之后更新。大于等于5(单位min)。     |
 
 **返回值：**
 
