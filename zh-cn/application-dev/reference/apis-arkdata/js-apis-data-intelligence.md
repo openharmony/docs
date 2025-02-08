@@ -18,52 +18,6 @@
 import { intelligence } from '@kit.ArkData';
 ```
 
-## ModelConfig
-
-管理嵌入模型的配置。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
-
-| 名称     | 类型              | 必填 | 说明                                                         |
-| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| version    | [ModelVersion](#modelversion)           | 是   |模型的版本。 |
-| isNpuAvailable | boolean                | 是   | 指示是否使用 NPU，true表示使用，false表示不使用。 |
-| cachePath | string                | 否   | 如果使用 NPU 进行加速，则需要本地路径进行模型缓存。格式为/xxx/xxx/xxx/，长度上限为512 tokens。默认值为""。 |
-
-## ModelVersion
-
-模型版本枚举。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
-
-| 名称       | 值                   | 说明                   |
-| ---------- | ---------- | ---------------------- |
-| BASIC_MODEL     | 0     | 基本嵌入模型版本。   |
-
-## Image
-
-type Image = string;
-
-表示string类型的数据。
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-| 类型                         | 说明                  |
-| ---------------------------- | --------------------- |
-| string | 图像的类型的URI地址。长度上限为512 tokens。 |
-
-## SplitConfig
-
-管理文本块进程配置。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
-
-| 名称     | 类型              | 必填 | 说明                                                         |
-| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
-| size    |       number     | 是   |块的最大大小，可取任意值。 |
-| overlapRatio | number                | 是   | 相邻块之间的重叠比率。范围为0-1。 |
-
-
 ## intelligence.getTextEmbeddingModel
 
 getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
@@ -76,13 +30,13 @@ getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt;
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置。 |
+| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置信息。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;[TextEmbedding](#textembedding)&gt; | 返回TextEmbedding对象。 |
+| Promise&lt;[TextEmbedding](#textembedding)&gt; | Promise对象，返回文本嵌入模型对象。 |
 
 **错误码：**
 
@@ -102,19 +56,168 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let config:intelligence.ModelConfig = {
   version:1,
   isNpuAvailable:false,
-  cachePath:"test"
+  cachePath:"/data"
 }
 let textEmbedding:intelligence.TextEmbedding;
 
 intelligence.getTextEmbeddingModel(config)
   .then((data:intelligence.TextEmbedding) => {
-    console.info("get result success");
+    console.info("Succeeded in getTextModel");
     textEmbedding = data;
   })
   .catch((err:BusinessError) => {
-    console.error("get result filed" + err.code);
+    console.error("Failed to getTextModel and code is " + err.code);
   })
 ```
+
+## intelligence.getImageEmbeddingModel
+
+getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
+
+获取图像嵌入模型。使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填 | 说明                               |
+| ------------ | --------------------------------------- | ---- | :--------------------------------- |
+| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置信息。 |
+
+**返回值**：
+
+| 类型                          | 说明                                 |
+| ----------------------------- | ------------------------------------ |
+| Promise&lt;[ImageEmbedding](#imageembedding)&gt; | Promise对象，返回图像嵌入模型对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
+
+| **错误码ID** | **错误信息**                                                                                                                                    |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801          | Capability not supported. |
+| 31300000     | Inner error. |                                                                                                                                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let config:intelligence.ModelConfig = {
+    version:1,
+    isNpuAvailable:false,
+    cachePath:"/data"
+}
+let imageEmbedding:intelligence.ImageEmbedding;
+
+intelligence.getImageEmbeddingModel(config)
+  .then((data:intelligence.ImageEmbedding) => {
+    console.info("Succeeded in getImageModel");
+    imageEmbedding = data;
+  })
+  .catch((err:BusinessError) => {
+    console.error("Failed to getImageModel and code is " + err.code);
+  })
+```
+
+## intelligence.splitText
+
+splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt;
+
+获取文本的分块。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填 | 说明                               |
+| ------------ | --------------------------------------- | ---- | :--------------------------------- |
+| text | string | 是   | 用于分块的文本，可取任意值。 |
+| config | [SplitConfig](#splitconfig) | 是   | 文本分块的配置信息。 |
+
+**返回值**：
+
+| 类型                          | 说明                                 |
+| ----------------------------- | ------------------------------------ |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回分块结果的数组对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
+
+| **错误码ID** | **错误信息**                                                                                                                                    |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801          | Capability not supported. |
+| 31300000     | Inner error. |                                                                                                                                    |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let splitConfig:intelligence.SplitConfig = {
+  size:10,
+  overlapRatio:0.1
+}
+let text = 'text';
+
+intelligence.splitText(text, splitConfig)
+  .then((data:Array<string>) => {
+    console.info("Succeeded in splitText");
+  })
+  .catch((err:BusinessError) => {
+    console.error("Failed to splitText and code is " + err.code);
+  })
+```
+
+## ModelConfig
+
+管理嵌入模型的配置信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
+| 名称     | 类型              | 必填 | 说明                                                         |
+| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
+| version    | [ModelVersion](#modelversion)           | 是   |模型的版本。 |
+| isNpuAvailable | boolean                | 是   | 指示是否使用NPU加速向量化过程，true表示使用，false表示不使用。 |
+| cachePath | string                | 否   | 如果使用NPU进行加速，则需要本地路径进行模型缓存。格式为/xxx/xxx/xxx，xxx为路径地址，例如"/data"。长度上限为512个字符。默认值为""。 |
+
+## ModelVersion
+
+模型版本枚举。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
+| 名称       | 值                   | 说明                   |
+| ---------- | ---------- | ---------------------- |
+| BASIC_MODEL     | 0     | 基本嵌入模型版本。   |
+
+## Image
+
+type Image = string;
+
+表示图片/图像的URI地址，对应为string类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 类型                         | 说明                  |
+| ---------------------------- | --------------------- |
+| string | 图像类型的URI地址。长度上限为512个字符。 |
+
+## SplitConfig
+
+管理文本分块的配置信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
+
+| 名称     | 类型              | 必填 | 说明                                                         |
+| ---------- | --------------------- | ---- | ------------------------------------------------------------ |
+| size    |       number     | 是   |分块的最大大小，取值为非负整数。 |
+| overlapRatio | number                | 是   | 相邻分块之间的重叠比率。范围为[0,1]，0表示重叠比率最低，1表示重叠比率最高。 |
+
 
 ## TextEmbedding
 
@@ -154,10 +257,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 textEmbedding.loadModel()
   .then(() => {
-    console.info("load success");
+    console.info("Succeeded in load");
   })
   .catch((err:BusinessError) => {
-    console.error("load filed " + err.code);
+    console.error("Failed to load and code is " + err.code);
   })
 ```
 
@@ -191,10 +294,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 textEmbedding.releaseModel()
   .then(() => {
-    console.info("release success");
+    console.info("Succeeded in release");
   })
   .catch((err:BusinessError) => {
-    console.error("release filed " + err.code);
+    console.error("Failed to release and code is " + err.code);
   })
 ```
 
@@ -212,13 +315,13 @@ getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt;
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| text | string | 是   | 嵌入模型的输入文本。长度上限为512 tokens。 |
+| text | string | 是   | 嵌入模型的输入文本。长度上限为512个字符。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回向量化结果的数组对象。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回向量化结果的数组对象。 |
 
 **错误码：**
 
@@ -239,11 +342,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 textEmbedding.loadModel();
 let text = 'text';
 textEmbedding.getEmbedding(text)
-  .then((data:Array&lt;number&gt;) => {
-    console.info("getEmbedding success");
+  .then((data:Array<number>) => {
+    console.info("Succeeded in getEmbedding");
   })
   .catch((err:BusinessError) => {
-    console.error("getEmbedding filed " + err.code);
+    console.error("Failed to getEmbedding and code is " + err.code);
   })
 ```
 
@@ -261,13 +364,13 @@ getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;numb
 
 | 参数名       | 类型                                    | 必填 | 说明                               |
 | ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| batchTexts | Array&lt;string&gt; | 是   | 嵌入模型的文本输入批次。单个文本长度上限为512 tokens。 |
+| batchTexts | Array&lt;string&gt; | 是   | 嵌入模型的文本输入批次。单个文本长度上限为512个字符。 |
 
 **返回值**：
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | 返回向量化结果的数组对象。 |
+| Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | Promise对象，返回向量化结果的数组对象。 |
 
 **错误码：**
 
@@ -288,63 +391,11 @@ import { BusinessError } from '@kit.BasicServicesKit';
 textEmbedding.loadModel();
 let batchTexts = ['text1','text2'];
 textEmbedding.getEmbedding(batchTexts)
-  .then((data:Array&lt;Array&lt;number&gt;&gt;) => {
-    console.info("getEmbedding success");
+  .then((data:Array<Array<number>>) => {
+    console.info("Succeeded in getEmbedding");
   })
   .catch((err:BusinessError) => {
-    console.error("getEmbedding filed " + err.code);
-  })
-```
-
-## intelligence.getImageEmbeddingModel
-
-getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt;
-
-获取图像嵌入模型。使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
-
-**参数：**
-
-| 参数名       | 类型                                    | 必填 | 说明                               |
-| ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| config | [ModelConfig](#modelconfig) | 是   | 嵌入模型的配置。 |
-
-**返回值**：
-
-| 类型                          | 说明                                 |
-| ----------------------------- | ------------------------------------ |
-| Promise&lt;[ImageEmbedding](#imageembedding)&gt; | 返回ImageEmbedding对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
-
-| **错误码ID** | **错误信息**                                                                                                                                    |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801          | Capability not supported. |
-| 31300000     | Inner error. |                                                                                                                                    |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let config:intelligence.ModelConfig = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"image"
-   }
-let imageembedding:intelligence.ImageEmbedding;
-
-intelligence.getImageEmbeddingModel(config)
-  .then((data:intelligence.ImageEmbedding) => {
-    console.info("get result success");
-    imageembedding = data;
-  })
-  .catch((err:BusinessError) => {
-    console.error("get result filed" + err.code);
+    console.error("Failed to getEmbedding and code is " + err.code);
   })
 ```
 
@@ -384,12 +435,12 @@ loadModel(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageembedding.loadModel()
+imageEmbedding.loadModel()
   .then(() => {
-    console.info("load success");
+    console.info("Succeeded in load");
   })
   .catch((err:BusinessError) => {
-    console.error("load filed " + err.code);
+    console.error("Failed to load and code is " + err.code);
   })
 ```
 
@@ -421,12 +472,12 @@ releaseModel(): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageembedding.releaseModel()
+imageEmbedding.releaseModel()
   .then(() => {
-    console.info("release success");
+    console.info("Succeeded in release");
   })
   .catch((err:BusinessError) => {
-    console.error("release filed " + err.code);
+    console.error("Failed to release and code is " + err.code);
   })
 ```
 
@@ -450,7 +501,7 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 
 | 类型                          | 说明                                 |
 | ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | 返回向量化结果的数组对象。 |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise对象，返回向量化结果的数组对象。 |
 
 **错误码：**
 
@@ -467,65 +518,13 @@ getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-imageembedding.loadModel();
+imageEmbedding.loadModel();
 let image = 'image uri';
-textEmbedding.getEmbedding(image)
-  .then((data:Array&lt;number&gt;) => {
-    console.info("getEmbedding success");
+imageEmbedding.getEmbedding(image)
+  .then((data:Array<number>) => {
+    console.info("Succeeded in getEmbedding");
   })
   .catch((err:BusinessError) => {
-    console.error("getEmbedding filed " + err.code);
-  })
-```
-
-## intelligence.splitText
-
-splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt;
-
-获取文本的分块。
-
-**系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
-
-**参数：**
-
-| 参数名       | 类型                                    | 必填 | 说明                               |
-| ------------ | --------------------------------------- | ---- | :--------------------------------- |
-| text | string | 是   | 用于分块的文本，可取任意值。 |
-| config | [SplitConfig](#splitconfig) | 是   | 文本分块的配置。 |
-
-**返回值**：
-
-| 类型                          | 说明                                 |
-| ----------------------------- | ------------------------------------ |
-| Promise&lt;Array&lt;string&gt;&gt; | 返回分块结果的数组对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[智慧数据平台错误码](errorcode-intelligence.md)。
-
-| **错误码ID** | **错误信息**                                                                                                                                    |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801          | Capability not supported. |
-| 31300000     | Inner error. |                                                                                                                                    |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let config:intelligence.SplitConfig = {
-  size:10,
-  overlapRatio:0.1
-}
-
-let text = 'text';
-
-intelligence.splitText(text, config)
-  .then((data:Array&lt;string&gt;) => {
-    console.info("get result success");
-  })
-  .catch((err:BusinessError) => {
-    console.log("get result filed" + err.code);
+    console.error("Failed to getEmbedding and code is " + err.code);
   })
 ```
