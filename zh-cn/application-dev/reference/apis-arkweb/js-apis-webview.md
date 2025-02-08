@@ -9805,6 +9805,42 @@ struct WebComponent {
 }
 ```
 
+### saveCookieSync<sup>15+</sup>
+
+static saveCookieSync(): void
+
+将当前存在内存中的cookie同步保存到磁盘中。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  build() {
+    Column() {
+      Button('saveCookieSync')
+        .onClick(() => {
+          try {
+            webview.WebCookieManager.saveCookieSync();
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
