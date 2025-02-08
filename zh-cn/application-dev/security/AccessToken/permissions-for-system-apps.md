@@ -4323,7 +4323,7 @@
 
 **ACL使能**：true
 
-**起始版本**：16
+**起始版本**：15
 
 ### ohos.permission.SEND_REMOTE_MESSAGE
 
