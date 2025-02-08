@@ -475,7 +475,7 @@ Error: install parse native so failed.
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains\{版本号}目录下。
+2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
     ```
     若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
     ```
