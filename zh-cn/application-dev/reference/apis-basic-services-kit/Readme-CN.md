@@ -128,5 +128,6 @@
   - [升级错误码](errorcode-update.md)
   <!--Del--> 
   - [锁屏服务错误码](errorcode-screenlock.md)
+  - [设备证明错误码](errorcode-deviceAttest.md)
   - [智能语音错误码](errorcode-intelligentVoice.md)
   <!--DelEnd-->
