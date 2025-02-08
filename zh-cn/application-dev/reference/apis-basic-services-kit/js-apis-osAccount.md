@@ -2784,6 +2784,85 @@ getOsAccountName(): Promise&lt;string&gt;
   }
   ```
 
+### getForegroundOsAccountLocalId<sup>15+</sup>
+
+getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
+
+获取前台系统账号的ID。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                   | 说明                                                               |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象。返回前台系统账号的ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 12300001 | The system service works abnormally. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
+      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
+    }).catch((err: BusinessError) => {
+      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### getOsAccountDomainInfo<sup>15+</sup>
+
+getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
+
+获取指定系统账号关联的域账号信息。
+
+**需要权限：** ohos.permission.GET_DOMAIN_ACCOUNTS 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，以上权限允许系统应用和企业应用进行申请。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                   | 说明                                                               |
+| ---------------------- | ----------------------------------------------------------------- |
+| Promise&lt;DomainAccountInfo&gt; | Promise对象。返回与指定系统账号关联的域账号信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 201 | Permission denied. |
+| 401 | Parameter error. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | OS account not found. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let localId: number = 100;
+  accountManager.getOsAccountDomainInfo(localId).then((domainAccountInfo: osAccount.DomainAccountInfo) => {
+    if (domainAccountInfo === null) {
+      console.log('The target OS account is not a domain account.')
+    } else {
+      console.log('getOsAccountDomainInfo domain: ' + domainAccountInfo.domain);
+      console.log('getOsAccountDomainInfo accountName: ' + domainAccountInfo.accountName);
+    }
+  }).catch((err: BusinessError) => {
+    console.log('getOsAccountDomainInfo err: ' + JSON.stringify(err));
+  })
+  ```
+
 ## OsAccountInfo
 
 表示系统账号信息。
