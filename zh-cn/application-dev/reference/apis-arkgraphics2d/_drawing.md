@@ -15566,8 +15566,8 @@ void OH_Drawing_TextStyleDestroyFontFamilies (char** fontFamilies, size_t num)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| char\*\* | 指向字体家族名称列表的指针。 |
-| size_t | 字体家族名称列表的长度。 |
+| fontFamilies | 指向字体家族名称列表的指针。 |
+| num | 字体家族名称列表的长度。 |
 
 
 ### OH_Drawing_TextStyleDestroyFontFeatures()
