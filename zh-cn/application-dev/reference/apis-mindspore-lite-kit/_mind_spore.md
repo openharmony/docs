@@ -27,7 +27,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | 张量数组结构体，用于存储张量数组指针和张量数组长度 |
+| [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) | 张量数组结构体，用于存储张量数组指针和张量数组长度。 |
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) | 回调函数中传入的算子信息。 |
 
@@ -49,17 +49,17 @@
 | [OH_AI_Format](#oh_ai_format) | MSTensor保存的数据支持的排列格式。 |
 | [OH_AI_ModelHandle](#oh_ai_modelhandle) | 指向模型对象的指针。 |
 | [OH_AI_TrainCfgHandle](#oh_ai_traincfghandle) | 指向训练配置对象的指针。 |
-| [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度 |
+| [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度。 |
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**OH_AI_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | 回调函数中传入的算子信息。 |
 | [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) inputs, const [OH_AI_TensorHandleArray](_o_h___a_i___tensor_handle_array.md) outputs, const [OH_AI_CallBackParam](_o_h___a_i___call_back_param.md) kernel_Info) | 回调函数指针。 |
-| [OH_AI_Status](#oh_ai_status) | MindSpore的状态码 |
-| [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄 |
-| [OH_AI_ModelType](#oh_ai_modeltype) | 模型文件的类型 |
+| [OH_AI_Status](#oh_ai_status) | MindSpore的状态码。 |
+| [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄。 |
+| [OH_AI_ModelType](#oh_ai_modeltype) | 模型文件的类型。 |
 | [OH_AI_DeviceType](#oh_ai_devicetype) | 设备类型信息，包含了目前支持的设备类型。 |
-| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) | NNRt管理的硬件设备类型 |
-| [OH_AI_PerformanceMode](#oh_ai_performancemode) | NNRt硬件的工作性能模式 |
-| [OH_AI_Priority](#oh_ai_priority) | NNRt推理任务优先级 |
+| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) | NNRt管理的硬件设备类型。 |
+| [OH_AI_PerformanceMode](#oh_ai_performancemode) | NNRt硬件的工作性能模式。 |
+| [OH_AI_Priority](#oh_ai_priority) | NNRt推理任务优先级。 |
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) | 训练优化等级。 |
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) | 量化类型信息。 |
 | [NNRTDeviceDesc](#nnrtdevicedesc) | NNRt设备信息描述，包含设备ID，设备名称等信息。 |
@@ -72,13 +72,13 @@
 | -------- | -------- |
 | [OH_AI_DataType](#oh_ai_datatype) {<br/>OH_AI_DATATYPE_UNKNOWN = 0, OH_AI_DATATYPE_OBJECTTYPE_STRING = 12, OH_AI_DATATYPE_OBJECTTYPE_LIST = 13, OH_AI_DATATYPE_OBJECTTYPE_TUPLE = 14,<br/>OH_AI_DATATYPE_OBJECTTYPE_TENSOR = 17, OH_AI_DATATYPE_NUMBERTYPE_BEGIN = 29, OH_AI_DATATYPE_NUMBERTYPE_BOOL = 30, OH_AI_DATATYPE_NUMBERTYPE_INT8 = 32,<br/>OH_AI_DATATYPE_NUMBERTYPE_INT16 = 33, OH_AI_DATATYPE_NUMBERTYPE_INT32 = 34, OH_AI_DATATYPE_NUMBERTYPE_INT64 = 35, OH_AI_DATATYPE_NUMBERTYPE_UINT8 = 37,<br/>OH_AI_DATATYPE_NUMBERTYPE_UINT16 = 38, OH_AI_DATATYPE_NUMBERTYPE_UINT32 = 39, OH_AI_DATATYPE_NUMBERTYPE_UINT64 = 40, OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 = 42,<br/>OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 = 43, OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 = 44, OH_AI_DATATYPE_NUMBERTYPE_END = 46, OH_AI_DataTypeInvalid = INT32_MAX<br/>} | MSTensor保存的数据支持的类型。 |
 | [OH_AI_Format](#oh_ai_format) {<br/>OH_AI_FORMAT_NCHW = 0, OH_AI_FORMAT_NHWC = 1, OH_AI_FORMAT_NHWC4 = 2, OH_AI_FORMAT_HWKC = 3,<br/>OH_AI_FORMAT_HWCK = 4, OH_AI_FORMAT_KCHW = 5, OH_AI_FORMAT_CKHW = 6, OH_AI_FORMAT_KHWC = 7,<br/>OH_AI_FORMAT_CHWK = 8, OH_AI_FORMAT_HW = 9, OH_AI_FORMAT_HW4 = 10, OH_AI_FORMAT_NC = 11,<br/>OH_AI_FORMAT_NC4 = 12, OH_AI_FORMAT_NC4HW4 = 13, OH_AI_FORMAT_NCDHW = 15, OH_AI_FORMAT_NWC = 16,<br/>OH_AI_FORMAT_NCW = 17<br/>} | MSTensor保存的数据支持的排列格式。 |
-| [OH_AI_CompCode](#oh_ai_compcode) { <br/>OH_AI_COMPCODE_CORE = 0x00000000u, <br/>OH_AI_COMPCODE_MD = 0x10000000u, <br/>OH_AI_COMPCODE_ME = 0x20000000u, <br/>OH_AI_COMPCODE_MC = 0x30000000u, <br/>OH_AI_COMPCODE_LITE = 0xF0000000u<br/> } | MindSpore不同组件的代码。
-| [OH_AI_Status](#oh_ai_status) {<br/>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br/>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br/>} | MindSpore的状态码 |
-| [OH_AI_ModelType](#oh_ai_modeltype) { OH_AI_MODELTYPE_MINDIR = 0, OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型 |
+| [OH_AI_CompCode](#oh_ai_compcode) { <br/>OH_AI_COMPCODE_CORE = 0x00000000u, <br/>OH_AI_COMPCODE_MD = 0x10000000u, <br/>OH_AI_COMPCODE_ME = 0x20000000u, <br/>OH_AI_COMPCODE_MC = 0x30000000u, <br/>OH_AI_COMPCODE_LITE = 0xF0000000u<br/> } | MindSpore不同组件的代码。 |
+| [OH_AI_Status](#oh_ai_status) {<br/>OH_AI_STATUS_SUCCESS = 0, OH_AI_STATUS_CORE_FAILED = OH_AI_COMPCODE_CORE \| 0x1, OH_AI_STATUS_LITE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -1), OH_AI_STATUS_LITE_NULLPTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -2),<br/>OH_AI_STATUS_LITE_PARAM_INVALID = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -3), OH_AI_STATUS_LITE_NO_CHANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -4), OH_AI_STATUS_LITE_SUCCESS_EXIT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -5), OH_AI_STATUS_LITE_MEMORY_FAILED = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -6),<br/>OH_AI_STATUS_LITE_NOT_SUPPORT = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -7), OH_AI_STATUS_LITE_THREADPOOL_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -8), OH_AI_STATUS_LITE_UNINITIALIZED_OBJ = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -9), OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -100),<br/>OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR, OH_AI_STATUS_LITE_REENTRANT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -102), OH_AI_STATUS_LITE_GRAPH_FILE_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -200), OH_AI_STATUS_LITE_NOT_FIND_OP = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -300),<br/>OH_AI_STATUS_LITE_INVALID_OP_NAME = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -301), OH_AI_STATUS_LITE_INVALID_OP_ATTR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -302), OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE, OH_AI_STATUS_LITE_FORMAT_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -400),<br/>OH_AI_STATUS_LITE_INFER_ERROR = OH_AI_COMPCODE_LITE \| (0x0FFFFFFF &amp; -500), OH_AI_STATUS_LITE_INFER_INVALID, OH_AI_STATUS_LITE_INPUT_PARAM_INVALID<br/>} | MindSpore的状态码。 |
+| [OH_AI_ModelType](#oh_ai_modeltype) { OH_AI_MODELTYPE_MINDIR = 0, OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型。 |
 | [OH_AI_DeviceType](#oh_ai_devicetype) {<br/>OH_AI_DEVICETYPE_CPU = 0, OH_AI_DEVICETYPE_GPU, OH_AI_DEVICETYPE_KIRIN_NPU, OH_AI_DEVICETYPE_NNRT = 60,<br/>OH_AI_DEVICETYPE_INVALID = 100<br/>} | 设备类型信息，包含了目前支持的设备类型。 |
-| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | NNRt管理的硬件设备类型 |
-| [OH_AI_PerformanceMode](#oh_ai_performancemode) {<br/>OH_AI_PERFORMANCE_NONE = 0, OH_AI_PERFORMANCE_LOW = 1, OH_AI_PERFORMANCE_MEDIUM = 2, OH_AI_PERFORMANCE_HIGH = 3,<br/>OH_AI_PERFORMANCE_EXTREME = 4<br/>} | NNRt硬件的工作性能模式 |
-| [OH_AI_Priority](#oh_ai_priority) { OH_AI_PRIORITY_NONE = 0, OH_AI_PRIORITY_LOW = 1, OH_AI_PRIORITY_MEDIUM = 2, OH_AI_PRIORITY_HIGH = 3 } | NNRt推理任务优先级 |
+| [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) { OH_AI_NNRTDEVICE_OTHERS = 0, OH_AI_NNRTDEVICE_CPU = 1, OH_AI_NNRTDEVICE_GPU = 2, OH_AI_NNRTDEVICE_ACCELERATOR = 3 } | NNRt管理的硬件设备类型。 |
+| [OH_AI_PerformanceMode](#oh_ai_performancemode) {<br/>OH_AI_PERFORMANCE_NONE = 0, OH_AI_PERFORMANCE_LOW = 1, OH_AI_PERFORMANCE_MEDIUM = 2, OH_AI_PERFORMANCE_HIGH = 3,<br/>OH_AI_PERFORMANCE_EXTREME = 4<br/>} | NNRt硬件的工作性能模式。 |
+| [OH_AI_Priority](#oh_ai_priority) { OH_AI_PRIORITY_NONE = 0, OH_AI_PRIORITY_LOW = 1, OH_AI_PRIORITY_MEDIUM = 2, OH_AI_PRIORITY_HIGH = 3 } | NNRt推理任务优先级。 |
 | [OH_AI_OptimizationLevel](#oh_ai_optimizationlevel) {<br/>OH_AI_KO0 = 0, OH_AI_KO2 = 2, OH_AI_KO3 = 3, OH_AI_KAUTO = 4,<br/>OH_AI_KOPTIMIZATIONTYPE = 0xFFFFFFFF<br/>} | 训练优化等级。 |
 | [OH_AI_QuantizationType](#oh_ai_quantizationtype) { OH_AI_NO_QUANT = 0, OH_AI_WEIGHT_QUANT = 1, OH_AI_FULL_QUANT = 2, OH_AI_UNKNOWN_QUANT_TYPE = 0xFFFFFFFF } | 量化类型信息。 |
 
@@ -331,7 +331,7 @@ typedef enum OH_AI_ModelType OH_AI_ModelType
 
 **描述**
 
-模型文件的类型
+模型文件的类型。
 
 **起始版本：** 9
 
@@ -344,7 +344,7 @@ typedef enum OH_AI_NNRTDeviceType OH_AI_NNRTDeviceType
 
 **描述**
 
-NNRt管理的硬件设备类型
+NNRt管理的硬件设备类型。
 
 **起始版本：** 10
 
@@ -357,7 +357,7 @@ typedef enum OH_AI_PerformanceMode OH_AI_PerformanceMode
 
 **描述**
 
-NNRt硬件的工作性能模式
+NNRt硬件的工作性能模式。
 
 **起始版本：** 10
 
@@ -370,7 +370,7 @@ typedef enum OH_AI_Priority OH_AI_Priority
 
 **描述**
 
-NNRt推理任务优先级
+NNRt推理任务优先级。
 
 **起始版本：** 10
 
@@ -383,7 +383,7 @@ typedef enum OH_AI_Status OH_AI_Status
 
 **描述**
 
-MindSpore的状态码
+MindSpore的状态码。
 
 **起始版本：** 9
 
@@ -396,7 +396,7 @@ typedef void* OH_AI_TensorHandle
 
 **描述**
 
-指向张量对象句柄
+指向张量对象句柄。
 
 **起始版本：** 9
 
@@ -409,7 +409,7 @@ typedef struct OH_AI_TensorHandleArray OH_AI_TensorHandleArray
 
 **描述**
 
-张量数组结构体，用于存储张量数组指针和张量数组长度
+张量数组结构体，用于存储张量数组指针和张量数组长度。
 
 **起始版本：** 9
 
@@ -438,17 +438,17 @@ enum OH_AI_CompCode
 
 **描述**
 
-MindSpore不同组件的代码
+MindSpore不同组件的代码。
 
 **起始版本：** 9
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_COMPCODE_CORE | MindSpore Core的代码 |
+| OH_AI_COMPCODE_CORE | MindSpore Core的代码。 |
 | OH_AI_COMPCODE_MD   | MindSpore MindData的代码。 |
 | OH_AI_COMPCODE_ME   | MindSpore MindExpression的代码。 |
 | OH_AI_COMPCODE_MC   | MindSpore的代码。 |
-| OH_AI_COMPCODE_LITE | MindSpore Lite的代码 |
+| OH_AI_COMPCODE_LITE | MindSpore Lite的代码。 |
 
 
 ### OH_AI_DataType
@@ -465,26 +465,26 @@ MSTensor保存的数据支持的类型。
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_DATATYPE_UNKNOWN | 未知的数据类型 |
-| OH_AI_DATATYPE_OBJECTTYPE_STRING | String数据类型 |
-| OH_AI_DATATYPE_OBJECTTYPE_LIST | List数据类型 |
-| OH_AI_DATATYPE_OBJECTTYPE_TUPLE | Tuple数据类型 |
-| OH_AI_DATATYPE_OBJECTTYPE_TENSOR | TensorList数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_BEGIN | Number类型的起始 |
-| OH_AI_DATATYPE_NUMBERTYPE_BOOL | Bool数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_INT8 | Int8数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_INT16 | 表示Int16数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_INT32 | 表示Int32数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_INT64 | 表示Int64数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_UINT8 | 表示UInt8数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_UINT16 | 表示UInt16数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_UINT32 | 表示UInt32数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_UINT64 | 表示UInt64数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 | 表示Float16数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 | 表示Float32数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 | 表示Float64数据类型 |
-| OH_AI_DATATYPE_NUMBERTYPE_END | 表示Number类型的结尾 |
-| OH_AI_DataTypeInvalid | 表示无效的数据类型 |
+| OH_AI_DATATYPE_UNKNOWN | 未知的数据类型。 |
+| OH_AI_DATATYPE_OBJECTTYPE_STRING | String数据类型。 |
+| OH_AI_DATATYPE_OBJECTTYPE_LIST | List数据类型。 |
+| OH_AI_DATATYPE_OBJECTTYPE_TUPLE | Tuple数据类型。 |
+| OH_AI_DATATYPE_OBJECTTYPE_TENSOR | TensorList数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_BEGIN | Number类型的起始。 |
+| OH_AI_DATATYPE_NUMBERTYPE_BOOL | Bool数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_INT8 | Int8数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_INT16 | 表示Int16数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_INT32 | 表示Int32数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_INT64 | 表示Int64数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_UINT8 | 表示UInt8数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_UINT16 | 表示UInt16数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_UINT32 | 表示UInt32数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_UINT64 | 表示UInt64数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_FLOAT16 | 表示Float16数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_FLOAT32 | 表示Float32数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_FLOAT64 | 表示Float64数据类型。 |
+| OH_AI_DATATYPE_NUMBERTYPE_END | 表示Number类型的结尾。 |
+| OH_AI_DataTypeInvalid | 表示无效的数据类型。 |
 
 
 ### OH_AI_DeviceType
@@ -501,11 +501,11 @@ enum OH_AI_DeviceType
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_DEVICETYPE_CPU | 设备类型是CPU |
-| OH_AI_DEVICETYPE_GPU | 设备类型是GPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持 |
-| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置 |
+| OH_AI_DEVICETYPE_CPU | 设备类型是CPU。 |
+| OH_AI_DEVICETYPE_GPU | 设备类型是GPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持。 |
+| OH_AI_DEVICETYPE_KIRIN_NPU | 设备类型是麒麟NPU<br/>该配置为上游开源社区选项，在OpenHarmony上不支持<br/>如需使用KIRIN_NPU请通过OH_AI_DEVICETYPE_NNRT配置。 |
 | OH_AI_DEVICETYPE_NNRT | 设备类型是NNRt（Neural Network Runtime, 神经网络运行时是面向AI领域的跨芯片推理计算运行时）<br/>OHOS设备范围是[60,80)。 |
-| OH_AI_DEVICETYPE_INVALID | 设备类型无效 |
+| OH_AI_DEVICETYPE_INVALID | 设备类型无效。 |
 
 
 ### OH_AI_Format
@@ -549,14 +549,14 @@ enum OH_AI_ModelType
 
 **描述**
 
-模型文件的类型
+模型文件的类型。
 
 **起始版本：** 9
 
 | 枚举值 | 描述 |
 | -------- | -------- |
 | OH_AI_MODELTYPE_MINDIR | 模型类型是MindIR，对应的模型文件后缀为.ms。 |
-| OH_AI_MODELTYPE_INVALID | 模型类型无效 |
+| OH_AI_MODELTYPE_INVALID | 模型类型无效。 |
 
 
 ### OH_AI_NNRTDeviceType
@@ -567,16 +567,16 @@ enum OH_AI_NNRTDeviceType
 
 **描述**
 
-NNRt管理的硬件设备类型
+NNRt管理的硬件设备类型。
 
 **起始版本：** 10
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_NNRTDEVICE_OTHERS | 设备类型不属于以下3种，则属于其它 |
-| OH_AI_NNRTDEVICE_CPU | CPU设备 |
-| OH_AI_NNRTDEVICE_GPU | GPU设备 |
-| OH_AI_NNRTDEVICE_ACCELERATOR | 特定的加速设备 |
+| OH_AI_NNRTDEVICE_OTHERS | 设备类型不属于以下3种，则属于其它。 |
+| OH_AI_NNRTDEVICE_CPU | CPU设备。 |
+| OH_AI_NNRTDEVICE_GPU | GPU设备。 |
+| OH_AI_NNRTDEVICE_ACCELERATOR | 特定的加速设备。 |
 
 
 ### OH_AI_OptimizationLevel
@@ -597,7 +597,7 @@ enum OH_AI_OptimizationLevel
 | -------- | -------- |
 | OH_AI_KO0 | 无优化等级。 |
 | OH_AI_KO2 | 将网络转换为float16, 保持批量归一化层和损失函数为float32。 |
-| OH_AI_KO3 | 将网络转换为float16, 包括批量归一化层 |
+| OH_AI_KO3 | 将网络转换为float16, 包括批量归一化层。 |
 | OH_AI_KAUTO | 根据设备选择优化等级。 |
 | OH_AI_KOPTIMIZATIONTYPE | 无效优化等级。 |
 
@@ -610,17 +610,17 @@ enum OH_AI_PerformanceMode
 
 **描述**
 
-NNRt硬件的工作性能模式
+NNRt硬件的工作性能模式。
 
 **起始版本：** 10
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_PERFORMANCE_NONE | 无特殊设置 |
-| OH_AI_PERFORMANCE_LOW | 低功耗模式 |
-| OH_AI_PERFORMANCE_MEDIUM | 功耗-性能均衡模式 |
-| OH_AI_PERFORMANCE_HIGH | 高性能模式 |
-| OH_AI_PERFORMANCE_EXTREME | 极致性能模式 |
+| OH_AI_PERFORMANCE_NONE | 无特殊设置。 |
+| OH_AI_PERFORMANCE_LOW | 低功耗模式。 |
+| OH_AI_PERFORMANCE_MEDIUM | 功耗-性能均衡模式。 |
+| OH_AI_PERFORMANCE_HIGH | 高性能模式。 |
+| OH_AI_PERFORMANCE_EXTREME | 极致性能模式。 |
 
 
 ### OH_AI_Priority
@@ -631,16 +631,16 @@ enum OH_AI_Priority
 
 **描述**
 
-NNRt推理任务优先级
+NNRt推理任务优先级。
 
 **起始版本：** 10
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_PRIORITY_NONE | 无优先级偏好 |
-| OH_AI_PRIORITY_LOW | 低优先级任务 |
-| OH_AI_PRIORITY_MEDIUM | 中优先级任务 |
-| OH_AI_PRIORITY_HIGH | 高优先级 |
+| OH_AI_PRIORITY_NONE | 无优先级偏好。 |
+| OH_AI_PRIORITY_LOW | 低优先级任务。 |
+| OH_AI_PRIORITY_MEDIUM | 中优先级任务。 |
+| OH_AI_PRIORITY_HIGH | 高优先级。 |
 
 
 ### OH_AI_QuantizationType
@@ -659,10 +659,10 @@ enum OH_AI_QuantizationType
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_NO_QUANT | 不做量化 |
-| OH_AI_WEIGHT_QUANT | 权重量化 |
-| OH_AI_FULL_QUANT | 全量化 |
-| OH_AI_UNKNOWN_QUANT_TYPE | 无效量化类型 |
+| OH_AI_NO_QUANT | 不做量化。 |
+| OH_AI_WEIGHT_QUANT | 权重量化。 |
+| OH_AI_FULL_QUANT | 全量化。 |
+| OH_AI_UNKNOWN_QUANT_TYPE | 无效量化类型。 |
 
 
 ### OH_AI_Status
@@ -673,35 +673,35 @@ enum OH_AI_Status
 
 **描述**
 
-MindSpore的状态码
+MindSpore的状态码。
 
 **起始版本：** 9
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_STATUS_SUCCESS | 通用的成功状态码 |
-| OH_AI_STATUS_CORE_FAILED | MindSpore Core 失败状态码 |
-| OH_AI_STATUS_LITE_ERROR | MindSpore Lite 异常状态码 |
-| OH_AI_STATUS_LITE_NULLPTR | MindSpore Lite 空指针状态码 |
-| OH_AI_STATUS_LITE_PARAM_INVALID | MindSpore Lite 参数异常状态码 |
-| OH_AI_STATUS_LITE_NO_CHANGE | MindSpore Lite 未改变状态码 |
-| OH_AI_STATUS_LITE_SUCCESS_EXIT | MindSpore Lite 没有错误但是退出的状态码 |
-| OH_AI_STATUS_LITE_MEMORY_FAILED | MindSpore Lite 内存分配失败的状态码 |
-| OH_AI_STATUS_LITE_NOT_SUPPORT | MindSpore Lite 功能未支持的状态码 |
-| OH_AI_STATUS_LITE_THREADPOOL_ERROR | MindSpore Lite 线程池异常状态码 |
-| OH_AI_STATUS_LITE_UNINITIALIZED_OBJ | MindSpore Lite 未初始化状态码 |
-| OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE | MindSpore Lite 张量溢出错误的状态码 |
-| OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR | MindSpore Lite 输入张量异常的状态码 |
-| OH_AI_STATUS_LITE_REENTRANT_ERROR | MindSpore Lite 重入异常的状态码 |
-| OH_AI_STATUS_LITE_GRAPH_FILE_ERROR | MindSpore Lite 文件异常状态码 |
-| OH_AI_STATUS_LITE_NOT_FIND_OP | MindSpore Lite 未找到算子的状态码 |
-| OH_AI_STATUS_LITE_INVALID_OP_NAME | MindSpore Lite 无效算子状态码 |
-| OH_AI_STATUS_LITE_INVALID_OP_ATTR | MindSpore Lite 无效算子超参数状态码 |
-| OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE | MindSpore Lite 算子执行失败的状态码 |
-| OH_AI_STATUS_LITE_FORMAT_ERROR | MindSpore Lite 张量格式异常状态码 |
-| OH_AI_STATUS_LITE_INFER_ERROR | MindSpore Lite 形状推理异常状态码 |
-| OH_AI_STATUS_LITE_INFER_INVALID | MindSpore Lite 无效的形状推理的状态码 |
-| OH_AI_STATUS_LITE_INPUT_PARAM_INVALID | MindSpore Lite 用户输入的参数无效状态码 |
+| OH_AI_STATUS_SUCCESS | 通用的成功状态码。 |
+| OH_AI_STATUS_CORE_FAILED | MindSpore Core 失败状态码。 |
+| OH_AI_STATUS_LITE_ERROR | MindSpore Lite 异常状态码。 |
+| OH_AI_STATUS_LITE_NULLPTR | MindSpore Lite 空指针状态码。 |
+| OH_AI_STATUS_LITE_PARAM_INVALID | MindSpore Lite 参数异常状态码。 |
+| OH_AI_STATUS_LITE_NO_CHANGE | MindSpore Lite 未改变状态码。 |
+| OH_AI_STATUS_LITE_SUCCESS_EXIT | MindSpore Lite 没有错误但是退出的状态码。 |
+| OH_AI_STATUS_LITE_MEMORY_FAILED | MindSpore Lite 内存分配失败的状态码。 |
+| OH_AI_STATUS_LITE_NOT_SUPPORT | MindSpore Lite 功能未支持的状态码。 |
+| OH_AI_STATUS_LITE_THREADPOOL_ERROR | MindSpore Lite 线程池异常状态码。 |
+| OH_AI_STATUS_LITE_UNINITIALIZED_OBJ | MindSpore Lite 未初始化状态码。 |
+| OH_AI_STATUS_LITE_OUT_OF_TENSOR_RANGE | MindSpore Lite 张量溢出错误的状态码。 |
+| OH_AI_STATUS_LITE_INPUT_TENSOR_ERROR | MindSpore Lite 输入张量异常的状态码。 |
+| OH_AI_STATUS_LITE_REENTRANT_ERROR | MindSpore Lite 重入异常的状态码。 |
+| OH_AI_STATUS_LITE_GRAPH_FILE_ERROR | MindSpore Lite 文件异常状态码。 |
+| OH_AI_STATUS_LITE_NOT_FIND_OP | MindSpore Lite 未找到算子的状态码。 |
+| OH_AI_STATUS_LITE_INVALID_OP_NAME | MindSpore Lite 无效算子状态码。 |
+| OH_AI_STATUS_LITE_INVALID_OP_ATTR | MindSpore Lite 无效算子超参数状态码。 |
+| OH_AI_STATUS_LITE_OP_EXECUTE_FAILURE | MindSpore Lite 算子执行失败的状态码。 |
+| OH_AI_STATUS_LITE_FORMAT_ERROR | MindSpore Lite 张量格式异常状态码。 |
+| OH_AI_STATUS_LITE_INFER_ERROR | MindSpore Lite 形状推理异常状态码。 |
+| OH_AI_STATUS_LITE_INFER_INVALID | MindSpore Lite 无效的形状推理的状态码。 |
+| OH_AI_STATUS_LITE_INPUT_PARAM_INVALID | MindSpore Lite 用户输入的参数无效状态码。 |
 
 
 ## 函数说明
@@ -719,7 +719,7 @@ OH_AI_API void OH_AI_ContextAddDeviceInfo (OH_AI_ContextHandle context, OH_AI_De
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -756,7 +756,7 @@ OH_AI_API void OH_AI_ContextDestroy (OH_AI_ContextHandle * context)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -775,7 +775,7 @@ OH_AI_API bool OH_AI_ContextGetEnableParallel (const OH_AI_ContextHandle context
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -783,7 +783,7 @@ OH_AI_API bool OH_AI_ContextGetEnableParallel (const OH_AI_ContextHandle context
 
 **返回：**
 
-是否支持并行。true 为支持并行, false 为不支持并行。
+是否支持并行。true 为支持并行，false 为不支持并行。
 
 
 ### OH_AI_ContextGetThreadAffinityCoreList()
@@ -798,7 +798,7 @@ OH_AI_API const int32_t* OH_AI_ContextGetThreadAffinityCoreList (const OH_AI_Con
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -822,7 +822,7 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode (const OH_AI_ContextHandle cont
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -830,7 +830,7 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode (const OH_AI_ContextHandle cont
 
 **返回：**
 
-绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为中核优先。
+绑核策略。一共有三种策略，0为不绑核，1为大核优先，2为中核优先。
 
 
 ### OH_AI_ContextGetThreadNum()
@@ -845,7 +845,7 @@ OH_AI_API int32_t OH_AI_ContextGetThreadNum (const OH_AI_ContextHandle context)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -868,7 +868,7 @@ OH_AI_API void OH_AI_ContextSetEnableParallel (OH_AI_ContextHandle context, bool
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -890,7 +890,7 @@ OH_AI_API void OH_AI_ContextSetThreadAffinityCoreList (OH_AI_ContextHandle conte
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -911,7 +911,7 @@ OH_AI_API void OH_AI_ContextSetThreadAffinityMode (OH_AI_ContextHandle context, 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -931,11 +931,11 @@ OH_AI_API void OH_AI_ContextSetThreadNum (OH_AI_ContextHandle context, int32_t t
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| context | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle) |
+| context | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
 | thread_num | 运行时的线程数量。 |
 
 
@@ -951,7 +951,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName (const char * 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -974,7 +974,7 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType (OH_AI_NNRTDev
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -997,7 +997,7 @@ OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs (NNRTDeviceDesc ** desc)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1018,7 +1018,7 @@ OH_AI_API OH_AI_Status OH_AI_DeviceInfoAddExtension (OH_AI_DeviceInfoHandle devi
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1044,11 +1044,11 @@ OH_AI_API OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate (OH_AI_DeviceType device
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| device_type | 设备类型, 具体见[OH_AI_DeviceType](#oh_ai_devicetype)。 |
+| device_type | 设备类型，具体见[OH_AI_DeviceType](#oh_ai_devicetype)。 |
 
 **返回：**
 
@@ -1067,7 +1067,7 @@ OH_AI_API void OH_AI_DeviceInfoDestroy (OH_AI_DeviceInfoHandle * device_info)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1086,7 +1086,7 @@ OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId (const OH_AI_DeviceInfoHandle devic
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1109,7 +1109,7 @@ OH_AI_API OH_AI_DeviceType OH_AI_DeviceInfoGetDeviceType (const OH_AI_DeviceInfo
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1132,7 +1132,7 @@ OH_AI_API bool OH_AI_DeviceInfoGetEnableFP16 (const OH_AI_DeviceInfoHandle devic
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1155,7 +1155,7 @@ OH_AI_API int OH_AI_DeviceInfoGetFrequency (const OH_AI_DeviceInfoHandle device_
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1178,7 +1178,7 @@ OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode (const OH_AI_
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1201,7 +1201,7 @@ OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority (const OH_AI_DeviceInfoHand
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1224,7 +1224,7 @@ OH_AI_API const char* OH_AI_DeviceInfoGetProvider (const OH_AI_DeviceInfoHandle 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1247,7 +1247,7 @@ OH_AI_API const char* OH_AI_DeviceInfoGetProviderDevice (const OH_AI_DeviceInfoH
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1270,7 +1270,7 @@ OH_AI_API void OH_AI_DeviceInfoSetDeviceId (OH_AI_DeviceInfoHandle device_info, 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1290,7 +1290,7 @@ OH_AI_API void OH_AI_DeviceInfoSetEnableFP16 (OH_AI_DeviceInfoHandle device_info
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1310,7 +1310,7 @@ OH_AI_API void OH_AI_DeviceInfoSetFrequency (OH_AI_DeviceInfoHandle device_info,
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1330,7 +1330,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode (OH_AI_DeviceInfoHandle device
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1350,7 +1350,7 @@ OH_AI_API void OH_AI_DeviceInfoSetPriority (OH_AI_DeviceInfoHandle device_info, 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1370,7 +1370,7 @@ OH_AI_API void OH_AI_DeviceInfoSetProvider (OH_AI_DeviceInfoHandle device_info, 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1390,12 +1390,12 @@ OH_AI_API void OH_AI_DeviceInfoSetProviderDevice (OH_AI_DeviceInfoHandle device_
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
 | device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
-| device | 生产商设备名称。例如: CPU。 |
+| device | 生产商设备名称。例如：CPU。 |
 
 
 ### OH_AI_ExportModel()
@@ -1410,7 +1410,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportModel (OH_AI_ModelHandle model, OH_AI_ModelTy
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1424,7 +1424,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportModel (OH_AI_ModelHandle model, OH_AI_ModelTy
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 ### OH_AI_ExportModelBuffer()
 
@@ -1436,7 +1436,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_M
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1451,7 +1451,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportModelBuffer (OH_AI_ModelHandle model, OH_AI_M
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ExportWeightsCollaborateWithMicro()
@@ -1462,11 +1462,11 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro (OH_AI_ModelHandl
 
 **描述**
 
-导出模型权重,只能用于micro推理，仅用于端侧训练。
+导出模型权重，只能用于micro推理，仅用于端侧训练。
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1480,7 +1480,7 @@ OH_AI_API OH_AI_Status OH_AI_ExportWeightsCollaborateWithMicro (OH_AI_ModelHandl
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_GetAllNNRTDeviceDescs()
@@ -1495,7 +1495,7 @@ OH_AI_API NNRTDeviceDesc* OH_AI_GetAllNNRTDeviceDescs (size_t * num)
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1518,7 +1518,7 @@ OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc (const NNRTDeviceDesc * des
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1541,7 +1541,7 @@ OH_AI_API NNRTDeviceDesc* OH_AI_GetElementOfNNRTDeviceDescs (NNRTDeviceDesc * de
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1565,7 +1565,7 @@ OH_AI_API const char* OH_AI_GetNameFromNNRTDeviceDesc (const NNRTDeviceDesc * de
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1588,7 +1588,7 @@ OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc (const NNRTDevice
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1613,7 +1613,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * m
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1625,7 +1625,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * m
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelBuildFromFile()
@@ -1642,7 +1642,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1653,7 +1653,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const 
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelCreate()
@@ -1685,7 +1685,7 @@ OH_AI_API void OH_AI_ModelDestroy (OH_AI_ModelHandle * model)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1704,7 +1704,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetInputByTensorName (const OH_AI_ModelH
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1728,7 +1728,7 @@ OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetInputs (const OH_AI_ModelHandle 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1751,7 +1751,7 @@ OH_AI_API float OH_AI_ModelGetLearningRate (OH_AI_ModelHandle model)
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1774,7 +1774,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName (const OH_AI_Model
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1798,7 +1798,7 @@ OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetOutputs (const OH_AI_ModelHandle
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1821,7 +1821,7 @@ OH_AI_API bool OH_AI_ModelGetTrainMode (OH_AI_ModelHandle model)
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1844,7 +1844,7 @@ OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetWeights (OH_AI_ModelHandle model
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1867,7 +1867,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelPredict (OH_AI_ModelHandle model, const OH_AI_
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1879,7 +1879,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelPredict (OH_AI_ModelHandle model, const OH_AI_
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelResize()
@@ -1894,7 +1894,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelResize (OH_AI_ModelHandle model, const OH_AI_T
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1905,7 +1905,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelResize (OH_AI_ModelHandle model, const OH_AI_T
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelSetLearningRate()
@@ -1920,15 +1920,15 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetLearningRate (OH_AI_ModelHandle model, floa
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| learning_rate | 学习率 |
+| learning_rate | 学习率。 |
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelSetTrainMode()
@@ -1943,7 +1943,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetTrainMode (OH_AI_ModelHandle model, bool tr
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1952,7 +1952,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetTrainMode (OH_AI_ModelHandle model, bool tr
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelSetupVirtualBatch()
@@ -1967,7 +1967,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetupVirtualBatch (OH_AI_ModelHandle model, in
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -1978,7 +1978,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelSetupVirtualBatch (OH_AI_ModelHandle model, in
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_ModelUpdateWeights()
@@ -1993,7 +1993,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights (OH_AI_ModelHandle model, const 
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2001,7 +2001,7 @@ OH_AI_API OH_AI_Status OH_AI_ModelUpdateWeights (OH_AI_ModelHandle model, const 
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_RunStep()
@@ -2016,7 +2016,7 @@ OH_AI_API OH_AI_Status OH_AI_RunStep (OH_AI_ModelHandle model, const OH_AI_Kerne
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2026,7 +2026,7 @@ OH_AI_API OH_AI_Status OH_AI_RunStep (OH_AI_ModelHandle model, const OH_AI_Kerne
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_TensorClone()
@@ -2041,7 +2041,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorClone (OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2064,12 +2064,12 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char * name, OH_AI_DataTy
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
-| name | 张量名称 |
-| type | 张量的数据类型 |
+| name | 张量名称。 |
+| type | 张量的数据类型。 |
 | shape | 张量的维度数组。 |
 | shape_num | 张量维度数组长度。 |
 | data | 指向数据的指针。 |
@@ -2091,7 +2091,7 @@ OH_AI_API OH_AI_AllocatorHandle OH_AI_TensorGetAllocator(OH_AI_TensorHandle tens
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2114,7 +2114,7 @@ OH_AI_API void OH_AI_TensorDestroy (OH_AI_TensorHandle * tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2133,7 +2133,7 @@ OH_AI_API const void* OH_AI_TensorGetData (const OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2156,7 +2156,7 @@ OH_AI_API size_t OH_AI_TensorGetDataSize (const OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2179,7 +2179,7 @@ OH_AI_API OH_AI_DataType OH_AI_TensorGetDataType (const OH_AI_TensorHandle tenso
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2202,7 +2202,7 @@ OH_AI_API int64_t OH_AI_TensorGetElementNum (const OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2225,7 +2225,7 @@ OH_AI_API OH_AI_Format OH_AI_TensorGetFormat (const OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2248,7 +2248,7 @@ OH_AI_API void* OH_AI_TensorGetMutableData (const OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2271,7 +2271,7 @@ OH_AI_API const char* OH_AI_TensorGetName (const OH_AI_TensorHandle tensor)
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2294,7 +2294,7 @@ OH_AI_API const int64_t* OH_AI_TensorGetShape (const OH_AI_TensorHandle tensor, 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2317,7 +2317,7 @@ OH_AI_API OH_AI_Status OH_AI_TensorSetAllocator(OH_AI_TensorHandle tensor, OH_AI
 
 **起始版本：** 12
 
-**参数:**
+**参数：**
 
 | 名称      | 描述                 |
 | --------- | -------------------- |
@@ -2341,7 +2341,7 @@ OH_AI_API void OH_AI_TensorSetData (OH_AI_TensorHandle tensor, void * data )
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2361,7 +2361,7 @@ OH_AI_API void OH_AI_TensorSetDataType (OH_AI_TensorHandle tensor, OH_AI_DataTyp
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2381,7 +2381,7 @@ OH_AI_API void OH_AI_TensorSetFormat (OH_AI_TensorHandle tensor, OH_AI_Format fo
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2401,7 +2401,7 @@ OH_AI_API void OH_AI_TensorSetName (OH_AI_TensorHandle tensor, const char * name
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2421,7 +2421,7 @@ OH_AI_API void OH_AI_TensorSetShape (OH_AI_TensorHandle tensor, const int64_t * 
 
 **起始版本：** 9
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2442,7 +2442,7 @@ OH_AI_API OH_AI_Status OH_AI_TensorSetUserData (OH_AI_TensorHandle tensor, void 
 
 **起始版本：** 10
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2484,7 +2484,7 @@ OH_AI_API void OH_AI_TrainCfgDestroy (OH_AI_TrainCfgHandle * train_cfg)
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2503,7 +2503,7 @@ OH_AI_API char** OH_AI_TrainCfgGetLossName (OH_AI_TrainCfgHandle train_cfg, size
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2527,7 +2527,7 @@ OH_AI_API OH_AI_OptimizationLevel OH_AI_TrainCfgGetOptimizationLevel (OH_AI_Trai
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2550,7 +2550,7 @@ OH_AI_API void OH_AI_TrainCfgSetLossName (OH_AI_TrainCfgHandle train_cfg, const 
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2571,7 +2571,7 @@ OH_AI_API void OH_AI_TrainCfgSetOptimizationLevel (OH_AI_TrainCfgHandle train_cf
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2591,7 +2591,7 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuild (OH_AI_ModelHandle model, const voi
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2604,7 +2604,7 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuild (OH_AI_ModelHandle model, const voi
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
 
 
 ### OH_AI_TrainModelBuildFromFile()
@@ -2619,7 +2619,7 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuildFromFile (OH_AI_ModelHandle model, c
 
 **起始版本：** 11
 
-**参数:**
+**参数：**
 
 | 名称 | 描述 |
 | -------- | -------- |
@@ -2631,4 +2631,4 @@ OH_AI_API OH_AI_Status OH_AI_TrainModelBuildFromFile (OH_AI_ModelHandle model, c
 
 **返回：**
 
-枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若返回OH_AI_Status::OH_AI_STATUS_SUCCESS则证明创建成功。
+枚举类型的状态码[OH_AI_Status](#oh_ai_status)，若成功返回OH_AI_STATUS_SUCCESS，失败则返回具体错误码。
