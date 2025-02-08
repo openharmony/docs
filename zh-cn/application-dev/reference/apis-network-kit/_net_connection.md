@@ -289,6 +289,19 @@ typedef struct NetConn_NetSpecifier NetConn_NetSpecifier
 **起始版本：** 12
 
 
+### NetConn_ErrorCode
+
+```
+typedef enum NetConn_ErrorCode NetConn_ErrorCode
+```
+
+**描述**
+
+网络连接返回值错误码。
+
+**起始版本：** 11
+
+
 ## 枚举类型说明
 
 
@@ -333,6 +346,28 @@ enum NetConn_NetCap
 | NETCONN_NET_CAPABILITY_NOT_VPN | 非VPN。 | 
 | NETCONN_NET_CAPABILITY_VALIDATED | 已验证。 | 
 | NETCONN_NET_CAPABILITY_CHECKING_CONNECTIVITY  | 检测连通性中。<br/>起始版本：12。 | 
+
+
+### NetConn_ErrorCode
+
+```
+enum NetConn_ErrorCode
+```
+
+**描述**
+
+网络连接返回值错误码。
+
+**起始版本：** 15
+
+|         枚举值           |         描述            |
+| ------------------------ | ----------------------- |
+| NETCONN_SUCCESS          | 成功。              |
+| NETCONN_PERMISSION_DENIED| 权限校验失败。           |
+| NETCONN_PARAMETER_ERROR  | 参数检查失败。           |
+| NETCONN_OPERATION_FAILED | 连接服务失败。           |
+| NETCONN_INTERNAL_ERROR   | 系统内部错误。           |
+
 
 
 ## 函数说明
