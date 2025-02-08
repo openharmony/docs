@@ -72,7 +72,7 @@ getHorizontalAxisValue(): number
 
 getVerticalAxisValue(): number
 
-获取此次轴事件的水平轴值。
+获取此次轴事件的垂直轴值。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
