@@ -17,7 +17,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [drawing_bitmap.h](drawing__bitmap_8h.md) | 文件中定义了与位图相关的功能函数 | 
+| [drawing_bitmap.h](drawing__bitmap_8h.md) | 文件中定义了与位图相关的功能函数。 | 
 | [drawing_brush.h](drawing__brush_8h.md) | 文件中定义了与画刷相关的功能函数。 | 
 | [drawing_canvas.h](drawing__canvas_8h.md) | 文件中定义了与画布相关的功能函数。画布自带一个黑色，开启抗锯齿，不具备其他任何样式的默认画刷，当且仅当画布中主动设置的画刷和画笔都不存在时生效。非录制类型画布会将绘制指令直接绘制到绑定的位图中，录制类型画布会将绘制指令录制下来用于后续的回放。 | 
 | [drawing_color.h](drawing__color_8h.md) | 文件中定义了与颜色相关的功能函数。 | 
@@ -34,7 +34,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_mask_filter.h](drawing__mask__filter_8h.md) | 声明与绘图模块中的对象相关的函数。 | 
 | [drawing_matrix.h](drawing__matrix_8h.md) | 文件中定义了与矩阵相关的功能函数。 | 
 | [drawing_memory_stream.h](drawing__memory__stream_8h.md) | 文件中定义了与内存流相关的功能函数。 | 
-| [drawing_path.h](drawing__path_8h.md) | 文件中定义了与自定义路径相关的功能函数 | 
+| [drawing_path.h](drawing__path_8h.md) | 文件中定义了与自定义路径相关的功能函数。 | 
 | [drawing_path_effect.h](drawing__path__effect_8h.md) | 文件中定义了与路径效果相关的功能函数。 | 
 | [drawing_pen.h](drawing__pen_8h.md) | 文件中定义了与画笔相关的功能函数。 | 
 | [drawing_pixel_map.h](drawing__pixel__map_8h.md) | 声明与绘图模块中的像素图对象相关的函数。 | 
@@ -49,7 +49,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [drawing_shadow_layer.h](drawing__shadow__layer_8h.md) | 声明与绘图模块中的阴影层对象相关的函数。 | 
 | [drawing_surface.h](drawing__surface_8h.md) | 文件中定义与surface相关的功能函数，包括surface的创建、销毁和使用等。 | 
 | [drawing_text_blob.h](drawing__text__blob_8h.md) | 文件中定义了与文字相关的功能函数。 | 
-| [drawing_text_declaration.h](drawing__text__declaration_8h.md) | 提供2d 绘制文本相关的数据结构声明 | 
+| [drawing_text_declaration.h](drawing__text__declaration_8h.md) | 提供2d 绘制文本相关的数据结构声明。 | 
 | [drawing_text_font_descriptor.h](drawing__text__font__descriptor_8h.md) | 定义了字体信息的相关接口，比如获取字体信息，查找指定字体等。 |
 | [drawing_text_line.h](drawing__text__line_8h.md) | 提供获取文本行内的字符位置、获取渲染单元信息和按行截断等功能。 |
 | [drawing_text_lineTypography.h](drawing__text__line_typography_8h.md) | 提供排版行相关的接口，比如获取指定位置处开始可以排版的字符个数等函数。 | 
@@ -64,7 +64,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct  [OH_Drawing_String](_o_h___drawing___string.md) | 采用UTF-16编码的字符串信息结构体。 |
-| struct  [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
+| struct  [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型。 | 
 | struct  [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) | 定义字体度量信息的结构体。 | 
 | struct  [OH_Drawing_GpuContextOptions](_o_h___drawing___gpu_context_options.md) | 定义有关图形处理器上下文的选项。 | 
 | struct  [OH_Drawing_RunBuffer](_o_h___drawing___run_buffer.md) | 结构体用于描述一块内存，描述文字和位置信息。 | 
@@ -107,7 +107,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | typedef enum [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode)  [OH_Drawing_RegionOpMode](#oh_drawing_regionopmode) | 区域操作类型枚举。 | 
 | typedef struct [OH_Drawing_ImageFilter](#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](#oh_drawing_imagefilter) | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
 | typedef struct [OH_Drawing_Filter](#oh_drawing_filter)  [OH_Drawing_Filter](#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，蒙版滤波器和图像滤波器。 | 
-| typedef struct [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)  [OH_Drawing_BitmapFormat](#oh_drawing_bitmapformat) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型 | 
+| typedef struct [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)  [OH_Drawing_BitmapFormat](#oh_drawing_bitmapformat) | 结构体用于描述位图像素的格式，包括颜色类型和透明度类型。 | 
 | typedef enum [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint)  [OH_Drawing_SrcRectConstraint](#oh_drawing_srcrectconstraint) | 源矩形区域约束类型枚举。 | 
 | typedef enum [OH_Drawing_PointMode](#oh_drawing_pointmode)  [OH_Drawing_PointMode](#oh_drawing_pointmode) | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
 | typedef enum [OH_Drawing_VertexMode](#oh_drawing_vertexmode)  [OH_Drawing_VertexMode](#oh_drawing_vertexmode) | 用于指定如何解释给定顶点的几何形状的枚举类型。 | 
@@ -222,19 +222,19 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_FilterMode](#oh_drawing_filtermode-1) { FILTER_MODE_NEAREST, FILTER_MODE_LINEAR } | 过滤模式枚举。 | 
 | [OH_Drawing_MipmapMode](#oh_drawing_mipmapmode-1) { MIPMAP_MODE_NONE, MIPMAP_MODE_NEAREST, MIPMAP_MODE_LINEAR } | 多级渐远纹理模式枚举。 | 
 | [OH_Drawing_TileMode](#oh_drawing_tilemode-1) { CLAMP, REPEAT, MIRROR, DECAL } | 着色器效果平铺模式的枚举。 | 
-| [OH_Drawing_TextDirection](#oh_drawing_textdirection) { TEXT_DIRECTION_RTL, TEXT_DIRECTION_LTR } | 文字方向 | 
-| [OH_Drawing_TextAlign](#oh_drawing_textalign) {<br/>TEXT_ALIGN_LEFT, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER, TEXT_ALIGN_JUSTIFY,<br/>TEXT_ALIGN_START, TEXT_ALIGN_END<br/>} | 文字对齐方式 | 
-| [OH_Drawing_FontWeight](#oh_drawing_fontweight) {<br/>FONT_WEIGHT_100, FONT_WEIGHT_200, FONT_WEIGHT_300, FONT_WEIGHT_400,<br/>FONT_WEIGHT_500, FONT_WEIGHT_600, FONT_WEIGHT_700, FONT_WEIGHT_800,<br/>FONT_WEIGHT_900<br/>} | 字重 | 
-| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) { TEXT_BASELINE_ALPHABETIC, TEXT_BASELINE_IDEOGRAPHIC } | 基线位置 | 
-| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) { TEXT_DECORATION_NONE = 0x0, TEXT_DECORATION_UNDERLINE = 0x1, TEXT_DECORATION_OVERLINE = 0x2, TEXT_DECORATION_LINE_THROUGH = 0x4 } | 文本装饰 | 
-| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) { FONT_STYLE_NORMAL, FONT_STYLE_ITALIC, FONT_STYLE_OBLIQUE } | 区分字体是否为斜体 | 
-| [OH_Drawing_PlaceholderVerticalAlignment](#oh_drawing_placeholderverticalalignment-1) {<br/>ALIGNMENT_OFFSET_AT_BASELINE, ALIGNMENT_ABOVE_BASELINE, ALIGNMENT_BELOW_BASELINE, ALIGNMENT_TOP_OF_ROW_BOX,<br/>ALIGNMENT_BOTTOM_OF_ROW_BOX, ALIGNMENT_CENTER_OF_ROW_BOX<br/>} | 占位符垂直对齐枚举 | 
-| [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle-1) {<br/>TEXT_DECORATION_STYLE_SOLID, TEXT_DECORATION_STYLE_DOUBLE, TEXT_DECORATION_STYLE_DOTTED, TEXT_DECORATION_STYLE_DASHED,<br/>TEXT_DECORATION_STYLE_WAVY<br/>} | 文本装饰样式枚举 | 
-| [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal-1) { ELLIPSIS_MODAL_HEAD = 0, ELLIPSIS_MODAL_MIDDLE = 1, ELLIPSIS_MODAL_TAIL = 2 } | 省略号样式枚举 | 
-| [OH_Drawing_BreakStrategy](#oh_drawing_breakstrategy-1) { BREAK_STRATEGY_GREEDY = 0, BREAK_STRATEGY_HIGH_QUALITY = 1, BREAK_STRATEGY_BALANCED = 2 } | 文本的中断策略枚举 | 
-| [OH_Drawing_WordBreakType](#oh_drawing_wordbreaktype-1) { WORD_BREAK_TYPE_NORMAL = 0, WORD_BREAK_TYPE_BREAK_ALL = 1, WORD_BREAK_TYPE_BREAK_WORD = 2 } | 单词的断词方式枚举 | 
-| [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle-1) {<br/>RECT_HEIGHT_STYLE_TIGHT, RECT_HEIGHT_STYLE_MAX, RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE, RECT_HEIGHT_STYLE_INCLUDELINESPACETOP,<br/>RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM, RECT_HEIGHT_STYLE_STRUCT<br/>} | 矩形框高度样式枚举 | 
-| [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle-1) { RECT_WIDTH_STYLE_TIGHT, RECT_WIDTH_STYLE_MAX } | 矩形框宽度样式枚举 | 
+| [OH_Drawing_TextDirection](#oh_drawing_textdirection) { TEXT_DIRECTION_RTL, TEXT_DIRECTION_LTR } | 文字方向。 | 
+| [OH_Drawing_TextAlign](#oh_drawing_textalign) {<br/>TEXT_ALIGN_LEFT, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER, TEXT_ALIGN_JUSTIFY,<br/>TEXT_ALIGN_START, TEXT_ALIGN_END<br/>} | 文字对齐方式。 | 
+| [OH_Drawing_FontWeight](#oh_drawing_fontweight) {<br/>FONT_WEIGHT_100, FONT_WEIGHT_200, FONT_WEIGHT_300, FONT_WEIGHT_400,<br/>FONT_WEIGHT_500, FONT_WEIGHT_600, FONT_WEIGHT_700, FONT_WEIGHT_800,<br/>FONT_WEIGHT_900<br/>} | 字重。 | 
+| [OH_Drawing_TextBaseline](#oh_drawing_textbaseline) { TEXT_BASELINE_ALPHABETIC, TEXT_BASELINE_IDEOGRAPHIC } | 基线位置。 | 
+| [OH_Drawing_TextDecoration](#oh_drawing_textdecoration) { TEXT_DECORATION_NONE = 0x0, TEXT_DECORATION_UNDERLINE = 0x1, TEXT_DECORATION_OVERLINE = 0x2, TEXT_DECORATION_LINE_THROUGH = 0x4 } | 文本装饰。 | 
+| [OH_Drawing_FontStyle](#oh_drawing_fontstyle) { FONT_STYLE_NORMAL, FONT_STYLE_ITALIC, FONT_STYLE_OBLIQUE } | 区分字体是否为斜体。 | 
+| [OH_Drawing_PlaceholderVerticalAlignment](#oh_drawing_placeholderverticalalignment-1) {<br/>ALIGNMENT_OFFSET_AT_BASELINE, ALIGNMENT_ABOVE_BASELINE, ALIGNMENT_BELOW_BASELINE, ALIGNMENT_TOP_OF_ROW_BOX,<br/>ALIGNMENT_BOTTOM_OF_ROW_BOX, ALIGNMENT_CENTER_OF_ROW_BOX<br/>} | 占位符垂直对齐枚举。 | 
+| [OH_Drawing_TextDecorationStyle](#oh_drawing_textdecorationstyle-1) {<br/>TEXT_DECORATION_STYLE_SOLID, TEXT_DECORATION_STYLE_DOUBLE, TEXT_DECORATION_STYLE_DOTTED, TEXT_DECORATION_STYLE_DASHED,<br/>TEXT_DECORATION_STYLE_WAVY<br/>} | 文本装饰样式枚举。 | 
+| [OH_Drawing_EllipsisModal](#oh_drawing_ellipsismodal-1) { ELLIPSIS_MODAL_HEAD = 0, ELLIPSIS_MODAL_MIDDLE = 1, ELLIPSIS_MODAL_TAIL = 2 } | 省略号样式枚举。 | 
+| [OH_Drawing_BreakStrategy](#oh_drawing_breakstrategy-1) { BREAK_STRATEGY_GREEDY = 0, BREAK_STRATEGY_HIGH_QUALITY = 1, BREAK_STRATEGY_BALANCED = 2 } | 文本的中断策略枚举。 | 
+| [OH_Drawing_WordBreakType](#oh_drawing_wordbreaktype-1) { WORD_BREAK_TYPE_NORMAL = 0, WORD_BREAK_TYPE_BREAK_ALL = 1, WORD_BREAK_TYPE_BREAK_WORD = 2 } | 单词的断词方式枚举。 | 
+| [OH_Drawing_RectHeightStyle](#oh_drawing_rectheightstyle-1) {<br/>RECT_HEIGHT_STYLE_TIGHT, RECT_HEIGHT_STYLE_MAX, RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE, RECT_HEIGHT_STYLE_INCLUDELINESPACETOP,<br/>RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM, RECT_HEIGHT_STYLE_STRUCT<br/>} | 矩形框高度样式枚举。 | 
+| [OH_Drawing_RectWidthStyle](#oh_drawing_rectwidthstyle-1) { RECT_WIDTH_STYLE_TIGHT, RECT_WIDTH_STYLE_MAX } | 矩形框宽度样式枚举。 | 
 | [OH_Drawing_FontConfigInfoErrorCode](#oh_drawing_fontconfiginfoerrorcode) {<br/>SUCCESS_FONT_CONFIG_INFO = 0, ERROR_FONT_CONFIG_INFO_UNKNOWN = 1, ERROR_FONT_CONFIG_INFO_PARSE_FILE = 2, ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY = 3,<br/>ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA = 4<br/>} | 获取系统字体配置信息列表结果枚举。 | 
 | [OH_Drawing_FontWidth](#oh_drawing_fontwidth) {<br/>ULTRA_CONDENSED_WIDTH = 1, EXTRA_CONDENSED_WIDTH = 2, CONDENSED_WIDTH = 3, SEMI_CONDENSED_WIDTH = 4,<br/>NORMAL_WIDTH = 5, SEMI_EXPANDED_WIDTH = 6, EXPANDED_WIDTH = 7, EXTRA_EXPANDED_WIDTH = 8,<br/>ULTRA_EXPANDED_WIDTH = 9<br/>} | 字体宽度的枚举。 | 
 | [OH_Drawing_TextHeightBehavior](#oh_drawing_textheightbehavior) { TEXT_HEIGHT_ALL = 0x0, TEXT_HEIGHT_DISABLE_FIRST_ASCENT = 0x1, TEXT_HEIGHT_DISABLE_LAST_ASCENT = 0x2, TEXT_HEIGHT_DISABLE_ALL = 0x1 \| 0x2 } | 文本高度修饰符模式枚举。 | 
@@ -410,12 +410,12 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Matrix](#oh_drawing_matrix) \* [OH_Drawing_MatrixCreateTranslation](#oh_drawing_matrixcreatetranslation) (float dx, float dy) | 创建一个带平移属性的矩阵对象。 该矩阵对象为：单位矩阵平移(dx, dy)后得到的矩阵。 |
 | void [OH_Drawing_MatrixSetMatrix](#oh_drawing_matrixsetmatrix) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float scaleX, float skewX, float transX, float skewY, float scaleY, float transY, float persp0, float persp1, float persp2) | 用于给矩阵对象设置参数。 |
 | bool [OH_Drawing_MatrixSetRectToRect](#oh_drawing_matrixsetrecttorect) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, const [OH_Drawing_Rect](#oh_drawing_rect) \*dst, [OH_Drawing_ScaleToFit](#oh_drawing_scaletofit) stf) | 将矩阵以缩放方式适配目标矩阵。 |
-| void [OH_Drawing_MatrixPreRotate](#oh_drawing_matrixprerotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 例如给定的矩阵： |
-| void [OH_Drawing_MatrixPreScale](#oh_drawing_matrixprescale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 例如给定的矩阵： |
-| void [OH_Drawing_MatrixPreTranslate](#oh_drawing_matrixpretranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵左乘平移一定距离后的单位矩阵后得到的矩阵。 例如给定的矩阵： |
-| void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 例如给定的矩阵： |
-| void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 例如给定的矩阵： |
-| void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 例如给定的矩阵： |
+| void [OH_Drawing_MatrixPreRotate](#oh_drawing_matrixprerotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 |
+| void [OH_Drawing_MatrixPreScale](#oh_drawing_matrixprescale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵左乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 |
+| void [OH_Drawing_MatrixPreTranslate](#oh_drawing_matrixpretranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵左乘平移一定距离后的单位矩阵后得到的矩阵。 |
+| void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 |
+| void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 |
+| void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 |
 | void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 重置当前矩阵为单位矩阵: \| 1 0 0 \| \| 0 1 0 \| \| 0 0 1 \| |
 | void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | 将矩阵total设置为矩阵a乘以矩阵b。 例如给定矩阵a和矩阵b如下所示: \| A B C \| \| J K L \| a = \| D E F \|, b = \| M N O \| \| G H I \| \| P Q R \| 设置的最终矩阵total为: \| A B C \| \| J K L \| \| AJ+BM+CP AK+BN+CQ AL+BO+CR \| total = a \* b = \| D E F \| \* \| M N O \| = \| DJ+EM+FP DK+EN+FQ DL+EO+FR \| \| G H I \| \| P Q R \| \| GJ+HM+IP GK+HN+IQ GL+HO+IR \| |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | 获取矩阵所有元素值。 |
@@ -1109,7 +1109,7 @@ typedef struct OH_Drawing_BitmapFormat OH_Drawing_BitmapFormat
 
 **描述**
 
-结构体用于描述位图像素的格式，包括颜色类型和透明度类型
+结构体用于描述位图像素的格式，包括颜色类型和透明度类型。
 
 **起始版本：** 8
 
@@ -1166,7 +1166,7 @@ typedef enum OH_Drawing_BreakStrategy OH_Drawing_BreakStrategy
 
 **描述**
 
-文本的中断策略枚举
+文本的中断策略枚举。
 
 **起始版本：** 11
 
@@ -1296,7 +1296,7 @@ typedef enum OH_Drawing_EllipsisModal OH_Drawing_EllipsisModal
 
 **描述**
 
-省略号样式枚举
+省略号样式枚举。
 
 **起始版本：** 11
 
@@ -1777,7 +1777,7 @@ typedef enum OH_Drawing_PlaceholderVerticalAlignment OH_Drawing_PlaceholderVerti
 
 **描述**
 
-占位符垂直对齐枚举
+占位符垂直对齐枚举。
 
 **起始版本：** 11
 
@@ -1842,7 +1842,7 @@ typedef struct OH_Drawing_PositionAndAffinity OH_Drawing_PositionAndAffinity
 
 **描述**
 
-用于接收字体的位置和亲和性
+用于接收字体的位置和亲和性。
 
 **起始版本：** 11
 
@@ -1855,7 +1855,7 @@ typedef struct OH_Drawing_Range OH_Drawing_Range
 
 **描述**
 
-用于接收字体的起始位置和结束位置
+用于接收字体的起始位置和结束位置。
 
 **起始版本：** 11
 
@@ -1881,7 +1881,7 @@ typedef enum OH_Drawing_RectHeightStyle OH_Drawing_RectHeightStyle
 
 **描述**
 
-矩形框高度样式枚举
+矩形框高度样式枚举。
 
 **起始版本：** 11
 
@@ -1907,7 +1907,7 @@ typedef enum OH_Drawing_RectWidthStyle OH_Drawing_RectWidthStyle
 
 **描述**
 
-矩形框宽度样式枚举
+矩形框宽度样式枚举。
 
 **起始版本：** 11
 
@@ -2076,7 +2076,7 @@ typedef struct OH_Drawing_TextBox OH_Drawing_TextBox
 
 **描述**
 
-用于接收文本框的矩形大小、方向和数量大小
+用于接收文本框的矩形大小、方向和数量大小。
 
 **起始版本：** 11
 
@@ -2089,7 +2089,7 @@ typedef enum OH_Drawing_TextDecorationStyle OH_Drawing_TextDecorationStyle
 
 **描述**
 
-文本装饰样式枚举
+文本装饰样式枚举。
 
 **起始版本：** 11
 
@@ -2219,7 +2219,7 @@ typedef enum OH_Drawing_WordBreakType OH_Drawing_WordBreakType
 
 **描述**
 
-单词的断词方式枚举
+单词的断词方式枚举。
 
 **起始版本：** 11
 
@@ -2242,11 +2242,11 @@ enum OH_Drawing_SystemFontType
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| ALL | 所有字体类型 |
-| GENERIC | 系统字体类型 |
-| STYLISH | 风格字体类型 |
-| INSTALLED | 用户已安装字体类型 |
-| CUSTOMIZED<sup>16+</sup> | 自定义字体类型 |
+| ALL | 所有字体类型。 |
+| GENERIC | 系统字体类型。 |
+| STYLISH | 风格字体类型。 |
+| INSTALLED | 用户已安装字体类型。 |
+| CUSTOMIZED<sup>16+</sup> | 自定义字体类型。 |
 
 ### OH_Drawing_ErrorCode
 
@@ -2344,10 +2344,10 @@ enum OH_Drawing_AlphaFormat
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ALPHA_FORMAT_UNKNOWN | 未知格式 | 
-| ALPHA_FORMAT_OPAQUE | 位图无透明度 | 
-| ALPHA_FORMAT_PREMUL | 每个像素的颜色组件由透明度分量预先乘以 | 
-| ALPHA_FORMAT_UNPREMUL | 每个像素的颜色组件未由透明度分量预先乘以 | 
+| ALPHA_FORMAT_UNKNOWN | 未知格式。 | 
+| ALPHA_FORMAT_OPAQUE | 位图无透明度。 | 
+| ALPHA_FORMAT_PREMUL | 每个像素的颜色组件由透明度分量预先乘以。 | 
+| ALPHA_FORMAT_UNPREMUL | 每个像素的颜色组件未由透明度分量预先乘以。 | 
 
 
 ### OH_Drawing_BlendMode
@@ -2397,20 +2397,20 @@ rc : 如果操作3个颜色通道，用rc表示。
 | BLEND_MODE_PLUS | r = min(s + d, 1). | 
 | BLEND_MODE_MODULATE | r = s \* d. | 
 | BLEND_MODE_SCREEN | 滤色模式，r = s + d - s \* d. | 
-| BLEND_MODE_OVERLAY | 叠加模式 | 
+| BLEND_MODE_OVERLAY | 叠加模式。 | 
 | BLEND_MODE_DARKEN | 变暗模式，rc = s + d - max(s \* da, d \* sa), ra = s + (1 - sa) \* d. | 
 | BLEND_MODE_LIGHTEN | 变亮模式，rc = s + d - min(s \* da, d \* sa), ra = s + (1 - sa) \* d. | 
-| BLEND_MODE_COLOR_DODGE | 颜色减淡模式 | 
-| BLEND_MODE_COLOR_BURN | 颜色加深模式 | 
-| BLEND_MODE_HARD_LIGHT | 强光模式 | 
-| BLEND_MODE_SOFT_LIGHT | 柔光模式 | 
+| BLEND_MODE_COLOR_DODGE | 颜色减淡模式。 | 
+| BLEND_MODE_COLOR_BURN | 颜色加深模式。 | 
+| BLEND_MODE_HARD_LIGHT | 强光模式。 | 
+| BLEND_MODE_SOFT_LIGHT | 柔光模式。 | 
 | BLEND_MODE_DIFFERENCE | 差值模式，rc = s + d - 2 \* (min(s \* da, d \* sa)), ra = s + (1 - sa) \* d. | 
 | BLEND_MODE_EXCLUSION | 排除模式，rc = s + d - two(s \* d), ra = s + (1 - sa) \* d. | 
 | BLEND_MODE_MULTIPLY | 正片叠底，r = s \* (1 - da) + d \* (1 - sa) + s \* d. | 
-| BLEND_MODE_HUE | 色相模式 | 
-| BLEND_MODE_SATURATION | 饱和度模式 | 
-| BLEND_MODE_COLOR | 颜色模式 | 
-| BLEND_MODE_LUMINOSITY | 亮度模式 | 
+| BLEND_MODE_HUE | 色相模式。 | 
+| BLEND_MODE_SATURATION | 饱和度模式。 | 
+| BLEND_MODE_COLOR | 颜色模式。 | 
+| BLEND_MODE_LUMINOSITY | 亮度模式。 | 
 
 
 ### OH_Drawing_BlurType
@@ -2441,15 +2441,15 @@ enum OH_Drawing_BreakStrategy
 
 **描述**
 
-文本的中断策略枚举
+文本的中断策略枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| BREAK_STRATEGY_GREEDY | 贪心策略，换行时尽可能填满每一行 | 
-| BREAK_STRATEGY_HIGH_QUALITY | 高质量策略，换行时优先考虑文本的连续性 | 
-| BREAK_STRATEGY_BALANCED | 平衡策略，换行时在单词边界换行 | 
+| BREAK_STRATEGY_GREEDY | 贪心策略，换行时尽可能填满每一行。 | 
+| BREAK_STRATEGY_HIGH_QUALITY | 高质量策略，换行时优先考虑文本的连续性。 | 
+| BREAK_STRATEGY_BALANCED | 平衡策略，换行时在单词边界换行。 | 
 
 
 ### OH_Drawing_CanvasClipOp
@@ -2504,12 +2504,12 @@ enum OH_Drawing_ColorFormat
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| COLOR_FORMAT_UNKNOWN | 未知格式. | 
-| COLOR_FORMAT_ALPHA_8 | 每个像素用一个8位的量表示，8个位比特位表示透明度 | 
-| COLOR_FORMAT_RGB_565 | 每个像素用一个16位的量表示，高位到低位依次是5个比特位表示红，6个比特位表示绿，5个比特位表示蓝 | 
-| COLOR_FORMAT_ARGB_4444 | 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝 | 
-| COLOR_FORMAT_RGBA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示透明度，8个比特位表示红，8个比特位表示绿，8个比特位表示蓝 | 
-| COLOR_FORMAT_BGRA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示蓝，8个比特位表示绿，8个比特位表示红，8个比特位表示透明度 | 
+| COLOR_FORMAT_UNKNOWN | 未知格式。 | 
+| COLOR_FORMAT_ALPHA_8 | 每个像素用一个8位的量表示，8个位比特位表示透明度。 | 
+| COLOR_FORMAT_RGB_565 | 每个像素用一个16位的量表示，高位到低位依次是5个比特位表示红，6个比特位表示绿，5个比特位表示蓝。 | 
+| COLOR_FORMAT_ARGB_4444 | 每个像素用一个16位的量表示，高位到低位依次是4个比特位表示透明度，4个比特位表示红，4个比特位表示绿，4个比特位表示蓝。 | 
+| COLOR_FORMAT_RGBA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示透明度，8个比特位表示红，8个比特位表示绿，8个比特位表示蓝。 | 
+| COLOR_FORMAT_BGRA_8888 | 每个像素用一个32位的量表示，高位到低位依次是8个比特位表示蓝，8个比特位表示绿，8个比特位表示红，8个比特位表示透明度。 | 
 
 
 ### OH_Drawing_CornerPos
@@ -2540,15 +2540,15 @@ enum OH_Drawing_EllipsisModal
 
 **描述**
 
-省略号样式枚举
+省略号样式枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ELLIPSIS_MODAL_HEAD | 头部模式，即省略号放在文本头部 | 
-| ELLIPSIS_MODAL_MIDDLE | 中部模式，即省略号放在文本中部 | 
-| ELLIPSIS_MODAL_TAIL | 尾部模式，即省略号放在文本尾部 | 
+| ELLIPSIS_MODAL_HEAD | 头部模式，即省略号放在文本头部。 | 
+| ELLIPSIS_MODAL_MIDDLE | 中部模式，即省略号放在文本中部。 | 
+| ELLIPSIS_MODAL_TAIL | 尾部模式，即省略号放在文本尾部。 | 
 
 
 ### OH_Drawing_FilterMode
@@ -2565,8 +2565,8 @@ enum OH_Drawing_FilterMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FILTER_MODE_NEAREST | 邻近过滤模式 | 
-| FILTER_MODE_LINEAR | 线性过滤模式 | 
+| FILTER_MODE_NEAREST | 邻近过滤模式。 | 
+| FILTER_MODE_LINEAR | 线性过滤模式。 | 
 
 
 ### OH_Drawing_FontConfigInfoErrorCode
@@ -2583,11 +2583,11 @@ enum OH_Drawing_FontConfigInfoErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| SUCCESS_FONT_CONFIG_INFO | 获取系统字体配置信息列表成功 | 
-| ERROR_FONT_CONFIG_INFO_UNKNOWN | 未知错误 | 
-| ERROR_FONT_CONFIG_INFO_PARSE_FILE | 解析系统配置文件失败 | 
-| ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY | 申请内存失败 | 
-| ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA | 拷贝字符串数据失败 | 
+| SUCCESS_FONT_CONFIG_INFO | 获取系统字体配置信息列表成功。 | 
+| ERROR_FONT_CONFIG_INFO_UNKNOWN | 未知错误。 | 
+| ERROR_FONT_CONFIG_INFO_PARSE_FILE | 解析系统配置文件失败。 | 
+| ERROR_FONT_CONFIG_INFO_ALLOC_MEMORY | 申请内存失败。 | 
+| ERROR_FONT_CONFIG_INFO_COPY_STRING_DATA | 拷贝字符串数据失败。 | 
 
 
 ### OH_Drawing_FontEdging
@@ -2637,12 +2637,12 @@ enum OH_Drawing_FontStyle
 
 **描述**
 
-区分字体是否为斜体
+区分字体是否为斜体。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FONT_STYLE_NORMAL | 非斜体 | 
-| FONT_STYLE_ITALIC | 斜体 | 
+| FONT_STYLE_NORMAL | 非斜体。 | 
+| FONT_STYLE_ITALIC | 斜体。 | 
 | FONT_STYLE_OBLIQUE | 倾斜字体<br/>自从<br/>12 | 
 
 
@@ -2654,7 +2654,7 @@ enum OH_Drawing_FontWeight
 
 **描述**
 
-字重
+字重。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -2696,9 +2696,9 @@ enum OH_Drawing_MipmapMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| MIPMAP_MODE_NONE | 忽略多级渐远纹理级别 | 
-| MIPMAP_MODE_NEAREST | 邻近多级渐远级别采样 | 
-| MIPMAP_MODE_LINEAR | 两个邻近多级渐远纹理之间，线性插值采样 | 
+| MIPMAP_MODE_NONE | 忽略多级渐远纹理级别。 | 
+| MIPMAP_MODE_NEAREST | 邻近多级渐远级别采样。 | 
+| MIPMAP_MODE_LINEAR | 两个邻近多级渐远纹理之间，线性插值采样。 | 
 
 
 ### OH_Drawing_PathAddMode
@@ -2715,8 +2715,8 @@ enum OH_Drawing_PathAddMode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PATH_ADD_MODE_APPEND | 以追加的方式添加路径 | 
-| PATH_ADD_MODE_EXTEND | 如果之前的路径未闭合，则添加直线闭合路径 | 
+| PATH_ADD_MODE_APPEND | 以追加的方式添加路径。 | 
+| PATH_ADD_MODE_EXTEND | 如果之前的路径未闭合，则添加直线闭合路径。 | 
 
 
 ### OH_Drawing_PathDirection
@@ -2733,8 +2733,8 @@ enum OH_Drawing_PathDirection
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PATH_DIRECTION_CW | 顺时针方向添加闭合轮廓 | 
-| PATH_DIRECTION_CCW | 逆时针方向添加闭合轮廓 | 
+| PATH_DIRECTION_CW | 顺时针方向添加闭合轮廓。 | 
+| PATH_DIRECTION_CCW | 逆时针方向添加闭合轮廓。 | 
 
 
 ### OH_Drawing_PathFillType
@@ -2751,10 +2751,10 @@ enum OH_Drawing_PathFillType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| PATH_FILL_TYPE_WINDING | 绘制区域中的任意一点，向任意方向射出一条射线，对于射线和路径的所有交点，初始计数为0，遇到每个顺时针的交点（路径从射线的左边向右穿过），计数加1，遇到每个逆时针的交点（路径从射线的右边向左穿过），计数减1，若最终的计数结果为0，则认为这个点在路径内部，需要被涂色；若计数为0则不被涂色 | 
-| PATH_FILL_TYPE_EVEN_ODD | 绘制区域中的任意一点，向任意方向射出一条射线，若这条射线和路径相交的次数是奇数，则这个点被认为在路径内部，需要被涂色；若是偶数则不被涂色 | 
-| PATH_FILL_TYPE_INVERSE_WINDING | PATH_FILL_TYPE_WINDING 涂色规则取反 | 
-| PATH_FILL_TYPE_INVERSE_EVEN_ODD | PATH_FILL_TYPE_EVEN_ODD 涂色规则取反 | 
+| PATH_FILL_TYPE_WINDING | 绘制区域中的任意一点，向任意方向射出一条射线，对于射线和路径的所有交点，初始计数为0，遇到每个顺时针的交点（路径从射线的左边向右穿过），计数加1，遇到每个逆时针的交点（路径从射线的右边向左穿过），计数减1，若最终的计数结果为0，则认为这个点在路径内部，需要被涂色；若计数为0则不被涂色。 | 
+| PATH_FILL_TYPE_EVEN_ODD | 绘制区域中的任意一点，向任意方向射出一条射线，若这条射线和路径相交的次数是奇数，则这个点被认为在路径内部，需要被涂色；若是偶数则不被涂色。 | 
+| PATH_FILL_TYPE_INVERSE_WINDING | PATH_FILL_TYPE_WINDING 涂色规则取反。 | 
+| PATH_FILL_TYPE_INVERSE_EVEN_ODD | PATH_FILL_TYPE_EVEN_ODD 涂色规则取反。 | 
 
 
 ### OH_Drawing_PenLineCapStyle
@@ -2771,9 +2771,9 @@ enum OH_Drawing_PenLineCapStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LINE_FLAT_CAP | 没有笔帽样式，线条头尾端点处横切 | 
-| LINE_SQUARE_CAP | 笔帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度时线段厚度的一半 | 
-| LINE_ROUND_CAP | 笔帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段厚度一致 | 
+| LINE_FLAT_CAP | 没有笔帽样式，线条头尾端点处横切。 | 
+| LINE_SQUARE_CAP | 笔帽的样式为方框，线条的头尾端点处多出一个方框，方框宽度和线段一样宽，高度时线段厚度的一半。 | 
+| LINE_ROUND_CAP | 笔帽的样式为圆弧，线条的头尾端点处多出一个半圆弧，半圆的直径与线段厚度一致。 | 
 
 
 ### OH_Drawing_PenLineJoinStyle
@@ -2790,9 +2790,9 @@ enum OH_Drawing_PenLineJoinStyle
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| LINE_MITER_JOIN | 转角类型为尖角，如果折线角度比较小，则尖角会很长，需要使用限制值（miter limit）进行限制 | 
-| LINE_ROUND_JOIN | 转角类型为圆头 | 
-| LINE_BEVEL_JOIN | 转角类型为平头 | 
+| LINE_MITER_JOIN | 转角类型为尖角，如果折线角度比较小，则尖角会很长，需要使用限制值（miter limit）进行限制。 | 
+| LINE_ROUND_JOIN | 转角类型为圆头。 | 
+| LINE_BEVEL_JOIN | 转角类型为平头。 | 
 
 
 ### OH_Drawing_PlaceholderVerticalAlignment
@@ -2803,18 +2803,18 @@ enum OH_Drawing_PlaceholderVerticalAlignment
 
 **描述**
 
-占位符垂直对齐枚举
+占位符垂直对齐枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| ALIGNMENT_OFFSET_AT_BASELINE | 偏移于基线对齐 | 
-| ALIGNMENT_ABOVE_BASELINE | 高于基线对齐 | 
-| ALIGNMENT_BELOW_BASELINE | 低于基线对齐 | 
-| ALIGNMENT_TOP_OF_ROW_BOX | 行框顶部对齐 | 
-| ALIGNMENT_BOTTOM_OF_ROW_BOX | 行框底部对齐 | 
-| ALIGNMENT_CENTER_OF_ROW_BOX | 行框中心对齐 | 
+| ALIGNMENT_OFFSET_AT_BASELINE | 偏移于基线对齐。 | 
+| ALIGNMENT_ABOVE_BASELINE | 高于基线对齐。 | 
+| ALIGNMENT_BELOW_BASELINE | 低于基线对齐。 | 
+| ALIGNMENT_TOP_OF_ROW_BOX | 行框顶部对齐。 | 
+| ALIGNMENT_BOTTOM_OF_ROW_BOX | 行框底部对齐。 | 
+| ALIGNMENT_CENTER_OF_ROW_BOX | 行框中心对齐。 | 
 
 
 ### OH_Drawing_PointMode
@@ -2844,18 +2844,18 @@ enum OH_Drawing_RectHeightStyle
 
 **描述**
 
-矩形框高度样式枚举
+矩形框高度样式枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RECT_HEIGHT_STYLE_TIGHT | 紧密样式 | 
-| RECT_HEIGHT_STYLE_MAX | 最大样式 | 
-| RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE | 包含行间距中间样式 | 
-| RECT_HEIGHT_STYLE_INCLUDELINESPACETOP | 包含行间距顶部样式 | 
-| RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM | 包含行间距底部样式 | 
-| RECT_HEIGHT_STYLE_STRUCT | 结构样式 | 
+| RECT_HEIGHT_STYLE_TIGHT | 紧密样式。 | 
+| RECT_HEIGHT_STYLE_MAX | 最大样式。 | 
+| RECT_HEIGHT_STYLE_INCLUDELINESPACEMIDDLE | 包含行间距中间样式。 | 
+| RECT_HEIGHT_STYLE_INCLUDELINESPACETOP | 包含行间距顶部样式。 | 
+| RECT_HEIGHT_STYLE_INCLUDELINESPACEBOTTOM | 包含行间距底部样式。 | 
+| RECT_HEIGHT_STYLE_STRUCT | 结构样式。 | 
 
 
 ### OH_Drawing_RectWidthStyle
@@ -2866,14 +2866,14 @@ enum OH_Drawing_RectWidthStyle
 
 **描述**
 
-矩形框宽度样式枚举
+矩形框宽度样式枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| RECT_WIDTH_STYLE_TIGHT | 紧密样式 | 
-| RECT_WIDTH_STYLE_MAX | 最大样式 | 
+| RECT_WIDTH_STYLE_TIGHT | 紧密样式。 | 
+| RECT_WIDTH_STYLE_MAX | 最大样式。 | 
 
 
 ### OH_Drawing_ScaleToFit
@@ -2910,8 +2910,8 @@ enum OH_Drawing_SrcRectConstraint
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| STRICT_SRC_RECT_CONSTRAINT | 严格约束，源矩形区域必须完全包含在图像中 | 
-| FAST_SRC_RECT_CONSTRAINT | 快速约束，源矩形区域可以部分位于图像之外 | 
+| STRICT_SRC_RECT_CONSTRAINT | 严格约束，源矩形区域必须完全包含在图像中。 | 
+| FAST_SRC_RECT_CONSTRAINT | 快速约束，源矩形区域可以部分位于图像之外。 | 
 
 
 ### OH_Drawing_TextAlign
@@ -2922,13 +2922,13 @@ enum OH_Drawing_TextAlign
 
 **描述**
 
-文字对齐方式
+文字对齐方式。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_ALIGN_LEFT | 左对齐 | 
-| TEXT_ALIGN_RIGHT | 右对齐 | 
-| TEXT_ALIGN_CENTER | 居中对齐 | 
+| TEXT_ALIGN_LEFT | 左对齐。 | 
+| TEXT_ALIGN_RIGHT | 右对齐。 | 
+| TEXT_ALIGN_CENTER | 居中对齐。 | 
 | TEXT_ALIGN_JUSTIFY | 两端对齐，即紧靠左和右边缘，中间单词空隙由空格填充，最后一行除外。 | 
 | TEXT_ALIGN_START | 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时， TEXT_ALIGN_START和TEXT_ALIGN_LEFT相同； 类似地，当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时， TEXT_ALIGN_START和TEXT_ALIGN_RIGHT相同。 | 
 | TEXT_ALIGN_END | 当OH_Drawing_TextDirection是TEXT_DIRECTION_LTR时， TEXT_ALIGN_END和TEXT_ALIGN_RIGHT相同； 类似地，当OH_Drawing_TextDirection是TEXT_DIRECTION_RTL时， TEXT_ALIGN_END和TEXT_ALIGN_LEFT相同。 | 
@@ -2942,12 +2942,12 @@ enum OH_Drawing_TextBaseline
 
 **描述**
 
-基线位置
+基线位置。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_BASELINE_ALPHABETIC | 用于表音文字，基线在中间偏下的位置 | 
-| TEXT_BASELINE_IDEOGRAPHIC | 用于表意文字，基线位于底部 | 
+| TEXT_BASELINE_ALPHABETIC | 用于表音文字，基线在中间偏下的位置。 | 
+| TEXT_BASELINE_IDEOGRAPHIC | 用于表意文字，基线位于底部。 | 
 
 
 ### OH_Drawing_TextDecoration
@@ -2958,14 +2958,14 @@ enum OH_Drawing_TextDecoration
 
 **描述**
 
-文本装饰
+文本装饰。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_DECORATION_NONE | 无装饰 | 
-| TEXT_DECORATION_UNDERLINE | 下划线 | 
-| TEXT_DECORATION_OVERLINE | 上划线 | 
-| TEXT_DECORATION_LINE_THROUGH | 删除线 | 
+| TEXT_DECORATION_NONE | 无装饰。 | 
+| TEXT_DECORATION_UNDERLINE | 下划线。 | 
+| TEXT_DECORATION_OVERLINE | 上划线。 | 
+| TEXT_DECORATION_LINE_THROUGH | 删除线。 | 
 
 
 ### OH_Drawing_TextDecorationStyle
@@ -2976,17 +2976,17 @@ enum OH_Drawing_TextDecorationStyle
 
 **描述**
 
-文本装饰样式枚举
+文本装饰样式枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_DECORATION_STYLE_SOLID | 实心样式 | 
-| TEXT_DECORATION_STYLE_DOUBLE | 双重样式 | 
-| TEXT_DECORATION_STYLE_DOTTED | 圆点样式 | 
-| TEXT_DECORATION_STYLE_DASHED | 虚线样式 | 
-| TEXT_DECORATION_STYLE_WAVY | 波浪样式 | 
+| TEXT_DECORATION_STYLE_SOLID | 实心样式。 | 
+| TEXT_DECORATION_STYLE_DOUBLE | 双重样式。 | 
+| TEXT_DECORATION_STYLE_DOTTED | 圆点样式。 | 
+| TEXT_DECORATION_STYLE_DASHED | 虚线样式。 | 
+| TEXT_DECORATION_STYLE_WAVY | 波浪样式。 | 
 
 
 ### OH_Drawing_TextDirection
@@ -2997,12 +2997,12 @@ enum OH_Drawing_TextDirection
 
 **描述**
 
-文字方向
+文字方向。
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_DIRECTION_RTL | 方向：从右到左 | 
-| TEXT_DIRECTION_LTR | 方向：从左到右 | 
+| TEXT_DIRECTION_RTL | 方向：从右到左。 | 
+| TEXT_DIRECTION_LTR | 方向：从左到右。 | 
 
 
 ### OH_Drawing_TextEncoding
@@ -3022,7 +3022,7 @@ enum OH_Drawing_TextEncoding
 | TEXT_ENCODING_UTF8 | 单字节，表示UTF-8或ASCII | 
 | TEXT_ENCODING_UTF16 | 双字节，表示大部分Unicode | 
 | TEXT_ENCODING_UTF32 | 四字节，表示所有Unicode | 
-| TEXT_ENCODING_GLYPH_ID | 双字节，表示字形索引 | 
+| TEXT_ENCODING_GLYPH_ID | 双字节，表示字形索引。 | 
 
 
 ### OH_Drawing_TextHeightBehavior
@@ -3039,10 +3039,10 @@ enum OH_Drawing_TextHeightBehavior
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_HEIGHT_ALL | 段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
-| TEXT_HEIGHT_DISABLE_FIRST_ASCENT | 禁止段落中第一行顶部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
-| TEXT_HEIGHT_DISABLE_LAST_ASCENT | 禁止段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
-| TEXT_HEIGHT_DISABLE_ALL | 禁止段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效 | 
+| TEXT_HEIGHT_ALL | 段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效。 | 
+| TEXT_HEIGHT_DISABLE_FIRST_ASCENT | 禁止段落中第一行顶部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效。 | 
+| TEXT_HEIGHT_DISABLE_LAST_ASCENT | 禁止段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效。 | 
+| TEXT_HEIGHT_DISABLE_ALL | 禁止段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight)设置的高度生效。 | 
 
 
 ### OH_Drawing_TextStyleType
@@ -3059,15 +3059,15 @@ enum OH_Drawing_TextStyleType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_STYLE_NONE | 无文本样式 | 
-| TEXT_STYLE_ALL_ATTRIBUTES | 所有文本样式 | 
-| TEXT_STYLE_FONT | 字体样式 | 
-| TEXT_STYLE_FOREGROUND | 文本前景样式 | 
-| TEXT_STYLE_BACKGROUND | 文本背景样式 | 
-| TEXT_STYLE_SHADOW | 文本阴影样式 | 
-| TEXT_STYLE_DECORATIONS | 文本装饰样式 | 
-| TEXT_STYLE_LETTER_SPACING | 文本字符间距样式 | 
-| TEXT_STYLE_WORD_SPACING | 文本单词间距样式 | 
+| TEXT_STYLE_NONE | 无文本样式。 | 
+| TEXT_STYLE_ALL_ATTRIBUTES | 所有文本样式。 | 
+| TEXT_STYLE_FONT | 字体样式。 | 
+| TEXT_STYLE_FOREGROUND | 文本前景样式。 | 
+| TEXT_STYLE_BACKGROUND | 文本背景样式。 | 
+| TEXT_STYLE_SHADOW | 文本阴影样式。 | 
+| TEXT_STYLE_DECORATIONS | 文本装饰样式。 | 
+| TEXT_STYLE_LETTER_SPACING | 文本字符间距样式。 | 
+| TEXT_STYLE_WORD_SPACING | 文本单词间距样式。 | 
 
 
 ### OH_Drawing_TileMode
@@ -3117,15 +3117,15 @@ enum OH_Drawing_WordBreakType
 
 **描述**
 
-单词的断词方式枚举
+单词的断词方式枚举。
 
 **起始版本：** 11
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| WORD_BREAK_TYPE_NORMAL | 常规方式 | 
-| WORD_BREAK_TYPE_BREAK_ALL | 全部中断方式 | 
-| WORD_BREAK_TYPE_BREAK_WORD | 单词中断方式 | 
+| WORD_BREAK_TYPE_NORMAL | 常规方式。 | 
+| WORD_BREAK_TYPE_BREAK_ALL | 全部中断方式。 | 
+| WORD_BREAK_TYPE_BREAK_WORD | 单词中断方式。 | 
 
 
 
@@ -4459,7 +4459,7 @@ uint32_t OH_Drawing_GetRunGlyphCount (OH_Drawing_Run* run)
 
 | 名称 | 描述 |
 | -------- | -------- |
-| run | 指向渲染单元**OH_Drawing_Run**对象的指针 |
+| run | 指向渲染单元**OH_Drawing_Run**对象的指针。 |
 
 **返回：**
 
@@ -6068,7 +6068,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateColorShader (const uint32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| color | 表示着色器的颜色. | 
+| color | 表示着色器的颜色。| 
 
 **返回：**
 
@@ -16879,7 +16879,7 @@ OH_Drawing_Range* OH_Drawing_TypographyGetLineTextRange (OH_Drawing_Typography* 
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Typography | 指向文本对象[OH_Drawing_Typography](#oh_drawing_typography)的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
-| int | 行索引 | 
+| int | 行索引。 | 
 | bool | 设置返回的边界是否包含空格，true为包含空格，false为不包含空格。 | 
 
 **返回：**
@@ -17420,7 +17420,7 @@ void OH_Drawing_TypographyLayout (OH_Drawing_Typography* , double  )
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Typography | 指向[OH_Drawing_Typography](#oh_drawing_typography)对象的指针，由[OH_Drawing_CreateTypography](#oh_drawing_createtypography)获取。 | 
-| double | 文本最大宽度 | 
+| double | 文本最大宽度。 | 
 
 
 ### OH_Drawing_TypographyMarkDirty()
@@ -17880,7 +17880,7 @@ OH_Drawing_FontWeight OH_Drawing_TypographyTextlineStyleGetFontWeight (OH_Drawin
 
 **返回：**
 
-返回文本排版行样式字重。 0字重为thin，1字重为extra-light，2字重为light，4字重为medium，5字重为semi-bold， 6字重为bold，7字重为extra-bold，8字重为black，3或其它字重为normal/regular，具体可见[OH_Drawing_FontWeight](#oh_drawing_fontweight)枚举
+返回文本排版行样式字重。 0字重为thin，1字重为extra-light，2字重为light，4字重为medium，5字重为semi-bold， 6字重为bold，7字重为extra-bold，8字重为black，3或其它字重为normal/regular，具体可见[OH_Drawing_FontWeight](#oh_drawing_fontweight)枚举。
 
 
 ### OH_Drawing_TypographyTextlineStyleGetHalfLeading()
