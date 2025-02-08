@@ -1,6 +1,8 @@
 # Docs仓MD文档PR信息
 
-请务必按如下模板反馈PR所携带的修改信息
+> **注意：**
+> 请务必按如下模板反馈PR所携带的修改信息。
+> 请分析是否需要同步合入活跃的发布分支。当前活跃的发布分支包括OpenHarmony-5.0.0-Release、OpenHarmony-5.0.1-Release、OpenHarmony-5.0.2-Release、OpenHarmony-5.0.3-Release。
 
 ## 文档变更类型
 
@@ -20,7 +22,8 @@
 
 为确保文档合入质量，请遵循如下要求完成基础质量自检Checklist，**并在自检项后的括号内填写Y**：
 
-- 文档中示例代码片段已经在IDE中自验证，确保编译通过。（ ）
+- 文档中示例代码片段已经在IDE中自验证，确保编译通过，并在下方给出截图证明。（ ）
 - API的定义与使用方式与配套版本的SDK严格一致，无文档与SDK不一致问题。（ ）
 - 对于文档的写作，已学习并参考相关[资料模板规范要求](https://gitee.com/openharmony/docs/tree/master/zh-cn/contribute/template)，符合OpenHarmony文档质量要求。（ ）
 
+## 示例代码编译通过截图证明（如涉及示例代码需提供）：
