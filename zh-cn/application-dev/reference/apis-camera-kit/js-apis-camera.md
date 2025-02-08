@@ -3898,9 +3898,9 @@ function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
 enableMirror(enabled: boolean): void
 
 启用/关闭镜像录像。
-- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported16)查询是否支录像镜像功能
+- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported16)查询是否支录像镜像功能。
 
-- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度
+- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
