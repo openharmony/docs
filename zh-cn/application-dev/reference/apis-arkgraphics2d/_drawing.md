@@ -4272,7 +4272,7 @@ OH_Drawing_Rect* OH_Drawing_GetRunImageBounds (OH_Drawing_Run* run)
 
 **返回：**
 
-返回指向渲染单元图像边界[OH_Drawing_Rect](#oh_drawing_rect)对象的指针。
+返回指向渲染单元图像边界[OH_Drawing_Rect](#oh_drawing_rect)对象的指针，不再需要[OH_Drawing_Rect](#oh_drawing_rect)时，请使用[OH_Drawing_DestroyRunImageBounds](#oh_drawing_destroyrunimagebounds)接口释放该对象的指针。
 
 
 ### OH_Drawing_DestroyRunImageBounds()
