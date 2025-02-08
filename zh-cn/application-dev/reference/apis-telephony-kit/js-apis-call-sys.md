@@ -4401,7 +4401,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                   |
 
 **返回值：**
@@ -4504,7 +4504,7 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 
 **返回值：**
 
