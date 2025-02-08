@@ -19,7 +19,7 @@ import { formError } from '@kit.FormKit'
 
 ## FormError
 
-枚举，支持的卡片类型
+枚举，支持的卡片类型。
 
 **系统能力：** SystemCapability.Ability.Form
 
