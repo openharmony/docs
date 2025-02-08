@@ -1078,7 +1078,7 @@ off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {  
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
