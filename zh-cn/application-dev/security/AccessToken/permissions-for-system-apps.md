@@ -1735,7 +1735,7 @@
 
 **ACL使能**：true
 
-**起始版本**：15
+**起始版本**：16
 
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
