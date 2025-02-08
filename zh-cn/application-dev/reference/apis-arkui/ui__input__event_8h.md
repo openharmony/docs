@@ -39,6 +39,7 @@
 | {<br/>[UI_MOUSE_EVENT_BUTTON_NONE](_ark_u_i___event_module.md) = 0, [UI_MOUSE_EVENT_BUTTON_LEFT](_ark_u_i___event_module.md) = 1, [UI_MOUSE_EVENT_BUTTON_RIGHT](_ark_u_i___event_module.md) = 2, [UI_MOUSE_EVENT_BUTTON_MIDDLE](_ark_u_i___event_module.md) = 3,<br/>[UI_MOUSE_EVENT_BUTTON_BACK](_ark_u_i___event_module.md) = 4, [UI_MOUSE_EVENT_BUTTON_FORWARD](_ark_u_i___event_module.md) = 5<br/>} | 定义鼠标事件的按键类型。  | 
 | [ArkUI_ModifierKeyName](_ark_u_i___event_module.md#arkui_modifierkeyname) { [ARKUI_MODIFIER_KEY_CTRL](_ark_u_i___event_module.md) = 1 &lt;&lt; 0, [ARKUI_MODIFIER_KEY_SHIFT](_ark_u_i___event_module.md) = 1 &lt;&lt; 1, [ARKUI_MODIFIER_KEY_ALT](_ark_u_i___event_module.md) = 1 &lt;&lt; 2, [ARKUI_MODIFIER_KEY_FN](_ark_u_i___event_module.md) = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 | {<br/>[UI_FOCUS_AXIS_EVENT_ABS_X](_ark_u_i___event_module.md) = 0, [UI_FOCUS_AXIS_EVENT_ABS_Y](_ark_u_i___event_module.md) = 1, [UI_FOCUS_AXIS_EVENT_ABS_Z](_ark_u_i___event_module.md) = 2, [UI_FOCUS_AXIS_EVENT_ABS_RZ](_ark_u_i___event_module.md) = 3,<br/>[UI_FOCUS_AXIS_EVENT_ABS_GAS](_ark_u_i___event_module.md) = 4, [UI_FOCUS_AXIS_EVENT_ABS_BRAKE](_ark_u_i___event_module.md) = 5, [UI_FOCUS_AXIS_EVENT_ABS_HAT0X](_ark_u_i___event_module.md) = 6, [UI_FOCUS_AXIS_EVENT_ABS_HAT0Y](_ark_u_i___event_module.md) = 7<br/>} | 定义焦点轴事件的轴类型。  | 
+| {<br/>[ARKUI_EVENT_HAND_NONE](_ark_u_i___event_module.md) = 0, [ARKUI_EVENT_HAND_LEFT](_ark_u_i___event_module.md) = 1, [ARKUI_EVENT_HAND_RIGHT](_ark_u_i___event_module.md) = 2} | 定义事件是由左手点击触发还是右手点击触发。  | 
 
 
 ### 函数
