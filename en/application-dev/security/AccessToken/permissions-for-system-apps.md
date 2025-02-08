@@ -1735,7 +1735,7 @@ Allows an application to start desktop UI components.
 
 **Enable via ACL**: true
 
-**Valid since**: 15
+**Valid since**: 16
 
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
