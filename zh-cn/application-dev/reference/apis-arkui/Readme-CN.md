@@ -226,6 +226,7 @@
     - [Slider](arkui-ts/ts-basic-components-slider.md)
     - [DownloadFileButton](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
+    - [ProgressButtonV2](arkui-ts/ohos-arkui-advanced-ProgressButtonV2.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
     - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
@@ -315,7 +316,9 @@
     - [SelectTitleBar](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [TabTitleBar](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
+    - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [SubHeader](arkui-ts/ohos-arkui-advanced-SubHeader.md)
+    - [SubHeaderV2](arkui-ts/ohos-arkui-advanced-SubHeaderV2.md)
   - 菜单
     - [Menu](arkui-ts/ts-basic-components-menu.md)
     - [MenuItem](arkui-ts/ts-basic-components-menuitem.md)

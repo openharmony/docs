@@ -63,7 +63,7 @@ IsolatedComponent(options: IsolatedOptions)
 | worker | [RestrictedWorker](../../apis-arkts/js-apis-worker-sys.md#restrictedworker11)       | 是   | 运行Abc的受限worker。 |
 
 ## 属性
-仅支持[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性
+仅支持[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)通用属性。
 
 ## 事件
 

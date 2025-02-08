@@ -258,7 +258,7 @@ zh-cn/application-dev/ui/arkts-popup-and-menu-components-menu.md		@zhangfanfan2	
 zh-cn/application-dev/ui/arkts-routing.md	@raulnaruto_admin	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-navigation.md	@jiangdayuan	@raulnaruto_admin	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-navigation-tabs.md	@yan-shuifeng	@cc520bf	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/ui/arkts-graphics-display.md	@crazyracing0726		@fredyuan0912	@HelloCrease
+zh-cn/application-dev/ui/arkts-graphics-display.md	@lexiaoyao2		@fredyuan0912	@HelloCrease
 zh-cn/application-dev/ui/arkts-geometric-shape-drawing.md	@keerecles	@seaside_wu	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-drawing-customization-on-canvas.md	@keerecles	@ZhangYu-Home	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/ui/arkts-animation.md	@lightningHo	@huaweimaxuchu	@luyuxuan1	@HelloCrease
@@ -333,9 +333,9 @@ zh-cn/application-dev/device/usb-overview.md @li-yan339 @Kevin-Lau @liuhonggang1
 zh-cn/application-dev/device/usb-guidelines.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [开发-Basic Services Kit-升级服务]
-zh-cn/application-dev/basic-services/update/Readme-CN.md @nezha-father
-zh-cn/application-dev/basic-services/update/sample-server-overview.md  @nezha-father
-zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @nezha-father
+zh-cn/application-dev/basic-services/update/Readme-CN.md @zhang_yixin13
+zh-cn/application-dev/basic-services/update/sample-server-overview.md  @zhang_yixin13
+zh-cn/application-dev/basic-services/update/sample-server-guidelines.md  @zhang_yixin13
 
 [开发-CalendarManager Kit]
 zh-cn/application-dev/calendarmanager @liuqian677 @jt_123456 @edollar
@@ -454,9 +454,9 @@ zh-cn/application-dev/ai/mindspore-lite-offline-model-guidelines.md @ge-yafang @
 
 
 [开发-Multimodal Awareness Kit]
-zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @nezha-father @cococoler @alien0208
-zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @nezha-father @cococoler @alien0208
-zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/kit-readme/Readme-MultimodalAwareness-Kit.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/multimodalawareness-kit-intro.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/device/stationary-guidelines.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 
 
 [开发-Network Kit]
@@ -489,17 +489,17 @@ zh-cn/application-dev/security/ @zengyawen
 
 
 [开发-Sensor Service Kit]
-zh-cn/application-dev/device/sensor-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
-zh-cn/application-dev/device/sensor-guidelines.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensorservice-kit-intro.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/vibrator-guidelines.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/device-dev/subsystems/subsys-sensor-overview.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-overview-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain @lixiangpeng221
+zh-cn/application-dev/device/sensor-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensorservice-kit-intro.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/vibrator-guidelines.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/device-dev/subsystems/subsys-sensor-overview.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/kit-readme/Readme-Sensor-Service-Kit-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-overview-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/vibrator-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/device/sensor/sensor-guidelines-as.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [开发-Telephony Kit]
@@ -704,9 +704,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datapane
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-datepicker.md	@jinweiliu	@lexiaoyao2	@luyuxuan1	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-divider.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-gauge.md	@ileft201	@lihaoyn	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md		@crazyracing0726	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md		@crazyracing0726	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md	 @jyj-0306	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image.md		@lexiaoyao2	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imageanimator.md		@lexiaoyao2	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-imagespan.md	 @lexiaoyao2	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-loadingprogress.md	@ileft201	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-marquee.md	@jyj-0306	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-menu.md	@zhangfanfan2		@luyuxuan1	@HelloCrease
@@ -742,7 +742,6 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-timepick
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md	@zhangfanfan2	@youzhi92	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md	@ZhangYu-Home	@keerecles	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-component3d-sys.md @HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md 	@crazyracing0726	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-plugincomponent-sys.md	@lmleon	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-remotewindow-sys.md @HelloCrease
@@ -755,7 +754,9 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-counter.md	@ile
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flex.md	 @laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-flowitem.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-folderstack.md @laigerendaqiu	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @hehe9876			@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md	@arondave  @hehe9876		@Brilliantry_Rui
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-formlink.md	@arondave  @hehe9876			@Brilliantry_Rui
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-formmenu.md @Brilliantry_Rui
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridcol.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-gridrow.md	@laigerendaqiu	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-container-grid.md	@cc520bf	@zcdqs	@lihaoyn	@HelloCrease
@@ -878,9 +879,9 @@ zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-performancemonitor-sys.
 zh-cn/application-dev/reference/apis-arkui/js-apis-devicestatus-draginteraction-sys.md    @piggyguy  @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-plugincomponent-sys.md  @keerecles	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-uiappearance-sys.md  @lushi1202  @luyuxuan1	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-uiExtensionHost-sys.md  @dutie123	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension.md  @dutie123	@fredyuan0912	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension-sys.md  @dutie123	@fredyuan0912	@HelloCrease
+zh-cn/application-dev/reference/apis-arkui/js-apis-uiExtensionHost-sys.md  @ge-yafang	@zhouyaoying @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension.md  @ge-yafang @zhouyaoying @nobuggers
+zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-uiExtension-sys.md  @ge-yafang @zhouyaoying @nobuggers
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-builderNode.md  @sunfei2021 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-frameNode.md  @sunfei2021 @fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/js-apis-arkui-graphics.md  @sunfei2021 @fredyuan0912	@HelloCrease
@@ -1169,8 +1170,8 @@ zh-cn/application-dev/apis-mindspore-lite-kit/apis/_mind_spore.md  @ge-yafang @p
 
 
 [API参考-Multimodal Awareness Kit]
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @nezha-father @cococoler @alien0208
-zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @nezha-father @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/Readme-CN.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
+zh-cn/application-dev/reference/apis-multimodalawareness-kit/js-apis-stationary.md @mayunteng_1 @hu-zhiqiong @cococoler @alien0208
 
 
 [API参考-Network Kit]
@@ -1200,22 +1201,22 @@ zh-cn/application-dev/reference/apis-ability-kit/errorcode-access-token.md @zeng
 
 
 [API参考-Sensor Service Kit]
-zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
-zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @nezha-father @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/Readme-CN.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor-sys.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/js-apis-system-vibrate.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/oh_sensor_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/vibrator_type_8h.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_attribute.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/_vibrator_file_description.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-sensor.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
+zh-cn/application-dev/reference/apis-sensor-service-kit/errorcode-vibrator.md @hu-zhiqiong @lixiangpeng221 @butterls @star-wind-snow-and-rain
 
 
 [API参考-Telephony Kit]

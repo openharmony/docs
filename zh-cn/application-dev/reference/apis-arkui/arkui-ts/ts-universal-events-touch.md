@@ -79,6 +79,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | pressure<sup>16+</sup> | number | 当前手指按着的压力值。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | width<sup>16+</sup> | number | 当前手指按压区域的宽。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | height<sup>16+</sup> | number | 当前手指按压区域的高。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| hand<sup>16+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明16) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 
@@ -92,7 +93,10 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
 | force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大值越大。|
 | timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
-## 示例1（获取触摸事件的相关参数）
+
+## 示例
+
+### 示例1（获取触摸事件的相关参数）
 
 该示例通过按钮设置了触摸事件，手指点击按钮时可获取触摸事件的相关参数。
 

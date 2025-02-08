@@ -4437,6 +4437,44 @@
 
 **起始版本**：16
 
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+允许系统应用获取融合感知数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.SET_PAC_URL
+
+允许应用设置代理自动配置脚本地址。
+
+应用完成脚本地址配置后，其他应用可读取此脚本并进行解析，根据解析结果决定是否使用代理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。

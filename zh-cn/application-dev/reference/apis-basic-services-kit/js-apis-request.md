@@ -4317,7 +4317,7 @@ setMaxSpeed(speed: number): Promise\<void\>
     // 设置任务速度上限。
     task.setMaxSpeed(10 * 1024 * 1024).then(() => {
       console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
-    }).catch((err: BussinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
     });
   }).catch((err: BusinessError) => {

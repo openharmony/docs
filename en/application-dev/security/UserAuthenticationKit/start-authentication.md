@@ -26,9 +26,9 @@ The system provides a unified user authentication widget, which stands out with 
 
 The following figure shows the style of the user authentication widget, which can be set via the [WidgetParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#widgetparam10) parameter.
 
-<!--RP1-->
+
 ![](figures/user-authentication-widget.png)
-<!--RP1End-->
+
 
 - ①: Title (**WidgetParam.title**) of the user authentication page, which cannot exceed 500 characters. You can set the title based on actual requirements.
 

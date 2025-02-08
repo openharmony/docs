@@ -6,7 +6,7 @@ The **NotificationManager** module provides notification management capabilities
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [[NotificationManager](./js-apis-notificationManager.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [NotificationManager](./js-apis-notificationManager.md).
 
 ## Modules to Import
 
@@ -22,7 +22,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **System API**: This is a system API.
 
@@ -55,6 +55,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **Example**
@@ -95,7 +96,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **System API**: This is a system API.
 
@@ -4421,6 +4422,63 @@ notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.Do
 }).catch((error: BusinessError) => {
   console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
 });
+```
+
+## notificationManager.disableNotificationFeature<sup>16+</sup>
+
+disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Promise\<void\>
+
+Disables the application from publishing notifications by adding the application bundle name to the permission control list. This function can be disabled as required.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| disabled | boolean | Yes  | Whether to enable the permission control list for publishing notifications (**true**: enabled; **false**: disabled).|
+| bundleList | Array\<string\> | Yes  | Application list under the permission control list. The bundle name is used to represent the application.|
+
+**Return value**
+
+| Type           | Description                    | 
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no value.| 
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 1600001      | Internal error.                     |
+| 1600002      | Marshalling or unmarshalling error. |
+
+**Example**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let disabled: boolean = true;
+let bundleList: Array<string> = ["com.example.myapplication"];
+try {
+  notificationManager.disableNotificationFeature(disabled, bundleList).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
+  }).catch((error: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature fail: ${JSON.stringify(error)}`);
+  });
+} catch (error) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `testTag fail: ${JSON.stringify(error)}`);
+}
 ```
 
 ## DoNotDisturbDate
