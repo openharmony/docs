@@ -2164,9 +2164,9 @@ try {
 
 getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
-获取当前应用窗口内容规避的区域。如系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
+获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
-该接口一般适用于两种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口。
+该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md#windowtype7)的类型窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，该接口对此类窗口亦生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2201,6 +2201,132 @@ try {
   let avoidArea = windowClass.getWindowAvoidArea(type);
 } catch (exception) {
   console.error(`Failed to obtain the area. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setSystemAvoidAreaEnabled<sup>16+</sup>
+
+setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
+
+创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md#windowtype7)的类型窗口时，可以调用该接口使能窗口获取[避让区](#avoidarea7)。
+
+该接口一般适用于此场景：应用于创建上述类型窗口并希望获取避让区信息时，需要在创建窗口后调用该接口设置使能该窗口，再调用[getWindowAvoidArea()](#getwindowavoidarea9)或[on('avoidAreaChange')](#onavoidareachange9)获取或监听避让区。
+
+**系统能力：** SystemCapability.Window.SessionManger
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- |----------------------------------| -- | ------------------------------------------------------------ |
+| enabled | boolean | 是 | 是否可以获取到避让区。<br> true表示可以获取避让区；false表示不可以获取避让区。默认值是false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  decorEnabled: true,
+  ctx: this.context
+};
+try {
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to create the system window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    windowClass = data;
+    windowClass.setUIContent("pages/Test");
+    let enabled = true;
+    let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
+    promise.then(() => {
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      let avoidArea = windowClass?.getWindowAvoidArea(type);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to obtain the system window avoid area. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  });
+} catch (exception) {
+  console.error(`Failed to create the system window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### isSystemAvoidAreaEnabled<sup>16+</sup>
+
+isSystemAvoidAreaEnabled(): boolean
+
+获取悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md#windowtype7)的类型窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
+
+**系统能力：** SystemCapability.Window.SessionManger
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------------------------- | ------------- |
+| boolean | 是否可以获取窗口内容的避让区。<br> true表示可以获取避让区；false表示不可以获取避让区。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+let config: window.Configuration = {
+  name: "test",
+  windowType: window.WindowType.TYPE_DIALOG,
+  decorEnabled: true,
+  ctx: this.context
+};
+try {
+  window.createWindow(config, (err: BusinessError, data) => {
+    const errCode: number = err.code;
+    if (errCode) {
+      console.error(`Failed to create the system window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    windowClass = data;
+    windowClass.setUIContent("pages/Test");
+    let enabled = true;
+    let promise = windowClass.setSystemAvoidAreaEnabled(enabled);
+    promise.then(() => {
+      let enable = windowClass?.isSystemAvoidAreaEnabled();
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to obtain whether the system window can get avoid area. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  });
+} catch (exception) {
+  console.error(`Failed to create the system window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

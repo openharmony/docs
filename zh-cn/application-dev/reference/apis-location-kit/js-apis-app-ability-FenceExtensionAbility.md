@@ -10,7 +10,7 @@ FenceExtensionAbility为开发者提供的地理围栏相关的能力，继承�
 ## 导入模块
 
 ```ts
-import FenceExtensionAbility from '@kit.LocationKit';
+import { FenceExtensionAbility } from '@kit.LocationKit';
 ```
 
 ## 属性

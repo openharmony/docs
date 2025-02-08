@@ -4139,6 +4139,18 @@
 
 **起始版本**：16
 
+### ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
+
+允许应用在使用同一受信任账号登录的设备之间同步关键资产。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 允许应用获取恢复密钥的简要信息。

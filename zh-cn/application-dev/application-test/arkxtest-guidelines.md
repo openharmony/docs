@@ -453,7 +453,8 @@ hdc shell uitest uiRecord read
 | swipe   | 是    | 模拟慢滑操作。     | 
 | drag   | 是    | 模拟拖拽操作。     | 
 | dircFling   | 是    | 模拟指定方向滑动操作。     |
-| inputText   | 是    | 模拟输入框输入文本操作。     |
+| inputText   | 是    | 指定坐标点，模拟输入框输入文本操作。                   |
+| text   | 是    | 无需指定坐标点，在当前获焦处，模拟输入框输入文本操作。                           |
 | keyEvent   | 是    | 模拟实体按键事件(如：键盘，电源键，返回上一级，返回桌面等)，以及组合按键操作。     | 
 
 
@@ -540,6 +541,17 @@ hdc shell uitest uiInput dircFling 3
 ```shell  
 # 执行输入框输入操作。
 hdc shell uitest uiInput inputText 100 100 hello 
+```
+
+#### uiInput text使用示例
+
+| 配置参数             | 必填       | 描述 |       
+|------|------------------|----------|
+| text   | 是                | 输入文本内容。  |
+
+```shell  
+# 无需输入坐标点，在当前获焦处，执行输入框输入操作。若当前获焦处不支持文本输入，则无实际效果。
+hdc shell uitest uiInput text hello
 ```
 
 #### uiInput keyEvent使用示例

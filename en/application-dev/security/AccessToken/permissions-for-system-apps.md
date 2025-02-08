@@ -1451,7 +1451,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -4131,6 +4131,18 @@ Allows an application to utilize the recovery key to reset the lock screen passw
 ### ohos.permission.ACCESS_CONFIDENTIAL_COMPUTING_ZONE
 
 Allows an application to access the confidential computing zone.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
+
+Allows an application to synchronize assets between the devices logged with the same trusted account.
 
 **Permission level**: system_basic
 
