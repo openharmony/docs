@@ -16,7 +16,7 @@
 
 变更前：
 
-| 系统地区              | 接口入参      | 返回值   |
+| 系统地区              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
 | CN                    | en,zh-Hans,bo,ug,zh-Hant       |   zh-Hans,en,bo,ug,zh-Hant  |
 | SG                    | bo,en,zh-Hans,ug,zh-Hant |   zh-Hans,en,bo,ug,zh-Hant  |
@@ -32,7 +32,7 @@
 
 变更后：
 
-| 系统地区              | 接口入参      | 返回值   |
+| 系统地区              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
 | CN                    | en,zh-Hans,bo,ug,zh-Hant       |   zh-Hans,ug,bo,zh-Hant,en  |
 | SG                    | bo,en,zh-Hans,ug,zh-Hant |   en,zh-Hant,zh-Hans,ug,bo  |
@@ -78,7 +78,7 @@ i18n.SystemLocaleManager.getLanguageInfoArray
 
 变更前：
 
-| 系统语言              | 接口入参      | 返回值   |
+| 系统语言              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
 | en               | HK,TW,CN,AU,CA,IN,NZ,SG,GB,US,MO       |   US,AU,CA,IN,NZ,SG,GB,CN,HK,MO,TW  |
 | zh-Hant          | HK,TW,CN,AU,CA,IN,NZ,SG,GB,US,MO       |   TW,HK,MO,CN,CA,IN,US,GB,NZ,SG,AU  |
@@ -88,7 +88,7 @@ i18n.SystemLocaleManager.getLanguageInfoArray
 
 变更后：
 
-| 系统语言              | 接口入参      | 返回值   |
+| 系统语言              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
 | en               | HK,TW,CN,AU,CA,IN,NZ,SG,GB,US,MO       |   AU,CA,IN,NZ,SG,GB,US,CN,HK,MO,TW  |
 | zh-Hant          | HK,TW,CN,AU,CA,IN,NZ,SG,GB,US,MO       |   TW,HK,CN,MO,CA,IN,US,GB,NZ,SG,AU  |
