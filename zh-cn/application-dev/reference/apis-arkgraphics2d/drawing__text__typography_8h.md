@@ -106,7 +106,7 @@
 | void [OH_Drawing_SetTextStyleFontHeight](_drawing.md#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。  | 
 | void [OH_Drawing_SetTextStyleFontFamilies](_drawing.md#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。  |
 | void [OH_Drawing_SetTextStyleFontStyle](_drawing.md#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字体风格。  |
-| void [OH_Drawing_SetTextStyleLocale](_drawing.md#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const char \*) | 设置文本语言类型。  | 
+| void [OH_Drawing_SetTextStyleLocale](_drawing.md#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, const char \*) | 设置文本语言环境。  |
 | void [OH_Drawing_SetTextStyleForegroundBrush](_drawing.md#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 设置前景色画刷。  | 
 | void [OH_Drawing_TextStyleGetForegroundBrush](_drawing.md#oh_drawing_textstylegetforegroundbrush) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Brush](_drawing.md#oh_drawing_brush) \*) | 返回设置的前景色画刷。  | 
 | void [OH_Drawing_SetTextStyleForegroundPen](_drawing.md#oh_drawing_settextstyleforegroundpen) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Pen](_drawing.md#oh_drawing_pen) \*) | 设置前景色画笔。  | 
@@ -167,7 +167,7 @@
 | void [OH_Drawing_SetTypographyTextSplitRatio](_drawing.md#oh_drawing_settypographytextsplitratio) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, float textSplitRatio) | 设置文本划分比率。  | 
 | bool [OH_Drawing_TypographyIsLineUnlimited](_drawing.md#oh_drawing_typographyislineunlimited) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否有最大行数限制。  | 
 | bool [OH_Drawing_TypographyIsEllipsized](_drawing.md#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否配置省略号。  | 
-| void [OH_Drawing_SetTypographyTextLocale](_drawing.md#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, const char \*locale) | 设置段落语言环境。  | 
+| void [OH_Drawing_SetTypographyTextLocale](_drawing.md#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, const char \*locale) | 设置段落语言环境。 |
 | bool [OH_Drawing_TextStyleGetFontMetrics](_drawing.md#oh_drawing_textstylegetfontmetrics) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取文本字体属性。  | 
 | void [OH_Drawing_SetTypographyTextStyle](_drawing.md#oh_drawing_settypographytextstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 设置段落样式。  | 
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_CreateFontDescriptor](_drawing.md#oh_drawing_createfontdescriptor) (void) | 构造字体描述对象，用于描述系统字体详细信息。  | 
@@ -182,8 +182,8 @@
 | void [OH_Drawing_DestroyLineMetrics](_drawing.md#oh_drawing_destroylinemetrics) ([OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 释放行位置信息对象占用的内存。  | 
 | bool [OH_Drawing_TypographyGetLineMetricsAt](_drawing.md#oh_drawing_typographygetlinemetricsat) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行位置信息，具体参见[OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md)结构体，该接口需要在[OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout)接口调用之后调用。  | 
 | bool [OH_Drawing_TypographyGetLineInfo](_drawing.md#oh_drawing_typographygetlineinfo) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, int, bool, bool, [OH_Drawing_LineMetrics](_o_h___drawing___line_metrics.md) \*) | 获取指定行的位置信息或指定行第一个字符的位置信息，该接口需要在[OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout)接口调用之后调用。  | 
-| void [OH_Drawing_SetTypographyTextFontWeight](_drawing.md#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置文本排版字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。  | 
-| void [OH_Drawing_SetTypographyTextFontStyle](_drawing.md#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置排版样式的默认字体样式。  |
+| void [OH_Drawing_SetTypographyTextFontWeight](_drawing.md#oh_drawing_settypographytextfontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置段落样式默认字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
+| void [OH_Drawing_SetTypographyTextFontStyle](_drawing.md#oh_drawing_settypographytextfontstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, int) | 设置段落样式默认的字体样式。  |
 | void [OH_Drawing_SetTypographyTextFontFamily](_drawing.md#oh_drawing_settypographytextfontfamily) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, const char \*) | 设置字体家族的名称。  | 
 | void [OH_Drawing_SetTypographyTextFontSize](_drawing.md#oh_drawing_settypographytextfontsize) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版字号。  | 
 | void [OH_Drawing_SetTypographyTextFontHeight](_drawing.md#oh_drawing_settypographytextfontheight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, double) | 设置文本排版字体高度。  | 
@@ -222,7 +222,7 @@
 | void [OH_Drawing_TextStyleDestroyFontFeatures](_drawing.md#oh_drawing_textstyledestroyfontfeatures) ([OH_Drawing_FontFeature](_o_h___drawing___font_feature.md) \*, size_t fontFeatureSize) | 释放存放字体特征所有内容的结构体数组所占用的空间。  | 
 | size_t [OH_Drawing_TextStyleGetFontFeatureSize](_drawing.md#oh_drawing_textstylegetfontfeaturesize) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取指定文本样式中字体特征map容器的大小。 |
 | void [OH_Drawing_TextStyleClearFontFeature](_drawing.md#oh_drawing_textstyleclearfontfeature) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 清除指定文本样式的字体特征map容器中所有内容。 |
-| double [OH_Drawing_TextStyleGetBaselineShift](_drawing.md#oh_drawing_textstylegetbaselineshift) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取文本的基线漂移。  | 
+| double [OH_Drawing_TextStyleGetBaselineShift](_drawing.md#oh_drawing_textstylegetbaselineshift) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取文本的基线偏移。 |
 | void [OH_Drawing_TextStyleSetBaselineShift](_drawing.md#oh_drawing_textstylesetbaselineshift) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double lineShift) | 设置文本样式基线偏移。 |
 | void [OH_Drawing_TypographyTextSetHeightBehavior](_drawing.md#oh_drawing_typographytextsetheightbehavior) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_TextHeightBehavior](_drawing.md#oh_drawing_textheightbehavior) heightMode) | 设置文本高度修饰符模式。  | 
 | [OH_Drawing_TextHeightBehavior](_drawing.md#oh_drawing_textheightbehavior) [OH_Drawing_TypographyTextGetHeightBehavior](_drawing.md#oh_drawing_typographytextgetheightbehavior) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本高度修饰符模式。  | 
@@ -272,7 +272,7 @@
 | double [OH_Drawing_TextStyleGetWordSpacing](_drawing.md#oh_drawing_textstylegetwordspacing) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取指定文本样式的单词间距。 |
 | double [OH_Drawing_TextStyleGetFontHeight](_drawing.md#oh_drawing_textstylegetfontheight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取指定文本样式行高缩放系数。 |
 | bool [OH_Drawing_TextStyleGetHalfLeading](_drawing.md#oh_drawing_textstylegethalfleading) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取指定文本样式一半行间距开关状态。  | 
-| const char \* [OH_Drawing_TextStyleGetLocale](_drawing.md#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取语言环境设置。 |
+| const char \* [OH_Drawing_TextStyleGetLocale](_drawing.md#oh_drawing_textstylegetlocale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*) | 获取语言环境。 |
 | void [OH_Drawing_TypographyDestroyTextBox](_drawing.md#oh_drawing_typographydestroytextbox) ([OH_Drawing_TextBox](_drawing.md#oh_drawing_textbox) \*) | 释放文本框占用的内存。  | 
 | void [OH_Drawing_SetTextShadow](_drawing.md#oh_drawing_settextshadow) ([OH_Drawing_TextShadow](_drawing.md#oh_drawing_textshadow) \*shadow, uint32_t color, [OH_Drawing_Point](_drawing.md#oh_drawing_point) \*offset, double blurRadius) | 设置字体阴影对象的参数。  | 
 | [OH_Drawing_TextTab](_drawing.md#oh_drawing_texttab) \* [OH_Drawing_CreateTextTab](_drawing.md#oh_drawing_createtexttab) ([OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) alignment, float location) | 创建文本制表符对象。  | 
