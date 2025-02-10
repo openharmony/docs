@@ -35,6 +35,7 @@ AtomicServiceWeb({
   mixedMode?: MixedMode,
   darkMode?: WebDarkMode,
   forceDarkAccess?: boolean,
+  nestedScroll?: NestedScrollOptions | NestedScrollOptionsExt,
   onMessage?: Callback<OnMessageEvent>,
   onErrorReceive?: Callback<OnErrorReceiveEvent>,
   onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
@@ -62,6 +63,7 @@ AtomicServiceWeb({
 | mixedMode            | [MixedMode](../../apis-arkweb/ts-basic-components-web.md#mixedmode枚举说明)                                          | 否  | @Prop       | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。                                                    |
 | darkMode             | [WebDarkMode](../../apis-arkweb/ts-basic-components-web.md#webdarkmode9枚举说明)                                     | 否  | @Prop       | 设置Web深色模式，默认关闭。                                                                                                      |
 | forceDarkAccess      | boolean                                                                                                          | 否  | @Prop       | 设置网页是否开启强制深色模式。默认关闭。该属性仅在darkMode开启深色模式时生效。                                                                          |
+| nestedScroll<sup>16+</sup>      | [NestedScrollOptions](../../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) \| [NestedScrollOptionsExt](../../apis-arkweb/ts-basic-components-web.md#nestedscrolloptionsext14对象说明) | 否  | @Prop       | 设置嵌套滚动选项。                                                                          |
 | onMessage            | Callback\<[OnMessageEvent](#onmessageevent)\>                                                                    | 否  | -           | H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。                                                              |
 | onErrorReceive       | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent)\>                                                          | 否  | -           | 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。                                                                 |
 | onHttpErrorReceive   | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent)\>                                                  | 否  | -           | 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。                                                                                     |
@@ -750,6 +752,64 @@ struct WebComponent {
           console.info("onErrorReceive call back success " + JSON.stringify(event));
         }
       })
+    }
+  }
+}
+```
+
+### 示例7
+
+设置嵌套滚动。
+
+```ts
+import { AtomicServiceWeb, AtomicServiceWebController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct AtomicServiceNestedScroll {
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+  @State mode: string = 'PARALLEL模式（点击切换）';
+  @State nestedScroll: NestedScrollOptions | NestedScrollOptionsExt = {
+    scrollForward: NestedScrollMode.PARALLEL,
+    scrollBackward: NestedScrollMode.PARALLEL
+  };
+
+  build() {
+    Scroll() {
+      Column() {
+        Text("嵌套AsWeb-头部")
+          .height("15%")
+          .width("100%")
+          .fontSize(30)
+          .backgroundColor(Color.Yellow)
+        Button(this.mode)
+          .margin({ top: 10, bottom: 10 })
+          .onClick(() => {
+            if (!(this.nestedScroll as NestedScrollOptions).scrollForward) {
+              this.mode = 'SELF_FIRST模式（点击切换）';
+              this.nestedScroll = {
+                scrollForward: NestedScrollMode.SELF_FIRST,
+                scrollBackward: NestedScrollMode.SELF_FIRST
+              }
+            } else {
+              this.mode = 'PARENT_FIRST模式（点击切换）';
+              this.nestedScroll = {
+                scrollUp: NestedScrollMode.PARENT_FIRST,
+                scrollDown: NestedScrollMode.PARENT_FIRST
+              }
+            }
+          })
+        AtomicServiceWeb({
+          src: 'https://www.example.com',
+          controller: this.controller,
+          nestedScroll: this.nestedScroll
+        })
+        Text("嵌套AsWeb-尾部")
+          .height("15%")
+          .width("100%")
+          .fontSize(30)
+          .backgroundColor(Color.Yellow)
+      }
     }
   }
 }

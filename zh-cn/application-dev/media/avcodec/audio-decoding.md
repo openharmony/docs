@@ -97,7 +97,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    注册回调函数指针集合OH_AVCodecCallback，包括：
 
     - OH_AVCodecOnError：解码器运行错误。
-    - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
+    - OH_AVCodecOnStreamChanged：码流信息变化回调，包括采样率变化、声道数变化、音频采样格式变化，支持检测此变化的解码格式有：<!--RP5--><!--RP5End-->AAC，FLAC，MP3，VORBIS。(API 15开始支持)
     - OH_AVCodecOnNeedInputBuffer：运行过程中需要新的输入数据，即解码器已准备好，可以输入数据。
     - OH_AVCodecOnNewOutputBuffer：运行过程中产生了新的输出数据，即解码完成。
 
@@ -118,8 +118,20 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
     static void OnOutputFormatChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
         (void)codec;
-        (void)format;
         (void)userData;
+        // 解码输出参数变化后的回调处理，应用根据实际情况进行处理
+        int32_t sampleRate;
+        int32_t channelCount;
+        int32_t sampleFormat;
+        if (OH_AVFormat_GetIntValue(format, OH_MD_KEY_AUD_SAMPLE_RATE, &sampleRate)) {
+            // 判断采样率是否发生变化，进行对应处理
+        }
+        if (OH_AVFormat_GetIntValue(format, OH_MD_KEY_AUD_CHANNEL_COUNT, &channelCount)) {
+            // 判断声道数是否发生变化，进行对应处理
+        }
+        if (OH_AVFormat_GetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, &sampleFormat)) {
+            // 判断音频采样格式是否发生变化，进行对应处理
+        }
     }
     // OH_AVCodecOnNeedInputBuffer回调函数的实现
     static void OnInputBufferAvailable(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)

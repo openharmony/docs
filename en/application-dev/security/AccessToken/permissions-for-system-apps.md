@@ -1725,6 +1725,18 @@ Allows an application to obtain the Ability Form.
 
 **Valid since**: 7
 
+### ohos.permission.START_DESKTOP_UI_COMPONENT
+
+Allows an application to start desktop UI components.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 Allows an application to revoke the sensitive permissions it has granted to other applications.
@@ -4324,7 +4336,7 @@ Allows an application to initiate screen recording without displaying the user a
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 15
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
