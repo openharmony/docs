@@ -16,7 +16,7 @@ import { ProgressButton } from '@kit.ArkUI'
 ```
 
 ## 属性
-支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)
 
 ## ProgressButton
 
