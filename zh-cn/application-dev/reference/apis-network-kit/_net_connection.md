@@ -98,8 +98,8 @@
 | [OH_NetConn_RegisterNetConnCallback](#oh_netconn_registernetconncallback) ([NetConn_NetSpecifier](_net_conn___net_specifier.md) \*specifier, [NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t timeoutMS, uint32_t \*callbackId) | 注册监听网络状态的回调。 |
 | [OH_NetConn_RegisterDefaultNetConnCallback](#oh_netconn_registerdefaultnetconncallback) ([NetConn_NetConnCallback](_net_conn___net_conn_callback.md) \*netConnCallback, uint32_t \*callbackId) | 注册监听默认网络状态的回调。 |
 | [OH_NetConn_UnregisterNetConnCallback](#oh_netconn_unregisternetconncallback) (uint32_t callbackId) | 注销监听网络状态的回调。 |
-| [OH_NetConn_SetPacUrl](#oh_netconn_setpacurl) (const char \*pacUrl) | 设置系统级自动代理配置（PAC）脚本地址。 |
-| [OH_NetConn_GetPacUrl](#oh_netconn_getpacurl) (char \*pacUrl) | 获取系统级自动代理配置（PAC）脚本地址。 |
+| [OH_NetConn_SetPacUrl](#oh_netconn_setpacurl) (const char \*pacUrl) | 设置系统级代理自动配置（PAC）脚本地址。 |
+| [OH_NetConn_GetPacUrl](#oh_netconn_getpacurl) (char \*pacUrl) | 获取系统级代理自动配置（PAC）脚本地址。 |
 
 
 ## 类型定义说明
@@ -1084,7 +1084,7 @@ int32_t OH_NetConn_UnregisterNetConnCallback(uint32_t callBackId)
 ohos.permission.GET_NETWORK_INFO
 
 
-### OH_NetConn_SetPacUrl(const char *pacUrl)
+### OH_NetConn_SetPacUrl()
 
 ```
 NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
@@ -1092,7 +1092,7 @@ NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
 
 **描述**
 
-设置系统级自动代理配置（PAC）脚本地址。
+设置系统级代理自动配置（PAC）脚本地址。
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
@@ -1121,7 +1121,7 @@ NETCONN_INTERNAL_ERROR - 内部错误，表示设置脚本地址失败.
 ohos.permission.SET_PAC_URL
 
 
-### OH_NetConn_GetPacUrl(char *pacUrl)
+### OH_NetConn_GetPacUrl()
 
 ```
 NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
@@ -1129,7 +1129,7 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
 
 **描述**
 
-获取系统级自动代理配置（PAC）脚本地址。
+获取系统级代理自动配置（PAC）脚本地址。
 
 **系统能力：** SystemCapability.Communication.NetManager.Core
 
