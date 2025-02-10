@@ -259,6 +259,7 @@
     <!--Del-->
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
+    - [Video (系统接口)](arkui-ts/ts-media-components-video-sys.md)
     <!--DelEnd-->
   - 信息展示
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
