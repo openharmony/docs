@@ -791,3 +791,15 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
   console.error(JSON.stringify(err));
 });
 ```
+
+## NetBearType
+
+type NetBearType = connection.NetBearType
+
+Enumerates network types.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| connection.NetBearType | Network type.   |

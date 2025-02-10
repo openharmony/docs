@@ -37,8 +37,8 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | API| Description|
 | ---- | ---- |
 | getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |Creates a **NetHandle** object that contains the **netId** of the default network. This API uses an asynchronous callback to return the result.|
-| getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| Obtains the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
-| setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| Sets the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
+| <!--DelRow--> getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void;| Obtains the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
+| <!--DelRow--> setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| Sets the global HTTP proxy for the network. This API uses an asynchronous callback to return the result.|
 | setAppHttpProxy(httpProxy: HttpProxy): void;| Sets the application-level HTTP proxy configuration of the network.|
 | getAppNet(callback: AsyncCallback\<NetHandle>): void;| Obtains a **NetHandle** object that contains the **netId** of the network bound to the application. This API uses an asynchronous callback to return the result.|
 | setAppNet(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Binds an application to the specified network. The application can access the external network only through this network. This API uses an asynchronous callback to return the result.|
@@ -51,8 +51,8 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 | reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
 | reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| Reports a **netAavailable** event to NetManager. If this API is called, the application considers that its network status (ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED) is inconsistent with that of NetManager. This API uses an asynchronous callback to return the result.|
 | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
-| enableAirplaneMode(callback: AsyncCallback\<void>): void; | Enables the airplane mode. This API uses an asynchronous callback to return the result.|
-| disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result.|
+| <!--DelRow--> enableAirplaneMode(callback: AsyncCallback\<void>): void; | Enables the airplane mode. This API uses an asynchronous callback to return the result.|
+| <!--DelRow--> disableAirplaneMode(callback: AsyncCallback\<void>): void;| Disables the airplane mode. This API uses an asynchronous callback to return the result.|
 | createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection; | Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.|
 | bindSocket(socketParam: TCPSocket \| UDPSocket, callback: AsyncCallback\<void>): void; | Binds a **TCPSocket** or **UDPSocket** to the current network. This API uses an asynchronous callback to return the result.|
 | getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |Obtains all IP addresses of the specified network by resolving the domain name. This API uses an asynchronous callback to return the result.|
@@ -122,6 +122,135 @@ conn.on('netUnavailable', ((data: void) => {
 conn.unregister((err: BusinessError, data: void) => {
 });
 ```
+
+## Monitoring Changes of the Default Network and Re-establishing the Network Connection
+
+Depending on the current network status and network quality, the default network may change, for example:
+1. Switching the default network to the cellular network when the Wi-Fi signal is weak
+2. Switching the default network to the Wi-Fi network when the cellular network signal is weak
+3. Switching the default network to the cellular network when the Wi-Fi network is disabled
+4. Switching the default network to the Wi-Fi network when the cellular network is disabled
+5. Switching the default network to another Wi-Fi network when the Wi-Fi signal is weak (cross-network scenario)
+6. Switching the default network to cellular Wi-Fi network when the cellular signal is weak (cross-network scenario)
+
+The following describes how to monitor changes of the default network and migrate application packets to the new default network.
+
+### Monitoring Changes of the Default Network 
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+async function test() {
+  const netConnection = connection.createNetConnection();
+
+  /* Listen for changes of the default network */
+  netConnection.on('netAvailable', (data: connection.NetHandle) => {
+    console.log(JSON.stringify(data));
+  });
+}
+```
+
+### Re-establishing the Network Connection When the Default Network Is Changed
+
+#### Original Network Connection Established via the HTTP Module
+
+If the original network connection is established through the HTTP module, the socket is not closed immediately after the default network is changed and a new network connection is set up. The reason is that the HTTP module does not provide the **Close** API for closing a socket. Therefore, use Remote Communication Kit to re-establish a network connection.
+
+#### Original Network Connection Established via Remote Communication Kit
+
+```ts
+import { rcp } from '@kit.RemoteCommunicationKit';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let session = rcp.createSession();
+
+async function useRcp() {
+  /* Create an RCP request */
+  try {
+    const request = await session.get('https://www.example.com');
+    console.info(request.statusCode.toString());
+  } catch (e) {
+    console.error(e.code.toString());
+  }
+}
+
+async function rcpTest() {
+  const netConnection = connection.createNetConnection();
+  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
+    /* Re-establish a session when the default network is changed */
+    session.close();
+    session = rcp.createSession();
+    useRcp();
+  });
+  try {
+    netConnection.register(() => {
+    });
+    useRcp();
+  } catch (e) {
+    console.error(e.code.toString());
+  }
+}
+```
+
+#### Original Network Connection Established via the Socket Module
+
+```ts
+import { connection, socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let sock: socket.TCPSocket = socket.constructTCPSocketInstance();
+
+async function useSocket() {
+  let tcpConnectOptions: socket.TCPConnectOptions = {
+    address: {
+      address: '192.168.xx.xxx',
+      port: 8080
+    },
+    timeout: 6000
+  }
+
+  /* Set up a socket connection */
+  sock.connect(tcpConnectOptions, (err: BusinessError) => {
+    if (err) {
+      console.error('connect fail');
+      return;
+    }
+    console.log('connect success');
+
+    /* Send data over the socket */
+    let tcpSendOptions: socket.TCPSendOptions = {
+      data: 'Hello, server!'
+    }
+    sock.send(tcpSendOptions).then(() => {
+      console.log('send success');
+    }).catch((err: BusinessError) => {
+      console.error('send fail');
+    });
+  })
+}
+
+async function socketTest() {
+  const netConnection = connection.createNetConnection();
+  netConnection.on('netAvailable', async (netHandle: connection.NetHandle) => {
+    console.log('default network changed');
+    await sock.close();
+    sock = socket.constructTCPSocketInstance();
+    useSocket();
+  });
+  try {
+    netConnection.register(() => {
+    });
+    useSocket();
+  } catch (e) {
+    console.error(e.code.toString());
+  }
+}
+```
+
+#### Original Network Connection Established via Socket Library
+
+Close the original socket and re-establish a socket connection when the default network is changed.
 
 ## Obtaining the List of All Registered Networks
 
@@ -292,7 +421,7 @@ connection.getAllNets().then((data: connection.NetHandle[]) => {
 })
 ```
 
-## Resolving the domain name of a network to obtain all IP addresses
+## Resolving the Domain Name of a Network to Obtain All IP Addresses
 
 1. Declare the required permission: **ohos.permission.INTERNET**.
 This permission is of the **normal** level. Before applying for the permission, ensure that the [basic principles for permission management](../security/AccessToken/app-permission-mgmt-overview.md#basic-principles-for-using-permissions) are met. Declare the permissions required by your application. For details, see [Declaring Permissions in the Configuration File](accesstoken-guidelines.md#declaring-permissions-in-the configuration-file).

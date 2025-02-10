@@ -15,6 +15,19 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+蓝牙设备的profile连接状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
+
+
 ## ble.createGattServer<a name="createGattServer"></a>
 
 createGattServer(): GattServer

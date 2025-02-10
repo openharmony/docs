@@ -7,6 +7,8 @@ MultiNavigation用于在大尺寸设备上分栏显示、进行路由跳转。
 > 该组件从API Version 14开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 由于MultiNavigation存在多重栈嵌套，调用本文档明确说明的不支持接口或不在本文档支持接口列表中的接口(例如getParent、setInterception、pushDestination等)，可能会发生无法预期的问题。
+>
+> MultiNavigation在深层嵌套场景下，可能存在路由动效异常的问题。
 
 ## 导入模块
 
@@ -637,7 +639,7 @@ struct Index {
   }
 }
 ```
-
+<!--code_no_check-->
 ```typescript
 // pages/PageHome1.ets, 对应首页
 import { MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
@@ -847,7 +849,7 @@ export struct PageHome1 {
   }
 }
 ```
-
+<!--code_no_check-->
 ```typescript
 // pages/PageDetail1.ets：详情页
 import { MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
@@ -1067,7 +1069,7 @@ export struct PageDetail1 {
   }
 }
 ```
-
+<!--code_no_check-->
 ```typescript
 // pages/PageDetail2.ets: 详情页
 import { MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
@@ -1229,7 +1231,7 @@ export struct PageDetail2 {
   }
 }
 ```
-
+<!--code_no_check-->
 ```typescript
 // pages/PageFull1.ets: 不参与分栏的页面，默认全屏展示
 import { MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';
@@ -1363,7 +1365,7 @@ export struct PageFull1 {
   }
 }
 ```
-
+<!--code_no_check-->
 ```typescript
 // pages/PagePlaceholder.ets: 占位页
 import { MultiNavPathStack, SplitPolicy } from '@ohos.arkui.advanced.MultiNavigation';

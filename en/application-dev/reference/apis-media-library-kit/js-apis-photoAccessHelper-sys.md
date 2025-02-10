@@ -1590,9 +1590,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common }  from '@kit.AbilityKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   try{
@@ -4226,7 +4226,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';;
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -5829,7 +5829,7 @@ Obtains the face identifier on the cover of a portrait album or group photo albu
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+| Promise&lt;string&gt; | Promise used to return **tag_id** of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
 
 **Error codes**
 
@@ -5864,6 +5864,297 @@ async function example() {
     fetchResult.close();
   } catch (err) {
     console.error(`getFaceId failed with err: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+## CloudMediaAssetManager<sup>14+</sup>
+
+A class used for cloud media asset management. It is used to manage download tasks for media assets stored in the cloud and delete local data and files pertaining to these cloud-based assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### getCloudMediaAssetManagerInstance<sup>14+</sup>
+
+static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManager
+
+Obtains a CloudMediaAssetManager instance.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Context of the ability instance.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| [CloudMediaAssetManager](#cloudmediaassetmanager14) | CloudMediaAssetManager instance.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.          |
+
+**Example**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('getCloudMediaAssetManagerInstanceDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.pauseDownloadCloudMedia();
+  } catch (err) {
+    console.error(`getCloudMediaAssetManagerInstanceDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### startDownloadCloudMedia<sup>14+</sup>
+
+startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&gt;
+
+Starts or resumes a task to download cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| downloadType | [CloudMediaDownloadType](#cloudmediadownloadtype14) | Yes  | Type of the download task.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.           |
+
+**Example**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('startDownloadCloudMediaDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.startDownloadCloudMedia(photoAccessHelper.CloudMediaDownloadType.DOWNLOAD_FORCE);
+  } catch (err) {
+    console.error(`startDownloadCloudMediaDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### pauseDownloadCloudMedia<sup>14+</sup>
+
+pauseDownloadCloudMedia(): Promise&lt;void&gt;
+
+Suspends a task that downloads cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('pauseDownloadCloudMediaDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.pauseDownloadCloudMedia();
+  } catch (err) {
+    console.error(`pauseDownloadCloudMediaDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### cancelDownloadCloudMedia<sup>14+</sup>
+
+cancelDownloadCloudMedia(): Promise&lt;void&gt;
+
+Cancels a task that downloads cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('cancelDownloadCloudMediaDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.cancelDownloadCloudMedia();
+  } catch (err) {
+    console.error(`cancelDownloadCloudMediaDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### retainCloudMediaAsset<sup>14+</sup>
+
+retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
+
+Deletes local metadata and files of cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| retainType | [CloudMediaRetainType](#cloudmediaretaintype14) | Yes  | Mode for deleting cloud media assets.|
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('retainCloudMediaAssetDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.retainCloudMediaAsset(photoAccessHelper.CloudMediaRetainType.RETAIN_FORCE);
+  } catch (err) {
+    console.error(`retainCloudMediaAssetDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getCloudMediaAssetStatus<sup>14+</sup>
+
+getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
+
+Obtains the status of a task that downloads cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Return value**
+
+| Type                                   | Description             |
+| --------------------------------------- | ----------------- |
+|Promise&lt;[CloudMediaAssetStatus](#cloudmediaassetstatus14)&gt; | Promise used to return the task status.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**Example**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('getCloudMediaAssetStatusDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    const cloudMediaAssetStatus: photoAccessHelper.CloudMediaAssetStatus = await cloudMediaAssetManagerInstance.getCloudMediaAssetStatus();
+    let taskStatus = cloudMediaAssetStatus.taskStatus;
+    let taskInfo = cloudMediaAssetStatus.taskInfo;
+    let errorCode = cloudMediaAssetStatus.errorCode;
+    let message = `taskStatus: ${taskStatus}, taskInfo: ${taskInfo}, errorCode: ${errorCode}`;
+    console.log(message);
+  } catch (err) {
+    console.error(`getCloudMediaAssetStatusDemo failed with error: ${err.code}, ${err.message}`);
   }
 }
 ```
@@ -6280,3 +6571,77 @@ Enumerates the watermark editable flags.
 | BRAND_COMMON |  1 |  Brand and common watermarks are editable.|
 | COMMON |  2 |  Common watermarks are editable.|
 | BRAND |  3 |  Brand watermarks are editable.|
+
+## CloudMediaDownloadType<sup>14+</sup>
+
+Enumerates the types of download tasks.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| DOWNLOAD_FORCE |  0 |  High-priority download, without the need for the device to switch to screen-off charging mode.|
+| DOWNLOAD_GENTLE |  1 |  Low-priority download, demanding that device be in screen-off charging mode.|
+
+## CloudMediaRetainType<sup>14+</sup>
+
+Enumerates the modes used for deleting cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| RETAIN_FORCE |  0 |  Deletes the local metadata and thumbnail of the original files from the cloud.|
+
+## CloudMediaAssetTaskStatus<sup>14+</sup>
+
+Enumerates the statuses of tasks used for downloading cloud media assets.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| DOWNLOADING |  0 |  The task is in progress.|
+| PAUSED |  1 |  The task is paused.|
+| IDLE |  2 |  There is no download task.|
+
+## CloudMediaTaskPauseCause<sup>14+</sup>
+
+Enumerates the reasons why a cloud media asset download task is paused.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name |  Value|  Description|
+| ----- |  ---- |  ---- |
+| NO_PAUSE  |  0 |  Downloading is proceeding normally without any pauses.|
+| TEMPERATURE_LIMIT |  1 |  The device temperature is excessively high.|
+| ROM_LIMIT |  2 |  The local disk space is insufficient.|
+| NETWORK_FLOW_LIMIT |  3 |  Network traffic is restricted, and Wi-Fi is not available.|
+| WIFI_UNAVAILABLE |  4 |  The network is abnormal.|
+| POWER_LIMIT |  5 |  Power usage is restricted.|
+| BACKGROUND_TASK_UNAVAILABLE |  6 |  The device is not in charging screen-off mode.|
+| FREQUENT_USER_REQUESTS |  7 |  The user is making requests too frequently.|
+| CLOUD_ERROR |  8 |  There is an error with the cloud service.|
+| USER_PAUSED |  9 |  The download has been paused by the user.|
+
+## CloudMediaAssetStatus<sup>14+</sup>
+
+Describes the details of a cloud media asset download task. It is the return value of the API used by applications to obtain the cloud asset download task status.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| Name                  | Type               | Mandatory| Description                                             |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|taskStatus       |[CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  |Yes| Status of the download task.|
+|taskInfo          |string  |Yes| Total number of and size (measured in bytes) of the assets that have been downloaded, and the total number and size (also measured in bytes) of the assets remaining to be downloaded. |
+|errorCode       |[CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  |Yes| Reason why the download task is suspended.|

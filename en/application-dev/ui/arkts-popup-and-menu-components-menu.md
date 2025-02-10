@@ -1,7 +1,19 @@
-# Menu
+# Menu Control (Menu)
+You can use menu APIs to display a context menu, a vertical list of items displayed by long pressing, clicking, or right-clicking a component. For details, see [Menu Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md).
 
+A context menu displayed using [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) and configured with a preview image has a mask applied; in this case, it is modal.
 
-You can use menu APIs to display a context menu – a vertical list of items displayed by long pressing, clicking, or right-clicking a component. For details, see [Menu Control](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md).
+A context menu displayed using [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11), or **bindContextMenu** without a preview image configured, does not have a mask applied; in this case, it is non-modal.
+
+## Lifecycle
+
+| Name| Type| Description|
+| --- | --- | --- |
+| aboutToAppear  | () =>  void | Callback triggered when the menu is about to appear.|
+| onAppear | () =>  void | Callback triggered when the menu is displayed.|
+| aboutToDisappear | () =>  void | Callback triggered when the menu is about to disappear.|
+| onDisappear  | () =>  void | Callback triggered when the menu is hidden.|
+
 
 
 ## Creating a Menu in the Default Style
@@ -20,17 +32,13 @@ Button('click for Menu')
   ])
 ```
 
-
 ![en-us_image_0000001562940565](figures/en-us_image_0000001562940565.png)
-
 
 ## Creating a Menu in a Custom Style
 
-If the default style does not meet requirements, you can use [\@Builder](../quick-start/arkts-builder.md) to customize menu content and use the **bindMenu** API to bind the custom menu to a component.
+If the default style does not meet requirements, you can use [@Builder](../../application-dev/quick-start/arkts-builder.md) to customize menu content and use the **bindMenu** API to bind the custom menu to a component.
 
-
-### \@Builder: Customizing Menu Content
-
+### @Builder: Customizing Menu Content
 
 ```ts
 class Tmp {
@@ -100,28 +108,22 @@ struct menuExample {
 
 ```
 
-
 ### Using the bindMenu Attribute to Bind a Component
-
 
 ```ts
 Button('click for Menu')
   .bindMenu(this.MyMenu)
 ```
 
-
 ![en-us_image_0000001511580924](figures/en-us_image_0000001511580924.png)
-
 
 ## Creating a Context Menu Displayed Upon Right-clicking or Long Pressing
 
 Use the **bindContextMenu** API to customize the menu content and menu popup mode: right-click or long press. The menu items that are displayed using **bindContextMenu** are in an independent child window and can be displayed outside the application window.
 
-
 - The content in the @Builder is the same as that in the preceding section.
-
 - Check the menu popup mode and bind the component through the **bindContextMenu** attribute. In the example, the menu is displayed upon right-clicking.
-
+  
   ```ts
   Button('click for Menu')
     .bindContextMenu(this.MyMenu, ResponseType.RightClick)

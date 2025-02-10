@@ -714,7 +714,29 @@
 
 **取值：** "usual.event.EXIT_FORCE_SLEEP"
 
+### COMMON_EVENT_ENTER_HIBERNATE<sup>15+<sup>
 
+表示设备即将进入休眠模式的公共事件的动作。
+
+当设备即将进入休眠模式时，将会触发事件通知服务发布该系统公共事件。所有订阅者必须在1秒钟内处理该事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.ENTER_HIBERNATE"
+
+### COMMON_EVENT_EXIT_HIBERNATE<sup>15+<sup>
+
+表示设备退出休眠模式的公共事件的动作。
+
+当设备退出休眠模式时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.EXIT_HIBERNATE"
 
 
 
@@ -1733,7 +1755,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 ### COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
-（预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作
+（预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1838,6 +1860,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 ### COMMON_EVENT_ABILITY_REMOVED
 （预留事件，暂未支持）表示已删除能力的公共事件的动作。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** ohos.permission.LISTEN_BUNDLE_CHANGE

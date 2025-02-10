@@ -4,7 +4,7 @@
 The property animation is an illusion of movement created on the UI when the value of an animatable property changes over time. It is implemented by setting continuous value changes of a property to the property API that can cause the UI re-render.
 
 
-ArkUI provides the [@AnimatableExtend](../quick-start/arkts-animatable-extend.md) decorator for customizing animatable property APIs. Since the data type of the parameters must have a certain degree of continuity, the parameter types for custom animatable property APIs only support the number type and custom types that implement the [AnimtableArithmetic\<T>](../quick-start/arkts-animatable-extend.md) API. With custom animatable property APIs and animatable data types, you can achieve animation effects on non-animatable property APIs by modifying their values through a per-frame callback function when using **animateTo** or **animation**. Additionally, you can implement frame-by-frame layout effects by modifying the values of animatable properties in the per-frame callback function.
+ArkUI provides the [@AnimatableExtend](../quick-start/arkts-animatable-extend.md) decorator for customizing animatable property APIs. Since the data type of the parameters must have a certain degree of continuity, the parameter types for custom animatable property APIs only support the number type and custom types that implement the [AnimatableArithmetic\<T>](../quick-start/arkts-animatable-extend.md#animatablearithmetict) API. With custom animatable property APIs and animatable data types, you can achieve animation effects on non-animatable property APIs by modifying their values through a per-frame callback function when using **animateTo** or **animation**. Additionally, you can implement frame-by-frame layout effects by modifying the values of animatable properties in the per-frame callback function.
 
 
 ## Implementing Frame-by-Frame Layout Effects for Text Component Width Using the number Data Type and @AnimatableExtend Decorator
@@ -48,7 +48,7 @@ struct AnimatablePropertyExample {
 ```ts
 declare type Point = number[];
 
-// Define the parameter type of the animatable property API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimtableArithmetic<T> API.
+// Define the parameter type of the animatable property API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimatableArithmetic<T> API.
 class PointClass extends Array<number> {
   constructor(value: Point) {
     super(value[0], value[1])
@@ -79,8 +79,8 @@ class PointClass extends Array<number> {
   }
 }
 
-// Define the parameter type of the animatable property API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimtableArithmetic<T> API.
-// Template T supports nested implementation of the AnimtableArithmetic<T> type.
+// Define the parameter type of the animatable property API and implement the addition, subtraction, multiplication, and equivalence judgment functions in the AnimatableArithmetic<T> API.
+// Template T supports nested implementation of the AnimatableArithmetic<T> type.
 class PointVector extends Array<PointClass> implements AnimatableArithmetic<Array<Point>> {
   constructor(initialValue: Array<Point>) {
     super();

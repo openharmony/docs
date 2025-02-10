@@ -77,69 +77,69 @@ The WLAN module provides the following APIs:
 
 3. WLAN APIs directly called by drivers
 
-- This interfaces provided by the WLAN Driver module for upper-layer services can be used to create or destroy an IWiFi object, and set MAC addresses or transmit power. Table 1 and Table 2 list the C function interfaces generated based on the IDL interface description. For details about the interface declaration, see the IDL files (**/drivers/interface/wlan/v1_1/**).
+- This interfaces provided by the WLAN Driver module for upper-layer services can be used to create or destroy an IWiFi object, and set MAC addresses or transmit power. Table 1 and Table 2 list the C function interfaces generated based on the IDL interface description. For details about the interface declaration, see the IDL files (/drivers/interface/wlan/v1_1/).
 
     **Table 1** wifi_hal.h
 
-  | API| Description|
+  | API| Description| 
   | -------- | -------- |
-  | int32_t&nbsp;WifiConstruct(struct&nbsp;IWiFi&nbsp;\*\*wifiInstance) | Creates an **IWiFi** instance with basic capabilities.|
-  | int32_t&nbsp;WifiDestruct(struct&nbsp;IWiFi&nbsp;\*\*wifiInstance) | Destroys an **IWiFi** instance.|
-  | int32_t&nbsp;(\*start)(struct&nbsp;IWiFi&nbsp;\*) | Creates a channel between the HAL and the driver and obtains the NICs supported by the driver.|
-  | int32_t&nbsp;(\*stop)(struct&nbsp;IWiFi&nbsp;\*) | Stops the channel between the HAL and the driver.|
+  | int32_t&nbsp;WifiConstruct(struct&nbsp;IWiFi&nbsp;\*\*wifiInstance) | Creates an **IWiFi** instance with basic capabilities.| 
+  | int32_t&nbsp;WifiDestruct(struct&nbsp;IWiFi&nbsp;\*\*wifiInstance) | Destroys an **IWiFi** instance.| 
+  | int32_t&nbsp;(\*start)(struct&nbsp;IWiFi&nbsp;\*) | Creates a channel between the HAL and the driver and obtains the NICs supported by the driver.| 
+  | int32_t&nbsp;(\*stop)(struct&nbsp;IWiFi&nbsp;\*) | Stops the channel between the HAL and the driver.| 
 
     **Table 2** wifi_hal_base_feature.h
 
-  | API| Description|
+  | API| Description| 
   | -------- | -------- |
-  | int32_t&nbsp;(\*getFeatureType)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*) | Obtains the feature type.|
-  | int32_t&nbsp;(\*setMacAddress)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*,&nbsp;unsigned&nbsp;char&nbsp;\*,&nbsp;uint8_t) | Sets the MAC address.|
-  | int32_t&nbsp;(\*getDeviceMacAddress)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*,&nbsp;unsigned&nbsp;char&nbsp;\*,&nbsp;uint8_t) | Obtains the device MAC address.|
+  | int32_t&nbsp;(\*getFeatureType)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*) | Obtains the feature type.| 
+  | int32_t&nbsp;(\*setMacAddress)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*,&nbsp;unsigned&nbsp;char&nbsp;\*,&nbsp;uint8_t) | Sets the MAC address.| 
+  | int32_t&nbsp;(\*getDeviceMacAddress)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*,&nbsp;unsigned&nbsp;char&nbsp;\*,&nbsp;uint8_t) | Obtains the device MAC address.| 
   | int32_t&nbsp;(\*setTxPower)(const&nbsp;struct&nbsp;IWiFiBaseFeature&nbsp;\*,&nbsp;int32_t) | Sets the transmit power.|
 
 - The WLAN Driver module also provides APIs that you need to fill in the implementation. These APIs can be used to initialize or deregister a network device, open or stop a network device, and obtain network device status. Table 3 describes some APIs.
 
     **Table 3** net_device.h
 
-  | API| Description|
+  | API| Description| 
   | -------- | -------- |
-  | int32_t&nbsp;(\*init)(struct&nbsp;NetDevice&nbsp;\*netDev) | Initializes a network device.|
-  | struct&nbsp;NetDevStats&nbsp;\*(\*getStats)(struct&nbsp;NetDevice&nbsp;\*netDev) | Obtains the state of a network device.|
-  | int32_t&nbsp;(\*setMacAddr)(struct&nbsp;NetDevice&nbsp;\*netDev,&nbsp;void&nbsp;\*addr) | Sets the MAC address.|
-  | void&nbsp;(\*deInit)(struct&nbsp;NetDevice&nbsp;\*netDev) | Deinitializes a network device.|
-  | int32_t&nbsp;(\*open)(struct&nbsp;NetDevice&nbsp;\*netDev) | Opens a network device.|
-  | int32_t&nbsp;(\*stop)(struct&nbsp;NetDevice&nbsp;\*netDev) | Stops a network device.|
+  | int32_t&nbsp;(\*init)(struct&nbsp;NetDevice&nbsp;\*netDev) | Initializes a network device.| 
+  | struct&nbsp;NetDevStats&nbsp;\*(\*getStats)(struct&nbsp;NetDevice&nbsp;\*netDev) | Obtains the state of a network device.| 
+  | int32_t&nbsp;(\*setMacAddr)(struct&nbsp;NetDevice&nbsp;\*netDev,&nbsp;void&nbsp;\*addr) | Sets the MAC address.| 
+  | void&nbsp;(\*deInit)(struct&nbsp;NetDevice&nbsp;\*netDev) | Deinitializes a network device.| 
+  | int32_t&nbsp;(\*open)(struct&nbsp;NetDevice&nbsp;\*netDev) | Opens a network device.| 
+  | int32_t&nbsp;(\*stop)(struct&nbsp;NetDevice&nbsp;\*netDev) | Stops a network device.| 
 
 - The WLAN Driver module provides APIs that you can directly use to create or release a **WifiModule**, connect to or disconnect from a WLAN hotspot, request or release a **NetBuf**, and convert between the **pbuf** struct of Lightweight IP (lwIP) and a **NetBuf**.
 
   Tables 4 to 6 list the APIs that can be directly called.
 
-  **Table 4** wifi_module.h
+    **Table 4** wifi_module.h
 
-  | API| Description|
+  | API| Description| 
   | -------- | -------- |
-  | struct&nbsp;WifiModule&nbsp;\*WifiModuleCreate(const&nbsp;struct&nbsp;HdfConfigWifiModuleConfig&nbsp;\*config) | Creates a **WifiModule**.|
-  | void&nbsp;WifiModuleDelete(struct&nbsp;WifiModule&nbsp;\*module) | Deletes a **WifiModule** and releases its data.|
-  | int32_t&nbsp;DelFeature(struct&nbsp;WifiModule&nbsp;\*module,&nbsp;uint16_t&nbsp;featureType) | Deletes a feature from a **WifiModule**.|
-  | int32_t&nbsp;AddFeature(struct&nbsp;WifiModule&nbsp;\*module,&nbsp;uint16_t&nbsp;featureType,<br>&nbsp;struct&nbsp;WifiFeature&nbsp;\*featureData) | Adds a feature to a **WifiModule**.|
+  | struct&nbsp;WifiModule&nbsp;\*WifiModuleCreate(const&nbsp;struct&nbsp;HdfConfigWifiModuleConfig&nbsp;\*config) | Creates a **WifiModule**.| 
+  | void&nbsp;WifiModuleDelete(struct&nbsp;WifiModule&nbsp;\*module) | Deletes a **WifiModule** and releases its data.| 
+  | int32_t&nbsp;DelFeature(struct&nbsp;WifiModule&nbsp;\*module,&nbsp;uint16_t&nbsp;featureType) | Deletes a feature from a **WifiModule**.| 
+  | int32_t&nbsp;AddFeature(struct&nbsp;WifiModule&nbsp;\*module,&nbsp;uint16_t&nbsp;featureType,<br>&nbsp;struct&nbsp;WifiFeature&nbsp;\*featureData) | Adds a feature to a **WifiModule**.| 
 
-  **Table 5** wifi_mac80211_ops.h
+    **Table 5** wifi_mac80211_ops.h
 
-  | API| Description|
+  | API| Description| 
   | -------- | -------- |
-  | int32_t&nbsp;(\*startAp)(NetDevice&nbsp;\*netDev) | Starts an AP.|
-  | int32_t&nbsp;(\*stopAp)(NetDevice&nbsp;\*netDev) | Stops an AP.|
-  | int32_t&nbsp;(\*connect)(NetDevice&nbsp;\*netDev,&nbsp;WifiConnectParams&nbsp;\*param) | Connects to a hotspot.|
-  | int32_t&nbsp;(\*disconnect)(NetDevice&nbsp;\*netDev,&nbsp;uint16_t&nbsp;reasonCode) | Disconnects from a hotspot.|
+  | int32_t&nbsp;(\*startAp)(NetDevice&nbsp;\*netDev) | Starts an AP.| 
+  | int32_t&nbsp;(\*stopAp)(NetDevice&nbsp;\*netDev) | Stops an AP.| 
+  | int32_t&nbsp;(\*connect)(NetDevice&nbsp;\*netDev,&nbsp;WifiConnectParams&nbsp;\*param) | Connects to a hotspot.| 
+  | int32_t&nbsp;(\*disconnect)(NetDevice&nbsp;\*netDev,&nbsp;uint16_t&nbsp;reasonCode) | Disconnects from a hotspot.| 
 
-  **Table 6** hdf_netbuf.h
+    **Table 6** hdf_netbuf.h
 
-  | API| Description|
+  | API| Description| 
   | -------- | -------- |
-  | static&nbsp;inline&nbsp;void&nbsp;NetBufQueueInit(struct&nbsp;NetBufQueue&nbsp;\*q) | Initializes a **NetBuf** queue.|
-  | struct&nbsp;NetBuf&nbsp;\*NetBufAlloc(uint32_t&nbsp;size) | Allocates a **NetBuf**.|
-  | void&nbsp;NetBufFree(struct&nbsp;NetBuf&nbsp;\*nb) | Releases a **NetBuf**.|
-  | struct&nbsp;NetBuf&nbsp;\*Pbuf2NetBuf(const&nbsp;struct&nbsp;NetDevice&nbsp;\*netdev,&nbsp;struct&nbsp;pbuf&nbsp;\*lwipBuf) | Converts the **pbuf** structure of lwIP to a **NetBuf**.|
+  | static&nbsp;inline&nbsp;void&nbsp;NetBufQueueInit(struct&nbsp;NetBufQueue&nbsp;\*q) | Initializes a **NetBuf** queue.| 
+  | struct&nbsp;NetBuf&nbsp;\*NetBufAlloc(uint32_t&nbsp;size) | Allocates a **NetBuf**.| 
+  | void&nbsp;NetBufFree(struct&nbsp;NetBuf&nbsp;\*nb) | Releases a **NetBuf**.| 
+  | struct&nbsp;NetBuf&nbsp;\*Pbuf2NetBuf(const&nbsp;struct&nbsp;NetDevice&nbsp;\*netdev,&nbsp;struct&nbsp;pbuf&nbsp;\*lwipBuf) | Converts the **pbuf** structure of lwIP to a **NetBuf**.| 
   | struct&nbsp;pbuf&nbsp;\*NetBuf2Pbuf(const&nbsp;struct&nbsp;NetBuf&nbsp;\*nb) | Converts a **NetBuf** to the **pbuf** structure of lwIP.|
 
 ### How to Develop
@@ -174,19 +174,19 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
                     }
                 }
                 reset {
-                    resetType = 0;          /* Reset type. The value 0 indicates that reset is dynamically determined, and 1 indicates reset through GPIO. */
-                    gpioId = 2;             /* GPIO pin number. */
-                    activeLevel=1;          /* Active level. The value 0 indicates low level, and 1 indicates high level. */
-                    resetHoldTime = 30;     /* Hold time (ms) after a reset. */
+                    resetType = 0;         /* Reset type. The value 0 indicates that reset is dynamically determined, and 1 indicates reset through GPIO. */
+                    gpioId = 2;           /* GPIO pin number. */
+                    activeLevel=1;      /* Active level. The value 0 indicates low level, and 1 indicates high level. */
+                    resetHoldTime = 30;    /* Hold time (ms) after a reset. */
                 }
-                bootUpTimeout = 30;         /* Boot timeout duration (ms). */
+                bootUpTimeout = 30;  /* Boot timeout duration (ms). */
                 bus {
-                    busEnable = 1;          /* Whether to initialize the bus. The value 1 means to initialize the bus; the value 0 means the opposite. */
-                    busType = 0;            /* Bus type. The value 0 indicates SDIO. */
-                    busId = 2;              /* Bus number. */
-                    funcNum = [1];          /* SDIO function number. */
-                    timeout = 1000;         /* Timeout duration for data read/write. */
-                    blockSize = 512;        /* Size of the data block to read or write. */
+                    busEnable = 1;   /* Whether to initialize the bus. The value 1 means to initialize the bus; the value 0 means the opposite. */
+                    busType = 0;     /* Bus type. The value 0 indicates SDIO. */
+                    busId = 2;      /* Bus number. */
+                    funcNum = [1];   /* SDIO function number. */
+                    timeout = 1000;  /* Timeout duration for data read/write. */
+                    blockSize = 512; /* Size of the data block to read or write. */
                 }
             }
         }
@@ -200,10 +200,10 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
                 hi3881 :& chipList {
                     chipHi3881 :: chipInst {
                         match_attr = "hdf_wlan_chips_hi3881"; /* Attribute used to match the chip. */
-                        chipName = "hi3881";                  /* WLAN chip name. */
+                        chipName = "hi3881";                   /* WLAN chip name. */
                         bus {
-                            vendorId = 0x0296;                /* Vendor ID. */
-                            deviceId = [0x5347];              /* Device ID. */
+                            vendorId = 0x0296;    /* Vendor ID. */
+                            deviceId = [0x5347];  /* Device ID. */
                         }
                     }
                 }
@@ -213,7 +213,7 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
 
 #### Initializing and deinitializing the WLAN Chip and WLAN Chip Driver
 
-   - Implement the driver adaptation entry function
+   - Implementing the driver adaptation entry function
 
      Define a variable of the HdfDriverEntry type based on the chip to hook functions of **Bind()**, **Init()**, and **Release()**. Call **HDF_INIT** to register the driver entry with the HDF. During driver loading, the HDF calls the **Bind** function and then the **Init** function to load the driver. If **Init()** fails to be called, the HDF calls **Release()** to release driver resources.
      ```c
@@ -228,7 +228,7 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
      HDF_INIT(g_hdfHisiChipEntry);
      ```
 
-   - Register the functions for initializing the chip and chip driver
+   - Registering the functions for initializing the chip and chip driver
      
      Hook the chip initialization function to **InitChip()** and the chip deinitialization function to **DeinitChip()**.
 
@@ -267,7 +267,7 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
      }
      ```
 
-     1. Initialize and deinitialize the chip.
+     1. Initializing and deinitializing the chip
 
       ```c
       /* Function for initializing the WLAN chip. */
@@ -310,8 +310,8 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
       }
       ```
 
-     2. Initialize and deinitialize the chip driver.
-      
+     2. Initializing and deinitializing the chip driver
+   
       ```c
       /* Hook the functions of the WLAN chip driver, mac80211, and chip. */
       static struct HdfChipDriver *BuildHi3881Driver(struct HdfWlanDevice *device, uint8_t ifIndex)
@@ -461,7 +461,7 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
          .changeMtu         = oal_net_device_change_mtu,
          .init              = oal_net_device_init,
          .deInit            = oal_net_free_netdev,
-        
+    
          ......
 
       };
@@ -471,7 +471,7 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
           /* Add the network device to the protocol stack. */
           hi_u32 ret = NetDeviceAdd(netdev, (Protocol80211IfType)type);
 
-          ...
+          ......
 
           return HI_SUCCESS;
       }
@@ -479,7 +479,7 @@ The WLAN driver framework developed based on the HDF and Platform framework prov
 
 #### Modifying the MAC Layer Interfaces
 
-After the user-mode message is delivered to the driver, the driver calls the corresponding MAC-layer capability interfaces.
+   After the user-mode message is delivered to the driver, the driver calls the corresponding MAC-layer capability interfaces.
 
    ```c
    /* Define the functions for implementing the basic capabilities in the MAC layer for the driver. */
@@ -541,10 +541,8 @@ After the user-mode message is delivered to the driver, the driver calls the cor
    ```
 
 #### Configuring Event Reporting
-
-The WLAN framework provides interfaces for event reporting. For details, see **hdf_wifi_event.c**. 
-
-The following presents how to use **HdfWiFiEventNewSta()** to report information about a newly associated STA.
+   
+   The WLAN framework provides interfaces for event reporting. For details, see **hdf_wifi_event.c**. The following presents how to use **HdfWiFiEventNewSta()** to report information about a newly associated STA.
 
    ```c
    hi_u32 oal_cfg80211_new_sta(oal_net_device_stru *net_device, const hi_u8 *mac_addr, hi_u8 addr_len,
@@ -645,9 +643,7 @@ Develop test cases in the WLAN module unit test to verify the basic features of 
         exit 0
         ```
 
-    - Create the **udhcpd.conf** file and copy the following content to the file. 
-
-        In the following example, "opt dns x.x.x.x x.x.x.x" indicates two DNS servers configured. You can configure DNS servers as required.
+    - Create the **udhcpd.conf** file and copy the following content to the file. In the following example, **opt dns** *x.x.x.x x.x.x.x* indicates two DNS servers configured. You can configure DNS servers as required.
 
         ```text
         start 192.168.12.2
@@ -757,7 +753,7 @@ The WLAN Driver module provides two types of capability interfaces for the upper
 
    5. Call **WlanInterfaceRelease()** to destroy the WLAN service instance.
 
-   Example:
+   HDI API invocation development example:
    ```c
    #include "v1_0/iwlan_interface.h"
    #include "wlan_callback_impl.h"
@@ -852,7 +848,7 @@ The WLAN Driver module provides two types of capability interfaces for the upper
 
    7. Call **WifiDestruct()** to destroy the **IWiFi** instance.
 
-   Example:
+   HAL API invocation development example:
 
    ```c
     #include "wifi_hal.h"
@@ -951,16 +947,18 @@ The WLAN Driver module provides two types of capability interfaces for the upper
 
 - Code paths:
 
-  - Adaptation of WLAN FlowCtl component on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network/wifi**
+  Adaptation of WLAN FlowCtl component on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network/wifi**
 
-  - Adaptation of HDF network model on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network**
+  Adaptation of HDF network model on LiteOS: **//drivers/hdf_core/adapter/khdf/liteos/model/network**
 
-  - Adaptation of WLAN FlowCtl component on Linux, build of the HDF WLAN model, and build of the vendor's WLAN driver: **//drivers/hdf_core/adapter/khdf/linux/model/network/wifi**
+  Adaptation of WLAN FlowCtl component on Linux, build of the HDF WLAN model, and build of the vendor's WLAN driver:
 
-  - Core code for implementing the WLAN module: **//drivers/hdf_core/framework/model/network/wifi**
+  //drivers/hdf_core/adapter/khdf/linux/model/network/wifi
 
-  - External APIs of the WLAN module: **//drivers/hdf_core/framework/include/wifi**
+  Core code for implementing the WLAN module: **//drivers/hdf_core/framework/model/network/wifi**
 
-  - HDF network model APIs: **//drivers/hdf_core/framework/include/net**
+  External APIs of the WLAN module: **//drivers/hdf_core/framework/include/wifi**
 
-  - WLAN HDI server implementation: **//drivers/peripheral/wlan**
+  HDF network model APIs: **//drivers/hdf_core/framework/include/net**
+
+  WLAN HDI server implementation: **//drivers/peripheral/wlan**

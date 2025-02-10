@@ -25,6 +25,7 @@ The table below lists the media codec formats. The type is a constant string.
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | MIME type of the AMR-NB audio decoder.                          |
 | [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | MIME type of the AMR-WB audio decoder.                          |
 | [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |MIME type of the APE audio decoder.                        |
+| [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | MIME type of the VVC (H.266) video codec.                   |
 | [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | MIME type of the HEVC (H.265) video codec.                   |
 | [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Multipurpose Internet Mail Extension (MIME) type of AVC (H.264) video codec.                    |
 | [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.|
@@ -39,7 +40,7 @@ The table below lists the media codec formats. The type is a constant string.
 
 The table below lists the key-value pairs used to describe media data. The key type is a constant string, and the value type can be int32_t, int64_t, float, double, char *, or uint8_t *.
 
-The OH_AVFormat API is used to configure or query parameters.
+The [OH_AVFormat](_core.md#functions) API is used to configure or query parameters.
 
 Key-value pairs dedicated for capability query:
 
@@ -63,8 +64,8 @@ The table below lists the video-dedicated key-value pairs.
 
 | Name                                                        | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp)                | Surface buffer timestamp. The value is of the int64_t type. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
-| [OH_ED_KEY_EOS](#oh_ed_key_eos)                              | End of stream for the surface buffer. The value type is int32_t. This key is optional. <!--Del-->(This key is not supported yet.)<!--DelEnd-->|
+| [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp)                | Surface buffer timestamp. The value is of the int64_t type. This key is optional. (This key is deprecated from API version 14.)|
+| [OH_ED_KEY_EOS](#oh_ed_key_eos)                              | End of stream for the surface buffer. The value type is int32_t. This key is optional. (This key is deprecated from API version 14.)|
 | [OH_MD_KEY_WIDTH](#oh_md_key_width)                          | Video width. The value type is int32_t.                            |
 | [OH_MD_KEY_HEIGHT](#oh_md_key_height)                        | Video height. The value type is int32_t.                              |
 | [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format)            | Video pixel format. The value type is int32_t. For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).|
@@ -88,7 +89,7 @@ The table below lists the video-dedicated key-value pairs.
 | [OH_MD_KEY_VIDEO_ENCODER_LTR_FRAME_COUNT](#oh_md_key_video_encoder_ltr_frame_count)        | Number of LTR frames. The value type is int32_t. The value must be within the supported value range. This key is optional and is used only for video encoding.|
 | [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_MARK_LTR](#oh_md_key_video_encoder_per_frame_mark_ltr)  | Whether the current frame is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is marked as an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding.|
 | [OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR](#oh_md_key_video_encoder_per_frame_use_ltr)    | 	LTR frame referenced by the current frame. The value type is int32_t. This key is optional and is used only for video encoding.|
-| [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | Whether the frame corresponding to the stream output from the current OH_AVBuffer is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding.|
+| [OH_MD_KEY_VIDEO_PER_FRAME_IS_LTR](#oh_md_key_video_per_frame_is_ltr)      | Whether the frame corresponding to the stream output from the current [OH_AVBuffer](_core.md#oh_avbuffer) is marked as an LTR frame. The value type is int32_t. The value **1** means that the frame is an LTR frame, and **0** means the opposite. This key is optional and is used only for video encoding.|
 | [OH_MD_KEY_VIDEO_PER_FRAME_POC](#oh_md_key_video_per_frame_poc)            | POC of the frame. The value type is int32_t. This key is optional and is used only for video encoding.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MAX](#oh_md_key_video_encoder_qp_max)       | Maximum Quantization Parameter (QP) allowed by the video encoder. The value type is int32_t. This key is optional.|
 | [OH_MD_KEY_VIDEO_ENCODER_QP_MIN](#oh_md_key_video_encoder_qp_min)      | Minimum QP allowed by the video encoder. The value type is int32_t. This key is optional.|
@@ -96,7 +97,7 @@ The table below lists the video-dedicated key-value pairs.
 | [OH_MD_KEY_VIDEO_ENCODER_MSE](#oh_md_key_video_encoder_mse)     |Mean Squared Error (MSE) of video frames. The value type is double. This key is optional. |
 | [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](#oh_md_key_video_decoder_output_color_space)    | Output color space of the video decoder. The value type is int32_t. The supported value is **OH_COLORSPACE_BT709_LIMIT**.|
 | [OH_MD_KEY_ROTATION](#oh_md_key_rotation)                    | Rotation angle of the surface. The value type is int32_t, and the value range is {0, 90, 180, 270}. The default value is 0. This key is optional and is used only for video decoding in surface mode  |
-| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | Video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional and is used only for video decoding in surface mode. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).|
+| [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode)            | Video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional and is used only for video decoding in surface mode. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md). (This key is deprecated from API version 14.)|
 | [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top)       | Top coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | Bottom coordinate (y) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | Left coordinate (x) of the cropped rectangle. The value type is int32_t. This key is optional and is used only for video decoding.|
@@ -111,7 +112,7 @@ The table below lists the audio-dedicated key-value pairs.
 | [OH_MD_KEY_AUD_CHANNEL_COUNT](#oh_md_key_aud_channel_count)  | Number of audio channels. The value type is int32_t.                          |
 | [OH_MD_KEY_AUD_SAMPLE_RATE](#oh_md_key_aud_sample_rate)      | Audio sampling rate. The value type is int32_t.                            |
 | [OH_MD_KEY_AUDIO_COMPRESSION_LEVEL](#oh_md_key_audio_compression_level) | Audio codec compression level. The value type is int32_t type. This key is used only for audio encoding. This key is optional.    |
-| [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout)        | Required encoding channel layout. The value type is int64_t. This key applies only to encoders. |
+| [OH_MD_KEY_CHANNEL_LAYOUT](#oh_md_key_channel_layout)        | Required encoding channel layout. The value type is int64_t. This key applies only to encoders. For details, see [OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1). |
 | [OH_MD_KEY_BITS_PER_CODED_SAMPLE](#oh_md_key_bits_per_coded_sample) | Number of bits for each coded sample. The value type is int32_t. This key applies to FLAC encoders. For details, see [OH_BitsPerSample](#oh_bitspersample). This key is optional.|
 | [OH_MD_KEY_SBR](#oh_md_key_sbr)                              | AAC SBR format. The value type is int32_t. This key applies to AAC encoders. This key is optional.|
 | [OH_MD_KEY_COMPLIANCE_LEVEL](#oh_md_key_compliance_level)    | FLAC compliance level. The value type is int32_t. This key is used only for audio encoding. This key is optional.         |
@@ -144,8 +145,9 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count)              | Number of tracks in a media file. The value type is int32_t. This key is optional.        |
 | [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Duration corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t. This key is optional.           |
 | [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Decoding timestamp corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t. This key is optional.           |
-| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | MIME type of the codec. The value type is string. This key is optional.        |
+| [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime)                | [MIME](#media-codec-formats) type of the codec. The value type is string. This key is optional.        |
 | [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)                  | Aspect ratio of the sample. The value type is double.|
+| [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time)          | Media file creation time. The value type is string.|
 
 
 ## Summary
@@ -188,16 +190,19 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | typedef enum [OH_AACProfile](#oh_aacprofile-1) [OH_AACProfile](#oh_aacprofile) | Defines an enum for the Advanced Audio Coding (AAC) profiles.| 
 | typedef enum [OH_AVCProfile](#oh_avcprofile-1) [OH_AVCProfile](#oh_avcprofile) | Defines an enum for the Advanced Video Coding (AVC) profiles.| 
 | typedef enum [OH_HEVCProfile](#oh_hevcprofile-1) [OH_HEVCProfile](#oh_hevcprofile) | Defines an enum for the High Efficiency Video Coding (HEVC) profiles.| 
+| typedef enum [OH_VVCProfile](#oh_vvcprofile-1) [OH_VVCProfile](#oh_vvcprofile) | Defines an enum for the VVC profiles.| 
 | typedef enum [OH_AVOutputFormat](#oh_avoutputformat-1) [OH_AVOutputFormat](#oh_avoutputformat) | Defines an enum for the output file formats supported by a muxer.| 
 | typedef enum [OH_AVSeekMode](#oh_avseekmode-1) [OH_AVSeekMode](#oh_avseekmode) | Defines an enum for the seek modes.| 
-| typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | Defines an enum for the scaling modes. This enum is used only in surface mode.| 
+| typedef enum [OH_ScalingMode](#oh_scalingmode-1) [OH_ScalingMode](#oh_scalingmode) | Defines an enum for the scaling modes. This enum is used only in surface mode. (This type is deprecated from API version 14.)| 
 | typedef enum [OH_BitsPerSample](#oh_bitspersample-1) [OH_BitsPerSample](#oh_bitspersample) | Defines an enum for the number of audio bits for each coded sample.| 
 | typedef enum [OH_ColorPrimary](#oh_colorprimary-1) [OH_ColorPrimary](#oh_colorprimary) | Defines an enum for the primary colors.| 
 | typedef enum [OH_TransferCharacteristic](#oh_transfercharacteristic-1) [OH_TransferCharacteristic](#oh_transfercharacteristic) | Defines an enum for the transfer characteristics.| 
 | typedef enum [OH_MatrixCoefficient](#oh_matrixcoefficient-1) [OH_MatrixCoefficient](#oh_matrixcoefficient) | Defines an enum for the matrix coefficients.| 
 | typedef enum [OH_AVCLevel](#oh_avclevel-1) [OH_AVCLevel](#oh_avclevel) | Defines an enum for the AVC levels. | 
 | typedef enum [OH_HEVCLevel](#oh_hevclevel-1) [OH_HEVCLevel](#oh_hevclevel) | Defines an enum for the HEVC levels. | 
-| typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | Defines an enum for the reference modes of temporal image groups. | 
+| typedef enum [OH_VVCLevel](#oh_vvclevel-1) [OH_VVCLevel](#oh_vvclevel) | Defines an enum for the VVC levels. | 
+| typedef enum [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode) | Defines an enum for the reference modes of temporal image groups. |
+| typedef enum [OH_BitrateMode](#oh_bitratemode-1) [OH_BitrateMode](#oh_bitratemode) | Defines an enum for the bit rate modes of an encoder. |
 
 
 ### Enums
@@ -207,20 +212,22 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | [AudioChannelSet](#audiochannelset) : uint64_t {<br>FRONT_LEFT = 1ULL &lt;&lt; 0U,<br>FRONT_RIGHT = 1ULL &lt;&lt; 1U,<br>FRONT_CENTER = 1ULL &lt;&lt; 2U,<br>LOW_FREQUENCY = 1ULL &lt;&lt; 3U,<br>BACK_LEFT = 1ULL &lt;&lt; 4U,<br>BACK_RIGHT = 1ULL &lt;&lt; 5U,<br>FRONT_LEFT_OF_CENTER = 1ULL &lt;&lt; 6U,<br>FRONT_RIGHT_OF_CENTER = 1ULL &lt;&lt; 7U,<br>BACK_CENTER = 1ULL &lt;&lt; 8U,<br>SIDE_LEFT = 1ULL &lt;&lt; 9U,<br>SIDE_RIGHT = 1ULL &lt;&lt; 10U,<br>TOP_CENTER = 1ULL &lt;&lt; 11U,<br>TOP_FRONT_LEFT = 1ULL &lt;&lt; 12U,<br>TOP_FRONT_CENTER = 1ULL &lt;&lt; 13U,<br>TOP_FRONT_RIGHT = 1ULL &lt;&lt; 14U,<br>TOP_BACK_LEFT = 1ULL &lt;&lt; 15U,<br>TOP_BACK_CENTER = 1ULL &lt;&lt; 16U,<br>TOP_BACK_RIGHT = 1ULL &lt;&lt; 17U,<br>STEREO_LEFT = 1ULL &lt;&lt; 29U,<br>STEREO_RIGHT = 1ULL &lt;&lt; 30U,<br>WIDE_LEFT = 1ULL &lt;&lt; 31U,<br>WIDE_RIGHT = 1ULL &lt;&lt; 32U,<br>SURROUND_DIRECT_LEFT = 1ULL &lt;&lt; 33U,<br>SURROUND_DIRECT_RIGHT = 1ULL &lt;&lt; 34U,<br>LOW_FREQUENCY_2 = 1ULL &lt;&lt; 35U,<br>TOP_SIDE_LEFT = 1ULL &lt;&lt; 36U,<br>TOP_SIDE_RIGHT = 1ULL &lt;&lt; 37U,<br>BOTTOM_FRONT_CENTER = 1ULL &lt;&lt; 38U,<br>BOTTOM_FRONT_LEFT = 1ULL &lt;&lt; 39U,<br>BOTTOM_FRONT_RIGHT = 1ULL &lt;&lt; 40U,<br>AMBISONICS_ACN0 = 1ULL &lt;&lt; 41U,<br>AMBISONICS_ACN1 = 1ULL &lt;&lt; 42U,<br>AMBISONICS_ACN2 = 1ULL &lt;&lt; 43U,<br>AMBISONICS_ACN3 = 1ULL &lt;&lt; 44U,<br>AMBISONICS_W = AMBISONICS_ACN0,<br>AMBISONICS_Y = AMBISONICS_ACN1,<br>AMBISONICS_Z = AMBISONICS_ACN2,<br>AMBISONICS_X = AMBISONICS_ACN3,<br>AMBISONICS_ACN4 = 1ULL &lt;&lt; 45U,<br>AMBISONICS_ACN5 = 1ULL &lt;&lt; 46U,<br>AMBISONICS_ACN6 = 1ULL &lt;&lt; 47U,<br>AMBISONICS_ACN7 = 1ULL &lt;&lt; 48U,<br>AMBISONICS_ACN8 = 1ULL &lt;&lt; 49U,<br>AMBISONICS_ACN9 = 1ULL &lt;&lt; 50U,<br>AMBISONICS_ACN10 = 1ULL &lt;&lt; 51U,<br>AMBISONICS_ACN11 = 1ULL &lt;&lt; 52U,<br>AMBISONICS_ACN12 = 1ULL &lt;&lt; 53U,<br>AMBISONICS_ACN13 = 1ULL &lt;&lt; 54U,<br>AMBISONICS_ACN14 = 1ULL &lt;&lt; 55U,<br>AMBISONICS_ACN15 = 1ULL &lt;&lt; 56U<br>} | Enumerates the audio channel sets. Each channel number is mapped to a variable of int64_t. (This function is deprecated in API version 11.)| 
 | [AudioChannelLayout](#audiochannellayout) : uint64_t {<br>UNKNOWN_CHANNEL_LAYOUT = 0,<br>MONO = (AudioChannelSet::FRONT_CENTER),<br>STEREO = (AudioChannelSet::FRONT_LEFT \| AudioChannelSet::FRONT_RIGHT),<br>CH_2POINT1 = (STEREO \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_1 = (STEREO \| AudioChannelSet::BACK_CENTER),<br>SURROUND = (STEREO \| AudioChannelSet::FRONT_CENTER),<br>CH_3POINT1 = (SURROUND \| AudioChannelSet::LOW_FREQUENCY),<br>CH_4POINT0 = (SURROUND \| AudioChannelSet::BACK_CENTER),<br>CH_4POINT1 = (CH_4POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_2_2 = (STEREO \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>QUAD = (STEREO \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT0 = (SURROUND \| AudioChannelSet::SIDE_LEFT \| AudioChannelSet::SIDE_RIGHT),<br>CH_5POINT1 = (CH_5POINT0 \| AudioChannelSet::LOW_FREQUENCY),<br>CH_5POINT0_BACK = (SURROUND \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_5POINT1_BACK = (CH_5POINT0_BACK \| AudioChannelSet::LOW_FREQUENCY),<br>CH_6POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT0_FRONT = (CH_2_2 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>HEXAGONAL = (CH_5POINT0_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_BACK = (CH_5POINT1_BACK \| AudioChannelSet::BACK_CENTER),<br>CH_6POINT1_FRONT = (CH_6POINT0_FRONT \| AudioChannelSet::LOW_FREQUENCY),<br>CH_7POINT0 = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT0_FRONT = (CH_5POINT0 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1 = (CH_5POINT1 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_RIGHT),<br>CH_7POINT1_WIDE = (CH_5POINT1 \| AudioChannelSet::FRONT_LEFT_OF_CENTER \| AudioChannelSet::FRONT_RIGHT_OF_CENTER),<br>CH_7POINT1_WIDE_BACK, CH_3POINT1POINT2 = (CH_3POINT1 \| AudioChannelSet::TOP_FRONT_LEFT \| AudioChannelSet::TOP_FRONT_RIGHT),<br>CH_5POINT1POINT2 = (CH_5POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_5POINT1POINT4, CH_7POINT1POINT2 = (CH_7POINT1 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_7POINT1POINT4, CH_9POINT1POINT4 = (CH_7POINT1POINT4 \| AudioChannelSet::WIDE_LEFT \| AudioChannelSet::WIDE_RIGHT),<br>CH_9POINT1POINT6 = (CH_9POINT1POINT4 \| AudioChannelSet::TOP_SIDE_LEFT \| AudioChannelSet::TOP_SIDE_RIGHT),<br>CH_10POINT2, CH_22POINT2, OCTAGONAL = (CH_5POINT0 \| AudioChannelSet::BACK_LEFT \| AudioChannelSet::BACK_CENTER \| AudioChannelSet::BACK_RIGHT),<br>HEXADECAGONAL, STEREO_DOWNMIX = (AudioChannelSet::STEREO_LEFT \| AudioChannelSet::STEREO_RIGHT),<br>HOA_FIRST,<br>HOA_SECOND,<br>HOA_THIRD<br>} | Enumerates the types of the audio channel sets. The output format of the decoder is represented as the channel type of the codec.| 
 | [OH_MediaType](#oh_mediatype-1) {<br>MEDIA_TYPE_AUD = 0,<br>MEDIA_TYPE_VID = 1,<br>MEDIA_TYPE_SUBTITILE = 2<br>} | Enumerates the media types.|
-| [OH_AACProfile](#oh_aacprofile-1) { AAC_PROFILE_LC = 0 } | Enumerates the AAC profiles.| 
+| [OH_AACProfile](#oh_aacprofile-1) {<br>AAC_PROFILE_LC = 0,<br>AAC_PROFILE_HE = 3,<br>AAC_PROFILE_HE_V2 = 4<br>} | Enumerates the AAC profiles.<!--Del--><br>(**AAC_PROFILE_HE** and **AAC_PROFILE_HE_V2** are not available yet.)<!--DelEnd--> | 
 | [OH_AVCProfile](#oh_avcprofile-1) {<br>AVC_PROFILE_BASELINE = 0,<br>AVC_PROFILE_HIGH = 4,<br>AVC_PROFILE_MAIN = 8<br>} | Enumerates the AVC profiles.| 
-| [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.| 
+| [OH_HEVCProfile](#oh_hevcprofile-1) {<br>HEVC_PROFILE_MAIN = 0,<br>HEVC_PROFILE_MAIN_10 = 1,<br>HEVC_PROFILE_MAIN_STILL = 2,<br>HEVC_PROFILE_MAIN_10_HDR10 = 3,<br>HEVC_PROFILE_MAIN_10_HDR10_PLUS = 4<br>} | Enumerates the HEVC profiles.<br>**HEVC_PROFILE_MAIN_10_HDR10** and **HEVC_PROFILE_MAIN_10_HDR10_PLUS** are deprecated since API version 14.| 
+| [OH_VVCProfile](#oh_vvcprofile-1) {<br>VVC_PROFILE_MAIN_10 = 1, <br>VVC_PROFILE_MAIN_12 = 2, <br>VVC_PROFILE_MAIN_12_INTRA = 10, <br>VVC_PROFILE_MULTI_MAIN_10 = 17, <br>VVC_PROFILE_MAIN_10_444 = 33, <br>VVC_PROFILE_MAIN_12_444 = 34, <br>VVC_PROFILE_MAIN_16_444 = 36, <br>VVC_PROFILE_MAIN_12_444_INTRA = 42, <br>VVC_PROFILE_MAIN_16_444_INTRA = 44, <br>VVC_PROFILE_MULTI_MAIN_10_444 = 49, <br>VVC_PROFILE_MAIN_10_STILL = 65, <br>VVC_PROFILE_MAIN_12_STILL = 66, <br>VVC_PROFILE_MAIN_10_444_STILL = 97, <br>VVC_PROFILE_MAIN_12_444_STILL = 98, <br>VVC_PROFILE_MAIN_16_444_STILL = 100 <br>} | Enumerates the VVC profiles.| 
 | [OH_AVOutputFormat](#oh_avoutputformat-1) {<br>AV_OUTPUT_FORMAT_DEFAULT = 0,<br>AV_OUTPUT_FORMAT_MPEG_4 = 2,<br>AV_OUTPUT_FORMAT_M4A = 6,<br>AV_OUTPUT_FORMAT_AMR = 8,<br>AV_OUTPUT_FORMAT_MP3 = 9,<br>AV_OUTPUT_FORMAT_WAV = 10<br>} | Enumerates the output file formats supported by a muxer.|
 | [OH_AVSeekMode](#oh_avseekmode-1) {<br>SEEK_MODE_NEXT_SYNC = 0,<br>SEEK_MODE_PREVIOUS_SYNC,<br>SEEK_MODE_CLOSEST_SYNC<br>} | Enumerates the seek modes.| 
-| [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes.| 
+| [OH_ScalingMode](#oh_scalingmode-1) {<br>SCALING_MODE_SCALE_TO_WINDOW = 1,<br>SCALING_MODE_SCALE_CROP = 2<br>} | Enumerates the scaling modes. (This enum is deprecated from API version 14.)| 
 | [OH_BitsPerSample](#oh_bitspersample-1) {<br>SAMPLE_U8 = 0, SAMPLE_S16LE = 1,<br>SAMPLE_S24LE = 2, SAMPLE_S32LE = 3,<br>SAMPLE_F32LE = 4, SAMPLE_U8P = 5,<br>SAMPLE_S16P = 6, SAMPLE_S24P = 7,<br>SAMPLE_S32P = 8, SAMPLE_F32P = 9,<br>INVALID_WIDTH = -1<br>} | Enumerates the number of audio bits for each coded sample.| 
 | [OH_ColorPrimary](#oh_colorprimary-1) {<br>COLOR_PRIMARY_BT709 = 1,<br>COLOR_PRIMARY_UNSPECIFIED = 2,<br>COLOR_PRIMARY_BT470_M = 4,<br>COLOR_PRIMARY_BT601_625 = 5,<br>COLOR_PRIMARY_BT601_525 = 6,<br>COLOR_PRIMARY_SMPTE_ST240 = 7,<br>COLOR_PRIMARY_GENERIC_FILM = 8,<br>COLOR_PRIMARY_BT2020 = 9,<br>COLOR_PRIMARY_SMPTE_ST428 = 10,<br>COLOR_PRIMARY_P3DCI = 11,<br>COLOR_PRIMARY_P3D65 = 12<br>} | Enumerates the primary colors.| 
 | [OH_TransferCharacteristic](#oh_transfercharacteristic-1) {<br>TRANSFER_CHARACTERISTIC_BT709 = 1,<br>TRANSFER_CHARACTERISTIC_UNSPECIFIED = 2,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_2 = 4,<br>TRANSFER_CHARACTERISTIC_GAMMA_2_8 = 5,<br>TRANSFER_CHARACTERISTIC_BT601 = 6,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST240 = 7,<br>TRANSFER_CHARACTERISTIC_LINEAR = 8,<br>TRANSFER_CHARACTERISTIC_LOG = 9,<br>TRANSFER_CHARACTERISTIC_LOG_SQRT = 10,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_4 = 11,<br>TRANSFER_CHARACTERISTIC_BT1361 = 12,<br>TRANSFER_CHARACTERISTIC_IEC_61966_2_1 = 13,<br>TRANSFER_CHARACTERISTIC_BT2020_10BIT = 14,<br>TRANSFER_CHARACTERISTIC_BT2020_12BIT = 15,<br>TRANSFER_CHARACTERISTIC_PQ = 16,<br>TRANSFER_CHARACTERISTIC_SMPTE_ST428 = 17,<br>TRANSFER_CHARACTERISTIC_HLG = 18<br>} | Enumerates the transfer characteristics.| 
 | [OH_MatrixCoefficient](#oh_matrixcoefficient-1) {<br>MATRIX_COEFFICIENT_IDENTITY = 0,<br>MATRIX_COEFFICIENT_BT709 = 1,<br>MATRIX_COEFFICIENT_UNSPECIFIED = 2,<br>MATRIX_COEFFICIENT_FCC = 4,<br>MATRIX_COEFFICIENT_BT601_625 = 5,<br>MATRIX_COEFFICIENT_BT601_525 = 6, MATRIX_COEFFICIENT_SMPTE_ST240 = 7,<br>MATRIX_COEFFICIENT_YCGCO = 8,<br>MATRIX_COEFFICIENT_BT2020_NCL = 9,<br>MATRIX_COEFFICIENT_BT2020_CL = 10,<br>MATRIX_COEFFICIENT_SMPTE_ST2085 = 11,<br>MATRIX_COEFFICIENT_CHROMATICITY_NCL = 12,<br>MATRIX_COEFFICIENT_CHROMATICITY_CL = 13,<br>MATRIX_COEFFICIENT_ICTCP = 14<br>} | Enumerates the matrix coefficients.| 
 | [OH_AVCLevel](#oh_avclevel-1) {<br>AVC_LEVEL_1 = 0, <br>AVC_LEVEL_1b = 1, <br>AVC_LEVEL_11 = 2, <br>AVC_LEVEL_12 = 3,<br>AVC_LEVEL_13 = 4, <br>AVC_LEVEL_2 = 5, <br>AVC_LEVEL_21 = 6, <br>AVC_LEVEL_22 = 7,<br>AVC_LEVEL_3 = 8, <br>AVC_LEVEL_31 = 9, <br>AVC_LEVEL_32 = 10, <br>AVC_LEVEL_4 = 11,<br>AVC_LEVEL_41 = 12, <br>AVC_LEVEL_42 = 13, <br>AVC_LEVEL_5 = 14, <br>AVC_LEVEL_51 = 15, <br>AVC_LEVEL_52 = 16, <br>AVC_LEVEL_6 = 17, <br>AVC_LEVEL_61 = 18, <br>AVC_LEVEL_62 = 19<br>} | Enumerates the AVC levels. | 
 | [OH_HEVCLevel](#oh_hevclevel-1) {<br>HEVC_LEVEL_1 = 0, <br>HEVC_LEVEL_2 = 1, <br>HEVC_LEVEL_21 = 2, <br>HEVC_LEVEL_3 = 3,<br>HEVC_LEVEL_31 = 4, <br>HEVC_LEVEL_4 = 5, <br>HEVC_LEVEL_41 = 6, <br>HEVC_LEVEL_5 = 7,<br>HEVC_LEVEL_51 = 8, <br>HEVC_LEVEL_52 = 9, <br>HEVC_LEVEL_6 = 10, <br>HEVC_LEVEL_61 = 11,<br>HEVC_LEVEL_62 = 12<br>} | Enumerates the HEVC levels. | 
+| [OH_VVCLevel](#oh_vvclevel-1) {<br>VVC_LEVEL_1 = 16, <br>VVC_LEVEL_2 = 32, <br>VVC_LEVEL_21 = 35, <br>VVC_LEVEL_3 = 48, <br>VVC_LEVEL_31 = 51, <br>VVC_LEVEL_4 = 64, <br>VVC_LEVEL_41 = 67, <br>VVC_LEVEL_5 = 80, <br>VVC_LEVEL_51 = 83, <br>VVC_LEVEL_52 = 86, <br>VVC_LEVEL_6 = 96, <br>VVC_LEVEL_61 = 99, <br>VVC_LEVEL_62 = 102, <br>VVC_LEVEL_63 = 105, <br>VVC_LEVEL_155 = 255<br>} | Enumerates the VVC levels. | 
 | [OH_TemporalGopReferenceMode](#oh_temporalgopreferencemode-1) { <br>ADJACENT_REFERENCE = 0, <br>JUMP_REFERENCE = 1, <br>UNIFORMLY_SCALED_REFERENCE = 2 <br>} | Enumerates the reference modes of temporal image groups. | 
-
+| [OH_BitrateMode](#oh_bitratemode-1) { <br>BITRATE_MODE_CBR = 0, <br>BITRATE_MODE_VBR = 1, <br>BITRATE_MODE_CQ = 2 } | Enumerates the bit rate modes of an encoder. |
 
 ### Variables
 
@@ -236,6 +243,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_NB](#oh_avcodec_mimetype_audio_amr_nb) | Pointer to the key that describes the MIME type of the AMR-NB audio decoder.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_AMR_WB](#oh_avcodec_mimetype_audio_amr_wb) | Pointer to the key that describes the MIME type of the AMR-WB audio decoder.|
 | const char \* [OH_AVCODEC_MIMETYPE_AUDIO_APE](#oh_avcodec_mimetype_audio_ape) |Pointer to the key that describes the MIME type of the APE audio decoder.                        |
+| const char \* [OH_AVCODEC_MIMETYPE_VIDEO_VVC](#oh_avcodec_mimetype_video_vvc) | Pointer to the key that describes the MIME type of the VVC (H.266) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_HEVC](#oh_avcodec_mimetype_video_hevc) | Pointer to the key that describes the MIME type of the HEVC (H.265) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_AVC](#oh_avcodec_mimetype_video_avc) | Pointer to the key that describes the MIME type of the AVC (H.264) video codec.|
 | const char \* [OH_AVCODEC_MIMETYPE_VIDEO_MPEG4](#oh_avcodec_mimetype_video_mpeg4) | Pointer to the key that describes the MIME type of the MPEG4 video encoder, which is used only for muxing MPEG4 video streams.|
@@ -251,8 +259,8 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_BITRATE](#oh_md_key_bitrate) | Pointer to the key that describes the bit rate. The value type is int64_t.|
 | const char \* [OH_MD_KEY_PROFILE](#oh_md_key_profile) | Pointer to the key that describes the encoding grading. The value type is int32_t. For details, see [OH_AVCProfile](#oh_avcprofile), [OH_HEVCProfile](#oh_hevcprofile), and [OH_AACProfile](#oh_aacprofile).|
 | const char \* [OH_MD_KEY_MAX_INPUT_SIZE](#oh_md_key_max_input_size) | Pointer to the key that describes the maximum size of an input stream to decode. The value type is int32_t.|
-| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
-| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t. <!--Del-->(This key is not supported yet.)<!--DelEnd--> |
+| const char \* [OH_ED_KEY_TIME_STAMP](#oh_ed_key_time_stamp) | Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type. (This variable is deprecated from API version 14.)|
+| const char \* [OH_ED_KEY_EOS](#oh_ed_key_eos) | Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t. (This variable is deprecated from API version 14.)|
 | const char \* [OH_MD_KEY_WIDTH](#oh_md_key_width) | Pointer to the key that describes the video width. The value type is int32_t.|
 | const char \* [OH_MD_KEY_HEIGHT](#oh_md_key_height) | Pointer to the key that describes the video height. The value type is int32_t.|
 | const char \* [OH_MD_KEY_PIXEL_FORMAT](#oh_md_key_pixel_format) | Pointer to the key that describes the video pixel format. The value type is int32_t. For details, see [OH_AVPixelFormat](_core.md#oh_avpixelformat).|
@@ -262,7 +270,7 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_COLOR_PRIMARIES](#oh_md_key_color_primaries) | Pointer to the key that describes the video primary color. The value type is int32_t. For details, see [OH_ColorPrimary](#oh_colorprimary). The video primary color complies with Table 2 in the H.273 standard.|
 | const char \* [OH_MD_KEY_TRANSFER_CHARACTERISTICS](#oh_md_key_transfer_characteristics) | Pointer to the key that describes the video transfer characteristics. The value type is int32_t. For details, see [OH_TransferCharacteristic](#oh_transfercharacteristic). The video transfer characteristics comply with Table 3 in the H.273 standard.|
 | const char \* [OH_MD_KEY_MATRIX_COEFFICIENTS](#oh_md_key_matrix_coefficients) | Pointer to the key that describes the video matrix coefficient. The value type is int32_t. For details, see [OH_MatrixCoefficient](#oh_matrixcoefficient). The video matrix coefficient complies with Table 4 in the H.273 standard.|
-| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | Pointer to the key that describes the video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional and is used only for video decoding in surface mode. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md).|
+| const char \* [OH_MD_KEY_SCALING_MODE](#oh_md_key_scaling_mode) | Pointer to the key that describes the video scaling mode. The value type is int32_t. For details, see [OH_ScalingMode](#oh_scalingmode). This key is optional and is used only for video decoding in surface mode. You are advised to set the scaling mode by calling [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md). (This variable is deprecated from API version 14.)|
 | const char \* [OH_MD_KEY_VIDEO_CROP_TOP](#oh_md_key_video_crop_top) | Pointer to the key that describes the top coordinate (y) of the cropped rectangle. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | Pointer to the key that describes the bottom coordinate (y) of the cropped rectangle. The value type is int32_t. | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | Pointer to the key that describes the left coordinate (x) of the cropped rectangle. The value type is int32_t. | 
@@ -321,8 +329,9 @@ The table below lists the key-value pairs dedicated for muxing and demuxing.
 | const char \* [OH_MD_KEY_TRACK_COUNT](#oh_md_key_track_count) | Pointer to the key that describes the number of tracks in a media file. The value type is int32_t.|
 | const char \* [OH_MD_KEY_BUFFER_DURATION](#oh_md_key_buffer_duration) | Pointer to the key that describes the duration corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t.      |
 | const char \* [OH_MD_KEY_DECODING_TIMESTAMP](#oh_md_key_decoding_timestamp) | Pointer to the key that describes the decoding timestamp corresponding to the audio, video, or subtitle sample carried in AVBuffer, in microseconds. The value type is int64_t. |
-| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | Pointer to the key that describes the MIME type of the codec. The value type is string.|
-| const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar)            | Pointer to the key that describes the aspect ratio of the sample. The value type is double.|
+| const char \* [OH_MD_KEY_CODEC_MIME](#oh_md_key_codec_mime) | Pointer to the key that describes the [MIME](#media-codec-formats) type of the codec. The value type is string.|
+| const char \* [OH_MD_KEY_VIDEO_SAR](#oh_md_key_video_sar) | Pointer to the key that describes the aspect ratio of the sample. The value type is double.|
+| const char \* [OH_MD_KEY_CREATION_TIME](#oh_md_key_creation_time) | Pointer to the key that describes the media file creation time. The value type is string.|
 
 
 ## Type Description
@@ -447,7 +456,7 @@ Defines the pointer to the function that is called to report error information w
 | Name| Description| 
 | -------- | -------- |
 | codec | Pointer to an **OH_AVCodec** instance. | 
-| errorCode | Error code. | 
+| errorCode | Error code. The returned error codes vary in scenarios. For details, see the table in the function description. | 
 | userData | Pointer to the data on which the caller depends when executing the callback. |
 
 
@@ -770,6 +779,10 @@ Defines an enum for the scaling modes. This enum is used only in surface mode.
 
 **Since**: 10
 
+**Deprecated from**: 14
+
+**Substitute**: [OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2)
+
 
 ### OH_TemporalGopReferenceMode
 
@@ -785,15 +798,60 @@ Defines an enum for the reference modes of temporal image groups.
 
 **Since**: 12
 
+### OH_VVCLevel
+
+```
+typedef enum OH_VVCLevel OH_VVCLevel
+```
+
+**Description**
+
+Defines an enum for the VVC levels.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 14
+
+
+### OH_VVCProfile
+
+```
+typedef enum OH_VVCProfile OH_VVCProfile
+```
+
+**Description**
+
+Defines an enum for the VVC profiles.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 14
+
 
 ### OH_TransferCharacteristic
 
 ```
 typedef enum OH_TransferCharacteristic OH_TransferCharacteristic
 ```
+
 **Description**
 
 Defines an enum for the transfer characteristics.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 10
+
+
+### OH_BitrateMode
+
+```
+typedef enum OH_BitrateMode OH_BitrateMode
+```
+
+**Description**
+
+Defines an enum for the bit rate modes of an encoder. The key position is changed from API version 14.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -965,6 +1023,8 @@ Enumerates the AAC profiles.
 | Value| Description| 
 | -------- | -------- |
 | AAC_PROFILE_LC  | AAC profile of the low complexity level.  | 
+| AAC_PROFILE_HE  | AAC profile of the high efficiency level. <!--Del-->(This specification is not available yet.)<!--DelEnd--><br>**Since**: 14| 
+| AAC_PROFILE_HE_V2 | AAC profile of the high efficiency V2 level. <!--Del-->(This specification is not available yet.)<!--DelEnd--><br>**Since**: 14| 
 
 
 ### OH_AVCLevel
@@ -1177,8 +1237,8 @@ Enumerates the HEVC profiles.
 | HEVC_PROFILE_MAIN  | HEVC profile of the main level.  | 
 | HEVC_PROFILE_MAIN_10  | HEVC profile of the 10-bit main level.  | 
 | HEVC_PROFILE_MAIN_STILL  | HEVC profile of the main still picture level.  | 
-| HEVC_PROFILE_MAIN_10_HDR10  | HEVC profile of the main 10 HDR10 level.  | 
-| HEVC_PROFILE_MAIN_10_HDR10_PLUS  | HEVC profile of the main 10 HDR10+ level.  | 
+| HEVC_PROFILE_MAIN_10_HDR10  | HEVC profile of the main 10 HDR10 level. (This value is deprecated from API version 14.)  | 
+| HEVC_PROFILE_MAIN_10_HDR10_PLUS  | HEVC profile of the main 10 HDR10+ level. (This value is deprecated from API version 14.)  | 
 
 
 ### OH_MatrixCoefficient
@@ -1247,10 +1307,15 @@ Enumerates the scaling modes. This enum is used only in surface mode.
 
 **Since**: 10
 
+**Deprecated from**: 14
+
+**Substitute**: [OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1).OH_SCALING_MODE_SCALE_TO_WINDOW_V2
+[OHScalingModeV2](../apis-arkgraphics2d/_native_window.md#ohscalingmodev2-1).OH_SCALING_MODE_SCALE_CROP_V2
+
 | Value| Description| 
 | -------- | -------- |
-| SCALING_MODE_SCALE_TO_WINDOW  | Scales the image based on the window size.  | 
-| SCALING_MODE_SCALE_CROP  | Crops the image based on the window size.  | 
+| SCALING_MODE_SCALE_TO_WINDOW  | Scales the image based on the window size.| 
+| SCALING_MODE_SCALE_CROP  | Crops the image based on the window size.| 
 
 
 ### OH_TemporalGopReferenceMode
@@ -1272,6 +1337,72 @@ Enumerates the reference modes of temporal image groups.
 | ADJACENT_REFERENCE  | Refers to the nearest short-term reference frame.  | 
 | JUMP_REFERENCE  | Refers to the latest LTR frame.  | 
 | UNIFORMLY_SCALED_REFERENCE  | Drops video frames at the highest level, and evenly distributes the remaining frames. The number of temporal image groups must be a power of 2.  | 
+
+
+### OH_VVCLevel
+
+```
+enum OH_VVCLevel
+```
+
+**Description**
+
+Enumerates the VVC levels.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 14
+
+| Value| Description| 
+| -------- | -------- |
+| VVC_LEVEL_1  | Level 1.0. | 
+| VVC_LEVEL_2  | Level 2.0. | 
+| VVC_LEVEL_21  | Level 2.1. | 
+| VVC_LEVEL_3  | Level 3.0. |
+| VVC_LEVEL_31  | Level 3.1. |
+| VVC_LEVEL_4  | Level 4.0. |
+| VVC_LEVEL_41  | Level 4.1. |
+| VVC_LEVEL_5  | Level 5.0.  |
+| VVC_LEVEL_51  | Level 5.1. |
+| VVC_LEVEL_52  | Level 5.2. |
+| VVC_LEVEL_6  | Level 6.0. |
+| VVC_LEVEL_61  | Level 6.1. |
+| VVC_LEVEL_62  | Level 6.2. |
+| VVC_LEVEL_63  | Level 6.3. |
+| VVC_LEVEL_155  | Level 15.5. |
+
+
+### OH_VVCProfile
+
+```
+enum OH_VVCProfile
+```
+
+**Description**
+
+Enumerates the VVC profiles.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 14
+
+| Value| Description| 
+| -------- | -------- |
+| VVC_PROFILE_MAIN_10 | VVC profile of the 10-bit main level. |
+| VVC_PROFILE_MAIN_12 VVC | VVC profile of the 12-bit main level. |
+| VVC_PROFILE_MAIN_12_INTRA | VVC profile of the 12-bit intra main level. |
+| VVC_PROFILE_MULTI_MAIN_10 | VVC profile of the 10-bit main level for multi-layer encoding. |
+| VVC_PROFILE_MAIN_10_444 | VVC profile of the 10-bit full-sample main level. |
+| VVC_PROFILE_MAIN_12_444 | VVC profile of the 12-bit full-sample main level. |
+| VVC_PROFILE_MAIN_16_444 | VVC profile of the 16-bit full-sample main level. |
+| VVC_PROFILE_MAIN_12_444_INTRA | VVC profile of the 12-bit full-sample intra main level. |
+| VVC_PROFILE_MAIN_16_444_INTRA | VVC profile of the 16-bit full-sample intra main level. |
+| VVC_PROFILE_MULTI_MAIN_10_444 | VVC profile of the 10-bit full-sample main level for multi-layer encoding. |
+| VVC_PROFILE_MAIN_10_STILL | VVC profile of the 10-bit still picture main level. |
+| VVC_PROFILE_MAIN_12_STILL | VVC profile of the 12-bit still picture main level. |
+| VVC_PROFILE_MAIN_10_444_STILL | VVC profile of the 10-bit full-sample still picture main level. |
+| VVC_PROFILE_MAIN_12_444_STILL | VVC profile of the 12-bit full-sample still picture main level. |
+| VVC_PROFILE_MAIN_16_444_STILL | VVC profile of the 16-bit full-sample still picture main level. |
 
 
 ### OH_TransferCharacteristic
@@ -1308,6 +1439,26 @@ Enumerates the transfer characteristics. This enum can be used for both encoding
 | TRANSFER_CHARACTERISTIC_SMPTE_ST428  | SMPTE ST.428 transfer function.  | 
 | TRANSFER_CHARACTERISTIC_HLG  | HLG transfer function.  | 
 
+
+### OH_BitrateMode
+
+```
+enum OH_BitrateMode
+```
+
+**Description**
+
+Enumerates the bit rate modes of an encoder.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 10
+
+| Value| Description| 
+| -------- | -------- |
+| BITRATE_MODE_CBR  | Constant bit rate.  | 
+| BITRATE_MODE_VBR  | Variable bit rate. The bit rate is for reference only.  | 
+| BITRATE_MODE_CQ  | Constant quality.  | 
 
 ## Variable Description
 
@@ -1567,6 +1718,21 @@ Pointer to the key that describes the MIME type of the HEVC (H.265) video codec.
 **Since**: 10
 
 
+### OH_AVCODEC_MIMETYPE_VIDEO_VVC
+
+```
+const char* OH_AVCODEC_MIMETYPE_VIDEO_VVC
+```
+
+**Description**
+
+Pointer to the key that describes the MIME type of the VVC (H.266) video codec.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 12
+
+
 ### OH_AVCODEC_MIMETYPE_VIDEO_MPEG4
 
 ```
@@ -1592,12 +1758,13 @@ const char* OH_ED_KEY_EOS
 
 **Description**
 
-Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t. <!--Del-->(This key is not supported yet.)<!--DelEnd-->
+Pointer to the key that describes the end of stream for the surface buffer. The value type is int32_t.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 9
 
+**Deprecated from**: 14
 
 ### OH_ED_KEY_TIME_STAMP
 
@@ -1607,12 +1774,13 @@ const char* OH_ED_KEY_TIME_STAMP
 
 **Description**
 
-Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type. <!--Del-->(This key is not supported yet.)<!--DelEnd-->
+Pointer to the key that describes the surface buffer timestamp. The value is of the int64_t type.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 9
 
+**Deprecated from**: 14
 
 ### OH_FEATURE_PROPERTY_KEY_VIDEO_ENCODER_MAX_LTR_FRAME_COUNT
 
@@ -1820,6 +1988,7 @@ const char* OH_MD_KEY_CHANNEL_LAYOUT
 **Description**
 
 Pointer to the key that describes the required encoding channel layout. The value type is int64_t. This key applies only to encoders.
+For details, see [OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -1849,7 +2018,7 @@ const char* OH_MD_KEY_CODEC_MIME
 
 **Description**
 
-Pointer to the key that describes the MIME type of the codec. The value type is string.
+Pointer to the key that describes the [MIME](#media-codec-formats) type of the codec. The value type is string.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2000,6 +2169,8 @@ const char* OH_MD_KEY_HEIGHT
 **Description**
 
 Pointer to the key that describes the video height. The value type is int32_t.
+
+For details about the development guide, see step 6 in surface mode or step 4 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2217,6 +2388,10 @@ Pointer to the key that describes the video scaling mode. The value type is int3
 
 **Since**: 10
 
+**Deprecated from**: 14
+
+**Substitute**: [OH_NativeWindow_NativeWindowSetScalingModeV2](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowsetscalingmodev2)
+
 
 ### OH_MD_KEY_SETUP_HEADER
 
@@ -2397,6 +2572,8 @@ Pointer to the key that describes the enabled status of temporal scalability. Th
 
 Before using this variable, you can call [OH_AVCapability_IsFeatureSupported](_a_v_capability.md#oh_avcapability_isfeaturesupported) and use [VIDEO_ENCODER_TEMPORAL_SCALABILITY](_a_v_capability.md#oh_avcapabilityfeature) to check whether the video encoder supports temporal scalability.
 
+For details, see [Temporally Scalable Video Coding](../../media/avcodec/video-encoding-temporal-scalability.md#available-apis).
+
 This key is optional and used only in the configuration phase of video encoding.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
@@ -2417,6 +2594,8 @@ Before using this key, you can use the API [OH_AVCapability_GetFeatureProperties
 
 This key is optional and used only in the configuration phase of video encoding.
 
+For details, see [Temporally Scalable Video Coding](../../media/avcodec/video-encoding-temporal-scalability.md#available-apis-1).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 12
@@ -2435,6 +2614,8 @@ This key takes effect only after the number of LTR frames is configured.
 
 This key is optional and is used only for video encoding input rotation. The configuration takes effect immediately.
 
+For details, see [Temporally Scalable Video Coding](../../media/avcodec/video-encoding-temporal-scalability.md#available-apis-1).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 12
@@ -2450,6 +2631,8 @@ const char* OH_MD_KEY_VIDEO_ENCODER_PER_FRAME_USE_LTR
 Pointer to the key that describes the LTR frame referenced by the current frame. The value type is int32_t.
 
 This key is optional and is used only for video encoding input rotation. The configuration takes effect immediately.
+
+For details, see [Temporally Scalable Video Coding](../../media/avcodec/video-encoding-temporal-scalability.md#available-apis-1).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2500,7 +2683,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_QP_AVERAGE
 
 Pointer to the key that describes the average QP of video frames. The value type is int32_t.
 
-Pointer to the key that describes the average QP value of the current frame encoding block. It is output with OH_AVBuffer.
+Pointer to the key that describes the average QP value of the current frame encoding block. It is output with [OH_AVBuffer](_core.md#oh_avbuffer)
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2517,7 +2700,7 @@ const char* OH_MD_KEY_VIDEO_ENCODER_MSE
 
 Pointer to the key that describes the MSE of video frames. The value type is double.
 
-Pointer to the key that describes the MSE of the current frame encoding block. It is output with OH_AVBuffer.
+Pointer to the key that describes the average MSE value of the current frame encoding block. It is output with [OH_AVBuffer](_core.md#oh_avbuffer)
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2744,6 +2927,8 @@ The height is the number of rows that must be offset from the top of the Y plane
 
 The height of the U/V plane can be calculated based on the color format, but it is usually not defined and depends on the device and version.
 
+For details, see step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 12
@@ -2762,6 +2947,8 @@ The stride is the difference between the index of the pixel and the index of the
 
 For the YUV420 format, the stride corresponds to the Y plane. The stride of the U/V plane can be calculated based on the color format, but it is usually not defined and depends on the device and version.
 
+For details, see step 3 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
+
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 12
@@ -2776,6 +2963,8 @@ const char* OH_MD_KEY_WIDTH
 **Description**
 
 Pointer to the key that describes the video width. The value type is int32_t.
+
+For details about the development guide, see step 6 in surface mode or step 4 in buffer mode in [Video Encoding](../../media/avcodec/video-encoding.md).
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
@@ -2825,3 +3014,18 @@ Pointer to the key that describes the aspect ratio of the sample. The value type
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 12
+
+
+### OH_MD_KEY_CREATION_TIME
+
+```
+const char* OH_MD_KEY_CREATION_TIME
+```
+
+**Description**
+
+Pointer to the key that describes the media file creation time. The value type is string. The value must be in the UTC time format complying with ISO 8601. An example time format is 2024-12-28T00:00:00:000000Z.
+
+**System capability**: SystemCapability.Multimedia.Media.CodecBase
+
+**Since**: 14

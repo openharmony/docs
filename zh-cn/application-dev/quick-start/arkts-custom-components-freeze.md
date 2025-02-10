@@ -558,7 +558,7 @@ struct NavigationContentMsgStack {
 1. 点击`change flag`，改变`flag`为false：
     -  被标记\@Reusable的`ChildComponent`组件在下树时，不会被销毁，而是进入复用池，触发aboutToRecycle生命周期，同时设置状态为inactive。
     - `ChildComponent`同时也开启了组件冻结，当其状态为inactive时，不会响应任何状态变量变化带来的UI刷新。
-2. 点击`change desc`，触发`Page`的成员变量`desc`的变化。
+2. 点击`change desc`，触发`Page`的成员变量`desc`的变化：
     - `desc`是\@State装饰的，其变化会通知给其子组件`ChildComponent`\@Link装饰的`desc`。
     - 但因为`ChildComponent`是inactive状态，且开启了组件冻结，所以这次变化并不会触发`@Watch('descChange')`的回调，以及`ChildComponent`UI刷新。如果没有开启组件冻结，当前`@Watch('descChange')`会立即回调，且复用池内的`ChildComponent`组件也会对应刷新。
 3. 再次点击`change flag`，改变`flag`为true：
@@ -627,7 +627,7 @@ struct Page {
 2. 在滑动过程中：
     - 列表上端的`ChildComponent`滑出可视区域外，此时先进入LazyForEach的缓存区域内，被设置inactive。在滑出LazyForEach区域外后，因为标记了组件复用，所以并不会被析构，会进入复用池，此时再次被设置inactive。
     - 列表下端LazyForEach的缓存节点会进入List范围内，此时会试图请求创建新的节点进入LazyForEach的缓存，发现有可复用的节点时，从复用池中拿出已有节点，触发aboutToReuse生命周期回调，此时因为节点进入的是LazyForEach的缓存区域，所以其状态依旧是inactive。
-3. 点击`change desc`，触发`Page`的成员变量`desc`的变化。
+3. 点击`change desc`，触发`Page`的成员变量`desc`的变化：
     - `desc`是\@State装饰的，其变化会通知给其子组件`ChildComponent`\@Link装饰的`desc`。
     - 非可视区域内的`ChildComponent`是inactive状态，且开启了组件冻结，所以这次变化只触发可视区域内的15个节点的`@Watch('descChange')`回调，并只刷新对应可视区域内的15个节点。LazyForEach和复用池中的节点并不会刷新，也不会触发\@Watch回调。
     

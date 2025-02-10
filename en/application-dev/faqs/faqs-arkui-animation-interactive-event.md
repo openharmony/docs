@@ -101,7 +101,7 @@ Bind the **onTouch** event to the **Button** component and use **stopPropagation
 ```
 build() {
   Row() {
-    Button ("Click Me")
+    Button("Click Me")
       .width(100)
       .width(100)
       .backgroundColor('#f00')

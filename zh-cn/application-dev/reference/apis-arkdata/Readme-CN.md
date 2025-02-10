@@ -14,6 +14,7 @@
   - [@ohos.data.uniformDataStruct (标准化数据结构)](js-apis-data-uniformDataStruct.md)
   - [@ohos.data.uniformTypeDescriptor (标准化数据定义与描述)](js-apis-data-uniformTypeDescriptor.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
+  - [@ohos.data.intelligence (智慧数据平台)](js-apis-data-intelligence.md)
   <!--Del-->
   - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)(系统接口)](js-apis-application-dataShareExtensionAbility-sys.md)
   <!--DelEnd-->
@@ -25,6 +26,7 @@
   - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](js-apis-data-dataSharePredicates-sys.md)
   - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](js-apis-data-DataShareResultSet-sys.md)
   - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](js-apis-distributedKVStore-sys.md)
+  - [@ohos.data.graphStore (图数据库)(系统接口)](js-apis-data-graphStore-sys.md)
   - [@ohos.data.relationalStore (关系型数据库)(系统接口)](js-apis-data-relationalStore-sys.md)
   <!--DelEnd-->
   - 已停止维护的接口
@@ -43,7 +45,11 @@
   - 头文件
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
+    - [oh_data_value.h](oh__data__value_8h.md)
+    - [oh_data_values.h](oh__data__values_8h.md)
+    - [oh_data_values_buckets.h](oh__data__values__buckets_8h.md)
     - [oh_predicates.h](oh__predicates_8h.md)
+    - [oh_rdb_transaction.h](oh__rdb__transaction_8h.md)
     - [oh_value_object.h](oh__value__object_8h.md)
     - [oh_values_bucket.h](oh__values__bucket_8h.md)
     - [relational_store_error_code.h](relational__store__error__code_8h.md)
@@ -75,10 +81,14 @@
     - [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md)
     - [Rdb_TableDetails](_rdb___table_details.md)
 - 错误码
+  <!--Del-->
+  - [图数据库错误码](errorcode-data-gdb.md)
+  <!--DelEnd-->
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)
   - [分布式键值数据库错误码](errorcode-distributedKVStore.md)
   - [用户首选项错误码](errorcode-preferences.md)
   - [统一数据管理框架错误码](errorcode-udmf.md)
+  - [智慧数据平台错误码](errorcode-intelligence.md)
 

@@ -182,11 +182,13 @@ minFontSize(value: number | string | Resource)
 
 Sets the minimum font size.
 
-For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize) and [maxLines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
+For the setting to take effect, this attribute must be used together with [maxFontSize](#maxfontsize) and [maxLines](#maxlines), or layout constraint settings.
 
 When the adaptive font size is used, the **fontSize** settings do not take effect.
 
 If the value of **minFontSize** is less than or equal to 0, the adaptive font size does not take effect.
+
+Since API version 16, this attribute takes effect on child components and styled strings, and the adaptive font size is applied to parts where the font size is not set.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -206,9 +208,11 @@ maxFontSize(value: number | string | Resource)
 
 Sets the maximum font size.
 
-For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize) and [maxLines](#maxlines), or layout constraint settings. In addition, it does not take effect for child components or styled strings.
+For the setting to take effect, this attribute must be used together with [minFontSize](#minfontsize) and [maxLines](#maxlines), or layout constraint settings.
 
 When the adaptive font size is used, the **fontSize** settings do not take effect.
+
+Since API version 16, this attribute takes effect on child components and styled strings, and the adaptive font size is applied to parts where the font size is not set.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -724,7 +728,7 @@ Sets the minimum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handed as **0**. A value greater than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handled as **0**. A value greater than 1 is handled as **1**. Abnormal values are ineffective by default.|
 
 ### maxFontScale<sup>12+</sup>
 
@@ -740,7 +744,7 @@ Sets the maximum font scale factor for text.
 
 | Name| Type                                         | Mandatory| Description                                         |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handed as **1**. Abnormal values are ineffective by default.|
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as **1**. Abnormal values are ineffective by default.|
 
 ### halfLeading<sup>12+</sup>
 
@@ -831,7 +835,7 @@ Specifies whether to enable haptic feedback.
 
 ### caretColor<sup>14+</sup>
 
-caretColor(value: ResourceColor)
+caretColor(color: ResourceColor)
 
 Sets the color of the text selection handle, also known as the caret, in the text box.
 
@@ -843,11 +847,11 @@ Sets the color of the text selection handle, also known as the caret, in the tex
 
 | Name| Type                                      | Mandatory| Description                                  |
 | ------ | ------------------------------------------ | ---- | -------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the text selection handle.<br>Default value: **'#007DFF'**|
+| color  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the text selection handle.<br>Default value: **'#007DFF'**|
 
 ### selectedBackgroundColor<sup>14+</sup>
 
-selectedBackgroundColor(value: ResourceColor)
+selectedBackgroundColor(color: ResourceColor)
 
 Sets the background color of the selected text. If the opacity is not set, a 20% opacity will be used.
 
@@ -859,7 +863,7 @@ Sets the background color of the selected text. If the opacity is not set, a 20%
 
 | Name| Type                                      | Mandatory| Description                                      |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected text.<br>By default, a 20% opacity is applied.<br>Default value: **'#007DFF'**|
+| color  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Background color of the selected text.<br>By default, a 20% opacity is applied.<br>Default value: **'#007DFF'**|
 
 ## TextSpanType<sup>11+</sup>
 
@@ -940,6 +944,22 @@ Called when the text selection position changes.
 | selectionStart | number | Yes  | Start position of the selected text.|
 | selectionEnd   | number | Yes  | End position of the selected text.|
 
+### onMarqueeStateChange<sup>16+</sup>
+
+onMarqueeStateChange(callback: Callback\<MarqueeState\>)
+
+Called when the marquee animation reaches the specified state.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name   | Type                                            | Mandatory | Description                      |
+|--------|---------------------------------------------------|-----|--------------------------|
+| state  | [Callback\<MarqueeState\>](#marqueestate16) | Yes  | Callback that receives a **MarqueeState** enum value, which indicates the current state of the marquee animation.|
+
 ## TextOptions<sup>11+</sup>
 
 Describes the initialization options of the **Text** component.
@@ -1008,6 +1028,51 @@ Obtains the **LayoutManager** object.
 | ---------------------------------------- | ------- |
 | [LayoutManager](ts-text-common.md#layoutmanager12) | **LayoutManager** object.|
 
+## marqueeOptions<sup>16+</sup>
+
+The **marqueeOptions** settings take effect only when **textOverflow** is set to **TextOverflow.MARQUEE**.
+
+| Name            | Type                                            | Mandatory| Description           |
+|----------------|------------------------------------------------| -------- |---------------|
+| marqueeOptions | [TextMarqueeOptions](#marqueeoptions16) | Yes| Marquee settings, including the switch, step length, number of loops, and direction.|
+
+## TextMarqueeOptions<sup>16+</sup>
+
+Describes the initialization options of the **Marquee** component.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name               | Type                                             | Mandatory| Description                                                                                 |
+|--------------------|-------------------------------------------------|----|-------------------------------------------------------------------------------------|
+| start              | boolean                                         | Yes | Whether to start the marquee.                                                                       |
+| step               | number                                          | No | Step length of the scrolling animation text.<br>Default value: **4.0** (in vp)                                                          |
+| loop               | number                                          | No | Number of times the marquee will scroll. If the value is less than or equal to **0**, the marquee will scroll continuously.<br>Default value: **-1**                                                   |
+| fromStart          | boolean                                         | No | Whether the text scrolls from the start.<br>Default value: **true**                                                      |
+| delay              | number                                          | No | Time interval between scroll movements.<br>Default value: **0**                                                             |
+| fadeout            | boolean                                         | No | Whether to apply a fade-out effect when the text is too long. With this parameter set to **true**: When the text content exceeds the display range, the edges of the partially visible text will have a fade-out effect applied; If both ends have partially visible text, both ends will have the fade-out effect applied; The **clip** attribute is automatically locked to **true** and cannot be set to **false**.<br>Default value: **false** |
+| marqueeStartPolicy | [MarqueeStartPolicy](#marqueestartpolicy16) | No | Start policy of the marquee.<br>Default value: **MarqueeStartPolicy.DEFAULT**                                      |
+
+## MarqueeStartPolicy<sup>16+</sup>
+
+Enumerates the marquee scrolling modes.
+
+| Name       | Value| Description           |
+|----------|----|---------------|
+| DEFAULT  | 0  |The marquee scrolls continuously. Default value.      |
+| ON_FOCUS | 1  |The marquee starts scrolling when it has focus or when the mouse hovers over it.|
+
+## MarqueeState<sup>16+</sup>
+
+Enumerates the return values of the marquee state callback.
+
+| Name    | Value|Description                           |
+|--------|----|-------------------------------|
+| START  |0  |The marquee starts scrolling.                    |
+| BOUNCE |1  |The marquee completes one scroll movement. If the number of **loops** is not 1, this value will be returned multiple times.|
+| FINISH |2  |All loops of the marquee are completed.             |
+
 ## Example
 
 ### Example 1: Setting the Text Layout
@@ -1052,7 +1117,7 @@ struct TextExample1 {
         .margin(5)
 
       Row() {
-        Button('Current TextAlign: ' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
+        Button('TextAlign Value: ' + this.TextAlignStr[this.changeTextAlignIndex]).onClick(() => {
           this.changeTextAlignIndex++
           if (this.changeTextAlignIndex > (this.TextAlignStr.length - 1)) {
             this.changeTextAlignIndex = 0
@@ -1134,7 +1199,7 @@ struct TextExample2 {
         .margin(5)
 
       Row() {
-        Button('Toggle Decoration Type: ' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
+        Button('Decoration Type: ' + this.TextDecorationTypeStr[this.changeDecorationIndex] + ' & ' +
         this.TextDecorationStyleStr[this.changeDecorationIndex]).onClick(() => {
           this.changeDecorationIndex++
           if (this.changeDecorationIndex > (this.TextDecorationTypeStr.length - 1)) {
@@ -1232,6 +1297,24 @@ struct TextExample3 {
       Text('This is the text with the text overflow set marquee')
         .textOverflow({ overflow: TextOverflow.MARQUEE })
         .style()
+        .marqueeOptions({
+            start: true,
+            fromStart: true,
+            step: 6,
+            loop: -1,
+            delay: 0,
+            fadeout: false,
+            marqueeStartPolicy: MarqueeStartPolicy.DEFAULT
+          })
+        .onMarqueeStateChange((state:MarqueeState) => {
+            if (state == MarqueeState.START) {
+              // "Received state: START";
+            } else if(state == MarqueeState.BOUNCE){
+              // "Received state: BOUNCE";
+            } else if(state == MarqueeState.FINISH){
+              // "Received state: FINISH";
+            }
+          })
 
       Text('ellipsisMode').fontSize(9).fontColor(0xCCCCCC)
       // Set the position of the ellipsis (...) for text truncation.
@@ -1242,7 +1325,7 @@ struct TextExample3 {
         .style()
 
       Row() {
-        Button('Change Ellipsis Position: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
+        Button('Ellipsis Position: ' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
           this.ellipsisModeIndex++
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
             this.ellipsisModeIndex = 0
@@ -1258,7 +1341,7 @@ struct TextExample3 {
 
 ### Example 4: Setting Text Wrapping and Line Breaking
 
-This example demonstrates the effects of different text wrapping and line breaking rules, as well as whether text is truncated when it exceeds the container's length, using the **wordBreak**, **lineBreakStrategy**, and **clip** attributes.
+This example demonstrates the effects of different text wrapping and line breaking rules, as well as whether text is clipped when it exceeds the container's length, using the **wordBreak**, **lineBreakStrategy**, and **clip** attributes.
 
 ```ts
 // xxx.ets
@@ -1300,7 +1383,7 @@ struct TextExample4 {
         .style()
 
       Row() {
-        Button('Toggle wordBreak Value: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
+        Button('wordBreak Value: ' + this.wordBreakStr[this.wordBreakIndex]).onClick(() => {
           this.wordBreakIndex++
           if (this.wordBreakIndex > (this.wordBreakStr.length - 1)) {
             this.wordBreakIndex = 0
@@ -1309,14 +1392,14 @@ struct TextExample4 {
       }
 
       Text('clip').fontSize(9).fontColor(0xCCCCCC)
-      // Set whether text is truncated when it exceeds the length.
+      // Set whether text is clipped when it exceeds the length.
       Text('This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.')
         .wordBreak(WordBreak.NORMAL)
         .maxLines(2)
         .clip(this.textClip)
         .style()
       Row() {
-        Button('Change Clip Mode: ' + this.textClip).onClick(() => {
+        Button('Clip Mode: ' + this.textClip).onClick(() => {
           this.textClip = !this.textClip
         })
       }
@@ -1327,7 +1410,7 @@ struct TextExample4 {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
         .style()
       Row() {
-        Button('Toggle lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
+        Button('lineBreakStrategy Value: ' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
           this.lineBreakStrategyIndex++
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
             this.lineBreakStrategyIndex = 0
@@ -1640,12 +1723,15 @@ This example shows how to obtain text information by calling the layout manager 
 
 ```ts
 // xxx.ets
+import { text } from '@kit.ArkGraphics2D'
+
 @Entry
 @Component
 struct TextExample10 {
   @State lineCount: string = ""
   @State glyphPositionAtCoordinate: string = ""
   @State lineMetrics: string = ""
+  @State rectsForRangeStr: string = ""
   controller: TextController = new TextController()
   @State textStr: string =
     'Hello World!'
@@ -1654,7 +1740,7 @@ struct TextExample10 {
     Scroll() {
       Column() {
         Text('Use getLayoutManager to get layout information')
-          .fontSize(9)
+          .fontSize(15)
           .fontColor(0xCCCCCC)
           .width('90%')
           .padding(10)
@@ -1666,27 +1752,27 @@ struct TextExample10 {
             this.lineCount = "LineCount: " + layoutManager.getLineCount()
           })
 
-        Text('LineCount').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineCount').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Text(this.lineCount)
 
-        Text('GlyphPositionAtCoordinate').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('GlyphPositionAtCoordinate').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Relative Component Coordinates [150,50]")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
             let position: PositionWithAffinity = layoutManager.getGlyphPositionAtCoordinate(150, 50)
             this.glyphPositionAtCoordinate =
-              "Relative component coordinates [150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
+              "Relative coordinates [150,50] glyphPositionAtCoordinate position: " + position.position + " affinity: " +
               position.affinity
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.glyphPositionAtCoordinate)
 
-        Text('LineMetrics').fontSize(9).fontColor(0xCCCCCC).width('90%').padding(10)
+        Text('LineMetrics').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
         Button("Line Metrics")
           .onClick(() => {
             let layoutManager: LayoutManager = this.controller.getLayoutManager()
             let lineMetrics: LineMetrics = layoutManager.getLineMetrics(0)
-            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + '\n\n'
+            this.lineMetrics = "lineMetrics is " + JSON.stringify(lineMetrics) + "\n\n"
             let runMetrics = lineMetrics.runMetrics
             runMetrics.forEach((value, key) => {
               this.lineMetrics += "runMetrics key is " + key + " " + JSON.stringify(value) + "\n\n"
@@ -1694,6 +1780,21 @@ struct TextExample10 {
           })
           .margin({ bottom: 20, top: 10 })
         Text(this.lineMetrics)
+
+        Text('getRectsForRange').fontSize(15).fontColor(0xCCCCCC).width('90%').padding(10)
+        Button("Drawing Area Info for Characters/Placeholders within Specified Text Range")
+          .onClick(() => {
+            let layoutManager: LayoutManager = this.controller.getLayoutManager()
+            let range: TextRange = { start: 0, end: 1 }
+            let rectsForRangeInfo: text.TextBox[] =
+              layoutManager.getRectsForRange(range, text.RectWidthStyle.TIGHT, text.RectHeightStyle.TIGHT)
+            this.rectsForRangeStr = "getRectsForRange result is " + "\n\n"
+            rectsForRangeInfo.forEach((value, key) => {
+              this.rectsForRangeStr += "rectsForRange key is " + key + " " + JSON.stringify(value) + "\n\n"
+            })
+          })
+          .margin({ bottom: 20, top: 10 })
+        Text(this.rectsForRangeStr)
       }
       .margin({ top: 100, left: 8, right: 8 })
     }
@@ -1741,15 +1842,14 @@ This example demonstrates how to use the **editMenuOptions** API to create custo
 @Component
 struct TextExample12 {
   @State text: string = 'Text editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'Custom 1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
     }
     let item2: TextMenuItem = {
-      content: 'custom2',
+      content: 'Custom 2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
     }
@@ -1757,29 +1857,31 @@ struct TextExample12 {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       Text(this.text)
         .fontSize(20)
         .copyOption(CopyOptions.LocalDevice)
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false
-            }
-            return false
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")

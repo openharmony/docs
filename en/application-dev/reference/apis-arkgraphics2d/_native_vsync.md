@@ -35,7 +35,7 @@ The **NativeVsync** module provides the capabilities of native virtual synchroni
 
 | Name| Description| 
 | -------- | -------- |
-| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000,NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,<br>NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
+| [OHNativeErrorCode](#ohnativeerrorcode-1) {<br>NATIVE_ERROR_OK = 0, NATIVE_ERROR_MEM_OPERATION_ERROR = 30001000, NATIVE_ERROR_INVALID_ARGUMENTS = 40001000, NATIVE_ERROR_NO_PERMISSION = 40301000, NATIVE_ERROR_NO_BUFFER = 40601000,<br>NATIVE_ERROR_NO_CONSUMER = 41202000, NATIVE_ERROR_NOT_INIT = 41203000, NATIVE_ERROR_CONSUMER_CONNECTED = 41206000, NATIVE_ERROR_BUFFER_STATE_INVALID = 41207000,<br>NATIVE_ERROR_BUFFER_IN_CACHE = 41208000, NATIVE_ERROR_BUFFER_QUEUE_FULL = 41209000, NATIVE_ERROR_BUFFER_NOT_IN_CACHE = 41210000,NATIVE_ERROR_CONSUMER_DISCONNECTED = 41211000,NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED = 41212000, NATIVE_ERROR_UNSUPPORTED = 50102000,<br>NATIVE_ERROR_UNKNOWN = 50002000,NATIVE_ERROR_HDI_ERROR = 50007000,NATIVE_ERROR_BINDER_ERROR = 50401000,<br>NATIVE_ERROR_EGL_STATE_UNKNOWN = 60001000, NATIVE_ERROR_EGL_API_FAILED = 60002000<br>} | Enumerates the error codes. | 
 
 
 ### Functions
@@ -117,6 +117,7 @@ Enumerates the error codes.
 | Value| Description| 
 | -------- | -------- |
 | NATIVE_ERROR_OK  | The operation is successful.  | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | An error occurs during memory manipulation.| 
 | NATIVE_ERROR_INVALID_ARGUMENTS  | An input parameter is invalid.  | 
 | NATIVE_ERROR_NO_PERMISSION  | You do not have the permission to perform the operation.  | 
 | NATIVE_ERROR_NO_BUFFER  | No buffer is available.  | 
@@ -186,6 +187,10 @@ int OH_NativeVSync_GetPeriod (OH_NativeVSync * nativeVsync, long long * period )
 **Description**
 
 Obtains the VSync period.
+
+The VSync period is refreshed only when the **OH_NativeVSync_FrameCallback** callback is received following a request for a VSync signal via **OH_NativeVSync_RequestFrame**.
+
+To obtain the VSync period for the first time using this function, you need to call **OH_NativeVSync_RequestFrame** to request a VSync signal. Once the **OH_NativeVSync_FrameCallback** callback is received, the vsync period can be obtained.
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 
@@ -268,6 +273,8 @@ void OH_NativeVSync_Destroy (OH_NativeVSync * nativeVsync)
 **Description**
 
 Destroys an **OH_NativeVSync** instance.
+
+Once the **OH_NativeVSync** pointer is destroyed, it must not be used to prevent dangling pointer problems. Pay special attention to the management of the **OH_NativeVSync** pointer in concurrent multithreaded scenarios. 
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeVsync
 

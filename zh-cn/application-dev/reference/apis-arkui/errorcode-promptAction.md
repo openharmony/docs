@@ -26,7 +26,7 @@ NA
 
 **错误信息**
 
-Dialog content error.
+The ComponentContent is incorrect.
 
 **错误描述**
 
@@ -44,7 +44,7 @@ NA
 
 **错误信息**
 
-Dialog content already exists.
+The ComponentContent already exists.
 
 **错误描述**
 
@@ -62,7 +62,7 @@ NA
 
 **错误信息**
 
-Dialog content not found.
+The ComponentContent cannot be found.
 
 **错误描述**
 
@@ -71,6 +71,42 @@ Dialog content not found.
 **可能原因**
 
 内容节点对应的自定义弹窗当前未弹出显示，此时若调用关闭或更新自定义弹窗的接口，会报此错误码。
+
+**处理步骤**
+
+NA
+
+## 103304 指定的targetId不存在
+
+**错误信息**
+
+The targetId does not exist.
+
+**错误描述**
+
+当无法通过targetId查找到对应的节点时，方法将返回该错误码。
+
+**可能原因**
+
+targetId是无效的，或者其对应的节点已销毁。
+
+**处理步骤**
+
+NA
+
+## 103305 指定的targetId对应的节点未挂载在节点树上
+
+**错误信息**
+
+The node of targetId is not in the component tree.
+
+**错误描述**
+
+指定的targetId对应的节点未挂载在节点树上时，方法将返回该错误码。
+
+**可能原因**
+
+指定的targetId对应的节点未挂载在节点树上。
 
 **处理步骤**
 

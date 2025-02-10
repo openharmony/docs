@@ -400,14 +400,16 @@ VKAPI_ATTR VkResult VKAPI_CALL vkAcquireImageOHOS (VkDevice device, VkImage imag
 | 名称 | 描述 | 
 | -------- | -------- |
 | device | VkDevice对象。 | 
-| image | 要获取的Vulkan图像 | 
-| nativeFenceFd | 原生Fence的文件描述符 | 
-| semaphore | 表示图像可用状态的Vulkan Semaphore(信号量) | 
-| fence | 用于在图像获取完成时进行同步的Vulkan Fence | 
+| image | 要获取的Vulkan图像。 | 
+| nativeFenceFd | 原生Fence的文件描述符。 | 
+| semaphore | 表示图像可用状态的Vulkan Semaphore(信号量)。 | 
+| fence | 用于在图像获取完成时进行同步的Vulkan Fence。 | 
 
 **返回：**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示主机内存不足。
 
 ### vkCreateSurfaceOHOS()
 
@@ -433,7 +435,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkCreateSurfaceOHOS (VkInstance instance, const V
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示分配VkSurfaceKHR内存失败。
+返回VK_ERROR_SURFACE_LOST_KHR，表示操作NativeWindow失败。
 
 
 ### vkGetMemoryNativeBufferOHOS()
@@ -459,8 +464,9 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetMemoryNativeBufferOHOS (VkDevice device, con
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
-
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示pInfo入参异常，或获取的pBuffer异常。
 
 ### vkGetNativeBufferPropertiesOHOS()
 
@@ -485,7 +491,10 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetNativeBufferPropertiesOHOS (VkDevice device,
 
 **返回:**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR，表示入参存在异常。
+返回VK_ERROR_OUT_OF_DEVICE_MEMORY，表示设备内存不足。
 
 
 ### vkGetSwapchainGrallocUsageOHOS()
@@ -513,7 +522,9 @@ VKAPI_ATTR VkResult VKAPI_CALL vkGetSwapchainGrallocUsageOHOS (VkDevice device, 
 
 **返回：**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_INITIALIZATION_FAILED，表示入参异常。
 
 ### vkQueueSignalReleaseImageOHOS()
 
@@ -523,7 +534,7 @@ VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uin
 
 **描述**
 
-当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像
+当前图像使用完毕后，通过该函数向系统硬件缓冲区发出释放信号, 以便其他组件可以访问该图像。
 
 **系统能力：** SystemCapability.Graphic.Vulkan
 
@@ -533,15 +544,18 @@ VKAPI_ATTR VkResult VKAPI_CALL vkQueueSignalReleaseImageOHOS (VkQueue queue, uin
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| queue | Vulkan队列的句柄 | 
-| waitSemaphoreCount | 等待Semaphore(信号量)的数量 | 
-| pWaitSemaphores | 指向等待Semaphore(信号量)数组的指针 | 
-| images | 要释放的Vulkan图像句柄 | 
-| pNativeFenceFd | 指向Fence的文件描述符的指针 | 
+| queue | Vulkan队列的句柄。 | 
+| waitSemaphoreCount | 等待Semaphore(信号量)的数量。 | 
+| pWaitSemaphores | 指向等待Semaphore(信号量)数组的指针。 | 
+| images | 要释放的Vulkan图像句柄。 | 
+| pNativeFenceFd | 指向Fence的文件描述符的指针。 | 
 
 **返回：**
 
-返回一个VkResult类型的错误码，返回值为VK_SUCCESS表示执行成功。
+返回一个VkResult类型的错误码，具体返回类型如下：
+返回VK_SUCCESS，表示执行成功。
+返回VK_ERROR_DEVICE_LOST，表示Vulkan设备链接丢失。
+返回VK_ERROR_OUT_OF_HOST_MEMORY，表示主机内存不足。
 
 ## 变量说明
 

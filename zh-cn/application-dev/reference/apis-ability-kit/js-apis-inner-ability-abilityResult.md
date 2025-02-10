@@ -22,12 +22,11 @@ import ability from '@ohos.ability.ability';
 
 ## 属性
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityBase
 
 | 名称        |  类型                 | 只读 | 可选 | 说明                                                         |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
-| resultCode  | number               | 否   | 否   | 表示Ability被拉起并退出后返回的结果码。                                |
+| resultCode  | number               | 否   | 否   | 目标方的Ability被拉起并退出后，目标方返回给拉起方的结果码。<br/>-&nbsp;正常情况下，返回目标方传递的结果码。<br/>-&nbsp;异常情况下，返回-1。                                |
 | want  | [Want](js-apis-app-ability-want.md) | 否   | 是   | 表示Ability被拉起并退出后返回的数据。 |
-

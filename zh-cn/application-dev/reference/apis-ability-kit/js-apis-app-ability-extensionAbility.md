@@ -14,6 +14,6 @@ ExtensionAbility是特定场景扩展能力的基类，继承自[Ability](js-api
 import { ExtensionAbility } from '@kit.AbilityKit';
 ```
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore

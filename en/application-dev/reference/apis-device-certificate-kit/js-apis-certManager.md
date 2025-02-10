@@ -38,6 +38,7 @@ Enumerates the digest algorithms that can be used for signing and signature veri
 | CM_DIGEST_SHA256 | 4      | SHA-256.|
 | CM_DIGEST_SHA384 | 5      | SHA-384.|
 | CM_DIGEST_SHA512 | 6      | SHA-512.|
+| CM_DIGEST_SM3<sup>16+</sup> | 7 | SM3.|
 
 ## CmKeyPadding
 
@@ -147,7 +148,7 @@ Represents the handle to a signing or signature verification operation.
 
 | Name          | Type                             | Read-Only| Optional| Description                                                        |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | No | No  | Handle returned by **certManager.init()** for the subsequent signing or signature verification operation. |
+| handle         | Uint8Array        | No | No  | Handle returned by **certManager.init()** for the subsequent signing or signature verification operation.|
 
 ## CMErrorCode
 
@@ -164,6 +165,40 @@ Enumerates the error codes used in the certificate management APIs.
 | CM_ERROR_INCORRECT_FORMAT  | 17500003      | The certificate or credential is in invalid format.|
 | CM_ERROR_MAX_CERT_COUNT_REACHED<sup>12+</sup>  | 17500004      | The number of certificates or credentials has reached the limit.|
 | CM_ERROR_NO_AUTHORIZATION<sup>12+</sup>  | 17500005      | The application has not obtained user authorization.|
+
+## CertType<sup>16+</sup>
+
+Enumerates the certificate types.
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+| Name      | Value|  Description     |
+| ---------- | ------ | --------- |
+| CA_CERT_SYSTEM   | 0      | System CA certificate.|
+| CA_CERT_USER   | 1      | User CA certificate.|
+
+## CertScope<sup>16+</sup>
+
+Enumerates the certificate scopes.
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+| Name      | Value|  Description     |
+| ---------- | ------ | --------- |
+| CURRENT_USER   | 1      | The certificate is accessible only to the current user.|
+| GLOBAL_USER   | 2      | The certificate is accessible to all users.|
+
+## CertStoreProperty<sup>16+</sup>
+
+Represents the storage information about a certificate, including the certificate type and location.
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+| Name          | Type                             | Read-Only| Optional| Description                                                        |
+| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| certType          | [CertType](#certtype16)                     | No | No | Type of the certificate.|
+| certScope        | [CertScope](#certscope16)                     | No  | Yes | Scope of the certificate. This parameter is mandatory when **certType** is **CA_CERT_USER**.|
+
 
 ## certificateManager.installPrivateCertificate
 
@@ -480,6 +515,104 @@ try {
 }
 ```
 
+## certificateManager.installUserTrustedCertificateSync<sup>16+</sup>
+
+installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMResult
+
+Installs a user CA certificate.
+
+**Required permissions**: ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT<!--Del--> or ohos.permission.ACCESS_USER_TRUSTED_CERT<!--DelEnd-->
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name      | Type                        | Mandatory| Description          |
+|-----------|----------------------------|----|--------------|
+| cert      | Uint8Array                 | Yes | Data of the CA certificate to install.   |
+| certScope | [CertScope](#certscope16)  | Yes | Scope of the CA certificate.|
+
+**Return value**
+
+| Type                   | Description                               |
+|-----------------------|-----------------------------------|
+| [CMResult](#cmresult) | CA certificate installation result. The **uri** property in **CMResult** is returned if the certificate is installed successfully.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID                 | Error Message                                                                                                                                           |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                                                                                                                 |
+| 17500003               | Indicates that the certificate is in an invalid format.                                                                                         |
+| 17500004<sup>12+</sup> | Indicates that the number of certificates reaches the maximum allowed.                                                                          |
+| 17500007<sup>16+</sup> | Indicates that the device enters advanced security mode. In this mode, the user CA certificate cannot be installed.                             |
+
+**Example**
+
+```ts
+import {certificateManager} from '@kit.DeviceCertificateKit';
+
+/* The CA certificate data must be assigned by the service. In this example, the data is not CA certificate data. */
+let certData: Uint8Array = new Uint8Array([
+    0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+]);
+try {
+    let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData, certificateManager.CertScope.CURRENT_USER);
+    let certUri = result.uri;
+    if (certUri === undefined) {
+        console.error("The result of install user trusted certificate is undefined.");
+    } else {
+        console.info("Successed to install user trusted certificate.");
+    }
+} catch (error) {
+    console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.uninstallUserTrustedCertificateSync<sup>16+</sup>
+
+uninstallUserTrustedCertificateSync(certUri: string) : void
+
+Uninstalls a user CA certificate.
+
+**Required permissions**: ohos.permission.ACCESS_ENTERPRISE_USER_TRUSTED_CERT<!--Del--> or ohos.permission.ACCESS_USER_TRUSTED_CERT<!--DelEnd-->
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name      | Type                        | Mandatory| Description          |
+|-----------|----------------------------|----|--------------|
+| certUri     | string                 | Yes | Unique identifier of the certificate to uninstall.   |
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID                 | Error Message                                                                                                                                           |
+|------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| 201                    | Permission verification failed. The application does not have the permission required to call the API.                                          |
+| 401                    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001               | Internal error.                                                                                                                                 |
+| 17500002               | Indicates that the certificate does not exist.                                                                                                  |
+
+**Example**
+
+```ts
+import {certificateManager} from '@kit.DeviceCertificateKit';
+
+let certUri: string = "test"; /* Unique identifier of the certificate installed. The installation process is omitted here. */
+try {
+    certificateManager.uninstallUserTrustedCertificateSync(certUri);
+} catch (error) {
+    console.error(`Failed to uninstall user trusted certificate. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## certificateManager.init
 
 init(authUri: string, spec: CMSignatureSpec, callback: AsyncCallback\<CMHandle>): void
@@ -554,7 +687,7 @@ Initializes the signing or signature verification operation using the specified 
 
 | Type                                       | Description                |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CMHandle](#cmhandle)> | Promise used to return an operation handle.|
+| Promise\<[CMHandle](#cmhandle)> | Promise used to return a **CMHandle** object.|
 
 **Error codes**
 
@@ -1086,7 +1219,7 @@ try {
 
 getAllUserTrustedCertificates(): Promise\<CMResult>
 
-Obtains all the user root CA certificates. The API uses a promise to return the result.
+Obtains all user trusted root CA certificates of the device. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1114,7 +1247,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllUserTrustedCertificates().then((cmResult) => {
-    if (cmResult?.certList == undefined) {
+    if (cmResult == undefined) { // If the number of root CA certificates is 0, return undefined in cmResult.
+      console.info('the count of the user trusted certificates is 0');
+    } else if (cmResult.certList == undefined) {
       console.info('The result of getting all user trusted certificates is undefined.');
     } else {
       let list = cmResult.certList;
@@ -1125,6 +1260,64 @@ try {
   })
 } catch (error) {
   console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManager.getAllUserTrustedCertificates<sup>16+</sup>
+
+getAllUserTrustedCertificates(scope: CertScope): Promise\<CMResult>
+
+Obtains the user root CA certificates based on the certificate scope. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name| Type                     | Mandatory| Description            |
+| ------ | ------------------------- | ---- | ---------------- |
+| scope  | [CertScope](#certscope16) | Yes  | Scope of the certificates to obtain.|
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[CMResult](#cmresult)> | Promise used to return the user's root CA certificates obtained, that is, **certList** in the [CMResult](#cmresult) object.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error.                                              |
+
+**Example**
+
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  /* Obtain the user root CA certificates of the current user. To obtain the user root CA certificates accessible to all users, pass in GLOBAL_USER. */
+  let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
+  certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
+    if (cmResult == undefined) { // If the number of root CA certificates is 0, return undefined in cmResult.
+      console.info('the count of the user trusted certificates is 0');
+    } else if (cmResult.certList == undefined) {
+      console.info('The result of getting current user trusted certificates is undefined.');
+    } else {
+      let list = cmResult.certList;
+      console.info('Succeeded in getting current user trusted certificates.');
+    }
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get current user trusted certificates. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to get current user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -1214,7 +1407,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getPrivateCertificates().then((cmResult) => {
-    if (cmResult?.credentialList == undefined) {
+    if (cmResult = = undefined) { // If the number of certificate credentials is 0, return undefined in cmResult.
+      console.info('the count of the private certificates is 0');
+    } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all private certificates installed by the application is undefined.');
     } else {
       let list = cmResult.credentialList;
@@ -1225,5 +1420,65 @@ try {
   })
 } catch (error) {
   console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
+}
+```
+## certificateManager.getCertificateStorePath<sup>16+</sup>
+
+getCertificateStorePath(property: CertStoreProperty): string;
+
+Obtains the certificate storage path.
+
+**System capability**: System SystemCapability.Security.CertificateManager
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                            |
+| -------- | ----------------------------------------- | ---- | -------------------------------- |
+| property | [CertStoreProperty](#certstoreproperty16) | Yes  | Storage information about the target certificate.|
+
+**Return value**
+
+| Type  | Description                |
+| ------ | -------------------- |
+| string | Certificate storage path obtained.|
+
+**Error codes**
+
+For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 17500001 | Internal error. |
+
+**Example**
+```ts
+import { certificateManager } from '@kit.DeviceCertificateKit';
+
+try {
+  /* Obtain the storage path of the system CA certificates. */
+  let property1: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_SYSTEM,
+  }
+  let systemCAPath = certificateManager.getCertificateStorePath(property1);
+  console.info(`Success to get system ca path: ${systemCAPath}`);
+    
+  /* Obtain the storage path of the CA certificates for the current user. */
+  let property2: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_USER,
+    certScope: certificateManager.CertScope.CURRENT_USER,
+  }
+  let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
+  console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
+  
+  /* Obtain the storage path of the CA certificates for all users. */
+  let property3: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_USER,
+    certScope: certificateManager.CertScope.GLOBAL_USER,
+  }
+  let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
+  console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+} catch (error) {
+  console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
 }
 ```

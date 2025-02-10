@@ -48,7 +48,24 @@ Image Kit supports multiple image formats and uses efficient algorithms and opti
 
 ## Constraints
 
-During image processing, applications may need to request the read and write permissions from users on images.
+- **Constraints on read and write permissions:**
+
+  During image processing, applications may need to request the read and write permissions from users on images.
+
+- **Selecting appropriate C APIs**
+  
+  The image framework provides two sets of C APIs: [C APIs dependent on JS objects](../../reference/apis-image-kit/image.md) and [C APIs independent of JS objects](../../reference/apis-image-kit/_image___native_module.md).
+  - C APIs that depend on JS objects
+  
+    These APIs are used to encode and decode images, receive images, and process image data. Example code related to these functionalities is provided in [Using Image to Decode Images](image-decoding-native.md). You can find these APIs in [Image](../../reference/apis-image-kit/image.md). These APIs are introduced prior to API version 11, and no additional features will be included in later versions.
+
+  - C APIs independent of JS objects
+  
+    In addition to the functionalities mentioned above, these APIs implements new features such as picture encoding and decoding. For details about the development guide, see [Using Image_NativeModule to Decode Images](image-source-c.md). You can find these APIs in [Image_NativeModule](../../reference/apis-image-kit/_image___native_module.md). These APIs are available since API version 12 and are expected to keep evolving. You are encouraged to use them.
+
+  > **NOTE**
+  >
+  > You are not advised to use both sets of C APIs in your code. It may cause compatibility issues in some scenarios.
 
 ## Related Kits
 

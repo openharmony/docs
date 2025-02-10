@@ -62,7 +62,7 @@ struct Faq10_1 {
   build() {
     Row() {
       Column() {
-        Text ('Subscribe:' + this.message)
+        Text('Subscribe:' + this.message)
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
@@ -74,7 +74,7 @@ struct Faq10_1 {
             }
             SubscribeEvent.createSubscriber(subscribeInfo,callback)
           })
-        Text ('Publish')
+        Text('Publish')
           .fontSize(30)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {

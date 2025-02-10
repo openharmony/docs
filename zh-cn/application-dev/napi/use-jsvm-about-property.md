@@ -180,7 +180,7 @@ JSVM OH_JSVM_GetProperty success
 
 ### OH_JSVM_HasProperty
 
-检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误
+检查对象中是否存在指定的属性，可以避免访问不存在属性导致的异常或错误。
 
 cpp部分代码
 

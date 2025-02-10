@@ -7,15 +7,15 @@
 
 **变更原因**
 
-根密钥和密文不匹配时返回的错误码不正确，新增14800020错误码，此错误码用于业务侧进行恢复重建数据库。
+根密钥和工作密钥不匹配时返回的错误码不正确，新增14800020错误码，此错误码用于业务侧进行恢复重建数据库。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更之前，在根密钥和密文不匹配场景下，不会抛出错误码。业务侧无法恢复数据库。
+变更之前，在根密钥和工作密钥不匹配场景下，不会抛出错误码。业务侧无法恢复数据库。
 
-变更之后，在根密钥和密文不匹配场景下，会抛出14800020错误码，此错误码可用于业务侧进行恢复重建数据库。
+变更之后，在根密钥和工作密钥不匹配场景下，会抛出14800020错误码，此错误码可用于业务侧进行恢复重建数据库。
 
 **起始API Level**
 
@@ -44,7 +44,8 @@ import { window } from '@kit.ArkUI';
 
 const STORE_CONFIG: relationalStore.StoreConfig = {
   name: "RdbTest.db",
-  securityLevel: relationalStore.SecurityLevel.S3
+  securityLevel: relationalStore.SecurityLevel.S3,
+  encrypt: true
 };
 const CREATE_TABLE_TEST =
   "CREATE TABLE IF NOT EXISTS EMPLOYEE (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, age INTEGER, salary REAL, blobType BLOB)";
@@ -53,9 +54,9 @@ let store: relationalStore.RdbStore | undefined = undefined;
 relationalStore.getRdbStore(this.context, STORE_CONFIG, (err: BusinessError, rdbStore: relationalStore.RdbStore) => {
   store = rdbStore;
   store.executeSql(CREATE_TABLE_TEST);
-  if (err == 14800020) {
+  if (err) {
     console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
-    //业务侧需要进行数据库恢复。
+    //err.code为14800020业务侧需要进行数据库恢复。
     return;
   }
   console.info('Get RdbStore successfully.');

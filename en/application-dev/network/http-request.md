@@ -297,50 +297,18 @@ The following is an example of presetting certificate public key hash values:
 
 **Description of fields**
 
-**network-security-config (object: network security configuration)**
+| Field                     | Type           | Description                                  |   
+| --------------------------| --------------- | -------------------------------------- |
+|network-security-config    | object          |Network security configuration. The value can contain zero or one **base-config** and must contain one **domain-config**.|
+|base-config                | object          |Application security configuration. The value must contain one **trust-anchors**.                         |
+|domain-config              | array           |Domain security configuration. The value can contain any number of items. An item must contain one **domains** and can contain zero or one **trust-anchors** and **pin-set**.|
+|trust-anchors              | array           |Trusted CA. The value can contain any number of items. An item must contain one **certificates**.|
+|certificates               | string          |CA certificate path.|
+|domains                    | array           |Domain. The value can contain any number of items. An item must contain one **name** (string: domain name) and can contain zero or one **include-subdomains**.|
+|include-subdomains         | boolean         |Whether a rule applies to subdomains.|
+|pin-set                    | object          |Certificate public key hash setting. The value must contain one **pin** and can contain zero or one **expiration**.|
+|expiration                 | string          |Expiration time of the certificate public key hash.|
+|pin                        | array           |Certificate public key hash. The value can contain any number of items. An item must contain one **digest-algorithm** and **digest**.|
+|digest-algorithm           | string          |Digest algorithm used to generate hashes. Currently, only `sha256` is supported.                                   |
+|digest                     | string          |Public key hash.|
 
-**base-config**: one or none
-
-**domain-config**: one (mandatory)
-
-**base-config (object: application-wide security configuration)**
-
-**trust-anchors**: one (mandatory)
-
-**domain-config (array: security configuration of each domain)**
-
-Number of items: no limit
-
-**domain** in an item: one (mandatory)
-
-**trust-anchors** in an item: one or none
-
-**pin-set** in an item: one or none
-
-**trust-anchors (array: trusted CA)**
-
-Number of items: no limit
-
-**certificates** (string: CA certificate path) in an item: one (mandatory)
-
-**domains (array: domain)**
-
-Number of items: no limit
-
-**name** (string: domain name) in an item: one (mandatory)
-
-An item can contain zero or one **include-subdomains** (boolean: whether a rule is applicable to subdomains).
-
-**pin-set (object: certificate public key hash setting)**
-
-**pin**: one (mandatory)
-
-**expiration** (string: expiration time of the certificate public key hash value): one or none
-
-**pin (array: certificate public key hash)**
-
-Number of items: no limit
-
-**digest-algorithm** (string: digest algorithm used to generate the hash value, which can only be `sha256`) in an item: one (mandatory)
-
-**digest** (string: public key hash value) in an item: one (mandatory)

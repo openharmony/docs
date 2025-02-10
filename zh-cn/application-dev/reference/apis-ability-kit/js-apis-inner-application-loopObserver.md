@@ -18,7 +18,7 @@ onLoopTimeOut?(timeout: number): void
 
 将在js运行时应用主线程处理事件超时的回调。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

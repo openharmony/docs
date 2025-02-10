@@ -1,8 +1,8 @@
 # @ohos.nfc.tag (Standard NFC Tags)
 
 The **tag** module provides APIs for operating and managing NFC tags. The following tag read modes are available:
-- Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
-- Foreground mode: A foreground application has priority to read the NFC tag discovered.
+<br>Background mode: The device reads the tag by using NFC without starting any application, and then searches for applications based on the tag type. If only one application is matched, the card reading page of that application will be started. If multiple applications are matched, an application selector will be started, asking the user to select an application.
+<br>Foreground mode: A foreground application has priority to read the NFC tag discovered.
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The **tag** module provides APIs for operating and managing NFC tags. The follow
 
 ## Declaring the NFC Tag Background Mode
 
-To enable NFC tages to be read without starting an application, declare NFC-related attributes in the **module.json5** file.
+To enable NFC tags to be read without starting an application, declare NFC-related attributes in the **module.json5** file.
 ```json
 {
     "module": {
@@ -51,9 +51,10 @@ To enable NFC tages to be read without starting an application, declare NFC-rela
 ```
 > **NOTE**<br>
 >
->- The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
->- The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
->- The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+>1. The **actions** field must contain **ohos.nfc.tag.action.TAG_FOUND** and cannot be changed.
+>2. The **type** field under **uris** must start with **tag-tech/**, followed by NfcA, NfcB, NfcF, NfcV, IsoDep, Ndef, MifareClassic, MifareUL, or NdefFormatable. If there are multiple types, enter them in different lines. Incorrect settings of this field will cause a parsing failure.
+>3. The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+>4. When calling the APIs and constants of this module, use **canIUse("SystemCapability.Communication.NFC.Tag")** to check whether the device supports NFC. If the device does not support NFC, the application stability may be affected. For details, see [NFC Tag Read/Write Development](../../connectivity/nfc/nfc-tag-access-guide.md).
 
 ## **Modules to Import**
 
@@ -70,7 +71,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
-    // Add other code here.
+        // add other code here...
 
         // want is initialized by the NFC service and contains tagInfo.
         let tagInfo : tag.TagInfo | null = null;
@@ -84,7 +85,7 @@ export default class EntryAbility extends UIAbility {
             return;
         }
 
-    // Obtain the supported technologies for this found tag.
+        // get the supported technologies for this found tag.
         let isNfcATag =  false;
         let isIsoDepTag =  false;
         for (let i = 0; i < tagInfo.technology.length; i++) {
@@ -94,7 +95,7 @@ export default class EntryAbility extends UIAbility {
             if (tagInfo.technology[i] == tag.ISO_DEP) {
                 isIsoDepTag = true;
             }
-      // Also check for technology tag.NFC_B, NFC_F, NFC_V, ISO_DEP, NDEF, MIFARE_CLASSIC, MIFARE_ULTRALIGHT, and NDEF_FORMATABLE.
+        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
         }
 
         // use NfcA APIs to access the found tag.
@@ -118,7 +119,7 @@ export default class EntryAbility extends UIAbility {
             }
             // Other code to read or write this tag.
         }
-    // Use the same code to handle "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
     }
 }
 ```
@@ -383,7 +384,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 
-Obtains an **NdefTag** object, which allows access to the tags in the NFC Data Exchange Format (NDEF).
+Obtains an **NdefTag** object, which allows access to NFC Data Exchange Format (NDEF) tags.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -505,6 +506,41 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 801  | Capability not supported. |
 | 3100201  | Tag running state is abnormal in service. |
 
+## tag.getBarcodeTag<sup>16+</sup>
+
+getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#barcodetag16)
+
+Obtains a **BarcodeTag** object, which allows access to the tags in the BarcodeTag format.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**Parameters**
+| Name | Type               | Mandatory| Description                                                         |
+| ------- | ------------------- | ---- | ------------------------------------------------------------- |
+| tagInfo | [TagInfo](#taginfo) | Yes  | Tag information, including the tag technology type and related parameters, obtained from [tag.getTagInfo(want: Want)](#taggettaginfo9).|
+
+**Return value**
+
+| Type                       | Description                |
+| ------------------------- | ------------------ |
+| [BartcodeTag](js-apis-nfctech.md#barcodetag16) | **BarcodeTag** object obtained.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message|
+| ------- | -------|
+| 201  | Permission denied. |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
+| 3100201 | Tag running state is abnormal in service. |
+
+
 ## tag.getTagInfo<sup>9+</sup>
 
 getTagInfo(want: [Want](../apis-ability-kit/js-apis-app-ability-want.md#want)): [TagInfo](#taginfo)
@@ -540,7 +576,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 
 registerForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md), discTech: number[], callback: AsyncCallback&lt;[TagInfo](#taginfo)&gt;): void
 
-Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API can be called only by an application running in the foreground and must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
+Registers a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application. You can set the supported NFC tag technologies in **discTech**. The callback returns [TagInfo](#taginfo) read. This API can be called only by an application running in the foreground. and must be used with [tag.unregisterForegroundDispatch](#tagunregisterforegrounddispatch10) in pairs. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -553,7 +589,7 @@ Registers a listener for the NFC tag read event so that the tag can be preferent
 | Name      | Type    | Mandatory| Description                                                   |
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
-| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
+| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#constants), [NFC_B](#constants), [NFC_F](#constants), and [NFC_V](#constants) only.|
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback used to return the tag information read. It cannot be empty.|
 
 **Error codes**
@@ -565,6 +601,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
+| 3100201 | The tag running state is abnormal in the service. |
 | 3100202  | The element state is invalid. |
 
 **Example**
@@ -575,7 +612,7 @@ See the example of [tag.unregisterForegroundDispatch](#tagunregisterforegrounddi
 
 unregisterForegroundDispatch(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)): void
 
-Unregisters the listener for the NFC tag read event. If the listener is unregistered, the NFC tage discovered will not be dispatched to foreground applications. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
+Unregisters the listener for the NFC tag read event. If the listener is unregistered, the NFC tag discovered will not be dispatched to foreground applications. The registered callback must be unregistered before the tag reading page exits the foreground or is destroyed.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -598,6 +635,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **Example**
 
@@ -656,7 +694,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // Override other lifecycle functions.
+  // override other lifecycle functions
 }
 ```
 
@@ -678,7 +716,7 @@ Subscribes to the NFC tag read event to implement dispatch of the tag to a foreg
 | ------------ | -------- | ---- | ------------------------------------------------------- |
 | type    | string  | Yes  | Event type, which has a fixed value of **readerMode**.|
 | elementName   |  [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md)   | Yes  | Information about the tag reading page of the application. It cannot be empty and must contain at least **bundleName** and **abilityName**.         |
-| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#technology-type-definition), [NFC_B](#technology-type-definition), [NFC_F](#technology-type-definition), and [NFC_V](#technology-type-definition) only.|
+| discTech         |  number[]   | Yes  | NFC tag technologies supported by the foreground application. It cannot be empty. At least one NFC tag technology must be specified. Each number indicates the constant value of an NFC tag technology. The tag technologies are polled based on the specified value, which contains one or more of [NFC_A](#constants), [NFC_B](#constants), [NFC_F](#constants), and [NFC_V](#constants) only.|
 | callback | AsyncCallback&lt;[TagInfo](#taginfo)&gt; | Yes  | Callback used to return the tag information read. It cannot be empty.|
 
 **Error codes**
@@ -690,6 +728,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
+| 3100201 | The tag running state is abnormal in the service. |
 | 3100202  | The element state is invalid. |
 
 **Example**
@@ -725,6 +764,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
+| 3100201 | The tag running state is abnormal in the service. |
 | 3100203  | The off() can be called only when the on() has been called. |
 
 **Example**
@@ -784,13 +824,13 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // Override other lifecycle functions.
+  // override other lifecycle functions
 }
 ```
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
-makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
+makeUriRecord(uri: string): NdefRecord
 
 Creates an NDEF record based on the specified URI.
 
@@ -824,7 +864,7 @@ For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let uri = "https://www.example.com"; // Change it to match your case.
+    let uri = "https://www.example.com"; // change it to be correct.
     let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
@@ -839,7 +879,7 @@ try {
 
 ## tag.ndef.makeTextRecord<sup>9+</sup>
 
-makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
+makeTextRecord(text: string, locale: string): NdefRecord
 
 Creates an NDEF record based on the specified text data and encoding type.
 
@@ -888,10 +928,58 @@ try {
 }
 ```
 
+## tag.ndef.makeApplicationRecord<sup>16+</sup>
+
+makeApplicationRecord(bundleName: string): NdefRecord
+
+Creates an NDEF record based on the specified application bundle name.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                 |
+| ------ | ------ | ---- | ------------------------------------- |
+| bundleName   | string | Yes  | Application bundle name.|
+
+**Return value**
+
+| **Type**                  | **Description**                                                    |
+| -------------------------- | ------------------------------------------------------------ |
+| [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
+
+**Error codes**
+
+For details about the error codes, see [NFC Error Codes](errorcode-nfc.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
+**Example**
+
+```js
+import { tag } from '@kit.ConnectivityKit';
+
+try {
+    let bundleName: string = 'com.demo.test';
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeApplicationRecord(bundleName);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeApplicationRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeApplicationRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeApplicationRecord ndefRecord: " + ndefRecord);
+    }
+} catch (businessError) {
+    console.error("ndefMessage makeApplicationRecord catch businessError: " + businessError);
+}
+```
 
 ## tag.ndef.makeMimeRecord<sup>9+</sup>
 
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
+makeMimeRecord(mimeType: string, mimeData: number[]): NdefRecord
 
 Creates an NDEF record based on the specified MIME data and type.
 
@@ -941,7 +1029,7 @@ try {
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
 
-makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9)
+makeExternalRecord(domainName: string, type: string, externalData: number[]): NdefRecord
 
 Creates an NDEF record based on application-specific data.
 
@@ -1154,24 +1242,25 @@ Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 | id       | number[] | Yes      | No      | NDEF record ID, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.                               |
 | payload  | number[] | Yes      | No      | NDEF payload, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.                          |
 
-## Technology Type Definition
+## Constants
 Enumerates the tag technology types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| **Name**                    | **Value**| **Description**                   |
-| ---------------------------- | ------ | --------------------------- |
-| NFC_A                        | 1      | NFC-A (ISO 14443-3A). |
-| NFC_B                        | 2      | NFC-B (ISO 14443-3B). |
-| ISO_DEP                      | 3      | ISO-DEP (ISO 14443-4).|
-| NFC_F                        | 4      | NFC-F (JIS 6319-4).   |
-| NFC_V                        | 5      | NFC-V (ISO 15693).    |
-| NDEF                         | 6      | NDEF.                 |
-| NDEF_FORMATABLE<sup>9+</sup> | 7      | NDEF formattable.     |
-| MIFARE_CLASSIC               | 8      | MIFARE Classic.       |
-| MIFARE_ULTRALIGHT            | 9      | MIFARE Ultralight.     |
+| **Name**                    |**Type**| **Value**| **Description**                   |
+| ---------------------------- | ------ | ------ | --------------------------- |
+| NFC_A                        |  number | 1      | NFC-A (ISO 14443-3A). |
+| NFC_B                        |  number | 2      | NFC-B (ISO 14443-3B). |
+| ISO_DEP                      |  number | 3      | ISO-DEP (ISO 14443-4).|
+| NFC_F                        |  number | 4      | NFC-F (JIS 6319-4).   |
+| NFC_V                        |  number | 5      | NFC-V (ISO 15693).    |
+| NDEF                         |  number | 6      | NDEF.                 |
+| NDEF_FORMATABLE<sup>9+</sup> |  number | 7      | NDEF formattable.     |
+| MIFARE_CLASSIC               |  number | 8      | MIFARE Classic.       |
+| MIFARE_ULTRALIGHT            |  number | 9      | MIFARE Ultralight.     |
+| NFC_BARCODE                  |  number | 10     | BARCODE technology.              |
 
 ## TnfType<sup>9+</sup>
 Enumerates the TNF types. For details, see *NFCForum-TS-NDEF_1.0*.
@@ -1197,10 +1286,10 @@ Enumerates the NDEF record types. For details about the RTD, see *NFCForum-TS-ND
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| **Name**             | **Value**| **Description**               |
-| --------------------- | ------ | ----------------------- |
-| RTD_TEXT<sup>9+</sup> | [0x54] | NDEF record of the text type.|
-| RTD_URI<sup>9+</sup>  | [0x55] | NDEF record of the URI type. |
+| **Name**             |**Type**| **Value**| **Description**               |
+| --------------------- | ------ | ------ | ----------------------- |
+| RTD_TEXT<sup>9+</sup> |number[]| [0x54] | NDEF record of the text type.|
+| RTD_URI<sup>9+</sup>  |number[]| [0x55] | NDEF record of the URI type. |
 
 ## NfcForumType<sup>9+</sup>
 Enumerates the NFC Forum tag types.
@@ -1257,4 +1346,160 @@ Enumerates the MIFARE Ultralight tag types.
 | TYPE_UNKNOWN      | 0      | Unknown type.     |
 | TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight.  |
 | TYPE_ULTRALIGHT_C | 2      | MIFARE Ultralight C.|
+
+## NfcATag<sup>7+</sup>
+
+type NfcATag = _NfcATag
+
+Defines an **NfcATag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NfcATag](./js-apis-nfctech.md#nfcatag) | Object that implements access to NFC-A (ISO 15693) properties and I/O operations on a tag. |
+
+## NfcBTag<sup>7+</sup>
+
+type NfcBTag = _NfcBTag
+
+Obtains an **NfcBTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NfcBTag](./js-apis-nfctech.md#nfcbtag) | Object that implements access to NFC-B (ISO 14443-3B) properties and I/O operations on a tag. |
+
+## NfcFTag<sup>7+</sup>
+
+type NfcFTag = _NfcFTag
+
+Obtains an **NfcFTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NfcFTag](./js-apis-nfctech.md#nfcftag) | Object that implements access to NFC-F (ISO 6319-4) properties and I/O operations on a tag. |
+
+## NfcVTag<sup>7+</sup>
+
+type NfcVTag = _NfcVTag
+
+Obtains an **NfcVTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NfcVTag](./js-apis-nfctech.md#nfcvtag) | Object that implements access to NFC-V (ISO 15693) properties and I/O operations on a tag. |
+
+## IsoDepTag<sup>9+</sup>
+
+type IsoDepTag = _IsoDepTag
+
+Obtains an **IsoDepTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | Object that implements access to ISO-DEP (ISO 14443-4) properties and I/O operations on a tag. |
+
+## NdefTag<sup>9+</sup>
+
+type NdefTag = _NdefTag
+
+Obtains an **NdefTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NdefTag](./js-apis-nfctech.md#ndeftag9) | Object that implements access to NDEF tags. |
+
+## MifareClassicTag<sup>9+</sup>
+
+type MifareClassicTag = _MifareClassicTag
+
+Obtains a **MifareClassicTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_MifareClassicTag](./js-apis-nfctech.md#mifareclassictag9) | Object that implements access to MIFARE Classic properties and I/O operations on a tag.|
+
+## MifareUltralightTag<sup>9+</sup>
+
+type MifareUltralightTag = _MifareUltralightTag;
+
+Obtains a **MifareUltralightTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_MifareUltralightTag](./js-apis-nfctech.md#mifareultralighttag9) | Object that implements access to MIFARE Ultralight properties and I/O operations on a tag.|
+
+## NdefFormatableTag<sup>9+</sup>
+
+type NdefFormatableTag = _NdefFormatableTag
+
+Obtains a **NdefFormatableTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | Object that implements formatting of NDEF formattable tags. |
+
+## BarcodeTag<sup>16+</sup>
+
+type BarcodeTag = _BarcodeTag
+
+Obtains a **BarcodeTag** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | Object that implements access to the barcode tag properties and I/O operations on a tag.|
+
+## NdefMessage<sup>9+</sup>
+
+type NdefMessage = _NdefMessage
+
+Obtains an **NdefMessage** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_NdefMessage](./js-apis-nfctech.md#ndefmessage9) | Obtains all NDEF records.|
+
+## TagSession<sup>7+</sup>
+
+type TagSession = _TagSession
+
+Obtains a **TagSession** object.
+
+**System capability**: SystemCapability.Communication.NFC.Tag
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+| Type  | Description                                                        |
+| ------ | ------------------------------------------------------------ |
+| [_TagSession](./js-apis-tagSession.md#tagsession) | Base class of all [NFC tag technologies](js-apis-nfctech.md). It provides common APIs for establishing connections and transferring data.|
 <!--no_check-->

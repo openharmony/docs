@@ -314,6 +314,18 @@ try {
 }
 ```
 
+## OverlayModuleInfo
+
+type OverlayModuleInfo = _OverlayModuleInfo.OverlayModuleInfo
+
+OverlayModuleInfo信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_OverlayModuleInfo.OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md#overlaymoduleinfo-1) |OverlayModuleInfo信息。 |
+
 ## overlay特征应用介绍
 
 **概念**

@@ -1,6 +1,6 @@
 # Using AVPlayer to Play Audio (ArkTS)
 
-The AVPlayer is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music. To play PCM audio data, call [AudioRenderer](../audio/using-audiorenderer-for-playback.md).
+The [AVPlayer](media-kit-intro.md#avplayer) is used to play raw media assets in an end-to-end manner. In this topic, you will learn how to use the AVPlayer to play a complete piece of music. To play PCM audio data, call [AudioRenderer](../audio/using-audiorenderer-for-playback.md).
 
 The full playback process includes creating an AVPlayer instance, setting the media asset to play, setting playback parameters (volume, speed, and focus mode), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance.
 
@@ -74,6 +74,7 @@ import { media } from '@kit.MediaKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { audio } from '@kit.AudioKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
@@ -85,12 +86,12 @@ export class AVPlayerDemo {
     // Callback function for the seek operation.
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
+    });
     // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
     avPlayer.on('error', (err: BusinessError) => {
       console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
       avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
-    })
+    });
     // Callback function for state changes.
     avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
       switch (state) {
@@ -100,10 +101,10 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
           console.info('AVPlayer state initialized called.');
-          this.avPlayer.audioRendererInfo = {
+          avPlayer.audioRendererInfo = {
             usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
             rendererFlags: 0
-          }
+          };
           avPlayer.prepare();
           break;
         case 'prepared': // This state is reported upon a successful callback of prepare().
@@ -124,7 +125,7 @@ export class AVPlayerDemo {
             setTimeout(() => {
               console.info('AVPlayer playing wait to pause');
               avPlayer.pause(); // Call the pause API to pause the playback 3 seconds later.
-            }, 3000)
+            }, 3000);
           }
           this.count++;
           break;
@@ -133,7 +134,7 @@ export class AVPlayerDemo {
           setTimeout(() => {
               console.info('AVPlayer paused wait to play again');
               avPlayer.play(); // After the playback is paused for 3 seconds, call the play API again to start playback.
-            }, 3000)
+            }, 3000);
           break;
         case 'completed': // This state is reported upon the completion of the playback.
           console.info('AVPlayer state completed called.');
@@ -150,7 +151,7 @@ export class AVPlayerDemo {
           console.info('AVPlayer state unknown called.');
           break;
       }
-    })
+    });
   }
 
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file using the URL attribute.
@@ -208,14 +209,14 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     let context = getContext(this) as common.UIAbilityContext;
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     // Obtain the size of the file to be played.
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -243,13 +244,13 @@ export class AVPlayerDemo {
         }
         return -1;
       }
-    }
+    };
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
     let pathDir = context.filesDir;
     let path = pathDir  + '/01.mp3';
     await fs.open(path).then((file: fs.File) => {
       this.fd = file.fd;
-    })
+    });
     this.isSeek = false; // The seek operation is not supported.
     avPlayer.dataSrc = src;
   }

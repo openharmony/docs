@@ -46,7 +46,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ### select
 
-select(value: boolean)
+select(value: Optional\<boolean>)
 
 Sets whether the check box is selected.
 
@@ -62,11 +62,11 @@ Since API version 10, this attribute supports two-way binding through [$$](../..
 
 | Name| Type   | Mandatory| Description                              |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | boolean | Yes  | Whether the check box is selected.<br>Default value: **false**|
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | Yes  | Whether the check box is selected.<br>Default value: **false**|
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: Optional\<ResourceColor>)
 
 Sets the color of the check box when it is selected.
 
@@ -80,11 +80,11 @@ Sets the color of the check box when it is selected.
 
 | Name| Type                                      | Mandatory| Description                                                        |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.|
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Color of the check box when it is selected.<br>Default value: **$r('sys.color.ohos_id_color_text_primary_activated')**<br>An invalid value is handled as the default value.|
 
 ### unselectedColor<sup>10+</sup>
 
-unselectedColor(value: ResourceColor)
+unselectedColor(value: Optional\<ResourceColor>)
 
 Sets the border color of the check box when it is not selected.
 
@@ -96,13 +96,13 @@ Sets the border color of the check box when it is not selected.
 
 | Name| Type                                      | Mandatory| Description                    |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Border color of the check box when it is not selected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | Yes  | Border color of the check box when it is not selected.<br>Default value: **$r('sys.color.ohos_id_color_switch_outline_off')**|
 
 ### mark<sup>10+</sup>
 
-mark(value: MarkStyle)
+mark(value: Optional\<MarkStyle>)
 
-Sets the mark style of the check box.
+Sets the check mark style of the check box.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -112,11 +112,11 @@ Sets the mark style of the check box.
 
 | Name| Type                                        | Mandatory| Description                                                        |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [MarkStyle](ts-types.md#markstyle10)| Yes  | Mark style of the check box. Since API version 12, if **indicatorBuilder** is set, the content configured in **indicatorBuilder** will be displayed accordingly.<br>Default value: {<br>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br>size: '20vp'<br>} |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10)> | Yes  | Check mark style of the check box. Since API version 12, if **indicatorBuilder** is set, the content configured in **indicatorBuilder** will be displayed accordingly.<br>Default value: {<br>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br>size: '20vp'<br>} |
 
 ### shape<sup>11+</sup>
 
-shape(value: CheckBoxShape)
+shape(value: Optional\<CheckBoxShape>)
 
 Sets the shape of the check box.
 
@@ -128,13 +128,13 @@ Sets the shape of the check box.
 
 **Parameters**
 
-| Name| Type                                         | Mandatory| Description                                                        |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [CheckBoxShape](#checkboxshape11)| Yes  | Shape of the check box.<br>Default value: **CheckBoxShape.CIRCLE**|
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | Yes  | Shape of the check box.<br>Default value: **CheckBoxShape.CIRCLE**|
 
 ### contentModifier<sup>12+</sup>
 
-contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
+contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 Creates a content modifier.
 
@@ -146,7 +146,7 @@ Creates a content modifier.
 
 | Name| Type                                         | Mandatory| Description                                            |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12)| Yes  | Content modifier to apply to the check box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
+| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12)> | Yes  | Content modifier to apply to the check box.<br>**modifier**: content modifier. You need a custom class to implement the **ContentModifier** API.|
 
 ## Events
 
@@ -154,7 +154,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ### onChange
 
-onChange(callback: OnCheckboxChangeCallback)
+onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
 Invoked when the selected state of the check box changes.
 
@@ -168,17 +168,17 @@ Invoked when the selected state of the check box changes.
 
 | Name  | Type                                                   | Mandatory| Description            |
 | -------- | ------------------------------------------------------- | ---- | ---------------- |
-| callback | [OnCheckboxChangeCallback](#oncheckboxchangecallback13) | Yes  | Callback used to return the selected state.|
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback14)> | Yes  | Callback used to return the selected state.|
 
-## OnCheckboxChangeCallback<sup>13+</sup>
+## OnCheckboxChangeCallback<sup>14+</sup>
 
 type OnCheckboxChangeCallback  = (value: boolean) => void
 
 Represents the callback invoked when the selected state of the check box changes.
 
-**Widget capability**: This API can be used in ArkTS widgets since API version 13.
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -187,17 +187,6 @@ Represents the callback invoked when the selected state of the check box changes
 | Name| Type   | Mandatory| Description                                             |
 | ------ | ------- | ---- | ------------------------------------------------- |
 | value  | boolean | Yes  | Whether the check box is selected. The value **true** means that the check box is selected, and **false** means the opposite.|
-
-## CheckBoxShape<sup>11+</sup>
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
-**System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-| Name          | Value  | Description    |
-| -------------- | ---- | -------- |
-| CIRCLE         | 0    | Circle.    |
-| ROUNDED_SQUARE | 1    | Rounded square.|
 
 ## CheckBoxConfiguration<sup>12+</sup>
 
@@ -215,7 +204,9 @@ You need a custom class to implement the **ContentModifier** API.
 
 ## Example
 
-### Example 1
+### Example 1: Setting the Check Box Shape
+
+This example shows how to set **CheckBoxShape** to implement check boxes in circle and rounded square shapes.
 
 ```ts
 // xxx.ets
@@ -246,7 +237,9 @@ struct CheckboxExample {
 
 ![](figures/checkbox.gif)
 
-### Example 2
+### Example 2: Setting the Check Box Color
+
+This example demonstrates how to set **mark** to customize the color of a check box.
 
 ```ts
 // xxx.ets
@@ -296,7 +289,7 @@ struct Index {
 
 ![](figures/checkbox2.gif)
 
-### Example 3
+### Example 3: Customizing the Check Box Style
 This example implements a custom check box. This check box comes in the custom pentagon style. When selected, the check box shows a red triangle pattern inside, and the title displays the word "Selected;" when deselected, the check box hides the red triangle pattern inside, and the title displays the word "Unselected."
 
 ```ts
@@ -314,7 +307,7 @@ class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
 
 @Builder function buildCheckbox(config: CheckBoxConfiguration) {
   Column({space:10}) {
-      Text(config.name  + (config.selected ? " (Selected)" : " (Unselected)")).margin({right : 70, top : 50})
+      Text(config.name  + (config.selected ? "(Selected)" : " (Unselected)")).margin({right : 70, top : 50})
       Text(config.enabled ? "enabled true" : "enabled false").margin({right : 110})
       Shape() {
         Path().width(100).height(100).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3).onClick(()=>{
@@ -369,8 +362,8 @@ struct Index {
 
 ![](figures/checkbox3.gif)
 
-### Example 4
-In this example, a **Text** component is used to indicate that the check box is selected.
+### Example 4: Setting the Text Check Box Style
+This example configures the selected style of a check box to display as text using the **indicatorBuilder** property.
 ```ts
 // xxx.ets
 @Entry

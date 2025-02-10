@@ -4,13 +4,13 @@
 
 >**说明：**
 >
->本模块首批接口从API version 12开始支持。
+>本模块首批接口从API version 12开始支持，后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 本文中T和S的含义如下：
 
 
-| 类型   | 描述                                     |
+| 类型   | 说明                                     |
 | ---- | -------------------------------------- |
 | T    | Class，number，boolean，string和这些类型的数组形式。 |
 | S    | number，boolean，string。                 |
@@ -24,9 +24,13 @@ import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
 
 ## AppStorageV2
 
-AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)
+AppStorageV2具体UI使用说明，详见[AppStorageV2(应用全局的UI状态存储)](../../quick-start/arkts-new-appstoragev2.md)。
 
-### connect<sup>12+</sup>
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### connect
 
 static&nbsp;connect\<T extends object\>( </br >
   &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;TypeConstructorWithArgs\<T\>, </br >
@@ -44,8 +48,8 @@ static&nbsp;connect\<T extends object\>( </br >
 
 | 参数名   | 类型   | 必填 | 说明               |
 | -------- | ------ | ---- | ---------------------- |
-| type | TypeConstructorWithArgs\<T\> | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
-| keyOrDefaultCreater | string&nbsp;\|&nbsp;StorageDefaultCreator\<T\> | 否   | 指定的key，或者是获取默认值的构造器。 |
+| type | [TypeConstructorWithArgs\<T\>](#typeconstructorwithargst) | 是   | 指定的类型，若未指定key，则使用type的name作为key。 |
+| keyOrDefaultCreator | string&nbsp;\|&nbsp;[StorageDefaultCreator\<T\>](#storagedefaultcreatort) | 否   | 指定的key，或者是获取默认值的构造器。 |
 | defaultCreator | StorageDefaultCreator\<T\> | 否   | 获取默认值的构造器。 |
 
 >**说明：**
@@ -60,7 +64,7 @@ static&nbsp;connect\<T extends object\>( </br >
 
 **返回值：**
 
-| 类型                                   | 描述                                                         |
+| 类型                                   | 说明                                                         |
 | -------------------------------------- | ------------------------------------------------------------ |
 | T | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
 
@@ -84,7 +88,7 @@ const as2: SampleClass = AppStorageV2.connect(SampleClass, 'key_as2', () => new 
 const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 ```
 
-### remove<sup>12+</sup>
+### remove
 
 static&nbsp;remove\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
 
@@ -119,7 +123,7 @@ AppStorageV2.remove(SampleClass);
 AppStorageV2.remove('key_as1');
 ```
 
-### keys<sup>12+</sup>
+### keys
 
 static&nbsp;keys():&nbsp;Array\<string\>;
 
@@ -128,10 +132,6 @@ static&nbsp;keys():&nbsp;Array\<string\>;
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-无。
 
 **返回值：**
 
@@ -154,26 +154,15 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ## PersistenceV2
 
-PersistenceV2中的新接口，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
+继承自[AppStorageV2](#appstoragev2)，PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### globalConnect<sup>16+</sup>
 
-```ts
-// globalConnect 接口
-static globalConnect<T extends object>(
-    type: ConnectOptions<T>
-  ): T | undefined;
-```
-
-```ts
-// ConnectOptions参数
-class ConnectOptions<T extends object> {
-  type: TypeConstructorWithArgs<T>;	// 必选，指定的类型；
-  key?: string;	// 可选，传入的key，若未指定key，则使用type的name作为key；
-  defaultCreator?: StorageDefaultCreator<T>;	// 默认数据的构造器，建议填写；
-  areaMode?: contextConstant.AreaMode;	// 可选，加密参数；
-}
-```
+static globalConnect<T extends object>(type: ConnectOptions\<T\>): T | undefined;
 
 将键值对数据储存在应用磁盘中。如果给定的key已经存在于[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)中，返回对应的值；否则，会通过获取默认值的构造器构造默认值，并返回。如果globalConnect的是\@ObservedV2对象，该对象\@Trace属性的变化，会触发整个关联对象的自动刷新；非\@Trace属性变化则不会，如有必要，可调用PersistenceV2.save接口手动存储。
 
@@ -181,27 +170,25 @@ class ConnectOptions<T extends object> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| globalConnect | 说明                                                      |
-| ------------- | --------------------------------------------------------- |
-| 参数          | type：传入的connect参数，详细说明见ConnectOptions参数说明 |
-| 返回值        | 创建或获取数据成功时，返回数据；否则返回undefined。       |
+| 名称   |类型   |必填   | 说明                                                      |
+| ------------- | ------------|-------------------|-------------------------- |
+| type    |[ConnectOptions\<T\>](#connectoptions16)    |是  |传入的connect参数，详细说明见ConnectOptions参数说明。 |
 
-| ConnectOptions参数 | 说明                                                         |
-| :----------------: | :----------------------------------------------------------- |
-|        type        | TypeConstructorWithArgs\<T\>，必选参数，指定的类型。         |
-|        key         | string，传入的key，不传则使用type的名字作为key。             |
-|   defaultCreator   | StorageDefaultCreator\<T\>，默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
-|      areaMode      | contextConstant.AreaMode，加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
+**返回值：**
+
+|类型   |说明                 |
+|----------|-----------------------------------|
+|T \| undefined    |创建或获取数据成功时，返回数据；否则返回undefined。    |
 
 > **说明：**
 >
-> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
 >
-> 2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+> 2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
 >
-> 3、同一个key，globalConnect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+> 3、同一个key，globalConnect不同类型的数据会导致应用异常，应用需要确保类型匹配。
 >
-> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
 > 5、关联[\@Observed](../../quick-start/arkts-observed-and-objectlink.md)对象时，因为该类型的name属性未定义，需要指定key或者自定义name属性。
 >
@@ -211,13 +198,7 @@ class ConnectOptions<T extends object> {
 >
 > 8、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
 >
-> 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)
-
-**返回值：**
-
-| 类型 | 描述                                                         |
-| ---- | ------------------------------------------------------------ |
-| T    | 创建或获取AppStorageV2数据成功时，返回数据；否则返回undefined。 |
+> 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../../security/AccessToken/declare-permissions.md)。
 
 **示例：**
 
@@ -253,9 +234,7 @@ options: ConnectOptions<Sample> = {type: Sample, key: 'global2', defaultCreator:
 
 ```
 
-继承自AppStorageV2，PersistenceV2具体UI使用说明，详见[PersistenceV2(持久化存储UI状态)](../../quick-start/arkts-new-persistencev2.md)。
-
-### save<sup>12+</sup>
+### save
 
 static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs\<T\>):&nbsp;void;
 
@@ -273,7 +252,7 @@ static&nbsp;save\<T\>(keyOrType:&nbsp;string&nbsp;|&nbsp;TypeConstructorWithArgs
 
 >**说明：**
 >
->由于非[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)的自动持久化，如有必要，可调用该接口持久化对应key的数据；
+>由于非[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md)的数据改变不会触发[PersistenceV2](../../quick-start/arkts-new-persistencev2.md)的自动持久化，如有必要，可调用该接口持久化对应key的数据。
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
@@ -292,7 +271,7 @@ PersistenceV2.remove(SampleClass);
 PersistenceV2.remove('key_as1');
 ```
 
-### notifyOnError<sup>12+</sup>
+### notifyOnError
 
 static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
@@ -317,11 +296,28 @@ PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
 });
 ```
 
+## ConnectOptions<sup>16+</sup>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|名称   |类型    |只读   |可选    |说明      |
+|--------|------------|------------|-----------|--------------|
+|type        | TypeConstructorWithArgs\<T\>   |否   |否   |指定的类型。         |
+|key         | string   |否   |是   |传入的key，不传则使用type的名字作为key。             |
+|defaultCreator   | StorageDefaultCreator\<T\>   |否   |是   |默认数据的构造器，建议传递，如果globalConnect是第一次连接key，不传会报错。 |
+|areaMode      | contextConstant.AreaMode   |否   |是    |加密级别：EL1-EL5，详见[加密级别](../../application-models/application-context-stage.md)，对应数值：0-4，不传时默认为EL2，不同加密级别对应不同的加密分区，即不同的存储路径，传入的加密等级数值不在0-4会直接运行crash。 |
+
 ## UIUtils
 
 UIUtils提供一些方法，用于处理状态管理相关的数据转换。
 
-### getTarget<sup>12+</sup>
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### getTarget
 
 static getTarget\<T extends object\>(source: T): T;
 
@@ -339,7 +335,7 @@ static getTarget\<T extends object\>(source: T): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | 数据源对象去除状态管理框架所加代理后的原始对象。 |
 
@@ -364,7 +360,7 @@ struct Index {
   }
 }
 ```
-### makeObserved<sup>12+</sup>
+### makeObserved
 
 static makeObserved\<T extends object\>(source: T): T;
 
@@ -382,7 +378,7 @@ static makeObserved\<T extends object\>(source: T): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | 可观察的数据。 |
 
@@ -414,9 +410,9 @@ struct Index {
 }
 ```
 
-## StorageDefaultCreator<sup>12+</sup>
+## StorageDefaultCreator\<T\>
 
-export declare type StorageDefaultCreator\<T\> = () => T;
+type StorageDefaultCreator\<T\> = () => T;
 
 返回默认构造器的函数。
 
@@ -426,7 +422,7 @@ export declare type StorageDefaultCreator\<T\> = () => T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | () => T    | 返回默认构造器的函数。 |
 
@@ -463,9 +459,13 @@ struct SampleComp {
 }
 ```
 
-## TypeConstructorWithArgs<sup>12+</sup>
+## TypeConstructorWithArgs\<T\>
 
 含有任意入参的类构造器。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### new
 
@@ -483,7 +483,7 @@ new(...args: any): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
 
@@ -520,9 +520,9 @@ struct SampleComp {
 }
 ```
 
-## PersistenceErrorCallback<sup>12+</sup>
+## PersistenceErrorCallback
 
-export declare type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
+type PersistenceErrorCallback = (key: string, reason: 'quota' | 'serialization' | 'unknown', message: string) => void;
 
 持久化失败时返回错误原因的回调。
 
@@ -535,7 +535,7 @@ export declare type PersistenceErrorCallback = (key: string, reason: 'quota' | '
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
 | key | string    | 是   | 出错的键值。   |
-| reson | 'quota' \| 'serialization' \| 'unknown'    | 是   | 出错的原因类型。   |
+|reason| 'quota' \| 'serialization' \| 'unknown'    | 是   | 出错的原因类型。   |
 | message | string    | 是   | 出错的更多消息。   |
 
 **示例：**
@@ -580,9 +580,13 @@ struct Index {
 }
 ```
 
-## TypeConstructor<sup>12+</sup>
+## TypeConstructor\<T\>
 
 类构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### new
 
@@ -590,7 +594,7 @@ new(): T;
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | T    | T类型的实例。 |
 
@@ -634,9 +638,9 @@ struct Index {
 }
 ```
 
-## TypeDecorator<sup>12+</sup>
+## TypeDecorator
 
-export declare type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
+type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => PropertyDecorator;
 
 属性装饰器。
 
@@ -648,11 +652,11 @@ export declare type TypeDecorator = \<T\>(type: TypeConstructor\<T\>) => Propert
 
 | 参数名 | 类型 | 必填 | 说明     |
 | ------ | ---- | ---- | ------------ |
-| type | TypeConstructor\<T\>    | 是   | 标记类属性的类型。   |
+| type | [TypeConstructor\<T\>](#typeconstructort)    | 是   | 标记类属性的类型。   |
 
 **返回值：**
 
-| 类型 | 描述                                             |
+| 类型 | 说明                                             |
 | ---- | ------------------------------------------------ |
 | PropertyDecorator    | 属性装饰器。 |
 

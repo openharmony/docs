@@ -1,7 +1,7 @@
 # Event Monopolization
 
-You can configure a component to monopolize events – built-in events and custom gesture events,<br>
-so that if the component first responds to an event in a window, it will be the only component that responds to the event.
+Event monopolization determines whether a component exclusively handles events, including built-in events and custom click, touch, or gesture events.<br>
+When a component with event monopolization is the first to respond to an interaction, only the events defined on this component will be triggered, and other components within the same window will not respond to the interaction.
 
 >  **NOTE**
 >
@@ -11,7 +11,7 @@ so that if the component first responds to an event in a window, it will be the 
 
 monopolizeEvents(monopolize: boolean)
 
-Sets whether the component monopolizes events.
+Sets whether the component exclusively handles events.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -22,9 +22,11 @@ Sets whether the component monopolizes events.
 
 | Name  | Type| Mandatory| Description                 |
 | ----------- | -------- | ------------------------ | ------------------------ |
-| monopolize | boolean  | Yes| Whether the component monopolizes events.<br>Default value: **false**<br>**NOTE**<br>1. If a component is monopolizing events after a finger is pressed on it, and another finger is pressed before the first finger is lifted, the component continues to monopolize events while interacting with the second finger. The same case applies to a third and more fingers.<br>2. If a component is bound through [parallelGesture](ts-gesture-settings.md) to a gesture, for example, [pan gesture](ts-basic-gestures-pangesture.md), that can also be triggered by its child component, and the child component is configured to monopolize events, then the parent will not respond to the gesture after the child component has responded to it.|
+| monopolize | boolean  | Yes| Whether the component exclusively handles events.<br>Default value: **false**<br>**NOTE**<br>1. If a component is exclusively handling events after a finger is pressed on it, and another finger is pressed before the first finger is lifted, the component continues to exclusively handle events while interacting with the second finger. The same case applies to a third and more fingers.<br>2. If a component is bound through [parallelGesture](ts-gesture-settings.md) to a gesture, for example, [pan gesture](ts-basic-gestures-pangesture.md), that can also be triggered by its child component, and the child component has event monopolization and is the first to respond, then the parent will not respond to the gesture.|
 
 ## Example
+
+This example demonstrates how to set **monopolizeEvents** to determine whether a component exclusively handles events.
 
 ```ts
 // xxx.ets

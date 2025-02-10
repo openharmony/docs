@@ -36,8 +36,8 @@ The **image_mdk.h** file declares the APIs used to access the image rectangle, s
 
 | Name| Description| 
 | -------- | -------- |
-| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md#anonymous-enum-13) = 1000,<br>[OHOS_IMAGE_FORMAT_JPEG](image.md#anonymous-enum-13) = 2000, } | Enumerates the image formats.| 
-| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md#anonymous-enum-13-1) = 1,<br>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md#anonymous-enum-13-1) = 2,<br>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md#anonymous-enum-13-1) = 3,<br>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md#anonymous-enum-13-1) = 4, } | Enumerates the image components.| 
+| { [OHOS_IMAGE_FORMAT_YCBCR_422_SP](image.md#image-formats) = 1000,<br>[OHOS_IMAGE_FORMAT_JPEG](image.md#image-formats) = 2000, }| Enumerates the image formats.| 
+| { [OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y](image.md#image-color-channel-types) = 1,<br>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_U](image.md#image-color-channel-types) = 2,<br>[OHOS_IMAGE_COMPONENT_FORMAT_YUV_V](image.md#image-color-channel-types) = 3,<br>[OHOS_IMAGE_COMPONENT_FORMAT_JPEG](image.md#image-color-channel-types) = 4, }| Enumerates the image components.| 
 
 
 ### Functions

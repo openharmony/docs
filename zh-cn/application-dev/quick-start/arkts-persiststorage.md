@@ -92,8 +92,8 @@ PersistentStorage.persistProp('aProp', 47);
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  @StorageLink('aProp') aProp: number = 48
+  @State message: string = 'Hello World';
+  @StorageLink('aProp') aProp: number = 48;
 
   build() {
     Row() {
@@ -221,10 +221,13 @@ struct PersistedDate {
           Text(`Persisted Date is ${this.persistedDate.toString()}`)
             .margin(20)
 
-          Text(`Persisted Date month is ${this.persistedDate.getMonth()}`)
+          Text(`Persisted Date year is ${this.persistedDate.getFullYear()}`)
             .margin(20)
 
-          Text(`Persisted Date day is ${this.persistedDate.getDay()}`)
+          Text(`Persisted Date hours is ${this.persistedDate.getHours()}`)
+            .margin(20)
+
+          Text(`Persisted Date minutes is ${this.persistedDate.getMinutes()}`)
             .margin(20)
 
           Text(`Persisted Date time is ${this.persistedDate.toLocaleTimeString()}`)

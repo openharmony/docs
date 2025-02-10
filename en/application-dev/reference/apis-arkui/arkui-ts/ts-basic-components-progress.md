@@ -199,7 +199,7 @@ Sets whether to enable privacy mode.
 
 | Name         | Type                     | Mandatory| Description                                                                                       |
 | ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
-| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress change to the set value takes place gradually. Otherwise, it takes place immediately.<br>Default value: **true**|
+| enableSmoothEffect | boolean | No| Whether to enable the smooth effect. When this effect is enabled, the progress changes smoothly from the current value to the target value. When this effect is disabled, the progress changes abruptly to the target value.<br>Default value: **true**|
 
 ## ScanEffectOptions<sup>10+</sup>
 
@@ -243,6 +243,7 @@ Inherits [ScanEffectOptions](#scaneffectoptions10) and [CommonProgressStyleOptio
 | font | [Font](ts-types.md#font) | No| Text style.<br>Default value:<br>- Font size (cannot be set in percentage): **12fp**<br>- Other attributes: following the settings of the **Text** component.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No| Font color.<br>Default value: **'\#ff182431'**|
 | showDefaultPercentage | boolean | No| Whether to show the percentage of the current progress. This attribute does not take effect when the **content** attribute is set.<br>Default value: **false**|
+| borderRadius<sup>16+</sup> |  [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Corner radius. The value cannot be set in percentage.<br>Value range: [0, height/2]<br> Default value: height/2<br>If an invalid value is set, the default value is used.|
 
 ## RingStyleOptions<sup>10+</sup>
 
@@ -269,7 +270,7 @@ Inherits [ScanEffectOptions](#scaneffectoptions10) and [CommonProgressStyleOptio
 | Name          | Type                     | Mandatory| Description                                                                                       |
 | ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
 | strokeWidth   | [Length](ts-types.md#length) | No  | Stroke width of the progress indicator. It cannot be set in percentage.<br>Default value: **4.0vp**|
-| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| No  | Rounded corner radius of the progress indicator.<br>Value range: [0, strokeWidth/2] Default value: **strokeWidth/2**|
+| strokeRadius   | [PX](ts-types.md#px10)    \| [VP](ts-types.md#vp10)    \| [LPX](ts-types.md#lpx10)    \| [Resource](ts-types.md#resource)| No  | Corner radius of the progress indicator.<br>Value range: [0, strokeWidth/2] Default value: **strokeWidth/2**|
 
 ## ScaleRingStyleOptions<sup>10+</sup>
 
@@ -310,9 +311,9 @@ The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
 
-### Example 1
+### Example 1: Setting Progress Indicator Types
 
-This example shows the effect of the basic attributes for different types of progress indicators.
+This example demonstrates how to set different types of progress indicators using the **type** attribute.
 
 ```ts
 // xxx.ets
@@ -374,9 +375,9 @@ struct ProgressExample {
 
 ![progress](figures/arkts-progress.png)
 
-### Example 2
+### Example 2: Setting Ring Progress Indicator Attributes
 
-This example shows the effect of visual attributes of the ring style progress indicator.
+This example demonstrates how to set attributes of a ring progress indicator using the **strokeWidth** and **shadow** properties in the **style** API.
 
 ```ts
 // xxx.ets
@@ -384,7 +385,8 @@ This example shows the effect of visual attributes of the ring style progress in
 @Component
 struct ProgressExample {
   private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
-                                                              { color: Color.Orange, offset: 1.0 }])
+    { color: Color.Orange, offset: 1.0 }])
+
   build() {
     Column({ space: 15 }) {
       Text('Gradient Color').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -402,17 +404,15 @@ struct ProgressExample {
 ```
 ![ringProgressStyleEffect](figures/arkts-ringProgressStyleEffect.png)
 
-### Example 3
+### Example 3: Setting the Animation for the Ring Progress Indicator
 
-This example shows the animation effect of the ring style progress indicator.
+This example demonstrates how to enable or disable animations for a ring progress indicator using the **status** and **enableScanEffect** properties in the **style** API.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ProgressExample {
-  private gradientColor: LinearGradient = new LinearGradient([{ color: Color.Yellow, offset: 0.5 },
-                                                              { color: Color.Orange, offset: 1.0 }])
   build() {
     Column({ space: 15 }) {
       Text('Loading Effect').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -430,23 +430,28 @@ struct ProgressExample {
 ```
 ![ringProgressAnimation](figures/arkts-ringProgressAnimation.gif)
 
-### Example 4
+### Example 4: Setting Capsule Progress Indicator Attributes
 
-This example shows the effect of visual attributes of the capsule style progress indicator.
+This example demonstrates how to set attributes for a capsule progress indicator using properties such as **borderColor**, **borderWidth**, and **content** in the **style** API.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ProgressExample {
-
   build() {
     Column({ space: 15 }) {
       Row({ space: 40 }) {
-        Progress({ value: 100, total: 100,type: ProgressType.Capsule }).width(100).height(50)
-          .style({borderColor: Color.Blue, borderWidth: 1, content: 'Installing...',
-                  font: {size: 13, style: FontStyle.Normal}, fontColor: Color.Gray,
-                  enableScanEffect: false, showDefaultPercentage: false})
+        Progress({ value: 100, total: 100, type: ProgressType.Capsule }).width(100).height(50)
+          .style({
+            borderColor: Color.Blue,
+            borderWidth: 1,
+            content: 'Installing...',
+            font: { size: 13, style: FontStyle.Normal },
+            fontColor: Color.Gray,
+            enableScanEffect: false,
+            showDefaultPercentage: false
+          })
       }
     }.width('100%').padding({ top: 5 })
   }
@@ -454,9 +459,9 @@ struct ProgressExample {
 ```
 ![capsuleProgressStyleEffect](figures/arkts-capsuleProgressStyleEffect.png)
 
-### Example 5
+### Example 5: Setting the Smooth Effect
 
-This example shows the smooth effect.
+This example demonstrates how to enable or disable the smooth effect for the progress animation using the **enableSmoothEffect** property in the **style** API.
 
 ```ts
 // xxx.ets
@@ -466,15 +471,19 @@ struct Index {
   @State value: number = 0
 
   build() {
-    Column({space: 10}) {
-      Text('enableSmoothEffect: true').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
-        .margin({top: 20})
-      Progress({value: this.value, total: 100, type:ProgressType.Linear})
-        .style({strokeWidth: 10, enableSmoothEffect: true})
+    Column({ space: 10 }) {
+      Text('enableSmoothEffect: true')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+        .margin(5)
+        .margin({ top: 20 })
+      Progress({ value: this.value, total: 100, type: ProgressType.Linear })
+        .style({ strokeWidth: 10, enableSmoothEffect: true })
 
       Text('enableSmoothEffect: false').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(5)
-      Progress({value: this.value, total: 100, type:ProgressType.Linear})
-        .style({strokeWidth: 10, enableSmoothEffect: false})
+      Progress({ value: this.value, total: 100, type: ProgressType.Linear })
+        .style({ strokeWidth: 10, enableSmoothEffect: false })
 
       Button('value +10').onClick(() => {
         this.value += 10
@@ -485,35 +494,35 @@ struct Index {
     }
     .width('50%')
     .height('100%')
-    .margin({left:20})
+    .margin({ left: 20 })
   }
 }
 
 ```
 ![progressSmoothEffect](figures/arkts-progressSmoothEffect.gif)
 
-### Example 6
+### Example 6: Setting the Custom Content Area
 
-This example implements a custom progress indicator featuring a star-shaped design. The total progress is set to **3**, and the current value can be incremented or decremented through buttons. The achieved progress is filled with a custom color.
+This example implements a custom progress indicator using the **contentModifier** API. This progress indicator displays a star shape with a total progress of **3**, and the current value can be incremented or decremented through buttons. The achieved progress is filled with a custom color.
 
 ```ts
 // xxx.ets
 class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
   color: Color = Color.White
 
-
-  constructor(color:Color) {
+  constructor(color: Color) {
     this.color = color
   }
-  applyContent() : WrappedBuilder<[ProgressConfiguration]>
-  {
+
+  applyContent(): WrappedBuilder<[ProgressConfiguration]> {
     return wrapBuilder(myProgress)
   }
 }
 
-@Builder function myProgress(config: ProgressConfiguration ) {
+@Builder
+function myProgress(config: ProgressConfiguration) {
 
-  Column({space:30}) {
+  Column({ space: 30 }) {
     Text("Current progress: " + config.value + "/" + config.total).fontSize(20)
     Row() {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
@@ -521,26 +530,29 @@ class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
           .width('30%')
           .height('30%')
           .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
-          .fill(config.enabled && config.value >=1 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .fill(config.enabled && config.value >= 1 ? (config.contentModifier as MyProgressModifier).color :
+          Color.White)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
           .width('30%')
           .height('30%')
           .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
-          .fill(config.enabled && config.value >=2 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .fill(config.enabled && config.value >= 2 ? (config.contentModifier as MyProgressModifier).color :
+          Color.White)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
           .width('30%')
           .height('30%')
           .commands('M108 0 L141 70 L218 78.3 L162 131 L175 205 L108 170 L41.2 205 L55 131 L1 78 L75 68 L108 0 Z')
-          .fill(config.enabled && config.value >=3 ? (config.contentModifier as MyProgressModifier).color : Color.White)
+          .fill(config.enabled && config.value >= 3 ? (config.contentModifier as MyProgressModifier).color :
+          Color.White)
           .stroke(Color.Black)
           .strokeWidth(3)
       }.width('100%')
     }
-  }.margin({bottom:100})
+  }.margin({ bottom: 100 })
 }
 
 @Entry
@@ -548,20 +560,21 @@ class MyProgressModifier implements ContentModifier<ProgressConfiguration> {
 struct Index {
   @State currentValue: number = 0
   modifier = new MyProgressModifier(Color.Red)
-  @State myModifier:(MyProgressModifier | undefined)  = this.modifier
+  @State myModifier: (MyProgressModifier | undefined) = this.modifier
+
   build() {
     Column() {
-        Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring}).contentModifier(this.modifier)
-        Button('Progress++').onClick(()=>{
-          if (this.currentValue < 3) {
-            this.currentValue += 1
-          }
-        }).width('30%')
-        Button('addProgress--').onClick(()=>{
-          if (this.currentValue > 0) {
-            this.currentValue -= 1
-          }
-        }).width('30%')
+      Progress({ value: this.currentValue, total: 3, type: ProgressType.Ring }).contentModifier(this.modifier)
+      Button('Progress++').onClick(() => {
+        if (this.currentValue < 3) {
+          this.currentValue += 1
+        }
+      }).width('30%')
+      Button('addProgress--').onClick(() => {
+        if (this.currentValue > 0) {
+          this.currentValue -= 1
+        }
+      }).width('30%')
     }.width('100%').height('100%')
   }
 }
@@ -569,9 +582,9 @@ struct Index {
 ```
 ![progressCustom](figures/arkts-progressCustom.gif)
 
-### Example 7
+### Example 7: Securing Sensitive Information
 
-This example shows how to enable privacy mode, which requires widget framework support.
+This example illustrates how to secure sensitive information using the **privacySensitive** attribute. Note that the display requires widget framework support.
 
 ```ts
 @Entry
@@ -599,3 +612,38 @@ struct ProgressExample {
 }
 ```
 ![progressSensitive](figures/progress-privacysensitive.gif)
+
+### Example 8: Setting Capsule Progress Indicator Border Radius
+
+This example demonstrates how to set the border corner radius of a capsule progress indicator using the **borderRadius** property.
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ProgressExample {
+  build() {
+    Column({ space: 15 }) {
+      Text('Capsule Progress').fontSize(9).width('90%')
+      Row({ space: 15 }) {
+        Progress({ value: 30, total: 100, type: ProgressType.Capsule })
+          .style({ content: "Default radius", borderWidth: 5 })
+          .width(100)
+          .height(60)
+      }
+
+      Row({ space: 15 }) {
+        Progress({ value: 30, total: 100, type: ProgressType.Capsule })
+          .style({ content: "Radius 20 vp", borderWidth: 5, borderRadius: LengthMetrics.vp(20) })
+          .width(100)
+          .height(60)
+      }
+    }
+    .width('100%')
+    .margin({ top: 30 })
+  }
+}
+
+```
+![capsuleProgressBorderRadius](figures/arkts-capsuleProgressBorderRadius.png)

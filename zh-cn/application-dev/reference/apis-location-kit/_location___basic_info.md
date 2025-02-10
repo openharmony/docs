@@ -24,12 +24,12 @@
 | double [speed](#speed) | 表示速度信息，单位米每秒。  | 
 | double [direction](#direction) | 表示航向信息。单位是“度”，取值范围为0到360。  | 
 | int64_t [timeForFix](#timeforfix) | 表示位置时间戳，UTC格式。  | 
-| int64_t [timeSinceBoot](#timesinceboot) | 表示位置时间戳，开机时间格式。  | 
+| int64_t [timeSinceBoot](#timesinceboot) | 表示获取位置的时间戳。<br/>值为从最近一次开机到获取位置所经过的时间，即每次重启会重置该时间计算。<br/>单位为纳秒。  | 
 | double [altitudeAccuracy](#altitudeaccuracy) | 表示高度信息的精度，单位米。  | 
 | double [speedAccuracy](#speedaccuracy) | 表示速度信息的精度，单位米每秒。  | 
 | double [directionAccuracy](#directionaccuracy) | 表示航向信息的精度。单位是“度”，取值范围为0到360。  | 
-| int64_t [uncertaintyOfTimeSinceBoot](#uncertaintyoftimesinceboot) | 表示位置时间戳的不确定度。  | 
-| [Location_SourceType](_location.md#location_sourcetype)[locationSourceType](#locationsourcetype) | 表示定位结果的来源。 详细定义请参考[Location_SourceType](_location.md#location_sourcetype). | 
+| int64_t [uncertaintyOfTimeSinceBoot](#uncertaintyoftimesinceboot) | 表示位置时间戳（timeSinceBoot）的不确定度。单位为纳秒。  | 
+| [Location_SourceType](_location.md#location_sourcetype) [locationSourceType](#locationsourcetype) | 表示定位结果的来源。<br/>详细定义请参考[Location_SourceType](_location.md#location_sourcetype)。 | 
 
 
 ## 结构体成员变量说明

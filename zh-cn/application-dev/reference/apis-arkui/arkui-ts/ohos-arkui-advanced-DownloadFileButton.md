@@ -124,10 +124,12 @@ import { DownloadFileButton } from '@kit.ArkUI'
 
 ##  示例
 
-```
+```ts
+// xxx.ets
+
 import { picker } from '@kit.CoreFileKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { DownloadFileButton, DownloadLayoutDirection } from '@kit.ArkUI';
+import { DownloadFileButton, DownloadLayoutDirection, DownloadIconStyle, DownloadDescription } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -136,8 +138,8 @@ struct Index {
     Column() {
       DownloadFileButton({
         contentOptions: {
-          // icon: DownloadIconStyle.FULL_FILLED,
-          // text: DownloadDescription.DOWNLOAD
+          icon: DownloadIconStyle.FULL_FILLED,
+          text: DownloadDescription.DOWNLOAD
         },
         styleOptions: {
           iconSize: '16vp',

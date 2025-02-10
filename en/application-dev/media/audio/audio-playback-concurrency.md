@@ -136,7 +136,7 @@ In an audio focus event, applications should pay attention to two key pieces of 
 
   - **INTERRUPT_HINT_RESUME**: Audio playback or recording can be resumed. This is received only after a PAUSE message is received.
 
-      This operation cannot be forcibly performed by the system, and the corresponding **InterruptForceType** must be **INTERRUPT_SHARE**.
+    This operation cannot be forcibly performed by the system, and the corresponding **InterruptForceType** must be **INTERRUPT_SHARE**.
 
   - **INTERRUPT_HINT_PAUSE**: The audio stream is paused and audio focus is lost temporarily. When focus is available, **INTERRUPT_HINT_RESUME** will be received.
   - **INTERRUPT_HINT_STOP**: The audio stream stops and audio focus is lost.

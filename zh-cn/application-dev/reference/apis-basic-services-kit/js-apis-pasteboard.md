@@ -617,7 +617,7 @@ export default class EntryAbility extends UIAbility {
 
 toPlainText(): string
 
-将一个PasteData中的内容强制转换为文本内容。
+将一个PasteDataRecord中的html、plain、uri内容强制转换为文本内容。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -744,6 +744,8 @@ getData(type: string): Promise&lt;ValueType&gt;
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let html = "<!DOCTYPE html>\n" + "<html>\n" + "<head>\n" + "<meta charset=\"utf-8\">\n" + "<title>HTML-PASTEBOARD_HTML</title>\n" + "</head>\n" + "<body>\n" + "    <h1>HEAD</h1>\n" + "    <p></p>\n" + "</body>\n" + "</html>";
 let record: pasteboard.PasteDataRecord = pasteboard.createRecord(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
 record.addEntry(pasteboard.MIMETYPE_TEXT_PLAIN, 'hello');
@@ -2796,8 +2798,6 @@ setAppShareOptions(shareOptions: ShareOption): void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
@@ -2817,6 +2817,8 @@ setAppShareOptions(shareOptions: ShareOption): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
@@ -2837,8 +2839,6 @@ removeAppShareOptions(): void
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **错误码：**
 
 以下错误码的详细介绍请参见[剪贴板错误码](errorcode-pasteboard.md)。
@@ -2850,6 +2850,8 @@ removeAppShareOptions(): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
 try {
   systemPasteboard.removeAppShareOptions();
@@ -2889,7 +2891,7 @@ detectPatterns(patterns: Array&lt;Pattern&gt;): Promise&lt;Array&lt;Pattern&gt;&
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式 |
+| Promise&lt;Array&lt;Pattern&gt;&gt; | Promise对象，返回检测到的模式。 |
 
 **错误码：**
 
@@ -2936,7 +2938,7 @@ getMimeTypes(): Promise&lt;Array&lt;string&gt;&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回读取到的MIME类型。 |
 
 **示例：**
 
@@ -2955,7 +2957,7 @@ systemPasteboard.getMimeTypes().then((data: Array<String>) => {
 
 getDataWithProgress(params: GetDataParams): Promise&lt;PasteData&gt;
 
-获取剪贴板的内容和进度，使用Promise异步回调。
+获取剪贴板的内容和进度，使用Promise异步回调，不支持对文件夹的拷贝。
 
 **需要权限**：ohos.permission.READ_PASTEBOARD
 
@@ -3020,3 +3022,38 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+### getChangeCount<sup>16+</sup>
+
+getChangeCount(): number
+
+获取剪切板内容的变化次数。
+
+执行成功时返回剪切板内容的变化次数，否则返回0。
+
+当剪切板内容过期或调用[clearDataSync](#cleardatasync11)等接口导致剪切板内容为空时，内容变化次数不会因此改变。
+
+系统重启或剪贴板服务异常重启时，剪贴板内容变化次数重新从0开始计数。对同一内容连续多次复制会被视作多次更改，每次复制均会导致内容变化次数增加。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | 返回读取到的剪切板内容变化次数。 |
+
+**示例：**
+
+```ts
+import { BusinessError pasteboard } from '@kit.BasicServicesKit';
+
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+try {
+    let result : number = systemPasteboard.getChangeCount();
+    console.info(`Succeeded in getting the ChangeCount. Result: ${result}`);
+} catch (err) {
+    console.error(`Failed to get the ChangeCount. Cause: ${err.message}`);
+};
+```

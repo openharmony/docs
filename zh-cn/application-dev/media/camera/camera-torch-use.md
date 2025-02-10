@@ -51,6 +51,9 @@
 
 4. 通过[CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager)类中的[setTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#settorchmode11)方法，设置当前设备的手电筒模式。以及通过[CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager)类中的[getTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#gettorchmode11)方法，获取当前设备的手电筒模式。
 
+    > **说明：**
+    > 在使用[getTorchMode](../../reference/apis-camera-kit/js-apis-camera.md#gettorchmode11)方法前，需要先注册监听手电筒的状态变化，请参考[状态监听](camera-torch-use.md#状态监听)。
+
     ```ts
     function setTorchModeSupported(cameraManager: camera.CameraManager, torchMode: camera.TorchMode) : void {
         cameraManager.setTorchMode(torchMode);
@@ -58,6 +61,7 @@
         console.info(`Returned with the torch mode supportd mode: ${isTorchMode}`);
     }
     ```
+
 
 ## 状态监听
 

@@ -164,21 +164,23 @@ Displays a dialog box that contains custom content and operation area.
 | themeColorMode | [ThemeColorMode](ts-container-with-theme.md#themecolormode10) | No| - | Theme color mode of the dialog box.|
 
 
-## PopoverDialog<sup>13+</sup>
+## PopoverDialog<sup>14+</sup>
 
 PopoverDialog({visible: boolean, popover: PopoverOptions, targetBuilder: Callback\<void>})
 
 Displays a popover dialog box that is positioned relative to the target component. This dialog box can contain a variety of content types, including: TipsDialog, SelectDialog, ConfirmDialog, AlertDialog, LoadingDialog, and CustomContentDialog.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Decorator**: \@Component
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | visible | boolean | Yes| \@Link | Whether the popover dialog box is visible.<br>Default value: **false**, indicating that the popover dialog box is hidden|
-| popover | [PopoverOptions](#popoveroptions13) | Yes| \@Prop | Options of the popover dialog box.|
-| targetBuilder | Callback\<void> | Yes| - | Target component relative to which the popover dialog box is positioned.|
+| popover | [PopoverOptions](#popoveroptions14) | Yes| \@Prop<br>\@Require | Options of the popover dialog box.|
+| targetBuilder | Callback\<void> | Yes| \@Require<br>\@BuilderParam | Target component relative to which the popover dialog box is positioned.|
 
 
 ## ButtonOptions
@@ -193,12 +195,14 @@ Displays a popover dialog box that is positioned relative to the target componen
 | fontColor                 | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Font color of the button.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | buttonStyle<sup>12+</sup> | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11) | No  | Style of the button.<br>Default value: **ButtonStyleMode.NORMAL** for 2-in-1 devices and **ButtonStyleMode.TEXTUAL** for other devices<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | role<sup>12+</sup>        | [ButtonRole](ts-basic-components-button.md#buttonrole12) | No  | Role of the button.<br>Default value: **ButtonRole.NORMAL**<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
+| defaultFocus<sup>16+</sup> | boolean | No  | Whether the button gains focus by default.<br>Default value: **false**<br>**Atomic service API**: This API can be used in atomic services since API version 16.                                                |
 
 >  **NOTE**
 >
 >  The priority of **buttonStyle** and **role** is higher than that of **fontColor** and **background**. If **buttonStyle** and **role** are at the default values, the settings of **fontColor** and **background** take effect.
+> If **defaultFocus** is set for multiple buttons, the default focus is the first button in the display order that has **defaultFocus** set to **true**.
 
-## PopoverOptions<sup>13+</sup>
+## PopoverOptions<sup>14+</sup>
 
 Defines a set of options used to configure the popover dialog box, including its content and position.
 
@@ -208,7 +212,7 @@ Inherits [CustomPopupOptions](../arkui-ts/ts-universal-attributes-popup.md#custo
 >
 > The default value of **radius** is **32vp**.
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -233,7 +237,7 @@ struct Index {
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
-      content:'Delete this app?',
+      content: 'Delete this app?',
       primaryButton: {
         value: 'Cancel',
         action: () => {
@@ -257,7 +261,7 @@ struct Index {
     Row() {
       Stack() {
         Column(){
-          Button("Text Below Image")
+          Button ("Text Below Image")
             .width(96)
             .height(40)
             .onClick(() => {
@@ -371,7 +375,7 @@ struct Index {
       title:'Title',
       content: 'This is where content is displayed. This is where content is displayed.',
       isChecked: this.isChecked,
-      checkTips:'Don't ask again after denying',
+      checkTips: 'Don't ask again after denying',
       primaryButton: {
         value: 'Deny',
         action: () => {},
@@ -691,3 +695,50 @@ struct Index {
 ```
 
 ![popover_dialog](figures/advanced_dialog_popover_dialog.png)
+
+### Example 10: Setting the Default Focus Button for a Dialog Box
+This example demonstrates how to set a default focus button in a dialog box using **AlertDialog**, including the **defaultFocus** property.
+
+```ts
+import { AlertDialog } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: AlertDialog({
+      primaryTitle: 'AlertDialog',
+      secondaryTitle: 'Subtitle',
+      content: 'The second button gains focus by default.',
+      primaryButton: {
+        value: 'DEFAULT',
+        action: () => {}
+      },
+      secondaryButton: {
+        value: 'TRUE',
+        defaultFocus: true, // Set the button as the default focus button.
+        action: () => {}
+      },
+    })
+  });
+
+  build() {
+    Row() {
+      Stack() {
+        Column() {
+          Button("AlertDialog")
+            .width(96)
+            .height(40)
+            .onClick(() => {
+              this.dialogController.open()
+            })
+        }.margin({ bottom: 300 })
+      }.align(Alignment.Bottom)
+      .width('100%').height('100%')
+    }
+    .backgroundImageSize({ width: '100%', height: '100%' })
+    .height('100%')
+  }
+}
+```
+![dialogDefaultFocus](figures/dialogDefaultFocus.png)
