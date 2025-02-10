@@ -83,15 +83,16 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
 
 ## GeometryType
-用于在创建几何对象时指定其类型。
+几何类型枚举，用于指定几何形状。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
-| 名称 | 类型 | 只读 | 可选 | 说明 |
-| ---- | ---- | ---- | ---- | ---- |
-| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
-| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
-| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
-| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+
+| 名称 | 值 | 说明 |
+| ---- | ---- | ---- |
+| CUSTOM | 0 | 未定义类型。 |
+| CUBE | 1 | 立方体类型。 |
+| PLANE | 2 | 平面类型。 |
+| SPHERE | 3 | 球体类型。 |
 
 ## GeometryDefinition
 用于在创建几何对象时指定其类型。
@@ -100,9 +101,6 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
-| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
-| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
-| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
 
 ## PrimitiveTopology
 用于在创建几何对象时指定其类型。
