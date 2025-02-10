@@ -1725,6 +1725,18 @@
 
 **起始版本**：7
 
+### ohos.permission.START_DESKTOP_UI_COMPONENT
+
+允许应用拉起桌面组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 允许应用撤销给其他应用授予的敏感权限。
