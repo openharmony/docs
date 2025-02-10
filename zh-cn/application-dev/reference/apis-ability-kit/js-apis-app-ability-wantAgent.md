@@ -808,7 +808,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
