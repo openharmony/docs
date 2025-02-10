@@ -24,13 +24,12 @@
 - C API
   - 模块
     - [Input](input.md)
-  - 头文件和结构体
-    - 头文件
-      - [oh_axis_type.h](oh__axis__type_8h.md)
-      - [oh_input_manager.h](oh__input__manager_8h.md)
-      - [oh_key_code.h](oh__key__code_8h.md)
+  - 头文件
+    - [oh_axis_type.h](oh__axis__type_8h.md)
+    - [oh_input_manager.h](oh__input__manager_8h.md)
+    - [oh_key_code.h](oh__key__code_8h.md)
   - 结构体
-      - [Input_DeviceListener](_input___device_listener.md)
-      - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
+    - [Input_DeviceListener](_input___device_listener.md)
+    - [Input_InterceptorEventCallback](_input___interceptor_event_callback.md)
 - 错误码
   - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
