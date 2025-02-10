@@ -39,7 +39,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 | enable | boolean | 是 | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
