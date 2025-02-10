@@ -1268,4 +1268,3 @@ adminManager.getAdmins().then((result) => {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
 | ADMIN_TYPE_SUPER  | 0x01 | 超级设备管理应用。 |
-| ADMIN_TYPE_BYOD  | 0x02 | 自带设备管理应用。 |
