@@ -22,7 +22,7 @@ setDisallowedPolicy(admin: Want, feature: string, disallow: boolean): void
 
 设置禁用/启用某特性。 
 
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -68,7 +68,7 @@ getDisallowedPolicy(admin: Want, feature: string): boolean
 
 获取某特性状态。 
 
-**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS<sup>15+</sup>
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
