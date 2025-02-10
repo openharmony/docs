@@ -1166,7 +1166,7 @@ Duplex类继承[Readable](#readable)，支持Readable中所有的方法。
 | writable | boolean | 是 | 否  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
 | writableLength | number | 是 | 否  | 表示双工流缓冲区中待写入的字节数。|
 | writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
-| writableEnded | boolean | 是  | 否 | 表示当前双工流的[end()](#end)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end)已被调用，false表示[end()](#end)未被调用。|
+| writableEnded | boolean | 是  | 否 | 表示当前双工流的[end()](#end-1)是否被调用，该状态不代表数据已经全部写入。true表示[end()](#end-1)已被调用，false表示[end()](#end-1)未被调用。|
 | writableFinished | boolean | 是  | 否 | 表示当前双工流是否处于写入完成状态。true表示当前流处于写入完成状态，false表示当前流写入操作可能还在进行中。|
 
 ### constructor
