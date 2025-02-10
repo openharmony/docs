@@ -1120,6 +1120,8 @@
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
+        - 压缩与解压<!--compress-->
+          - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
@@ -3429,13 +3431,12 @@
         - C API<!--input-c-->
           - 模块<!--input-module-->
             - [Input](reference/apis-input-kit/input.md)
-          - 头文件和结构体<!--input-headerfile-struct-->
-            - 头文件<!--input-headerfile-->
-                - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
-                - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
-                - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
-            - 结构体<!--input-struct-->
-                - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+          - 头文件<!--input-headerfile-->
+            - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
+            - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
+            - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+          - 结构体<!--input-struct-->
+            - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
