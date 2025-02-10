@@ -103,11 +103,10 @@ getTotalSize(): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -176,11 +175,10 @@ getTotalSizeSync(): number
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -213,11 +211,10 @@ getFreeSize(): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -286,11 +283,10 @@ getFreeSizeSync(): number
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
