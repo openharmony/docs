@@ -97,7 +97,7 @@
   - OpenMP支持
     - [OpenMP简介](openmp-overview.md)
     - [OpenMP应用构建和运行指南](openmp-guideline.md)
-  - 资源管理
+  - 资源管理<!--resource-management-->
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 线程调度
     - [QOS开发指导](qos-guidelines.md)
