@@ -89,6 +89,7 @@
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
       - JSVM-API调优&高性能使用示例
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
@@ -105,6 +106,7 @@
   - 设备管理
     - [USB DDK开发指导](usb-ddk-guidelines.md)
     - [HID DDK开发指导](hid-ddk-guidelines.md)
+    - [USB SERIAL DDK开发指导](usb-serial-ddk-guidelines.md)
   - 包管理
     - [NativeBundle开发指导](native-bundle-guidelines.md)
 - 调试和性能分析

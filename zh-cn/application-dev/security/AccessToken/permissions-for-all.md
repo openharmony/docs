@@ -169,11 +169,13 @@
 
 允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
-**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
+**权限级别**：normal
 
 **授权方式**：system_grant
 
 **起始版本**：9
+
+**变更信息：** API 9-10，权限级别为system_basic；从API 11开始，变更为normal。
 
 ## ohos.permission.PUBLISH_AGENT_REMINDER
 
@@ -355,11 +357,13 @@
 
 <!--RP2--><!--RP2End-->
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+**权限级别**：normal
 
 **授权方式**：system_grant
 
 **起始版本**：11
+
+**变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
 
 ## ohos.permission.ACCESS_CAR_DISTRIBUTED_ENGINE
 
@@ -439,7 +443,7 @@
 
 **起始版本**：12
 
-**变更信息**：在API 12-15，权限的开放范围为系统应用；从API16开始，开放范围变更为普通应用。
+**变更信息**：在API 12-15，该权限仅向系统应用开放；从API16开始，开放范围变更为普通应用。
 
 ## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 

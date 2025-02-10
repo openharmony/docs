@@ -926,7 +926,10 @@
           - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
             - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
             - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
-        - [消息认证码计算](security/CryptoArchitectureKit/crypto-compute-mac.md)
+        - 消息认证码<!--crypto-compute-mac-->
+          - [消息认证码计算介绍及算法规格](security/CryptoArchitectureKit/crypto-compute-mac-overview.md)
+          - [消息认证码计算HMAC](security/CryptoArchitectureKit/crypto-compute-hmac.md)
+          - [消息认证码计算CMAC](security/CryptoArchitectureKit/crypto-compute-cmac.md)
         - [安全随机数生成](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - 密钥派生<!--crypto-key-derivation-->
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
@@ -1127,6 +1130,8 @@
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
+        - 压缩与解压<!--compress-->
+          - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
@@ -1385,12 +1390,13 @@
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
-      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
-        - [DRM系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
-        - [DRM会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
-      - 数字版权保护开发指导(C/C++)<!--drm-native-->
-        - [DRM系统管理(C/C++)](media/drm/native-drm-mediakeysystem-management.md)
-        - [DRM会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
+      - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
+      - [数字版权保护(C/C++)](media/drm/drm-c-dev-guide.md)
+      <!--Del-->
+      - [DRM解决方案开发指导](media/drm/drm-solution-dev-guide.md)
+      <!--DelEnd-->
+      - [基于AVPlayer播放DRM节目(ArkTS)](media/drm/drm-avplayer-arkts-integration.md)
+      - [基于AVCodec播放DRM节目(C/C++)](media/drm/drm-avcodec-integration.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
@@ -1533,6 +1539,8 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
+      - [更新通知](notification/notification-update.md)
+      - [取消通知](notification/notification-cancel.md)
       <!--Del-->
       - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
       <!--DelEnd-->
@@ -1663,6 +1671,7 @@
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
+            - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
@@ -2154,6 +2163,8 @@
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
       - 错误码<!--arkts-arkts-errcode-->
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
+        - [Typescript Compiler错误码](reference/apis-arkts/errorcode-tsc.md)
+        - [编译工具链错误码](reference/apis-arkts/errorcode-ets-loader.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
         - UI界面<!--ui-->
@@ -4098,6 +4109,7 @@
           - [drawing_types.h](reference/apis-arkgraphics2d/drawing__types_8h.md)
           - [effect_filter.h](reference/apis-arkgraphics2d/effect__filter_8h.md)
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
+          - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
@@ -4137,6 +4149,7 @@
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/_o_h___native_buffer___smpte2086.md)
           - [OH_NativeBuffer_StaticMetadata](reference/apis-arkgraphics2d/_o_h___native_buffer___static_metadata.md)
           - [OH_OnFrameAvailableListener](reference/apis-arkgraphics2d/_o_h___on_frame_available_listener.md)
+          - [BufferHandle](reference/apis-arkgraphics2d/_buffer_handle.md)
           - [OHExtDataHandle](reference/apis-arkgraphics2d/_o_h_ext_data_handle.md)
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)

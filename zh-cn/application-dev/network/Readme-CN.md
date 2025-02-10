@@ -5,6 +5,7 @@
 - Network Kit数据传输能力
     - [HTTP数据请求](http-request.md)
     - [WebSocket连接](websocket-connection.md)
+    - [WebSocket连接(C/C++)](native-websocket-guidelines.md)
     - [Socket连接](socket-connection.md)
     - [MDNS](net-mdns.md)
 
@@ -12,6 +13,7 @@
     - [网络连接管理](net-connection-manager.md)
     - [NetConnection开发指导(C/C++)](native-netmanager-guidelines.md)
     - [流量管理](net-statistics.md)
+    - [VPN应用开发指南](net-vpnExtension.md)
     - [网络防火墙](net-netfirewall.md)
     <!--Del-->
     - [网络共享（仅对系统应用开放）](net-sharing.md)

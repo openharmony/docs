@@ -135,7 +135,7 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 > **说明：**
 >
-> - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参；
+> - 若UIExtensionAbility通过调用`terminateSelfWithResult`退出，其携带的信息会传给回调函数的入参。
 > - 若UIExtensionAbility通过调用`terminateSelf`退出，上述回调函数的入参中，"code"取默认值"0"，"want"为"undefined"。
 
 ### onDrawReady<sup>16+<sup>

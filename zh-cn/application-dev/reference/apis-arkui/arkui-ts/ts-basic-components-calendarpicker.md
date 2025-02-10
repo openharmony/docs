@@ -119,7 +119,7 @@ markToday(enabled: boolean)
 
 ### onChange
 
-onChange(callback: (value: Date) => void)
+onChange(callback: Callback\<Date>)
 
 选择日期时触发该事件。
 
@@ -131,7 +131,7 @@ onChange(callback: (value: Date) => void)
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| value  | Date | 是   | 选中的日期值。 |
+| callback | [Callback](ts-types.md#callback12)\<Date> | 是   | 选中的日期值。 |
 
 ### onChange<sup>16+</sup>
 
@@ -147,7 +147,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回调函数。 |
 
 ##  CalendarOptions对象说明
 
@@ -200,7 +200,6 @@ struct CalendarPickerExample {
 
   build() {
     Column() {
-      Text('月历日期选择器').fontSize(30)
       Column() {
         CalendarPicker({ hintRadius: 10, selected: this.selectedDate })
           .edgeAlign(CalendarAlign.END)
@@ -210,6 +209,8 @@ struct CalendarPickerExample {
             console.info("CalendarPicker onChange:" + JSON.stringify(value))
           })
       }.alignItems(HorizontalAlign.End).width("100%")
+
+      Text('日历日期选择器').fontSize(30)
     }.width('100%').margin({ top: 350 })
   }
 }

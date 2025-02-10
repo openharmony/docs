@@ -466,10 +466,16 @@ Error: install parse native so failed.
 
 设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
 
+> **说明：**
+>
+> - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
+> - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
+<!--RP1--><!--RP1End-->
+
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains\{版本号}目录下。
+2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
     ```
     若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
     ```
@@ -1445,3 +1451,16 @@ os_integration bundle is not allowed to install for shell.
 **处理步骤**
 
 1. 检查应用是否是release的预装应用。
+
+### 9568278 安装包的版本号不一致
+**错误信息**
+
+error: install version code not same.
+
+**可能原因**
+1. 设备上安装的应用和安装报错的应用包版本号（versionCode）不一致。
+2. 安装多个包中存在版本号（versionCode）不一致。
+
+**处理步骤**
+1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
+2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。

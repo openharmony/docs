@@ -676,7 +676,7 @@ isVisible(): boolean
 
 isClipToFrame(): boolean
 
-获取节点是否是剪裁到组件区域。
+获取节点是否是剪裁到组件区域。当调用[dispose](#dispose12)解除对实体FrameNode节点的引用关系之后，返回值为true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -770,7 +770,7 @@ dispose(): void
 
 > **说明：**
 >
-> FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口(getPositionToParent、getPositionToScreen、getPositionToWindow、getPositionToParentWithTransform、getPositionToScreenWithTransform、getPositionToWindowWithTransform、getMeasuredSize、getLayoutPosition、getUserConfigBorderWidth、getUserConfigPadding、getUserConfigMargin、getUserConfigSize)的时候会导致应用出现jscrash。
+> FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口([getMeasuredSize](#getmeasuredsize12)、[getLayoutPosition](#getlayoutposition12))的时候会导致应用出现jscrash。
 >
 > 通过[getUniqueId](#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniqueId大于0时表示该对象对应一个实体FrameNode节点。
 
@@ -1387,68 +1387,6 @@ typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础
 
 请参考[自定义具体类型节点示例](#自定义具体类型节点示例)。
 
-### getAttribute('Scroll')<sup>16+</sup>
-getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
-
-获取Scroll节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
-| nodeType | 'Scroll' | 是 | 获取Scroll节点类型的属性。 |
-
-**返回值：**
-
-| 类型                  | 说明      |
-| ------------------ | ------------------ |
-| ScrollAttribute&nbsp;\|&nbsp;undefined | Scroll节点类型的属性，若获取失败，则返回undefined。 |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.getAttribute(node, 'Scroll');
-```
-
-### bindController('Scroll')<sup>16+</sup>
-bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
-
-将滚动控制器Scroller绑定到Scroll节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明  |
-| ------------------ | ------------------ | ------------------- | ------------------- |
-| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
-| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
-| nodeType | 'Scroll' | 是 | 绑定滚动控制器的目标节点的节点类型为Scroll。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息                         |
-| -------- | -------------------------------- |
-| 401      | Parameter error. Possible causes: 1. The type of the node is error; 2.The node is null or undefined. |
-| 100021   | The FrameNode is not modifiable. |
-
-**示例：** 
-
-<!--code_no_check-->
-
-```ts
-typeNode.bindController(node, scroller, 'Scroll');
-```
-
 ### Text<sup>12+</sup>
 type Text = TypedFrameNode&lt;TextInterface, TextAttribute&gt;
 
@@ -1869,6 +1807,68 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 
 ```ts
 typeNode.createNode(uiContext, 'Scroll');
+```
+
+### getAttribute('Scroll')<sup>16+</sup>
+getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
+
+获取Scroll节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'Scroll' | 是 | 获取Scroll节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| ScrollAttribute&nbsp;\|&nbsp;undefined | Scroll节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'Scroll');
+```
+
+### bindController('Scroll')<sup>16+</sup>
+bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
+
+将滚动控制器Scroller绑定到Scroll节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
+| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
+| nodeType | 'Scroll' | 是 | 绑定滚动控制器的目标节点的节点类型为Scroll。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The type of the node is error; 2.The node is null or undefined. |
+| 100021   | The FrameNode is not modifiable. |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.bindController(node, scroller, 'Scroll');
 ```
 ### RelativeContainer<sup>12+</sup>
 type RelativeContainer = TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt;

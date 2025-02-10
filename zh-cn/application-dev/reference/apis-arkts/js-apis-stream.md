@@ -27,7 +27,7 @@ import { stream  } from '@kit.ArkTS';
 | 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | 是   | 否 | 指定可写流是否以对象模式工作。true表示流被配置为对象模式，false表示流处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 否  | 定义缓冲区可以存放的最大数据量。默认为16 * 1024，单位为字节。|
+| writableHighWatermark | number | 是 | 否  | 定义缓冲区数据量水位线大小。当前不支持开发者自定义修改设置水位线大小。调用[write()](#write)写入后，若缓冲区数据量达到该值，[write()](#write)会返回false。默认为16 * 1024，单位为字节。|
 | writable | boolean | 是 | 否  | 表示可写流是否处于可写状态。true表示流当前是可写的，false表示流当前不再接受写入操作。|
 | writableLength | number | 是 | 否  | 表示可读流缓冲区中待写入的字节数。|
 | writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除可写流的封住状态。|
@@ -72,7 +72,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| boolean | 可写流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区已满。 |
+| boolean | 可写流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区数据量已达到设定水位线，不建议继续写入。 |
 
 **错误码：**
 
@@ -1162,7 +1162,7 @@ Duplex类继承[Readable](#readable)，支持Readable中所有的方法。
 | 名称    | 类型      | 只读 | 可选  | 说明        |
 | ------- | -------- | ------ | ------ | ----------- |
 | writableObjectMode  | boolean   | 是   | 否 | 用于指定双工流的写模式是否以对象模式工作。true表示流的写模式被配置为对象模式，false表示流的写模式处于非对象模式。当前版本只支持原始数据（字符串和Uint8Array），返回值为false。 |
-| writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区可以存放的最大数据量。默认值为16 * 1024，单位为字节。|
+| writableHighWatermark | number | 是 | 否  | 定义双工流的写模式下缓冲区数据量水位线大小。当前不支持开发者自定义修改设置水位线大小。调用[write()](#write-1)写入后，若缓冲区数据量达到该值，[write()](#write-1)会返回false。默认值为16 * 1024，单位为字节。|
 | writable | boolean | 是 | 否  | 表示双工流是否处于可写状态。true表示当前流是可写的，false表示流当前不再接受写入操作。|
 | writableLength | number | 是 | 否  | 表示双工流缓冲区中待写入的字节数。|
 | writableCorked | number | 是  | 否 | 表示需要调用uncork()方法的次数，以完全解除双工流的封住状态。|
@@ -1207,7 +1207,7 @@ write(chunk?: string | Uint8Array, encoding?: string, callback?: Function): bool
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| boolean | 可写流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区已满。 |
+| boolean | 可写流的缓冲区中是否还有空间。true表示缓冲区还有空间，false表示流的内部缓冲区数据量已达到设定水位线，不建议继续写入。 |
 
 **错误码：**
 
