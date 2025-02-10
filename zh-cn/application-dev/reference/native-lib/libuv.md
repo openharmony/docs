@@ -1049,7 +1049,7 @@ int uv_async_send(uv_async_t* handle)
 >
 > 2. uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
 
-![线程间通信原理](./figures/libuv-image-1.png)
+![线程间通信原理](./figures/libuv-image-1.jpg)
 
 示例代码：
 
@@ -1144,7 +1144,7 @@ after_work_cb：loop所在线程要执行的回调函数。
 
 下图为原生libuv的线程池工作流程，图中流程已简化，默认句柄的pending标志为1，worker线程个数不代表线程池中线程的真实数量。
 
-![libuv线程池工作原理](./figures/libuv-image-3.png)
+![libuv线程池工作原理](./figures/libuv-image-3.jpg)
 
 #### 异步任务提交注意事项
 ##### uv_queue_work工作流程
@@ -1184,7 +1184,7 @@ uv_queue_work(loop, work, [](uv_work_t* work) {
 
 另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着FFRT线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
 
-![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.png)
+![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.jpg)
 
 我们总结了五种类型的请求任务是直接可以按照正常用法在应用主循环中生效的：
 
