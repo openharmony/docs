@@ -283,3 +283,20 @@ enum Asset_OperationType
 | -------- | -------- |
 | ASSET_NEED_SYNC | 需要进行同步操作。 |
 | ASSET_NEED_LOGOUT | 需要进行登出操作。 |
+
+### Asset_WrapType
+
+```
+enum Asset_WrapType
+```
+
+**描述**
+
+关键资产支持的加密导入导出类型。
+
+**起始版本：** 16
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| ASSET_WRAP_TYPE_NEVER | 不允许加密导入导出关键资产。 |
+| ASSET_WRAP_TYPE_TRUSTED_ACCOUNT | 只在登录可信账号的设备进行加密导入导出关键资产。 |
