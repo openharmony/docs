@@ -528,9 +528,9 @@ WAPI认证方式的枚举。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## WifiCategory<sup>15+</sup>
+## WifiCategory<sup>12+</sup>
 
-表示tu热点支持的最高wifi类别。
+表示热点支持的最高wifi类别。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
@@ -539,8 +539,8 @@ WAPI认证方式的枚举。
 | DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
 | WIFI6 | 2 | Wifi6。 |
 | WIFI6_PLUS | 3 | Wifi6+。 |
-| WIFI7 | 4 | Wifi7。 |
-| WIFI7_PLUS | 5 | Wifi7+。 |
+| WIFI7<sup>15+</sup> | 4 | Wifi7。 |
+| WIFI7_PLUS<sup>15+</sup> | 5 | Wifi7+。 |
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
