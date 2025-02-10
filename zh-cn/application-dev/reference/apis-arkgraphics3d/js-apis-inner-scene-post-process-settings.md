@@ -31,6 +31,19 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | type | [ToneMappingType](#tonemappingtype) | 否 | 是 | 色调映射类型，默认值为undefined。 |
 | exposure | number | 否 | 是 | 曝光度，取值大于0，默认值为undefined。 |
 
+## BloomSettings
+Bloom设置实例。
+### 属性
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| thresholdHard | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
+| thresholdSoft | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
+| scaleFactor | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
+| scatter | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
+
 ## PostProcessSettings
 后处理设置。
 
@@ -39,3 +52,4 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射设置，默认值为undefined。 |
+| bloom | [BloomSettings](#BloomSettings) | 否 | 是 | 色调映射设置，默认值为undefined。 |
