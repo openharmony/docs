@@ -7,7 +7,7 @@
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > **建议使用[Remote Communication Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5)进行HTTP请求，Remote Communication Kit将持续演进。**
-## 导入模块
+## 导入模块 
 
 ```ts
 import { http } from '@kit.NetworkKit';
@@ -1127,7 +1127,7 @@ HTTP 请求方法。
 | HEAD    | "HEAD"    | HEAD方法请求与GET请求相同的响应，但没有响应主体。 |
 | POST    | "POST"    | POST方法将实体提交给指定的资源，通常会导致服务器上的状态更改。 |
 | PUT     | "PUT"     | PUT方法将目标资源的所有当前表示替换为请求内容。 |
-| DELETE  | "DELETE"  | DELETE方法用于删除指定的资源。 |
+| DELETE  | "DELETE"  | DELETE方法用于删除指定的资源。  |
 | TRACE   | "TRACE"   | TRACE方法沿到达目标资源的路径执行消息环回测试。 |
 | CONNECT | "CONNECT" | CONNECT方法建立到由目标资源标识的服务器的隧道。 |
 
