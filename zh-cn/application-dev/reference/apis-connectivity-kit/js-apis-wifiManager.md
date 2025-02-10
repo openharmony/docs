@@ -528,9 +528,9 @@ WAPI认证方式的枚举。
 | PHASE2_AKA | 6 | AKA类型。 |
 | PHASE2_AKA_PRIME | 7 | AKA Prime类型。 |
 
-## WifiCategory<sup>12+</sup>
+## WifiCategory<sup>15+</sup>
 
-表示热点支持的最高wifi类别。
+表示tu热点支持的最高wifi类别。
 
 **系统能力：** SystemCapability.Communication.WiFi.STA
 
