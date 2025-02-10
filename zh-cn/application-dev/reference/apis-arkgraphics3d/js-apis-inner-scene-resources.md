@@ -132,8 +132,7 @@ function destroy() : void {
 | materialOverride | [Material](#material) | 否 | 是 | 材质，默认为空。 |
 
 ## MeshResource
-网格类型，继承自[SceneResource](#sceneresource)。
-### 属性
+网格资源，继承自[SceneResource](#sceneresource)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
