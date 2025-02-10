@@ -2733,6 +2733,18 @@ Allows a system application to set dynamic sandbox policies.
 
 **Valid since**: 11
 
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+Allows a system application or system service to check sandbox policies of other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 Allows an SA to call **Find Device**.

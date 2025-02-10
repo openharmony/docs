@@ -2733,6 +2733,18 @@
 
 **起始版本**：11
 
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+允许系统应用或系统服务查询其他应用的沙箱管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 允许系统SA调用“查找设备”。
