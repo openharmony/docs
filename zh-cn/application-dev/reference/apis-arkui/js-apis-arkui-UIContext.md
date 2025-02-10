@@ -6967,7 +6967,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
 | target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>菜单标题仅在content设置为Array<[MenuElement](#menuelement)&gt; 时生效。<br/>是否在子窗口显示菜单。<br/>默认值：2in1设备为true，其他设备为false。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreview类型。 |
 
 **返回值：**
 
