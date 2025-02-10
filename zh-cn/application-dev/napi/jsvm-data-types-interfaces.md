@@ -1,40 +1,44 @@
 # JSVM-API支持的数据类型和接口
 
-## JSVM-API的数据类型
+##JSVM -
+    API的数据类型
 
-### JSVM_Status
+    ## #JSVM_Status
 
-是一个枚举数据类型，表示JSVM-API接口返回的状态信息。
+    是一个枚举数据类型，表示JSVM -
+    API接口返回的状态信息。
 
-每当调用一个JSVM-API函数，都会返回该值，表示操作成功与否的相关信息。
+        每当调用一个JSVM -
+    API函数，都会返回该值，表示操作成功与否的相关信息。
 
 ```c++
-typedef enum {
-    JSVM_OK,
-    JSVM_INVALID_ARG,
-    JSVM_OBJECT_EXPECTED,
-    JSVM_STRING_EXPECTED,
-    JSVM_NAME_EXPECTED,
-    JSVM_FUNCTION_EXPECTED,
-    JSVM_NUMBER_EXPECTED,
-    JSVM_BOOL_EXPECTED,
-    JSVM_ARRAY_EXPECTED,
-    JSVM_GENERIC_FAILURE,
-    JSVM_PENDING_EXCEPTION,
-    JSVM_CENCELLED,
-    JSVM_ESCAPE_CALLED_TWICE,
-    JSVM_HANDLE_SCOPE_MISMATCH,
-    JSVM_CALLBACK_SCOPE_MISMATCH,
-    JSVM_QUEUE_FULL,
-    JSVM_CLOSING,
-    JSVM_BIGINT_EXPECTED,
-    JSVM_DATA_EXPECTED,
-    JSVM_CALLBACK_SCOPE_MISMATCH,
-    JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED,
-    JSVM_WOULD_DEADLOCK,  /* unused */
-    JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,
-    JSVM_CANNOT_RUN_JS
-} JSVM_Status;
+    typedef enum {
+        JSVM_OK,                              /* 成功状态 */
+        JSVM_INVALID_ARG,                     /* 无效的状态 */
+        JSVM_OBJECT_EXPECTED,                 /* 期待传入对象类型 */
+        JSVM_STRING_EXPECTED,                 /* 期待传入字符串类型 */
+        JSVM_NAME_EXPECTED,                   /* 期待传入名字 */
+        JSVM_FUNCTION_EXPECTED,               /* 期待传入函数类型 */
+        JSVM_NUMBER_EXPECTED,                 /* 期待传入数字类型 */
+        JSVM_BOOL_EXPECTED,                   /* 期待传入布尔类型 */
+        JSVM_ARRAY_EXPECTED,                  /* 期待传入数组类型 */
+        JSVM_GENERIC_FAILURE,                 /* 泛型失败状态 */
+        JSVM_PENDING_EXCEPTION,               /* 挂起异常状态 */
+        JSVM_CENCELLED,                       /* 取消状态 */
+        JSVM_ESCAPE_CALLED_TWICE,             /* 转义调用了2次 */
+        JSVM_HANDLE_SCOPE_MISMATCH,           /* 句柄作用域不匹配 */
+        JSVM_CALLBACK_SCOPE_MISMATCH,         /* 回调作用域不匹配 */
+        JSVM_QUEUE_FULL,                      /* 队列满 */
+        JSVM_CLOSING,                         /* 关闭中 */
+        JSVM_BIGINT_EXPECTED,                 /* 期望传入Bigint类型 */
+        JSVM_DATA_EXPECTED,                   /* 期望传入日期类型 */
+        JSVM_ARRAYBUFFER_EXPECTED,            /* 期望传入ArrayBuffer类型 */
+        JSVM_DETACHABLE_ARRAYBUFFER_EXPECTED, /* 可分离的数组缓冲区预期状态 */
+        JSVM_WOULD_DEADLOCK,                  /* 将死锁状态 */
+        JSVM_NO_EXTERNAL_BUFFERS_ALLOWED,     /* 不允许外部缓冲区 */
+        JSVM_CANNOT_RUN_JS,                   /* 不能执行JS */
+        JSVM_JIT_MODE_EXPECTD,                /* 期望在JIT模式下执行 */
+    } JSVM_Status;
 ```
 
 ### JSVM_ExtendedErrorInfo
@@ -384,9 +388,69 @@ typedef JSVM_PropertyHandlerConfigurationStruct* JSVM_PropertyHandlerCfg;
 | OH_JSVM_OpenHandleScope| 打开一个Handle scope，确保scope范围内的JSVM_Value不被GC回收 |
 | OH_JSVM_CloseHandleScope| 关闭Handle scope |
 
-场景示例:
-创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境。
+##### JSVM_InitOptions 的使用描述
+通过传入 JSVM_InitOptions 可以初始化具备不同能力的 VM 平台。
 
+场景示例：
+常规模式下初始化 VM 平台
+```c++
+static void NormalInit(bool &vmInit) {
+    if (!vmInit) {
+        // JSVM only need init once
+        JSVM_InitOptions initOptions;
+        memset(&initOptions, 0, sizeof(initOptions));
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+场景示例：
+初始化低内存占用的 VM 平台
+```c++
+static void LowMemoryInit(bool &vmInit) {
+    if (!vmInit) {
+        // JSVM only need init once
+        JSVM_InitOptions initOptions;
+        initOptions.argc = 4;
+        const char* argv[4];
+        argv[1] = "--incremental-marking-hard-trigger=40";
+        argv[2] = "--min-semi-space-size=4";
+        argv[3] = "--max-semi-space-size=1";
+        initOptions.argv = const_cast<char**>(argv);
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+场景示例：
+初始化低GC触发频次的 VM 平台
+```c++
+static void LowGCFrequencyInit(bool &vmInit) {
+    if (!vmInit) {
+        // JSVM only need init once
+        JSVM_InitOptions initOptions;
+        initOptions.argc = 4;
+        const char* argv[4];
+        argv[1] = "--incremental-marking-hard-trigger=80";
+        argv[2] = "--min-semi-space-size=16";
+        argv[3] = "--max-semi-space-size=16";
+        initOptions.argv = const_cast<char**>(argv);
+        OH_JSVM_Init(&initOptions);
+        vmInit = true;
+    }
+}
+```
+
+执行结果：
+使用以上三个接口可以分别初始化具备不同能力的 VM 平台。初始化之后，可以创建 VM 实例，并执行 JavaScript 脚本。其中，
+调用 LowGCFrequencyInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所触发的 GC 频次更低。调用 LowMemoryInit 接口进行 VM 平台初始化执行 JavaScript 脚本，相比调用 NormalInit 接口所占用内存更少。
+
+##### 创建 VM 实例
+
+场景示例:
+创建及销毁JavaScript引擎实例，包含创建及销毁JS执行上下文环境
 ```c++
 bool VM_INIT = false;
 
@@ -417,13 +481,11 @@ static JSVM_Value Add(JSVM_Env env, JSVM_CallbackInfo info) {
 
 static napi_value MyJSVMDemo([[maybe_unused]] napi_env _env, [[maybe_unused]] napi_callback_info _info) {
     std::thread t([]() {
-        if (!VM_INIT) {
-            // JSVM only need init once
-            JSVM_InitOptions initOptions;
-            memset(&initOptions, 0, sizeof(initOptions));
-            OH_JSVM_Init(&initOptions);
-            VM_INIT = true;
-        }
+        // 可以根据不同的业务需求初始化具备不同能力的 VM 平台：
+        // 1. 初始化默认的 VM 平台：调用'NormalInit'接口。
+        // 2. 初始化低内存占用的 VM 平台：调用'LowMemoryInit'接口。
+        // 3. 初始化低 GC 触发频次的 VM 平台：调用'LowGCFrequencyInit'接口。
+        NormalInit(VM_INIT);
         // create vm, and open vm scope
         JSVM_VM vm;
         JSVM_CreateVMOptions options;

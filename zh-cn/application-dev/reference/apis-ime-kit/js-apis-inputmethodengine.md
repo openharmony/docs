@@ -1686,7 +1686,7 @@ try {
 }
 ```
 
-### startMoving<sup>16+</sup>
+### startMoving<sup>15+</sup>
 
 startMoving(): void
 
@@ -1716,7 +1716,7 @@ try {
 }
 ```
 
-### getDisplayId<sup>16+</sup>
+### getDisplayId<sup>15+</sup>
 
 getDisplayId(): Promise\<number>
 

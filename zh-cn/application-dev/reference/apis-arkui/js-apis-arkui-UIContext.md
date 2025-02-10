@@ -3533,7 +3533,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3562,7 +3562,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3591,7 +3591,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3620,7 +3620,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3649,7 +3649,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3678,7 +3678,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3707,7 +3707,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3736,7 +3736,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -6679,7 +6679,7 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
 | target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16) | 否 | popup弹窗样式。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 否 | popup弹窗样式。 |
 
 **返回值：**
 
@@ -6694,10 +6694,10 @@ openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, 
 | 错误码ID  | 错误信息                               |
 | ------ | ---------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 103301 | the ComponentContent is incorrect. |
-| 103302 | the ComponentContent already exists. |
-| 133304 | the targetId does not exist. |
-| 133305 | the node of targetId is not in the component tree. |
+| 103301 | The ComponentContent is incorrect. |
+| 103302 | The ComponentContent already exists. |
+| 103304 | The targetId does not exist. |
+| 103305 | The node of targetId is not in the component tree. |
 
 **示例：**
 
@@ -6802,7 +6802,7 @@ updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupComm
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
-| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
 | partialUpdate | boolean | 否 | popup弹窗更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
@@ -6938,6 +6938,292 @@ struct DragControllerPage {
               })
             }
           }
+        })
+    }
+  }
+}
+```
+
+### openMenu<sup>16+</sup>
+
+openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
+
+创建并弹出以content作为内容的menu弹窗。通过该接口弹出的menu弹窗，其内容样式完全按照content中设置的样式显示。使用Promise异步回调。
+
+> **说明：**
+>
+> 1. 使用该接口时，若未传入有效的target，则无法弹出menu弹窗。
+>
+> 2. 由于[updateMenu](#updatemenu16)和[closeMenu](#closemenu16)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
+| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreview类型。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103302 | The ComponentContent already exists. |
+| 103304 | The targetId does not exist. |
+| 103305 | The node of targetId is not in the component tree. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+### updateMenu<sup>16+</sup>
+
+updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
+
+更新content对应的menu弹窗的样式。使用Promise异步回调。
+
+> **说明：**
+>
+> 不支持更新preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+
+  setTimeout(() => {
+    promptAction.updateMenu(contentNode, {
+      enableArrow: false,
+    });
+  }, 2000)
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+### closeMenu<sup>16+</sup>
+
+closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
+
+关闭content对应的menu弹窗。使用Promise异步回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+
+  setTimeout(() => {
+    promptAction.closeMenu(contentNode);
+  }, 2000)
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
         })
     }
   }
@@ -9507,3 +9793,19 @@ struct Index {
   }
 }
 ```
+
+## cancelDataLoading<sup>16+</sup>
+
+cancelDataLoading(key: string): void
+
+当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |

@@ -8,8 +8,7 @@
 - DNS策略的配置能力，包括配置禁止/允许解析的域名、解析使用的DNS服务器（主选/备选）（应用级）。
 
 > **说明：**
->
-> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
+> 为了保证应用的运行效率，所有API调用都是异步的，对于异步调用的API均提供了Promise的方式，以下示例均采用Promise方式，更多方式可以查阅[API参考](../reference/apis-network-kit/js-apis-net-netfirewall-sys.md)。
 
 ## 约束
 
@@ -37,7 +36,7 @@
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
+完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall-sys.md)。
 
 | 接口                                                                                               | 描述              |
 | -------------------------------------------------------------------------------------------------- | ----------------- |

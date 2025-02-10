@@ -1130,6 +1130,8 @@
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
+        - 压缩与解压<!--compress-->
+          - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
@@ -1388,12 +1390,13 @@
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
-      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
-        - [DRM系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
-        - [DRM会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
-      - 数字版权保护开发指导(C/C++)<!--drm-native-->
-        - [DRM系统管理(C/C++)](media/drm/native-drm-mediakeysystem-management.md)
-        - [DRM会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
+      - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
+      - [数字版权保护(C/C++)](media/drm/drm-c-dev-guide.md)
+      <!--Del-->
+      - [DRM解决方案开发指导](media/drm/drm-solution-dev-guide.md)
+      <!--DelEnd-->
+      - [基于AVPlayer播放DRM节目(ArkTS)](media/drm/drm-avplayer-arkts-integration.md)
+      - [基于AVCodec播放DRM节目(C/C++)](media/drm/drm-avcodec-integration.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
@@ -1536,6 +1539,8 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
+      - [更新通知](notification/notification-update.md)
+      - [取消通知](notification/notification-cancel.md)
       <!--Del-->
       - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
       <!--DelEnd-->
@@ -1666,6 +1671,7 @@
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
+            - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)

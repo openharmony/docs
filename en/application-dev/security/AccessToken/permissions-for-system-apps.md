@@ -1451,7 +1451,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -1724,6 +1724,18 @@ Allows an application to obtain the Ability Form.
 **Enable via ACL**: true
 
 **Valid since**: 7
+
+### ohos.permission.START_DESKTOP_UI_COMPONENT
+
+Allows an application to start desktop UI components.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
@@ -4140,6 +4152,18 @@ Allows an application to access the confidential computing zone.
 
 **Valid since**: 16
 
+### ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
+
+Allows an application to synchronize assets between the devices logged with the same trusted account.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 Allows an application to obtain brief information about the recovery key.
@@ -4312,7 +4336,7 @@ Allows an application to initiate screen recording without displaying the user a
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 15
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
@@ -4449,6 +4473,20 @@ Allows an application to read the data of Account Suggestions and start the UIEx
 **Enable via ACL**: true
 
 **Valid since**: 16
+
+### ohos.permission.SET_PAC_URL
+
+Allows an application to set the URL of the proxy auto config (PAC) script.
+
+After the script address is configured, other applications can read and parse this script and determine whether to use a proxy based on the parsing result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ## system_grant Permissions (Unavailable via ACL)
 

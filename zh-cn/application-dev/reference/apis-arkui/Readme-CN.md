@@ -316,6 +316,7 @@
     - [SelectTitleBar](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [TabTitleBar](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
+    - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [SubHeader](arkui-ts/ohos-arkui-advanced-SubHeader.md)
     - [SubHeaderV2](arkui-ts/ohos-arkui-advanced-SubHeaderV2.md)
   - 菜单

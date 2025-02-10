@@ -32,6 +32,7 @@
 | typedef struct [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) [ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) | 主动发起拖拽后，通过拖拽状态监听返回的系统拖拽相关数据。  | 
 | typedef struct [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) [OH_UdmfData](_ark_u_i___native_module.md#oh_udmfdata) | UDMF 统一数据定义。  | 
 | typedef struct [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) [OH_PixelmapNative](_ark_u_i___native_module.md#oh_pixelmapnative) | Pixelmap结构体类型，用于执行Pixelmap相关操作。  | 
+| typedef struct [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) [OH_UdmfGetDataParams](_ark_u_i___native_module.md#oh_udmfgetdataparams) | 从UDMF获取数据时的参数。  | 
 
 
 ### 枚举
@@ -101,3 +102,6 @@
 | [ArkUI_DragStatus](_ark_u_i___native_module.md#arkui_dragstatus) [OH_ArkUI_DragAndDropInfo_GetDragStatus](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragstatus) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 获取dragaction发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。  | 
 | [ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent) \* [OH_ArkUI_DragAndDropInfo_GetDragEvent](_ark_u_i___native_module.md#oh_arkui_draganddropinfo_getdragevent) ([ArkUI_DragAndDropInfo](_ark_u_i___native_module.md#arkui_draganddropinfo) \*dragAndDropInfo) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等。  | 
 | int32_t [OH_ArkUI_StartDrag](_ark_u_i___native_module.md#oh_arkui_startdrag) ([ArkUI_DragAction](_ark_u_i___native_module.md#arkui_dragaction) \*dragAction) | 通过构造的DragAction对象发起拖拽。  | 
+| int32_t [OH_ArkUI_DragEvent_StartDataLoading](_ark_u_i___native_module.md#oh_arkui_dragevent_startdataloading) ([ArkUI_DragEvent](_ark_u_i___native_module.md#arkui_dragevent)\* event, OH_UdmfGetDataParams\* options, char\* key, unsigned int keyLen) | 异步获取拖拽数据。  | 
+| int32_t [OH_ArkUI_CancelDataLoading](_ark_u_i___native_module.md#oh_arkui_canceldataloading) ([ArkUI_Context](_ark_u_i___native_module.md#arkui_context) uiContext, const char\* key) | 取消异步获取拖拽数据。 | 
+| int32_t [OH_ArkUI_DisableDropDataPrefetchOnNode](_ark_u_i___native_module.md#oh_arkui_disabledropdataprefetchonnode) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, bool disable) | 设置拖拽是否提前获取数据。true为不提前获取数据，默认值为false。  | 

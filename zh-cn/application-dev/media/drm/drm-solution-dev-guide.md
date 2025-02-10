@@ -1,35 +1,34 @@
-# DRM解决方案插件开发指导
+# DRM解决方案开发指导
 
-DRM 解决方案插件实现 DRM HDI 接口（链接），DRM Kit的 DRM 框架将通过 HDI 接口加载 DRM 解决方案插件。
+DRM 解决方案插件实现 DRM HDI 接口（链接），DRM Kit的DRM框架将通过HDI接口加载DRM解决方案插件。
 
 插件由DRM解决方案集成方开发，放置在设备的 /vendor 分区中。
 
-## 实现
-
-OpenHarmony HDI 插件驱动服务开发流程参考https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/driver/driver-hdf-manage.md
-，DRM HDI API 的 IDL 在 ohos/drivers/interface/drm/v1_0 目录中定义，其中 v1_0 对应不同版本的 HDI API 版本号，需根据实际调用的 HDI API 版本进行修改。
+OpenHarmony HDI 插件驱动服务开发流程参考[HDF驱动开发流程](../../../device-dev/driver/driver-hdf-manage.md)，DRM HDI API 的 IDL 在 ohos/drivers/interface/drm/v1_0 目录中定义，其中 v1_0 对应不同版本的 HDI API 版本号，需根据实际调用的 HDI API 版本进行修改。
 
 DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/`中找到生成的相应版本的 .h 和 .cpp文件。
 实现 DRM 解决方案插件的步骤如下（以clearplay为例）：
 
-1、开发插件
-  - 模块添加
-  - 驱动入口实现
-  - HDI接口实现
-  - 编译配置
-  - 部件配置
-  - 部件编译入口配置
-  - 服务代码编译
+1. [开发插件](#开发插件)
+    - 模块添加
+    - 驱动入口实现
+    - HDI接口实现
+    - 编译配置
+    - 部件配置
+    - 部件编译入口配置
+    - 服务代码编译
 
-2、DRM解决方案插件服务配置
-  - hcs配置
-  - host用户与组配置
-  - 动态加载
+2. [DRM解决方案插件服务配置](#drm解决方案插件服务配置)
+    - hcs配置
+    - host用户与组配置
+    - 动态加载
 
-3、添加 SELinux 权限
+3. [添加SELinux权限](#添加selinux权限)
 
-### 开发插件
-#### 模块添加
+## 开发插件
+
+### 模块添加
+
 创建插件目录，参考如下：
 ```
 //drivers/peripheral/clearplay
@@ -48,7 +47,7 @@ DRM HDI API 的 IDL 构建完成后，可以在`//ohos/out/产品型号/gen/driv
 └── README_zh.md # DRM解决方案HDI服务组件说明
 ```
 
-#### 驱动入口实现
+### 驱动入口实现
 
 驱动入口实现可以参考`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/media_key_system_factory_driver.cpp`，需要驱动入口实现中修改以下几点，并手动配置编译：
 
@@ -117,7 +116,7 @@ static int32_t MediaKeySystemFactoryDriverDispatch(struct HdfDeviceIoClient *cli
 }
 ```
 
-#### HDI接口实现
+### HDI接口实现
 
 实现可以参考<!--RP2-->`//ohos/out/产品型号/gen/drivers/interface/drm/v1_0/`<!--RP2End-->中自动生成的.cpp文件，可以按照业务需要进行定制化修改或新增文件，如`media_key_system_factory_service.cpp`：
 
@@ -149,7 +148,7 @@ int32_t MediaKeySystemFactoryService::GetMediaKeySystemDescription(std::string& 
 
 ```
 
-#### 编译配置
+### 编译配置
 //drivers/peripheral/clearplay/BUILD.gn
 
 ```
@@ -267,7 +266,8 @@ group("hdf_clearplay_interfaces") {
 }
 ```
 
-#### 部件配置
+### 部件配置
+
 新建drivers/peripheral/clearplay/build.json用于定义新增的drivers_peripheral_clearplay部件：
 
 ```
@@ -349,7 +349,8 @@ group("hdf_clearplay_interfaces") {
   }
 }
 ```
-#### 部件编译入口配置
+### 部件编译入口配置
+
 以rk3568产品为例：`//productdefine/common/inherit/chipset_common.json`
 
 ```
@@ -359,15 +360,18 @@ group("hdf_clearplay_interfaces") {
 }
 ```
 
-#### 服务代码编译
+### 服务代码编译
+
 与编译系统部件编译类似：
 `./build.sh --product-name rk3568 --ccache --build-target drivers_peripheral_clearplay`
 编译生成的二进制文件如下：
 //ohos/out/rk3568/hdf/drivers_peripheral_clearplay/libclearplay_driver.z.so
 //ohos/out/rk3568/hdf/drivers_peripheral_clearplay/libmedia_key_system_factory_clearplay_service_1.0.z.so
 
-### DRM解决方案插件服务配置
-#### hcs配置
+## DRM解决方案插件服务配置
+
+### hcs配置
+
 以rk3568产品为例，在`vendor/hihope/rk3568/hdf_config/uhdf/device_info.hcs`添加驱动服务配置
 
 ```
@@ -388,7 +392,8 @@ clearplay :: host {
 }
 ```
 
-#### host用户与组配置
+### host用户与组配置
+
 对于在hcs中新增加的host节点，需要新增配置对应进程的uid（用户ID）和gid（组ID）
 passwd文件为系统用户配置文件，存储了系统中所有用户的基本信息，这里以此为例：
 
@@ -413,7 +418,8 @@ base/startup/init/services/etc/group中每行代表一个用户组，用户组�
 - passwd中clearplay_host对应device_info.hcs中的uid，若device_info.hcs中uid缺省，则默认为hostName
 - group中clearplay_host对应device_info.hcs中的gid，若device_info.hcs中gid缺省，则默认为hostName
 
-#### 动态加载
+### 动态加载
+
 为节约 RAM 内存占用，DRM 框架服务支持动态加载 DRM 解决方案插件，DRM 框架服务调用完解决方案插件后，及时卸载 DRM 解决方案插件，释放 RAM 内存占用，插件需通过修改服务启动属性将自身服务配置成懒加载，并加入到设备上的 DRM 框架服务懒加载列表配置文件中;HDI服务提供动态加载能力，系统启动过程中默认不加载，支持动态加载，以下为示例：
 `device_info.hcs`配置preload为2
 ```
@@ -442,7 +448,8 @@ clearplay :: host {
 }
 ```
 
-### 添加 SELinux 权限
+## 添加SELinux权限
+
 selinux用于限制服务进程可访问的资源，以下给定基础的selinux配置，在此基础上按业务添加所需规则。
 
 注意：以下示例中，clearplay_host表示hcs中的hostName值，clearplay_service表示服务名称
