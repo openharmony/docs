@@ -175,7 +175,7 @@
       - [ViewData(系统接口)](js-apis-inner-application-viewData-sys.md)
       - [AutoFillRect(系统接口)](js-apis-inner-application-autoFillRect-sys.md)
       <!--DelEnd-->
-    - bundleManager
+    - bundleManager<!--bundlemanager-->
       - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
       - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
       - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
@@ -200,15 +200,15 @@
       - [SharedBundleInfo (系统接口)](js-apis-bundleManager-sharedBundleInfo-sys.md)
       - [shortcutInfo (系统接口)](js-apis-bundleManager-shortcutInfo-sys.md)
       <!--DelEnd-->
-    - continuation
+    - continuation<!--continuation-->
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
-    - security
+    - security<!--ability-security-->
       - [PermissionRequestResult](js-apis-permissionrequestresult.md)
-    - wantAgent
+    - wantAgent<!--wantagent-->
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
-  - 已停止维护的接口
+  - 已停止维护的接口<!--ability-arkts-dep-->
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-ability-dataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
     - [@ohos.ability.wantConstant (wantConstant)](js-apis-ability-wantConstant.md)
@@ -231,7 +231,7 @@
     - [@ohos.distributedBundle (分布式包管理)(系统接口)](js-apis-Bundle-distributedBundle-sys.md)
     <!--DelEnd-->
     - [@system.package (应用管理)](js-apis-system-package.md)
-    - bundle
+    - bundle<!--bundle-->
       - [abilityInfo](js-apis-bundle-AbilityInfo.md)
       - [applicationInfo](js-apis-bundle-ApplicationInfo.md)
       - [bundleInfo](js-apis-bundle-BundleInfo.md)
