@@ -248,8 +248,8 @@
       - [remoteAbilityInfo(系统接口)](js-apis-bundle-remoteAbilityInfo-sys.md)
       - [shortcutInfo(系统接口)](js-apis-bundle-ShortcutInfo-sys.md)
       <!--DelEnd-->
-- C API
-  - 模块
+- C API<!--ability-c-->
+  - 模块<!--ability-module-->
     - [AbilityAccessControl](_ability_access_control.md)
     - [AbilityBase](_ability_base.md)
     - [AbilityRuntime](_ability_runtime.md)
