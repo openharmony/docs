@@ -16,6 +16,8 @@
 
 变更前：
 
+香港地区推荐语言为简体中文、繁体中文。
+
 | 系统地区              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
 | CN                    | en,zh-Hans,bo,ug,zh-Hant       |   zh-Hans,en,bo,ug,zh-Hant  |
@@ -31,6 +33,8 @@
 | CA               | zh-Hans,bo,en,ug,zh-Hant       |   zh-Hant,zh-Hans,en,ug,bo  |
 
 变更后：
+
+香港地区推荐语言为繁体中文、英文。
 
 | 系统地区              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
@@ -78,6 +82,8 @@ i18n.SystemLocaleManager.getLanguageInfoArray
 
 变更前：
 
+简体中文推荐地区为新加坡、中国、中国澳门、中国香港。
+
 | 系统语言              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
 | en               | HK,TW,CN,AU,CA,IN,NZ,SG,GB,US,MO       |   US,AU,CA,IN,NZ,SG,GB,CN,HK,MO,TW  |
@@ -87,6 +93,8 @@ i18n.SystemLocaleManager.getLanguageInfoArray
 | bo               | HK,TW,CN,AU,CA,IN,NZ,SG,GB,US,MO       |   CN,TW,HK,MO,CA,NZ,GB,SG,IN,US,AU  |
 
 变更后：
+
+简体中文推荐地区为中国。
 
 | 系统语言              | 接口入参      | 返回数组的顺序   |
 | --------------- | ------- | -------- |
