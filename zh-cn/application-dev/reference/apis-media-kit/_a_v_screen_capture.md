@@ -79,7 +79,6 @@
 | typedef void(\* [OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t errorCode, void \*userData) | 当OH_AVScreenCapture实例操作期间发生错误时，将调用函数指针。 | 
 | typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, OH_AVBuffer \*buffer, [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 | 
 | typedef enum [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1) [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) | 屏幕录制过程中产生的不同结果码。 | 
-| typedef void(\* [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected)) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, uint64_t displayId, void \*userData) | 当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。 | 
 
 
 ### 枚举
@@ -118,7 +117,6 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_Release](#oh_avscreencapture_release) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture) | 释放创建的OH_AVScreenCapture实例，对应OH_AVScreenCapture_Create。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMicrophoneEnabled](#oh_avscreencapture_setmicrophoneenabled) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool isMicrophone) | 设置麦克风开关。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetStateCallback](#oh_avscreencapture_setstatecallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnStateChange](#oh_avscreencapture_onstatechange) callback, void \*userData) | 设置状态变更处理回调方法，在开始录制前调用。  | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetDisplayCallback](#oh_avscreencapture_setdisplaycallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected) callback, void \*userData) | 设置状态变更处理回调方法，在开始录制前调用。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetDataCallback](#oh_avscreencapture_setdatacallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable) callback, void \*userData) | 设置数据处理回调方法，在开始录制前调用。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetErrorCallback](#oh_avscreencapture_seterrorcallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnError](#oh_avscreencapture_onerror) callback, void \*userData) | 设置错误处理回调方法，在开始录制前调用。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetCanvasRotation](#oh_avscreencapture_setcanvasrotation) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool canvasRotation) | 设置录屏屏幕数据旋转。  | 
@@ -319,27 +317,6 @@ typedef void(* OH_AVScreenCapture_OnStateChange) (struct OH_AVScreenCapture *cap
 | -------- | -------- |
 | capture | 指向OH_AVScreenCapture实例的指针。  | 
 | stateCode | 指定状态码。  | 
-| userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
-
-
-### OH_AVScreenCapture_OnDisplaySelected
-
-```
-typedef void(* OH_AVScreenCapture_OnDisplaySelected) (struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData)
-```
-**描述**
-当OH_AVScreenCapture实例操作期间发生状态变更时，将调用函数指针。
-
-**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
-
-**起始版本：** 15
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| capture | 指向OH_AVScreenCapture实例的指针。  | 
-| displayId | 指定屏幕码。  | 
 | userData | 指向应用设置该回调处理方法时提供的自定义数据的指针。 | 
 
 
@@ -1451,43 +1428,6 @@ AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参�
 AV_SCREEN_CAPTURE_ERR_NO_MEMORY：内存不足，内存分配失败。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置StateCallback失败。
-
-
-### OH_AVScreenCapture_SetDisplayCallback()
-
-```
-OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDisplayCallback (struct OH_AVScreenCapture * capture, OH_AVScreenCapture_OnDisplaySelected callback, void * userData )
-```
-**描述**
-设置屏幕选择处理回调方法，在开始录制前调用。
-
-调用该方法设置屏幕选择处理回调方法，当启动录屏时，该屏幕选择回调方法将会被调用。
-
-调用该设置方法成功后，在启动录屏时将通知用户录屏屏幕的id.
-
-**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
-
-**起始版本：** 15
-
-**参数:**
-
-| 名称 | 描述 | 
-| -------- | -------- |
-| capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
-| callback | 指向录屏屏幕回调方法实例的指针[OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected) | 
-| userData | 指向应用提供的自定义数据的指针，在状态处理回调方法被调用时作为入参回传。 | 
-
-**返回：**
-
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
-
-AV_SCREEN_CAPTURE_ERR_OK：执行成功。
-
-AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数callback为空指针。
-
-AV_SCREEN_CAPTURE_ERR_NO_MEMORY：内存不足，内存分配失败。
-
-AV_SCREEN_CAPTURE_ERR_INVALID_STATE：接口设置需要在Start方法调用前完成。
 
 
 ### OH_AVScreenCapture_StartScreenCapture()
