@@ -94,6 +94,17 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001563060641.png)
 
+- 圆角矩形按钮<sup>16+</sup>
+  从API version 16开始，默认值为controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp，支持通过borderRadius属性重新设置圆角。
+
+  ```ts
+  Button('Disable', { type: ButtonType.ROUNDED_RECTANGLE, stateEffect: true }) 
+    .backgroundColor(0x317aff) 
+    .width(90)
+    .height(40)
+  ```
+
+  ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001511421208.png)
 
 ## 自定义样式
 
@@ -284,7 +295,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   }
   ```
 
-  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562700393.png)
+  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562940814.gif)
 
 
 - 用于提交表单。

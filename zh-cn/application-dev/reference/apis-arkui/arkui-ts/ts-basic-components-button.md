@@ -359,11 +359,11 @@ maxFontScale(scale: number | Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| EMPHASIZED | 强调按钮（用于强调当前操作）。 |
-| NORMAL  | 普通按钮（一般界面操作）。              |
-| TEXTUAL  | 文本按钮（纯文本，无背景颜色）。      |
+| 名称      | 值 | 说明               |
+| ------- | -- |------------------ |
+| NORMAL  | 0 |普通按钮（一般界面操作）。              |
+| EMPHASIZED | 1 |强调按钮（用于强调当前操作）。 |
+| TEXTUAL  | 2 |文本按钮（纯文本，无背景颜色）。      |
 
 ## ControlSize<sup>11+</sup>枚举说明
 
@@ -373,10 +373,10 @@ maxFontScale(scale: number | Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| SMALL | 小尺寸按钮。 |
-| NORMAL  | 正常尺寸按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| SMALL | "small" |小尺寸按钮。 |
+| NORMAL  | "normal" |正常尺寸按钮。              |
 
 ## ButtonRole<sup>12+</sup>枚举说明
 
@@ -386,10 +386,10 @@ maxFontScale(scale: number | Resource)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| NORMAL | 正常按钮。 |
-| ERROR  | 警示按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| NORMAL | 0 |正常按钮。 |
+| ERROR  | 1 |警示按钮。              |
 
 ## ButtonConfiguration<sup>12+</sup>对象说明
 
