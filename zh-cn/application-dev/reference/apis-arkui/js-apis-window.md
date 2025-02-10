@@ -7533,7 +7533,7 @@ startMoving(): Promise&lt;void&gt;
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
-仅对2in1设备生效，其它设备类型调用此接口会报错。
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -7594,14 +7594,13 @@ struct Index {
 
 startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
-移动窗口时，指定鼠标在窗口内的位置，使用Promise异步回调。
+指定鼠标在窗口内的位置并移动窗口，使用Promise异步回调。
 
-在同应用内窗口分合场景下，先使用[shiftAppWindowPointerEvent](#windowshiftappwindowpointereventsup15sup)转移输入事件再移动窗口。鼠标快速移动场景下，当窗口移动时鼠标可能会在窗口外，不在窗口内特定位置。
-可以使用本接口处理这个场景的窗口移动，先移动窗口到鼠标位置，使当前鼠标在窗口内指定偏移量的位置，再开始移动窗口。
+在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
 
 仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
 
-仅对2in1设备生效，其它设备类型调用此接口会报错。
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -7618,7 +7617,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 
 | 类型                | 说明                         |
 | ------------------- |----------------------------|
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
