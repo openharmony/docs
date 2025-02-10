@@ -79,7 +79,7 @@
       }
       try {
          geoLocationManager.getCurrentLocation(request).then((result) => { // 调用getCurrentLocation获取当前设备位置，通过promise接收上报的位置
-            console.log('current location: ' + JSON.stringify(result));
+            console.info('current location: ' + JSON.stringify(result));
          })
          .catch((error:BusinessError) => { // 接收上报的错误码
             console.error('promise, getCurrentLocation: error=' + JSON.stringify(error));
@@ -108,7 +108,7 @@
       'locationScenario': geoLocationManager.UserActivityScenario.NAVIGATION
    }
    let locationCallback = (location:geoLocationManager.Location):void => {
-      console.log('locationCallback: data: ' + JSON.stringify(location));
+      console.info('locationCallback: data: ' + JSON.stringify(location));
    };
    try {
       geoLocationManager.on('locationChange', request, locationCallback);
