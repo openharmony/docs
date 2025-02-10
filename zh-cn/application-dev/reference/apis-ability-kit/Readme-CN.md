@@ -55,7 +55,7 @@
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility模块)](js-apis-ability-particleAbility.md)
-  - 通用能力的接口(推荐)
+  - 通用能力的接口(推荐)<!--both-models-->
     - [@ohos.abilityAccessCtrl (程序访问控制管理)](js-apis-abilityAccessCtrl.md)
     - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)](js-apis-screenLockFileManager.md)
     - [@ohos.app.ability.abilityManager (AbilityManager)](js-apis-app-ability-abilityManager.md)
