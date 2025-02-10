@@ -227,7 +227,7 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | audio/mpeg | 音频/mpeg类型 | 
 | audio/g711mu | 音频/g711-mulaw类型 | 
 | audio/3gpp | 音频/amr-nb类型 | 
-| audio/amr-wb | 音频/amr-nb类型 | 
+| audio/amr-wb | 音频/amr-wb类型 | 
 
 支持的输出文件格式如下：
 
