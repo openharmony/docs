@@ -85,7 +85,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
   });
   ```
 
-## storageStatistics.getTotalSize<sup>16+</sup>
+## storageStatistics.getTotalSize<sup>15+</sup>
 
 getTotalSize(): Promise&lt;number&gt;
 
@@ -120,7 +120,7 @@ storageStatistics.getTotalSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getTotalSize<sup>16+</sup>
+## storageStatistics.getTotalSize<sup>15+</sup>
 
 getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -158,7 +158,7 @@ storageStatistics.getTotalSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getTotalSizeSync<sup>16+</sup>
+## storageStatistics.getTotalSizeSync<sup>15+</sup>
 
 getTotalSizeSync(): number
 
@@ -195,7 +195,7 @@ try {
 }
   ```
 
-## storageStatistics.getFreeSize<sup>16+</sup>
+## storageStatistics.getFreeSize<sup>15+</sup>
 
 getFreeSize(): Promise&lt;number&gt;
 
@@ -230,7 +230,7 @@ storageStatistics.getFreeSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSize<sup>16+</sup>
+## storageStatistics.getFreeSize<sup>15+</sup>
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -268,7 +268,7 @@ storageStatistics.getFreeSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSizeSync<sup>16+</sup>
+## storageStatistics.getFreeSizeSync<sup>15+</sup>
 
 getFreeSizeSync(): number
 
