@@ -190,6 +190,7 @@
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
     - [Swiper](arkui-ts/ts-container-swiper.md)
+    - [ArcSwiper](arkui-ts/ts-container-arcswiper.md)
     - [WaterFlow](arkui-ts/ts-container-waterflow.md)
     - [FlowItem](arkui-ts/ts-container-flowitem.md)
     - [ScrollBar](arkui-ts/ts-basic-components-scrollbar.md)
