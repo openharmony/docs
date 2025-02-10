@@ -268,7 +268,7 @@
     - [AbilityBase_Element](_ability_base_element.md)
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
     - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
-- 错误码
+- 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)
   - [包管理子系统通用错误码](errorcode-bundle.md)
