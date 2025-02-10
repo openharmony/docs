@@ -39,10 +39,10 @@ Bloom设置实例。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| thresholdHard | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
-| thresholdSoft | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
-| scaleFactor | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
-| scatter | number | 否 | 是 | 色调映射类型，默认值为undefined。 |
+| thresholdHard | number | 否 | 是 | 硬阈值，默认值为0。 |
+| thresholdSoft | number | 否 | 是 | 软阈值，默认值为0。 |
+| scaleFactor | number | 否 | 是 | 缩放因子，默认值为0。 |
+| scatter | number | 否 | 是 | 扩散量，默认值为0。 |
 
 ## PostProcessSettings
 后处理设置。
