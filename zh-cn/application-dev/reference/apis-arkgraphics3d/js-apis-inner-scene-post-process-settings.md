@@ -32,7 +32,7 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | exposure | number | 否 | 是 | 曝光度，取值大于0，默认值为undefined。 |
 
 ## BloomSettings
-Bloom设置接口。
+泛光设置接口。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
