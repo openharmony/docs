@@ -13,7 +13,7 @@
   - [@ohos.app.form.formProvider (FormProvider)(系统接口)](js-apis-app-form-formProvider-sys.md)
   - [@ohos.app.form.formObserver (formObserver)(系统接口)](js-apis-app-form-formObserver-sys.md)
   <!--DelEnd-->
-  - application
+  - application<!--form-arkts-application-->
     - [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)
     <!--Del-->
     - [FormExtensionContext(系统接口)](js-apis-inner-application-formExtensionContext-sys.md)
