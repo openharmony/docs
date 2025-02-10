@@ -1047,7 +1047,7 @@ on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
 ```ts
 try {
-  pipcontroller.on('pipWindowSizeChange', (size: pipwindow.PiPWindowSize) => {
+  pipcontroller.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
     console.info('Succeeded in enabling the listener for pip window size changes. size: ' + JSON.stringify(size));
   });
 } catch (exception) {
@@ -1085,7 +1085,7 @@ off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
 **示例：**
 
 ```ts
-const callback = (size: pipwindow.PiPWindowSize) => {
+const callback = (size: PiPWindow.PiPWindowSize) => {
   // ...
 }
 try {
