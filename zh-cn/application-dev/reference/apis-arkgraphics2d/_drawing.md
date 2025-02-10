@@ -385,7 +385,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_FontMgrDestroyFontStyleSet](#oh_drawing_fontmgrdestroyfontstyleset) ([OH_Drawing_FontStyleSet](#oh_drawing_fontstyleset) \*) | 释放字体样式集对象占用的内存。 |
 | [OH_Drawing_FontStyleSet](#oh_drawing_fontstyleset) \* [OH_Drawing_FontMgrMatchFamily](#oh_drawing_fontmgrmatchfamily) ([OH_Drawing_FontMgr](#oh_drawing_fontmgr) \*, const char \*familyName) | 由指定的字体家族名称，获取字体样式集对象。 |
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_FontMgrMatchFamilyStyle](#oh_drawing_fontmgrmatchfamilystyle) ([OH_Drawing_FontMgr](#oh_drawing_fontmgr) \*, const char \*familyName, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md)) | 根据指定的字体样式信息和字体家族名称，获取字型对象。 |
-| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_FontMgrMatchFamilyStyleCharacter](#oh_drawing_fontmgrmatchfamilystylecharacter) ([OH_Drawing_FontMgr](#oh_drawing_fontmgr) \*, const char \*familyName, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md), const char \*bcp47[], int bcp47Count, int32_t character) | 为指定字符获取字型对象。 |
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_FontMgrMatchFamilyStyleCharacter](#oh_drawing_fontmgrmatchfamilystylecharacter) ([OH_Drawing_FontMgr](#oh_drawing_fontmgr) \*, const char \*familyName, [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md), const char \*bcp47[], int bcp47Count, int32_t character) | 为指定字符获取字型对象，仅在传入字体管理对象中无法找到传入UTF8字符值对应的字型对象时返回空指针。 |
 | [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_FontStyleSetCreateTypeface](#oh_drawing_fontstylesetcreatetypeface) ([OH_Drawing_FontStyleSet](#oh_drawing_fontstyleset) \*, int index) | 为指定索引获取字型对象。 |
 | [OH_Drawing_FontStyleStruct](_o_h___drawing___font_style_struct.md) [OH_Drawing_FontStyleSetGetStyle](#oh_drawing_fontstylesetgetstyle) ([OH_Drawing_FontStyleSet](#oh_drawing_fontstyleset) \*, int32_t index, char \*\*styleName) | 获取字体样式。 |
 | void [OH_Drawing_FontStyleSetFreeStyleName](#oh_drawing_fontstylesetfreestylename) (char \*\*styleName) | 释放指定字体样式的内存。 |
@@ -527,7 +527,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_RectSetBottom](#oh_drawing_rectsetbottom) ([OH_Drawing_Rect](#oh_drawing_rect) \*rect, float bottom) | 用于设置矩形右下角的纵坐标。 |
 | void [OH_Drawing_RectCopy](#oh_drawing_rectcopy) ([OH_Drawing_Rect](#oh_drawing_rect) \*sRect, [OH_Drawing_Rect](#oh_drawing_rect) \*dRect) | 用于将源矩形对象复制到目标矩形对象。 |
 | void [OH_Drawing_RectDestroy](#oh_drawing_rectdestroy) ([OH_Drawing_Rect](#oh_drawing_rect) \*) | 用于销毁矩形对象并回收该对象占有的内存。 |
-| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_RectCreateArray](#oh_drawing_rectcreatearray) (size_t size) | 用于创建一个矩形数组对象, 用来存储多个矩形对象。 |
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_RectCreateArray](#oh_drawing_rectcreatearray) (size_t size) | 用于创建一个矩形数组对象, 用来存储多个矩形对象。不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_RectDestroyArray](#oh_drawing_rectdestroyarray)接口释放该对象的指针。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RectGetArraySize](#oh_drawing_rectgetarraysize) ([OH_Drawing_Array](#oh_drawing_array) \*rectArray, size_t \*pSize) | 用于获取矩形数组对象[OH_Drawing_Array](#oh_drawing_array)的大小。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RectGetArrayElement](#oh_drawing_rectgetarrayelement) ([OH_Drawing_Array](#oh_drawing_array) \*rectArray, size_t index, [OH_Drawing_Rect](#oh_drawing_rect) \*\*rect) | 用于获取矩形数组对象中指定索引的矩形对象。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_RectDestroyArray](#oh_drawing_rectdestroyarray) ([OH_Drawing_Array](#oh_drawing_array) \*rectArray) | 用于销毁矩形数组对象并回收该对象占有的内存。 |
@@ -570,13 +570,13 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_TextBlob](#oh_drawing_textblob) \* [OH_Drawing_TextBlobBuilderMake](#oh_drawing_textblobbuildermake) ([OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \*) | 用于从文本构造器中创建文本对象。 |
 | void [OH_Drawing_TextBlobDestroy](#oh_drawing_textblobdestroy) ([OH_Drawing_TextBlob](#oh_drawing_textblob) \*) | 用于销毁文本对象并回收该对象占有的内存。 |
 | void [OH_Drawing_TextBlobBuilderDestroy](#oh_drawing_textblobbuilderdestroy) ([OH_Drawing_TextBlobBuilder](#oh_drawing_textblobbuilder) \*) | 用于销毁文本构造器对象并回收该对象占有的内存。 |
-| [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_MatchFontDescriptors](#oh_drawing_matchfontdescriptors) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*, size_t \*) | 获取与指定字体描述符匹配的所有系统字体描述符，其中[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的path字段不作为有效的匹配 字段，其余字段不是默认值时生效，如果参数[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的所有字段都是默认值，则获取所有系统字体描述 符。如果匹配失败，返回NULL。 |
+| [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_MatchFontDescriptors](#oh_drawing_matchfontdescriptors) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*, size_t \*) | 获取与指定字体描述符匹配的所有系统字体描述符，其中[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的path字段不作为有效的匹配字段，其余字段不是默认值时生效，如果参数[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的所有字段都是默认值，则获取所有系统字体描述符。如果匹配失败，返回NULL。不再需要[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)时，请使用[OH_Drawing_DestroyFontDescriptors](_drawing.md#oh_drawing_destroyfontdescriptors)接口释放该对象的指针。 |
 | void [OH_Drawing_DestroyFontDescriptors](#oh_drawing_destroyfontdescriptors) ([OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \*, size_t) | 释放字体描述符[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)数组。 |
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_GetFontDescriptorByFullName](#oh_drawing_getfontdescriptorbyfullname) (const [OH_Drawing_String](_o_h___drawing___string.md) \*, [OH_Drawing_SystemFontType](#oh_drawing_systemfonttype)) | 根据字体名称和字体类型获取指定的字体描述符，支持系统字体、风格字体和用户已安装字体。 字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。 |
 | [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_GetSystemFontFullNamesByType](#oh_drawing_getsystemfontfullnamesbytype) ([OH_Drawing_SystemFontType](#oh_drawing_systemfonttype)) | 根据字体类型获取对应字体的字体名称数组。 |
 | const [OH_Drawing_String](_o_h___drawing___string.md) \* [OH_Drawing_GetSystemFontFullNameByIndex](#oh_drawing_getsystemfontfullnamebyindex) ([OH_Drawing_Array](#oh_drawing_array) \*, size_t) | 在字体名称数组中通过索引获取对应位置的字体名称。 |
 | void [OH_Drawing_DestroySystemFontFullNames](#oh_drawing_destroysystemfontfullnames) ([OH_Drawing_Array](#oh_drawing_array) \*) | 释放通过字体类型获取的对应字体的字体名称数组占用的内存。 |
-| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](#oh_drawing_typography) \*typography) | 获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。 |
+| [OH_Drawing_Array](#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](#oh_drawing_typography) \*typography) | 获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroyTextLines](#oh_drawing_destroytextlines)接口释放该对象的指针。 |
 | void [OH_Drawing_DestroyTextLines](#oh_drawing_destroytextlines) ([OH_Drawing_Array](#oh_drawing_array) \*lines) | 释放文本行数组的内存。 |
 | void [OH_Drawing_DestroyTextLine](#oh_drawing_destroytextline) (OH_Drawing_TextLine \*line) | 释放单个文本行对象的内存。只能释放单独申请内存的文本行对象，不能释放文本行数组中的某一个文本行对象的内存。 |
 | OH_Drawing_TextLine \* [OH_Drawing_GetTextLineByIndex](#oh_drawing_gettextlinebyindex) ([OH_Drawing_Array](#oh_drawing_array) \*lines, size_t index) | 获取文本行数组指定索引处的文本行对象。 |
@@ -622,10 +622,10 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_SetTextStyleFontSize](#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置字号。 |
 | void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
 | void [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置文本样式的字体基线位置。 |
-| void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置装饰。 |
+| void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线类型。 |
 | void [OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 新增指定装饰，可同时显示多种装饰线。 |
 | void [OH_Drawing_RemoveTextStyleDecoration](#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 删除指定装饰。 |
-| void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。 |
+| void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置指定文本样式中的装饰线颜色。 |
 | void [OH_Drawing_SetTextStyleFontHeight](#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。 |
 | void [OH_Drawing_SetTextStyleFontFamilies](#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 |
 | void [OH_Drawing_SetTextStyleFontStyle](#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字体样式。 |
@@ -646,7 +646,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Typography](#oh_drawing_typography) \* [OH_Drawing_CreateTypography](#oh_drawing_createtypography) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 创建指向OH_Drawing_Typography对象的指针。 |
 | void [OH_Drawing_DestroyTypography](#oh_drawing_destroytypography) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 释放OH_Drawing_Typography对象占据的内存。 |
 | void [OH_Drawing_TypographyLayout](#oh_drawing_typographylayout) ([OH_Drawing_Typography](#oh_drawing_typography) \*, double) | 排版布局。 |
-| void [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | 显示文本。 |
+| void [OH_Drawing_TypographyPaint](#oh_drawing_typographypaint) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, double, double) | 在指定位置绘制文本，从左上角开始绘制，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。 |
 | void [OH_Drawing_TypographyPaintOnPath](#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Path](#oh_drawing_path) \*, double, double) | 沿路径绘制文本。 |
 | double [OH_Drawing_TypographyGetMaxWidth](#oh_drawing_typographygetmaxwidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取用户设置的排版宽度，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。 |
 | double [OH_Drawing_TypographyGetHeight](#oh_drawing_typographygetheight) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取排版对象整体的高度，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。 |
@@ -674,7 +674,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | size_t [OH_Drawing_GetStartFromRange](#oh_drawing_getstartfromrange) ([OH_Drawing_Range](#oh_drawing_range) \*) | 获取OH_Drawing_Range对象开始位置。 |
 | size_t [OH_Drawing_GetEndFromRange](#oh_drawing_getendfromrange) ([OH_Drawing_Range](#oh_drawing_range) \*) | 获取OH_Drawing_Range对象结束位置。 |
 | size_t [OH_Drawing_TypographyGetLineCount](#oh_drawing_typographygetlinecount) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本行数，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。 |
-| void [OH_Drawing_SetTextStyleDecorationStyle](#oh_drawing_settextstyledecorationstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置文本装饰样式。 |
+| void [OH_Drawing_SetTextStyleDecorationStyle](#oh_drawing_settextstyledecorationstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线样式。 |
 | void [OH_Drawing_SetTextStyleDecorationThicknessScale](#oh_drawing_settextstyledecorationthicknessscale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本装饰线的厚度缩放比例。 |
 | void [OH_Drawing_SetTextStyleLetterSpacing](#oh_drawing_settextstyleletterspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本的字符间距。 |
 | void [OH_Drawing_SetTextStyleWordSpacing](#oh_drawing_settextstylewordspacing) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置文本的单词间距。 |
@@ -757,14 +757,14 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_TextStyleSetPlaceholder](#oh_drawing_textstylesetplaceholder) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*style) | 设置占位符。 |
 | bool [OH_Drawing_TextStyleIsPlaceholder](#oh_drawing_textstyleisplaceholder) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*style) | 返回是否有设置文本占位符。 |
 | [OH_Drawing_TextAlign](#oh_drawing_textalign) [OH_Drawing_TypographyStyleGetEffectiveAlignment](#oh_drawing_typographystylegeteffectivealignment) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取文本对齐模式。 |
-| bool [OH_Drawing_TypographyStyleIsHintEnabled](#oh_drawing_typographystyleishintenabled) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取文本是否启用字体提示。字体提示用于在渲染小字号文本时改善其可读性和外观。 |
+| bool [OH_Drawing_TypographyStyleIsHintEnabled](#oh_drawing_typographystyleishintenabled) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。 |
 | void [OH_Drawing_SetTypographyStyleTextStrutStyle](#oh_drawing_settypographystyletextstrutstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*) | 设置文本支柱样式。 |
 | [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \* [OH_Drawing_TypographyStyleGetStrutStyle](#oh_drawing_typographystylegetstrutstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本支柱样式。 |
 | void [OH_Drawing_TypographyStyleDestroyStrutStyle](#oh_drawing_typographystyledestroystrutstyle) ([OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*) | 释放被支柱样式对象占据的内存。 |
 | bool [OH_Drawing_TypographyStyleStrutStyleEquals](#oh_drawing_typographystylestrutstyleequals) ([OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*from, [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*to) | 判断支柱样式结构体是否相同。 |
-| void [OH_Drawing_TypographyStyleSetHintsEnabled](#oh_drawing_typographystylesethintsenabled) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, bool hintsEnabled) | 设置文本是否启用字体提示。字体提示用于在渲染小字号文本时改善其可读性和外观。 |
+| void [OH_Drawing_TypographyStyleSetHintsEnabled](#oh_drawing_typographystylesethintsenabled) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, bool hintsEnabled) | 设置文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。 |
 | void [OH_Drawing_TypographyMarkDirty](#oh_drawing_typographymarkdirty) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 将排版标记为脏数据，用于初始化排版状态。 |
-| int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量。 |
+| int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。 |
 | void [OH_Drawing_TypographyUpdateFontSize](#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新文本中的字体大小。 |
 | bool [OH_Drawing_TypographyTextGetLineStyle](#oh_drawing_typographytextgetlinestyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版是否启用行样式。 |
 | [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TypographyTextlineStyleGetFontWeight](#oh_drawing_typographytextlinestylegetfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取排版样式中支柱样式字重。 |
@@ -3487,7 +3487,7 @@ OH_Drawing_Array* OH_Drawing_RectCreateArray (size_t size)
 
 **描述**
 
-用于创建一个矩形数组对象, 用来存储多个矩形对象。
+用于创建一个矩形数组对象, 用来存储多个矩形对象。不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_RectDestroyArray](#oh_drawing_rectdestroyarray)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -3586,7 +3586,7 @@ OH_Drawing_Array* OH_Drawing_TypographyGetTextLines (OH_Drawing_Typography* typo
 
 **描述**
 
-获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。
+获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](#oh_drawing_array)时，请使用[OH_Drawing_DestroyTextLines](#oh_drawing_destroytextlines)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -4473,7 +4473,7 @@ OH_Drawing_FontDescriptor* OH_Drawing_MatchFontDescriptors (OH_Drawing_FontDescr
 
 **描述**
 
-获取与指定字体描述符匹配的所有系统字体描述符，其中[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的path字段不作为有效的匹配 字段，其余字段不是默认值时生效，如果参数[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的所有字段都是默认值，则获取所有系统字体描述 符。如果匹配失败，返回NULL。
+获取与指定字体描述符匹配的所有系统字体描述符，其中[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的path字段不作为有效的匹配字段，其余字段不是默认值时生效，如果参数[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)的所有字段都是默认值，则获取所有系统字体描述符。如果匹配失败，返回NULL。不再需要[OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md)时，请使用[OH_Drawing_DestroyFontDescriptors](_drawing.md#oh_drawing_destroyfontdescriptors)接口释放该对象的指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -10063,7 +10063,7 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyleCharacter (OH_Drawing_Fon
 
 **描述**
 
-为指定字符获取字型对象。
+为指定字符获取字型对象，仅在传入字体管理对象中无法找到传入UTF8字符值对应的字型对象时返回空指针。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13965,7 +13965,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 
 **描述**
 
-设置装饰。
+设置指定文本样式中的装饰线类型。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13987,7 +13987,7 @@ void OH_Drawing_SetTextStyleDecorationColor (OH_Drawing_TextStyle* , uint32_t  )
 
 **描述**
 
-设置装饰颜色。
+设置指定文本样式中的装饰线颜色。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14009,7 +14009,7 @@ void OH_Drawing_SetTextStyleDecorationStyle (OH_Drawing_TextStyle* , int  )
 
 **描述**
 
-设置文本装饰样式。
+设置指定文本样式中的装饰线样式。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17199,7 +17199,7 @@ int32_t OH_Drawing_TypographyGetUnresolvedGlyphsCount (OH_Drawing_Typography* )
 
 **描述**
 
-获取文本中尚未解析的字形的数量。
+获取文本中尚未解析的字形的数量，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17452,7 +17452,7 @@ void OH_Drawing_TypographyPaint (OH_Drawing_Typography* , OH_Drawing_Canvas* , d
 
 **描述**
 
-显示文本。
+在指定位置绘制文本，从左上角开始绘制，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17621,7 +17621,7 @@ bool OH_Drawing_TypographyStyleIsHintEnabled (OH_Drawing_TypographyStyle* style)
 
 **描述**
 
-获取文本是否启用字体提示。字体提示用于在渲染小字号文本时改善其可读性和外观。
+获取文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17646,7 +17646,7 @@ void OH_Drawing_TypographyStyleSetHintsEnabled (OH_Drawing_TypographyStyle* styl
 
 **描述**
 
-设置文本是否启用字体提示。字体提示用于在渲染小字号文本时改善其可读性和外观。
+设置文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

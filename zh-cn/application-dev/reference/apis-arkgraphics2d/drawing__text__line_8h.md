@@ -28,7 +28,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](_drawing.md#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*typography) | 获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。  | 
+| [OH_Drawing_Array](_drawing.md#oh_drawing_array) \* [OH_Drawing_TypographyGetTextLines](_drawing.md#oh_drawing_typographygettextlines) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*typography) | 获取排版对象的文本行数组。文本行数组中包含一个或多个文本行对象。不再需要[OH_Drawing_Array](_drawing.md#oh_drawing_array)时，请使用[OH_Drawing_DestroyTextLines](_drawing.md#oh_drawing_destroytextlines)接口释放该对象的指针。  | 
 | void [OH_Drawing_DestroyTextLines](_drawing.md#oh_drawing_destroytextlines) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*lines) | 释放文本行数组的内存。  | 
 | void [OH_Drawing_DestroyTextLine](_drawing.md#oh_drawing_destroytextline) (OH_Drawing_TextLine \*line) | 释放单个文本行对象的内存。只能释放单独申请内存的文本行对象，不能释放文本行数组中的某一个文本行对象的内存。  | 
 | OH_Drawing_TextLine \* [OH_Drawing_GetTextLineByIndex](_drawing.md#oh_drawing_gettextlinebyindex) ([OH_Drawing_Array](_drawing.md#oh_drawing_array) \*lines, size_t index) | 获取文本行数组指定索引处的文本行对象。  | 
