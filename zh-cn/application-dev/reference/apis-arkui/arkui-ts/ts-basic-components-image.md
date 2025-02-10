@@ -889,21 +889,21 @@ struct ImageExample4 {
 @Entry
 @Component
 struct Index {
-  @State top: number = 40
-  @State bottom: number = 5
-  @State left: number = 40
+  @State top: number = 10
+  @State bottom: number = 10
+  @State left: number = 10
   @State right: number = 10
 
   build() {
     Column({ space: 5 }) {
       // 原图效果
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .width(200).height(200)
         .border({ width: 2, color: Color.Pink })
         .objectFit(ImageFit.Contain)
 
       // 图像拉伸效果，设置resizable属性，对图片不同方向进行拉伸
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .resizable({
           slice: {
             left: this.left,
@@ -920,22 +920,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 2
+            this.top += 10
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 2
+            this.bottom += 10
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 2
+            this.left += 10
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 2
+            this.right += 10
           })
       }
 
