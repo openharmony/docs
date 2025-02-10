@@ -11,7 +11,7 @@ formError模块提供获取卡片错误码的能力。
 ## 导入模块
 
 ```ts
-import { formError } from '@kit.FormKit'
+import { formError } from '@kit.FormKit';
 ```
 
 ## 权限

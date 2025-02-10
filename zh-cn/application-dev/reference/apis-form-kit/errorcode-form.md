@@ -76,7 +76,7 @@ Failed to obtain configuration information.
 
 确认并验证卡片配置信息正确性。
 
-## 16501000 内部错误
+## 16501000 内部功能错误
 
 **错误信息**
 
