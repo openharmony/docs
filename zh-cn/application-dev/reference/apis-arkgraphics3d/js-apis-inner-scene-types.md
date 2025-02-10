@@ -82,6 +82,74 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
 | height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
 
+## GeometryType
+用于在创建几何对象时指定其类型。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
+| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
+| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+
+## GeometryDefinition
+用于在创建几何对象时指定其类型。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
+| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
+| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+
+## PrimitiveTopology
+用于在创建几何对象时指定其类型。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
+| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
+| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+
+## CustomGeometry
+用于在创建几何对象时指定其类型。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
+| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
+| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+
+## CubeGeometry
+立方体几何。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| size | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+
+## PlaneGeometry
+立方体几何。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| size | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+
+## SphereGeometry
+椭球几何。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| size | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+
 ## Position3
 type Position3 = Vec3
 
