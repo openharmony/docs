@@ -172,7 +172,7 @@ struct FreezeChild {
 
 ### Navigation
 
-- 对当前不可见的页面进行冻结，不会触发组件的更新，当返回该页面时，触发@Monitor回调进行刷新。
+- 当NavDestination不可见时，会将其子自定义组件设置成非激活态，不会触发组件的刷新。当返回该页面时，其子自定义组件重新恢复成激活态，触发@Monitor回调进行刷新。
 
 ```ts
 @Entry
