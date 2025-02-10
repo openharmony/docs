@@ -7,7 +7,7 @@
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > **建议使用[Remote Communication Kit](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/remote-communication-kit-guide-V5)进行HTTP请求，Remote Communication Kit将持续演进。**
-## 导入模块 
+## 导入模块
 
 ```ts
 import { http } from '@kit.NetworkKit';
@@ -1200,7 +1200,7 @@ request方法回调函数的返回值类型。
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------| --- | ----------- |
 | certPath | string | 是 | 证书路径 |
-| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM |
+| certType | [CertType](#certtype11) | 否 | 证书类型，默认是PEM。 |
 | keyPath | string | 是 | 证书秘钥的路径 |
 | keyPassword | string | 否  | 证书秘钥的密码 |
 
