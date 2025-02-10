@@ -78,6 +78,7 @@
       - [使用JSVM-API接口进行生命周期相关开发](use-jsvm-life-cycle.md)
       - [使用JSVM-API进行内存管理](use-jsvm-memory-management.md)
       - [使用JSVM-API判断给定的两个JS value是否严格相等](use-jsvm-strict-equals.md)
+    - - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - JSVM-API调优&高性能使用示例
@@ -86,6 +87,8 @@
         - [JSVM 通用调优实践](jsvm-optimizations.md)
   - 资源管理
     - [Rawfile开发指导](rawfile-guidelines.md)
+  - 网络管理
+    - [NetConnection开发指导](native-netmanager-guidelines.md)
   - 线程调度
     - [QOS开发指导](qos-guidelines.md)
   - 内存管理

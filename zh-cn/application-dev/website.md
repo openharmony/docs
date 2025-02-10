@@ -1640,6 +1640,14 @@
             - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
             - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
             - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
+            - [使用JSVM-API进行异常的定制化处理](napi/use-jsvm-trigger-exceptions.md)
+            - [使用JSVM-API感知JSVM引擎生命周期管理](napi/use-jsvm-trigger-gc.md)
+            - [使用JSVM-API接口进行 private 属性相关开发](napi/use-jsvm-about-private.md)
+            - [使用JSVM-API接创建 external string](napi/use-jsvm-about-external-string.md)
+            - [使用JSVM-API接口进行Proxy相关开发](napi/use-jsvm-about-proxy.md)
+            - [使用JSVM-API接口进行well-known symbols相关开发](napi/use-jsvm-about-well-known-symbols.md)
+            - [使用JSVM-API接口进行装箱类型判断相关开发](napi/use-jsvm-about-wrapper-object.md)
+            - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
@@ -1648,6 +1656,8 @@
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - 网络管理<!--network-management-->
+        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
