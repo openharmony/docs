@@ -328,6 +328,94 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
+### createGeometry
+createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise<Geometry>
+
+根据场景结点参数和网格数据创建几何对象, 使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| params | [SceneNodeParameters](#SceneNodeParameters) | 是 | 场景结点参数。 |
+| mesh | [MeshResource](#MeshResource) | 是 | 网格数据参数。 |
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| Promise\<[Geometry](js-apis-inner-scene-resources.md#geometry)> | Promise对象，返回几何对象。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+
+```
+
+### createMesh
+createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise<MeshResource>
+
+根据场景资源参数和几何定义创建网格, 使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| params | [SceneResourceParameters](#SceneResourceParameters) | 是 | 场景资源参数。 |
+| geometry | [GeometryDefinition](#GeometryDefinition) | 是 | 几何形状类型参数。 |
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#MeshResource)> | Promise对象，返回几何对象。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+
+```
+
+### createScene
+createScene(uri?: ResourceStr): Promise<Scene>
+
+根据资源参数创建场景, 使用Promise异步回调。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| uri? | [ResourceStr](#ResourceStr) | 是 | 资源参数。 |
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| Promise\<[Scene](js-apis-inner-scene-resources.md#Scene)> | Promise对象，返回场景对象。 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+
+```
+
+## RenderParameters
+渲染参数接口。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| alwaysRender | boolean | 否 | 是 | 为true表示一直渲染，为false表示按需渲染 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+```
+
 ## Scene
 用于设置场景。
 
@@ -453,4 +541,46 @@ function destroy() : void {
     }
   });
 }
+```
+
+### importNode
+importNode(name: string, node: Node, parent: Node | null): Node
+
+导入结点。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+
+```
+
+### importScene
+importScene(name: string, scene: Scene, parent: Node | null): Node
+
+导入场景。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+
+```
+
+### renderFrame
+renderFrame(params?: RenderParameters): boolean
+
+渲染一帧。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+
 ```
