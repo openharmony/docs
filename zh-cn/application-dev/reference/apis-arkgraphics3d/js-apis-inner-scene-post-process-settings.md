@@ -51,5 +51,5 @@ Bloom设置实例。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射设置，默认值为undefined。 |
-| bloom | [BloomSettings](#BloomSettings) | 否 | 是 | 色调映射设置，默认值为undefined。 |
+| toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射，默认值为undefined。 |
+| bloom | [BloomSettings](#BloomSettings) | 否 | 是 | 泛光，默认值为undefined。 |
