@@ -1824,7 +1824,7 @@ connection.clearCustomDnsRules().then(() => {
 
 setPacUrl(pacUrl: string): void
 
-设置系统级自动代理配置（PAC）脚本地址。
+设置系统级代理自动配置（PAC）脚本地址。
 
 **需要权限**：ohos.permission.SET_PAC_URL
 
@@ -1860,7 +1860,7 @@ connection.setPacUrl(pacUrl);
 
 getPacUrl(): string
 
-获取系统级自动代理配置（PAC）脚本地址。
+获取系统级代理自动配置（PAC）脚本地址。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
