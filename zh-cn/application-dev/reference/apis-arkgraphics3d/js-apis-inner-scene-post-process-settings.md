@@ -21,7 +21,7 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | FILMIC | 2 | FILMIC类型。 |
 
 ## ToneMappingSettings
-色调映射设置实例。
+色调映射设置接口。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -32,7 +32,7 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | exposure | number | 否 | 是 | 曝光度，取值大于0，默认值为undefined。 |
 
 ## BloomSettings
-Bloom设置实例。
+Bloom设置接口。
 ### 属性
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -52,4 +52,4 @@ Bloom设置实例。
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射，默认值为undefined。 |
-| bloom | [BloomSettings](#BloomSettings) | 否 | 是 | 泛光，默认值为undefined。 |
+| bloom | [BloomSettings](#bloomsettings) | 否 | 是 | 泛光，默认值为undefined。 |
