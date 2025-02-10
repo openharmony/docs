@@ -548,8 +548,8 @@ Codec MIME类型枚举。
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 | AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
-| AUDIO_AMR_NB<sup>15+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
-| AUDIO_AMR_NB<sup>15+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
+| AUDIO_AMR_NB<sup>16+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
+| AUDIO_AMR_NB<sup>16+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -4650,7 +4650,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 | CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
-| CFT_AMR<sup>15+</sup>  | 'amr' | 音频的容器格式，AMR。 |
+| CFT_AMR<sup>16+</sup>  | 'amr' | 音频的容器格式，AMR。 |
 
 ## Location
 
