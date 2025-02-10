@@ -33,7 +33,7 @@ Span(value: string | Resource)
 
 ## Attributes
 
-The attributes inherit from [BaseSpan](#basespan). Only the [universal text attributes](ts-universal-attributes-text-style.md) are supported.
+Inherited from [BaseSpan](#basespan).
 
 ### decoration
 
@@ -89,6 +89,96 @@ Text case.
 | ------ | ------- | ---- | ------- |
 | value  | [TextCase](ts-appendix-enums.md#textcase) | Yes  | Text case.<br>Default value: **TextCase.Normal**|
 
+### fontColor
+
+fontColor(value: ResourceColor)
+
+Sets the font color.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                      | Mandatory| Description      |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | Yes  | Font color.|
+
+### fontSize
+
+fontSize(value: number | string | Resource)
+
+Sets the font size.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | number \|  string\| [Resource](ts-types.md#resource) | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. The value cannot be a percentage.|
+
+### fontStyle
+
+fontStyle(value: FontStyle)
+
+Sets the font style.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                       | Mandatory| Description                                   |
+| ------ | ------------------------------------------- | ---- | --------------------------------------- |
+| value  | [FontStyle](ts-appendix-enums.md#fontstyle) | Yes  | Font style.<br>Default value: **FontStyle.Normal**|
+
+### fontWeight
+
+fontWeight(value: number | FontWeight | string)
+
+Sets the font weight. If the value is too large, the text may be clipped depending on the font.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | number \| [FontWeight](ts-appendix-enums.md#fontweight) \| string | Yes  | Font weight. For the number type, the value range is [100, 900], at an interval of 100. The default value is **400**. A larger value indicates a heavier font weight. For the string type, only strings of the number type are supported, for example, **400**, **"bold"**, **"bolder"**, **"lighter"**, **"regular"**, and **"medium"**, which correspond to the enumerated values in **FontWeight**.<br>Default value: **FontWeight.Normal**|
+
+### fontFamily
+
+fontFamily(value: string | Resource)
+
+Sets the font family.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                | Mandatory| Description                                                        |
+| ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | string \| [Resource](ts-types.md#resource) | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
+
 ### lineHeight<sup>10+</sup>
 
 lineHeight(value: Length)
@@ -109,7 +199,7 @@ Sets the line height for the text.
 
 font(value: Font)
 
-Text style, covering the font size, font width, Font family, and font style.
+Sets the text style, covering the font size, font width, Font family, and font style.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -209,9 +299,9 @@ Sets the offset of the baseline. This attribute coexists with the **baselineOffs
 | radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9) | No  | Rounded corner radius of the text background.|
 
 ## Example
-### Example 1
+### Example 1: Setting the Text Style
 
-This example shows how to set the **decoration**, **letterSpacing**, and **textCase** attributes.
+This example showcases various text styles by using the **decoration**, **letterSpacing**, and **textCase** attributes.
 
 ```ts
 // xxx.ets
@@ -289,14 +379,19 @@ struct SpanExample {
 
 ![Span](figures/span.png)
 
-### Example 2
+### Example 2: Setting the Text Shadow
+
+This example demonstrates the effect of setting a shadow for text using the **textShadow** attributes.
+
 ``` ts
+// xxx.ets
 @Entry
 @Component
-struct TextSpanExample {
+struct SpanExample {
   @State textShadows : ShadowOptions | Array<ShadowOptions> = [{ radius: 10, color: Color.Red, offsetX: 10, offsetY: 0 },{ radius: 10, color: Color.Black, offsetX: 20, offsetY: 0 },
       { radius: 10, color: Color.Brown, offsetX: 30, offsetY: 0 },{ radius: 10, color: Color.Green, offsetX: 40, offsetY: 0 },
       { radius: 10, color: Color.Yellow, offsetX: 100, offsetY: 0 }]
+
   build() {
     Column({ space: 8 }) {
       Text() {
@@ -311,12 +406,15 @@ struct TextSpanExample {
 ```
 ![TextshadowExample](figures/text_span_textshadow.png)
 
-### Example 3
+### Example 3: Setting the Background Style
+
+This example demonstrates the effect of setting a background style for text using the **textBackgroundStyle** attribute.
+
 ``` ts
 // xxx.ets
 @Component
 @Entry
-struct Index {
+struct SpanExample {
   build() {
     Column() {
       Text() {
@@ -331,17 +429,16 @@ struct Index {
 ```
 ![TextBackgroundStyleExample](figures/span_textbackgroundstyle.png)
 
-### Example 4
+### Example 4: Setting the Text Baseline Offset
 
-This example shows how to set the offset of the span baseline.
+This example demonstrates the effect of setting different baseline offsets for text using the **baselineOffset** attribute.
 
 ```ts
 import { LengthUnit, LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
-struct Index {
-
+struct SpanExample {
   build() {
     Row() {
       Column() {

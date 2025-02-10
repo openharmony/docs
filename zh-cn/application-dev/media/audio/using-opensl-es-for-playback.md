@@ -73,7 +73,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 1. 添加头文件。
      
-   ```c++
+   ```cpp
    #include "SLES/OpenSLES.h"
    #include "SLES/OpenSLES_OpenHarmony.h"
    #include "SLES/OpenSLES_Platform.h"
@@ -81,7 +81,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 2. 使用slCreateEngine接口和获取engine实例。
      
-   ```c++
+   ```cpp
    SLObjectItf engineObject = nullptr;
    slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
    (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
@@ -89,14 +89,14 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 3. 获取接口SL_IID_ENGINE的engineEngine实例。
      
-   ```c++
+   ```cpp
    SLEngineItf engineEngine = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
    ```
 
 4. 配置播放器信息，创建AudioPlayer。
      
-   ```c++
+   ```cpp
    SLDataLocator_BufferQueue slBufferQueue = {
        SL_DATALOCATOR_BUFFERQUEUE,
        1
@@ -129,14 +129,14 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 5. 获取接口SL_IID_OH_BUFFERQUEUE的bufferQueueItf实例。
      
-   ```c++
+   ```cpp
    SLOHBufferQueueItf bufferQueueItf;
    (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
    ```
 
 6. 打开音频文件，注册BufferQueueCallback回调。
      
-   ```c++
+   ```cpp
    static void BufferQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
        SLuint8 *buffer = nullptr;
@@ -151,7 +151,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 7. 获取接口SL_PLAYSTATE_PLAYING的playItf实例，开始播放。
      
-   ```c++
+   ```cpp
    SLPlayItf playItf = nullptr;
    (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_PLAY, &playItf);
    (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
@@ -159,7 +159,7 @@ target_link_libraries(sample PUBLIC libOpenSLES.so)
 
 8. 结束音频播放。
      
-   ```c++
+   ```cpp
    (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_STOPPED);
    (*pcmPlayerObject)->Destroy(pcmPlayerObject);
    (*engineObject)->Destroy(engineObject);

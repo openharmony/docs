@@ -297,9 +297,9 @@ struct PolylineExample {
         .stroke(Color.Red)
         .strokeWidth(8)
         .points([[20, 0], [0, 100], [100, 90]])
-          // 设置折线拐角处为圆弧
+        // 设置折线拐角处为圆弧
         .strokeLineJoin(LineJoinStyle.Round)
-          // 设置折线两端为半圆
+        // 设置折线两端为半圆
         .strokeLineCap(LineCapStyle.Round)
     }.width('100%')
   }

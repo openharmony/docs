@@ -67,6 +67,11 @@ rawheap_translator <rawheap_file> [heapsnapshot_file]
 | -------- | ----------------- | ---------------------------------- |
 | \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录(如：D:\temp\rawheap)下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
 | [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径(如：D:\temp)下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
+> **注意：**
+>
+> [heapsnapshot_file] 需要指向具有读写权限的路径，如果未指定参数，需要保证当前执行cmd命令时所在目录具有读写权限。<br>
+> 以windows为例:
+> D:\> ...\rawheap_translator.exe ...\example.rawheap 命令中，需要保证“D:\”路径具有读写权限。
 
 ## 解析命令示例
 

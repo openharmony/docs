@@ -11,28 +11,285 @@
 ```ts
 import { common } from '@kit.AbilityKit';
 ```
-## 属性
+
+## UIAbilityContext
+
+type UIAbilityContext = _UIAbilityContext.default
+
+UIAbilityContext二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 名称 | 类型 | 只读 | 可选 | 说明        |
-| ---- | ---- | ---- | ---- | ---------- |
-| UIAbilityContext    | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否  | 否  | UIAbilityContext二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。                                |
-| AbilityStageContext   | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | 否  | 否  | AbilityStageContext二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| ApplicationContext   | [ApplicationContext](js-apis-inner-application-applicationContext.md) | 否  | 否  | ApplicationContext二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| BaseContext   | [BaseContext](js-apis-inner-application-baseContext.md) | 否  | 否  | BaseContext二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| Context   | [Context](js-apis-inner-application-context.md) | 否  | 否  | Context二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md) | 否  | 否  | ExtensionContext二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| FormExtensionContext   | [FormExtensionContext](../apis-form-kit/js-apis-inner-application-formExtensionContext.md) | 否  | 否  | FormExtensionContext二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| VpnExtensionContext<sup>11+<sup> | VpnExtensionContext  | 否  | 否  | VpnExtensionContext二级模块。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| EventHub   | [EventHub](js-apis-inner-application-eventHub.md)  | 否  | 否  | EventHub二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | 否  | 否  | PacMap二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md) | 否  | 否  | AbilityResult二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| AbilityStartCallback<sup>11+<sup>   | [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | 否  | 否  | AbilityStartCallback二级模块。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | 否  | 否  | ConnectOptions二级模块。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| EmbeddableUIAbilityContext<sup>12+<sup>   | [EmbeddableUIAbilityContext](js-apis-inner-application-EmbeddableUIAbilityContext.md) | 否  | 否  | EmbeddableUIAbilityContext二级模块。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| UIServiceProxy <sup>13+<sup> | [UIServiceProxy ](js-apis-inner-application-uiserviceproxy.md) | 否  | 否  | UIServiceProxy 二级模块。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
-| UIServiceExtensionConnectCallback  <sup>13+<sup> | [UIServiceExtensionConnectCallback](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | 否  | 否  | UIServiceExtensionConnectCallback 二级模块。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/> **模型约束：** 此接口仅可在Stage模型下使用。 |
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_UIAbilityContext.default](js-apis-inner-application-uiAbilityContext.md) | UIAbilityContext二级模块。 |
+
+## AbilityStageContext
+
+type AbilityStageContext = _AbilityStageContext.default
+
+AbilityStageContext二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityStageContext.default](js-apis-inner-application-abilityStageContext.md) | AbilityStageContext二级模块。 |
+
+## ApplicationContext
+
+type ApplicationContext = _ApplicationContext.default
+
+ApplicationContext二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ApplicationContext.default](js-apis-inner-application-applicationContext.md) | ApplicationContext二级模块。 |
+
+## BaseContext
+
+type BaseContext = _BaseContext.default
+
+BaseContext二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_BaseContext.default](js-apis-inner-application-baseContext.md) | BaseContext二级模块。 |
+
+## Context
+
+type Context = _Context.default
+
+Context二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_Context.default](js-apis-inner-application-context.md) | Context二级模块。 |
+
+## ExtensionContext
+
+type ExtensionContext = _ExtensionContext.default
+
+ExtensionContext二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ExtensionContext.default](js-apis-inner-application-extensionContext.md) | ExtensionContext二级模块。 |
+
+## FormExtensionContext
+
+type FormExtensionContext = _FormExtensionContext.default
+
+FormExtensionContext二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_FormExtensionContext.default](../apis-form-kit/js-apis-inner-application-formExtensionContext.md) | FormExtensionContext二级模块。 |
+
+## VpnExtensionContext<sup>11+<sup>
+
+type VpnExtensionContext = _VpnExtensionContext.default
+
+VpnExtensionContext二级模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_VpnExtensionContext.default](../apis-network-kit/js-apis-inner-application-VpnExtensionContext.md) | VpnExtensionContext二级模块。 |
+
+## EventHub
+
+type EventHub = _EventHub.default
+
+EventHub二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_EventHub.default](js-apis-inner-application-eventHub.md) | EventHub二级模块。 |
+
+## PacMap
+
+type PacMap = _PacMap
+
+PacMap二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| [_PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap) | PacMap二级模块。 |
+
+## AbilityResult
+
+type AbilityResult = _AbilityResult
+
+AbilityResult二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityResult](js-apis-inner-ability-abilityResult.md) | AbilityResult二级模块。 |
+
+## AbilityStartCallback<sup>11+<sup>
+
+type AbilityStartCallback = _AbilityStartCallback
+
+AbilityStartCallback二级模块。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md) | AbilityStartCallback二级模块。 |
+
+## ConnectOptions
+
+type ConnectOptions = _ConnectOptions
+
+ConnectOptions二级模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ConnectOptions](js-apis-inner-ability-connectOptions.md) | ConnectOptions二级模块。 |
+
+## UIExtensionContext<sup>10+</sup>
+
+type UIExtensionContext = _UIExtensionContext.default
+
+UIExtensionContext二级模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_UIExtensionContext.default](js-apis-inner-application-uiExtensionContext.md) | UIExtensionContext二级模块。 |
+
+## EmbeddableUIAbilityContext<sup>12+<sup>
+
+type EmbeddableUIAbilityContext = _EmbeddableUIAbilityContext.default
+
+EmbeddableUIAbilityContext二级模块。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_EmbeddableUIAbilityContext.default](js-apis-inner-application-EmbeddableUIAbilityContext.md) | EmbeddableUIAbilityContext二级模块。 |
+
+## PhotoEditorExtensionContext<sup>12+<sup>
+
+type PhotoEditorExtensionContext = _PhotoEditorExtensionContext.default
+
+PhotoEditorExtensionContext二级模块。
+
+**系统能力**：SystemCapability.Ability.AppExtension.PhotoEditorExtension
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_PhotoEditorExtensionContext.default](js-apis-app-ability-photoEditorExtensionContext.md) | PhotoEditorExtensionContext二级模块。 |
+
+## UIServiceProxy<sup>14+<sup>
+
+type UIServiceProxy = _UIServiceProxy.default
+
+UIServiceProxy二级模块。
+
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_UIServiceProxy.default](js-apis-inner-application-uiserviceproxy.md) | UIServiceProxy二级模块。 |
+
+## UIServiceExtensionConnectCallback<sup>14+<sup>
+
+type UIServiceExtensionConnectCallback = _UIServiceExtensionConnectCallback.default
+
+UIServiceExtensionConnectCallback二级模块。
+
+**原子化服务API**：从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_UIServiceExtensionConnectCallback.default](js-apis-inner-application-uiServiceExtensionconnectcallback.md) | UIServiceExtensionConnectCallback二级模块。 |
+
 
 **示例：**
 
@@ -44,6 +301,7 @@ let abilityStageContext: common.AbilityStageContext;
 let applicationContext: common.ApplicationContext;
 let baseContext: common.BaseContext;
 let context: common.Context;
+let uiExtensionContext: common.UIExtensionContext;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
 let vpnExtensionContext: common.VpnExtensionContext;
@@ -53,6 +311,7 @@ let abilityResult: common.AbilityResult;
 let abilityStartCallback: common.AbilityStartCallback;
 let connectOptions: common.ConnectOptions;
 let embeddableUIAbilityContext: common.EmbeddableUIAbilityContext;
+let photoEditorExtensionContext: common.PhotoEditorExtensionContext;
 let uiServiceProxy : common.UIServiceProxy;
 let uiServiceExtensionConnectCallback : common.UIServiceExtensionConnectCallback;
 ```

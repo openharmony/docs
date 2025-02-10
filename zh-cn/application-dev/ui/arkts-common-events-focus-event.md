@@ -15,10 +15,40 @@
 
 用来指向当前获焦组件的样式。
 
-- 显示规则：默认情况下焦点态不会显示，只有当应用进入激活态后，焦点态才会显示。因此，虽然获得焦点的组件不一定显示焦点态（取决于是否处于激活态），但显示焦点态的组件必然是获得焦点的。大部分组件内置了焦点态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点态样式。在焦点链中，若多个组件同时拥有焦点态，系统将采用子组件优先的策略，优先显示子组件的焦点态，并且仅显示一个焦点态。
-- 进入激活态：使用外接键盘按下TAB键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘TAB键/方向键进行走焦。首次用来激活焦点态的TAB键不会触发走焦。
+- 显示规则：默认情况下焦点态不会显示，只有当应用进入激活态后，焦点态才会显示。因此，虽然获得焦点的组件不一定显示焦点态（取决于是否处于激活态），但显示焦点态的组件必然是获得焦点的。大部分组件内置了焦点态样式，开发者同样可以使用样式接口进行自定义，一旦自定义，组件将不再显示内置的焦点态样式。关于焦点态样式设置的具体方式，详见[焦点样式](#焦点样式)。在焦点链中，若多个组件同时拥有焦点态，系统将采用子组件优先的策略，优先显示子组件的焦点态，并且仅显示一个焦点态。
+- 进入激活态：使用外接键盘按下Tab键/使用FocusController的activate(true)方法才会进入焦点的激活态，进入激活态后，才可以使用键盘Tab键/方向键进行走焦。首次用来激活焦点态的Tab键不会触发走焦。
 - 退出激活态：当应用收到FocusController的active(false)方法/点击事件时（包括手指触屏的按下事件和鼠标左键的按下事件），焦点的激活态会退出。
 
+```ts
+@Entry
+@Component
+struct FocusActiveExample {
+  build() {
+    Column() {
+      Button('Set Active').width(140).height(45).margin(5).onClick(() => {
+        this.getUIContext().getFocusController().activate(true, true);
+      })
+      Button('Set Not Active').width(140).height(45).margin(5).onClick(() => {
+        this.getUIContext().getFocusController().activate(false, true);
+      })
+    }.width('100%')
+  }
+}
+```
+
+
+按下Tab键，激活焦点态显示。点击鼠标退出焦点激活态。
+
+![Active_Focus_1](figures/Active_Focus_1.gif)
+
+
+调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入和退出走焦激活态。
+
+![Active_Focus_2](figures/Active_Focus_2.gif)
+
+示例操作步骤：
+1. 点击Set Active按钮，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口进入走焦激活态。
+2. Tab走焦至Set Not Active按钮，Enter键触发按键事件，调用[activate](../reference/apis-arkui/js-apis-arkui-UIContext.md#activate14)接口退出走焦激活态。
 
 **层级页面**
 
@@ -42,7 +72,7 @@
 
 在缺省状态下，层级页面的默认焦点位于其根容器上，但开发者可以通过defaultFocus属性来自定义这一行为。
 
-当焦点位于根容器时，首次按下TAB键不仅会使焦点进入激活状态，还会触发焦点向子组件的传递。如果子组件本身也是一个容器，则焦点会继续向下传递，直至到达叶子节点。传递规则是：优先传递给上一次获得焦点的子节点，如果不存在这样的节点，则默认传递给第一个子节点。
+当焦点位于根容器时，首次按下Tab键不仅会使焦点进入激活状态，还会触发焦点向子组件的传递。如果子组件本身也是一个容器，则焦点会继续向下传递，直至到达叶子节点。传递规则是：优先传递给上一次获得焦点的子节点，如果不存在这样的节点，则默认传递给第一个子节点。
 
 ### 走焦规范
 
@@ -51,15 +81,15 @@
 **主动走焦**
 
 
-指开发者/用户主观行为导致的焦点移动，包括：使用外接键盘的按键走焦（TAB键/Shift+TAB键/方向键）、使用requestFocus申请焦点、clearFocus清除焦点、focusOnTouch点击申请焦点等接口导致的焦点转移。
+指开发者/用户主观行为导致的焦点移动，包括：使用外接键盘的按键走焦（Tab键/Shift+Tab键/方向键）、使用requestFocus申请焦点、clearFocus清除焦点、focusOnTouch点击申请焦点等接口导致的焦点转移。
 
 
 - 按键走焦
 1. 前提：当前应用需处于焦点激活态。
 2. 范围限制：按键走焦仅在当前获得焦点的层级页面内进行，具体参见“层级页面”中的“走焦范围限制”部分。
 3. 按键类型：
-TAB键：遵循Z字型遍历逻辑，完成当前范围内所有叶子节点的遍历，到达当前范围内的最后一个组件后，继续按下TAB键，焦点将循环至范围内的第一个可获焦组件，实现循环走焦。
-Shift+TAB键：与TAB键具有相反的焦点转移效果。
+Tab键：遵循Z字型遍历逻辑，完成当前范围内所有叶子节点的遍历，到达当前范围内的最后一个组件后，继续按下Tab键，焦点将循环至范围内的第一个可获焦组件，实现循环走焦。
+Shift+Tab键：与Tab键具有相反的焦点转移效果。
 方向键（上、下、左、右）：遵循十字型移动策略，在单层容器中，焦点的转移由该容器的特定走焦算法决定。若算法判定下一个焦点应落在某个容器组件上，系统将采用中心点距离优先的算法来进一步确定容器内的目标子节点。
 4. 走焦算法：每个可获焦的容器组件都有其特定的走焦算法，用于定义焦点转移的规则。
 5. 子组件优先：当子组件处理按键走焦事件，父组件将不再介入。
@@ -89,7 +119,7 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 
 ### 走焦算法
 
-在焦点管理系统中，每个可获焦的容器都配备有特定的走焦算法，这些算法定义了当使用TAB键、Shift+TAB键或方向键时，焦点如何从当前获焦的子组件转移到下一个可获焦的子组件。
+在焦点管理系统中，每个可获焦的容器都配备有特定的走焦算法，这些算法定义了当使用Tab键、Shift+Tab键或方向键时，焦点如何从当前获焦的子组件转移到下一个可获焦的子组件。
 
 容器采用何种走焦算法取决于其UX（用户体验）规格，并由容器组件进行适配。目前，焦点框架支持三种走焦算法：线性走焦、投影走焦和自定义走焦。
 
@@ -100,9 +130,58 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 
 
 - 顺序依赖：走焦顺序完全基于子节点在节点树中的挂载顺序，与它们在界面上的实际布局位置无关。
-- TAB键走焦：使用TAB键时，焦点将按照子节点的挂载顺序依次遍历。
+- Tab键走焦：使用Tab键时，焦点将按照子节点的挂载顺序依次遍历。
 - 方向键走焦：当使用与容器定义方向垂直的方向键时，容器不接受该方向的走焦请求。例如，在横向的Row容器中，无法使用方向键进行上下移动。
 - 边界处理：当焦点位于容器的首尾子节点时，容器将拒绝与当前焦点方向相反的方向键走焦请求。例如，焦点在一个横向的Row容器的第一个子节点上时，该容器无法处理方向键左的走焦请求。
+
+```ts
+@Entry
+@Component
+struct FocusLinerExample {
+  build() {
+    Column() {
+      Column() {
+        Button("Column Button1")
+          .width(150)
+          .height(45)
+          .fontColor(Color.White)
+          .margin(10)
+        Button("Column Button2")
+          .width(150)
+          .height(45)
+          .fontColor(Color.White)
+          .margin(10)
+      }
+      .margin(10)
+
+      Row() {
+        Button("Row Button1")
+          .width(150)
+          .height(45)
+          .fontColor(Color.White)
+          .margin(10)
+        Button("Row Button2")
+          .width(150)
+          .height(45)
+          .fontColor(Color.White)
+          .margin(10)
+      }
+    }
+  }
+}
+```
+
+Tab键走焦：按照子节点的挂载顺序循环走焦。
+
+![Liner_Focus_1](figures/Liner_Focus_1.gif)
+
+方向键上下走焦：纵向的Column容器中，可以使用上下键走焦，无法使用左右键走焦。
+
+![Liner_Focus_1](figures/Liner_Focus_2.gif)
+
+横向的Row容器中，可以使用左右键走焦，无法使用上下键走焦。
+
+![Liner_Focus_1](figures/Liner_Focus_3.gif)
 
 
 **投影走焦算法**
@@ -111,8 +190,69 @@ Shift+TAB键：与TAB键具有相反的焦点转移效果。
 
 
 - 方向键走焦时，判断投影与子组件区域的重叠面积，在所有面积不为0的子组件中，计算它们与当前获焦组件的中心点直线距离，距离最短的胜出，若存在多个备选，则节点树上更靠前的胜出。若无任何子组件与投影由重叠，说明该容器已经无法处理该方向键的走焦请求。
-- TAB键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次TAB键走焦请求。
-- Shift+TAB键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+TAB键走焦请求。
+- Tab键走焦时，先使用规格1，按照方向键右进行判定，若找到则成功退出，若无法找到，则将当前获焦子组件的位置模拟往下移动该获焦子组件的高度，然后再按照方向键左进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次Tab键走焦请求。
+- Shift+Tab键走焦时，先使用规格1，按照方向键左进行判定，找到则成功退出。若无法找到，则将当前获焦子组件的位置模拟向上移动该获焦子组件的高度，然后再按照方向键右进行投影判定，有投影重叠且中心点直线距离最远的子组件胜出，若无投影重叠的子组件，则表示该容器无法处理本次的Shift+Tab键走焦请求。
+
+```ts
+@Entry
+@Component
+struct ProjectAreaFocusExample {
+  build() {
+    Column() {
+      Column({ space: 5 }) {
+        Text('Wrap').fontSize(12).width('90%')
+        // 子组件多行布局
+        Flex({ wrap: FlexWrap.Wrap }) {
+          Button('1').width(140).height(50).margin(5)
+          Button('2').width(140).height(50).margin(5)
+          Button('3').width(140).height(50).margin(5)
+          Button('4').width(140).height(50).margin(5)
+          Button('5').width(140).height(50).margin(5)
+        }
+        .width('90%')
+        .padding(10)
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+}
+```
+
+> **说明：**
+>
+> - 这种投影聚焦算法计算的聚焦顺序与组件布局和大小密切相关，建议在组件排列非常规整的场景下使用。如果组件大小不一且存在横向或纵向的交叠关系，则可能会导致聚焦顺序与开发者预期不符。
+> - 如果开发者希望有明确的走焦顺序，建议使用Column/Row等顺序走焦的容器实现。
+
+Flex多行组件布局，组件大小一致，走焦正常。
+
+![Project_Area_Focus_1](figures/Project_Area_Focus_1.gif)
+
+```ts
+@Entry
+@Component
+struct ProjectAreaFocusExample2 {
+  build() {
+    Column() {
+      Column({ space: 5 }) {
+        Text('Wrap').fontSize(12).width('90%')
+        // 子组件多行布局
+        Flex({ wrap: FlexWrap.Wrap }) {
+          Button('1').width(145).height(50).margin(5)
+          Button('2').width(145).height(50).margin(5)
+          Button('3').width(150).height(50).margin(5)
+          Button('4').width(160).height(50).margin(5)
+          Button('5').width(170).height(50).margin(5)
+        }
+        .width('90%')
+        .padding(10)
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+}
+```
+
+Flex多行组件布局，组件大小不一且有纵向的交叠关系，无法Tab走焦至下方3、4、5按钮组件。
+
+![Project_Area_Focus_2](figures/Project_Area_Focus_2.gif)
 
 
 **自定义走焦算法**
@@ -200,9 +340,71 @@ struct FocusEventExample {
 
 上述示例包含以下3步：
 
-- 应用打开，按下TAB键激活走焦，“First Button”显示焦点态样式：组件外围有一个蓝色的闭合框，onFocus回调响应，背景色变成绿色。
-- 按下TAB键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦，onBlur回调响应，背景色变回灰色。
-- 按下TAB键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦，onBlur回调响应，背景色变回灰色。
+- 应用打开，按下Tab键激活走焦，“First Button”显示焦点态样式：组件外围有一个蓝色的闭合框，onFocus回调响应，背景色变成绿色。
+- 按下Tab键，触发走焦，“Second Button”获焦，onFocus回调响应，背景色变成绿色；“First Button”失焦，onBlur回调响应，背景色变回灰色。
+- 按下Tab键，触发走焦，“Third Button”获焦，onFocus回调响应，背景色变成绿色；“Second Button”失焦，onBlur回调响应，背景色变回灰色。
+
+父子节点同时存在获焦和失焦事件时，获焦/失焦事件响应顺序为:
+
+父节点Row1失焦 —> 子节点Button1失焦 —> 子节点Button2获焦 —> 父节点Row2获焦
+
+```ts
+@Entry
+@Component
+struct FocusAndBlurExample {
+  build() {
+    Column() {
+      Column({ space: 5 }) {
+        Row() { // 父节点Row1
+          Button('Button1') // 子节点Button1
+            .width(140)
+            .height(45)
+            .margin(5)
+            .onFocus(() => {
+              console.log("Button1 onFocus");
+            })
+            .onBlur(() => {
+              console.log("Button1 onBlur");
+            })
+        }
+        .onFocus(() => {
+          console.log("Row1 onFocus");
+        })
+        .onBlur(() => {
+          console.log("Row1 onBlur");
+        })
+
+        Row() { // 父节点Row2
+          Button('Button2') // 子节点Button2
+            .width(140)
+            .height(45)
+            .margin(5)
+            .onFocus(() => {
+              console.log("Button2 onFocus");
+            })
+            .onBlur(() => {
+              console.log("Button2 onBlur");
+            })
+        }
+        .onFocus(() => {
+          console.log("Row2 onFocus");
+        })
+        .onBlur(() => {
+          console.log("Row2 onBlur");
+        })
+      }.width('100%').margin({ top: 5 })
+    }.width('100%')
+  }
+}
+```
+
+Button1走焦到Button2，日志打印顺序：
+```ts
+Row1 onBlur
+Button1 onBlur
+Button2 onFocus
+Row2 onFocus
+```
 
 ## 设置组件是否可获焦
 
@@ -242,7 +444,7 @@ focusOnTouch(value: boolean)
 设置当前组件是否支持点击获焦能力。
 
 
->**说明：**
+> **说明：**
 >
 >当某组件处于获焦状态时，将其的focusable属性或enabled属性设置为false，会自动使该组件失焦，然后焦点按照[走焦规范](#走焦规范)将焦点转移给其他组件。
 
@@ -341,8 +543,100 @@ struct FocusableExample {
 
 
 - 第一个Text组件没有设置focusable(true)属性，该Text组件无法获焦。
-- 点击第二个Text组件，由于设置了focusOnTouch(true)，第二个组件获焦。按下TAB键，触发走焦，仍然是第二个Text组件获焦。按键盘F键，触发onKeyEvent，focusable置为false，第二个Text组件变成不可获焦，焦点自动转移，会自动从Text组件寻找下一个可获焦组件，焦点转移到第三个Text组件上。
+- 点击第二个Text组件，由于设置了focusOnTouch(true)，第二个组件获焦。按下Tab键，触发走焦，仍然是第二个Text组件获焦。按键盘F键，触发onKeyEvent，focusable置为false，第二个Text组件变成不可获焦，焦点自动转移，会自动从Text组件寻找下一个可获焦组件，焦点转移到第三个Text组件上。
 - 按键盘G键，触发onKeyEvent，enabled置为false，第三个Text组件变成不可获焦，焦点自动转移，使焦点转移到Row容器上，容器中使用的是默认配置，会转移到Button1上。
+
+## 设置容器绘制焦点框
+
+虽然容器组件本身可以获焦，但是无法绘制焦点框。可以为其配置onClick或是单指单击的Tap手势，在容器上绘制焦点框。
+
+> **说明：**
+>
+> 容器绘制焦点框前提：
+> - 容器内部没有可获焦子节点。
+> - 容器配置有onClick或是单指单击的Tap手势。
+> - 容器本身未设置focusable属性，或设置在onClick或是单指单击的Tap手势之后。
+
+```ts
+@Entry
+@Component
+struct ScopeFocusExample {
+  @State scopeFocusState: boolean = true;
+
+  build() {
+    Column() {
+      Column({ space: 5 }) {
+        Text("容器获焦").textAlign(TextAlign.Center)
+      }
+      .justifyContent(FlexAlign.Center)
+      .width('80%')
+      .height(50)
+      .margin({ top: 5, bottom: 5 })
+      .onClick(() => {
+      })
+      .focusable(this.scopeFocusState)
+
+      Button('Button1')
+        .width(140)
+        .height(45)
+        .margin(5)
+        .onClick(() => {
+          this.scopeFocusState = !this.scopeFocusState;
+          console.log("Button1 onFocus");
+        })
+      Button('Button2')
+        .width(140)
+        .height(45)
+        .margin(5)
+    }.width('100%')
+  }
+}
+```
+
+
+![Scope_Focus_1.gif](figures/Scope_Focus_1.gif)
+
+上述示例包含以下2步：
+- Column配置onClick事件并设置focusable为true后，Tab键走焦，Column容器可以绘制焦点框。
+- 点击Button1，将Column的focusable属性设置为false，Column容器无法获焦和绘制焦点框。
+
+## 设置焦点停留在容器上
+
+```ts
+tabStop(isTabStop: boolean) 
+```
+设置当前容器组件的[tabStop](../reference/apis-arkui/arkui-ts/ts-universal-attributes-focus.md#tabstop14)属性，可决定在走焦时焦点是否会停留在当前容器。
+
+```ts
+@Entry
+@Component
+struct TabStopExample {
+  build() {
+    Column({ space: 20 }) {
+      Button('Button1')
+        .width(140)
+        .height(45)
+        .margin(5)
+      Column() {
+        Button('Button2')
+          .width(140)
+          .height(45)
+          .margin(5)
+        Button('Button3')
+          .width(140)
+          .height(45)
+          .margin(5)
+      }.tabStop(true)
+    }.width('100%')
+  }
+}
+```
+
+![TabStop_Focus_1.gif](figures/TabStop_Focus_1.gif)
+
+上述示例包含以下2步：
+- Column配置tabStop后，Tab键走焦，焦点在Button1和Column容器之间切换，Column容器可以绘制焦点框。
+- 走焦至Column容器后，按Enter键，焦点转移到容器中的第一个可获焦节点上。Tab键走焦，走焦至容器中其他可获焦节点。
 
 ## 默认焦点
 
@@ -420,7 +714,7 @@ struct morenjiaodian {
 上述示例包含以下2步：
 
 - 在第三个Button组件上设置了defaultFocus(true)，进入页面后第三个Button默认获焦，显示为绿色。
-- 按下TAB键，触发走焦，第三个Button正处于获焦状态，会出现焦点框。
+- 按下Tab键，触发走焦，第三个Button正处于获焦状态，会出现焦点框。
 
 ### 容器的默认焦点
 
@@ -512,8 +806,8 @@ struct RequestFocusExample {
 
 上述示例包含以下2步：
 
-- 进入页面，按下TAB触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框。
-- 按下TAB键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框。
+- 进入页面，按下Tab键触发走焦，第一个Button获焦，焦点框样式为紧贴边缘的蓝色细框。
+- 按下Tab键，走焦到第二个Button，焦点框样式为远离边缘的红色粗框。
 
 ## 主动获焦/失焦
 
@@ -624,6 +918,87 @@ struct RequestExample {
 - 点击FocusController.requestFocus按钮，第一个Button获焦。
 - 点击focusControl.requestFocus按钮，第二个Button获焦。
 - 点击clearFocus按钮，第二个Button失焦。
+
+## 自定义组件Tab键走焦顺序
+```ts
+tabIndex(index: number)
+```
+
+自定义组件Tab键走焦能力。
+
+若存在配置了tabIndex大于0的组件，则Tab键走焦只会在tabIndex大于0的组件内，按照tabIndex的值从小到大并循环依次走焦。若没有配置tabIndex大于0的组件，则tabIndex等于0的组件按照组件预设的走焦规则走焦。
+
+>  **说明：**
+>
+> 不能同时设置tabIndex与focusScopeId属性。
+
+```ts
+@Entry
+@Component
+struct TabIndexExample {
+  build() {
+    Column() {
+      Button('Button1')
+        .width(140)
+        .height(45)
+        .margin(5)
+      Button('Focus Button1')
+        .width(140)
+        .height(45)
+        .margin(5).tabIndex(1)
+      Button('Button2')
+        .width(140)
+        .height(45)
+        .margin(5)
+      Button('Focus Button2')
+        .width(140)
+        .height(45)
+        .margin(5).tabIndex(2)
+    }.width('100%')
+  }
+}
+```
+
+Tab键走焦：只在配置TabIndex的节点间循环走焦。
+
+![TabIndex_Focus_1.gif](figures/TabIndex_Focus_1.gif)
+
+tabIndex配置在容器上时，如果容器中的所有组件都没有获焦过，则走到第一个可获焦组件上，否则会走到上次获焦的节点。
+
+```ts
+@Entry
+@Component
+struct TabIndexExample2 {
+  build() {
+    Column() {
+      Button('Focus Button1')
+        .width(140)
+        .height(45)
+        .margin(5).tabIndex(1)
+      Column() {
+        Button('Button1')
+          .width(140)
+          .height(45)
+          .margin(5)
+        Button('Button2')
+          .width(140)
+          .height(45)
+          .margin(5)
+      }.tabIndex(2)
+    }.width('100%')
+  }
+}
+```
+
+Tab键走焦：tabIndex配置在容器上。
+
+![TabIndex_Focus_2.gif](figures/TabIndex_Focus_2.gif)
+
+上述示例包含以下3步：
+
+- 使用Tab走焦，焦点在Button1和Button2之间循环走焦（tabIndex配置在Button2和Button3的父组件上）。
+- 在走焦至Button2时，使用方向下键，将焦点转移至Button3上。
+- 使用Tab走焦，焦点在Button1和Button3之间循环走焦。
 
 ## 焦点组与获焦优先级
 
@@ -770,8 +1145,81 @@ struct FocusableExample {
 
 上述示例包含以下2步：
 
-- input方框内设置了焦点组，因此按下TAB键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦。
+- input方框内设置了焦点组，因此按下Tab键后焦点会快速从input中走出去，而按下方向键后可以在input内走焦。
 - 左上角的Column没有设置焦点组，因此只能通过Tab键一个一个地走焦。
+
+
+在API version 14，焦点组新增参数arrowStepOut，用于设置能否使用方向键走焦出当前焦点组。
+```ts
+focusScopeId(id: string, isGroup?: boolean, arrowStepOut?: boolean)
+```
+
+```ts
+@Entry
+@Component
+struct FocusScopeIdExample {
+  build() {
+    Column({ space: 20 }) {
+      Column() {
+        Button('Group1')
+          .width(165)
+          .height(40)
+          .margin(5)
+          .fontColor(Color.White)
+        Row({ space: 5 }) {
+          Button("Button1")
+            .width(80)
+            .height(40)
+            .margin(5)
+            .fontColor(Color.White)
+          Button("Button2")
+            .width(80)
+            .height(40)
+            .margin(5)
+            .fontColor(Color.White)
+        }
+      }.focusScopeId("1", true, true)
+      .borderWidth(2).borderColor(Color.Red).borderStyle(BorderStyle.Dashed)
+
+      TextInput()
+      Column() {
+        Button('Group2')
+          .width(165)
+          .height(40)
+          .margin(5)
+          .fontColor(Color.White)
+        Row({ space: 5 }) {
+          Button("Button3")
+            .width(80)
+            .height(40)
+            .margin(5)
+            .fontColor(Color.White)
+          Button("Button4")
+            .width(80)
+            .height(40)
+            .margin(5)
+            .fontColor(Color.White)
+        }
+      }.focusScopeId("2", true, false)
+      .borderWidth(2).borderColor(Color.Green).borderStyle(BorderStyle.Dashed)
+
+      TextInput()
+    }.width('100%')
+  }
+}
+```
+
+
+![FocusScopeId_1](figures/FocusScopeId_1.gif)
+
+上述示例包含以下3步：
+- Group1和Group2设置焦点组，因此按下Tab键后焦点会快速从Group1和Group2的方框内走出。
+- Group1设置焦点组时，允许使用方向键走焦出当前焦点组。在Group1方框内走焦时，使用方向键可以走焦至input输入框。
+- Group2设置焦点组时，不允许使用方向键走焦出当前焦点组。在Group2方框内走焦时，使用方向键无法走焦至input输入框。
+
+>  **说明：** 
+>
+> TextInput组件本身对方向键存在独有处理，因此无法使用方向键直接走出TextInput组件。
 
 ## 焦点与按键事件
 
@@ -784,7 +1232,7 @@ struct FocusableExample {
 >  3. 组件同时存在点击事件（`onClick`）和按键事件（`onKeyEvent`），在回车、空格触发时，两者都会响应。
 >  4. 获焦组件响应点击事件（`onClick`），与焦点激活态无关。
 
-```
+```ts
 @Entry
 @Component
 struct FocusOnclickExample {

@@ -40,7 +40,7 @@ Inherits from [BaseEvent](ts-gesture-customize-judge.md#baseevent). In non-injec
 | touches             | Array&lt;[TouchObject](#touchobject)&gt; | All finger information.<br>**Atomic service API**: This API can be used in atomic services since API version 11.     |
 | changedTouches      | Array&lt;[TouchObject](#touchobject)&gt; | Finger information changed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | stopPropagation      | () => void | Stops the event from bubbling upwards or downwards.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| preventDefault<sup>12+</sup>      | () => void |  Blocks the default event.<br> **NOTE**<br>This API is only supported by the following components: **Hyperlink**. Asynchronous calls and the **Modifier** API are not yet supported.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| preventDefault<sup>12+</sup>      | () => void | Blocks the default event.<br> **NOTE**<br>This API is only supported by the following components: **Hyperlink**, **Checkbox**, **CheckboxGroup**, **Rating**, **Radio**, **Toggle**. Asynchronous calls and the **Modifier** API are not yet supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### getHistoricalPoints<sup>10+</sup>
 
@@ -88,7 +88,7 @@ Obtains all historical points of the current frame. The touch event frequency of
 | size        | number                              | Size of the contact area between the finger and screen for the historical point.<br>Default value: **0**                                    |
 | force       | number                              | Touch force of the historical point.<br>Default value: **0**<br>Value range: [0, 65535). The greater the pressure, the larger the value.|
 | timestamp   | number                              | Timestamp of the historical point. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns          |
-## Example
+## Example 1: Obtaining Touch Event Parameters
 
 This example configures a touch event for a button. When the button is touched, it obtains relevant parameters of the touch event.
 
@@ -145,3 +145,46 @@ struct TouchExample {
 ```
 
 ![en-us_image_0000001209874754](figures/en-us_image_0000001209874754.gif)
+### Example 2: Preventing Default Touch Events
+This example demonstrates how to prevent default touch events on a **Checkbox** component while retaining the pressed state effect.
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CheckboxExample {
+  @State isTouchPreventDefault: boolean = true;
+
+  build() {
+    Row() {
+      Column() {
+        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+          Checkbox({ name: 'Checkbox', group: 'checkboxGroup' })
+            .shape(CheckBoxShape.CIRCLE)
+            .onChange((value: boolean) => {
+              console.info('Checkbox change is' + value)
+            })
+            .onTouch((event) => {
+              if (event != undefined && this.isTouchPreventDefault) {
+                try {
+                  event.preventDefault();
+                } catch (e) {
+                  console.log("onTouch ErrorCode" + JSON.stringify(e))
+                  console.log("onTouch ErrorMessage" + e.message)
+                }
+              }
+            })
+            .mark({
+              strokeColor: Color.Black,
+              size: 50,
+              strokeWidth: 5
+            })
+            .width(30)
+            .height(30)
+          Text('Checkbox').fontSize(20)
+        }.padding(15)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+![](figures/checkbox_5.gif)

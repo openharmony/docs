@@ -1147,7 +1147,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange' |
+| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 
@@ -1686,6 +1686,75 @@ try {
 }
 ```
 
+### startMoving<sup>15+</sup>
+
+startMoving(): void
+
+发送移动命令给窗口，不产生实际移动效果（仅在鼠标点击作用才可以移动）。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+
+**示例：**
+
+```ts
+
+try {
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### getDisplayId<sup>15+</sup>
+
+getDisplayId(): Promise\<number>
+
+获取当前窗口的所在id,使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+|Promise\<number>| Promise对象。返回窗口的displayId。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
@@ -1806,7 +1875,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。 |
 | rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
 
 **错误码：**
@@ -1853,7 +1922,7 @@ adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 
 | 参数名 | 类型                                      | 必填 | 说明                                                       |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
-| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING            |
+| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。            |
 | rect   | [EnhancedPanelRect](#enhancedpanelrect16) | 是   | 目标面板横屏状态及竖屏状态的位置、大小，避让区域以及热区。 |
 
 **错误码：**
@@ -4404,6 +4473,7 @@ inputMethodController.recvMessage();
 | ------------ | -- | ------------------ |
 | FLG_FIXED  | 0 | 固定态面板类型。 |
 | FLG_FLOATING | 1 | 悬浮态面板类型。 |
+| FLAG_CANDIDATE<sup>15+</sup> | 2 | 候选词态面板类型。 |
 
 ## PanelType<sup>10+</sup>
 

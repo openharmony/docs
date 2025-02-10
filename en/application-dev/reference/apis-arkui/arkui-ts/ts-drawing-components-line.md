@@ -13,7 +13,7 @@ Not supported
 
 ## APIs
 
-Line(value?: {width?: string | number, height?: string | number})
+Line(options?: LineOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -25,7 +25,21 @@ Line(value?: {width?: string | number, height?: string | number})
 
 | Name| Type| Mandatory| Description
 | -------- | -------- | -------- | -------- |
-| value | {width?: string \| number, height?: string \| number} | No| **width**: width<br>If the value is invalid or the default value is used, the width required for the content is used.<br>**height**: height<br>If the value is invalid or the default value is used, the height required for the content is used.|
+| options | [LineOptions](ts-drawing-components-line.md#lineoptions14) | No| Options for drawing a line.|
+
+## LineOptions<sup>14+</sup>
+Describes the options for drawing a line.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>Default unit: vp|
+| height | string \| number | No| Height.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>Default unit: vp|
 
 ## Attributes
 
@@ -137,7 +151,7 @@ Sets stroke dashes. Line segments may overlap when they intersect. An invalid va
 
 | Name| Type                                     | Mandatory| Description                     |
 | ------ | ----------------------------------------- | ---- | ------------------------- |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;[Length](ts-types.md#length)&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -155,7 +169,7 @@ Sets the offset of the start point for drawing the stroke.
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -245,7 +259,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -267,7 +281,9 @@ Specifies whether anti-aliasing is enabled.
 
 ## Example
 
-### Example 1
+### Example 1: Drawing a Line
+
+This example demonstrates how to use **startPoint**, **endPoint**, **fillOpacity**, **stroke**, **strokeDashArray**, and **strokeDashOffset** to set the start point, end point, opacity, stroke color, stroke dashes, and stroke offset of a line.
 
 ```ts
 // xxx.ets
@@ -276,7 +292,7 @@ Specifies whether anti-aliasing is enabled.
 struct LineExample {
   build() {
     Column({ space: 10 }) {
-      // The coordinates of the start and end points of the line are determined relative to the coordinates of the drawing area of the Line component.
+      // The coordinates of the start and end points of the line are determined relative to the coordinates of the drawing area of the <Line> component.
       Line()
         .width(200)
         .height(150)
@@ -304,7 +320,7 @@ struct LineExample {
         .strokeDashArray([10, 3])
         .strokeDashOffset(5)
         .backgroundColor('#F5F5F5')
-      // If the coordinates of a point are beyond the width and height range of the Line component, the line will exceed the drawing area.
+      // If the coordinates of a point are beyond the width and height range of the <Line> component, the line will exceed the drawing area.
       Line()
         .width(50)
         .height(50)
@@ -321,7 +337,9 @@ struct LineExample {
 
 ![en-us_image_0000001219982725](figures/en-us_image_0000001219982725.png)
 
-### Example 2
+### Example 2: Setting the Stroke Cap Style
+
+This example demonstrates how to use **strokeLineCap** to set the stroke cap style of a line.
 
 ```ts
 // xxx.ets
@@ -367,7 +385,9 @@ struct LineExample1 {
 
 ![en-us_image1_0000001219982725](figures/en-us_image1_0000001219982725.png)
 
-### Example 3
+### Example 3: Setting the Stroke Dashes
+
+This example demonstrates how to use **strokeDashArray** to set the stroke dashes of a line.
 
 ```ts
 // xxx.ets

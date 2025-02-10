@@ -17,9 +17,9 @@ import abilityManager from '@ohos.application.abilityManager';
 
 Ability的状态信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 | 名称 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -35,9 +35,9 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过修改配置来更新配置。使用callback异步回调。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -67,11 +67,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置。使用Promise异步回调。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数**：
 
@@ -109,17 +109,17 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 获取Ability运行相关信息。使用callback异步回调。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 回调函数，返回Ability运行相关信息      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 回调函数，返回Ability运行相关信息。      |
 
 **示例**：
 
@@ -138,11 +138,11 @@ getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
 
 获取Ability运行相关信息。使用Promise异步回调。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 

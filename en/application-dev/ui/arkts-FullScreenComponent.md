@@ -101,7 +101,7 @@ The details are as follows.
 
 ### Security Capability Constraints
 
-The **FullScreenLaunchComponent** (on the host side) can access applications that have integrated the EmbeddableUIAbility (on the provider side), offering a universal capability for application sharing. As capabilities of the **FullScreenLaunchComponent** do not independently include a security mechanism, the provider application must utilize other ArkUI capabilities to protect against potential attacks from the host application.
+The **FullScreenLaunchComponent** (on the host) can access applications that have integrated the EmbeddableUIAbility (on the provider side), offering a universal capability for application sharing. As capabilities of the **FullScreenLaunchComponent** do not independently include a security mechanism, the provider application must utilize other ArkUI capabilities to protect against potential attacks from the host application.
 
 Considering the extensive capabilities of the **FullScreenLaunchComponent**, if there are security concerns within the provider application that cannot be resolved within the **FullScreenLaunchComponent**, alternative approaches should be considered. Using the **FullScreenLaunchComponent** without proper security measures poses potential risks to both the provider and host applications.
 
@@ -164,4 +164,5 @@ If the mitigation does not fully meet the application's interaction requirements
 ### Other Constraints
 
 - Modifying or switching the atomic service EmbeddableUIAbility launched from the background is not supported during runtime.
+
 - This component cannot be previewed from the DevEco Studio Previewer.

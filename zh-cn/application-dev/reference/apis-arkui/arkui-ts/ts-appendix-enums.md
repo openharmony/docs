@@ -129,7 +129,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 描述           |
+| 名称    | 说明           |
 | ----- | ------------ |
 | CTRL  | 表示键盘上Ctrl键。  |
 | SHIFT | 表示键盘上Shift键。 |
@@ -141,7 +141,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 描述           |
+| 名称   | 说明           |
 | ---- | ------------ |
 | ESC  | 表示键盘上ESC功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | F1   | 表示键盘上F1功能键。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
@@ -781,7 +781,7 @@
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述              |
+| 名称     | 说明              |
 | ------ | --------------- |
 | INVERT | 设置前景色为控件背景色的反色。仅支持在[foregroundColor](ts-universal-attributes-foreground-color.md#foregroundcolor)中设置该枚举。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | AVERAGE<sup>11+</sup> | 设置控件背景阴影色为控件背景阴影区域的平均色。仅支持在入参类型为ShadowOptions的[shadow](ts-universal-attributes-image-effect.md#shadow)中设置该枚举。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -800,6 +800,8 @@
 | HEAVY  | 大面积（厚重） | 弹簧动效， 刚性：240，阻尼：28，初始速度：0 | 95% |
 
 ## CheckBoxShape<sup>11+</sup>
+
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -835,7 +837,7 @@
 | INLINE  | 内联输入风格。文本选中底板高度与输入框高度相同。<br/>内联输入是在有明显的编辑态/非编辑态的区分场景下使用，例如：文件列表视图中的重命名。<br/>不支持showError属性。<br/>内联模式下，不支持拖入文本。 |
 
 
-## Nullable <sup>11+</sup>
+## Nullable\<T><sup>11+</sup>
 
 Nullable\<T> {
 
@@ -1003,18 +1005,6 @@ Nullable\<T> {
 | ROTATION_180 | 应用方向为180度。|
 | ROTATION_270 | 应用方向为270度。|
 
-## BlurStyleActivePolicy<sup>14+</sup>
-
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 说明                            |
-| ------ | ----------------------------- |
-| ALWAYS_ACTIVE | 一直有模糊效果。|
-| FOLLOWS_WINDOW_ACTIVE_STATE | 模糊效果跟随窗口焦点状态变化，非焦点不模糊，焦点模糊。|
-| ALWAYS_INACTIVE | 一直无模糊效果。|
-
 ## ScrollSource<sup>12+</sup>
 
 滑动操作的来源。
@@ -1023,7 +1013,7 @@ Nullable\<T> {
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     |  枚举值  | 说明                                       |
+| 名称     |  值  | 说明                                       |
 | ------ | ------ | ---------------------------------------- |
 | DRAG   |  0  | 拖拽事件。 |
 | FLING |  1  | 拖拽结束之后的惯性滑动。 |
@@ -1102,11 +1092,11 @@ Nullable\<T> {
 | HEIGHT_MD | 1   | 窗口高宽比大于等于0.8，且小于1.2。 |
 | HEIGHT_LG | 2   | 窗口高宽比大于等于1.2。 |
 
-## PageFlipMode<sup>14+</sup>
+## PageFlipMode<sup>15+</sup>
 
 表示鼠标滚轮翻页模式。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -1120,6 +1110,8 @@ Nullable\<T> {
 表示宽高动画过程中组件内容的填充方式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
 | 名称                          | 说明                                                                              |
 | --------------------------- | ---------------------------------------------------------------------------------- |
@@ -1140,7 +1132,37 @@ Nullable\<T> {
 | RESIZE_COVER_TOP_LEFT       | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持左侧对齐，显示内容的左侧部分。当内容高方向有剩余时，内容与组件保持顶部对齐，显示内容的顶侧部分。   ![renderfit_resize_cover_top_left](figures/renderfit_resize_cover_top_left.png) |
 | RESIZE_COVER_BOTTOM_RIGHT   | 保持动画终态内容的宽高比进行缩小或放大，使内容的两边都恰好大于或等于组件两边。当内容宽方向有剩余时，内容与组件保持右侧对齐，显示内容的右侧部分。当内容高方向有剩余时，内容与组件保持底部对齐，显示内容的底侧部分。   ![renderfit_resize_cover_bottom_right](figures/renderfit_resize_cover_bottom_right.png) |
 
+
 > **说明：**
 >
 > - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
+
+## CrownAction<sup>16+</sup>
+
+旋转表冠动作。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+|名称	            | 值 | 描述                                   |
+|-------------------| -- | ------------------------------------- |
+| BEGIN             | 0  | 表冠开始转动。                          |
+| UPDATE	        | 1  | 表冠转动中。                            |
+| END	            | 2  | 表冠停止转动。                          |
+
+## CrownSensitivity<sup>16+</sup>
+
+旋转表冠灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值  | 描述                                      |
+| -------------- | -- | ---------------------------------------- |
+| LOW 	         | 0   | 低灵敏度。                                 |
+| MEDIUM         | 1   | 中灵敏度。                                 |
+| HIGH 	         | 2   | 高灵敏度。                                 |
+

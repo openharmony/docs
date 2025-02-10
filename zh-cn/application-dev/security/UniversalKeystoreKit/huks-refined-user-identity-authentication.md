@@ -121,6 +121,7 @@
    /*
     * 确定密钥别名和封装密钥属性参数集
     */
+   let keyAlias = 'test_sm4_key_alias';
    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string'; // 明文数据
    let IV = '1234567890123456';
    let handle = 0;
@@ -424,13 +425,15 @@
         console.error(`promise: doFinish input arg invalid` + JSON.stringify(error));
     }
     }
-    async function testSm4Cipher() {
-    /* 初始化密钥会话获取挑战值 */
-    await publicInitFunc(keyAlias, decryptOptions);
-    /* 调用userIAM进行身份认证 */
-    userIAMAuthFinger(challenge);
-    /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */
-    decryptOptions.inData = StringToUint8Array(cipherText);
-    await publicFinishFunc(handle, fingerAuthToken, decryptOptions);
+    async function testSm4CipherInit() {
+        /* 初始化密钥会话获取挑战值 */
+        await publicInitFunc(keyAlias, decryptOptions);
+        /* 调用userIAM进行身份认证 */
+        userIAMAuthFinger(challenge);
+    }
+    async function testSm4CipherFinish() {
+        /* 认证成功后进行解密, 需要传入Auth获取到的authToken值 */
+        decryptOptions.inData = cipherText;
+        await publicFinishFunc(handle, fingerAuthToken, decryptOptions);
     }
    ```

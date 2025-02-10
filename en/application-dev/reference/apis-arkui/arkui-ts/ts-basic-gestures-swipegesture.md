@@ -48,6 +48,8 @@ SwipeGesture(value?: { fingers?: number, direction?: SwipeDirection, speed?: num
 
 ## Example
 
+This example demonstrates the recognition of a swipe gesture using **SwipeGesture**.
+
 ```ts
 // xxx.ets
 @Entry

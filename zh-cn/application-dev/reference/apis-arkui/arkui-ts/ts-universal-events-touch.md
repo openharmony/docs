@@ -40,7 +40,7 @@ onTouch(event: (event: TouchEvent) => void): T
 | touches             | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 全部手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | changedTouches      | Array&lt;[TouchObject](#touchobject对象说明)&gt; | 当前发生变化的手指信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stopPropagation      | () => void | 阻塞事件冒泡。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink、Checkbox、CheckboxGroup、Rating、Radio、Toggle。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preventDefault<sup>12+</sup>      | () => void |  阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：Hyperlink。暂不支持异步调用和提供Modifier接口。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### getHistoricalPoints<sup>10+</sup>
 
@@ -75,6 +75,11 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | displayY<sup>10+</sup> | number                       | 触摸点相对于应用屏幕左上角的Y坐标。<br/>单位：vp<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | screenX<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的X坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowX代替。   |
 | screenY<sup>(deprecated)</sup> | number               | 触摸点相对于应用窗口左上角的Y坐标。<br/>单位：vp <br>从API version 10开始不再维护，建议使用windowY代替。   |
+| PressedTime<sup>16+</sup> | number | 当前手指按下的时间。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| pressure<sup>16+</sup> | number | 当前手指按着的压力值。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| width<sup>16+</sup> | number | 当前手指按压区域的宽。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| height<sup>16+</sup> | number | 当前手指按压区域的高。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| hand<sup>16+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明16) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 
@@ -88,7 +93,8 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | size        | number                              | 历史点对应触摸事件的手指与屏幕的触摸区域大小。<br/>默认值：0                                     |
 | force       | number                              | 历史点对应触摸事件的压力大小。<br/>默认值：0<br/>取值范围：[0,65535)，压力越大值越大。|
 | timestamp   | number                              | 历史点对应触摸事件的时间戳。触发事件时距离系统启动的时间间隔。<br>单位：ns           |
-## 示例1（获取触摸事件的相关参数）
+
+## 示例
 
 该示例通过按钮设置了触摸事件，手指点击按钮时可获取触摸事件的相关参数。
 
@@ -117,7 +123,10 @@ struct TouchExample {
             this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
             + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
             + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height
+            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+            event.touches[0].pressure +
+              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
           }
         })
       Button('Touch').height(50).width(200).margin(20)
@@ -135,7 +144,10 @@ struct TouchExample {
             this.text = 'TouchType:' + this.eventType + '\nDistance between touch point and touch element:\nx: '
             + event.touches[0].x + '\n' + 'y: ' + event.touches[0].y + '\nComponent globalPos:('
             + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\nwidth:'
-            + event.target.area.width + '\nheight:' + event.target.area.height
+            + event.target.area.width + '\nheight:' + event.target.area.height + '\ntargetDisplayId:' +
+            event.targetDisplayId + '\npressedTime:' + event.touches[0].pressedTime + '\npressure:' +
+            event.touches[0].pressure +
+              '\nwidth:' + event.touches[0].width + '\nheight:' + event.touches[0].height
           }
         })
       Text(this.text)
@@ -144,47 +156,4 @@ struct TouchExample {
 }
 ```
 
-![zh-cn_image_0000001209874754](figures/zh-cn_image_0000001209874754.gif)
-### 示例2（设置触摸事件阻止默认事件）
-该示例实现了Checkbox组件的触摸事件阻止功能，阻止默认事件，保留按压态效果。
-```ts
-// xxx.ets
-@Entry
-@Component
-struct CheckboxExample {
-  @State isTouchPreventDefault: boolean = true;
-
-  build() {
-    Row() {
-      Column() {
-        Flex({ justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
-          Checkbox({ name: 'Checkbox', group: 'checkboxGroup' })
-            .shape(CheckBoxShape.CIRCLE)
-            .onChange((value: boolean) => {
-              console.info('Checkbox change is' + value)
-            })
-            .onTouch((event) => {
-              if (event != undefined && this.isTouchPreventDefault) {
-                try {
-                  event.preventDefault();
-                } catch (e) {
-                  console.log("onTouch ErrorCode" + JSON.stringify(e))
-                  console.log("onTouch ErrorMessage" + e.message)
-                }
-              }
-            })
-            .mark({
-              strokeColor: Color.Black,
-              size: 50,
-              strokeWidth: 5
-            })
-            .width(30)
-            .height(30)
-          Text('Checkbox').fontSize(20)
-        }.padding(15)
-      }.width('100%')
-    }.height('100%')
-  }
-}
-```
-![](figures/checkbox_5.gif)
+![touch](figures/touch.gif)

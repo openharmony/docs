@@ -385,44 +385,4 @@ try {
     console.info(`Set input device enable error`);
 }
 ```
-
-## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
-
-setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
-
-Sets whether to enable the function key.
-
-**System capability**：SystemCapability.MultimodalInput.Input.InputDevice
-
-**System API**：This is a system API.
-
-**Parameters**：
-
-| Parameters   | Type     | Mandatory | Description                      |
-| -------- | ------- | ---- | ------------------------- |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15)  | Yes   | Function key id.              |
-| enabled  | boolean | Yes   | Setting the function key status, true is enable, false is disable. |
-
-**Error codes**：
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID | Error Message                                                     |
-| -------- | ------------------------------------------------------------ |
-| 201      | Permission denied.                                           |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**Example**：
-
-```js
-try {
-  inputDevice.setInputDeviceEnabled(1, true).then(() => {
-    console.info(`Set capslock state success`);
-  }).catch((error) => {
-    console.info(`Set capslock state failed, error=${JSON.stringify(error)}`);
-  });
-} catch (error) {
-    console.info(`Set capslock enable error`);
-}
-```
 ## 

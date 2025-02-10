@@ -32,7 +32,7 @@ atm perm [-h] [-g -i <token-id> -p <permission-name>] [-c -i <token-id> -p <perm
 **权限命令参数列表**
 | 参数                                               | 参数说明                  | 
 | -------------------------------------------------- | ---------------------- | 
-| -h                                        | 帮助信息 | atm perm支持的命令集合。 |
+| -h                                        | 帮助信息。 | atm perm支持的命令集合。 |
 | -g&nbsp;-i \<token-id\>&nbsp;-p \<permission-name\> | -g、-i、-p均为必选参数，通过应用进程的tokenid授予指定权限。返回是否成功。    | 
 | -c&nbsp;-i \<token-id\>&nbsp;-p \<permission-name\> | -c、-i、-p均为必选参数，通过应用进程的tokenid取消指定权限。返回是否成功。    | 
 

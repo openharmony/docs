@@ -8,6 +8,7 @@
 - 占位组件和其他ArkTS内置组件使用方法相同。详细代码请参考[示例](#示例)。
   ```ts
   import { NodeContent } from '@kit.ArkUI';
+  import nativeNode from 'libentry.so';
   
   @Entry
   @Component
@@ -201,7 +202,10 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #ifndef MYAPPLICATION_NATIVEENTRY_H
    #define MYAPPLICATION_NATIVEENTRY_H
    
+   #include <ArkUIBaseNode.h>
+   #include <arkui/native_type.h>
    #include <js_native_api_types.h>
+   #include <memory.h>
    
    namespace NativeModule {
    
@@ -599,17 +603,20 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
        auto list = std::make_shared<ArkUIListNode>();
        list->SetPercentWidth(1);
        list->SetPercentHeight(1);
+       list->SetScrollBarState(true);
        // 2：创建ListItem子组件并挂载到List上。
        for (int32_t i = 0; i < 30; ++i) {
            auto listItem = std::make_shared<ArkUIListItemNode>();
            auto textNode = std::make_shared<ArkUITextNode>();
            textNode->SetTextContent(std::to_string(i));
            textNode->SetFontSize(16);
+           textNode->SetFontColor(0xFFff00ff);
            textNode->SetPercentWidth(1);
+           textNode->SetWidth(300);
            textNode->SetHeight(100);
            textNode->SetBackgroundColor(0xFFfffacd);
            textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
-           listItem->AddChild(textNode);
+           listItem->InsertChild(textNode, i);
            list->AddChild(listItem);
        }
        return list;

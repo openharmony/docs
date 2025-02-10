@@ -278,6 +278,7 @@ struct ClipAndMaskExample {
       }
       .clip(true) // 如这里不设置clip为true，则Row组件的圆角不会限制其中的Image组件，Image组件的四个角会超出Row
       .borderRadius(20)
+
       // 用一个280px直径的圆对图片进行裁剪
       Image($r('app.media.testImg'))
         .clipShape(new Circle({ width: '280px', height: '280px' }))
@@ -313,6 +314,7 @@ struct ProgressMaskExample {
   @State value: number = 10.0;
   @State enableBreathingAnimation: boolean = false;
   @State progress: ProgressMask = new ProgressMask(10.0, 100.0, Color.Gray);
+
   build() {
     Column({ space: 15 }) {
       Text('progress mask').fontSize(12).width('75%').fontColor('#DCDCDC')
@@ -345,7 +347,7 @@ struct ProgressMaskExample {
           }
           this.progressflag1 = !this.progressflag1
         }).width(200).height(50).margin(20)
-      
+
       // 开关呼吸光晕动画
       Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
         .onClick((event?: ClickEvent) => {

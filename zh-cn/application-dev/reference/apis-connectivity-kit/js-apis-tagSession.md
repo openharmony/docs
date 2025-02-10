@@ -102,7 +102,7 @@ connect(): void;
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **示例：**
 
@@ -164,7 +164,7 @@ resetConnection(): void
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **示例：**
 
@@ -308,7 +308,7 @@ getMaxTransmitSize(): number
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **示例：**
 ```js
@@ -382,7 +382,7 @@ getTimeout(): number
 | ------- | -------|
 |201 | Permission denied.                 |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **示例：**
 
@@ -465,7 +465,7 @@ setTimeout(timeout: number): void
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 **示例：**
 
@@ -617,8 +617,8 @@ transmit(data: number[]): Promise<number[]>
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
-| 3100204 | Tag I/O operation failed. |
+| 3100201 | The tag running state is abnormal in the service. |
+| 3100204 | The tag I/O operation failed. |
 
 **示例：**
 
@@ -682,7 +682,7 @@ transmit(data: number[], callback: AsyncCallback<number[]>): void
 |201 | Permission denied.                 |
 |401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 |801 | Capability not supported.          |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 | 3100204 | Tag I/O operation failed. |
 
 **示例：**

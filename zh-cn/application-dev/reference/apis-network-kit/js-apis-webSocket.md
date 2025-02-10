@@ -636,7 +636,7 @@ ws.off('open', callback1);
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
-订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
+订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -668,7 +668,7 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
-取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。每个消息最大长度为4K，超过4K自动分片。
+取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -982,7 +982,9 @@ type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
 | reason | string | 是   | 原因值，订阅close事件得到的关闭连接的错误原因。 |
 
 ## ResponseHeaders<sup>12+</sup>
-type ResponseHeaders = {[k: string]: string | string[] | undefined;}
+type ResponseHeaders = {
+  [k: string]: string | string[] | undefined;
+}
 
 服务器发送的响应头。
 
@@ -1006,7 +1008,7 @@ type ResponseHeaders = {[k: string]: string | string[] | undefined;}
 | 1003      | 无法处理的数据类型 |
 | 1004~1015 | 保留值             |
 
-## HttpProxy
+## HttpProxy<sup>12+</sup>
 
 type HttpProxy = connection.HttpProxy
 

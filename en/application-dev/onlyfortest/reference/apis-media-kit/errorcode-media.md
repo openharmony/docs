@@ -1,8 +1,82 @@
 # Media Error Codes
-
+<!--RP1-->
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+## DTS2025010983858
+
+### quetsion one
+Test DTS2025010983858 quesiton one
+
+1. list-One
+   according UserAgent {OSName} and {OSVersion} recognise OpenHarmonyOS.The format: OpenHarmony + Vesion
+
+   ```ts
+   const matches = navigator.userAgent.match(/OpenHarmony (\d+\.?\d*)/);  
+   matches?.length && Number(matches[1]) >= 5;  
+   ```
+
+2. list-Two
+    according UserAgent {OSName} recognise OpenHarmonyOS.
+
+   ```ts
+   const isOpenHarmony = () => /OpenHarmony/i.test(navigator.userAgent);   
+   ```
+
+### question two
+Test DTS2025010983858 quesiton two
+
+**Table 1**
+|Name|age|city|
+|---|---|---|
+| <!--DelRow-->formVisibleNotify | 15 | beijing |
+| <!--DelRow-->transparencyEnabled | 18| shagnhai |
+|fontScaleFollowSystem|20|London|
+
+**Table 2**
+|Name|age|city|
+|---|---|---|
+|fontScaleFollowSystem|20|London|
+| <!--DelRow-->formVisibleNotify | 15 | beijing |
+| <!--DelRow-->transparencyEnabled | 18| shagnhai |
+|fontScaleFollowSystemeternal|25|Pairs|
+
+1. List-One
+    **Table 3**
+    |Name|age|city|
+    |---|---|---|
+    | <!--DelRow-->formVisibleNotify | 15 | beijing |
+    | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+    |fontScaleFollowSystem|20|London|
+
+2. List-One
+    **Table 4**
+    |Name|age|city|
+    |---|---|---|
+    |fontScaleFollowSystem|20|London|
+    | <!--DelRow-->formVisibleNotify | 15 | beijing |
+    | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+    |fontScaleFollowSystemeternal|25|Pairs|
+
+3. List-Three
+    * ul-list-1
+        **Table 5**
+        |Name|age|city|
+        |---|---|---|
+        | <!--DelRow-->formVisibleNotify | 15 | beijing |
+        | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+        |fontScaleFollowSystem|20|London|
+
+    * ul-list-2
+        **Table 6**
+        |Name|age|city|
+        |---|---|---|
+        |fontScaleFollowSystem|20|London|
+        | <!--DelRow-->formVisibleNotify | 15 | beijing |
+        | <!--DelRow-->transparencyEnabled | 18| shagnhai |
+        |fontScaleFollowSystemeternal|25|Pairs|
+
 
 ## 5400101 Memory Allocation Failed
 
@@ -132,3 +206,4 @@ Another process occupies the audio focus.
 **Solution**
 
 Destroy the current instance and check whether another process is recording. If you can stop the other process, you can create the current instance again.
+<!--RP1End-->

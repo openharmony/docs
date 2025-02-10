@@ -98,6 +98,7 @@
         - [\@Monitor装饰器：状态变量修改监听](arkts-new-monitor.md)
         - [\@Computed装饰器：计算属性](arkts-new-Computed.md)
         - [\@Type装饰器: 标记类属性的类型](arkts-new-type.md)
+        - [\@ReusableV2装饰器：组件复用](arkts-new-reusableV2.md)
       - 其他状态管理
         - [AppStorageV2: 应用全局UI状态存储](arkts-new-appstoragev2.md)
         - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)

@@ -121,6 +121,30 @@
 
 **起始版本**：13
 
+### ohos.permission.WRITE_PROTECTION_ADVICE_POLICY
+
+允许系统应用读取“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+允许系统应用修改“安全建议”的数据库。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -201,9 +225,11 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：true
 
 **起始版本**：10
+
+**变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
 ### ohos.permission.WAKEUP_VISION
 
@@ -387,7 +413,7 @@
 
 ### ohos.permission.ACCESS_SYSTEM_SETTINGS
 
-允许应用接入或拉起系统设置界面
+允许应用接入或拉起系统设置界面。
 
 **权限级别**：system_basic
 
@@ -737,13 +763,15 @@
 
 允许应用进行用户公共证书凭据的安装、卸载、授权等操作。
 
-**权限级别**：API version 9-11为system_basic；从API version 12开始为system_core。
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
 **起始版本**：9
+
+**变更信息**：API 9-11，权限级别为system_basic；从API 12开始，变更为system_core。
 
 ### ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -819,7 +847,7 @@
 
 ### ohos.permission.MOUNT_UNMOUNT_MANAGER
 
-允许应用对外卡进行挂载卸载操作。
+允许应用对外卡进行挂载、卸载操作。
 
 **权限级别**：system_basic
 
@@ -1189,7 +1217,7 @@
 
 **起始版本**：7
 
-**变更信息**：API version 7-11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 7-11，权限级别为system_core；从API 12开始，变更为system_basic。
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -1217,7 +1245,7 @@
 
 **起始版本**：8
 
-**变更信息**：API 8-13，权限等级为system_core；从API 14开始，权限等级变更为system_basic。
+**变更信息**：API 8-13，权限级别为system_core；从API 14开始，变更为system_basic。
 
 ### ohos.permission.securityguard.REQUEST_SECURITY_EVENT_INFO
 
@@ -1379,7 +1407,7 @@
 
 ### ohos.permission.CONTROL_TASK_SYNC_ANIMATOR
 
-允许应用使用同步任务动画
+允许应用使用同步任务动画。
 
 **权限级别**：system_core
 
@@ -1461,18 +1489,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_WIFI_CONFIG
-
-允许应用获取Wi-Fi的配置信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 允许应用为其他应用授予敏感权限。
@@ -1487,7 +1503,7 @@
 
 ### ohos.permission.LAUNCH_DATA_PRIVACY_CENTER
 
-允许应用从其隐私声明页面跳转至“数据与隐私”页面
+允许应用从其隐私声明页面跳转至“数据与隐私”页面。
 
 **权限级别**：system_basic
 
@@ -1713,6 +1729,18 @@
 
 **起始版本**：7
 
+### ohos.permission.START_DESKTOP_UI_COMPONENT
+
+允许应用拉起桌面组件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 允许应用撤销给其他应用授予的敏感权限。
@@ -1808,18 +1836,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-允许应用配置Wi-Fi信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -2373,7 +2389,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PRIVATE_SPACE_PASSWORD_PROTECT
 
@@ -2385,7 +2401,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_PASSWORDVAULT_ABILITY
 
@@ -2397,7 +2413,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.ACCESS_TEXTAUTOFILL_ABILITY
 
@@ -2409,7 +2425,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ACCESS_LOWPOWER_MANAGER
 
@@ -2421,7 +2437,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_APP_BOOT
 
@@ -2631,13 +2647,13 @@
 
 允许应用修改坚盾守护模式配置。
 
-权限级别: system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
-起始版本: 11
+**起始版本**：11
 
 ### ohos.permission.SET_DEVELOPER_MODE
 
@@ -2673,7 +2689,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_PRIVATE_PHOTOS
 
@@ -2699,19 +2715,19 @@
 
 **起始版本**：11
 
-**变更信息**：API version 11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 11时，权限级别为system_core；从API 12开始，变更为system_basic。
 
 ### ohos.permission.RECORD_VOICE_CALL
 
 允许应用录制通话内容。
 
-权限级别: system_core
+**权限级别**：system_core
 
 **授权方式**：system_grant
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.MANAGE_APP_INSTALL_INFO
 
@@ -2735,7 +2751,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 11
+**起始版本**：11
 
 ### ohos.permission.ACCESS_HIVIEWX
 
@@ -2784,6 +2800,18 @@
 **ACL使能**：true
 
 **起始版本**：11
+
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+允许系统应用或系统服务查询其他应用的沙箱管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
 
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
@@ -3099,7 +3127,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.WRITE_ACCOUNT_LOGIN_STATE
 
@@ -3115,7 +3143,7 @@
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_AS_USER
 
-允许U0用户空间业务调用账号开放能力API
+允许U0用户空间业务调用账号开放能力API。
 
 **权限级别**：system_core
 
@@ -3243,7 +3271,7 @@
 
 **ACL使能**：true
 
-**起始版本**: 12
+**起始版本**：12
 
 ### ohos.permission.ENABLE_EXPERIENCE_HBM
 
@@ -3809,30 +3837,6 @@
 
 **起始版本**：12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-允许系统应用配置防火墙规则。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.GET_NET_FIREWALL
-
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 允许系统应用拉起用户凭据录入控件。
@@ -4151,6 +4155,18 @@
 
 **起始版本**：16
 
+### ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
+
+允许应用在使用同一受信任账号登录的设备之间同步关键资产。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
 允许应用获取恢复密钥的简要信息。
@@ -4323,6 +4339,18 @@
 
 **ACL使能**：true
 
+**起始版本**：15
+
+### ohos.permission.SEND_REMOTE_MESSAGE
+
+允许应用通过Push服务发送远程消息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
 **起始版本**：16
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
@@ -4373,7 +4401,31 @@
 
 **起始版本**：16
 
-**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
+**变更信息**：API 12-14，该权限仅向系统服务开放；从API 15开始，开放范围变更为系统应用。
+
+### ohos.permission.ACCESS_DLP_HIDE_INFO
+
+允许系统应用拉起防窥保护设置页。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.DLP_GET_HIDE_STATUS
+
+允许系统应用使用信息隐藏接口，获取信息隐藏状态的能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 ### ohos.permission.GET_ANIM_POLICY
 
@@ -4392,6 +4444,56 @@
 允许系统应用创建虚拟键盘窗口。
 
 系统应用获取此权限后，才可以成功创建虚拟键盘窗口。当前仅2in1设备系统应用可申请此权限。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
+### ohos.permission.GET_FAMILY_INFO
+
+允许系统应用获取“家人共享”中的群组信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+允许系统应用获取融合感知数据。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+允许应用读取“账号建议”的数据，以及拉起账号建议列表UIExtensionAbility。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
+### ohos.permission.SET_PAC_URL
+
+允许应用设置代理自动配置脚本地址。
+
+应用完成脚本地址配置后，其他应用可读取此脚本并进行解析，根据解析结果决定是否使用代理。
 
 **权限级别**：system_basic
 
@@ -4547,9 +4649,11 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：true
 
 **起始版本**：10
+
+**变更信息**：API 10-11，ACL使能为false；从API 12开始，变更为true。
 
 ### ohos.permission.RESTRICT_APPLICATION_ACTIVE
 
@@ -4651,7 +4755,7 @@
 
 允许应用查询和配置用户身份认证策略、校验用户身份认证结果。
 
-**权限级别** system_basic
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
