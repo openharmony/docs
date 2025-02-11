@@ -1497,7 +1497,7 @@
         - [请求自绘制内容绘制帧率](graphics/displaysync-xcomponent.md)
         - [NativeDisplaySoloist开发指导 (C/C++)](graphics/displaysoloist-native-guidelines.md)
       - [过度绘制调试使用指导](graphics/overdraw-dfx-guidelines.md)
-      - 图形绘制与显示<!--graphic-drawing-->
+      - 图形绘制与显示<!--graphic-drawing-and-display-->
         - [图形绘制与显示开发概述](graphics/graphic-drawing-overview.md)
         - 画布的获取与绘制结果的显示<!--canvas-get-result-draw-->
           - [画布的获取与绘制结果的显示（ArkTS）](graphics/canvas-get-result-draw-arkts.md)
@@ -1549,7 +1549,8 @@
       - [申请位置权限开发指导](device/location/location-permission-guidelines.md)
       - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
       - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
-      - [地理围栏开发指导](device/location/geofence-guidelines.md)
+      - [基于设备自身定位的地理围栏开发指导](device/location/geofence-guidelines.md)
+      - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
@@ -2255,7 +2256,7 @@
             - [AttributeUpdater](reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)
             - [Content](reference/apis-arkui/js-apis-arkui-Content.md)
             - [NodeContent](reference/apis-arkui/js-apis-arkui-NodeContent.md)
-        - 图形图像<!--graphics-api-->
+        - 图形图像<!--arkui-graphics-images-->
           - [@ohos.display (屏幕属性)](reference/apis-arkui/js-apis-display.md)
           - [@ohos.PiPWindow (画中画窗口)](reference/apis-arkui/js-apis-pipWindow.md)
           - [@ohos.window (窗口)](reference/apis-arkui/js-apis-window.md)
@@ -4282,6 +4283,10 @@
         - [@ohos.geoLocationManager (位置服务)](reference/apis-location-kit/js-apis-geoLocationManager.md)
         <!--Del-->
         - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
+        <!--DelEnd-->
+        - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
+        <!--Del-->
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--location-arkts-dep-->
           - [@ohos.geolocation (位置服务)](reference/apis-location-kit/js-apis-geolocation.md)
