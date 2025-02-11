@@ -349,7 +349,7 @@ startAdminProvision(admin: Want, type: AdminType, context: common.Context, param
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| type  | [AdminType](./js-apis-enterprise-adminManager-sys.md)             | 是    | 激活的设备管理应用类型，仅支持ADMIN_TYPE_BYOD类型。  |
+| type  | [AdminType](#admintype15)             | 是    | 激活的设备管理应用类型，仅支持ADMIN_TYPE_BYOD类型。  |
 | context  | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是 | 管理应用的上下文信息。 |
 | parameters  | Record\<string, string> | 是 | 自定义参数信息，其中Key值必须包含："activateId"。 |
 
@@ -403,6 +403,16 @@ try {
 | MANAGED_EVENT_ACCOUNT_ADDED<sup>16+</sup>  | 5    | 账号新增事件。 |
 | MANAGED_EVENT_ACCOUNT_SWITCHED<sup>16+</sup>  | 6    | 账号切换事件。 |
 | MANAGED_EVENT_ACCOUNT_REMOVED<sup>16+</sup>  | 7    | 账号删除事件。 |
+
+## AdminType<sup>15+</sup>
+
+设备管理应用的类型。 
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| ADMIN_TYPE_BYOD  | 0x02 | 自带设备管理应用。 |
 
 ## 附录
 ### 可委托策略列表
