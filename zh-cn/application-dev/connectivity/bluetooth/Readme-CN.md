@@ -1,4 +1,4 @@
-  # 蓝牙
+  # 蓝牙<!--bluetooth-->
   - [蓝牙服务开发概述](bluetooth-overview.md)
   - [蓝牙设置](br-development-guide.md)
   - [广播与扫描](ble-development-guide.md)
