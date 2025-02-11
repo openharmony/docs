@@ -1,11 +1,11 @@
 # 使用TonePlayer开发音频播放功能(仅对系统应用开放)
 
-TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。主要工作是将需要生成音调的[ToneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#tonetype9)类型，通过自带算法生成多个不同频率的正弦波叠加形成声音数据，通过[AudioRenderer](../../reference/apis-audio-kit/js-apis-audio.md#audiorenderer8)进行播放，同时对播放任务进行管理。包含加载DTMF音调配置、启动DTMF音调播放、停止当前正在播放的音调、释放与此TonePlayer对象关联的资源等流程。详细API说明请参考[TonePlayer API文档](../../reference/apis-audio-kit/js-apis-audio-sys.md#toneplayer9)。
+TonePlayer<sup>9+</sup>提供播放和管理DTMF（Dual Tone Multi Frequency，双音多频）音调的方法，包括各种系统监听音调、专有音调，如拨号音、通话回铃音等。主要工作是将需要生成音调的类型，通过自带算法生成多个不同频率的正弦波叠加形成声音数据，通过进行播放，同时对播放任务进行管理。包含加载DTMF音调配置、启动DTMF音调播放、停止当前正在播放的音调、释放与此TonePlayer对象关联的资源等流程。详细API说明请参考
 
 
 ## 支持的播放音调类型
 
-播放音调类型[ToneType](../../reference/apis-audio-kit/js-apis-audio-sys.md#tonetype9)信息（如下表所示），可通过"audio.ToneType.指定类型" 作为参数调用load()方法加载指定类型的音调资源。
+播放音调类型信息（如下表所示），可通过"audio.ToneType.指定类型" 作为参数调用load()方法加载指定类型的音调资源。
 
 | 播放音调类型 | 值 | 说明 | 
 | -------- | -------- | -------- |
@@ -95,8 +95,7 @@ async function release() {
 
 参考以下示例，点击键盘拨号按键，并启动对应的DTMF音调播放。
 
-为保证UI线程不被阻塞，大部分TonePlayer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考API文档[TonePlayer](../../reference/apis-audio-kit/js-apis-audio-sys.md#toneplayer9)。
-
+为保证UI线程不被阻塞，大部分TonePlayer调用都是异步的。对于每个API均提供了callback函数和Promise函数，以下示例均采用Promise函数，更多方式可参考API文档
   
 ```ts
 import audio from '@ohos.multimedia.audio';
