@@ -430,7 +430,7 @@ abilities示例：
 | type | 标识与Want相匹配的数据类型，使用MIME（Multipurpose&nbsp;Internet&nbsp;Mail&nbsp;Extensions）类型规范和[UniformDataType](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)类型规范。可与scheme同时配置，也可以单独配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | utd | 标识与Want相匹配的[标准化数据类型](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md)，适用于分享等场景。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | maxFileSupported | 对于指定类型的文件，标识一次能接收或打开的最大数量，适用于分享等场景，需要与utd配合使用。| 整数 | 该标签可缺省，缺省值为0。|
-| linkFeature | 标识URI提供的功能类型（如文件打开、分享、导航等），用于实现应用间跳转。取值为长度不超过127字节的字符串，不支持中文。详情见[linkFeature标签说明](../application-models/app-uri-config.md#linkfeature标签说明)。 | 字符串 | 该标签可缺省，缺省值为空。|
+| linkFeature | 标识URI提供的功能类型（如文件打开、分享、导航等），用于实现应用间跳转。取值为长度不超过127字节的字符串，不支持中文。同一Bundle中声明的linkFeature数量不能超过150个。详情见[linkFeature标签说明](../application-models/app-uri-config.md#linkfeature标签说明)。 | 字符串 | 该标签可缺省，缺省值为空。|
 
 skills示例：
 
