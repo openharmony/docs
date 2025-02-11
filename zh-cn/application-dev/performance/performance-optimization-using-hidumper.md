@@ -224,7 +224,7 @@ struct VisibilityComponent {
 开发者可以通过以下步骤，获取到当前应用的内存信息。
 
 1. 打开示例应用，运行 `hdc shell hidumper -s WindowManagerService -a '-a'` ，获取到当前应用的pid。
-2. 输入 `hidumper --mem [pid]` ，并将命令中的 `[pid]` 换成当前应用的pid，就可以获取到示例应用的内存信息了，如下图所示:
+2. 输入 `hidumper --mem [pid]` ，并将命令中的 `[pid]` 换成当前应用的pid，就可以获取到示例应用的内存信息了，如下图所示：
 ```
 hdc shell hidumper --mem [pid]
 ```
