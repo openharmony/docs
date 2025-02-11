@@ -6,12 +6,6 @@
 
 该模块提供以下音频相关的常用功能：
 
-```
-- [AudioManager](#audiomanager)：音频管理。
-- [AudioRenderer](#audiorenderer8)：音频渲染，用于播放PCM（Pulse Code Modulation）音频数据。
-- [AudioCapturer](#audiocapturer8)：音频采集，用于录制PCM音频数据。
-```
-
 > **说明：**
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -51,4 +45,4 @@ getAudioManager(): AudioManager
 
 | 类型                          | 说明         |
 | ----------------------------- | ------------ |
-| `[AudioManager](#audiomanager)` | 音频管理对象。 |
+| udioManager 音频管理对象。 |
