@@ -22,14 +22,18 @@
 
 ``` TypeScript
 // 优化前代码
-private getDay(year: number): number {
-  /* Year has (12 * 29 =) 348 days at least */
+class Time {
+  static START: number = 1987;
+  static INFO: number[] = [2001, 2002, 2003, 2004, 2005, 2006]
+}
+
+function getDay(year: number): number {
   let totalDays: number = 348;
   for (let index: number = 0x8000; index > 0x8; index >>= 1) {
     // 此处会多次对Time的INFO及START进行查找，并且每次查找出来的值是相同的
-    totalDays += ((Time.INFO[year- Time.START] & index) !== 0) ? 1 : 0;
+    totalDays += ((Time.INFO[year - Time.START] & index) !== 0) ? 1 : 0;
   }
-  return totalDays + this.getDays(year);
+  return totalDays;
 }
 ```
 
@@ -39,16 +43,21 @@ private getDay(year: number): number {
 
 ``` TypeScript
 // 优化后代码
-private getDay(year: number): number {
-  /* Year has (12 * 29 =) 348 days at least */
+class Time {
+  static START: number = 1987;
+  static INFO: number[] = [2001, 2002, 2003, 2004, 2005, 2006];
+}
+
+function getDay(year: number): number {
   let totalDays: number = 348;
-  const info = Time.INFO[year - Time.START]; // 1. 从循环中提取不变量
+  // 从循环中提取不变量
+  const info = Time.INFO[year - Time.START]; 
   for (let index: number = 0x8000; index > 0x8; index >>= 1) {
     if ((info & index) !== 0) {
       totalDays++;
     }
   }
-  return totalDays + this.getDays(year);
+  return totalDays;
 }
 ```
 
@@ -67,7 +76,8 @@ class O1 {
   x: string | undefined = "";
   y: string | undefined = "";
 }
-let obj: O1 = {x: "", y: ""};
+
+let obj: O1 = { x: "", y: "" };
 
 obj.x = "xxx";
 obj.y = "yyy";
@@ -84,15 +94,17 @@ class O1 {
   x: string | null = "";
   y: string | null = "";
 }
-let obj: O1 = {x: "", y: ""};
+
+let obj: O1 = { x: "", y: "" };
 
 obj.x = "xxx";
 obj.y = "yyy";
 obj.x = null;
 
 // 例2：使用高性能容器类操作属性
-import HashMap from '@ohos.util.HashMap'; 
-let myMap= new HashMap();
+import HashMap from '@ohos.util.HashMap';
+
+let myMap = new HashMap();
 
 myMap.set("x", "xxx");
 myMap.set("y", "yyy");
@@ -118,22 +130,24 @@ myMap.remove("x");
 【反例】
 
 ``` TypeScript
-getInfo(t1, t2) {
-  if (!this.check(t1, t2)) {
-    return "";
+class InfoUtil {
+  getInfo(t1: string, t2: string): string {
+    if (t1 === t2) {
+      return "";
+    }
+    // 此处使用Record普通对象作为容器
+    let info: Record<string, string> = {};
+    this.setInfo(info);
+    let t3 = info[t2];
+    return (t3 != null) ? t3 : "";
   }
-  // 此处使用JS Object作为容器
-  let info= {};  
-  this.setInfo(info);
-  let t1= info[t2];
-  return (t1!= null) ? t1: "";
-}
-setInfo(info) {
-  // 接口内部实际上进行的是map的操作
-  info[T1] = '七六';   
-  info[T2] = '九一';
-  ... ...
-  info[T3] = '十二';
+
+  setInfo(info: Record<string, string>) {
+    // 接口内部实际上进行的是map的操作
+    info.aaa = 'aaa';
+    info.bbb = 'bbb';
+    info.ccc = 'ccc';
+  }
 }
 ```
 
@@ -142,24 +156,25 @@ setInfo(info) {
 【正例】
 
 ``` TypeScript
-import HashMap from '@ohos.util.HashMap'; 
+import HashMap from '@ohos.util.HashMap';
 
-getInfo(t1, t2) {
-  if (!this.check(t1, t2)) {
-    return "";
+class InfoUtil {
+  getInfo(t1: string, t2: string): string {
+    if (t1 === t2) {
+      return "";
+    }
+    // 此处改为使用HashMap进行读写操作
+    let info: HashMap<string, string> = new HashMap();
+    this.setInfo(info);
+    let t3 = info.get(t2);
+    return (t3 != null) ? t3 : "";
   }
-  // 此处替换为HashMap作为容器
-  let info= new HashMap();
-  this.setInfo(info);
-  let t1= info.get(t2);
-  return (t1!= null) ? t1: "";
-}
-setInfo(info) {
-  // 接口内部实际上进行的是map的操作
-  info.set(T1, '七六');   
-  info.set(T2, '九一');
-  ... ...
-  info.set(T3, '十二');
+  setInfo(info:HashMap<string, string>) {
+    // ...
+    info.set('aaa','aaa');
+    info.set('bbb','bbb');
+    info.set('ccc','ccc');
+  }
 }
 ```
 
@@ -172,8 +187,8 @@ setInfo(info) {
 【正例】
 
 ``` TypeScript
-const typedArray1 = new Int8Array([1, 2, 3]);  // 针对这一场景，建议不要使用new Array([1, 2, 3])
-const typedArray2 = new Int8Array([4, 5, 6]);  // 针对这一场景，建议不要使用new Array([4, 5, 6])
+const typedArray1 = new Int8Array([1, 2, 3]); // 针对这一场景，建议不要使用new Array([1, 2, 3])
+const typedArray2 = new Int8Array([4, 5, 6]); // 针对这一场景，建议不要使用new Array([4, 5, 6])
 let res = new Int8Array(3);
 for (let i = 0; i < 3; i++) {
   res[i] = typedArray1[i] + typedArray2[i];
@@ -228,7 +243,7 @@ class A {
 
 let a = new A();
 // x使用时还未赋值，这种情况会访问整个原型链
-print(a.x);
+console.log((a.x).toString());
 ```
 
 【正例】
@@ -247,7 +262,7 @@ class A {
 }
 
 let a = new A();
-print(a.x);
+console.log((a.x).toString());
 ```
 
 #### number正确初始化
@@ -277,8 +292,8 @@ class O1 {
   x: string = "";
   y: string = "";
 }
-let obj: O1 = {"x": xxx, "y": "yyy"};
-...
+let obj: O1 = {"x": "xxx", "y": "yyy"};
+// ...
 // 这种动态添加方式是不推荐的
 obj.z = "zzz";
 ```
@@ -292,7 +307,7 @@ class O1 {
   z: string = "";
 }
 let obj: O1 = {"x": "xxx", "y": "yyy", "z": ""};
-...
+// ...
 obj.z = "zzz";
 ```
 
@@ -304,14 +319,14 @@ obj.z = "zzz";
 
 ``` TypeScript
 class A {
-    private a: number | undefined;
-    private b: number | undefined;
-    private c: number | undefined;
-    constructor(a?: number, b?: number, c?: number) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
+  private a: number | undefined;
+  private b: number | undefined;
+  private c: number | undefined;
+  constructor(a?: number, b?: number, c?: number) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
 }
 // new的过程中没有传入参数，a，b，c会获取一个undefined的初值，和标注类型不符
 let a = new A();
@@ -325,14 +340,14 @@ let a = new A();
 
 ``` TypeScript
 class A {
-    private a: number | undefined;
-    private b: number | undefined;
-    private c: number | undefined;
-    constructor(a?: number, b?: number, c?: number) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
+  private a: number | undefined;
+  private b: number | undefined;
+  private c: number | undefined;
+  constructor(a?: number, b?: number, c?: number) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
 }
 // 初始化直接传入默认值0
 let a = new A(0, 0, 0);
@@ -531,9 +546,9 @@ function foo(f: boolean) {
 
 ``` TypeScript
 import hiTraceMeter from '@ohos.hiTraceMeter';
-... ...
+// ...
 hiTraceMeter.startTrace("fillText1", 100);
-... ...
+// ...
 hiTraceMeter.finishTrace("fillText1", 100);
 ```
 
@@ -568,4 +583,3 @@ NAPI层面的耗时主要分为如下几种情况：
 - hdc shell连接设备进行命令行采集。
 
 可以通过CPU Profiler工具，对TS&JS中执行的热点函数进行抓取。以应用实际使用场景为例，在此场景中，可以抓到应用中的某一热点函数，在此基础上，针对该接口做进一步分析。
-<!--no_check-->
