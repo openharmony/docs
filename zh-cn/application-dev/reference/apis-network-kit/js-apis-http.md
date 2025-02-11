@@ -16,7 +16,7 @@ import { http } from '@kit.NetworkKit';
 ## 完整示例
 
 ```ts
-// 引入包名。
+// 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1078,7 +1078,7 @@ off(type: 'dataSendProgress', callback?: Callback\<DataSendProgressInfo\>): void
 import { http } from '@kit.NetworkKit';
 
 let httpRequest = http.createHttp();
-httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {  
+httpRequest.on("dataSendProgress", (data: http.DataSendProgressInfo) => {
   console.info("dataSendProgress:" + JSON.stringify(data));
 });
 httpRequest.off("dataSendProgress");
@@ -1127,7 +1127,7 @@ HTTP 请求方法。
 | HEAD    | "HEAD"    | HEAD方法请求与GET请求相同的响应，但没有响应主体。 |
 | POST    | "POST"    | POST方法将实体提交给指定的资源，通常会导致服务器上的状态更改。 |
 | PUT     | "PUT"     | PUT方法将目标资源的所有当前表示替换为请求内容。 |
-| DELETE  | "DELETE"  | DELETE方法用于删除指定的资源。  |
+| DELETE  | "DELETE"  | DELETE方法用于删除指定的资源。 |
 | TRACE   | "TRACE"   | TRACE方法沿到达目标资源的路径执行消息环回测试。 |
 | CONNECT | "CONNECT" | CONNECT方法建立到由目标资源标识的服务器的隧道。 |
 
