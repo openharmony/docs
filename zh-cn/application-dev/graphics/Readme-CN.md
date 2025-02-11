@@ -8,21 +8,21 @@
   - [请求自绘制内容绘制帧率](displaysync-xcomponent.md)
   - [NativeDisplaySoloist开发指导 (C/C++)](displaysoloist-native-guidelines.md)
 - [过度绘制调试使用指导](overdraw-dfx-guidelines.md)
-- 图形绘制与显示
+- 图形绘制与显示<!--graphic-drawing-->
   - [图形绘制与显示开发概述](graphic-drawing-overview.md)
-  - 画布的获取与绘制结果的显示
+  - 画布的获取与绘制结果的显示<!--canvas-get-result-draw-->
     - [画布的获取与绘制结果的显示（ArkTS）](canvas-get-result-draw-arkts.md)
     - [画布的获取与绘制结果的显示（C/C++）](canvas-get-result-draw-c.md)
-  - 画布操作及状态
+  - 画布操作及状态<!--canvas-operation-state-->
     - [画布操作及状态（ArkTS）](canvas-operation-state-arkts.md)
     - [画布操作及状态处理（C/C++）](canvas-operation-state-c.md)
-  - 绘制效果
+  - 绘制效果<!--drawing-effect-->
     - [绘制效果概述](drawing-effect-overview.md)
     - [基础绘制效果（ArkTS）](basic-drawing-effect-arkts.md)
     - [复杂绘制效果（ArkTS）](complex-drawing-effect-arkts.md)
     - [基础绘制效果（C/C++）](basic-drawing-effect-c.md)
     - [复杂绘制效果（C/C++）](complex-drawing-effect-c.md)
-  - 图元绘制
+  - 图元绘制<!--primitive-drawing-->
     - [图元绘制概述](primitive-drawing-overview.md)
     - [几何形状绘制（ArkTS）](geometric-shape-drawing-arkts.md)
     - [图片绘制（ArkTS）](pixelmap-drawing-arkts.md)
