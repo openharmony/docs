@@ -459,18 +459,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_RUNNING_INFO
-
-允许应用获取运行态信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 允许应用在后台启动或者访问其他组件。
@@ -494,18 +482,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.RUNNING_STATE_OBSERVER
-
-允许应用监听应用状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -3348,18 +3324,6 @@
 ### ohos.permission.WRITE_RINGTONE
 
 允许铃音库进行写操作。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.KILL_APP_PROCESSES
-
-允许系统应用杀掉其他应用。
 
 **权限级别**：system_basic
 
