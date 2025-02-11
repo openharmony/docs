@@ -69,7 +69,7 @@ import data from './example.json'
 
 ### Native模块
 
-Native模块（so）的导入导出与加载ets/ts/js语法规格一致。
+Native模块（so）的导入导出与加载ets/ts/js语法规格一致。可参考：[静态方式加载native模块](./arkts-import-native-module.md)。
 
 > **说明：**
 >
