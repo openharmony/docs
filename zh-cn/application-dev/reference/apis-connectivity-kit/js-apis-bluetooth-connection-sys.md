@@ -770,6 +770,64 @@ try {
 ```
 
 
+## connection.controlDeviceAction<sup>15+</sup>
+
+controlDeviceAction(controlDeviceActionParams: ControlDeviceActionParams): Promise&lt;void&gt;
+
+查找蓝牙耳机设备时，向耳机发送控制命令。使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名    | 类型      | 必填   | 说明                               |
+| ------ | ------- | ---- | -------------------------------- |
+| controlDeviceActionParams<sup>15+</sup> | [ControlDeviceActionParams](#controldeviceactionparams15) | 是    | 控制蓝牙外设的相关信息。 |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth disabled.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+try {
+    let controlDeviceActionParams: connection.ControlDeviceActionParams = {
+        deviceId: '40:DC:A5:E5:75:C3',
+        type: connection.ControlType.PLAY,
+        typeValue: connection.ControlTypeValue.ENABLE,
+        controlObject: connection.ControlObject.LEFT_EAR
+    };
+    connection.controlDeviceAction(controlDeviceActionParams).then(() => {
+        console.info('controlDeviceAction success');
+    }, (err: BusinessError) => {
+        console.error('controlDeviceAction: errCode' + err.code + ', errMessage: ' + err.message);
+    });
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## PinRequiredParam
 
 描述配对请求参数。
@@ -779,6 +837,19 @@ try {
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | pinType | [PinType](#pintype) | 是    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
+
+## ControlDeviceActionParams<sup>15+</sup>
+
+控制命令的配置参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId | string | 是    | 否 | 表示要配对的设备ID。 |
+| type | [ControlType](#controltype15) | 是    | 否    | 表示控制类型。 |
+| typeValue | [ControlTypeValue](#controltypevalue15) | 是 | 否 | 表示控制动作。 |
+| controlObject | [ControlObject](#controlobject15) | 是 | 否 | 表示控制对象。|
 
 ## PinType
 
@@ -831,3 +902,42 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示远端设备的MAC地址。<br/>此接口为系统接口。 |
 
+
+## ControlType<sup>15+</sup>
+
+枚举，控制类型。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称                               | 值    | 说明              |
+| -------------------------------- | ------ | --------------- |
+| PLAY | 0 | 表示控制类型为播放。 |
+| VIBRATE | 1 | 表示控制类型为振动。 |
+| FLASH | 2 | 表示控制类型为闪光。 |
+| LOCK | 3 | 表示控制类型为锁定。 |
+
+
+## ControlTypeValue<sup>15+</sup>
+
+枚举，控制动作。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称    | 值   | 说明       |
+| ------- | ---- | ---------- |
+| DISABLE | 0    | 表示禁用。 |
+| ENABLE  | 1    | 表示使能。 |
+| QUERY   | 2    | 表示查询。 |
+
+
+## ControlObject<sup>15+</sup>
+
+枚举，控制对象。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称           | 值   | 说明                 |
+| -------------- | ---- | -------------------- |
+| LEFT_EAR       | 0    | 表示控制对象是左耳。 |
+| RIGHT_EAR      | 1    | 表示控制对象是右耳。 |
+| LEFT_RIGHT_EAR | 2    | 表示控制对象是双耳。 |
