@@ -1633,7 +1633,7 @@ struct Index {
 
 postFrameCallback(frameCallback: FrameCallback): void
 
-注册一个在下一帧进行渲染时执行的回调。
+注册一个回调，仅在下一帧渲染时调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
