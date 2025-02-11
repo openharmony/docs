@@ -25,7 +25,7 @@ getAudioHapticManager(): AudioHapticManager
 
 | 类型                          | 说明         |
 | ----------------------------- | ------------ |
-| [AudioHapticManager](#audiohapticmanager) | 音振管理器。 |
+| AudioHapticManager| 音振管理器。 |
 
 **示例：**
 ```ts
@@ -56,7 +56,7 @@ let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.get
 
 ## AudioHapticManager
 
-管理音振协同功能。在调用AudioHapticManager的接口前，需要先通过[getAudioHapticManager](#audiohapticgetaudiohapticmanager)创建实例。
+管理音振协同功能。在调用AudioHapticManager的接口前，需要先通过创建实例。
 
 ### registerSource
 
@@ -135,11 +135,11 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id          | number                                | 是   | 已注册资源的source id。    |
-| latencyMode | [AudioLatencyMode](#audiolatencymode) | 是   | 音频时延模式。             |
+| latencyMode | AudioLatencyMode | 是   | 音频时延模式。             |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见媒体服务错误码
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
@@ -166,11 +166,11 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
-| usage    | [audio.StreamUsage](js-apis-audio.md#streamusage) | 是   | 音频流使用类型。    |
+| usage    | audio.StreamUsage | 是   | 音频流使用类型。    |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[媒体服务错误码
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
@@ -203,17 +203,16 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | id       | number                                   | 是   | 已注册资源的source id。    |
-| options  | [AudioHapticPlayerOptions](#audiohapticplayeroptions) | 否   | 音振播放器选项。 |
+| options  | AudioHapticPlayerOptions | 否   | 音振播放器选项。 |
 
 **返回值：**
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[AudioHapticPlayer](#audiohapticplayer)&gt; | Promise回调返回创建的音振播放器。 |
+| PromisAudioHapticPlayer | Promise回调返回创建的音振播放器。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID | 错误信息                              |
 | ------- |-----------------------------------|
@@ -250,7 +249,7 @@ audioHapticManagerInstance.createPlayer(id, options).then((value: audioHaptic.Au
 
 ## AudioHapticPlayer
 
-音振播放器，提供音振协同播放功能。在调用AudioHapticPlayer的接口前，需要先通过[createPlayer](#createplayer)创建实例。
+音振播放器，提供音振协同播放功能。在调用AudioHapticPlayer的接口前，需要先通过
 
 ### isMuted
 
@@ -264,7 +263,7 @@ isMuted(type: AudioHapticType): boolean
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| type     | [AudioHapticType](#audiohaptictype)      | 是   | 音振类型。                |
+| type     | AudioHapticType     | 是   | 音振类型。                |
 
 **返回值：**
 
@@ -296,7 +295,6 @@ start(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
@@ -333,7 +331,6 @@ stop(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
@@ -368,7 +365,6 @@ release(): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
 
 | 错误码ID   | 错误信息                              |
 |---------|-----------------------------------|
@@ -443,7 +439,7 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（音频中断事件）。                     |
-| callback | Callback&lt;[audio.InterruptEvent](js-apis-audio.md#interruptevent9)&gt; | 是   | 收到音频中断事件时触发的回调。    |
+| callback | Callback | 是   | 收到音频中断事件时触发的回调。    |
 
 **示例：**
 
