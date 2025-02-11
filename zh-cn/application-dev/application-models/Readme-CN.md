@@ -78,7 +78,9 @@
       - [创建PageAbility](create-pageability.md)
       - [启动本地PageAbility](start-local-pageability.md)
       - [停止PageAbility](stop-pageability.md)
+      <!--Del-->
       - [启动远程PageAbility（仅对系统应用开放）](start-remote-pageability.md)
+      <!--DelEnd-->
       - [启动指定页面](start-page.md)
       - [窗口属性](window-properties.md)
       - [申请授权](request-permissions.md)
@@ -141,4 +143,4 @@
     - [window接口切换](window-switch.md)
     - [Storage接口切换](storage-switch.md)
 <!--DelEnd-->
-- [Native子进程开发指导（C/C++)](capi_nativechildprocess_development_guideline.md)
+- [Native子进程开发指导（C/C++）](capi_nativechildprocess_development_guideline.md)
