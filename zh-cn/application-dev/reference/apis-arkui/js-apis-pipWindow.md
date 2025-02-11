@@ -1016,13 +1016,13 @@ off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 pipController.off('controlEvent', () => {});
 ```
 
-### on('pipWindowSizeChange')<sup>16+</sup>
+### on('pipWindowSizeChange')<sup>15+</sup>
 
 on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
 
 开启画中画窗口尺寸变化的监听。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -1055,13 +1055,13 @@ try {
 }
 ```
 
-### off('pipWindowSizeChange')<sup>16+</sup>
+### off('pipWindowSizeChange')<sup>15+</sup>
 
 off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
 
 关闭画中画窗口尺寸变化的监听。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
