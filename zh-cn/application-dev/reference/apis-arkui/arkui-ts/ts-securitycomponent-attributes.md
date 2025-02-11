@@ -361,6 +361,28 @@ borderRadius(value: Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
+## borderRadius<sup>15+</sup>
+
+borderRadius(radius: Dimension | BorderRadiuses): T
+
+设置安全控件的边框圆角半径，支持分别设置四个圆角。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| radius |  [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |安全控件的边框圆角半径。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
 ## padding
 
 padding(value: Padding | Dimension): T
@@ -376,6 +398,28 @@ padding(value: Padding | Dimension): T
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
 | value | [Padding](ts-types.md#padding) \| [Dimension](ts-types.md#dimension10) |是 |安全控件的内边距。<br/>默认值：上下8vp, 左右16vp|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
+## align<sup>15+</sup>
+
+align(alignType: Alignment): T
+
+设置安全控件图标文本的对齐方式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                   | 必填 | 说明                   |
+|------------|------|-------|---------|
+| alignType | [Alignment](ts-appendix-enums.md#alignment) |是 |安全控件图标文本的对齐方式，图标文本作为整体在控件背托范围内进行对齐，UX显示受[padding](ts-securitycomponent-attributes.md#padding)影响。<br/>默认值：Alignment.Center|
 
 **返回值：**
 
@@ -493,6 +537,95 @@ constraintSize(value: ConstraintSizeOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
+## alignRules<sup>15+</sup>
+
+alignRules(alignRule: AlignRuleOption): T
+
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| alignRule | [AlignRuleOption](ts-universal-attributes-location.md#alignruleoption对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
+## alignRules<sup>15+</sup>
+
+alignRules(alignRule: LocalizedAlignRuleOptions): T
+
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代上述[alignRules](#alignrules15)的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| alignRule | [LocalizedAlignRuleOptions](ts-universal-attributes-location.md#localizedalignruleoptions12对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
+## id<sup>15+</sup>
+
+id(description: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| description | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
+## chainMode<sup>15+</sup>
+
+chainMode(direction: Axis, style: ChainStyle): T
+
+指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| direction | [Axis](ts-appendix-enums.md#axis) | 是   | 链的方向。 |
+| style | [ChainStyle](ts-universal-attributes-location.md#chainstyle12) | 是   | 链的样式。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回安全控件的属性。 |
+
 
 ## SecurityComponentLayoutDirection枚举说明
 
@@ -511,8 +644,11 @@ constraintSize(value: ConstraintSizeOptions): T
 > **说明：**
 > 为避免控件样式不合法导致授权失败，请开发者先了解安全控件样式的[约束与限制](../../../security/AccessToken/security-component-overview.md#约束与限制)。
 
+### 示例1
+
+设置SecurityComponent基础属性，生成一个保存控件
+
 ```ts
-// xxx.ets
 @Entry
 @Component
 struct Index {
@@ -535,6 +671,12 @@ struct Index {
           .textIconSpace(20)
           .backgroundColor(0x3282f6)
         SaveButton().size({width:200, height:100})
+        SaveButton()
+          .size({width:200, height:100})
+          .align(Alignment.Start)
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
+          .size({width:150, height:80})
+          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35})
         SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
@@ -543,3 +685,73 @@ struct Index {
 ```
 
 ![zh-cn_image_0000001643038221](figures/zh-cn_image_0000001643038221.png)
+
+### 示例2
+
+以容器和容器内组件作为锚点进行布局
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      RelativeContainer() {
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+          .width(100).height(100)
+          .backgroundColor("#A3CF62")
+          .alignRules({
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            left: {anchor: "__container__", align: HorizontalAlign.Start}
+          })
+          .id("row1")
+
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+          .width(100).height(100)
+          .backgroundColor("#00AE9D")
+          .alignRules({
+            top: {anchor: "__container__", align: VerticalAlign.Top},
+            right: {anchor: "__container__", align: HorizontalAlign.End}
+          })
+          .id("row2")
+
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+          .height(100)
+          .backgroundColor("#0A59F7")
+          .alignRules({
+            top: {anchor: "row1", align: VerticalAlign.Bottom},
+            left: {anchor: "row1", align: HorizontalAlign.End},
+            right: {anchor: "row2", align: HorizontalAlign.Start}
+          })
+          .id("row3")
+
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+          .backgroundColor("#2CA9E0")
+          .alignRules({
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+            left: {anchor: "__container__", align: HorizontalAlign.Start},
+            right: {anchor: "row1", align: HorizontalAlign.End}
+          })
+          .id("row4")
+
+        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+          .backgroundColor("#30C9F7")
+          .alignRules({
+            top: {anchor: "row3", align: VerticalAlign.Bottom},
+            bottom: {anchor: "__container__", align: VerticalAlign.Bottom},
+            left: {anchor: "row2", align: HorizontalAlign.Start},
+            right: {anchor: "__container__", align: HorizontalAlign.End}
+          })
+          .id("row5")
+      }
+      .width(300).height(300)
+      .margin({left: 50})
+      .border({width:2, color: "#6699FF"})
+    }
+    .height('100%')
+  }
+}
+```
+
+![SaveBotton_alignRules_1.png](figures/SaveBotton_alignRules_1.png)
