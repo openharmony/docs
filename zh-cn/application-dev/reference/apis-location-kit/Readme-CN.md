@@ -4,7 +4,8 @@
   - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
   - [@ohos.geoLocationManager (位置服务)(系统接口)](js-apis-geoLocationManager-sys.md)
   - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](js-apis-app-ability-FenceExtensionAbility.md)
-  - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](js-apis-app-ability-FenceExtensionContext-sys.md)
+  - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)](js-apis-app-ability-FenceExtensionContext.md)
+  - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)(系统接口)](js-apis-app-ability-FenceExtensionContext-sys.md)
   - 已停止维护的接口
     - [@ohos.geolocation (位置服务)](js-apis-geolocation.md)
     - [@system.geolocation (地理位置)](js-apis-system-location.md)
