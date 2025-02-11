@@ -2126,6 +2126,7 @@
           - [Preferences](reference/apis-arkdata/_preferences.md)
         - 头文件<!--arkdata-headerfile-->
           - [data_asset.h](reference/apis-arkdata/data__asset_8h.md)
+          - [oh_cursor.h](reference/apis-arkdata/oh__cursor_8h.md)
           - [oh_data_value.h](reference/apis-arkdata/oh__data__value_8h.md)
           - [oh_data_values.h](reference/apis-arkdata/oh__data__values_8h.md)
           - [oh_data_values_buckets.h](reference/apis-arkdata/oh__data__values__buckets_8h.md)
