@@ -7811,6 +7811,64 @@ struct Index {
 }
 ```
 
+### stopMoving<sup>15+</sup>
+
+stopMoving(): Promise&lt;void&gt;
+
+在窗口拖拽移动过程中，通过此接口来停止窗口移动，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | -------------------------|
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+        if (data.reason === window.RectChangeReason.MOVE) {
+          windowClass.stopMoving().then(() => {
+            console.info('Succeeded in stopping moving window.')
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to stop moving. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        }
+      });
+    } catch (exception) {
+      console.error(`Failed to stop moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
 ### setGestureBackEnabled<sup>13+<sup>
 
 setGestureBackEnabled(enabled: boolean): Promise&lt;void&gt;
