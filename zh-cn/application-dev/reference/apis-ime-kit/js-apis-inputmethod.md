@@ -792,7 +792,7 @@ Enter键的功能类型。
 | BASIC_MODE  | 1 |基础模式。 |
 | FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
@@ -811,7 +811,7 @@ Enter键的功能类型。
 | onTerminated | function | 否   | 对象终止接收的回调函数。           |
 | onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -852,7 +852,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -1891,7 +1891,7 @@ inputMethodController.hideSoftKeyboard().then(() => {
 });
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -1945,7 +1945,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void
 

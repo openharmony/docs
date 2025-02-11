@@ -2590,7 +2590,7 @@ keyboardController.exitCurrentInputType().then(() => {
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
@@ -2609,7 +2609,7 @@ keyboardController.exitCurrentInputType().then(() => {
 | onTerminated | function | 否   | 对象终止接收的回调函数。           |
 | onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -2650,7 +2650,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -4394,7 +4394,7 @@ try {
 }
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -4448,7 +4448,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void;
 
