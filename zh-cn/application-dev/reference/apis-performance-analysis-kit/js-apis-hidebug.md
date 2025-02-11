@@ -472,9 +472,7 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应。
-
-先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
 
 应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集，因此limitSize大小设置不当，将导致采集trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
 
@@ -490,10 +488,10 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                   |
-| -------- | ------   | ---- |--------------------------------------|
-| tags     | number[] | 是   | 详情请见[tags](#hidebugtags12)           |
-| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)        |
+| 参数名   | 类型     | 必填 | 说明                                 |
+| -------- | ------   | ---- |------------------------------------|
+| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12) |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)      |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB |
 
 **返回值：**
@@ -537,9 +535,7 @@ try {
 
 stopAppTraceCapture() : void
 
-停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集。
-
-先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集，关闭前未开启trace采集或重复关闭将导致接口调用异常。
 
 调用startAppTraceCapture接口，如果没有合理传入limitSize参数，生成trace的大小大于传入的limitSize大小，系统内部会自动调用stopAppTraceCapture，再次手动调用stopAppTraceCapture就会抛出错误码11400105。
 
@@ -831,7 +827,9 @@ try {
 
 ## hidebug.tags<sup>12+</sup>
 
-描述支持/使用场景标签。
+描述支持trace使用场景的标签。
+
+注意：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
