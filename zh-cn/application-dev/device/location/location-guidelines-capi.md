@@ -23,11 +23,13 @@
 
 
 ## 开发步骤
+1. 新建一个Native C++工程。
+   ![输入图片说明](figures/001.png)
 
-1. 获取设备的位置信息，需要有位置权限，位置权限申请的方法和步骤见[申请位置权限开发指导](location-permission-guidelines.md)。
+2. 获取设备的位置信息，需要有位置权限，位置权限申请的方法和步骤见[申请位置权限开发指导](location-permission-guidelines.md)。
 
 
-2. CMakeLists.txt文件中引入动态依赖库。
+3. CMakeLists.txt文件中引入动态依赖库。
 
    ```c
    target_link_libraries(entry PUBLIC libace_napi.z.so)
@@ -35,7 +37,7 @@
    target_link_libraries(entry PUBLIC liblocation_ndk.so)
    ```
 
-3. 在napi_init.cpp文件中编码，首先导入模块。
+4. 在napi_init.cpp文件中编码，首先导入模块。
 
    ```c
    #include "napi/native_api.h"
@@ -44,7 +46,7 @@
    #include "hilog/log.h"
    ```
 
-4. 调用获取位置接口之前需要先判断位置开关是否打开。
+5. 调用获取位置接口之前需要先判断位置开关是否打开。
    查询当前位置开关状态，返回结果为布尔值，true代表位置开关开启，false代表位置开关关闭，示例代码如下：
 
    ```c
@@ -68,9 +70,9 @@
     }
     EXTERN_C_END
    ```
-   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)
+   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)。
 
-5. 定位位置变化。
+6. 定位位置变化。
 
     ```c
     // 定义一个请求参数
@@ -128,4 +130,19 @@
         return exports;
     }
     EXTERN_C_END
+    ```
+
+6. 在types/libentry路径下index.d.ts文件中引入Napi接口。
+    ```c
+     export const ohLocationIsEnabled: () => boolean;
+     export const ohLocationStartLocating: () => number;
+     export const ohLocationStopLocating: () => number;
+    ```
+
+7. 删除Index.ets中的已废弃函数。
+
+    ```js
+    .onClick(() => {
+        hilog.info(0x0000, 'testTag', 'Test NAPI 2 + 3 = %{public}d', testNapi.add(2, 3));
+    })
     ```
