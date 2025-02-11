@@ -4876,7 +4876,11 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 创建一个事务对象并开始事务，使用Promise异步回调。
 
-与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多。如果已无法优化，可以等其它事务释放后再次尝试创建事务对象。
+与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。使用事务对象进行插入、删除或更新数据等操作，无法被注册数据变更通知监听到。
+
+一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多。如果已无法优化，可以等其它事务释放后再次尝试创建事务对象。
+
+优先使用createTransaction，不再推荐使用beginTransaction。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
