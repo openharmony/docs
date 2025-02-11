@@ -401,6 +401,16 @@ Allows an application to use the scam call log Picker to obtain call logs.
 
 **Valid since**: 16
 
+## ohos.permission.PROXY_MESSAGE_AUTH
+
+Allows a system application to call the Message application authorization interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
