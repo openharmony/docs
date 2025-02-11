@@ -707,7 +707,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.on('continuousTaskCancel')<sup>16+</sup>
+## backgroundTaskManager.on('continuousTaskCancel')<sup>15+</sup>
 
 on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&gt;): void
 
@@ -722,7 +722,7 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 是    | 长时任务取消回调信息。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 是    | 长时任务取消回调信息。 |
 
 **错误码**：
 
@@ -760,7 +760,7 @@ export default class EntryAbility extends UIAbility {
     }
 };
 ```
-## backgroundTaskManager.off('continuousTaskCancel')<sup>16+</sup>
+## backgroundTaskManager.off('continuousTaskCancel')<sup>15+</sup>
 
 off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInfo&gt;): void
 
@@ -775,7 +775,7 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
 | type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
 
 **错误码**：
 
@@ -855,9 +855,9 @@ export default class EntryAbility extends UIAbility {
 | slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。|
 | contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。|
 | notificationId | number | 是    | 长时任务通知 Id。|
-| continuousTaskId<sup>16+</sup> | number | 是    | 长时任务 Id。|
+| continuousTaskId<sup>15+</sup> | number | 是    | 长时任务 Id。|
 
-## ContinuousTaskCancelInfo<sup>16+</sup>
+## ContinuousTaskCancelInfo<sup>15+</sup>
 
 长时任务取消信息。
 
@@ -865,10 +865,10 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason16) | 是    | 长时任务取消原因。|
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | 是    | 长时任务取消原因。|
 | id | number | 是    | 被取消的长时任务 Id。|
 
-## ContinuousTaskCancelReason<sup>16+</sup>
+## ContinuousTaskCancelReason<sup>15+</sup>
 
 长时任务取消原因。
 
