@@ -608,9 +608,9 @@
         <!--DelEnd-->
         - [使用NativeWindowEventFilter过滤多模输入事件（C/C++）](windowmanager/native-window-event-filter.md)
       - 屏幕管理<!--display-manager-->
-        - [屏幕管理简介](displaymanager/displayManager-overview.md)【新增】
+        - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
-        - [使用Display实现屏幕属性获取及状态监听 (ArkTS)](displaymanager/screenProperty-guideline.md)【新增】
+        - [使用Display实现屏幕属性获取及状态监听 (ArkTS)](displaymanager/screenProperty-guideline.md)
         <!--Del-->
         - [虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](displaymanager/virtualScreen-guideline.md)
         <!--DelEnd-->
@@ -626,7 +626,7 @@
         - [管理位置权限](web/web-geolocation-permission.md)
         - [使用隐私模式](web/web-incognito-mode.md)
         - [使用运动和方向传感器监测设备状态](web/web-sensor.md)
-      - Web渲染和布局<!--web-render-layout--->
+      - Web渲染和布局<!--web-render-layout-->
         - [Web渲染模式](web/web-render-mode.md)
         - [使用Web组件大小自适应页面内容布局](web/web-fit-content.md)
         - [优化跳转至新Web组件过程中的页面闪烁现象](web/web-router-flash-optimization.md)
@@ -728,25 +728,25 @@
         - [跨设备文件拷贝](file-management/file-copy-across-devices.md)
     - Form Kit（卡片开发服务）<!--form-kit-->
       - [Form Kit简介](form/formkit-overview.md)
-      - 服务卡片开发指导（Stage模型）
-        - 开发基于ArkTS UI的卡片
+      - 服务卡片开发指导（Stage模型）<!--arkts-ui-widget-stage-->
+        - 开发基于ArkTS UI的卡片<!--arkts-ui-widget-->
           - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
           - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
-          - ArkTS卡片开发指导
+          - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
             - [创建一个ArkTS卡片](form/arkts-ui-widget-creation.md)
             - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
             - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
-            - 开发卡片页面
+            - 开发卡片页面<!--arkts-ui-widget-page-->
               - [卡片页面能力说明](form/arkts-ui-widget-page-overview.md)
               - [卡片使用动效能力](form/arkts-ui-widget-page-animation.md)
               - [卡片使用自定义绘制能力](form/arkts-ui-widget-page-custom-drawing.md)
-            - 开发卡片事件
+            - 开发卡片事件<!--arkts-ui-widget-event-->
               - [卡片事件能力说明](form/arkts-ui-widget-event-overview.md)
               - [拉起卡片提供方的UIAbility(router事件)](form/arkts-ui-widget-event-router.md)
               - [拉起卡片提供方的UIAbility到后台(call事件)](form/arkts-ui-widget-event-call.md)
               - [通过message事件刷新卡片内容](form/arkts-ui-widget-event-formextensionability.md)
               - [通过router或call事件刷新卡片内容](form/arkts-ui-widget-event-uiability.md)
-            - 卡片数据交互
+            - 卡片数据交互<!--arkts-ui-widget-interaction-->
               - [卡片内容更新](form/arkts-ui-widget-interaction-overview.md)
               - [卡片定时刷新](form/arkts-ui-widget-update-by-time.md)
               - [卡片定点刷新](form/arkts-ui-widget-update-by-time-point.md)
@@ -2159,7 +2159,7 @@
           - [Rdb_TableDetails](reference/apis-arkdata/_rdb___table_details.md)
       - 错误码<!--arkdata-arkts-errcode-->
         <!--Del-->
-        - [图数据库错误码](reference/apis-arkdata/errorcode-data-gdb.md)【新增】
+        - [图数据库错误码](reference/apis-arkdata/errorcode-data-gdb.md)
         <!--DelEnd-->
         - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
         - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
@@ -2470,7 +2470,7 @@
           <!--DelEnd-->
         - 信息展示<!--information-display-->
           - [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)
-          - [ArcAlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)【新增】
+          - [ArcAlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-arc-alphabet-indexer.md)
           - [Badge](reference/apis-arkui/arkui-ts/ts-container-badge.md)
           - [Chip](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md)
           - [ChipGroup](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -3390,12 +3390,12 @@
         - ArkTS API<!--telephony-arkts-->
           - [@ohos.telephony.call (拨打电话)](reference/apis-telephony-kit/js-apis-call.md)
           - [@ohos.telephony.data (蜂窝数据)](reference/apis-telephony-kit/js-apis-telephony-data.md)
-          - [@ohos.telephony.esim (eSIM卡管理)](reference/apis-telephony-kit/js-apis-esim.md)【新增】
+          - [@ohos.telephony.esim (eSIM卡管理)](reference/apis-telephony-kit/js-apis-esim.md)
           - [@ohos.telephony.observer (observer)](reference/apis-telephony-kit/js-apis-observer.md)
           - [@ohos.telephony.radio (网络搜索)](reference/apis-telephony-kit/js-apis-radio.md)
           - [@ohos.telephony.sim (SIM卡管理)](reference/apis-telephony-kit/js-apis-sim.md)
           - [@ohos.telephony.sms (短信服务)](reference/apis-telephony-kit/js-apis-sms.md)
-            <!--Del-->
+          <!--Del-->
           - [@ohos.telephony.call (拨打电话)（系统接口）](reference/apis-telephony-kit/js-apis-call-sys.md)
           - [@ohos.telephony.data (蜂窝数据)（系统接口）](reference/apis-telephony-kit/js-apis-telephony-data-sys.md)
           - [@ohos.telephony.esim (eSIM卡管理)（系统接口）](reference/apis-telephony-kit/js-apis-esim-sys.md)
@@ -3682,7 +3682,7 @@
             - [Serial DDK](reference/apis-driverdevelopment-kit/_serial_ddk.md)
             - [USB DDK](reference/apis-driverdevelopment-kit/_usb_ddk.md)
           - 头文件<!--driver-development-headerfile-->
-            - [ddk_api.h](reference/apis-driverdevelopment-kit/ddk_api.md)--------
+            - [ddk_api.h](reference/apis-driverdevelopment-kit/ddk_api.md)
             - [ddk_types.h](reference/apis-driverdevelopment-kit/ddk_types.md)
             - [hid_ddk_api.h](reference/apis-driverdevelopment-kit/hid__ddk__api_8h.md)
             - [hid_ddk_types.h](reference/apis-driverdevelopment-kit/hid__ddk__types_8h.md)
