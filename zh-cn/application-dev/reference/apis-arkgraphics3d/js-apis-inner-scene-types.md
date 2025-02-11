@@ -100,7 +100,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| x | [GeometryType](#geometrytype)| 是 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| geometryType | [GeometryType](#geometrytype)| 是 | 否 | 定义不同的几何类型。 |
 
 ## PrimitiveTopology
  图元拓扑枚举，在顶点处理过程中，指定顶点不同的解释方式。
