@@ -95,58 +95,64 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | SPHERE | 3 | 球体类型。 |
 
 ## GeometryDefinition
-用于在创建几何对象时指定其类型。
+几何定义抽象类，用于解释特定几何类型的属性。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| x | [GeometryType](#geometrytype)| 是 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
 
 ## PrimitiveTopology
-用于在创建几何对象时指定其类型。
+ 图元拓扑枚举，在顶点处理过程中，指定顶点不同的解释方式。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
-| 名称 | 类型 | 只读 | 可选 | 说明 |
-| ---- | ---- | ---- | ---- | ---- |
-| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
-| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
-| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
-| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+
+| 名称 | 值 | 说明 |
+| ---- | ---- | ---- |
+| TRIANGLE_LIST | 0 | 由不相交的顶点集合构成不同的三角形。 |
+| TRIANGLE_STRIP | 1 | 每个顶点和前一个三角形的一条边构成新的三角形。 |
 
 ## CustomGeometry
-用于在创建几何对象时指定其类型。
+自定义几何类型，继承自[GeometryDefinition](#geometrydefinition)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| x | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
-| y | number | 否 | 否 | 矩形左下角y轴分量，取值范围是实数。 |
-| width | number | 否 | 否 | 矩形宽度，有效取值范围大于0。 |
-| height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
+| topology | [PrimitiveTopology](#primitivetopology)| 否 | 是 | 三角形图元的解析方式。 |
+| vertices | [Vec3](#vec3)[] | 否 | 否 | 模型的顶点数组。 |
+| indices | number[] | 否 | 是 | 顶点索引数组。 |
+| normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组。 |
+| uvs | [Vec2](#vec2)[] | 否 | 是 | 顶点数组对应的UV坐标数组。 |
+| colors | [Color](#Color)[] | 否 | 是 | 顶点数组对应的UV坐标数组。 |
 
 ## CubeGeometry
-立方体几何。
+立方体几何类型，继承自[GeometryDefinition](#geometrydefinition)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| size | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| size | [Vec3](#vec3) | 否 | 否 | 立方体的宽、高和深度，表示立方体的大小。 |
 
 ## PlaneGeometry
-立方体几何。
+平面几何类型，继承自[GeometryDefinition](#geometrydefinition)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| size | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| size | [Vec2](#vec2) | 否 | 否 | 平面的宽、高，表示平面的大小。 |
 
 ## SphereGeometry
-椭球几何。
+球体几何类型，继承自[GeometryDefinition](#geometrydefinition)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
+
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| size | number | 否 | 否 | 矩形左下角x轴分量，取值范围是实数。 |
+| radius | number | 否 | 否 | 球体半径。 |
+| segmentCount | number | 否 | 否 | 在球体上以纬度分割后的圆，再经过经度分割后的段数。 |
 
 ## Position3
 type Position3 = Vec3
