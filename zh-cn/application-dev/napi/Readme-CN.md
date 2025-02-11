@@ -98,7 +98,7 @@
   - OpenMP支持
     - [OpenMP简介](openmp-overview.md)
     - [OpenMP应用构建和运行指南](openmp-guideline.md)
-  - 资源管理
+  - 资源管理<!--resource-management-->
     - [Rawfile开发指导](rawfile-guidelines.md)
   - 网络管理
     - [NetConnection开发指导](native-netmanager-guidelines.md) 
