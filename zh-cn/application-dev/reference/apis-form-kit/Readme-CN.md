@@ -1,6 +1,6 @@
-# Form Kit（卡片开发服务）
+# Form Kit（卡片开发服务）<!--form-kit-->
 
-- ArkTS API
+- ArkTS API<!--form-arkts-->
   - [@ohos.app.form.formBindingData (卡片数据绑定类)](js-apis-app-form-formBindingData.md)
   - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
   - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
@@ -13,12 +13,12 @@
   - [@ohos.app.form.formProvider (FormProvider)(系统接口)](js-apis-app-form-formProvider-sys.md)
   - [@ohos.app.form.formObserver (formObserver)(系统接口)](js-apis-app-form-formObserver-sys.md)
   <!--DelEnd-->
-  - application
+  - application<!--form-arkts-application-->
     - [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)
     <!--Del-->
     - [FormExtensionContext(系统接口)](js-apis-inner-application-formExtensionContext-sys.md)
    <!--DelEnd-->
-- 已停止维护的接口
+- 已停止维护的接口<!--form-arkts-dep-->
   - [@ohos.application.formBindingData (卡片数据绑定类)](js-apis-application-formBindingData.md)
   - [@ohos.application.formError (FormError)](js-apis-application-formError.md)
   - [@ohos.application.formInfo (FormInfo)](js-apis-application-formInfo.md)
@@ -28,5 +28,5 @@
   - [@ohos.application.formHost (FormHost)(系统接口)](js-apis-application-formHost-sys.md)
   - [@ohos.application.formInfo (FormInfo)(系统接口)](js-apis-application-formInfo-sys.md)
   <!--DelEnd-->
-- 错误码
+- 错误码<!--form-arkts-errcode-->
   - [卡片错误码](errorcode-form.md)
