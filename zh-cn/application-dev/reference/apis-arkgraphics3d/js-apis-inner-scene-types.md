@@ -152,7 +152,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | radius | number | 否 | 否 | 球体半径。 |
-| segmentCount | number | 否 | 否 | 在球体上以纬度分割后的圆，再经过经度分割后的段数。 |
+| segmentCount | number | 否 | 否 | 在球体上以经纬度分割的段数。 |
 
 ## Position3
 type Position3 = Vec3
