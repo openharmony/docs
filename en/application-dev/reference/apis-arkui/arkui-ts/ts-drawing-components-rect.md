@@ -14,7 +14,7 @@ Not supported
 
 ## APIs
 
-Rect(value?: {width?: string | number,height?: string | number,radius?: string | number | Array&lt;string | number&gt;} |{width?: string | number,height?: string | number,radiusWidth?: string | number,radiusHeight?: string | number})
+Rect(options?: RectOptions | RoundedRectOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,7 +26,38 @@ Rect(value?: {width?: string | number,height?: string | number,radius?: string |
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | {width?: string \| number,height?: string \| number,radius?: string \| number \| Array&lt;string \| number&gt;} \| {width?: string \| number,height?: string \| number,radiusWidth?: string \| number,radiusHeight?: string \| number} | No| **width**: width<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**height**: height<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**radius**: radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This attribute works in a similar manner as **radiusWidth**/**radiusHeight**. When they are used together, it takes precedence over **radiusWidth**/**radiusHeight**.<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**radiusWidth**: width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.<br>**radiusHeight**: height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| options | [RectOptions](ts-drawing-components-rect.md#rectoptions14) \| [RoundedRectOptions](ts-drawing-components-rect.md#roundedrectoptions14)  | No| Options for drawing a rectangle.|
+
+## RectOptions<sup>14+</sup>
+Describes the options for drawing a rectangle.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| radius | string \| number \| Array&lt;string \| number&gt; | No| Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>This property takes precedence over **radiusWidth** and **radiusHeight** when used together.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+
+## RoundedRectOptions<sup>14+</sup>
+Describes the options for drawing a rounded rectangle.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number | No| Height.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| radiusWidth | string \| number | No| Width of the rounded corner.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|Width of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.
+| radiusHeight | string \| number | No| Height of the rounded corner.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|Height of the rounded corner.<br>Default value: **0**<br>An invalid value is handled as the default value.
 
 ## Attributes
 
@@ -48,7 +79,7 @@ Sets the width of the rounded corner. If not set, the height of the rounded corn
 
 | Name| Type                      | Mandatory| Description                      |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number \| string | Yes  | Width of the rounded corner.<br>Default value: **0**|
+| value  | number \| string | Yes  | Width of the rounded corner.<br>Default value: **0**<br>Default unit: vp|
 
 ### radiusHeight
 
@@ -66,7 +97,7 @@ Height of the rounded corner. If not set, the width of the rounded corner is the
 
 | Name| Type                      | Mandatory| Description                      |
 | ------ | -------------------------- | ---- | -------------------------- |
-| value  | number \| string | Yes  | Height of the rounded corner.<br>Default value: **0**|
+| value  | number \| string | Yes  | Height of the rounded corner.<br>Default value: **0**<br>Default unit: vp|
 
 ### radius
 
@@ -84,13 +115,13 @@ Sets the radius of the rounded corner.  An invalid value is handled as the defau
 
 | Name| Type                                                        | Mandatory| Description                        |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------- |
-| value  | number \| string \| Array&lt;string \| number&gt; | Yes  | Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>Default value: **0**|
+| value  | number \| string \| Array&lt;string \| number&gt; | Yes  | Radius of the rounded corner. You can set separate radiuses for the four rounded corners.<br>Default value: **0**<br>Default unit: vp|
 
 ### fill
 
 fill(value: ResourceColor)
 
-Color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -156,7 +187,7 @@ Stroke dashes. An invalid value is handled as the default value.
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -174,7 +205,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -266,7 +297,7 @@ Stroke width. If of the string type, this parameter cannot be set in percentage.
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -287,7 +318,9 @@ Specifies whether anti-aliasing is enabled.
 | value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
 
 ## Example
-### Example 1
+### Example 1: Drawing Rectangles
+
+This example demonstrates how to use **fill**, **fillOpacity**, **stroke**, and **radius** to draw rectangles with specific fill colors, opacity, stroke colors, and rounded corners.
 
 ```ts
 // xxx.ets
@@ -334,7 +367,9 @@ struct RectExample {
 
 ![en-us_image_0000001174264386](figures/en-us_image_0000001174264386.png)
 
-### Example 2
+### Example 2: Drawing a Gradient Rectangle
+
+This example demonstrates how to use the universal attributes **linearGradient** and **clipShape** to draw a gradient rectangle.
 
 ```ts
 // xxx.ets

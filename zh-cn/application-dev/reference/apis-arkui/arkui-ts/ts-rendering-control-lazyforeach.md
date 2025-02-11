@@ -4,7 +4,7 @@
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-开发者指南见：[LazyForEach开发者指南](../../../quick-start/arkts-rendering-control-lazyforeach.md)
+开发者指南见：[LazyForEach开发者指南](../../../quick-start/arkts-rendering-control-lazyforeach.md)。
 
 ## 接口
 
@@ -58,7 +58,7 @@ getData(index:&nbsp;number): Object
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 获取数据对应的索引值 |
+| index  | number | 是   | 获取数据对应的索引值。 |
 
 ### registerDataChangeListener
 
@@ -74,7 +74,7 @@ registerDataChangeListener(listener: DataChangeListener): void
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
-| listener | [DataChangeListener](#datachangelistener10) | 是   | 数据变化监听器 |
+| listener | [DataChangeListener](#datachangelistener10) | 是   | 数据变化监听器。 |
 
 ### unregisterDataChangeListener
 
@@ -90,11 +90,15 @@ unregisterDataChangeListener(listener: DataChangeListener): void
 
 | 参数名   | 类型                                        | 必填 | 说明           |
 | -------- | ------------------------------------------- | ---- | -------------- |
-| listener | [DataChangeListener](#datachangelistener10) | 是   | 数据变化监听器 |
+| listener | [DataChangeListener](#datachangelistener10) | 是   | 数据变化监听器。 |
 
 ## DataChangeListener<sup>10+</sup>
 
 数据变化监听器。
+
+> **说明：** 
+>
+> DataChangeListener除onDatasetChange以外的方法中，当参数包含index且值为负数时，会默认用0来替换。onDatasetChange中，当单个DataOperation参数包含index且值在数据源索引范围之外（DataAddOperation中index可以等于数据源长度），则对应DataOperation不会生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -124,7 +128,7 @@ onDataAdded(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据添加位置的索引值 |
+| index  | number | 是   | 数据添加位置的索引值。 |
 
 ### onDataMoved<sup>(deprecated)</sup>
 
@@ -133,8 +137,10 @@ onDataMoved(from: number, to: number): void
 通知组件数据有移动。将from和to位置的数据进行交换。
 
 > 从API 8开始，建议使用[onDataMove](#ondatamove8)。
+
+> **说明：** 
 >
-> **说明：** 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
+> 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。数据移动起始位置与数据移动目标位置交换完成后调用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -142,8 +148,8 @@ onDataMoved(from: number, to: number): void
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| from   | number | 是   | 数据移动起始位置 |
-| to     | number | 是   | 数据移动目标位置 |
+| from   | number | 是   | 数据移动起始位置。 |
+| to     | number | 是   | 数据移动目标位置。 |
 
 ### onDataDeleted<sup>(deprecated)</sup>
 
@@ -159,7 +165,7 @@ onDataDeleted(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据删除位置的索引值 |
+| index  | number | 是   | 数据删除位置的索引值。 |
 
 ### onDataChanged<sup>(deprecated)</sup>
 
@@ -175,7 +181,7 @@ onDataChanged(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| index  | number | 是   | 数据变化监听器 |
+| index  | number | 是   | 数据变化监听器。 |
 
 ### onDataAdd<sup>8+</sup>
 
@@ -193,7 +199,7 @@ onDataAdd(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| index  | number | 是   | 数据添加位置的索引值 |
+| index  | number | 是   | 数据添加位置的索引值。 |
 
 ### onDataMove<sup>8+</sup>
 
@@ -201,7 +207,9 @@ onDataMove(from: number, to: number): void
 
 通知组件数据有移动。将from和to位置的数据进行交换。数据移动起始位置与数据移动目标位置交换完成后调用。
 
-> **说明：** 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
+> **说明：** 
+>
+> 数据移动前后键值要保持不变，如果键值有变化，应使用删除数据和新增数据接口。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -211,8 +219,8 @@ onDataMove(from: number, to: number): void
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| from   | number | 是   | 数据移动起始位置 |
-| to     | number | 是   | 数据移动目标位置 |
+| from   | number | 是   | 数据移动起始位置。 |
+| to     | number | 是   | 数据移动目标位置。 |
 
 ### onDataDelete<sup>8+</sup>
 
@@ -220,7 +228,9 @@ onDataDelete(index: number): void
 
 通知组件删除index位置的数据并刷新LazyForEach的展示内容。删除数据完成后调用。
 
-> **说明：** 需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。
+> **说明：** 
+>
+> 需要保证dataSource中的对应数据已经在调用onDataDelete前删除，否则页面渲染将出现未定义的行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -230,7 +240,7 @@ onDataDelete(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据删除位置的索引值 |
+| index  | number | 是   | 数据删除位置的索引值。 |
 
 ### onDataChange<sup>8+</sup>
 
@@ -246,7 +256,7 @@ onDataChange(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据变化位置的索引值 |
+| index  | number | 是   | 数据变化位置的索引值。 |
 
 ### onDatasetChange<sup>12+</sup>
 
@@ -254,7 +264,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 进行批量的数据处理后，调用onDatasetChange接口通知组件按照dataOperations刷新组件。
 
-> **说明：** onDatasetChange接口不能与其他DataChangeListener的更新接口混用。如在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。
+> **说明：** 
+>
+> onDatasetChange接口不能与其他DataChangeListener的更新接口混用。如在同一个LazyForEach中，调用过onDataAdd接口后，不能再调用onDatasetChange接口；反之，调用过onDatasetChange接口后，也不能调用onDataAdd等其他更新接口。页面中不同LazyForEach之间互不影响。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -264,7 +276,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名         | 类型                | 必填 | 说明               |
 | -------------- | ------------------- | ---- | ------------------ |
-| dataOperations | [DataOperation](#dataoperation12)[] | 是   | 一次处理数据的操作 |
+| dataOperations | [DataOperation](#dataoperation12)[] | 是   | 一次处理数据的操作。 |
 
 ## DataOperation<sup>12+</sup>
 
@@ -288,10 +300,10 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
-| type   | [DataOperationType](#dataoperationtype枚举说明).ADD     | 是   | 数据添加类型         |
-| index  | number                    | 是   | 插入数据索引值       |
-| count  | number                    | 否   | 插入数量，默认为1    |
-| key    | string \| Array\<string\> | 否   | 为插入的数据分配键值 |
+| type   | [DataOperationType](#dataoperationtype枚举说明).ADD     | 是   | 数据添加类型。         |
+| index  | number                    | 是   | 插入数据索引值。       |
+| count  | number                    | 否   | 插入数量，默认为1。   |
+| key    | string \| Array\<string\> | 否   | 为插入的数据分配键值。 |
 
 ### DataDeleteOperation
 
@@ -305,9 +317,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
-| type   | [DataOperationType](#dataoperationtype枚举说明).DELETE     | 是   | 数据删除类型         |
-| index  | number                    | 是   | 起始删除位置索引值       |
-| count  | number                    | 否   | 删除数据数量，默认为1    |
+| type   | [DataOperationType](#dataoperationtype枚举说明).DELETE     | 是   | 数据删除类型。         |
+| index  | number                    | 是   | 起始删除位置索引值。       |
+| count  | number                    | 否   | 删除数据数量，默认为1。    |
 
 ### DataChangeOperation
 
@@ -321,9 +333,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
-| type   | [DataOperationType](#dataoperationtype枚举说明).CHANGE     | 是   | 数据改变类型         |
-| index  | number                    | 是   | 改变的数据的索引值       |
-| key  | string                    | 否   | 为改变的数据分配新的键值，默认使用原键值    |
+| type   | [DataOperationType](#dataoperationtype枚举说明).CHANGE     | 是   | 数据改变类型。         |
+| index  | number                    | 是   | 改变的数据的索引值。       |
+| key  | string                    | 否   | 为改变的数据分配新的键值，默认使用原键值。    |
 
 ### DataMoveOperation
 
@@ -337,9 +349,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
-| type   | [DataOperationType](#dataoperationtype枚举说明).MOVE     | 是   | 数据移动类型 |
-| index  | [MoveIndex](#moveindex)        | 是   | 移动位置   |
-| key | string              | 否   | 为被移动的数据分配新的键值，默认使用原键值 |
+| type   | [DataOperationType](#dataoperationtype枚举说明).MOVE     | 是   | 数据移动类型。 |
+| index  | [MoveIndex](#moveindex)        | 是   | 移动位置。   |
+| key | string              | 否   | 为被移动的数据分配新的键值，默认使用原键值。 |
 
 #### MoveIndex
 
@@ -351,8 +363,8 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                       | 必填 | 说明            |
 | ------ | --------------- | ---- | ------- |
-| from   | number | 是   | 起始移动位置                 |
-| to  | number           | 是   | 目的移动位置           |
+| from   | number | 是   | 起始移动位置。                 |
+| to  | number           | 是   | 目的移动位置。           |
 
 ### DataExchangeOperation
 
@@ -366,9 +378,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                       | 必填 | 说明                         |
 | ------ | -------------------------- | ---- | ---------------------------- |
-| type   | [DataOperationType](#dataoperationtype枚举说明).EXCHANGE | 是   | 数据交换类型                 |
-| index  | [ExchangeIndex](#exchangeindex)            | 是   | 交换位置                     |
-| key    | [ExchangeKey](#exchangekey)              | 否   | 分配新的键值，默认使用原键值 |
+| type   | [DataOperationType](#dataoperationtype枚举说明).EXCHANGE | 是   | 数据交换类型。                 |
+| index  | [ExchangeIndex](#exchangeindex)            | 是   | 交换位置。                     |
+| key    | [ExchangeKey](#exchangekey)              | 否   | 分配新的键值，默认使用原键值。 |
 
 #### ExchangeIndex
 
@@ -380,8 +392,8 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                       | 必填 | 说明            |
 | ------ | --------------- | ---- | ------- |
-| start   | number | 是   | 第一个交换位置                 |
-| end  | number           | 是   | 第二个交换位置           |
+| start   | number | 是   | 第一个交换位置。                 |
+| end  | number           | 是   | 第二个交换位置。           |
 
 #### ExchangeKey
 
@@ -393,8 +405,8 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                       | 必填 | 说明            |
 | ------ | --------------- | ---- | ------- |
-| start   | string | 是   | 为第一个交换的位置分配新的键值，默认使用原键值        |
-| end  | string   | 是   | 为第二个交换的位置分配新的键值，默认使用原键值           |
+| start   | string | 是   | 为第一个交换的位置分配新的键值，默认使用原键值。        |
+| end  | string   | 是   | 为第二个交换的位置分配新的键值，默认使用原键值。           |
 
 ### DataReloadOperation
 
@@ -408,7 +420,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                     | 必填 | 说明             |
 | ------ | ------------------------ | ---- | ---------------- |
-| type   | [DataOperationType](#dataoperationtype枚举说明).RELOAD | 是   | 数据全部重载类型 |
+| type   | [DataOperationType](#dataoperationtype枚举说明).RELOAD | 是   | 数据全部重载类型。 |
 
 ### DataOperationType枚举说明
 
@@ -420,9 +432,9 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 名称 | 值                    | 说明                 |
 | ------ | ------------------- | -------------------- |
-| ADD   |   add       | 数据添加   |
-| DELETE  | delete    | 数据删除    |
-| CHANGE  | change     | 数据改变    |
-| MOVE | move | 数据移动 |
-| EXCHANGE | exchange | 数据交换 |
-| RELOAD | reload | 全部数据重载 |
+| ADD   |   add       | 数据添加。   |
+| DELETE  | delete    | 数据删除。    |
+| CHANGE  | change     | 数据改变。    |
+| MOVE | move | 数据移动。 |
+| EXCHANGE | exchange | 数据交换。 |
+| RELOAD | reload | 全部数据重载。 |

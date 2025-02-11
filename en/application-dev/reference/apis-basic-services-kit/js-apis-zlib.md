@@ -273,7 +273,8 @@ import { zlib, BusinessError } from '@kit.BasicServicesKit';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
 };
 
 try {
@@ -964,7 +965,7 @@ Creates an instance of a compressed or decompressed object. The instance of the 
 
 | Type         | Description                    |
 | ------------- | ------------------------ |
-| [Zip](#zip12) | The instance of the compressed or decompressed object is returned.|
+| [Zip](#zip12) | Instance of the compressed or decompressed object.|
 
 **Example**
 
@@ -1111,7 +1112,7 @@ for (let i = 0, j = str.length; i < j; i++) {
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
 
-zip.compress(arrayBufferOut, arrayBufferOut, 20).then((data) => {
+zip.compress(arrayBufferOut, arrayBufferIn, 20).then((data) => {
   console.info('compress success:');
 }).catch((errData: BusinessError) => {
   console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -1455,7 +1456,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1606,7 +1607,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1764,7 +1765,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1823,7 +1824,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1884,7 +1885,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -1942,13 +1943,13 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateMark({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
+  await zip.inflateMark({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }).then(data => {
     console.info('inflateMark success');
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
@@ -2058,7 +2059,7 @@ for (let i = 0, j = str.length; i < j; i++) {
 let arrayBufferOut = new ArrayBuffer(100);
 let zip = zlib.createZipSync();
 
-zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
 ).then(data => {
   console.info('inflateInit success');
 }).catch((errData: BusinessError) => {
@@ -2172,7 +2173,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit2({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
+  await zip.inflateInit2({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }, 28
   ).then(data => {
     console.info('inflateInit2 success');
   }).catch((errData: BusinessError) => {
@@ -2231,7 +2232,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2295,7 +2296,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2353,7 +2354,7 @@ async function demo() {
   }
   let arrayBufferOut = new ArrayBuffer(100);
   let zip = zlib.createZipSync();
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -2455,17 +2456,25 @@ Uses callback APIs to input and output data for raw decompression. This API uses
 | backOut | InflateBackOutputCallback | Yes  | Writes the decompressed data to the destination buffer.                                |
 | outDesc | object                    | Yes  | Common object.                                                  |
 
-Description of InflateBackInputCallback:
+### InflateBackInputCallback
 
 InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+Inputs data.
+
+**System capability**: SystemCapability.BundleManager.Zlib
 
 | Name  | Type  | Mandatory| Description            |
 | ------ | ------ | ---- | ---------------- |
 | inDesc | object | Yes  | User-defined data object.|
 
-Description of InflateBackOutputCallback:
+### InflateBackOutputCallback
 
 InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+Outputs data.
+
+**System capability**: SystemCapability.BundleManager.Zlib
 
 | Name   | Type       | Mandatory| Description                  |
 | ------- | ----------- | ---- | ---------------------- |
@@ -2693,7 +2702,7 @@ async function demo() {
   }).catch((errData: BusinessError) => {
     console.error(`errData is errCode:${errData.code}  message:${errData.message}`);
   })
-  await zip.inflateInit({ nextIn: arrayBufferOut, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
+  await zip.inflateInit({ nextIn: arrayBufferIn, availableIn: 1, nextOut: arrayBufferOut, availableOut: 1 }
   ).then(data => {
     console.info('inflateInit success');
   }).catch((errData: BusinessError) => {
@@ -3704,6 +3713,7 @@ async function demo() {
 | level    | CompressLevel     | Yes  | No | For details, see [CompressLevel](#compresslevel).      |
 | memLevel | MemLevel         | Yes  | No | For details, see [MemLevel](#memlevel).                |
 | strategy | CompressStrategy | Yes  | No | For details, see [CompressStrategy](#compressstrategy).|
+| parallel | ParallelStrategy | Yes  | No | For details, see [ParallelStrategy](#parallelstrategy16).|
 
 ## CompressLevel
 
@@ -3743,6 +3753,17 @@ async function demo() {
 | COMPRESS_STRATEGY_HUFFMAN_ONLY     | 2    | Huffman coding compression strategy.  |
 | COMPRESS_STRATEGY_RLE              | 3    | RLE compression strategy.        |
 | COMPRESS_STRATEGY_FIXED            | 4    | Fixed compression strategy.          |
+
+## ParallelStrategy<sup>16+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.BundleManager.Zlib
+
+| Name                                    | Value  | Description                     |
+| ---------------------------------------- | ---- | ------------------------ |
+| PARALLEL_STRATEGY_SEQUENTIAL             | 0    | Serial compression/decompression policy (default).|
+| PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | Parallel decompression policy.           |
 
 ## ErrorCode
 

@@ -38,8 +38,8 @@ Circle(value?: CircleOptions)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| width | string \| number| No| Width of the circle.<br>Default value: **0**<br>An invalid value is handled as the default value.|
-| height | string \| number| No| Height of the circle.<br>Default value: **0**<br>An invalid value is handled as the default value.|
+| width | string \| number| No| Width of the circle.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
+| height | string \| number| No| Height of the circle.<br>Default value: **0**<br>Default unit: vp<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -49,7 +49,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -107,7 +107,7 @@ Sets stroke dashes. An invalid value is handled as the default value.
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -123,7 +123,7 @@ Sets the offset of the start point for drawing the stroke. An invalid value is h
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**|
+| value  | number \| string | Yes  | Offset of the start point for drawing the stroke.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -203,7 +203,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -222,6 +222,8 @@ Specifies whether anti-aliasing is enabled.
 | value  | boolean | Yes  | Whether anti-aliasing is enabled.<br>Default value: **true**|
 
 ## Example
+
+This example demonstrates how to use **fillOpacity**, **stroke**, and **strokeDashArray** to set the opacity, stroke color, and stroke dashes of a circle.
 
 ```ts
 // xxx.ets

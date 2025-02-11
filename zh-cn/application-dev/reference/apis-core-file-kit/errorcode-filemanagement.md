@@ -940,7 +940,7 @@ BMS接口异常。
 
 **处理步骤**
 
-系统基础能力问题
+系统基础能力问题，<!--RP1-->请向OpenHarmony团队反馈，获取支持。<!--RP1End-->
 
 ### 14300004 js-server实际返回的结果异常
 
@@ -1000,7 +1000,7 @@ Failed to initialize the Notify agent
 
 **处理步骤**
 
-是否注册过。
+检查是否注册过。
 
 ### 14300008 js-server端通知代理失败
 

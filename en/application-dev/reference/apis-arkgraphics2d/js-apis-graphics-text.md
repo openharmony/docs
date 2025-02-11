@@ -8,7 +8,7 @@ This module provides the following classes:
 - [FontCollection](#fontcollection): font manager, which controls various fonts.
 - [ParagraphStyle](#paragraphstyle): paragraph style, which controls the display style of a paragraph.
 - [Paragraph](#paragraph): paragraph, which is constructed by calling [build()](#build) in the **ParagraphBuilder** class.
-- [LineTypeset](#linetypeset14): line typesetter, which is constructed by calling [buildLineTypeset()](#buildlinetypeset14) in the **ParagraphBuilder** class.
+- [LineTypeset](#linetypeset16): line typesetter, which is constructed by calling [buildLineTypeset()](#buildlinetypeset16) in the **ParagraphBuilder** class.
 - [ParagraphBuilder](#paragraphbuilder): paragraph builder, which controls the generation of different paragraph objects.
 - [TextLine](#textline): carrier of the paragraph text in lines. It is obtained by calling [getTextLines()](#gettextlines) in the **Paragraph** class.
 - [Run](#run): rendering unit used for text typesetting. It is obtained by calling [getGlyphRuns()](#getglyphruns) in the **TextLine** class.
@@ -23,7 +23,7 @@ This module provides the following classes:
 import { text } from '@kit.ArkGraphics2D';
 ```
 
-## text.matchFontDescriptors<sup>14+</sup>
+## text.matchFontDescriptors<sup>16+</sup>
 
 matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&gt;&gt;
 
@@ -504,7 +504,7 @@ Describes the font descriptor information.
 | fullName | string | No| Yes| Font name. Any value is acceptable. The default value is an empty string.|
 | fontFamily | string | No| Yes| Family name of the font. Any value is acceptable. The default value is an empty string.|
 | fontSubfamily | string | No| Yes| Subfamily name of the font. Any value is acceptable. The default value is an empty string.|
-| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is the value of **FontWeight.W100**, that is, **0**. In [matchFontDescriptors](#textmatchfontdescriptors14), omitting this parameter is equivalent to setting it to its default value.|
+| weight | [FontWeight](#fontweight) | No| Yes| Font weight. The default value is the value of **FontWeight.W100**, that is, **0**. In [matchFontDescriptors](#textmatchfontdescriptors16), omitting this parameter is equivalent to setting it to its default value.|
 | width | number | No| Yes| Font width. The value is an integer ranging from 1 to 9. The default value is **0**.|
 | italic | number | No| Yes| Whether the font is italic. The value **0** means that the font is not italic, and **1** means the opposite. The default value is **0**.|
 | monoSpace | boolean | No| Yes| Whether the font is monospaced. The value **true** means that the font is monospaced, and **false** means the opposite. The default value is **false**.|
@@ -602,7 +602,7 @@ struct RenderTest {
 }
 ```
 
-### loadFont<sup>14+</sup>
+### loadFont<sup>16+</sup>
 
 loadFont(name: string, path: string | Resource): Promise\<void>
 
@@ -702,7 +702,7 @@ Describes a paragraph style.
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | Yes  | Yes  | Text break strategy. The default value is **GREEDY**.                       |
 | strutStyle           | [StrutStyle](#strutstyle)                  | Yes  | Yes  | Strut style. The default value is the initial **StrutStyle** object.              |
 | textHeightBehavior   | [TextHeightBehavior](#textheightbehavior)  | Yes  | Yes  | Text height modifier pattern. The default value is **ALL**.                             |
-| tab<sup>14+</sup>   | [TextTab](#texttab14)  | Yes  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter does not take effect when it is configured together with the text alignment mode (specified by **align**) or ellipsis content (specified by **ellipsis** in [TextStyle](#textstyle)).|
+| tab<sup>16+</sup>   | [TextTab](#texttab16)  | Yes  | Yes  | Alignment mode and position of the text after the tab character in a paragraph. By default, the tab character is replaced with a space. This parameter does not take effect when it is configured together with the text alignment mode (specified by **align**) or ellipsis content (specified by **ellipsis** in [TextStyle](#textstyle)).|
 
 
 ## PlaceholderAlignment
@@ -779,7 +779,7 @@ Performs typography and calculates the positions of all glyphs.
 paragraph.layoutSync(100);
 ```
 
-### layout<sup>14+</sup>
+### layout<sup>16+</sup>
 
 layout(width: number): Promise\<void>
 
@@ -1388,13 +1388,13 @@ Obtains the line measurement information of a line.
 let lineMetrics =  paragraph.getLineMetrics(0);
 ```
 
-## LineTypeset<sup>14+</sup>
+## LineTypeset<sup>16+</sup>
 
 Implements a carrier that stores the text content and style. It can be used to compute typography details for individual lines of text.
 
-Before calling any of the following APIs, you must use [buildLineTypeset()](#buildlinetypeset14) in the [ParagraphBuilder](#paragraphbuilder) class to create a **LineTypeset** object.
+Before calling any of the following APIs, you must use [buildLineTypeset()](#buildlinetypeset16) in the [ParagraphBuilder](#paragraphbuilder) class to create a **LineTypeset** object.
 
-### getLineBreak<sup>14+</sup>
+### getLineBreak<sup>16+</sup>
 
 getLineBreak(startIndex: number, width: number): number
 
@@ -1431,7 +1431,7 @@ let width = 100.0;
 let count = lineTypeset.getLineBreak(startIndex, width);
 ```
 
-### createLine<sup>14+</sup>
+### createLine<sup>16+</sup>
 
 createLine(startIndex: number, count: number): TextLine
 
@@ -1444,7 +1444,7 @@ Generates a text line object based on the specified layout range.
 | Name| Type  | Mandatory| Description          |
 | ----- | ------ | ---- | -------------- |
 | startIndex | number | Yes| Start position for layout calculation. The value is an integer in the range [0, total number of text characters).|
-| count | number | Yes  | Number of characters from the specified start position. The value is an integer in the range [0, total number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of text characters. When **count** is **0**, the specified range is [startIndex, end of the text]. You can use [getLineBreak](#getlinebreak14) to obtain the number of characters that can fit in the layout.|
+| count | number | Yes  | Number of characters from the specified start position. The value is an integer in the range [0, total number of text characters). The sum of **startIndex** and **count** cannot be greater than the total number of text characters. When **count** is **0**, the specified range is [startIndex, end of the text]. You can use [getLineBreak](#getlinebreak16) to obtain the number of characters that can fit in the layout.|
 
 **Return value**
 
@@ -1860,7 +1860,7 @@ struct Index {
 }
 ```
 
-### buildLineTypeset<sup>14+</sup>
+### buildLineTypeset<sup>16+</sup>
 
 buildLineTypeset(): LineTypeset
 
@@ -1872,7 +1872,7 @@ Builds a line typesetter.
 
 | Type                    | Description                          |
 | ------------------------ | ------------------------------ |
-| [LineTypeset](#linetypeset14)  | **LineTypeset** object.|
+| [LineTypeset](#linetypeset16)  | **LineTypeset** object.|
 
 **Example**
 
@@ -1915,7 +1915,7 @@ Inserts a symbol into the paragraph being built.
 
 | Name   | Type   | Mandatory| Description                                                       |
 | -------- | ------- | ---- | ----------------------------------------------------------- |
-| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json). |
+| symbolId | number  | Yes  | Symbol code to insert. The value is a hexadecimal number in the range 0xF0000-0xF0C97. For details about the configurable symbol codes and symbol names, see the **value** and **name** fields in the [JSON file](https://gitee.com/openharmony/global_system_resources/blob/master/systemres/main/resources/base/element/symbol.json).|
 
 **Example**
 
@@ -1951,7 +1951,7 @@ struct Index {
 }
 ```
 
-## TypographicBounds<sup>14+</sup>
+## TypographicBounds<sup>16+</sup>
 
 Describes the typographic boundary of a text line. The typographic boundary is related to the font and font size used for typography, but not the characters within the text. For example, for the string " a b " (which has a space before "a" and a space after "b"), the typographic boundary encompasses the spaces at the beginning and end. For the strings "j" and "E", the typographic boundaries are the same, indicating that they are irrelevant to specific characters.
 
@@ -1978,7 +1978,7 @@ Describes the typographic boundary of a text line. The typographic boundary is r
 >
 >![image_TypographicBounds_Character.png](figures/image_TypographicBounds_Character.png)
 
-## CaretOffsetsCallback<sup>14+</sup>
+## CaretOffsetsCallback<sup>16+</sup>
 
 type CaretOffsetsCallback = (offset: number, index: number, leadingEdge: boolean) => boolean
 
@@ -2003,8 +2003,7 @@ Defines the callback used to receive the offset and index of each character in a
 
 Implements a carrier that describes the basic text line structure of a paragraph.
 
-Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class or [createLine ()](#createline14) of the [LineTypeset](#linetypeset14) class to create a **TextLine** object.
-
+Before calling any of the following APIs, you must use [getTextLines ()](#gettextlines) of the [Paragraph](#paragraph) class or [createLine()](#createline16) of the [LineTypeset](#linetypeset16) class to create a **TextLine** object.
 ### getGlyphCount
 
 getGlyphCount(): number
@@ -2046,7 +2045,7 @@ struct Index {
 
 getTextRange(): Range
 
-Obtains the range of the text in this text line in the entire paragraph. The [TextLine](#textline) object created by calling [creatLine](#createline14) of the [LineTypeset](#linetypeset14) class is a temporary object and is automatically destroyed when [creatLine](#createline14) is called next time. Therefore, the index range returned by [getTextRange] through this object is relative to a temporary [Paragraph](#paragraph) object.
+Obtains the range of the text in this text line in the entire paragraph. The [TextLine](#textline) object created by calling [creatLine](#createline16) of the [LineTypeset](#linetypeset16) class is a temporary object and is automatically destroyed when [creatLine](#createline16) is called next time. Therefore, the index range returned by [getTextRange] through this object is relative to a temporary [Paragraph](#paragraph) object.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2166,7 +2165,7 @@ struct Index {
 }
 ```
 
-### createTruncatedLine<sup>14+</sup>
+### createTruncatedLine<sup>16+</sup>
 
 createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string): TextLine
 
@@ -2176,11 +2175,11 @@ Creates a truncated text line object.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -| - | - | - |
-| width | number | Yes| Width of the line after truncation. The value is a floating point number.|
-| ellipsisMode | [EllipsisMode](#ellipsismode) | Yes| Ellipsis mode.|
-| ellipsis | string | Yes| String used to mark a truncation.|
+| Name| Type| Mandatory| Description                           |
+| -| - | - |-------------------------------|
+| width | number | Yes| Width of the line after truncation. The value is a floating point number.                 |
+| ellipsisMode | [EllipsisMode](#ellipsismode) | Yes| Ellipsis mode. Currently, only **START** and **END** are supported.|
+| ellipsis | string | Yes| String used to mark a truncation.                    |
 
 **Return value**
 
@@ -2229,7 +2228,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>14+</sup>
+### getTypographicBounds<sup>16+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -2251,7 +2250,7 @@ Obtains the typographic boundary of this text line. The typographic boundary is 
 
 | Type| Description |
 | -| - |
-| [TypographicBounds](#typographicbounds14) | Typographic boundary of the text line.|
+| [TypographicBounds](#typographicbounds16) | Typographic boundary of the text line.|
 
 **Example**
 
@@ -2277,7 +2276,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>14+</sup>
+### getImageBounds<sup>16+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -2326,7 +2325,7 @@ struct Index {
 }
 ```
 
-### getTrailingSpaceWidth<sup>14+</sup>
+### getTrailingSpaceWidth<sup>16+</sup>
 
 getTrailingSpaceWidth(): number
 
@@ -2364,7 +2363,7 @@ struct Index {
 }
 ```
 
-### getStringIndexForPosition<sup>14+</sup>
+### getStringIndexForPosition<sup>16+</sup>
 
 getStringIndexForPosition(point: common2D.Point): number
 
@@ -2417,7 +2416,7 @@ struct Index {
 }
 ```
 
-### getOffsetForStringIndex<sup>14+</sup>
+### getOffsetForStringIndex<sup>16+</sup>
 
 getOffsetForStringIndex(index: number): number
 
@@ -2469,7 +2468,7 @@ struct Index {
 }
 ```
 
-### enumerateCaretOffsets<sup>14+</sup>
+### enumerateCaretOffsets<sup>16+</sup>
 
 enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 
@@ -2481,7 +2480,7 @@ Enumerates the offset and index of each character in a text line.
 
 | Name| Type| Mandatory| Description|
 | -| - | - | - |
-| callback | [CaretOffsetsCallback](#caretoffsetscallback14) | Yes| Custom function, which is used to receive the offset and index of each character in a text line object as its parameters.|
+| callback | [CaretOffsetsCallback](#caretoffsetscallback16) | Yes| Custom function, which is used to receive the offset and index of each character in a text line object as its parameters.|
 
 **Error codes**
 
@@ -2519,7 +2518,7 @@ struct Index {
 }
 ```
 
-### getAlignmentOffset<sup>14+</sup>
+### getAlignmentOffset<sup>16+</sup>
 
 getAlignmentOffset(alignmentFactor: number, alignmentWidth: number): number
 
@@ -2652,7 +2651,7 @@ struct Index {
 }
 ```
 
-### getGlyphs<sup>14+</sup>
+### getGlyphs<sup>16+</sup>
 
 getGlyphs(range: Range): Array\<number>
 
@@ -2744,7 +2743,7 @@ struct Index {
   }
 }
 ```
-### getPositions<sup>14+</sup>
+### getPositions<sup>16+</sup>
 
 getPositions(range: Range): Array<common2D.Point>
 
@@ -2921,32 +2920,7 @@ struct Index {
 }
 ```
 
-## TextTab<sup>14+</sup>
-
-Implements a paragraph-style text tab, which stores the alignment mode and position.
-
-**System capability**: SystemCapability.Graphics.Drawing
-
-| Name              | Type                   | Read Only| Optional| Description                                              |
-| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
-| alignment          | [TextAlign](#textalign) | Yes  |  No | Alignment mode of the text following the tab character in a paragraph. It can be set to **LEFT**, **RIGHT**, and **CENTER** defined in [TextAlign](#textalign). Other enumerated values have the effect of left alignment. The default value is left alignment.|
-| location           | number                  | Yes  |  No | Alignment position of the text following the tab character. The value is a floating point number, in px. The minimum value is 1.0. When the value is less than 1.0, the tab character is replaced with a space.|
-
-**Example**
-
-**alignment** is **CENTER**, **location** is **200**, and the text is "12/t345".
-
-![image_AlignmentCenter.png](figures/image_AlignmentCenter.png)
-
-**alignment** is **LEFT**, **location** is **100**, and the text is "abccccccccc/tdef".
-
-![image_AlignmentLeft.png](figures/image_AlignmentLeft.png)
-
-**alignment** is **RIGHT**, **location** is **100**, and the text is "aabcdef/tg hi/tjkl/tmno/tp qr".
-
-![image_AlignmentRight.png](figures/image_AlignmentRight.png)
-
-### getStringRange<sup>14+</sup>
+### getStringRange<sup>16+</sup>
 
 getStringRange(): Range
 
@@ -2986,7 +2960,7 @@ struct Index {
 }
 ```
 
-### getStringIndices<sup>14+</sup>
+### getStringIndices<sup>16+</sup>
 
 getStringIndices(range?: Range): Array\<number>
 
@@ -3042,7 +3016,7 @@ struct Index {
 }
 ```
 
-### getImageBounds<sup>14+</sup>
+### getImageBounds<sup>16+</sup>
 
 getImageBounds(): common2D.Rect
 
@@ -3089,7 +3063,7 @@ struct Index {
 }
 ```
 
-### getTypographicBounds<sup>14+</sup>
+### getTypographicBounds<sup>16+</sup>
 
 getTypographicBounds(): TypographicBounds
 
@@ -3111,7 +3085,7 @@ Obtain a typographic boundary of this run. The typographic boundary is related t
 
 | Type                  | Description          |
 | ---------------------- | -------------- |
-|  [TypographicBounds](#typographicbounds14)  | Typographic boundary of the run.|
+|  [TypographicBounds](#typographicbounds16)  | Typographic boundary of the run.|
 
 **Example**
 
@@ -3136,6 +3110,31 @@ struct Index {
 }
 ```
 
+## TextTab<sup>16+</sup>
+
+Implements a paragraph-style text tab, which stores the alignment mode and position.
+
+**System capability**: SystemCapability.Graphics.Drawing
+
+| Name              | Type                   | Read Only| Optional| Description                                              |
+| -----------------  | ----------------------- | ---- | ---  | -------------------------------------------------- |
+| alignment          | [TextAlign](#textalign) | Yes  |  No | Alignment mode of the text following the tab character in a paragraph. It can be set to **LEFT**, **RIGHT**, and **CENTER** defined in [TextAlign](#textalign). Other enumerated values have the effect of left alignment. The default value is left alignment.|
+| location           | number                  | Yes  |  No | Alignment position of the text following the tab character. The value is a floating point number, in px. The minimum value is 1.0. When the value is less than 1.0, the tab character is replaced with a space.|
+
+**Example**
+
+**alignment** is **CENTER**, **location** is **200**, and the text is "12/t345".
+
+![image_AlignmentCenter.png](figures/image_AlignmentCenter.png)
+
+**alignment** is **LEFT**, **location** is **100**, and the text is "abccccccccc/tdef".
+
+![image_AlignmentLeft.png](figures/image_AlignmentLeft.png)
+
+**alignment** is **RIGHT**, **location** is **100**, and the text is "aabcdef/tg hi/tjkl/tmno/tp qr".
+
+![image_AlignmentRight.png](figures/image_AlignmentRight.png)
+
 ## SystemFontType<sup>14+</sup>
 
 Enumerates the font types, which can be combined through bitwise OR operations.
@@ -3148,3 +3147,4 @@ Enumerates the font types, which can be combined through bitwise OR operations.
 | GENERIC  | 1 << 1 | System font type.|
 | STYLISH  | 1 << 2 | Style font type. The style font type is designed for 2-in-1 devices.|
 | INSTALLED  | 1 << 3 | Font type that has been installed.|
+| CUSTOMIZED<sup>16+</sup>  | 1 << 4 | Custom font type.|

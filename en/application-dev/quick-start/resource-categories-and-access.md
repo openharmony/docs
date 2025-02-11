@@ -18,21 +18,7 @@ Resource files used during application development must be stored in specified d
 Example of the **resources** directory:
 ```
 resources
-|---base
-|   |---element
-|   |   |---string.json
-|   |---media
-|   |   |---icon.png
-|   |---profile
-|   |   |---test_profile.json
-|---en_US  // Default directory. When the device language is en-us, resources in this directory are preferentially matched.
-|   |---element
-|   |   |---string.json
-|   |---media
-|   |   |---icon.png
-|   |---profile
-|   |   |---test_profile.json
-|---zh_CN  // Default directory. When the device language is zh-cn, resources in this directory are preferentially matched.
+|---base  // Default directory.
 |   |---element
 |   |   |---string.json
 |   |---media
@@ -58,13 +44,13 @@ Resource files in the directories are compiled into binary files, and each resou
 
 #### Qualifiers Directory
 
-**en_US** and **zh_CN** are two default qualifiers directories. You need to create other qualifiers directories on your own. Under this directory, the **element**, **media**, and **profile** subdirectories store basic elements such as strings, colors, and Boolean values, as well as resource files such as media, animations, and layouts.<br>Resource files in the directories are compiled into binary files, and each resource file is assigned an ID. Access resource files in the directories based on the resource type and resource name.
+The qualifiers directory needs to be created as required. The subdirectories **element**, **media**, and **profile** are used to store basic elements such as character strings, colors, and Boolean values, and resource files such as media, animation, and layout.<br>Resource files in the directories are compiled into binary files, and each resource file is assigned an ID. Access resource files in the directories based on the resource type and resource name.
 
 **Naming Conventions for Qualifiers Directories**
 
 The name of a qualifiers directory consists of one or more qualifiers that represent the application scenarios or device characteristics, covering the mobile country code (MCC), mobile network code (MNC), language, script, country or region, screen orientation, device type, night mode, and screen density. The qualifiers are separated using underscores (\_) or hyphens (\-). Before creating a qualifiers directory, familiarize yourself with the directory naming conventions.
 
-- Qualifiers are ordered in the following sequence: **\_MCC_MNC-language_script_country/region-orientation-device-color mode-density_**. You can select one or multiple qualifiers to name your subdirectory based on your application scenarios and device characteristics.
+- Qualifiers are ordered in the following sequence: MCC_MNC-language_script_country/region-screen orientation-device type-night mode-screen density. You can select one or multiple qualifiers to name your subdirectory based on your application scenarios and device characteristics.
 
 - Separation between qualifiers: The language, script, and country/region qualifiers are separated using underscores (\_); the MNC and MCC qualifiers are also separated using underscores (\_); other qualifiers are separated using hyphens (\-). For example, **zh_Hant_CN** and **zh_CN-car-ldpi**.
 
@@ -127,6 +113,7 @@ Table 5 Audio and video resource types
 
 The content of the **color.json** file is as follows:
 
+The standard hexadecimal color value consists of six hexadecimal digits. The first two digits indicate the opacity, and the last six digits indicate the color value.
 ```json
 {
     "color": [
@@ -208,13 +195,13 @@ The content of the **plural.json** file is as follows:
 
 ## Creating a Resource Directory and Resource File
 
-You can create a directory and its files under the **resources** directory based on the preceding descriptions of the qualifiers directories and resource group directories. DevEco Studio provides a wizard for you to create resource directories and resource files.
+You can create a directory and its files under the **resources** directory based on the naming rules of the qualifiers directory and file types supported by resource group directories. DevEco Studio provides a wizard for you to create resource directories and resource files.
 
 ### Creating a Resource Directory and Resource File
 
 Right-click the **resources** directory and choose **New** > **Resource File**. If no qualifier is selected, the file is created in a resource group directory under **base**. If one or more qualifiers are selected, the system automatically generates a subdirectory and creates the file in this subdirectory.
 
-In **File name**, enter the name of the resource file to create. In **Resource type**, select the type of the resource group, which is **element** by default. In **Root Element**, select a resource type. To select a qualifier, highlight it under **Available qualifiers** and click the right arrow. To deselect a qualifier, highlight it under **Selected qualifiers** and click the left arrow.<br>The created directory is automatically named in the format of *Qualifiers.Resource group type*. For example, if you create a subdirectory by setting **Color Mode** to **Dark** and **Resource type** to **Element**, the system automatically generates a subdirectory named **dark.element**.
+In **File name**, enter the name of the resource file to create. In **Resource type**, select the type of the resource group, which is **element** by default. In **Root Element**, select a resource type. To select a qualifier, highlight it under **Available qualifiers** and click the right arrow. To deselect a qualifier, highlight it under **Selected qualifiers** and click the left arrow.<br>The created directory is automatically named in the format of *Qualifiers.Resource group type*. For example, if you create a directory by setting **Color Mode** to **Dark** and **Resource type** to **Element**, the system automatically generates a directory named **dark/element**.
 
   ![create-resource-file-1](figures/create-resource-file-1.png)
 
@@ -247,7 +234,7 @@ If the **attr** attribute is not configured, a string is translated by default.
 
 | Name       | Type                   |  Description  |
 | --------- | ----------------------- |  ---- |
-| translatable |  boolean | Whether the string needs to be translated.<br> **true**: The string needs to be translated.<br> **false**: The string does not need to be translated. |
+| translatable |  boolean |  Whether the string needs to be translated.<br>  **true**: The string needs to be translated.<br> **false**: The string does not need to be translated.|
 | priority    | string   |  Translation status of the string.<br>**code**: untranslated<br>**translate**: translated but not verified<br>**LT**: translated and verified<br>**customer**: custom  |
 
 ### Constraints
@@ -289,7 +276,7 @@ This example sets the **attr** attribute for strings.
 
 ### HAP Resources
 
- - Access resources through **$r()** or **$rawfile()**.<br>To access resources of the color, float, string, plural, media, or profile type, use the "$r('app.type.name')" format, where **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type or resource save path, and **name** indicates the name you assign to the resource.<br>To access strings with multiple placeholders in the **string.json** file, use the "$r('app.string.label','aaa','bbb',444)" format.<br>To access resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
+ - Access resources through **$r()** or **$rawfile()**.<br>Resources of the color, float, string, plural, media, and profile types are accessed through **$r('app.type.name')** where **app** indicates the resource defined in the **resources** directory, **type** indicates the resource type, and **name** indicates the resource name.<br>To access strings with multiple placeholders in the **string.json** file, use the "$r('app.string.label','aaa','bbb',444)" format.<br>To access resources in the **rawfile** subdirectory, use the "$rawfile('filename')" format. Wherein **filename** indicates the relative path of a file in the **rawfile** subdirectory, which must contain the file name extension and cannot start with a slash (/).
 
    > **NOTE**
    >
@@ -300,19 +287,19 @@ This example sets the **attr** attribute for strings.
   ```ts
     // Access through $r('app.type.name').
     Text($r('app.string.string_hello'))
-    .fontColor($r('app.color.ohos_id_color_emphasize'))
-    .fontSize($r('app.float.ohos_id_text_size_headline1'))
-    .fontFamily($r('app.string.ohos_id_text_font_family_medium'))
-    .backgroundColor($r('app.color.ohos_id_color_palette_aux1'))
+    .fontColor($r('app.color.color_emphasize'))
+    .fontSize($r('app.float.text_size_headline1'))
+    .fontFamily($r('app.string.font_family_medium'))
+    .backgroundColor($r('app.color.color_palette_aux1'))
 
-    Image($r('app.media.ohos_app_icon'))
+    Image($r('app.media.app_icon'))
     .border({
-      color: $r('app.color.ohos_id_color_palette_aux1'),
-      radius: $r('app.float.ohos_id_corner_radius_button'), width: 2
+      color: $r('app.color.color_palette_aux1'),
+      radius: $r('app.float.corner_radius_button'), width: 2
     })
     .margin({
-      top: $r('app.float.ohos_id_elements_margin_horizontal_m'),
-      bottom: $r('app.float.ohos_id_elements_margin_horizontal_l')
+      top: $r('app.float.elements_margin_horizontal_m'),
+      bottom: $r('app.float.elements_margin_horizontal_l')
     })
     .height(200)
     .width(300)
@@ -390,7 +377,7 @@ To access system resources, use the "$r('sys.type.resource_name')" format, where
 >
 > - For preset applications, you are advised to use system resources. For third-party applications, you can choose to use system resources or custom application resources as required.
 >
-> - You can view the fonts for the system resources in the **system/etc/fontconfig.json** file. The default font is **'HarmonyOS Sans'**.
+> - Currently, when the system font loaded on the UI is displayed (you can view the font in the **system/etc/fontconfig.json** file), the default font is HarmonyOS Sans and follows the standards [Chinese coded character set GB18030-2022](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=A1931A578FE14957104988029B0833D3).
 
 ```ts
 Text('Hello')
@@ -618,7 +605,7 @@ The **module.json5** file in the cross-application overlay resource package supp
 >
 > - The overlay feature does not support JSON images.
 
-If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority** fields during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase. Modules with the overlay feature generally provide an overlay resource file for other modules on the device, so that the module specified by **targetModuleName** can display different colors, labels, themes, and the like by using the overlay resource file in a running phase.
+If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase. Modules with the overlay feature generally provide an overlay resource file for other modules on the device, so that the module specified by **targetModuleName** can display different colors, labels, themes, and the like by using the overlay resource file in a running phase.
 
 The overlay feature is enabled by default. For details about how to enable and disable this feature, see [@ohos.bundle.overlay (overlay)](../reference/apis-ability-kit/js-apis-overlay.md).
 

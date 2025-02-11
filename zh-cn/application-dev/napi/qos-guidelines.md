@@ -13,18 +13,18 @@
 QoS(quality-of-service)，即服务质量，在OpenHarmony中QoS特性主要指任务的优先调度属性。开发者可以利用QoS对要执行的工作进行分类，以指示其与用户交互的关联程度；系统则可以根据任务设置的QoS安排各任务的运行时间和运行次序。例如，当系统中有多个任务需要同时执行时，一些与用户交互关联程度不高的后台下载任务可以推迟到更晚的时间执行，且每次执行时分配更少的时间；而用户感知明显的动效绘制等任务则需要立即执行，并分配更多的执行时间。
 
 ### QoS等级定义
-目前，OpenHarmony系统一共划分如下了6个QoS等级，从上到下与用户交互的关联程度依次递增，适用于多种不同的应用场景及负载特征情况。
+目前，OpenHarmony系统一共划分了如下6个QoS等级，从上到下与用户交互的关联程度依次递增，适用于多种不同的应用场景及负载特征情况。
 
 | QoS等级                                                       | 使用场景                                                         | 负载特征                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | QOS_BACKGROUND | 后台且用户不可见任务，例如数据同步、备份。 | 任务完成需要几分钟甚至几小时。 |
-| QOS_UTILITY | 不需要立即看到响应效果的任务，例如下载或导入数据。 | 任务完成需要几秒到几分钟 |
+| QOS_UTILITY | 不需要立即看到响应效果的任务，例如下载或导入数据。 | 任务完成需要几秒到几分钟。 |
 | QOS_DEFAULT | 默认。 | 任务完成需要几秒钟。 |
 | QOS_USER_INITIATED | 用户触发并且可见进展的任务，例如打开文档。 | 任务在几秒钟之内完成。 |
 | QOS_DEADLINE_REQUEST | 越快越好的关键任务，如页面加载。 | 任务几乎是瞬间完成的。 |
 | QOS_USER_INTERACTIVE	 | 用户交互任务（UI线程、刷新界面、动效）。 | 任务是即时的。 |
 
-QoS等级定义为枚举类型QoS_level，如上表所示；枚举值定义如下。
+QoS等级定义为枚举类型QoS_Level，如上表所示；枚举值定义如下。
 ### QoS_Level声明
 ```{.c}
 typedef enum QoS_Level {
@@ -65,6 +65,7 @@ QoS等级更高的任务相对等级更低的可能被分配更多的CPU时间�
 
 #### 优化前
 ![qosfigure1.png](./figures/qosfigure1.png)
+
 线程1和线程2是某程序的两个关键线程，线程1在运行时会触发新任务线程2，等线程2执行完后会唤醒线程1继续执行。在未标记这两个线程的QoS等级之前，其优先执行顺序低于线程3和线程4；此时线程1和线程2的执行效果如上图所示：
 
 1. 线程1等待被线程2唤醒，而线程2优先级低，长时间被抢占，导致线程1长时间睡眠；
@@ -127,7 +128,7 @@ QoS_Level level
 #include <stdio.h>
 #include "qos/qos.h"
 
-int main()
+int func()
 {
     // 设置当前任务的QoS等级为QOS_USER_INITIATED
     int ret = OH_QoS_SetThreadQoS(QoS_Level::QOS_USER_INITIATED);
@@ -163,7 +164,7 @@ int OH_QoS_ResetThreadQoS();
 #include <stdio.h>
 #include "qos/qos.h"
 
-int main()
+int func()
 {
     // 重置当前任务的QoS等级
     int ret = OH_QoS_ResetThreadQoS();
@@ -200,7 +201,7 @@ QoS_Level *level
 #include <stdio.h>
 #include "qos/qos.h"
 
-int main()
+int func()
 {
     // 获取当前任务的QoS等级
     QoS_Level level = QoS_Level::QOS_DEFAULT;
@@ -219,14 +220,13 @@ int main()
 ## 开发步骤
 以下步骤描述了如何使用QoS特性提供的Native API接口，调整或查询任务的QoS等级。
 
-**添加动态链接库**
+### 1. 添加动态链接库
+QoS特性的使用依赖相关的动态链接库：**libqos.so**；需要在目标应用或程序的编译环境中添加。
 
-CMakeLists.txt中添加以下lib：
-```txt
-libqos.so
-```
+**示例**
 
-#### 示例
+使用DevEco Studio创建的模板NDK工程，会默认生成CMakeLists.txt脚本，在其中添加QoS相关动态链接库示例如下：
+
 ```txt
 # the minimum version of CMake.
 cmake_minimum_required(VERSION 3.4.1)
@@ -238,14 +238,20 @@ include_directories(${NATIVERENDER_ROOT_PATH}
                     ${NATIVERENDER_ROOT_PATH}/include)
 
 add_library(entry SHARED hello.cpp)
+
+# 直接引用libqos.so原因：位于已在链接寻址路径的NDK中，无需额外声明
 target_link_libraries(entry PUBLIC libqos.so)
 ```
 
-**头文件**
+### 2. 引用头文件
+
+在使用QoS特性的源代码中需要引用相关的头文件。
+
 ```c
 #include "qos/qos.h"
 ```
-**调用QoS接口**
+
+### 3. 调用QoS接口
 
 开发者根据自身需求调用相应的QoS接口调整任务的QoS等级，或者查询任务的QoS等级。
 

@@ -192,7 +192,7 @@ When using camera capabilities, you often need to create camera sessions and con
          Column() {
            XComponent({
              id: 'componentId',
-             type: 'surface',
+             type: XComponentType.SURFACE,
              controller: this.mXComponentController
            })
              .onLoad(async () => {

@@ -1133,8 +1133,8 @@ try {
 | TRUST_LEVEL_NOT_SUPPORT | 12500006      | 不支持的认证等级。   |
 | BUSY                    | 12500007      | 忙碌状态。           |
 | LOCKED                  | 12500009      | 认证器已锁定。       |
-| NOT_ENROLLED            | 12500010      | 用户未录入认证信息。 |
-| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 当前的认证操作被用户从组件取消。返回这个错误码，表示使用应用自定义认证。 |
+| NOT_ENROLLED            | 12500010      | 用户未录入指定的系统身份认证凭据。 |
+| CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。 |
 | PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏密码过期。 |
 
 ## UserAuth<sup>(deprecated)</sup>

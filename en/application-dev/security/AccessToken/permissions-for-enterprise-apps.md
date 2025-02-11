@@ -164,6 +164,38 @@ Allows an application to obtain domain account server configurations.
 
 **Valid since**: 16
 
+## ohos.permission.MANAGE_NET_FIREWALL
+
+Allows a system application to configure firewall rules.
+
+Currently,this permission is available only to the applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**AEnable via ACL**：true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
+## ohos.permission.GET_NET_FIREWALL
+
+Allows a system application to obtain firewall rules and firewall interception records.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**AEnable via ACL**：true<!--DelEnd-->
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system applications in API versions 12 to 14. From API version 15, it is available to normal enterprise applications.
+
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNT_SERVER_CONFIGS
 
 Allows an application to manage domain account server configurations.
@@ -180,6 +212,19 @@ Allows an application to manage domain account server configurations.
 ## ohos.permission.MANAGE_DOMAIN_ACCOUNTS
 
 Allows an application to manage domain accounts.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 16
+
+## ohos.permission.GET_SIGNATURE_INFO
+
+Allows an application to obtain signature information of application packages.
 
 **Permission level**: system_basic
 

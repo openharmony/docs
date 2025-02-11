@@ -14,7 +14,7 @@
 
    > **说明：**
    >
-   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](drawing-guidelines.md)。
+   > 本范例是通过Drawing在Native侧实现图形的绘制，并将其呈现在NativeWindow上，具体可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts

@@ -1285,7 +1285,7 @@ type ContinuationResult = _ContinuationResult
 
 | 类型 | 说明 |
 | --- | --- |
-| [ContinuationResult](js-apis-continuation-continuationResult.md) | 表示流转管理入口返回的设备信息。 |
+| [_ContinuationResult](js-apis-continuation-continuationResult.md) | 表示流转管理入口返回的设备信息。 |
 
 ## ContinuationExtraParams<sup>10+</sup>
 
@@ -1299,4 +1299,4 @@ type ContinuationExtraParams = _ContinuationExtraParams
 
 | 类型 | 说明 |
 | --- | --- |
-| [ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 表示流转管理入口中设备选择模块所需的过滤参数。 |
+| [_ContinuationExtraParams](js-apis-continuation-continuationExtraParams.md) | 表示流转管理入口中设备选择模块所需的过滤参数。 |

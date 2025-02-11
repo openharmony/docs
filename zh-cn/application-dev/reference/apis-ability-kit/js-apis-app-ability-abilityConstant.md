@@ -273,7 +273,7 @@ class MyAbility extends UIAbility {
 
 ## CollaborateResult<sup>16+</sup>
 
-协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate)方法进行设置。
+协同状态枚举值，用于表示多设备场景下，调用方应用拉起协同方应用时，协同方应用是否接受协同。配合UIAbility的[onCollaborate(wantParam)](js-apis-app-ability-uiAbility.md#uiabilityoncollaborate16)方法进行设置。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

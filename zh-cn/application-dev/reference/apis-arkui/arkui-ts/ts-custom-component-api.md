@@ -119,6 +119,132 @@ struct MyComponent {
 }
 ```
 
+## queryNavDestinationInfo<sup>16+</sup>
+
+queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undefined
+
+查询当前自定义组件距离最近的NavDestination（NavPathStack栈中）信息，isInner为true表示向内查找，false表示向外查找。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| isInner  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | true: 向内查询最近的，且在栈内的NavDestinationinfo的详细信息。<br/>false: 向外查询最近的，且在栈内的NavDestinationinfo的详细信息。|
+
+**返回值：**
+
+| 类型                                                                       | 说明      |
+| -------------------------------------------------------------------------- | --------- |
+| [NavDestinationInfo](../js-apis-arkui-observer.md#navdestinationinfo) \| undefined | 返回NavDestinationInfo实例对象。|
+
+**示例：**
+
+```ts
+// Index.ets
+@Entry
+@Component
+struct NavigationExample {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    Navigation(this.pageInfo) {
+      Column() {
+        Button('pageOne', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.pageInfo.pushPath({ name: 'pageOne' }); // 将name指定的NavDestination页面信息入栈。
+          })
+      }
+    }.title('NavIndex')
+  }
+}
+```
+
+```ts
+// PageOne.ets
+import { uiObserver } from '@kit.ArkUI'
+
+@Builder
+export function PageOneBuilder() {
+  PageOneComponent();
+}
+
+@Component
+export struct PageOneComponent {
+  navDesInfo: uiObserver.NavDestinationInfo | undefined;
+  @State text: string = '';
+  build() {
+    NavDestination() {
+      Column() {
+        Button('点击向内查找')
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            // 向内查询PageOne的NavDestination信息
+            this.navDesInfo = this.queryNavDestinationInfo(true)
+            this.text = JSON.stringify(this.navDesInfo?.name).toString();
+          })
+        Text('向内查找的NavDestination是:' + this.text)
+          .width('80%')
+          .height(50)
+          .margin(50)
+          .fontSize(20)
+        MyComponent()
+      }.width('100%').height('100%')
+    }
+    .title('pageOne')
+  }
+}
+
+@Component
+struct MyComponent {
+  navDesInfo: uiObserver.NavDestinationInfo | undefined
+  @State text: string = '';
+
+  build() {
+    Column() {
+      Button('点击向外查找')
+        .width('80%')
+        .height(40)
+        .margin(20)
+        .onClick(() => {
+          // 向外查询PageOne的NavDestination信息
+          this.navDesInfo = this.queryNavDestinationInfo(false);
+          this.text = JSON.stringify(this.navDesInfo?.name).toString();
+        })
+      Text('向外查找的NavDestination是:' + this.text)
+        .width('80%')
+        .height(50)
+        .margin(50)
+        .fontSize(20)
+    }
+  }
+}
+```
+
+```ts
+//route_map.json
+{
+  "routerMap": [
+    {
+      "name": "pageOne",
+      "pageSourceFile": "src/main/ets/pages/PageOne.ets",
+      "buildFunction": "PageOneBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}
+```
+
 ## queryNavigationInfo<sup>12+</sup>
 
 queryNavigationInfo(): NavigationInfo | undefined

@@ -1755,7 +1755,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 
 ### COMMON_EVENT_BLUETOOTH_HOST_REQ_ENABLE
-（预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作
+（预留事件，暂未支持）表示用户打开蓝牙请求的公共事件的动作。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1860,6 +1860,7 @@ Store Kit面向应用发布如下系统公共事件。
 
 ### COMMON_EVENT_ABILITY_REMOVED
 （预留事件，暂未支持）表示已删除能力的公共事件的动作。
+
 **系统能力：** SystemCapability.Notification.CommonEvent
 
 **订阅者所需权限：** ohos.permission.LISTEN_BUNDLE_CHANGE

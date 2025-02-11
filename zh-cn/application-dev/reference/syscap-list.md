@@ -32,6 +32,14 @@ Libuv功能
 |---------|--------|--------------|
 | 是       | 是      | 否            |
 
+## SystemCapability.ArkUI.ArkUI.Circle
+
+ArkUI圆形屏幕组件能力。
+
+| Default | Tablet | Wearable |
+|---------|--------|--------------|
+| 否       | 否      | 是            |
+
 ## SystemCapability.ArkUI.UiAppearance
 
 外观配置功能

@@ -117,7 +117,7 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 \@LocalStorageLink(key)是和LocalStorage中key对应的属性建立双向数据同步：
 
-1. 本地修改发生，该修改会被写回LocalStorage中；
+1. 本地修改发生，该修改会被写回LocalStorage中。
 
 2. LocalStorage中的修改发生后，该修改会被同步到所有绑定LocalStorage对应key的属性上，包括单向（\@LocalStorageProp和通过prop创建的单向绑定变量）、双向（\@LocalStorageLink和通过link创建的双向绑定变量）变量。
 
@@ -180,18 +180,18 @@ LocalStorage根据与\@Component装饰的组件的同步类型不同，提供了
 
 1. \@LocalStorageProp/\@LocalStorageLink的参数必须为string类型，否则编译期会报错。
 
-```ts
-let storage = new LocalStorage();
-storage.setOrCreate('PropA', 48);
+    ```ts
+    let storage = new LocalStorage();
+    storage.setOrCreate('PropA', 48);
 
-// 错误写法，编译报错
-@LocalStorageProp() localStorageProp: number = 1;
-@LocalStorageLink() localStorageLink: number = 2;
+    // 错误写法，编译报错
+    @LocalStorageProp() localStorageProp: number = 1;
+    @LocalStorageLink() localStorageLink: number = 2;
 
-// 正确写法
-@LocalStorageProp('PropA') localStorageProp: number = 1;
-@LocalStorageLink('PropA') localStorageLink: number = 2;
-```
+    // 正确写法
+    @LocalStorageProp('PropA') localStorageProp: number = 1;
+    @LocalStorageLink('PropA') localStorageLink: number = 2;
+    ```
 
 2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
 
@@ -225,9 +225,9 @@ link1.set(49); // 双向同步: link1.get() == link2.get() == prop.get() == 49
 
 本示例以\@LocalStorageLink为例，展示了：
 
-- 使用构造函数创建LocalStorage实例storage；
+- 使用构造函数创建LocalStorage实例storage。
 
-- 使用\@Entry装饰器将storage添加到Parent顶层组件中；
+- 使用\@Entry装饰器将storage添加到Parent顶层组件中。
 
 - \@LocalStorageLink绑定LocalStorage对给定的属性，建立双向数据同步。
 
@@ -297,7 +297,7 @@ struct Parent {
 
 在下面的示例中，Parent 组件和Child组件分别在本地创建了与storage的'PropA'对应属性的单向同步的数据，我们可以看到：
 
-- Parent中对this.storageProp1的修改，只会在Parent中生效，并没有同步回storage；
+- Parent中对this.storageProp1的修改，只会在Parent中生效，并没有同步回storage。
 
 - Child组件中，Text绑定的storageProp2 依旧显示47。
 
@@ -381,9 +381,9 @@ struct Parent {
 
 先看Parent自定义组件中发生的变化：
 
-1. 点击“playCount ${this.playCount} dec by 1”，this.playCount减1，修改同步回LocalStorage中，Child组件中的playCountLink绑定的组件会同步刷新；
+1. 点击“playCount ${this.playCount} dec by 1”，this.playCount减1，修改同步回LocalStorage中，Child组件中的playCountLink绑定的组件会同步刷新。
 
-2. 点击“countStorage ${this.playCount} incr by 1”，调用LocalStorage的set接口，更新LocalStorage中“countStorage”对应的属性，Child组件中的playCountLink绑定的组件会同步刷新；
+2. 点击“countStorage ${this.playCount} incr by 1”，调用LocalStorage的set接口，更新LocalStorage中“countStorage”对应的属性，Child组件中的playCountLink绑定的组件会同步刷新。
 
 3. Text组件“playCount in LocalStorage for debug ${storage.get&lt;number&gt;('countStorage')}”没有同步刷新，因为storage.get&lt;number&gt;('countStorage')返回的是常规变量，常规变量的更新并不会引起Text组件的重新渲染。
 
@@ -639,91 +639,91 @@ struct Child {
 
 1. 当自定义组件没有定义属性时，可以只传入一个LocalStorage实例作为入参。
 
-```ts
-let localStorage1: LocalStorage = new LocalStorage();
-localStorage1.setOrCreate('PropA', 'PropA');
+    ```ts
+    let localStorage1: LocalStorage = new LocalStorage();
+    localStorage1.setOrCreate('PropA', 'PropA');
 
-let localStorage2: LocalStorage = new LocalStorage();
-localStorage2.setOrCreate('PropB', 'PropB');
+    let localStorage2: LocalStorage = new LocalStorage();
+    localStorage2.setOrCreate('PropB', 'PropB');
 
-@Entry(localStorage1)
-@Component
-struct Index {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
-  @LocalStorageLink('PropA') PropA: string = 'Hello World';
-  @State count: number = 0;
+    @Entry(localStorage1)
+    @Component
+    struct Index {
+      // 'PropA'，和localStorage1中'PropA'的双向同步
+      @LocalStorageLink('PropA') PropA: string = 'Hello World';
+      @State count: number = 0;
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.PropA)
+      build() {
+        Row() {
+          Column() {
+            Text(this.PropA)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            // 使用LocalStorage 实例localStorage2
+            Child(localStorage2)
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+
+
+    @Component
+    struct Child {
+      build() {
+        Text("hello")
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        Child(localStorage2)
       }
-      .width('100%')
     }
-    .height('100%')
-  }
-}
-
-
-@Component
-struct Child {
-  build() {
-    Text("hello")
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-```
+    ```
 
 2. 当定义的属性不需要从父组件初始化变量时，第一个参数需要传{}。
 
-```ts
-let localStorage1: LocalStorage = new LocalStorage();
-localStorage1.setOrCreate('PropA', 'PropA');
+    ```ts
+    let localStorage1: LocalStorage = new LocalStorage();
+    localStorage1.setOrCreate('PropA', 'PropA');
 
-let localStorage2: LocalStorage = new LocalStorage();
-localStorage2.setOrCreate('PropB', 'PropB');
+    let localStorage2: LocalStorage = new LocalStorage();
+    localStorage2.setOrCreate('PropB', 'PropB');
 
-@Entry(localStorage1)
-@Component
-struct Index {
-  // 'PropA'，和localStorage1中'PropA'的双向同步
-  @LocalStorageLink('PropA') PropA: string = 'Hello World';
-  @State count: number = 0;
+    @Entry(localStorage1)
+    @Component
+    struct Index {
+      // 'PropA'，和localStorage1中'PropA'的双向同步
+      @LocalStorageLink('PropA') PropA: string = 'Hello World';
+      @State count: number = 0;
 
-  build() {
-    Row() {
-      Column() {
-        Text(this.PropA)
+      build() {
+        Row() {
+          Column() {
+            Text(this.PropA)
+              .fontSize(50)
+              .fontWeight(FontWeight.Bold)
+            // 使用LocalStorage 实例localStorage2
+            Child({}, localStorage2)
+          }
+          .width('100%')
+        }
+        .height('100%')
+      }
+    }
+
+
+    @Component
+    struct Child {
+      @State count: number = 5;
+      // 'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+      @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+      build() {
+        Text(this.PropB)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        // 使用LocalStorage 实例localStorage2
-        Child({}, localStorage2)
       }
-      .width('100%')
     }
-    .height('100%')
-  }
-}
-
-
-@Component
-struct Child {
-  @State count: number = 5;
-  // 'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
-  @LocalStorageLink('PropB') PropB: string = 'Hello World';
-
-  build() {
-    Text(this.PropB)
-      .fontSize(50)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-```
+    ```
 
 
 ### Navigation组件和LocalStorage联合使用

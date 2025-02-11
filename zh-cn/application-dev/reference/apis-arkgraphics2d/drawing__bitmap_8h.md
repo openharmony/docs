@@ -3,7 +3,7 @@
 
 ## 概述
 
-文件中定义了与位图相关的功能函数
+文件中定义了与位图相关的功能函数。
 
 **引用文件：**&lt;native_drawing/drawing_bitmap.h&gt;
 

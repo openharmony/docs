@@ -153,7 +153,7 @@ strokeWidth(length: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| length | [Length](ts-types.md#length) | 是   | 环形量规图的环形厚度。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>不支持百分比。 |
+| length | [Length](ts-types.md#length) | 是   | 环形量规图的环形厚度。<br/>默认值：4<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>环形厚度的最大值为圆环的半径，超过最大值按最大值处理。<br/>不支持百分比。 |
 
 ### description<sup>11+</sup>
 
@@ -752,3 +752,35 @@ struct GaugeExample {
 }
 ```
 ![gauge](figures/gauge-privacysensitive.gif)
+
+### 示例10（设置自定义指针）
+
+该示例通过indicator接口，实现了自定义指针功能，开发者导入svg类型的图片以替换默认指针。
+
+```ts
+@Entry
+@Component
+struct Gauge2 {
+  build() {
+    Column() {
+      Gauge({ value: 50, min: 1, max: 100 })
+        .indicator({ space: 10, icon: $r('app.media.indicator') })
+        .startAngle(210)
+        .endAngle(150)
+        .colors('#cca5d61d')
+        .width('80%')
+        .height('80%')
+        .strokeWidth(18)
+        .padding(18)
+    }.margin({ top: 40 }).width('100%').height('100%')
+  }
+}
+```
+```xml
+<svg width="200px" height="200px">
+    <path d="M 10,30 A 20,20 0,0,1 50,30 A 20,20 0,0,1 90,30 Q 90,60 50,90 Q 10,60 10,30 z"
+          stroke="black" stroke-width="3" fill="white">
+    </path>
+</svg>
+```
+![gauge](figures/gauge-image8.png)

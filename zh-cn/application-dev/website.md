@@ -385,8 +385,11 @@
           - [编译期自定义修改方舟字节码](arkts-utils/customize-bytecode-during-compilation.md)
         - [Disassembler反汇编工具](arkts-utils/tool-disassembler.md)
         - ArkGuard源码混淆<!--arkts-arkguard-->
-          - [ArkGuard源码混淆工具](arkts-utils/source-obfuscation.md)
+          - [ArkGuard混淆概述](arkts-utils/source-obfuscation-overview.md)
+          - [ArkGuard混淆原理及功能](arkts-utils/source-obfuscation.md)
+          - [ArkGuard混淆开启指南](arkts-utils/source-obfuscation-guide.md)
           - [不同包类型的源码混淆建议](arkts-utils/source-obfuscation-practice.md)
+          - [ArkGuard混淆常见问题](arkts-utils/source-obfuscation-questions.md)
         - [在build-profile.json5中配置arkOptions](arkts-utils/arkoptions-guide.md)
     - ArkUI（方舟UI框架）<!--arkui-->
       - [ArkUI简介](ui/arkui-overview.md)
@@ -923,7 +926,10 @@
           - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
             - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
             - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
-        - [消息认证码计算](security/CryptoArchitectureKit/crypto-compute-mac.md)
+        - 消息认证码<!--crypto-compute-mac-->
+          - [消息认证码计算介绍及算法规格](security/CryptoArchitectureKit/crypto-compute-mac-overview.md)
+          - [消息认证码计算HMAC](security/CryptoArchitectureKit/crypto-compute-hmac.md)
+          - [消息认证码计算CMAC](security/CryptoArchitectureKit/crypto-compute-cmac.md)
         - [安全随机数生成](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - 密钥派生<!--crypto-key-derivation-->
           - [密钥派生介绍及算法规格](security/CryptoArchitectureKit/crypto-key-derivation-overview.md)
@@ -1124,6 +1130,8 @@
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
+        - 压缩与解压<!--compress-->
+          - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
@@ -1312,6 +1320,7 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
         - [媒体数据解析](media/avcodec/audio-video-demuxer.md)
@@ -1381,12 +1390,13 @@
         - [录像实现方案(C/C++)](media/camera/native-camera-recording-case.md)
     - DRM Kit（数字版权保护服务）<!--drm-kit-->
       - [DRM Kit 简介](media/drm/drm-overview.md)
-      - 数字版权保护开发指导(ArkTS)<!--drm-arkts-dev-->
-        - [DRM系统管理(ArkTS)](media/drm/drm-mediakeysystem-management.md)
-        - [DRM会话管理(ArkTS)](media/drm/drm-mediakeysession-management.md)
-      - 数字版权保护开发指导(C/C++)<!--drm-native-->
-        - [DRM系统管理(C/C++)](media/drm/native-drm-mediakeysystem-management.md)
-        - [DRM会话管理(C/C++)](media/drm/native-drm-mediakeysession-management.md)
+      - [数字版权保护(ArkTS)](media/drm/drm-arkts-dev-guide.md)
+      - [数字版权保护(C/C++)](media/drm/drm-c-dev-guide.md)
+      <!--Del-->
+      - [DRM解决方案开发指导](media/drm/drm-solution-dev-guide.md)
+      <!--DelEnd-->
+      - [基于AVPlayer播放DRM节目(ArkTS)](media/drm/drm-avplayer-arkts-integration.md)
+      - [基于AVCodec播放DRM节目(C/C++)](media/drm/drm-avcodec-integration.md)
     - Image Kit（图片处理服务）<!--image-kit-->
       - [Image Kit简介](media/image/image-overview.md)
       - 图片开发指导(ArkTS)<!--image-arkts-dev-->
@@ -1463,13 +1473,35 @@
         - [请求自绘制内容绘制帧率](graphics/displaysync-xcomponent.md)
         - [NativeDisplaySoloist开发指导 (C/C++)](graphics/displaysoloist-native-guidelines.md)
       - [过度绘制调试使用指导](graphics/overdraw-dfx-guidelines.md)
-      - [使用Drawing实现图形绘制与显示](graphics/drawing-js-guidelines.md)
+      - 图形绘制与显示<!--graphic-drawing-->
+        - [图形绘制与显示开发概述](graphics/graphic-drawing-overview.md)
+        - 画布的获取与绘制结果的显示<!--canvas-get-result-draw-->
+          - [画布的获取与绘制结果的显示（ArkTS）](graphics/canvas-get-result-draw-arkts.md)
+          - [画布的获取与绘制结果的显示（C/C++）](graphics/canvas-get-result-draw-c.md)
+        - 画布操作及状态<!--canvas-operation-state-->
+          - [画布操作及状态（ArkTS）](graphics/canvas-operation-state-arkts.md)
+          - [画布操作及状态处理（C/C++）](graphics/canvas-operation-state-c.md)
+        - 绘制效果<!--drawing-effect-->
+          - [绘制效果概述](graphics/drawing-effect-overview.md)
+          - [基础绘制效果（ArkTS）](graphics/basic-drawing-effect-arkts.md)
+          - [复杂绘制效果（ArkTS）](graphics/complex-drawing-effect-arkts.md)
+          - [基础绘制效果（C/C++）](graphics/basic-drawing-effect-c.md)
+          - [复杂绘制效果（C/C++）](graphics/complex-drawing-effect-c.md)
+        - 图元绘制<!--primitive-drawing-->
+          - [图元绘制概述](graphics/primitive-drawing-overview.md)
+          - [几何形状绘制（ArkTS）](graphics/geometric-shape-drawing-arkts.md)
+          - [图片绘制（ArkTS）](graphics/pixelmap-drawing-arkts.md)
+          - [字块绘制（ArkTS）](graphics/textblock-drawing-arkts.md)
+          - [几何形状绘制（C/C++）](graphics/geometric-shape-drawing-c.md)
+          - [图片绘制（C/C++）](graphics/pixelmap-drawing-c.md)
+          - [字块绘制（C/C++）](graphics/textblock-drawing-c.md)
       - [使用Text模块实现文本显示](graphics/text-js-guidelines.md)
-      - [使用Drawing实现图形绘制与显示 (C/C++)](graphics/drawing-guidelines.md)
+      - [使用主题字体（C/C++）](graphics/theme-font-c.md)
       - [NativeBuffer开发指导 (C/C++)](graphics/native-buffer-guidelines.md)
       - [NativeImage开发指导 (C/C++)](graphics/native-image-guidelines.md)
       - [NativeVSync开发指导 (C/C++)](graphics/native-vsync-guidelines.md)
       - [NativeWindow开发指导 (C/C++)](graphics/native-window-guidelines.md)
+      - [图形开发术语](graphics/graphic-term.md)
     - ArkGraphics 3D（方舟3D图形）<!--arkgraphics-3d-->
       - [ArkGraphics 3D简介](graphics3d/arkgraphics3D-overview.md)
       - [ArkGraphics 3D场景搭建以及管理](graphics3d/arkgraphics3D-scene.md)
@@ -1507,6 +1539,8 @@
         - [发布实况窗类型通知（仅对系统应用开放）](notification/live-view-notification.md)
         <!--DelEnd-->
         - [为通知添加行为意图](notification/notification-with-wantagent.md)
+      - [更新通知](notification/notification-update.md)
+      - [取消通知](notification/notification-cancel.md)
       <!--Del-->
       - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
       <!--DelEnd-->
@@ -1596,6 +1630,7 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
+          - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
       - 使用JSVM-API实现JS与C/C++语言交互<!--jsvm-->
         - [JSVM-API简介](napi/jsvm-introduction.md)
@@ -1618,7 +1653,7 @@
             - [使用JSVM-API接口进行object相关开发](napi/use-jsvm-about-object.md)
             - [使用JSVM-API接口进行primitive类相关开发](napi/use-jsvm-about-primitive.md)
             - [使用JSVM-API接口处理异步操作](napi/use-jsvm-about-promise.md)
-            - [使用Node-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
+            - [使用JSVM-API接口设置JavaScript对象的属性](napi/use-jsvm-about-property.md)
             - [使用JSVM-API接口创建和获取string值](napi/use-jsvm-about-string.md)
             - [使用JSVM-API接口获取JSVM API的版本号](napi/use-jsvm-about-version.md)
             - [使用JSVM-API接口进行错误处理开发](napi/use-jsvm-error.md)
@@ -1633,9 +1668,11 @@
             - [使用JSVM-API接口进行Proxy相关开发](napi/use-jsvm-about-proxy.md)
             - [使用JSVM-API接口进行well-known symbols相关开发](napi/use-jsvm-about-well-known-symbols.md)
             - [使用JSVM-API接口进行装箱类型判断相关开发](napi/use-jsvm-about-wrapper-object.md)
+            - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - [JSVM-API Tracing](napi/use-jsvm-about-trace.md)
+            - [JSVM 申请JIT权限指导](napi/jsvm-apply-jit-profile.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
@@ -1645,6 +1682,8 @@
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - 网络管理<!--network-management-->
+        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
@@ -1928,7 +1967,6 @@
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
-            - [BundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleInfo-sys.md)
             - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -2128,6 +2166,8 @@
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
       - 错误码<!--arkts-arkts-errcode-->
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
+        - [Typescript Compiler错误码](reference/apis-arkts/errorcode-tsc.md)
+        - [编译工具链错误码](reference/apis-arkts/errorcode-ets-loader.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
         - UI界面<!--ui-->
@@ -2829,7 +2869,9 @@
         <!--DelEnd-->
         - application<!--background-tasks-arkts-application-->
           - [WorkSchedulerExtensionContext](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext.md)
+          <!--Del-->
           - [WorkSchedulerExtensionContext(系统接口)](reference/apis-backgroundtasks-kit/js-apis-inner-application-WorkSchedulerExtensionContext-sys.md)
+          <!--DelEnd-->
         - 已停止维护的接口<!--background-tasks-arkts-dep-->
           - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis-backgroundtasks-kit/js-apis-backgroundTaskManager.md)
           - [@ohos.bundleState (设备使用信息统计)](reference/apis-backgroundtasks-kit/js-apis-deviceUsageStatistics.md)
@@ -2992,7 +3034,7 @@
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
+          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md)
           - [Resource](reference/apis-localization-kit/resource.md)
           - [SendableResource](reference/apis-localization-kit/sendableResource.md)
       - C API<!--localization-c-->
@@ -3008,6 +3050,7 @@
         - 结构体<!--localization-struct-->
           - [RawFileDescriptor](reference/apis-localization-kit/_raw_file_descriptor.md)
           - [RawFileDescriptor64](reference/apis-localization-kit/_raw_file_descriptor64.md)
+          - [ResourceManager_Configuration](reference/apis-localization-kit/_resource_manager___configuration.md)
       - 错误码<!--localization-arkts-errcode-->
         - [I18n错误码](reference/apis-localization-kit/errorcode-i18n.md)
         - [资源管理错误码](reference/apis-localization-kit/errorcode-resource-manager.md)
@@ -3164,7 +3207,7 @@
           - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](reference/apis-connectivity-kit/js-apis-nfcTag-sys.md)
           - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-wifiManager-sys.md)
           <!--DelEnd-->
-          - tag<!--connectivity-nfc-tag-arkts--> 
+          - tag<!--connectivity-nfc-tag-arkts-->
             - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->
@@ -3503,14 +3546,13 @@
         - C API<!--input-c-->
           - 模块<!--input-module-->
             - [Input](reference/apis-input-kit/input.md)
-          - 头文件和结构体<!--input-headerfile-struct-->
-            - 头文件<!--input-headerfile-->
-              - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
-              - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
-              - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
-            - 结构体<!--input-struct-->
-              - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
-              - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+          - 头文件<!--input-headerfile-->
+            - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
+            - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
+            - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+          - 结构体<!--input-struct-->
+            - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
+            - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
@@ -4069,6 +4111,7 @@
           - [drawing_types.h](reference/apis-arkgraphics2d/drawing__types_8h.md)
           - [effect_filter.h](reference/apis-arkgraphics2d/effect__filter_8h.md)
           - [effect_types.h](reference/apis-arkgraphics2d/effect__types_8h.md)
+          - [buffer_handle.h](reference/apis-arkgraphics2d/buffer__handle_8h.md)
           - [external_window.h](reference/apis-arkgraphics2d/external__window_8h.md)
           - [native_buffer.h](reference/apis-arkgraphics2d/native__buffer_8h.md)
           - [native_display_soloist.h](reference/apis-arkgraphics2d/native__display__soloist_8h.md)
@@ -4108,6 +4151,7 @@
           - [OH_NativeBuffer_Smpte2086](reference/apis-arkgraphics2d/_o_h___native_buffer___smpte2086.md)
           - [OH_NativeBuffer_StaticMetadata](reference/apis-arkgraphics2d/_o_h___native_buffer___static_metadata.md)
           - [OH_OnFrameAvailableListener](reference/apis-arkgraphics2d/_o_h___on_frame_available_listener.md)
+          - [BufferHandle](reference/apis-arkgraphics2d/_buffer_handle.md)
           - [OHExtDataHandle](reference/apis-arkgraphics2d/_o_h_ext_data_handle.md)
           - [OHHDRMetaData](reference/apis-arkgraphics2d/_o_h_h_d_r_meta_data.md)
           - [Region](reference/apis-arkgraphics2d/_region.md)

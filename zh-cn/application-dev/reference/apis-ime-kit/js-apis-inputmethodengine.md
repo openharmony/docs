@@ -1147,7 +1147,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 | 参数名    | 类型  | 必填  | 说明   |
 | -------- | ---- | ---- | ------ |
-| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange' |
+| type     | string  | 是   | 光标变化事件，固定取值为'cursorContextChange'。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
 
 
@@ -1686,6 +1686,75 @@ try {
 }
 ```
 
+### startMoving<sup>15+</sup>
+
+startMoving(): void
+
+发送移动命令给窗口，不产生实际移动效果（仅在鼠标点击作用才可以移动）。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+
+**示例：**
+
+```ts
+
+try {
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### getDisplayId<sup>15+</sup>
+
+getDisplayId(): Promise\<number>
+
+获取当前窗口的所在id,使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+|Promise\<number>| Promise对象。返回窗口的displayId。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
@@ -1806,7 +1875,7 @@ adjustPanelRect(flag: PanelFlag, rect: PanelRect): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING |
+| flag | [PanelFlag](#panelflag10) | 是 | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。 |
 | rect | [PanelRect](#panelrect12) | 是   | 目标面板横屏状态及竖屏状态的横坐标，纵坐标，宽度以及高度。固定态：高度不能超过屏幕高度的70%，宽度不能超过屏幕宽度；悬浮态：高度不能超过屏幕高度，宽度不能超过屏幕宽度。|
 
 **错误码：**
@@ -1853,7 +1922,7 @@ adjustPanelRect(flag: PanelFlag, rect: EnhancedPanelRect): void
 
 | 参数名 | 类型                                      | 必填 | 说明                                                       |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------------- |
-| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING            |
+| flag   | [PanelFlag](#panelflag10)                 | 是   | 目标面板状态类型。类型为FLG_FIXED或FLG_FLOATING。            |
 | rect   | [EnhancedPanelRect](#enhancedpanelrect16) | 是   | 目标面板横屏状态及竖屏状态的位置、大小，避让区域以及热区。 |
 
 **错误码：**
@@ -2195,6 +2264,65 @@ try {
     console.error(`Failed to set privacy mode: ${JSON.stringify(err)}`);
 }
 ```
+
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+设置输入法应用的沉浸模式。只能设置不使用沉浸模式(NONE_IMMERSIVE)、浅色沉浸模式(LIGHT_IMMERSIVE)或深色沉浸模式(DARK_IMMERSIVE)。不能设置为沉浸模式(IMMERSIVE)。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#ImmersiveMode15) | 是   | 沉浸模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**示例：**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+获取输入法应用沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#ImmersiveMode15) | 沉浸模式。 |
+
+**示例：**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
 
 ## KeyboardController
 
@@ -4382,6 +4510,7 @@ inputMethodController.recvMessage();
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
+| immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 
 ## KeyEvent
 
@@ -4478,6 +4607,19 @@ inputMethodController.recvMessage();
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
+
+## ImmersiveMode<sup>15+</sup>
+
+枚举，输入法沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | 不使用沉浸模式。 |
+| IMMERSIVE      | 1 | 沉浸模式，由输入法应用确定沉浸模式类型。 |
+| LIGHT_IMMERSIVE  | 2 | 浅色沉浸模式。 |
+| DARK_IMMERSIVE   | 3 | 深色沉浸模式。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

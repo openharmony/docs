@@ -808,29 +808,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
   //trigger回调
   let triggerCallback = (err: BusinessError, data: wantAgent.CompleteData) => {
     if (err) {
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`trigger failed, code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+      console.info(`trigger success, data: ${JSON.stringify(data)}`);
     }
   }
   try {
     wantAgent.trigger(wantAgentData, triggerInfo, triggerCallback);
   } catch (err) {
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`trigger failed, code: ${code}, message: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch (err) {
-  console.error(`getWantAgent failed! ${(err as BusinessError).code} ${(err as BusinessError).message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
 }
 ```
 
@@ -1283,7 +1287,7 @@ TriggerInfo对象。
 
 | 类型 | 说明 |
 | --- | --- |
-| [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
+| [_TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md) | TriggerInfo对象。 |
 
 ## WantAgentInfo
 
@@ -1297,5 +1301,5 @@ WantAgentInfo对象。
 
 | 类型 | 说明 |
 | --- | --- |
-| [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
+| [_WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md) | WantAgentInfo对象。 |
 

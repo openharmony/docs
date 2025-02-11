@@ -3,6 +3,9 @@
 
 You can use \@Param, a variable decorator in state management V2, to enhance the capability of child components to receive external parameter input.
 
+
+\@Param can receive not only the external output of the component, but also the synchronous change of \@Local. Before reading this topic, you are advised to read [\@Local](./arkts-new-local.md).
+
 > **NOTE**
 >
 > The \@Param decorator is supported since API version 12.
@@ -355,13 +358,13 @@ The \@Param decorator has the following constraints:
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct MyComponent {
     @Param message: string = "Hello World"; // Correct usage.
     build() {
     }
   }
   @Component
-  struct CompB {
+  struct TestComponent {
     @Param message: string = "Hello World"; // Incorrect usage. An error is reported during compilation.
     build() {
     }
@@ -372,7 +375,7 @@ The \@Param decorator has the following constraints:
 
   ```ts
   @ComponentV2
-  struct CompA {
+  struct ChildComponent {
     @Param param1: string = "Initialize local";
     @Param param2: string = "Initialize local and put in";
     @Require @Param param3: string;
@@ -387,11 +390,11 @@ The \@Param decorator has the following constraints:
   }
   @Entry
   @ComponentV2
-  struct CompB {
+  struct MyComponent {
     @Local message: string = "Put in";
     build() {
       Column() {
-        CompA({
+        ChildComponent({
           param2: this.message,
           param3: this.message
         })

@@ -31,12 +31,9 @@
 | typedef enum [PASTEBOARD_ErrCode](#pasteboard_errcode) [PASTEBOARD_ErrCode](#pasteboard_errcode) | 错误码信息。  |
 | typedef enum [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) | 定义文件拷贝冲突时的选项。 |
 | typedef enum [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) | 定义进度条指示选项，可选择是否采用系统默认进度显示。 |
-| typedef struct [Pasteboard_ProgressInfo](#pasteboard_progressinfo) [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | 定义进度上报的数据结构。 |
-| typedef struct [Pasteboard_ProgressListener](#pasteboard_progresslistener) [Pasteboard_ProgressListener](#pasteboard_progresslistener) | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| typedef struct [Pasteboard_ProgressSignal](#pasteboard_progresssignal) [Pasteboard_ProgressSignal](#pasteboard_progresssignal) | 定义进度取消的函数，在粘贴过程中可选择取消任务。 |
-| typedef struct [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) | 剪贴板中获取数据时需要的参数，包含目标路径、文件冲突选项、进度条指示选项等。 |
-| typedef void(* [Pasteboard_ProgressNotify](#pasteboard_progressnotify))([Pasteboard_ProgressInfo](#pasteboard_progressinfo) progressInfo); | 定义获取进度数据的回调函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| typedef int (* [Pasteboard_ProgressCancel](#pasteboard_progresscancel))(); | 取消正在进行的拷贝粘贴任务。 |
+| typedef struct [Pasteboard_ProgressInfo](#pasteboard_progressinfo) [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | 定义进度上报的数据结构。且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为PASTEBOARD_NONE时才会上报此信息。 |
+| typedef void (* [OH_Pasteboard_ProgressListener](#oh_pasteboard_progresslistener))([Pasteboard_ProgressInfo](#pasteboard_progressinfo)* progressInfo) | 定义获取进度数据的回调函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
+| typedef struct [Pasteboard_GetDataParams](#pasteboard_getdataparams) [Pasteboard_GetDataParams](#pasteboard_getdataparams) | 获取剪贴板数据支持进度提示时需要设置的参数，包含进度条指示选项、目标文件路径、文件冲突选项等。 |
 
 
 ### 枚举
@@ -44,9 +41,9 @@
 | 名称 | 描述 |
 | -------- | -------- |
 | [Pasteboard_NotifyType](#pasteboard_notifytype) { NOTIFY_LOCAL_DATA_CHANGE = 1, NOTIFY_REMOTE_DATA_CHANGE = 2 } | 剪贴板的数据变更类型。  |
-| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br/>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br/>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003, ERR_COPY_FILE_ERROR = 12900007, ERR_PROGRESS_START_ERROR = 12900008, ERR_PROGRESS_ABNORMAL = 12900009, ERR_GET_DATA_FAILED = 12900010,<br/>} | 错误码信息。  |
-| [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) { OVERWRITE = 0, SKIP = 1} | 拷贝文件文件冲突时的选项。 |
-| [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) { NONE = 0, DEFAULT = 1 } | 从剪贴板获取数据时的进度条类型。 |
+| [PASTEBOARD_ErrCode](#pasteboard_errcode) {<br/>ERR_OK = 0, ERR_PERMISSION_ERROR = 201, ERR_INVALID_PARAMETER = 401, ERR_DEVICE_NOT_SUPPORTED = 801,<br/>ERR_INNER_ERROR = 12900000, ERR_BUSY = 12900003, ERR_PASTEBOARD_COPY_FILE_ERROR = 12900007, ERR_PASTEBOARD_PROGRESS_START_ERROR = 12900008, ERR_PASTEBOARD_PROGRESS_ABNORMAL = 12900009, ERR_PASTEBOARD_GET_DATA_FAILED = 12900010,<br/>} | 错误码信息。  |
+| [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) { PASTEBOARD_OVERWRITE = 0, PASTEBOARD_SKIP = 1} | 拷贝文件文件冲突时的选项。 |
+| [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) { PASTEBOARD_NONE = 0, PASTEBOARD_DEFAULT = 1 } | 从剪贴板获取数据时的进度条类型。 |
 
 
 ### 函数
@@ -68,7 +65,15 @@
 | int [OH_Pasteboard_SetData](#oh_pasteboard_setdata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, OH_UdmfData \*data) | 将统一数据对象数据写入剪贴板。  |
 | int [OH_Pasteboard_ClearData](#oh_pasteboard_cleardata) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 清空剪贴板中的数据。  |
 | char ** [OH_Pasteboard_GetMimeTypes](#oh_pasteboard_getmimetypes) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard, unsigned int *count) | 获取剪切板中的MIME类型。  |
-| OH_UdmfDat *[OH_Pasteboard_GetDataWithProgress](#oh_pasteboard_getdatawithprogress)(OH_Pasteboard *pasteboard, [OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams) *params, int *status) | 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。 |
+| [Pasteboard_GetDataParams](#pasteboard_getdataparams) *[OH_Pasteboard_GetDataParams_Create](#oh_pasteboard_getdataparams_create)(void) | 创建剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)指针及实例对象。 |
+| void [OH_Pasteboard_GetDataParams_Destroy](#oh_pasteboard_getdataparams_destroy)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params) | 销毁剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)实例对象。 |
+| void [OH_Pasteboard_GetDataParams_SetProgressIndicator](#oh_pasteboard_getdataparams_setprogressindicator)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) progressIndicator) | 向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置进度条指示选项，可选择是否采用系统默认进度显示。 |
+| void [OH_Pasteboard_GetDataParams_SetDestUri](#oh_pasteboard_getdataparams_setdesturi)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, const char* destUri, uint32_t destUriLen) | 向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置目标路径。 |
+| void [OH_Pasteboard_GetDataParams_SetFileConflictOption](#oh_pasteboard_getdataparams_setfileconflictoption)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) option) | 向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置文件拷贝冲突选项。 |
+| void [OH_Pasteboard_GetDataParams_SetProgressListener](#oh_pasteboard_getdataparams_setprogresslistener)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, const [OH_Pasteboard_ProgressListener](#oh_pasteboard_progresslistener) listener) | 向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置进度上报回调函数。 |
+| int [OH_Pasteboard_ProgressInfo_GetProgress](#oh_pasteboard_progressinfo_getprogress)([Pasteboard_ProgressInfo](#pasteboard_progressinfo)* progressInfo) | 通过[Pasteboard_ProgressInfo](#pasteboard_progressinfo)获取粘贴进度。 |
+| void [OH_Pasteboard_ProgressCancel](#oh_pasteboard_progresscancel)([Pasteboard_GetDataParams](#pasteboard_getdataparams)* params) | 通过[Pasteboard_GetDataParams](#pasteboard_getdataparams)取消正在进行的拷贝粘贴任务。 |
+| OH_UdmfData* [OH_Pasteboard_GetDataWithProgress](#oh_pasteboard_getdatawithprogress)([OH_Pasteboard](#oh_pasteboard)* pasteboard, [Pasteboard_GetDataParams](#pasteboard_getdataparams)* params, int* status) | 获取剪贴板的数据以及粘贴进度，不支持对文件夹的拷贝。 |
 | uint32_t [OH_Pasteboard_GetChangeCount](#oh_pasteboard_getchangecount) ([OH_Pasteboard](#oh_pasteboard) \*pasteboard) | 获取剪切板内容的变化次数。  |
 
 
@@ -162,19 +167,19 @@ typedef enum Pasteboard_NotifyType Pasteboard_NotifyType
 ### Pasteboard_FileConflictOption 
 
 ```
-typedef enum Pasteboard_FileConflictOption
+typedef enum Pasteboard_FileConflictOption Pasteboard_FileConflictOption
 ```
 
 **描述：**
 
-定义文件拷贝冲突时的选项，
+定义文件拷贝冲突时的选项，默认为PASTEBOARD_OVERWRITE。
 
 **起始版本：** 15
 
 ### Pasteboard_ProgressIndicator 
 
 ```
-typedef enum Pasteboard_ProgressIndicator
+typedef enum Pasteboard_ProgressIndicator Pasteboard_ProgressIndicator
 ```
 
 **描述：**
@@ -183,12 +188,10 @@ typedef enum Pasteboard_ProgressIndicator
 
 **起始版本：** 15
 
-### Pasteboard_ProgressInfo 
+### Pasteboard_ProgressInfo
 
 ```
-typedef struct Pasteboard_ProgressInfo {
-	int progress;
-} Pasteboard_ProgressInfo;
+typedef struct Pasteboard_ProgressInfo Pasteboard_ProgressInfo
 ```
 
 **描述：**
@@ -197,19 +200,15 @@ typedef struct Pasteboard_ProgressInfo {
 
 **起始版本：** 15
 
-| 名称     | 类型 | 描述                                                       |
-| -------- | ---- | ---------------------------------------------------------- |
-| progress | int  | 不使用系统提供的进度条时，系统上报拷贝粘贴任务进度百分比。 |
-
-### Pasteboard_ProgressNotify
+### OH_Pasteboard_ProgressListener
 
 ```
-typedef void (*Pasteboard_ProgressNotify)(Pasteboard_ProgressInfo progressInfo);
+typedef void (*OH_Pasteboard_ProgressListener)(Pasteboard_ProgressInfo* progressInfo);
 ```
 
 **描述：**
 
-用于在不使用剪贴板提供的进度条时，通知应用拷贝粘贴任务进度。
+用于在不使用系统默认进度显示时，通知应用拷贝粘贴任务进度。
 
 **起始版本：** 15
 
@@ -219,81 +218,17 @@ typedef void (*Pasteboard_ProgressNotify)(Pasteboard_ProgressInfo progressInfo);
 | ------------ | --------------------------------------------------- | ------------------------------------------------------------ |
 | progressInfo | [Pasteboard_ProgressInfo](#pasteboard_progressinfo) | 定义进度上报的数据结构，且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为NONE时才会上报此信息。 |
 
-### Pasteboard_ProgressListener 
+### Pasteboard_GetDataParams
 
 ```
-typedef struct Pasteboard_ProgressListener {
-	Pasteboard_ProgressNotify callback;
-} Pasteboard_ProgressListener;
+typedef struct Pasteboard_GetDataParams Pasteboard_GetDataParams;
 ```
 
 **描述：**
 
-定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。
+获取剪贴板数据支持进度提示时需要设置的参数，包含进度条指示选项、目标文件路径、文件冲突选项等。
 
 **起始版本：** 15
-
-| 名称     | 类型                                                    | 描述                                                         |
-| -------- | ------------------------------------------------------- | ------------------------------------------------------------ |
-| callback | [Pasteboard_ProgressNotify](#pasteboard_progressnotify) | 用于在不使用剪贴板提供的进度条时，通知应用拷贝粘贴任务进度。 |
-
-### Pasteboard_ProgressCancel
-
-```
-typedef int (*Pasteboard_ProgressCancel)();
-```
-
-**描述：**
-
-取消正在进行的拷贝粘贴任务。
-
-**起始版本：** 15
-
-### Pasteboard_ProgressSignal
-
-```
-typedef struct Pasteboard_ProgressSignal {
-    Pasteboard_ProgressCancel cancel;
-} Pasteboard_ProgressSignal;
-```
-
-**描述：**
-
-定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为NONE时此参数才有意义。
-
-**起始版本：** 15
-
-| 名称   | 类型                                                    | 描述                     |
-| ------ | ------------------------------------------------------- | ------------------------ |
-| cancel | [Pasteboard_ProgressCancel](#pasteboard_progresscancel) | 取消正在进行的粘贴任务。 |
-
-### OH_Pasteboard_GetDataParams
-
-```
-typedef struct OH_Pasteboard_GetDataParams {
-    char *destUri;
-    unsigned int destUriLen;
-    Pasteboard_FileConflictOption fileConflictOption;
-    Pasteboard_ProgressIndicator progressIndicator;
-    Pasteboard_ProgressListener progressListener;
-    Pasteboard_ProgressSignal progressSignal;
-} OH_Pasteboard_GetDataParams;
-```
-
-**描述：**
-
-应用在使用剪贴板提供的文件拷贝能力的情况下需要的参数，包含目标路径、文件冲突选项、进度条类型等。
-
-**起始版本：** 15
-
-| 名称               | 类型                                                         | 说明                                                         |
-| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| destUri            | char *                                                       | 拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 |
-| destUriLen         | unsigned int                                                 | 拷贝文件时目标路径长度。                                     |
-| fileConflictOption | [Pasteboard_FileConflictOption](#pasteboard_fileconflictoption) | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                  |
-| progressIndicator  | [Pasteboard_ProgressIndicator](#pasteboard_progressindicator) | 定义进度条指示选项，可选择是否采用系统默认进度显示。         |
-| progressListener   | [Pasteboard_ProgressListener](#pasteboard_progresslistener)  | 定义进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
-| progressSignal     | [Pasteboard_ProgressSignal](#pasteboard_progresssignal)      | 定义进度取消的函数，在粘贴过程中可选择取消任务，且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为NONE时此参数才有意义。 |
 
 
 ## 枚举类型说明
@@ -352,10 +287,10 @@ enum Pasteboard_FileConflictOption
 
 **起始版本：** 15
 
-| 枚举值    | 描述                                                         |
-| --------- | ------------------------------------------------------------ |
-| OVERWRITE | 目标路径存在同文件名时覆盖。                                 |
-| SKIP      | 目标路径存在同文件名时跳过，若设置SKIP，应用获取到的粘贴数据不包含跳过文件。 |
+| 枚举值               | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| PASTEBOARD_OVERWRITE | 目标路径存在同文件名时覆盖。                                 |
+| PASTEBOARD_SKIP      | 目标路径存在同文件名时跳过，若设置SKIP，应用获取到的粘贴数据不包含跳过文件。 |
 
 ### Pasteboard_ProgressIndicator 
 
@@ -369,10 +304,10 @@ enum Pasteboard_ProgressIndicator
 
 **起始版本：** 15
 
-| 枚举值  | 描述                     |
-| ------- | ------------------------ |
-| NONE    | 不采用系统默认进度显示。 |
-| DEFAULT | 采用系统默认进度显示。   |
+| 枚举值             | 描述                     |
+| ------------------ | ------------------------ |
+| PASTEBOARD_NONE    | 不采用系统默认进度显示。 |
+| PASTEBOARD_DEFAULT | 采用系统默认进度显示。   |
 
 ## 函数说明
 
@@ -796,15 +731,209 @@ char ** OH_Pasteboard_GetMimeTypes (OH_Pasteboard * pasteboard, unsigned int * c
 
 [OH_Pasteboard](#oh_pasteboard)
 
-### OH_Pasteboard_GetDataWithProgress()
+### OH_Pasteboard_GetDataParams_Create()
 
-```
-OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, OH_Pasteboard_GetDataParams *params, int *status);
+```c
+Pasteboard_GetDataParams *OH_Pasteboard_GetDataParams_Create(void);
 ```
 
 **描述：**
 
-获取剪贴板的内容和进度，使用Promise异步回调，不支持对文件夹的拷贝。
+创建剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)指针及实例对象。
+
+**起始版本：** 15
+
+**返回：**
+
+执行成功时返回一个指向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)实例对象的指针，否则返回空指针。 当不再需要使用指针时，请使用[OH_Pasteboard_GetDataParams_Destroy](#oh_pasteboard_getdataparams_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+### OH_Pasteboard_GetDataParams_Destroy()
+
+```c
+void OH_Pasteboard_GetDataParams_Destroy(Pasteboard_GetDataParams* params)
+```
+
+**描述：**
+
+销毁剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)指针指向的实例对象。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称   | 描述                                                         |
+| ------ | ------------------------------------------------------------ |
+| params | 表示指向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)实例的指针。 |
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+### OH_Pasteboard_GetDataParams_SetProgressIndicator()
+
+```c
+void OH_Pasteboard_GetDataParams_SetProgressIndicator(Pasteboard_GetDataParams* params,
+    Pasteboard_ProgressIndicator progressIndicator)
+```
+
+**描述：**
+
+向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置进度条指示选项，可选择是否采用系统默认进度显示。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称              | 描述                                                 |
+| ----------------- | ---------------------------------------------------- |
+| params            | 表示指向上下文数据的指针。                           |
+| progressIndicator | 表示进度条指示选项，可选择是否采用系统默认进度显示。 |
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)
+
+### OH_Pasteboard_GetDataParams_SetDestUri()
+
+```c
+void OH_Pasteboard_GetDataParams_SetDestUri(Pasteboard_GetDataParams* params, const char* destUri, uint32_t destUriLen)
+```
+
+**描述：**
+
+ 向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置拷贝文件时目标路径。若不支持文件处理，则不需要设置此参数；若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称       | 描述                       |
+| ---------- | -------------------------- |
+| params     | 表示指向上下文数据的指针。 |
+| destUri    | 表示拷贝文件时的目标路径。 |
+| destUriLen | 表示目标路径长度。         |
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)
+
+### OH_Pasteboard_GetDataParams_SetFileConflictOption()
+
+```c
+void OH_Pasteboard_GetDataParams_SetFileConflictOption(Pasteboard_GetDataParams* params,
+    Pasteboard_FileConflictOption option)
+```
+
+**描述：**
+
+向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置文件拷贝冲突选项，默认为PASTEBOARD_OVERWRITE。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称   | 描述                                                   |
+| ------ | ------------------------------------------------------ |
+| params | 表示指向上下文数据的指针。                             |
+| option | 表示文件拷贝冲突时的选项，默认为PASTEBOARD_OVERWRITE。 |
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+[Pasteboard_FileConflictOption](#pasteboard_fileconflictoption)
+
+### OH_Pasteboard_GetDataParams_SetProgressListener()
+
+```c
+void OH_Pasteboard_GetDataParams_SetProgressListener(Pasteboard_GetDataParams* params,
+    const OH_Pasteboard_ProgressListener listener)
+```
+
+**描述：**
+
+向剪贴板[Pasteboard_GetDataParams](#pasteboard_getdataparams)设置进度上报回调函数。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称     | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| params   | 表示指向上下文数据的指针。                                   |
+| listener | 表示进度数据变化的订阅函数，当选择不使用系统默认进度显示时，可设置该项获取粘贴过程的进度。 |
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+[OH_Pasteboard_ProgressListener](#oh_pasteboard_progresslistener)
+
+### OH_Pasteboard_ProgressInfo_GetProgress()
+
+```c
+int OH_Pasteboard_ProgressInfo_GetProgress(Pasteboard_ProgressInfo* progressInfo)
+```
+
+**描述：**
+
+通过[Pasteboard_ProgressInfo](#pasteboard_progressinfo)获取粘贴进度，且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为PASTEBOARD_NONE时，才可以获取到此信息。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称         | 描述                                                         |
+| ------------ | ------------------------------------------------------------ |
+| progressInfo | 定义进度上报的数据结构，且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为PASTEBOARD_NONE时才会上报此信息。 |
+
+**返回：**
+
+系统拷贝粘贴任务进度百分比。
+
+**参见：**
+
+[Pasteboard_ProgressInfo](#pasteboard_progressinfo)
+
+### OH_Pasteboard_ProgressCancel()
+
+```c
+void OH_Pasteboard_ProgressCancel(Pasteboard_GetDataParams* params);
+```
+
+**描述：**
+
+通过[Pasteboard_GetDataParams](#pasteboard_getdataparams)取消正在进行的拷贝粘贴任务，且仅当进度指示选项[Pasteboard_ProgressIndicator](#pasteboard_progressindicator)设置为PASTEBOARD_NONE时此参数才有意义。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称   | 描述                       |
+| ------ | -------------------------- |
+| params | 表示指向上下文数据的指针。 |
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
+
+### OH_Pasteboard_GetDataWithProgress()
+
+```c
+OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, Pasteboard_GetDataParams* params, int* status);
+```
+
+**描述：**
+
+获取剪贴板的内容和进度，不支持对文件夹的拷贝。
 
 **起始版本：** 15
 
@@ -813,12 +942,16 @@ OH_UdmfData* OH_Pasteboard_GetDataWithProgress(OH_Pasteboard* pasteboard, OH_Pas
 | 名称       | 描述                                                         |
 | ---------- | ------------------------------------------------------------ |
 | pasteboard | 表示指向剪贴板[OH_Pasteboard](#oh_pasteboard)实例的指针。    |
-| params     | 应用在使用剪贴板提供的文件拷贝能力的情况下需要的参数。定义详见[OH_Pasteboard_GetDataParams](#oh_pasteboard_getdataparams)。 |
+| params     | 应用在使用剪贴板提供的文件拷贝能力的情况下需要的参数。定义详见[Pasteboard_GetDataParams](#pasteboard_getdataparams)。 |
 | status     | 该参数是输出参数，表示执行的错误码。错误码定义详见[PASTEBOARD_ErrCode](#pasteboard_errcode)。 |
 
 **返回：**
 
 执行成功时返回统一数据对象**OH_UdmfData**实例的指针。否则返回空指针。
+
+**参见：**
+
+[Pasteboard_GetDataParams](#pasteboard_getdataparams)
 
 ### OH_Pasteboard_GetChangeCount()
 
