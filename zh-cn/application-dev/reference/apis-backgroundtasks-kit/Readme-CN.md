@@ -1,6 +1,6 @@
-# Background Tasks Kit（后台任务开发服务）
+# Background Tasks Kit（后台任务开发服务）<!--background-tasks-api-->
 
-- ArkTS API
+- ArkTS API<!--background-tasks-arkts-->
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md) 
   - [@ohos.resourceschedule.workScheduler (延迟任务调度)](js-apis-resourceschedule-workScheduler.md)
@@ -11,9 +11,9 @@
   - [@ohos.resourceschedule.deviceStandby (设备待机模块)(系统接口)](js-apis-resourceschedule-deviceStandby-sys.md)
   - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)(系统接口)](js-apis-resourceschedule-deviceUsageStatistics-sys.md) 
   <!--DelEnd-->
-  - application
+  - application<!--background-tasks-arkts-application-->
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
-  - 已停止维护的接口
+  - 已停止维护的接口<!--background-tasks-arkts-dep-->
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
     - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)
     - [@ohos.reminderAgent (后台代理提醒)](js-apis-reminderAgent.md)
@@ -21,7 +21,7 @@
     - [@ohos.backgroundTaskManager (后台任务管理)(系统接口)](js-apis-backgroundTaskManager-sys.md)
     - [@ohos.bundleState (设备使用信息统计)(系统接口)](js-apis-deviceUsageStatistics-sys.md)
     <!--DelEnd-->
-- 错误码
+- 错误码<!--background-tasks-arkts-errcode-->
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)

@@ -4,10 +4,10 @@
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 <!--DelEnd-->
-- 开发基础知识
-  - 应用程序包基础知识<!--development-fundamentals-->
+- 开发基础知识<!--development-fundamentals-->
+  - 应用程序包基础知识<!--application-package-fundamentals-->
     - [应用程序包概述](application-package-overview.md)
-    - 应用程序包结构<!--application-package-fundamentals-->
+    - 应用程序包结构<!--application-package-structure-->
       - [Stage模型应用程序包结构](application-package-structure-stage.md)
       - [FA模型应用程序包结构](application-package-structure-fa.md)
     - 应用程序包开发与使用<!--application-package-dev-->
@@ -24,7 +24,7 @@
     - [app对象内部结构](app-structure.md)
     - [deviceConfig内部结构](deviceconfig-structure.md)
     - [module对象内部结构](module-structure.md)
-  - 典型场景的开发指导
+  - 典型场景的开发指导<!--application-typical-scenarios-->
     - [集成态HSP](integrated-hsp.md)
     - [HAR转HSP指导](har-to-hsp.md)
     - [HSP转HAR指导](hsp-to-har.md)
