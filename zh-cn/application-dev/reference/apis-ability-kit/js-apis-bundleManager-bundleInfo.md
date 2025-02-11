@@ -80,7 +80,7 @@
 
 描述应用包的身份信息。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
