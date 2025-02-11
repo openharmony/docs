@@ -341,11 +341,11 @@ import { window } from '@kit.ArkUI';
 | ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入沉浸式布局，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
 
-## MoveConfiguration<sup>14+</sup>
+## MoveConfiguration<sup>15+</sup>
 
 窗口移动选项。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -1689,7 +1689,7 @@ try {
 }
 ```
 
-### moveWindowToAsync<sup>14+</sup>
+### moveWindowToAsync<sup>15+</sup>
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
@@ -1700,7 +1700,7 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1708,7 +1708,7 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 | -- | ----- | -- | --------------------------------------------- |
 | x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数应该为整数，非整数输入将向下取整。 |
 | y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数应该为整数，非整数输入将向下取整。 |
-| moveConfiguration | [MoveConfiguration](#moveconfiguration14) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
+| moveConfiguration | [MoveConfiguration](#moveconfiguration15) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
 
 **返回值：**
 
@@ -1807,7 +1807,7 @@ try {
 }
 ```
 
-### moveWindowToGlobal<sup>14+</sup>
+### moveWindowToGlobal<sup>15+</sup>
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
@@ -1819,7 +1819,7 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1827,7 +1827,7 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 | -- | ----- | -- | --------------------------------------------- |
 | x | number | 是 | 表示以目标屏幕左上角为起点，窗口在x轴方向移动的值，单位为px。值为正表示右移，值为负表示左移。该参数应该为整数，非整数输入将向下取整。 |
 | y | number | 是 | 表示以目标屏幕左上角为起点，窗口在y轴方向移动的值，单位为px。值为正表示下移，值为负表示上移。该参数应该为整数，非整数输入将向下取整。 |
-| moveConfiguration | [MoveConfiguration](#moveconfiguration14) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
+| moveConfiguration | [MoveConfiguration](#moveconfiguration15) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
 
 **返回值：**
 
