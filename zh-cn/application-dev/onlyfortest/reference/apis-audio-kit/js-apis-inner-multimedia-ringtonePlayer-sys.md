@@ -2,7 +2,7 @@
 
 铃声播放器提供了系统铃声的播放、配置、获取信息等功能。
 
-ringtonePlayer需要和[@ohos.multimedia.systemSoundManager](js-apis-systemSoundManager-sys.md)配合使用，才能完成管理系统铃声的功能。
+ringtonePlayer需要和配合使用，才能完成管理系统铃声的功能。
 
 > **说明：**
 >
@@ -30,7 +30,7 @@ import systemSoundManager from '@ohos.multimedia.systemSoundManager';
 
 ## RingtonePlayer
 
-系统铃声播放器，提供系统铃声的参数设置、参数获取、播放、停止等功能。在调用RingtonePlayer的接口前，需要先通过[getSystemRingtonePlayer](js-apis-systemSoundManager-sys.md#getsystemringtoneplayer)创建实例。
+系统铃声播放器，提供系统铃声的参数设置、参数获取、播放、停止等功能。在调用RingtonePlayer的接口前，需要先通过创建实例。
 
 ### 属性
 
@@ -121,7 +121,7 @@ getAudioRendererInfo(callback: AsyncCallback&lt;audio.AudioRendererInfo&gt;): vo
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| callback | AsyncCallback&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | 是 | 回调返回获取的AudioRendererInfo。 |
+| callback | AsyncCallback&lt;[audio.AudioRendererInfo | 是 | 回调返回获取的AudioRendererInfo。 |
 
 **示例：**
 
@@ -155,7 +155,7 @@ getAudioRendererInfo(): Promise&lt;audio.AudioRendererInfo&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;[audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)&gt; | Promise回调返回获取的AudioRendererInfo。 |
+| Promise&lt | Promise回调返回获取的AudioRendererInfo。 |
 
 **示例：**
 
@@ -187,7 +187,7 @@ configure(options: RingtoneOptions, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| options  | [RingtoneOptions](#ringtoneoptions)      | 是   | 指定铃声参数。             |
+| options  | RingtoneOptions     | 是   | 指定铃声参数。             |
 | callback | AsyncCallback&lt;void&gt;                | 是   | 回调返回配置参数成功或失败。 |
 
 **示例：**
@@ -224,7 +224,7 @@ configure(options: RingtoneOptions): Promise&lt;void&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                       |
 | -------- | -----------------------------------------| ---- | ------------------------- |
-| options  | [RingtoneOptions](#ringtoneoptions)      | 是   | 指定铃声参数。              |
+| options  | RingtoneOptions     | 是   | 指定铃声参数。              |
 
 **返回值：**
 
@@ -439,11 +439,10 @@ on(type: 'audioInterrupt', callback: Callback&lt;audio.InterruptEvent&gt;): void
 | 参数名   | 类型                     | 必填 | 说明                                                                       |
 | -------- | ----------------------- | ---- | -------------------------------------------------------------------------- |
 | type     | string                  | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频渲染被中断）。 |
-| callback | Callback&lt;[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)&gt; | 是   | 被监听的中断事件的回调。    |
+| callback | Callback&lt;audio.InterruptEvent | 是   | 被监听的中断事件的回调。    |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -518,7 +517,7 @@ off(type: 'audioInterrupt'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[音频错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[音频错误码
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
