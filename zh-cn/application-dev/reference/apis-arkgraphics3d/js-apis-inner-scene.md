@@ -418,7 +418,7 @@ createScene(uri?: ResourceStr): Promise<Scene>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| uri? | [ResourceStr](#ResourceStr) | 是 | 资源参数。 |
+| uri? | [ResourceStr](#ResourceStr) | 否 | 资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -428,8 +428,18 @@ createScene(uri?: ResourceStr): Promise<Scene>
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
 
+function createScenePromise() : Promise<Scene> {
+  return new Promise(() => {
+    Scene.load().then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      console.log("mason createScenePromise");
+      let scene = sceneFactory.createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"));
+      return scene;
+    });
+  });
+}
 ```
 
 ## RenderParameters
@@ -438,7 +448,7 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | 否 | 是 | 为true表示一直渲染，为false表示按需渲染 |
+| alwaysRender | boolean | 否 | 是 | 为true表示一直渲染，为false表示按需渲染，默认值为true。 |
 
 **示例：**
 ```ts
