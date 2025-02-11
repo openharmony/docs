@@ -12,7 +12,7 @@ OHAudio是OpenHarmony在API version 10中引入的一套全新Native API，此AP
 target_link_libraries(sample PUBLIC libohaudio.so)
 ```
 ### 添加头文件
-开发者通过引入[native_audiostreambuilder.h]<!--Del-->(../../reference/apis-audio-kit/native__audiostreambuilder_8h.md)<!--DelEnd-->和<!--Del-->[native_audiorenderer.h](../../reference/apis-audio-kit/native__audiorenderer_8h.md)<!--DelEnd-->头文件，使用音频播放相关API。
+开发者通过引入native_audiostreambuilder.h
 
 ```cpp
 #include <ohaudio/native_audiorenderer.h>
@@ -167,7 +167,7 @@ OH_AudioStreamBuilder_Destroy(builder);
 
 当设备支持低时延通路时，开发者可以使用低时延模式创建播放器，获得更高质量的音频体验。
 
-开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用[OH_AudioStreamBuilder_SetLatencyMode()]<!--Del-->(../../reference/apis-audio-kit/_o_h_audio.md#oh_audiostreambuilder_setlatencymode)<!--DelEnd-->设置低时延模式。
+开发流程与普通播放场景一致，仅需要在创建音频流构造器时，调用
 
 开发示例
 
@@ -177,6 +177,4 @@ OH_AudioStreamBuilder_SetLatencyMode(builder, AUDIOSTREAM_LATENCY_MODE_FAST);
 
 ## 相关实例
 
-针对音频通话开发，有以下相关实例可供参考：
-
-- [录制和播放（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
+针对音频通话开发，有以下相关实例可供参考
