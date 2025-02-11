@@ -349,8 +349,22 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise<Geometry
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry} from '@kit.ArkGraphics3D';
 
+function createGeometryPromise() : Promise<Geometry> {
+  return new Promise(() => {
+    let scene: Promise<Scene> = Scene.load();
+    scene.then(async (result: Scene) => {
+      let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+      // Create geometry
+      let cubeGeom = new CubeGeometry();
+      cubeGeom.size = { x: 1, y: 1, z: 1 };
+      let meshRes = await sceneFactory.createMesh({ name: "resource name not used at the moment" }, cubeGeom);
+      let geometry: Promise<Geometry> = sceneFactory.createGeometry({ name: "GeometryName" }, meshRes);
+      return geometry;
+    });
+  });
+}
 ```
 
 ### createMesh
