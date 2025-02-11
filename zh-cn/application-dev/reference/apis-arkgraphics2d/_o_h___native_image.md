@@ -191,6 +191,7 @@ enum OHNativeErrorCode
 | NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
 | NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
 
+## 函数说明
 ### OH_NativeImage_GetBufferMatrix()
 
 ```
@@ -223,8 +224,6 @@ int32_t OH_NativeImage_GetBufferMatrix (OH_NativeImage* image, float matrix[16] 
 返回NATIVE_ERROR_INVALID_ARGUMENTS，对应错误码为40001000，表示image参数为空。
 
 返回NATIVE_ERROR_MEM_OPERATION_ERROR，对应错误码为30001000，表示内存操作错误，获取变换矩阵失败。
-
-## 函数说明
 
 ### OH_ConsumerSurface_SetDefaultUsage()
 
