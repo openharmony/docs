@@ -227,7 +227,7 @@ isWearDetectionSupported(deviceId: string, callback: AsyncCallback&lt;boolean&gt
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 通过注册回调函数获取设备是否支持佩戴检测。如果成功，值在supported中返回。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 通过注册回调函数获取设备是否支持佩戴检测。如果成功，值在supported中返回。如果失败，返回对应错误码。 |
 
 **错误码**：
 
@@ -277,7 +277,7 @@ isWearDetectionSupported(deviceId: string): Promise&lt;boolean&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | 以Promise的形式获取设备是否支持佩戴检测。如果成功，值在supported中返回。 |
+| Promise&lt;boolean&gt; | 以Promise的形式获取设备是否支持佩戴检测。如果成功，值在supported中返回。如果失败，返回对应错误码。 |
 
 **错误码**：
 
@@ -322,7 +322,7 @@ isWearDetectionEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;)
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 通过注册回调函数获取设备佩戴检测是否开启。如果成功，值在enabled中返回。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 通过注册回调函数获取设备佩戴检测是否开启。如果成功，值在enabled中返回。如果失败，返回对应错误码。 |
 
 **错误码**：
 
@@ -372,7 +372,7 @@ isWearDetectionEnabled(deviceId: string): Promise&lt;boolean&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | 以Promise的形式获取设备佩戴检测是否开启。如果成功，值在enabled中返回。 |
+| Promise&lt;boolean&gt; | 以Promise的形式获取设备佩戴检测是否开启。如果成功，值在enabled中返回。如果失败，返回对应错误码。 |
 
 **错误码**：
 

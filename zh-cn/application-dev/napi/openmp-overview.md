@@ -8,6 +8,6 @@ OpenMP广泛应用于科学计算、图像处理、机器学习、金融计算�
 
 ## 版本说明
 
-当前Harmony OS中的OpenMP库采用[llvm 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4)中的实现，对应OpenMP API版本请参考[clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html)。
+当前Openharmony中的OpenMP库采用[llvm 15.0.4](https://github.com/llvm/llvm-project/releases/tag/llvmorg-15.0.4)中的实现，对应OpenMP API版本请参考[clang-OpenMPSupport](https://clang.llvm.org/docs/OpenMPSupport.html)。
 
-Harmony OS应用中使用OpenMP请参考[OpenMP应用构建和运行指南](./openmp-guideline.md)。
+Openharmony应用中使用OpenMP请参考[OpenMP应用构建和运行指南](./openmp-guideline.md)。

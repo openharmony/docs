@@ -361,7 +361,7 @@ borderRadius(value: Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## borderRadius<sup>16+</sup>
+## borderRadius<sup>15+</sup>
 
 borderRadius(radius: Dimension | BorderRadiuses): T
 
@@ -405,7 +405,7 @@ padding(value: Padding | Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## align<sup>16+</sup>
+## align<sup>15+</sup>
 
 align(alignType: Alignment): T
 
@@ -537,7 +537,7 @@ constraintSize(value: ConstraintSizeOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: AlignRuleOption): T
 
@@ -559,7 +559,7 @@ alignRules(alignRule: AlignRuleOption): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: LocalizedAlignRuleOptions): T
 
@@ -581,7 +581,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## id<sup>16+</sup>
+## id<sup>15+</sup>
 
 id(description: string): T
 
@@ -603,7 +603,7 @@ id(description: string): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## chainMode<sup>16+</sup>
+## chainMode<sup>15+</sup>
 
 chainMode(direction: Axis, style: ChainStyle): T
 

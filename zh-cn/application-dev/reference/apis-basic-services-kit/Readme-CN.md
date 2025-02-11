@@ -6,8 +6,8 @@
     - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
     <!--Del-->
-    - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](js-apis-distributed-account-sys.md)
-    - [@ohos.account.osAccount (系统帐号管理)(系统接口)](js-apis-osAccount-sys.md)
+    - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
+    - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
   - 设备管理
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -120,7 +120,7 @@
     - [Print_PrintAttributes](_print___print_attributes.md)
     - [Print_PrintDocCallback](_print___print_doc_callback.md)
     - [Print_Range](_print___range.md)
-- 错误码
+- 错误码<!--basic-services-arkts-errcode-->
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [zlib子系统错误码](errorcode-zlib.md)
@@ -142,5 +142,6 @@
   - [升级错误码](errorcode-update.md)
   <!--Del-->
   - [锁屏服务错误码](errorcode-screenlock.md)
+  - [设备证明错误码](errorcode-deviceAttest.md)
   - [智能语音错误码](errorcode-intelligentVoice.md)
   <!--DelEnd-->

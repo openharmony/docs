@@ -27,7 +27,7 @@ NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开�
 | struct  [Region](_region.md) | 表示本地窗口OHNativeWindow需要更新内容的矩形区域（脏区）。 | 
 | struct  [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | HDR元数据结构体定义。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
 | struct  [OHExtDataHandle](_o_h_ext_data_handle.md) | 扩展数据句柄结构体定义。<br/>**弃用：** 从API version 10开始废弃，不再提供替代接口。 | 
-
+| struct  [BufferHandle](_buffer_handle.md) | 缓冲区句柄，用于对缓冲区的信息传递和获取。句柄包含了缓冲区的文件描述符、尺寸、格式、用途、虚拟地址、共享内存键、物理地址、自定义数据。  |
 
 ### 类型定义
 
@@ -67,7 +67,7 @@ NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开�
 | int32_t [OH_NativeWindow_GetLastFlushedBuffer](#oh_nativewindow_getlastflushedbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*\*buffer, int \*fenceFd, float matrix[16]) | 从OHNativeWindow获取上次送回到buffer队列中的OHNativeWindowBuffer。 | 
 | int32_t [OH_NativeWindow_NativeWindowAbortBuffer](#oh_nativewindow_nativewindowabortbuffer) ([OHNativeWindow](#ohnativewindow) \*window, [OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 通过OHNativeWindow将之前申请出来的OHNativeWindowBuffer返还到Buffer队列中，供下次再申请。 | 
 | int32_t [OH_NativeWindow_NativeWindowHandleOpt](#oh_nativewindow_nativewindowhandleopt) ([OHNativeWindow](#ohnativewindow) \*window, int code,...) | 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。 | 
-| BufferHandle \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。 | 
+| [BufferHandle](_buffer_handle.md) \* [OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative) ([OHNativeWindowBuffer](#ohnativewindowbuffer) \*buffer) | 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。<br/>本接口为非线程安全类型接口。 | 
 | int32_t [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | 增加一个NativeObject的引用计数。 | 
 | int32_t [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉。 | 
 | int32_t [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | 获取NativeObject的MagicId。 | 
@@ -268,8 +268,8 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码。
 | SET_FORMAT | 设置本地窗口缓冲区格式， 函数中的可变参数是 [输入] int32_t format，取值具体可见[OH_NativeBuffer_Format](_o_h___native_buffer.md#oh_nativebuffer_format-1)枚举值。 | 
 | GET_USAGE | 获取本地窗口读写方式， 函数中的可变参数是 [输出] uint64_t \*usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
 | SET_USAGE | 设置本地窗口缓冲区读写方式， 函数中的可变参数是 [输入] uint64_t usage，取值具体可见[OH_NativeBuffer_Usage](_o_h___native_buffer.md#oh_nativebuffer_usage-1)枚举值。 | 
-| SET_STRIDE | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride，单位为Byte。 | 
-| GET_STRIDE | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride，单位为Byte。 | 
+| SET_STRIDE<sup>(deprecated)</sup>  | 设置本地窗口缓冲区步幅， 函数中的可变参数是 [输入] int32_t stride。<br/>**弃用:** 从API version 16开始废弃。 | 
+| GET_STRIDE<sup>(deprecated)</sup>  | 获取本地窗口缓冲区步幅， 函数中的可变参数是 [输出] int32_t \*stride。<br/>**弃用:** 从API version 16开始废弃。<br/>**替代:** 使用[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)接口获取BufferHandle实例， 从[BufferHandle](_buffer_handle.md)实例中获取stride值。 | 
 | SET_SWAP_INTERVAL | 设置本地窗口缓冲区交换间隔， 函数中的可变参数是 [输入] int32_t interval。 | 
 | GET_SWAP_INTERVAL | 获取本地窗口缓冲区交换间隔， 函数中的可变参数是 [输出] int32_t \*interval。 | 
 | SET_TIMEOUT | 设置请求本地窗口请求缓冲区的超时等待时间，未手动设置时默认值为3000毫秒，函数中的可变参数是 [输入] int32_t timeout，单位为毫秒。 | 
@@ -750,6 +750,7 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* b
 **描述**
 
 通过OHNativeWindowBuffer获取该buffer的BufferHandle指针。
+
 本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
@@ -764,7 +765,7 @@ BufferHandle* OH_NativeWindow_GetBufferHandleFromNative (OHNativeWindowBuffer* b
 
 **返回：**
 
-BufferHandle 返回一个指针，指向BufferHandle的结构体实例。
+返回一个指针，指向[BufferHandle](_buffer_handle.md)的结构体实例。
 
 
 ### OH_NativeWindow_GetLastFlushedBuffer()

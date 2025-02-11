@@ -900,48 +900,49 @@ justifyContent: FlexAlign.Center }) {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.
-Center }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            let offctx = offContext
             let img = this.img
 
-            offctx.drawImage(img, 0, 0, 100, 100);
+            offContext.drawImage(img, 0, 0, 100, 100);
 
-            offctx.filter = 'grayscale(50%)';
-            offctx.drawImage(img, 100, 0, 100, 100);
+            offContext.filter = 'grayscale(50%)';
+            offContext.drawImage(img, 100, 0, 100, 100);
 
-            offctx.filter = 'sepia(60%)';
-            offctx.drawImage(img, 200, 0, 100, 100);
+            offContext.filter = 'sepia(60%)';
+            offContext.drawImage(img, 200, 0, 100, 100);
 
-            offctx.filter = 'saturate(30%)';
-            offctx.drawImage(img, 0, 100, 100, 100);
+            offContext.filter = 'saturate(30%)';
+            offContext.drawImage(img, 0, 100, 100, 100);
 
-            offctx.filter = 'hue-rotate(90degree)';
-            offctx.drawImage(img, 100, 100, 100, 100);
+            offContext.filter = 'hue-rotate(90degree)';
+            offContext.drawImage(img, 100, 100, 100, 100);
 
-            offctx.filter = 'invert(100%)';
-            offctx.drawImage(img, 200, 100, 100, 100);
+            offContext.filter = 'invert(100%)';
+            offContext.drawImage(img, 200, 100, 100, 100);
 
-            offctx.filter = 'opacity(25%)';
-            offctx.drawImage(img, 0, 200, 100, 100);
+            offContext.filter = 'opacity(25%)';
+            offContext.drawImage(img, 0, 200, 100, 100);
 
-            offctx.filter = 'brightness(0.4)';
-            offctx.drawImage(img, 100, 200, 100, 100);
+            offContext.filter = 'brightness(0.4)';
+            offContext.drawImage(img, 100, 200, 100, 100);
 
-            offctx.filter = 'contrast(200%)';
-            offctx.drawImage(img, 200, 200, 100, 100);
+            offContext.filter = 'contrast(200%)';
+            offContext.drawImage(img, 200, 200, 100, 100);
 
-            offctx.filter = 'blur(5px)';
-            offctx.drawImage(img, 0, 300, 100, 100);
+            offContext.filter = 'blur(5px)';
+            offContext.drawImage(img, 0, 300, 100, 100);
+
+            // Applying multiple filters
+            offContext.filter = 'opacity(50%) contrast(200%) grayscale(50%)';
+            offContext.drawImage(img, 100, 300, 100, 100);
 
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1277,7 +1278,7 @@ measureText(text: string): TextMetrics
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
-            offContext.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
+            offContext.fillText("width:" + offContext.measureText("Hello World!").width, 20, 200)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1288,7 +1289,7 @@ measureText(text: string): TextMetrics
   }
   ```
 
-  ![zh-cn_image_0000001194032480](figures/zh-cn_image_0000001194032480.png)
+  ![offscreencanvasrenderingcontext2d-measureText](figures/offscreencanvasrenderingcontext2d-measureText.jpg)
 
 
 ### stroke
@@ -3344,7 +3345,7 @@ toDataURL(type?: string, quality?: any): string
 
 | 参数名     | 类型   | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。。<br>默认值：image/png。            |
+| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。<br>默认值：image/png。            |
 | quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。<br>默认值：0.92。 |
 
 **返回值：** 

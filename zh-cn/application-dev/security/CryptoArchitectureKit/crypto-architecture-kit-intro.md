@@ -26,7 +26,7 @@ Crypto Architecture Kit屏蔽了第三方密码学算法库实现差异的算法
 
 - [消息摘要计算](crypto-generate-message-digest-overview.md)
 
-- [消息认证码计算](crypto-compute-mac.md)
+- [消息认证码计算](crypto-compute-mac-overview.md)
 
 - [安全随机数生成](crypto-generate-random-number.md)
 

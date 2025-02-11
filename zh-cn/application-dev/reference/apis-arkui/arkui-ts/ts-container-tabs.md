@@ -658,6 +658,34 @@ onSelected(event: Callback\<number>)
 | ------ | ------ | ---- | -------------------------------------- |
 | event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前选中元素的索引。 |
 
+### onUnselected<sup>16+</sup>
+
+onUnselected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为将要隐藏的元素的索引值。
+
+满足以下任一条件，即可触发该事件：
+
+1. 滑动离手时满足翻页阈值，开始切换动画时触发。
+
+2. 通过[TabsController控制器](#tabscontroller)调用。
+
+3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+
+4. 通过页签处点击触发。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 将要隐藏元素的索引。 |
+
 ## OnTabsAnimationStartCallback<sup>16+</sup>
 
 type OnTabsAnimationStartCallback = (index: number, targetIndex: number, extraInfo: TabsAnimationEvent) => void

@@ -277,7 +277,7 @@ onMenuItemClick(menuItem: TextMenuItem, range: TextRange): boolean
 
 ## EditableTextOnChangeCallback<sup>12+</sup>
 
-type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) => void
+type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, options?: TextChangeOptions) => void
 
 输入内容发生变化时，触发该回调。
 
@@ -291,6 +291,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | -- | -- | -- | -- |
 | value | string | 是 | 文本框内正式上屏的文本内容。 |
 | previewText | [PreviewText](#previewtext12) | 否 | 预上屏文本信息，包含预上屏起始位置和文本内容。 |
+| options<sup>16+</sup> | [TextChangeOptions](#textchangeoptions16对象说明) | 否 | 文本内容变化信息，包含变化前后的选区范围、变化前的文本内容和预上屏文本信息。 |
 
 ## TextDataDetectorType<sup>11+</sup>枚举说明
 
@@ -450,7 +451,7 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 
 | 名称 | 类型 | 必填 | 说明 |
 | -- | -- | -- | -- |
-| range | TextRange | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
+| range | [TextRange](#textrange12) | 是 | 即将被替换的属性字符串子串在原字符串中的范围。 |
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 | previewText | [StyledString](ts-universal-styled-string.md#styledstring) | 否 | 预览样式字符串。 |
 
@@ -733,3 +734,57 @@ type RectWidthStyle = RectWidthStyle
 | 类型                              | 说明   |
 | --------------------------------- | --------------------------------- |
 | [RectWidthStyle](../../apis-arkgraphics2d/js-apis-graphics-text.md#rectwidthstyle) | 矩形区域宽度规格枚举。 |
+
+## TextChangeOptions<sup>16+</sup>对象说明
+
+变化前的文本信息，以及变化后的选区范围。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| rangeBefore  | [TextRange](#textrange12) | 是   | 变化前的选区范围。 |
+| rangeAfter  | [TextRange](#textrange12) | 是   | 变化后的选区范围。 |
+| oldContent  | string | 是   | 变化前的文本内容。 |
+| oldPreviewText | [PreviewText](#previewtext12) | 是 | 变化前的预上屏信息。 |
+
+## EditableTextChangeValue<sup>16+</sup>
+
+文本变化的详细信息，包括预上屏。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| content  | string | 是   | 当前的文本内容。 |
+| previewText  | [PreviewText](#previewtext12) | 否   | 预上屏的内容信息。 |
+| options  | [TextChangeOptions](#textchangeoptions16对象说明) | 否   | 变化的文本内容信息。 |
+
+## TextMenuShowMode<sup>16+</sup>
+
+菜单的显示模式。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| DEFAULT | 0 | 显示在当前窗口中。<br/>|
+| PREFER_WINDOW | 1 | 优先显示在独立窗口中，若不支持独立窗口，则显示在当前窗口中。<br/>**说明：** <br/>除应用主窗口、应用子窗口、系统模态窗口及系统桌面类型的窗口外，其他类型的窗口不支持将文本选择菜单显示在独立窗口中。<br/>在预览器中不支持将文本选择菜单显示在独立窗口中。<br/>在UIExtension中不支持将文本选择菜单显示在独立窗口中。<br/>当文本类组件已经显示在子窗类型的Popup、Dialog、Toast、Menu中时，不支持将其对应的文本选择菜单显示在独立窗口中。<br/>当TextInput、TextArea可支持拉起AutoFill时，不支持将其对应的文本选择菜单显示在独立窗口中。<br/>|
+
+## TextMenuOptions<sup>16+</sup>对象说明
+
+菜单选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    | 类型                                                    | 必填 | 说明                                                    |
+| ------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| showMode  | [TextMenuShowMode](#textmenushowmode16) | 否   | 菜单的显示模式。<br/>默认值：TextMenuShowMode.DEFAULT |
