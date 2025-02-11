@@ -450,11 +450,6 @@ function createScenePromise() : Promise<Scene> {
 | ---- | ---- | ---- | ---- | ---- |
 | alwaysRender | boolean | 否 | 是 | 为true表示一直渲染，为false表示按需渲染，默认值为true。 |
 
-**示例：**
-```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
-```
 
 ## Scene
 用于设置场景。
