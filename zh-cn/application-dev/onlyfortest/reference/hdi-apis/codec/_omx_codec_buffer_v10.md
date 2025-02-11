@@ -22,20 +22,7 @@ Topic 起始版本 非正整数，此section的api-info== null
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| unsigned int [bufferId](#bufferid) | buffer ID。 | 
-| unsigned int [size](#size) | 结构体大小。 | 
-| union `[OMX_VERSIONTYPE](union_o_m_x___v_e_r_s_i_o_n_t_y_p_e_v10.md)[version](#version)` | 组件版本信息。 | 
-| unsigned int [bufferType](#buffertype) | buffer类型。 | 
-| BufferHandleParcelable [bufferhandle](#bufferhandle) | 编码或者解码使用的bufferhandle。 | 
-| FileDescriptor [fd](#fd) | 匿名共享内存文件描述符。 | 
-| unsigned int [allocLen](#alloclen) | 申请的buffer大小。 | 
-| unsigned int [filledLen](#filledlen) | 填充的buffer大小。 | 
-| unsigned int [offset](#offset) | 有效数据从缓冲区开始的起始偏移量。 | 
-| FileDescriptor [fenceFd](#fencefd) | fence fd。 | 
-| enum `[ShareMemTypes](_codec_v10.md#sharememtypes)[type](#type)` | 共享内存类型。 | 
-| long [pts](#pts) | 缓冲区第一个逻辑样本时间戳。 | 
-| unsigned int [flag](#flag) | 缓冲区特定标志。 | 
-
+| unsigned int | buffer ID。 | 
 
 ## 类成员变量说明
 
