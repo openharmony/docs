@@ -1,4 +1,3 @@
-
 # ICU4C
 
 当今的软件市场是一个全球性的市场，应用程序的开发和维护需要支持多种语言。International Components for Unicode (ICU) 库为多平台多系统提供了强大且功能齐全的多语言文化信息处理能力。
@@ -17,6 +16,8 @@
 - 编码转换(ucnv.h)
 - 文本双向处理(ubidi.h)
 - 域名转换(uidna.h)
+- Unicode字符串处理(ustring.h)
+- ICU文本抽象表示(utext.h)
 
 ## 引入ICU4C国际化能力
 
