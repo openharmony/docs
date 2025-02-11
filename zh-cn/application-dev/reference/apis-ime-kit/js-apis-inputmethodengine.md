@@ -2277,7 +2277,7 @@ setImmersiveMode(mode: ImmersiveMode): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| mode | [ImmersiveMode](#ImmersiveMode15) | 是   | 沉浸模式。 |
+| mode | [ImmersiveMode](#immersivemode15) | 是   | 沉浸模式。 |
 
 **错误码：**
 
@@ -2311,7 +2311,7 @@ getImmersiveMode(): ImmersiveMode
 
 | 类型                            | 说明       |
 | ------------------------------- | ---------- |
-| [ImmersiveMode](#ImmersiveMode15) | 沉浸模式。 |
+| [ImmersiveMode](#immersivemode15) | 沉浸模式。 |
 
 **示例：**
 
