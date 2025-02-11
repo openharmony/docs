@@ -841,6 +841,7 @@ closeCustomDialog(dialogId: number): void
 | levelMode<sup>16+</sup>       | [LevelMode](#levelmode16枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | levelUniqueId<sup>16+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>16+</sup>       | [ImmersiveMode](#immersivemode16枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| levelOrder<sup>16+</sup>       | [LevelOrder](#levelorder16) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## ShowDialogSuccessResponse
 
@@ -915,6 +916,50 @@ close(): void
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+## LevelOrder<sup>16+</sup>
+
+弹窗层级，可以控制弹窗显示的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### clamp<sup>16+</sup>
+static clamp(order: number): LevelOrder
+
+创建指定顺序的弹窗层级。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| order | number | 是   | 弹窗显示顺序。取值范围为[-100000.0, 100000.0]，如果值小于-100000.0则设置为-100000.0，如果值大于100000.0则设置为100000.0。 |
+
+**返回值：** 
+
+| 类型  | 说明    |
+| ------ | ------ |
+| [LevelOrder](#levelorder16) | 返回当前对象实例。 |
+
+### getOrder<sup>16+</sup>
+getOrder(): number
+
+获取弹窗显示顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：** 
+
+| 类型  | 说明    |
+| ------ | ------ |
+| number | 返回显示顺序数值。 |
 
 ## DialogOptions<sup>16+</sup>
 
@@ -1060,6 +1105,7 @@ type DialogOptionsShadow = ShadowOptions&nbsp;\|&nbsp;ShadowStyle
 | levelMode<sup>16+</sup>       | [LevelMode](#levelmode16枚举说明) | 否   | 设置弹窗显示层级。<br />**说明：**<br />- 默认值：LevelMode.OVERLAY。<br />- 当且仅当showInSubWindow属性设置为false时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 | levelUniqueId<sup>16+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>16+</sup>       | [ImmersiveMode](#immersivemode16枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+| levelOrder<sup>16+</sup>       | [LevelOrder](#levelorder16) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## DismissDialogAction<sup>12+</sup>
 
