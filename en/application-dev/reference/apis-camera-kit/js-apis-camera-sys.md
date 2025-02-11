@@ -13,31 +13,6 @@ The camera module provides a set of camera service APIs for you to easily develo
 import { camera } from '@kit.CameraKit';
 ```
 
-## CameraDevice
-
-Defines the camera device information.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name          | Type                              | Read-only| Mandatory| Description       |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| hostDeviceName | string                            | Yes  | Yes  | Name of the remote device. **System API**: This is a system API.|
-| hostDeviceType | [HostDeviceType](#hostdevicetype) | Yes  | Yes  | Type of the remote device. **System API**: This is a system API.|
-
-## HostDeviceType
-
-Enumerates the remote camera types.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                         | Value      | Description          |
-| ---------------------------- | ----     | ------------- |
-| UNKNOWN_TYPE                 | 0        | Unknown type.     |
-| PHONE                        | 0x0E     | Phone camera.|
-| TABLET                       | 0x11     | Tablet camera.|
-
 ## SceneMode<sup>11+</sup>
 
 Enumerates the camera scene modes.
@@ -346,9 +321,9 @@ Checks whether a camera device supports prelaunch.
 
 **Parameters**
 
-| Name    | Type            | Mandatory| Description      |
-| -------- | --------------- | ---- | --------- |
-| camera | [CameraDevice](#cameradevice) | Yes| Camera device.|
+| Name    | Type                                              | Mandatory| Description      |
+| -------- |--------------------------------------------------| ---- | --------- |
+| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | Yes| Camera device.|
 
 **Return value**
 
@@ -947,12 +922,12 @@ Currently, the configuration is used for sensor-level prelaunch. It will be used
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-|            Name                |                     Type                 |     Read-only   |     Mandatory    | Description      |
-| ------------------------------- | ---------------------------------------- | ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](#cameradevice)            |      No    |       Yes     | Camera device.        |
-| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)  |      No    |       No     | Type of the parameter used for prelaunch.   |
-| activeTime<sup>11+</sup>        | number                                   |      No    |       No     | Activation time, in minutes.|
-| settingParam<sup>11+</sup>      |  [SettingParam](#settingparam11)         |      No    |       No     | Setting parameter.     |
+|            Name                | Type                                              |     Read-only   |     Mandatory    | Description      |
+| ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
+| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      No    |       Yes     | Camera device.        |
+| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      No    |       No     | Type of the parameter used for prelaunch.   |
+| activeTime<sup>11+</sup>        | number                                           |      No    |       No     | Activation time, in minutes.|
+| settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      No    |       No     | Setting parameter.     |
 
 ## RestoreParamType<sup>11+</sup>
 
@@ -2140,7 +2115,7 @@ Enumerates the types of emotions in the detected human face information.
 
 ## MetadataObject
 
-Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the basic metadata object used for camera detection. This class is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2151,7 +2126,7 @@ Implements the basic metadata object used for camera detection. This class is th
 
 ## MetadataFaceObject<sup>13+</sup>
 
-Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the human face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2167,13 +2142,13 @@ Implements the human face metadata object used for camera detection. This class 
 
 ## MetadataHumanBodyObject<sup>13+</sup>
 
-Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the human body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataCatFaceObject<sup>13+</sup>
 
-Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the cat face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2184,13 +2159,13 @@ Implements the cat face metadata object used for camera detection. This class in
 
 ## MetadataCatBodyObject<sup>13+</sup>
 
-Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the cat body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataDogFaceObject<sup>13+</sup>
 
-Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the dog face metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2201,13 +2176,19 @@ Implements the dog face metadata object used for camera detection. This class in
 
 ## MetadataDogBodyObject<sup>13+</sup>
 
-Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the dog body metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 ## MetadataSalientDetectionObject<sup>13+</sup>
 
-Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling **metadataOutput.on('metadataObjectsAvailable')**.
+Implements the salient detection metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+## MetadataBarcodeObject<sup>14+</sup>
+
+Implements the barcode metadata object used for camera detection. This class inherits from [MetadataObject](#metadataobject) and is the data source of the camera information of [CameraInput](#camerainput). It is obtained by calling metadataOutput.[on('metadataObjectsAvailable')](js-apis-camera.md#onmetadataobjectsavailable).
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -2531,15 +2512,31 @@ function enableMacro(photoSession: camera.PhotoSessionForSys): void {
 }
 ```
 
+## TripodStatus<sup>13+</sup>
+
+Enumerates the tripod statuses.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name      | Value  | Description                                 |
+|----------|-----|-------------------------------------|
+| INVALID  | 0   | Error status, or no tripod detected. **System API**: This is a system API.|
+| ACTIVE   | 1   | The tripod is active. **System API**: This is a system API.         |
+| ENTERING | 2   | The system is transitioning into a stable tripod mode. **System API**: This is a system API.       |
+| EXITING  | 3   | The system is leaving the stable tripod mode. **System API**: This is a system API.         |
+
+
 ## SceneFeatureType<sup>12+</sup>
 
 Enumerates the scene features.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                    | Value       | Description        |
-| ----------------------- | --------- | ------------ |
-| MOON_CAPTURE_BOOST       | 0      | Moon scene. **System API**: This is a system API.           |
+| Name                           | Value  | Description                       |
+|-------------------------------|-----|---------------------------|
+| MOON_CAPTURE_BOOST            | 0   | Moon scene. **System API**: This is a system API. |
+| TRIPOD_DETECTION<sup>13+</sup> | 1   | Scene where a tripod is used for photo capture. **System API**: This is a system API. |
+| LOW_LIGHT_BOOST<sup>13+</sup> | 1   | Scene for long exposure photography. **System API**: This is a system API.|
 
 ## SceneFeatureDetectionResult<sup>12+</sup>
 
@@ -2551,6 +2548,18 @@ Describes the scene feature detection result.
 | -------- | ---------- | -------- | -------- | ---------- |
 | featureType |   [SceneFeatureType](#scenefeaturetype12)   |   Yes    |    Yes   | Scene feature type. |
 | detected |   boolean   |   Yes    |    Yes   | Detection result. The value **true** means that the specified scene feature is detected.|
+
+## TripodDetectionResult<sup>13+</sup>
+
+TripodDetectionResult extends [SceneFeatureDetectionResult](#scenefeaturedetectionresult12)
+
+Describes the tripod detection result.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name    | Type                             |   Read-only  |   Mandatory  | Description     |
+| -------- |---------------------------------| -------- | -------- |---------|
+| tripodStatus | [TripodStatus](#tripodstatus13) |   Yes    |    Yes   | Tripod status.|
 
 ## SceneDetection<sup>12+</sup>
 
@@ -3725,6 +3734,83 @@ function unregisterFeatureDetectionStatus(photoSession: camera.PhotoSession, fea
 }
 ```
 
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+Subscribes to LCD flash status change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                      |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | Yes  | Callback used to return the LCD flash status change.                 |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(photoSession: camera.PhotoSession): void {
+  photoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>12+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+Unsubscribes from LCD flash status change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                              |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.                      |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lcdFlashStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+function unregisterLcdFlashStatus(photoSession: camera.PhotoSession): void {
+  photoSession.off('lcdFlashStatus');
+}
+```
+
 ## VideoSessionForSys<sup>11+</sup>
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro
@@ -3814,6 +3900,83 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 function unregisterMacroStatusChanged(videoSession: camera.VideoSession): void {
   videoSession.off('macroStatusChanged');
+}
+```
+
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+Subscribes to LCD flash status change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                      |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | Yes  | Callback used to return the LCD flash status change.                 |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(videoSession: camera.VideoSession): void {
+  videoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>12+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+Unsubscribes from LCD flash status change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                              |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.                      |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lcdFlashStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+function unregisterLcdFlashStatus(videoSession: camera.VideoSession): void {
+  videoSession.off('lcdFlashStatus');
 }
 ```
 
@@ -3996,6 +4159,83 @@ Unsubscribes from smooth zoom state change events.
 ```ts
 function unregisterSmoothZoomInfo(portraitPhotoSession: camera.PortraitPhotoSession): void {
   portraitPhotoSession.off('smoothZoomInfoAvailable');
+}
+```
+
+### on('lcdFlashStatus')<sup>13+</sup>
+
+on(type: 'lcdFlashStatus', callback: AsyncCallback\<LcdFlashStatus\>): void
+
+Subscribes to LCD flash status change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                      |
+| -------- | ----------------------------------------- | ---- |------------------------------------------|
+| type     | string      | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.|
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\>     | Yes  | Callback used to return the LCD flash status change.                 |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function callback(err: BusinessError, lcdFlashStatus: camera.LcdFlashStatus): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error(`Callback Error, errorCode: ${err.code}`);
+    return;
+  }
+  console.info(`isLcdFlashNeeded: ${lcdFlashStatus.isLcdFlashNeeded}`);
+  console.info(`lcdCompensation: ${lcdFlashStatus.lcdCompensation}`);
+}
+
+function registerLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSession): void {
+  portraitPhotoSession.on('lcdFlashStatus', callback);
+}
+```
+
+### off('lcdFlashStatus')<sup>12+</sup>
+
+off(type: 'lcdFlashStatus', callback?: AsyncCallback\<LcdFlashStatus\>): void
+
+Unsubscribes from LCD flash status change events.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name   | Type                    | Mandatory| Description                                                              |
+| -------- | ------------------------ | ---- |------------------------------------------------------------------|
+| type     | string                   | Yes  | Event type. The value is fixed at **'lcdFlashStatus'**. The event can be listened for when a session is created.                      |
+| callback | AsyncCallback\<[LcdFlashStatus](#lcdflashstatus12)\> | No  | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lcdFlashStatus')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                     |
+|-------|---------------------------|
+| 202   | Not System Application.   |
+
+**Example**
+
+```ts
+function unregisterLcdFlashStatus(portraitPhotoSession: camera.PortraitPhotoSession): void {
+  portraitPhotoSession.off('lcdFlashStatus');
 }
 ```
 
@@ -7410,6 +7650,52 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 function isLcdFlashSupported(nightPhotoSession: camera.NightPhotoSession): boolean {
   return nightPhotoSession.isLcdFlashSupported();
+}
+```
+
+## Flash<sup>11+</sup>
+
+Flash extends [FlashQuery](js-apis-camera.md#flashquery12)
+
+Provides APIs related to the flash.
+
+### enableLcdFlash<sup>13+</sup>
+
+enableLcdFlash(enabled: boolean): void
+
+Enables or disables the LCD flash.
+
+Before the setting, call [isLcdFlashSupported](#islcdflashsupported12) to check whether the device supports the LCD flash.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory| Description                                              |
+| --------- | ----------------------- | ---- |--------------------------------------------------|
+| enabled | boolean | Yes  | Whether to enable or disable the LCD flash. If null or undefined is passed, it is treated as 0 and the LCD flash is disabled.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 7400103                |  Session not config.                                   |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableLcdFlash(session: camera.PhotoSessionForSys | camera.VideoSessionForSys | camera.NightPhotoSession): void {
+  try {
+    session.enableLcdFlash(true);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setFlashMode call failed. error code: ${err.code}`);
+  }
 }
 ```
 

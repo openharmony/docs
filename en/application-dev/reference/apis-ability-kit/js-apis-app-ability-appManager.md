@@ -342,7 +342,7 @@ appManager.getRunningProcessInformation((err, data) => {
 });
 ```
 
-## appManager.on('applicationState')
+## appManager.on('applicationState')<sup>14+</sup>
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number
 
@@ -415,7 +415,7 @@ try {
 }
 ```
 
-## appManager.on('applicationState')
+## appManager.on('applicationState')<sup>14+</sup>
 
 on(type: 'applicationState', observer: ApplicationStateObserver, bundleNameList: Array\<string>): number
 

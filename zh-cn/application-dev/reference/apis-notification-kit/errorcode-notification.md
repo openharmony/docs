@@ -349,6 +349,24 @@ The do-not-disturb profile does not exist.
 
 确认查询的勿扰模式编号是否正确。
 
+## 1600020 不允许权限管控名单中的应用发布通知
+
+**错误信息**
+
+The application is not allowed to publish notifications due to permission control settings.
+
+**错误描述**
+
+当发布通知时，若应用被列入权限管控名单，将返回该错误码。
+
+**可能原因**
+
+该场景为企业定制设备场景。
+
+**处理步骤**
+
+该应用受到企业设备管理[Enterprise Device Manager](../../mdm/mdm-kit-admin.md)的权限管控，应用无法主动退出权限管控名单。
+
 ## 2300007 网络无法访问
 
 **错误信息**

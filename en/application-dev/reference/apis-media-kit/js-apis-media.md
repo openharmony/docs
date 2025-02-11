@@ -18,6 +18,8 @@ This subsystem offers the following audio and video services:
 
 - Obtaining video thumbnails ([AVImageGenerator](#avimagegenerator12)<sup>12+</sup>)
 
+- Screen capture ([AVScreenCaptureRecorder](#avscreencapturerecorder12)<sup>12+</sup>)
+
 ## Modules to Import
 
 ```ts
@@ -32,8 +34,8 @@ Creates an **AVPlayer** instance. This API uses an asynchronous callback to retu
 
 > **NOTE**
 >
-> You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
-> The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -77,8 +79,8 @@ Creates an **AVPlayer** instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
-> The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -459,6 +461,30 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 });
 ```
 
+## SoundPool<sup>10+</sup>
+
+type SoundPool = _SoundPool
+
+SoundPool, which APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+| Type    | Description                      |
+| -------- | ------------------------------ |
+| [SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | Provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.|
+
+## PlayParameters<sup>10+</sup>
+
+type PlayParameters = _PlayParameters
+
+Describes the playback parameters of the sound pool.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+| Type    | Description                      |
+| -------- | ------------------------------ |
+| [PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | Playback parameters of the sound pool.|
+
 ## AVErrorCode<sup>9+</sup>
 
 Enumerates the [media error codes](errorcode-media.md).
@@ -480,6 +506,17 @@ Enumerates the [media error codes](errorcode-media.md).
 | AVERR_SERVICE_DIED                    | 5400105 | The service process is dead.                  |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | The format of the media asset is not supported.      |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | The audio focus is interrupted.                  |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | Failed to parse the server address or connect to the server.       |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | Network connection times out.       |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | Data or links are abnormal due to network exceptions.       |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | The network is disabled.       |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | No access permission.     |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | The client request parameter is incorrect or exceeds the processing capability.       |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | No network resource is available.       |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | The server fails to verify the client certificate.       |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | The SSL connection fails.       |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | The client fails to verify the server certificate.       |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | The request is not supported due to a network protocol error.       |
 
 ## MediaType<sup>8+</sup>
 
@@ -489,9 +526,9 @@ Enumerates the media types.
 
 | Name          | Value                   | Description                |
 | -------------- | --------------------- | ------------------- |
-| MEDIA_TYPE_AUD | 0                     | Media.<br> **Atomic service API**: This API can be used in atomic services since API version 11.          |
-| MEDIA_TYPE_VID | 1                     | Video.<br> **Atomic service API**: This API can be used in atomic services since API version 11.         |
-| MEDIA_TYPE_SUBTITLE<sup>12+</sup> | 2    | Subtitle.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| MEDIA_TYPE_AUD | 0                     | Media.<br>**Atomic service API**: This API can be used in atomic services since API version 11.          |
+| MEDIA_TYPE_VID | 1                     | Video.<br>**Atomic service API**: This API can be used in atomic services since API version 11.         |
+| MEDIA_TYPE_SUBTITLE<sup>12+</sup> | 2    | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## CodecMimeType<sup>8+</sup>
 
@@ -507,7 +544,7 @@ Enumerates the codec MIME types.
 | VIDEO_MPEG4  | 'video/mp4v-es'         | Video in MPEG-4 format.    |
 | VIDEO_VP8    | 'video/x-vnd.on2.vp8' | Video in VP8 format.      |
 | VIDEO_HEVC<sup>11+</sup>   | 'video/hevc'          | Video in H.265 format.|
-| AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
 | AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | Audio in MPEG format.     |
@@ -532,6 +569,7 @@ Enumerates the media description keys.
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | Bit depth, which is a number, in units of bits.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MD_KEY_LANGUAGE<sup>12+</sup>  | 'language'  | Subtitle language, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | Track name, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | Codec track type, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
@@ -559,10 +597,10 @@ Enumerates the buffering event types.
 
 | Name             | Value  | Description                            |
 | ----------------- | ---- | -------------------------------- |
-| BUFFERING_START   | 1    | Buffering starts.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| BUFFERING_END     | 2    | Buffering ends.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
-| BUFFERING_PERCENT | 3    | Buffering progress, in percent.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
-| CACHED_DURATION   | 4    | Cache duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
+| BUFFERING_START   | 1    | Buffering starts. When this event is triggered, the player pauses the playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| BUFFERING_END     | 2    | Buffering ends. When this event is triggered, the player resumes the playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| BUFFERING_PERCENT | 3    | Buffering percentage. You can use this event to monitor the buffering status.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
+| CACHED_DURATION   | 4    | Estimated duration, in ms, that the buffered data can be played. This event is triggered once the data change amount in the buffer exceeds 500 ms. You can use this event to develop a progress bar.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## StateChangeReason<sup>9+</sup>
 
@@ -710,6 +748,8 @@ Subscribes to AVPlayer errors. This event is used only for error prompt and does
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
+In API versions 9 to 13, error code 5400103 is reported when the network or server data flow is abnormal. In API version 14 and later, error codes 5411001 to 5411011 are reported for refined management.
+
 | ID| Error Message             |
 | -------- | --------------------- |
 | 201      | Permission denied     |
@@ -721,6 +761,17 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
+| 5411001  | Can not find host.    |
+| 5411002  | Connection time out.  |
+| 5411003  | NetWork abnormal.     |
+| 5411004  | NetWork unavailable.  |
+| 5411005  | No permission.        |
+| 5411006  | Network access denied.  |
+| 5411007  | Cannot find available network resources. |
+| 5411008  | SSL client cert needed.    |
+| 5411009  | SSL connection failed.     |
+| 5411010  | SSL server cert needed.    |
+| 5411011  | Unsupportted request.      |
 
 **Example**
 
@@ -791,8 +842,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
@@ -834,7 +883,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 
 let player = await media.createAVPlayer();
@@ -1465,7 +1513,6 @@ Obtains the playback information. This API can be called only when the AVPlayer 
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer | undefined = undefined;
 let playbackInfo: media.PlaybackInfo | undefined = undefined;
@@ -1523,7 +1570,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -1579,7 +1625,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer();
 let audioTrackIndex: Object = 0;
@@ -2489,7 +2534,6 @@ Adds an external subtitle to a video based on the FD. Currently, the external su
 **Example**
 
 ```ts
-import { media } from '@kit.MediaKit'
 import { common } from '@kit.AbilityKit'
 
 let context = getContext(this) as common.UIAbilityContext
@@ -2530,8 +2574,6 @@ Adds an external subtitle to a video based on the URL. Currently, the external s
 **Example**
 
 ```ts
-import { media } from '@kit.MediaKit'
-
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
 let avPlayer: media.AVPlayer = await media.createAVPlayer()
@@ -2848,7 +2890,7 @@ Defines the descriptor of an audio and video file, which is used in DataSource p
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | Yes  | Size of the file to play, in bytes. The value **-1** indicates that the size is unknown. If **fileSize** is set to **-1**, the playback mode is similar to the live mode. In this mode, the **seek** and **setSpeed** operations cannot be performed, and the **loop** attribute cannot be set, indicating that loop playback is unavailable.|
-| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | Yes  | Callback used to fill in data.<br>- Function: callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- **buffer**: memory to be filled. The value is of the ArrayBuffer type. This parameter is mandatory.<br>- **length**: maximum length of the memory to be filled. The value is of the number type. This parameter is mandatory.<br>- **pos**: position of the data to be filled in the file. The value is of the number type. This parameter is optional. When **fileSize** is set to **-1**, this parameter cannot be used.<br>- Return value: length of the data to be filled, which is of the number type.|
+| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | Yes  | Callback used to fill in data.<br>- Function: callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- **buffer**: memory to be filled. The value is of the ArrayBuffer type. This parameter is mandatory.<br>- **length**: maximum length of the memory to be filled. The value is of the number type. This parameter is mandatory.<br>- **pos**: position of the data to be filled in the file. The value is of the number type. This parameter is optional. When **fileSize** is set to **-1**, this parameter cannot be used.<br>- Return value: length of the data filled, which is of the number type. If **-1** is returned, the end of stream is reached. If **-2** is returned, an unrecoverable error occurs.|
 
 ## SubtitleInfo<sup>12+</sup>
 
@@ -2905,8 +2947,9 @@ Enumerates the video playback speeds, which can be passed in the **setSpeed** AP
 | SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | Plays the video at 0.50 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | Plays the video at 1.50 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | Plays the video at 0.25 times the normal speed.|
-| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | Plays the video at 0.125 times the normal speed.|
+| SPEED_FORWARD_3_00_X<sup>13+</sup> | 7    | Plays the video at 3.00 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | Plays the video at 0.25 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | Plays the video at 0.125 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## VideoScaleType<sup>9+</sup>
 
@@ -2937,7 +2980,6 @@ Defines media information in key-value mode.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -2979,7 +3021,6 @@ Defines the playback information in key-value pairs.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 function printfPlaybackInfo(obj: media.PlaybackInfo, key: string) {
   let property: Object = obj[key];
@@ -4407,10 +4448,10 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | No  | Type of the video source to record. This parameter is mandatory for video recording.                  |
-| profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
-| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 |fileGenerationMode<sup>12+</sup> | [FileGenerationMode](#filegenerationmode12)  | No  |  Mode for creating the file, which is used together with [on('photoAssetAvailable')](#onphotoassetavailable12).|
 | rotation<sup>(deprecated)</sup>        | number                                   | No  | Rotation angle of the recorded video. The value can be 0 (default), 90, 180, or 270 for MP4 videos.<br>This API is supported since API version 6 and deprecated since API version 12. You are advised to use **[AVMetadata](#avmetadata11).videoOrientation** instead. If both parameters are set, **[AVMetadata](#avmetadata11).videoOrientation** is used.    |
 | location<sup>(deprecated)</sup>        | [Location](#location)                    | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.<br>This API is supported since API version 6 and deprecated since API version 12. You are advised to use **[AVMetadata](#avmetadata11).location** instead. If both parameters are set, **[AVMetadata](#avmetadata11).location** is used.|
@@ -4424,9 +4465,9 @@ Describes the audio and video recording profile.
 
 | Name            | Type                                        | Mandatory| Description                                                        |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.<br>Supported bit rate ranges:<br>- Range [32000 - 500000] for the AAC encoding format.<br>- Range [64000 - 64000] for the G.711 μ-law encoding format.<br>- Range [8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000] for the MP3 encoding format.<br>When the MP3 encoding format is used, the mapping between the sampling rate and bit rate is as follows:<br>- When the sampling rate is lower than 16 kHz, the bit rate range is [8 kbit/s - 64 kbit/s].<br>- When the sampling rate ranges from 16 kHz to 32 kHz, the bit rate range is [8 kbit/s - 160 kbit/s].<br>- When the sampling rate is greater than 32 kHz, the bit rate range is [32 kbit/s - 320 kbit/s].<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.<br>- Range [1 - 8] for the AAC encoding format.<br>- Range [1 - 1] for the G.711 μ-law encoding format.<br>- Range [1 - 2] for the MP3 encoding format.<br> **Atomic service API**: This API can be used in atomic services since API version 12.      |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Currently, **AUDIO_AAC**, **AUDIO_MP3**, and **AUDIO_G711MU** are supported.<br> **Atomic service API**: This API can be used in atomic services since API version 12.    |
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.<br>Supported bit rate ranges:<br>- Range [32000 - 500000] for the AAC encoding format.<br>- Range [64000 - 64000] for the G.711 μ-law encoding format.<br>- Range [8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000] for the MP3 encoding format.<br>When the MP3 encoding format is used, the mapping between the sampling rate and bit rate is as follows:<br>- When the sampling rate is lower than 16 kHz, the bit rate range is [8 kbit/s - 64 kbit/s].<br>- When the sampling rate ranges from 16 kHz to 32 kHz, the bit rate range is [8 kbit/s - 160 kbit/s].<br>- When the sampling rate is greater than 32 kHz, the bit rate range is [32 kbit/s - 320 kbit/s].<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.<br>- Range [1 - 8] for the AAC encoding format.<br>- Range [1 - 1] for the G.711 μ-law encoding format.<br>- Range [1 - 2] for the MP3 encoding format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Currently, **AUDIO_AAC**, **AUDIO_MP3**, and **AUDIO_G711MU** are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
 | audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.<br>Supported sampling rate ranges:<br>- Range [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000] for the AAC encoding format.<br>- Range [8000 - 8000] for the G.711 μ-law encoding format.<br>- Range [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000] for the MP3 encoding format.<br>Variable bit rate. The bit rate is for reference only.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory. Currently, the MP4, M4A, MP3, and WAV container formats are supported. The AUDIO_MP3 encoding format cannot be used in the MP4 container format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [10000 - 100000000]. |
@@ -4446,7 +4487,7 @@ Enumerates the audio source types for video recording.
 | Name                     | Value  | Description                  |
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.|
-| AUDIO_SOURCE_TYPE_MIC     | 1    | Microphone audio input source.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| AUDIO_SOURCE_TYPE_MIC     | 1    | Microphone audio input source.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUDIO_SOURCE_TYPE_VOICE_RECOGNITION<sup>12+</sup> | 2    | Audio source in speech recognition scenarios.|
 | AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION<sup>12+</sup>     | 7    | Voice communication source.|
 | AUDIO_SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | 10    | Voice message source.|
@@ -4472,7 +4513,7 @@ Enumerates the container format types (CFTs).
 | Name       | Value   | Description                 |
 | ----------- | ----- | --------------------- |
 | CFT_MPEG_4  | 'mp4' | Video container format MP4.|
-| CFT_MPEG_4A | 'm4a' | Audio container format M4A.<br> **Atomic service API**: This API can be used in atomic services since API version 12.|
+| CFT_MPEG_4A | 'm4a' | Audio container format M4A.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | CFT_MP3<sup>12+</sup>  | 'mp3' | Audio container format MP3.|
 | CFT_WAV<sup>12+</sup>  | 'wav' | Audio container format WAV.|
 
@@ -4538,7 +4579,7 @@ For details about the AVTranscoder demo, see [Using AVTranscoder for Transcoding
 
 | Name   | Type                                | Read-Only| Optional| Description              |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | fdDst<sup>12+</sup>                               | number                 |  No | No  | Destination media file descriptor, which specifies the data source. After creating an **AVTranscoder** instance, you must set both **fdSrc** and **fdDst**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### prepare<sup>12+</sup>
@@ -4967,7 +5008,7 @@ For details about the demo for obtaining audio or video metadata, see [Obtaining
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading.|
 
 ### fetchMetadata<sup>11+</sup>
@@ -7302,7 +7343,7 @@ For details about the demo for obtaining video thumbnails, see [Obtaining Video 
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br> **Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -7334,7 +7375,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -7403,7 +7443,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
@@ -7461,7 +7500,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -7509,7 +7547,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-import { media } from '@kit.MediaKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -7590,8 +7627,6 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example 1**
 
 ```ts
-import { media } from '@kit.MediaKit';
-
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
@@ -7599,7 +7634,6 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 **Example 2**
 
 ```ts
-import { media } from '@kit.MediaKit';
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
 
@@ -7842,7 +7876,6 @@ avScreenCaptureRecorder.stopRecording().then(() => {
 skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
 
 During screen capture, the application can exempt its privacy windows from security purposes. This API uses a promise to return the result.
-
 For example, if a user enters a password in this application during screen capture, the application will not display a black screen.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture

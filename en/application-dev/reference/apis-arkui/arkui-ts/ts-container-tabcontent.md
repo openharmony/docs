@@ -520,7 +520,7 @@ struct TabContentExample {
 struct TabBarStyleExample {
   build() {
     Column({ space: 5 }) {
-      Text ("Subtab Style")
+      Text("Subtab Style")
       Column() {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
@@ -572,7 +572,7 @@ struct TabBarStyleExample {
         .width('100%')
         .backgroundColor(0xF1F3F5)
       }.width('100%').height(200)
-      Text ("Bottom Tab Style")
+      Text("Bottom Tab Style")
       Column() {
         Tabs({ barPosition: BarPosition.End }) {
           TabContent() {
@@ -624,7 +624,7 @@ struct TabBarStyleExample {
         .width('100%')
         .backgroundColor(0xF1F3F5)
       }.width('100%').height(200)
-      Text ("Side Tab Style")
+      Text("Side Tab Style")
       Column() {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
@@ -704,9 +704,9 @@ struct TabsAttr {
 
   build() {
     Column() {
-      Button ("Change Indicator Color").width ('100%').margin ({ bottom:'12vp' })
+      Button("Change Indicator Color").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
-          // Animation configuration for the width and height attributes of the <Button> component
+          // Animation configuration for the width and height attributes of the Button component
           if (this.colorFlag) {
             animateTo({
               duration: 1000, // Animation duration.
@@ -738,7 +738,7 @@ struct TabsAttr {
         })
       Button("Change Indicator Height").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
-          // Animation configuration for the width and height attributes of the <Button> component
+          // Animation configuration for the width and height attributes of the Button component
           if (this.heightFlag) {
             animateTo({
               duration: 1000, // Animation duration.
@@ -770,7 +770,7 @@ struct TabsAttr {
         })
       Button("Change Indicator Width").width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
-          // Animation configuration for the width and height attributes of the <Button> component
+          // Animation configuration for the width and height attributes of the Button component
           if (this.widthFlag) {
             animateTo({
               duration: 1000, // Animation duration.
@@ -800,9 +800,9 @@ struct TabsAttr {
           }
           this.widthFlag = !this.widthFlag
         })
-      Button ("Change Indicator Corner Radius").width ('100%').margin ({ bottom:'12vp' })
+      Button("Change Indicator Corner Radius").width('100%').margin({ bottom:'12vp' })
         .onClick((event?: ClickEvent) => {
-          // Animation configuration for the width and height attributes of the <Button> component
+          // Animation configuration for the width and height attributes of the Button component
           if (this.borderFlag) {
             animateTo({
               duration: 1000, // Animation duration.
@@ -832,9 +832,9 @@ struct TabsAttr {
           }
           this.borderFlag = !this.borderFlag
         })
-      Button ("Change Indicator Spacing").width ('100%').margin ({ bottom:'12vp' })
+      Button("Change Indicator Spacing").width('100%').margin({ bottom:'12vp' })
         .onClick((event?: ClickEvent) => {
-          // Animation configuration for the width and height attributes of the <Button> component
+          // Animation configuration for the width and height attributes of the Button component
           if (this.spaceFlag) {
             animateTo({
               duration: 1000, // Animation duration.
@@ -1041,7 +1041,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button ("Add Text")
+        Button("Add Text")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1049,7 +1049,7 @@ struct TabContentExample6 {
             this.text += 'Add Text'
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button ("Reset Text")
+        Button("Reset Text")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1060,7 +1060,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button ("Set SymmetricExtensible to " + this.symmetricExtensible)
+        Button("Set SymmetricExtensible to " + this.symmetricExtensible)
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1071,7 +1071,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button ("Vertical Layout")
+        Button("Vertical Layout")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1079,7 +1079,7 @@ struct TabContentExample6 {
             this.layoutMode = LayoutMode.VERTICAL;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button ("Horizontal Layout")
+        Button("Horizontal Layout")
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1090,7 +1090,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button ("VerticalAlign.Top")
+        Button("VerticalAlign.Top")
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1101,7 +1101,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button ("VerticalAlign.Center")
+        Button("VerticalAlign.Center")
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1112,7 +1112,7 @@ struct TabContentExample6 {
       }
 
       Row() {
-        Button ("VerticalAlign.Bottom")
+        Button("VerticalAlign.Bottom")
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1167,7 +1167,7 @@ In this example, **unselectedColor** and **selectedColor** in **labelStyle** are
 struct TabBarStyleExample {
   build() {
     Column({ space: 5 }) {
-      Text ("Subtab Style")
+      Text("Subtab Style")
       Column() {
         Tabs({ barPosition: BarPosition.Start }) {
           TabContent() {
@@ -1201,7 +1201,7 @@ struct TabBarStyleExample {
         .backgroundColor(0xF1F3F5)
       }.width('100%').height(200)
 
-      Text ("Bottom Tab Style")
+      Text("Bottom Tab Style")
       Column() {
         Tabs({ barPosition: BarPosition.End }) {
           TabContent() {
@@ -1341,7 +1341,7 @@ struct Index {
   @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure'));
   build() {
     Column({space: 5}) {
-      Text ("Bottom Tab Style")
+      Text("Bottom Tab Style")
       Column(){
         Tabs({barPosition: BarPosition.End}) {
           TabContent() {

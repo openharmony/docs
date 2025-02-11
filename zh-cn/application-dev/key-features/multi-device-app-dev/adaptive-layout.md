@@ -84,7 +84,7 @@ struct FlexibleCapabilitySample1 {
     Column() {
       Column() {
         Row() {
-          // 通过flexGrow和flexShrink属性，将多余的空间全部分配给图片，将不足的控件全部分配给两侧空白区域。
+          // 通过flexGrow和flexShrink属性，将多余的空间全部分配给图片，将不足的空间全部分配给两侧空白区域。
           Row().width(150).height(400).backgroundColor('#FFFFFF')
             .flexGrow(0).flexShrink(1)
           Image($r("app.media.illustrator")).width(400).height(400)

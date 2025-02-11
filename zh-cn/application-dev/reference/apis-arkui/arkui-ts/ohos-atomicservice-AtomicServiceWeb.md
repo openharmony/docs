@@ -35,6 +35,7 @@ AtomicServiceWeb({
   mixedMode?: MixedMode,
   darkMode?: WebDarkMode,
   forceDarkAccess?: boolean,
+  nestedScroll?: NestedScrollOptions | NestedScrollOptionsExt,
   onMessage?: Callback<OnMessageEvent>,
   onErrorReceive?: Callback<OnErrorReceiveEvent>,
   onHttpErrorReceive?: Callback<OnHttpErrorReceiveEvent>,
@@ -62,28 +63,21 @@ AtomicServiceWeb({
 | mixedMode            | [MixedMode](../../apis-arkweb/ts-basic-components-web.md#mixedmode枚举说明)                                          | 否  | @Prop       | 设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。                                                    |
 | darkMode             | [WebDarkMode](../../apis-arkweb/ts-basic-components-web.md#webdarkmode9枚举说明)                                     | 否  | @Prop       | 设置Web深色模式，默认关闭。                                                                                                      |
 | forceDarkAccess      | boolean                                                                                                          | 否  | @Prop       | 设置网页是否开启强制深色模式。默认关闭。该属性仅在darkMode开启深色模式时生效。                                                                          |
+| nestedScroll<sup>16+</sup>      | [NestedScrollOptions](../../apis-arkui/arkui-ts/ts-container-scrollable-common.md#nestedscrolloptions10对象说明) \| [NestedScrollOptionsExt](../../apis-arkweb/ts-basic-components-web.md#nestedscrolloptionsext14对象说明) | 否  | @Prop       | 设置嵌套滚动选项。                                                                          |
 | onMessage            | Callback\<[OnMessageEvent](#onmessageevent)\>                                                                    | 否  | -           | H5页面通过JS SDK的postMessage()发送消息后，Web组件对应的页面返回或销毁时，触发该回调。                                                              |
 | onErrorReceive       | Callback\<[OnErrorReceiveEvent](#onerrorreceiveevent)\>                                                          | 否  | -           | 网页加载遇到错误时触发该回调。出于性能考虑，建议此回调中尽量执行简单逻辑。在无网络的情况下，触发此回调。                                                                 |
 | onHttpErrorReceive   | Callback\<[OnHttpErrorReceiveEvent](#onhttperrorreceiveevent)\>                                                  | 否  | -           | 网页加载资源遇到的HTTP错误（响应码>=400)时触发该回调。                                                                                     |
 | onPageBegin          | Callback\<[OnPageBeginEvent](#onpagebeginevent)\>                                                                | 否  | -           | 网页开始加载时触发该回调，且只在主frame触发，iframe或者frameset的内容加载时不会触发此回调。                                                              |
 | onPageEnd            | Callback\<[OnPageEndEvent](#onpageendevent)\>                                                                    | 否  | -           | 网页加载完成时触发该回调，且只在主frame触发。                                                                                            |
 | onControllerAttached | Callback\<void\>                                                                                                 | 否  | -           | 当Controller成功绑定到Web组件时触发该回调。                                                                                         |
-| onLoadIntercept      | Callback\<[OnLoadInterceptEvent](../../apis-arkweb/ts-basic-components-web.md#onloadinterceptevent12), boolean\> | 否  | -           | 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。                                                                              |
+| onLoadIntercept      | [OnLoadInterceptCallback](#onloadinterceptcallback) | 否  | -  | 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。                                                                              |
 | onProgressChange     | Callback\<[OnProgressChangeEvent](../../apis-arkweb/ts-basic-components-web.md#onprogresschangeevent12)\>        | 否  | -           | 网页加载进度变化时触发该回调。                                                                                                      |
 
 ## AtomicServiceWebController
 
 通过AtomicServiceWebController可以控制AtomicServiceWeb组件各种行为。一个AtomicServiceWebController对象只能控制一个AtomicServiceWeb组件，且必须在AtomicServiceWeb组件和AtomicServiceWebController绑定后，才能调用AtomicServiceWebController上的方法。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-### constructor
-
-constructor()
-
-用于创建 AtomicServiceWebController 对象的构造函数。
+**装饰器类型：** @Observed
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -165,6 +159,7 @@ setCustomUserAgent(userAgent: string): void
 
 | 错误码ID    | 错误信息                                                                                             |
 |----------|--------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 
 ### refresh
@@ -297,6 +292,7 @@ accessStep(step: number): boolean
 
 | 错误码ID    | 错误信息                                                                                             |
 |----------|--------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 
 ### loadUrl
@@ -322,6 +318,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 
 | 错误码ID    | 错误信息                                                                                             |
 |----------|--------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 17100001 | Init error. The AtomicServiceWebController must be associated with a AtomicServiceWeb component. |
 | 17100002 | Invalid url.                                                                                     |
 | 17100003 | Invalid resource path or file type.                                                              |
@@ -400,6 +397,52 @@ Web组件返回的请求/响应头对象。
 | 名称  | 类型     | 必填 | 说明        |
 |-----|--------|----|-----------|
 | url | string | 是  | 页面的URL地址。 |
+
+## OnLoadInterceptEvent
+
+当资源加载被拦截时，加载拦截事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| data | [WebResourceRequest](../../apis-arkweb/ts-basic-components-web.md#webresourcerequest) | 是 | 网页请求的封装信息。 |
+
+## OnProgressChangeEvent
+
+定义网页加载进度变化时触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| newProgress | number | 是 | 新的加载进度，取值范围为0到100的整数。                       |
+
+## OnLoadInterceptCallback
+
+type OnLoadInterceptCallback = (event: OnLoadInterceptEvent) => boolean
+
+资源加载被拦截时触发该回调。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明                    |
+|------|--------|----|-----------------------|
+| event | OnLoadInterceptEvent | 是  | 当资源加载被拦截时，加载拦截事件。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| boolean | 返回资源是否被拦截 |
 
 ## 事件
 
@@ -709,6 +752,64 @@ struct WebComponent {
           console.info("onErrorReceive call back success " + JSON.stringify(event));
         }
       })
+    }
+  }
+}
+```
+
+### 示例7
+
+设置嵌套滚动。
+
+```ts
+import { AtomicServiceWeb, AtomicServiceWebController } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct AtomicServiceNestedScroll {
+  @State controller: AtomicServiceWebController = new AtomicServiceWebController();
+  @State mode: string = 'PARALLEL模式（点击切换）';
+  @State nestedScroll: NestedScrollOptions | NestedScrollOptionsExt = {
+    scrollForward: NestedScrollMode.PARALLEL,
+    scrollBackward: NestedScrollMode.PARALLEL
+  };
+
+  build() {
+    Scroll() {
+      Column() {
+        Text("嵌套AsWeb-头部")
+          .height("15%")
+          .width("100%")
+          .fontSize(30)
+          .backgroundColor(Color.Yellow)
+        Button(this.mode)
+          .margin({ top: 10, bottom: 10 })
+          .onClick(() => {
+            if (!(this.nestedScroll as NestedScrollOptions).scrollForward) {
+              this.mode = 'SELF_FIRST模式（点击切换）';
+              this.nestedScroll = {
+                scrollForward: NestedScrollMode.SELF_FIRST,
+                scrollBackward: NestedScrollMode.SELF_FIRST
+              }
+            } else {
+              this.mode = 'PARENT_FIRST模式（点击切换）';
+              this.nestedScroll = {
+                scrollUp: NestedScrollMode.PARENT_FIRST,
+                scrollDown: NestedScrollMode.PARENT_FIRST
+              }
+            }
+          })
+        AtomicServiceWeb({
+          src: 'https://www.example.com',
+          controller: this.controller,
+          nestedScroll: this.nestedScroll
+        })
+        Text("嵌套AsWeb-尾部")
+          .height("15%")
+          .width("100%")
+          .fontSize(30)
+          .backgroundColor(Color.Yellow)
+      }
     }
   }
 }

@@ -250,6 +250,99 @@ privacyManager.getPermissionUsedRecord(request, (err: BusinessError, data: priva
 });
 ```
 
+## privacyManager.setPermissionUsedRecordToggleStatus<sup>16+</sup>
+
+setPermissionUsedRecordToggleStatus(status: boolean): Promise&lt;void&gt;
+
+设置是否记录当前用户的权限使用情况。系统应用调用此接口，可以设置当前用户的权限使用记录开关状态，使用Promise异步回调。
+
+status为true时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrecord)接口可以正常添加使用记录；status为false时，[addPermissionUsedRecord](#privacymanageraddpermissionusedrecord)接口不记录权限使用记录，并且删除当前用户的历史记录。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**参数：**
+
+| 参数名          | 类型   | 必填 | 说明                                  |
+| -------------- | ------ | ---- | ------------------------------------ |
+| status        | boolean | 是   | 权限使用记录开关状态。true为开，false为关。|
+
+**返回值：**
+
+| 类型          | 说明                                    |
+| ------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 12100007 | The service is abnormal. |
+| 12100009 | Common inner error. |
+
+**示例：**
+
+```ts
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+privacyManager.setPermissionUsedRecordToggleStatus(true).then(() => {
+  console.log('setPermissionUsedRecordToggleStatus success');
+}).catch((err: BusinessError) => {
+  console.error(`setPermissionUsedRecordToggleStatus fail, err->${JSON.stringify(err)}`);
+});
+```
+
+## privacyManager.getPermissionUsedRecordToggleStatus<sup>16+</sup>
+
+getPermissionUsedRecordToggleStatus(): Promise&lt;boolean&gt;
+
+系统应用调用此接口，可以获取当前用户的权限使用记录开关状态，使用Promise异步回调。
+
+**需要权限：** ohos.permission.PERMISSION_USED_STATS，仅系统应用可用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+**返回值：**
+
+| 类型          | 说明                                    |
+| ------------- | --------------------------------------- |
+| Promise&lt;boolean&gt; | Promise对象。返回当前用户的开关状态值。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[访问控制错误码](errorcode-access-token.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 201 | Permission denied. Interface caller does not have permission. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 12100007 | The service is abnormal. |
+
+**示例：**
+
+```ts
+import { privacyManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+privacyManager.getPermissionUsedRecordToggleStatus().then((res) => {
+  console.log('getPermissionUsedRecordToggleStatus success');
+  if (res == true) {
+    console.log('get status is TRUE');
+  } else {
+    console.log('get status is FALSE');
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getPermissionUsedRecordToggleStatus fail, err->${JSON.stringify(err)}`);
+});
+```
+
 ## privacyManager.startUsingPermission
 
 startUsingPermission(tokenID: number, permissionName: Permissions): Promise&lt;void&gt;

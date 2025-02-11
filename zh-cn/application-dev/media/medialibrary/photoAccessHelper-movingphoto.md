@@ -85,7 +85,7 @@ struct Index {
 
 ## 获取动态照片对象
 
-- 应用可以通过picker的方式获取用户媒体库里的动态照片对象，后续可用于在应用内播放动态照片，或是读取动态照片资源进行其他操作（如上传到应用共享给他人浏览等）。
+- 应用可以通过Picker的方式获取用户媒体库里的动态照片对象，后续可用于在应用内播放动态照片，或是读取动态照片资源进行其他操作（如上传到应用共享给他人浏览等）。
 
 - 应用也可以通过传入应用沙箱的[应用文件](../../file-management/app-file-access.md)图片和视频fileUri的方式构造应用本地的动态照片对象。
 
@@ -162,7 +162,7 @@ async function example() {
 
 ## 读取动态照片资源
 
-对于一个动态照片对象，应用可以通过[MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12)的接口导出图片和视频到应用沙箱，或者读取图片或视频的ArrayBuffer内容。
+对于一个动态照片对象，应用可以通过[MovingPhoto.requestContent](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#requestcontent12)导出图片和视频到应用沙箱，或者读取图片或视频的ArrayBuffer内容。
 
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';

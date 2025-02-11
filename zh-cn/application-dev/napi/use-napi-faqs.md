@@ -79,7 +79,7 @@ Node-API接口正常执行后，会返回一个napi_ok的状态枚举值，若na
 
 ## napi_threadsafe_function内存泄漏，应该如何处理
 
-`napi_threadsafe_function`（下文简称tsfn）在使用时，常常会调用 `napi_acquire_threadsafe_function` 来更改tsfn的引用计数，确保tsfn不会意外被释放。但在使用完成后，应该及时使用 `napi_tsfn_release` 模式调用 `napi_release_threadsafe_function` 方法，以确保在所有调用回调都执行完成后，其引用计数能回归到调用 `napi_acquire_threadsafe_function` 方法之前的水平。当其引用计数归位0时，tsfn才能正确的被释放。
+`napi_threadsafe_function`（下文简称tsfn）在使用时，常常会调用 `napi_acquire_threadsafe_function` 来更改tsfn的引用计数，确保tsfn不会意外被释放。但在使用完成后，应该及时使用 `napi_tsfn_release` 模式调用 `napi_release_threadsafe_function` 方法，以确保在所有调用回调都执行完成后，其引用计数能回归到调用 `napi_acquire_threadsafe_function` 方法之前的水平。当其引用计数归为0时，tsfn才能正确的被释放。
 
 当在env即将退出，但tsfn的引用计数未被归零时，应该使用 `napi_tsfn_abort` 模式调用 `napi_release_threadsafe_function` 方法，确保在env释放后不再对tsfn进行持有及使用。在env退出后，继续持有tsfn进行使用，是一种未定义的行为，可能会触发崩溃。
 
@@ -316,63 +316,3 @@ napi_value NapiGenericFailure(napi_env env, napi_callback_info)
     }).detach();;
 }
 ```
-
-## NAPI常见错误用法导致的异常日志/崩溃
-
-以下维未测手段多依赖于ArkTS运行时的多线程检测能力，因此建议在调试前启用此功能。启用方法参考文档[分析CppCrash（进程崩溃）](../dfx/cppcrash-guidelines.md#工具二方舟多线程检测)。
-
-若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
-
-### 数据在使用时，与创建该数据时所使用的env不一致
-
-该维测手段主要包含以下两种场景：
-
-1. 入参env地址与创建时不一致。
-
-   > **关键日志**
-   > param env not equal to its owner.
-   >
-
-2. 调用接口时传入env的id，与创建数据时不一致，即创建数据的env已销毁。
-
-   > **关键日志**
-   >
-   > 1. 除线程安全函数相关方法外，关键日志如下：
-   >
-   >    owner env has been destroyed, owner id: &lt;owner id&gt; , current    env id: &lt;current id&gt;.
-   >
-   > 2. 线程安全函数相关方法，关键日志如下：
-   >
-   >    current tsfn was created by dead env, owner id: &lt;owner id&gt;, current env id: &lt;current id&gt;
-
-该维测手段目前覆盖范围如下：
-
-1. napi_get_reference_value
-2. napi_delete_reference*
-3. napi_queue_async_work
-4. napi_queue_async_work_with_qos
-5. napi_cancel_async_work
-6. napi_call_threadsafe_function*
-7. napi_release_threadsafe_function*
-
-> \*：具有该标志的接口，仅能触发第二种场景的维测信息。
-
-### 跨线程调用
-
-大多数napi接口都不是多线程安全的，因此为这些错误用法额外增加了定位手段。
-
-若无特殊说明，本章节所描述的维测手段，在启用ArkTS运行时多线程检测开关的前提下，会在第一现场中断进程。
-
-> **关键日志**
->
-> current napi interface cannot run in multi-thread, thread id: &lt;env tid&gt;, current thread id: &lt;current tid&gt;
-
-该维测手段覆盖范围如下：
-
-1. napi_add_env_cleanup_hook*
-2. napi_remove_env_cleanup_hook*
-3. napi_add_async_cleanup_hook
-4. napi_set_instance_data
-5. napi_get_instance_data
-
-> \*：具有该标志的接口，在维测触发的情况下，仅打印带有调用栈信息的ERROR日志，并不会中断进程。

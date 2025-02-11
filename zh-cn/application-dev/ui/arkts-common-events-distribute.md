@@ -6,7 +6,7 @@
 
 触控事件是触摸测试的输入，根据用户操作方式的不同，可以划分为Touch类触控事件和Mouse类触控事件。
 
-- Touch类触控事件指触摸生成的触控事件，输入源包含：finger（手指在屏幕滑动）、pen（手写笔在屏幕滑动），可以触发触摸事件、点击事件、拖拽事件和手势事件。
+- Touch类触控事件指触摸生成的触控事件，输入源包含：finger（手指在屏幕滑动）、pen（手写笔在屏幕滑动）、mouse（鼠标操作）、touchpad（触控板操作），可以触发触摸事件、点击事件、拖拽事件和手势事件。
 
 - Mouse类触控事件指鼠标操作生成的触控事件，输入源包含：mouse（鼠标操作）、touchpad（触控板操作）、joystick（手柄操作），可以触发触摸事件、点击事件、拖拽事件、手势事件和鼠标事件。
 
@@ -74,7 +74,7 @@
 
 ### 安全组件
 
-ArkUI包含的安全组件有：[使用位置组件](../security/AccessToken/locationbutton.md)、[使用粘贴组件](../security/AccessToken/pastebutton.md)、[使用保存组件](../security/AccessToken/savebutton.md)等。
+ArkUI包含的安全组件有：[使用粘贴组件](../security/AccessToken/pastebutton.md)、[使用保存组件](../security/AccessToken/savebutton.md)等。
 
 安全组件当前对触摸测试影响：如果有组件的[z序](../reference/apis-arkui/arkui-ts/ts-universal-attributes-z-order.md)比安全组件的z序靠前，且遮盖安全组件，则安全组件事件直接返回到父节点继续触摸测试。
 

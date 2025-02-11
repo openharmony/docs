@@ -4,27 +4,7 @@
 
 当前支持的数据输入类型有：远程连接(http协议)和文件描述符(fd)。
 
-支持的解封装格式如下：
-
-| 媒体格式  | 封装格式                      | 码流格式                      |
-| -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |<!--RP1-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)，字幕流：WEBVTT<!--RP1End-->|
-| 音视频     | fmp4                       |<!--RP2-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP2End-->|
-| 音视频     | mkv                        |<!--RP3-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS<!--RP3End-->|
-| 音视频     | mpeg-ts                    |<!--RP4-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP4End-->|
-| 音视频     | flv                        |<!--RP5-->视频码流：AVC(H.264)，音频码流：AAC<!--RP5End-->|
-| 音频       | m4a                        |<!--RP6-->音频码流：AAC<!--RP6End-->|
-| 音频       | aac                        |音频码流：AAC|
-| 音频       | mp3                        |音频码流：MPEG(MP3)|
-| 音频       | ogg                        |音频码流：OGG|
-| 音频       | flac                       |音频码流：FLAC|
-| 音频       | wav                        |音频码流：PCM、PCM-MULAW|
-| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
-| 音频       | ape                        |音频码流：APE|
-| 外挂字幕   | srt                        |字幕流：SRT|
-| 外挂字幕   | webvtt                     |字幕流：WEBVTT|
-
-DRM解密能力支持的解封装格式：<!--RP7-->mp4(H.264，AAC)、mpeg-ts(H264，AAC)<!--RP7End-->。
+当前支持的解封装格式请参考[AVCodec支持的格式](avcodec-support-formats.md#媒体数据解析)。
 
 **适用场景**：
 
@@ -333,16 +313,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. 销毁解封装实例。
       ```c++
-      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
-      source = NULL;
-      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      source = nullptr;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }
-      demuxer = NULL;
+      demuxer = nullptr;
       close(fd);
       ```
 
@@ -351,6 +331,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **说明：**
 > 正常解析时才可以获取对应属性数据；如果文件信息错误或缺失，将导致解析异常，无法获取数据。
+> 当前GBK格式字符集数据会转换为UTF8提供，其他类型字符集如果需要转换为UTF8格式使用，需要调用方自行转换，参考[icu4c](../../reference/native-lib/icu4c.md)。
 > 
 > 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 

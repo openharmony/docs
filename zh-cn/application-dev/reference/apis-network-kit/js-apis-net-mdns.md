@@ -838,3 +838,17 @@ mDNS错误信息。
 | INTERNAL_ERROR  | 0    | 内部错误导致操作失败。  |
 | ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。 |
 | MAX_LIMIT  | 2 | 请求超过最大限制导致操作失败。 |
+
+## NetAddress
+
+type NetAddress = connection.NetAddress
+
+获取网络地址。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetManager
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| connection.NetAddress | 定义网络地址。     |

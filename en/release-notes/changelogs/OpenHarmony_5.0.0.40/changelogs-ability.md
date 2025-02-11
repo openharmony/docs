@@ -32,4 +32,38 @@ OpenHarmony SDK 5.0.0.40
 
 **Adaptation Guide**
 
-No adaptation is required. After the change, applications running a continuous task in the background fail to call **startAbility**. If such a behavior exists, you are advised to delete the related code.
+Do not call **startAbility** through a continuous task in the background. Otherwise, the call will fail.
+
+## cl.ability.2 Disabling the BackupExtensionAbility Process from Starting the AppStartup Framework
+
+**Access Level**
+
+Public API
+
+**Reason for Change**
+
+The BackupExtensionAbility process is used for data migration, during which the application is not started. As such, starting the AppStartup framework will affect the normal execution of data migration.
+
+**Change Impact**
+
+This change is a non-compatible change.
+
+Before change: The BackupExtensionAbility process can start the AppStartup framework and execute startup tasks.
+
+After change: The BackupExtensionAbility process cannot start the AppStartup framework.
+
+**Start API Level**
+
+12
+
+**Change Since**
+
+OpenHarmony SDK 5.0.0.40
+
+**Key API/Component Changes**
+
+Default behavior of the AppStartup framework
+
+**Adaptation Guide**
+
+No adaptation is required. However, you need to check whether the changed behavior affects the overall application logic.

@@ -30,6 +30,7 @@ USB DDK（USB Driver Develop Kit）是为开发者提供的USB驱动程序开发
 | OH_Usb_SendPipeRequest(const struct UsbRequestPipe *pipe, UsbDeviceMemMap *devMmap) | 发送管道请求，该接口为同步接口。中断传输和批量传输都使用该接口发送请求。 |
 | OH_Usb_CreateDeviceMemMap(uint64_t deviceId, size_t size, UsbDeviceMemMap **devMmap) | 创建缓冲区。请在缓冲区使用完后，调用OH_Usb_DestroyDeviceMemMap()销毁缓冲区，否则会造成资源泄露。 |
 | OH_Usb_DestroyDeviceMemMap(UsbDeviceMemMap *devMmap) | 销毁缓冲区。请在缓冲区使用完后及时销毁缓冲区，否则会造成资源泄露。 |
+| OH_Usb_GetDevices(struct Usb_DeviceArray *devices) | 获取USB设备ID列表。请保证传入的指针参数是有效的，申请设备的数量不要超过128个，在使用完结构之后，释放成员内存，否则造成资源泄露。获取到的USB设备ID，已通过驱动配置信息中的vid进行筛选过滤。 |
 
 详细的接口说明请参考[USB DDK](../reference/apis-driverdevelopment-kit/_usb_ddk.md)。
 
@@ -65,7 +66,7 @@ libusb_ndk.z.so
 
 2. 获取配置描述符及声明接口。
     
-    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 OH_Usb_ClaimInterface 声明"认领"接口。。
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetConfigDescriptor** 接口获取配置描述符 **config**，并使用 OH_Usb_ClaimInterface 声明"认领"接口。
 
     ```c++
     struct UsbDdkConfigDescriptor *config = nullptr;
@@ -81,7 +82,7 @@ libusb_ndk.z.so
     ```
 3. 获取当前激活接口的备用设置及激活备用设置。
 
-    使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置
+    使用 **usb_ddk_api.h** 的 **OH_Usb_GetCurrentInterfaceSetting** 获取备用设置，并使用 **OH_Usb_SelectInterfaceSetting** 激活备用设置。
 
     ```c++
     uint8_t settingIndex = 0;
@@ -151,4 +152,16 @@ libusb_ndk.z.so
     OH_Usb_ReleaseInterface(interfaceHandle);
     // 释放USB DDK
     OH_Usb_Release();
+    ```
+7. （独立步骤，可选）获取可识别的USB设备列表。
+
+    驱动拉起后调用**OH_Usb_GetDevices**接口获取驱动配置信息中匹配vid（vid是设备厂商的vendor id，在驱动应用里面配置，表示驱动适配哪些设备，查询到的设备ID都需要通过vid进行过滤）的设备ID，以供后续应用开发使用。
+
+    ```c++
+    OH_Usb_Init();
+    constexpr size_t MAX_USB_DEVICE_NUM = 128;
+    struct Usb_DeviceArray deviceArray;
+    deviceArray.deviceIds = new uint64_t[MAX_USB_DEVICE_NUM];
+    // 获取设备列表
+    OH_Usb_GetDevices(&deviceArray);
     ```

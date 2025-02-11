@@ -16,11 +16,11 @@ This change is a non-compatible change.
 
 Before change:
 
-When **convertToJSObject** parses the input parameters of an XML string, the **parentKey** attribute value cannot be correctly set.
+When **convertToJSObject** parses the input parameters of an XML string, setting the **parentKey** attribute value is not supported.
 
 After change:
 
-When **convertToJSObject** parses the input parameters of an XML string, the **parentKey** attribute value can be correctly set.
+When **convertToJSObject** parses the input parameters of an XML string, setting the **parentKey** attribute value is supported.
 
 **Start API Level**
 
@@ -31,6 +31,7 @@ When **convertToJSObject** parses the input parameters of an XML string, the **p
 OpenHarmony SDK 5.0.1.1
 
 **Key API/Component Changes**
+
 API in the convertXML module:
 
 convertToJSObject(xml: string, options?: ConvertOptions): Object;
@@ -71,8 +72,9 @@ let result: ESObject = conv.convertToJSObject(xml, options);
 // After the change, the value of result is {"_declaration":{"_attributes":{"version":"1.0","encoding":"utf-8"}},"_elements":[{"_type":"element","_name":"note","_attributes":{"importance":"high","logged":"true"},"_elements":[{"_type":"element","_name":"title","_parent":"note","_elements":[{"_type":"text","_text":"Happy"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text","_text":"Work"}]},{"_type":"element","_name":"todo","_parent":"note","_elements":[{"_type":"text","_text":"Play"}]}]}]}. (The parentKey attribute value is added.)
 
 // This does not affect the API usage.
-// Obtain the parentKey attribute of the title tag: result1["_elements"][0]["_elements"][0]._parent
-// Obtain the nameKey attribute of the title tag: result1["_elements"][0]["_elements"][0]._name
+// To obtain the parentKey attribute of the title tag, call the following API: result1["_elements"][0]["_elements"][0]._parent
+// Before change: The parentKey attribute of the title tag is undefined.
+// After change: The parentKey attribute of the title tag is the actual value note.
 ```
 
 ## cl.arkts.2 Encoding Behavior of utf-16le and utf-16be of the util.TextEncoder Module Changed
@@ -118,6 +120,7 @@ OpenHarmony SDK 5.0.1.1
 APIs of the util.TextEncoder module:
 
 encodeInto(input?: string): Uint8Array;
+
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo;
 
 **Adaptation Guide**
@@ -161,4 +164,75 @@ let dest_le = new Uint8Array(14);
 let dest_be = new Uint8Array(14);
 let res_le = encoderUtf16Le.encodeIntoUint8Array('abcdefg', dest_le); // dest_le: 97,0,98,0,99,0,100,0,101,0,102,0,103,0
 let res_be = encoderUtf16Be.encodeIntoUint8Array('abcdefg', dest_be); // dest_be: 0,97,0,98,0,99,0,100,0,101,0,102,0,103
+```
+
+## cl.arkui.3 Changed the Unit of the radius Parameter in modifier for the backgroundEffect Attribute
+
+**Access Level**
+
+Public API
+
+**Reason for Change**
+
+When **backgroundEffect** is directly used, the unit of the **radius** parameter is vp. When it is used through modifier or CAPI, the unit is px. The unit is changed to vp.
+
+**Change Impact**
+
+This change is a non-compatible change.
+
+Before change: The unit of the **radius** parameter in **backgroundEffect** used through modifier is px.
+
+![addComponentContent_before](figures/backgroundEffect_before.png)
+
+After change: The unit of the **radius** parameter in **backgroundEffect** used through modifier is vp.
+
+![addComponentContent_after](figures//backgroundEffect_after.png)
+
+**Start API Level**
+
+12
+
+**Change Since**
+
+OpenHarmony SDK 5.0.1.1
+
+**Key API/Component Changes**
+
+backgroundEffect
+
+**Adaptation Guide**
+
+Use the px2vp method in modifier to convert the **radius** parameter to vp.
+
+```ts
+
+import { CommonModifier } from '@kit.ArkUI';
+
+class ColumnModifier extends CommonModifier {
+  public radius: number = 0;
+  applyNormalAttribute(instance: CommonAttribute): void {
+    instance.backgroundEffect({ radius: this.radius })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State testSize: number = 200;
+  @State modifier:ColumnModifier = new ColumnModifier();
+  onPageShow(): void {
+    // Before change:
+    // this.modifier.radius = 10;
+    // Adaptation after the change:
+    this.modifier.radius = px2vp(10);
+  }
+  build() {
+    Column() {
+      Stack() {
+        Image($r('app.media.test')).width(this.testSize).height(this.testSize)
+        Column().width(this.testSize).height(this.testSize).attributeModifier(this.modifier)
+      }.width('100%')
+    }
+  }
+}
 ```

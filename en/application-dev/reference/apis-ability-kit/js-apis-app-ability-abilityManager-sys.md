@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager) (System API)
 
-The AbilityManager module provides APIs for obtaining, adding, and updating ability running information and state information.
+The AbilityManager module provides APIs for obtaining, adding, and updating ability information and running status information.
 
 > **NOTE**
 >
@@ -12,23 +12,6 @@ The AbilityManager module provides APIs for obtaining, adding, and updating abil
 ```ts
 import { abilityManager } from '@kit.AbilityKit';
 ```
-
-## AbilityState
-
-Enumerates the ability states. This enum can be used together with [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md) to return the ability state. 
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name| Value| Description| 
-| -------- | -------- | -------- |
-| INITIAL | 0 | The ability is in the initial state.| 
-| FOCUS | 2 | The ability has the focus.|
-| FOREGROUND | 9 | The ability is in the foreground state. | 
-| BACKGROUND | 10 | The ability is in the background state. | 
-| FOREGROUNDING | 11 | The ability is in the state of being switched to the foreground. | 
-| BACKGROUNDING | 12 | The ability is in the state of being switched to the background. | 
 
 ## UserStatus<sup>12+</sup>
 
@@ -183,7 +166,7 @@ Obtains the UIAbility running information. This API uses an asynchronous callbac
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>>  | Yes   | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in it.     |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 

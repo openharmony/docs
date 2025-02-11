@@ -340,3 +340,49 @@ try {
   console.log(`Get keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputDevice.setInputDeviceEnabled<sup>16+</sup>
+
+setInputDeviceEnabled(deviceId: number, enabled: boolean): Promise&lt;void&gt;
+
+设置输入设备的开关状态。以触摸屏为例：关闭时，点击触摸屏设备不响应；开启时，可正常操作触摸屏。
+
+**需要权限**：ohos.permission.INPUT_DEVICE_CONTROLLER
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名   | 类型    | 必填 | 说明                      |
+| -------- | ------- | ---- | ------------------------- |
+| deviceId | number  | 是   | 目标设备Id。              |
+| enabled  | boolean | 是   | true：开启输入设备输入；false：关闭输入设备输入。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[模块错误码](errorcode-inputdevice.md)。
+
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Not system application.                                      |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900001  | The specified device does not exist.                         |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setInputDeviceEnabled(0, true).then(() => {
+    console.info(`Set input device enable success`);
+  }).catch((error) => {
+    console.info(`Set input device enable failed, error=${JSON.stringify(error)}`);
+  });
+} catch (error) {
+    console.info(`Set input device enable error`);
+}
+```
+## 

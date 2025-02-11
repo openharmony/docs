@@ -58,12 +58,12 @@ circleRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                               |
 | ------ | ---------------------------- | ---- | ---------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp |
+| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp<br/>取值范围：(0, sideLength/11]，设置小于等于0的值时按默认值处理，超过最大值按最大值处理。 |
 
 ### backgroundColor
 backgroundColor(value: ResourceColor)
 
-设置背景颜色
+设置背景颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -151,7 +151,7 @@ pathStrokeWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                          |
 | ------ | -------------------------- | ---- | ----------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp<br/>取值范围：[0, sideLength/3]，超过最大值按最大值处理。 |
 
 ### autoReset
 
@@ -237,7 +237,7 @@ onPatternComplete(callback: (input: Array\<number\>) => void)
 
 ### onDotConnect<sup>11+</sup>
 
-onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
+onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
 
 密码输入选中宫格圆点时触发该回调。
 

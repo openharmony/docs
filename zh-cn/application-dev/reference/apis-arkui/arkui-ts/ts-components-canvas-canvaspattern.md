@@ -26,7 +26,9 @@ setTransform(transform?: Matrix2D): void
 | --------- | -------------- | ------ | ---------- |
 | transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否  | 转换矩阵。<br>默认值：null。 |
 
-**示例：**
+## 示例
+
+通过setTransform对当前CanvasPattern进行矩阵变换。
 
 ```ts
 // xxx.ets
@@ -37,7 +39,7 @@ struct CanvasPatternPage {
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
   private matrix: Matrix2D = new Matrix2D()
   private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern : CanvasPattern | null = null
+  private pattern: CanvasPattern | null = null
 
   build() {
       Column() {

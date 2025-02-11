@@ -7,7 +7,9 @@ In Deep Linking, the system, based on the passed-in URI, searches for the applic
 Deep Linking searches for an application based on the URI matching rules in implicit Want mechanism and starts the matching application. For details about the URI matching rules of implicit Want, see [Matching Rules of uri](explicit-implicit-want-mappings.md#matching-rules-of-uri).
 
 
-## Configuring the module.json5 File for the Target Application
+## Procedure for the Target Application
+
+### Configuring the module.json5 File
 
 To be accessed by other applications, an application must configure the [skills](../quick-start/module-configuration-file.md#skills) field of the [module.json5 file](../quick-start/module-configuration-file.md). The value of **scheme** under **uri** can be customized. It can be any string that does not contain special characters or start with **ohos**.
 
@@ -47,6 +49,32 @@ A configuration example is as follows:
 }
 ```
 
+### Obtaining and Parsing the Link Passed by the Caller
+
+In the **onCreate()** or **onNewWant()** lifecycle callback of the UIAbility of the target application, obtain and parse the Link passed by the caller.
+
+```ts
+// EntryAbility.ets is used as an example.
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { url } from '@kit.ArkTS';
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    // Obtain the input link information from want.
+    // For example, the input URL is link://www.example.com/programs?action=showall.
+    let uri = want?.uri;
+    if (uri) {
+      // Parse the query parameter from the link. You can perform subsequent processing based on service requirements.
+      let urlObject = url.URL.parseURL(want?.uri);
+      let action = urlObject.params.get('action');
+      // For example, if action is set to showall, all programs are displayed.
+      if (action === "showall") {
+         // ...
+      }
+    }
+  }
+}
+```
 
 ## Implementing Application Redirection (Required for the Caller Application)
 

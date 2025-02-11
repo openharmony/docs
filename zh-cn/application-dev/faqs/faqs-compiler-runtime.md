@@ -105,3 +105,77 @@ bar()
     ```
 2. 在工程管理窗口中鼠标选中工程根目录，右键选择Code Linter > Full Linter执行代码全量检查。
 3. 根据检查结果，对应用代码中的循环依赖部分进行代码重构。
+
+## 编译异常，无具体错误日志，难以定位问题
+**问题现象**
+
+出现Failed to execute es2abc. 但是没有具体的错误日志，难以对问题进行定位以及原因分析。
+
+**问题场景**
+
+场景：开发者在源码中使用大量深度嵌套的代码，比如几百层的if-else，as转换，括号嵌套等，在编译的时候由于递归调用导致超出栈容量上限，引发es2abc的闪退，并且没有相关的错误日志。
+
+**定位方案**
+
+在windows上，可以打开事件管理器，Windows日志，应用程序，找到对应的时间，如果能找到es2abc.exe的崩溃日志，同时异常代码为 0xc00000fd, 那么表示该编译由于爆栈导致崩溃。<br>
+![事件查看器](compiler/WinCrashLog.png)<br>
+在mac上，可以进入控制台，点击崩溃报告，找到es2abc,双击查看崩溃日志。<br>
+![控制台](compiler/MacConsole.png)<br>
+如果出现下图中所示，调用栈出现大量反复的调用相同的函数，那么极有可能是出现了大量递归导致爆栈。<br>
+![崩溃日志](compiler/CrashLog.png)
+
+**解决方案**
+
+排查代码中有无大量重复嵌套的场景，比如几百层if-else，as转换，括号嵌套等，对其进行拆分或者优化。
+
+**问题代码示例**
+
+包括但不限于以下问题场景
+
+```typescript
+if (condition) {
+    if (condition) {
+        if (condition) {
+            if (condition) {
+                if (condition) {
+                    if (condition) {
+                        ...
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+```typescript
+[
+    [
+        [
+            [
+                [
+                    [
+                        [
+                            [
+                                ...
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+]
+```
+
+```typescript
+!!!!!!!!!!
+!!!!!!!!!!
+...
+!!!!!a
+```
+
+```typescript
+var a = 1
+a as Int as Int as Int as Int as Int ...
+```

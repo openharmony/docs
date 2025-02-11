@@ -11,6 +11,14 @@
 import { bundleManager } from '@kit.AbilityKit';
 ```
 
+## 权限列表
+
+| 权限                                       | 权限等级     | 描述            |
+| ------------------------------------------ | ------------ | ------------------|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
+
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
+
 ## 枚举
 
 ### BundleFlag
@@ -64,6 +72,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | ADS_SERVICE<sup>11+</sup> | 20 | AdsServiceExtensionAbility：广告服务扩展能力，对外提供后台自定义广告业务服务，仅系统应用支持。 |
 | EMBEDDED_UI<sup>12+</sup> | 21 | [EmbeddedUIExtensionAbility](js-apis-app-ability-embeddedUIExtensionAbility.md)：嵌入式UI扩展能力，提供跨进程界面嵌入的能力。 |
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。 |
+| ASSET_ACCELERATION<sup>16+</sup> | 26 | AssetAccelerationExtensionAbility：资源预下载扩展能力，提供在设备闲时状态，进行后台资源预下载的能力。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
@@ -1365,7 +1374,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let uid = 20010005;
 
 try {
-    bundleManager.getAppCloneIdentity(uid).then((res: bundleManager.AppCloneIdentity) => {
+    bundleManager.getAppCloneIdentity(uid).then((res) => {
         hilog.info(0x0000, 'testTag', 'getAppCloneIdentity res = %{public}s', JSON.stringify(res));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', err.message);
@@ -1375,3 +1384,305 @@ try {
     hilog.error(0x0000, 'testTag', 'getAppCloneIdentity failed. Cause: %{public}s', message);
 }
 ```
+
+### bundleManager.getSignatureInfo<sup>16+</sup>
+
+getSignatureInfo(uid: number): SignatureInfo
+
+根据给定的uid获取对应的[SignatureInfo](./js-apis-bundleManager-bundleInfo.md#signatureinfo)。
+
+**需要权限：** ohos.permission.GET_SIGNATURE_INFO
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                |
+| ---- | ------ | ---- | ------------------ |
+| uid  | number | 是   | 表示应用程序的UID。 |
+
+**返回值：**
+
+| 类型             | 说明                        |
+| ---------------- | --------------------------- |
+| [SignatureInfo](./js-apis-bundleManager-bundleInfo.md#signatureinfo) | 返回SignatureInfo对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | ---------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700021 | The uid is not found. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+let uid = 20010005; // uid需要替换为对应应用程序的UID。
+try {
+    let data = bundleManager.getSignatureInfo(uid);
+    hilog.info(0x0000, 'testTag', 'getSignatureInfo successfully. Data: %{public}s', JSON.stringify(data));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getSignatureInfo failed. Cause: %{public}s', message);
+}
+```
+
+### ApplicationInfo
+
+type ApplicationInfo = _ApplicationInfo
+
+应用程序信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ApplicationInfo](js-apis-bundleManager-applicationInfo.md#applicationinfo-1) | 应用程序信息。 |
+
+### ModuleMetadata<sup>10+</sup>
+
+type ModuleMetadata = _ModuleMetadata
+
+模块的元数据信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ModuleMetadata](js-apis-bundleManager-applicationInfo.md#ModuleMetadata10) | 模块的元数据信息。 |
+
+### Metadata
+
+type Metadata = _Metadata
+
+元数据信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_Metadata](js-apis-bundleManager-metadata.md#metadata) | 元数据信息。 |
+
+### BundleInfo
+
+type BundleInfo = _BundleInfo.BundleInfo
+
+应用包信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo) | 应用包信息。 |
+
+
+### UsedScene
+
+type UsedScene = _BundleInfo.UsedScene
+
+权限使用的场景和时机。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene) | 权限使用的场景和时机。 |
+
+### ReqPermissionDetail
+
+type ReqPermissionDetail = _BundleInfo.ReqPermissionDetail
+
+应用运行时需向系统申请的权限集合的详细信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.ReqPermissionDetail](js-apis-bundleManager-bundleInfo.md#reqpermissiondetail) | 应用运行时需向系统申请的权限集合的详细信息。 |
+
+### SignatureInfo
+
+type SignatureInfo = _BundleInfo.SignatureInfo
+
+应用包的签名信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_BundleInfo.SignatureInfo](js-apis-bundleManager-bundleInfo.md#signatureinfo) | 应用包的签名信息。 |
+
+### HapModuleInfo
+
+type HapModuleInfo = _HapModuleInfo.HapModuleInfo
+
+HAP信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md#hapmoduleinfo-1) | HAP信息。 |
+
+### PreloadItem
+
+type PreloadItem = _HapModuleInfo.PreloadItem
+
+原子化服务中模块的预加载模块信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.PreloadItem](js-apis-bundleManager-hapModuleInfo.md#preloaditem) | 原子化服务中模块的预加载模块信息。 |
+
+### Dependency
+
+type Dependency = _HapModuleInfo.Dependency
+
+模块所依赖的动态共享库信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.Dependency](js-apis-bundleManager-hapModuleInfo.md#dependency) | 模块所依赖的动态共享库信息。 |
+
+### RouterItem<sup>12+</sup>
+
+type RouterItem = _HapModuleInfo.RouterItem
+
+模块配置的路由表信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12) | 模块配置的路由表信息。 |
+
+### DataItem<sup>12+</sup>
+
+type DataItem = _HapModuleInfo.DataItem
+
+模块配置的路由表中的自定义数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_HapModuleInfo.DataItem](js-apis-bundleManager-hapModuleInfo.md#dataitem12) | 模块配置的路由表中的自定义数据。 |
+
+### AbilityInfo
+
+type AbilityInfo = _AbilityInfo.AbilityInfo
+
+Ability信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AbilityInfo.AbilityInfo](js-apis-bundleManager-abilityInfo.md#abilityinfo-1) |Ability信息。 |
+
+### WindowSize
+
+type WindowSize = _AbilityInfo.WindowSize
+
+窗口尺寸。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_AbilityInfo.WindowSize](js-apis-bundleManager-abilityInfo.md#windowsize) |窗口尺寸。 |
+
+
+### ExtensionAbilityInfo
+
+type ExtensionAbilityInfo = _ExtensionAbilityInfo.ExtensionAbilityInfo
+
+ExtensionAbility信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ExtensionAbilityInfo.ExtensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md#extensionabilityinfo-1) |ExtensionAbility信息。 |
+
+### ElementName
+
+type ElementName = _ElementName
+
+ElementName信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_ElementName](js-apis-bundleManager-elementName.md#elementname-1) |ElementName信息。 |
+
+### Skill<sup>12+</sup>
+
+type Skill = _Skill.Skill
+
+skill信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_Skill.Skill](js-apis-bundleManager-skill.md#skill-1) |skill信息。 |
+
+### SkillUrl<sup>12+</sup>
+
+type SkillUrl = _Skill.SkillUri
+
+SkillUri信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_Skill.SkillUri](js-apis-bundleManager-skill.md#skilluri) |SkillUri信息。 |

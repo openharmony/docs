@@ -1590,9 +1590,9 @@ getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<ima
 
 ```ts
 import { common }  from '@kit.AbilityKit';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
 
 async function example() {
   try{
@@ -3267,6 +3267,14 @@ async function example() {
 
 实体相册
 
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称           | 类型    | 只读   | 可选  | 说明   |
+| ------------ | ------ | ---- | ---- | ------- |
+| lpath<sup>16+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
+
 ### recoverAssets<sup>(deprecated)</sup>
 
 recoverAssets(assets: Array&lt;PhotoAsset&gt;, callback: AsyncCallback&lt;void&gt;): void
@@ -4226,7 +4234,7 @@ setSupportedWatermarkType(watermarkType: WatermarkType): void
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';;
 
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
@@ -4247,6 +4255,72 @@ async function example() {
     console.info('apply setSupportedWatermarkType successfully');
   } catch (err) {
     console.error(`apply setSupportedWatermarkType failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### deleteLocalAssetsPermanently<sup>16+</sup>
+
+static deleteLocalAssetsPermanently(context: Context, assets: Array\<PhotoAsset>): Promise&lt;void&gt;
+
+批量彻底删除照片或者视频，使用promise方式返回异步结果。
+
+**注意**：此操作不可逆，执行此操作后文件资源将彻底删除，请谨慎操作。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**参数：**
+
+| 参数名  | 类型             | 必填   | 说明    |
+| ---- | -------------- | ---- | ----- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是    | 传入Ability实例的Context |
+| assets | Array\<[PhotoAsset](#photoasset)>| 是    | 待彻底删除的图片或者视频数组 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201   | Permission denied.       |
+| 202   | Called by non-system application.       |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011   | Internal system error.       
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+struct Index {
+  public context = getContext(this);
+  public phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+
+  async function example() {
+    console.info('deleteAssetsPermanentlyDemo');
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    try {
+      let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await this.phAccessHelper.getAssets(fetchOptions);
+      let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+      await photoAccessHelper.MediaAssetChangeRequest.deleteLocalAssetsPermanently(this.context, photoAssetList);
+    } catch (err) {
+      console.error(`deleteAssetsPermanentlyDemo failed with error: ${err.code}, ${err.message}`);
+    }
   }
 }
 ```
@@ -5868,6 +5942,297 @@ async function example() {
 }
 ```
 
+## CloudMediaAssetManager<sup>14+</sup>
+
+云端媒体资产管理类，该类用于管理云端资产的下载任务，以及删除云端资产在本地的数据和文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### getCloudMediaAssetManagerInstance<sup>14+</sup>
+
+static getCloudMediaAssetManagerInstance(context: Context): CloudMediaAssetManager
+
+获取云端媒体资产管理类实例。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [CloudMediaAssetManager](#cloudmediaassetmanager14) | 返回云端媒体资产管理类实例。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202      |  Called by non-system application.   |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.          |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('getCloudMediaAssetManagerInstanceDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.pauseDownloadCloudMedia();
+  } catch (err) {
+    console.error(`getCloudMediaAssetManagerInstanceDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### startDownloadCloudMedia<sup>14+</sup>
+
+startDownloadCloudMedia(downloadType: CloudMediaDownloadType): Promise&lt;void&gt;
+
+开始或恢复云端媒体资产下载任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| downloadType | [CloudMediaDownloadType](#cloudmediadownloadtype14) | 是   | 云端媒体资产的下载方式。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.           |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('startDownloadCloudMediaDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.startDownloadCloudMedia(photoAccessHelper.CloudMediaDownloadType.DOWNLOAD_FORCE);
+  } catch (err) {
+    console.error(`startDownloadCloudMediaDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### pauseDownloadCloudMedia<sup>14+</sup>
+
+pauseDownloadCloudMedia(): Promise&lt;void&gt;
+
+暂停云端媒体资产下载任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('pauseDownloadCloudMediaDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.pauseDownloadCloudMedia();
+  } catch (err) {
+    console.error(`pauseDownloadCloudMediaDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### cancelDownloadCloudMedia<sup>14+</sup>
+
+cancelDownloadCloudMedia(): Promise&lt;void&gt;
+
+取消云端媒体资产下载任务。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('cancelDownloadCloudMediaDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.cancelDownloadCloudMedia();
+  } catch (err) {
+    console.error(`cancelDownloadCloudMediaDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### retainCloudMediaAsset<sup>14+</sup>
+
+retainCloudMediaAsset(retainType: CloudMediaRetainType): Promise&lt;void&gt;
+
+删除云端媒体资产在本地的元数据和文件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明       |
+| -------- | ------------------------- | ---- | ---------- |
+| retainType | [CloudMediaRetainType](#cloudmediaretaintype14) | 是   | 云端媒体资产的删除方式。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise&lt;void&gt;| Promise对象，返回void。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('retainCloudMediaAssetDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    await cloudMediaAssetManagerInstance.retainCloudMediaAsset(photoAccessHelper.CloudMediaRetainType.RETAIN_FORCE);
+  } catch (err) {
+    console.error(`retainCloudMediaAssetDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### getCloudMediaAssetStatus<sup>14+</sup>
+
+getCloudMediaAssetStatus(): Promise&lt;CloudMediaAssetStatus&gt;
+
+查询云端媒体资产下载任务状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+|Promise&lt;[CloudMediaAssetStatus](#cloudmediaassetstatus14)&gt; | Promise对象，返回云端媒体资产下载任务状态。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+const context = getContext(this);
+async function example() {
+  console.info('getCloudMediaAssetStatusDemo');
+  try {
+    let cloudMediaAssetManagerInstance: photoAccessHelper.CloudMediaAssetManager
+      = photoAccessHelper.CloudMediaAssetManager.getCloudMediaAssetManagerInstance(context);
+    const cloudMediaAssetStatus: photoAccessHelper.CloudMediaAssetStatus = await cloudMediaAssetManagerInstance.getCloudMediaAssetStatus();
+    let taskStatus = cloudMediaAssetStatus.taskStatus;
+    let taskInfo = cloudMediaAssetStatus.taskInfo;
+    let errorCode = cloudMediaAssetStatus.errorCode;
+    let message = `taskStatus: ${taskStatus}, taskInfo: ${taskInfo}, errorCode: ${errorCode}`;
+    console.log(message);
+  } catch (err) {
+    console.error(`getCloudMediaAssetStatusDemo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## PhotoSubtype
 
 枚举，不同[PhotoAsset](#photoasset)的类型。
@@ -5959,6 +6324,16 @@ async function example() {
 | MOVING_PHOTO_EFFECT_MODE<sup>12+</sup>  | 'moving_photo_effect_mode' | 动态照片效果模式。**系统接口**：此接口为系统接口。 |
 | CE_AVAILABLE<sup>13+</sup>  | 'ce_available' | 云增强任务标识。**系统接口**：此接口为系统接口。 |
 | SUPPORTED_WATERMARK_TYPE<sup>14+</sup>  | 'supported_watermark_type' | 水印可编辑标识。**系统接口**：此接口为系统接口。 |
+
+## AlbumKeys
+
+枚举，相册关键信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                              | 值                    | 说明                                                       |
+| --------------------------------- | -------------------- | ----------------------------------------------------- |
+| ALBUM_LPATH<sup>16+</sup>         | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |
 
 ## HiddenPhotosDisplayMode<sup>11+</sup>
 
@@ -6280,3 +6655,77 @@ async function example() {
 | BRAND_COMMON |  1 |  支持品牌和通用水印可编辑。 |
 | COMMON |  2 |  支持通用水印可编辑。 |
 | BRAND |  3 |  支持品牌水印可编辑。 |
+
+## CloudMediaDownloadType<sup>14+</sup>
+
+枚举，表示云端媒体资产的下载方式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| DOWNLOAD_FORCE |  0 |  高优先级下载，无需进入息屏充电模式。 |
+| DOWNLOAD_GENTLE |  1 |  低优先级下载，需要进入息屏充电模式。 |
+
+## CloudMediaRetainType<sup>14+</sup>
+
+枚举，表示云端媒体资产的删除方式。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| RETAIN_FORCE |  0 |  删除原文件在云端的本地元数据和缩略图。 |
+
+## CloudMediaAssetTaskStatus<sup>14+</sup>
+
+枚举，表示云端媒体资产的下载任务状态。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| DOWNLOADING |  0 |  当前任务下载中。 |
+| PAUSED |  1 |  当前任务已暂停。 |
+| IDLE |  2 |  当前无下载任务。 |
+
+## CloudMediaTaskPauseCause<sup>14+</sup>
+
+枚举，表示云端媒体资产下载任务暂停的类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- |  ---- |  ---- |
+| NO_PAUSE  |  0 |  正常下载，无暂停。 |
+| TEMPERATURE_LIMIT |  1 |  温度过高。 |
+| ROM_LIMIT |  2 |  本地磁盘空间不足。 |
+| NETWORK_FLOW_LIMIT |  3 |  流量使用有限制，且没有Wi-Fi。 |
+| WIFI_UNAVAILABLE |  4 |  网络异常。 |
+| POWER_LIMIT |  5 |  功耗限制。 |
+| BACKGROUND_TASK_UNAVAILABLE |  6 |  充电息屏未启动。 |
+| FREQUENT_USER_REQUESTS |  7 |  用户请求频繁。 |
+| CLOUD_ERROR |  8 |  端云错误。 |
+| USER_PAUSED |  9 |  用户暂停。 |
+
+## CloudMediaAssetStatus<sup>14+</sup>
+
+云端媒体资产下载任务的详细信息，应用调用云端资产下载任务查询接口的返回类型。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                   | 类型                | 必定提供 | 说明                                              |
+| ---------------------- | ------------------- | ---- | ------------------------------------------------ |
+|taskStatus       |[CloudMediaAssetTaskStatus](#cloudmediaassettaskstatus14)  |是 | 云端媒体资产下载任务状态。 |
+|taskInfo          |string  |是 | 下载资产的的总个数和总大小(byte)，以及未下载的总个数和总大小(byte)。  |
+|errorCode       |[CloudMediaTaskPauseCause](#cloudmediataskpausecause14)  |是 | 云端媒体资产下载任务暂停类型。 |

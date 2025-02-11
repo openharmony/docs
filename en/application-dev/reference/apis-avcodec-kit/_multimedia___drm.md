@@ -5,6 +5,8 @@
 
 The Multimedia_Drm module provides APIs for you to set decryption parameters. After a DRM instance and session are created, you can decrypt a DRM encrypted program.
 
+For details about the development guide and sample, see [Media Data Demuxing](../../media/avcodec/audio-video-demuxer.md).
+
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
 **Since**: 12
@@ -43,7 +45,7 @@ The Multimedia_Drm module provides APIs for you to set decryption parameters. Af
 | typedef struct [OH_AVBuffer](#oh_avbuffer) [OH_AVBuffer](#oh_avbuffer) | Defines a struct for the audio/video buffer.| 
 | typedef struct [OH_AVCencInfo](#oh_avcencinfo) [OH_AVCencInfo](#oh_avcencinfo) | Defines a struct for the audio/video Common Encryption Scheme (CENC) information.| 
 | typedef enum [DrmCencAlgorithm](#drmcencalgorithm) [DrmCencAlgorithm](#drmcencalgorithm) | Defines an enum for the DRM CENC algorithm types.| 
-| typedef enum [DrmCencInfoMode](#drmcencinfomode) [DrmCencInfoMode](#drmcencinfomode) | Defines an enum for the modes for setting the key ID, IV, and subsample information in the CENC information.| 
+| typedef enum [DrmCencInfoMode](#drmcencinfomode) [DrmCencInfoMode](#drmcencinfomode) | Defines an enum for the modes for setting the key ID, IV, and subsample in the CENC information.| 
 | typedef struct [DrmSubsample](_drm_subsample.md) [DrmSubsample](#drmsubsample) | Defines a struct for the subsample type.| 
 
 
@@ -52,7 +54,7 @@ The Multimedia_Drm module provides APIs for you to set decryption parameters. Af
 | Name| Description| 
 | -------- | -------- |
 | [DrmCencAlgorithm](#drmcencalgorithm) {<br>DRM_ALG_CENC_UNENCRYPTED = 0x0, DRM_ALG_CENC_AES_CTR = 0x1,<br>DRM_ALG_CENC_AES_WV = 0x2, DRM_ALG_CENC_AES_CBC = 0x3,<br>DRM_ALG_CENC_SM4_CBC = 0x4, DRM_ALG_CENC_SM4_CTR = 0x5<br>} | Enumerates the DRM CENC algorithm types.| 
-| [DrmCencInfoMode](#drmcencinfomode) {<br>DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET = 0x0,<br>DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET = 0x1 } | Enumerates the modes for setting the key ID, IV, and subsample information in the CENC information.| 
+| [DrmCencInfoMode](#drmcencinfomode) {<br>DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET = 0x0,<br>DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET = 0x1 } | Enumerates the modes for setting the key ID, IV, and subsample in the CENC information.| 
 
 
 ### Functions
@@ -134,7 +136,7 @@ typedef enum DrmCencInfoMode DrmCencInfoMode
 
 **Description**
 
-Defines an enum for the modes for setting the key ID, IV, and subsample information in the CENC information.
+Defines an enum for the modes for setting the key ID, IV, and subsample in the CENC information.
 
 **Since**: 12
 
@@ -211,14 +213,14 @@ enum DrmCencInfoMode
 
 **Description**
 
-Enumerates the modes for setting the key ID, IV, and subsample information in the CENC information.
+Enumerates the modes for setting the key ID, IV, and subsample in the CENC information.
 
 **Since**: 12
 
 | Value| Description| 
 | -------- | -------- |
-| DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET | The key ID, IV, and subsample information is set.| 
-| DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET | The key ID, IV, and subsample information is not set.| 
+| DRM_CENC_INFO_KEY_IV_SUBSAMPLES_SET | The key ID, IV, and subsample are set.| 
+| DRM_CENC_INFO_KEY_IV_SUBSAMPLES_NOT_SET | The key ID, IV, and subsample are not set.| 
 
 
 ## Function Description
@@ -388,7 +390,7 @@ Sets the CENC information mode.
 | Name| Description| 
 | -------- | -------- |
 | cencInfo | Pointer to an **OH_AVCencInfo** instance.| 
-| mode | CENC information mode, indicating whether the key ID, IV, and subsample information is set.| 
+| mode | CENC information mode, indicating whether the key ID, IV, and subsample are set.| 
 
 **Returns**
 

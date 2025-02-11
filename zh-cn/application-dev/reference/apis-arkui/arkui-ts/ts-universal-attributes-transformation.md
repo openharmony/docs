@@ -8,7 +8,7 @@
 
 ## rotate
 
-rotate(options: Optional\<RotateOptions>)
+rotate(value: RotateOptions)
 
 设置组件旋转。
 
@@ -20,13 +20,31 @@ rotate(options: Optional\<RotateOptions>)
 
 **参数：** 
 
+| 参数名 | 类型                                    | 必填 | 说明                                                         |
+| ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [RotateOptions](#rotateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。 |
+
+## rotate<sup>16+</sup>
+
+rotate(options: Optional\<RotateOptions>)
+
+设置组件旋转。与[rotate](#rotate)相比，options参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名  | 类型                                               | 必填 | 说明                                                         |
 | ------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| options | Optional\<[RotateOptions](#rotateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。 |
+| options | Optional\<[RotateOptions](#rotateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行旋转（坐标系如下图所示）。其中，(x,&nbsp;y,&nbsp;z）指定一个矢量，作为旋转轴。<br/>旋转轴和旋转中心点都基于坐标系设定，组件发生位移时，坐标系不会随之移动。<br/>默认值: 在x、y、z都不指定时，x、y、z的默认值分别为0、0、1。指定了x、y、z任何一个值时，x、y、z中未指定的值默认为0。<br/>{<br/>centerX:&nbsp;'50%',<br/>centerY:&nbsp;'50%'<br/>centerZ:&nbsp;0,<br/>perspective:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>centerZ、perspective从API version 10开始支持在ArkTS卡片中使用。<br/>当options的值为undefined时，恢复为无旋转效果。 |
 
 ## translate
 
-translate(translate: Optional\<TranslateOptions>)
+translate(value: TranslateOptions)
 
 设置组件平移。
 
@@ -38,13 +56,31 @@ translate(translate: Optional\<TranslateOptions>)
 
 **参数：** 
 
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [TranslateOptions](#translateoptions对象说明) | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png) |
+
+## translate<sup>16+</sup>
+
+translate(translate: Optional\<TranslateOptions>)
+
+设置组件平移。与[translate](#translate)相比，translate参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名    | 类型                                                     | 必填 | 说明                                                         |
 | --------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| translate | Optional\<[TranslateOptions](#translateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png) |
+| translate | Optional\<[TranslateOptions](#translateoptions对象说明)> | 是   | 可使组件在以组件左上角为坐标原点的坐标系中进行移动（坐标系如下图所示）。其中，x，y，z的值分别表示在对应轴移动的距离，值为正时表示向对应轴的正向移动，值为负时表示向对应轴的反向移动。移动距离支持数字和字符串（比如'10px'，‘10%’）两种类型。<br/>默认值:<br/>{<br/>x:&nbsp;0,<br/>y:&nbsp;0,<br/>z:&nbsp;0<br/>}<br/>单位：vp<br/>![coordinates](figures/coordinates.png)<br/>**说明：**<br/>z轴方向移动时由于观察点位置不变，z的值接近观察点组件会有放大效果，远离则缩小。<br/>![coordinateNode](figures/coordinateNote.png)<br/>当translate的值为undefined时，恢复为无平移效果。 |
 
 ## scale
 
-scale(options: Optional\<ScaleOptions>)
+scale(value: ScaleOptions)
 
 设置组件缩放。
 
@@ -56,13 +92,31 @@ scale(options: Optional\<ScaleOptions>)
 
 **参数：** 
 
+| 参数名 | 类型                                  | 必填 | 说明                                                         |
+| ------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ScaleOptions](#scaleoptions对象说明) | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} |
+
+## scale<sup>16+</sup>
+
+scale(options: Optional\<ScaleOptions>)
+
+设置组件缩放。与[scale](#scale)相比，options参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名  | 类型                                             | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| options | Optional\<[ScaleOptions](#scaleoptions对象说明)> | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>} |
+| options | Optional\<[ScaleOptions](#scaleoptions对象说明)> | 是   | 可以分别设置X轴、Y轴、Z轴的缩放比例，默认值为1，同时可以通过centerX和centerY设置缩放的中心点。<br/>默认值:<br/>{<br/>x:&nbsp;1,<br/>y:&nbsp;1,<br/>z:&nbsp;1,<br/>centerX:'50%',<br/>centerY:'50%'<br/>}<br/>当options的值为undefined时，恢复为无缩放效果。 |
 
 ## transform
 
-transform(transform: Optional\<object>)
+transform(value: object)
 
 设置组件的变换矩阵。
 
@@ -72,9 +126,25 @@ transform(transform: Optional\<object>)
 
 **参数：** 
 
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | object | 是   | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。 |
+
+## transform<sup>16+</sup>
+
+transform(transform: Optional\<object>)
+
+设置组件的变换矩阵。与[transform](#transform)相比，transform参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名 | 类型                                    | 必填 | 说明                     |
 | ------ | --------------------------------------- | ---- | ------------------------ |
-| transform | Optional\<object> | 是   | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。 |
+| transform | Optional\<object> |  | 设置当前组件的变换矩阵。object当前仅支持[Matrix4Transit](../js-apis-matrix4.md)矩阵对象类型。<br/>当transform的值为undefined时，恢复为单位矩阵的效果。 |
 
 ## RotateOptions对象说明
 
@@ -151,17 +221,20 @@ struct TransformExample {
           centerX: '50%',
           centerY: '50%',
           angle: 300
-        }) // 组件以矢量(0,0,1)为旋转轴，绕中心点顺时针旋转300度
+        })// 组件以矢量(0,0,1)为旋转轴，绕中心点顺时针旋转300度
         .width(100).height(100).backgroundColor(0xAFEEEE)
 
       Text('translate').width('90%').fontColor(0xCCCCCC).padding(10).fontSize(14)
       Row()
-        .translate({ x: 100, y: 10 }) // x轴方向平移100，y轴方向平移10
-        .width(100).height(100).backgroundColor(0xAFEEEE).margin({ bottom: 10 })
+        .translate({ x: 100, y: 10 })// x轴方向平移100，y轴方向平移10
+        .width(100)
+        .height(100)
+        .backgroundColor(0xAFEEEE)
+        .margin({ bottom: 10 })
 
       Text('scale').width('90%').fontColor(0xCCCCCC).padding(15).fontSize(14)
       Row()
-        .scale({ x: 2, y: 0.5 }) // 高度缩小一倍，宽度放大一倍，z轴在2D下无效果
+        .scale({ x: 2, y: 0.5 })// 高度缩小一倍，宽度放大一倍，z轴在2D下无效果
         .width(100).height(100).backgroundColor(0xAFEEEE)
 
       Text('Matrix4').width('90%').fontColor(0xCCCCCC).padding(15).fontSize(14)
@@ -247,8 +320,8 @@ struct MatrixExample {
         .width(100)
         .height(60)
         .borderWidth(1)
-          // 绕(100vp,60vp)的锚点旋转90度，rotate或scale的centerX、centerY为组件锚点
         .rotate({
+          // 绕(100vp,60vp)的锚点旋转90度，rotate或scale的centerX、centerY为组件锚点
           z: 1,
           angle: 90,
           centerX: 100,
@@ -260,11 +333,11 @@ struct MatrixExample {
         .width(100)
         .height(60)
         .borderWidth(1)
-          // 组件锚点(centerX,centerY)默认为(50%,50%)，即锚点在(50vp,30vp)
-          // transform的rotate指定(centerX,centerY)为(50vp,30vp)，相对于在组件本身锚点基础上再额外偏移(50vp,30vp)
-          // 此次变换相当于绕(100vp,60vp)旋转，和"Hello2"实现同样的旋转效果
         .transform(matrix4.identity()
           .rotate({
+            // 组件锚点(centerX,centerY)默认为(50%,50%)，即锚点在(50vp,30vp)
+            // transform的rotate指定(centerX,centerY)为(50vp,30vp)，相对于在组件本身锚点基础上再额外偏移(50vp,30vp)
+            // 此次变换相当于绕(100vp,60vp)旋转，和"Hello2"实现同样的旋转效果
             z: 1,
             angle: 90,
             centerX: vp2px(50),
@@ -276,15 +349,14 @@ struct MatrixExample {
         .width(100)
         .height(60)
         .borderWidth(1)
+        .scale({
           // 当设置x或y时，centerX和centerY才能生效
           // 设置组件锚点为(100vp,60vp)
-        .scale({
           x: 1,
           y: 1,
           centerX: 100,
           centerY: 60
-        })
-          // transform的rotate不指定centerX、centerY，此次旋转的中心相对于组件本身锚点没有额外偏移
+        })// transform的rotate不指定centerX、centerY，此次旋转的中心相对于组件本身锚点没有额外偏移
           // 该组件通过scale设置的锚点，绕(100vp,60vp)进行旋转，和"Hello2"实现同样的旋转效果
         .transform(matrix4.identity().rotate({ z: 1, angle: 90 }))
     }.width('100%')

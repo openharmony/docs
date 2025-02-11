@@ -172,7 +172,7 @@ function initSession(keyAlias: string, huksOptions: huks.HuksOptions, throwObjec
     }
   });
 }
-
+/* 初始化HUKS中的会话，获取挑战值 */
 async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise doInit`);
   let throwObject: throwObject = { isThrow: false };
@@ -194,7 +194,7 @@ async function publicInitFunc(keyAlias: string, huksOptions: huks.HuksOptions) {
     console.error(`promise: doInit input arg invalid, ` + JSON.stringify(error));
   }
 }
-
+/* 调用UserIAM拉起指纹认证，触发HUKS的访问控制流程 */
 function userIAMAuthFinger(huksChallenge: Uint8Array) {
   // 获取认证对象
   let authTypeList: userAuth.UserAuthType[] = [authType];

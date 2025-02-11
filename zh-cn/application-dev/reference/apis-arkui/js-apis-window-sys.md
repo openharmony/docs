@@ -143,13 +143,13 @@ import { window } from '@kit.ArkUI';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 只读 | 必填 | 说明                                          |
+| 名称   | 类型 | 只读 | 可选 | 说明                                          |
 | ------ | -------- | ---- |---- |---------------------------------------------|
-| x      | number   | 否   | 否  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| y      | number   | 否   | 否  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| z      | number   | 否   | 否  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| pivotX | number   | 否   | 否  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| pivotY | number   | 否   | 否  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
+| x      | number   | 否   | 是  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 是  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 是  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 是  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -159,11 +159,11 @@ import { window } from '@kit.ArkUI';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明                         |
+| 名称 | 类型 | 只读 | 可选 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 否  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| y    | number   | 否   | 否  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| z    | number   | 否   | 否  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| x    | number   | 否   | 是  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -925,7 +925,7 @@ image.createPixelMap(color, initializationOptions).then((pixelMap: image.PixelMa
 
 getSnapshot(windowId: number): Promise<image.PixelMap>
 
-获取指定窗口截图，使用Promise异步回调
+获取指定窗口相同尺寸截图，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2400,47 +2400,6 @@ windowClass.raiseToAppTop((err: BusinessError) => {
 });
 ```
 
-### raiseToAppTop<sup>10+</sup>
-
-raiseToAppTop(): Promise&lt;void&gt;
-
-提升应用子窗口到应用顶层。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invalid. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let promise = windowClass.raiseToAppTop();
-promise.then(() => {
-  console.info('Succeeded in raising the window to app top.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
-});
-```
-
 ### setWaterMarkFlag<sup>10+</sup>
 
 setWaterMarkFlag(enable: boolean): Promise&lt;void&gt;
@@ -2608,7 +2567,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**
@@ -2679,7 +2638,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取。 |
 
 **返回值：**
 
@@ -2810,80 +2769,6 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### setRaiseByClickEnabled<sup>10+</sup>
-
-setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
-
-禁止/使能子窗点击抬升功能。使用Promise异步回调。
-
-通常来说，点击一个子窗口，会将该子窗口显示到最上方，如果设置为false，那么点击子窗口的时候，不会将该子窗口显示到最上方，而是保持不变。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明       |
-| -------- | ------------------------- | ---- | ---------- |
-| enable   | boolean                   | 是   | 设置子窗口点击抬升功能是否使能，true表示使能，false表示禁止。 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
-| 1300002 | This window state is abnormal. |
-| 1300003 | This window manager service works abnormally. |
-| 1300004 | Unauthorized operation. |
-| 1300009 | The parent window is invalid. |
-
-**示例：**
-
-```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-export default class EntryAbility extends UIAbility {
-  // ...
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    // 创建子窗
-    try {
-      let subWindow = windowStage.createSubWindow("testSubWindow");
-      subWindow.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        windowClass = data;
-        let enabled = false;
-        let promise = windowClass.setRaiseByClickEnabled(enabled);
-        promise.then(()=> {
-          console.info('Succeeded in disabling the raise-by-click function.');
-        }).catch((err: BusinessError)=>{
-          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
-        });
-      });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
-  }
-}
-```
-
 ### enableDrag<sup>14+</sup>
 
 enableDrag(enable: boolean): Promise&lt;void&gt;
@@ -2943,7 +2828,7 @@ try {
 
 hideNonSystemFloatingWindows(shouldHide: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置是否隐藏非系统级悬浮窗口。使用callback异步回调。
+设置是否隐藏非系统级悬浮窗口，仅在非2in1设备生效。使用callback异步回调。
 
 非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
 
@@ -3016,7 +2901,7 @@ export default class EntryAbility extends UIAbility {
 
 hideNonSystemFloatingWindows(shouldHide: boolean): Promise&lt;void&gt;
 
-设置是否隐藏非系统级悬浮窗口。使用callback异步回调。
+设置是否隐藏非系统级悬浮窗口，仅在非2in1设备生效。使用callback异步回调。
 
 非系统级悬浮窗口是指非系统应用创建的悬浮窗口。默认情况下，一个系统应用主窗口可以与非系统级悬浮窗口共同显示，即该主窗口可以被上层的非系统级悬浮窗口遮挡，如果设置为true，则所有的非系统级悬浮窗口会被隐藏，此时该主窗口就不会被上层的非系统级悬浮窗口遮挡了。
 
@@ -3804,5 +3689,5 @@ try {
 | windowName   | string | 否 | 否  | 窗口名。 |
 | windowAttribute   | [ExtensionWindowAttribute](#extensionwindowattribute14) | 否 | 否   | 窗口的属性。用于配置创建的窗口是子窗口还是系统窗口。当windowAttribute配置为SUB_WINDOW时须配置subWindowOptions，当windowAttribute配置为SYSTEM_WINDOW时须配置systemWindowOptions，否则创建窗口失败。|
 | windowRect   | [Rect](js-apis-window.md#rect7) | 否 | 否   | 窗口矩形区域。 |
-| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions12) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
+| subWindowOptions   | [SubWindowOptions](js-apis-window.md#subwindowoptions11) | 否 | 是 | 创建子窗口的参数。无默认参数，当windowAttribute配置为SUB_WINDOW时必选，否则会导致窗口创建失败。 |
 | systemWindowOptions   | [SystemWindowOptions](#systemwindowoptions14) | 否 | 是 | 创建系统窗口的参数。无默认参数，当windowAttribute配置为SYSTEM_WINDOW时必选，否则会导致窗口创建失败。 |

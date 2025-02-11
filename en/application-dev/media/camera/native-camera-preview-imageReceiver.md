@@ -32,6 +32,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        libimage_receiver.so
        libnative_image.so
        libohcamera.so
+       libnative_buffer.so
    )
    ```
 
@@ -69,9 +70,7 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
 
    ```c++
    OH_ImageReceiverNative *receiver; // Instance created in step 3.
-   uint32_t PREVIEW_WIDTH = 1080; // Width of the created preview stream.
-   uint32_t PREVIEW_HEIGHT = 1080; // Height of the created preview stream.
-   
+
    // Image callback. For details, see Media/Image Kit.
    static void OnCallback(OH_ImageReceiverNative *receiver) {
        OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
@@ -79,6 +78,12 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        OH_ImageNative *image = nullptr;
        // Obtain the image from the bufferQueue.
        Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
+       // Read the image width and height.
+       Image_Size size;
+       errCode = OH_ImageNative_GetImageSize(image, &size);
+       OH_LOG_INFO(LOG_APP, "OH_ImageNative_GetImageSize errCode:%{public}d width:%{public}d height:%{public}d", errCode,
+           size.width, size.height);
+
        // Obtain the image's component type.
        size_t typeSize = 0;
        OH_ImageNative_GetComponentTypes(image, nullptr, &typeSize);
@@ -99,24 +104,25 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        OH_NativeBuffer_Map(imageBuffer, &srcVir);
        uint8_t* srcBuffer = static_cast<uint8_t*>(srcVir);
        // Check whether the row stride is the same as the width of the preview stream. If they are different, consider the impact of the stride on buffer reading.
-       if (stride == PREVIEW_WIDTH) {
+       if (stride == size.width) {
            // Process the buffer by calling the API that does not support stride.
        } else {
            // Process the buffer by calling the API that supports stride or remove the stride data.
            // The following uses the operation of removing the stride data as an example. Specifically, remove the stride data from the byteBuffer and obtain a new dstBuffer by means of copy.
-           size_t dstBufferSize = PREVIEW_WIDTH * PREVIEW_HEIGHT * 1.5; // Camera preview stream in NV21 format.
+           size_t dstBufferSize = size.width * size.height * 1.5; // Camera preview stream in NV21 format.
            std::unique_ptr<uint8_t[]> dstBuffer = std::make_unique<uint8_t[]>(dstBufferSize);
            uint8_t *dstPtr = dstBuffer.get();
-           for (int j = 0; j < PREVIEW_HEIGHT * 1.5; j++) {
-               memcpy(dstPtr, srcBuffer, PREVIEW_WIDTH);
-               dstPtr += PREVIEW_WIDTH;
+           for (int j = 0; j < size.height * 1.5; j++) {
+               memcpy(dstPtr, srcBuffer, size.width);
+               dstPtr += size.width;
                srcBuffer += stride;
            }
            // Process the buffer by calling the API that does not support stride.
        }
-       // Release the buffer to ensure that the bufferQueue is rotated properly.
-       OH_NativeBuffer_Unmap(imageBuffer);
+       // Release resources.
+       OH_NativeBuffer_Unmap(imageBuffer); // Release the buffer to ensure that the bufferQueue is rotated properly.
        errCode = OH_ImageNative_Release(image);
+	   delete[] types;
    }
    
    void OnImageReceiver() {

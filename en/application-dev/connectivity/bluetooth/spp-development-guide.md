@@ -17,7 +17,7 @@ The following table describes the related APIs.
 
 | API                            | Description                                                                      |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
-| sppListen()                        | Creates an SPP listening socket for the server.                                                      |
+| sppListen()                        | Creates a listening socket for the server.                                                      |
 | sppAccept()                        | Accepts a connection request from the client over a socket of the server.                                                 |
 | sppConnect()                       | Initiates an SPP connection to a remote device from the client.                                                    |
 | sppCloseServerSocket()             | Closes the listening socket of the server.                                                          |
@@ -38,7 +38,7 @@ The following table describes the related APIs.
 7. (Optional) Subscribe to the data written by the client.
 8. Close the server socket.
 9. Close the client socket.
-Example:
+10. Example:
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
@@ -112,7 +112,7 @@ Example:
     console.info('sppCloseClientSocket success');
     ```
 
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+11. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
 
 ### Connecting to the Peer Device over a Socket
 1. Import the **socket** module.
@@ -120,7 +120,7 @@ For details about the error codes, see [Bluetooth Error Codes](../../reference/a
 3. Enable Bluetooth on the device.
 4. Start Bluetooth scanning to obtain the MAC address of the peer device.
 5. Connect to the peer device.
-Example:
+6. Example:
 
     ```ts
     import { socket } from '@kit.ConnectivityKit';
@@ -143,4 +143,4 @@ Example:
     })
     ```
 
-For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).
+7. For details about the error codes, see [Bluetooth Error Codes](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md).

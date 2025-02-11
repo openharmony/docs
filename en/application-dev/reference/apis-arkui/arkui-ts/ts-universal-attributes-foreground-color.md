@@ -18,9 +18,25 @@ Sets the foreground color of the component. If the component does not have a for
 
 **Parameters**
 
-| Name| Type                                                        | Mandatory| Description                                                |
-| ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-types.md#coloringstrategy10) | Yes  | Foreground color. The value can be a specific color or a coloring strategy. Property animations are supported.|
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-appendix-enums.md#coloringstrategy10) | Yes  | Foreground color. The value can be a specific color or a coloring strategy. Property animations are supported.|
+
+## foregroundColor<sup>16+</sup>
+
+foregroundColor(color: Optional\<ResourceColor | ColoringStrategy>)
+
+Sets the foreground color of the component. If the component does not have a foreground color set, it inherits the color from its parent component by default. Compared to [foregroundColor](#foregroundcolor), the **color** parameter supports the **undefined** type.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor) \| [ColoringStrategy](ts-appendix-enums.md#coloringstrategy10)> | Yes  | Foreground color. The value can be a specific color or a coloring strategy. Property animations are supported.<br>If **color** is set to **undefined**, the previous value is retained.|
 
 ## Example
 
@@ -82,7 +98,7 @@ struct foregroundColorInherit {
     Column() {
       Button('Foreground Color: Set to Orange').fontSize(20).foregroundColor(Color.Orange).backgroundColor(Color.Gray)
       Divider()
-      Button ('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
+      Button('Foreground Color: Inherited from Parent Component When Not Set').fontSize(20).backgroundColor(Color.Gray)
     }.foregroundColor(Color.Red)
   }
 }

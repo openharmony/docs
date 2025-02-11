@@ -1,6 +1,6 @@
 # Property Animation (animation)
 
-With property animations, you can animate changes to certain component properties, such as [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [opacity](ts-universal-attributes-opacity.md#opacity), [scale](ts-universal-attributes-transformation.md#scale), [rotate](ts-universal-attributes-transformation.md#rotate) and [translate](ts-universal-attributes-transformation.md#translate). In a property animation that involves width and height changes, a component's content (such as text, [canvas](ts-components-canvas-canvas.md#canvas) content, and [linear gradient](ts-universal-attributes-gradient-color.md#lineargradient)) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md#renderfit) attribute.
+With property animations, you can animate changes to certain component properties, such as [width](ts-universal-attributes-size.md#width), [height](ts-universal-attributes-size.md#height), [backgroundColor](ts-universal-attributes-background.md#backgroundcolor), [opacity](ts-universal-attributes-opacity.md#opacity), [scale](ts-universal-attributes-transformation.md#scale), [rotate](ts-universal-attributes-transformation.md#rotate) and [translate](ts-universal-attributes-transformation.md#translate). In a property animation that involves width and height changes, a component's content (such as text and [canvas](ts-components-canvas-canvas.md#canvas) content) is changed straight to the final state. To enable the content to change with the width and height during the animation process, use the [renderFit](ts-universal-attributes-renderfit.md#renderfit) attribute.
 
 > **NOTE**
 >
@@ -19,7 +19,44 @@ animation(value:AnimateParam)
 | ----- | --------------------------------- | ---- | ------------------------------------- |
 | value | [AnimateParam](ts-explicit-animation.md#animateparam) | Yes   | Animation settings.                          |
 
+Property animations only affect attributes that are specified before the **animation** API and do not affect properties of the component constructor.
+ ```
+@State widthSize: number = 250;
+@State heightSize: number = 100;
+@State rotateAngle: number = 0;
+@State flag: boolean = true;
+@State space: number = 10;
+// ...
+Column({ space: this.space }) // Changing space in the Column constructor will not be animated.
+  .onClick(() => {
+    if (this.flag) {
+      this.widthSize = 150;
+      this.heightSize = 60;
+      this.space = 20; // Changing this.space will not be animated.
+    } else {
+      this.widthSize = 250;
+      this.heightSize = 100;;
+      this.space = 10; //  Changing this.space will not be animated.
+    }
+    this.flag = !this.flag;
+  })
+  .margin(30)
+  .width(this.widthSize) // Only effective if specified before the animation API.
+  .height(this.heightSize) // Only effective if specified before the animation API.
+  .animation({
+    duration: 2000,
+    curve: Curve.EaseOut,
+    iterations: 3,
+    playMode: PlayMode.Normal
+  })
+  // .width(this.widthSize) // The animation API does not take effect here.
+  // .height(this.heightSize) //  The animation API does not take effect here.
+```
+
 ## Example
+
+This example demonstrates property animations using the animation API.
+
 ```ts
 // xxx.ets
 @Entry

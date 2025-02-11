@@ -56,9 +56,9 @@ let hi2 = 'hello, world';
 
 ### 类型
 
-#### `Number`类型
+#### `number`类型
 
-ArkTS提供`number`和`Number`类型，任何整数和浮点数都可以被赋给此类型的变量。
+ArkTS提供`number`类型，任何整数和浮点数都可以被赋给此类型的变量。
 
 数字字面量包括整数字面量和十进制浮点数字面量。
 
@@ -97,7 +97,7 @@ factorial(n3)  //  1
 factorial(n4)  //  9.33262154439441e+157 
 ```
 
-`number`类型在表示大整数时会造成精度丢失。在开发时可以按需使用`BigInt`类型来确保精度：
+`number`类型在表示大整数时会造成精度丢失。在开发时可以按需使用`bigInt`类型来确保精度：
 
 ```typescript
 
@@ -106,7 +106,7 @@ console.log('bigIntger' + bigIntger.toString());
 
 ```
 
-#### `Boolean`类型
+#### `boolean`类型
 
 `boolean`类型由`true`和`false`两个逻辑值组成。
 
@@ -122,7 +122,7 @@ if (isDone) {
 }
 ```
 
-#### `String`类型
+#### `string`类型
 
 `string`代表字符序列；可以使用转义字符来表示字符。
 
@@ -135,7 +135,7 @@ let a = 'Success';
 let s3 = `The result is ${a}`;
 ```
 
-#### `Void`类型
+#### `void`类型
 
 `void`类型用于指定函数没有返回值。
 此类型只有一个值，同样是`void`。由于`void`是引用类型，因此它可以用于泛型类型参数。
@@ -151,7 +151,7 @@ let instance: Class <void>
 
 `Object`类型是所有引用类型的基类型。任何值，包括基本类型的值（它们会被自动装箱），都可以直接被赋给`Object`类型的变量。`object`类型则用于表示除基本类型外的类型。
 
-#### `Array`类型
+#### `array`类型
 
 `array`，即数组，是由可赋值给数组声明中指定的元素类型的数据组成的对象。
 数组可由数组复合字面量（即用方括号括起来的零个或多个表达式的列表，其中每个表达式为数组中的一个元素）来赋值。数组的长度由数组中元素的个数来确定。数组中第一个元素的索引为0。
@@ -162,7 +162,7 @@ let instance: Class <void>
 let names: string[] = ['Alice', 'Bob', 'Carol'];
 ```
 
-#### `Enum`类型
+#### `enum`类型
 
 `enum`类型，又称枚举类型，是预先定义的一组命名值的值类型，其中命名值又称为枚举常量。
 使用枚举常量时必须以枚举类型名称为前缀。
@@ -613,7 +613,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。使用rest参数时，允许函数或方法接受任意数量的实参。
+函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {
@@ -1700,7 +1700,7 @@ X // 编译时错误：'X'不可见
 
 #### 动态导入
 应用开发的有些场景中，如果希望根据条件导入模块或者按需导入模块，可以使用动态导入代替静态导入。
-import()语法通常称为动态导入dynamic import，是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
+import()语法通常称为动态导入（dynamic import），是一种类似函数的表达式，用来动态导入模块。以这种方式调用，将返回一个promise。
 如下例所示，import(modulePath)可以加载模块并返回一个promise，该promise resolve为一个包含其所有导出的模块对象。该表达式可以在代码中的任意位置调用。
 
 ```typescript

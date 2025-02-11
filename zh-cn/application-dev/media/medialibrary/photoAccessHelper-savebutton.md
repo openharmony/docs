@@ -1,8 +1,51 @@
 # 保存媒体库资源
 
-## 安全控件保存
+当用户需要保存图片、视频等用户文件到图库时，无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，应用可以通过[安全控件](#使用安全控件保存媒体库资源)或[授权弹窗](#使用弹窗授权保存媒体库资源)的方式，将用户指定的媒体资源保存到图库中。
 
-下面以使用安全控件创建一张图片资源为例。使用安全控件创建媒体资源无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，详情请参考[安全控件的保存控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。
+## 获取支持保存的资源格式
+
+下面以获取支持保存的图片类型资源格式为例。
+
+**开发步骤**
+
+调用[phAccessHelper.getSupportedPhotoFormats](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getsupportedphotoformats16)接口获取支持保存的图片类型资源格式。
+
+```ts
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+
+let context = getContext(this);
+let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
+@Entry
+@Component
+
+struct Index {
+  @State outputText: string = '支持的类型为：\n';
+
+  async function example(){
+    try {
+      this.outputText = '支持的类型为：\n';
+      //参数为1表示获取支持的图片类型格式，参数为2表示获取支持的视频类型格式
+      let imageFormat  = await phAccessHelper.getSupportedPhotoFormats(1);
+      let result = "";
+      for (let i = 0; i < imageFormat.length; i++) {
+        result += imageFormat[i];
+        if (i !== imageFormat.length - 1) {
+          result += ', ';
+        }
+      }
+      this.outputText += result;
+      console.info('getSupportedPhotoFormats success, data is ' + outputText);
+    } catch (error) {
+      console.error('getSupportedPhotoFormats failed, errCode is', error);
+    }
+  }
+```
+
+## 使用安全控件保存媒体库资源
+
+安全控件的介绍可参考[安全控件的保存控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。
+
+下面以使用安全控件创建一张图片资源为例。
 
 **开发步骤**
 
@@ -53,9 +96,9 @@ struct Index {
 
 除了上述通过fileUri从应用沙箱指定资源内容的方式，开发者还可以通过ArrayBuffer的方式添加资源内容，详情请参考[addResource](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)接口。
 
-## 弹窗授权保存
+## 使用弹窗授权保存媒体库资源
 
-下面以弹窗授权的方式保存一张图片资源为例。使用弹窗授权保存媒体资源无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'。
+下面以弹窗授权的方式保存一张图片资源为例。
 
 **开发步骤**
 

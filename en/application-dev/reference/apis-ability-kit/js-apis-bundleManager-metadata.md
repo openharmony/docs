@@ -18,3 +18,4 @@ The **Metadata** module provides the configuration about the module, UIAbility, 
 | name     | string | No  | No  | Metadata name.|
 | value    | string | No  | No  | Metadata value.  |
 | resource | string | No  | No  | Metadata resource.|
+| valueId<sup>16+</sup>  | number | Yes  | Yes  | ID of the metadata value. If **valueId** is not set to **0**, the current metadata value is customized, and **valueId** must be used to obtain the corresponding value from the resource manager module. If **valueId** is set to **0**, the current metadata value is a fixed string.|

@@ -1,6 +1,6 @@
 # LazyForEach：数据懒加载
 
-API参数说明见：[LazyForEach API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
+API参数说明见：[LazyForEach API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)。
 
 LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
 
@@ -14,7 +14,7 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 - 键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
 - LazyForEach必须使用DataChangeListener对象进行更新，对第一个参数dataSource重新赋值会异常；dataSource使用状态变量时，状态变量改变不会触发LazyForEach的UI刷新。
 - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，需要生成不同于原来的键值来触发组件刷新。
-- LazyForEach必须和[@Reusable](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-component-reuse-V5#section5601835174020)装饰器一起使用才能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[使用规则](https://developer.huawei.com/consumer/cn/doc/best-practices-V5/bpta-component-reuse-V5#section5923195311402)。
+- LazyForEach和[@Reusable](arkts-reusable.md)装饰器一起使用能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[列表滚动配合LazyForEach使用](arkts-reusable.md#列表滚动配合LazyForEach使用)。
 
 ## 键值生成规则
 
@@ -44,11 +44,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -110,11 +105,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -172,11 +162,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -242,11 +227,6 @@ class MyDataSource extends BasicDataSource {
 
   public getAllData(): string[] {
     return this.dataArray;
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -318,18 +298,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray;
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
   }
   
   public moveData(from: number, to: number): void {
@@ -400,18 +370,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
   }
   
   public changeData(index: number, data: string): void {
@@ -476,22 +436,8 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
-  }
-  
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-  
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
     
   public reloadData(): void {
@@ -713,10 +659,10 @@ struct MyComponent {
 // 修改之后的数组
 ["Hello a","Hello c","Hello d","Hello b","Hello g","Hello f","Hello e","Hello h","Hello 1","Hello 2","Hello i","Hello j","Hello m","Hello n","Hello o","Hello p","Hello q","Hello r"]
 ```
-"Hello b" 从第2项变成第4项，因此第一个 operation 为 `{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }`  
-"Hello e" 跟 "Hello g" 对调了，而 "Hello e" 在修改前的原数组中的 index=4，"Hello g" 在修改前的原数组中的 index=6, 因此第二个 operation 为 `{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }`  
-"Hello 1","Hello 2" 在 "Hello h" 之后插入，而 "Hello h" 在修改前的原数组中的 index=7，因此第三个 operation 为 `{ type: DataOperationType.ADD, index: 8, count: 2 }`  
-"Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`  
+"Hello b" 从第2项变成第4项，因此第一个 operation 为 `{ type: DataOperationType.MOVE, index: { from: 1, to: 3 } }`。
+"Hello e" 跟 "Hello g" 对调了，而 "Hello e" 在修改前的原数组中的 index=4，"Hello g" 在修改前的原数组中的 index=6, 因此第二个 operation 为 `{ type: DataOperationType.EXCHANGE, index: { start: 4, end: 6 } }`。
+"Hello 1","Hello 2" 在 "Hello h" 之后插入，而 "Hello h" 在修改前的原数组中的 index=7，因此第三个 operation 为 `{ type: DataOperationType.ADD, index: 8, count: 2 }`。
+"Hello k","Hello l" 被删除了，而 "Hello k" 在原数组中的 index=10，因此第四个 operation 为 `{ type: DataOperationType.DELETE, index: 10, count: 2 }`。
 
 3. 调用一次onDatasetChange，一个index对应的数据只能被操作一次，若被操作多次，LazyForEach仅使第一个操作生效。
 4. 部分操作可以由开发者传入键值，LazyForEach不会再去重复调用keygenerator获取键值，需要开发者保证传入的键值的正确性。
@@ -738,11 +684,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -822,11 +763,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -912,11 +848,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -996,11 +927,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1072,11 +998,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public moveDataWithoutNotify(from: number, to: number): void {
     let tmp = this.dataArray.splice(from, 1);
     this.dataArray.splice(to, 0, tmp[0])
@@ -1086,17 +1007,18 @@ class MyDataSource extends BasicDataSource {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
   }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
 }
 
 @Entry
 @Component
 struct Parent {
   private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.data.pushData(i.toString())
+    }
+  }
 
   build() {
     Row() {
@@ -1118,11 +1040,6 @@ struct Parent {
       .width('100%')
       .height('100%')
       .backgroundColor("#FFDCDCDC")
-    }
-  }
-  aboutToAppear(): void {
-    for (let i = 0; i < 100; i++) {
-      this.data.pushData(i.toString())
     }
   }
 }
@@ -1147,11 +1064,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -1216,11 +1128,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): string {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: string): void {
@@ -1291,11 +1198,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1375,11 +1277,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1400,7 +1297,6 @@ class StringData {
 @Entry
 @Component
 struct MyComponent {
-  // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -1425,6 +1321,7 @@ struct MyComponent {
 
 @Component
 struct ChildComponent {
+  // 用状态变量来驱动UI刷新，而不是通过Lazyforeach的api来驱动UI刷新
   @ObjectLink data: StringData
   build() {
     Column() {
@@ -1457,11 +1354,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {
@@ -1547,11 +1439,6 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: StringData): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -1635,23 +1522,9 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
-  }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
 
   operateData():void {
@@ -1721,23 +1594,9 @@ class MyDataSource extends BasicDataSource {
     return this.dataArray[index];
   }
 
-  public addData(index: number, data: string): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
-  }
-
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
-  }
-
-  public deleteData(index: number): void {
-    this.dataArray.splice(index, 1);
-    this.notifyDataDelete(index);
-  }
-
-  public changeData(index: number): void {
-    this.notifyDataChange(index);
   }
 
   operateData():void {
@@ -1808,11 +1667,6 @@ class MyDataSource extends BasicDataSource {
 
   public getData(index: number): StringData {
     return this.dataArray[index];
-  }
-
-  public addData(index: number, data: StringData): void {
-    this.dataArray.splice(index, 0, data);
-    this.notifyDataAdd(index);
   }
 
   public pushData(data: StringData): void {

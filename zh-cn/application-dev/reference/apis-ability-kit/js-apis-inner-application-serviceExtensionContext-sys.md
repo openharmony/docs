@@ -40,11 +40,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
-启动Ability。
+启动Ability。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -122,11 +122,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options?: StartOptions): Promise\<void>;
 
-启动Ability，结果以Promise的形式返回。
+启动Ability，结果以Promise的形式返回。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -213,11 +213,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-启动Ability，结果以Callback的形式返回。
+启动Ability，结果以Callback的形式返回。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -300,7 +300,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void>): void;
 
-根据account启动Ability（callback形式）。
+根据account启动Ability（callback形式）。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -310,7 +310,7 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -392,7 +392,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-根据account启动Ability（callback形式）。
+根据account启动Ability（callback形式）。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -402,7 +402,7 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -489,7 +489,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void>;
 
-根据account启动Ability（Promise形式）。
+根据account启动Ability（Promise形式）。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -499,7 +499,7 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -594,7 +594,7 @@ startServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -665,7 +665,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -744,11 +744,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback:
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -824,11 +824,11 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -902,7 +902,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -910,7 +910,7 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -982,7 +982,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用callback异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -990,7 +990,7 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1065,7 +1065,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
-使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。
+使用设置的caller信息启动一个Ability，caller信息由want携带，在系统服务层识别，Ability可以在onCreate生命周期的want参数中获取到caller信息。使用该接口启动一个Ability时，want的caller信息不会被当前自身的应用信息覆盖，系统服务层可获取到初始caller的信息。使用Promise异步回调。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1073,7 +1073,7 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1160,7 +1160,7 @@ stopServiceExtensionAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1227,7 +1227,7 @@ stopServiceExtensionAbility(want: Want): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1301,11 +1301,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number, callback: 
 > 
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1376,11 +1376,11 @@ stopServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\<
 > 
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1450,11 +1450,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-停止Ability自身。
+停止Ability自身。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1501,11 +1501,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止Ability自身。通过Promise返回结果。
+停止Ability自身。通过Promise返回结果。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
@@ -1549,7 +1549,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-将当前Ability连接到一个ServiceExtensionAbility。
+将当前Ability连接到一个ServiceExtensionAbility。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1557,7 +1557,7 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1634,18 +1634,20 @@ class EntryAbility extends ServiceExtensionAbility {
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-将当前Ability连接到一个指定account的ServiceExtensionAbility。
+将当前Ability连接到一个指定account的ServiceExtensionAbility。仅支持在主线程调用。
+
+当前仅在phone、tablet设备上生效。
 
 > **说明：**
 >
 > 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。  
 > 当accountId为当前用户时，无需进行权限校验。
 
-**需要权限**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1726,11 +1728,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback&lt;void&gt;): void;
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1786,11 +1788,11 @@ class EntryAbility extends ServiceExtensionAbility {
 
 disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;;
 
-将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。
+将一个Ability与绑定的服务类型的Ability解绑，断开连接之后需要将连接成功时返回的remote对象置空(Promise形式返回结果)。仅支持在主线程调用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1860,11 +1862,11 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
+**需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -1974,7 +1976,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
-启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
+启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -1982,7 +1984,7 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2051,7 +2053,7 @@ class EntryAbility extends ServiceExtensionAbility {
 startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<void>): void;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。启动结果以callback的形式返回开发者。
-当开发者需要携带启动参数时可以选择此API。
+当开发者需要携带启动参数时可以选择此API。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -2059,7 +2061,7 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2133,7 +2135,7 @@ class EntryAbility extends ServiceExtensionAbility {
 startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 启动一个指定的Ability，如果这个Ability有多个实例，将拉起最近启动的那个实例。
-当开发者期望启动结果以Promise形式返回时可以选择此API。
+当开发者期望启动结果以Promise形式返回时可以选择此API。仅支持在主线程调用。
 
 > **说明：**
 >
@@ -2141,7 +2143,7 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2222,11 +2224,11 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
  - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
  - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
-**需要权限**: ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.ABILITY_BACKGROUND_COMMUNICATION, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2307,7 +2309,7 @@ class EntryAbility extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want): Promise\<void>
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用promise形式异步回调。仅支持在主线程调用。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
@@ -2317,7 +2319,7 @@ requestModalUIExtension(pickerWant: Want): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2384,7 +2386,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 
 requestModalUIExtension(pickerWant: Want, callback: AsyncCallback\<void>): void
 
-请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。
+请求在指定的前台应用上拉起对应类型的UIExtensionAbility。其中，前台应用通过want.parameters中bundleName来指定，如果未指定前台应用、bundleName指定的应用未在前台或指定的前台应用的bundleName不正确，则在系统界面上直接拉起UIExtensionAbility；被拉起的UIExtensionAbility通过want中bundleName、abilityName、moduleName字段共同确定，同时需要通过want.parameters中的ability.want.params.uiExtensionType字段配置UIExtensionAbility的类型。使用callback形式异步回调。仅支持在主线程调用。
 
 在前台应用上拉起UIExtensionAility之前，必须确保该应用已完成页面初始化，否则将导致拉起失败、并出现"uiContent is nullptr"的报错信息。应用可通过监听页面加载状态来判断拉起UIExtensionAbility的时机，页面初始化成功后会出现关键日志信息"UIContentImpl: focus again"。
 
@@ -2455,7 +2457,7 @@ class ServiceExtension extends ServiceExtensionAbility {
 ## ServiceExtensionContext.openLink<sup>12+<sup>
 openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 
-通过AppLinking启动UIAbility，使用Promise异步回调。
+通过AppLinking启动UIAbility，使用Promise异步回调。仅支持在主线程调用。
 
 通过在link字段中传入标准格式的URL，基于隐式want匹配规则拉起目标UIAbility。目标方必须具备以下过滤器特征，才能处理AppLinking链接：
 - "actions"列表中包含"ohos.want.action.viewData"。
@@ -2470,7 +2472,7 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2562,7 +2564,7 @@ preStartMission(bundleName:string, moduleName: string, abilitName: string, start
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -2645,7 +2647,7 @@ startUIServiceExtensionAbility(want: Want): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 | 参数名 | 类型 | 只读 | 可选 | 说明                 |
@@ -2698,6 +2700,76 @@ export default class MyServiceExtensionAbility extends ServiceExtensionAbility {
     }).catch((error: BusinessError) => {
       console.error(`error code: ${error.code}, error essage : ${error.message}`);
     })
+  }
+}
+```
+
+## ServiceExtensionContext.openAtomicService<sup>16+<sup>
+openAtomicService(appId: string, options?: AtomicServiceOptions): Promise&lt;void&gt;
+
+通过应用ID，拉起原子化服务。使用Promise异步回调。
+
+> **说明：**
+>
+> 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+| options | [AtomicServiceOptions](js-apis-app-ability-atomicServiceOptions.md) | 否 | 跳出式启动原子化服务所携带的参数。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | The application does not have permission to call the interface. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 16000002 | Incorrect ability type.                                      |
+| 16000004 | Failed to start the invisible ability.                       |
+| 16000011 | The context does not exist.                                  |
+| 16000012 | The application is controlled.                               |
+| 16000050 | Internal error.                                              |
+| 16200001 | The caller has been released.                                |
+
+**示例：**
+
+```ts
+import { ServiceExtensionAbility, AtomicServiceOptions } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class ServiceExtension extends ServiceExtensionAbility {
+  onRequest(want: Want, startId: number) {
+    let appId: string = '6918661953712445909';
+    let options: AtomicServiceOptions = {
+      displayId: 0,
+    };
+    try {
+      this.context.openAtomicService(appId, options)
+        .then(() => {
+          console.info('openAtomicService succeed');
+        })
+        .catch((err: BusinessError) => {
+          console.error(`openAtomicService failed, code is ${err.code}, message is ${err.message}`);
+        });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`openAtomicService failed, code is ${code}, message is ${message}`);
+    }
   }
 }
 ```

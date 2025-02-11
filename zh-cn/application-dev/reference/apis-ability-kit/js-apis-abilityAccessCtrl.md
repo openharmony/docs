@@ -638,3 +638,35 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 | change         | [PermissionStateChangeType](#permissionstatechangetype16) | 是   | 是   | 权限授权状态变化类型。        |
 | tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
+
+## PermissionRequestResult<sup>10+</sup>
+
+type PermissionRequestResult = _PermissionRequestResult
+
+权限请求结果对象。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [_PermissionRequestResult](js-apis-permissionrequestresult.md) | 权限请求结果对象。 |
+
+## Context<sup>10+</sup>
+
+type Context = _Context
+
+提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**模型约束**：此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.Security.AccessToken
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [_Context](js-apis-inner-application-context.md) | 提供了ability或application的上下文的能力，包括访问特定应用程序的资源等。 |

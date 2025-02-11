@@ -5454,13 +5454,15 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let connAddress: socket.TCPConnectOptions = {
+  address: '192.168.xx.xxx',
+  port: 8080
+};
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: connAddress,
   timeout: 6000
 }
+
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
     console.log('connect fail');
@@ -6914,7 +6916,7 @@ TLS连接的操作。
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
 | ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否对服务端进行证书认证，默认为false。      |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | 否 | 是否跳过对服务端进行证书认证，默认为false。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -6947,9 +6949,15 @@ TLS通信的协议版本。
 
 ## X509CertRawData<sup>9+</sup>
 
+type X509CertRawData = cert.EncodingBlob
+
 存储证书的数据。
 
 **系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| cert.EncodingBlob | 提供证书编码blob类型。     |
 
 ## socket.constructTLSSocketServerInstance<sup>10+</sup>
 

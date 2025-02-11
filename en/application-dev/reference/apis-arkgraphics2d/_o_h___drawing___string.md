@@ -3,7 +3,7 @@
 
 ## Overview
 
-The OH_Drawing_String struct describes a string of characters encoded in UTF-16BE (big-endian mode).
+The OH_Drawing_String struct describes a string of characters encoded in UTF-16.
 
 **Since**: 14
 
@@ -17,7 +17,7 @@ The OH_Drawing_String struct describes a string of characters encoded in UTF-16B
 
 | Name| Description| 
 | -------- | -------- |
-| uint8_t \* [strData](#strdata) | Pointer to a byte array that stores characters in the UTF-16BE (big-endian) encoding format. | 
+| uint8_t \* [strData](#strdata) | Pointer to a byte array that stores characters in the UTF-16 encoding format. | 
 | uint32_t [strLen](#strlen) | Actual length of the string that **strData** points to, in bytes. | 
 
 
@@ -31,7 +31,7 @@ uint8_t* OH_Drawing_String::strData
 ```
 **Description**
 
-Pointer to a byte array that stores characters in the UTF-16BE (big-endian) encoding format.
+Pointer to a byte array that stores characters in the UTF-16 encoding format.
 
 
 ### strLen

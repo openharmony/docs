@@ -28,8 +28,8 @@
 下面以查询文件名为'test.jpg'的图片资源为例。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -77,9 +77,9 @@ async function example() {
 4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 const context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -127,8 +127,8 @@ async function example() {
 4. 调用PhotoAccessHelper.applyChanges接口提交资产变更请求。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo } from '@kit.CoreFileKit';
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -141,7 +141,7 @@ async function example() {
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
     // write date into fd
-    await fs.close(fd);
+    await fileIoclose(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`create asset failed with error: ${err.code}, ${err.message}`);
@@ -176,8 +176,8 @@ async function example() {
 5. 调用[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将修改的图片属性更新到数据库中完成修改。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
@@ -223,8 +223,8 @@ async function example() {
 4. 调用[MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11)接口将文件放入回收站。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 

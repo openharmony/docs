@@ -8,16 +8,16 @@
 
 ### JS Crash日志规格
 
-直接生成的JS Crash日志为二进制格式的rawheap文件，由于.rawheap文件为二进制格式，需要先使用如下方式进行处理：
-1、使用解析脚本手动将日志解析为heapsnapshot文件后进行查看，工具使用方法见[rawheap格式文件转换工具](../tools/rawheap-translator.md)。
-2、DevEco Profiler 提供Raw Heap离线导入能力，可导入一个或多个 .rawheap文件。
-
 以下是进程崩溃日志信息中对应字段解释。
 
 ```
+Device info:XXX <- 设备信息
 Build info:XXX-XXXX X.X.X.XX(XXXXXXXX) <- 版本信息
+Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697 <- 特征信息
+Timestamp:XXXX-XX-XX XX:XX:XX.XXX <- 时间戳
 Module name:com.example.myapplication <- 模块名
 Version:1.0.0 <- 版本号
+VersionCode:1000000 <- 版本编码
 Pid:579 <- 进程号
 Uid:0 <- 用户ID
 Reason:TypeError <- 原因
@@ -27,9 +27,9 @@ SourceCode:
         var a = b.c;   <- 异常代码位置
                 ^
 Stacktrace:
-    at onPageShow (entry/src/main/ets/pages/Index.ets:7:13)  <-异常代码调用栈
-           ^                                      ^
-         函数名异常代码文件行列号位置
+    at onPageShow entry (entry/src/main/ets/pages/Index.ets:7:13)  <-异常代码调用栈
+           ^        ^                              ^
+         函数名   模块的包名                   文件行列号位置
 ```
 
 JS Crash多为应用问题，开发者可通过崩溃文件中的 Error message 和 StackTrace 来定位问题。
@@ -88,6 +88,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:ed1811f3f5ae13c7262b51aab73ddd01df95b2c64466a204e0d70e6461cf1697
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     VersionCode:1000000
@@ -102,7 +103,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
                     throw new ErrOr("JSERROR");
                           ^
     Stacktrace:
-        at anonymous (entry/src/main/ets/pages/Index.ets:13:19)
+        at anonymous entry (entry/src/main/ets/pages/Index.ets:13:19)
     ```
 
 2. 异常代码调用栈 Stack Cannot get SourceMap info, dump raw stack，表示因SourceMap转换失败，仅展示eTS栈对应编译后产物中代码行号，可通过超链接跳转到对应错误代码行，如下样例所示。
@@ -110,9 +111,10 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:a370fceb59011d96e41e97bda139b1851c911012ab8c386d1a2d63986d6d226d
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
-    Versioncode:1000000
+    VersionCode:1000000
     PreInstalled:No
     Foreground:Yes
     Pid:39185
@@ -122,7 +124,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Error message:JSERROR
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-        at anonymous (entry/src/main/ets/paqes/Index.ts:49:49)
+        at anonymous entry (entry/src/main/ets/paqes/Index.ts:49:49)
     ```
 
 3. 异常代码调用栈包含 SourceMap is not initialized yet ，表示因SourceMap转换非常耗时，改为通过异步线程去进行初始化，导致会出现SourceMap没初始化完成就有异常产生的情况。针对这种情况增加这行日志来提示开发者。eTS栈对应编译后产物中代码行号，可通过超链接跳转到对应错误代码行。如下样例所示。
@@ -130,6 +132,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:377ef8529301363f373ce837d0bf83aacfc46112502143237e2f4026e86a0510
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     Versioncode:1000000
@@ -145,7 +148,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
                       ^
     Stacktrace:
     SourceMap is not initialized yet
-    at anonymous (entry/src/main/ets/pages/Index.ts:49:49)
+    at anonymous entry (entry/src/main/ets/pages/Index.ts:49:49)
     ```
 
 4. 异常代码调用栈中打印native栈，栈顶一般为libark_jsruntime.so动态库，这是因为JS异常最后都会经过虚拟机抛出。从崩溃栈从上往下找，libace_napi.z.so的上一帧一般是抛出异常的现场。如下样例所示。
@@ -153,6 +156,7 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Device info:xxx
     Build info:xxx-xxx x.x.x.xxx(xxxx)
     Fingerprint:89f2b64b24d642b0fc64e3a7cf68ca39fecaa580ff5736bb9d6706ea4cdf2c93
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0
     VersionCode:1000000
@@ -165,20 +169,20 @@ JS Crash故障日志中，StackTrace 字段存放的是 JS Crash 异常的调用
     Error message:Cannot find module 'com.xxx.xxx/entry/EntryAbility' , which is application Entry Point
     Stacktrace:
     SourceMap is not initialized yet
-    #01 pc 000000000028ba3b /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #02 pc 00000000001452ff /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #03 pC 0000000000144c9f /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #04 pc 00000000001c617b /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #05 pc 00000000004c3cb7 /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #06 pc 00000000004c045f /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #07 pc 000000000038034f /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #08 pc 00000000004b2d9b /system/libó4/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
-    #09 pc 0000000000037e7f /system/libó4/platformsdk/libace_napi.z.so(10ceafd39b5354314d2fe3059b8f9e4f)
+    #01 pc 000000000028ba3b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #02 pc 00000000001452ff /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #03 pC 0000000000144c9f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #04 pc 00000000001c617b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #05 pc 00000000004c3cb7 /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #06 pc 00000000004c045f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #07 pc 000000000038034f /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #08 pc 00000000004b2d9b /system/lib64/platformsdk/libark_jsruntime.so(bf6ea8e474ac3e417991f101e062fa90)
+    #09 pc 0000000000037e7f /system/lib64/platformsdk/libace_napi.z.so(10ceafd39b5354314d2fe3059b8f9e4f)
     #10 pc 00000000000484cf /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014) <- 异常抛出位置
-    #11 pc 000000000004fce7 /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
-    #12 pc 000000000004e9fb /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
-    #13 pc 000000000004eb7b /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
-    #14 pc 000000000004f5c7 /system/libó4/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #11 pc 000000000004fce7 /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #12 pc 000000000004e9fb /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #13 pc 000000000004eb7b /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
+    #14 pc 000000000004f5c7 /system/lib64/platformsdk/libruntime.z.so(3f6305a3843fae1de148a06eec4bd014)
     #15 pc 00000000000303cf /system/lib64/platformsdk/libuiabilitykit_native.z.so(3203F4CCe84a43b519d0a731dfOdb1a3)
     ```
 
@@ -220,6 +224,7 @@ Error message:Cannot read property xxx of undefined
     Device info:xxxx
     Build info:xxxx
     Fingerprint:9851196f9fed7fd818170303296ae7a5767c9ab11f38fd8b0072f0e32c42ea39
+    Timestamp:xxxx-xx-xx xx:xx:xx.xxx
     Module name:com.xxx.xxx
     Version:1.0.0.29
     VersionCode:10000029
@@ -232,10 +237,10 @@ Error message:Cannot read property xxx of undefined
     Error message:Cannot read property needRenderTranslate of undefined
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-        at updateGestureValue (phone/src/main/ets/SceneBoard/recent/scenepanel/recentpanel/RecentGesture.ts:51:51)
-        at onRecentGestureActionBegin (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:5609:5609)
-        at anonymous (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:555:555)
-        at anonymous (phone/src/main/ets/SceneBoard/recent/RecentEventView.ts:183:183)
+        at updateGestureValue entry (phone/src/main/ets/SceneBoard/recent/scenepanel/recentpanel/RecentGesture.ts:51:51)
+        at onRecentGestureActionBegin entry (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:5609:5609)
+        at anonymous entry (phone/src/main/ets/SceneBoard/scenemanager/SCBScenePanel.ts:555:555)
+        at anonymous entry (phone/src/main/ets/SceneBoard/recent/RecentEventView.ts:183:183)
     ```
 
 2. 提取日志关键信息
@@ -311,10 +316,10 @@ throw new Error("TEST JS ERROR")
     Error code:2501000
     Stacktrace:
     Cannot get SourceMap info, dump raw stack:
-      at onStart (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:50:1)
-      at NetSpeedController (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:43:43)
-      at getInstance (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/staticcommon/basiccommon/src/main/ets/component/utils/SingletonHelper.ts:17:17)
-      at func_main_0 (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:325:325)
+      at onStart entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:50:1)
+      at NetSpeedController entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:43:43)
+      at getInstance entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/staticcommon/basiccommon/src/main/ets/component/utils/SingletonHelper.ts:17:17)
+      at func_main_0 entry (product/phone/build/default/cache/default/default@CompileArkTS/esmodule/release/feature/systemstatus/linkspeedcomponent/src/main/ets/default/controller/NetSpeedController.ts:325:325)
     ```
 
 2. 提取日志关键信息

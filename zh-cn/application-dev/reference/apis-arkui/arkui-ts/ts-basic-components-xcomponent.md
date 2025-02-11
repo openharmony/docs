@@ -86,7 +86,12 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
   >
   > 不支持foregroundColor、obscured和pixelStretchEffect属性，并且type为SURFACE类型时也不支持动态属性设置、自定义绘制、背景设置(backgroundColor除外)、图像效果(shadow除外)、maskShape和foregroundEffect属性。
   >
-  > 对于TEXTURE和SURFACE类型的XComponent，当不设置[renderFit](./ts-universal-attributes-renderfit.md)属性时，取默认值为RenderFit.RESIZE_FILL。
+  > 对于TEXTURE和SURFACE类型的XComponent组件，当不设置[renderFit](./ts-universal-attributes-renderfit.md)属性时，取默认值为RenderFit.RESIZE_FILL。
+  > 
+  > 对于SURFACE类型的XComponent组件，当组件背景色为不透明的纯黑色时，其[renderFit](./ts-universal-attributes-renderfit.md)通用属性仅支持设置为RenderFit.RESIZE_FILL，不推荐设置为其他的RenderFit枚举值。
+  >
+  > 对于使用[ArkUI NDK接口](../../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件，不支持使用属性获取函数[getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute)获取其renderFit属性值。
+  
 ### enableAnalyzer<sup>12+</sup>
 
 enableAnalyzer(enable: boolean)
@@ -149,7 +154,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 插件加载完成时回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -165,7 +170,7 @@ onDestroy(event: VoidCallback )
 
 插件卸载完成时回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -616,7 +621,7 @@ struct XComponentExample {
 // xxx.ets
 @Entry
 @Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;

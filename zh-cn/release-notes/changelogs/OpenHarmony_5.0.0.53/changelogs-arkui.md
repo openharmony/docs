@@ -130,42 +130,8 @@ common.d.ts文件的sharedTransition接口
 **适配指导**
 
 如果同一组件sharedTransition的id需要保持不变，应维持原状，而非将其更改为空字符串或undefined。若需清空sharedTransition的id，可将sharedTransition的id设置为空字符串或undefined来实现。
-## cl.arkui.4 hideNonSystemFloatingWindows接口行为变更
 
-**访问级别**
-
-系统接口
-
-**变更原因**
-
-修复在2in1设备下，系统应用调用hideNonSystemFloatingWindows接口导致三方应用弹窗被隐藏，页面点击无响应的bug。
-
-**变更影响**
-
-该变更为不兼容变更。
-
-变更前：2in1设备下，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗被隐藏。
-
-变更后：2in1设备下，系统应用调用hideNonSystemFloatingWindows后，三方应用悬浮窗不被隐藏。
-
-**起始API Level**
-
-API 11
-
-**变更发生版本**
-
-从OpenHarmony 5.0.0.53版本开始。
-
-**变更的接口/组件**
-
-@ohos.window.d.ts
-
-hideNonSystemFloatingWindows接口
-
-**适配指导**
-
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
-## cl.arkui.5 getSnapshot接口行为变更
+## cl.arkui.4 getSnapshot接口行为变更
 
 **访问级别**
 
@@ -201,7 +167,7 @@ getSnapshot接口
 
 默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
 
-## cl.arkui.6 setWindowBrightness接口行为变更
+## cl.arkui.5 setWindowBrightness在2in1设备的行为变更
 
 **访问级别**
 
@@ -209,15 +175,15 @@ getSnapshot接口
 
 **变更原因**
 
-2in1设备下，在视频播放页面，通过快捷键调节屏幕亮度不生效，原因是快捷键调节系统亮度，而视频播放页面使用的是窗口亮度。
+2in1设备下，在视频播放页面，通过快捷键调节屏幕亮度不生效，原因是快捷键调节系统亮度，而在视频播放页面屏幕亮度跟随窗口亮度值。
 
 **变更影响**
 
 该变更为不兼容变更。
 
-变更前：2in1设备下，通过setWindowBrightness接口设置的是窗口亮度，和通过快捷键或控制中心设置的系统亮度不同。
+变更前：2in1设备下，窗口设置屏幕亮度生效时，控制中心和快捷键不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心和快捷键可以调整屏幕亮度。
 
-变更后：2in1设备下，通过setWindowBrightness接口直接调节系统亮度，窗口不单独设置亮度值。
+变更后：2in1设备下，窗口设置屏幕亮度生效时，控制中心和快捷键也可以调整系统屏幕亮度。
 
 **起始API Level**
 
@@ -235,4 +201,4 @@ setWindowBrightness接口
 
 **适配指导**
 
-默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。
+默认行为变更，无需适配。

@@ -35,12 +35,18 @@ Defines the parameter used to execute an InsightIntent call.
 | insightIntentParam | string | Yes| InsightIntent call parameter.|
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | Yes| InsightIntent call execution mode.|
 | displayId<sup>12+</sup> | number | No| Physical screen ID specified during InsightIntent call. The value must be an integer. This parameter is valid only when **executeMode** is set to **UI_ABILITY_FOREGROUND**.|
+| uris<sup>16+</sup> | Array&lt;string&gt; | No| List of URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.|
+| flags<sup>16+</sup> | number | No| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent caller to the InsightIntent executor during the call.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION** and **FLAG_AUTH_WRITE_URI_PERMISSION**.|
 
 ## insightIntentDriver.execute
 
 execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult>): void
 
 Executes a call to an InsightIntent. This API uses an asynchronous callback to return the result.
+
+When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
+
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -120,6 +126,10 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 Executes a call to an InsightIntent. This API uses a promise to return the result.
+
+When the caller is in the background, the ohos.permission.START_ABILITIES_FROM_BACKGROUND permission is required.
+
+When [ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) of the InsightIntent call is set to **UI_ABILITY_BACKGROUND**, the ohos.permission.ABILITY_BACKGROUND_COMMUNICATION permission is required.
 
 **Model restriction**: This API can be used only in the stage model.
 

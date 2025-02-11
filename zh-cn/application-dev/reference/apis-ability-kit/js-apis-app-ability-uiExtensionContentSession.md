@@ -20,7 +20,7 @@ loadContent(path: string, storage?: LocalStorage): void
 
 为当前UIExtensionComponent控件对应的窗口加载与LocalStorage相关联的具体页面内容。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数：**
 
@@ -53,6 +53,85 @@ export default class UIExtAbility extends UIExtensionAbility {
   }
 
   // ...
+}
+```
+
+## UIExtensionContentSession.loadContentByName<sup>16+</sup>
+
+loadContentByName(name: string, storage?: LocalStorage): void
+
+为[UIExtensionAbility](./js-apis-app-ability-uiExtensionAbility.md)加载[命名路由](../../ui/arkts-routing.md#命名路由)页面，支持通过[LocalStorage](../../quick-start/arkts-localstorage.md)传递状态属性给被加载的页面。该接口用于开发者在UIExtensionAbility的[onSessionCreate](./js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessioncreate)生命周期加载命名路由页面。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| name | string | 是 | 命名路由页面的名称。 |
+| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | 否 | 页面级UI状态存储单元，用于为加载的的页面传递状态属性，默认值为空。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------ | ------ |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+UIExtensionAbility的实现：
+```ts
+import { UIExtensionContentSession, UIExtensionAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import './pages/UIExtensionPage'; // 导入命名路由页面，示例代码以“./pages/UIExtensionPage.ets”文件为例，在实际代码开发过程中修改为真实路径和文件名称。
+
+export default class UIExtAbility extends UIExtensionAbility {
+  // 其他生命周期和实现
+
+  onSessionCreate(want: Want, session: UIExtensionContentSession): void {
+    let storage: LocalStorage = new LocalStorage();
+    storage.setOrCreate('session', session);
+
+    let name: string = 'UIExtPage'; // 命名路由页面的名字。
+    try {
+      session.loadContentByName(name, storage);
+    } catch (error) {
+      let code = (error as BusinessError).code;
+      let message = (error as BusinessError).message;
+      console.error(`Failed to load content by name ${name}, code: ${code}, msg: ${message}`);
+    }
+  }
+
+  // 其他生命周期和实现
+}
+```
+
+UIExtensionAbility加载的命名路由页面的实现：
+```ts
+// “./pages/UIExtensionPage.ets”文件的实现。
+import { UIExtensionContentSession } from '@kit.AbilityKit';
+
+@Entry({ routeName: 'UIExtPage' }) // 通过“routeName”定义命名路由页面的名字。
+@Component
+struct UIExtensionPage {
+  @State message: string = 'Hello world';
+  storage: LocalStorage | undefined = LocalStorage.getShared();
+  private session: UIExtensionContentSession | undefined = this.storage?.get<UIExtensionContentSession>('session');
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(20)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
 }
 ```
 
@@ -309,9 +388,9 @@ setWindowPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用Promise异步回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PRIVACY_WINDOW
+**需要权限**：ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 
@@ -370,9 +449,9 @@ setWindowPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;
 
 设置窗口是否为隐私模式。设置为隐私模式的窗口，窗口内容将无法被截屏或录屏。使用callback异步回调。
 
-**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**需要权限：** ohos.permission.PRIVACY_WINDOW
+**需要权限**：ohos.permission.PRIVACY_WINDOW
 
 **参数：**
 

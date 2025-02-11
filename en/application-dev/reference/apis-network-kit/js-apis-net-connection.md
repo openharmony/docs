@@ -2741,3 +2741,45 @@ Defines a network address.
 | address | string | Yes|Network address.                      |
 | family  | number | No|Address family identifier. The value is **1** for IPv4 and **2** for IPv6. The default value is **1**.|
 | port    | number | No|Port number. The value ranges from **0** to **65535**.  |
+
+## HttpRequest
+
+type HttpRequest = http.HttpRequest
+
+Defines an HTTP request.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| http.HttpRequest | HTTP request task. You need to obtain an HTTP request task before calling **HttpRequest** APIs .|
+
+## TCPSocket
+
+type TCPSocket = socket.TCPSocket
+
+Defines a **TCPSocket** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 10.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| socket.TCPSocket | **TCPSocket** object.    |
+
+## UDPSocket
+
+type UDPSocket = socket.UDPSocket
+
+Defines a **UDPSocket** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 10.
+
+**System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| socket.UDPSocket | **UDPSocket** object.    |

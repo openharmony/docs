@@ -5,6 +5,12 @@
 
 The **OHAudio** module provides C APIs of the audio module.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using OHAudio for Audio Playback](../../media/audio/using-ohaudio-for-playback.md)
+- [Using OHAudio for Audio Recording](../../media/audio/using-ohaudio-for-recording.md)
+- [Using AudioSession to Manage Audio Focus](../../media/audio/using-ohaudio-for-session.md)
+
 **System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 10
@@ -47,21 +53,21 @@ The **OHAudio** module provides C APIs of the audio module.
 | typedef struct [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) [OH_AudioDeviceDescriptorArray](#oh_audiodevicedescriptorarray) | Defines a struct for an array of audio device descriptors. | 
 | typedef struct [OH_AudioManager](#oh_audiomanager) [OH_AudioManager](#oh_audiomanager) | Defines a struct for an audio manager. | 
 | typedef struct [OH_AudioRoutingManager](#oh_audioroutingmanager) [OH_AudioRoutingManager](#oh_audioroutingmanager) | Defines a struct for an audio routing manager, which is used for routing and device-related functions. | 
-| typedef int32_t(\* [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors). | 
-| typedef void(\* [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) status, void \*userData) | Defines a pointer to the callback function that returns the blocked status of one or more audio devices. | 
+| typedef int32_t (\*[OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback))([OH_AudioDevice_ChangeType](#oh_audiodevice_changetype) type, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Defines a pointer to the callback function that returns the changed audio device descriptor (possibly multiple descriptors). | 
+| typedef void (\*[OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback)) ([OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray, [OH_AudioDevice_BlockStatus](#oh_audiodevice_blockstatus) status, void \*userData) | Defines a pointer to the callback function that returns the blocked status of one or more audio devices. | 
 | typedef struct [OH_AudioSessionManager](#oh_audiosessionmanager) [OH_AudioSessionManager](#oh_audiosessionmanager) | Defines a struct for an audio session manager. | 
 | typedef struct [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) [OH_AudioSession_Strategy](#oh_audiosession_strategy) | Defines a struct for an audio session strategy. | 
 | typedef struct [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) [OH_AudioSession_DeactivatedEvent](#oh_audiosession_deactivatedevent) | Defines a struct for the event indicating that an audio session is deactivated. | 
-| typedef int32_t(\* [OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | Defines a function pointer to the callback function used to listen for audio session deactivation events. | 
+| typedef int32_t (\*[OH_AudioSession_DeactivatedCallback](#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | Defines a function pointer to the callback function used to listen for audio session deactivation events. | 
 | typedef struct OH_AudioStreamBuilderStruct [OH_AudioStreamBuilder](#oh_audiostreambuilder) | Defines a struct for an audio stream builder. | 
 | typedef struct OH_AudioRendererStruct [OH_AudioRenderer](#oh_audiorenderer) | Defines a struct for an audio renderer. | 
 | typedef struct OH_AudioCapturerStruct [OH_AudioCapturer](#oh_audiocapturer) | Defines a struct for an audio capturer. | 
 | typedef struct [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md) [OH_AudioRenderer_Callbacks](#oh_audiorenderer_callbacks) | Defines a pointer to the callback functions related to an audio renderer. | 
 | typedef struct [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md) [OH_AudioCapturer_Callbacks](#oh_audiocapturer_callbacks) | Defines a pointer to the callback functions related to an audio capturer. | 
-| typedef void(\* [OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason) | Defines a pointer to the callback invoked when the audio stream device changes. | 
-| typedef void(\* [OH_AudioRenderer_OnMarkReachedCallback](#oh_audiorenderer_onmarkreachedcallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t samplePos, void \*userData) | Defines a pointer to the callback invoked when the mark position is reached. | 
-| typedef int32_t(\* [OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize, void \*metadata, int32_t metadataSize) | Defines a function pointer to the callback function used to write audio data and metadata. | 
-| typedef [OH_AudioData_Callback_Result](#oh_audiodata_callback_result)(\* [OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize) | Defines a function pointer to the callback function used to write audio data. | 
+| typedef void (\*[OH_AudioRenderer_OutputDeviceChangeCallback](#oh_audiorenderer_outputdevicechangecallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, [OH_AudioStream_DeviceChangeReason](#oh_audiostream_devicechangereason) reason) | Defines a pointer to the callback invoked when the audio stream device changes. | 
+| typedef void (\*[OH_AudioRenderer_OnMarkReachedCallback](#oh_audiorenderer_onmarkreachedcallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, uint32_t samplePos, void \*userData) | Defines a pointer to the callback invoked when the mark position is reached. | 
+| typedef int32_t (\*[OH_AudioRenderer_WriteDataWithMetadataCallback](#oh_audiorenderer_writedatawithmetadatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize, void \*metadata, int32_t metadataSize) | Defines a function pointer to the callback function used to write audio data and metadata. | 
+| typedef [OH_AudioData_Callback_Result](#oh_audiodata_callback_result) (\*[OH_AudioRenderer_OnWriteDataCallback](#oh_audiorenderer_onwritedatacallback))([OH_AudioRenderer](#oh_audiorenderer) \*renderer, void \*userData, void \*audioData, int32_t audioDataSize) | Defines a function pointer to the callback function used to write audio data. | 
 
 
 ### Enums
@@ -119,8 +125,8 @@ The **OHAudio** module provides C APIs of the audio module.
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_RegisterDeviceChangeCallback](#oh_audioroutingmanager_registerdevicechangecallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDevice_Flag](#oh_audiodevice_flag) deviceFlag, [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback) | Registers a callback to listen for device changes of an audio routing manager. | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_UnregisterDeviceChangeCallback](#oh_audioroutingmanager_unregisterdevicechangecallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback) callback) | Unregisters the callback used to listen for device changes of an audio routing manager. | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md) \*audioDeviceDescriptorArray) | Releases audio devices available for an audio routing manager. | 
-| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_IsMicBlockDetectionSupported](#oh_audioroutingmanager_ismicblockdetectionsupported) ([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, bool \*supported) | Checks whether the current device supports microphone blocking detection. | 
-| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_SetMicBlockStatusCallback](#oh_audioroutingmanager_setmicblockstatuscallback) ([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback) callback, void \*userData) | Sets a callback function to be invoked when the microphone's blocked status is changed. Before using this function, check whether the current device supports microphone blocking detection. The application receives a callback only when the microphone is used for recording and the microphone's blocked status changes. Currently, this function takes effect only for the microphone on the local device. | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_IsMicBlockDetectionSupported](#oh_audioroutingmanager_ismicblockdetectionsupported)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, bool \*supported) | Checks whether the current device supports microphone blocking detection. | 
+| [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioRoutingManager_SetMicBlockStatusCallback](#oh_audioroutingmanager_setmicblockstatuscallback)([OH_AudioRoutingManager](#oh_audioroutingmanager) \*audioRoutingManager, [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback) callback, void \*userData) | Sets a callback function to be invoked when the microphone's blocked status is changed. Before using this function, check whether the current device supports microphone blocking detection. The application receives a callback only when the microphone is used for recording and the microphone's blocked status changes. Currently, this function takes effect only for the microphone on the local device. | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioManager_GetAudioSessionManager](#oh_audiomanager_getaudiosessionmanager)([OH_AudioSessionManager](#oh_audiosessionmanager) \*\*audioSessionManager) | Obtains an **OH_AudioSessionManager** instance. | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioSessionManager_ActivateAudioSession](#oh_audiosessionmanager_activateaudiosession)([OH_AudioSessionManager](#oh_audiosessionmanager) \*audioSessionManager, const [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) \*strategy) | Activates an audio session. | 
 | [OH_AudioCommon_Result](#oh_audiocommon_result) [OH_AudioSessionManager_DeactivateAudioSession](#oh_audiosessionmanager_deactivateaudiosession)([OH_AudioSessionManager](#oh_audiosessionmanager) \*audioSessionManager) | Deactivates an audio session. | 
@@ -310,7 +316,7 @@ Defines a pointer to the callback functions related to an audio renderer.
 ### OH_AudioRenderer_OnMarkReachedCallback
 
 ```
-typedef void(* OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer *renderer, uint32_t samplePos, void *userData)
+typedef void (*OH_AudioRenderer_OnMarkReachedCallback)(OH_AudioRenderer *renderer, uint32_t samplePos, void *userData)
 ```
 
 **Description**
@@ -337,6 +343,7 @@ typedef OH_AudioData_Callback_Result(* OH_AudioRenderer_OnWriteDataCallback)(OH_
 **Description**
 
 Defines a function pointer to the callback function used to write audio data.
+The callback function is used only to write audio data. Do not call AudioRenderer APIs in it.
 
 This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Struct.OH_AudioRenderer_OnWriteData](_o_h___audio_renderer___callbacks___struct.md#oh_audiorenderer_onwritedata). However, this function has a return value to identify the audio data callback result. The return result indicates whether the data filled in the buffer is valid. If the data is invalid, the data entered by the user will not be played. Once the callback function finishes its execution, the audio service queues the data pointed to by **audioData** for playback. Therefore, do not change the data outside the callback. It is crucial to fill **audioData** with the exact length (specified by **audioDataSize**) of data designated for playback; otherwise, noises may occur during playback. The **audioDataSize** parameter can be set by using [OH_AudioStreamBuilder_SetFrameSizeInCallBack()](#OH_AudioStreamBuilder_SetFrameSizeInCallback).
 
@@ -355,7 +362,11 @@ This function is similar to the function pointer [OH_AudioRenderer_Callbacks_Str
 
 **Returns**
 
-Audio data callback result.
+Returns one of the result codes defined in [OH_AudioData_Callback_Result](#oh_audiodata_callback_result):
+
+**AUDIO_DATA_CALLBACK_RESULT_INVALID**: The audio data callback result is invalid, and the audio data will not be played.
+
+**AUDIO_DATA_CALLBACK_RESULT_VALID**: The audio data callback result is valid, and the audio data will be played.
 
 **See**
 
@@ -365,7 +376,7 @@ Audio data callback result.
 ### OH_AudioRenderer_OutputDeviceChangeCallback
 
 ```
-typedef void(* OH_AudioRenderer_OutputDeviceChangeCallback) (OH_AudioRenderer *renderer, void *userData, OH_AudioStream_DeviceChangeReason reason)
+typedef void (*OH_AudioRenderer_OutputDeviceChangeCallback)(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_DeviceChangeReason reason)
 ```
 
 **Description**
@@ -388,7 +399,7 @@ Defines a pointer to the callback invoked when the audio stream device changes.
 ### OH_AudioRenderer_WriteDataWithMetadataCallback
 
 ```
-typedef int32_t(* OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRenderer *renderer, void *userData, void *audioData, int32_t audioDataSize, void *metadata, int32_t metadataSize)
+typedef int32_t (*OH_AudioRenderer_WriteDataWithMetadataCallback)(OH_AudioRenderer *renderer, void *userData, void *audioData, int32_t audioDataSize, void *metadata, int32_t metadataSize)
 ```
 
 **Description**
@@ -452,7 +463,7 @@ Defines a pointer to the callback function that returns the blocked status of on
 ### OH_AudioRoutingManager_OnDeviceChangedCallback
 
 ```
-typedef int32_t(* OH_AudioRoutingManager_OnDeviceChangedCallback) (OH_AudioDevice_ChangeType type, OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray)
+typedef int32_t (*OH_AudioRoutingManager_OnDeviceChangedCallback)(OH_AudioDevice_ChangeType type, OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray)
 ```
 
 **Description**
@@ -472,7 +483,7 @@ Defines a pointer to the callback function that returns the changed audio device
 ### OH_AudioSession_DeactivatedCallback
 
 ```
-typedef int32_t(* OH_AudioSession_DeactivatedCallback)(OH_AudioSession_DeactivatedEvent event)
+typedef int32_t (*OH_AudioSession_DeactivatedCallback)(OH_AudioSession_DeactivatedEvent event)
 ```
 
 **Description**
@@ -589,8 +600,8 @@ Enumerates the audio data callback results.
 
 | Value| Description| 
 | -------- | -------- |
-| AUDIO_DATA_CALLBACK_RESULT_INVALID  | The data is invalid.  | 
-| AUDIO_DATA_CALLBACK_RESULT_VALID  | The data is valid.  | 
+| AUDIO_DATA_CALLBACK_RESULT_INVALID  | The audio data callback result is invalid, and the audio data will not be played.  | 
+| AUDIO_DATA_CALLBACK_RESULT_VALID  | The audio data callback result is valid, and the audio data will be played.  | 
 
 
 ### OH_AudioDevice_BlockStatus
@@ -960,7 +971,7 @@ enum OH_AudioStream_PrivacyType
 
 Enumerates the privacy types of an audio stream. The privacy type specifies whether the audio stream can be recorded by other applications.
 
-**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Since**: 12
 
@@ -1303,7 +1314,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioCapturer_GetFramesRead()
 
 ```
-OH_AudioStream_Result OH_AudioCapturer_GetFramesRead (OH_AudioCapturer *capturer, int64_t *frames)
+OH_AudioStream_Result OH_AudioCapturer_GetFramesRead(OH_AudioCapturer *capturer, int64_t *frames)
 ```
 
 **Description**
@@ -1363,7 +1374,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioCapturer_GetOverflowCount()
 
 ```
-OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount (OH_AudioCapturer *capturer, uint32_t *count)
+OH_AudioStream_Result OH_AudioCapturer_GetOverflowCount(OH_AudioCapturer *capturer, uint32_t *count)
 ```
 
 **Description**
@@ -1660,7 +1671,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioDeviceDescriptor_GetDeviceAddress()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress (OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **address)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceAddress(OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **address)
 ```
 
 **Description**
@@ -1684,7 +1695,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceChannelCounts()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts (OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t **channelCounts, uint32_t *size)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceChannelCounts(OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t **channelCounts, uint32_t *size)
 ```
 
 **Description**
@@ -1709,7 +1720,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceDisplayName()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName (OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **displayName)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceDisplayName(OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **displayName)
 ```
 
 **Description**
@@ -1733,7 +1744,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceEncodingTypes()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes (OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioStream_EncodingType **encodingTypes, uint32_t *size)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceEncodingTypes(OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioStream_EncodingType **encodingTypes, uint32_t *size)
 ```
 
 **Description**
@@ -1758,7 +1769,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceId()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId (OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t *id)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceId(OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t *id)
 ```
 
 **Description**
@@ -1782,7 +1793,7 @@ Returns **AUDIODEVICE_SUCCESS** if the operation is successful; returns **AUDIOC
 ### OH_AudioDeviceDescriptor_GetDeviceName()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName (OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **name )
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceName(OH_AudioDeviceDescriptor *audioDeviceDescriptor, char **name)
 ```
 
 **Description**
@@ -1806,7 +1817,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceRole()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole (OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_Role *deviceRole)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceRole(OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_Role *deviceRole)
 ```
 
 **Description**
@@ -1830,7 +1841,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceSampleRates()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates (OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t **sampleRates, uint32_t *size)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceSampleRates(OH_AudioDeviceDescriptor *audioDeviceDescriptor, uint32_t **sampleRates, uint32_t *size)
 ```
 
 **Description**
@@ -1855,7 +1866,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioDeviceDescriptor_GetDeviceType()
 
 ```
-OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType (OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_Type *deviceType)
+OH_AudioCommon_Result OH_AudioDeviceDescriptor_GetDeviceType(OH_AudioDeviceDescriptor *audioDeviceDescriptor, OH_AudioDevice_Type *deviceType)
 ```
 
 **Description**
@@ -1879,7 +1890,7 @@ Returns **AUDIOCOMMON_RESULT_SUCCESS** if the operation is successful; returns *
 ### OH_AudioManager_GetAudioRoutingManager()
 
 ```
-OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager (OH_AudioRoutingManager **audioRoutingManager)
+OH_AudioCommon_Result OH_AudioManager_GetAudioRoutingManager(OH_AudioRoutingManager **audioRoutingManager)
 ```
 
 **Description**
@@ -1904,7 +1915,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioManager_GetAudioSessionManager()
 
 ```
-OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager (OH_AudioSessionManager **audioSessionManager)
+OH_AudioCommon_Result OH_AudioManager_GetAudioSessionManager(OH_AudioSessionManager **audioSessionManager)
 ```
 
 **Description**
@@ -1931,7 +1942,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRenderer_CancelMark()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_CancelMark (OH_AudioRenderer *renderer)
+OH_AudioStream_Result OH_AudioRenderer_CancelMark(OH_AudioRenderer *renderer)
 ```
 
 **Description**
@@ -2021,7 +2032,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_GetChannelLayout()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout (OH_AudioRenderer *renderer, OH_AudioChannelLayout *channelLayout)
+OH_AudioStream_Result OH_AudioRenderer_GetChannelLayout(OH_AudioRenderer *renderer, OH_AudioChannelLayout *channelLayout)
 ```
 
 **Description**
@@ -2081,7 +2092,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_GetEffectMode()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_GetEffectMode (OH_AudioRenderer *renderer, OH_AudioStream_AudioEffectMode *effectMode)
+OH_AudioStream_Result OH_AudioRenderer_GetEffectMode(OH_AudioRenderer *renderer, OH_AudioStream_AudioEffectMode *effectMode)
 ```
 
 **Description**
@@ -2261,7 +2272,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_GetRendererPrivacy()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy (OH_AudioRenderer *renderer, OH_AudioStream_PrivacyType *privacy)
+OH_AudioStream_Result OH_AudioRenderer_GetRendererPrivacy(OH_AudioRenderer *renderer, OH_AudioStream_PrivacyType *privacy)
 ```
 
 **Description**
@@ -2270,7 +2281,7 @@ Checks whether the audio stream being played can be recorded by other applicatio
 
 **Since**: 12
 
-**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -2382,7 +2393,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_GetSpeed()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_GetSpeed (OH_AudioRenderer * renderer, float * speed )
+OH_AudioStream_Result OH_AudioRenderer_GetSpeed(OH_AudioRenderer * renderer, float * speed)
 ```
 
 **Description**
@@ -2483,7 +2494,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_GetUnderflowCount()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount (OH_AudioRenderer *renderer, uint32_t *count)
+OH_AudioStream_Result OH_AudioRenderer_GetUnderflowCount(OH_AudioRenderer *renderer, uint32_t *count)
 ```
 
 **Description**
@@ -2514,7 +2525,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_GetVolume()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_GetVolume (OH_AudioRenderer *renderer, float *volume)
+OH_AudioStream_Result OH_AudioRenderer_GetVolume(OH_AudioRenderer *renderer, float *volume)
 ```
 
 **Description**
@@ -2609,7 +2620,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_SetDefaultOutputDevice()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice (OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType)
+OH_AudioStream_Result OH_AudioRenderer_SetDefaultOutputDevice(OH_AudioRenderer* renderer, OH_AudioDevice_Type deviceType)
 ```
 
 **Description**
@@ -2652,7 +2663,7 @@ AUDIOSTREAM_ERROR_INVALID_PARAM:
 ### OH_AudioRenderer_SetEffectMode()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetEffectMode (OH_AudioRenderer *renderer, OH_AudioStream_AudioEffectMode effectMode)
+OH_AudioStream_Result OH_AudioRenderer_SetEffectMode(OH_AudioRenderer *renderer, OH_AudioStream_AudioEffectMode effectMode)
 ```
 
 **Description**
@@ -2682,7 +2693,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_SetMarkPosition()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition (OH_AudioRenderer *renderer, uint32_t samplePos, OH_AudioRenderer_OnMarkReachedCallback callback, void *userData)
+OH_AudioStream_Result OH_AudioRenderer_SetMarkPosition(OH_AudioRenderer *renderer, uint32_t samplePos, OH_AudioRenderer_OnMarkReachedCallback callback, void *userData)
 ```
 
 **Description**
@@ -2721,7 +2732,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_SetSilentModeAndMixWithOthers()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers (OH_AudioRenderer *renderer, bool on)
+OH_AudioStream_Result OH_AudioRenderer_SetSilentModeAndMixWithOthers(OH_AudioRenderer *renderer, bool on)
 ```
 
 **Description**
@@ -2751,7 +2762,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_SetSpeed()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetSpeed (OH_AudioRenderer *renderer, float speed)
+OH_AudioStream_Result OH_AudioRenderer_SetSpeed(OH_AudioRenderer *renderer, float speed)
 ```
 
 **Description**
@@ -2781,7 +2792,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_SetVolume()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetVolume (OH_AudioRenderer *renderer, float volume)
+OH_AudioStream_Result OH_AudioRenderer_SetVolume(OH_AudioRenderer *renderer, float volume)
 ```
 
 **Description**
@@ -2818,7 +2829,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRenderer_SetVolumeWithRamp()
 
 ```
-OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp (OH_AudioRenderer *renderer, float volume, int32_t durationMs)
+OH_AudioStream_Result OH_AudioRenderer_SetVolumeWithRamp(OH_AudioRenderer *renderer, float volume, int32_t durationMs)
 ```
 
 **Description**
@@ -2918,7 +2929,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioRoutingManager_GetAvailableDevices()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices (OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+OH_AudioCommon_Result OH_AudioRoutingManager_GetAvailableDevices(OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Usage deviceUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
 ```
 
 **Description**
@@ -2952,7 +2963,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRoutingManager_GetDevices()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices (OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Flag deviceFlag, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
+OH_AudioCommon_Result OH_AudioRoutingManager_GetDevices(OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Flag deviceFlag, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
 ```
 
 **Description**
@@ -2965,7 +2976,7 @@ Obtains available devices based on the device flag.
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | deviceFlag | Device flag, which is used to filter the target device. For details about the available options, see [OH_AudioDevice_Flag](#oh_audiodevice_flag).| 
 | audioDeviceDescriptorArray | Pointer to the audio device descriptor array, which is [OH_AudioDeviceDescriptorArray](_o_h___audio_device_descriptor_array.md). Do not release the pointer to the **audioDeviceDescriptorArray** struct separately. Instead, call [OH_AudioRoutingManager_ReleaseDevices](#oh_audioroutingmanager_releasedevices) to release the **DeviceDescriptor** array.|
 
@@ -2986,7 +2997,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRoutingManager_GetPreferredInputDevice()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice (OH_AudioRoutingManager *audioRoutingManager, OH_AudioStream_SourceType sourceType, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray )
+OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredInputDevice(OH_AudioRoutingManager *audioRoutingManager, OH_AudioStream_SourceType sourceType, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
 ```
 
 **Description**
@@ -3021,7 +3032,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRoutingManager_GetPreferredOutputDevice()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice (OH_AudioRoutingManager *audioRoutingManager, OH_AudioStream_Usage streamUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray )
+OH_AudioCommon_Result OH_AudioRoutingManager_GetPreferredOutputDevice(OH_AudioRoutingManager *audioRoutingManager, OH_AudioStream_Usage streamUsage, OH_AudioDeviceDescriptorArray **audioDeviceDescriptorArray)
 ```
 
 **Description**
@@ -3087,7 +3098,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRoutingManager_RegisterDeviceChangeCallback()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback (OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Flag deviceFlag, OH_AudioRoutingManager_OnDeviceChangedCallback callback)
+OH_AudioCommon_Result OH_AudioRoutingManager_RegisterDeviceChangeCallback(OH_AudioRoutingManager *audioRoutingManager, OH_AudioDevice_Flag deviceFlag, OH_AudioRoutingManager_OnDeviceChangedCallback callback)
 ```
 
 
@@ -3101,7 +3112,7 @@ Registers a callback to listen for device changes of an audio routing manager.
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | deviceFlag | Device flag. For details about the available options, see [OH_AudioDevice_Flag](#oh_audiodevice_flag).| 
 | callback | Callback function used to return the changed audio device descriptor. For details, see [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback).| 
 
@@ -3121,7 +3132,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRoutingManager_ReleaseDevices()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices (OH_AudioRoutingManager *audioRoutingManager, OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray)
+OH_AudioCommon_Result OH_AudioRoutingManager_ReleaseDevices(OH_AudioRoutingManager *audioRoutingManager, OH_AudioDeviceDescriptorArray *audioDeviceDescriptorArray)
 ```
 
 **Description**
@@ -3134,7 +3145,7 @@ Releases audio devices available for an audio routing manager.
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | audioDeviceDescriptorArray | Pointer to the array of audio devices, which are obtained by calling [OH_AudioRoutingManager_GetDevices](#oh_audioroutingmanager_getdevices).| 
 
 **Returns**
@@ -3167,7 +3178,7 @@ Before using this function, check whether the current device supports microphone
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by using [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager). | 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by using [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager). | 
 | callback | Pointer to the [OH_AudioRoutingManager_OnDeviceBlockStatusCallback](#oh_audioroutingmanager_ondeviceblockstatuscallback) callback, which is used to return the blocked status.| 
 | userData | Pointer to user data. | 
 
@@ -3186,7 +3197,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioRoutingManager_UnregisterDeviceChangeCallback()
 
 ```
-OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback (OH_AudioRoutingManager *audioRoutingManager, OH_AudioRoutingManager_OnDeviceChangedCallback callback)
+OH_AudioCommon_Result OH_AudioRoutingManager_UnregisterDeviceChangeCallback(OH_AudioRoutingManager *audioRoutingManager, OH_AudioRoutingManager_OnDeviceChangedCallback callback)
 ```
 
 **Description**
@@ -3199,7 +3210,7 @@ Unregisters the callback used to listen for device changes of an audio routing m
 
 | Name| Description| 
 | -------- | -------- |
-| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object. which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
+| audioRoutingManager | Pointer to an [OH_AudioRoutingManager](#oh_audioroutingmanager) object, which is obtained by calling [OH_AudioManager_GetAudioRoutingManager](#oh_audiomanager_getaudioroutingmanager).| 
 | callback | Callback function used to return the changed audio device descriptor. For details, see [OH_AudioRoutingManager_OnDeviceChangedCallback](#oh_audioroutingmanager_ondevicechangedcallback).| 
 
 **Returns**
@@ -3217,7 +3228,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioSessionManager_ActivateAudioSession()
 
 ```
-OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession (OH_AudioSessionManager *audioSessionManager, const OH_AudioSession_Strategy *strategy )
+OH_AudioCommon_Result OH_AudioSessionManager_ActivateAudioSession(OH_AudioSessionManager *audioSessionManager, const OH_AudioSession_Strategy *strategy)
 ```
 
 **Description**
@@ -3248,7 +3259,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioSessionManager_DeactivateAudioSession()
 
 ```
-OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession (OH_AudioSessionManager *audioSessionManager)
+OH_AudioCommon_Result OH_AudioSessionManager_DeactivateAudioSession(OH_AudioSessionManager *audioSessionManager)
 ```
 
 **Description**
@@ -3277,7 +3288,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioSessionManager_IsAudioSessionActivated()
 
 ```
-bool OH_AudioSessionManager_IsAudioSessionActivated (OH_AudioSessionManager *audioSessionManager)
+bool OH_AudioSessionManager_IsAudioSessionActivated(OH_AudioSessionManager *audioSessionManager)
 ```
 
 **Description**
@@ -3300,7 +3311,7 @@ Returns **true** if the audio session is activated; returns **false** otherwise.
 ### OH_AudioSessionManager_RegisterSessionDeactivatedCallback()
 
 ```
-OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback (OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)
+OH_AudioCommon_Result OH_AudioSessionManager_RegisterSessionDeactivatedCallback(OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)
 ```
 
 **Description**
@@ -3331,7 +3342,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_AudioSessionManager_UnregisterSessionDeactivatedCallback()
 
 ```
-OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallback (OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)
+OH_AudioCommon_Result OH_AudioSessionManager_UnregisterSessionDeactivatedCallback(OH_AudioSessionManager *audioSessionManager, OH_AudioSession_DeactivatedCallback callback)
 ```
 
 **Description**
@@ -3455,7 +3466,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 
   1. The **builder** parameter is set to a null pointer.
   2. The **StreamType** parameter is set to an invalid value.
-  3. The **OHAudioRenderer** instance fails to be created.
+  3. The **OHAudioCapturer** instance fails to be created.
 
 
 ### OH_AudioStreamBuilder_GenerateRenderer()
@@ -3595,7 +3606,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioStreamBuilder_SetChannelLayout()
 
 ```
-OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout (OH_AudioStreamBuilder *builder, OH_AudioChannelLayout channelLayout)
+OH_AudioStream_Result OH_AudioStreamBuilder_SetChannelLayout(OH_AudioStreamBuilder *builder, OH_AudioChannelLayout channelLayout)
 ```
 
 **Description**
@@ -3784,7 +3795,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioStreamBuilder_SetRendererInterruptMode()
 
 ```
-OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode (OH_AudioStreamBuilder *builder, OH_AudioInterrupt_Mode mode)
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererInterruptMode(OH_AudioStreamBuilder *builder, OH_AudioInterrupt_Mode mode)
 ```
 
 **Description**
@@ -3818,7 +3829,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback()
 
 ```
-OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback (OH_AudioStreamBuilder * builder, OH_AudioRenderer_OutputDeviceChangeCallback callback, void * userData )
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererOutputDeviceChangeCallback(OH_AudioStreamBuilder * builder, OH_AudioRenderer_OutputDeviceChangeCallback callback, void * userData)
 ```
 
 **Description**
@@ -3852,7 +3863,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioStreamBuilder_SetRendererPrivacy()
 
 ```
-OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy (OH_AudioStreamBuilder * builder, OH_AudioStream_PrivacyType privacy)
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererPrivacy(OH_AudioStreamBuilder * builder, OH_AudioStream_PrivacyType privacy)
 ```
 
 **Description**
@@ -3861,7 +3872,7 @@ Sets the privacy type for the audio stream being played. The privacy type specif
 
 **Since**: 12
 
-**System capability**: SystemCapability.Multimedia.Audio.PlaybackCapture
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Parameters**
 
@@ -3885,7 +3896,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioStreamBuilder_SetRendererWriteDataCallback()
 
 ```
-OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback (OH_AudioStreamBuilder *builder, OH_AudioRenderer_OnWriteDataCallback callback, void *userData)
+OH_AudioStream_Result OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_AudioStreamBuilder *builder, OH_AudioRenderer_OnWriteDataCallback callback, void *userData)
 ```
 
 **Description**
@@ -3984,7 +3995,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback()
 
 ```
-OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback (OH_AudioStreamBuilder *builder, OH_AudioRenderer_WriteDataWithMetadataCallback callback, void *userData)
+OH_AudioStream_Result OH_AudioStreamBuilder_SetWriteDataWithMetadataCallback(OH_AudioStreamBuilder *builder, OH_AudioRenderer_WriteDataWithMetadataCallback callback, void *userData)
 ```
 
 **Description**
@@ -4018,7 +4029,7 @@ Returns a result code defined in [OH_AudioStream_Result](#oh_audiostream_result)
 ### OH_GetAudioManager()
 
 ```
-OH_AudioCommon_Result OH_GetAudioManager (OH_AudioManager ** audioManager)
+OH_AudioCommon_Result OH_GetAudioManager(OH_AudioManager ** audioManager)
 ```
 
 **Description**
@@ -4047,7 +4058,7 @@ Returns a result code defined in [OH_AudioCommon_Result](#oh_audiocommon_result)
 ### OH_GetAudioScene()
 
 ```
-OH_AudioCommon_Result OH_GetAudioScene (OH_AudioManager * manager, OH_AudioScene * scene )
+OH_AudioCommon_Result OH_GetAudioScene(OH_AudioManager * manager, OH_AudioScene * scene)
 ```
 
 **Description**

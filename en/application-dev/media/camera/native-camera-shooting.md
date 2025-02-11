@@ -150,11 +150,14 @@ Read [Camera](../../reference/apis-camera-kit/_o_h___camera.md) for the API refe
        // Call the buffer callback at the NAPI layer.
        auto cb = (void (*)(void *, size_t))(bufferCb);
        cb(virAddr, nativeBufferSize);
-       // After the processing is complete, unmap and release the buffer.
-       ret = OH_NativeBuffer_Unmap(nativeBuffer);
+       // Release resources.
+	   delete[] components;
+	   OH_ImageNative_Release(imageNative);
+       ret = OH_NativeBuffer_Unmap(nativeBuffer); // After the processing is complete, unmap and release the buffer.
        if (ret != 0) {
            OH_LOG_ERROR(LOG_APP, "OnPhotoAvailable OH_NativeBuffer_Unmap error:%{public}d", ret);
        }
+	   OH_LOG_INFO(LOG_APP, "OnPhotoAvailable end");
    }
 
    // Register the PhotoAvailableCallback callback.

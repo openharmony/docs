@@ -297,33 +297,27 @@ Defines the device capability.
 
 ## RawFileDescriptor<sup>8+</sup>
 
-Defines the descriptor of the HAP where the raw file is located.
+type RawFileDescriptor = _RawFileDescriptor
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name    | Type   | Readable  | Writable | Description          |
-| ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| File descriptor.|
-| offset | number  | Yes   | No| Start offset of the raw file.     |
-| length | number  | Yes   | No| File length.      |
+| Type   | Description  |
+| ------  | ---- | 
+|[_RawFileDescriptor](rawFileDescriptor.md#rawfiledescriptor-1)|Defines the descriptor of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
-Defines the resource information of an application.
+type Resource = _Resource
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-| Name        | Type    | Readable  | Writable |Description         |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | Yes   | No| Bundle name of the application.|
-| moduleName | string | Yes   | No| Module name of the application.|
-| id         | number | Yes   | No| Resource ID.     |
-| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
-| type       | number | Yes   | No| Resource type, which is optional.     |
+| Type   | Description  |
+| ------  | ---- | 
+|[_Resource](resource.md#resource-1)|Resource information of an application.|
 
 ## ResourceManager
 
@@ -402,7 +396,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -505,7 +499,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -604,7 +598,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -3482,23 +3476,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3546,6 +3541,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { resourceManager } from '@kit.LocalizationKit'
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3553,21 +3549,21 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.media.icon').id
   };
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3612,23 +3608,24 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 **Example**
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon');
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -6173,6 +6170,13 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
         {
         "name": "test",
         "value": [
+          {
+            "value": "strarray_test"
+          }
+        ]
+        }
+    ]
+    }
     ```  
 
 - Content of the **app.plural.test** file:

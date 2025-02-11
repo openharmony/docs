@@ -30,23 +30,23 @@ libuv.so
 
 ## OpenHarmony引入libuv的背景
 
-在OpenHarmony的早期版本中，为了兼容node的生态，将node的Node-API引入到系统中，方便node开发者快速接入OpenHarmony，扩展自己的js接口。同时引入了node的事件循环实现库——libuv。
+在OpenHarmony的早期版本中，为了兼容Node.js的生态，将Node.js的Node-API引入到系统中，方便Node.js开发者快速接入OpenHarmony，扩展自己的JS接口。同时引入了Node.js的事件循环实现库——libuv。
 
 ### 演进方向
 
-随着 OpenHarmony 的逐步完善，我们计划在未来的版本中，逐步将应用模型中的事件循环归一，并增强 OpenHarmony 自身的事件循环，以解决许多双 loop 机制下的调度问题，并为开发者提供更加完善的任务优先级、插队等与任务主循环交互的方法。
+随着OpenHarmony的逐步完善，我们计划在未来的版本中，逐步将应用模型中的事件循环归一，并增强OpenHarmony自身的事件循环，以解决许多双loop机制下的调度问题，并为开发者提供更加完善的任务优先级、插队等与任务主循环交互的方法。
 
-开发者应尽可能避免在 `napi_get_uv_event_loop` 接口(已在API12中标记废弃)获取的应用主 loop 上使用 libuv 的 ndk 进行操作，因为这可能会带来各种问题，并给未来的兼容性变更带来大量的工作量。
+开发者应尽可能避免在`napi_get_uv_event_loop`接口获取的应用主loop上使用libuv的ndk进行操作，因为这可能会带来各种问题，并给未来的兼容性变更带来大量的工作量。
 
 如果开发者希望跟主线程事件循环交互，比如插入任务等，应当使用[Node-API提供的接口](../../napi/napi-data-types-interfaces.md)。
 
-OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及扩展js接口的能力，但会屏蔽实现层使用的事件循环。尽管我们在API12中给`napi_get_uv_event_loop`接口标记了废弃，但Node-API的主要功能接口将会长期维护，并保证与node的原生行为一致，来保证熟悉node.js的扩展机制的开发者方便地将自己的已有代码接入到OpenHarmony中来。
+OpenHarmony还将长期通过Node-API来为开发者提供和主线程交互及扩展JS接口的能力，但会屏蔽实现层使用的事件循环。Node-API的主要功能接口将会长期维护，并保证与Node.js的原生行为一致，来保证熟悉Node.js的扩展机制的开发者方便地将自己的已有代码接入到OpenHarmony中来。
 
-如果您对 libuv 非常熟悉，并自信能够处理好所有的内存管理和多线程问题，您仍可以像使用原生 libuv 一样，自己启动线程，并在上面使用 libuv 完成自己的业务。在没有特殊版本要求的情况下，您不需要额外引入 libuv库到您的应用工程中。
+如果开发者对libuv非常熟悉，并自信能够处理好所有的内存管理和多线程问题，那么仍可以像使用原生libuv一样，自己启动线程，并在上面使用libuv完成自己的业务。在没有特殊版本要求的情况下，开发者不需要额外引入libuv库到自己的应用工程中。
 
 ### 当前问题和解决方案
 
-根据现有机制，一个线程上只能存在一个事件循环，为了适配系统应用的主事件循环，在主线程上的js环境中，uvloop中的事件处理是由主事件循环监听其fd，触发一次`uv_run`来驱动的。因此部分依赖uvloop始终循环的功能无法生效。
+根据现有机制，一个线程上只能存在一个事件循环，为了适配系统应用的主事件循环，在主线程上的JS环境中，uvloop中的事件处理是由主事件循环监听其fd，触发一次`uv_run`来驱动的。因此部分依赖uvloop事件循环的功能无法生效。
 
 基于上述，比较常用的场景和解决方案有：
 
@@ -54,7 +54,7 @@ OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及
 
 **错误示例：**
 
-在native层直接通过调用`napi_get_uv_event_loop`接口获取系统loop，调用libuv NDK接口实现相关功能。
+在native侧直接通过调用`napi_get_uv_event_loop`接口获取系统loop，调用libuv NDK接口实现相关功能。
 
 ```cpp
 #include "napi/native_api.h"
@@ -62,25 +62,23 @@ OpenHarmony 还将长期通过Node-API来为开发者提供和主线程交互及
 #define LOG_DOMAIN 0X0202
 #define LOG_TAG "MyTag"
 #include <hilog/log.h>
-#include <thread>
-#include <sys/eventfd.h>
-#include <unistd.h>
 
-static void execute(uv_work_t *work) {
+static void execute(uv_work_t* work)
+{
     OH_LOG_INFO(LOG_APP, "ohos in execute");
 }
 
-static void complete(uv_work_t *work, int status) {
+static void complete(uv_work_t* work, int status)
+{
     OH_LOG_INFO(LOG_APP, "ohos in complete"); 
     delete work;
 }
 static napi_value Add(napi_env env, napi_callback_info info)
 {
-    napi_value work_name;
-    uv_loop_s *loop = nullptr;
-    /* 获取应用js主线程的uv_loop */
+    uv_loop_s* loop = nullptr;
+    /* 获取应用JS主线程的uv_loop */
     napi_get_uv_event_loop(env, &loop);
-    uv_work_t *work = new uv_work_t;
+    uv_work_t* work = new uv_work_t;
     int ret = uv_queue_work(loop, work, execute, complete);
     if (ret != 0) {
         OH_LOG_INFO(LOG_APP, "delete work");
@@ -90,7 +88,8 @@ static napi_value Add(napi_env env, napi_callback_info info)
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports){
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -107,7 +106,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
@@ -122,10 +122,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 #define LOG_DOMAIN 0X0202
 #define LOG_TAG "MyTag"
 #include <hilog/log.h>
-#include <thread>
-#include <sys/eventfd.h>
-#include <unistd.h>
-uv_loop_t *loop;
+uv_loop_t* loop = nullptr;
 napi_value jsCb;
 int fd = -1;
 
@@ -135,20 +132,22 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_async_work work;
     napi_create_string_utf8(env, "ohos", NAPI_AUTO_LENGTH, &work_name);
     /* 第四个参数是异步线程的work任务，第五个参数为主线程的回调 */
-    napi_create_async_work(env, nullptr, work_name, [](napi_env env, void* data){
-        OH_LOG_INFO(LOG_APP, "ohos in execute");
-    }, [](napi_env env, napi_status status, void *data){
-        /* 不关心具体实现 */
-        OH_LOG_INFO(LOG_APP, "ohos in complete");
-        napi_delete_async_work(env, (napi_async_work)data);
-    }, nullptr, &work);
+    napi_create_async_work(
+        env, nullptr, work_name, [](napi_env env, void* data){OH_LOG_INFO(LOG_APP, "ohos in execute"); }, 
+        [](napi_env env, napi_status status, void* data){
+            /* 不关心具体实现 */
+            OH_LOG_INFO(LOG_APP, "ohos in complete");
+            napi_delete_async_work(env, (napi_async_work)data);
+        }, 
+        nullptr, &work);
     /* 通过napi_queue_async_work触发异步任务执行 */
     napi_queue_async_work(env, work);
     return 0;
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports){
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {{"add", nullptr, Add, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -165,7 +164,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
@@ -186,16 +186,20 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 #include <hilog/log.h>
 #include <thread>
 #include <sys/eventfd.h>
-#include <unistd.h>
-uv_loop_t *loop;
+
+uv_loop_t* loop = nullptr;
 napi_value jsCb;
 int fd = -1;
-void poll_handler(uv_poll_t* handle,int status, int events){
+
+void poll_handler(uv_poll_t* handle,int status, int events)
+{
     OH_LOG_INFO(LOG_APP, "ohos poll print");
 }
-static napi_value TestClose(napi_env env, napi_callback_info info){
+
+static napi_value TestClose(napi_env env, napi_callback_info info)
+{
     std::thread::id this_id = std::this_thread::get_id();
-    OH_LOG_INFO(LOG_APP, "ohos thread id : %{public}ld\n", this_id);
+    OH_LOG_INFO(LOG_APP, "ohos thread id : %{public}ld", this_id);
     size_t argc = 1;
     napi_value workBname;
     
@@ -206,7 +210,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     napi_get_uv_event_loop(env, &loop);
     // 创建一个eventfd
     fd = eventfd(0, 0);
-    OH_LOG_INFO(LOG_APP, "fd is %{public}d\n",fd);
+    OH_LOG_INFO(LOG_APP, "fd is %{public}d",fd);
     uv_poll_t* poll_handle = new uv_poll_t;
     // 初始化一个poll句柄，并将其与eventfd关联
     uv_poll_init(loop, poll_handle, fd);
@@ -218,7 +222,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
             int value = 10;
             int ret = eventfd_write(fd, value);
             if (ret == -1){
-                OH_LOG_INFO(LOG_APP, "write failed!\n");
+                OH_LOG_INFO(LOG_APP, "write failed!");
                 continue;
             }
         }
@@ -226,8 +230,10 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     mythread.detach();
     return 0;
 }
+
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports){
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -244,7 +250,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
@@ -260,7 +267,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 
 **临时方案：**
 
-在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前Node-API的接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，我们可以在调用类似*uv_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
+在当下的系统版本中，我们并不推荐开发者直接通过`napi_get_uv_event_loop`获取应用主线程的uvloop进行业务逻辑的开发。如果当前Node-API的接口无法满足开发者的开发需求，确有必要使用libuv来实现业务功能，为了使libuv接口在主线程上生效，开发者可以在调用类似*uv_xxx_start*后，执行一次`uv_async_send`的方式来主动触发应用主线程执行一次`uv_run`。这样可以保证该接口生效并正常执行。
 
 针对上述无法生效的代码示例，可以修改如下使其生效：
 
@@ -272,16 +279,20 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 #include <hilog/log.h>
 #include <thread>
 #include <sys/eventfd.h>
-#include <unistd.h>
-uv_loop_t *loop;
+
+uv_loop_t* loop = nullptr;
 napi_value jsCb;
 int fd = -1;
-void poll_handler(uv_poll_t* handle,int status, int events){
+
+void poll_handler(uv_poll_t* handle,int status, int events)
+{
     OH_LOG_INFO(LOG_APP, "ohos poll print");
 }
-static napi_value TestClose(napi_env env, napi_callback_info info){
+
+static napi_value TestClose(napi_env env, napi_callback_info info)
+{
     std::thread::id this_id = std::this_thread::get_id();
-    OH_LOG_INFO(LOG_APP, "ohos thread id : %{public}ld\n", this_id);
+    OH_LOG_INFO(LOG_APP, "ohos thread id : %{public}ld", this_id);
     size_t argc = 1;
     napi_value workBName;
     
@@ -292,7 +303,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
     napi_get_uv_event_loop(env, &loop);
 
     fd = eventfd(0, 0);
-    OH_LOG_INFO(LOG_APP, "fd is %{public}d\n",fd);
+    OH_LOG_INFO(LOG_APP, "fd is %{public}d",fd);
     uv_poll_t* poll_handle = new uv_poll_t;
     uv_poll_init(loop, poll_handle, fd);
     uv_poll_start(poll_handle, UV_READABLE, poll_handler);
@@ -305,7 +316,7 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
             int value = 10;
             int ret = eventfd_write(fd, value);
             if (ret == -1){
-                OH_LOG_INFO(LOG_APP, "write failed!\n");
+                OH_LOG_INFO(LOG_APP, "write failed!");
                 continue;
             }
         }
@@ -315,7 +326,8 @@ static napi_value TestClose(napi_env env, napi_callback_info info){
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports){
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {{"testClose", nullptr, TestClose, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
@@ -332,7 +344,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
@@ -354,36 +367,45 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void){
 相关函数为：
 
 ```cpp
-// 创建一个新的异步工作
-// env：指向当前环境的指针
-// async_resource：可选的资源对象，用于跟踪异步操作
-// async_resource_name：可选的字符串，用于描述异步资源
-// execute：一个回调函数，它将在一个新的线程中执行异步操作
-// complete：一个回调函数，它将在异步操作完成后被调用
-// data：用户定义的数据，它将被传递给execute和complete回调函数
-// result：指向新创建的异步工作的指针
+/**
+* @brief 创建一个新的异步工作
+*
+* @param env 指向当前环境的指针
+* @param async_resource 可选的资源对象，用于跟踪异步操作
+* @param async_resource_name 可选的字符串，用于描述异步资源
+* @param execute 一个回调函数，它将在一个新的线程中执行异步操作
+* @param complete 一个回调函数，它将在异步操作完成后被调用
+* @param data 用户定义的数据，它将被传递给execute和complete回调函数
+* @param result 指向新创建的异步工作的指针
+*/
 napi_status napi_create_async_work(napi_env env,
                                   napi_value async_resource,
                                   napi_value async_resource_name,
-                                   napi_async_execute_callback execute,
-                                 napi_async_complete_callback complete,
+                                  napi_async_execute_callback execute,
+                                  napi_async_complete_callback complete,
                                   void* data,
                                   napi_async_work* result);
 
-// 将异步工作添加到队列中
-// env：指向当前环境的指针
-// work：指向异步工作的指针
+/**
+* @brief 将异步工作添加到队列中
+*
+* @param env 指向当前环境的指针
+* @param work 指向异步工作的指针
+*/
 napi_status napi_queue_async_work(napi_env env, napi_async_work work);
 
-// 删除异步工作
-// env：指向当前环境的指针
-// work：指向异步工作的指针
+/**
+* @brief 删除异步工作
+*
+* @param env 指向当前环境的指针
+* @param work 指向异步工作的指针
+*/
 napi_status napi_delete_async_work(napi_env env, napi_async_work work);
 ```
 
 #### 跨线程共享和调用的线程安全函数
 
-当开发者想传入某个回调函数到应用主线程上时，libuv的实现方式一般使用`uv_async_t`句柄用于线程间通信。
+当开发者想在任意子线程传递某个回调函数到应用主线程上执行时，libuv的实现方式一般使用`uv_async_t`句柄用于线程间通信。
 
 相关函数包含：
 
@@ -395,38 +417,57 @@ Node-API与之对应的接口为[napi_threadsafe_function](../../napi/use-napi-t
 相关函数：
 
 ```cpp
-// 用于创建一个线程安全的函数，该函数可以在多个线程中调用，而不需要担心数据竞争或其他线程安全问题
-// env：指向NAPI环境的指针，用于创建和操作Javascript值
-// func：指向JavaScript函数的指针
-// resource_name：指向资源名称的指针，这个名称将用于日志和调试
-// max_queue_size：一个整数，表示队列的最大大小，当队列满时，新的调用将被丢弃
-// initial_thread_count：一个整数，表示初始线程数，这些线程将在创建函数时启动
-// context：指向上下文的指针，这个上下文将被传递给call_js_func函数
-// call_js_func：指向回调函数的指针，这个函数将在Javascript函数被调用时被调用
-// finalize：指向finalize函数的指针，这个函数将在线程安全函数被销毁时被调用
-// result：指向napi_threadsafe_function结构的指针，这个结构将被填充为新创建的线程安全函数
+/**
+* @brief 用于创建一个线程安全的函数，该函数可以在多个线程中调用，而不需要担心数据竞争或其他线程安全问题
+*
+* @param env 指向NAPI环境的指针，用于创建和操作Javascript值
+* @param func 指向JavaScript函数的指针
+* @param async_resource 异步资源，通常是一个表示异步操作的对象
+* @param async_resource_name 指向资源名称的指针，这个名称将用于日志和调试
+* @param max_queue_size 一个整数，表示队列的最大大小，当队列满时，新的调用将被丢弃
+* @param initial_thread_count 无符号整数，表示在创建线程安全函数时，初始的线程数量
+* @param thread_finalize_data 一个指向在所有线程之前需要清理的数据
+* @param napi_finalize thread_finalize_cb 回调函数，当所有线程完成时被调用，用于清理资源
+* @param context 指向上下文的指针，这个上下文将被传递给call_js_func函数
+* @param call_js_cb 指向回调函数的指针，这个函数将在Javascript函数被调用时被调用
+* @param result 指向napi_threadsafe_function结构的指针，这个结构将被填充为新创建的线程安全函数
+*/
 napi_status napi_create_threadsafe_function(napi_env env,
-                                           napi_value func,
-                                           const char* resource_name,
-                                           size_t max_queue_size,
-                                           size_t initial_thread_count,
-                                           void* context,
-                                           napi_threadsafe_function_call_js call_js_func,
-                                           napi_threadsafe_function_finalize finalize,
-                                           napi_threadsafe_function* result);
+                                            napi_value func,
+                                            napi_value async_resource,
+                                            napi_value async_resource_name,
+                                            size_t max_queue_size,
+                                            size_t initial_thread_count,
+                                            void* thread_finalize_data,
+                                            napi_finalize thread_finalize_cb,
+                                            void* context,
+                                            napi_threadsafe_function_call_js call_js_cb,
+                                            napi_threadsafe_function* result);
 
-// 获取一个线程安全的函数
-// function：指向线程安全函数的指针
+/**
+* @brief 获取一个线程安全的函数
+*
+* @param function 指向线程安全函数的指针
+*/
 napi_status napi_acquire_threadsafe_function(napi_threadsafe_function function);
 
-// 调用一个线程安全的函数
-// function：指向线程安全函数的指针
-// data：用户数据
-napi_status napi_call_threadsafe_function(napi_threadsafe_function function, void* data);
-
-// 释放一个线程安全的函数
-// function：指向线程安全函数的指针
-napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
+/**
+* @brief 调用一个线程安全的函数
+* @param function 指向线程安全函数的指针
+* @param data 用户数据
+* @param is_blocking 枚举值，它决定调用JavaScript函数是阻塞的还是非阻塞的
+*/
+napi_status napi_call_threadsafe_function(napi_threadsafe_function function,
+                                          void* data,
+                                          napi_threadsafe_function_call_mode is_blocking);
+/**
+* @brief 释放一个线程安全的函数
+*
+* @param function 指向线程安全函数的指针
+* @param is_blocking 枚举值，它决定调用JavaScript函数是阻塞的还是非阻塞的
+*/
+napi_status napi_release_threadsafe_function(napi_threadsafe_function function,
+                                             napi_threadsafe_function_call_mode is_blocking);
 
 ```
 
@@ -457,7 +498,7 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ### libuv单线程约束
 
-在OpenHarmony中使用libuv时，**务必注意：使用`uv_loop_init`接口初始化loop的线程和调用`uv_run`的线程应保持一致，称为loop线程，并且对uvloop的所有非线程安全操作，均需保证与loop同线程，否则将会有发生crash的风险**。OpenHarmony对libuv的使用有更严格的约束，对于非线程安全的函数，libbuv将实现多线程检测机制，检测到多线程问题后输出警告日志。为了确保检测机制的准确性，协助开发者规避uv接口的不规范使用，我们建议在创建事件循环与执行uv_run始终保持在同一线程。
+在OpenHarmony中使用libuv时，**务必注意：使用`uv_loop_init`接口初始化loop的线程和调用`uv_run`的线程应保持一致，称为loop线程，并且对uvloop的所有非线程安全操作，均需保证与loop同线程，否则将会有发生crash的风险**。OpenHarmony对libuv的使用有更严格的约束，对于非线程安全的函数，libuv将实现多线程检测机制，检测到多线程问题后输出警告日志。为了确保检测机制的准确性，协助开发者规避uv接口的不规范使用，我们建议在创建事件循环与执行uv_run始终保持在同一线程。
 
 #### 单线程约束
 
@@ -465,9 +506,9 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 
 ##### 开发者创建loop
 
-开发者可以通过调用`uv_loop_new`创建loop或者`uv_loop_init`接口初始化loop，loop的生命周期由开发者自行维护。在这种情况下，如前文所述，需要保证`uv_run`执行在与创建/初始化loop操作相同的线程上，即loop线程上。此外，其余非线程安全操作，如timer、handle相关操作等，均需要在loop线程上进行。 
+开发者可以通过调用`uv_loop_new`创建loop或者`uv_loop_init`接口初始化loop，loop的生命周期由开发者自行维护。在这种情况下，如前文所述，需要保证`uv_run`执行在与创建/初始化loop操作相同的线程上，即loop线程上。此外，其余非线程安全操作，如timer相关操作等，均需要在loop线程上进行。 
 
-如果因为业务需要，必须在其他线程往loop线程抛任务，请使用`uv_async_send`函数实现，即在async句柄初始化时，注册一个回调函数，当调用`uv_async_send`时，在主线程上执行该回调函数。见如下代码示例：
+如果因为业务需要，必须在其他线程往loop线程抛任务，请使用`uv_async_send`函数：即在async句柄初始化时，注册一个回调函数，并在该回调中实现相应的操作，当调用`uv_async_send`时，在主线程上执行该回调函数。见如下代码示例：
 
 ```cpp
 #include <napi/native_api.h>
@@ -476,65 +517,101 @@ napi_status napi_release_threadsafe_function(napi_threadsafe_function function);
 #define LOG_TAG "MyTag"
 #include "hilog/log.h"
 #include <thread>
-#include <unistd.h>
+
 uv_async_t* async = new uv_async_t;
+bool cond1 = false;
+bool cond2 = false;
+
+// 使用技巧：在使用loop时, 需要特别注意uv_stop函数的使用, 开发者需要确保uv_stop前
+// 通知与loop相关的所有线程的handle都关闭, 参考stop_loop函数的实现
+int stop_loop(uv_loop_t* loop)
+{
+    uv_stop(loop);
+    auto const ensure_close = [](uv_handle_t* handle, void*) {
+        if (uv_is_closing(handle)) {
+            return;
+        } else {
+            uv_close(handle, nullptr);
+        }
+    };
+    // 遍历所有句柄, 如果handle处于活跃状态, 调用ensure_close
+    uv_walk(loop, ensure_close, nullptr);
+    // 继续运行uv_run, 直到loop中不存在活跃的句柄和请求为止
+    while(true) {
+        if (uv_run(loop, UV_RUN_DEFAULT) == 0) {
+            break;
+        }
+    }
+
+    // 最后检查loop状态
+    if (uv_loop_alive(loop) != 0) {
+        return -1;
+    }
+    return 0;
+}
 
 // 执行创建定时器操作
-void timer_cb(uv_async_t* handle) {
+void async_cb(uv_async_t* handle) {
     auto loop = handle->loop;
     uv_timer_t* timer = new uv_timer_t;
     uv_timer_init(loop, timer);
-    
-    uv_timer_start(timer, [](uv_timer_t* timer){
-        uv_timer_stop(timer);
-    }, 1000, 0);
+
+    uv_timer_start(timer,
+        [](uv_timer_t* timer){
+            // do something
+            // 在适当的时机停掉timer
+            if (cond1)
+                uv_timer_stop(timer);
+                uv_close((uv_handle_t*)timer, [](uv_handle_t* handle){
+                    delete(uv_timer_t*)handle;
+                });
+            },
+            100, 100);
     // 在适当的时机关闭async句柄
-    if (cond) {
+    if (cond2) {
         uv_close((uv_handle_t*)handle, [](uv_handle_t* handle){
             delete (uv_async_t*)handle;
-        })
+        });
     }
 }
 
-// 初始化async句柄，绑定对应的回调函数
+// 初始化async句柄, 绑定对应的回调函数
 static napi_value TestTimerAsync(napi_env env, napi_callback_info info) {
     std::thread t([](){  // A线程，loop线程
-        uv_loop_t* loop = new uv_lppo_t;
-        // 开发者自己创建loop，请注意维护loop的生命周期
+        uv_loop_t* loop = new uv_loop_t;
+        // 开发者自己创建loop, 请注意维护loop的生命周期
         uv_loop_init(loop);
-        // 初始化一个async句柄，注册回调函数
-        uv_async_init(loop, async, timer_cb);
+        // 初始化一个async句柄, 注册回调函数
+        uv_async_init(loop, async, async_cb);
         // 让loop开始运行
         uv_run(loop, UV_RUN_DEFAULT);
         // 清理所有的handle
-        uv_walk(
-            loop,
-            [](uv_handle_t* handle, void* args) {
-                if (!uv_is_closing(handle)) {
-                    uv_close(hendle, [](uv_handle_t* handle){delete handle;});
-                }
-            },
-            nullptr;
-        );
-        while (uv_run(loop, UV_RUN_DEFAULT) != 0);
+        stop_loop(loop);
         // 释放loop
-        uv_loop_delete(loop);
-    })
+        uv_loop_close(loop);
+        delete loop;
+    });
     t.detach();
     return 0;
 }
 
 // 在另一个线程上调用uv_async_send函数
-static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info) {
+static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info)
+{
     std::thread t([](){ // B线程
-        uv_async_send(async);  // 调用uv_async_send，通知loop线程调用与async句柄绑定的timer_cb
+        uv_async_send(async);  // 调用uv_async_send, 通知loop线程调用与async句柄绑定的timer_cb
+        uv_sleep(1000);
+        // 修改cond1和cond2示例
+        cond1 = true;
+        cond2 = true;
     });
     t.detach();
     return 0;
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"testTimerAsync", nullptr, TestTimerAsync, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testTimerAsyncSend", nullptr, TestTimerAsyncSend, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -554,18 +631,17 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
 
-上述代码只是一个简单的示例，进阶实现是：使用一个全局的任务队列，在非loop线程提交任务到任务队列，然后在合适的时机调用uv_async_send函数，回到loop线程执行async_cb，在async_cb中，遍历执行该任务队列上的所有任务。需要注意的是，务必保证对任务队列的操作是线程安全的，C++实现可使用无锁队列，C实现需要加锁保护。
-
 ##### 从env获取loop
 
-开发者使用`napi_get_uv_event_loop`接口从env获取到的loop一般是系统创建的js线程的事件循环，因此应当避免在子线程中调用非线程安全函数。
+开发者使用`napi_get_uv_event_loop`接口从env获取到的loop一般是系统创建的JS主线程的事件循环，因此应当避免在子线程中调用非线程安全函数。
 
-如因业务需要，必须在非loop线程上调用非线程安全函数，请使用线程安全函数`uv_async_send`函数进行操作。即定义一个uv_async_t*类型的句柄，初始化该句柄的时候，将需要在子线程调用的非线程安全函数在对应的async_cb中调用，然后在非loop线程上调用uv_async_send函数，并回到loop线程上执行async_cb。请参考[正确使用timer示例](#正确使用timer示例)的场景二。
+如因业务需要，必须在非loop线程上调用非线程安全函数，请使用线程安全函数`uv_async_send`将任务提交到loop线程。即定义一个uv_async_t*类型的句柄，初始化该句柄的时候，将需要在子线程调用的非线程安全函数在对应的async_cb中调用，然后在非loop线程上调用`uv_async_send`函数，并回到loop线程上执行async_cb。请参考[正确使用timer示例](#正确使用timer示例)的场景二。
 
 ### 线程安全函数
 
@@ -579,7 +655,7 @@ extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
 
 **提示：所有形如uv_xxx_init的函数，即使它是以线程安全的方式实现的，但使用时要注意，避免多个线程同时调用uv_xxx_init，否则它依旧会引起多线程资源竞争的问题。最好的方式是在事件循环线程中调用该函数。**
 
-**注：`uv_async_send`函数被调用后，回调函数是被异步触发的。如果调用了多次`uv_async_send`，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次`uv_async_send`，libuv对回调的处理可能会违背开发者的预期。** 而在native侧，可以保证回调的执行次数和开发者调用`napi_call_threadsafe_function`的次数保持一致。
+**注：`uv_async_send`函数被调用后，回调函数是被异步触发的。如果调用了多次`uv_async_send`，libuv只保证至少有一次回调会被执行。这就可能导致一旦对同一句柄触发了多次`uv_async_send`，libuv对回调的处理可能会违背开发者的预期。多次对同一个async句柄进行send操作，还会导致任意两次相同句柄send操作之间提交的的其他async_cb任务丢失。** 而在native侧，可以保证回调的执行次数和开发者调用`napi_call_threadsafe_function`的次数保持一致。
 
 非线程安全函数：
 
@@ -626,7 +702,7 @@ int uv_loop_delete(uv_loop_t* loop);
 uv_loop_t* uv_default_loop(void);
 ```
 
-  该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他js工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。在系统的双loop改造完成后，开发者可以根据业务要求来使用该接口。
+  该函数创建一个进程级的loop。在OpenHarmony中，由于目前的应用主循环及其他JS工作线程还存在着libuv的loop。因此我们不建议开发者使用该函数来创建loop并实现业务功能。
 
 ```cpp
 int uv_run(uv_loop_t* loop, uv_run_mode mode);
@@ -646,36 +722,6 @@ void uv_stop(uv_loop_t* loop);
 
   该函数用来停止一个事件循环，在loop的下一次迭代中才会停止。如果该函数发生在I/O操作之前，将不会阻塞而是直接跳过`uv__io_poll`。
 
-**使用技巧**：在使用loop时，需要特别注意`uv_stop`函数的使用。开发者需要确保`uv_stop`前，通知与loop相关的所有线程的handle都关闭。参考代码如下：
-
-```cpp
-int stop_loop(uv_loop_t* loop)
-{
-    uv_stop(loop);
-    auto const ensure_close = [](uv_handle_t* handle, void*) {
-        if (uv_is_closing(handle)) {
-            return;
-        } else {
-            uv_close(handle, nullptr);
-        }
-    };
-    // 遍历所有句柄，如果handle处于活跃状态，调用ensure_close。
-    uv_walk(loop, ensure_close, nullptr);
-
-    // 继续运行uv_run，直到loop中不存在活跃的句柄和请求为止。
-    while(true) {
-        if (uv_run(loop, UV_RUN_DEFAULT) == 0) {
-            break;
-        }
-    }
-
-    // 最后检查loop状态。
-    if (uv_loop_alive(loop) != 0) {
-        return -1;
-    }
-    return 0;
-}
-```
 
 ### libuv中的handles和requests
 
@@ -700,13 +746,13 @@ typedef struct uv_fs_s uv_fs_t;
 
 **注：在handles中，uv_xxx_t继承了uv_handle_t；在requests中，uv_work_t继承了uv_req_t。**
 
-对于libuv中的handles，对其有个正确的认识并管理好它的生命周期至关重要。handle作为一个长期存在于loop中的句柄，在使用中，开发者应遵循下面的原则：
+对于libuv中的handles，对其有正确的认识并管理好它的生命周期至关重要。handle作为一个长期存在于loop中的句柄，在使用中，开发者应遵循下面的原则：
 
 1. 句柄的初始化工作应在事件循环的线程中进行。
 2. 若由于业务问题，句柄需要在其他工作线程初始化，在使用之前用原子变量判断是否初始化完成。
 3. 句柄在确定后续不再使用后，调用`uv_close`将句柄从loop中摘除。
 
-在这里，需要特别说明一下`uv_close`的使用方法。`uv_close`被用来关闭一个handle，但是它是异步地关闭handle。函数原型为：
+在这里，需要特别说明一下`uv_close`的使用方法。`uv_close`被用来关闭一个handle，但是关闭handle的动作是异步的。函数原型为：
 
 ```cpp
 void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
@@ -715,7 +761,7 @@ void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
   handle：要关闭的句柄。
   close_cb：处理该句柄的函数，用来进行内存管理等操作。
 
-`uv_close`调用后，它首先将要关闭的handle挂载到loop中的closing_handles队列上，然后等待loop所在线程运行`uv__run_closing_handles`函数。最后回调函数close_cb将会在loop的下一次迭代中执行。因此，释放内存等操作应该在close_cb中进行。并且这种异步的关闭操作会带来多线程上的问题，开发者需要谨慎处理`uv_close`的时序问题，并且保证在close_cb执行之前Handles的生命周期。
+调用`uv_close`后，首先将要关闭的handle挂载到loop的closing_handles队列上，然后等待loop所在线程运行`uv__run_closing_handles`函数。最后回调函数close_cb将会在loop的下一次迭代中执行。因此，释放内存等操作应该在close_cb中进行。并且这种异步的关闭操作会带来多线程问题，开发者需要谨慎处理`uv_close`的时序问题，并且保证在close_cb执行之前handles的生命周期。
 
 **Tips**：在[libuv官方文档](http://libuv.org/)中，有个经验法则需要在此提示一下。原文翻译：如果 uv_foo_t 类型的句柄具有 `uv_foo_start()` 函数，则从调用该函数的那一刻起，它就处于活动状态。 同样，`uv_foo_stop()`再次停用句柄。
 
@@ -724,8 +770,6 @@ void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
 > 1. 所有的handle关闭前必须要调用`uv_close`，所有的内存操作都要在`uv_close`的close_cb中执行。
 >
 > 2. 所有的handle操作都不能通过获取其他线程loop的方式，在非loop线程上调用。
-
-#### 异步任务提交
 
 对于libuv中的requests，开发者需要确保在进行异步任务提交时，**通过动态申请的request，要在loop所在线程执行的complete回调函数中释放**。用uv_work_t举例，代码可参考如下：
 
@@ -738,35 +782,6 @@ uv_queue_work(loop, work, [](uv_work_t* req) {
     delete req;
 });
 ```
-
-而对于一些特定场景，比如对内存开销敏感的场景中，同一个request可以重复使用，前提是保证同一类任务之间的顺序，并且要确保最后一次调用`uv_queue_work`时做好对该request的释放工作。
-
-```C
-uv_work_t* work = new uv_work_t;
-uv_queue_work(loop, work, [](uv_work_t* work) {
-        //do something
-    },
-    [](uv_work_t* work, int status) {
-        // do something
-        uv_queue_work(loop, work, [](...) {/* do something*/}, [](...) {
-            //do something
-            if (last_task) {  // 最后一个任务执行完以后，释放该request
-                delete work;
-            }
-        });
-    },
-    )
-```
-
-#### 异步任务提交注意事项
-##### uv_queue_work流程
-libuv中`uv_queue_work`在UI线程的工作流程为：将`work_cb`抛到FFRT对应优先级的线程池中，然后待FFRT调度执行该任务，并将`after_work_cb`抛到eventhandler的event queue中，等待eventhandler调度并回到loop线程执行。需要注意的是，`uv_queue_work`调用完后，并不代表其中的任何一个任务执行完，仅代表将work_cb插入到ffrt对应优先级的线程池中。而taskpool和jsworker线程的工作流程和libuv原逻辑保持一致。
-
-##### uv_queue_work使用约束
-
-特别强调，开发者需要明确，`uv_queue_work`函数仅用于抛异步任务，**异步任务的execute回调被提交到线程池后会经过调度执行，因此并不保证多次提交的任务之间的时序关系**。
-
-`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute回调置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用[napi_threadsafe_function相关函数](#跨线程共享和调用的线程安全函数)。
 
 #### libuv timer使用规范
 
@@ -824,7 +839,8 @@ Native C++侧：
 #include <thread>
 #include <unistd.h>
 
-static napi_value TestTimer(napi_env env, napi_callback_info info) {
+static napi_value TestTimer(napi_env env, napi_callback_info info)
+{
     uv_loop_t* loop = nullptr;
     uv_timer_t* timer = new uv_timer_t;
     
@@ -841,7 +857,8 @@ static napi_value TestTimer(napi_env env, napi_callback_info info) {
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"testTimer", nullptr, TestTimer, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
@@ -860,7 +877,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
@@ -873,10 +891,11 @@ export const testTimer:() => number;
 
 ##### 正确使用timer示例
 
-**场景一：** 在上述场景中，需保证在native主线程上进行timer的相关操作。将上述TestTimer函数的代码做如下修改，便可以避免崩溃发生。
+**场景一：** 在上述场景中，需保证在JS主线程上进行timer的相关操作。将上述TestTimer函数的代码做如下修改，便可以避免崩溃发生。
 
 ```cpp
-static napi_value TestTimer(napi_env env, napi_callback_info info) {
+static napi_value TestTimer(napi_env env, napi_callback_info info)
+{
     uv_loop_t* loop = nullptr;
     uv_timer_t* timer = new uv_timer_t;
     
@@ -942,7 +961,8 @@ Native C++侧：
 uv_async_t* async = new uv_async_t;
 
 // 执行创建定时器操作
-void timer_cb(uv_async_t* handle) {
+void async_cb(uv_async_t* handle)
+{
     auto loop = handle->loop;
     uv_timer_t* timer = new uv_timer_t;
     uv_timer_init(loop, timer);
@@ -953,14 +973,16 @@ void timer_cb(uv_async_t* handle) {
 }
 
 // 初始化async句柄，绑定对应的回调函数
-static napi_value TestTimerAsync(napi_env env, napi_callback_info info) {
+static napi_value TestTimerAsync(napi_env env, napi_callback_info info)
+{
     uv_loop_t* loop = nullptr;
 	napi_get_uv_event_loop(env, &loop);
-    uv_async_init(loop, async, timer_cb);
+    uv_async_init(loop, async, async_cb);
     return 0;
 }
 
-static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info) {
+static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info)
+{
     std::thread t([](){
         uv_async_send(async);  // 在任意子线程中调用uv_async_send，通知主线程调用与async绑定的timer_cb
     });
@@ -969,7 +991,8 @@ static napi_value TestTimerAsyncSend(napi_env env, napi_callback_info info) {
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports)
+{
     napi_property_descriptor desc[] = {
         {"testTimerAsync", nullptr, TestTimerAsync, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"testTimerAsyncSend", nullptr, TestTimerAsyncSend, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -989,7 +1012,8 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
+{
     napi_module_register(&demoModule);
 }
 ```
@@ -1025,24 +1049,26 @@ int uv_async_send(uv_async_t* handle)
 >
 > 2. uv_async_t的执行顺序严格按照`uv_async_init`的顺序，而非通过`uv_async_send`的顺序来执行的。因此按照初始化的顺序来管理好时序问题是必要的。
 
-![线程间通信原理](./figures/libuv-image-1.png)
+![线程间通信原理](./figures/libuv-image-1.jpg)
 
 示例代码：
 
 ```cpp
-#include <bits/stdc++.h>
+#include <iostream>
+#include <thread>
 #include "uv.h"
 
 uv_loop_t* loop = nullptr;
 uv_async_t* async = nullptr;
 int g_counter = 10;
+
 void async_handler(uv_async_t* handle)
 {
-    printf("ohos async print\n");
+    std::cout << "ohos async print" << std::endl;
     if (--g_counter == 0) {
         // 调用uv_close关闭async，在主循环中释放内存。
         uv_close((uv_handle_t*)async, [](uv_handle_t* handle) {
-            printf("delete async\n");
+            std::cout << "delete async" << std::endl;
             delete (uv_async_t*)handle;
         });
     }
@@ -1056,7 +1082,7 @@ int main()
     std::thread subThread([]() {
         for (int i = 0; i < 10; i++) {
             usleep(100); // 避免多次调用uv_async_send只执行一次
-            printf("%dth: subThread triggered\n", i);
+            std::cout << i << "th: subThread triggered" << std::endl;
             uv_async_send(async);
         }
     });
@@ -1099,7 +1125,7 @@ delete async
 
 ### 线程池
 
-线程池是libuv的一个核心功能，libuv中的线程池是通过uv_loop_t中的成员变量wq_async来控制工作线程与主线程的通信。核心函数如下：
+线程池是libuv的一个核心功能，libuv中的线程池通过uv_loop_t中的成员变量wq_async来控制工作线程与主线程的通信。核心函数如下：
 
 ```cpp
 int uv_queue_work(uv_loop_t* loop,
@@ -1110,23 +1136,55 @@ int uv_queue_work(uv_loop_t* loop,
 
 work_cb：提交给工作线程的任务。
 
-after_work_cb：loop所在线程的要执行的回调函数。
+after_work_cb：loop所在线程要执行的回调函数。
 
 **注意：** work_cb与after_work_cb的执行有一个时序问题，只有work_cb执行完，通过`uv_async_send(loop->wq_async)`触发fd事件，loop所在线程在下一次迭代中才会执行after_work_cb。只有执行到after_work_cb时，与之相关的uv_work_t生命周期才算结束。
 
-下图为libuv的线程池工作流程，图中流程已简化，默认句柄的pending标志为1，worker线程个数不代表线程池中线程的真实数量。
+#### 异步任务提交
 
-![libuv线程池工作原理](./figures/libuv-image-3.png)
+下图为原生libuv的线程池工作流程，图中流程已简化，默认句柄的pending标志为1，worker线程个数不代表线程池中线程的真实数量。
+
+![libuv线程池工作原理](./figures/libuv-image-3.jpg)
+
+#### 异步任务提交注意事项
+##### uv_queue_work工作流程
+
+在OpenHarmony中，`uv_queue_work`函数在UI线程的工作流程为：将`work_cb`抛到FFRT对应优先级的线程池中，然后待FFRT调度执行该任务，并将`after_work_cb`抛到eventhandler对应优先级的event queue中，等待eventhandler调度并回到loop线程执行。需要注意的是，`uv_queue_work`调用完后，并不代表其中的任何一个任务执行完，仅代表将work_cb插入到FFRT对应优先级的线程池中。taskpool和jsworker线程的工作流程和原生libuv逻辑保持一致。
+
+对于一些特定场景，比如对内存开销敏感的场景中，同一个request可以重复使用，前提是保证同一类任务之间的顺序，并且要确保最后一次调用`uv_queue_work`时做好对该request的释放工作。
+
+```C
+uv_work_t* work = new uv_work_t;
+uv_queue_work(loop, work, [](uv_work_t* work) {
+        //do something
+    },
+    [](uv_work_t* work, int status) {
+        // do something
+        uv_queue_work(loop, work, [](...) {/* do something*/}, [](...) {
+            //do something
+            if (last_task) {  // 最后一个任务执行完以后，释放该request
+                delete work;
+            }
+        });
+    },
+    )
+```
+
+##### uv_queue_work使用约束
+
+特别强调，开发者需要明确，`uv_queue_work`函数仅用于抛异步任务，**异步任务的execute回调被提交到线程池后会经过调度执行，因此并不保证多次提交的任务及其回调按照时序关系执行**。
+
+`uv_queue_work`仅限于在loop线程中调用，这样不会有多线程安全问题。**请不要把uv_queue_work作为线程间通信的手段，即A线程获取到B线程的loop，并通过`uv_queue_work`抛异步任务的方式，把execute置为空任务，而把complete回调放在B线程中执行。** 这种方式不仅低效，而且还增加了发生故障时定位问题的难度。为了避免低效的任务提交，请使用[napi_threadsafe_function相关函数](#跨线程共享和调用的线程安全函数)。
 
 ### OpenHarmony中libuv的使用现状
 
-当前OpenHarmony系统中涉及到libuv的线程主要有主线程、JS Worker线程、Taskpool中的TaskWorker线程以及IPC线程。除了主线程内采用了eventhandler作为主循环，其他线程都是使用libuv中的UV_RUN_DEFAULT运行模式作为当前线程的事件主循环来执行任务。在主线程中，eventhandler通过fd驱动的方式来触发任务的执行，eventhandler监听了uv_loop中的backend_fd。当loop中有fd事件触发的时候，eventhandler会执行一次`uv_run`来执行libuv中的任务。
+当前OpenHarmony系统中涉及到libuv的线程主要有主线程、JS Worker线程、Taskpool中的TaskWorker线程以及IPC线程。除了主线程采用了eventhandler作为主循环，其他线程都是使用libuv中的UV_RUN_DEFAULT运行模式作为当前线程的事件主循环来执行任务。在主线程中，eventhandler通过fd驱动的方式来触发任务的执行，eventhandler监听了uv_loop中的backend_fd。当loop中有fd事件触发的时候，eventhandler会执行一次`uv_run`来执行一遍libuv中的任务。
 
 综上所述，开发者会发现这样一种现象：**同样的libuv接口在主线程上不生效，但在JS Worker线程中就没问题。这主要还是因为主线程上所有不通过触发fd来驱动的uv接口都不会得到及时的响应。**
 
-另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着ffrt线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
+另外，在应用主线程中，所有的异步任务尽管最终都是通过libuv得到执行的。但是在当前系统中，[libuv的线程池已经对接到了FFRT中](https://gitee.com/openharmony/third_party_libuv/wikis/06-Wiki-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%BA%90/%20libuv%E5%B7%A5%E4%BD%9C%E7%BA%BF%E7%A8%8B%E6%8E%A5%E5%85%A5FFRT%E6%96%B9%E6%A1%88%E5%88%86%E6%9E%90)，任何抛向libuv的异步任务都会在FFRT的线程中得到调度。应用主线程的回调函数也通过PostTask接口插入到eventhandler的队列上。这就意味着FFRT线程上的异步任务完成后不再通过`uv_async_send`的方式触发主线程的回调。过程如下图:
 
-![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.png)
+![libuv的异步线程池在OpenHarmony中的应用现状](./figures/libuv-ffrt.jpg)
 
 我们总结了五种类型的请求任务是直接可以按照正常用法在应用主循环中生效的：
 
@@ -1136,7 +1194,7 @@ after_work_cb：loop所在线程的要执行的回调函数。
 
 ```cpp
 /**
-* 将一个工作请求添加到事件循环的队列中。
+* @brief 将一个工作请求添加到事件循环的队列中。
 * 
 * @param loop 事件循环
 * @param req 随机数请求
@@ -1161,10 +1219,7 @@ int uv_random(uv_loop_t* loop,
 
 ```cpp
 /**
-* 将一个工作请求添加到事件循环的队列中。
-* 
-* 当事件循环在下一次迭代时，work_cb函数将会在一个新的线程中被调用。
-* 当work_cb函数完成时，after_work_cb函数将会在事件循环的线程中被调用。
+* @brief 将一个工作请求添加到事件循环的队列中。当事件循环在下一次迭代时，work_cb函数将会在一个新的线程中被调用。当work_cb函数完成时，after_work_cb函数将会在事件循环的线程中被调用。
 * 
 * @param loop 事件循环
 * @param req 工作请求
@@ -1185,7 +1240,7 @@ int uv_queue_work(uv_loop_t* loop,
 
 ```cpp
 /**
-* 异步读取文件
+* @brief 异步读取文件
 *
 * @param loop 事件循环
 * @param req 文件操作请求
@@ -1204,7 +1259,7 @@ int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,
               uv_fs_cb cb);
 
 /**
-* 异步打开文件
+* @brief 异步打开文件
 *
 * @param loop 事件循环
 * @param req 文件操作请求
@@ -1223,7 +1278,7 @@ int uv_fs_open(uv_loop_t* loop,
                uv_fs_cb cb);
 
 /**
-* 异步发送文件
+* @brief 异步发送文件
 *
 * @param loop 事件循环
 * @param req 文件操作请求
@@ -1244,7 +1299,7 @@ int uv_fs_sendfile(uv_loop_t* loop,
                    uv_fs_cb cb);
 
 /**
-* 异步写入文件
+* @brief 异步写入文件
 *
 * @param loop 事件循环
 * @param req 文件操作请求
@@ -1265,7 +1320,7 @@ int uv_fs_write(uv_loop_t* loop,
                 uv_fs_cb cb);
 
 /**
-* 异步复制文件
+* @brief 异步复制文件
 *
 * @param loop 事件循环
 * @param req 文件操作请求
@@ -1290,7 +1345,7 @@ int uv_fs_copyfile(uv_loop_t* loop,
 
 ```cpp
 /**
-* 异步获取地址信息
+* @brief 异步获取地址信息
 *
 * @param loop 事件循环
 * @param req 地址信息请求
@@ -1315,7 +1370,7 @@ int uv_getaddrinfo(uv_loop_t* loop,
 
 ```cpp
 /**
-* 异步获取名称信息
+* @brief 异步获取名称信息
 *
 * @param loop 事件循环
 * @param req 名称信息请求

@@ -45,8 +45,8 @@ To allow for cross-file operations, use the [attribute modifier](../reference/ap
 
   @Entry
   @Component
-  struct attributeDemo {
-    @State modifier: MyButtonModifier = new MyButtonModifier()
+  struct AttributeDemo {
+    @State modifier: MyButtonModifier = new MyButtonModifier();
 
     build() {
       Row() {
@@ -67,7 +67,7 @@ To allow for cross-file operations, use the [attribute modifier](../reference/ap
   ```ts
   // setAttribute.ets
   export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-    isDark: boolean = false
+    isDark: boolean = false;
     applyNormalAttribute(instance: ButtonAttribute): void {
       if (this.isDark) {
         instance.backgroundColor(Color.Black)
@@ -81,14 +81,15 @@ To allow for cross-file operations, use the [attribute modifier](../reference/ap
 - \@Styles defined inside a component declaration can access constants and state variables of the component through **this**, and mutate the values of state variables through events in \@Styles. The following is an example:
 
   ```ts
+  @Entry
   @Component
   struct FancyUse {
-    @State heightValue: number = 100
+    @State heightValue: number = 100;
     @Styles fancy() {
       .height(this.heightValue)
       .backgroundColor(Color.Yellow)
       .onClick(() => {
-        this.heightValue = 200
+        this.heightValue = 200;
       })
     }
   }
@@ -114,6 +115,21 @@ To allow for cross-file operations, use the [attribute modifier](../reference/ap
   }
   ```
 
+- Logical components cannot be used in the \@Styles method. The attributes in the logical components do not take effect.
+
+  ```ts
+  // Incorrect format.
+  @Styles function backgroundColorStyle() {
+    if (true) {
+      .backgroundColor(Color.Red)
+    }
+  }
+
+  // Correct format.
+  @Styles function backgroundColorStyle() {
+    .backgroundColor(Color.Red)
+  }
+  ```
 
 ## Application Scenarios
 
@@ -130,7 +146,7 @@ The following example demonstrates the usage of \@Styles inside and outside a co
 @Entry
 @Component
 struct FancyUse {
-  @State heightValue: number = 100
+  @State heightValue: number = 100;
   // Define a \@Styles decorated method inside a component declaration.
   @Styles fancy() {
     .width(200)

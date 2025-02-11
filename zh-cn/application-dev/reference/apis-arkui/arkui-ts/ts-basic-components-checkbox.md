@@ -46,7 +46,7 @@ Checkbox(options?: CheckboxOptions)
 
 ### select
 
-select(value: Optional\<boolean>)
+select(value: boolean)
 
 设置多选框是否选中。
 
@@ -62,11 +62,31 @@ select(value: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 多选框是否选中。<br/>默认值：false |
+| value  | boolean | 是   | 多选框是否选中。<br/>默认值：false |
+
+### select<sup>16+</sup>
+
+select(isSelected: Optional\<boolean>)
+
+设置多选框是否选中。与[select](#select)相比，isSelected参数新增了对undefined类型的支持。
+
+该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| isSelected | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 多选框是否选中。<br/>当isSelected的值为undefined时，默认值：false |
 
 ### selectedColor
 
-selectedColor(value: Optional\<ResourceColor>)
+selectedColor(value: ResourceColor)
 
 设置多选框选中状态颜色。
 
@@ -80,11 +100,29 @@ selectedColor(value: Optional\<ResourceColor>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框选中状态颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
+
+### selectedColor<sup>16+</sup>
+
+selectedColor(resColor: Optional\<ResourceColor>)
+
+设置多选框选中状态颜色。与[selectedColor](#selectedcolor)相比，resColor参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框选中状态颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_text_primary_activated')。<br/>异常值按照默认值处理。 |
 
 ### unselectedColor<sup>10+</sup>
 
-unselectedColor(value: Optional\<ResourceColor>)
+unselectedColor(value: ResourceColor)
 
 设置多选框非选中状态边框颜色。
 
@@ -96,11 +134,27 @@ unselectedColor(value: Optional\<ResourceColor>)
 
 | 参数名 | 类型                                       | 必填 | 说明                     |
 | ------ | ------------------------------------------ | ---- | -------------------------- |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 多选框非选中状态边框颜色。<br/>默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
+
+### unselectedColor<sup>16+</sup>
+
+unselectedColor(resColor: Optional\<ResourceColor>)
+
+设置多选框非选中状态边框颜色。与[unselectedColor](#unselectedcolor10)<sup>10+</sup>相比，resColor参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| resColor | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 多选框非选中状态边框颜色。<br/>当resColor的值为undefined时，默认值：$r('sys.color.ohos_id_color_switch_outline_off')。 |
 
 ### mark<sup>10+</sup>
 
-mark(value: Optional\<MarkStyle>)
+mark(value: MarkStyle)
 
 设置多选框内部图标样式。
 
@@ -112,11 +166,27 @@ mark(value: Optional\<MarkStyle>)
 
 | 参数名 | 类型                                         | 必填 | 说明                                                         |
 | ------ | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
+| value  | [MarkStyle](ts-types.md#markstyle10对象说明) | 是   | 多选框内部图标样式。 从API version 12开始，设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
+
+### mark<sup>16+</sup>
+
+mark(style: Optional\<MarkStyle>)
+
+设置多选框内部图标样式。与[mark](#mark10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[MarkStyle](ts-types.md#markstyle10对象说明)> | 是   | 多选框内部图标样式。 设置了indicatorBuilder时，按照indicatorBuilder中的内容显示。<br/>当style的值为undefined时，默认值：{<br/>strokeColor : `$r('sys.color.ohos_id_color_foreground_contrary')`,<br/>strokeWidth: `$r('sys.float.ohos_id_checkbox_stroke_width')`,<br/>size: '20vp'<br/>} |
 
 ### shape<sup>11+</sup>
 
-shape(value: Optional\<CheckBoxShape>)
+shape(value: CheckBoxShape)
 
 设置CheckBox组件形状, 包括圆形和圆角方形。
 
@@ -128,13 +198,31 @@ shape(value: Optional\<CheckBoxShape>)
 
 **参数：** 
 
+| 参数名 | 类型                                                  | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [CheckBoxShape](ts-appendix-enums.md#checkboxshape11) | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
+
+### shape<sup>16+</sup>
+
+shape(shape: Optional\<CheckBoxShape>)
+
+设置CheckBox组件形状, 包括圆形和圆角方形。与[shape](#shape11)<sup>11+</sup>相比，shape参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>默认值：CheckBoxShape.CIRCLE |
+| shape  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CheckBoxShape](ts-appendix-enums.md#checkboxshape11)> | 是   | CheckBox组件形状, 包括圆形和圆角方形。<br/>当shape的值为undefined时，默认值：CheckBoxShape.CIRCLE |
 
 ### contentModifier<sup>12+</sup>
 
-contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
+contentModifier(modifier: ContentModifier\<CheckBoxConfiguration>)
 
 定制CheckBox内容区的方法。
 
@@ -146,7 +234,23 @@ contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明)> | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明) | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+### contentModifier<sup>16+</sup>
+
+contentModifier(modifier: Optional<ContentModifier\<CheckBoxConfiguration>>)
+
+定制CheckBox内容区的方法。与[contentModifier](#contentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<CheckBoxConfiguration>](#checkboxconfiguration12对象说明)> | 是   | 在CheckBox组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -168,17 +272,35 @@ onChange(callback: Optional\<OnCheckboxChangeCallback>)
 
 | 参数名   | 类型                                                    | 必填 | 说明             |
 | -------- | ------------------------------------------------------- | ---- | ---------------- |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback14)> | 是   | 返回选中的状态。 |
+| callback | [OnCheckboxChangeCallback](#oncheckboxchangecallback16) | 是   | 返回选中的状态。 |
 
-## OnCheckboxChangeCallback<sup>14+</sup>
+### onChange<sup>16+</sup>
+
+onChange(callback: Optional\<OnCheckboxChangeCallback>)
+
+当选中状态发生变化时，触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnCheckboxChangeCallback](#oncheckboxchangecallback16)> | 是   | 返回选中的状态。<br/>当callback的值为undefined时，不使用回调函数。 |
+
+## OnCheckboxChangeCallback<sup>16+</sup>
 
 type OnCheckboxChangeCallback  = (value: boolean) => void
 
 选中的状态。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

@@ -86,13 +86,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, <br/>IMAGE_BAD_PARAMETER = 401, <br/>IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, <br/>IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, <br/>IMAGE_DMA_NOT_EXIST = 7600173, <br/>IMAGE_DMA_OPERATION_FAILED = 7600174, <br/>IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, <br/>IMAGE_UNSUPPORTED_CONVERSION = 7600203, <br/>IMAGE_INVALID_REGION = 7600204, <br/>IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205, <br/>IMAGE_ALLOC_FAILED = 7600301,<br/>IMAGE_COPY_FAILED = 7600302, <br/>IMAGE_UNKNOWN_ERROR = 7600901, <br/>IMAGE_BAD_SOURCE = 7700101, <br/>IMAGE_DECODE_FAILED = 7700301,<br/>IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。  | 
+| [Image_ErrorCode](#image_errorcode) {<br/>IMAGE_SUCCESS = 0, IMAGE_BAD_PARAMETER = 401, IMAGE_UNSUPPORTED_MIME_TYPE = 7600101, IMAGE_UNKNOWN_MIME_TYPE = 7600102,<br/>IMAGE_TOO_LARGE = 7600103, IMAGE_DMA_NOT_EXIST = 7600173, IMAGE_DMA_OPERATION_FAILED = 7600174, IMAGE_UNSUPPORTED_OPERATION = 7600201,<br/>IMAGE_UNSUPPORTED_METADATA = 7600202, IMAGE_UNSUPPORTED_CONVERSION = 7600203, IMAGE_INVALID_REGION = 7600204, IMAGE_UNSUPPORTED_MEMORY_FORMAT = 7600205,<br/>IMAGE_ALLOC_FAILED = 7600301, IMAGE_COPY_FAILED = 7600302, IMAGE_LOCK_UNLOCK_FAILED = 7600303, IMAGE_UNKNOWN_ERROR = 7600901,<br/>IMAGE_BAD_SOURCE = 7700101, IMAGE_DECODE_FAILED = 7700301, IMAGE_ENCODE_FAILED = 7800301<br/>} | 错误码。 | 
 | [Image_MetadataType](#image_metadatatype-1) { EXIF_METADATA = 1, FRAGMENT_METADATA = 2 } | 定义元数据类型。  | 
 | [IMAGE_PACKER_DYNAMIC_RANGE](#image_packer_dynamic_range) {<br/>IMAGE_PACKER_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_PACKER_DYNAMIC_RANGE_SDR = 1 } | 编码指定动态范围。 | 
 | [IMAGE_DYNAMIC_RANGE](#image_dynamic_range) {<br/>IMAGE_DYNAMIC_RANGE_AUTO = 0,<br/>IMAGE_DYNAMIC_RANGE_SDR = 1,<br/>IMAGE_DYNAMIC_RANGE_HDR = 2 } | 解码指定期望动态范围。 | 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br/>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br/>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br/>} | 辅助图类型。  | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br/>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br/>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br/>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2 } | Pixelmap透明度类型。 | 
-| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9<br/>} | 图片像素格式。 | 
+| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | 图片像素格式。 | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br/>OH_PixelmapNative_AntiAliasing_NONE = 0, <br/>OH_PixelmapNative_AntiAliasing_LOW = 1, <br/>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br/>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br/>} | Pixelmap缩放时采用的缩放算法。  | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br/>HDR_METADATA_TYPE = 0, <br/>HDR_STATIC_METADATA = 1, <br/>HDR_DYNAMIC_METADATA = 2, <br/>HDR_GAINMAP_METADATA = 3 } | Pixelmap使用的HDR相关元数据信息的关键字，用于[OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata)及[OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata)。  | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br/>HDR_METADATA_TYPE_NONE = 0, <br/>HDR_METADATA_TYPE_BASE = 1, <br/>HDR_METADATA_TYPE_GAINMAP = 2, <br/>HDR_METADATA_TYPE_ALTERNATE = 3 } | HDR_METADATA_TYPE关键字对应的值。  | 
@@ -270,6 +270,10 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | 设置NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | 获取NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | 设置pixelMap内存名字。  | 
+| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetByteCount](#oh_pixelmapnative_getbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*byteCount) | 获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。 | 
+| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_GetAllocationByteCount](#oh_pixelmapnative_getallocationbytecount) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint32_t \*allocationByteCount) | 获取Pixelmap用于储存像素数据的内存字节数。 | 
+| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br/>当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。 | 
+| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放Pixelmap像素数据的内存锁。<br/>该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。 | 
 
 
 ### 变量
@@ -813,6 +817,7 @@ enum Image_ErrorCode
 | IMAGE_UNSUPPORTED_MEMORY_FORMAT  | 不支持的内存格式。<br/>**起始版本：** 13 | 
 | IMAGE_ALLOC_FAILED  | 申请内存失败。 | 
 | IMAGE_COPY_FAILED  | 内存拷贝失败。 | 
+| IMAGE_LOCK_UNLOCK_FAILED | 内存加锁或解锁失败。<br/>**起始版本：** 16 | 
 | IMAGE_UNKNOWN_ERROR  | 未知错误。 | 
 | IMAGE_BAD_SOURCE  | 解码数据源异常。 | 
 | IMAGE_DECODE_FAILED  | 解码失败。 | 
@@ -874,6 +879,9 @@ enum PIXEL_FORMAT
 | PIXEL_FORMAT_RGBA_F16 | RGBA_F16格式 | 
 | PIXEL_FORMAT_NV21 | NV21格式 | 
 | PIXEL_FORMAT_NV12 | NV12格式 |
+| PIXEL_FORMAT_RGBA_1010102 | RGBA_1010102 格式 | 
+| PIXEL_FORMAT_YCBCR_P010 | YCBCR_P010 格式 | 
+| PIXEL_FORMAT_YCRCB_P010 | YCRCB_P010 格式 | 
 
 
 ### OH_Pixelmap_HdrMetadataKey
@@ -4154,6 +4162,32 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_AccessPixels()
+
+```
+Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr)
+```
+
+**描述**
+
+获取Pixelmap像素数据的内存地址，并锁定这块内存。
+
+当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的Pixelmap指针。 | 
+| addr | Pixelmap内存地址的双指针。 | 
+
+**返回：**
+
+如果操作成功则返回IMAGE_SUCCESS， 如果pixelmap或addr参数无效则返回IMAGE_BAD_PARAMETER， 如果内存锁定失败则返回IMAGE_LOCK_UNLOCK_FAILED。 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_ConvertAlphaFormat()
 
 ```
@@ -4367,6 +4401,30 @@ Image_ErrorCode OH_PixelmapNative_Flip(OH_PixelmapNative *pixelmap, bool shouldF
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER，具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_GetAllocationByteCount()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetAllocationByteCount(OH_PixelmapNative *pixelmap, uint32_t *allocationByteCount)
+```
+
+**描述**
+
+获取Pixelmap用于储存像素数据的内存字节数。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的Pixelmap指针。 | 
+| allocationByteCount | 获取的内存字节数。 | 
+
+**返回：**
+
+如果操作成功则返回IMAGE_SUCCESS， 如果pixelmap或allocationByteCount参数无效则返回IMAGE_BAD_PARAMETER。 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_GetArgbPixels()
 
 ```
@@ -4388,6 +4446,30 @@ Image_ErrorCode OH_PixelmapNative_GetArgbPixels(OH_PixelmapNative *pixelmap, uin
 **返回：**
 
 如果操作成功返回IMAGE_SUCCESS，如果参数错误返回IMAGE_BAD_PARAMETER，如果PixelMap格式不支持读取ARGB数据，返回IMAGE_UNSUPPORTED_CONVERSION，如果内存申请失败，返回IMAGE_ALLOC_FAILED, 如果内存数据拷贝、读取、操作失败，返回IMAGE_COPY_FAILED。具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_GetByteCount()
+
+```
+Image_ErrorCode OH_PixelmapNative_GetByteCount(OH_PixelmapNative *pixelmap, uint32_t *byteCount)
+```
+
+**描述**
+
+获取Pixelmap中所有像素所占用的总字节数，不包含内存填充。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的Pixelmap指针。 | 
+| byteCount | 获取的总字节数。 | 
+
+**返回：**
+
+如果操作成功则返回IMAGE_SUCCESS， 如果pixelmap或byteCount参数无效则返回IMAGE_BAD_PARAMETER。 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_GetColorSpaceNative()
@@ -4724,6 +4806,31 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_UnaccessPixels()
+
+```
+Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)
+```
+
+**描述**
+
+释放Pixelmap像素数据的内存锁。
+
+该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的Pixelmap指针。 | 
+
+**返回：**
+
+如果操作成功则返回IMAGE_SUCCESS， 如果pixelmap参数无效则返回IMAGE_BAD_PARAMETER， 如果内存解锁失败则返回IMAGE_LOCK_UNLOCK_FAILED。 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_WritePixels()

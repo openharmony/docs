@@ -4,15 +4,7 @@
 
 <!--RP3--><!--RP3End-->
 
-当前支持的解码能力如下：
-
-| 视频硬解类型       | 视频软解类型   |
-| --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265) |AVC(H.264)、HEVC(H.265) |
-
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，软解当前仅支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC)，硬解则支持 H264 (OH_AVCODEC_MIMETYPE_VIDEO_AVC) 和 H265 (OH_AVCODEC_MIMETYPE_VIDEO_HEVC)。
-
-每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
+当前支持的解码能力请参考[AVCodec支持的格式](avcodec-support-formats.md#视频解码)。
 
 <!--RP1--><!--RP1End-->
 
@@ -26,7 +18,7 @@
 
 ## 限制约束
 
-1. Buffer模式不支持10bit的图像数据。
+1. Buffer模式不支持HDRVivid解码。
 2. Flush，Reset，Stop之后，重新Start时，需要重新传PPS/SPS。具体示例请参考[Surface模式](#surface模式)步骤14调用OH_VideoDecoder_Flush()。
 3. Flush，Reset，Stop，Destroy在非回调线程中执行时，会等待所有回调执行完成后，将执行结果返回给用户。
 4. 由于硬件解码器资源有限，每个解码器在使用完毕后都必须调用OH_VideoDecoder_Destroy接口来销毁实例并释放资源。
@@ -218,8 +210,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     调用者可以通过名称或媒体类型创建解码器。示例中的变量说明如下：
 
-    - videoDec：视频解码器实例的指针。
-    - capability：解码器能力查询实例的指针。
+    - videoDec：视频解码器实例的指针；
+    - capability：解码器能力查询实例的指针；
     - OH_AVCODEC_MIMETYPE_VIDEO_AVC：AVC格式视频编解码器。
 
     ```c++
@@ -266,7 +258,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 解码数据流变化回调OH_AVCodecOnStreamChanged实现
     static void OnStreamChanged(OH_AVCodec *codec, OH_AVFormat *format, void *userData)
     {
-        // 可通过format获取到变化后的视频宽、高、跨距等
+        // 可通过format获取到变化后的视频宽、高等
         (void)codec;
         (void)userData;
         OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_PIC_WIDTH, &width);
@@ -293,7 +285,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 配置异步回调，调用 OH_VideoDecoder_RegisterCallback 接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调
-    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL); // NULL:用户特定数据userData为空 
+    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, nullptr); // nullptr:用户特定数据userData为空
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -304,7 +296,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 1. 在回调函数中，对数据队列进行操作时，需要注意多线程同步的问题。
     > 2. 播放视频时，若视频码流的SPS中包含颜色信息，解码器会把这些信息（RangeFlag、ColorPrimary、MatrixCoefficient、TransferCharacteristic）通过
     > OH_AVCodecOnStreamChanged接口中的OH_AVFormat返回。
-    > 3.视频解码的Surface模式下，内部数据默认是走HEBC（High Efficiency Bandwidth Compression，高效带宽压缩），无法获取到widthStride和heightStride的值。
+    > 3. 视频解码的Surface模式下，内部数据默认是走HEBC（High Efficiency Bandwidth Compression，高效带宽压缩），无法获取到widthStride和heightStride的值。
     >
 
 4. （可选）OH_VideoDecoder_SetDecryptionConfig设置解密配置。在获取到DRM信息(参考[音视频解封装](audio-video-demuxer.md)开发步骤第4步)，完成DRM许可证申请后，通过此接口进行解密配置。此接口需在Prepare前调用。在Surface模式下，DRM解密能力既支持安全视频通路，也支持非安全视频通路。DRM相关接口详见[DRM API文档](../../reference/apis-drm-kit/_drm.md)。
@@ -510,9 +502,9 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     送入输入队列进行解码，以下示例中：
 
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取输入码流虚拟地址。
-    - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识。
-    - size, offset, pts, frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)。
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取输入码流虚拟地址；
+    - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
+    - size, offset, pts, frameData：输入尺寸、偏移量、时间戳、帧数据等字段信息，获取方式可以参考[音视频解封装](./audio-video-demuxer.md)；
     - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)。
 
     ```c++
@@ -539,7 +531,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 送入解码输入队列进行解码，index为对应队列下标
+    // 送入解码输入队列进行解码，index为对应buffer队列的下标
     ret = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -550,7 +542,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     或调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
     以下示例中：
 
-    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
+    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
     - buffer：回调函数OnNewOutputBuffer传入的参数，Surface模式调用者无法通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址。
 
     ```c++
@@ -569,7 +561,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     bool isRender;
     bool isNeedRenderAtTime;
     if (isRender) {
-        // 显示并释放已完成处理的信息，index为对应buffer队列下标
+        // 显示并释放已完成处理的信息，index为对应buffer队列的下标
         if (isNeedRenderAtTime){
             // 获取系统绝对时间，renderTimestamp由调用者结合业务指定显示时间
             int64_t renderTimestamp =
@@ -635,7 +627,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 将帧数据推送到解码器中，index为对应队列下标
+    // 将帧数据推送到解码器中，index为对应buffer队列的下标
     ret = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -696,17 +688,17 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     > **说明：**
     >
-    > 不能在回调函数中调用；
-    > 执行该步骤之后，需要调用者将videoDec指向NULL，防止野指针导致程序错误。
+    > 1. 不能在回调函数中调用；
+    > 2. 执行该步骤之后，需要调用者将videoDec指向nullptr，防止野指针导致程序错误。
     >
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 调用OH_VideoDecoder_Destroy，注销解码器
     int32_t ret = AV_ERR_OK;
-    if (videoDec != NULL) {
+    if (videoDec != nullptr) {
         ret = OH_VideoDecoder_Destroy(videoDec);
-        videoDec = NULL;
+        videoDec = nullptr;
     }
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -833,7 +825,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     // 配置异步回调，调用OH_VideoDecoder_RegisterCallback接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
     // 配置异步回调
-    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, NULL); // NULL:用户特定数据userData为空 
+    int32_t ret = OH_VideoDecoder_RegisterCallback(videoDec, cb, nullptr); // nullptr:用户特定数据userData为空
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -1019,7 +1011,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
-    // 送入解码输入队列进行解码，index为对应队列下标
+    // 送入解码输入队列进行解码，index为对应buffer队列的下标
     int32_t ret = OH_VideoDecoder_PushInputBuffer(videoDec, bufferInfo->index);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -1030,7 +1022,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     以下示例中：
 
-    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
+    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
     - buffer： 回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口获取图像虚拟地址。
 
     ```c++
@@ -1047,7 +1039,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     // 将解码完成数据data写入到对应输出文件中
     outputFile->write(reinterpret_cast<char *>(OH_AVBuffer_GetAddr(bufferInfo->buffer)), info.size);
-    // Buffer模式，释放已完成写入的数据，index为对应buffer队列下标
+    // Buffer模式，释放已完成写入的数据，index为对应buffer队列的下标
     ret = OH_VideoDecoder_FreeOutputBuffer(videoDec, bufferInfo->index);
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -1127,10 +1119,10 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     src = nullptr;
     ```
 
-    硬件解码在处理buffer数据时（释放数据前），输出回调调用者收到的AVbuffer是宽高对齐后的图像数据。
-    一般需要获取数据的宽高、跨距、像素格式来保证解码输出数据被正确的处理。
+    硬件解码在处理buffer数据时（释放数据前），输出回调调用者收到的AVbuffer是宽、高对齐后的图像数据。
+    一般需要获取数据的宽、高、跨距、像素格式来保证解码输出数据被正确的处理。
 
-    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽高、跨距、像素格式。
+    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoDecoder_RegisterCallback()设置回调函数来获取数据的宽、高、跨距、像素格式。
 
 后续流程（包括刷新解码器、重置解码器、停止解码器、销毁解码器）与Surface模式基本一致，请参考[Surface模式](#surface模式)的步骤13-16。
 

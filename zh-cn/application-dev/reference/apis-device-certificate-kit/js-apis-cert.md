@@ -71,6 +71,57 @@ buffer数组的列表。
 | FORMAT_PEM | 1      | PEM格式。 |
 | FORMAT_PKCS7<sup>11+</sup> | 2 | PKCS7格式。 |
 
+## EncodingBaseFormat<sup>16+</sup>
+
+ 表示生成CSR的编码格式的枚举。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| PEM | 0      | PEM格式。 |
+| DER | 1      | DER格式。 |
+
+## CsrAttribute<sup>16+</sup>
+ 表示生成CSR的编码格式配置参数中的拓展。
+
+openssl中规定了拓展类型，例如challengePassword、keyUsage等。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+ **系统能力：** SystemCapability.Security.Cert
+
+| 名称       | 值 |  说明      |
+| ---------- | ------ | --------- |
+| type | 指定的拓展类型 | openssl指定的拓展类型。 |
+| value | 拓展值 | 拓展值。 |
+
+## CsrGenerationConfig<sup>16+</sup>
+RSA私钥生成CSR时的配置参数，包含主体、拓展、摘要算法、输出格式等。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| subject | [X500DistinguishedName](#x500distinguishedname12) | 是   | 是   | X509定义的Name类型的对象。 |
+| mdName | string | 是   | 是   | 摘要算法名。 |
+| attributes | [CsrAttribute](#csrattribute16) | 是   | 是   | 拓展。 |
+| outFormat | [EncodingBaseFormat](#encodingbaseformat16) | 是   | 是   | 输出类型。 |
+
+> **说明：**
+>
+> - subject是X509定义的Name类型的对象。
+>
+> - mdName是摘要算法名，当前支持SHA1、SHA256、SHA384、SHA512。
+>
+> - attributes是可选参数，可以指定openssl中规定的拓展类型跟拓展值生成CSR。例如challengePassword、keyUsage等。
+>
+> - outFormat指定输出CSR的格式，若不指定默认为PEM格式。
+
 ## CertItemType<sup>10+</sup>
 
  表示获取证书字段的枚举。
@@ -511,8 +562,8 @@ createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : v
 
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象 |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据。         |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数，表示X509证书对象。 |
 
 **错误码：**
 
@@ -578,13 +629,13 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 参数名   | 类型                          | 必填 | 说明               |
 | -------- | ----------------------------- | ---- | ------------------ |
-| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据。 |
 
 **返回值：**
 
 | 类型     | 说明             |
 | ------- | ---------------- |
-| Promise\<[X509Cert](#x509cert)> | 表示X509证书对象 |
+| Promise\<[X509Cert](#x509cert)> | 表示X509证书对象。 |
 
 **错误码：**
 
@@ -653,8 +704,8 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                  | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
-| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象                                           |
-| callback | AsyncCallback\<void> | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败 |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象。                                           |
+| callback | AsyncCallback\<void> | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，不为null表示失败。 |
 
 **错误码：**
 
@@ -737,13 +788,13 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象 |
+| key    | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 用于验签的公钥对象。 |
 
 **返回值：**
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<void> | Promise对象 |
+| Promise\<void> | Promise对象。 |
 
 **错误码：**
 
@@ -819,7 +870,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                             |
 | -------- | --------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示X509证书序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X509证书序列化数据。 |
 
 **错误码：**
 
@@ -893,7 +944,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                   |
 | --------------------------------------- | ---------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书序列化数据 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书序列化数据。 |
 
 **错误码：**
 
@@ -964,7 +1015,7 @@ getPublicKey() : cryptoFramework.PubKey
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | X509证书公钥对象：仅用于X509Cert的verify接口 |
+| [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | X509证书公钥对象：仅用于X509Cert的verify接口。 |
 
 **错误码：**
 
@@ -1114,7 +1165,7 @@ getVersion() : number
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| number | 表示X509证书版本 |
+| number | 表示X509证书版本。 |
 
 **示例：**
 
@@ -1172,7 +1223,7 @@ getSerialNumber() : number
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| number | 表示X509证书序列号 |
+| number | 表示X509证书序列号。 |
 
 **示例：**
 
@@ -1229,7 +1280,7 @@ getCertSerialNumber() : bigint
 
 | 类型   | 说明               |
 | ------ | ------------------ |
-| bigint | 表示X509证书序列号 |
+| bigint | 表示X509证书序列号。 |
 
 **错误码：**
 
@@ -1300,7 +1351,7 @@ getIssuerName() : DataBlob
 
 | 类型                  | 说明                   |
 | --------------------- | ---------------------- |
-| [DataBlob](#datablob) | 表示X509证书颁发者名称 |
+| [DataBlob](#datablob) | 表示X509证书颁发者名称。 |
 
 **错误码：**
 
@@ -1379,7 +1430,7 @@ getSubjectName(encodingType?: EncodingType) : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书主体名称 |
+| [DataBlob](#datablob) | 表示X509证书主体名称。 |
 
 **错误码：**
 
@@ -1606,7 +1657,7 @@ getSignature() : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书签名数据 |
+| [DataBlob](#datablob) | 表示X509证书签名数据。 |
 
 **错误码：**
 
@@ -1680,7 +1731,7 @@ getSignatureAlgName() : string
 
 | 类型   | 说明                     |
 | ------ | ------------------------ |
-| string | 表示X509证书签名算法名称 |
+| string | 表示X509证书签名算法名称。 |
 
 **错误码：**
 
@@ -1754,7 +1805,7 @@ getSignatureAlgOid() : string
 
 | 类型   | 说明                              |
 | ------ | --------------------------------- |
-| string | 表示X509证书签名算法对象标志符OID |
+| string | 表示X509证书签名算法对象标志符OID。 |
 
 **错误码：**
 
@@ -1827,7 +1878,7 @@ getSignatureAlgParams() : DataBlob
 
 | 类型                  | 说明                     |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | 表示X509证书签名算法参数 |
+| [DataBlob](#datablob) | 表示X509证书签名算法参数。 |
 
 **错误码：**
 
@@ -1901,7 +1952,7 @@ getKeyUsage() : DataBlob
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [DataBlob](#datablob) | 表示X509证书秘钥用途 |
+| [DataBlob](#datablob) | 表示X509证书秘钥用途。 |
 
 **错误码：**
 
@@ -1973,7 +2024,7 @@ getExtKeyUsage() : DataArray
 
 | 类型                    | 说明                     |
 | ----------------------- | ------------------------ |
-| [DataArray](#dataarray) | 表示X509证书扩展秘钥用途 |
+| [DataArray](#dataarray) | 表示X509证书扩展秘钥用途。 |
 
 **错误码：**
 
@@ -2046,7 +2097,7 @@ getBasicConstraints() : number
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| number | 表示X509证书基本约束 |
+| number | 表示X509证书基本约束。 |
 
 **示例：**
 
@@ -2103,7 +2154,7 @@ getSubjectAltNames() : DataArray
 
 | 类型                    | 说明                     |
 | ----------------------- | ------------------------ |
-| [DataArray](#dataarray) | 表示X509证书主体可选名称 |
+| [DataArray](#dataarray) | 表示X509证书主体可选名称。 |
 
 **错误码：**
 
@@ -2176,7 +2227,7 @@ getIssuerAltNames() : DataArray
 
 | 类型                    | 说明                       |
 | ----------------------- | -------------------------- |
-| [DataArray](#dataarray) | 表示X509证书颁发者可选名称 |
+| [DataArray](#dataarray) | 表示X509证书颁发者可选名称。 |
 
 **错误码：**
 
@@ -2426,7 +2477,7 @@ getCRLDistributionPoint(): DataArray
 
 | 类型                    | 说明                       |
 | ----------------------- | -------------------------- |
-| [DataArray](#dataarray) | 表示X509证书CRL的分发点统一资源标识符 |
+| [DataArray](#dataarray) | 表示X509证书CRL的分发点统一资源标识符。 |
 
 **错误码：**
 
@@ -2926,8 +2977,8 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback\<CertExten
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)                     | 是   | 表示证书扩展域段序列化数据 |
-| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数。表示扩展域段对象 |
+| inStream | [EncodingBlob](#encodingblob)                     | 是   | 表示证书扩展域段序列化数据。 |
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数，表示扩展域段对象。 |
 
 **错误码：**
 
@@ -2986,13 +3037,13 @@ createCertExtension(inStream : EncodingBlob) : Promise\<CertExtension>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书扩展域段序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书扩展域段序列化数据。 |
 
 **返回值**：
 
 | 类型                                        | 说明                 |
 | ------------------------------------------- | -------------------- |
-| Promise\<[CertExtension](#certextension10)> | 表示证书扩展域段对象 |
+| Promise\<[CertExtension](#certextension10)> | 表示证书扩展域段对象。 |
 
 **错误码：**
 
@@ -3120,7 +3171,7 @@ getOidList(valueType : ExtensionOidType) : DataArray
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
 | --------- | ------------------------------------- | ---- | ------------------------------ |
-| valueType | [ExtensionOidType](#extensionoidtype10) | 是   | 表示证书扩展域段对象标识符类型 |
+| valueType | [ExtensionOidType](#extensionoidtype10) | 是   | 表示证书扩展域段对象标识符类型。 |
 
 **返回值**：
 
@@ -3193,8 +3244,8 @@ getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob
 
 | 参数名    | 类型                                      | 必填 | 说明                             |
 | --------- | ----------------------------------------- | ---- | -------------------------------- |
-| valueType | [ExtensionEntryType](#extensionentrytype10) | 是   | 表示证书扩展域段获取的类型       |
-| oid       | [DataBlob](#datablob)                     | 是   | 表示证书扩展域段获取的对象标识符 |
+| valueType | [ExtensionEntryType](#extensionentrytype10) | 是   | 表示证书扩展域段获取的类型。       |
+| oid       | [DataBlob](#datablob)                     | 是   | 表示证书扩展域段获取的对象标识符。 |
 
 **返回值**：
 
@@ -3396,8 +3447,8 @@ createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : voi
 
 | 参数名   | 类型                                | 必填 | 说明                           |
 | -------- | ----------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | 是   | 回调函数。表示证书吊销列表对象 |
+| inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据。     |
+| callback | AsyncCallback\<[X509Crl](#x509crldeprecated)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
 
@@ -3464,13 +3515,13 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。 |
 
 **返回值**：
 
 | 类型                          | 说明                 |
 | ----------------------------- | -------------------- |
-| Promise\<[X509Crl](#x509crldeprecated)> | 表示证书吊销列表对象 |
+| Promise\<[X509Crl](#x509crldeprecated)> | 表示证书吊销列表对象。 |
 
 **错误码：**
 
@@ -3534,8 +3585,8 @@ createX509CRL(inStream : EncodingBlob, callback : AsyncCallback\<X509CRL>) : voi
 
 | 参数名   | 类型                                  | 必填 | 说明                           |
 | -------- | ------------------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数。表示证书吊销列表对象 |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | 表示证书吊销列表序列化数据。     |
+| callback | AsyncCallback\<[X509CRL](#x509crl11)> | 是   | 回调函数，表示证书吊销列表对象。 |
 
 **错误码：**
 
@@ -3600,13 +3651,13 @@ createX509CRL(inStream : EncodingBlob) : Promise\<X509CRL>
 
 | 参数名   | 类型                          | 必填 | 说明                       |
 | -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据 |
+| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据。 |
 
 **返回值**：
 
 | 类型                            | 说明                 |
 | ------------------------------- | -------------------- |
-| Promise\<[X509CRL](#x509crl11)> | 表示证书吊销列表对象 |
+| Promise\<[X509CRL](#x509crl11)> | 表示证书吊销列表对象。 |
 
 **错误码：**
 
@@ -3680,13 +3731,13 @@ isRevoked(cert : X509Cert) : boolean
 
 | 参数名 | 类型     | 必填 | 说明                 |
 | ------ | -------- | ---- | -------------------- |
-| cert   | X509Cert | 是   | 表示被检查的证书对象 |
+| cert   | X509Cert | 是   | 表示被检查的证书对象。 |
 
 **返回值**：
 
 | 类型      | 说明                                           |
 | --------- | --------------------------------------------- |
-| boolean   | 表示证书吊销状态，true表示已吊销，false表示未吊销 |
+| boolean   | 表示证书吊销状态，true表示已吊销，false表示未吊销。 |
 
 **错误码：**
 
@@ -3781,7 +3832,7 @@ getType() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书吊销列表类型 |
+| string | 表示证书吊销列表类型。 |
 
 **示例：**
 
@@ -3839,7 +3890,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                         | 必填 | 说明                                       |
 | -------- | ---------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据 |
+| callback | AsyncCallback\<EncodingBlob> | 是   | 回调函数，表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -3914,7 +3965,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                   | 说明                             |
 | ---------------------- | -------------------------------- |
-| Promise\<EncodingBlob> | 表示X509证书吊销列表的序列化数据 |
+| Promise\<EncodingBlob> | 表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -3986,7 +4037,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象                                       |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。                                       |
 | callback | AsyncCallback\<void> | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
@@ -4146,7 +4197,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| Promise\<void> | Promise对象 |
+| Promise\<void> | Promise对象。 |
 
 **错误码：**
 
@@ -4294,7 +4345,7 @@ getVersion() : number
 
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
-| number | 表示获取X509证书吊销列表的版本号 |
+| number | 表示获取X509证书吊销列表的版本号。 |
 
 **示例：**
 
@@ -4352,7 +4403,7 @@ getIssuerName() : DataBlob
 
 | 类型                  | 说明                           |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称。 |
 
 **错误码：**
 
@@ -4574,13 +4625,13 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 
 | 参数名       | 类型   | 必填 | 说明           |
 | ------------ | ------ | ---- | -------------- |
-| serialNumber | number | 是   | 表示证书序列号 |
+| serialNumber | number | 是   | 表示证书序列号。 |
 
 **返回值**:
 
 | 类型                   | 说明                   |
 | ---------------------- | --------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#x509crlentrydeprecated) | 表示被吊销X509证书对象。 |
 
 **错误码：**
 
@@ -4655,13 +4706,13 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 | 参数名 | 类型                  | 必填 | 说明         |
 | ------ | --------------------- | ---- | ------------ |
-| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象 |
+| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象。 |
 
 **返回值**:
 
 | 类型         | 说明                  |
 | ------------ | -------------------- |
-| [X509CrlEntry](#x509crlentrydeprecated) | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#x509crlentrydeprecated) | 表示被吊销X509证书对象。 |
 
 **错误码：**
 
@@ -4772,7 +4823,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
 | 参数名   | 类型                                                 | 必填 | 说明                             |
 | -------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 是   | 回调函数。表示被吊销X509证书列表 |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 是   | 回调函数，表示被吊销X509证书列表。 |
 
 **错误码：**
 
@@ -4847,7 +4898,7 @@ getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
 | 类型                                           | 说明                   |
 | ---------------------------------------------- | ---------------------- |
-| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 表示被吊销X509证书列表 |
+| Promise<Array\<[X509CrlEntry](#x509crlentrydeprecated)>> | 表示被吊销X509证书列表。 |
 
 **错误码：**
 
@@ -4918,7 +4969,7 @@ getTbsInfo() : DataBlob
 
 | 类型                  | 说明                            |
 | --------------------- | ------------------------------- |
-| [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息 |
+| [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息。 |
 
 **错误码：**
 
@@ -4992,7 +5043,7 @@ getSignature() : DataBlob
 
 | 类型                  | 说明                           |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据。 |
 
 **错误码：**
 
@@ -5066,7 +5117,7 @@ getSignatureAlgName() : string
 
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
-| string | 表示X509证书吊销列表签名的算法名 |
+| string | 表示X509证书吊销列表签名的算法名。 |
 
 **错误码：**
 
@@ -5214,7 +5265,7 @@ getSignatureAlgParams() : DataBlob
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数。 |
 
 **错误码：**
 
@@ -5290,13 +5341,13 @@ isRevoked(cert : X509Cert) : boolean
 
 | 参数名 | 类型     | 必填 | 说明                 |
 | ------ | -------- | ---- | -------------------- |
-| cert   | [X509Cert](#x509cert) | 是   | 表示被检查的证书对象 |
+| cert   | [X509Cert](#x509cert) | 是   | 表示被检查的证书对象。 |
 
 **返回值**：
 
 | 类型    | 说明                                              |
 | ------- | ------------------------------------------------- |
-| boolean | 表示证书吊销状态，true表示已吊销，false表示未吊销 |
+| boolean | 表示证书吊销状态，true表示已吊销，false表示未吊销。 |
 
 **错误码：**
 
@@ -5389,7 +5440,7 @@ getType() : string
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书吊销列表类型 |
+| string | 表示证书吊销列表类型。 |
 
 **示例：**
 
@@ -5445,7 +5496,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                       |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X509证书吊销列表的序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示X509证书吊销列表的序列化数据。 |
 
 **错误码：**
 
@@ -5518,7 +5569,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                             |
 | --------------------------------------- | -------------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示X509证书吊销列表的序列化数据。 |
 **错误码：**
 
 以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
@@ -5587,7 +5638,7 @@ verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象                                       |
+| key      | [cryptoFramework.PubKey](../apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pubkey) | 是   | 表示用于验签的公钥对象。                                       |
 | callback | AsyncCallback\<void>                                        | 是   | 回调函数,使用AsyncCallback的第一个error参数判断是否验签成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
@@ -5745,7 +5796,7 @@ verify(key : cryptoFramework.PubKey) : Promise\<void>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<void> | Promise对象 |
+| Promise\<void> | Promise对象。 |
 
 **错误码：**
 
@@ -5891,7 +5942,7 @@ getVersion() : number
 
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
-| number | 表示获取X509证书吊销列表的版本号 |
+| number | 表示获取X509证书吊销列表的版本号。 |
 
 **示例：**
 
@@ -5947,7 +5998,7 @@ getIssuerName() : DataBlob
 
 | 类型                  | 说明                           |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表颁发者名称。 |
 
 **错误码：**
 
@@ -6163,13 +6214,13 @@ getRevokedCert(serialNumber : bigint) : X509CRLEntry
 
 | 参数名       | 类型   | 必填 | 说明           |
 | ------------ | ------ | ---- | -------------- |
-| serialNumber | bigint | 是   | 表示证书序列号 |
+| serialNumber | bigint | 是   | 表示证书序列号。 |
 
 **返回值**:
 
 | 类型                            | 说明                   |
 | ------------------------------- | ---------------------- |
-| [X509CRLEntry](#x509crlentry11) | 表示被吊销X509证书对象 |
+| [X509CRLEntry](#x509crlentry11) | 表示被吊销X509证书对象。 |
 
 **错误码：**
 
@@ -6242,13 +6293,13 @@ getRevokedCertWithCert(cert : X509Cert) : X509CRLEntry
 
 | 参数名 | 类型                  | 必填 | 说明         |
 | ------ | --------------------- | ---- | ------------ |
-| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象 |
+| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象。 |
 
 **返回值**:
 
 | 类型                            | 说明                   |
 | ------------------------------- | ---------------------- |
-| [X509CRLEntry](#x509crlentry11) | 表示被吊销X509证书对象 |
+| [X509CRLEntry](#x509crlentry11) | 表示被吊销X509证书对象。 |
 
 **错误码：**
 
@@ -6357,7 +6408,7 @@ getRevokedCerts(callback : AsyncCallback<Array\<X509CRLEntry>>) : void
 
 | 参数名   | 类型                                                   | 必填 | 说明                             |
 | -------- | ------------------------------------------------------ | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | 是   | 回调函数。表示被吊销X509证书列表 |
+| callback | AsyncCallback<Array\<[X509CRLEntry](#x509crlentry11)>> | 是   | 回调函数，表示被吊销X509证书列表。 |
 
 **错误码：**
 
@@ -6430,7 +6481,7 @@ getRevokedCerts() : Promise<Array\<X509CRLEntry>>
 
 | 类型                                             | 说明                   |
 | ------------------------------------------------ | ---------------------- |
-| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | 表示被吊销X509证书列表 |
+| Promise<Array\<[X509CRLEntry](#x509crlentry11)>> | 表示被吊销X509证书列表。 |
 
 **错误码：**
 
@@ -6499,7 +6550,7 @@ getSignature() : DataBlob
 
 | 类型                  | 说明                           |
 | --------------------- | ------------------------------ |
-| [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表的签名数据。 |
 
 **错误码：**
 
@@ -6571,7 +6622,7 @@ getSignatureAlgName() : string
 
 | 类型   | 说明                             |
 | ------ | -------------------------------- |
-| string | 表示X509证书吊销列表签名的算法名 |
+| string | 表示X509证书吊销列表签名的算法名。 |
 
 **错误码：**
 
@@ -6715,7 +6766,7 @@ getSignatureAlgParams() : DataBlob
 
 | 类型                  | 说明                               |
 | --------------------- | ---------------------------------- |
-| [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数 |
+| [DataBlob](#datablob) | 表示X509证书吊销列表签名的算法参数。 |
 
 **错误码：**
 
@@ -6788,7 +6839,7 @@ getTBSInfo() : DataBlob
 
 | 类型                  | 说明                              |
 | --------------------- | --------------------------------- |
-| [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息 |
+| [DataBlob](#datablob) | 表示证书吊销列表的tbsCertList信息。 |
 
 **错误码：**
 
@@ -6860,7 +6911,7 @@ getExtensions(): DataBlob
 
 | 类型                  | 说明                |
 | --------------------- | ------------------- |
-| [DataBlob](#datablob) | 表示X509CRL扩展用途 |
+| [DataBlob](#datablob) | 表示X509CRL扩展用途。 |
 
 **错误码：**
 
@@ -7335,13 +7386,13 @@ createCertChainValidator(algorithm :string) : CertChainValidator
 
 | 参数名    | 类型   | 必填 | 说明                                       |
 | --------- | ------ | ---- | ------------------------------------------ |
-| algorithm | string | 是   | 表示证书链校验器算法。当前仅支持输入“PKIX” |
+| algorithm | string | 是   | 表示证书链校验器算法。当前仅支持输入“PKIX”。 |
 
 **返回值**：
 
 | 类型               | 说明                 |
 | ------------------ | -------------------- |
-| [CertChainValidator](#certchainvalidator) | 表示证书链校验器对象 |
+| [CertChainValidator](#certchainvalidator) | 表示证书链校验器对象。 |
 
 **错误码：**
 
@@ -7400,8 +7451,8 @@ validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据                                     |
-| callback  | AsyncCallback\<void>            | 是   | 回调函数。使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败 |
+| certChain | [CertChainData](#certchaindata) | 是   | 表示X509证书链序列化数据。                                    |
+| callback  | AsyncCallback\<void>            | 是   | 回调函数，使用AsyncCallback的第一个error参数判断是否校验成功，error为null表示成功，error不为null表示失败。 |
 
 **错误码：**
 
@@ -7533,7 +7584,7 @@ validate(certChain : CertChainData) : Promise\<void>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<void> | Promise对象 |
+| Promise\<void> | Promise对象。 |
 
 **错误码：**
 
@@ -7666,7 +7717,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                 |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示被吊销证书的序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示被吊销证书的序列化数据。 |
 
 **错误码：**
 
@@ -7749,7 +7800,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据。 |
 
 **错误码：**
 
@@ -7830,7 +7881,7 @@ getSerialNumber() : number
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| number | 表示被吊销证书的序列号 |
+| number | 表示被吊销证书的序列号。 |
 
 **示例：**
 
@@ -7896,7 +7947,7 @@ getCertIssuer() : DataBlob
 
 | 类型                  | 说明                     |
 | --------------------- | ----------------------- |
-| [DataBlob](#datablob) | 表示被吊销证书的颁发者信息 |
+| [DataBlob](#datablob) | 表示被吊销证书的颁发者信息。 |
 
 **错误码：**
 
@@ -8050,7 +8101,7 @@ getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
 | 参数名   | 类型                                          | 必填 | 说明                                 |
 | -------- | --------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数。表示被吊销证书的序列化数据 |
+| callback | AsyncCallback\<[EncodingBlob](#encodingblob)> | 是   | 回调函数，表示被吊销证书的序列化数据。 |
 
 **错误码：**
 
@@ -8131,7 +8182,7 @@ getEncoded() : Promise\<EncodingBlob>
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
-| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据 |
+| Promise\<[EncodingBlob](#encodingblob)> | 表示被吊销证书的序列化数据。 |
 
 **错误码：**
 
@@ -8210,7 +8261,7 @@ getSerialNumber() : bigint
 
 | 类型   | 说明                   |
 | ------ | ---------------------- |
-| bigint | 表示被吊销证书的序列号 |
+| bigint | 表示被吊销证书的序列号。 |
 
 **错误码：**
 
@@ -8284,7 +8335,7 @@ getCertIssuer() : DataBlob
 
 | 类型                  | 说明                       |
 | --------------------- | -------------------------- |
-| [DataBlob](#datablob) | 表示被吊销证书的颁发者信息 |
+| [DataBlob](#datablob) | 表示被吊销证书的颁发者信息。 |
 
 **错误码：**
 
@@ -8433,7 +8484,7 @@ getExtensions(): DataBlob
 
 | 类型                  | 说明                     |
 | --------------------- | ------------------------ |
-| [DataBlob](#datablob) | 表示X509CRLEntry扩展用途 |
+| [DataBlob](#datablob) | 表示X509CRLEntry扩展用途。 |
 
 **错误码：**
 
@@ -8510,7 +8561,7 @@ hasExtensions(): boolean
 
 | 类型    | 说明                                                 |
 | ------- | ---------------------------------------------------- |
-| boolean | 返回true则表示CRL Entry有扩展，返回false则表示无扩展 |
+| boolean | 返回true则表示CRL Entry有扩展，返回false则表示无扩展。 |
 
 **错误码：**
 
@@ -9138,7 +9189,7 @@ selectCerts(param: X509CertMatchParameters, callback: AsyncCallback\<Array\<X509
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CertMatchParameters](#x509certmatchparameters11) | 是   | 表示证书需匹配的参数。   |
-| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数。表示匹配到的证书对象数组。 |
+| callback  | AsyncCallback\<Array\<[X509Cert](#x509cert)>>    | 是   | 回调函数，表示匹配到的证书对象数组。 |
 
 **错误码：**
 
@@ -9233,7 +9284,7 @@ selectCRLs(param: X509CRLMatchParameters): Promise\<Array\<X509CRL>>
 
 | 类型           | 说明        |
 | -------------- | ----------- |
-| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象。表示匹配到的证书吊销列表对象数组。 |
+| Promise\<Array\<[X509CRL](#x509crl11)>> | Promise对象，表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -9353,7 +9404,7 @@ selectCRLs(param: X509CRLMatchParameters, callback: AsyncCallback\<Array\<X509CR
 | 参数名    | 类型                            | 必填 | 说明            |
 | --------- | ------------------------------- | ---- | ----------------- |
 | param | [X509CRLMatchParameters](#x509crlmatchparameters11) | 是   | 表示证书吊销列表需匹配的参数对象。 |
-| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | 是   | 回调函数。表示匹配到的证书吊销列表对象数组。 |
+| callback  | AsyncCallback\<Array\<[X509CRL](#x509crl11)>>    | 是   | 回调函数，表示匹配到的证书吊销列表对象数组。 |
 
 **错误码：**
 
@@ -9596,7 +9647,7 @@ createX509CertChain(inStream: EncodingBlob, callback: AsyncCallback\<X509CertCha
 | 参数名   | 类型                                  | 必填 | 说明                       |
 | -------- | ------------------------------------- | ---- | -------------------------- |
 | inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据。        |
-| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | 是   | 回调函数。表示X509证书链对象。 |
+| callback | AsyncCallback\<[X509CertChain](#x509certchain11)> | 是   | 回调函数，表示X509证书链对象。 |
 
 **错误码：**
 
@@ -10480,7 +10531,7 @@ validate(param: CertChainValidationParameters, callback: AsyncCallback\<CertChai
 | 参数名    | 类型                            | 必填 | 说明      |
 | --------- | ------------------------------- | ---- | ------------ |
 | param | [CertChainValidationParameters](#certchainvalidationparameters11) | 是   | 表示校验X509证书链的参数。 |
-| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | 是   | 回调函数。返回证书链校验结果。 |
+| callback  | AsyncCallback\<[CertChainValidationResult](#certchainvalidationresult11)> | 是   | 回调函数，返回证书链校验结果。 |
 
 **错误码：**
 
@@ -10854,6 +10905,111 @@ async function certChainHashCode() {
   }
 }
 ```
+
+## cert.generateCsr<sup>16+</sup>
+
+generateCsr(keyInfo: PrivateKeyInfo, config: CsrGenerationConfig): string | Uint8Array
+
+表示使用指定的RSA私钥，传入主体、拓展、摘要算法、输出格式等配置参数去生成CSR。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.Cert
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                 |
+| -------- | ----------------------------- | ---- | -------------------- |
+| keyInfo | [PrivateKeyInfo](#privatekeyinfo16) | 是 | 包含私钥跟口令的配置参数。 |
+| config | [CsrGenerationConfig](#csrgenerationconfig16) | 是 | 包含生成CSR的配置参数。 |
+
+**返回值：**
+
+| 类型                            | 说明             |
+| ------------------------------- | ---------------- |
+| string \| Uint8Array | 表示生成的CSR数据。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[证书错误码](errorcode-cert.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | invalid parameters.  Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 19020001 | memory error. |
+| 19020002 | runtime error. |
+| 19030001 | crypto operation error. |
+| 19030002 | the certificate signature verification failed. |
+| 19030003 | the certificate has not taken effect. |
+| 19030004 | the certificate has expired. |
+| 19030005 | failed to obtain the certificate issuer. |
+| 19030006 | the key cannot be used for signing a certificate. |
+| 19030007 | the key cannot be used for digital signature. |
+
+**示例：**
+
+```ts
+import { cert } from '@kit.DeviceCertificateKit';
+
+async function createCsrTest() {
+  let nameStr = '/CN=John Doe/OU=IT Department/O=ACME Inc./L=San Francisco/ST=California/C=US/CN=ALN C/CN=XTS';
+  let prikeyEnstr: string =
+    '-----BEGIN RSA PRIVATE KEY-----\n'                                  +
+      'Proc-Type: 4,ENCRYPTED\n'                                           +
+      'DEK-Info: AES-128-CBC,B5FFA3AEEE7176106FDDB0988B532F07\n\n'         +
+      't3zNRGKp5X4BNkcsYATad/Le+94yMIX9CoNAGsBIDzQw+773UMGIoeGEYVlXWc8x\n' +
+      'N1XWDinn4ytWw9x9OfUYgmNnrdkWRSaIuw+SpQfBgJip+MsNERYOHZ5TYWTR8n3k\n' +
+      '7/jHY8eCgTsP3hbNtyaePIrtbTLZGZAHG1YWY5UmLaYoI1O6/Vvobx72lx3b43Tx\n' +
+      '4j5lkknpLl85fcs1s4TYMOd8vEwhdpouR4VY8kfRSm44WQLtGXrce0An3MG3pXyZ\n' +
+      'GhpmJyTcg0epTEYVzglENlBJrBVDL+bJ8uvHGH4tmeQb77e6ILXoxZntM7zQMMFo\n' +
+      'A7dilqO6FBxu20n2TidVGCa0Yn+DZLpry2OdwVUC2nXyCHCehr3jAZz6k20FWg5B\n' +
+      'EsU16yOIB+bp9BUKdTpJVtc/pmZJtnlA9pSCUVmWdltOsjjxkE94wfAUOYhO3Mvz\n' +
+      'gF9KR1/bdAbLw4t7bGeuyV4N2iYr83FodLLXpupM6Qfb51+HVgHvm2aaHv2Q4sf3\n' +
+      'poCVTNlegoVV9x3+7HqXY6MjlG8aU6LcWqH34ySqRBQrKL1PuDzQSY5/RmP7PUhG\n' +
+      'ym4l6KbEaRC2H/XS2qKa4VCMgBCgA0hoiw4s48Xd4h2GUTuxLM9wGyW89OEaHky7\n' +
+      'VE7t3O9a2zhkRTYDDYQ8QCycKhNrsKySyItRUWn/w2lXvuKM7PpAzYH7Ey3W1eZG\n' +
+      'PyyeGG9exjpdIvD3tx5Hl/OWwBkW1DAzO40gT6sdD5FXzRv4fCHuCrIow5QMLF4T\n' +
+      'd5Y4a6q13V4O5b73T5INmKl8rEbPGIw7WLR7BNj05QuzNcn5kA1aBFIJqsxQv46l\n' +
+      '-----END RSA PRIVATE KEY-----\n';
+  let priKeyInfo: cert.PrivateKeyInfo = {
+    key: prikeyEnstr,
+    password : "123abc"
+  }
+  let keyUsage: cert.CsrAttribute = {
+    type: "keyUsage",
+    value: "digitalSignature, keyEncipherment"
+  };
+
+  let challengePassword: cert.CsrAttribute = {
+    type:"challengePassword",
+    value: "123456"
+  };
+  let attribute: cert.CsrAttribute[] = [
+    keyUsage,challengePassword
+  ];
+  try {
+    let data = await cert.createX500DistinguishedName(nameStr);
+    console.info('createX500DistinguishedName success' + data.getName("CN").toString());
+    let conf: cert.CsrGenerationConfig = {
+      subject: data,
+      mdName: "SHA256",
+      outFormat: cert.EncodingBaseFormat.PEM,
+      attributes: attribute
+    }
+    try {
+      let csrStr = cert.generateCsr(priKeyInfo, conf)
+      console.log('generateCsr success return str is' + csrStr.toString())
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('generateCsr failed, errCode: ' + e.code + ', errMsg: ' + e.message);
+    }
+  } catch (error) {
+    let e: BusinessError = error as BusinessError;
+    console.error('createX500DistinguishedName catch, errCode: ' + e.code + ', errMsg: ' + e.message);
+  }
+}
+```
+
 ## cert.createX500DistinguishedName<sup>12+</sup>
 
 createX500DistinguishedName(nameStr: string): Promise\<X500DistinguishedName>

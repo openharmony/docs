@@ -119,7 +119,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>>  | Yes   | Callback used to return the ability running information.     |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the ability running information.     |
 
 **Example**
 
@@ -148,7 +148,7 @@ Obtains the ability running information. This API uses a promise to return the r
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | Promise used to return the ability running information.|
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the ability running information.|
 
 **Example**
 

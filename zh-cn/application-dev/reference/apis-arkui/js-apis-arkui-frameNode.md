@@ -676,7 +676,7 @@ isVisible(): boolean
 
 isClipToFrame(): boolean
 
-获取节点是否是剪裁到组件区域。
+获取节点是否是剪裁到组件区域。当调用[dispose](#dispose12)解除对实体FrameNode节点的引用关系之后，返回值为true。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -770,7 +770,7 @@ dispose(): void
 
 > **说明：**
 >
-> FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口(getPositionToParent、getPositionToScreen、getPositionToWindow、getPositionToParentWithTransform、getPositionToScreenWithTransform、getPositionToWindowWithTransform、getMeasuredSize、getLayoutPosition、getUserConfigBorderWidth、getUserConfigPadding、getUserConfigMargin、getUserConfigSize)的时候会导致应用出现jscrash。
+> FrameNode对象调用dispose后，由于不对应任何实体FrameNode节点，在调用部分查询接口([getMeasuredSize](#getmeasuredsize12)、[getLayoutPosition](#getlayoutposition12))的时候会导致应用出现jscrash。
 >
 > 通过[getUniqueId](#getuniqueid12)可以判断当前FrameNode是否对应一个实体FrameNode节点。当UniqueId大于0时表示该对象对应一个实体FrameNode节点。
 
@@ -1377,6 +1377,10 @@ TypedFrameNode继承自[FrameNode](#framenode)，用于声明具体类型的Fram
 | initialize | C    | 否   | 否   | 该接口用于创建对应组件的构造参数，用于设置/更新组件的初始值。 |
 | attribute  | T    | 否   | 否   | 该接口用于获取对应组件的属性设置对象，用于设置/更新组件的通用、私有属性。 |
 
+> **说明：**
+>
+> [commonAttribute](#commonattribute12)仅在CustomFrameNode上生效，TypedFrameNode上commonAttribute行为未定义。建议使用[attribute](#属性)接口而非[commonAttribute](#commonattribute12)接口进行通用属性设置，如node.attribute.backgroundColor(Color.Pink)。
+
 ## typeNode<sup>12+</sup>
 
 typeNode提供创建具体类型的FrameNode能力，可通过FrameNode的基础接口进行自定义的挂载，使用占位容器进行显示。
@@ -1759,7 +1763,9 @@ createNode(context: UIContext, nodeType: 'Progress'): Progress
 | ------------------ | ------------------ |
 | [Progress](#progress12) | Progress类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Progress');
@@ -1799,10 +1805,74 @@ createNode(context: UIContext, nodeType: 'Scroll'): Scroll
 | ------------------ | ------------------ |
 | [Scroll](#scroll12) | Scroll类型的FrameNode节点。 |
 
-**示例：**
+**示例：** 
+
+<!--code_no_check-->
 
 ```ts
 typeNode.createNode(uiContext, 'Scroll');
+```
+
+### getAttribute('Scroll')<sup>16+</sup>
+getAttribute(node: FrameNode, nodeType: 'Scroll'): ScrollAttribute | undefined
+
+获取Scroll节点的属性。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则返回undefined。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 获取属性时所需的目标节点。 |
+| nodeType | 'Scroll' | 是 | 获取Scroll节点类型的属性。 |
+
+**返回值：**
+
+| 类型                  | 说明      |
+| ------------------ | ------------------ |
+| ScrollAttribute&nbsp;\|&nbsp;undefined | Scroll节点类型的属性，若获取失败，则返回undefined。 |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.getAttribute(node, 'Scroll');
+```
+
+### bindController('Scroll')<sup>16+</sup>
+bindController(node: FrameNode, controller: Scroller, nodeType: 'Scroll'): void
+
+将滚动控制器Scroller绑定到Scroll节点。若该节点非ArkTS语言创建，则需要设置是否支持跨语言访问，如果不支持跨语言访问，则抛出异常。该接口不支持声明式方式创建的节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明  |
+| ------------------ | ------------------ | ------------------- | ------------------- |
+| node | [FrameNode](./js-apis-arkui-frameNode.md) | 是   | 绑定滚动控制器的目标节点。 |
+| controller | [Scroller](arkui-ts/ts-container-scroll.md#scroller) | 是   | 滚动控制器。 |
+| nodeType | 'Scroll' | 是 | 绑定滚动控制器的目标节点的节点类型为Scroll。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                         |
+| -------- | -------------------------------- |
+| 401      | Parameter error. Possible causes: 1. The type of the node is error; 2.The node is null or undefined. |
+| 100021   | The FrameNode is not modifiable. |
+
+**示例：** 
+
+<!--code_no_check-->
+
+```ts
+typeNode.bindController(node, scroller, 'Scroll');
 ```
 ### RelativeContainer<sup>12+</sup>
 type RelativeContainer = TypedFrameNode&lt;RelativeContainerInterface, RelativeContainerAttribute&gt;
@@ -2472,6 +2542,8 @@ createNode(context: UIContext, nodeType: 'QRCode'): QRCode
 
 **示例：**
 
+<!--code_no_check-->
+
 ```ts
 typeNode.createNode(uiContext, 'QRCode');
 ```
@@ -2820,12 +2892,12 @@ createNode(context: UIContext, nodeType: 'SymbolGlyph'): SymbolGlyph
 typeNode.createNode(uiContext, 'SymbolGlyph');
 ```
 
-### Checkbox<sup>13+</sup>
+### Checkbox<sup>16+</sup>
 type Checkbox = TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt;
 
 Checkbox类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2833,12 +2905,12 @@ Checkbox类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;CheckboxInterface, CheckboxAttribute&gt; | 提供Checkbox类型FrameNode节点。<br/>**说明：**<br/> CheckboxInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Checkbox组件的构造函数类型。 <br/> CheckboxAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Checkbox组件的属性设置对象。 |
 
-### createNode('Checkbox')<sup>13+</sup>
+### createNode('Checkbox')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 创建Checkbox类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2853,7 +2925,7 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Checkbox](#checkbox13) | Checkbox类型的FrameNode节点。 |
+| [Checkbox](#checkbox16) | Checkbox类型的FrameNode节点。 |
 
 **示例： ** 
 
@@ -2863,12 +2935,12 @@ createNode(context: UIContext, nodeType: 'Checkbox'): Checkbox
 typeNode.createNode(uiContext, 'Checkbox');
 ```
 
-### CheckboxGroup<sup>13+</sup>
+### CheckboxGroup<sup>16+</sup>
 type CheckboxGroup = TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt;
 
 CheckboxGroup类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2876,12 +2948,12 @@ CheckboxGroup类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;CheckboxGroupInterface, CheckboxGroupAttribute&gt; | 提供CheckboxGroup类型FrameNode节点。<br/>**说明：**<br/> CheckboxGroupInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为CheckboxGroup组件的构造函数类型。 <br/> CheckboxGroupAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回CheckboxGroup组件的属性设置对象。 |
 
-### createNode('CheckboxGroup')<sup>13+</sup>
+### createNode('CheckboxGroup')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 创建CheckboxGroup类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2896,7 +2968,7 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [CheckboxGroup](#checkboxgroup13) | CheckboxGroup类型的FrameNode节点。 |
+| [CheckboxGroup](#checkboxgroup16) | CheckboxGroup类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2906,12 +2978,12 @@ createNode(context: UIContext, nodeType: 'CheckboxGroup'): CheckboxGroup
 typeNode.createNode(uiContext, 'CheckboxGroup');
 ```
 
-### Rating<sup>13+</sup>
+### Rating<sup>16+</sup>
 type Rating = TypedFrameNode&lt;RatingInterface, RatingAttribute&gt;
 
 Rating类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2919,12 +2991,12 @@ Rating类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;RatingInterface, RatingAttribute&gt; | 提供Rating类型FrameNode节点。<br/>**说明：**<br/> RatingInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Rating组件的构造函数类型。 <br/> RatingAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Rating组件的属性设置对象。 |
 
-### createNode('Rating')<sup>13+</sup>
+### createNode('Rating')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 创建Rating类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2939,7 +3011,7 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Rating](#rating13) | Rating类型的FrameNode节点。 |
+| [Rating](#rating16) | Rating类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2949,12 +3021,12 @@ createNode(context: UIContext, nodeType: 'Rating'): Rating
 typeNode.createNode(uiContext, 'Rating');
 ```
 
-### Radio<sup>13+</sup>
+### Radio<sup>16+</sup>
 type Radio = TypedFrameNode&lt;RadioInterface, RadioAttribute&gt;
 
 Radio类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -2962,12 +3034,12 @@ Radio类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;RadioInterface, RadioAttribute&gt; | 提供Radio类型FrameNode节点。<br/>**说明：**<br/> RadioInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Radio组件的构造函数类型。 <br/> RadioAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Radio组件的属性设置对象。 |
 
-### createNode('Radio')<sup>13+</sup>
+### createNode('Radio')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 创建Radio类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -2982,7 +3054,7 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Radio](#radio13) | Radio类型的FrameNode节点。 |
+| [Radio](#radio16) | Radio类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -2992,12 +3064,12 @@ createNode(context: UIContext, nodeType: 'Radio'): Radio
 typeNode.createNode(uiContext, 'Radio');
 ```
 
-### Slider<sup>13+</sup>
+### Slider<sup>16+</sup>
 type Slider = TypedFrameNode&lt;SliderInterface, SliderAttribute&gt;
 
 Slider类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3005,12 +3077,12 @@ Slider类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SliderInterface, SliderAttribute&gt; | 提供Slider类型FrameNode节点。<br/>**说明：**<br/> SliderInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Slider组件的构造函数类型。 <br/> SliderAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Slider组件的属性设置对象。 |
 
-### createNode('Slider')<sup>13+</sup>
+### createNode('Slider')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 创建Slider类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3025,7 +3097,7 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Slider](#slider13) | Slider类型的FrameNode节点。 |
+| [Slider](#slider16) | Slider类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -3035,12 +3107,12 @@ createNode(context: UIContext, nodeType: 'Slider'): Slider
 typeNode.createNode(uiContext, 'Slider');
 ```
 
-### Select<sup>13+</sup>
+### Select<sup>16+</sup>
 type Select = TypedFrameNode&lt;SelectInterface, SelectAttribute&gt;
 
 Select类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3048,12 +3120,12 @@ Select类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;SelectInterface, SelectAttribute&gt; | 提供Select类型FrameNode节点。<br/>**说明：**<br/> SelectInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Select组件的构造函数类型。 <br/> SelectAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Select组件的属性设置对象。 |
 
-### createNode('Select')<sup>13+</sup>
+### createNode('Select')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Select'): Select
 
 创建Select类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3068,7 +3140,7 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Select](#select13) | Select类型的FrameNode节点。 |
+| [Select](#select16) | Select类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -3078,12 +3150,12 @@ createNode(context: UIContext, nodeType: 'Select'): Select
 typeNode.createNode(uiContext, 'Select');
 ```
 
-### Toggle<sup>13+</sup>
+### Toggle<sup>16+</sup>
 type Toggle = TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt;
 
 Toggle类型的FrameNode节点类型。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
@@ -3091,12 +3163,12 @@ Toggle类型的FrameNode节点类型。
 | ----------------------------- | -------------------- |
 | TypedFrameNode&lt;ToggleInterface, ToggleAttribute&gt; | 提供Toggle类型FrameNode节点。<br/>**说明：**<br/> ToggleInterface用于[TypedFrameNode](#typedframenode12)的[initialize](#属性)接口的入参，入参为Toggle组件的构造函数类型。 <br/> ToggleAttribute用于TypedFrameNode的[attribute](#属性)接口的返回值，返回Toggle组件的属性设置对象。 |
 
-### createNode('Toggle')<sup>13+</sup>
+### createNode('Toggle')<sup>16+</sup>
 createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Toggle
 
 创建Toggle类型的FrameNode节点。
 
-**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3112,7 +3184,7 @@ createNode(context: UIContext, nodeType: 'Toggle', options?: ToggleOptions): Tog
 
 | 类型                  | 说明      |
 | ------------------ | ------------------ |
-| [Toggle](#toggle13) | Toggle类型的FrameNode节点。 |
+| [Toggle](#toggle16) | Toggle类型的FrameNode节点。 |
 
 **示例：** 
 
@@ -3468,19 +3540,25 @@ struct FrameNodeTypeTest {
 import { NodeController, FrameNode, UIContext } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-const TEST_TAG : string = "FrameNode"
+const TEST_TAG: string = "FrameNode "
+
 class MyNodeController extends NodeController {
   public frameNode: FrameNode | null = null;
-  public childList:Array<FrameNode> = new Array<FrameNode>();
+  public childList: Array<FrameNode> = new Array<FrameNode>();
   private rootNode: FrameNode | null = null;
   private uiContext: UIContext | null = null;
   private childrenCount: number = 0;
+
   makeNode(uiContext: UIContext): FrameNode | null {
     this.rootNode = new FrameNode(uiContext);
-    this.childrenCount = this.childrenCount + 1;
     this.uiContext = uiContext;
-    this.frameNode =  new FrameNode(uiContext);
+
+    this.frameNode = new FrameNode(uiContext);
+    this.frameNode.commonAttribute.backgroundColor(Color.Pink);
+    this.frameNode.commonAttribute.size({ width: 100, height: 100 });
+
     this.rootNode.appendChild(this.frameNode);
+    this.childrenCount = this.childrenCount + 1;
     for (let i = 0; i < 10; i++) {
       let childNode = new FrameNode(uiContext);
       this.childList.push(childNode);
@@ -3488,68 +3566,75 @@ class MyNodeController extends NodeController {
     }
     return this.rootNode;
   }
-  appendChild()
-  {
-    let childNode = new FrameNode(this.uiContext!);
+
+  createFrameNode() {
+    let frameNode = new FrameNode(this.uiContext!);
+    frameNode.commonAttribute.backgroundColor(Color.Pink);
+    frameNode.commonAttribute.size({ width: 100, height: 100 });
+    frameNode.commonAttribute.position({ x: this.childrenCount * 120, y: 0 });
+
+    return frameNode;
+  }
+
+  appendChild() {
+    const childNode = this.createFrameNode();
     this.rootNode!.appendChild(childNode);
     this.childrenCount = this.childrenCount + 1;
   }
-  insertChildAfter(index : number)
-  {
-    let insertNode = new FrameNode(this.uiContext!);
+
+  insertChildAfter(index: number) {
+    let insertNode = this.createFrameNode();
     let childNode = this.rootNode!.getChild(index);
-    this.rootNode!.insertChildAfter(insertNode,childNode);
+    this.rootNode!.insertChildAfter(insertNode, childNode);
     this.childrenCount = this.childrenCount + 1;
   }
-  removeChild(index : number)
-  {
+
+  removeChild(index: number) {
     let childNode = this.rootNode!.getChild(index);
-    if(childNode == null)
-    {
+    if (childNode == null) {
       console.log(`${TEST_TAG} getchild at index {${index}} : fail`);
       return;
     }
     this.rootNode!.removeChild(childNode);
     this.childrenCount = this.childrenCount - 1;
   }
-  getChildNumber()
-  {
+
+  getChildNumber() {
     console.log(TEST_TAG + " getChildNumber " + this.rootNode!.getChildrenCount())
     console.log(TEST_TAG + " children count is " + this.childrenCount);
-
   }
-  clearChildren()
-  {
+
+  clearChildren() {
     this.rootNode!.clearChildren();
   }
-  searchFrameNode()
-  {
-    if(this.rootNode!.getFirstChild() === null)
-    {
+
+  searchFrameNode() {
+    if (this.rootNode!.getFirstChild() === null) {
       console.log(TEST_TAG + " the rootNode does not have child node.")
     }
-    if(this.rootNode!.getFirstChild() === this.frameNode) {
-      console.log(TEST_TAG + " getFirstChild  result: success. The first child of the rootNode is equals to frameNode.");
+    if (this.rootNode!.getFirstChild() === this.frameNode) {
+      console.log(TEST_TAG +
+        " getFirstChild  result: success. The first child of the rootNode is equals to frameNode.");
     } else {
-      console.log(TEST_TAG + " getFirstChild  result: fail. The first child of the rootNode is not equals to frameNode.");
+      console.log(TEST_TAG +
+        " getFirstChild  result: fail. The first child of the rootNode is not equals to frameNode.");
     }
-    if(this.frameNode!.getChild(5) === this.frameNode!.getChild(4)!.getNextSibling()) {
+    if (this.frameNode!.getChild(5) === this.frameNode!.getChild(4)!.getNextSibling()) {
       console.log(TEST_TAG + " getNextSibling  result: success.");
     } else {
       console.log(TEST_TAG + " getNextSibling  result: fail.");
     }
-    if(this.frameNode!.getChild(3) === this.frameNode!.getChild(4)!.getPreviousSibling()) {
+    if (this.frameNode!.getChild(3) === this.frameNode!.getChild(4)!.getPreviousSibling()) {
       console.log(TEST_TAG + " getPreviousSibling  result: success.");
     } else {
       console.log(TEST_TAG + " getPreviousSibling  result: fail.");
     }
-    if(this.rootNode!.getFirstChild() !== null && this.rootNode!.getFirstChild()!.getParent() === this.rootNode) {
+    if (this.rootNode!.getFirstChild() !== null && this.rootNode!.getFirstChild()!.getParent() === this.rootNode) {
       console.log(TEST_TAG + " getParent  result: success.");
     } else {
       console.log(TEST_TAG + " getParent  result: fail.");
     }
-    if(this.rootNode!.getParent() !== undefined || this.rootNode!.getParent() !== null)
-    {
+    if (this.rootNode!.getParent() !== undefined || this.rootNode!.getParent() !== null) {
       console.log(TEST_TAG + " get ArkTsNode success.")
       console.log(TEST_TAG + " check rootNode whether is modifiable " + this.rootNode!.isModifiable())
       console.log(TEST_TAG + " check getParent whether is modifiable " + this.rootNode!.getParent()!.isModifiable())
@@ -3557,123 +3642,122 @@ class MyNodeController extends NodeController {
       console.log(TEST_TAG + " get ArkTsNode fail.");
     }
   }
-  getPositionToWindow()
-  {
+
+  getPositionToWindow() {
     let positionToWindow = this.rootNode?.getPositionToWindow();
     console.log(TEST_TAG + JSON.stringify(positionToWindow));
   }
-  getPositionToParent()
-  {
+
+  getPositionToParent() {
     let positionToParent = this.rootNode?.getPositionToParent();
     console.log(TEST_TAG + JSON.stringify(positionToParent));
   }
-  getPositionToScreen()
-  {
+
+  getPositionToScreen() {
     let positionToScreen = this.rootNode?.getPositionToScreen();
     console.log(TEST_TAG + JSON.stringify(positionToScreen));
   }
-  getPositionToWindowWithTransform()
-  {
+
+  getPositionToWindowWithTransform() {
     let positionToWindowWithTransform = this.rootNode?.getPositionToWindowWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToWindowWithTransform));
   }
-  getPositionToParentWithTransform()
-  {
+
+  getPositionToParentWithTransform() {
     let positionToParentWithTransform = this.rootNode?.getPositionToParentWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToParentWithTransform));
   }
-  getPositionToScreenWithTransform()
-  {
+
+  getPositionToScreenWithTransform() {
     let positionToScreenWithTransform = this.rootNode?.getPositionToScreenWithTransform();
     console.log(TEST_TAG + JSON.stringify(positionToScreenWithTransform));
   }
-  getMeasuredSize()
-  {
+
+  getMeasuredSize() {
     let measuredSize = this.frameNode?.getMeasuredSize();
     console.log(TEST_TAG + JSON.stringify(measuredSize));
   }
-  getLayoutPosition()
-  {
+
+  getLayoutPosition() {
     let layoutPosition = this.frameNode?.getLayoutPosition();
     console.log(TEST_TAG + JSON.stringify(layoutPosition));
   }
-  getUserConfigBorderWidth()
-  {
+
+  getUserConfigBorderWidth() {
     let userConfigBorderWidth = this.frameNode?.getUserConfigBorderWidth();
     console.log(TEST_TAG + JSON.stringify(userConfigBorderWidth));
   }
-  getUserConfigPadding()
-  {
+
+  getUserConfigPadding() {
     let userConfigPadding = this.frameNode?.getUserConfigPadding();
     console.log(TEST_TAG + JSON.stringify(userConfigPadding));
   }
-  getUserConfigMargin()
-  {
+
+  getUserConfigMargin() {
     let userConfigMargin = this.frameNode?.getUserConfigMargin();
     console.log(TEST_TAG + JSON.stringify(userConfigMargin));
   }
-  getUserConfigSize()
-  {
+
+  getUserConfigSize() {
     let userConfigSize = this.frameNode?.getUserConfigSize();
     console.log(TEST_TAG + JSON.stringify(userConfigSize));
   }
-  getId()
-  {
+
+  getId() {
     let id = this.frameNode?.getId();
     console.log(TEST_TAG + id);
   }
-  getUniqueId()
-  {
+
+  getUniqueId() {
     let uniqueId = this.frameNode?.getUniqueId();
     console.log(TEST_TAG + uniqueId);
   }
-  getNodeType()
-  {
+
+  getNodeType() {
     let nodeType = this.frameNode?.getNodeType();
     console.log(TEST_TAG + nodeType);
   }
-  getOpacity()
-  {
+
+  getOpacity() {
     let opacity = this.frameNode?.getOpacity();
     console.log(TEST_TAG + JSON.stringify(opacity));
   }
-  isVisible()
-  {
+
+  isVisible() {
     let visible = this.frameNode?.isVisible();
     console.log(TEST_TAG + JSON.stringify(visible));
   }
-  isClipToFrame()
-  {
+
+  isClipToFrame() {
     let clipToFrame = this.frameNode?.isClipToFrame();
     console.log(TEST_TAG + JSON.stringify(clipToFrame));
   }
-  isAttached()
-  {
+
+  isAttached() {
     let attached = this.frameNode?.isAttached();
     console.log(TEST_TAG + JSON.stringify(attached));
   }
-  getInspectorInfo()
-  {
+
+  getInspectorInfo() {
     let inspectorInfo = this.frameNode?.getInspectorInfo();
     console.log(TEST_TAG + JSON.stringify(inspectorInfo));
   }
 
-  throwError()
-  {
-    try{
+  throwError() {
+    try {
       this.rootNode!.getParent()!.clearChildren();
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " +(err as BusinessError).message);
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
     }
-    try{
+    try {
       this.rootNode!.getParent()!.appendChild(new FrameNode(this.uiContext));
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " +(err as BusinessError).message);
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
     }
-    try{
+    try {
       this.rootNode!.getParent()!.removeChild(this.rootNode!.getParent()!.getChild(0));
     } catch (err) {
-      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " +(err as BusinessError).message);
+      console.log(TEST_TAG + " " + (err as BusinessError).code + " : " + (err as BusinessError).message);
     }
   }
 }
@@ -3682,196 +3766,211 @@ class MyNodeController extends NodeController {
 @Component
 struct Index {
   private myNodeController: MyNodeController = new MyNodeController();
-  @State index : number = 0;
+  private scroller: Scroller = new Scroller();
+  @State index: number = 0;
+
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Column(){
-        Row()
-        {
-          Button("ADD")
-            .onClick(()=>{this.index++;})
-          Button("DEC")
-            .onClick(()=>{this.index--;})
+    Scroll(this.scroller) {
+      Column({ space: 8 }) {
+        Column() {
+          Row() {
+            Button("ADD")
+              .onClick(() => {
+                this.index++;
+              })
+            Button("DEC")
+              .onClick(() => {
+                this.index--;
+              })
+          }
+
+          Text("Current index is " + this.index)
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
         }
-        Text("Current index is " + this.index)
-          .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          .width('100%').fontSize(16)
-      }
-      Button("appendChild")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.appendChild();
-        })
-      Button("insertChildAfter")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.insertChildAfter(this.index);
-        })
-      Button("removeChild")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.removeChild(this.index);
-        })
-      Button("clearChildren")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.clearChildren();
-        })
-      Button("getChildNumber")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getChildNumber();
-        })
-      Button("searchFrameNode")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.searchFrameNode();
-        })
-      Button("getPositionToWindow")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getPositionToWindow();
-        })
-      Button("getPositionToParent")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getPositionToParent();
-        })
-      Button("getPositionToScreen")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getPositionToScreen();
-        })
-      Button("getPositionToParentWithTransform")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getPositionToParentWithTransform();
-        })
-      Button("getPositionToWindowWithTransform")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getPositionToWindowWithTransform();
-        })
-      Button("getPositionToScreenWithTransform")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getPositionToScreenWithTransform();
-        })
-      Button("getMeasuredSize")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getMeasuredSize();
-        })
-      Button("getLayoutPosition")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getLayoutPosition();
-        })
-      Button("getUserConfigBorderWidth")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getUserConfigBorderWidth();
-        })
-      Button("getUserConfigPadding")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getUserConfigPadding();
-        })
-      Button("getUserConfigMargin")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getUserConfigMargin();
-        })
-      Button("getUserConfigSize")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getUserConfigSize();
-        })
-      Button("getId")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getId();
-        })
-      Button("getUniqueId")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getUniqueId();
-        })
-      Button("getNodeType")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getNodeType();
-        })
-      Button("getOpacity")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getOpacity();
-        })
-      Button("isVisible")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.isVisible();
-        })
-      Button("isClipToFrame")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.isClipToFrame();
-        })
-      Button("isAttached")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.isAttached();
-        })
-      Button("getInspectorInfo")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.getInspectorInfo();
-        })
-      Button("getCustomProperty")
-        .width(300)
-        .onClick(()=>{
-          const uiContext: UIContext = this.getUIContext();
-          if (uiContext) {
-            const node: FrameNode | null = uiContext.getFrameNodeById("Test_Button") || null;
-            if (node) {
-              for (let i = 1; i < 4; i++) {
-                const key = 'customProperty' + i;
-                const property = node.getCustomProperty(key);
-                console.log(TEST_TAG + key, JSON.stringify(property));
+
+        Column() {
+          Text("This is a NodeContainer.")
+            .textAlign(TextAlign.Center)
+            .borderRadius(10)
+            .backgroundColor(0xFFFFFF)
+            .width('100%')
+            .fontSize(16)
+          NodeContainer(this.myNodeController)
+            .borderWidth(1)
+            .width(300)
+            .height(100)
+        }
+
+        Button("appendChild")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.appendChild();
+          })
+        Button("insertChildAfter")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.insertChildAfter(this.index);
+          })
+        Button("removeChild")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.removeChild(this.index);
+          })
+        Button("clearChildren")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.clearChildren();
+          })
+        Button("getChildNumber")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getChildNumber();
+          })
+        Button("searchFrameNode")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.searchFrameNode();
+          })
+        Button("getPositionToWindow")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindow();
+          })
+        Button("getPositionToParent")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParent();
+          })
+        Button("getPositionToScreen")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreen();
+          })
+        Button("getPositionToParentWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToParentWithTransform();
+          })
+        Button("getPositionToWindowWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToWindowWithTransform();
+          })
+        Button("getPositionToScreenWithTransform")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getPositionToScreenWithTransform();
+          })
+        Button("getMeasuredSize")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getMeasuredSize();
+          })
+        Button("getLayoutPosition")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getLayoutPosition();
+          })
+        Button("getUserConfigBorderWidth")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getUserConfigBorderWidth();
+          })
+        Button("getUserConfigPadding")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getUserConfigPadding();
+          })
+        Button("getUserConfigMargin")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getUserConfigMargin();
+          })
+        Button("getUserConfigSize")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getUserConfigSize();
+          })
+        Button("getId")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getId();
+          })
+        Button("getUniqueId")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getUniqueId();
+          })
+        Button("getNodeType")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getNodeType();
+          })
+        Button("getOpacity")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getOpacity();
+          })
+        Button("isVisible")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.isVisible();
+          })
+        Button("isClipToFrame")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.isClipToFrame();
+          })
+        Button("isAttached")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.isAttached();
+          })
+        Button("getInspectorInfo")
+          .width(300)
+          .onClick(() => {
+            this.myNodeController.getInspectorInfo();
+          })
+        Button("getCustomProperty")
+          .width(300)
+          .onClick(() => {
+            const uiContext: UIContext = this.getUIContext();
+            if (uiContext) {
+              const node: FrameNode | null = uiContext.getFrameNodeById("Test_Button") || null;
+              if (node) {
+                for (let i = 1; i < 4; i++) {
+                  const key = 'customProperty' + i;
+                  const property = node.getCustomProperty(key);
+                  console.log(TEST_TAG + key, JSON.stringify(property));
+                }
               }
             }
-          }
-        })
-        .id('Test_Button')
-        .customProperty('customProperty1', {
-          'number': 10,
-          'string': 'this is a string',
-          'bool': true,
-          'object': {
-            'name': 'name',
-            'value': 100
-          }
-        })
-        .customProperty('customProperty2', {})
-        .customProperty('customProperty2', undefined)
-      Button("throwError")
-        .width(300)
-        .onClick(()=>{
-          this.myNodeController.throwError();
-        })
-      Column(){
-        Text("This is a NodeContainer.")
-          .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          .width('100%').fontSize(16)
-        NodeContainer(this.myNodeController)
-          .borderWidth(1)
+          })
+          .id('Test_Button')
+          .customProperty('customProperty1', {
+            'number': 10,
+            'string': 'this is a string',
+            'bool': true,
+            'object': {
+              'name': 'name',
+              'value': 100
+            }
+          })
+          .customProperty('customProperty2', {})
+          .customProperty('customProperty2', undefined)
+        Button("throwError")
           .width(300)
-          .height(100)
+          .onClick(() => {
+            this.myNodeController.throwError();
+          })
       }
+      .width("100%")
     }
-    .padding({ left: 35, right: 35, top: 35, bottom: 35 })
-    .width("100%")
-    .height("100%")
+    .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
   }
 }
 ```

@@ -13,9 +13,21 @@
 
 ## 使用基础数据类型进行复制粘贴
 
-剪贴板支持使用基础数据类型进行复制粘贴，当前支持的基础数据类型有文本、HTML、URI、Want、PixelMap。
+剪贴板支持使用基础数据类型进行复制粘贴，当前支持的基础数据类型有文本、HTML、URI、Want、PixelMap。JS接口与NDK接口支持数据类型不完全一致，使用时须匹配接口支持类型。
 
 新开发的应用建议使用本方案实现复制粘贴功能。
+
+### JS接口与NDK接口数据类型对应关系
+| JS数据类型 | NDK数据类型                                                                                                                                        |
+| -------- |----------------------------------------------------------------------------------------------------------------------------------------|
+| MIMETYPE_PIXELMAP : "pixelMap" | UDMF_META_OPENHARMONY_PIXEL_MAP : "openharmony.pixle-map" |
+| MIMETYPE_TEXT_HTML : "text/html" | UDMF_META_HTML : "general.html" |
+| MIMETYPE_TEXT_PLAIN : "text/plain" | UDMF_META_PLAIN_TEXT : "general.plain-text" |
+| MIMETYPE_TEXT_URI : "text/uri" | UDMF_META_GENERAL_FILE_URI : "general.file-uri" |
+| MIMETYPE_TEXT_WANT : "text/want" | NDK接口不支持该数据类型。 |
+
+JS数据类型对应剪贴板类型，详见[ohos.pasteboard](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)。
+NDK数据类型对应统一数据管理框架，详见[UDMF](../../reference/apis-arkdata/_u_d_m_f.md)。
 
 ### 接口说明
 
@@ -29,7 +41,7 @@
 | setData(data: PasteData): Promise&lt;void&gt; | 将数据写入系统剪贴板，使用Promise异步回调。 |
 | getData( callback: AsyncCallback&lt;PasteData&gt;): void | 读取系统剪贴板内容，使用callback异步回调。 |
 | getData(): Promise&lt;PasteData&gt; | 读取系统剪贴板内容，使用Promise异步回调。 |   
-| getDataSync(): PasteData | 读取系统剪贴板内容, 此接口为同步接口。 |
+| getDataSync(): PasteData | 读取系统剪贴板内容, 此接口为同步接口，不能与SetData同线程调用。 |
 
 ### 示例代码
 ```ts
@@ -65,6 +77,8 @@ export default class EntryAbility extends UIAbility {
 ## 使用统一数据类型进行复制粘贴
 
 为了方便剪贴板与其他应用间进行数据交互，减少数据类型适配的工作量，剪贴板支持使用统一数据对象进行复制粘贴。详细的统一数据对象请见[标准化数据通路](../../reference/apis-arkdata/js-apis-data-unifiedDataChannel.md)文档介绍。
+
+剪贴板支持使用基础数据类型进行复制粘贴，当前支持的基础数据类型有文本、HTML。JS接口与NDK接口支持数据类型不完全一致，使用时须匹配接口支持类型。
 
 ### 接口说明
 

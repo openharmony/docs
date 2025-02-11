@@ -14,7 +14,7 @@
 
 ## 接口
 
-AlphabetIndexer(value: AlphabetIndexerOptions)
+AlphabetIndexer(options: AlphabetIndexerOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -24,9 +24,9 @@ AlphabetIndexer(value: AlphabetIndexerOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [AlphabetIndexerOptions](#alphabetindexeroptions14对象说明) | 是 | 设置索引条组件参数。 |
+| options | [AlphabetIndexerOptions](#alphabetindexeroptions16对象说明) | 是 | 设置索引条组件参数。 |
 
-## AlphabetIndexerOptions<sup>14+</sup>对象说明
+## AlphabetIndexerOptions<sup>16+</sup>对象说明
 
 用于设置索引条参数。
 
@@ -155,7 +155,7 @@ selectedFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 选中项文本样式。<br/>默认值：<br/>API version 11及以前：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}<br/>API version 12及以后：<br/>{<br/>size:'10.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 选中项文本样式。<br/>默认值：<br/>API version 11及以前：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Regular,<br/> family:'HarmonyOS Sans'<br/>}<br/>API version 12及以后：<br/>{<br/>size:'10.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### popupFont
 
@@ -171,7 +171,7 @@ popupFont(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 提示弹窗一级索引文本样式。<br/>默认值：<br/>{<br/>size:'24.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 提示弹窗一级索引文本样式。<br/>默认值：<br/>{<br/>size:'24.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### font
 
@@ -187,7 +187,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | 未选中索引项文本样式。<br/>默认值：<br/>API version 11及以前：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}<br/>API version 12及以后：<br/>{<br/>size:'10.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | 未选中索引项文本样式。<br/>默认值：<br/>API version 11及以前：<br/>{<br/>size:'12.0fp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Regular,<br/> family:'HarmonyOS Sans'<br/>}<br/>API version 12及以后：<br/>{<br/>size:'10.0vp',<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Medium,<br/> family:'HarmonyOS Sans'<br/>} |
 
 ### itemSize
 
@@ -414,7 +414,7 @@ enableHapticFeedback(value: boolean)
 
 | 参数名         | 类型                                                  | 必填 | 说明                         |
 |-------------|-----------------------------------------------------|----|----------------------------|
-| value | boolean | 否  | 支持触控反馈。<br/>默认值：true。<br/> |
+| value | boolean | 是  | 支持触控反馈。<br/>默认值：true。<br/> |
 
 ## IndexerAlign枚举说明
 
@@ -461,7 +461,7 @@ onSelect(callback: OnAlphabetIndexerSelectCallback)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback14) | 是   | 索引项选中事件。 |
+| callback  | [OnAlphabetIndexerSelectCallback](#onalphabetindexerselectcallback16) | 是   | 索引项选中事件。 |
 
 ### onRequestPopupData<sup>8+</sup>
 
@@ -477,7 +477,7 @@ onRequestPopupData(callback: OnAlphabetIndexerRequestPopupDataCallback)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback14) | 是   | 设置提示弹窗二级索引项内容事件。 |
+| callback  | [OnAlphabetIndexerRequestPopupDataCallback](#onalphabetindexerrequestpopupdatacallback16) | 是   | 设置提示弹窗二级索引项内容事件。 |
 
 ### onPopupSelect<sup>8+</sup>
 
@@ -493,14 +493,14 @@ onPopupSelect(callback: OnAlphabetIndexerPopupSelectCallback)
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback14) | 是   | 提示弹窗二级索引选中事件。 |
+| callback  | [OnAlphabetIndexerPopupSelectCallback](#onalphabetindexerpopupselectcallback16) | 是   | 提示弹窗二级索引选中事件。 |
 
-## OnAlphabetIndexerSelectCallback<sup>14+</sup>
+## OnAlphabetIndexerSelectCallback<sup>16+</sup>
 type OnAlphabetIndexerSelectCallback = (index: number) => void
 
 索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -509,12 +509,12 @@ type OnAlphabetIndexerSelectCallback = (index: number) => void
 | ------- | ----- | ---- | ------ |
 | index    | number  | 是   | 当前选中索引项的索引。 |
 
-## OnAlphabetIndexerPopupSelectCallback<sup>14+</sup>
+## OnAlphabetIndexerPopupSelectCallback<sup>16+</sup>
 type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 
 提示弹窗二级索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -523,12 +523,12 @@ type OnAlphabetIndexerPopupSelectCallback = (index: number) => void
 | ------- | ----- | ---- | ------ |
 | index   | number  | 是   | 当前选中的提示弹窗二级索引项的索引。 |
 
-## OnAlphabetIndexerRequestPopupDataCallback<sup>14+</sup>
+## OnAlphabetIndexerRequestPopupDataCallback<sup>16+</sup>
 type OnAlphabetIndexerRequestPopupDataCallback = (index: number) => Array\<string\>
 
 [usingPopup](#usingpopup)设置值为true，索引项被选中时触发的事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

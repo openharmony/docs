@@ -45,7 +45,7 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | tid | number | 线程id。 |
 | frames | object[] | 线程调用栈，详见frame属性。 |
 
-**frame属性：**
+**frame属性(Native帧)：**
 
 | 名称    | 类型   | 说明                       |
 | ------- | ------ | ------------------------- |
@@ -54,6 +54,16 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | buildId | string | 文件唯一标识。**在整机高负载的情况下，采用低开销方式获取调用栈的情况，可能损失build-id信息。** |
 | pc | string | pc寄存器地址。 |
 | offset | number | 函数偏移量。 |
+
+**frame属性(JS帧)：**
+
+| 名称    | 类型   | 说明                       |
+| ------- | ------ | ------------------------- |
+| file | string | 文件名。 |
+| packageName | string | 模块的包名。 |
+| symbol | string | 函数名称。 |
+| column | number | 异常所在行。 |
+| line | number | 异常所在列。 |
 
 **memory属性：**
 

@@ -5,9 +5,10 @@
 
 使用NDK接口构建UI界面时，需要在ArkTS页面创建用于挂载NDK接口创建组件的占位组件。占位组件类型为[ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md)，ContentSlot能够绑定一个[NodeContent](../reference/apis-arkui/js-apis-arkui-NodeContent.md)对象，该对象可通过Node-API传递到Native侧挂载显示Native组件。
 
-- 占位组件和其他ArkTS内置组件使用方法相同。
+- 占位组件和其他ArkTS内置组件使用方法相同。详细代码请参考[示例](#示例)。
   ```ts
   import { NodeContent } from '@kit.ArkUI';
+  import nativeNode from 'libentry.so';
   
   @Entry
   @Component
@@ -201,7 +202,10 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    #ifndef MYAPPLICATION_NATIVEENTRY_H
    #define MYAPPLICATION_NATIVEENTRY_H
    
+   #include <ArkUIBaseNode.h>
+   #include <arkui/native_type.h>
    #include <js_native_api_types.h>
+   #include <memory.h>
    
    namespace NativeModule {
    
@@ -245,11 +249,11 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    对应实现文件。
    ```cpp
    // NativeEntry.cpp
-   #include "NativeEntry.h"
-
+   
    #include <arkui/native_node_napi.h>
    #include <hilog/log.h>
    #include <js_native_api.h>
+   #include "NativeEntry.h"
    
    namespace NativeModule {
    
@@ -280,14 +284,18 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    } // namespace NativeModule
    ```
-
+   
+   
    使用NDK 提供的C接口需要在CMakeLists.txt 中增加libace_ndk.z.so 的引用，如下所示，其中entry为工程导出的动态库名称，如当前示例使用的是默认的名称 libentry.so。
+   
    ```
    target_link_libraries(entry PUBLIC libace_napi.z.so libace_ndk.z.so)
    ```
 
 4. 由于NDK接口提供的是C接口，为了使用面向对象的方式简化编程和工程管理，这里建议使用C++进行二次封装，下面示例代码展示了示例界面中所需的列表，文本组件封装类。
+   
    1）获取ArkUI在NDK接口的入口模块[ArkUI_NativeNodeAPI_1](../reference/apis-arkui/_ark_u_i___native_node_a_p_i__1.md)，该结构体模块提供了一系列组件创建、树构建、属性设置和事件注册等函数指针。
+   
    ```c
    // NativeModule.h
    // 提供获取ArkUI在Native侧模块的封装接口
@@ -326,9 +334,9 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    #endif // MYAPPLICATION_NATIVEMODULE_H
    ```
-
-   2）提供列表，文本组件的基类对象，用于封装通用属性和事件。
-
+   
+      2）提供列表，文本组件的基类对象，用于封装通用属性和事件。
+   
    ```c
    // ArkUIBaseNode.h
    // 提供组件树操作的基类。
@@ -400,7 +408,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    #endif // MYAPPLICATION_ARKUIBASENODE_H
    ```
-
+   
    ```c
    // ArkUINode.h
    // 提供通用属性和事件的封装。
@@ -469,9 +477,9 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    #endif // MYAPPLICATION_ARKUINODE_H
    ```
-
-   3）实现列表组件。
-
+   
+      3）实现列表组件。
+   
    ```c
    // ArkUIListNode.h
    // 提供列表组件的封装。
@@ -502,9 +510,9 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    #endif // MYAPPLICATION_ARKUILISTNODE_H
    ```
-
-   4）实现列表项组件。
-
+   
+      4）实现列表项组件。
+   
    ```c
    // ArkUIListItemNode.h
    // 提供列表项的封装类。
@@ -524,9 +532,9 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    #endif // MYAPPLICATION_ARKUISTACKNODE_H
    ```
-
-   5）实现文本组件。
-
+   
+      5）实现文本组件。
+   
    ```c
    // ArkUITextNode.h
    // 实现文本组件的封装类。
@@ -572,7 +580,7 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
    
    #endif // MYAPPLICATION_ARKUITEXTNODE_H
    ```
-
+   
 5. 完善步骤3的CreateTextListExample函数，实现Native文本列表的创建和挂载显示。
    ```c
    // NormalTextListExample.h
@@ -595,17 +603,20 @@ OH_ArkUI_GetModuleInterface(ARKUI_NATIVE_NODE, ArkUI_NativeNodeAPI_1, arkUINativ
        auto list = std::make_shared<ArkUIListNode>();
        list->SetPercentWidth(1);
        list->SetPercentHeight(1);
+       list->SetScrollBarState(true);
        // 2：创建ListItem子组件并挂载到List上。
        for (int32_t i = 0; i < 30; ++i) {
            auto listItem = std::make_shared<ArkUIListItemNode>();
            auto textNode = std::make_shared<ArkUITextNode>();
            textNode->SetTextContent(std::to_string(i));
            textNode->SetFontSize(16);
+           textNode->SetFontColor(0xFFff00ff);
            textNode->SetPercentWidth(1);
+           textNode->SetWidth(300);
            textNode->SetHeight(100);
            textNode->SetBackgroundColor(0xFFfffacd);
            textNode->SetTextAlign(ARKUI_TEXT_ALIGNMENT_CENTER);
-           listItem->AddChild(textNode);
+           listItem->InsertChild(textNode, i);
            list->AddChild(listItem);
        }
        return list;

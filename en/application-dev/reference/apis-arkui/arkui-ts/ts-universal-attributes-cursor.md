@@ -4,7 +4,7 @@ Cursor control attributes control how the cursor is displayed when the mouse poi
 
 >  **NOTE**
 >
->  This feature is supported since API version 11. Updates will be marked with a superscript to indicate their earliest API version.
+>  This feature is supported since API Version 11. Updates will be marked with a superscript to indicate their earliest API version.
 
 
 ## cursorControl
@@ -13,28 +13,37 @@ Cursor control attributes control how the cursor is displayed when the mouse poi
 
 setCursor(value: PointerStyle): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 Sets the cursor style. This API is a global API.
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ | ---- | ---- |
-| value | [PointerStyle](../apis/js-apis-pointer.md#pointerstyle) | All consistent  | Cursor style.|
+| value | [PointerStyle](../../apis-input-kit/js-apis-pointer.md#pointerstyle) | All consistent  | Cursor style.|
 
 
 ### restoreDefault
 
 restoreDefault(): void
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 Restores the cursor to its default style. This API is a global API.
 
 
 ## Example
 
+This example demonstrates how to change the mouse cursor style using **setCursor**.
+
+> **NOTE**
+> 
+> To avoid confusion with **cursorControl** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then obtain the **cursorControl** instance bound to the context through the [getCursorController](../js-apis-arkui-UIContext.md#getcursorcontroller12) API.
 
 ```ts
 // xxx.ets
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 
 @Entry
 @Component
@@ -47,16 +56,20 @@ struct CursorControlExample {
       Row().height(200).width(200).backgroundColor(Color.Green).position({x: 150 ,y:70})
         .onHover((flag) => {
           if (flag) {
+            // You are advised to use this.getUIContext().getCursorController().setCursor().
             cursorControl.setCursor(pointer.PointerStyle.EAST)
           } else {
+            // You are advised to use this.getUIContext().getCursorController().restoreDefault().
             cursorControl.restoreDefault()
           }
         })
       Row().height(200).width(200).backgroundColor(Color.Blue).position({x: 220 ,y:120})
         .onHover((flag) => {
           if (flag) {
+            // You are advised to use this.getUIContext().getCursorController().setCursor().
             cursorControl.setCursor(pointer.PointerStyle.WEST)
           } else {
+            // You are advised to use this.getUIContext().getCursorController().restoreDefault().
             cursorControl.restoreDefault()
           }
         })

@@ -5,6 +5,20 @@
 
 The **OH_Camera** module provides C APIs for the camera service.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Camera Device Management](../../media/camera/native-camera-device-management.md)
+- [Device Input Management](../../media/camera/native-camera-device-input.md)
+- [Camera Session Management](../../media/camera/native-camera-session-management.md)
+- [Preview](../../media/camera/native-camera-preview.md)
+- [Secondary Processing of Preview Streams](../../media/camera/native-camera-preview-imageReceiver.md)
+- [Photo Capture](../../media/camera/native-camera-shooting.md)
+- [Deferred Photo Delivery](../../media/camera/native-camera-deferred-capture.md)
+- [Video Recording](../../media/camera/native-camera-recording.md)
+- [Camera Metadata](../../media/camera/native-camera-metadata.md)
+- [Using the Flashlight](../../media/camera/native-camera-torch-use.md)
+<!--RP1--><!--RP1End-->
+
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
 **Since**: 11
@@ -79,11 +93,13 @@ The **OH_Camera** module provides C APIs for the camera service.
 | typedef enum [Camera_VideoStabilizationMode](#camera_videostabilizationmode) [Camera_VideoStabilizationMode](#camera_videostabilizationmode) | Defines an enum for the video stabilization modes.| 
 | typedef enum [Camera_ImageRotation](#camera_imagerotation) [Camera_ImageRotation](#camera_imagerotation) | Defines an enum for the image rotation angles.| 
 | typedef enum [Camera_QualityLevel](#camera_qualitylevel) [Camera_QualityLevel](#camera_qualitylevel) | Defines an enum for the image quality levels.| 
+| typedef enum [Camera_QualityPrioritization](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualitylevel) | Defines an enum for the priority levels for video recording quality.| 
 | typedef enum [Camera_MetadataObjectType](#camera_metadataobjecttype) [Camera_MetadataObjectType](#camera_metadataobjecttype) | Defines an enum for the metadata object types.| 
 | typedef enum [Camera_TorchMode](#camera_torchmode) [Camera_TorchMode](#camera_torchmode) | Defines an enum for the flashlight modes.| 
 | typedef enum [Camera_SmoothZoomMode](#camera_smoothzoommode) [Camera_SmoothZoomMode](#camera_smoothzoommode) | Defines an enum for the smooth zoom modes.| 
 | typedef enum [Camera_PreconfigType](#camera_preconfigtype) [Camera_PreconfigType](#camera_preconfigtype) | Defines an enum for the preconfigured resolution types.| 
 | typedef enum [Camera_PreconfigRatio](#camera_preconfigratio) [Camera_PreconfigRatio](#camera_preconfigratio) | Defines an enum for the preconfigured aspect ratios.| 
+| typedef enum [Camera_HostDeviceType](#camera_hostdevicetype)[Camera_HostDeviceType](#camera_hostdevicetype) | Defines an enum for the remote device types.| 
 | typedef struct [Camera_Size](_camera___size.md) [Camera_Size](#camera_size) | Defines a struct for the parameters related to the size.| 
 | typedef struct [Camera_Profile](_camera___profile.md) [Camera_Profile](#camera_profile) | Defines a struct for the profile of a camera stream.| 
 | typedef struct [Camera_FrameRateRange](_camera___frame_rate_range.md) [Camera_FrameRateRange](#camera_frameraterange) | Defines a struct for the frame rate range.| 
@@ -141,6 +157,7 @@ The **OH_Camera** module provides C APIs for the camera service.
 | typedef void(\* [OH_VideoOutput_OnFrameEnd](#oh_videooutput_onframeend)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t frameCount) | Defines the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output frame end events.| 
 | typedef void(\* [OH_VideoOutput_OnError](#oh_videooutput_onerror)) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_ErrorCode](#camera_errorcode) errorCode) | Defines the callback defined in the [VideoOutput_Callbacks](_video_output___callbacks.md) struct and used to report video output errors.| 
 | typedef struct [VideoOutput_Callbacks](_video_output___callbacks.md) [VideoOutput_Callbacks](#videooutput_callbacks) | Defines a struct for the callbacks related to video output.| 
+| typedef struct [Camera_QualityPrioritization ](#camera_qualityprioritization) [Camera_QualityPrioritization](#camera_qualityprioritization) | Defines a struct for the priority level for video recording quality.| 
 
 
 ### Enums
@@ -161,6 +178,8 @@ The **OH_Camera** module provides C APIs for the camera service.
 | [Camera_VideoStabilizationMode](#camera_videostabilizationmode) {<br>STABILIZATION_MODE_OFF = 0,<br>STABILIZATION_MODE_LOW = 1,<br>STABILIZATION_MODE_MIDDLE = 2,<br>STABILIZATION_MODE_HIGH = 3,<br>STABILIZATION_MODE_AUTO = 4<br>} | Enumerates the video stabilization modes.| 
 | [Camera_ImageRotation](#camera_imagerotation) {<br>IAMGE_ROTATION_0 = 0,<br>IAMGE_ROTATION_90 = 90,<br>IAMGE_ROTATION_180 = 180,<br>IAMGE_ROTATION_270 = 270 } | Enumerates the image rotation angles.| 
 | [Camera_QualityLevel](#camera_qualitylevel) {<br>QUALITY_LEVEL_HIGH = 0,<br>QUALITY_LEVEL_MEDIUM = 1,<br>QUALITY_LEVEL_LOW = 2 } | Enumerates the image quality levels.| 
+| [Camera_HostDeviceType](#camera_hostdevicetype) {<br>HOST_DEVICE_TYPE_UNKNOWN_TYPE = 0,<br>HOST_DEVICE_TYPE_PHONE = 0x0E,<br>HOST_DEVICE_TYPE_TABLET = 0x11 } | Enumerates the remote device types.| 
+| [Camera_QualityPrioritization](#camera_qualityprioritization) {<br>HIGH_QUALITY  = 0,<br>POWER_BALANCE  = 1} | Enumerates the priority levels for video recording quality.| 
 | [Camera_MetadataObjectType](#camera_metadataobjecttype) { FACE_DETECTION = 0 } | Enumerates the metadata object types.| 
 | [Camera_TorchMode](#camera_torchmode) { OFF = 0, ON = 1, AUTO = 2 } | Enumerates the flashlight modes.| 
 | [Camera_SmoothZoomMode](#camera_smoothzoommode) { NORMAL = 0 } | Enumerates the smooth zoom modes.| 
@@ -320,7 +339,9 @@ The **OH_Camera** module provides C APIs for the camera service.
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_DeleteFrameRates](#oh_videooutput_deleteframerates) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Deletes the frame rate list.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_SetFrameRate](#oh_videooutput_setframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, int32_t minFps, int32_t maxFps) | Sets the frame rates for a **VideoOutput** instance.| 
 | [Camera_ErrorCode](#camera_errorcode) [OH_VideoOutput_GetActiveFrameRate](#oh_videooutput_getactiveframerate) ([Camera_VideoOutput](#camera_videooutput) \*videoOutput, [Camera_FrameRateRange](_camera___frame_rate_range.md) \*frameRateRange) | Obtains the active frame rates of a **VideoOutput** instance.| 
-
+| [Camera_ErrorCode](#camera_errorcode) [OH_CaptureSession_SetQualityPrioritization](#oh_capturesession_setqualityprioritization) ([Camera_CaptureSession](#camera_capturesession) \*session, [Camera_QualityPrioritization](#camera_qualityprioritization) qualityPrioritization) | Sets the priority level for video recording quality.| 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraDevice_GetHostDeviceName](#oh_cameradevice_gethostdevicename) ([Camera_Device](_camera___device.md) \*camera, char \*\*hostDeviceName) | Obtains the name of a remote device.| 
+| [Camera_ErrorCode](#camera_errorcode)[OH_CameraDevice_GetHostDeviceType](#oh_cameradevice_gethostdevicetype) ([Camera_Device](_camera___device.md) \*camera, [Camera_HostDeviceType](#camera_hostdevicetype) \*hostDeviceType) | Obtains the type of a remote device.| 
 
 ## Type Description
 
@@ -460,7 +481,7 @@ Defines an enum for the focus states.
 ### Camera_Format
 
 ```
-typedef enum Camera_FormatCamera_Format
+typedef enum Camera_Format Camera_Format
 ```
 
 **Description**
@@ -507,6 +528,19 @@ typedef struct Camera_FrameShutterInfo Camera_FrameShutterInfo
 Defines a struct for the frame shutter information.
 
 **Since**: 11
+
+
+### Camera_HostDeviceType
+
+```
+typedef enum Camera_HostDeviceTypeCamera_HostDeviceType
+```
+
+**Description**
+
+Defines an enum for the remote device types.
+
+**Since**: 16
 
 
 ### Camera_ImageRotation
@@ -738,6 +772,19 @@ typedef enum Camera_QualityLevel Camera_QualityLevel
 Defines an enum for the image quality levels.
 
 **Since**: 11
+
+
+### Camera_QualityPrioritization
+
+```
+typedef enum Camera_QualityPrioritization Camera_QualityPrioritization
+```
+
+**Description**
+
+Defines an enum for the priority levels for video recording quality.
+
+**Since**: 14
 
 
 ### Camera_Rect
@@ -1621,7 +1668,7 @@ Enumerates the camera error codes.
 | CAMERA_DEVICE_DISABLED | The camera is disabled for security reasons.| 
 | CAMERA_DEVICE_PREEMPTED | The camera is preempted.| 
 | CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS | The configuration conflicts with the current configuration.<br>**Since**: 12| 
-| CAMERA_SERVICE_FATAL_ERROR | A fatal error occurs in the camera service.| 
+| CAMERA_SERVICE_FATAL_ERROR | A fatal error occurs in the camera service, for example, no camera permission, camera service restart, or abnormal cross-process invocation.| 
 
 
 ### Camera_ExposureMode
@@ -1723,6 +1770,25 @@ Enumerates the camera output formats.
 | CAMERA_FORMAT_YCRCB_P010 | YCRCB P010.<br>**Since**: 12| 
 
 
+### Camera_HostDeviceType
+
+```
+enum Camera_HostDeviceType
+```
+
+**Description**
+
+Enumerates the remote device types.
+
+**Since**: 16
+
+| Value| Description| 
+| -------- | -------- |
+| HOST_DEVICE_TYPE_UNKNOWN_TYPE | Unknown type.| 
+| HOST_DEVICE_TYPE_PHONE | Mobile phone.| 
+| HOST_DEVICE_TYPE_TABLET | Tablet.| 
+
+
 ### Camera_ImageRotation
 
 ```
@@ -1774,7 +1840,7 @@ Enumerates the camera positions.
 
 | Value| Description| 
 | -------- | -------- |
-| CAMERA_POSITION_UNSPECIFIED | Unspecified position.| 
+| CAMERA_POSITION_UNSPECIFIED | A camera that does not have a fixed orientation relative to the device screen.| 
 | CAMERA_POSITION_BACK | Rear camera.| 
 | CAMERA_POSITION_FRONT | Front camera.| 
 
@@ -1836,6 +1902,22 @@ Enumerates the image quality levels.
 | QUALITY_LEVEL_MEDIUM | Medium image quality.| 
 | QUALITY_LEVEL_LOW | Low image quality.| 
 
+### Camera_QualityPrioritization
+
+```
+enum Camera_QualityPrioritization
+```
+
+**Description**
+
+Enumerates the priority levels for video recording quality.
+
+**Since**: 14
+
+| Value       | Description                |
+| ------------- | -------------------- |
+| HIGH_QUALITY  | Prioritizes high-quality video recording.        |
+| POWER_BALANCE | Prioritizes video recording quality while balancing power consumption.|
 
 ### Camera_SceneMode
 
@@ -1929,7 +2011,7 @@ Enumerates the camera types.
 | CAMERA_TYPE_DEFAULT | Default camera type.| 
 | CAMERA_TYPE_WIDE_ANGLE | Wide camera.| 
 | CAMERA_TYPE_ULTRA_WIDE | Ultra wide camera.| 
-| CAMERA_TYPE_TELEPHOTO | Telephone camera.| 
+| CAMERA_TYPE_TELEPHOTO | Telephoto camera.| 
 | CAMERA_TYPE_TRUE_DEPTH | Camera with depth of field information.| 
 
 
@@ -3777,7 +3859,7 @@ Obtains the supported color spaces.
 | -------- | -------- |
 | session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
 | colorSpace | Double pointer to the list of color spaces, which are defined in [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1), if the function is successfully called.| 
-| size | Pointer to the size of the list of color spaces.| 
+| size | Pointer to the size of the list of color spaces, which are defined in [OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1), if the function is successfully called.| 
 
 **Returns**
 
@@ -4543,6 +4625,40 @@ In [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
 
 
+### OH_CaptureSession_SetQualityPrioritization()
+
+```
+Camera_ErrorCode OH_CaptureSession_SetQualityPrioritization(Camera_CaptureSession* session, Camera_QualityPrioritization qualityPrioritization)
+```
+
+**Description**
+
+Sets the priority level for video recording quality.
+
+> **NOTE**
+>
+> The default value is **HIGH_QUALITY**. Switching to **POWER_BALANCE** will compromise video recording quality to achieve lower power usage. The extent of power conservation achieved varies depending on the platform.
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| session | Pointer to the target [Camera_CaptureSession](#camera_capturesession) instance.| 
+| qualityPrioritization | Quality priority to set. The default value is [Camera_QualityPrioritization](#camera_qualityprioritization).| 
+
+**Returns**
+
+In [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SESSION_NOT_CONFIG**: The capture session is not configured.
+
+
 ### OH_CaptureSession_SetSessionMode()
 
 ```
@@ -4993,6 +5109,8 @@ Camera_ErrorCode OH_PhotoOutput_Capture(Camera_PhotoOutput* photoOutput)
 **Description**
 
 Captures a photo.
+
+**OH_PhotoOutput_Capture()** must be called in prior to **OH_PreviewOutput_Release()**. Otherwise, photo capture fails.
 
 **Since**: 11
 
@@ -5780,7 +5898,7 @@ Obtains the active frame rates of a **PreviewOutput** instance.
 | Name| Description| 
 | -------- | -------- |
 | previewOutput | Pointer to a [Camera_PreviewOutput](#camera_previewoutput) instance.| 
-| frameRateRange | Double pointer to the frame rates, which are defined in [Camera_FrameRateRange](_camera___frame_rate_range.md), if the function is successfully called.| 
+| frameRateRange | Pointer to the frame rates, which are defined in [Camera_FrameRateRange](_camera___frame_rate_range.md), if the function is successfully called.| 
 
 **Returns**
 
@@ -6346,3 +6464,63 @@ In [Camera_ErrorCode](#camera_errorcode-1):
 - **CAMERA_OK**: The operation is successful.
 
 - **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+
+### OH_CameraDevice_GetHostDeviceName()
+
+```
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char** hostDeviceName)
+```
+
+**Description**
+
+Obtains the name of a remote device.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| camera | Pointer to a [Camera_Device](_camera___device.md) object.| 
+| hostDeviceName | Double pointer to the name of the remote device.| 
+
+**Returns**
+
+In [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful, and the remote device name is returned.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.
+
+
+### OH_CameraDevice_GetHostDeviceType()
+
+```
+Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera_HostDeviceType* hostDeviceType)
+```
+
+**Description**
+
+Obtains the type of a remote device.
+
+**Since**: 16
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| camera | Pointer to a [Camera_Device](_camera___device.md) object.| 
+| hostDeviceType | Double pointer to the remote device type, which is defined in [Camera_HostDeviceType](#camera_hostdevicetype).| 
+
+**Returns**
+
+In [Camera_ErrorCode](#camera_errorcode-1):
+
+- **CAMERA_OK**: The operation is successful, and the remote device type is returned.
+
+- **CAMERA_INVALID_ARGUMENT**: A parameter is missing or the parameter type is incorrect.
+
+- **CAMERA_SERVICE_FATAL_ERROR**: A fatal error occurs in the camera service.

@@ -54,13 +54,13 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | buildHost | string | 是 | 否 | 构建主机。<br/>示例：default |
 | buildTime | string | 是 | 否 | 构建时间。<br/>示例：default |
 | buildRootHash | string | 是 | 否 | 构建版本Hash。<br/>示例：default |
-| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid,仅限系统应用使用。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID<br/>示例：9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412  |
-| distributionOSName<sup>10+</sup> | String | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：OpenHarmony |
-| distributionOSVersion<sup>10+</sup> | String | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP11--><!--RP11End--><br/>示例：5.0.0.1  |
+| udid<sup>7+</sup> | string | 是 | 否 | 设备Udid。<br/>**说明**：数据长度为65字节。可作为设备唯一识别码。<br/>**需要权限**：ohos.permission.sec.ACCESS_UDID<br/>示例：9D6AABD147XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXE5536412  |
+| distributionOSName<sup>10+</sup> | string | 是 | 否 | 发行版系统名称<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：OpenHarmony |
+| distributionOSVersion<sup>10+</sup> | string | 是 | 否 | 发行版系统版本号<!--Del-->，由发行方定义<!--DelEnd-->。<!--RP11--><!--RP11End--><br/>示例：5.0.0.1  |
 | distributionOSApiVersion<sup>10+</sup> | number| 是 | 否 | 发行版系统api版本<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：50001 |
-| distributionOSApiName<sup>13+</sup> | String | 是 | 否 | 发行版系统api版本名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
-| distributionOSReleaseType<sup>10+</sup> | String | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：Release |
-| ODID<sup>12+</sup> | String | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者(developerId相同)的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>根据签名信息里developerId解析出的groupId生成，developerId规则为groupId.developerId，若无groupId则取整个developerId作为groupId。<br/>同一设备上运行的同一个开发者(developerId相同)的应用，ODID相同。<br/>同一个设备上不同开发者(developerId不同)的应用，ODID不同。<br/>不同设备上同一个开发者(developerId相同)的应用，ODID不同。<br/>不同设备上不同开发者(developerId不同)的应用，ODID不同。<br/>**说明**：数据长度为37字节。<br/>示例：1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
+| distributionOSApiName<sup>13+</sup> | string | 是 | 否 | 发行版系统api版本名称<!--Del-->，由发行方定义<!--DelEnd-->。 |
+| distributionOSReleaseType<sup>10+</sup> | string | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：Release |
+| ODID<sup>12+</sup> | string | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者(developerId相同)的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>根据签名信息里developerId解析出的groupId生成，developerId规则为groupId.developerId，若无groupId则取整个developerId作为groupId。<br/>同一设备上运行的同一个开发者(developerId相同)的应用，ODID相同。<br/>同一个设备上不同开发者(developerId不同)的应用，ODID不同。<br/>不同设备上同一个开发者(developerId相同)的应用，ODID不同。<br/>不同设备上不同开发者(developerId不同)的应用，ODID不同。<br/>**说明**：数据长度为37字节。<br/>示例：1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
 
 **示例**
 
@@ -198,7 +198,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the distributionOSApiVersion is :500001
     console.info('the value of the deviceInfo distributionOSApiVersion is :' + distributionOSApiVersion);
 
-    let distributionOSApiName: number = deviceInfo.distributionOSApiName
+    let distributionOSApiName: string = deviceInfo.distributionOSApiName
     console.info('the value of the deviceInfo distributionOSApiName is :' + distributionOSApiName);
 
     let distributionOSReleaseType: string = deviceInfo.distributionOSReleaseType

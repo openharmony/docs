@@ -6,11 +6,11 @@
 
 当前所有Picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
 
-如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+如果开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 保存图片或视频类文件
 
-[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpicker)在后续版本不再演进，建议使用[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-savebutton.md#使用安全控件创建媒体资源)。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，建议使用[Media Library Kit（媒体文件管理服务）中能力来保存媒体库资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
 
@@ -138,7 +138,7 @@
 
 ## DOWNLOAD模式保存文件
 
-用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会拉起授权接口，用户确认后会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
+用户在使用save接口时，可以将pickerMode配置为DOWNLOAD模式，该模式下会在公共路径download目录下创建用户当前hap包名的文件夹，并通过save接口返回值回传相应的URI，后续用户可以直接将文件保存在该URI下。
 
 1. 导入选择器模块和文件管理模块。
 

@@ -5,7 +5,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
 ```
 
 ## 开发步骤
@@ -14,13 +14,7 @@
 
 设备A、设备B各自生成一个非对称密钥，具体请参考[密钥生成](huks-key-generation-overview.md)或[密钥导入](huks-key-import-overview.md)。
 
-密钥生成时，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识基于该密钥协商出的密钥是否由HUKS管理。
-
-- 当TAG设置为OH_HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
-
-- 当TAG设置为OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥协商出的密钥，返回给调用方管理，由业务自行保证密钥安全。
-
-- 若业务未设置TAG的具体值，表示基于该密钥协商出的密钥，即可由HUKS管理，也可返回给调用方管理，业务可在后续协商时再选择使用何种方式保护密钥。
+密钥生成时，可指定参数，OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识此步骤生成的密钥是否由HUKS管理。
 
 **导出密钥**
 
@@ -31,6 +25,12 @@
 设备A、B分别基于本端私钥和对端设备的公钥，协商出共享密钥。
 
 密钥协商时，可指定参数OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG（可选），用于标识协商得到的密钥是否由HUKS管理。
+
+- 当TAG设置为OH_HUKS_STORAGE_ONLY_USED_IN_HUKS时，表示基于该密钥协商出的密钥，由HUKS管理，可保证协商密钥全生命周期不出安全环境。
+
+- 当TAG设置为OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED时，表示基于该密钥协商出的密钥，返回给调用方管理，由业务自行保证密钥安全。
+
+- 若业务未设置TAG的具体值，表示基于该密钥协商出的密钥，既可由HUKS管理，也可返回给调用方管理，业务可在后续协商时再选择使用何种方式保护密钥。
 
 | 生成 | 协商 | 规格 |
 | -------- | -------- | -------- |
@@ -49,6 +49,7 @@
 ```c++
 #include "huks/native_huks_api.h"
 #include "huks/native_huks_param.h"
+#include "napi/native_api.h"
 #include <string.h>
 /* 初始化参数 */
 OH_Huks_Result InitParamSet(

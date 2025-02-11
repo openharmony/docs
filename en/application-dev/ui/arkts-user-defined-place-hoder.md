@@ -1,10 +1,10 @@
-# Custom Placeholder Node
+# Custom Placeholder Nodes
 
-ArkUI provides ArkTS built-in components as placeholder nodes for custom nodes. These placeholder nodes have universal component attributes.
+ArkUI provides two types of custom placeholder nodes: the built-in component [NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) and [ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md). They are used to display custom nodes and custom node trees.
 
-## NodeContainer and NodeController
+Unlike [NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md), which acts as a container node with universal attributes, [ContentSlot](../quick-start/arkts-rendering-control-contentslot.md) is merely a semantic node and does not have universal attributes. It does not engage in layout and rendering processes. For hybrid development scenarios, the **ContentSlot** component is recommended when the container is an ArkTS component and the child component is created on the native side. For details, see [ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md).
 
-[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md), as a built-in component, only has universal component attributes, and its node layout follows the default top-left aligned [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) component. As a placeholder container, [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) is primarily used for displaying custom nodes and for the display and reuse of custom node trees.
+[NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md), a built-in component serving as a placeholder, comes with universal attributes, and its node layout follows the default top-left aligned [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) component.
 
 [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) provides a set of lifecycle callbacks, including a [makeNode](../reference/apis-arkui/js-apis-arkui-nodeController.md#makenode) callback that returns the root node of a [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#framenode) tree. This [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) tree is then mounted under the corresponding [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). In addition, NodeController provides the following callback methods: [aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear), [aboutToDisappear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear), [aboutToResize](../reference/apis-arkui/js-apis-arkui-nodeController.md#abouttoresize), [onTouchEvent](../reference/apis-arkui/js-apis-arkui-nodeController.md#ontouchevent), and [rebuild](../reference/apis-arkui/js-apis-arkui-nodeController.md#rebuild), which are used to listen for the status of the associated [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md).
 
@@ -17,6 +17,10 @@ For details about the callbacks, see [NodeController](../reference/apis-arkui/js
 > - Since API version 12, you can obtain a built-in component's proxy node through the query API of the FrameNode. This proxy node can be returned as the result of the **makeNode** callback, but it cannot be successfully mounted on the component tree, resulting in a failed display of the proxy node.
 > 
 > - A node must be used as the child of only one parent node to avoid display or functional issues, particularly in page routing and animation scenarios. For example, if a single node is mounted on multiple **NodeContainer**s through **NodeController**, only one of the **NodeContainer**s will display the node. In addition, any updates to attributes such as visibility and opacity in any of these **NodeContainer**s, which can affect the child component state, will all influence the mounted child node.
+
+## Using NodeContainer to Mount Custom Nodes
+
+You can mount custom nodes under a **NodeContainer** using **NodeController**.
 
 ```ts
 // common.ets
@@ -121,7 +125,7 @@ struct Index {
         .onClick(() => {
           // First, remove the node from the original placeholder node.
           // Then, add the node to the new placeholder node.
-          // Ensure that the custom node only exists as the child of one node.
+          // This ensures that the custom node exists only as the child of one node.
           this.myNodeController1.toHide();
           this.myNodeController2.toShow();
         })
@@ -132,3 +136,118 @@ struct Index {
   }
 }
 ```
+
+## Layout Differences Between Child Nodes Added Using NodeContainer and ContentSlot
+
+[NodeContainer](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) acts as a standard container that manages the layout of its child nodes. The child nodes added using **NodeContainer** follows the layout rules of the default top-left aligned [Stack](../reference/apis-arkui/arkui-ts/ts-container-stack.md) component, instead of those of the parent container. On the other hand, [ContentSlot](../../application-dev/reference/apis-arkui/arkui-ts/ts-components-contentSlot.md) is a semantic node and does not engage in the layout process. Any child nodes added will be arranged according to the layout rules of the parent container.
+
+```ts
+import { FrameNode, NodeContent, NodeController, typeNode, UIContext } from '@kit.ArkUI';
+
+class NodeContentCtrl {
+  content: NodeContent
+  textNode: Array<typeNode.Text> = new Array();
+  uiContext: UIContext
+  width: number
+
+  constructor(uiContext: UIContext) {
+    this.content = new NodeContent()
+    this.uiContext = uiContext
+    this.width = Infinity
+  }
+
+  AddNode() {
+    let node = typeNode.createNode(this.uiContext, "Text")
+    node.initialize("ContentText:" + this.textNode.length).fontSize(20)
+    this.textNode.push(node)
+    this.content.addFrameNode(node)
+  }
+
+  RemoveNode() {
+    let node = this.textNode.pop()
+    this.content.removeFrameNode(node)
+  }
+
+  RemoveFront() {
+    let node = this.textNode.shift()
+    this.content.removeFrameNode(node)
+  }
+
+  GetContent(): NodeContent {
+    return this.content
+  }
+}
+
+class MyNodeController extends NodeController {
+  public rootNode: FrameNode | null = null;
+  textNode: Array<typeNode.Text> = new Array();
+  makeNode(uiContext: UIContext): FrameNode {
+    this.rootNode = new FrameNode(uiContext);
+    return this.rootNode;
+  }
+
+  AddNode(frameNode: FrameNode | null, uiContext: UIContext) {
+    let node = typeNode.createNode(uiContext, "Text")
+    node.initialize("ControllerText:" + this.textNode.length).fontSize(20)
+    this.textNode.push(node)
+    frameNode?.appendChild(node)
+  }
+
+  RemoveNode(frameNode: FrameNode | null) {
+    let node = this.textNode.pop()
+    frameNode?.removeChild(node)
+  }
+
+  RemoveFront(frameNode: FrameNode | null) {
+    let node = this.textNode.shift()
+    frameNode?.removeChild(node)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  controller = new NodeContentCtrl(this.getUIContext());
+  myNodeController = new MyNodeController();
+  build() {
+    Row() {
+      Column() {
+        ContentSlot(this.controller.GetContent())
+        Button("AddToSlot")
+          .onClick(() => {
+            this.controller.AddNode()
+          })
+        Button("RemoveBack")
+          .onClick(() => {
+            this.controller.RemoveNode()
+          })
+        Button("RemoveFront")
+          .onClick(() => {
+            this.controller.RemoveFront()
+          })
+      }
+      .width('50%')
+      Column() {
+        NodeContainer(this.myNodeController)
+        Button("AddToNodeContainer")
+          .onClick(() => {
+            this.myNodeController.AddNode(this.myNodeController.rootNode, this.getUIContext())
+          })
+        Button("RemoveBack")
+          .onClick(() => {
+            this.myNodeController.RemoveNode(this.myNodeController.rootNode)
+          })
+        Button("RemoveFront")
+          .onClick(() => {
+            this.myNodeController.RemoveFront(this.myNodeController.rootNode)
+          })
+      }
+      .width('50%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_user-defined-node-01](figures/user-defined-node-01.gif)

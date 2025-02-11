@@ -576,11 +576,11 @@ Ensure that the specified ability name exists in the current application and the
 
 **Error Message**
 
-Restart too frequently. Try again at least 10s later.
+Restart too frequently. Try again at least 3s later.
 
 **Description**
 
-An API is called to restart the application and start a specified ability. This error code is reported when the API is called again within 10 seconds.
+An API is called to restart the application and start a specified ability. This error code is reported when the API is called again within 3 seconds.
 
 **Possible Causes**
 
@@ -588,7 +588,7 @@ The API is frequently called.
 
 **Solution**
 
-Call the API again after 10 seconds.
+Call the API again after 3 seconds.
 
 ## 16000065 API Can Be Called for a Foreground Ability
 
@@ -892,6 +892,28 @@ The parameter use scenario is incorrect.
 **Solution**
 
 Delete the [CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params) parameter.
+
+## 16000081 Failed to Obtain the Target Application Information
+
+**Error Message**
+
+Get target application info failed.
+
+**Description**
+
+When <!--Del-->[<!--DelEnd-->an API related to URI authorization<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd--> is called, the information about the target application cannot be obtained based on the bundle name and clone index.
+
+**Possible Causes**
+
+1. The target application is not installed.
+2. The clone index is out of range.
+3. The target application does not have a clone of the specified index.
+
+**Solution**
+
+1. Check whether the application has been installed.
+2. Check whether the index is within the allowed range.
+3. Check whether the target application has created a clone of the specified index.
 
 ## 16000082 UIAbility Startup Failure in Singleton Mode
 

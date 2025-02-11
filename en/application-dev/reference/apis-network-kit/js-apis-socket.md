@@ -6914,7 +6914,7 @@ Defines TLS connection options.
 | address        | [NetAddress](#netaddress)             | Yes |  Gateway address.      |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | Yes| TLS security options.|
 | ALPNProtocols  | Array\<string\>                         | No| ALPN protocol. The value range is ["spdy/1", "http/1.1"]. The default value is **[]**.     |
-| skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to perform certificate authentication on the server. The default value is **false**.     |
+| skipRemoteValidation<sup>12+</sup>  | boolean                         | No| Whether to skip certificate authentication on the server. The default value is **false**.     |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -6947,9 +6947,15 @@ Enumerates TLS protocol versions.
 
 ## X509CertRawData<sup>9+</sup>
 
+type X509CertRawData = cert.EncodingBlob
+
 Defines the certificate raw data.
 
 **System capability**: SystemCapability.Communication.NetStack
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| cert.EncodingBlob | Certificate encoding BLOB type.    |
 
 ## socket.constructTLSSocketServerInstance<sup>10+</sup>
 

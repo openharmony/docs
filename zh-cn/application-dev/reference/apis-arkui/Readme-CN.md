@@ -79,6 +79,7 @@
       - [按键事件](arkui-ts/ts-universal-events-key.md)
       - [焦点事件](arkui-ts/ts-universal-focus-event.md)
       - [鼠标事件](arkui-ts/ts-universal-mouse-key.md)
+      - [表冠事件](arkui-ts/ts-universal-events-crown.md)
       - [悬浮事件](arkui-ts/ts-universal-events-hover.md)
       - [无障碍悬浮事件](arkui-ts/ts-universal-accessibility-hover-event.md)
       - [组件区域变化事件](arkui-ts/ts-universal-component-area-change-event.md)
@@ -88,6 +89,7 @@
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [焦点轴事件](arkui-ts/ts-universal-events-focus_axis.md)
+      - [轴事件](arkui-ts/ts-universal-events-axis.md)
     - 通用属性
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
@@ -133,6 +135,7 @@
       - 模态转场设置
         - [全屏模态转场](arkui-ts/ts-universal-attributes-modal-transition.md)
         - [半模态转场](arkui-ts/ts-universal-attributes-sheet-transition.md)
+        - [半模态转场 (系统接口)](arkui-ts/ts-universal-attributes-sheet-transition-sys.md)
       - [隐私遮罩](arkui-ts/ts-universal-attributes-obscured.md)
       - [文本通用](arkui-ts/ts-universal-attributes-text-style.md)
       - [拖拽控制](arkui-ts/ts-universal-attributes-drag-drop.md)
@@ -182,6 +185,8 @@
     - [List](arkui-ts/ts-container-list.md)
     - [ListItem](arkui-ts/ts-container-listitem.md)
     - [ListItemGroup](arkui-ts/ts-container-listitemgroup.md)
+    - [ArcList](arkui-ts/ts-container-arclist.md)
+    - [ArcListItem](arkui-ts/ts-container-arclistitem.md)
     - [Grid](arkui-ts/ts-container-grid.md)
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
@@ -193,11 +198,13 @@
     - [ComposeListItem](arkui-ts/ohos-arkui-advanced-ComposeListItem.md)
     - [GridObjectSortComponent](arkui-ts/ohos-arkui-advanced-GridObjectSortComponent.md)
     - [SwipeRefresher](arkui-ts/ohos-arkui-advanced-SwipeRefresher.md)
+    - [ArcScrollBar](arkui-ts/ts-basic-components-arcscrollbar.md)
     - [滚动组件通用接口](arkui-ts/ts-container-scrollable-common.md)
     <!--Del-->
     - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
     <!--DelEnd-->
   - 导航与切换
+    - [Indicator](arkui-ts/ts-swiper-components-indicator.md)
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
@@ -220,8 +227,11 @@
     - [Slider](arkui-ts/ts-basic-components-slider.md)
     - [DownloadFileButton](arkui-ts/ohos-arkui-advanced-DownloadFileButton.md)
     - [ProgressButton](arkui-ts/ohos-arkui-advanced-ProgressButton.md)
+    - [ProgressButtonV2](arkui-ts/ohos-arkui-advanced-ProgressButtonV2.md)
     - [SegmentButton](arkui-ts/ohos-arkui-advanced-SegmentButton.md)
+    - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
+    - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
   - 文本与输入
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
@@ -250,9 +260,11 @@
     <!--Del-->
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
+    - [Video (系统接口)](arkui-ts/ts-media-components-video-sys.md)
     <!--DelEnd-->
   - 信息展示
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
+    - [ArcAlphabetIndexer](arkui-ts/ts-container-arc-alphabet-indexer.md)
     - [Badge](arkui-ts/ts-container-badge.md)
     - [Chip](arkui-ts/ohos-arkui-advanced-Chip.md)
     - [ChipGroup](arkui-ts/ohos-arkui-advanced-ChipGroup.md)
@@ -262,6 +274,7 @@
     - [ExceptionPrompt](arkui-ts/ohos-arkui-advanced-ExceptionPrompt.md)
     - [Gauge](arkui-ts/ts-basic-components-gauge.md)
     - [LoadingProgress](arkui-ts/ts-basic-components-loadingprogress.md)
+    - [LinearIndicator](arkui-ts/ts-basic-components-linearindicator.md)
     - [Marquee](arkui-ts/ts-basic-components-marquee.md)
     - [PatternLock](arkui-ts/ts-basic-components-patternlock.md)
     - [Progress](arkui-ts/ts-basic-components-progress.md)
@@ -297,14 +310,17 @@
   - 渲染绘制
     - [XComponent](arkui-ts/ts-basic-components-xcomponent.md)
     - [Component3D](arkui-ts/ts-basic-components-component3d.md)
-    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md) 
+    - [EmbeddedComponent](arkui-ts/ts-container-embedded-component.md)
+    - [XComponent(系统接口)](arkui-ts/ts-basic-components-xcomponent-sys.md)
   - 标题栏与工具栏
     - [ComposeTitleBar](arkui-ts/ohos-arkui-advanced-ComposeTitleBar.md)
     - [EditableTitleBar](arkui-ts/ohos-arkui-advanced-EditableTitleBar.md)
     - [SelectTitleBar](arkui-ts/ohos-arkui-advanced-SelectTitleBar.md)
     - [TabTitleBar](arkui-ts/ohos-arkui-advanced-TabTitleBar.md)
     - [ToolBar](arkui-ts/ohos-arkui-advanced-ToolBar.md)
+    - [ToolBarV2](arkui-ts/ohos-arkui-advanced-ToolBarV2.md)
     - [SubHeader](arkui-ts/ohos-arkui-advanced-SubHeader.md)
+    - [SubHeaderV2](arkui-ts/ohos-arkui-advanced-SubHeaderV2.md)
   - 菜单
     - [Menu](arkui-ts/ts-basic-components-menu.md)
     - [MenuItem](arkui-ts/ts-basic-components-menuitem.md)
@@ -341,7 +357,6 @@
     <!--DelEnd-->
   - 安全
     - [安全控件通用属性](arkui-ts/ts-securitycomponent-attributes.md)
-    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [PasteButton](arkui-ts/ts-security-components-pastebutton.md)
     - [SaveButton](arkui-ts/ts-security-components-savebutton.md)
     <!--Del-->
@@ -371,6 +386,9 @@
     - [ForEach](arkui-ts/ts-rendering-control-foreach.md)
     - [LazyForEach](arkui-ts/ts-rendering-control-lazyforeach.md)
     - [Repeat](arkui-ts/ts-rendering-control-repeat.md)
+    <!--Del-->
+    - [应用级变量的状态管理（系统接口）](arkui-ts/ts-state-management-sys.md)
+    <!--DelEnd-->
   - 公共定义
     - [基础类型定义](arkui-ts/ts-types.md)
     - [像素单位](arkui-ts/ts-pixel-units.md)
@@ -394,6 +412,7 @@
     <!--DelEnd-->
     - [GridContainer](arkui-ts/ts-container-gridcontainer.md)
     - [Panel](arkui-ts/ts-container-panel.md)
+    - [LocationButton](arkui-ts/ts-security-components-locationbutton.md)
     - [NavRouter](arkui-ts/ts-basic-components-navrouter.md)
     - [Navigator](arkui-ts/ts-container-navigator.md)
     - [点击控制](arkui-ts/ts-universal-attributes-click.md)
@@ -418,6 +437,7 @@
     - [native_gesture.h](native__gesture_8h.md)
     - [native_interface.h](native__interface_8h.md)
     - [native_interface_accessibility.h](native__interface__accessibility_8h.md)
+    - [native_interface_focus.h](native__interface__focus_8h.md)
     - [native_interface_xcomponent.h](native__interface__xcomponent_8h.md)
     - [native_key_event.h](native__key_event_8h.md)
     - [native_node.h](native__node_8h.md)
@@ -442,6 +462,7 @@
     - [ArkUI_Margin](_ark_u_i___margin.md)
     - [ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md)
     - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
+    - [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md)
     - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
     - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
     - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
@@ -450,9 +471,11 @@
     - [ArkUI_RotationOptions](_ark_u_i___rotation_options.md)
     - [ArkUI_ScaleOptions](_ark_u_i___scale_options.md)
     - [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)
+    - [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)
     - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
     - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [ArkUI_TranslationOptions](_ark_u_i___translation_options.md)
+    - [OH_ComponentSnapshot](_ark_u_i___node_component_snapshot.md)
     - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
     - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
     - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)
@@ -478,6 +501,7 @@
     - [系统资源错误码](errorcode-system-resource.md)
     - [半模态错误码](errorcode-bindSheet.md)
     - [滚动类组件错误码](errorcode-scroll.md)
+    - [截图错误码](errorcode-snapshot.md)
   - 图形图像
     - [屏幕错误码](errorcode-display.md)
     - [窗口错误码](errorcode-window.md)

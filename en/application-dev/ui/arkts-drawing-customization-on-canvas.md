@@ -189,17 +189,38 @@ After **onReady()** is invoked, you can use the **Canvas** component for drawing
     .width('100%')
     .height('100%')
     .backgroundColor('#F5DC62')
-    .onReady(() =>{
-       // Draw filled text on the canvas.
-       this.context.font = '50px sans-serif';
-       this.context.fillText("Hello World!", 50, 100);
-       // Draw a text stroke on the canvas.
-       this.context.font = '55px sans-serif';
-       this.context.strokeText("Hello World!", 50, 150);
+    .onReady(() => {
+      // Draw filled text on the canvas.
+      this.context.font = '50px bolder sans-serif';
+      this.context.fillText("Hello World!", 50, 100);
+      // Draw a text stroke on the canvas.
+      this.context.strokeStyle = "#ff0000"
+      this.context.lineWidth = 2
+      this.context.font = '50px bolder sans-serif';
+      this.context.strokeText("Hello World!", 50, 150);
     })
   ```
 
   ![2023022795105(1)](figures/2023022795105(1).jpg)
+
+- Draw text with a custom font.
+
+  You can use the [font](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#font) API to load a custom font, and then use the [fillText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/apis-arkui/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) APIs to draw text.
+
+  ```ts
+  Canvas(this.context)
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F5DC62')
+    .onReady(() =>{
+      // Load a custom font.
+      this.context.font = '30vp customFont'
+      this.context.fillText("Hello World!", 20, 50)
+      this.context.strokeText("Hello World!", 20, 100)
+    })
+  ```
+
+  ![customFont](figures/customFont.jpeg)
 
 - Draw images and processes image pixel information.
 

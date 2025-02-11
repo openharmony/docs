@@ -1,16 +1,24 @@
 # ForEach
 
+ForEach接口基于数组类型数据来进行循环渲染。
+
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-开发者指南见：[ForEach开发者指南](../../../quick-start/arkts-rendering-control-foreach.md)
+开发者指南见：[ForEach开发者指南](../../../quick-start/arkts-rendering-control-foreach.md)。
+
+## 接口
+
+ForEach(arr: Array\<any\>,itemGenerator: (item: any, index: number) => void,keyGenerator?: (item: any, index: number) => string,)
 
 ForEach接口基于数组类型数据来进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在ForEach父容器组件中的子组件。例如，ListItem组件要求ForEach的父容器组件必须为[List组件](../../../reference/apis-arkui/arkui-ts/ts-container-list.md)。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -25,21 +33,39 @@ ForEach接口基于数组类型数据来进行循环渲染，需要与容器组�
 > - `ForEach`的`itemGenerator`函数可以包含`if/else`条件渲染逻辑。另外，也可以在`if/else`条件渲染语句中使用`ForEach`组件。
 > - 在初始化渲染时，`ForEach`会加载数据源的所有数据，并为每个数据项创建对应的组件，然后将其挂载到渲染树上。如果数据源非常大或有特定的性能需求，建议使用`LazyForEach`组件。
 
-**示例：**
-```ts
-// arr是string类型的数组
-// 第一个参数是组件创建函数
-// 第二个参数是键值生成函数
-ForEach(this.arr, (item: string, index: number) => {Text(item)}, (item: string, index: number) => item + index)
-```
+## 属性
 
-## onMove<sup>12+</sup>
+继承自[DynamicNode](#dynamicnode12)。
 
-onMove(handler: Optional<(from: index, to: index) => void>): T
+## DynamicNode<sup>12+</sup>
+
+定义节点。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### onMove<sup>12+</sup>
+
+onMove(handler: Optional\<OnMoveHandler\>): T;
 
 拖拽排序数据移动回调。只有在List组件中使用，并且ForEach每次迭代都生成一个ListItem组件时才生效拖拽排序。
 
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型      | 必填 | 说明       |
+| ------ | --------- | ---- | ---------- |
+| handler  | Optional\<OnMoveHandler\> | 是   | 拖拽动作。 |
+
+## OnMoveHandler
+
+type OnMoveHandler = (from: number, to: number) => void;
+
+定义数据源拖拽回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -51,3 +77,44 @@ onMove(handler: Optional<(from: index, to: index) => void>): T
 | ------ | --------- | ---- | ---------- |
 | from  | number | 是   | 数据源移动起始索引号。 |
 | to  | number | 是   | 数据源移动目标索引号。 |
+
+## 示例
+
+下面的示例展示了ForEach在List组件内使用时的拖拽效果。
+
+```ts
+@Entry
+@Component
+struct ForEachSort {
+  @State arr: Array<string> = [];
+
+  build() {
+    Row() {
+      List() {
+        ForEach(this.arr, (item: string) => {
+          ListItem() {
+            Text(item.toString())
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .size({height: 100, width: "100%"})
+          }.margin(10)
+          .borderRadius(10)
+          .backgroundColor("#FFFFFFFF")
+        }, (item: string) => item)
+          .onMove((from:number, to:number) => {
+            let tmp = this.arr.splice(from, 1);
+            this.arr.splice(to, 0, tmp[0]);
+          })
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor("#FFDCDCDC")
+    }
+  }
+  aboutToAppear(): void {
+    for (let i = 0; i < 100; i++) {
+      this.arr.push(i.toString());
+    }
+  }
+}
+```

@@ -1,6 +1,6 @@
 # Popup
 
-The popup component is used to display popups in a specific style.
+The **Popup** component is used to display popups in a specific style.
 
 >  **NOTE**
 >
@@ -20,7 +20,7 @@ Not supported
 
 ## Popup
 
-Popup(options: PopupOptions)
+Popup(options: PopupOptions): void
 
 **Decorator**: @Builder
 
@@ -30,7 +30,7 @@ Popup(options: PopupOptions)
 
 **Parameters**
 
-| Name   | Type                         | Mandatory| Description                 |
+| Name | Type                         | Mandatory| Description                 |
 | ------- | ----------------------------- | ---- | --------------------- |
 | options | [PopupOptions](#popupoptions) | Yes  | Parameters of the popup.|
 
@@ -60,7 +60,7 @@ Defines the text parameters of the popup.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Type                                                        | Mandatory| Description              |
+| Name      | Type                                                        | Mandatory| Description        |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------ |
 | text       | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Text content.    |
 | fontSize   | number \| string \| [Resource](ts-types.md#resource)         | No  | Text font size.<br>Default value: **$r('sys.float.ohos_id_text_size_body2')** |
@@ -75,7 +75,7 @@ Defines the button attributes and events.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name     | Type                                                | Mandatory| Description                  |
+| Name     | Type                                                | Mandatory| Description                |
 | --------- | ---------------------------------------------------- | ---- | ---------------------- |
 | text      | [ResourceStr](ts-types.md#resourcestr)               | Yes  | Text of the button.        |
 | action    | () => void                                           | No  | Click callback of the button.|
@@ -90,15 +90,19 @@ Defines the attributes of the icon (in the upper right corner).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name        | Type                                                        | Mandatory| Description                              |
+| Name        | Type                                                        | Mandatory| Description                            |
 | ------------ | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | image        | [ResourceStr](ts-types.md#resourcestr)                       | Yes  | Icon content.                    |
 | width        | [Dimension](ts-types.md#dimension10)                         | No  | Icon width.<br>Default value: **32VP**|
 | height       | [Dimension](ts-types.md#dimension10)                         | No  | Icon height.<br>Default value: **32VP**|
-| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Icon fill color.                |
+| fillColor    | [ResourceColor](ts-types.md#resourcecolor)                   | No  | Icon fill color.<br>**NOTE**<br>This property applies only to an SVG image.|
 | borderRadius | [Length](ts-types.md#length) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Rounded corner of the icon.<br>Default value: **$r('sys.float.ohos_id_corner_radius_default_s')** |
 
-## Example  
+## Example
+
+### Example 1: Setting the Popup Style
+
+This example demonstrates how to customize the style of a popup by configuring **PopupIconOptions**, **PopupTextOptions**, and **PopupButtonOptions**.
 
 ```ts
 // xxx.ets
@@ -166,8 +170,8 @@ struct PopupExample {
 
 ![](figures/popup_7.png)
 
-## Example 2
-This example shows a mirrored layout of the popup.
+### Example 2: Implementing a Mirroring Effect
+This example shows how to achieve a mirroring effect for a popup by configuring **direction**.
 
 ```ts
 // xxx.ets

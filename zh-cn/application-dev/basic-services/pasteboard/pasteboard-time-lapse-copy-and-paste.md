@@ -195,6 +195,7 @@
 5. 应用设置本应用剪贴板数据的可粘贴范围。
 
    ```ts
+   let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
    try {
        systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
        console.info('Set app share options success.');

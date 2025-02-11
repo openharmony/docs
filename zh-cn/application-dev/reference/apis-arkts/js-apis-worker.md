@@ -6,7 +6,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 
 Worker的上下文对象和UI主线程的上下文对象是不同的，Worker线程不支持UI操作。
 
-Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)
+Worker使用过程中的相关注意点请查[Worker注意事项](../../arkts-utils/worker-introduction.md#worker注意事项)。
 
 > **说明：**<br/>
 > 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -39,6 +39,24 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 | type | 'classic' \| 'module' | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。 |
 | name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。<br/>**原子化服务API：** 从API version 11 开始，该接口支持在原子化服务中使用。|
 | shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| priority<sup>16+</sup> | [ThreadWorkerPriority](#threadworkerpriority16) | 是   | 是 | 表示Worker线程优先级。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
+
+
+## ThreadWorkerPriority<sup>16+</sup>
+
+Worker线程的优先级枚举，各优先级对应关系请参考[QoS等级](../../napi/qos-guidelines.md#qos等级定义)。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| HIGH   | 0    | 高优先级，对应 QOS_USER_INITIATED。 |
+| MEDIUM | 1 | 中优先级，对应 QOS_DEFAULT。 |
+| LOW | 2 | 低优先级，对应 QOS_UTILITY。 |
+| IDLE | 3 | 后台优先级，对应 QOS_BACKGROUND。 |
+
 
 ## ThreadWorker<sup>9+</sup>
 
@@ -1491,6 +1509,21 @@ workerPort.onerror = (err: ErrorEvent) => {
 | ---- | ---- | ---- | ---- | ------------------ |
 | data | any  | 是   | 否   | 线程间传递的数据。 |
 
+## MessageType<sup>7+</sup>
+
+type MessageType = 'message' | 'messageerror';
+
+表示消息类型。
+
+**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+| 类型  | 说明               |
+| ---- | ------------------ |
+| 'message'  | 表示消息类型为message，值固定为'message'字符串。 |
+| 'messageerror'  | 表示消息类型为messageerror，值固定为'messageerror'字符串。 |
+
 ## Worker<sup>(deprecated)</sup>
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
@@ -2327,10 +2360,6 @@ workerPort.onmessage = (d: MessageEvents): void => {
     console.log("post message is function");
   }
   // workerPort.postMessage(func1); 传递func1发生序列化错误
-  // let obj1: obj | null = null;
-  // if (obj1) {
-  //   workerPort.postMessage(obj1 as obj);  //传递obj1发生序列化错误
-  // }
   let obj2 = new MyModel();
   workerPort.postMessage(obj2);     // 传递obj2不会发生序列化错误
 }

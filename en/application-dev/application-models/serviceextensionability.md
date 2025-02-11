@@ -4,7 +4,7 @@
 
 [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md) is an [ExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-extensionAbility.md) component of the SERVICE type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md), which provides a variety of APIs for external systems.
 
-In this document, the started ServiceExtensionAbility is called the server, and the component that starts the ServiceExtensionAbility is called the client.
+In this document, the component that starts or connects to a ServiceExtensionAbility is called the client, and the ServiceExtensionAbility is called the server.
 
 A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start background services or call the [connectServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to background services. Third-party applications can call only **connectServiceExtensionAbility()** to connect to background services. The differences between starting and connecting to a ServiceExtensionAbility are as follows:
 
@@ -66,9 +66,9 @@ The [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-
 
 Only system applications can implement a [ServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md). You must make the following preparations before development:
 
-- **Switching to the full SDK**: All the APIs provided by the **ServiceExtensionAbility** class are marked as system APIs and hidden by default. Therefore, you must manually obtain the full SDK from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
+- **Switching to the full SDK**: All the APIs provided by the **ServiceExtensionAbility** class are marked as system APIs and hidden by default. Therefore, you must manually obtain the full SDK from the mirror and switch to it in DevEco Studio. For details, see [Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
-- **Requesting the AllowAppUsePrivilegeExtension privilege**: Only applications with the **AllowAppUsePrivilegeExtension** privilege can implement a ServiceExtensionAbility. For details about how to request the privilege, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+- **Requesting the AllowAppUsePrivilegeExtension privilege**: Only applications with the **AllowAppUsePrivilegeExtension** privilege can implement a ServiceExtensionAbility. For details about how to request the privilege, see [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
 ### Defining IDL APIs
 
@@ -203,7 +203,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 
 ## Starting a Background Service (for System Applications Only)
 
-A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) to stop the background service.
+A system application uses the [startServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#uiabilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-serviceExtensionAbility-sys.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. After the background service is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext-sys.md#abilitycontextstopserviceextensionability) to stop the background service.
 
 > **NOTE**
 > **startServiceExtensionAbility()**, **stopServiceExtensionAbility()**, and **terminateSelf()** provided by the **ServiceExtensionContext** class are system APIs and cannot be called by third-party applications.
@@ -634,7 +634,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
 
 - **Verifying the client identity based on callerTokenId**
 
-  Call the [getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, the system does not support permission customization. Therefore, only [system-defined permissions](../security/AccessToken/permissions-for-all.md) can be verified. The sample code is as follows:
+  Call the [getCallingTokenId()](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, the system does not support permission customization. Therefore, only [system-defined permissions](../security/AccessToken/app-permissions.md) can be verified. The sample code is as follows:
 
   ```ts
   import { abilityAccessCtrl, bundleManager } from '@kit.AbilityKit';
@@ -671,9 +671,7 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
   
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
-      /* The permission to be verified varies depending on the service requirements.
-       * ohos.permission.GET_BUNDLE_INFO_PRIVILEGED is only an example.
-       */
+      // The permission to be verified varies depending on the service requirements. ohos.permission.GET_BUNDLE_INFO_PRIVILEGED is only an example.
       let grantStatus = accessManger.verifyAccessTokenSync(callerTokenId, 'ohos.permission.GET_BUNDLE_INFO_PRIVILEGED');
       if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
         hilog.info(DOMAIN_NUMBER, TAG, 'PERMISSION_DENIED');

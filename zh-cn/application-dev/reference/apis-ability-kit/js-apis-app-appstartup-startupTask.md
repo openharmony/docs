@@ -20,7 +20,7 @@ onDependencyCompleted?(dependency: string, result: ESObject): void
 
 当依赖的启动任务执行完成时该方法将会被调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -60,7 +60,7 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 启动任务执行的初始化业务。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -89,7 +89,7 @@ export default class StartupTask_001 extends StartupTask {
     hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
     // ...
     
-    return 'StartupTask_001';
+    return "StartupTask_001";
   }
 
   onDependencyCompleted(dependence: string, result: Object): void {

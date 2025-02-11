@@ -7,6 +7,8 @@ Provides styled string APIs of ArkUI on the native side.
 
 **Library**: libace_ndk.z.so
 
+**File to include**: <arkui/styled_string.h>
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Since**: 12
@@ -35,3 +37,8 @@ Provides styled string APIs of ArkUI on the native side.
 | void [OH_ArkUI_StyledString_PopTextStyle](_ark_u_i___native_module.md#oh_arkui_styledstring_poptextstyle) ([ArkUI_StyledString](_ark_u_i___native_module.md#arkui_styledstring) \*handle) | Pops the style at the top of the style stack of a styled string. | 
 | OH_Drawing_Typography \* [OH_ArkUI_StyledString_CreateTypography](_ark_u_i___native_module.md#oh_arkui_styledstring_createtypography) ([ArkUI_StyledString](_ark_u_i___native_module.md#arkui_styledstring) \*handle) | Creates an **OH_Drawing_Typography** object based on an **ArkUI_StyledString** object. | 
 | void [OH_ArkUI_StyledString_AddPlaceholder](_ark_u_i___native_module.md#oh_arkui_styledstring_addplaceholder) ([ArkUI_StyledString](_ark_u_i___native_module.md#arkui_styledstring) \*handle, OH_Drawing_PlaceholderSpan \*placeholder) | Adds a placeholder. | 
+| [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \* [OH_ArkUI_StyledString_Descriptor_Create](_ark_u_i___native_module.md#oh_arkui_styledstring_descriptor_create) (void) | Creates an **ArkUI_StyledString_Descriptor** object. | 
+| void [OH_ArkUI_StyledString_Descriptor_Destroy](_ark_u_i___native_module.md#oh_arkui_styledstring_descriptor_destroy) ([ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | Destroys an **ArkUI_StyledString_Descriptor** object and reclaims the memory occupied by the object. | 
+| int32_t [OH_ArkUI_UnmarshallStyledStringDescriptor](_ark_u_i___native_module.md#oh_arkui_unmarshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor, size_t \*resultSize) | Unmarshals a byte array containing styled string information into a styled string. | 
+| int32_t [OH_ArkUI_MarshallStyledStringDescriptor](_ark_u_i___native_module.md#oh_arkui_marshallstyledstringdescriptor) (uint8_t \*buffer, size_t bufferSize, [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | Marshals the styled string information into a byte array. | 
+| const char \* [OH_ArkUI_ConvertToHtml](_ark_u_i___native_module.md#oh_arkui_converttohtml) ([ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) \*descriptor) | Converts styled string information into HTML. | 

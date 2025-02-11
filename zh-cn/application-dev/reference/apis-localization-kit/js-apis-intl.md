@@ -281,7 +281,7 @@ format(date: Date): string
 
 | 参数名  | 类型   | 必填   | 说明      |
 | ---- | ---- | ---- | ------- |
-| date | Date | 是    | 时间日期对象。 |
+| date | Date | 是    | 时间、日期。说明：月份从0开始计数，如0表示一月。 |
 
 **返回值：** 
 
@@ -291,7 +291,7 @@ format(date: Date): string
 
 **示例：** 
   ```ts
-  let date = new Date(2021, 11, 17, 3, 24, 0);
+  let date = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
   // 使用 en-GB locale创建DateTimeFormat对象
   let datefmt = new intl.DateTimeFormat("en-GB");
   let formattedDate = datefmt.format(date); // formattedDate "17/12/2021"
@@ -317,8 +317,8 @@ formatRange(startDate: Date, endDate: Date): string
 
 | 参数名       | 类型   | 必填   | 说明       |
 | --------- | ---- | ---- | -------- |
-| startDate | Date | 是    | 时间、日期的开始。 |
-| endDate   | Date | 是    | 时间、日期的结束。 |
+| startDate | Date | 是    | 时间、日期的开始。说明：月份从0开始计数，如0表示一月。|
+| endDate   | Date | 是    | 时间、日期的结束。说明：月份从0开始计数，如0表示一月。|
 
 **返回值：** 
 
@@ -328,7 +328,7 @@ formatRange(startDate: Date, endDate: Date): string
 
 **示例：** 
   ```ts
-  let startDate = new Date(2021, 11, 17, 3, 24, 0);
+  let startDate = new Date(2021, 11, 17, 3, 24, 0); // 时间日期为2021.12.17 03:24:00
   let endDate = new Date(2021, 11, 18, 3, 24, 0);
   // 使用 en-GB locale创建DateTimeFormat对象
   let datefmt = new intl.DateTimeFormat("en-GB");
@@ -693,7 +693,7 @@ resolvedOptions(): CollatorOptions
 | ignorePunctuation | boolean | 否    | 表示是否忽略标点符号，取值范围：true,&nbsp;false。<br>默认值为false。        |
 | collation         | string  | 否    | 排序规则，<br>取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>默认值为default。 |
 | numeric           | boolean | 否    | 是否使用数字排序，取值范围：true,&nbsp;false。<br>默认值为false。          |
-| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。<br>默认值为false |
+| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。<br>默认值为false。 |
 
 
 >  **说明：**

@@ -137,6 +137,104 @@ function secureElementDemo() {
 }
 ```
 
+## omapi.on<sup>16+</sup>
+
+on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
+
+注册监听服务状态变化事件。
+
+调用[omapi.newSEService](#omapinewseservice)或[omapi.createService](#omapicreateservice12)创建服务成功后再用on接口注册回调。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**参数：**
+
+| **参数名** | **类型**                                             | **必填** | **说明**             |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | 是      | 订阅监听的事件类型，固定填'serviceState' 。      |
+| callback   | Callback<[ServiceState](#servicestate)> | 是      | 返回SE服务状态的回调 。|
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | Invalid parameter.        |
+| 801  | Capability not supported. |
+
+**示例：**
+
+示例请参见[off](#omapioff16)接口的示例。
+
+## omapi.off<sup>16+</sup>
+
+off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
+
+取消订阅服务状态更改事件。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**参数：**
+
+| **参数名** | **类型**                                             | **必填** | **说明**             |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | 是      | 取消订阅监听的事件类型，固定填'serviceState' 。      |
+| callback   | Callback<[ServiceState](#servicestate)> | 否      | 返回SE服务状态的回调 。|
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | Invalid parameter.        |
+| 801  | Capability not supported. |
+
+**示例：**
+
+```js
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService: omapi.SEService;
+function seStateOnCb(data: omapi.ServiceState) {
+    console.log("omapi.on ServiceState: ", data);
+}
+
+function seStateOffCb(data: omapi.ServiceState) {
+    console.log("omapi.off ServiceState: ", data);
+}
+
+function secureElementDemo() {
+    try{
+        omapi.createService().then((data) => {
+            seService = data;
+            if (seService == undefined || !seService.isConnected()) {
+                hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+                return;
+            }
+            hilog.info(0x0000, 'testTag', 'seservice state connected');
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+        });
+        omapi.on('stateChanged', seStateOnCb);
+    } catch (error) {
+        if (error as BusinessError) {
+            console.error(`omapi on error catch Code: ${(error as BusinessError).code}, ` + `message: ${(error as BusinessError).message}`);
+        }
+    }
+    try{
+        omapi.off('stateChanged', seStateOffCb);
+    } catch (error) {
+        if (error as BusinessError) {
+            console.error(`omapi off error catch Code: ${(error as BusinessError).code}, ` + `message: ${(error as BusinessError).message}`);
+        }
+    }
+}
+```
+
 ## SEService
 
 SEService表示可用于连接到系统中所有可用SE的连接（服务），通过[createService](#omapicreateservice12)获取SEService实例。
@@ -320,7 +418,7 @@ Reader的实例表示该设备支持的SE，如果支持eSE和SIM，则返回两
 
 getName(): string
 
-返回此Reader的名称。如果此读卡器是SIM Reader，则其名称必须为“SIM[Slot]”。如果读卡器是eSE，则其名称须为“eSE”。
+返回此Reader的名称。如果此读卡器是SIM Reader，则其名称必须为“SIM”。如果读卡器是eSE，则其名称须为“eSE”。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -712,7 +810,7 @@ try {
 
 openBasicChannel(aid: number[]): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -835,7 +933,7 @@ function secureElementDemo() {
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -962,7 +1060,7 @@ function secureElementDemo() {
 
 openLogicalChannel(aid: number[]): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1085,7 +1183,7 @@ function secureElementDemo() {
 
 openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1413,7 +1511,7 @@ try {
 
 transmit(command: number[]): Promise\<number[]>
 
-向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用Promise异步回调
+向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 

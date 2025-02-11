@@ -8,6 +8,11 @@
 >
 > This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import { FoldSplitContainer } from '@kit.ArkUI';
+```
 
 ## Child Components
 
@@ -32,8 +37,6 @@ FoldSplitContainer({
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters**
-
 | Name| Type| Mandatory| Decorator| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | primary | ()=>void | No| @BuilderParam | Callback function for the primary region.|
@@ -47,45 +50,39 @@ FoldSplitContainer({
 
 ## ExpandedRegionLayoutOptions
 
-**Decorator**: \@Prop
+Defines the layout information for the expanded state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Defines the layout information for the expanded state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isExtraRegionPerpendicular | boolean | No| Whether the extra region extends perpendicularly through the entire component from top to bottom. This setting takes effect only when **extra** is effective.<br>Default value: **true** |
-| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions.<br/>Default value: **PresetSplitRatio.LAYOUT_1V1** |
-| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective.<br/>Default value: **PresetSplitRatio.LAYOUT_3V2** |
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **isExtraRegionPerpendicular** is **false**.<br/>Default value: **ExtraRegionPosition.top** |
+| isExtraRegionPerpendicular | boolean | No| Whether the extra region extends perpendicularly through the entire component from top to bottom. This setting takes effect only when **extra** is effective. Default value: **true**|
+| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**|
+| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective. Default value: **PresetSplitRatio.LAYOUT_3V2**|
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **isExtraRegionPerpendicular** is **false**. Default value: **ExtraRegionPosition.top**|
 
 ## HoverModeRegionLayoutOptions
 
-**Decorator**: \@Prop
+Defines the layout information for the hover state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
-
-Defines the layout information for the hover state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | showExtraRegion | boolean | No| Whether to display the extra region in the half-folded state. Default value: **false**|
-| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective.<br/>Default value: **PresetSplitRatio.LAYOUT_3V2** |
-| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **showExtraRegion** is set.<br/>Default value: **ExtraRegionPosition.top** |
+| horizontalSplitRatio | number | No| Width ratio between the primary and extra regions. This setting takes effect only when **extra** is effective. Default value: **PresetSplitRatio.LAYOUT_3V2**|
+| extraRegionPosition | [ExtraRegionPosition](#extraregionposition) | No| Position information of the extra region. This setting takes effect only when **showExtraRegion** is set. Default value: **ExtraRegionPosition.top**|
 
 > **NOTE**
 >
 > 1. When the device is in the hover state, there is an avoid area, and layout calculations need to account for the impact of the avoid area on the layout.
-> 2. In the hover state, the upper half screen is used for display, and the lower half is used for interaction.
+> 2 In the hover state, the upper half screen is used for display, and the lower half is used for interaction.
 
 ## FoldedRegionLayoutOptions
-
-**Decorator**: \@Prop
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -95,49 +92,59 @@ Defines the layout information for the folded state.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| verticalSplitRatio | number | Yes| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**|
+| verticalSplitRatio | number | No| Height ratio between the primary and secondary regions. Default value: **PresetSplitRatio.LAYOUT_1V1**|
 
 ## onHoverStatusChangeHandler
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+type OnHoverStatusChangeHandler = (status: HoverModeStatus) => void
 
 Implements a handler for the **onHoverStatusChange** event.
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | (status: [HoverModeStatus](#hovermodestatus)) => void | Yes| Callback function triggered when the foldable device enters or exits the hover state.|
-
-## HoverModeStatus
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-Provides the layout information of the folded state.
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| foldStatus | [FoldStatus<sup>10+</sup>](../js-apis-display.md#foldstatus10) | Yes| Fold status of the device.|
+| status | [HoverModeStatus](#hovermodestatus) | Yes| Callback function triggered when the foldable device enters or exits the hover state.|
+
+## HoverModeStatus
+
+Defines the layout information for the folded state.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| foldStatus | [display.FoldStatus<sup>10+</sup>](../js-apis-display.md#foldstatus10) | Yes| Fold status of the device.|
 | isHoverMode | boolean | Yes| Whether the application is in the hover state.|
 | appRotation | number | Yes| Rotation angle of the application.|
-| windowStatusType | [WindowStatusType<sup>11+</sup>](../js-apis-window.md#windowstatustype11) | Yes| Window mode.|
+| windowStatusType | [window.WindowStatusType<sup>11+</sup>](../js-apis-window.md#windowstatustype11) | Yes| Window mode.|
 
 ## ExtraRegionPosition
 
+Provides the position information of the extra region.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-Provides the position information of the extra region.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| top | 1 | The extra region is in the upper half of the component.|
-| bottom | 2 | The extra region is in the lower half of the component.|
+| TOP | 1 | The extra region is in the upper half of the component.|
+| BOTTOM | 2 | The extra region is in the lower half of the component.|
 
 ## PresetSplitRatio
 
+Enumerates the split ratios.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-Enumerates the split ratios.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
@@ -147,7 +154,9 @@ Enumerates the split ratios.
 
 ## Example
 
-### Example 1
+### Example 1: Setting Up a Two-Panel Layout
+
+This example demonstrates how to control the region for a two-panel layout on a foldable screen across different states: folded, expanded, and hover.
 
 ```ts
 import { FoldSplitContainer } from '@kit.ArkUI';
@@ -196,8 +205,9 @@ struct TwoColumns {
 | ----- | ------ | ------ |
 | ![](figures/foldsplitcontainer-1.png) | ![](figures/foldsplitcontainer-2.png) | ![](figures/foldsplitcontainer-3.png) |
 
+### Example 2: Setting Up a Three-Panel Layout
 
-### Example 2
+This example demonstrates how to control the region for a three-panel layout on a foldable screen across different states: folded, expanded, and hover.
 
 ```ts
 import { FoldSplitContainer } from '@kit.ArkUI';
@@ -259,7 +269,9 @@ struct ThreeColumns {
 | ----- | ------ | ------ |
 | ![](figures/foldsplitcontainer-4.png) | ![](figures/foldsplitcontainer-5.png) | ![](figures/foldsplitcontainer-6.png) |
 
-### Example 3
+### Example 3: Setting Layout Information in Expanded State
+
+This example illustrates how to configure **ExpandedRegionLayoutOptions** to set the layout information for a foldable screen when it is in the expanded state.
 
 ```ts
 import {

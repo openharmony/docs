@@ -1,6 +1,6 @@
 # FolderStack
 
-FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏
+FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。
 
 >  **说明：**
 >
@@ -181,7 +181,22 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 | foldStatus       | [FoldStatus](ts-appendix-enums.md#foldstatus11)             | 是   | 当前设备的折叠状态。 |
 | isHoverMode      | boolean                                                     | 是   | 当前是否悬停模式。  |
 | appRotation      | [AppRotation](ts-appendix-enums.md#approtation12)           | 是   | 当前应用方向。    |
-| windowStatusType | [WindowStatusType](../js-apis-window.md#windowstatustype11) | 是   | 窗口模式枚举。    |
+| windowStatusType | [WindowStatusType<sup>12+</sup>](#windowstatustype12) | 是   | 窗口模式枚举。    |
+
+## WindowStatusType<sup>12+</sup>
+
+type WindowStatusType = WindowStatusType
+
+窗口模式枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型        | 说明                 |
+| ---------- | ---------------------|
+| [WindowStatusType](../js-apis-window.md#windowstatustype11)  | 窗口模式枚举。 |
+
 
 ## 示例
 

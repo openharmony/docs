@@ -52,7 +52,7 @@ Grid(scroller?: Scroller, layoutOptions?: GridLayoutOptions)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-布局选项。其中,irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
+布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对仅设置rowsTemplate或columnsTemplate的Grid使用，可以指定一个index数组，并为其中的index对应的GridItem设置其占据的行数与列数，使用方法参见[示例3](#示例3可滚动grid设置跨行跨列节点)；onGetRectByIndex可对同时设置rowsTemplate和columnsTemplate的Grid使用，为指定的index对应的GridItem设置位置和大小，使用方法参见[示例1](#示例1固定行列grid)。
 
 | 名称    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
@@ -252,9 +252,9 @@ cachedCount(value: number)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。 |
 
 ### cachedCount<sup>14+</sup>
 
@@ -272,7 +272,7 @@ cachedCount(count: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：1 |
+| count  | number | 是   | 预加载的GridItem的数量。<br/>默认值：垂直滚动时为一个屏幕内可显示的行数，水平滚动时为一个屏幕内可显示的列数，最大值为16。 |
 | show  | boolean | 是   | 被预加载的GridItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>8+</sup>
@@ -454,7 +454,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -615,7 +615,9 @@ onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void)
 
 onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void)
 
-绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。
+绑定该事件的网格元素可作为拖拽释放目标，当GridItem停止拖拽时触发。
+
+当拖拽释放位置在网格元素之内时，isSuccess会返回true；在网格元素之外时，isSuccess会返回false。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1397,7 +1399,7 @@ struct GridExample {
 ![pinch](figures/grid-pinch.gif)
 
 ### 示例8（设置自适应列数）
-属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例
+属性[columnsTemplate](#columnstemplate)中auto-fill、auto-fit和auto-stretch的使用示例。
 
 ```ts
 @Entry

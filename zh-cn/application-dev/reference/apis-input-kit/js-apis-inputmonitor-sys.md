@@ -1166,7 +1166,7 @@ try {
 
 on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
 
-监听指定按键的按下抬起事件，支持监听meta_left键、电源键、音量键。
+监听指定按键的按下抬起事件，支持监听META_LEFT键、META_RIGHT键、电源键、音量键。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -1177,7 +1177,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 | 参数名   | 类型                                                        | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                      | 是   | 按键事件类型，取唯一值'keyPressed'。 |
-| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 按键码列表。                         |
+| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 按键码列表。按键码列表，支持如下取值：KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_POWER、KEYCODE_VOLUME_DOWN、KEYCODE_VOLUME_UP。                      |
 | receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt;    | 是   | 用于接收上报数据的回调函数。         |
 
 **错误码**：
@@ -1196,7 +1196,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 ```js
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP, KeyCode.KEYCODE_VOLUME_DOWN, KeyCode.KEYCODE_POWER];
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
   inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
@@ -1210,7 +1210,7 @@ try {
 
 off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
 
-取消监听按键按下抬起事件。支持取消监听meta_left键、电源键、音量键。需和inputMonitor.on('keyPressed')配套使用。
+取消监听按键按下抬起事件。支持取消监听META_LEFT键、META_RIGHT键、电源键、音量键。需和inputMonitor.on('keyPressed')配套使用。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -1242,7 +1242,7 @@ import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 let callback = (event: KeyEvent) => {
   console.log(`Monitor on success ${JSON.stringify(event)}`);
 };
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP, KeyCode.KEYCODE_VOLUME_DOWN, KeyCode.KEYCODE_POWER];
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
   inputMonitor.on('keyPressed', keys, callback);
   inputMonitor.off("keyPressed", callback);
@@ -1255,7 +1255,7 @@ try {
 // 取消监听所有回调函数
 import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
 
-let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP, KeyCode.KEYCODE_VOLUME_DOWN, KeyCode.KEYCODE_POWER];
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
 try {
   inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
     console.log(`Monitor on success ${JSON.stringify(event)}`);

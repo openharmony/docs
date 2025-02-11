@@ -58,7 +58,7 @@ get varName(): T {
   }
   ```
 
-- \@Computed不能和双向绑定!!连用，\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效，且产生运行时报错。
+- \@Computed不能和双向绑定!!连用，\@Computed装饰的是getter访问器，不会被子组件同步，也不能被赋值。开发者自己实现的计算属性的setter不生效，且产生编译时报错。
 
   ```ts
   @ComponentV2
@@ -84,7 +84,7 @@ get varName(): T {
       return this.count * 2;
     }
   
-    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生运行时报错
+    // @Computed装饰的属性是只读的，开发者自己实现的setter不生效，且产生编译时报错
     set double(newValue : number) {
       this.count = newValue / 2;
     }
@@ -118,7 +118,7 @@ get varName(): T {
 
 ## 使用场景
 ### 当被计算的属性变化时，\@Computed装饰的getter访问器只会被求解一次
-1. 在自定义组件中使用计算属性
+1. 在自定义组件中使用计算属性。
 
 - 点击第一个Button改变lastName，触发\@Computed fullName重新计算。
 - `this.fullName`被绑定在两个Text组件上，观察`fullName`日志，可以发现，计算只发生了一次。
@@ -132,7 +132,7 @@ get varName(): T {
 struct Index {
   @Local firstName: string = 'Li';
   @Local lastName: string = 'Hua';
-  age: number = 20; // cannot trigger Computed
+  age: number = 20; // 无法触发Computed
 
   @Computed
   get fullName() {
@@ -152,7 +152,7 @@ struct Index {
       })
 
       Button('changed age').onClick(() => {
-        this.age++;  // cannot trigger Computed
+        this.age++;  // 无法触发Computed
       })
     }
   }
@@ -163,7 +163,7 @@ struct Index {
 - 如果是上面这种简单计算，可以不使用计算属性。
 - 如果在视图中只使用一次，也可以不使用计算属性，建议直接求解。
 
-2. 在\@ObservedV2装饰的类中使用计算属性
+2. 在\@ObservedV2装饰的类中使用计算属性。
 - 点击Button改变lastName，触发\@Computed fullName重新计算，且只被计算一次。
 
 ```ts

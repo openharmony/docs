@@ -23,9 +23,7 @@ cpp部分代码
 
 ```cpp
 // hello.cpp
-#include "napi/native_api.h"
-#include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include <string.h>
 
 // 待执行的js代码
 static const char *STR_TASK = R"JS(getVersion();getVMInfo();)JS";

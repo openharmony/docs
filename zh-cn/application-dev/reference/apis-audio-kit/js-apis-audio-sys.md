@@ -198,6 +198,32 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | 分布式输入设备。<br/>此接口为系统接口。    |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | 分布式输入和输出设备。<br/>此接口为系统接口。 |
 
+## EffectFlag<sup>15+</sup>
+
+枚举，音效分类。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |------------------------------|
+| RENDER_EFFECT_FLAG  | 0      | 下行音效类型。   |
+| CAPTURE_EFFECT_FLAG | 1      | 上行音效类型。   |
+
+## AudioEffectProperty<sup>15+</sup>
+
+音效属性。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称               | 类型 | 必填 | 说明       |
+| ------------------ | ---- | ---- | --------- |
+| name         | string | 是 | 音效名称。 |
+| category     | string | 是 | 音效分类。 |
+| flag        | [EffectFlag](#effectflag15) | 是 | 音效分类。 |
 
 ## StreamUsage
 
@@ -378,6 +404,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE <br/> 此接口为系统接口|
 | SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL <br/> 此接口为系统接口|
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>15+</sup>   | 12     | 语音转写音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/> 此接口为系统接口|
 
 ## VolumeAdjustType<sup>10+</sup>
 
@@ -558,6 +585,38 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
 }).catch ((err: BusinessError) => {
   console.error(`Failed to set the audio scene mode ${err}`);
 });
+```
+
+### getEffectManager<sup>15+</sup>
+
+getEffectManager(): AudioEffectManager
+
+获取音效会话管理器。
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                           | 说明                          |
+|----------------------------------------------| ----------------------------- |
+| [AudioEffectManager](#audioeffectmanager15) | AudioEffectManager实例 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioEffectManager: audio.AudioEffectManager = audioManager.getEffectManager();
 ```
 
 ### getSpatializationManager<sup>11+</sup>
@@ -1279,7 +1338,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
-| ------- | --------------------------------------------|
+| -------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Return by promise.                     |
@@ -1295,6 +1354,139 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
 }).catch((error: BusinessError) => {
   console.error('Fail to adjust the system volume by step.');
 });
+```
+## AudioEffectManager<sup>15+</sup>
+
+音频效果管理。在使用AudioEffectManager的接口前，需要使用[getEffectManager](geteffectmanager15)获取AudioEffectManager实例。
+
+
+### getSupportedAudioEffectProperty<sup>15+</sup>
+
+getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
+
+获取支持的下行音效模式，同步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Array\<[AudioEffectProperty](#audioeffectproperty15)>     | 返回当前设备支持的音效模式。              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 6800301 | System error. Return by callback. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioStreamManager.getSupportedAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getSupportedAudioEffectProperty ERROR: ${error}`);
+}
+```
+
+
+### getAudioEffectProperty<sup>15+</sup>
+
+getAudioEffectProperty(): Array\<AudioEffectProperty>
+
+获取当前音效模式，同步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Array\<[AudioEffectProperty](#audioeffectproperty15)>     | 返回当前音效模式。                        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 6800301 | System error. Return by callback. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioStreamManager.getAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getAudioEffectProperty ERROR: ${error}`);
+}
+```
+
+### setAudioEffectProperty<sup>15+</sup>
+
+setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
+
+设置当前音效模式，同步返回结果。
+
+**需要权限：** ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**系统接口：** 该接口为系统接口
+
+**系统能力：** SystemCapability.Multimedia.Audio.core
+
+**参数：**
+| 参数名        | 类型                                                  | 必填     | 说明                         |
+| ------------- | ----------------------------------------------------- | -------- | ---------------------------- |
+| propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty15)> | 是       |  需要设置的音效模式。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Possible causes: 1.more than one enhanceProps of the same enhanceClass in input Array; 2.input audioEnhanceProperties are not supported by current device. 3.names of enhanceProp or enhanceClass are incorrect.|
+| 6800301 | System error. Return by callback. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioEffectManager.getAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+  audioEffectManager.setAudioEffectProperty(propertyArray);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setAudioEffectProperty ERROR: ${error}`);
+}
 ```
 
 ## AudioRoutingManager<sup>9+</sup>

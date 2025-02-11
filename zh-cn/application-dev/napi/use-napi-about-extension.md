@@ -45,14 +45,14 @@ static napi_value Add(napi_env env, napi_callback_info info)
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
 
     // 将传入的napi_value类型的参数转化为double类型
-    double valueLift;
+    double valueLeft;
     double valueRight;
-    napi_get_value_double(env, args[0], &valueLift);
+    napi_get_value_double(env, args[0], &valueLeft);
     napi_get_value_double(env, args[1], &valueRight);
 
     // 将转化后的double值相加并转成napi_value返回给ArkTS代码使用
     napi_value sum;
-    napi_create_double(env, valueLift + valueRight, &sum);
+    napi_create_double(env, valueLeft + valueRight, &sum);
 
     return sum;
 }
@@ -616,6 +616,7 @@ test01();
 **注意事项**
 
 对ArkTS对象A调用`napi_coerce_to_native_binding_object`将开发者实现的detach/attach回调和native对象信息加到A上，再将A跨线程传递。跨线程传递需要对A进行序列化和反序列化，在当前线程thread1序列化A得到数据data，序列化阶段执行detach回调。然后将data传给目标线程thread2，在thread2中反序列化data，执行attach回调，最终得到ArkTS对象A。
+
 ![napi_coerce_to_native_binding_object](figures/napi_coerce_to_native_binding_object.png)
 
 ## 事件循环

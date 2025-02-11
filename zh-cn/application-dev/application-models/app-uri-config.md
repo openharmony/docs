@@ -1,7 +1,7 @@
 # 应用链接说明
 
 ## uris标签说明
-当在module.json5文件的skills中声明uris时，主要包含如下字段。
+当在[module.json5](../quick-start/module-configuration-file.md)文件的[skills字段](../quick-start/module-configuration-file.md#skills标签)中声明uris时，主要包含如下字段。
 
 > **说明：**
 >
@@ -37,6 +37,11 @@
 
 
 ### linkFeature标签说明
+
+> **说明：**
+>
+> 同一Bundle中声明的linkFeature数量不能超过150个。 
+
 
 目标应用在linkFeature字段中申明功能类型，并通过应用市场上架审核后，可以提升应用跳转体验。主要用于以下两种场景：
 

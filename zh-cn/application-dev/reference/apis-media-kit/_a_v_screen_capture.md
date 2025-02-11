@@ -56,7 +56,7 @@
 | typedef enum [OH_AudioCodecFormat](#oh_audiocodecformat-1) [OH_AudioCodecFormat](#oh_audiocodecformat) | 枚举，表示音频编码格式。 | 
 | typedef enum [OH_VideoCodecFormat](#oh_videocodecformat-1) [OH_VideoCodecFormat](#oh_videocodecformat) | 枚举，表示视频编码格式。 | 
 | typedef enum [OH_DataType](#oh_datatype-1) [OH_DataType](#oh_datatype) | 枚举，表示屏幕录制流的数据格式。 | 
-| typedef enum [OH_VideoSourceType](#oh_videosourcetype-1) [OH_VideoSourceType](#oh_videosourcetype) | 枚举，表示视频源格式。 | 
+| typedef enum [OH_VideoSourceType](#oh_videosourcetype-1) [OH_VideoSourceType](#oh_videosourcetype) | 枚举，表示视频源格式。当前仅支持RGBA格式。 | 
 | typedef enum [OH_ContainerFormatType](#oh_containerformattype-1) [OH_ContainerFormatType](#oh_containerformattype) | 枚举，表示屏幕录制生成的文件类型。 | 
 | typedef struct [OH_AudioCaptureInfo](_o_h___audio_capture_info.md) [OH_AudioCaptureInfo](#oh_audiocaptureinfo) | 音频采样信息。 | 
 | typedef struct [OH_AudioEncInfo](_o_h___audio_enc_info.md) [OH_AudioEncInfo](#oh_audioencinfo) | 音频编码信息。 | 
@@ -90,7 +90,7 @@
 | [OH_AudioCodecFormat](#oh_audiocodecformat-1) {<br/>OH_AUDIO_DEFAULT = 0,<br/>OH_AAC_LC = 3,<br/>OH_AUDIO_CODEC_FORMAT_BUTT<br/>} | 枚举，表示音频编码格式。 | 
 | [OH_VideoCodecFormat](#oh_videocodecformat-1) {<br/>OH_VIDEO_DEFAULT = 0,<br/>OH_H264 = 2,<br/>OH_H265 = 4,<br/>OH_MPEG4 = 6,<br/>OH_VP8 = 8,<br/>OH_VP9 = 10,<br/>OH_VIDEO_CODEC_FORMAT_BUTT<br/>} | 枚举，表示视频编码格式。 | 
 | [OH_DataType](#oh_datatype-1) {<br/>OH_ORIGINAL_STREAM = 0,<br/>OH_ENCODED_STREAM = 1,<br/>OH_CAPTURE_FILE = 2,<br/>OH_INVAILD = -1<br/>} | 枚举，表示屏幕录制流的数据格式。 | 
-| [OH_VideoSourceType](#oh_videosourcetype-1) {<br/>OH_VIDEO_SOURCE_SURFACE_YUV = 0,<br/>OH_VIDEO_SOURCE_SURFACE_ES,<br/>OH_VIDEO_SOURCE_SURFACE_RGBA,<br/>OH_VIDEO_SOURCE_BUTT<br/>} | 枚举，表示视频源格式。 | 
+| [OH_VideoSourceType](#oh_videosourcetype-1) {<br/>OH_VIDEO_SOURCE_SURFACE_YUV = 0,<br/>OH_VIDEO_SOURCE_SURFACE_ES,<br/>OH_VIDEO_SOURCE_SURFACE_RGBA,<br/>OH_VIDEO_SOURCE_BUTT<br/>} | 枚举，表示视频源格式。当前仅支持RGBA格式。 | 
 | [OH_ContainerFormatType](#oh_containerformattype) {<br/>CFT_MPEG_4A = 0,<br/>CFT_MPEG_4 = 1<br/>} | 枚举，表示屏幕录制生成的文件类型。 | 
 | [OH_AVScreenCaptureStateCode](#oh_avscreencapturestatecode-1) {<br/>OH_SCREEN_CAPTURE_STATE_STARTED = 0,<br/>OH_SCREEN_CAPTURE_STATE_CANCELED = 1,<br/>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER = 2,<br/>OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER = 3,<br/>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_CALL = 4,<br/>OH_SCREEN_CAPTURE_STATE_MIC_UNAVAILABLE = 5,<br/>OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER = 6,<br/>OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER = 7,<br/>OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE = 8,<br/>OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE = 9<br/>OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES = 10<br/>} | 枚举，表示状态码。 | 
 | [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype-1) {<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_VIDEO = 0,<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_INNER = 1,<br/>OH_SCREEN_CAPTURE_BUFFERTYPE_AUDIO_MIC = 2<br/>} | 枚举，表示buffer类型。 | 
@@ -128,6 +128,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)[OH_AVScreenCapture_ShowCursor](#oh_avscreencapture_showcursor) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool showCursor) | 设置光标显示开关。 | 
 
 
 ## 类型定义说明
@@ -609,7 +610,7 @@ typedef struct OH_VideoInfo OH_VideoInfo
 typedef enum OH_VideoSourceType OH_VideoSourceType
 ```
 **描述**
-枚举，表示视频源格式。
+枚举，表示视频源格式。当前仅支持RGBA格式。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -840,7 +841,7 @@ enum OH_VideoCodecFormat
 enum OH_VideoSourceType
 ```
 **描述**
-枚举，表示视频源格式。
+枚举，表示视频源格式。当前仅支持RGBA格式。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -848,8 +849,8 @@ enum OH_VideoSourceType
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| OH_VIDEO_SOURCE_SURFACE_YUV  | YUV格式。   | 
-| OH_VIDEO_SOURCE_SURFACE_ES  | raw格式。   | 
+| OH_VIDEO_SOURCE_SURFACE_YUV  | YUV格式。当前版本暂不支持。   | 
+| OH_VIDEO_SOURCE_SURFACE_ES  | raw格式。当前版本暂不支持。  | 
 | OH_VIDEO_SOURCE_SURFACE_RGBA  | RGBA格式。   | 
 | OH_VIDEO_SOURCE_BUTT  | 无效格式。   | 
 
@@ -1609,6 +1610,39 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+
+
+### OH_AVScreenCapture_ShowCursor()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapture *capture, bool showCursor)
+```
+
+**描述**
+
+设置光标显示开关。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
+| showCursor | 光标显示参数。 | 
+
+**返回：**
+
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置光标失败。
+
 
 ### OH_AVScreenCapture_SkipPrivacyMode()
 

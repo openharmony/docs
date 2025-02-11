@@ -224,10 +224,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let applicationContext: common.Context | null = null;
 try {
-    let context = getContext() as common.UIAbilityContext;
-    applicationContext = context.getApplicationContext();
+  let context = getContext() as common.UIAbilityContext;
+  applicationContext = context.getApplicationContext();
 } catch (error) {
-    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 
 let filesDir: string = applicationContext!.filesDir;
@@ -238,9 +238,9 @@ let serviceId: number = 10;
 let args: Array<string> = new Array("allInfo");
 
 try {
-    hidebug.getServiceDump(serviceId, file.fd, args);
+  hidebug.getServiceDump(serviceId, file.fd, args);
 } catch (error) {
-    console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 fileIo.closeSync(file);
 ```
@@ -278,7 +278,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -301,7 +301,7 @@ try {
   // ...
   hidebug.stopJsCpuProfiling();
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -336,7 +336,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   hidebug.dumpJsHeapData("heapData");
 } catch (error) {
-  console.info(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -434,12 +434,11 @@ getAppVMMemoryInfo(): VMMemoryInfo
 **示例：**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let vmMemory: hidebug.VMMemoryInfo = hidebug.getAppVMMemoryInfo();
-hilog.info(0x0000, "example", "totalHeap = %{public}d", vmMemory.totalHeap);
-hilog.info(0x0000, "example", "heapUsed = %{public}d", vmMemory.heapUsed);
-hilog.info(0x0000, "example", "allArraySize = %{public}d", vmMemory.allArraySize);
+console.info(`totalHeap = ${vmMemory.totalHeap}, heapUsed = ${vmMemory.heapUsed},` +
+  `allArraySize = ${vmMemory.allArraySize}` );
 ```
 
 ## hidebug.getAppThreadCpuUsage<sup>12+</sup>
@@ -461,12 +460,11 @@ getAppThreadCpuUsage(): ThreadCpuUsage[]
 **示例：**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let appThreadCpuUsage: hidebug.ThreadCpuUsage[] = hidebug.getAppThreadCpuUsage();
 for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
-    hilog.info(0x0000, "example", "threadId=%{public}d, cpuUsage=%{public}f", appThreadCpuUsage[ii].threadId,
-    appThreadCpuUsage[ii].cpuUsage);
+  console.info(`threadId=${appThreadCpuUsage[ii].threadId}, cpuUsage=${appThreadCpuUsage[ii].cpuUsage}`);
 }
 ```
 
@@ -492,11 +490,11 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                                                                  |
-| -------- | ------   | ---- | ------------------------------------------------------------------------------------- |
-| tags     | number[] | 是   | 详情请见[tags](#tags12)                                                      |
-| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)          |
-| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB                                                       |
+| 参数名   | 类型     | 必填 | 说明                                   |
+| -------- | ------   | ---- |--------------------------------------|
+| tags     | number[] | 是   | 详情请见[tags](#hidebugtags12)           |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)        |
+| limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB |
 
 **返回值：**
 
@@ -523,11 +521,16 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
-let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
-// code block
-// ...
-// code block
-hidebug.stopAppTraceCapture();
+
+try {
+  let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+  // code block
+  // ...
+  // code block
+  hidebug.stopAppTraceCapture();
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.stopAppTraceCapture<sup>12+</sup>
@@ -559,11 +562,15 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let tags: number[] = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI];
 let flag: hidebug.TraceFlag = hidebug.TraceFlag.MAIN_THREAD;
 let limitSize: number = 1024 * 1024;
-let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
-// code block
-// ...
-// code block
-hidebug.stopAppTraceCapture();
+try {
+  let fileName: string = hidebug.startAppTraceCapture(tags, flag, limitSize);
+  // code block
+  // ...
+  // code block
+  hidebug.stopAppTraceCapture();
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.getAppMemoryLimit<sup>12+</sup>
@@ -616,7 +623,11 @@ getSystemCpuUsage() : number
 ```ts
 import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-let cpuUsage: number = hidebug.getSystemCpuUsage();
+try {
+  console.info(`getSystemCpuUsage: ${hidebug.getSystemCpuUsage()}`)
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.setAppResourceLimit<sup>12+</sup>
@@ -624,7 +635,7 @@ let cpuUsage: number = hidebug.getSystemCpuUsage();
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的fd数量、线程数量、js内存或者native内存资源限制。
-**注意：** 当设置的开发者选项开关打开时,此功能有效。
+**注意：** 当设置的开发者选项开关打开并重启设备后,此功能有效。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -655,7 +666,11 @@ import { hidebug } from '@kit.PerformanceAnalysisKit';
 let type: string = 'js_heap';
 let value: number = 85;
 let enableDebugLog: boolean = false;
-hidebug.setAppResourceLimit(type, value, enableDebugLog);
+try {
+  hidebug.setAppResourceLimit(type, value, enableDebugLog);
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## hidebug.getAppNativeMemInfo<sup>12+</sup>
@@ -675,23 +690,12 @@ getAppNativeMemInfo(): NativeMemInfo
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let nativeMemInfo: hidebug.NativeMemInfo = hidebug.getAppNativeMemInfo();
-
-hilog.info(0x0000, 'testTag', "pss = %{public}d", nativeMemInfo.pss);
-
-hilog.info(0x0000, 'testTag', "vss = %{public}d", nativeMemInfo.vss);
-
-hilog.info(0x0000, 'testTag', "rss = %{public}d", nativeMemInfo.rss);
-
-hilog.info(0x0000, 'testTag', "sharedDirty = %{public}d", nativeMemInfo.sharedDirty);
-
-hilog.info(0x0000, 'testTag', "privateDirty = %{public}d", nativeMemInfo.privateDirty);
-
-hilog.info(0x0000, 'testTag', "sharedClean = %{public}d", nativeMemInfo.sharedClean);
-
-hilog.info(0x0000, 'testTag', "privateClean = %{public}d", nativeMemInfo.privateClean);
+console.info(`pss: ${nativeMemInfo.pss}, vss: ${nativeMemInfo.vss}, rss: ${nativeMemInfo.rss}, ` +
+  `sharedDirty: ${nativeMemInfo.sharedDirty}, privateDirty: ${nativeMemInfo.privateDirty}, ` +
+  `sharedClean: ${nativeMemInfo.sharedClean}, privateClean: ${nativeMemInfo.privateClean}`);
 ```
 
 ## hidebug.getSystemMemInfo<sup>12+</sup>
@@ -711,15 +715,12 @@ getSystemMemInfo(): SystemMemInfo
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let systemMemInfo: hidebug.SystemMemInfo = hidebug.getSystemMemInfo();
 
-hilog.info(0x0000, 'testTag', "totalMem = %{public}d", systemMemInfo.totalMem);
-
-hilog.info(0x0000, 'testTag', "freeMem = %{public}d", systemMemInfo.freeMem);
-
-hilog.info(0x0000, 'testTag', "availableMem = %{public}d", systemMemInfo.availableMem);
+console.info(`totalMem: ${systemMemInfo.totalMem}, freeMem: ${systemMemInfo.freeMem}, ` +
+  `availableMem: ${systemMemInfo.availableMem}`);
 ```
 
 ## hidebug.getVMRuntimeStats<sup>12+</sup>
@@ -739,14 +740,14 @@ getVMRuntimeStats(): GcStats
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
 let vMRuntimeStats: hidebug.GcStats = hidebug.getVMRuntimeStats();
-hilog.info(0x0000, "testTag", `gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
-hilog.info(0x0000, "testTag", `gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
-hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
-hilog.info(0x0000, "testTag", `gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
-hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
+console.info(`gc-count: ${vMRuntimeStats['ark.gc.gc-count']}`);
+console.info(`gc-time: ${vMRuntimeStats['ark.gc.gc-time']}`);
+console.info(`gc-bytes-allocated: ${vMRuntimeStats['ark.gc.gc-bytes-allocated']}`);
+console.info(`gc-bytes-freed: ${vMRuntimeStats['ark.gc.gc-bytes-freed']}`);
+console.info(`fullgc-longtime-count: ${vMRuntimeStats['ark.gc.fullgc-longtime-count']}`);
 ```
 
 ## hidebug.getVMRuntimeStat<sup>12+</sup>
@@ -780,13 +781,16 @@ getVMRuntimeStat(item : string): number
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
-
-hilog.info(0x0000, "testTag", `gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
-hilog.info(0x0000, "testTag", `gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
-hilog.info(0x0000, "testTag", `gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
-hilog.info(0x0000, "testTag", `gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
-hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+import { hidebug } from '@kit.PerformanceAnalysisKit';
+try {
+  console.info(`gc-count: ${hidebug.getVMRuntimeStat('ark.gc.gc-count')}`);
+  console.info(`gc-time: ${hidebug.getVMRuntimeStat('ark.gc.gc-time')}`);
+  console.info(`gc-bytes-allocated: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-allocated')}`);
+  console.info(`gc-bytes-freed: ${hidebug.getVMRuntimeStat('ark.gc.gc-bytes-freed')}`);
+  console.info(`fullgc-longtime-count: ${hidebug.getVMRuntimeStat('ark.gc.fullgc-longtime-count')}`);
+} catch (error) {
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+}
 ```
 
 ## MemoryLimit<sup>12+</sup>
@@ -825,46 +829,46 @@ hilog.info(0x0000, "testTag", `fullgc-longtime-count: ${hidebug.getVMRuntimeStat
 | threadId           | number  | 是   | 否   | 线程号                           |
 | cpuUsage           | number  | 是   | 否   | 线程CPU使用率                       |
 
-## tags<sup>12+</sup>
+## hidebug.tags<sup>12+</sup>
 
 描述支持/使用场景标签。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称                     | 类型    |  说明                                |
-| -------------------------| ------- |  ----------------------------------- |
-| ABILITY_MANAGER          | number  |  能力管理标签                         |
-| ARKUI                    | number  |  ArkUI开发框架标签                    |
-| ARK                      | number  |  JSVM虚拟机标签                       |
-| BLUETOOTH                | number  |  蓝牙标签                            |
-| COMMON_LIBRARY           | number  |  公共库子系统标签                     |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  |  分布式硬件设备管理标签     |
-| DISTRIBUTED_AUDIO        | number  |        分布式音频标签                 |
-| DISTRIBUTED_CAMERA       | number  |  分布式相机标签                       |
-| DISTRIBUTED_DATA         | number  |  分布式数据管理模块标签                |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  |  分布式硬件框架标签              |
-| DISTRIBUTED_INPUT        | number  |  分布式输入标签                       |
-| DISTRIBUTED_SCREEN       | number  |  分布式屏幕标签                       |
-| DISTRIBUTED_SCHEDULER    | number  |  分布式调度器标签                     |
-| FFRT                     | number  |  FFRT任务标签.                        |
-| FILE_MANAGEMENT          | number  |  文件管理系统标签                     |
-| GLOBAL_RESOURCE_MANAGER  | number  |  全局资源管理标签                     |
-| GRAPHICS                 | number  |  图形模块标签                        |
-| HDF                      | number  |  HDF子系统标签                       |
-| MISC                     | number  |  MISC模块标签                        |
-| MULTIMODAL_INPUT         | number  |  多模态输入模块标签                   |
-| NET                      | number  |  网络标签                             |
-| NOTIFICATION             | number  |  通知模块标签                         |
-| NWEB                     | number  |  Nweb标签                            |
-| OHOS                     | number  |  OHOS通用标签                         |
-| POWER_MANAGER            | number  |  电源管理标签                         |
-| RPC                      | number  |  RPC标签                             |
-| SAMGR                    | number  |  系统能力管理标签                     |
-| WINDOW_MANAGER           | number  |  窗口管理标签                         |
-| AUDIO                    | number  |  音频模块标签                        |
-| CAMERA                   | number  |  相机模块标签                        |
-| IMAGE                    | number  |  图片模块标签                        |
-| MEDIA                    | number  |  媒体模块标签                        |
+| 名称                     | 类型    | 只读  |说明                                |
+| -------------------------| ------- |-----|----------------------------------- |
+| ABILITY_MANAGER          | number  | 是 |  能力管理标签                         |
+| ARKUI                    | number  | 是 |  ArkUI开发框架标签                    |
+| ARK                      | number  | 是 |  JSVM虚拟机标签                       |
+| BLUETOOTH                | number  | 是 |  蓝牙标签                            |
+| COMMON_LIBRARY           | number  | 是 |  公共库子系统标签                     |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 |  分布式硬件设备管理标签     |
+| DISTRIBUTED_AUDIO        | number  | 是 |        分布式音频标签                 |
+| DISTRIBUTED_CAMERA       | number  | 是 |  分布式相机标签                       |
+| DISTRIBUTED_DATA         | number  | 是 |  分布式数据管理模块标签                |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 |  分布式硬件框架标签              |
+| DISTRIBUTED_INPUT        | number  | 是 |  分布式输入标签                       |
+| DISTRIBUTED_SCREEN       | number  | 是 |  分布式屏幕标签                       |
+| DISTRIBUTED_SCHEDULER    | number  | 是 |  分布式调度器标签                     |
+| FFRT                     | number  | 是 |  FFRT任务标签.                        |
+| FILE_MANAGEMENT          | number  | 是 |  文件管理系统标签                     |
+| GLOBAL_RESOURCE_MANAGER  | number  | 是 |  全局资源管理标签                     |
+| GRAPHICS                 | number  | 是 |  图形模块标签                        |
+| HDF                      | number  | 是 |  HDF子系统标签                       |
+| MISC                     | number  | 是 |  MISC模块标签                        |
+| MULTIMODAL_INPUT         | number  | 是 |  多模态输入模块标签                   |
+| NET                      | number  | 是 |  网络标签                             |
+| NOTIFICATION             | number  | 是 |  通知模块标签                         |
+| NWEB                     | number  | 是 |  Nweb标签                            |
+| OHOS                     | number  | 是 |  OHOS通用标签                         |
+| POWER_MANAGER            | number  | 是 |  电源管理标签                         |
+| RPC                      | number  | 是 |  RPC标签                             |
+| SAMGR                    | number  | 是 |  系统能力管理标签                     |
+| WINDOW_MANAGER           | number  | 是 |  窗口管理标签                         |
+| AUDIO                    | number  | 是 |  音频模块标签                        |
+| CAMERA                   | number  | 是 |  相机模块标签                        |
+| IMAGE                    | number  | 是 |  图片模块标签                        |
+| MEDIA                    | number  | 是 |  媒体模块标签                        |
 
 ## NativeMemInfo<sup>12+</sup>
 
@@ -944,9 +948,9 @@ isDebugState(): boolean
 **示例**
 
 ```ts
-import { hidebug,hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 
-hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState())
+console.info(`isDebugState = ${hidebug.isDebugState()}`)
 ```
 
 ## hidebug.getGraphicsMemory<sup>14+</sup>
@@ -954,6 +958,8 @@ hilog.info(0x000, "testTag", "isDebugState = %{public}s", hidebug.isDebugState()
 getGraphicsMemory(): Promise&lt;number&gt;
 
 使用异步方式，获取应用显存大小。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -976,9 +982,9 @@ import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 hidebug.getGraphicsMemory().then((ret: number) => {
-    hilog.info(0x000, "testTag", `graphicsMemory: ${ret}`)
+  console.info(`graphicsMemory: ${ret}`)
 }).catch((error: BusinessError) => {
-    hilog.info(0x000, "testTag", `error code: ${error.code}, error msg: ${error.message}`);
+  console.error(`error code: ${error.code}, error msg: ${error.message}`);
 })
 ```
 
@@ -989,6 +995,8 @@ getGraphicsMemorySync(): number
 使用同步方式，获取应用显存大小。
 
 **注意：** 该接口涉及多次跨进程通信，可能存在性能问题，推荐使用异步接口getGraphicsMemory。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
@@ -1007,12 +1015,12 @@ getGraphicsMemorySync(): number
 **示例**
 
 ```ts
-import { hidebug, hilog } from '@kit.PerformanceAnalysisKit';
+import { hidebug } from '@kit.PerformanceAnalysisKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    hilog.info(0x000, "testTag", `graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
+  console.info(`graphicsMemory: ${hidebug.getGraphicsMemorySync()}`)
 } catch (error) {
-    hilog.info(0x000, "testTag", `error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
+  console.error(`error code: ${(error as BusinessError).code}, error msg: ${(error as BusinessError).message}`);
 }
 ```

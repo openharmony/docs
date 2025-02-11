@@ -13,8 +13,11 @@
 
 
 ## 接口
+### Row
 
 Row(options?: RowOptions)
+
+创建水平方向线性布局容器，可以设置子组件的间距，间距类型为number或string类型。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -28,7 +31,26 @@ Row(options?: RowOptions)
 | -------- | -------- | -------- | -------- |
 | options | [RowOptions](#rowoptions14对象说明) | 否 | 横向布局元素间距。 |
 
+### Row<sup>16+</sup>
+Row(options?: RowOptions | RowOptionsV2)
+
+创建水平方向线性布局容器，可以设置子组件的间距，间距类型为number、string或Resource类型。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [RowOptions](#rowoptions14对象说明)  \| [RowOptionsV2](#rowoptionsv216对象说明) | 否 | 横向布局元素间距。 |
+
 ## RowOptions<sup>14+</sup>对象说明
+
+用于构造Row组件时设置子组件间距属性。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -38,8 +60,21 @@ Row(options?: RowOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。 |
+| space | number&nbsp;\|&nbsp;string | 否 | 横向布局元素间距。<br/>从API version 9开始，space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串。 |
 
+## RowOptionsV2<sup>16+</sup>对象说明
+
+用于构造Row组件时设置子组件间距属性。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| space | [SpaceType](ts-container-column.md#spacetype16类型说明) | 否 | 横向布局元素间距。<br/>space为负数或者justifyContent设置为FlexAlign.SpaceBetween、FlexAlign.SpaceAround、FlexAlign.SpaceEvenly时不生效。<br/>默认值：0，单位vp<br/>**说明：** <br/>space取值是大于等于0的数字，或者可以转换为数字的字符串，或者可以转换为数字的Resource类型数据。|
 
 ## 属性
 
@@ -115,6 +150,18 @@ reverse(isReversed: Optional\<boolean\>)
 
 设置水平方向的布局属性，如间距、对齐方式等。
 
+```json
+// resources/base/element/string.json
+{
+  "string": [
+    {
+      "name": "stringSpace",
+      "value": "5"
+    }
+  ]
+}
+```
+
 ```ts
 // xxx.ets
 @Entry
@@ -125,6 +172,13 @@ struct RowExample {
       // 设置子组件水平方向的间距为5
       Text('space').width('90%')
       Row({ space: 5 }) {
+        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
+        Row().width('30%').height(50).backgroundColor(0x00FFFF)
+      }.width('90%').height(107).border({ width: 1 })
+
+      // 通过资源引用方式设置子组件水平方向的间距
+      Text('Resource space').width('90%')
+      Row({ space: $r("app.string.stringSpace") }) {
         Row().width('30%').height(50).backgroundColor(0xAFEEEE)
         Row().width('30%').height(50).backgroundColor(0x00FFFF)
       }.width('90%').height(107).border({ width: 1 })

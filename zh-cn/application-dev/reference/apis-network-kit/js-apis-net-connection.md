@@ -1820,6 +1820,73 @@ connection.clearCustomDnsRules().then(() => {
 })
 ```
 
+## connection.setPacUrl<sup>15+</sup>
+
+setPacUrl(pacUrl: string): void
+
+设置系统级代理自动配置（PAC）脚本地址。
+
+**需要权限**：ohos.permission.SET_PAC_URL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pacUrl   | string                                            | 是   | 需要设置的PAC脚本地址，该接口不会对脚本地址进行校验。             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = "xxx";
+connection.setPacUrl(pacUrl);
+```
+
+## connection.getPacUrl<sup>15+</sup>
+
+getPacUrl(): string
+
+获取系统级代理自动配置（PAC）脚本地址。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| string        | 返回PAC脚本地址。不存在时，抛出2100003错误码。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = connection.getPacUrl();
+```
+
 
 ## NetConnection
 
@@ -2741,3 +2808,45 @@ netConnectionWlan.register((error: BusinessError) => {
 | address | string | 是 |地址。                       |
 | family  | number | 否 |IPv4 = 1，IPv6 = 2，默认IPv4。|
 | port    | number | 否 |端口，取值范围\[0, 65535]。   |
+
+## HttpRequest
+
+type HttpRequest = http.HttpRequest
+
+获取一个HTTP请求。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| http.HttpRequest | 定义HTTP请求任务。在调用HttpRequest提供的API之前。 |
+
+## TCPSocket
+
+type TCPSocket = socket.TCPSocket
+
+获取一个TCPSocket对象。
+
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| socket.TCPSocket | 定义一个TCPSocket连接。     |
+
+## UDPSocket
+
+type UDPSocket = socket.UDPSocket
+
+获取一个UDPSocket对象。
+
+**原子化服务API：** 从API version 10开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| socket.UDPSocket | 定义UDPSocket连接。     |

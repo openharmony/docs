@@ -12,7 +12,7 @@ Icons and labels are usually configured together. They correspond to the **icon*
 ### Generation Mechanism
 * If the HAP file contains UIAbility configuration, the following scenarios are possible:
 
-  * If the **icon** and **label** fields under **abilities** of the **module.json5** file are configured, and under **skills** of the corresponding ability, **entities** contains **entity.system.home** and **actions** contains **ohos.want.action.home**, the system returns the icon and label configured in **module.json5**. If there are multiple abilities that meet the requirements, the system returns the icon and label specified for the ability corresponding to **mainElement** in **module.json5**.
+  * If the **icon** and **label** fields under **abilities** of the **module.json5** file are configured, and under **skills** of the corresponding ability, **entities** contains **entity.system.home** and **actions** contains **ohos.want.action.home** or **action.system.home**, the system returns the icon and label configured in **module.json5**. If there are multiple abilities that meet the requirements, the system returns the icon and label specified for the ability corresponding to **mainElement** in **module.json5**.
 
   * If the **icon** and **label** fields under **abilities** of the **module.json5** file are not configured, the system returns the icon and label configured in **app.json5**.
 
@@ -20,13 +20,15 @@ Icons and labels are usually configured together. They correspond to the **icon*
 
 
 ### Use Scenarios
-
+<!--RP1-->
 - Used to display an application on an application screen, for example, application list in **Settings**, or permissions requested by the application in **Settings > Privacy manager**.
 - Used to display an application on the home screen. for example, applications displayed on the home screen or in **Recents**.
+<!--RP1End-->
 
 The following figure shows the effect.
-
+<!--RP2-->
 ![application-component-configuration-stage-app-module](figures/application-component-configuration-stage-app-module.png)
+<!--RP2End-->
 
 ### Configuration Example
 

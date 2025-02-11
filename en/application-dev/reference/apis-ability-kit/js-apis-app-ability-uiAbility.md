@@ -538,6 +538,44 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
+## UIAbility.onCollaborate<sup>16+</sup>
+
+onCollaborate(wantParam: Record&lt;string, Object&gt;): AbilityConstant.CollaborateResult
+
+Callback invoked to return the collaboration result in multi-device collaboration scenarios.
+
+ **NOTE**
+- This callback does not support ability launch in specified mode.
+- When you use methods such as **startAbility()** to start an application, you must include **FLAG_ABILITY_ON_COLLABORATE** in [Flags](js-apis-ability-wantConstant.md#flags) in the Want object.
+- This callback must be called before **onForeground** or **onBackground** in a cold startup and before **onNewWant** in a hot startup.
+
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name   | Type                             | Mandatory| Description                                                        |
+| --------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| wantParam | Record&lt;string,&nbsp;Object&gt; | Yes  | Want parameter, which supports only the key **"ohos.extra.param.key.supportCollaborateIndex"**. The key can be used to obtain the data passed by the caller and perform corresponding processing.|
+
+**Return value**
+
+| Name    | Value  | Description      |
+| -------- | ---- | ---------- |
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult) | Collaborator result, that is, whether the target application accepts the collaboration request.|
+
+**Example**
+
+```ts
+import { UIAbility, AbilityConstant } from '@kit.AbilityKit';
+
+class MyAbility extends UIAbility {
+  onCollaborate(wantParam: Record<string, Object>) {
+    return AbilityConstant.CollaborateResult.ACCEPT;
+  }
+}
+```
+
 ## Caller
 
 Implements sending of parcelable data to the target UIAbility when the CallerAbility invokes the target UIAbility (CalleeAbility).

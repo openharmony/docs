@@ -31,9 +31,9 @@ app对象包含应用全局配置信息，内部结构如下：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| compatible | 运行应用所需要的最低API版本，取值范围为0~2147483647。 | 数值 | 配置在build.profile中，打包时由IDE填充到config.json中。 |
-| target | 用于标识应用运行时使用的API版本，取值范围为0~2147483647。 | 数值 | 配置在build.profile中，打包时由IDE填充到config.json中。 |
-| releaseType | 用于标识应用运行时SDK的状态。<br/>canary：面向特定开发者早期预览版本，不承诺质量，不承诺API稳定。<br/>beta：公开发布的Beta版本，早期Beta版本不承诺API稳定，经历若干次发布后，通过Release&nbsp;Notes对开发者声明该Beta版本为API稳定里程碑，后续版本的API冻结。<br/>release：正式发布版本，承诺质量，API不可变更。当版本处于此状态时版本号中不呈现Stage字段。 | 字符串 | 配置在build.profile中，打包时由IDE填充到config.json中。 |
+| compatible | 运行应用所需要的最低API版本，取值范围为0~2147483647。 | 数值 | 配置在build.profile中，打包时由DevEco Studio填充到config.json中。 |
+| target | 用于标识应用运行时使用的API版本，取值范围为0~2147483647。 | 数值 | 配置在build.profile中，打包时由DevEco Studio填充到config.json中。 |
+| releaseType | 用于标识应用运行时SDK的状态。<br/>canary：面向特定开发者早期预览版本，不承诺质量，不承诺API稳定。<br/>beta：公开发布的Beta版本，早期Beta版本不承诺API稳定，经历若干次发布后，通过Release&nbsp;Notes对开发者声明该Beta版本为API稳定里程碑，后续版本的API冻结。<br/>release：正式发布版本，承诺质量，API不可变更。当版本处于此状态时版本号中不呈现Stage字段。 | 字符串 | 配置在build.profile中，打包时由填充DevEco Studio到config.json中。 |
 
 app对象示例
 

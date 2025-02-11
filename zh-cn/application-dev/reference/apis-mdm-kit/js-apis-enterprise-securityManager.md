@@ -113,10 +113,10 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let certFileArray: Uint8Array = new Uint8Array();
-// The variable context needs to be initialized in MainAbility's onCreate callback function
-// test.cer needs to be placed in the rawfile directory
+// 在MainAbility的onCreate回调函数中初始化Context变量
+// 把测试文件test.cer放入rawfile目录
 getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
-  certFileArray = value
+  certFileArray = value;
   securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" })
     .then((result) => {
       console.info(`Succeeded in installing user certificate, result : ${JSON.stringify(result)}`);
@@ -127,6 +127,115 @@ getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
   console.error(`Failed to get row file content. message: ${err.message}`);
   return
 });
+```
+
+## securityManager.installUserCertificate<sup>16+</sup>
+
+installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): string
+
+支持按系统账户指定设备管理应用安装用户证书。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名      | 类型                                                    | 必填 | 说明           |
+| ----------- | ------------------------------------------------------- | ---- | -------------- |
+| admin       | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| certificate | [CertBlob](#certblob)                                   | 是   | 证书信息。     |
+| accountId   | number                                                  | 是   | 用户ID，指定具体用户，取值范围：大于等于0。     |
+
+**返回值：**
+
+| 类型                  | 说明                                                 |
+| --------------------- | ---------------------------------------------------- |
+| string      | 返回当前证书安装后的uri，用于卸载证书。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9201001  | Failed to manage the certificate.                            |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let certFileArray: Uint8Array = new Uint8Array();
+let accountId: number = 100;
+// 在MainAbility的onCreate回调函数中初始化Context变量
+// 把测试文件test.cer放入rawfile目录
+getContext().resourceManager.getRawFileContent("test.cer").then((value) => {
+  certFileArray = value;
+  try {
+    let result: string = securityManager.installUserCertificate(wantTemp, { inData: certFileArray, alias: "cert_alias_xts" }, accountId);
+    console.info(`Succeeded in installing user certificate. result: ${result}`);
+  } catch (err) {
+    console.error(`Failed to install user certificate. Code: ${err.code}, message: ${err.message}`);
+  }
+});
+```
+## securityManager.getUserCertificates<sup>16+</sup>
+
+getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
+
+获取指定系统账户下的用户证书。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                               |
+| accountId | number                                               | 是   | 用户ID，指定具体用户，取值范围：大于等于0。  |
+
+**返回值：**
+
+| 类型   | 说明                 |
+| ------ | -------------------- |
+| Array&lt;string&gt; | 返回在指定用户ID下安装的所有用户证书。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let accountId: number = 100;
+try {
+  let result: Array<string> = securityManager.getUserCertificates(wantTemp, accountId);
+  console.info(`Succeeded in getting the uri list of user Certificates. result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get the uri list of user Certificates. Code: ${err.code}, message: ${err.message}`);
+}
 ```
 
 ## securityManager.getSecurityStatus
@@ -393,7 +502,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
 | bundleName | string    | 是   | 被设置水印的应用包名。                                                       |
-| image | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md)  | 是   | string表示图像路径，图像路径为应用沙箱路径等应用有权限访问的路径。<br>image.PixelMap表示图像对象，图像像素占用大小不能超过500KB。                                                       |
+| source | string \| [image.PixelMap](../apis-image-kit/js-apis-image.md)  | 是   | string表示图像路径，图像路径为应用沙箱路径等应用有权限访问的路径。<br>image.PixelMap表示图像对象，图像像素占用大小不能超过500KB。                                                       |
 | accountId     | number     | 是   | 用户ID。 |
 
 **错误码**：
@@ -416,10 +525,10 @@ let wantTemp: Want = {
   abilityName: 'EntryAbility',
 };
 let bundleName: string = 'com.example.myapplication';
-let image: string = '/data/storage/el1/base/test.png';
+let source: string = '/data/storage/el1/base/test.png';
 let accountId: number = 100;
 try {
-    securityManager.setWatermarkImage(wantTemp, bundleName, image, accountId);
+    securityManager.setWatermarkImage(wantTemp, bundleName, source, accountId);
     console.info(`Succeeded in setting set watermarkImage policy.`);
 } catch(err) {
     console.error(`Failed to set watermarkImage policy. Code: ${err.code}, message: ${err.message}`);

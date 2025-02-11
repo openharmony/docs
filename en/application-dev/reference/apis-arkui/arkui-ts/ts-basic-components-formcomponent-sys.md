@@ -30,7 +30,7 @@ Creates a **FormComponent** instance to display the provided widget.
 
 **Parameters**
 
-| Name   | Type                       | Mandatory | Description                                                               |
+| Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
 | value        | [FormInfo](#forminfo12)                 | Yes  | Widget information.  |
 
@@ -38,37 +38,40 @@ Creates a **FormComponent** instance to display the provided widget.
 
 Provides the widget information.
 
-| Name   | Type                       | Mandatory | Description                                                               |
+| Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- |-------|
 | id        | number \| string                    | Yes  | Widget ID. Set this parameter to **0** for a new widget.<br>**NOTE**<br>Different widget hosts cannot use the same ID.<br>If a widget host uses the same ID for two widgets, the one added later is displayed.                                       |
 | name      | string                          | Yes  | Widget name.                                                             |
 | bundle    | string                          | Yes  | Bundle name of the widget.                                                         |
 | ability   | string                          | Yes  | Ability name of the widget.                                                  |
 | module    | string                          | Yes  | Module name of the widget.                                                         |
-| dimension | [FormDimension](#formdimension) | No  | Dimensions of the widget. The widgets in the 2 x 2, 4 x 4, and 4 x 2 dimensions are supported.<br>Default value: **Dimension_2_2** |
+| dimension | [FormDimension](#formdimension) | No  | Dimensions of the widget. The widgets in the 2 x 2, 4 x 4, and 4 x 2 dimensions are supported.<br>Default value: **Dimension_2_2**|
 | temporary | boolean                         | No  | Whether the widget is a temporary one.                                                   |
-| renderingMode | [FormRenderingMode](#formrenderingmode11) | No  | Widget rendering mode. The options are as follows:<br>- **FULL_COLOR** (default): full color mode, where the widget framework does not change the widget effect, which means that the widget is displayed in the effect as you set it.<br>- **SINGLE_COLOR**: single color mode, where the widget framework sets the widget background to transparent. In this mode you need to set the widget style based on the best practices.<br>**NOTE**<br>If the system does not support unified rendering, the widget framework does not set the widget background to transparent in single color mode. |
+| renderingMode | [FormRenderingMode](#formrenderingmode11) | No  | Widget rendering mode. The options are as follows:<br>- **FULL_COLOR** (default): full color mode, where the widget framework does not change the widget effect, which means that the widget is displayed in the effect as you set it.<br>- **SINGLE_COLOR**: single color mode, where the widget framework sets the widget background to transparent. In this mode you need to set the widget style based on the best practices.<br>**NOTE**<br>If the system does not support unified rendering, the widget framework does not set the widget background to transparent in single color mode.|
 
 ## FormCallbackInfo<sup>12+</sup>
 
 Represents the parameters for obtaining a widget ID (**formId**) when querying or uninstalling a widget.
 
-| Name   | Type                       | Mandatory | Description                                                               |
+| Name   | Type                       | Mandatory| Description                                                               |
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
 | id        | number                 | Yes  | Widget ID of the number type.<br>**NOTE**<br>If the obtained ID is **-1**, the ID is greater than or equal to 2^53. In this case, you need to use **idString** to obtain the ID.                                       |
-| idString      | string                          | Yes  | Widget ID of the string type.<br>                                                             |
+| idString      | string                          | Yes  | Widget ID of the string type.                                                             |
+| isLocked<sup>16+</sup>  |boolean  | Yes          | Whether the widget is [locked](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate16). The value **true** means that the widget is locked, and **false** means the opposite.    |
 
 ## FormDimension
 
 | Name                      | Description    |
 | -------------------------- | -------- |
-| Dimension_1_2              | 1 x 2 widget. |
-| Dimension_2_2              | 2 x 2 widget. |
-| Dimension_2_4              | 2 x 4 widget. |
-| Dimension_4_4              | 4 x 4 widget. |
-| Dimension_2_1<sup>9+</sup> | 2 x 1 widget. |
-| Dimension_1_1<sup>11+</sup> | 1 x 1 widget. |
-| Dimension_6_4<sup>12+</sup> | 6 x 4 widget. |
+| Dimension_1_2              | 1 x 2 widget.|
+| Dimension_2_2              | 2 x 2 widget.|
+| Dimension_2_4              | 2 x 4 widget.|
+| Dimension_4_4              | 4 x 4 widget.|
+| Dimension_2_1<sup>9+</sup> | 2 x 1 widget.|
+| Dimension_1_1<sup>11+</sup> | 1 x 1 widget.|
+| Dimension_6_4<sup>12+</sup> | 6 x 4 widget.|
+| Dimension_2_3<sup>14+</sup> | 2 x 3 widget. Available for wearable devices.|
+| Dimension_3_3<sup>14+</sup> | 3 x 3 widget. Available for wearable devices.|
 
 ## FormRenderingMode<sup>11+</sup>
 | Name                      | Description    |
@@ -88,11 +91,11 @@ Sets the size for the widget.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                     | Mandatory | Description      |
+| Name| Type                                                     | Mandatory| Description      |
 | ------ | --------------------------------------------------------- | ---- | ---------- |
-| value  | {<br>width?: number,<br>height?: number<br>} | Yes  | Width and height. |
+| value  | {<br>width?: number,<br>height?: number<br>} | Yes  | Width and height.|
 
 ### moduleName
 
@@ -104,11 +107,11 @@ Sets the module name for the widget.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type  | Mandatory | Description          |
+| Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
-| value  | string | Yes  | Module name of the widget. |
+| value  | string | Yes  | Module name of the widget.|
 
 ### dimension
 
@@ -120,11 +123,11 @@ Sets the dimensions for the widget. The 2 x 2, 4 x 4, and 4 x 2 options are avai
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                           | Mandatory | Description                                |
+| Name| Type                           | Mandatory| Description                                |
 | ------ | ------------------------------- | ---- | ------------------------------------ |
-| value  | [FormDimension](#formdimension) | Yes  | Dimensions of the widget.<br>Default value: **Dimension_2_2** |
+| value  | [FormDimension](#formdimension) | Yes  | Dimensions of the widget.<br>Default value: **Dimension_2_2**|
 
 ### allowUpdate
 
@@ -136,11 +139,11 @@ Sets whether to allow the widget to update.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type   | Mandatory | Description                               |
+| Name| Type   | Mandatory| Description                               |
 | ------ | ------- | ---- | ----------------------------------- |
-| value  | boolean | Yes  | Whether to allow the widget to update.<br>Default value: **true** |
+| value  | boolean | Yes  | Whether to allow the widget to update.<br>Default value: **true**|
 
 ### visibility
 
@@ -152,11 +155,11 @@ Sets whether the widget is visible.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                         | Mandatory | Description                                  |
+| Name| Type                                         | Mandatory| Description                                  |
 | ------ | --------------------------------------------- | ---- | -------------------------------------- |
-| value  | [Visibility](ts-appendix-enums.md#visibility) | Yes  | Whether the widget is visible.<br>Default value: **Visible** |
+| value  | [Visibility](ts-appendix-enums.md#visibility) | Yes  | Whether the widget is visible.<br>Default value: **Visible**|
 
 ## Events
 
@@ -170,11 +173,11 @@ Called when the widget is obtained.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                               | Mandatory | Description      |
+| Name| Type                               | Mandatory| Description      |
 | ------ | ----------------------------------- | ---- | ---------- |
-| Callback | [FormCallbackInfo](#formcallbackinfo12) | Yes  | Widget ID. |
+| Callback | [FormCallbackInfo](#formcallbackinfo12) | Yes  | Widget ID.|
 
 ### onError
 
@@ -186,11 +189,11 @@ Called when an error occurs during component loading.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                                                        | Mandatory | Description                                           |
+| Name| Type                                                        | Mandatory| Description                                           |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error information. |
+| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error message.|
 
 ### onRouter
 
@@ -202,11 +205,11 @@ Called when routing occurs for the widget. This API returns information in [rout
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type | Mandatory | Description                                                        |
+| Name| Type| Mandatory| Description                                                        |
 | ------ | ---- | ---- | ------------------------------------------------------------ |
-| info   | any  | Yes  | Information in [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#event-binding). |
+| info   | any  | Yes  | Information in [routerEvent](../js-service-widget-ui/js-service-widget-syntax-hml.md#event-binding).|
 
 ### onUninstall
 
@@ -218,11 +221,11 @@ Called when the widget is uninstalled. This API returns the ID of the uninstalle
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-**Parameters** 
+**Parameters**
 
-| Name | Type                               | Mandatory | Description      |
+| Name| Type                               | Mandatory| Description      |
 | ------ | ----------------------------------- | ---- | ---------- |
-| Callback   | [FormCallbackInfo](#formcallbackinfo12) | Yes  | Widget ID. |
+| Callback   | [FormCallbackInfo](#formcallbackinfo12) | Yes  | Widget ID.|
 
 
 ## Example
@@ -282,3 +285,4 @@ struct CardExample {
 ```
 
 ![Form](figures/form.png)
+<!--no_check-->

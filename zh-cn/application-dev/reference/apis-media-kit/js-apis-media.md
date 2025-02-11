@@ -125,8 +125,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 > **说明：**
 >
-> - 可创建的音视频录制实例不能超过2个。
-> - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
+> 应用可创建多个音视频录制实例，但由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -168,8 +167,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 > **说明：**
 >
-> - 可创建的音视频录制实例不能超过2个。
-> - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
+> 应用可创建多个音视频录制实例，但由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -460,6 +458,30 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 });
 ```
 
+## SoundPool<sup>10+</sup>
+
+type SoundPool = _SoundPool
+
+音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+| 类型     | 说明                       |
+| -------- | ------------------------------ |
+| [_SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
+
+## PlayParameters<sup>10+</sup>
+
+type PlayParameters = _PlayParameters
+
+表示音频池播放参数设置。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+| 类型     | 说明                       |
+| -------- | ------------------------------ |
+| [_PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
+
 ## AVErrorCode<sup>9+</sup>
 
 [媒体错误码](errorcode-media.md)类型枚举
@@ -481,17 +503,17 @@ media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptu
 | AVERR_SERVICE_DIED                    | 5400105 | 表示服务进程死亡。                   |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | 表示不支持当前媒体资源的格式。       |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | 表示音频焦点被抢占                   |
-| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | 表示解析或链接服务端地址错误。        |
-| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | 表示网络连接超时。        |
-| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | 表示网络异常导致的数据或链路异常。        |
-| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | 表示网络被禁用。        |
-| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | 表示无访问权限。        |
-| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | 表示客户端请求参数错误或超出处理能力。        |
-| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | 表示无可用网络资源。        |
-| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | 表示服务端校验客户端证书失败。        |
-| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | 表示SSL连接失败。        |
-| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。        |
-| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。        |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | 表示解析或链接服务端地址错误。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | 表示网络连接超时。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | 表示网络异常导致的数据或链路异常。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | 表示网络被禁用。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | 表示无访问权限。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | 表示客户端请求参数错误或超出处理能力。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | 表示无可用网络资源。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | 表示服务端校验客户端证书失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | 表示SSL连接失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -544,6 +566,7 @@ Codec MIME类型枚举。
 | MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | 表示位深，其对应键值类型为number，单位为位（bit）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| MD_KEY_LANGUAGE<sup>12+</sup>  | 'language'  | 表示字幕语言，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | 表示track名称，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | 表示视频轨类型，其对应键值类型为string。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -571,10 +594,10 @@ Codec MIME类型枚举。
 
 | 名称              | 值   | 说明                             |
 | ----------------- | ---- | -------------------------------- |
-| BUFFERING_START   | 1    | 表示开始缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| BUFFERING_END     | 2    | 表示结束缓存。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
-| BUFFERING_PERCENT | 3    | 表示缓存百分比。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
-| CACHED_DURATION   | 4    | 表示缓存时长，单位为毫秒（ms）。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| BUFFERING_START   | 1    | 表示开始缓冲。当上报BUFFERING_START时，播放器会暂停播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| BUFFERING_END     | 2    | 表示结束缓冲。当上报BUFFERING_END时，播放器会恢复播放。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                   |
+| BUFFERING_PERCENT | 3    | 表示缓冲百分比。可参考该事件感知缓冲进度。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                 |
+| CACHED_DURATION   | 4    |  表示已缓冲数据预估可播放时长，单位为毫秒（ms）。缓冲区中的数据变化量大于500ms，上报一次。可参考该事件做进度条。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 ## StateChangeReason<sup>9+</sup>
 
@@ -735,17 +758,17 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
-| 5411001  | Can not find host.    |
-| 5411002  | Connection time out.  |
-| 5411003  | NetWork abnormal.     |
-| 5411004  | NetWork unavailable.  |
-| 5411005  | No permission.        |
-| 5411006  | Network access denied.  |
-| 5411007  | Cannot find available network resources. |
-| 5411008  | SSL client cert needed.    |
-| 5411009  | SSL connection failed.     |
-| 5411010  | SSL server cert needed.    |
-| 5411011  | Unsupportted request.      |
+| 5411001  | IO can not find host.    |
+| 5411002  | IO connection timeout.  |
+| 5411003  | IO network abnormal.     |
+| 5411004  | IO network unavailable.  |
+| 5411005  | IO no permission.        |
+| 5411006  | IO request denied.  |
+| 5411007  | IO resource not found. |
+| 5411008  | IO SSL client cert needed.    |
+| 5411009  | IO SSL connect fail.     |
+| 5411010  | IO SSL server cert untrusted.    |
+| 5411011  | IO unsupported request.      |
 
 **示例：**
 
@@ -815,6 +838,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
@@ -856,6 +880,7 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -1508,6 +1533,44 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 });
 ```
 
+### getPlaybackPosition<sup>16+</sup>
+
+getPlaybackPosition(): number
+
+获取当前播放位置，可以在prepared/playing/paused/completed状态调用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| number | 返回当前播放位置的时间，单位：毫秒（ms）。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.prepare().then(() => {
+  console.info('Succeeded in preparing')
+  let playbackPosition: number = avPlayer.getPlaybackPosition()
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+}, (err: BusinessError) => {
+  console.error('Failed to prepare,error message is :' + err.message)
+})
+```
+
 ### selectTrack<sup>12+</sup>
 
 selectTrack(index: number, mode?: SwitchMode): Promise\<void>
@@ -1542,6 +1605,7 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1597,6 +1661,7 @@ deselectTrack(index: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2507,6 +2572,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit'
 
@@ -2547,6 +2613,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
@@ -2757,6 +2824,67 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 avPlayer.off('amplitudeUpdate')
 ```
 
+### on('seiMessageReceived')<sup>16+</sup>
+
+on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMessageHandle): void
+
+订阅获取SEI信息事件，仅适用于HTTP-FLV直播，视频流中包含SEI信息时上报。需在prepare之前订阅，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | 是 | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
+| payloadTypes | Array\<number> | 是 | SEI信息的订阅负载类型数组。当前仅支持负载类型为5，即payloadType = 5。|
+| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 是 | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+
+**示例：**
+
+```ts
+this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+{
+  console.info('seiMessageReceived playbackPosition ' + playbackPosition)
+
+  for (let key = 0; key < messages.length; key++) {
+    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
+    let ab = messages[key].payload.slice(16, messages[key].payload.byteLength)
+    let result: Uint8Array = new Uint8Array(ab)
+    let retStr: string = textDecoder.decodeToString(result)
+    console.info('seiMessageReceived messages payload ' + retStr)
+  }
+});
+```
+
+### off('seiMessageReceived')<sup>16+</sup>
+
+off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiMessageHandle): void
+
+取消订阅获取SEI信息事件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
+| payloadTypes | Array\<number> | 否   | SEI信息的订阅负载类型。 |
+| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 否   | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+
+**示例：**
+
+```ts
+avPlayer.off('seiMessageReceived')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
@@ -2879,6 +3007,32 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | text | string | 否  | 字幕文本信息。 |
 | startTime | number | 否  | 显示当前字幕文本的开始时间（单位：毫秒）。 |
 | duration | number | 否 | 显示当前字幕文本的持续时间（单位：毫秒）。 |
+
+## SeiMessage<sup>16+</sup>
+
+SEI信息内容，描述SEI信息的负载类型和数据。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型   | 只读 | 可选  | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| payloadType | number | 否  | 否  | SEI信息的负载类型。 |
+| payload | ArrayBuffer | 否  | 否  | SEI信息的负载数据。 |
+
+## OnSeiMessageHandle<sup>16+</sup>
+
+获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| messages | Array\<[SeiMessage](#seimessage16)> | 是  | SEI信息。 |
+| playbackPosition | number | 否  | 获取当前播放位置（单位：毫秒）。 |
 
 ## SeekMode<sup>8+</sup>
 
@@ -4325,6 +4479,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
@@ -4430,6 +4585,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | rotation<sup>(deprecated)</sup>        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。<br>从API version 6开始支持，从API version 12开始废弃。建议使用[AVMetadata](#avmetadata11).videoOrientation替代。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).videoOrientation。     |
 | location<sup>(deprecated)</sup>        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。<br>从API version 6开始支持，从API version 12开始废弃。建议使用 [AVMetadata](#avmetadata11).location。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).location。 |
 | metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
+| maxDuration<sup>16+</sup>        | number             | 否   | 设置录制的最大时长，单位为秒，有效值取值范围[1 , 2^31-1]，无效输入会重置为最大值。录制到达设定时长后，录制会自动停止，并通过stateChange回调录制状态，[AVRecorderState](#avrecorderstate9) = 'stopped'，[StateChangeReason](#statechangereason9) = BACKGROUND。|
 
 ## AVRecorderProfile<sup>9+</sup>
 
@@ -7544,6 +7700,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 **示例2：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
@@ -7664,6 +7821,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | audioChannelCount | number                                                       | 否   | 录屏的音频通道数，内录的系统音和外录的麦克风都是用此通道数，默认2声道，仅支持设置1或2声道。 |
 | audioBitrate      | number                                                       | 否   | 录屏的音频比特率，内录的系统音和外录的麦克风都是用此比特率，默认96000。 |
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
+| displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 

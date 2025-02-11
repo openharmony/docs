@@ -308,7 +308,7 @@ struct Parent {
   }
 }
 ```
-**复杂类型的单项数据传递**
+**复杂类型的单向数据传递**
 
 在V2中，传递复杂类型时，如果希望实现严格的单向数据绑定，防止子组件修改父组件的数据，需要在使用@Param传递复杂对象时进行深拷贝以避免传递对象的引用。
 
@@ -353,7 +353,7 @@ struct Parent {
   }
 }
 ```
-​
+
 V2迁移策略：使用深拷贝
 
 ```ts
@@ -1239,7 +1239,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [
@@ -1259,7 +1259,7 @@ V2:
 - 声明被\@Trace的属性作为页面间共享的可观察的数据。
 
 ```
-// storage.ets
+// Storage.ets
 @ObservedV2
 export class MyStorage {
   static singleton_: MyStorage;
@@ -1329,7 +1329,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [
@@ -1654,7 +1654,7 @@ V2：
 
 声明\@ObservedV2装饰的class代替LocalStorage。其中LocalStorage的key可以用\@Trace装饰的属性代替。
 ```ts
-// storage.ets
+// Storage.ets
 @ObservedV2
 export class MyStorageA {
   @Trace propA: string = 'Hello';
@@ -1857,7 +1857,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -1884,7 +1884,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -1920,7 +1920,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -1954,7 +1954,7 @@ struct Index1 {
           })
         Button('Jump to EntryAbility').onClick(() => {
           let wantInfo: Want = {
-            bundleName: 'com.example.myapplication',
+            bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
             abilityName: 'EntryAbility'
           };
           this.context.startAbility(wantInfo);
@@ -1989,7 +1989,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -2020,7 +2020,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -2067,7 +2067,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -2112,7 +2112,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -2212,28 +2212,49 @@ V1中PersistentStorage提供了持久化UI数据的能力，而V2则提供了更
 
 对于PersistenceV2：
 - 与PersistenceV2关联的\@ObservedV2对象，其\@Trace属性的变化，会触发整个关联对象的自动持久化。
-- 开发者也可以调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)和[PersistenceV2.connect](./arkts-new-persistencev2.md#connect创建或获取储存的数据)接口来手动触发持久化写入和读取。
+- 开发者也可以调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)和[PersistenceV2.globalConnect](./arkts-new-persistencev2.md#使用globalconnect存储数据)接口来手动触发持久化写入和读取。
 
 V1:
 
-```
-PersistentStorage.persistProp('aProp', 47);
+```ts
+class data {
+  name: string = 'ZhangSan';
+  id: number = 0;
+}
+
+PersistentStorage.persistProp('numProp', 47);
+PersistentStorage.persistProp('dataProp', new data());
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('aProp') aProp: number = 48;
+  @StorageLink('numProp') numProp: number = 48;
+  @StorageLink('dataProp') dataProp: data = new data();
 
   build() {
-    Row() {
-      Column() {
-        // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-        Text(`${this.aProp}`)
-          .onClick(() => {
-            this.aProp += 1;
-          })
-      }
+    Column() {
+      // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+      Text(`numProp: ${this.numProp}`)
+        .onClick(() => {
+          this.numProp += 1;
+        })
+        .fontSize(30)
+
+      // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+      Text(`dataProp.name: ${this.dataProp.name}`)
+        .onClick(() => {
+          this.dataProp.name += 'a';
+        })
+        .fontSize(30)
+      // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+      Text(`dataProp.id: ${this.dataProp.id}`)
+        .onClick(() => {
+          this.dataProp.id += 1;
+        })
+        .fontSize(30)
+
     }
+    .width('100%')
   }
 }
 ```
@@ -2241,58 +2262,102 @@ struct Index {
 V2:
 
 下面的案例展示了：
-- 对标V1的`PersistentStorage`能力：`aProp`的改变自动触发`PersistenceV2`的持久化。
-- 对比V1的`PersistentStorage`能力增强：`bProp`是非状态变量，其变化不能被观察和监听，但是开发者仍然可以主动调用[PersistenceV2.save](./arkts-new-persistencev2.md#save手动持久化数据)接口，进行持久化。
-    - 点击`aProp`，UI刷新。
-    - 点击`bProp`，UI没有刷新。
-    - 点击`save storage`，触发`PersistentStorage`链接数据的落盘。
-    - 退出重启应用，Text组件显示的`aProp`和`bProp`为上次改变的值。
-```
-import { PersistenceV2 } from '@kit.ArkUI';
-// 数据中心
-@ObservedV2
-class Storage {
-  @Trace aProp: number = 0;
-  bProp: number = 10;
-}
+- 将`PersistentStorage`的持久化数据迁移到V2的PersistenceV2中去，其中V2对被@Trace标记的数据可以自动持久化，对于非@Trace数据需要开发者自己手动调用save进行持久化。
+- 示例中的move函数和需要显示的组件放在了一个ets中，开发者可以定义自己的move函数，并放入合适的位置进行统一迁移操作。
+```ts
+// 迁移到globalConnect
+import { PersistenceV2, Type } from '@kit.ArkUI';
 
 // 接受序列化失败的回调
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
   console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
 });
 
+class Data {
+  name: string = 'ZhangSan';
+  id: number = 0;
+}
+
+@ObservedV2
+class V2Data {
+  @Trace name: string = '';
+  @Trace Id: number = 1;
+}
+
+@ObservedV2
+export class Sample {
+  // 对于复杂对象需要@Type修饰，确保序列化成功
+  @Type(V2Data)
+  @Trace num: number = 1;
+  @Trace V2: V2Data = new V2Data();
+}
+
+// 用于判断是否完成数据迁移的辅助数据
+@ObservedV2
+class StorageState {
+  @Trace isCompleteMoving: boolean = false;
+}
+
+function move() {
+  let movingState = PersistenceV2.globalConnect({type: StorageState, defaultCreator: () => new StorageState()})!;
+  if (!movingState.isCompleteMoving) {
+    PersistentStorage.persistProp('numProp', 47);
+    PersistentStorage.persistProp('dataProp', new Data());
+    let num = AppStorage.get<number>('numProp')!;
+    let V1Data = AppStorage.get<Data>('dataProp')!;
+    PersistentStorage.deleteProp('numProp');
+    PersistentStorage.deleteProp('dataProp');
+
+    // V2创建对应数据
+    let migrate = PersistenceV2.globalConnect({type: Sample, key: 'connect2', defaultCreator: () => new Sample()})!;  // 使用默认构造函数也可以
+    // 赋值数据，@Trace修饰的会自动保存，对于非@Trace对象，也可以调用save保存，如：PersistenceV2.save('connect2'); 
+    migrate.num = num;
+    migrate.V2.name = V1Data.name;
+    migrate.V2.Id = V1Data.id;
+
+    // 将迁移标志设置为true
+    movingState.isCompleteMoving = true;
+  }
+}
+
+move();
+
 @Entry
 @ComponentV2
 struct Page1 {
-  // 在PersistenceV2中创建一个key为Sample的键值对（如果存在，则返回PersistenceV2中的数据），并且和prop关联
-  @Local storage: Storage = PersistenceV2.connect(Storage, () => new Storage())!;
+  @Local refresh: number = 0;
+  // 使用key:connect2存入数据
+  @Local p: Sample = PersistenceV2.globalConnect({type: Sample, key:'connect2', defaultCreator:() => new Sample()})!;
 
   build() {
-    Column() {
-      Text(`@Trace aProp: ${this.storage.aProp}`)
+    Column({space: 5}) {
+      // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+      Text(`numProp: ${this.p.num}`)
+        .onClick(() => {
+          this.p.num += 1;
+        })
         .fontSize(30)
-        .onClick(() => {
-          this.storage.aProp++;
-        })
 
-      Text(`bProp:: ${this.storage.bProp}`)
+      // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+      Text(`dataProp.name: ${this.p.V2.name}`)
+        .onClick(() => {
+          this.p.V2.name += 'a';
+        })
         .fontSize(30)
+      // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+      Text(`dataProp.id: ${this.p.V2.Id}`)
         .onClick(() => {
-          // 页面不刷新，但是bProp的值改变了
-          this.storage.bProp++;
+          this.p.V2.Id += 1;
         })
-
-      Button('save storage')
-        .onClick(() => {
-          // 和V1不同，PersistenceV2不依赖状态变量的观察能力，开发者可以主动持久化
-          PersistenceV2.save(Storage);
-        })
+        .fontSize(30)
     }
+    .width('100%')
   }
 }
 ```
 
 ## 存量迁移场景
+
 对于已经使用V1开发的大型应用，一般不太可能做到一次性的从V1迁移到V2，而是分批次和分组件的部分迁移，这就必然会带来V1和V2的混用。
 
 这种场景，一般是父组件是状态管理V1，而迁移的子组件为状态管理V2。为了模拟这种场景，我们举出下面的示例：

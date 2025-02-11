@@ -16,7 +16,7 @@ import  { storageStatistics } from '@kit.CoreFileKit';
 
 getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
-第三方应用异步获取当前应用存储空间大小（单位为Byte），以Promise方式返回。
+应用异步获取当前应用存储空间大小（单位为Byte），以Promise方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -51,7 +51,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
 getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
 
-第三方应用异步获取当前应用存储空间大小（单位为Byte），以callback方式返回。
+应用异步获取当前应用存储空间大小（单位为Byte），以callback方式返回。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
@@ -158,6 +158,43 @@ storageStatistics.getTotalSize((error: BusinessError, number: number) => {
 });
   ```
 
+## storageStatistics.getTotalSizeSync<sup>16+</sup>
+
+getTotalSizeSync(): number
+
+同步获取内置存储的总空间大小（单位为Byte）。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**返回值：**
+
+| 类型   | 说明                                   |
+| ------ | -------------------------------------- |
+| number | 返回内置存储的总空间大小（单位为Byte） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
+| 13600001 | IPC error.                                                   |
+| 13900042 | Unknown error.                                               |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let number = storageStatistics.getTotalSizeSync();
+  console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
+}
+  ```
+
 ## storageStatistics.getFreeSize<sup>16+</sup>
 
 getFreeSize(): Promise&lt;number&gt;
@@ -231,12 +268,49 @@ storageStatistics.getFreeSize((error: BusinessError, number: number) => {
 });
   ```
 
+## storageStatistics.getFreeSizeSync<sup>16+</sup>
+
+getFreeSizeSync(): number
+
+同步获取内置存储的可用空间大小（单位为Byte）。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| number | 返回内置存储的可用空间大小（单位为Byte） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
+| 13600001 | IPC error.                                                   |
+| 13900042 | Unknown error.                                               |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let number = storageStatistics.getFreeSizeSync();
+  console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
+}
+  ```
+
 ## BundleStats<sup>9+</sup>
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
 
 | 名称      | 类型   | 必填 | 说明           |
 | --------- | ------ | --- | -------------- |
-| appSize   | number | 是 | app数据大小（不包含空目录）（单位为Byte）    |
-| cacheSize | number | 是 | 缓存数据大小（单位为Byte）   |
-| dataSize  | number | 是 | 应用总数据大小（单位为Byte） |
+| appSize   | number | 是 | 应用安装文件大小（单位为Byte）    |
+| cacheSize | number | 是 | 应用缓存文件大小（单位为Byte）   |
+| dataSize  | number | 是 | 应用文件存储大小（除应用安装文件和缓存文件）（单位为Byte） |

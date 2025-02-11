@@ -74,9 +74,9 @@
 由于MDM接口需要在激活企业设备管理扩展能力后使用，调试时需通过hdc命令来激活/解除激活扩展能力，命令如下：
 
 ```bash
-:: 激活
+# 激活
 hdc shell edm enable-admin -n 包名 -a 企业设备管理扩展能力类名
-:: 解除激活
+# 解除激活
 hdc shell edm disable-admin -n 包名
 ```
 
