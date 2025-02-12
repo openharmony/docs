@@ -1673,6 +1673,75 @@ try {
 }
 ```
 
+### startMoving<sup>15+</sup>
+
+startMoving(): void
+
+发送移动命令给窗口，不产生实际移动效果（仅在鼠标点击作用才可以移动）。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+| 12800017 | invalid panel type or panel flag. |
+
+**示例：**
+
+```ts
+
+try {
+  panel.startMoving();
+  console.log('Succeeded in moving the panel.');
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
+}
+```
+
+### getDisplayId<sup>15+</sup>
+
+getDisplayId(): Promise\<number>
+
+获取当前窗口的所在id,使用Promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型   | 说明                             |
+| ------- | ------------------------------ |
+|Promise\<number>| Promise对象。返回窗口的displayId。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 12800002 | input method engine error. |
+| 12800013 | window manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  panel.getDisplayId().then((result: number) => {
+    console.log('get displayId:' + result);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+  });
+} catch (err) {
+  console.error(`Failed to get displayId: ${JSON.stringify(err)}`);
+}
+```
+
 ### show<sup>10+</sup>
 
 show(callback: AsyncCallback\<void>): void
