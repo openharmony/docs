@@ -588,7 +588,28 @@ importNode(name: string, node: Node, parent: Node | null): Node
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
+
+function ImportNodeTest() {
+  let scene: Scene | null = null;
+
+  Scene.load().then(async (result: Scene) => {
+    if (!result) {
+      return;
+    }
+    scene = result;
+  })
+
+  Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
+    .then(async (extScene: Scene) => {
+      let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
+      console.log("mason ImportNodeTest");
+      let node = scene?.importNode("scene", extNode, scene.root);
+      if (node) {
+        node.position.x = 5;
+      }
+    });
+}
 
 ```
 
