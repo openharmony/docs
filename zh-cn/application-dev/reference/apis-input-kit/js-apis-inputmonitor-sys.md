@@ -1177,7 +1177,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 | 参数名   | 类型                                                        | 必填 | 说明                                 |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                                      | 是   | 按键事件类型，取唯一值'keyPressed'。 |
-| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 按键码列表。按键码列表，支持如下取值：KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_POWER、KEYCODE_VOLUME_DOWN、KEYCODE_VOLUME_UP。                      |
+| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 按键码列表，支持如下取值：KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_POWER、KEYCODE_VOLUME_DOWN、KEYCODE_VOLUME_UP。                      |
 | receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt;    | 是   | 用于接收上报数据的回调函数。         |
 
 **错误码**：
