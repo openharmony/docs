@@ -1417,47 +1417,6 @@ isOpenSoftApAllowed(): boolean
 	}
 ```
 
-## wifiManager.isHotspotActive<sup>9+</sup>
-
-isHotspotActive(): boolean
-
-热点是否已使能。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.GET_WIFI_INFO
-
-**系统能力：** SystemCapability.Communication.WiFi.AP.Core
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | boolean | true:已使能，&nbsp;false:未使能.|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2601000  | Operation failed. |
-
-**示例：**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let ret = wifiManager.isHotspotActive();
-		console.info("result:" + ret);		
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
 ## wifiManager.setHotspotConfig<sup>9+</sup>
 
 setHotspotConfig(config: HotspotConfig): void
