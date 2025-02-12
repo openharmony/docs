@@ -1,10 +1,10 @@
-# Notification Kit（用户通知服务）
+# Notification Kit（用户通知服务）<!--notification-kit-->
 
 - [Notification Kit简介](notification-overview.md)
 - [请求通知授权](notification-enable.md)
 - [管理通知角标](notification-badge.md)
 - [管理通知渠道](notification-slot.md)
-- 发布通知
+- 发布通知<!--publish-notification-->
   - [发布文本类型通知](text-notification.md)
   - [发布进度条类型通知](progress-bar-notification.md)
   <!--Del-->

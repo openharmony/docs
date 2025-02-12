@@ -473,14 +473,14 @@ struct Index {
 
 ![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
 
-### 示例6（监测键盘高度变化）
+### 示例6（设置压缩模态内容）
 
-在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动。
+通过设置SheetKeyboardAvoidMode为RESIZE_ONLY，当键盘高度变化时，根据高度变化实现滚动组件的滚动。
 
 ```ts
 //xxx.ets
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -489,8 +489,6 @@ struct ListenKeyboardHeightChange {
   @State avoidMode: SheetKeyboardAvoidMode = SheetKeyboardAvoidMode.RESIZE_ONLY;
   scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
-  @State scrollHeight: number = 0;
-  @State keyBoardChange: boolean = false;
   windowClass: window.Window | undefined = undefined;
 
   aboutToAppear(): void {
@@ -505,7 +503,6 @@ struct ListenKeyboardHeightChange {
         try {
           if (this.windowClass !== undefined) {
             console.log('success in listen height change');
-            //注册键盘高度变化监听回调
             this.windowClass.on('keyboardHeightChange', this.callback);
           }
         } catch (exception) {
@@ -518,19 +515,13 @@ struct ListenKeyboardHeightChange {
     }
   }
 
-  //当键盘高度变化时，设置相应标志位
   callback = (height: number) => {
-    this.scrollHeight = height;
-    console.log('height change: ' + this.scrollHeight);
+    console.log('height change: ' + height);
     if (height !== 0) {
-      this.keyBoardChange = true;
-    }
-  }
-  //当滚动组件高度变化时，根据标志位触发滚动
-  sizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => {
-    if (this.keyBoardChange) {
-      this.scroller.scrollBy(0, this.scrollHeight);
-      this.keyBoardChange = false;
+      this.scroller.scrollTo({
+        xOffset: 0, yOffset: height + this.scroller.currentOffset().yOffset,
+        animation: { duration: 1000, curve: Curve.Ease, canOverScroll: false }
+      });
     }
   }
 
@@ -565,12 +556,12 @@ struct ListenKeyboardHeightChange {
               .fontSize(20)
               .width('45%')
           }.width('100%')
-        }.height('100%')
-      }.margin({ right: 15 })
+        }.height(100)
+      }.margin({ right: 15, bottom: 50 })
     }
+    .height('100%')
     .scrollBar(BarState.On)
     .scrollable(ScrollDirection.Vertical)
-    .onSizeChange(this.sizeChangeCallback)
   }
 
   build() {
@@ -582,12 +573,12 @@ struct ListenKeyboardHeightChange {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          height: 750,
           backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
-          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY,
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -596,6 +587,7 @@ struct ListenKeyboardHeightChange {
   }
 }
 ```
+![zh-cn_sheet](figures/zh-cn_sheet6.gif)
 
 ### 示例7（镜像场景下如何设置圆角属性）
 

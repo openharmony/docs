@@ -89,6 +89,7 @@
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
       - [焦点轴事件](arkui-ts/ts-universal-events-focus_axis.md)
+      - [轴事件](arkui-ts/ts-universal-events-axis.md)
     - 通用属性
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)
@@ -190,6 +191,7 @@
     - [GridItem](arkui-ts/ts-container-griditem.md)
     - [Scroll](arkui-ts/ts-container-scroll.md)
     - [Swiper](arkui-ts/ts-container-swiper.md)
+    - [ArcSwiper](arkui-ts/ts-container-arcswiper.md)
     - [WaterFlow](arkui-ts/ts-container-waterflow.md)
     - [FlowItem](arkui-ts/ts-container-flowitem.md)
     - [ScrollBar](arkui-ts/ts-basic-components-scrollbar.md)
@@ -259,6 +261,7 @@
     <!--Del-->
     - [Image (系统接口)](arkui-ts/ts-basic-components-image-sys.md)
     - [MediaCachedImage (系统接口)](arkui-ts/ts-basic-components-mediacachedimage-sys.md)
+    - [Video (系统接口)](arkui-ts/ts-media-components-video-sys.md)
     <!--DelEnd-->
   - 信息展示
     - [AlphabetIndexer](arkui-ts/ts-container-alphabet-indexer.md)
@@ -460,6 +463,7 @@
     - [ArkUI_Margin](_ark_u_i___margin.md)
     - [ArkUI_NativeAnimateAPI_1](_ark_u_i___native_animate_a_p_i__1.md)
     - [ArkUI_NativeDialogAPI_1](_ark_u_i___native_dialog_a_p_i__1.md)
+    - [ArkUI_NativeDialogAPI_2](_ark_u_i___native_dialog_a_p_i__2.md)
     - [ArkUI_NativeGestureAPI_1](_ark_u_i___native_gesture_a_p_i__1.md)
     - [ArkUI_NativeNodeAPI_1](_ark_u_i___native_node_a_p_i__1.md)
     - [ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)
@@ -468,9 +472,11 @@
     - [ArkUI_RotationOptions](_ark_u_i___rotation_options.md)
     - [ArkUI_ScaleOptions](_ark_u_i___scale_options.md)
     - [ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)
+    - [ArkUI_TextChangeEvent](_ark_u_i___text_change_event.md)
     - [ARKUI_TextPickerCascadeRangeContent](_a_r_k_u_i___text_picker_cascade_range_content.md)
     - [ARKUI_TextPickerRangeContent](_a_r_k_u_i___text_picker_range_content.md)
     - [ArkUI_TranslationOptions](_ark_u_i___translation_options.md)
+    - [OH_ComponentSnapshot](_ark_u_i___node_component_snapshot.md)
     - [OH_NativeXComponent_Callback](_o_h___native_x_component___callback.md)
     - [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md)
     - [OH_NativeXComponent_MouseEvent](_o_h___native_x_component___mouse_event.md)

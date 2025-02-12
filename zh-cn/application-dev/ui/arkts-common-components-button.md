@@ -94,8 +94,8 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001563060641.png)
 
-- 圆角矩形按钮<sup>16+</sup>
-  从API version 16开始，默认值为controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp，支持通过borderRadius属性重新设置圆角。
+- 圆角矩形按钮
+  当[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为NORMAL时，默认圆角大小为20vp，[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为SMALL时，圆角大小为14vp，支持通过borderRadius属性重新设置圆角。
 
   ```ts
   Button('Disable', { type: ButtonType.ROUNDED_RECTANGLE, stateEffect: true }) 

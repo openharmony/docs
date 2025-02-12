@@ -255,6 +255,38 @@ isEnd(): boolean
 | ------ | --------- |
 | boolean | 当前滚动类容器组件是否在底部。 |
 
+### getFingerCount<sup>16+</sup>
+
+getFingerCount(): number
+
+返回预设手指识别数阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设手指识别数阈值。 |
+
+### isFingerCountLimit<sup>16+</sup>
+
+isFingerCountLimit(): boolean
+
+返回预设手势是否会检测触摸屏幕上手指识别数量。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | 预设手势是否会检测触摸屏幕上手指识别数量。当绑定手势事件且会检测触摸屏幕上手指的数量时，返回true。当绑定手势事件且不会检测触摸屏幕上手指的数量时，返回false。 |
+
 ## PanRecognizer
 
 拖动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
@@ -274,6 +306,138 @@ getPanGestureOptions(): PanGestureOptions
 | 类型     | 说明        |
 | ------ | --------- |
 | [PanGestureOptions](./ts-basic-gestures-pangesture.md#pangestureoptions) | 当前拖动手势识别器的属性。 |
+
+## TapRecognizer<sup>16+</sup>
+
+点击手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
+
+### getTapCount<sup>16+</sup>
+
+getTapCount(): number
+
+返回预设点击手势识别器连续点击次数阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设点击手势识别器连续点击次数阈值。 |
+
+## LongPressRecognizer<sup>16+</sup>
+
+长按手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
+
+### isRepeat<sup>16+</sup>
+
+isRepeat(): boolean
+
+返回预设长按手势识别器是否连续触发事件回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| boolean | 预设长按手势识别器是否连续触发事件回调。当绑定长按手势且不会连续触发回调时，返回false。当绑定长按手势且会连续触发回调时，返回true。 |
+
+### getDuration<sup>16+</sup>
+
+getDuration(): number
+
+返回预设长按手势识别器触发长按最短时间阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设长按手势识别器触发长按最短时间阈值。 |
+
+## SwipeRecognizer<sup>16+</sup>
+
+滑动手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
+
+### getVelocityThreshold<sup>16+</sup>
+
+getVelocityThreshold(): number
+
+返回预设滑动手势识别器识别滑动最小速度阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设滑动手势识别器识别滑动最小速度阈值 |
+
+### getDirection<sup>16+</sup>
+
+getDirection(): SwipeDirection
+
+返回预设滑动手势识别器触发滑动手势滑动方向阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
+
+## PinchRecognizer<sup>16+</sup>
+
+捏合手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
+
+### getDistance<sup>16+</sup>
+
+getDistance(): number
+
+返回预设捏合手势识别器最小识别距离阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设捏合手势识别器最小识别距离阈值。 |
+
+## RotationRecognizer<sup>16+</sup>
+
+旋转手势识别器对象，继承于[GestureRecognizer](#gesturerecognizer)。
+
+### getAngle<sup>16+</sup>
+
+getAngle(): number
+
+返回预设旋转手势识别器触发旋转手势最小改变度数阈值。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型     | 说明        |
+| ------ | --------- |
+| number | 预设旋转手势识别器触发旋转手势最小改变度数阈值。<br/>**说明：** <br/>当输入的改变度数的值小于等于0或大于360时，会被转化为默认值，默认值为1。 |
 
 ## onGestureRecognizerJudgeBegin<sup>13+</sup>
 
@@ -597,3 +761,84 @@ struct Index {
 ```
 
  ![example](figures/gesture_recognizer.gif)
+
+ 
+### 示例3（拦截手势获取属性）
+
+该示例通过配置onGestureRecognizerJudgeBegin判定手势，获取相应属性参数。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Gesture';
+
+  build() {
+    Column() {
+      Row({ space: 20 }) {
+        Text(this.message)
+          .width(400)
+          .height(80)
+          .fontSize(23)
+      }.margin(25)
+    }
+    .margin(50)
+    .width(400)
+    .height(200)
+    .borderWidth(2)
+    .gesture(TapGesture())
+    .gesture(LongPressGesture())
+    .gesture(PanGesture({ direction: PanDirection.Vertical }))
+    .gesture(PinchGesture())
+    .gesture(RotationGesture())
+    .gesture(SwipeGesture({ direction: SwipeDirection.Horizontal }))
+    //通过给组件绑定自定义手势识别器判定回调
+    .onGestureRecognizerJudgeBegin((event: BaseGestureEvent, current: GestureRecognizer,
+      others: Array<GestureRecognizer>) => {
+      if (current) {
+        //判断是否为拖动手势
+        if (current.getType() == GestureControl.GestureType.PAN_GESTURE) {
+          let target = current as PanRecognizer;
+          this.message = 'PanGesture\ndistance:' + target.getPanGestureOptions().getDistance() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        //判断是否为长按手势
+        if (current.getType() == GestureControl.GestureType.LONG_PRESS_GESTURE) {
+          let target = current as LongPressRecognizer;
+          this.message = 'LongPressGesture\nfingers:' + target.getFingerCount() + '\nisFingerCountLimited:' +
+          target.isFingerCountLimit() + '\nrepeat:' + target.isRepeat() + '\nduration:' + target.getDuration();
+        }
+        //判断是否为捏合手势
+        if (current.getType() == GestureControl.GestureType.PINCH_GESTURE) {
+          let target = current as PinchRecognizer;
+          this.message = 'PinchGesture\ndistance:' + target.getDistance() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        //判断是否为点击手势
+        if (current.getType() == GestureControl.GestureType.TAP_GESTURE) {
+          let target = current as TapRecognizer;
+          this.message = 'TapGesture\ncount:' + target.getTapCount() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        //判断是否为旋转手势
+        if (current.getType() == GestureControl.GestureType.ROTATION_GESTURE) {
+          let target = current as RotationRecognizer;
+          this.message = 'RotationGesture\nangle:' + target.getAngle() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit();
+        }
+        //判断是否为滑动手势
+        if (current.getType() == GestureControl.GestureType.SWIPE_GESTURE) {
+          let target = current as SwipeRecognizer;
+          this.message = 'SwipeGesture\ndirection:' + target.getDirection() + '\nfingers:' +
+          target.getFingerCount() + '\nisFingerCountLimited:' + target.isFingerCountLimit() + '\nspeed:' +
+          target.getVelocityThreshold();
+        }
+      }
+      return GestureJudgeResult.CONTINUE;
+    })
+  }
+}
+```
+
+ ![example](figures/gesture_recognizer_obtain_attributes.gif)

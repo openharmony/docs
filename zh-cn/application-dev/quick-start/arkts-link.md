@@ -552,7 +552,7 @@ struct SetSample {
 
 使用[\@Watch](./arkts-watch.md)可以在双向同步时，更改本地变量。
 
-下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量sourceNumber，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
+下面的示例中，在\@Link的\@Watch里面修改了一个\@State装饰的变量memberMessage，实现了父子组件间的变量同步。但是\@State装饰的变量memberMessage在本地修改又不会影响到父组件中的变量改变。
 
 ```ts
 @Entry

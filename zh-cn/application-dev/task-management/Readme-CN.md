@@ -1,4 +1,4 @@
-# Background Tasks Kit（后台任务开发服务）
+# Background Tasks Kit（后台任务开发服务）<!--background-task-kit-->
 
 <!--Del-->
 - 后台任务管理<!--DelEnd-->

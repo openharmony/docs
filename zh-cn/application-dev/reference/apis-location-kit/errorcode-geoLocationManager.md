@@ -56,7 +56,8 @@ The network locating is failed because the network cannot be accessed.
 
 **处理步骤**
 
-请检查设备是否能联网，设备是否插入SIM卡，Wi-Fi开关是否开启等。
+请检查设备是否能联网，设备是否插入SIM卡，Wi-Fi开关是否开启等。</br>
+</br>
 
 **错误信息**
 
@@ -68,7 +69,11 @@ The positioning result does not meet the precision requirement (maxAccuracy) in 
 
 **处理步骤**
 
-请检查定位请求中的maxAccuracy字段是否合理。
+请将定位请求参数[LocationRequest](./js-apis-geoLocationManager.md#locationrequest)、[CurrentLocationRequest](./js-apis-geoLocationManager.md#currentlocationrequest)中的精度要求(maxAccuracy)适当放宽，可参考如下场景建议：
+
+- 当[scenario](./js-apis-geoLocationManager.md#locationrequestscenario)为NAVIGATION/TRAJECTORY_TRACKING/CAR_HAILING，或者[priority](./js-apis-geoLocationManager.md#locationrequestpriority)为ACCURACY时，建议设置maxAccuracy为大于10的值。
+
+- 当[scenario](./js-apis-geoLocationManager.md#locationrequestscenario)为DAILY_LIFE_SERVICE/NO_POWER，或者[priority](./js-apis-geoLocationManager.md#locationrequestpriority)为LOW_POWER/FIRST_FIX时，建议设置maxAccuracy为大于100的值。</br>
 
 **错误信息**
 
@@ -80,7 +85,8 @@ The system does not have a cache locaiton.
 
 **处理步骤**
 
-系统未提前将位置信息进行缓存的情况下，需使用getCurrentLocation接口获取实时位置信息。
+系统未提前将位置信息进行缓存的情况下，需使用[getCurrentLocation](./js-apis-geoLocationManager.md#geolocationmanagergetcurrentlocation)接口获取实时位置信息。</br>
+</br>
 
 **错误信息**
 

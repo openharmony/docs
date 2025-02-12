@@ -290,7 +290,7 @@ struct Index {
 ```
 ## 编译
 
-HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护时，建议[开启混淆能力](../arkts-utils/source-obfuscation.md#开启代码混淆)。
+HAR可以作为二方库和三方库提供给其他应用使用，如果需要对代码资产进行保护时，建议[开启混淆能力](../arkts-utils/source-obfuscation.md)。
 
 混淆能力开启后，DevEco Studio在构建HAR时，会对代码进行编译、混淆及压缩处理，保护代码资产。
 

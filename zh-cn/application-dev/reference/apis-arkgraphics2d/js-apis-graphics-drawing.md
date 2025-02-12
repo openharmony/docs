@@ -9003,11 +9003,11 @@ let endPt: common2D.Point = {x: 200, y: 200};
 let shaderEffect = drawing.ShaderEffect.createConicalGradient(startPt, 100, endPt, 50, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-## Tool<sup>16+</sup>
+## Tool<sup>15+</sup>
 
 本模块定义的工具类，仅提供静态的方法，主要完成其他模块和[common2D](js-apis-graphics-common2D.md)中定义的数据结构的转换功能等操作。
 
-### makeColorFromResourceColor<sup>16+</sup>
+### makeColorFromResourceColor<sup>15+</sup>
 
 static makeColorFromResourceColor(resourceColor: ResourceColor): common2D.Color
 

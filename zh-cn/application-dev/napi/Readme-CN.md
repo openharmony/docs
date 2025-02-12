@@ -86,6 +86,7 @@
       - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
       - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
       - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
+      - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
@@ -97,8 +98,10 @@
   - OpenMP支持
     - [OpenMP简介](openmp-overview.md)
     - [OpenMP应用构建和运行指南](openmp-guideline.md)
-  - 资源管理
+  - 资源管理<!--resource-management-->
     - [Rawfile开发指导](rawfile-guidelines.md)
+  - 网络管理
+    - [NetConnection开发指导](native-netmanager-guidelines.md) 
   - 线程调度
     - [QOS开发指导](qos-guidelines.md)
   - 内存管理

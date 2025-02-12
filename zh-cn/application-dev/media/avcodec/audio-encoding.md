@@ -98,7 +98,7 @@ target_link_libraries(sample PUBLIC libnative_media_acodec.so)
    注册回调函数指针集合OH_AVCodecCallback，包括：
 
    - OH_AVCodecOnError：编码器运行错误。
-   - OH_AVCodecOnStreamChanged：码流信息变化，如声道变化等。
+   - OH_AVCodecOnStreamChanged：音频编码器暂未支持此回调。
    - OH_AVCodecOnNeedInputBuffer：运行过程中需要新的输入数据，即编码器已准备好，可以输入PCM数据。
    - OH_AVCodecOnNewOutputBuffer：运行过程中产生了新的输出数据，即编码完成。
 

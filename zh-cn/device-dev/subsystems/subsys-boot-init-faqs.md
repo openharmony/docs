@@ -16,15 +16,15 @@
 
 ### 服务不存在
 
-  **现象描述**
+  **现象描述：**
 
   kernel日志打印 "Failed get servName"。
 
-  **原因分析**
+  **原因分析：**
 
   在init中查找对应的代码位置，发现是服务不存在。
 
-  **解决方法**
+  **解决方法：**
 
   1. 确认服务是否在cfg中正确配置。
   2. 服务的cfg文件是否正常加载。
@@ -42,7 +42,7 @@
   [33.173144][pid=1] [Init] [DEBUG] [init.c:206]Parse init configs from /etc/init.cfg.
   ```
 
-​  如果此时hdcd服务没有启动，或者分区没有挂载好，无法执行begetctl 命令。需要修改init 代码，设置log等级。确保init 的debug        log能正常输出。
+​   如果此时hdcd服务没有启动，或者分区没有挂载好，无法执行begetctl 命令。需要修改init 代码，设置log等级。确保init 的debug        log能正常输出。
 
  2. 原因分析：init.cfg 解析失败。
 
@@ -109,65 +109,66 @@
 
 ### 卡在开机动画界面
 
-  原因分析：
+  **原因分析：**
 
-    1. 开机动画没有正常退出。
-    2. 系统应用孵化失败。
-    3. 服务上报bootevent不完整，所有注册了bootevent 的服务，没有全部上报。
+  1. 开机动画没有正常退出。
+  2. 系统应用孵化失败。
+  3. 服务上报bootevent不完整，所有注册了bootevent 的服务，没有全部上报。
 
-  解决方法：
+  **解决方法：**
 
-    1. 查看服务是否在反复重启， 重启服务是否配置critical。
-    2. ps -ef | grep ohos, 确定系统应用是否存在；日志中有 permission denied，init进程报权限问题。 确认系统应用权限，关闭selinux， 重新验证，如果正常， 则是selinux 策略配置不正确导致，重新配置或添加对应的selinux权限。 [selinux 策略配置](https://gitee.com/openharmony/security_selinux_adapter#%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF) 请参考base/security/selinux_adapter 仓中的说明。
-    3. 通过bootevent事件分析， 通过排查没有上报的bootevent的服务， 可能会导致开机动画卡死，比如systemUI。
+  1. 查看服务是否在反复重启， 重启服务是否配置critical。
+  2. ps -ef | grep ohos, 确定系统应用是否存在；日志中有 permission denied，init进程报权限问题。 确认系统应用权限，关闭selinux， 重新验证，如果正常， 则是selinux 策略配置不正确导致，重新配置或添加对应的selinux权限。 [selinux 策略配置](https://gitee.com/openharmony/security_selinux_adapter#%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF) 请参考base/security/selinux_adapter 仓中的说明。
+  3. 通过bootevent事件分析， 通过排查没有上报的bootevent的服务， 可能会导致开机动画卡死，比如systemUI。
 
 ### 自动重启
 
-  原因分析：
+  **原因分析：**
 
-    1. init服务中定义“importance”的属性。
-    2. critcial 使能， 关键进程符合critical 会重启。
-    3. init进程挂掉会导致panic。
+  1. init服务中定义“importance”的属性。
+  2. critcial 使能， 关键进程符合critical 会重启。
+  3. init进程挂掉会导致panic。
 
-  解决方法：
+  **解决方法：**
 
-    1. 小型系统中服务配置importance属性为0，importance: 0重启， 1 不重启。
-    2. 关键进程服务配置critcial 会导致进程重启。
-    3. CloseStdio();之前执行execv("/bin/sh", NULL)。
+  1. 小型系统中服务配置importance属性为0，importance: 0重启， 1 不重启。
+  2. 关键进程服务配置critcial 会导致进程重启。
+  3. CloseStdio();之前执行execv("/bin/sh", NULL)。
 
 ### reboot命令无法重启
 
-  原因分析：
-    1. reboot 插件安装失败。
-    2. reboot 命令错误。
-    3. ohos.startup.powerctrl reboot 系统参数设置失败。
-    4. reboot selinux 权限受限。
+  **原因分析：**
 
-  解决方法：
+ 1. reboot 插件安装失败。
+ 2. reboot 命令错误。
+ 3. ohos.startup.powerctrl reboot 系统参数设置失败。
+ 4. reboot selinux 权限受限。
 
-    1. 插件安装成功，在板子中查看/system/lib/init/reboot/librebootmodule.z.so是否安装成功。
-    2. 执行begetctl setloglevel 0设置日志级别，日志打印：
+  **解决方法：**
 
-    ```
-    08-10 18:48:07.653  1421  1421 D C02c0b/BEGET: [init_reboot_innerkits.c:51]Reboot cmd reboot
-    ```
+ 1. 插件安装成功，在板子中查看/system/lib/init/reboot/librebootmodule.z.so是否安装成功。
+ 2. 执行begetctl setloglevel 0设置日志级别，日志打印：
 
-    ​       查看 reboot 命令， reboot命令不超过96。
+  ```
+  08-10 18:48:07.653  1421  1421 D C02c0b/BEGET: [init_reboot_innerkits.c:51]Reboot cmd reboot
+  ```
 
-    3. hdc shell 执行param set ohos.startup.powerctrl reboot， 观察是否重启， 重启表示系统参数设置成功。
-    4. 日志中有 permission denied，init 进程报权限问题。关闭selinux, 重新验证， 如果验证成功，则是selnux策略配置不正确导致， 重新配置或添加对应的selinux权限。 [selinux 策略配置](https://gitee.com/openharmony/security_selinux_adapter#%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF) 请参考base/security/selinux_adapter 仓中的说明。
+​    查看 reboot 命令， reboot命令不超过96。
 
-### 系统启动过程中打印“parse failed!”错误后停止启动
+ 3. hdc shell 执行param set ohos.startup.powerctrl reboot， 观察是否重启， 重启表示系统参数设置成功。
+ 4. 日志中有 permission denied，init 进程报权限问题。关闭selinux, 重新验证， 如果验证成功，则是selnux策略配置不正确导致， 重新配置或添加对应的selinux权限。 [selinux 策略配置](https://gitee.com/openharmony/security_selinux_adapter#%E6%97%A5%E5%BF%97%E4%BF%A1%E6%81%AF) 请参考base/security/selinux_adapter 仓中的说明。
 
-  **现象描述**
+### 系统启动过程中打印“Cfg error!”错误后停止启动
 
-  系统启动过程中，打印“[Init] InitReadCfg, parse failed! please check file /etc/init.cfg format.”错误，启动过程停止，如下图所示：
+  **现象描述：**
 
-    **图1** 运行报错图
+  系统启动过程中，解析init.cfg文件错误，启动过程停止，打印日志如下：
 
-    ![zh-cn_image_0000001200053087](figures/zh-cn_image_0000001200053087.png)
+  ```
+  Cfg error, failed to parse json etc/init.cfg
+  ```
 
-  **可能原因**
+  **可能原因：**
 
   修改init.cfg文件时，漏掉或多加了逗号或括号等，导致init.cfg文件的json格式被破坏。
 
@@ -177,14 +178,14 @@
 
 ### 请求其他服务代持fd，init有报错
 
-  **现象描述**
+  **现象描述：**
 
   kernel日志打印 "Service ' xxx '(pid = xxx) is not valid or request with unexpected process(pid = xxx)"。
 
-  **原因分析**
+  **原因分析：**
 
   kernel日志打印，都是由init 打印。在init中查找对应的代码位置。发现是其他服务代持fd。
 
-  **解决方法**
+  **解决方法：**
 
   只支持代持本服务的fd，不允许让其他服务代持fd。

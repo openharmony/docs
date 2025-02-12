@@ -236,9 +236,7 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-获取对端蓝牙设备的类别。
-
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+获取对端蓝牙设备的类别。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -260,7 +258,6 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |

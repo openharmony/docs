@@ -27,6 +27,7 @@ animateTo(value: AnimateParam, event: () => void): void
 > - 执行[aboutToDisappear](./ts-custom-component-lifecycle.md#abouttodisappear)时，组件即将销毁，不能在aboutToDisappear里面做动画。
 > - 也可以使用[组件内转场](./ts-transition-animation-component.md)，在组件出现和消失时做动画。
 > - 组件内转场不支持的属性，可以参考[示例2](#示例2动画执行结束后组件消失)，使用animateTo实现组件消失动画效果。
+> - 某些场景下，在[状态管理V2](../../../quick-start/arkts-state-management-overview.md#状态管理v2)中使用animateTo动画，会产生异常效果，具体可参考：[在状态管理V2中使用animateTo动画效果异常](../../../quick-start/arkts-new-local.md#在状态管理v2中使用animateto动画效果异常)。
 
 **参数：**
 | 参数    | 类型                                | 是否必填 | 描述                                    |

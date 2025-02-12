@@ -7,6 +7,8 @@
 > 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 本文绘制接口在调用时会存入被关联的Canvas组件的指令队列中。仅当当前帧进入渲染阶段且关联的Canvas组件处于可见状态时，这些指令才会从队列中被提取并执行。因此，在Canvas组件不可见的情况下，应尽量避免频繁调用绘制接口，以防止指令在队列中堆积，从而避免内存占用过大的问题。
+>
+> Canvas组件的宽或高超过8000px时使用CPU渲染，会导致性能明显下降。
 
 
 
@@ -926,15 +928,14 @@ struct CanvasExample {
   struct FilterDemo {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let ctx = this.context
             let img = this.img
 
@@ -967,8 +968,9 @@ struct CanvasExample {
             ctx.filter = 'blur(5px)';
             ctx.drawImage(img, 0, 300, 100, 100);
 
-            let result = ctx.toDataURL()
-            console.info(result)
+            // Applying multiple filters
+            ctx.filter = 'opacity(50%) contrast(200%) grayscale(50%)';
+            ctx.drawImage(img, 100, 300, 100, 100);
           })
       }
       .width('100%')
@@ -3313,7 +3315,7 @@ toDataURL(type?: string, quality?: any): string
 
 | 参数名     | 类型   | 必填  | 说明  |
 | ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。。<br>默认值：image/png。            |
+| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。<br>默认值：image/png。            |
 | quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。<br>默认值：0.92。 |
 
 **返回值：** 

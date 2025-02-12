@@ -240,7 +240,7 @@ JSVM-API包含以下内存管理类型：
 
 **JSVM_HandleScope**
 
-JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能
+JSVM_HandleScope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建JSVM_HandleScope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以避免在JavaScript代码中使用已经被释放的对象，从而提高代码的可靠性和性能。
 
 **JSVM_EscapableHandleScope**
 
@@ -2078,9 +2078,9 @@ OH_JSVM_GetVersion(env, &versionId);
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | OH_JSVM_AdjustExternalMemory                | 将因JavaScript对象而保持活跃的外部分配的内存大小及时通知给底层虚拟机，虚拟机后续触发GC时，就会综合内外内存状态来判断是否进行全局GC。即增大外部内存分配，则会增大触发全局GC的概率；反之减少。 |
 | OH_JSVM_MemoryPressureNotification          | 通知虚拟机系统内存压力层级，并有选择地触发垃圾回收。                                                                             |
-| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存 |
-| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存 |
-| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer |
+| OH_JSVM_AllocateArrayBufferBackingStoreData | 申请一块 BackingStore 内存。 |
+| OH_JSVM_FreeArrayBufferBackingStoreData | 释放 BackingStore 内存。 |
+| OH_JSVM_CreateArrayBufferFromBackingStoreData | 基于申请的 BackingStore 内存创建 array buffer。 |
 
 > BackingStore 的使用属于高危操作，需要使用者自身保证内存的正确使用，请参考下方的正确示例，谨慎使用。
 

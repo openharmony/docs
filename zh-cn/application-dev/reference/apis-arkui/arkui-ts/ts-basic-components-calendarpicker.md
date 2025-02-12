@@ -274,7 +274,7 @@ struct CalendarPickerExample {
         .onChange((value) => {
           console.info("CalendarPicker onChange:" + JSON.stringify(value))
         })
-    }.width('100%')
+    }.alignItems(HorizontalAlign.End).width('100%')
   }
 }
 ```

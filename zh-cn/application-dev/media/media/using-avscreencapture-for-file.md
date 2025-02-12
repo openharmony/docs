@@ -152,6 +152,13 @@ void OnStateChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     (void)userData;
 }
 
+// 获取录屏屏幕id的回调函数OnDisplaySelected()
+void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, void *userData) {
+    (void)capture;
+    (void)displayId;
+    (void)userData;
+}
+
 static napi_value Screencapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
@@ -214,6 +221,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 
     //设置状态回调
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
+
+    // 可选 设置录屏屏幕Id回调，必须在开始录屏前调用
+    OH_AVScreenCapture_SetDisplayCallback(capture, OnDisplaySelected, nullptr);
 
     // 可选 设置光标显示开关，开始录屏前后均可调用
     OH_AVScreenCapture_ShowCursor(capture, false);

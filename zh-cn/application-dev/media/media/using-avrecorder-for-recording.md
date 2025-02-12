@@ -73,7 +73,7 @@
    >
    > - prepare接口的入参avConfig中仅设置音频相关的配置参数，如示例代码所示。
    >   如果只需要录制音频，请不要设置视频相关配置参数；如果需要录制视频，可以参考[视频录制开发指导](video-recording.md)进行开发。直接设置视频相关参数会导致后续步骤报错。
-   > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)。
+   > - 需要使用支持的[录制规格](media-kit-intro.md#支持的格式)，具体录制参数需严格契合既定的[录制参数配置](../../reference/apis-media-kit/js-apis-media.md#avrecorderprofile9)。
    > - 录制输出的url地址（即示例里avConfig中的url），形式为fd://xx (fd number)。需要基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
 
    ```ts

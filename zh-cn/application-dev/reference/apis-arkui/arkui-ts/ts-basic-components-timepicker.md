@@ -36,8 +36,8 @@ TimePicker(options?: TimePickerOptions)
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date('1970-01-01 00:00:00') <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date('1970-01-01 23:59:59') <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date('00:00')，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date('23:59')，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
 
@@ -297,7 +297,7 @@ enableCascade(enable: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/> |
+| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/>设置为true后，仅当loop参数同时为true时生效。<br/> |
 
 ### digitalCrownSensitivity<sup>16+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
@@ -310,7 +310,7 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
-| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md##CrownSensitivity)> | 是    | 表冠灵敏度。                     |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity)> | 是    | 表冠灵敏度。                     |
 
 >  **说明：**
 >
@@ -608,3 +608,34 @@ struct TimePickerExample {
 ```
 
 ![timePicker](figures/TimePickerDemo6.png)
+
+### 示例7（设置上午下午跟随时间联动）
+
+该示例通过配置enableCascade、loop实现12小时制时上午下午跟随时间联动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime,
+      })
+        .enableCascade(true)
+        .loop(true)
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo7.gif)

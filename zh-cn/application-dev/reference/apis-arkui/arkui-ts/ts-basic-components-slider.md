@@ -584,6 +584,16 @@ enableHapticFeedback(enabled: boolean)
 
 设置是否开启触控反馈。
 
+开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+
+```json
+"requestPermissions": [
+  {
+    "name": "ohos.permission.VIBRATE",
+  }
+ ]
+```
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -591,17 +601,6 @@ enableHapticFeedback(enabled: boolean)
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
-
->  **说明：**
->
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
-> ```json
-> "requestPermissions": [
->  {
->     "name": "ohos.permission.VIBRATE",
->  }
-> ]
-> ``
 
 
 ## 示例

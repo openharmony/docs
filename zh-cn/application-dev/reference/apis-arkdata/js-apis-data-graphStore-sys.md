@@ -318,7 +318,7 @@ if(transaction != undefined) {
 
 write(gql: string): Promise&lt;Result&gt;
 
-执行数据写入语句。用于创建图、删除图、增删改数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）。不支持使用本接口执行事务操作语句，包括开启事务（START TRANSACTION）、提交事务（COMMIT）以及回滚事务（ROLLBACK）。
+执行数据写入语句。用于增删改数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）、创建/删除图以及创建/删除索引。不支持使用本接口执行事务操作语句，包括开启事务（START TRANSACTION）、提交事务（COMMIT）以及回滚事务（ROLLBACK）。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
