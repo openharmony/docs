@@ -265,18 +265,6 @@
 
 **起始版本**：11
 
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-允许应用查询域账号信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：10
-
 ### ohos.permission.UNINSTALL_BUNDLE
 
 允许应用卸载应用。
@@ -397,18 +385,6 @@
 
 **起始版本**：9
 
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-允许应用跨系统本地账号交互。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
 允许应用跨系统本地账号交互。
@@ -424,18 +400,6 @@
 ### ohos.permission.CLEAN_APPLICATION_DATA
 
 允许应用清理应用数据。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
-### ohos.permission.GET_RUNNING_INFO
-
-允许应用获取运行态信息。
 
 **权限级别**：system_basic
 
@@ -468,18 +432,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.RUNNING_STATE_OBSERVER
-
-允许应用监听应用状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -3292,18 +3244,6 @@
 ### ohos.permission.WRITE_RINGTONE
 
 允许铃音库进行写操作。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.KILL_APP_PROCESSES
-
-允许系统应用杀掉其他应用。
 
 **权限级别**：system_basic
 
