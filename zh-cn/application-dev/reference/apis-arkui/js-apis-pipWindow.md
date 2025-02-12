@@ -1067,10 +1067,10 @@ off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
 
 **参数：**
 
-| 参数名      | 类型         | 必填    | 说明                                                |
-|----------|------------|-------|---------------------------------------------------|
-| type     | string     | 是     | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。 |
-| callback | Callback<[PiPWindowSize](#pipwindowsize15)>; | 是     | 回调函数。返回当前画中画窗口的尺寸。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口尺寸变化的监听。  |
+| 参数名      | 类型         | 必填 | 说明                                                |
+|----------|------------|----|---------------------------------------------------|
+| type     | string     | 是  | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。 |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)>; | 否  | 回调函数。返回当前画中画窗口的尺寸。如果传入参数，则关闭该监听。如果未传入参数，则关闭窗口尺寸变化的监听。  |
 
 **错误码：**
 
