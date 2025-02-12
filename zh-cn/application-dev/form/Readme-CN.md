@@ -24,12 +24,10 @@
         - [卡片定点刷新](arkts-ui-widget-update-by-time-point.md)
         <!--Del-->
         - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
+        - [使用方主动请求刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
         <!--DelEnd-->
         - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
         - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
-        <!--Del--> 
-        - [卡片使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
-        <!--DelEnd-->
     <!--Del--> 
     - [卡片使用方开发指导（仅对系统应用开放）](widget-host-development-guide.md)
     <!--DelEnd-->
