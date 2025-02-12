@@ -598,7 +598,7 @@ function ImportNodeTest() {
       return;
     }
     scene = result;
-  })
+  });
 
   Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
     .then(async (extScene: Scene) => {
