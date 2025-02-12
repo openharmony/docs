@@ -23,7 +23,7 @@
     - [显示图片 (Image)](arkts-graphics-display.md)
     - [视频播放 (Video)](arkts-common-components-video-player.md)
     - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
-  - 添加弧形组件（圆形屏幕推荐使用）
+  - 添加弧形组件（圆形屏幕推荐使用）<!--arkts-add-arc-component-->
     - [弧形按钮 (ArcButton)](arkts-advanced-components-arcbutton.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
