@@ -8,8 +8,6 @@ Indicates the interface related to the audio stream of the input type
 
 **syscap：** SystemCapability.Multimedia.Audio.Core
 
-**Modules:**[OHAudio](_o_h_audio.md)
-
 **Since:** 10.5
 
 ## Section1
