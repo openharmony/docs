@@ -4215,6 +4215,20 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+Allows a system application or system service to call APIs to perform encryption and decryption.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.
