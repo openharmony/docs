@@ -20,7 +20,7 @@ import { systemManager } from '@kit.MDMKit';
 
 setNTPServer(admin: Want, server: string): void
 
-指定设备管理应用设置NTP服务器的策略。
+指定设备管理应用设置NTP时间服务器。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -30,8 +30,8 @@ setNTPServer(admin: Want, server: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| server | string | 是 | NTP服务器地址（以","分隔，如"ntpserver1.com,ntpserver2.com"）。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| server | string | 是 | NTP服务器地址（以","分隔，如"ntpserver1.com,ntpserver2.com"。最大长度96字节，包括结束符）。 |
 
 **错误码**：
 
@@ -58,7 +58,7 @@ try {
   systemManager.setNTPServer(wantTemp, server);
   console.info('Succeeded in setting NTPserver.');
 } catch (err) {
-  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set ntp server. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -66,7 +66,7 @@ try {
 
 getNTPServer(admin: Want): string
 
-指定设备管理应用获取NTP服务器信息。
+指定设备管理应用获取NTP时间服务器信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SYSTEM
 
@@ -74,15 +74,15 @@ getNTPServer(admin: Want): string
 
 **参数：**
 
-| 参数名 | 类型                                | 必填 | 说明           |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明                   |
+| ------ | ------------------------------------------------------- | ---- | ---------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
-| 类型   | 说明                            |
-| ------ | ------------------------------- |
-| string | string对象，返回NTP服务器信息。 |
+| 类型   | 说明                                |
+| ------ | ----------------------------------- |
+| string | string对象，返回NTP时间服务器信息。 |
 
 **错误码**：
 
@@ -109,7 +109,7 @@ try {
   systemManager.getNTPServer(wantTemp);
   console.info('Succeeded in getting NTP server.');
 } catch (err) {
-  console.error(`Failed to set usb policy. Code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to get ntp server. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -127,7 +127,7 @@ setOtaUpdatePolicy(admin: Want, policy: OtaUpdatePolicy): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 | policy | [OtaUpdatePolicy](#otaupdatepolicy) | 是 | 升级策略。 |
 
 **错误码**：
@@ -224,9 +224,9 @@ getOtaUpdatePolicy(admin: Want): OtaUpdatePolicy
 
 **参数：**
 
-| 参数名 | 类型                                | 必填 | 说明           |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| 参数名 | 类型                                                    | 必填 | 说明               |
+| ------ | ------------------------------------------------------- | ---- | ------------------ |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业管理扩展组件。 |
 
 **返回值：**
 
@@ -276,7 +276,7 @@ notifyUpdatePackages(admin: Want, packageInfo: UpdatePackageInfo): Promise&lt;vo
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | packageInfo  | [UpdatePackageInfo](#updatepackageinfo) | 是   | 系统更新包信息。 |
 
 **返回值：**
@@ -345,7 +345,7 @@ getUpdateResult(admin: Want, version: string): Promise&lt;UpdateResult&gt;
 
 | 参数名 | 类型                                | 必填 | 说明           |
 | ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 | version  | string | 是   | 更新包版本号。 |
 
 **返回值：**

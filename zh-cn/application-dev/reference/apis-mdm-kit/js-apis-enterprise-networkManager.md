@@ -32,13 +32,13 @@ getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
 | 类型                | 说明                   |
 | ------------------- | ---------------------- |
-| Array&lt;string&gt; | 返回网络接口名称数组。 |
+| Array&lt;string&gt; | 返回所有激活的有线网络接口名称数组。 |
 
 **错误码**：
 
@@ -83,14 +83,14 @@ getIpAddressSync(admin: Want, networkInterface: string): string
 
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| networkInterface | string                                                  | 是   | 指定网络接口。 |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
 
 **返回值：**
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| string | 返回设备IP地址。 |
+| string | 返回设备指定网络接口的IP地址。 |
 
 **错误码**：
 
@@ -135,14 +135,14 @@ getMacSync(admin: Want, networkInterface: string): string
 
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| networkInterface | string                                                  | 是   | 指定网络接口。 |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
 
 **返回值：**
 
 | 类型   | 说明              |
 | ------ | ----------------- |
-| string | 返回设备MAC地址。 |
+| string | 返回设备指定网络接口的MAC地址。 |
 
 **错误码**：
 
@@ -187,8 +187,8 @@ isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
 | 参数名           | 类型                                                    | 必填 | 说明           |
 | ---------------- | ------------------------------------------------------- | ---- | -------------- |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
-| networkInterface | string                                                  | 是   | 指定网络接口。 |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
 
 **返回值：**
 
@@ -237,11 +237,11 @@ setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisable
 
 **参数：**
 
-| 参数名           | 类型                                                    | 必填 | 说明                                              |
-| ---------------- | ------------------------------------------------------- | ---- | ------------------------------------------------- |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                    |
-| networkInterface | string                                                  | 是   | 指定网络接口。                                    |
-| isDisabled       | boolean                                                 | 是   | true表示禁用该网络接口，false表示开启该网络接口。 |
+| 参数名           | 类型                                                    | 必填 | 说明                                                         |
+| ---------------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| networkInterface | string                                                  | 是   | 指定网络接口，通过[getAllNetworkInterfacesSync](#networkmanagergetallnetworkinterfacessync)接口获取。 |
+| isDisabled       | boolean                                                 | 是   | true表示禁用该网络接口，false表示开启该网络接口。            |
 
 **错误码**：
 
@@ -287,7 +287,7 @@ setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
 | 参数名    | 类型                                                         | 必填 | 说明                       |
 | --------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。             |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 企业设备管理扩展组件。             |
 | httpProxy | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 是   | 网络全局Http代理配置信息。 |
 
 **错误码**：
@@ -341,7 +341,7 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -395,7 +395,7 @@ addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
 | 参数名       | 类型                                                    | 必填 | 说明                 |
 | ------------ | ------------------------------------------------------- | ---- | -------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。       |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。       |
 | firewallRule | [FirewallRule](#firewallrule)                           | 是   | 添加防火墙过滤规则。 |
 
 **错误码**：
@@ -448,7 +448,7 @@ removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
 | 参数名       | 类型                                                    | 必填 | 说明                                                 |
 | ------------ | ------------------------------------------------------- | ---- | ---------------------------------------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                       |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
 | firewallRule | [FirewallRule](#firewallrule)                           | 否   | 移除防火墙过滤规则。值为空时，清空所有的防火墙规则。 |
 
 **错误码**：
@@ -503,7 +503,7 @@ getFirewallRules(admin: Want): Array\<FirewallRule>
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -551,7 +551,7 @@ addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
 | 参数名           | 类型                                                    | 必填 | 说明               |
 | ---------------- | ------------------------------------------------------- | ---- | ------------------ |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。     |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。     |
 | domainFilterRule | [DomainFilterRule](#domainfilterrule)                   | 是   | 添加域名过滤规则。 |
 
 **错误码**：
@@ -599,7 +599,7 @@ removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
 | 参数名           | 类型                                                    | 必填 | 说明                                             |
 | ---------------- | ------------------------------------------------------- | ---- | ------------------------------------------------ |
-| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                   |
+| admin            | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                   |
 | domainFilterRule | [DomainFilterRule](#domainfilterrule)                   | 否   | 移除域名过滤规则。值为空时，清空所有的域名规则。 |
 
 **错误码**：
@@ -649,7 +649,7 @@ getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 

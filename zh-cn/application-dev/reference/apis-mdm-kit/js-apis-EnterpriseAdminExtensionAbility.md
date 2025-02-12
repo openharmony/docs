@@ -59,7 +59,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleAdded(bundleName: string): void
 
-应用安装事件回调。
+应用安装事件回调，回调中包含应用包名。通过接口[subscribeManagedEventSync](js-apis-enterprise-adminmanager.md#subscribemanagedeventsync)注册MANAGED_EVENT_BUNDLE_ADDED事件才能收到此回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -85,7 +85,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onBundleRemoved(bundleName: string): void
 
-应用卸载事件回调。
+应用卸载事件回调，回调中包含应用包名。通过接口[subscribeManagedEventSync](js-apis-enterprise-adminmanager.md#subscribemanagedeventsync)注册MANAGED_EVENT_BUNDLE_REMOVED事件才能收到此回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -111,7 +111,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStart(bundleName: string): void
 
-应用启动事件回调。
+应用启动事件回调。通过接口[subscribeManagedEventSync](js-apis-enterprise-adminmanager.md#subscribemanagedeventsync)注册MANAGED_EVENT_APP_START事件才能收到此回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -121,7 +121,7 @@ onAppStart(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 启动应用Bundle名称。 |
+| bundleName | string | 是    | 启动应用的包名。 |
 
 **示例：**
 
@@ -137,7 +137,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onAppStop(bundleName: string): void
 
-应用停止事件回调。
+应用停止事件回调。通过接口[subscribeManagedEventSync](js-apis-enterprise-adminmanager.md#subscribemanagedeventsync)注册MANAGED_EVENT_APP_STOP事件才能收到此回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -147,7 +147,7 @@ onAppStop(bundleName: string): void
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| bundleName | string | 是    | 停止应用Bundle名称。 |
+| bundleName | string | 是    | 停止应用的包名。 |
 
 **示例：**
 
@@ -162,7 +162,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
 onSystemUpdate(systemUpdateInfo: systemManager.SystemUpdateInfo): void
 
-系统更新事件回调。
+系统更新事件回调。通过接口[subscribeManagedEventSync](js-apis-enterprise-adminmanager.md#subscribemanagedeventsync)注册MANAGED_EVENT_SYSTEM_UPDATE事件才能收到此回调。
 
 **系统能力**：SystemCapability.Customization.EnterpriseDeviceManager
 
