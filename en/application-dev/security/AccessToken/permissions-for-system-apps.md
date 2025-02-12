@@ -145,6 +145,16 @@ Allows an application to read the protection advice database.
 
 **Valid since**: 16
 
+### ohos.permission.PROXY_MESSAGE_AUTH
+
+Allows a system application to call the Message application authorization interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ### ohos.permission.MANAGE_SETTINGS
 
 Allows an application to set the device-level configuration table and user-level configuration table in **SettingsData**.
