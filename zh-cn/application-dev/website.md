@@ -1,15 +1,15 @@
 # OpenHarmony应用开发文档
 - reference文件夹<!--reference-fold-->
   - C APIC API新增版本筛选标签需求<!--reference-fold--0624-->
-    - [@ohos.data.dataAbility (DataAbility谓词)](../application-dev/onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
-    - [以errorcode-*开头文档](../application-dev/onlyfortest/reference/apis-media-kit/errorcode-media.md)
-    - [SplitLayout](../application-dev/onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
-    - [基础类型定义](../application-dev/onlyfortest/reference/apis-arkui/arkui-ts/ts-types.md)
-    - [标记pass](../application-dev/onlyfortest/reference/apis-audio-kit/native__audiocapturer_8h.md)
-    - [标记fail-Topci无起始版本](../application-dev/onlyfortest/reference/apis-audio-kit/native__audiorenderer_8h.md)
-    - [标记fail-Topic起始版本非正整数](../application-dev/onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
-    - [标记fail-概述非第一个二级标题](../application-dev/onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
-    - [标记fail-没有概述](../application-dev/onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+    - [@ohos.data.dataAbility (DataAbility谓词)](onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
+    - [以errorcode-*开头文档](onlyfortest/reference/apis-media-kit/errorcode-media.md)
+    - [SplitLayout](onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
+    - [基础类型定义](onlyfortest/reference/apis-arkui/arkui-ts/ts-types.md)
+    - [标记pass](onlyfortest/reference/apis-audio-kit/native__audiocapturer_8h.md)
+    - [标记fail-Topci无起始版本](onlyfortest/reference/apis-audio-kit/native__audiorenderer_8h.md)
+    - [标记fail-Topic起始版本非正整数](onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
+    - [标记fail-概述非第一个二级标题](onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
+    - [标记fail-没有概述](onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
 - 非reference文件夹<!--not--reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not--reference-fold--0624-->
-    - [OHAudio](../application-dev/onlyfortest/media/audio/audio-kit-intro.md)
+    - [OHAudio](onlyfortest/media/audio/audio-kit-intro.md)
