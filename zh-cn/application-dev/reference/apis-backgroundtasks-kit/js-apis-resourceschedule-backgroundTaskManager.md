@@ -878,7 +878,7 @@ export default class EntryAbility extends UIAbility {
 | SYSTEM_CANCEL           | 2    | 系统取消。                  |
 | USER_CANCEL_REMOVE_NOTIFICATION         | 3    | 用户移除通知。预留接口，暂未启用。                    |
 | SYSTEM_CANCEL_DATA_TRANSFER_LOW_SPEED                | 4    | 申请DATA_TRANSFER类型长时任务，但是数据传输速率低。预留接口，暂未启用。                  |
-| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | 申请AUDIO_PLAYBACK类型长时任务，但是未接入[AVSession](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.0.3-Release/zh-cn/application-dev/media/avsession/avsession-overview.md)。预留接口，暂未启用。                  |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | 申请AUDIO_PLAYBACK类型长时任务，但是未接入[AVSession](../media/avsession/avsession-overview.md)。预留接口，暂未启用。                  |
 | SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING | 6    | 申请AUDIO_PLAYBACK类型长时任务，但是未播放音视频。预留接口，暂未启用。                 |
 | SYSTEM_CANCEL_AUDIO_RECORDING_NOT_RUNNING | 7    | 申请AUDIO_RECORDING类型长时任务，但是未录制。预留接口，暂未启用。                 |
 | SYSTEM_CANCEL_NOT_USE_LOCATION            | 8    | 申请LOCATION类型长时任务，但是未使用定位导航。预留接口，暂未启用。        |
