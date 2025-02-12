@@ -24,7 +24,7 @@ import { autoFillManager } from '@kit.AbilityKit';
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | type        | [AutoFillType](js-apis-inner-application-autoFillType-sys.md)       | 是   | 自动填充类型。          |
 | viewData    | [ViewData](js-apis-inner-application-viewData-sys.md)               | 是   | 页面数据。              |
-| customData<sup>12+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | 是   | 自定义数据。             |
+| customData<sup>13+</sup>    | [CustomData](js-apis-inner-application-customData-sys.md)               | 是   | 自定义数据。             |
 | isPopup<sup>12+</sup>    | boolean               | 是   | 自动填充服务是否拉起popup窗口。<br>true：当前拉起popup窗口。<br>false：当前拉起模态窗。              |
 
 ## SaveRequest
