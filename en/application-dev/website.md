@@ -6,6 +6,7 @@
     - [SplitLayout](onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
     - [Basic Type Definition](onlyfortest/reference/apis-arkui/arkui-ts/ts-types.md)
     - [api-info-pass](onlyfortest/reference/apis-audio-kit/native__audiocapturer_8h.md)
+    - [OHAudio](onlyfortest/reference/apis-audio-kit/_o_h_audio.md)
     - [fail-Topci no since](onlyfortest/reference/apis-audio-kit/native__audiorenderer_8h.md)
     - [fail-Topic since is a non-positive integer](onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
     - [fail-overview not the first level-2 title](onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
