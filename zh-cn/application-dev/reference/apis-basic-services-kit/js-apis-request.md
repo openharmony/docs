@@ -103,10 +103,10 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -160,10 +160,10 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   let uploadTask: request.UploadTask;
   let uploadConfig: request.UploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   try {
@@ -224,10 +224,10 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig).then((data) => {
@@ -274,10 +274,10 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
   ```js
   let uploadTask;
   let uploadConfig = {
-    url: 'http://www.example.com', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://www.example.com', // 需要手动将url替换为真实服务器的HTTP协议地址
     header: { 'Accept': '*/*' },
     method: "POST",
-    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "jpg" }],
+    files: [{ filename: "test", name: "test", uri: "internal://cache/test.jpg", type: "image/jpeg" }], // 建议type填写HTTP协议规范的MIME类型
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
@@ -616,7 +616,7 @@ delete(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -658,7 +658,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -757,7 +757,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
 | begins<sup>11+</sup> | number | 否 | 在上传开始时读取的文件起点。默认值为0，取值为闭区间。|
 | ends<sup>11+</sup> | number | 否 | 在上传结束时读取的文件终点。默认值为-1，取值为闭区间。 |
-| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。文件以 HTTP 的 multipart/form-data 格式提交。 |
+| files | Array&lt;[File](#file)&gt; | 是 | 要上传的文件列表。文件以HTTP的multipart/form-data格式提交。 |
 | data | Array&lt;[RequestData](#requestdata)&gt; | 是 | 请求的表单数据。 |
 
 ## TaskState<sup>9+</sup>
@@ -853,7 +853,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
        let downloadTask: request.DownloadTask = data;
     }).catch((err: BusinessError) => {
@@ -905,7 +905,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(getContext(), {
       url: 'https://xxxx/xxxxx.hap',
       filePath: 'xxx/xxxxx.hap'
@@ -965,7 +965,7 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
   ```js
   let downloadTask;
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
     downloadTask = data;
   }).catch((err) => {
@@ -1009,7 +1009,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
   ```js
   let downloadTask;
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
     if (err) {
@@ -1049,7 +1049,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 | 参数名 | 类型 | 必填 | 说明                                                                      |
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
-| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用chunk方式传输导致无法从请求头中获取文件总大小时，totalSize为 -1。 |
 
 **错误码：**
 
@@ -1065,7 +1065,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    // 需要手动将url替换为真实服务器的HTTP协议地址
     request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
       let downloadTask: request.DownloadTask = data;
       let progressCallback = (receivedSize: number, totalSize: number) => {
@@ -1101,7 +1101,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | 参数名 | 类型 | 必填 | 说明                                                                      |
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
-| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+| totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用chunk方式传输导致无法从请求头中获取文件总大小时，totalSize为 -1。 |
 
 
 **错误码：**
@@ -1118,7 +1118,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let progressCallback1 = (receivedSize: number, totalSize: number) => {
@@ -1171,7 +1171,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback = () => {
@@ -1226,7 +1226,7 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let completeCallback1 = () => {
@@ -1312,7 +1312,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback = (err: number) => {
@@ -1357,7 +1357,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     let failCallback1 = (err: number) => {
@@ -1410,7 +1410,7 @@ delete(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete().then((result: boolean) => {
@@ -1428,7 +1428,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### delete<sup>9+</sup>
@@ -1461,7 +1461,7 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.delete((err: BusinessError, result: boolean) => {
@@ -1481,7 +1481,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1514,7 +1514,7 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
@@ -1532,7 +1532,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskInfo<sup>9+</sup>
@@ -1565,7 +1565,7 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
@@ -1585,7 +1585,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1618,7 +1618,7 @@ getTaskMimeType(): Promise&lt;string&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType().then((data: string) => {
@@ -1636,7 +1636,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### getTaskMimeType<sup>9+</sup>
@@ -1669,7 +1669,7 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
@@ -1689,7 +1689,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### suspend<sup>9+</sup>
@@ -1722,7 +1722,7 @@ suspend(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend().then((result: boolean) => {
@@ -1740,7 +1740,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### suspend<sup>9+</sup>
@@ -1773,7 +1773,7 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.suspend((err: BusinessError, result: boolean) => {
@@ -1793,7 +1793,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### restore<sup>9+</sup>
@@ -1826,7 +1826,7 @@ restore(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore().then((result: boolean) => {
@@ -1844,7 +1844,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### restore<sup>9+</sup>
@@ -1877,7 +1877,7 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+  // 需要手动将url替换为真实服务器的HTTP协议地址
   request.downloadFile(getContext(), { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
     let downloadTask: request.DownloadTask = data;
     downloadTask.restore((err: BusinessError, result: boolean) => {
@@ -1897,7 +1897,7 @@ try {
 
 > **说明：**
 >
-> 由于不存在401报错场景，在 api12 中 `401 the parameters check fails` 这个错误码被移除。
+> 由于不存在401报错场景，在api12中 `401 the parameters check fails` 这个错误码被移除。
 
 
 ### remove<sup>(deprecated)</sup>
@@ -2312,7 +2312,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md) 类获取文件路径。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。默认为调用方（即传入的context）对应的缓存路径。默认文件名从url的最后一个"/"后截取。<br/>-&nbsp;FA模型下使用[context](../apis-ability-kit/js-apis-inner-app-context.md#contextgetcachedir)获取应用存储路径。<br/>-&nbsp;Stage模型下使用[AbilityContext](../apis-ability-kit/js-apis-inner-application-context.md)类获取文件路径。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
@@ -2382,9 +2382,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 ## BroadcastEvent<sup>11+</sup>
 
 定义自定义系统事件。用户可以使用公共事件接口获取该事件。
-上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的 metadata 指向的二级配置文件来拦截其他事件发送者。
+上传下载 SA 具有 'ohos.permission.SEND_TASK_COMPLETE_EVENT' 该权限，用户可以配置事件的metadata指向的二级配置文件来拦截其他事件发送者。
 
-使用 CommonEventData 类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中 CommonEventData.code 表示任务的状态，目前为 0x40 COMPLETE 或 0x41 FAILED; CommonEventData.data 表示任务的 taskId。
+使用CommonEventData类型传输公共事件相关数据。成员的内容填写和 [CommonEventData介绍](js-apis-inner-commonEvent-commonEventData.md) 介绍的有所区别，其中CommonEventData.code表示任务的状态，目前为0x40 COMPLETE或0x41 FAILED; CommonEventData.data表示任务的taskId。
 
 <!--Del-->
 事件配置信息请参考[静态订阅公共事件](../../basic-services/common-event/common-event-static-subscription.md)。<!--DelEnd-->
@@ -2489,7 +2489,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | state | [State](#state10) | 是 | 任务当前的状态。                                                            |
 | index | number | 是 | 任务中当前正在处理的文件索引。                                                     |
 | processed | number | 是 | 任务中当前文件的已处理数据大小，单位为字节。                                               |
-| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，sizes 为 -1。 |
+| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为字节。在下载过程中，若服务器使用chunk方式传输导致无法从请求头中获取文件总大小时，sizes为 -1。 |
 | extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。                                     |
 
 
@@ -2654,7 +2654,7 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2730,7 +2730,7 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2806,7 +2806,7 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2880,7 +2880,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -2954,7 +2954,7 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3028,7 +3028,7 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3104,7 +3104,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOnTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3180,7 +3180,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3264,7 +3264,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3348,7 +3348,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3430,7 +3430,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3512,7 +3512,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3594,7 +3594,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3678,7 +3678,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskOffTest',
     description: 'Sample code for event listening',
     mode: request.agent.Mode.FOREGROUND,
@@ -3759,7 +3759,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3802,8 +3802,8 @@ start(callback: AsyncCallback&lt;void&gt;): void
 start(): Promise&lt;void&gt;
 
 以下状态的任务可以被启动：
-1. 刚被request.agent.create 接口创建的任务
-2. 使用request.agent.create 接口创建的已经失败或者停止的下载任务
+1. 刚被request.agent.create接口创建的任务
+2. 使用request.agent.create接口创建的已经失败或者停止的下载任务
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -3834,7 +3834,7 @@ start(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStartTest',
     description: 'Sample code for start the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3900,7 +3900,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -3966,7 +3966,7 @@ pause(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskPauseTest',
     description: 'Sample code for pause the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4033,7 +4033,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4104,7 +4104,7 @@ resume(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskResumeTest',
     description: 'Sample code for resume the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4172,7 +4172,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4241,7 +4241,7 @@ stop(): Promise&lt;void&gt;
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'taskStopTest',
     description: 'Sample code for stop the download task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4293,7 +4293,7 @@ setMaxSpeed(speed: number): Promise\<void\>
 
 | 类型              | 说明                         |
 |-----------------|----------------------------|
-| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -4311,7 +4311,7 @@ setMaxSpeed(speed: number): Promise\<void\>
 
   let config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     saveas: "./",
   };
   request.agent.create(getContext(), config).then((task: request.agent.Task) => {
@@ -4375,7 +4375,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4465,7 +4465,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   }];
   let config: request.agent.Config = {
     action: request.agent.Action.UPLOAD,
-    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
     title: 'createTest',
     description: 'Sample code for create task',
     mode: request.agent.Mode.BACKGROUND,
@@ -4646,6 +4646,7 @@ show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数。当查询任务操作成功，err为undefined，data为查询到的任务TaskInfo信息；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4690,6 +4691,7 @@ show(id: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息TaskInfo的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4728,6 +4730,7 @@ touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
   | callback | AsyncCallback&lt;[TaskInfo](#taskinfo10)&gt; | 是 | 回调函数。当查询任务操作成功，err为undefined，data为查询到的任务TaskInfo信息；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4773,6 +4776,7 @@ touch(id: string, token: string): Promise&lt;TaskInfo&gt;
 | Promise&lt;[TaskInfo](#taskinfo10)&gt; | Promise对象。返回任务详细信息TaskInfo的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4808,6 +4812,7 @@ search(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。当根据过滤条件查找任务成功，err为undefined，data为满足条件的任务id；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4845,6 +4850,7 @@ search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
   | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数。当根据过滤条件查找任务成功，err为undefined，data为满足条件的任务id；否则为错误对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4892,6 +4898,7 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
 | Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
   | 错误码ID | 错误信息 |
@@ -4936,6 +4943,7 @@ createGroup(config: GroupConfig): Promise\<string\>
 | Promise\<string\> | Promise对象。返回创建完成的分组ID的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息                                                                                           |
@@ -4981,9 +4989,10 @@ attachGroup(gid: string, tids: string[]): Promise\<void\>
 
 | 类型              | 说明         |
 |-----------------|------------|
-| Promise\<void\> | Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息                                                                                           |
@@ -5030,9 +5039,10 @@ deleteGroup(gid: string): Promise\<void\>
 
 | 类型              | 说明         |
 |-----------------|------------|
-| Promise\<void\> | Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID    | 错误信息                                                                                           |
