@@ -1,6 +1,6 @@
-# Mdm Kit（企业设备管理服务）
+# Mdm Kit（企业设备管理服务）<!--mdm-api-->
 
-- ArkTS API
+- ArkTS API<!--mdm-arkts-->
   - [@ohos.enterprise.accountManager（账户管理）](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager（应用管理）](js-apis-enterprise-applicationManager.md)
@@ -35,5 +35,5 @@
   - [@ohos.enterprise.usbManager（USB管理）(系统接口)](js-apis-enterprise-usbManager-sys.md)
   - [@ohos.enterprise.wifiManager（WiFi管理）(系统接口)](js-apis-enterprise-wifiManager-sys.md)
   <!--DelEnd-->
-- 错误码
+- 错误码<!--mdm-arkts-errcode-->
   - [企业设备管理错误码](errorcode-enterpriseDeviceManager.md)

@@ -374,6 +374,7 @@
           - [动态加载](arkts-utils/arkts-dynamic-import.md)
           - [延迟加载（lazy import）](arkts-utils/arkts-lazy-import.md)
           - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
+          - [静态方式加载native模块](arkts-utils/arkts-import-native-module.md)
           - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
           - [模块加载副作用及优化](arkts-utils/arkts-module-side-effects.md)
       - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
@@ -1064,12 +1065,14 @@
         - Network Kit数据传输能力<!--network-kit-data-transmission-->
             - [HTTP数据请求](network/http-request.md)
             - [WebSocket连接](network/websocket-connection.md)
+            - [WebSocket连接(C/C++)](network/native-websocket-guidelines.md)
             - [Socket连接](network/socket-connection.md)
             - [MDNS](network/net-mdns.md)
         - Network Kit网络管理能力<!--network-kit-network-management-->
             - [网络连接管理](network/net-connection-manager.md)
             - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
             - [流量管理](network/net-statistics.md)
+            - [VPN应用开发指南](network/net-vpnExtension.md)
           <!--Del-->
             - [网络防火墙（仅对系统应用开放）](network/net-netfirewall.md)
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
@@ -1128,6 +1131,8 @@
           - [使用剪贴板进行延迟复制粘贴](basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md)
         - 上传下载<!--upload-download-->
           - [应用文件上传下载](basic-services/request/app-file-upload-download.md)
+        - 压缩与解压<!--compress-->
+          - [压缩与解压](basic-services/compress/deflate-and-inflate.md)
       - Function Flow Runtime Kit（任务并发调度服务）<!--ffrt-kit-->
         - [Function Flow Runtime Kit概述](ffrt/ffrt-overview.md)
         - [Function Flow Runtime 开发指导](ffrt/ffrt-development-guideline.md)
@@ -1521,7 +1526,7 @@
       - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
       - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
       - [基于设备自身定位的地理围栏开发指导](device/location/geofence-guidelines.md)
-      - [基于FenceExtensionAbility的云侧地理围栏开发指导](application-models/fenceExtensionAbility.md)
+      - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
@@ -1655,14 +1660,20 @@
             - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
             - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
             - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
+            - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
+      - OpenMP支持<!--openmp-->
+        - [OpenMP简介](napi/openmp-overview.md)
+        - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - 网络管理<!--network-management-->
+        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
@@ -3524,14 +3535,13 @@
         - C API<!--input-c-->
           - 模块<!--input-module-->
             - [Input](reference/apis-input-kit/input.md)
-          - 头文件和结构体<!--input-headerfile-struct-->
-            - 头文件<!--input-headerfile-->
-              - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
-              - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
-              - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
-            - 结构体<!--input-struct-->
-              - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
-              - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
+          - 头文件<!--input-headerfile-->
+            - [oh_axis_type.h](reference/apis-input-kit/oh__axis__type_8h.md)
+            - [oh_input_manager.h](reference/apis-input-kit/oh__input__manager_8h.md)
+            - [oh_key_code.h](reference/apis-input-kit/oh__key__code_8h.md)
+          - 结构体<!--input-struct-->
+            - [Input_DeviceListener](reference/apis-input-kit/_input___device_listener.md)
+            - [Input_InterceptorEventCallback](reference/apis-input-kit/_input___interceptor_event_callback.md)
         - 错误码<!--input-arkts-errcode-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
@@ -4175,6 +4185,7 @@
         - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
         <!--DelEnd-->
         - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
+        - [@ohos.app.ability.FenceExtensionContext](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
         <!--Del-->
         - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->

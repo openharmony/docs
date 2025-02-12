@@ -13,7 +13,7 @@
 | OH_DisplaySoloist_Stop (OH_DisplaySoloist * displaySoloist)  | 停止请求下一次VSync信号，并停止调用回调函数callback。 |
 | OH_DisplaySoloist_SetExpectedFrameRateRange (OH_DisplaySoloist* displaySoloist, DisplaySoloist_ExpectedRateRange* range) | 设置期望帧率范围。                                    |
 
-## 开发步骤
+## 开发示例
 
    本范例是通过Drawing在Native侧实现图形的绘制，通过异步线程设置期望的帧率，再根据帧率进行图形的绘制并将其呈现在NativeWindow上，图形绘制部分可参考[使用Drawing实现图形绘制与显示](graphic-drawing-overview.md)。
 
@@ -32,6 +32,7 @@ libnative_display_soloist.so
 ```
 
 **头文件**
+
 ```c++
 #include <ace/xcomponent/native_interface_xcomponent.h>
 #include "napi/native_api.h"
@@ -48,6 +49,8 @@ libnative_display_soloist.so
 #include <stdint.h>
 #include <sys/mman.h>
 ```
+
+### 开发步骤
 
 1. 定义ArkTS接口文件XComponentContext.ts，用来对接Native层。
    ```ts
