@@ -117,7 +117,7 @@ ArcButton({options:ArcButtonOptions})
 | NORMAL   | 0    | 正常状态。 |
 | PRESSED  | 1    | 按压状态。 |
 | DISABLED | 2    | 禁用状态。 |
-
+| CUSTOM   | 4    | 用户自定义样式。 |
 
 
 ## 示例

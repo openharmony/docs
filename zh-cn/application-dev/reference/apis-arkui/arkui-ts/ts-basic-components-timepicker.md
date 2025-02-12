@@ -297,7 +297,7 @@ enableCascade(enable: boolean)
 
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
-| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/> |
+| enable  | boolean | 是   | 在12小时制时，设置上午和下午的标识是否会根据小时数自动切换。<br/>默认值：false，false表示不开启自动切换，true表示开启自动切换。<br/>设置为true后，仅当loop参数同时为true时生效。<br/> |
 
 ### digitalCrownSensitivity<sup>16+</sup>
 digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
@@ -608,3 +608,34 @@ struct TimePickerExample {
 ```
 
 ![timePicker](figures/TimePickerDemo6.png)
+
+### 示例7（设置上午下午跟随时间联动）
+
+该示例通过配置enableCascade、loop实现12小时制时上午下午跟随时间联动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerExample {
+  private selectedTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    Column() {
+      TimePicker({
+        selected: this.selectedTime,
+      })
+        .enableCascade(true)
+        .loop(true)
+        .onChange((value: TimePickerResult) => {
+          if (value.hour >= 0) {
+            this.selectedTime.setHours(value.hour, value.minute)
+            console.info('select current date is: ' + JSON.stringify(value))
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDemo7.gif)

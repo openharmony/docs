@@ -341,11 +341,11 @@ import { window } from '@kit.ArkUI';
 | ENTER_IMMERSIVE    | 2    | 最大化时，进入沉浸式布局，鼠标Hover在热区上显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。   |
 | ENTER_IMMERSIVE_DISABLE_TITLE_AND_DOCK_HOVER<sup>14+</sup>    | 3    | 最大化时，进入沉浸式布局，鼠标Hover在热区上不显示窗口标题栏和dock栏。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。   |
 
-## MoveConfiguration<sup>14+</sup>
+## MoveConfiguration<sup>15+</sup>
 
 窗口移动选项。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
@@ -1689,7 +1689,7 @@ try {
 }
 ```
 
-### moveWindowToAsync<sup>14+</sup>
+### moveWindowToAsync<sup>15+</sup>
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
@@ -1700,7 +1700,7 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1708,7 +1708,7 @@ moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): 
 | -- | ----- | -- | --------------------------------------------- |
 | x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数应该为整数，非整数输入将向下取整。 |
 | y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数应该为整数，非整数输入将向下取整。 |
-| moveConfiguration | [MoveConfiguration](#moveconfiguration14) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
+| moveConfiguration | [MoveConfiguration](#moveconfiguration15) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
 
 **返回值：**
 
@@ -1807,7 +1807,7 @@ try {
 }
 ```
 
-### moveWindowToGlobal<sup>14+</sup>
+### moveWindowToGlobal<sup>15+</sup>
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
@@ -1819,7 +1819,7 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -1827,7 +1827,7 @@ moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration):
 | -- | ----- | -- | --------------------------------------------- |
 | x | number | 是 | 表示以目标屏幕左上角为起点，窗口在x轴方向移动的值，单位为px。值为正表示右移，值为负表示左移。该参数应该为整数，非整数输入将向下取整。 |
 | y | number | 是 | 表示以目标屏幕左上角为起点，窗口在y轴方向移动的值，单位为px。值为正表示下移，值为负表示上移。该参数应该为整数，非整数输入将向下取整。 |
-| moveConfiguration | [MoveConfiguration](#moveconfiguration14) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
+| moveConfiguration | [MoveConfiguration](#moveconfiguration15) | 否 | 窗口移动选项，未设置将默认保持为当前屏幕。 |
 
 **返回值：**
 
@@ -2166,7 +2166,7 @@ getWindowAvoidArea(type: AvoidAreaType): AvoidArea
 
 获取当前应用窗口避让区。避让区指系统栏区域、刘海屏区域、手势区域、软键盘区域等与窗口内容重叠时，需要窗口内容避让的区域。
 
-该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md#windowtype7)的类型窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，该接口对此类窗口亦生效。
+该接口一般适用于三种场景：1、在onWindowStageCreate方法中，获取应用启动时的初始布局避让区域时可调用该接口；2、当应用内子窗需要临时显示，对显示内容做布局避让时可调用该接口；3、创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，调用[setSystemAvoidAreaEnabled](#setsystemavoidareaenabled16)方法使能后，该接口对此类窗口亦生效。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2208,7 +2208,7 @@ try {
 
 setSystemAvoidAreaEnabled(enabled: boolean): Promise&lt;void&gt;
 
-创建悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md#windowtype7)的类型窗口时，可以调用该接口使能窗口获取[避让区](#avoidarea7)。
+创建悬浮窗、模态窗或WindowType窗口类型为系统窗口时，可以调用该接口使能窗口获取[避让区](#avoidarea7)。
 
 该接口一般适用于此场景：应用于创建上述类型窗口并希望获取避让区信息时，需要在创建窗口后调用该接口设置使能该窗口，再调用[getWindowAvoidArea()](#getwindowavoidarea9)或[on('avoidAreaChange')](#onavoidareachange9)获取或监听避让区。
 
@@ -2273,7 +2273,7 @@ try {
 
 isSystemAvoidAreaEnabled(): boolean
 
-获取悬浮窗、模态窗或[@ohos.window (窗口)(系统接口) WindowType](js-apis-window-sys.md#windowtype7)的类型窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
+获取悬浮窗、模态窗或WindowType为系统类型的窗口是否可以获取窗口内容的[避让区](#avoidarea7)。
 
 **系统能力：** SystemCapability.Window.SessionManger
 
@@ -7732,6 +7732,139 @@ struct Index {
           })
       }.width('100%')
     }.height('100%').width('100%')
+  }
+}
+```
+
+### startMoving<sup>15+</sup>
+
+startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
+
+指定鼠标在窗口内的位置并移动窗口，使用Promise异步回调。
+
+在同应用内窗口分合后，且鼠标保持按下状态直接移动新窗口，如果此时鼠标快速移动，窗口移动时鼠标可能会在窗口外。可以使用本接口指定窗口移动时鼠标在窗口内的位置，先移动窗口到鼠标位置，再开始移动窗口。
+
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名     | 类型       | 必填     | 说明                                                 |
+| --------- | --------- | ------- |----------------------------------------------------|
+| offsetX | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的x轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口宽度为非法参数，窗口宽度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
+| offsetY | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的y轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口高度为非法参数，窗口宽度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
+
+**返回值：**
+
+| 类型                | 说明                         |
+| ------------------- |----------------------------|
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ---- | -------------------------------------------- |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300001 | Repeated operation. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Blank('160')
+          .color(Color.Blue)
+          .onTouch((event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              try {
+                windowClass.startMoving(100, 50).then(() => {
+                  console.info('Succeeded in starting moving window.')
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to start moving. Cause code: ${err.code}, message: ${err.message}`);
+                });
+              } catch (exception) {
+                console.error(`Failed to start moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            }
+          })
+      }.width('100%')
+    }.height('100%').width('100%')
+  }
+}
+```
+
+### stopMoving<sup>15+</sup>
+
+stopMoving(): Promise&lt;void&gt;
+
+在窗口拖拽移动过程中，通过此接口来停止窗口移动，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | -------------------------|
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+        if (data.reason === window.RectChangeReason.MOVE) {
+          windowClass.stopMoving().then(() => {
+            console.info('Succeeded in stopping moving window.')
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to stop moving. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        }
+      });
+    } catch (exception) {
+      console.error(`Failed to stop moving window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```

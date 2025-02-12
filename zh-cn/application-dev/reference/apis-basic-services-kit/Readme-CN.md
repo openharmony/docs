@@ -120,7 +120,7 @@
     - [Print_PrintAttributes](_print___print_attributes.md)
     - [Print_PrintDocCallback](_print___print_doc_callback.md)
     - [Print_Range](_print___range.md)
-- 错误码
+- 错误码<!--basic-services-arkts-errcode-->
   - [USB服务错误码](errorcode-usb.md)
   - [RunningLock锁错误码](errorcode-runninglock.md)
   - [zlib子系统错误码](errorcode-zlib.md)
@@ -142,5 +142,6 @@
   - [升级错误码](errorcode-update.md)
   <!--Del-->
   - [锁屏服务错误码](errorcode-screenlock.md)
+  - [设备证明错误码](errorcode-deviceAttest.md)
   - [智能语音错误码](errorcode-intelligentVoice.md)
   <!--DelEnd-->

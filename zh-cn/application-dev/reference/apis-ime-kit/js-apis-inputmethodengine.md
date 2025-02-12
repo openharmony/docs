@@ -2265,6 +2265,65 @@ try {
 }
 ```
 
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+设置输入法应用的沉浸模式。只能设置不使用沉浸模式(NONE_IMMERSIVE)、浅色沉浸模式(LIGHT_IMMERSIVE)或深色沉浸模式(DARK_IMMERSIVE)。不能设置为沉浸模式(IMMERSIVE)。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#immersivemode15) | 是   | 沉浸模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**示例：**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+获取输入法应用沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#immersivemode15) | 沉浸模式。 |
+
+**示例：**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+
 ## KeyboardController
 
 下列API均需使用[on('inputStart')](#oninputstart9)获取到KeyboardController实例后，通过实例调用。
@@ -2531,17 +2590,17 @@ keyboardController.exitCurrentInputType().then(() => {
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
 > **说明**
 >
-> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage16)回调函数。
+> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2550,7 +2609,7 @@ keyboardController.exitCurrentInputType().then(() => {
 | onTerminated | function | 否   | 对象终止接收的回调函数。           |
 | onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -2591,7 +2650,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -4335,7 +4394,7 @@ try {
 }
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -4389,7 +4448,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void;
 
@@ -4397,9 +4456,9 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler16)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler16)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -4407,7 +4466,7 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | 否   | 该对象将通过[onMessage](#messagehandleronmessage16)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated16)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler16)对象，并触发其[onTerminated](#messagehandleronterminated16)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
 
 **返回值：**
 
@@ -4451,6 +4510,7 @@ inputMethodController.recvMessage();
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
+| immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 
 ## KeyEvent
 
@@ -4547,6 +4607,19 @@ inputMethodController.recvMessage();
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
+
+## ImmersiveMode<sup>15+</sup>
+
+枚举，输入法沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | 不使用沉浸模式。 |
+| IMMERSIVE      | 1 | 沉浸模式，由输入法应用确定沉浸模式类型。 |
+| LIGHT_IMMERSIVE  | 2 | 浅色沉浸模式。 |
+| DARK_IMMERSIVE   | 3 | 深色沉浸模式。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 

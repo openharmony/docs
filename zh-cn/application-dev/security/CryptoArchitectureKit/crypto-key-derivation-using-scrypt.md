@@ -67,7 +67,7 @@
   function ScryptPromise() {
     let spec: cryptoFramework.ScryptSpec = {
       algName: 'SCRYPT',
-      password: '123456',
+      passphrase: '123456',
       salt: new Uint8Array(16),
       n:1024,
       p:16,
@@ -95,7 +95,7 @@
     try {
       let spec: cryptoFramework.ScryptSpec = {
         algName: 'SCRYPT',
-        password: '123456',
+        passphrase: '123456',
         salt: new Uint8Array(16),
         n:1024,
         p:16,

@@ -112,7 +112,7 @@ struct FontExample {
 >
 > 应用若需全局使用自定义字体，请在EntryAbility.ets文件的[onWindowStageCreate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonwindowstagecreate)生命周期中，通过[windowStage.loadContent](js-apis-window.md#loadcontent9)回调注册。
 >
-> 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[HSP资源引用](../../quick-start/in-app-hsp.md#通过$r访问hsp中的资源)。
+> 在HSP工程中，不推荐采用相对路径的方式注册自定义字体，详见[通过$r访问HSP中的资源](../../quick-start/in-app-hsp.md)。
 
 ## font.getSystemFontList<sup>10+</sup>
 

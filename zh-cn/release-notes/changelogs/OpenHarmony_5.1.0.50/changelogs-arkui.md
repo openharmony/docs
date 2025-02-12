@@ -180,3 +180,36 @@ struct AttrAnimationExample {
 }
 ```
 
+## cl.arkui.4 滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件过界跟手系数变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件最大下拉过界距离太大，需要调整过界跟手系数，优化体验。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+| 变更前 | 变更后 |
+|---------|---------|
+| 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较大。<br> ![变更前](figures/list-changelog1_1.gif)       | 滚动类组件和Refresh组件下拉过界时，相同手指滑动，下拉过界距离较小。 <br> ![变更后](figures/list-changelog.gif)       |
+
+**起始API Level**
+
+API 7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**变更的接口/组件**
+
+ArkUI 滚动类组件（List、Scroll、Grid、WaterFlow）和Refresh组件。
+
+**适配指导**
+
+变更后下拉过界效果更优，无需适配。
