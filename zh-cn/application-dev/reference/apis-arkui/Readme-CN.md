@@ -70,7 +70,7 @@
     - [@system.router (页面路由)](js-apis-system-router.md)
     - [XComponentNode](js-apis-arkui-xcomponentNode.md)
 - ArkTS组件<!--arkui-declarative-comp-->
-  - 组件通用信息!--universal-component-information-->
+  - 组件通用信息<!--universal-component-information-->
     - 通用事件<!--universal-events-->
       - [点击事件](arkui-ts/ts-universal-events-click.md)
       - [触摸事件](arkui-ts/ts-universal-events-touch.md)
