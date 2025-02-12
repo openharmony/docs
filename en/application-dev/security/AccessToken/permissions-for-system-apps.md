@@ -4488,6 +4488,18 @@ After the script address is configured, other applications can read and parse th
 
 **Valid since**: 15
 
+### ohos.permission.GET_PAGE_INFO
+
+Allows a system application to obtain the page information of a specified application.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ## system_grant Permissions (Unavailable via ACL)
 
 The following lists the system_grant permissions that cannot be requested via the ACL.

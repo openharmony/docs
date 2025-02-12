@@ -4467,6 +4467,18 @@
 
 **起始版本**：15
 
+### ohos.permission.GET_PAGE_INFO
+
+允许系统应用获取指定应用页面信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
