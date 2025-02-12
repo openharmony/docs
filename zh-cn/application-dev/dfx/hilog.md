@@ -404,7 +404,7 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    11-15 16:17:18.264  1155  1633 I C02943/power_host/ThermalHdi: CompressFile start
    ```
 
-### 查看、设置落盘任务
+### 查看和设置落盘任务
 
    ```
    hilog -w control
@@ -470,17 +470,39 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    11-15 16:37:09.011200742  1134  1723 I C02B01/riladapter_host/HrilExt: [NotifyToBoosterNet-(hril_manager_ext.cpp:454)] RilExt: HNOTI_BOOSTER_NET_IND report to booster net finish
    ```
 
-### 设置可打印日志的最低等级
+### 查看和设置日志级别
 
    ```
+   // 全局日志级别默认为Info，查询全局日志级别
+   param get param get hilog.loggable.global
+
+   // 设置全局日志级别
    hilog -b D/I/W/E/F
+
+   // 设置[DOMAINID]可打印的日志级别
+   hilog -b D/I/W/E/F -D [DOMAINID]
+
+   // 设置[TAG]可打印的日志级别
+   hilog -b D/I/W/E/F -T [TAG]
+
+   // 设置全局日志级别，重启仍生效
+   hilog -b D/I/W/E/F --persist
    ```
 
    **使用样例：**
 
    ```
+   $ param get hilog.loggable.global
+   I
+
    $ hilog -b E
    Set global log level to E successfully
+
+   $ hilog -b D -D 0x2d00
+   Set domain 0x2d00 log level to D successfully
+
+   $ hilog -b E -T testTag
+   Set tag testTag log level to E successfully
    ```
 <!--Del-->
 ### 隐私开关
