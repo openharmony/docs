@@ -1,173 +1,173 @@
-# ±àÒë¹¤¾ßÁ´´íÎóÂë
+# ç¼–è¯‘å·¥å…·é“¾é”™è¯¯ç 
 
-> **ËµÃ÷£º**
+> **è¯´æ˜Žï¼š**
 >
-> ÒÔÏÂ½ö½éÉÜ±¾Ä£¿éÌØÓÐ´íÎóÂë£¬Í¨ÓÃ´íÎóÂëÇë²Î¿¼[Í¨ÓÃ´íÎóÂëËµÃ÷ÎÄµµ](../errorcode-universal.md)¡£
+> ä»¥ä¸‹ä»…ä»‹ç»æœ¬æ¨¡å—ç‰¹æœ‰é”™è¯¯ç ï¼Œé€šç”¨é”™è¯¯ç è¯·å‚è€ƒ[é€šç”¨é”™è¯¯ç è¯´æ˜Žæ–‡æ¡£](../errorcode-universal.md)ã€‚
 
-## 10311001 µ¼ÈëArkTSÎÄ¼þ´íÎó
+## 10311001 å¯¼å…¥ArkTSæ–‡ä»¶é”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Importing ArkTS files in JS and TS files is forbidden.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-½ûÖ¹ÔÚJSºÍTSÎÄ¼þÖÐµ¼ÈëArkTSÎÄ¼þ¡£
+ç¦æ­¢åœ¨JSå’ŒTSæ–‡ä»¶ä¸­å¯¼å…¥ArkTSæ–‡ä»¶ã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-ÔÚJSºÍTSÎÄ¼þÖÐµ¼ÈëÁËArkTSÎÄ¼þ¡£
+åœ¨JSå’ŒTSæ–‡ä»¶ä¸­å¯¼å…¥äº†ArkTSæ–‡ä»¶ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-ÇëÒÆ³ýJSºÍTSÎÄ¼þÖÐµÄArkTSÎÄ¼þµ¼ÈëÓï¾ä¡£
+è¯·ç§»é™¤JSå’ŒTSæ–‡ä»¶ä¸­çš„ArkTSæ–‡ä»¶å¯¼å…¥è¯­å¥ã€‚
 
-## 10311002 ½âÎöOhmUrl´íÎó
+## 10311002 è§£æžOhmUrlé”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Failed to resolve OhmUrl. Failed to get a resolved OhmUrl for `${filePath}` imported by `${importerFile}`.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-ÎÞ·¨½âÎöOhmUrl¡£ÎÞ·¨Îª`${importerFile}`µ¼ÈëµÄ`${filePath}`»ñÈ¡½âÎöºóµÄOhmUrl¡£
+æ— æ³•è§£æžOhmUrlã€‚æ— æ³•ä¸º`${importerFile}`å¯¼å…¥çš„`${filePath}`èŽ·å–è§£æžåŽçš„OhmUrlã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-`${filePath}`ËùÊôµÄ`${pkgName}`Ä£¿éÅäÖÃ´íÎó¡£
+`${filePath}`æ‰€å±žçš„`${pkgName}`æ¨¡å—é…ç½®é”™è¯¯ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-1. ¼ì²é`${filePath}`ËùÊôµÄ`${pkgName}`Ä£¿éÊÇ·ñÅäÖÃÕýÈ·¡£
-2. ¼ì²é¶ÔÓ¦µÄÎÄ¼þÃûÊÇ·ñÕýÈ·£¨°üÀ¨´óÐ¡Ð´Ãô¸Ð£©¡£
+1. æ£€æŸ¥`${filePath}`æ‰€å±žçš„`${pkgName}`æ¨¡å—æ˜¯å¦é…ç½®æ­£ç¡®ã€‚
+2. æ£€æŸ¥å¯¹åº”çš„æ–‡ä»¶åæ˜¯å¦æ­£ç¡®ï¼ˆåŒ…æ‹¬å¤§å°å†™æ•æ„Ÿï¼‰ã€‚
 
-## 10311003 »ñÈ¡KitÅäÖÃÎÄ¼þ´íÎó
+## 10311003 èŽ·å–Kité…ç½®æ–‡ä»¶é”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Kit `${moduleRequest}` has no corresponding config file in ArkTS SDK.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-Kit `${moduleRequest}` ÔÚArkTS SDKÖÐÃ»ÓÐ¶ÔÓ¦µÄÅäÖÃÎÄ¼þ¡£
+Kit `${moduleRequest}` åœ¨ArkTS SDKä¸­æ²¡æœ‰å¯¹åº”çš„é…ç½®æ–‡ä»¶ã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-1. KitµÄAPIÓëSDK²»Ò»ÖÂ¡£
-2. KitµÄAPIÔÚ±¾µØ±»ÐÞ¸Ä¡£
+1. Kitçš„APIä¸ŽSDKä¸ä¸€è‡´ã€‚
+2. Kitçš„APIåœ¨æœ¬åœ°è¢«ä¿®æ”¹ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-1. ÇëÈ·±£KitµÄAPIÓëSDKÒ»ÖÂ£¬²¢ÇÒKitµÄAPIÃ»ÓÐ±»±¾µØÐÞ¸Ä¡£
-2. ÓÐ¹ØKit APIµÄ¸ü¶àÏêÏ¸ÐÅÏ¢£¬Çë²Î¿¼[¿ª·¢ËµÃ÷](../development-intro.md)¡£
+1. è¯·ç¡®ä¿Kitçš„APIä¸ŽSDKä¸€è‡´ï¼Œå¹¶ä¸”Kitçš„APIæ²¡æœ‰è¢«æœ¬åœ°ä¿®æ”¹ã€‚
+2. æœ‰å…³Kit APIçš„æ›´å¤šè¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚è€ƒ<!--RP1-->[å¼€å‘è¯´æ˜Ž](../development-intro.md)ã€‚<!--RP1End-->
 
-## 10311005 µ¼ÈëKit±êÊ¶·û´íÎó
+## 10311005 å¯¼å…¥Kitæ ‡è¯†ç¬¦é”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Identifier `${this.importName}` comes from `${this.symbol.source}` which can not be imported in .ts file.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-±êÊ¶·û`${this.importName}`À´×Ô`${this.symbol.source}`£¬¸Ã±êÊ¶·û²»ÄÜÔÚ.tsÎÄ¼þÖÐµ¼Èë¡£
+æ ‡è¯†ç¬¦`${this.importName}`æ¥è‡ª`${this.symbol.source}`ï¼Œè¯¥æ ‡è¯†ç¬¦ä¸èƒ½åœ¨.tsæ–‡ä»¶ä¸­å¯¼å…¥ã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-ÔÚTSÎÄ¼þÖÐµ¼ÈëÁËArkTSÎÄ¼þµÄKitÄ£¿é¡£
+åœ¨TSæ–‡ä»¶ä¸­å¯¼å…¥äº†ArkTSæ–‡ä»¶çš„Kitæ¨¡å—ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-ÇëÒÆ³ýµ¼ÈëÓï¾ä»ò½«ÎÄ¼þÀ©Õ¹Ãû¸ü¸ÄÎª.ets¡£
+è¯·ç§»é™¤å¯¼å…¥è¯­å¥æˆ–å°†æ–‡ä»¶æ‰©å±•åæ›´æ”¹ä¸º.etsã€‚
 
-## 10311006 µ¼ÈëÃû³ÆÎ´´ÓKitÖÐµ¼³ö´íÎó
+## 10311006 å¯¼å…¥åç§°æœªä»ŽKitä¸­å¯¼å‡ºé”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 `${importName}` is not exported from Kit `${KitInfo.getCurrentKitName()}`.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-`${importName}`Ã»ÓÐ´ÓKit `${KitInfo.getCurrentKitName()}` ÖÐµ¼³ö¡£
+`${importName}`æ²¡æœ‰ä»ŽKit `${KitInfo.getCurrentKitName()}` ä¸­å¯¼å‡ºã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-1. KitµÄAPIÓëSDK²»Ò»ÖÂ¡£
-2. KitµÄAPIÔÚ±¾µØ±»ÐÞ¸Ä¡£
+1. Kitçš„APIä¸ŽSDKä¸ä¸€è‡´ã€‚
+2. Kitçš„APIåœ¨æœ¬åœ°è¢«ä¿®æ”¹ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-1. ÇëÈ·±£KitµÄAPIÓëSDKÒ»ÖÂ£¬²¢ÇÒKitµÄAPIÃ»ÓÐ±»±¾µØÐÞ¸Ä¡£
-2. ÓÐ¹ØKit APIµÄ¸ü¶àÏêÏ¸ÐÅÏ¢£¬Çë²Î¿¼[¿ª·¢ËµÃ÷](../development-intro.md)¡£
+1. è¯·ç¡®ä¿Kitçš„APIä¸ŽSDKä¸€è‡´ï¼Œå¹¶ä¸”Kitçš„APIæ²¡æœ‰è¢«æœ¬åœ°ä¿®æ”¹ã€‚
+2. æœ‰å…³Kit APIçš„æ›´å¤šè¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚è€ƒ<!--RP1-->[å¼€å‘è¯´æ˜Ž](../development-intro.md)ã€‚<!--RP1End-->
 
-## 10311007 KitÃüÃû¿Õ¼äµ¼Èë»òµ¼³ö´íÎó
+## 10311007 Kitå‘½åç©ºé—´å¯¼å…¥æˆ–å¯¼å‡ºé”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Namespace import or export of Kit is not supported currently.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-µ±Ç°²»Ö§³ÖKitµÄÃüÃû¿Õ¼äµ¼Èë»òµ¼³ö¡£
+å½“å‰ä¸æ”¯æŒKitçš„å‘½åç©ºé—´å¯¼å…¥æˆ–å¯¼å‡ºã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-ÎÄ¼þÖÐÊ¹ÓÃÁËKitµÄÃüÃû¿Õ¼äµ¼Èë»òµ¼³ö¡£
+æ–‡ä»¶ä¸­ä½¿ç”¨äº†Kitçš„å‘½åç©ºé—´å¯¼å…¥æˆ–å¯¼å‡ºã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-Çë½«KitµÄÃüÃû¿Õ¼äµ¼Èë»òµ¼³öÌæ»»ÎªÃüÃûµ¼Èë»òµ¼³ö¡£ÀýÈç£¬`import * as ArkTS from "@kit.ArkUI";` -> `import { AlertDialog } from "@kit.ArkUI";`¡£
+è¯·å°†Kitçš„å‘½åç©ºé—´å¯¼å…¥æˆ–å¯¼å‡ºæ›¿æ¢ä¸ºå‘½åå¯¼å…¥æˆ–å¯¼å‡ºã€‚ä¾‹å¦‚ï¼Œ`import * as ArkTS from "@kit.ArkUI";` -> `import { AlertDialog } from "@kit.ArkUI";`ã€‚
 
-## 10311008 Kit¿Õµ¼Èë´íÎó
+## 10311008 Kitç©ºå¯¼å…¥é”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Can not use empty import(side-effect import) statement with Kit `${(kitNode.moduleSpecifier as ts.StringLiteral).text.replace(/'|"/g, '')}`.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-ÎÞ·¨ÔÚKit `${(kitNode.moduleSpecifier as ts.StringLiteral).text.replace(/'|"/g, '')}` ÖÐÊ¹ÓÃ¿Õµ¼Èë£¨¸±×÷ÓÃµ¼Èë£©Óï¾ä¡£
+æ— æ³•åœ¨Kit `${(kitNode.moduleSpecifier as ts.StringLiteral).text.replace(/'|"/g, '')}` ä¸­ä½¿ç”¨ç©ºå¯¼å…¥ï¼ˆå‰¯ä½œç”¨å¯¼å…¥ï¼‰è¯­å¥ã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-ÎÄ¼þÖÐÊ¹ÓÃÁËKitµÄ¿Õµ¼Èë£¨¸±×÷ÓÃµ¼Èë£©Óï¾ä¡£
+æ–‡ä»¶ä¸­ä½¿ç”¨äº†Kitçš„ç©ºå¯¼å…¥ï¼ˆå‰¯ä½œç”¨å¯¼å…¥ï¼‰è¯­å¥ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-ÇëÃ÷È·Ö¸¶¨µ¼ÈëµÄ·ûºÅ¡£ÀýÈç£¬`import "@kit.ArkUI";` -> `import { lang } from "@kit.ArkUI";`¡£
+è¯·æ˜Žç¡®æŒ‡å®šå¯¼å…¥çš„ç¬¦å·ã€‚ä¾‹å¦‚ï¼Œ`import "@kit.ArkUI";` -> `import { lang } from "@kit.ArkUI";`ã€‚
 
-## 10311009 ES2ABCÖ´ÐÐ´íÎó
+## 10311009 ES2ABCæ‰§è¡Œé”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 Failed to execute es2abc.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-ÎÞ·¨Ö´ÐÐes2abc¡£
+æ— æ³•æ‰§è¡Œes2abcã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-es2abcÖ´ÐÐ¹ý³ÌÖÐ³öÏÖ´íÎó¡£
+es2abcæ‰§è¡Œè¿‡ç¨‹ä¸­å‡ºçŽ°é”™è¯¯ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-Çë²Î¿¼es2abcµÄ´íÎóÂë½øÐÐ´¦Àí¡£
+è¯·å‚è€ƒes2abcçš„é”™è¯¯ç è¿›è¡Œå¤„ç†ã€‚
 
-## 10311010 ÀÁ¼ÓÔØµ¼ÈëÖØÐÂµ¼³ö´íÎó
+## 10311010 æ‡’åŠ è½½å¯¼å…¥é‡æ–°å¯¼å‡ºé”™è¯¯
 
-**´íÎóÐÅÏ¢**
+**é”™è¯¯ä¿¡æ¯**
 
 `${elementText}` of lazy-import is re-export.
 
-**´íÎóÃèÊö**
+**é”™è¯¯æè¿°**
 
-`${elementText}`µÄÀÁ¼ÓÔØµ¼Èë±»ÖØÐÂµ¼³ö¡£
+`${elementText}`çš„æ‡’åŠ è½½å¯¼å…¥è¢«é‡æ–°å¯¼å‡ºã€‚
 
-**¿ÉÄÜÔ­Òò**
+**å¯èƒ½åŽŸå› **
 
-ÖØÐÂµ¼³öÁË¾­¹ýÀÁ¼ÓÔØµ¼ÈëµÄ`${elementText}`¡£
+é‡æ–°å¯¼å‡ºäº†ç»è¿‡æ‡’åŠ è½½å¯¼å…¥çš„`${elementText}`ã€‚
 
-**´¦Àí²½Öè**
+**å¤„ç†æ­¥éª¤**
 
-1. ÇëÈ·±£ÀÁ¼ÓÔØµ¼ÈëµÄÃüÃû°ó¶¨Ã»ÓÐ±»ÖØÐÂµ¼³ö¡£
-2. Çë¼ì²éÊÇ·ñ¿ªÆôÁËautoLazyImport¿ª¹Ø¡£
+1. è¯·ç¡®ä¿æ‡’åŠ è½½å¯¼å…¥çš„å‘½åç»‘å®šæ²¡æœ‰è¢«é‡æ–°å¯¼å‡ºã€‚
+2. è¯·æ£€æŸ¥æ˜¯å¦å¼€å¯äº†autoLazyImportå¼€å…³ã€‚
