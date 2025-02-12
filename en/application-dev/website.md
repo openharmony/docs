@@ -1,15 +1,15 @@
 # Application Development
 - Refrence folder<!--reference-fold-->
   - C APIC-API add api-nifo tag<!--reference-fold--0624-->
-    - [\@ohos.data.dataAbility (DataAbility)](../application-dev/onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
-    - [Media-errorcode](../application-dev/onlyfortest/reference/apis-media-kit/errorcode-media.md)
-    - [SplitLayout](../application-dev/onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
-    - [Basic Type Definition](../application-dev/onlyfortest/reference/apis-arkui/arkui-ts/ts-types.md)
-    - [api-info-pass](../application-dev/onlyfortest/reference/apis-audio-kit/native__audiocapturer_8h.md)
-    - [fail-Topci no since](../application-dev/onlyfortest/reference/apis-audio-kit/native__audiorenderer_8h.md)
-    - [fail-Topic since is a non-positive integer](../application-dev/onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
-    - [fail-overview not the first level-2 title](../application-dev/onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
-    - [fail-no overview](../application-dev/onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
+    - [\@ohos.data.dataAbility (DataAbility)](onlyfortest/reference/apis-arkdata/js-apis-data-ability.md)
+    - [Media-errorcode](onlyfortest/reference/apis-media-kit/errorcode-media.md)
+    - [SplitLayout](onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
+    - [Basic Type Definition](onlyfortest/reference/apis-arkui/arkui-ts/ts-types.md)
+    - [api-info-pass](onlyfortest/reference/apis-audio-kit/native__audiocapturer_8h.md)
+    - [fail-Topci no since](onlyfortest/reference/apis-audio-kit/native__audiorenderer_8h.md)
+    - [fail-Topic since is a non-positive integer](onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
+    - [fail-overview not the first level-2 title](onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
+    - [fail-no overview](onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
 - not-refrence folder<!--not--reference-fold-->
   - C APIC-API add api-nifo tag<!--not--reference-fold--0624-->
-    - [OHAudio](../application-dev/onlyfortest/media/audio/audio-kit-intro.md)
+    - [OHAudio](onlyfortest/media/audio/audio-kit-intro.md)
