@@ -94,7 +94,6 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001563060641.png)
 
-
 ## 自定义样式
 
 - 设置边框弧度。
@@ -284,7 +283,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   }
   ```
 
-  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562700393.png)
+  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562940814.gif)
 
 
 - 用于提交表单。
