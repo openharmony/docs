@@ -2406,6 +2406,100 @@ keyboardController.exitCurrentInputType().then(() => {
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 否 | 否 | 选中文本时，光标的移动方向。|
 
+## MessageHandler<sup>15+</sup>
+
+自定义通信对象。
+
+> **说明**
+>
+> 开发者可通过注册此对象来接收已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
+>
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+>
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 类型     | 可选 | 说明                               |
+| ------------ | -------- | ---- | ---------------------------------- |
+| onTerminated | function | 否   | 对象终止接收的回调函数。           |
+| onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
+
+## MessageHandler.onMessage<sup>15+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+接收已绑定当前输入法应用的编辑框应用发送的自定义数据回调函数。
+
+> **说明**
+>
+> 当已注册的MeesageHandler接收到来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据时，会触发该回调函数。
+>
+> msgId为必选参数，msgParam为可选参数。存在收到仅有msgId自定义数据的可能，需与数据发送方确认自定义数据。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 可选 | 说明                             |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | 否   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 是   | 接收到的自定义通信数据的消息体。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+## MessageHandler.onTerminated<sup>15+</sup>
+
+onTerminated(): void
+
+监听对象终止回调函数。
+
+> **说明**
+>
+> 当应用注册新的MessageHandler对象时，会触发上一个已注册MessageHandler对象的OnTerminated回调函数。
+>
+> 当应用取消注册时，会触发当前已注册MessageHandler对象的OnTerminated回调函数。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
 ## InputClient<sup>9+</sup>
 
 下列API均需使用[on('inputStart')](#oninputstart9)获取到InputClient实例后，通过实例调用。
@@ -4116,7 +4210,111 @@ try {
 }
 ```
 
-## EditorAttribute
+### sendMessage<sup>15+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+发送自定义通信至已绑定当前输入法应用的编辑框应用。使用Promise异步回调。
+
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定并进入编辑状态，且输入法应用处于完整体验模式时才能调用。
+>
+> msgId最大限制256B，msgParam最大限制128KB。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 可选 | 说明                                                         |
+| -------- | ----------- | ---- | ------------------------------------------------------------ |
+| msgId    | string      | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | parameter error.                            |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>15+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void;
+
+注册或取消注册Messagehandler。
+
+> **说明：**
+>
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+>
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                         |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自已绑定当前输入法应用的编辑框应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
+
+**返回值：**
+
+| 类型 | 说明         |
+| ---- | ------------ |
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | parameter error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
+```
+
+### EditorAttribute
 
 编辑框属性值。
 
