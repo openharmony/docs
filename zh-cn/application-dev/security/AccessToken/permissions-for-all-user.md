@@ -182,7 +182,7 @@
 
 <!--RP2--><!--RP2End-->
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+**权限级别**：API 11为system_basic; 从API 12开始为normal。
 
 **授权方式**：user_grant
 
@@ -196,7 +196,7 @@
 
 <!--RP2--><!--RP2End-->
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+**权限级别**：API 11为system_basic; 从API 12开始为normal。
 
 **授权方式**：user_grant
 

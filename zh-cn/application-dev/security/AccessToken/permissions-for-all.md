@@ -169,7 +169,7 @@
 
 允许应用将窗口设置为隐私窗口，禁止截屏录屏。
 
-**权限级别**：API version 9-10为system_basic；从API version 11开始为normal。
+**权限级别**：API 9-10为system_basic；从API 11开始为normal。
 
 **授权方式**：system_grant
 
@@ -355,7 +355,7 @@
 
 <!--RP2--><!--RP2End-->
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+**权限级别**：API 11为system_basic; 从API 12开始为normal。
 
 **授权方式**：system_grant
 

@@ -265,18 +265,6 @@ Allows an application to publish unremovable notifications.
 
 **Valid since**: 11
 
-### ohos.permission.GET_DOMAIN_ACCOUNTS
-
-Allows an application to obtain domain account information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 10
-
 ### ohos.permission.UNINSTALL_BUNDLE
 
 Allows an application to uninstall applications.
@@ -396,18 +384,6 @@ Allows an application to intercept the startup of the Ability component. This pe
 **Enable via ACL**: true
 
 **Valid since**: 9
-
-### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
-
-Allows an application to interact across local accounts.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 7
 
 ### ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
@@ -4224,6 +4200,20 @@ Allows a system application to access the application installation directory.
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.SET_PAC_URL
+
+Allows an application to set the URL of the proxy auto config (PAC) script.
+
+After the script address is configured, other applications can read and parse this script and determine whether to use a proxy based on the parsing result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
 
 ## system_grant Permissions (Unavailable via ACL)
 

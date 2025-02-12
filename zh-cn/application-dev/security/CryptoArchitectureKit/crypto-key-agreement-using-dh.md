@@ -13,7 +13,7 @@
 
 3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘密。
 
-- 以使用await方式，完成密钥协商为例：
+- 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -30,7 +30,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = await keyAgreement.generateSecret(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('DH success');
       console.info('DH output is ' + secret1.data);
     } else {
@@ -44,7 +44,7 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-  function dhAwait() {
+  function dhAgreementSync() {
     let keyGen = cryptoFramework.createAsyKeyGenerator('DH_modp1536');
     // 随机生成公私钥对A
     let keyPairA = keyGen.generateKeyPairSync();
@@ -56,7 +56,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = keyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('DH success');
       console.info('DH output is ' + secret1.data);
     } else {

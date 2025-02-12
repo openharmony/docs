@@ -539,6 +539,8 @@ WAPI认证方式的枚举。
 | DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
 | WIFI6 | 2 | Wifi6。 |
 | WIFI6_PLUS | 3 | Wifi6+。 |
+| WIFI7<sup>15+</sup> | 4 | Wifi7。 |
+| WIFI7_PLUS<sup>15+</sup> | 5 | Wifi7+。 |
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 

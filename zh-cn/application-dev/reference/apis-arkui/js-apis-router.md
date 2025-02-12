@@ -1044,7 +1044,7 @@ back(index: number, params?: Object): void;
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index | number | 是    | 跳转目标页面的索引值。  |
+| index | number | 是    | 跳转目标页面的索引值。 从栈底到栈顶，index从1开始递增。 |
 | params    | Object      | 否    | 页面返回时携带的参数。 |
 
 **示例：**
@@ -1134,7 +1134,7 @@ getStateByIndex(index: number): RouterState | undefined
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index    | number | 是   | 表示要获取的页面索引。  |
+| index    | number | 是   | 表示要获取的页面索引。从栈底到栈顶，index从1开始递增。 |
 
 **返回值：**
 

@@ -464,26 +464,41 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
 命令格式如下：
 
    ```shell
-   hdc shell [command]
+   hdc shell [-b bundlename] [command]
    ```
 
    **参数：**
    | 参数 | 说明 |
    | -------- | -------- |
-   | [command] | 需要在设备侧执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前许多命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。 |
+   | [-b _bundlename_] | 指定可调试应用包名，在可调试应用数据目录内，以非交互式模式执行命令。<br>此参数当前仅支持以非交互式模式执行命令，不支持缺省command参数执行命令进入交互式shell会话，<br>未配置此参数默认执行路径为系统根目录。 |
+   | [command] | 需要在设备侧执行的单次命令，不同类型或版本的系统支持的command命令有所差异，可以通过hdc shell ls /system/bin查阅支持的命令列表。当前许多命令都是由[toybox](../tools/toybox.md)提供，可通过 hdc shell toybox --help 获取命令帮助。<br>缺省该参数，hdc将会启动一个交互式的shell会话，开发者可以在命令提示符下输入命令，比如 ls、cd、pwd 等。 |
 
    **返回值：**
    | 返回值 | 说明 |
    | -------- | -------- |
    | 交互命令返回内容 | 返回内容详情请参见其他交互命令返回内容。 |
    | /bin/sh: XXX : inaccessible or not found | 不支持的交互命令。 |
+   | [Fail]具体失败信息 | 执行失败，参见[hdc错误码章节](#hdc错误码)。 |
 
    **使用方法：**
 
    ```shell
+   # 进入交互式模式执行命令
+   hdc shell
+
+   # 以非交互式模式执行命令
    hdc shell ps -ef
-   hdc shell help -a // 查询全部可用命令
+
+   # 查询全部可用命令
+   hdc shell help -a
+
+   # 在指定包名的应用数据目录内以非交互式模式执行命令，支持touch、rm、ls、stat、cat、mkdir命令。
+   hdc shell -b com.example.myapplication ls data/storage/el2/base/
    ```
+
+   > **说明：**
+   >
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
 
 ## 应用管理
 
@@ -556,7 +571,7 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
 1. 从本地发送文件至远端设备，命令格式如下：
 
    ```shell
-   hdc file send [-a|-sync|-z|-m] localpath remotepath
+   hdc file send [-a|-sync|-z|-m|-b bundlename] localpath remotepath
    ```
 
    **参数：**
@@ -568,6 +583,8 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    | -sync | 只传输文件mtime有更新的文件。 |
    | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
    | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。 |
+   | -b | 传输指定的可调试应用进程应用数据目录下的文件。 |
+   | _bundlename_ | 可调试应用进程的包名。 |
 
    **返回值：**
 
@@ -577,12 +594,19 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
 
    ```shell
    hdc file send E:\example.txt /data/local/tmp/example.txt
+   hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt
    ```
+
+   > **说明：**
+   >
+   > 使用方法中，`hdc file send -b com.example.myapplication a.txt data/storage/el2/base/b.txt`指定了-b参数，将传输本地当前目录下的文件a.txt到包名为com.example.myapplication应用数据目录，传输到相对路径data/storage/el2/base/下，并重命名为b.txt。
+   >
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
 
 2. 从远端设备发送文件至本地，命令格式如下：
 
    ```shell
-   hdc file recv [-a|-sync|-z|-m] remotepath localpath
+   hdc file recv [-a|-sync|-z|-m|-b bundlename] remotepath localpath
    ```
 
    **参数：**
@@ -594,6 +618,8 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
    | -sync | 只传输文件mtime有更新的文件。 |
    | -z | 通过LZ4格式压缩传输，此功能未开放，请勿使用。 |
    | -m | 文件传输时同步文件DAC权限，uid，gid，MAC权限。 |
+   | -b | 传输指定的可调试应用进程应用数据目录下的文件。 |
+   | _bundlename_ | 可调试应用进程的包名。 |
 
    **返回值：**
 
@@ -603,7 +629,14 @@ hdc client（客户端）在PC1中运行，hdc server（服务端）在PC2中运
 
    ```shell
    hdc file recv  /data/local/tmp/a.txt   ./a.txt
+   hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt   a.txt
    ```
+
+   > **说明：**
+   >
+   > 使用方法中，`hdc file recv -b com.example.myapplication data/storage/el2/base/b.txt   a.txt`指定了-b参数，将传输名为com.example.myapplication可调试应用进程的应用数据相对路径data/storage/el2/base/下的文件b.txt到本地当前目录下，并重命名为a.txt。
+   >
+   > 使用参数[-b _bundlename_]指定包名，应满足条件：指定包名的已安装应用为“以debug模式构建的可调试应用”， 以debug模式构建应用可参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)。
 
 ## 端口转发
 
@@ -1300,3 +1333,240 @@ linux环境可以选择开启非root用户USB设备操作权限，方法如下�
 2. 查看`设备管理`是否有`HDC Device`。
 3. 执行`hdc kill`关闭server后，执行`hdc -l5 start`收集日志（hdc.log位于执行端TEMP目录，不同平台目录位置存在差异，可参考[server端日志](#server端日志)）。
 4. 通过hdc.log日志定位相关问题。
+
+## hdc错误码
+
+### E003001 （命令行）指定的包名非法
+
+**错误信息**
+
+Invalid bundle name: _bundlename_
+
+**错误描述**
+
+命令`hdc shell [-b bundlename] [command]`指定的 _bundlename_ 不是已安装的可调试应用包名，或应用目录不存在。
+
+**可能原因**
+
+* 场景一：指定的应用未安装到设备上。
+
+* 场景二：指定包名的应用，不是以debug模式构建的应用。
+
+* 场景三：指定包名的应用没有启动。
+
+**处理步骤**
+
+* 场景一：确认命令指定包名的应用已安装到设备上。
+
+   a.可执行`hdc shell "bm dump -a | grep bundlename"`查询对应包名的应用是否已安装到设备上，预期返回信息为 _bundlename_；
+   
+   以应用名`com.example.myapplication`为例，查询命令如下：
+
+   ```shell
+   hdc shell "bm dump -a | grep com.example.myapplication"
+   ```
+
+   如应用已安装到设备上，预期返回信息：
+
+   ```shell
+   com.example.myapplication
+   ```
+
+   b.如应用为可调试应用，但未安装到设备上，可执行`hdc install [app_path]`安装应用；
+
+   c.如应用不是可调试应用，而是release类型的应用，将不支持指定 _bundlename_ 执行命令相关功能。
+
+* 场景二：确认命令指定的应用是以debug模式构建的可调试应用，可执行`hdc shell "bm dump -n bundlename | grep debug"`查询，预期返回信息为`"appProvisionType": "debug", "debug": true`。
+
+   以包名`com.example.myapplication`为例，可执行如下命令查询：
+
+   ```shell
+   hdc shell "bm dump -n com.example.myapplication | grep debug"
+   ```
+
+   如包名对应的应用是以debug模式构建的可调试应用，预期返回信息：
+
+   ```shell
+   "appProvisionType": "debug",
+   "debug": true,
+   ```
+
+   如何以debug模式构建应用请参考：[以debug模式构建HAR](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-hvigor-build-har-V5#section197792874110)
+
+* 场景三：确定命令指定的应用已启动。
+
+   a.启动应用后，系统会挂载相应的资源目录，可执行`hdc shell "mount |grep bundlename"`查询应用启动后的资源目录挂载情况。
+
+   以应用名`com.example.myapplication`为例，可执行如下命令查询是否已挂载资源目录：
+
+   ```shell
+   hdc shell "mount |grep com.example.myapplication"
+   ```
+
+   如已挂载相应的资源目录，预期返回挂载信息（返回内容以实际挂载情况为准，此处不作展示）。
+
+   如未挂载相应的资源目录，预期无返回信息。
+
+   b.如未挂载相应的资源目录，可以通过手动点击应用或通过`aa`相关命令启动应用。
+
+   以应用名`com.example.myapplication`模块名`EntryAbility`为例，启动命令为：
+
+   ```shell
+   hdc shell aa start -b com.example.myapplication -a EntryAbility
+   ```
+
+   更多详细用法请参考[aa命令介绍](../tools/aa-tool.md)。
+
+### E003002 命令行指定的参数不支持交互模式
+
+**错误信息**
+
+Unsupport interactive shell command option
+
+**错误描述**
+
+命令`hdc shell [-b bundlename] [command]`不支持“交互模式”命令行。
+
+**可能原因**
+
+命令`hdc shell [-b bundlename] [command]`指定的 _command_ 参数为空值。
+
+**处理步骤**
+
+确认命令的 _command_ 参数不为空值，详细使用方法参考[执行交互命令介绍](#执行交互命令)。
+
+### E003003 不支持的命令行参数
+
+**错误信息**
+
+Unsupported shell option: _option_
+
+**错误描述**
+
+命令`hdc shell [-b bundlename] [command]`存在不支持的命令行参数 _option_ 。
+
+**可能原因**
+
+命令`hdc shell [-b bundlename] [command]`指定了如`-f`、`-B`等不支持的命令行参数（参数区分大小写）。
+
+**处理步骤**
+
+请使用当前版本支持的命令行参数，如`-b`参数。
+
+### E003004 存在设备不支持的命令行参数
+
+**错误信息**
+
+Device does not supported this shell command
+
+**错误描述**
+
+命令`hdc shell [-b bundlename] [command]`存在设备不支持的命令行参数。
+
+**可能原因**
+
+设备系统版本较低，不支持对应新增的命令行参数功能。
+
+**处理步骤**
+
+升级设备系统版本到最新。
+
+### E003005 （命令行）缺少参数
+
+**错误信息**
+
+The parameter is missing, correct your input by referring below: _Usage_
+
+**错误描述**
+
+`hdc shell [-b bundlename] [command]`命令指定选项时，缺少必要的参数。
+
+**可能原因**
+
+命令指定-b选项时，缺少 _bundlename_、 _command_ 参数，参数详细释义参考[执行交互命令介绍](#执行交互命令)。
+
+**处理步骤**
+
+确认命令的 _bundlename_ 、 _command_ 参数均不为空。
+
+### E005101 （文件传输）指定的包名非法
+
+**错误信息**
+
+Invalid bundle name: _bundlename_
+
+**错误描述**
+
+命令`hdc file send/recv [-b bundlename] [localpath] [remotepath]`指定的 _bundlename_ 不是已安装的可调试应用包名，或应用目录不存在。
+
+**可能原因**
+
+同错误码[E003001](#e003001-命令行指定的包名非法)
+
+**处理步骤**
+
+同错误码[E003001](#e003001-命令行指定的包名非法)
+
+### E005102 非法的远程路径
+
+**错误信息**
+
+Remote path: _remotepath_ is invalid, it is out of the application directory.
+
+**错误描述**
+
+命令`hdc file send [-b bundlename] [localpath] [remotepath]`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
+
+命令`hdc file recv [-b bundlename] [remotepath] [localpath]`指定的 _remotepath_ 表示的路径不存在或者已超出应用数据目录。
+
+**可能原因**
+
+* 场景一：路径不存在。
+
+* 场景二：参数 _remotepath_ 包含`..`跳转符号，处理跳转后，实际目录超出了应用数据根目录。
+
+**处理步骤**
+
+检查参数 _remotepath_ 指定的应用数据目录相对路径是否真实存在。
+
+### E005003 （文件传输）缺少参数
+
+**错误信息**
+
+The parameter is missing, correct your input by referring below: _Usage_
+
+**错误描述**
+
+命令`hdc file send [-b bundlename] [localpath] [remotepath]`缺少必要的参数。
+
+命令`hdc file recv [-b bundlename] [remotepath] [localpath]`缺少必要的参数。
+
+**可能原因**
+
+命令指定-b选项时，缺少 _bundlename_、 _localpath_、 _remotepath_ 参数，参数详细释义参考[文件传输命令介绍](#文件传输)。
+
+**处理步骤**
+
+确认命令的 _bundlename_、_localpath_、_remotepath_ 参数均不为空。
+
+### E005004 SDK或者设备系统版本不支持-b选项
+
+**错误信息**
+
+SDK/Device ROM doesn't support -b option. 
+
+**错误描述**
+
+hdc file send/recv 命令带-b选项时，SDK中的hdc或设备系统版本不支持该选项。
+
+**可能原因**
+
+* 场景一：执行命令`hdc file send [-b bundlename] [localpath] [remotepath]`时，设备系统版本不支持-b选项。
+
+* 场景二：执行命令`hdc file recv [-b bundlename] [remotepath] [localpath]`时，SDK中的hdc不支持-b选项。
+
+**处理步骤**
+
+* 场景一：升级到最新系统版本。
+
+* 场景二：升级到最新SDK版本。
