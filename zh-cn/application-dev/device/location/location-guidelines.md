@@ -41,7 +41,7 @@
        console.error("errCode:" + err.code + ", message:"  + err.message);
    }
    ```
-   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)
+   如果位置开关未开启，可以拉起全局开关设置弹框，引导用户打开位置开关，具体可参考[拉起全局开关设置弹框](../../reference/apis-ability-kit/js-apis-abilityAccessCtrl.md#requestglobalswitch12)。
 
 4. 单次获取当前设备位置。多用于查看当前位置、签到打卡、服务推荐等场景。
    - 方式一：获取系统缓存的最新位置。<br/>

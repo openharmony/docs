@@ -83,7 +83,10 @@
     {
         Location_BasicInfo baseInfo = OH_LocationInfo_GetBasicInfo(location);
         char additionalInfo[1024] = "";
-        Location_ResultCode result = OH_LocationInfo_GetAdditionalInfo(location, additionalInfo, 1024);
+        Location_ResultCode result = OH_LocationInfo_GetAdditionalInfo(location, additionalInfo, sizeof(additionalInfo));
+        if (userData == "mydata") {
+            OH_LOG_INFO(LOG_APP, "userData is mydata");
+        }
         return;
     }
 
@@ -96,7 +99,7 @@
         OH_LocationRequestConfig_SetUseScene(g_requestConfig, LOCATION_USE_SCENE_NAVIGATION);
         OH_LocationRequestConfig_SetInterval(g_requestConfig, 1);
         void *userdata = (void *)"mydata"; // 用户自定义任意类型，callback 透传返回
-        OH_LocationRequestConfig_SetCallback(g_requestConfig, reportLocation, (void *)(1));
+        OH_LocationRequestConfig_SetCallback(g_requestConfig, reportLocation, userdata);
         OH_Location_StartLocating(g_requestConfig);
         int32_t ret = 0;
         napi_value result = NULL;

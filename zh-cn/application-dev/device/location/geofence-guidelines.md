@@ -25,8 +25,8 @@
 
    ```ts
    import { geoLocationManager } from '@kit.LocationKit';
-   import { wantAgent } from '@kit.AbilityKit';
-   import { BusinessError } from '@kit.BasicServicesKit'
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { notificationManager } from '@kit.NotificationKit';
    ```
 
 3. 创建围栏。
