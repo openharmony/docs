@@ -1106,15 +1106,15 @@ NetConn_ErrorCode OH_NetConn_SetPacUrl(const char *pacUrl)
 
 **返回：**
 
-NETCONN_SUCCESS - 成功.
+NETCONN_SUCCESS - 成功。
 
-NETCONN_PERMISSION_DENIED - 缺少权限.
+NETCONN_PERMISSION_DENIED - 缺少权限。
 
-NETCONN_PARAMETER_ERROR - 参数错误.
+NETCONN_PARAMETER_ERROR - 参数错误。
 
-NETCONN_OPERATION_FAILED - 无法连接到服务.
+NETCONN_OPERATION_FAILED - 无法连接到服务。
 
-NETCONN_INTERNAL_ERROR - 内部错误，表示设置脚本地址失败.
+NETCONN_INTERNAL_ERROR - 内部错误，表示设置脚本地址失败。
 
 **Permission：**
 
@@ -1143,10 +1143,10 @@ NetConn_ErrorCode OH_NetConn_GetPacUrl(char *pacUrl)
 
 **返回：**
 
-NETCONN_SUCCESS - 成功.
+NETCONN_SUCCESS - 成功。
 
-NETCONN_PERMISSION_DENIED - 参数错误.
+NETCONN_PERMISSION_DENIED - 参数错误。
 
-NETCONN_OPERATION_FAILED - 无法连接到服务.
+NETCONN_OPERATION_FAILED - 无法连接到服务。
 
-NETCONN_INTERNAL_ERROR - 内部错误，表示未设置脚本地址或查询失败.
+NETCONN_INTERNAL_ERROR - 内部错误，表示未设置脚本地址或查询失败。
