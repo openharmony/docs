@@ -868,3 +868,84 @@ struct Index {
   }
 }
 ```
+
+
+## BuilderNode中使用LocalStorage
+
+从API version 12开始，自定义组件支持接收[LocalStorage](../quick-start/arkts-localstorage.md)实例。可以通过[传递LocalStorage实例](../quick-start/arkts-localstorage.md#自定义组件接收localstorage实例)来使用LocalStorage相关的装饰器[@LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)、[@LocalStorageLink](../quick-start/arkts-localstorage.md#localstoragelink)。
+
+```ts
+import { BuilderNode, NodeController, UIContext } from '@kit.ArkUI';
+
+let localStorage1: LocalStorage = new LocalStorage();
+localStorage1.setOrCreate('PropA', 'PropA');
+
+let localStorage2: LocalStorage = new LocalStorage();
+localStorage2.setOrCreate('PropB', 'PropB');
+
+@Entry(localStorage1)
+@Component
+struct Index {
+  // 'PropA'，和localStorage1中'PropA'的双向同步
+  @LocalStorageLink('PropA') PropA: string = 'Hello World';
+  @State count: number = 0;
+  private controller: NodeController = new MyNodeController(this.count, localStorage2);
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.PropA)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+        // 使用LocalStorage 实例localStorage2
+        Child({ count: this.count }, localStorage2)
+        NodeContainer(this.controller)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+interface Params {
+  count: number;
+  localStorage: LocalStorage;
+}
+
+@Builder
+function CreateChild(params: Params) {
+  //构造过程中传递localStorage
+  Child({ count: params.count }, params.localStorage)
+}
+
+class MyNodeController extends NodeController {
+  private count?: number;
+  private localStorage ?: LocalStorage;
+
+  constructor(count: number, localStorage: LocalStorage) {
+    super();
+    this.count = count;
+    this.localStorage = localStorage;
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    let builderNode = new BuilderNode<[Params]>(uiContext);
+    //构造过程中传递localStorage
+    builderNode.build(wrapBuilder(CreateChild), { count: this.count, localStorage: this.localStorage });
+    return builderNode.getFrameNode();
+  }
+}
+
+@Component
+struct Child {
+  @Prop count: number;
+  //  'Hello World'，和localStorage2中'PropB'的双向同步，如果localStorage2中没有'PropB'，则使用默认值'Hello World'
+  @LocalStorageLink('PropB') PropB: string = 'Hello World';
+
+  build() {
+    Text(this.PropB)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+```
