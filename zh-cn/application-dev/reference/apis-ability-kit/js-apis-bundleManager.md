@@ -25,7 +25,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 包信息标志，指示需要获取的包信息的内容。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                                          | 值         | 说明                                                         |
 | --------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -46,7 +46,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 指示扩展组件的类型。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |----------------|---|-----|
@@ -81,7 +81,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |----------------|---|---|
@@ -94,7 +94,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |----------------|---|---|
@@ -108,7 +108,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |----------------|---|---|
@@ -122,7 +122,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
  **模型约束：** 仅可在FA模型下使用
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 |  名称   | 值   |                            说明                            |
 | ----- | ---- | -------------------------------------------------------|
@@ -134,7 +134,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 标识该Ability的显示模式。该标签仅适用于page类型的Ability。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                               |值 |说明 |
 |----------------------------------|---|---|
@@ -196,7 +196,7 @@ import { bundleManager } from '@kit.AbilityKit';
 ### MultiAppModeType<sup>12+</sup>
 标识应用多开的模式类型。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称 | 值 | 说明 |
 |:----------------:|:---:|:---:|
@@ -210,7 +210,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 getBundleInfoForSelf(bundleFlags: number): Promise\<BundleInfo>
 
-以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise形式返回结果。
+根据给定的bundleFlags获取当前应用的BundleInfo，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -262,7 +262,7 @@ try {
 
 getBundleInfoForSelf(bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的bundleFlags获取当前应用的BundleInfo，使用callback形式返回结果。
+根据给定的bundleFlags获取当前应用的BundleInfo，使用callback异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -311,7 +311,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
+根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -370,7 +370,7 @@ try {
 
 getProfileByAbility(moduleName: string, abilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-以异步方法根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+根据给定的moduleName、abilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -416,6 +416,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // 通过模块名称和ability名称获取相应配置文件的json格式字符串信息
   bundleManager.getProfileByAbility(moduleName, abilityName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -437,6 +438,7 @@ let abilityName = 'EntryAbility';
 let metadataName = 'ability_metadata';
 
 try {
+  // 通过模块名称，ability名称和UIAbility组件的元信息名称获取相应配置文件的json格式字符串信息
   bundleManager.getProfileByAbility(moduleName, abilityName, metadataName).then((data) => {
     hilog.info(0x0000, 'testTag', 'getProfileByAbility successfully. Data: %{public}s', JSON.stringify(data));
   }).catch((err: BusinessError) => {
@@ -498,6 +500,7 @@ let moduleName = 'entry';
 let abilityName = 'EntryAbility';
 
 try {
+  // 通过模块名称和ability名称获取相应配置文件的json格式字符串信息
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -516,6 +519,7 @@ let abilityName: string = 'EntryAbility';
 let metadataName: string = 'ability_metadata';
 
 try {
+  // 通过模块名称，ability名称和UIAbility组件的元信息名称获取相应配置文件的json格式字符串信息
   let data = bundleManager.getProfileByAbilitySync(moduleName, abilityName, metadataName);
   hilog.info(0x0000, 'testTag', 'getProfileByAbilitySync successfully. Data: %{public}s', JSON.stringify(data));
 } catch (err) {
@@ -528,7 +532,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName: string, callback: AsyncCallback\<Array\<string\>\>): void
 
-以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback形式返回结果。
+根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用callback异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
@@ -586,7 +590,7 @@ try {
 
 getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, metadataName?: string): Promise\<Array\<string\>\>
 
-以异步方法根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise形式返回结果。
+根据给定的moduleName、extensionAbilityName和metadataName（module.json中[metadata标签](../../quick-start/module-configuration-file.md#metadata标签)下的name）获取相应配置文件的json格式字符串，使用Promise异步回调。
 
 >如果配置文件信息采用了资源引用格式，则返回值将保持资源引用格式（例如 $string:res_id），开发者可以通过资源管理模块的相关接口，来获取引用的资源。
 
