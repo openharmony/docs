@@ -6,10 +6,11 @@
     - [SplitLayout](onlyfortest/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-SplitLayout.md)
     - [基础类型定义](onlyfortest/reference/apis-arkui/arkui-ts/ts-types.md)
     - [标记pass](onlyfortest/reference/apis-audio-kit/native__audiocapturer_8h.md)
+    - [OHAudio](onlyfortest/reference/apis-audio-kit/_o_h_audio.md)
     - [标记fail-Topci无起始版本](onlyfortest/reference/apis-audio-kit/native__audiorenderer_8h.md)
     - [标记fail-Topic起始版本非正整数](onlyfortest/reference/hdi-apis/codec/_omx_codec_buffer_v10.md)
     - [标记fail-概述非第一个二级标题](onlyfortest/reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
     - [标记fail-没有概述](onlyfortest/reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
 - 非reference文件夹<!--not--reference-fold-->
   - C APIC API新增版本筛选标签需求<!--not--reference-fold--0624-->
-    - [OHAudio](onlyfortest/media/audio/audio-kit-intro.md)
+    - [Audio Kit简介](onlyfortest/media/audio/audio-kit-intro.md)
