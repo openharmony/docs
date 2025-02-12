@@ -1109,7 +1109,7 @@ try {
 | duration  | number                          | 否   | 可选参数，表示振动持续时间，取值范围为0-5000，短振默认值为35，长振默认值为1000。 |
 | intensity | number                          | 否   | 可选参数，表示振动强度，取值范围为0-100，省略时默认值为100。 |
 | frequency | number                          | 否   | 可选参数，表示振动频率，取值范围为0-100，省略时默认值为50。  |
-| index     | number                          | 否   | 可选参数，表示通道编号，取值为0，1，2，省略时默认值为0。     |
+| index     | number                          | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
 | points    | Array&lt;VibratorCurvePoint&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
 
 ## VibratorPattern<sup>16+</sup>
