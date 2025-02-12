@@ -483,7 +483,7 @@ Error: install parse native so failed.
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains\{版本号}目录下。
+2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
     ```
     若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
     ```
@@ -1257,3 +1257,16 @@ Error: check encryption failed.
 
 1. 安装新版本镜像。
 2. 删除HAP工程中lib目录内非so文件，重新签名打包。
+
+### 9568278 安装包的版本号不一致
+**错误信息**
+
+error: install version code not same.
+
+**可能原因**
+1. 设备上安装的应用和安装报错的应用包版本号（versionCode）不一致。
+2. 安装多个包中存在版本号（versionCode）不一致。
+
+**处理步骤**
+1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
+2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。

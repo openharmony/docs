@@ -1,6 +1,6 @@
 # AVSession Kit（音视频播控服务）
 
-- ArkTS API
+- ArkTS API<!--avsession-arkts-->
   - [@ohos.multimedia.avsession (媒体会话管理)](js-apis-avsession.md)
   - [@ohos.multimedia.avCastPickerParam (投播组件参数)](js-apis-avCastPickerParam.md)
   <!--Del-->
@@ -9,7 +9,7 @@
   - application
     - [MediaControlExtensionContext (播控扩展能力上下文)(系统接口)](js-apis-inner-application-MediaControlExtensionContext-sys.md)
   <!--DelEnd-->
-- ArkTS组件
+- ArkTS组件<!--avsession-comp-->
   - [@ohos.multimedia.avCastPicker (投播组件)](ohos-multimedia-avcastpicker.md)
-- 错误码
+- 错误码<!--avsession-arkts-errcode-->
   - [媒体会话管理错误码](errorcode-avsession.md)
