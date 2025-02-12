@@ -139,7 +139,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | --------------- | ------ |-----|
 | DARK  | 1 | 背景底色为黑色。 |
 | LIGHT  | 2 | 背景底色为白色。|
-| DEFAULT  | 3 | 背景底色为灰白色。颜色值`#F1F3F5` 。 |
+| DEFAULT  | 3 | 背景底色为灰白色。颜色值`#F1F3F5` 。|
 
 
 ## 示例
