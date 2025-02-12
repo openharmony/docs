@@ -13,7 +13,7 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 >
 > 业务线程卡死故障日志是以appfreeze-开头，生成在”设备/data/log/faultlog/faultlogger/”路径下。该日志文件名格式为“appfreeze-应用包名-应用UID-秒级时间”。具体规格可参考：[appfreeze-应用无响应日志分析](./appfreeze-guidelines.md#应用无响应日志分析)。
 >
-> 业务线程卡顿故障日志规格，可参考：[MAIN_THREAD_JANK-主线程超时事件规格](./hiappevent-watcher-mainthreadjank-events-arkts.md#主线程超时事件规格)。
+> 业务线程卡顿故障日志规格，可参考：[MAIN_THREAD_JANK-主线程超时事件规格](./hiappevent-watcher-mainthreadjank-events.md#主线程超时事件规格)。
 
 
 API接口的具体使用说明（参数使用限制、具体取值范围等）请参考[HiCollie](../reference/apis-performance-analysis-kit/_hi_hicollie.md)。

@@ -189,7 +189,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API 10-11为false；从API 12开始为true。
 
 **起始版本**：10
 
@@ -713,7 +713,7 @@
 
 允许应用进行用户公共证书凭据的安装、卸载、授权等操作。
 
-**权限级别**：API version 9-11为system_basic；从API version 12开始为system_core。
+**权限级别**：API 9-11为system_basic；从API 12开始为system_core。
 
 **授权方式**：system_grant
 
@@ -1141,7 +1141,7 @@
 
 **起始版本**：7
 
-**变更信息**：API version 7-11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 7-11为system_core；从API 12开始为system_basic。
 
 ### ohos.permission.GET_WIFI_LOCAL_MAC
 
@@ -2647,7 +2647,7 @@
 
 **起始版本**：11
 
-**变更信息**：API version 11为system_core；从API version 12开始为system_basic。
+**变更信息**：API 11为system_core；从API 12开始为system_basic。
 
 ### ohos.permission.RECORD_VOICE_CALL
 
@@ -4201,6 +4201,20 @@
 
 **起始版本**：14
 
+### ohos.permission.SET_PAC_URL
+
+允许应用设置代理自动配置脚本地址。
+
+应用完成脚本地址配置后，其他应用可读取此脚本并进行解析，根据解析结果决定是否使用代理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ## system_grant，不允许ACL跨级申请
 
 以下权限的授权方式均为system_grant（系统授权），但不允许通过ACL的方式申请。
@@ -4347,7 +4361,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：API version 10-11为false；从API version 12开始为true
+**ACL使能**：API 10-11为false；从API 12开始为true。
 
 **起始版本**：10
 

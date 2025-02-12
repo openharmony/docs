@@ -15,7 +15,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 
@@ -46,7 +46,7 @@ static OH_Crypto_ErrCode doTestPemDataCovertAsymKey()
       return ret;
    }
 
-   uint8_t sm2PubKeyBlobData[] = { 48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,
+   uint8_t pubKeyBlobData[] = { 48,129,159,48,13,6,9,42,134,72,134,247,13,1,1,1,5,0,3,129,
       141,0,48,129,137,2,129,129,0,235,184,151,247,130,216,140,187,64,124,219,137,140,184,53,
       137,216,105,156,141,137,165,30,80,232,55,96,46,23,237,197,123,121,27,240,190,14,111,237,
       172,67,42,47,164,226,248,211,157,213,194,131,109,181,41,173,217,127,252,121,126,26,130,
@@ -55,7 +55,7 @@ static OH_Crypto_ErrCode doTestPemDataCovertAsymKey()
       215,99,199,66,131,150,31,143,56,252,2,73,41,70,159,2,3,1,0,1 };
 
    OH_CryptoKeyPair *dupKeyPair = nullptr;
-   Crypto_DataBlob pubBlob = { .data = sm2PubKeyBlobData, .len = sizeof(sm2PubKeyBlobData) };
+   Crypto_DataBlob pubBlob = { .data = pubKeyBlobData, .len = sizeof(pubKeyBlobData) };
    ret = OH_CryptoAsymKeyGenerator_Convert(ctx, CRYPTO_DER, &pubBlob, nullptr, &dupKeyPair);
    if (ret != CRYPTO_SUCCESS) {
       OH_CryptoAsymKeyGenerator_Destroy(ctx);

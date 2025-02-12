@@ -484,6 +484,22 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 | ------ | -------------- | ---- | ------------------ |
 | isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
 
+### enableModeChangeAnimation<sup>15+</sup>
+
+enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
+
+控制是否开启单双栏切换时的动效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| isEnabled  | Optional&lt;boolean&gt; | 否   | 是否开启单双栏切换动效。<br/>默认值:true<br/>true:开启单双栏切换动效。<br/>false:关闭单双栏切换动效。|
+
 ## 事件
 
 ### onTitleModeChange

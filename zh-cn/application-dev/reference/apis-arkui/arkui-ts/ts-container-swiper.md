@@ -6,8 +6,6 @@
 >
 > - 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - Swiper组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
->
 > - Swiper组件内包含了[PanGesture](ts-basic-gestures-pangesture.md)拖动手势事件，用于滑动轮播子组件。[disableSwipe](#disableswipe8)属性设为true会取消内部的PanGesture事件监听。
 
 ## 子组件
@@ -16,21 +14,11 @@
 
 >  **说明：** 
 >
->  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。
+>  - 子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）。不建议子组件中混用懒加载组件（包括LazyForEach、Repeat）和非懒加载组件，或者子组件中使用多个懒加载组件，否则可能导致懒加载组件预加载能力失效等问题。不建议在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
 >
->  - Swiper子组件的visibility属性设置为None，Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数。
+>  - Swiper子组件的[visibility](ts-universal-attributes-visibility.md#visibility)属性设置为Visibility.None，且Swiper的displayCount属性设置为'auto'时，对应子组件在视窗内不占位，但不影响导航点个数；visibility属性设置为Visibility.None或者Visibility.Hidden时，对应子组件不显示，但依然会在视窗内占位。
 >
->  - Swiper子组件的visibility属性设置为None，或者visibility属性设置为Hidden时，对应子组件不显示，但依然会在视窗内占位。
->
->  - 当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0) + nextMargin? (1 : 0))时，一般按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。例外情况如下：
->    
->    - 当Swiper子组件个数等于Swiper组件内容区内显示的节点总个数且prevMargin和nextMargin都生效时，设置loop为true支持循环。
->
->    - 当Swiper子组件个数等于Swiper组件DisplayCount数 + 1，且prevMargin和nextMargin至少一个生效时，设置loop为true会生成截图占位组件(如果使用图片异步加载等显示耗时较长的组件可能不能正确生成截图，不建议在该场景开启循环)，支持循环。
->
->  - 当Swiper子组件设置了offset属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的zIndex属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
->
->  - 当使用渲染控制类型（[if/else](../../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../../quick-start/arkts-rendering-control-foreach.md)、[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)和[Repeat](../../../quick-start/arkts-new-rendering-control-repeat.md)）时，不要在组件动画过程中对数据源进行操作，否则会导致布局出现异常。
+>  - 当Swiper子组件设置了[offset](ts-universal-attributes-location.md#offset)属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的[zIndex](ts-universal-attributes-z-order.md)属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 
 ## 接口
 
@@ -52,6 +40,10 @@ Swiper(controller?: SwiperController)
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+> **说明：**
+>
+> Swiper组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ### index
 
@@ -300,17 +292,9 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 设置Swiper视窗内元素显示个数。
 
-字符串类型仅支持设置为'auto'。
+使用字符串类型时，仅支持设置为'auto'。使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局，设置为小于等于0的值时，按默认值1显示。使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
 
-使用number类型且设置小于等于0时，按默认值1显示。
-
-使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局。
-
-使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
-
-当按组进行翻页时，如果最后一组的子元素数量小于displayCount时，会使用占位子元素补齐。占位子元素只是用于布局占位，不显示任何内容。在占位子元素的位置会直接显示Swiper自身的背景样式。
-
-在按组翻页时，判断翻页的拖拽距离阈值条件，会更新为Swiper自身宽度的一半。（按子元素翻页时，该阈值为子元素自身宽度的一半）。
+当按组进行翻页时，判定翻页的拖拽距离阈值将调整为Swiper宽度的50%（若按子元素翻页，该阈值为子元素宽度的50%）。若最后一组的子元素数量少于displayCount，将利用占位子元素进行填充，占位子元素仅用于布局定位，不显示任何内容，其位置将直接显示Swiper的背景样式。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
@@ -324,6 +308,15 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 | -------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value                      | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[SwiperAutoFill](#swiperautofill10)<sup>10+</sup> | 是   | 视窗内显示的子元素个数。<br/> 默认值：1                      |
 | swipeByGroup<sup>11+</sup> | boolean                                                      | 否   | 是否按组进行翻页。如果设为true，在翻页时会按组进行翻页，每组内子元素的数量为displayCount value的值；如果为false，则为默认翻页行为，即按照子元素进行翻页。<br/> 默认值：false |
+
+> **说明：**
+>
+>  当Swiper子组件个数小于等于Swiper组件内容区内显示的节点总个数(totalDisplayCount = DisplayCount + prevMargin? (1 : 0) + nextMargin? (1 : 0))时，一般按照非循环模式布局处理，此时，前后边距对应子组件不显示，但依然会在视窗内占位。Swiper组件按照totalDisplayCount个数判断测算规格。例外情况如下：
+>    
+>  - 当Swiper子组件个数等于Swiper组件内容区内显示的节点总个数且prevMargin和nextMargin都生效时，设置loop为true支持循环。
+>
+>  - 当Swiper子组件个数等于Swiper组件DisplayCount数 + 1，且prevMargin和nextMargin至少一个生效时，设置loop为true会生成截图占位组件(如果使用图片异步加载等显示耗时较长的组件可能不能正确生成截图，不建议在该场景开启循环)，支持循环。
+>
 
 ### effectMode<sup>8+</sup>
 

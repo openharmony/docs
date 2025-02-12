@@ -8,7 +8,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 随机生成RSA密钥对
@@ -78,7 +78,7 @@ static OH_Crypto_ErrCode randomGenerateAsymKey()
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 
-static OH_Crypto_ErrCode randomGenerateRSA()
+static OH_Crypto_ErrCode randomGenerateSm2KeyPair()
 {
     OH_CryptoAsymKeyGenerator *ctx = nullptr;
     OH_CryptoKeyPair *dupKeyPair = nullptr;

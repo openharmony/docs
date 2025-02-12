@@ -374,6 +374,7 @@
           - [动态加载](arkts-utils/arkts-dynamic-import.md)
           - [延迟加载（lazy import）](arkts-utils/arkts-lazy-import.md)
           - [同步方式动态加载native模块](arkts-utils/js-apis-load-native-module.md)
+          - [静态方式加载native模块](arkts-utils/arkts-import-native-module.md)
           - [基于Node-API加载模块](arkts-utils/load-module-base-nodeapi.md)
           - [模块加载副作用及优化](arkts-utils/arkts-module-side-effects.md)
       - ArkTS编译工具链<!--arkts-compilation-tool-chain-->
@@ -1475,7 +1476,7 @@
           - [画布的获取与绘制结果的显示（ArkTS）](graphics/canvas-get-result-draw-arkts.md)
           - [画布的获取与绘制结果的显示（C/C++）](graphics/canvas-get-result-draw-c.md)
         - 画布操作及状态<!--canvas-operation-state-->
-          - [画布操作及状态（ArkTS）](graphics/canvas-operation-state-arkts.md)
+          - [画布操作及状态处理（ArkTS）](graphics/canvas-operation-state-arkts.md)
           - [画布操作及状态处理（C/C++）](graphics/canvas-operation-state-c.md)
         - 绘制效果<!--drawing-effect-->
           - [绘制效果概述](graphics/drawing-effect-overview.md)
@@ -1522,7 +1523,7 @@
       - [获取设备的位置信息开发指导](device/location/location-guidelines.md)
       - [地理编码转化与逆地理编码转化开发指导](device/location/geocode-guidelines.md)
       - [基于设备自身定位的地理围栏开发指导](device/location/geofence-guidelines.md)
-      - [基于FenceExtensionAbility的云侧地理围栏开发指导](application-models/fenceExtensionAbility.md)
+      - [基于FenceExtensionAbility的云侧地理围栏开发指导](device/location/fenceExtensionAbility.md)
       - [相关实例](device/location/app-samples.md)
     - Notification Kit（用户通知服务）<!--notification-kit-->
       - [Notification Kit简介](notification/notification-overview.md)
@@ -1656,14 +1657,20 @@
             - [使用JSVM-API接口进行生命周期相关开发](napi/use-jsvm-life-cycle.md)
             - [使用JSVM-API进行内存管理](napi/use-jsvm-memory-management.md)
             - [使用JSVM-API判断给定的两个JS value是否严格相等](napi/use-jsvm-strict-equals.md)
+            - [使用JSVM-API接口创建基本数据类型](napi/use-jsvm-basic-data-types.md)
         - JSVM-API典型使用场景指导<!--jsvm-scenarios-->
             - [JSVM-API调试&定位](napi/jsvm-debugger-cpuprofiler-heapsnapshot.md)
             - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
+      - OpenMP支持
+        - [OpenMP简介](napi/openmp-overview.md)
+        - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
+      - 网络管理<!--network-management-->
+        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
@@ -2010,17 +2017,21 @@
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
           - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityBase](reference/apis-ability-kit/_ability_base.md)
           - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - 头文件<!--ability-headerfile-->
           - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_base_common.h](reference/apis-ability-kit/ability__base__common_8h.md)
           - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
           - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
           - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
+          - [want.h](reference/apis-ability-kit/want__8h.md)
         - 结构体<!--ability-struct-->
+          - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
           - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
       - 错误码<!--ability-arkts-errcode-->
@@ -4176,6 +4187,7 @@
         - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
         <!--DelEnd-->
         - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
+        - [@ohos.app.ability.FenceExtensionContext](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
         <!--Del-->
         - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->
