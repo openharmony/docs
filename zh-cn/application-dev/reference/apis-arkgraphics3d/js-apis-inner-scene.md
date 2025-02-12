@@ -603,7 +603,6 @@ function ImportNodeTest() {
   Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
     .then(async (extScene: Scene) => {
       let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
-      console.log("mason ImportNodeTest");
       let node = scene?.importNode("scene", extNode, scene.root);
       if (node) {
         node.position.x = 5;
