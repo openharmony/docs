@@ -129,6 +129,10 @@ test(a2);
 * `obfuscation.txt`  
 不同于以上两种开发者可自行修改的配置文件，`obfuscation.txt`是在编译构建HAR时根据`consumer-rules.txt`和依赖模块的混淆规则文件自动生成的文件，它作为一种编译产物存在于发布的HAR包中，用于在其他应用使用该发布包时应用相应的混淆规则。obfuscation.txt内容的生成逻辑请参考[混淆规则合并策略](#混淆规则合并策略)。
 
+  > **说明**：
+  >
+  > 针对三方库中`obfuscation.txt`文件，只有在模块的`oh-package.json5`文件中依赖三方库时，三方库中的`obfuscation.txt`文件才会生效；如果在工程的`oh-package.json5`文件中进行依赖，则三方库的`obfuscation.txt`文件不会生效。
+
 下表简要总结了三种配置文件的差异：
 
 | 配置文件（示例） | 配置类型 |  是否可修改配置  |  是否影响本模块的混淆  |  是否影响其他模块的混淆  |
@@ -955,6 +959,47 @@ let jsonObj = jsonStr.i
 代码里使用了数据库字段，混淆时该SQL语句中字段名称被混淆，但数据库中字段为原始名称，从而导致报错。
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
+
+**案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常**
+
+**问题现象：**
+
+`parameters`的类型为`Record<string, Object>`，在开启属性混淆后，`parameters`对象中的属性`linkSource`被混淆，进而导致功能异常。示例如下：
+
+```
+// 混淆前
+import { Want } from '@kit.AbilityKit';
+let petalMapWant: Want = {
+  bundleName: 'com.example.myapplication',
+  uri: 'maps://',
+  parameters: {
+    linkSource: 'com.other.app'
+  }
+}
+
+// 混淆后
+import type Want from "@ohos:app.ability.Want";
+let petalMapWant: Want = {
+    bundleName: 'com.example.myapplication',
+    uri: 'maps://',
+    parameters: {
+        i: 'com.other.app'
+    }
+};
+```
+
+**问题原因：**
+
+在这个示例中，所创建的对象的内容需要传递给系统来加载某个页面，因此对象中的属性名称不能被混淆，否则会造成功能异常。示例中`parameters`的类型为`Record<string, Object>`，这只是一个表示以字符串为键的对象的泛型定义，并没有详细描述其内部结构和属性类型。因此，混淆工具无法识别该对象内部哪些属性不应被混淆，从而可能导致内部属性名`linkSource`被混淆。
+
+**解决方案：**
+
+将混淆后会出现问题的属性名配置到属性白名单中，示例如下：
+
+```
+-keep-property-name
+linkSource
+```
 
 #### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 

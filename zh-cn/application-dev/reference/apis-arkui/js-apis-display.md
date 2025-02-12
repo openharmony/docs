@@ -133,7 +133,7 @@ import { display } from '@kit.ArkUI';
 
 | 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
+| boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。如果没有挖孔、刘海等区域，数组返回为空。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
 ## DisplayPhysicalResolution<sup>12+</sup>
@@ -1246,7 +1246,7 @@ off(type: 'availableAreaChange', callback?: Callback&lt;Rect&gt;): void
 | 参数名   | 类型                                       | 必填 | 说明                                                    |
 | -------- |------------------------------------------| ---- | ------------------------------------------------------- |
 | type     | string                                   | 是   | 监听事件，固定为'availableAreaChange'，表示屏幕可用区域变更。 |
-| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调 |
+| callback | Callback&lt;[Rect](#rect9)&gt; | 否   | 回调函数，已经注册的回调函数，不填默认删除所有回调。 |
 
 **错误码：**
 

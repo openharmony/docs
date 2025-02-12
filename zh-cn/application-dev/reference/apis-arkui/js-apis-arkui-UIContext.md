@@ -1633,7 +1633,7 @@ struct Index {
 
 postFrameCallback(frameCallback: FrameCallback): void
 
-注册一个在下一帧进行渲染时执行的回调。
+注册一个回调，仅在下一帧渲染时调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3338,7 +3338,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3367,7 +3367,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3396,7 +3396,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3425,7 +3425,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3454,7 +3454,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3483,7 +3483,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3512,7 +3512,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3541,7 +3541,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
