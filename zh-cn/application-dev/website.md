@@ -3484,7 +3484,6 @@
           - [@ohos.multimodalInput.gestureEvent (手势事件)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent.md)
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
           - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
@@ -3493,7 +3492,6 @@
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
-          - [@ohos.multimodalInput.gestureEvent (手势事件)(系统接口)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent-sys.md)
           - 已停止维护的接口<!--input-arkts-dep-->
             - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](reference/apis-input-kit/js-apis-cooperate-sys.md)
           <!--DelEnd-->
