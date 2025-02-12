@@ -30,7 +30,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -90,7 +90,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -153,7 +153,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -220,7 +220,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -290,7 +290,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -351,7 +351,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -415,7 +415,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -483,7 +483,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
