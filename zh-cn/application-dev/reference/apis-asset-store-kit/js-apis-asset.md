@@ -846,6 +846,7 @@ try {
 | OPERATION_TYPE<sup>12+</sup> | TagType.NUMBER &#124; 0x46 | 附加的操作类型。 |
 | REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | TagType.BOOL &#124; 0x47 | 是否加密业务自定义附属信息。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | GROUP_ID<sup>16+</sup> | TagType.BYTES &#124; 0x48 | 关键资产所属群组。<br> |
+| WRAP_TYPE<sup>16+</sup> | TagType.NUMBER &#124; 0x49 | 关键资产支持的加密导入导出类型。<br> |
 
 ## Value
 
@@ -959,6 +960,17 @@ type AssetMap = Map\<Tag, Value>
 | ----------- | ---- | ------------------ |
 | NEED_SYNC   | 0    | 需要进行同步操作。 |
 | NEED_LOGOUT | 1    | 需要进行登出操作。 |
+
+## WrapType<sup>16+</sup>
+
+枚举，关键资产支持的加密导入导出类型。
+
+**系统能力：** SystemCapability.Security.Asset
+
+| 名称        | 值   | 说明               |
+| ----------- | ---- | ------------------ |
+| NEVER   | 0    | 不允许加密导入导出关键资产。|
+| TRUSTED_ACCOUNT | 1    | 只在登录可信账号的设备进行加密导入导出关键资产。 |
 
 ## ErrorCode
 
