@@ -32,8 +32,8 @@ TipsDialogV2({imageRes: ResourceStr, imageSize?: SizeOptions, imageBorderColor: 
 |------------------|-------------------------------------------------------------------------------------------------------|----|----------------------|---------------------------------------------------------------|
 | imageRes         | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是  | @Param<br />@Require | 展示的图片。<br />                                                  |
 | imageSize        | [SizeOptions](ts-types.md#sizeoptions)                                                                | 否  | @Param               | 自定义图片尺寸。<br />默认值：64\*64vp。                                   |
-| imageBorderColor | [ColorMetrics](ts-types.md#colormetrics)                                                              | 否  | @Param               | 图片描边颜色。<br/>默认值：Color.Black。                                  |
-| imageBorderWidth | [LengthMetrics](ts-types.md#lengthmetrics)                                                            | 否  | @Param               | 图片描边宽度。<br/>默认无描边效果。                                          |
+| imageBorderColor | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)                                                              | 否  | @Param               | 图片描边颜色。<br/>默认值：Color.Black。                                  |
+| imageBorderWidth | [LengthMetrics](js-apis-arkui-graphics.md#LengthMetrics12)                                                            | 否  | @Param               | 图片描边宽度。<br/>默认无描边效果。                                          |
 | title            | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框标题。默认不显示。<br />                                          |
 | content          | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框内容。默认不显示。<br />                                          |
 | checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | checkbox的提示内容。默认不显示。                                          |
@@ -225,8 +225,8 @@ type AdvancedDialogV2ButtonAction = () => void
 |:-------------|:-----------------------------------------------------------------------|:---|:-------|:----------------------------------------------------------------------------------|
 | content      | [ResourceStr](ts-types.md#resourcestr)                                 | 是  | @Trace | 按钮的内容。                                                                            |
 | action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | @Trace | 按钮的点击事件。默认无事件。                                                                    |
-| background   | [ColorMetrics](ts-type.md#colormetrics)                                | 否  | @Trace | 按钮的背景。<br />默认值跟随buttonStyle。                                                     |
-| fontColor    | [ColorMetrics](ts-type.md#colormetrics)                                | 否  | @Trace | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                                   |
+| background   | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的背景。<br />默认值跟随buttonStyle。                                                     |
+| fontColor    | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                                   |
 | buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | @Trace | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br /> |
 | role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | @Trace | 按钮的角色。<br />默认值：ButtonRole.NORMAL。<br />                                          |
 | defaultFocus | boolean                                                                | 否  | @Trace | 是否为默认焦点。默认值：false。                                                                |

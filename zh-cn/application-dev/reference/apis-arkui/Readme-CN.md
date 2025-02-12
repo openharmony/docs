@@ -349,6 +349,7 @@
     - [时间滑动选择器弹窗 (TimePickerDialog)](arkui-ts/ts-methods-timepicker-dialog.md)
     - [文本滑动选择器弹窗 (TextPickerDialog)](arkui-ts/ts-methods-textpicker-dialog.md)
     - [弹出框 (Dialog)](arkui-ts/ohos-arkui-advanced-Dialog.md)
+    - [DialogV2](arkui-ts/ohos-arkui-advanced-DialogV2.md)
   - 卡片
     - [FormLink](arkui-ts/ts-container-formlink.md)
     - [FormMenu](arkui-ts/ohos-arkui-advanced-formmenu.md)
