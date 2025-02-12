@@ -25,7 +25,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getLauncherAbilityInfos(bundleName: string, userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void
 
-以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用callback形式返回结果。
+根据给定的Bundle名称获取LauncherAbilityInfos，使用callback异步回调。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9)替代。
 
 **需要权限：**
@@ -53,7 +53,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getLauncherAbilityInfos(bundleName: string, userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
-以异步方法根据给定的Bundle名称获取LauncherAbilityInfos，使用Promise形式返回结果。
+根据给定的Bundle名称获取LauncherAbilityInfos，使用Promise异步回调。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetlauncherabilityinfo9)替代。
 
 **需要权限：**
@@ -201,7 +201,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getAllLauncherAbilityInfos(userId: number, callback: AsyncCallback&lt;Array&lt;LauncherAbilityInfo&gt;&gt;) : void
 
-以异步方法获取所有的LauncherAbilityInfos，使用callback形式返回结果。
+获取所有的LauncherAbilityInfos，使用callback异步回调。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetalllauncherabilityinfo9)替代。
 
 **需要权限：**
@@ -227,7 +227,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getAllLauncherAbilityInfos(userId: number) : Promise&lt;Array&lt;LauncherAbilityInfo&gt;&gt;
 
-以异步方法获取LauncherAbilityInfos，使用Promise形式返回结果。
+获取LauncherAbilityInfos，使用Promise异步回调。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getAllLauncherAbilityInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetalllauncherabilityinfo9)替代。
 
 **需要权限：**
@@ -258,7 +258,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getShortcutInfos(bundleName :string, callback: AsyncCallback&lt;Array&lt;ShortcutInfo&gt;&gt;) : void
 
-以异步方法根据给定的Bundle名称获取快捷方式信息，使用callback形式返回结果。
+根据给定的Bundle名称获取快捷方式信息，使用callback异步回调。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9)替代。
 
 **需要权限：**
@@ -284,7 +284,7 @@ SystemCapability.BundleManager.BundleFramework
 
 getShortcutInfos(bundleName : string) : Promise&lt;Array&lt;ShortcutInfo&gt;&gt;
 
-以异步方法根据给定的Bundle名称获取快捷方式信息，使用Promise形式返回结果。
+根据给定的Bundle名称获取快捷方式信息，使用Promise异步回调。
 > 从API version 9开始不再支持。建议使用[launcherBundleManager.getShortcutInfo](js-apis-launcherBundleManager-sys.md#launcherbundlemanagergetshortcutinfo9)替代。
 
 **需要权限：**
