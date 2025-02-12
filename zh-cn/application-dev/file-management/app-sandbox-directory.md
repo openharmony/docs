@@ -48,10 +48,34 @@
 
 2. 二级目录storage/：代表本应用持久化文件目录。
 
-3. 三级目录el1/、el2/：代表不同文件加密类型。
-   - el1，设备级加密区：设备开机后即可访问的数据区。
-   - el2，用户级加密区：设备开机后，若处于无密码状态，可直接访问；若处于有密码状态，则需要设备首次密码解锁之后，才能够访问的加密数据区。开发者可通过监听[COMMON_EVENT_USER_UNLOCKED](../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_user_unlocked)事件感知设备首次密码解锁完成。<br>
-   应用如无特殊需要，应将数据存放在el2加密目录下，以尽可能保证数据安全。但是对于某些场景，一些应用文件需要在用户解锁前就可被访问，例如时钟、闹铃、壁纸等，此时应用需要将这些文件存放到设备级加密区（el1）。切换应用文件加密类型目录的方法请参见[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)。
+3. 三级目录el1/~el5/：代表不同文件加密类型。
+
+    EL1(Encryption Level 1):
+     - 保护设备上的所有文件的基础安全能力。在设备开机后，不需要用户先完成身份认证即可访问EL1保护的文件。如无特殊必要，不推荐使用该方式。
+     - 如果直接窃取设备存储介质上的密文，攻击者无法脱机进行解密。
+
+    EL2(Encryption Level 2):
+     - 在EL1的基础上，增加首次认证后的文件保护能力。设备开机后，用户在通过首次认证后，通过EL2能力保护的文件才能被访问。此后只要设备没有关机，通过EL2能力保护的文件一直可被访问。推荐应用默认使用该方式。
+     - 如果在关机后丢失手机，则攻击者无法读取通过EL2能力保护的文件。
+
+    EL3(Encryption Level 3):
+     - 与EL4整体能力类似，但和EL4的区别是，在锁屏下可创建新的文件，但无法读取。如无特殊必要，无需使用该方式。
+
+    EL4(Encryption Level 4):
+     - 在EL2的基础上，增加设备锁屏时的文件保护能力。在用户锁屏时，通过EL4能力保护的数据将无法被访问。如无特殊必要，无需使用该方式。
+     - 如果设备在锁屏状态下被盗，攻击者无法读取通过EL4能力保护的文件。
+
+    EL5(Encryption Level 5):
+     - 在EL2的基础上，增加设备锁屏时的文件保护能力。在用户锁屏后，满足一定条件时，通过EL5能力保护的数据将无法被访问，但可以继续创建和读写新的文件。如无特殊必要，无需使用该方式。
+     - 默认情况下不会生成EL5的相关目录，需要配置访问E类加密数据库的相关权限，详见[E类加密数据库的使用](../database/encrypted_estore_guidelines.md)。
+
+   > **说明：**
+   >
+   > 应用如无特殊需要，应将数据存放在el2加密目录下，以尽可能保证数据安全。但是对于某些场景，一些应用文件需要在用户首次认证前就可被访问，例如时钟、闹铃、壁纸等，此时应用需要将这些文件存放到设备级加密区（el1）。
+   >
+   > 开发者可通过监听[COMMON_EVENT_USER_UNLOCKED](../reference/apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_user_unlocked)事件感知当前用户首次认证完成。
+   >
+   > 切换应用文件加密类型目录的方法请参见[获取和修改加密分区](../application-models/application-context-stage.md#获取和修改加密分区)。
 
 4. 四级、五级目录：
    通过ApplicationContext可以获取distributedfiles目录或base下的files、cache、preferences、temp等目录的应用文件路径，应用全局信息可以存放在这些目录下。
