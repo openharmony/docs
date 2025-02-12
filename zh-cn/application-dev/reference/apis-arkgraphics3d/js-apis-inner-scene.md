@@ -591,25 +591,20 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
 
 function ImportNodeTest() {
-  let scene: Scene | null = null;
-
   Scene.load().then(async (result: Scene) => {
     if (!result) {
       return;
     }
-    scene = result;
+    Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
+      .then(async (extScene: Scene) => {
+        let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
+        let node = result.importNode("scene", extNode, result.root);
+        if (node) {
+          node.position.x = 5;
+        }
+      });
   });
-
-  Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
-    .then(async (extScene: Scene) => {
-      let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
-      let node = scene?.importNode("scene", extNode, scene.root);
-      if (node) {
-        node.position.x = 5;
-      }
-    });
 }
-
 ```
 
 ### importScene
