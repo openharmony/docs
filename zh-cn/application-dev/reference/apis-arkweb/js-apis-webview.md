@@ -8795,7 +8795,7 @@ static getCookie(url: string): string
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[fetchCookieSync](#fetchcookiesync11)替代
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[fetchCookieSync](#fetchcookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9048,7 +9048,7 @@ static setCookie(url: string, value: string): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[configCookieSync<sup>11+</sup>](#configcookiesync11)替代
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[configCookieSync<sup>11+</sup>](#configcookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9621,7 +9621,7 @@ static deleteEntireCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](#clearallcookiessync11)替代
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[clearAllCookiesSync](#clearallcookiessync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -9803,7 +9803,7 @@ static deleteSessionCookie(): void
 
 > **说明：**
 >
-> 从API version9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

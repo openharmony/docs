@@ -6401,6 +6401,18 @@ close(): void
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
 
+### constructor
+
+constructor(message: string, sourceId: string, lineNumber: number, messageLevel: MessageLevel)
+
+ConsoleMessage的构造函数。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[constructor](#constructor9)代替。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
 ### constructor<sup>9+</sup>
 
 constructor()
@@ -6556,7 +6568,7 @@ setWebController(controller: WebviewController): void
 
 Web组件资源管理错误信息对象。示例代码参考[onErrorReceive事件](#onerrorreceive)。
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor()
 
@@ -7197,7 +7209,7 @@ grant(resources: Array\<string\>): void
 
 Web组件返回授权或拒绝屏幕捕获功能的对象。示例代码参考[onScreenCaptureRequest事件](#onscreencapturerequest10)。
 
-### constructor<sup>9+</sup>
+### constructor<sup>10+</sup>
 
 constructor()
 
@@ -7841,6 +7853,18 @@ cancel(): void
 ```ts
 let webController: WebController = new WebController()
 ```
+
+### constructor
+
+constructor()
+
+WebController的构造函数。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。并且不再提供新的接口作为替代。
+
+**系统能力：** SystemCapability.Web.Webview.Core
 
 ### getCookieManager<sup>(deprecated)</sup>
 
