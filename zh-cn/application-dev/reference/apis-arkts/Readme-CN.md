@@ -28,6 +28,9 @@
   - [@ohos.util.TreeMap (非线性容器TreeMap)](js-apis-treemap.md)
   - [@ohos.util.TreeSet (非线性容器TreeSet)](js-apis-treeset.md)
   - [@ohos.worker (启动一个Worker)](js-apis-worker.md)
+  <!--Del-->
+  - [@ohos.worker (启动一个Worker)(系统接口)](js-apis-worker-sys.md)
+  <!--DelEnd-->
   - [@ohos.xml (xml解析与生成)](js-apis-xml.md)
   - 已停止维护的接口<!--arkts-arkts-dep-->
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
