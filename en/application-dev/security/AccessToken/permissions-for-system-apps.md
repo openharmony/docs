@@ -145,7 +145,7 @@ Allows an application to read the protection advice database.
 
 **Valid since**: 16
 
-## ohos.permission.PROXY_MESSAGE_AUTH
+### ohos.permission.PROXY_MESSAGE_AUTH
 
 Allows a system application to call the Message application authorization interface.
 

@@ -145,9 +145,9 @@
 
 **起始版本**：16
 
-## ohos.permission.PROXY_MESSAGE_AUTH
+### ohos.permission.PROXY_MESSAGE_AUTH
 
-允许系统应用调用“信息”应用授权接口
+允许系统应用调用“信息”应用授权接口。
 
 **权限级别**：system_basic
 
