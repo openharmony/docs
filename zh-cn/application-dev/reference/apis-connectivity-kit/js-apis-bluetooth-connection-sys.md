@@ -684,7 +684,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.GET_BLUETOOTH_PEERS_MAC
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -708,7 +708,7 @@ on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&g
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合。
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -729,7 +729,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.GET_BLUETOOTH_PEERS_MAC
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 **参数：**
 
@@ -752,7 +752,7 @@ off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合。
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -901,14 +901,14 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId<sup>12+</sup> | string      | 是    | 否    | 表示扫描到的设备ID。<br/>此接口为系统接口。          |
 | rssi<sup>12+</sup>     | number      | 是    | 否    | 表示扫描到的设备的信号强度。<br/>此接口为系统接口。   |
 | deviceName<sup>12+</sup>     | string      | 是    | 否    | 表示扫描到的设备的设备名称。<br/>此接口为系统接口。   |
-| deviceClass<sup>12+</sup>     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。<br/>此接口为系统接口。  
+| deviceClass<sup>12+</sup>     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。<br/>此接口为系统接口。   |  
 
 
 ## DeviceType<sup>12+</sup>
