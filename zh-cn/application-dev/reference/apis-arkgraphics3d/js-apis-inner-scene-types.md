@@ -124,7 +124,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | indices | number[] | 否 | 是 | 顶点索引数组，默认值为null。 |
 | normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为null。 |
 | uvs | [Vec2](#vec2)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为null。 |
-| colors | [Color](#Color)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为null。 |
+| colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为null。 |
 
 ## CubeGeometry
 立方体几何类型，继承自[GeometryDefinition](#geometrydefinition)。
