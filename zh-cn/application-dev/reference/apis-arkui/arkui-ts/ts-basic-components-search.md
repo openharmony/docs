@@ -618,13 +618,13 @@ keyboardAppearance(appearance: KeyboardAppearance)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
-### stopBackPress<sup>16+</sup>
+### stopBackPress<sup>15+</sup>
 
-stopBackPress(isStopped: boolean)
+stopBackPress(isStopped: Optional\<boolean>)
 
 设置是否阻止返回键向其它组件或应用侧传递。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -632,7 +632,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isStopped | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## IconOptions<sup>10+</sup>对象说明
 
