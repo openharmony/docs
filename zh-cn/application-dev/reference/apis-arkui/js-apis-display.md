@@ -142,7 +142,7 @@ import { display } from '@kit.ArkUI';
 
 | 名称                        | 类型      | 可读 | 可写 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
-| boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。 |
+| boundingRects                | Array\<[Rect](#rect9)> | 是   | 否   | 挖孔、刘海等区域的边界矩形。如果没有挖孔、刘海等区域，数组返回为空。 |
 | waterfallDisplayAreaRects   | [WaterfallDisplayAreaRects](#waterfalldisplayarearects9) | 是 | 否 | 瀑布屏曲面部分显示区域。 |
 
 ## DisplayPhysicalResolution<sup>12+</sup>
@@ -177,9 +177,9 @@ getDisplayByIdSync(displayId: number): Display
 
 根据displayId获取对应的display对象。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
 

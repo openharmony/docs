@@ -106,9 +106,11 @@ trackColor(value: ResourceColor | LinearGradient)
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: ResourceColor | LinearGradient)
 
 设置滑轨的已滑动部分颜色。
+
+从API version 16开始支持利用LinearGradient设置滑轨的已滑动部分的渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -118,9 +120,9 @@ selectedColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                          |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>16+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
 
 ### showSteps
 
@@ -440,6 +442,22 @@ slideRange(value: SlideRange)
 | ------ | ----------------------------------- | ---- | ---------------- |
 | value  | [SlideRange](#sliderange12对象说明) | 是   | 设置有效滑动区间 |
 
+### digitalCrownSensitivity<sup>16+</sup>
+
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置旋转表冠的灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity16) | 是   | 旋转表冠的灵敏度。<br />默认值：CrownSensitivity.MEDIUM |
+
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
 Slider组件滑块形状参数。
@@ -577,6 +595,31 @@ type SliderTriggerChangeCallback = (value: number, mode: SliderChangeMode) => vo
 | ------ | ------ | ---------------- | ---------------- |
 | value | number | 是 | 设置当前的进度值。 |
 | mode | [SliderChangeMode](#sliderchangemode枚举说明) | 是 | 设置事件触发的相关状态值。 |
+
+### enableHapticFeedback<sup>16+</sup>
+
+enableHapticFeedback(enabled: boolean)
+
+设置是否开启触控反馈。
+
+开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+
+```json
+"requestPermissions": [
+  {
+    "name": "ohos.permission.VIBRATE",
+  }
+ ]
+```
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+
 
 ## 示例
 

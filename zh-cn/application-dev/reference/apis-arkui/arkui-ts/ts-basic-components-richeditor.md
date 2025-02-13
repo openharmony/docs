@@ -335,7 +335,7 @@ maxLength(value: Optional\<number\>)
 
 maxLines(value: Optional\<number\>)
 
-设置文本可显示的最大行数。
+设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -345,7 +345,7 @@ maxLines(value: Optional\<number\>)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -1738,8 +1738,8 @@ RichEditor span信息。
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
-| onMenuShow<sup>16+</sup> | [MenuType](#menucallback16) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| onMenuHide<sup>16+</sup> | [MenuType](#menucallback16) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| onMenuShow<sup>16+</sup> | [MenuCallBack](#menucallback16) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| onMenuHide<sup>16+</sup> | [MenuCallBack](#menucallback16) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1884,7 +1884,7 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | status  | boolean                            | 是   | 表示鼠标是否悬浮在组件上，鼠标进入组件时为true，离开组件时为false。|
-| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | 是   | 设置阻塞事件冒泡属性。 |
+| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。 |
 
 ## RichEditorTextSpan
 
@@ -4490,6 +4490,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.removeString(start, end - start);
@@ -4517,6 +4520,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.setStyle({
@@ -4830,8 +4836,8 @@ struct Index {
 @Entry
 @Component
 struct RichEditorExample {
-  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky,"+
-    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, "+
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
     " pink, and lavender, creating a breathtaking tapestry that stretches as far as the eye can see." +
     "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil." +
     "it casts a warm," +
@@ -4848,7 +4854,7 @@ struct RichEditorExample {
     "it casts a warm," +
     "golden hue that spreads like liquid amber across the vast expanse of the sky." +
     "The once-blue heavens gradually transform, "
-  @State maxLineList: (number | undefined)[] = [ 2, 6, undefined]
+  @State maxLineList: (number | undefined)[] = [2, 6, undefined]
   @State maxLineIndex: number = 0
   @State maxLineStringList: (string)[] = ["2", "6", "undefined"]
   richEditorStyledString: MutableStyledString = new MutableStyledString("");
@@ -4861,7 +4867,7 @@ struct RichEditorExample {
 
   build() {
     Column() {
-      Text("当前的maxLength为7 " )
+      Text("当前的maxLength为7 ")
         .margin(10)
         .fontSize(25)
       Row() {
@@ -4885,21 +4891,23 @@ struct RichEditorExample {
                 }
               })
           })
-          .margin({left:20})
+          .margin({ left: 20 })
       }
-        RichEditor({ controller: this.controller1 })
-          .width('95%')
-          .margin(10)
-          .maxLength(7)
-          .backgroundColor('rgb(240,250,255)')
-        Text("当前的maxLine为 " + this.maxLineStringList[this.maxLineIndex]).margin(10)
-          .fontSize(25)
-        Button("更改maxLines").onClick(() => {
-          this.maxLineIndex++
-          if (this.maxLineIndex > this.maxLineList.length - 1) {
-            this.maxLineIndex = 0
-          }
-        })
+
+      RichEditor({ controller: this.controller1 })
+        .width('95%')
+        .margin(10)
+        .height(60)
+        .maxLength(7)
+        .backgroundColor('rgb(240,250,255)')
+      Text("当前的maxLine为 " + this.maxLineStringList[this.maxLineIndex]).margin(10)
+        .fontSize(25)
+      Button("更改maxLines").onClick(() => {
+        this.maxLineIndex++
+        if (this.maxLineIndex > this.maxLineList.length - 1) {
+          this.maxLineIndex = 0
+        }
+      })
       RichEditor({ controller: this.controller3 })
         .onReady(() => {
           this.controller3.addTextSpan(this.text,
@@ -4913,7 +4921,6 @@ struct RichEditorExample {
         .margin(10)
         .width('95%')
         .maxLines(this.maxLineList[this.maxLineIndex])
-        .height(105)
         .backgroundColor('rgb(240,250,255)')
     }
   }

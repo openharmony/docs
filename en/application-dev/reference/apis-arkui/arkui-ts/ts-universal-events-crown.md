@@ -11,7 +11,7 @@ A crown event is an event triggered when the crown of a wearable device is rotat
 >
 >  - This event is only supported on wearable devices.
 >
->  - By default, the following components support crown events: [Slider](ts-basic-components-slider.md), [DatePicker](ts-basic-components-datepicker.md), [TextPicker](ts-basic-components-textpicker.md), [TimePicker](ts-basic-components-timepicker.md), [Scroll](ts-container-scroll.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [WaterFlow](ts-container-waterflow.md), [ArcList](ts-container-arclist.md), [Refresh] (ts-container-refresh.md), and [Swiper] (ts-container-swiper.md).
+>  - By default, the following components support crown events: [Slider](ts-basic-components-slider.md), [DatePicker](ts-basic-components-datepicker.md), [TextPicker](ts-basic-components-textpicker.md), [TimePicker](ts-basic-components-timepicker.md), [Scroll](ts-container-scroll.md), [List](ts-container-list.md), [Grid](ts-container-grid.md), [WaterFlow](ts-container-waterflow.md), [ArcList](ts-container-arclist.md), [Refresh](ts-container-refresh.md), and [Swiper](ts-container-swiper.md).
 
 ## onDigitalCrown
 

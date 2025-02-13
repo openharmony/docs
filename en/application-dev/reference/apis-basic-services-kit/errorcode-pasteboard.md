@@ -114,3 +114,76 @@ The global pasteable scope of the application already exists.
 **Solution**
 
 Delete the existing settings and then set the new one.
+
+## 12900007 File Copying Failure
+
+**Error Message**
+
+Copy file failed.
+
+**Description**
+
+This error code is reported when a file fails to be copied.
+
+**Possible Causes**
+
+The file fails to be downloaded and copied.
+
+**Solution**
+
+1. Before copying related data, check whether the destination path is valid.
+2. If the destination path is invalid, confirm the correct path.
+
+## 12900008 Progress Startup Failure
+
+**Error Message**
+
+Failed to start progress.
+
+**Description**
+
+This error code is reported when the progress fails to be created using the default progress indicator.
+
+**Possible Causes**
+
+The system thread is abnormal.
+
+**Solution**
+
+Check whether the pasting is successful. If yes, ignore this error; otherwise, contact technical support.
+
+## 12900009 Progress Reporting Exception
+
+**Error Message**
+
+Progress exits abnormally.
+
+**Description**
+
+ This error code is reported when the progress reporting on default progress indicator is abnormal.
+
+**Possible Causes**
+
+The progress is displayed abnormally.
+
+**Solution**
+
+Check whether the pasting is successful. If yes, ignore this error; otherwise, contact technical support.
+
+## 12900010 Data Obtaining Failure
+
+**Error Message**
+
+Get Data failed.
+
+**Description**
+
+This error code is reported when the copied data fails to be obtained.
+
+**Possible Causes**
+
+The copied data fails to be obtained.
+
+**Solution**
+
+Contact technical support.

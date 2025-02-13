@@ -15,7 +15,7 @@ import settings from '@ohos.settings';
 ```
 ## domainName
 
-提供查询的域名
+提供查询的域名。
 
 ### 属性
 
@@ -51,7 +51,7 @@ import settings from '@ohos.settings';
 
 | 名称                          | 类型   | 可读 | 可写 | 说明                                                                                                          |
 | ----------------------------- | ------ | ---- | ---- |-------------------------------------------------------------------------------------------------------------|
-| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。（当前版本参数仅支持固定值查询）                                                                              |
+| FONT_SCALE                    | string | 是   | 是   | 字体的比例因子，值为浮点数。（当前版本参数仅支持固定值查询）。                                                                            |
 | SCREEN_BRIGHTNESS_STATUS      | string | 是   | 是   | 屏幕亮度。该值的范围从0到255。                                                                                           |
 | AUTO_SCREEN_BRIGHTNESS        | string | 是   | 是   | 是否启用屏幕亮度自动调整。<br/>值为AUTO_SCREEN_BRIGHTNESS_MODE，表示启用自动调整；<br/>值为MANUAL_SCREEN_BRIGHTNESS_MODE，表示不启用自动调整。    |
 | AUTO_SCREEN_BRIGHTNESS_MODE   | number | 是   | 是   | 使用屏幕亮度自动调整时AUTO_SCREEN_BRIGHTNESS的值。                                                                        |
@@ -147,7 +147,7 @@ import settings from '@ohos.settings';
 | ---------------------------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | VIBRATE_WHILE_RINGING        | string | 是   | 是   | 设备在来电响铃时是否振动。此属性将由电话和设置应用程序使用。 该值是布尔类型，仅影响设备因来电而响铃的情况，不影响任何其他应用程序或场景。 |
 | DEFAULT_ALARM_ALERT          | string | 是   | 是   | 系统默认告警的存储区域。                                     |
-| DTMF_TONE_TYPE_WHILE_DIALING | string | 是   | 是   | 拨号时播放的双音多频 (DTMF) 音的类型。 <br>值为0表示常规的短音效，<br/>值为1表示长音效。 |
+| DTMF_TONE_TYPE_WHILE_DIALING | string | 是   | 是   | 拨号时播放的双音多频 (DTMF) 音的类型。 <br>值为0表示常规的短音效。<br/>值为1表示长音效。 |
 | DTMF_TONE_WHILE_DIALING      | string | 是   | 是   | 拨号时是否播放 DTMF 音。<br>值为1，表示播放 DTMF 音；<br/>值为0，表示不播放。 |
 | AFFECTED_MODE_RINGER_STREAMS | string | 是   | 是   | 哪些音频流受振铃模式和请勿打扰 (DND) 模式更改的影响。希望特定的音频流受到振铃模式和 DDN 模式变化的影响，请将对应比特位设置为1。 |
 | AFFECTED_MUTE_STREAMS        | string | 是   | 是   | 受静音模式影响的音频流。希望特定音频流在静音模式下保持静音，请将相应位设置为1。 |

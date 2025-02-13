@@ -8,7 +8,7 @@
 
 ## 子组件
 
-支持
+可以包含子组件。
 
 
 ## 属性
@@ -18,7 +18,7 @@
 | 名称         | 类型             | 默认值      | 必填   | 描述                                       |
 | ---------- | -------------- | -------- | ---- | ---------------------------------------- |
 | type       | string         | foldable | 是    | 设置可滑动面板类型，不可动态变更，可选值有：<br/>-&nbsp;minibar：提供minibar和类全屏展示切换效果。<br/>-&nbsp;foldable：内容永久展示类，提供大（类全屏）、中（类半屏）、小三种尺寸展示切换效果。<br/>-&nbsp;temporary：内容临时展示区，提供大（类全屏）、中（类半屏）两种尺寸展示切换效果。 |
-| mode       | string         | full     | 否    | 设置初始状态，mode参数可选值为：<br/>1.&nbsp;mini：类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。<br/>2.&nbsp;half:&nbsp;类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。<br/>3.&nbsp;full:&nbsp;类全屏状态。 |
+| mode       | string         | full     | 否    | 设置初始状态，mode参数可选值为：<br/>-&nbsp;mini：类型为minibar和foldable时，为最小状态；类型为temporary，则不生效。<br/>-&nbsp;half:&nbsp;类型为foldable和temporary时，为类半屏状态；类型为minibar，则不生效。<br/>-&nbsp;full:&nbsp;类全屏状态。 |
 | dragbar    | boolean        | true     | 否    | 设置是否存在dragbar，true表示存在，false表示不存在。       |
 | fullheight | &lt;length&gt; | -        | 否    | 指定full状态下的高度，默认为屏幕尺寸&nbsp;-&nbsp;8px。    |
 | halfheight | &lt;length&gt; | -        | 否    | 指定half状态下的高度，默认为屏幕尺寸的一半。                 |

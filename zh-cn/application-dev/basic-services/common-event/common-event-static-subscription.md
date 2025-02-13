@@ -55,7 +55,7 @@
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",
-               "resource": "$profile:staticsubscriber"
+               "resource": "$profile:subscribe"
              }
            ]
          }
@@ -76,7 +76,11 @@
         - resource：字段表示ExtensionAbility的配置信息路径，由开发者自行定义，在本例中表示路径为`resources/base/profile/subscribe.json`。
 
 
-3. 配置metadata指向的二级配置文件。
+3. 配置metadata指向的二级配置文件subscribe.json。
+
+   > **说明：**
+   >
+   > 二级配置文件必须按照此形式进行声明，否则会无法正确识别。
 
    ```json
    {
@@ -86,17 +90,55 @@
          "permission": "",
          "events": [
            "usual.event.AIRPLANE_MODE"
+         ],
+         "filter": [
+           {
+             "event": "usual.event.AIRPLANE_MODE",
+             "conditions": {
+               "code": 0,
+               "data": "send common event data",
+               "parameters": {
+                 "bundleType": 1,
+                 "userId": 100
+               }
+             }
+           }
          ]
        }
      ]
    }
    ```
 
-   需要注意二级配置文件必须按照此形式进行声明，否则会无法正确识别。部分字段解释如下：
+   commonEvents标签标识订阅者配置静态订阅事件，轻量级设备上不支持此标签和子标签。标签值为对象数组类型，包含name、permission、events、filter四个子标签。
 
-   - name: 静态订阅ExtensionAbility的名称，需要和module.json5中声明的ExtensionAbility的name一致。
-   - permission：订阅者要求的发布者需要具备的权限，对于发布了目标事件但不具备permission中声明的权限的发布者将被视为非法事件不予发布。
-   - events：订阅的目标事件列表。
+   **表1** commonEvents标签说明
+
+   | **属性名称** | **含义**                                                     | **数据类型** | **是否可缺省**             |
+   | ------------ | ------------------------------------------------------------ | ------------ | -------------------------- |
+   | name         | 标识静态订阅ExtensionAbility的名称，需要和module.json5中声明的ExtensionAbility的name一致。 | 字符串       | 该标签不可缺省。           |
+   | permission   | 标识订阅者要求的发布者需要具备的权限。                       | 字符串       | 该标签可缺省，缺省值为空。 |
+   | events       | 标识订阅的目标事件列表。                                     | 字符串数组   | 该标签不可缺省。           |
+   | filter       | 标识静态事件过滤的条件。从API version 16开始，支持该属性。<br />取值说明详见下表。 | 对象数组     | 该标签可缺省，缺省值为空。 |
+
+   filter标签标识订阅者可以根据需要配置过滤的静态订阅事件，标签值为对象数组类型，包含event、conditions两个子标签。
+
+   **表2** filter标签说明
+
+   | **属性名称** | **含义**                                                     | **数据类型** | **是否可缺省**   |
+   | ------------ | ------------------------------------------------------------ | ------------ | ---------------- |
+   | event        | 标识静态订阅事件需要过滤的事件名，与事件列表进行匹配，否则配置无效。 | 字符串       | 该标签不可缺省。 |
+   | conditions   | 标识当前事件的过滤条件，从[发布者CommonEventPublishData](../../reference/apis-basic-services-kit/js-apis-inner-commonEvent-commonEventPublishData.md#commoneventpublishdata)中进行过滤。 | 对象         | 该标签不可缺省。 |
+
+   conditions标签标识静态订阅过滤事件需要的条件配置，标签值为对象类型，包含code、data、parameters三个子标签。
+
+   **表3** conditions标签说明
+
+   | **属性名称** | **含义**                                   | **数据类型**       | **是否可缺省**             |
+   | ------------ | ------------------------------------------ | ------------------ | -------------------------- |
+   | code         | 标识静态订阅事件需要过滤的结果代码。       | 整型数值           | 该标签可缺省，缺省值为空。 |
+   | data         | 标识静态订阅事件需要过滤的自定义结果数据。 | 字符串             | 该标签可缺省，缺省值为空。 |
+   | parameters   | 标识静态订阅事件需要过滤的附加信息。       | 布尔值/数值/字符串 | 该标签可缺省，缺省值为空。 |
+
 
 4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。预置配置文件在设备上的路径为`/system/variant/phone/base/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装时会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
 

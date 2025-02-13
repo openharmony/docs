@@ -313,14 +313,31 @@ struct TabsExample1 {
 若希望不滑动内容页和点击页签也能实现内容页和页签的切换，可以将currentIndex传给Tabs的index参数，通过改变currentIndex来实现跳转至指定索引值对应的TabContent内容。也可以使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行内容页切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
 ```ts
 @State currentIndex: number = 2
+@State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
 private controller: TabsController = new TabsController()
 
 Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
   ...
 }
 .height(600)
+.animationMode(this.currentAnimationMode)
 .onChange((index: number) => {
    this.currentIndex = index
+})
+
+Button('动态修改AnimationMode').width('50%').margin({ top: 1 }).height(25)
+  .onClick(()=>{
+    if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+      this.currentAnimationMode = AnimationMode.NO_ANIMATION
+    } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+    }
 })
 
 Button('动态修改index').width('50%').margin({ top: 20 })

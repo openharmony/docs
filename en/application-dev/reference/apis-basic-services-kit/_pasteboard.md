@@ -318,7 +318,7 @@ Enumerates the error codes.
 | ERR_DEVICE_NOT_SUPPORTED  | The device capability is not supported. |
 | ERR_INNER_ERROR  | Internal error. |
 | ERR_BUSY  | System busy. |
-| ERR_COPY_FILE_ERROR | File copy failed.|
+| ERR_COPY_FILE_ERROR | File copying failed.|
 | ERR_PROGRESS_START_ERROR | Progress indicator creation fails when the application uses the system progress indicator.|
 | ERR_PROGRESS_ABNORMAL | Progress reporting is abnormal when the application stops using the system progress indicator.|
 | ERR_GET_DATA_FAILED | Fails to obtain the copied data.|
@@ -725,7 +725,7 @@ Destroys an [OH_PasteboardObserver](_pasteboard.md#oh_pasteboardobserver) instan
 
 **Returns**
 
-Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br> Returns **ERR_OK** if the operation is successful.<br> Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
+Returns an error code. For details, see [PASTEBOARD_ErrCode](#pasteboard_errcode).<br>Returns **ERR_OK** if the operation is successful.<br>Returns **ERR_INVALID_PARAMETER** if an invalid parameter is passed in.
 
 **See**
 

@@ -439,3 +439,39 @@ struct TimePickerDialogExample {
 }
 ```
 ![TimetPickerDialog](figures/TimePickerDialogDemo8.png)
+
+### 示例9（设置上午下午跟随时间联动）
+
+该示例通过配置enableCascade实现12小时制时上午下午跟随时间联动。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TimePickerDialogExample {
+  private selectTime: Date = new Date('2022-07-22T08:00:00')
+
+  build() {
+    Column() {
+      Button("TimePickerDialog")
+        .margin(20)
+        .onClick(() => {
+          TimePickerDialog.show({
+            useMilitaryTime: false,
+            selected: this.selectTime,
+            enableCascade:true,
+            onAccept: (value: TimePickerResult) => {
+              // 设置selectTime为按下确定按钮时的时间，这样当弹窗再次弹出时显示选中的为上一次确定的时间
+              if (value.hour != undefined && value.minute != undefined) {
+                this.selectTime.setHours(value.hour, value.minute)
+                console.info("TimePickerDialog:onAccept()" + JSON.stringify(value))
+              }
+            }
+          })
+        })
+    }.width('100%')
+  }
+}
+```
+
+![timePicker](figures/TimePickerDialogDemo9.gif)

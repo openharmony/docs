@@ -205,7 +205,7 @@ animationDuration(value: number)
 
 animationMode(mode: Optional\<AnimationMode\>)
 
-设置点击TabBar页签时切换TabContent的动画形式。
+设置点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -215,7 +215,7 @@ animationMode(mode: Optional\<AnimationMode\>)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode.CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。<br/>默认值：AnimationMode.CONTENT_FIRST，表示在点击TabBar页签或调用TabsController的changeIndex接口切换TabContent时，先加载目标页内容，再开始切换动画。|
 
 ### barPosition<sup>9+</sup>
 
@@ -463,7 +463,7 @@ TabBar布局模式枚举。
 | ------------- | ---- | ------------------------------------------------------------ |
 | CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。                             |
 | ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
-| NO_ANIMATION  | 2    | 关闭默认动画。                                                 |
+| NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。               |
 | CONTENT_FIRST_WITH_JUMP<sup>16+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
 | ACTION_FIRST_WITH_JUMP<sup>16+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
 
@@ -657,6 +657,34 @@ onSelected(event: Callback\<number>)
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 当前选中元素的索引。 |
+
+### onUnselected<sup>16+</sup>
+
+onUnselected(event: Callback\<number>)
+
+当选中元素改变时触发该回调，返回值为将要隐藏的元素的索引值。
+
+满足以下任一条件，即可触发该事件：
+
+1. 滑动离手时满足翻页阈值，开始切换动画时触发。
+
+2. 通过[TabsController控制器](#tabscontroller)调用。
+
+3. 通过[状态变量](../../../quick-start/arkts-state.md)构造的属性值进行修改。
+
+4. 通过页签处点击触发。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 将要隐藏元素的索引。 |
 
 ## OnTabsAnimationStartCallback<sup>16+</sup>
 

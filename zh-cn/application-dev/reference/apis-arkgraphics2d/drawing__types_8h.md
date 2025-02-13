@@ -55,7 +55,7 @@
 | typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)  [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，蒙版滤波器和图像滤波器。 | 
 | typedef struct [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter)  [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) | 定义蒙版滤波器。 | 
 | typedef struct [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter)  [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter) | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 | 
-| typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定<br/>义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
+| typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
 | typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 | 
 | typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 | 
 | typedef struct [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) | 用于描述字型参数。 | 

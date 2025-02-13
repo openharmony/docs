@@ -613,7 +613,7 @@ multiply(2, 3); // 返回2*3
 
 ### Rest参数
 
-函数的最后一个参数可以是rest参数。使用rest参数时，允许函数或方法接受任意数量的实参。
+函数的最后一个参数可以是rest参数。rest参数的格式为`...restArgs`。rest参数允许函数接收一个由剩余实参组成的数组，用于处理不定数量的参数输入。
 
 ```typescript
 function sum(...numbers: number[]): number {

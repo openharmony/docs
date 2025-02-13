@@ -659,7 +659,7 @@ When you start debugging or run an application, the error message "error: signat
 
 * Scenario 1:
 	1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237) to sign the HAP file. after the device is connected.
-	2. If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see <!--RP2-->[hapsigner Guide](https://gitee.com/openharmony/docs/blob/master/en/application-dev/security/hapsigntool-guidelines.md)<!--RP2End-->.
+	2. If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see <!--RP2-->[hapsigner Guide](../security/hapsigntool-guidelines.md)<!--RP2End-->.
 		```
 		// Command for obtaining the UDID
 		hdc shell bm get -u

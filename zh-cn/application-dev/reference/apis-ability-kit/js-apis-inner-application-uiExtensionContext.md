@@ -1507,15 +1507,19 @@ struct Page_UIServiceExtensionAbility {
 
 setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
-设置uiExtensionAbility的颜色模式, uiExtensionAbility的颜色模式优先级大于系统的颜色模式。调用时需要保证该uiExtensionAbility对应窗口已被成功创建。调用后会创建新的资源管理器对象，需更新缓存的资源管理器。仅支持主线程调用。
+设置UIExtensionAbility的颜色模式。调用该接口前需要保证该UIExtensionContext对应页面已完成加载。仅支持主线程调用。
+
+> **说明**：
+> - 调用该接口后会创建新的资源管理器对象，如果此前有缓存资源管理器，需要进行更新。
+> - 颜色模式生效的优先级：UIExtensionAbility的颜色模式 > 应用的颜色模式（[ApplicationContext.setColorMode](js-apis-inner-application-applicationContext.md)）> 系统的颜色模式。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数**：
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：COLOR_MODE_DARK 深色模式、COLOR_MODE_LIGHT 浅色模式、COLOR_MODE_NOT_SET 不设置（跟随系统或应用）。 |
+| colorMode | [ConfigurationConstant.ColorMode](js-apis-app-ability-configurationConstant.md#colormode) | 是   | 设置颜色模式，包括：<br> - COLOR_MODE_DARK：深色模式 <br> - COLOR_MODE_LIGHT：浅色模式 <br> - COLOR_MODE_NOT_SET：不设置（跟随系统或应用）|
 
 **错误码**：
 
@@ -1526,7 +1530,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000011 | The context does not exist. |
 
-**示例：**
+**示例**：
 
 ```ts
 import { UIExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
@@ -1534,7 +1538,7 @@ import { UIExtensionAbility, ConfigurationConstant } from '@kit.AbilityKit';
 export default class MyAbility extends UIExtensionAbility {
   onForeground() {
     let uiExtensionContext = this.context;
-    uiAbilityContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+    uiExtensionContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
   }
 }
 ```

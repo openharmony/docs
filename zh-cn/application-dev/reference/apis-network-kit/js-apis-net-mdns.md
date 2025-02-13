@@ -847,7 +847,7 @@ type NetAddress = connection.NetAddress
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.NetStack
+**系统能力**：SystemCapability.Communication.NetManager
 
 |       类型       |            说明             |
 | ---------------- | --------------------------- |

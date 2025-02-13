@@ -355,6 +355,7 @@ Removes a system account. This API uses an asynchronous callback to return the r
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **Example**
 
@@ -413,6 +414,7 @@ Removes a system account. This API uses a promise to return the result.
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **Example**
 
@@ -904,45 +906,6 @@ Queries information about all the system accounts created. This API uses a promi
   }
   ```
 
-### getForegroundOsAccountLocalId<sup>12+</sup>
-
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
-
-Obtains the ID of the foreground system account.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Account.OsAccount
-
-**Return value**
-
-| Type                  | Description                                                              |
-| ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the result. return the ID of the foreground system account obtained.|
-
-**Error codes**
-
-| ID| Error Message      |
-| -------- | ------------- |
-| 202 | Not system application.|
-| 12300001 | The system service works abnormally. |
-
-**Example**
-
-  ```ts
-  import { BusinessError } from '@kit.BasicServicesKit';
-  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
-  try {
-    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
-      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
-    }).catch((err: BusinessError) => {
-      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
-    });
-  } catch (e) {
-    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
-  }
-  ```
-
 ### createOsAccount
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
@@ -1011,7 +974,7 @@ Creates a system account. This API uses a promise to return the result.
 | --------- | ------------------------------- | ---- | ---------------------- |
 | localName | string                          | Yes  | Name of the system account to create.|
 | type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | Yes  | Type of the system account to create.|
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12. |
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | No  | Options for creating a system account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1125,7 +1088,7 @@ Creates a system account and associates it with the specified domain account. Th
 | ---------- | ---------------------------------------- | ---- | -------------------- |
 | type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | Yes  | Type of the system account to create.|
 | domainInfo | [DomainAccountInfo](#domainaccountinfo8) | Yes  | Domain account information.         |
-| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12. |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | No  | Optional parameters for creating the account. By default, this parameter is left blank.<br>This parameter is supported since API version 12.|
 
 **Return value**
 
@@ -1534,7 +1497,7 @@ Subscribes to the system account activation states, including the states of the 
 
 | Name  | Type                      | Mandatory| Description                                                        |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates a system account is activated, and **activating** indicates a system account is being activated.|
+| type     | 'activate' \| 'activating' | Yes  | Type of the event to subscribe to. The value **activate** indicates that a system account is activated, and **activating** indicates that a system account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes.          |
 | callback | Callback&lt;number&gt;     | Yes  | Callback used to return the ID of the system account being activated or activated.   |
 
@@ -2353,6 +2316,75 @@ Obtains the executor property based on the request. This API uses a promise to r
     });
   } catch (e) {
     console.log('getProperty exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getPropertyByCredentialId<sup>14+</sup>
+
+getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyType&gt;): Promise&lt;ExecutorProperty&gt;;
+
+Obtains the specified property information of the associated executor based on the credential ID. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**Parameters**
+
+| Name   | Type                                                  | Mandatory| Description                               |
+| -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
+| credentialId  | Uint8Array | Yes  | Credential ID.|
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | Yes   | Property type array to be queried.|
+
+**Return value**
+
+| Type                                                             | Description                                                |
+| :---------------------------------------------------------------- | :-------------------------------------------------- |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise used to return the executor attributes.|
+
+**Error codes**
+
+| ID| Error Message                    |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid keys. |
+| 12300102 | The credential does not exist. |
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let credInfo: osAccount.EnrolledCredInfo[] = [];
+  try {
+    credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
+  } catch (e) {
+    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    return;
+  }
+  if (credInfo.length == 0) {
+    console.log('no credential infos');
+    return;
+  }
+  let testCredentialId: Uint8Array = credInfo[0].credentialId;
+  let keys: Array<osAccount.GetPropertyType> = [
+    osAccount.GetPropertyType.AUTH_SUB_TYPE,
+    osAccount.GetPropertyType.REMAIN_TIMES,
+    osAccount.GetPropertyType.FREEZING_TIME
+  ];
+  try {
+    let userAuth = new osAccount.UserAuth();
+    userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
+      console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
+    }).catch((err: BusinessError) => {
+      console.log('getPropertyByCredentialId error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.log('getPropertyByCredentialId exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -3582,7 +3614,7 @@ Authenticates a domain account.
 
 authWithPopup(callback: IUserAuthCallback): void
 
-Authenticates this domain account in a pop-up window.
+Authenticates this domain account with a dialog box.
 
 **System API**: This is a system API.
 
@@ -3635,7 +3667,7 @@ No permission is required since API version 11. Use the SDK of the latest versio
 
 authWithPopup(localId: number, callback: IUserAuthCallback): void
 
-Authenticates a domain account in a pop-up window.
+Authenticates this domain account with a dialog box.
 
 **System API**: This is a system API.
 
@@ -5439,6 +5471,7 @@ Enumerates the authentication credential types.
 | FACE  | 2     | Facial authentication.|
 | FINGERPRINT<sup>10+</sup>   | 4     | Fingerprint authentication.|
 | RECOVERY_KEY<sup>12+</sup> | 8 | Key recovery type.|
+| PRIVATE_PIN<sup>14+</sup> | 16 | Private PIN type.|
 | DOMAIN<sup>9+</sup>  | 1024     | Domain authentication.|
 
 ## AuthSubType<sup>8+</sup>
@@ -5456,6 +5489,7 @@ Enumerates the authentication credential subtypes.
 | PIN_MIXED  | 10002 | Custom mixed credentials.|
 | PIN_FOUR<sup>12+</sup>   | 10003 | 4-digit credential.|
 | PIN_PATTERN<sup>12+</sup>  | 10004 | Pattern credential.|
+| PIN_QUESTION<sup>14+</sup>  | 10005 | Security question credential.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | Capacitive fingerprint.  |
@@ -5561,8 +5595,8 @@ Represents the system account information.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default. |
-| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**. |
+| shortName<sup>12+</sup> | string | No  | Short name of the system account.<br>**System API**: This is a system API and is left blank by default.|
+| isLoggedIn<sup>12+</sup> | boolean | No  | Whether the system account is logged in.<br>**System API**: This is a system API. The default value is **false**.|
 
 ## OsAccountType
 
@@ -5572,7 +5606,7 @@ Enumerates the system account types.
 
 | Name  | Value| Description        |
 | ------ | ------ | ----------- |
-| PRIVATE<sup>12+</sup> | 1024  | Privacy account. Only one privacy account is allowed.<br>**System API**: This is a system API. |
+| PRIVATE<sup>12+</sup> | 1024  | Privacy account. Only one privacy account is allowed.<br>**System API**: This is a system API.  |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -5582,9 +5616,9 @@ Represents domain account information.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default. |
-| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**. |
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default. |
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API and is **undefined** by default.|
+| isAuthenticated<sup>11+</sup>| boolean | No| Whether the domain account has been authenticated.<br>**System API**: This is a system API. The default value is **false**.|
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs.<br>**System API**: This is a system API and is **undefined** by default.|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -5654,7 +5688,7 @@ Defines the options for obtaining domain account information.
 | ----------- | ------ | ---- | ---------- |
 | accountName | string | Yes  | Domain account name.|
 | domain      | string | No  | Domain name, which is **undefined** by default.|
-| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs. The default value is **undefined**.|
+| serverConfigId<sup>12+</sup>| boolean | No| ID of the server to which the domain account belongs, which is **undefined** by default.|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
@@ -5691,7 +5725,7 @@ Represents the optional parameter used to create a system account.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
 
 ## CreateOsAccountForDomainOptions<sup>12+</sup>
 
@@ -5703,7 +5737,7 @@ Represents a set of optional parameters for creating a system account bound to t
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters. |
+| shortName | string | Yes  | Short name of the account (used as the name of the personal folder).<br>**The short name cannot**:<br>Contain any of the following characters: \< \>\| : " * ? / \\<br>Contain any of the following: . or ..<br>Exceed 255 characters.|
 
 ## GetAuthInfoOptions<sup>12+</sup>
 
@@ -5729,6 +5763,8 @@ Enumerates the authentication intents.
 | Name    | Value  | Description      |
 | -------- | --- | ---------- |
 | UNLOCK   | 1   | Unlock.|
+| SILENT_AUTH<sup>14+</sup>  | 2   | Silent authentication.|
+| QUESTION_AUTH<sup>14+</sup>   | 3   | Security question authentication.|
 
 ## RemoteAuthOptions<sup>12+</sup>
 

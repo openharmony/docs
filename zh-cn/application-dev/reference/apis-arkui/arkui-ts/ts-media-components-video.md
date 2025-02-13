@@ -604,6 +604,11 @@ struct VideoCreateComponent {
             console.info('onUpdate is ' + e.time)
           }
         })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
+          }
+        })
 
       Row() {
         Button('src').onClick(() => {
@@ -656,6 +661,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -722,6 +731,7 @@ struct ImageAnalyzerExample {
 以下示例展示了如何使Video组件能够播放拖入的视频。
 
 ```ts
+// xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry

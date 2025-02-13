@@ -153,8 +153,8 @@ class EntryAbility extends UIAbility {
 | 名称        | 类型          | 必填 | 说明                                                      |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名，也是数据库唯一标识符。<br/>**使用约束：** <br/>1. 文件名长度上限为128字节。<br/>2. 文件名不包含.db后缀。 |
-| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**使用约束：** <br/>1. 安全级别不支持从高到低变更。<br/>2. 同一个数据库如果需要变更安全等级，需要使用[GraphStore.close](#close)接口关闭已经打开的数据库，再将修改安全等级后的StoreConfig作为参数重新调用[graphStore.getStore](#graphstoregetstore)。 |
-| encrypt | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**使用约束：** <br/>1. 不支持从加密数据库到非加密数据库的变更。<br/>2. 同一个数据库如果需要从非加密数据库变更为加密数据库，需要使用[GraphStore.close](#close)接口关闭已经打开的数据库，再将修改加密标志后的StoreConfig作为参数重新调用[graphStore.getStore](#graphstoregetstore)。 |
+| securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别。<br/>**使用约束：** <br/>1. 安全级别不支持从高到低变更。<br/>2. 同一个数据库如果需要变更安全等级，需要使用[close](#close)接口关闭已经打开的数据库，再将修改安全等级后的StoreConfig作为参数重新调用[getStore](#graphstoregetstore)。 |
+| encrypt | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。<br/>**使用约束：** <br/>1. 不支持从加密数据库到非加密数据库的变更。<br/>2. 同一个数据库如果需要从非加密数据库变更为加密数据库，需要使用[close](#close)接口关闭已经打开的数据库，再将修改加密标志后的StoreConfig作为参数重新调用[getStore](#graphstoregetstore)。 |
 
 ## SecurityLevel
 
@@ -249,6 +249,8 @@ GQL语句执行结果。
 
 提供用于管理图数据库的事务处理方法的接口。
 
+不同事务对象之间的操作是隔离的，当前图数据库使用库级锁。所以如果存在一个事务使用[write](#write)接口写入后未使用[commit](#commit)接口提交或使用[rollback](#rollback)接口回滚，此时其他Transaction实例使用[read](#read)/[write](#write)或GraphStore实例使用[GraphStore.read](#read-1)/[GraphStore.write](#write-1)进行读写操作时会返回31300003错误码。另外如果存在一个事务使用[read](#read)接口查询后未使用[commit](#commit)接口提交或使用[rollback](#rollback)接口回滚，此时其他Transaction实例使用[write](#write)或GraphStore实例使用[GraphStore.write](#write-1)进行写操作时也会返回31300003错误码。
+
 下列API示例中都需先使用[createTransaction](#createtransaction)接口获取到Transaction实例，再通过此实例调用对应方法。
 
 ### read
@@ -318,7 +320,7 @@ if(transaction != undefined) {
 
 write(gql: string): Promise&lt;Result&gt;
 
-执行数据写入语句。用于创建图、删除图、增删改数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）。不支持使用本接口执行事务操作语句，包括开启事务（START TRANSACTION）、提交事务（COMMIT）以及回滚事务（ROLLBACK）。
+执行数据写入语句。用于增删改数据等。暂不支持修改表结构（[Vertex](#vertex)和[Edge](#edge)的类型或属性）、创建/删除图以及创建/删除索引。不支持使用本接口执行事务操作语句，包括开启事务（START TRANSACTION）、提交事务（COMMIT）以及回滚事务（ROLLBACK）。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 
@@ -460,7 +462,7 @@ if(transaction != undefined) {
 
 提供管理图数据库(GDB)方法的接口。
 
-下列API示例中都需先使用[graphStore.getStore](#graphstoregetstore)接口获取到GraphStore实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[getStore](#graphstoregetstore)接口获取到GraphStore实例，再通过此实例调用对应方法。
 
 ### read
 
@@ -586,7 +588,7 @@ if(store != null) {
 
 createTransaction(): Promise&lt;Transaction&gt;
 
-创建事务实例。
+创建事务实例。当前图数据库同一时刻至多只能创建4个事务实例。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataIntelligence.Core
 

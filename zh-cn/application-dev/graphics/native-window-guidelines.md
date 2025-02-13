@@ -39,16 +39,19 @@ libnative_window.so
 #include <native_window/external_window.h>
 ```
 
-1. **获取OHNativeWindow实例**。
+1. 获取OHNativeWindow实例。
 
     可在[`OH_NativeXComponent_Callback`](../reference/apis-arkui/_o_h___native_x_component___callback.md)提供的接口中获取OHNativeWindow，下面提供一份代码示例。XComponent模块的具体使用方法请参考[XComponent开发指导](../ui/napi-xcomponent-guidelines.md)。
+
     1. 在xxx.ets中添加一个XComponent组件。
+
         ```ts
         XComponent({ id: 'xcomponentId', type: 'surface', libraryname: 'entry'})
             .width(360)
             .height(360)
         ```
     2. 在 native c++ 层获取 NativeXComponent。
+
         ```c++
         napi_value exportInstance = nullptr;
         // 用来解析出被wrap了NativeXComponent指针的属性
@@ -62,6 +65,7 @@ libnative_window.so
         OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize);
         ```
     3. 定义 OH_NativeXComponent_Callback。
+
         ```c++
         // 定义回调函数
         void OnSurfaceCreatedCB(OH_NativeXComponent* component, void* window)
@@ -92,6 +96,7 @@ libnative_window.so
             // ...
         }
         ```
+
         ```c++
         // 初始化 OH_NativeXComponent_Callback
         OH_NativeXComponent_Callback callback;
@@ -100,13 +105,16 @@ libnative_window.so
         callback.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
         callback.DispatchTouchEvent = DispatchTouchEventCB;
         ```
-   4. 将 OH_NativeXComponent_Callback 注册给 NativeXComponent。
+
+   4. 将OH_NativeXComponent_Callback 注册给 NativeXComponent。
+
         ```c++
         // 注册回调函数
         OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback);
         ```
 
-2. **设置OHNativeWindowBuffer的属性**。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`OHNativeWindowBuffer`的属性。
+2. 设置OHNativeWindowBuffer的属性。使用`OH_NativeWindow_NativeWindowHandleOpt`设置`OHNativeWindowBuffer`的属性。
+
     ```c++
     // 设置 OHNativeWindowBuffer 的宽高
     int32_t code = SET_BUFFER_GEOMETRY;
@@ -116,7 +124,8 @@ libnative_window.so
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeWindow, code, width, height);
     ```
 
-3. **从图形队列申请OHNativeWindowBuffer**。
+3. 从图形队列申请OHNativeWindowBuffer。
+
     ```c++
     OHNativeWindowBuffer* buffer = nullptr;
     int releaseFenceFd = -1;
@@ -129,7 +138,8 @@ libnative_window.so
     BufferHandle* bufferHandle = OH_NativeWindow_GetBufferHandleFromNative(buffer);
     ```
 
-4. **内存映射mmap**。
+4. 内存映射mmap。
+
     ```c++
     #include <sys/mman.h>
 
@@ -141,7 +151,8 @@ libnative_window.so
     }
     ```
 
-5. **将生产的内容写入OHNativeWindowBuffer，在这之前需要等待releaseFenceFd可用（注意releaseFenceFd不等于-1才需要调用poll）。如果没有等待releaseFenceFd事件的数据可用（POLLIN），则可能造成花屏、裂屏、HEBC（High Efficiency Bandwidth Compression，高效带宽压缩） fault等问题。releaseFenceFd是消费者进程创建的一个文件句柄，代表消费者消费buffer完毕，buffer可读，生产者可以开始填充buffer内容。**
+5. 将生产的内容写入OHNativeWindowBuffer，在这之前需要等待releaseFenceFd可用（注意releaseFenceFd不等于-1才需要调用poll）。如果没有等待releaseFenceFd事件的数据可用（POLLIN），则可能造成花屏、裂屏、HEBC（High Efficiency Bandwidth Compression，高效带宽压缩） fault等问题。releaseFenceFd是消费者进程创建的一个文件句柄，代表消费者消费buffer完毕，buffer可读，生产者可以开始填充buffer内容。
+
     ```c++
     int retCode = -1;
     uint32_t timeout = 3000;
@@ -165,7 +176,8 @@ libnative_window.so
     }
     ```
 
-6. **提交OHNativeWindowBuffer到图形队列。请注意OH_NativeWindow_NativeWindowFlushBuffer接口的acquireFenceFd不可以和OH_NativeWindow_NativeWindowRequestBuffer接口获取的releaseFenceFd相同，acquireFenceFd可传入默认值-1。acquireFenceFd是生产者需要传入的文件句柄，消费者获取到buffer后可根据生产者传入的acquireFenceFd决定何时去渲染并上屏buffer内容。**
+6. 提交OHNativeWindowBuffer到图形队列。请注意OH_NativeWindow_NativeWindowFlushBuffer接口的acquireFenceFd不可以和OH_NativeWindow_NativeWindowRequestBuffer接口获取的releaseFenceFd相同，acquireFenceFd可传入默认值-1。acquireFenceFd是生产者需要传入的文件句柄，消费者获取到buffer后可根据生产者传入的acquireFenceFd决定何时去渲染并上屏buffer内容。
+
     ```c++
     // 设置刷新区域，如果Region中的Rect为nullptr,或者rectNumber为0，则认为OHNativeWindowBuffer全部有内容更改。
     Region region{nullptr, 0};
@@ -173,7 +185,9 @@ libnative_window.so
     // 通过OH_NativeWindow_NativeWindowFlushBuffer 提交给消费者使用，例如：显示在屏幕上。
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
-7. **取消内存映射munmap**。
+
+7. 取消内存映射munmap。
+
     ```c++
     // 内存使用完记得去掉内存映射
     int result = munmap(mappedAddr, bufferHandle->size);

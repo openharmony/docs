@@ -39,7 +39,8 @@ getNetFirewallPolicy(userId: number): Promise\<NetFirewallPolicy>
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                            |
 | -------  | ----------------------------------------------------|
 | 201      | Permission denied.                                  |
@@ -87,7 +88,8 @@ updateNetFirewallRule(rule: NetFirewallRule): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                                                        |
 | -------  | ------------------------------------------------------------------------------- |
 | 201      | Permission denied.                                                              |
@@ -165,7 +167,8 @@ removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                                                        |
 | -------  | ------------------------------------------------------------------------------- |
 | 201      | Permission denied.                                                              |
@@ -214,7 +217,8 @@ getNetFirewallRules(userId: number, requestParam: RequestParam): Promise\<Firewa
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                                                        |
 | -------  | --------------------------------------------------------------------------------|
 | 201      | Permission denied.                                                              |
@@ -268,7 +272,8 @@ getNetFirewallRule(userId: number, ruleId: number): Promise\<NetFirewallRule>
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                                                        |
 | -------  | ------------------------------------------------------------------------------- |
 | 201      | Permission denied.                                                              |
@@ -317,7 +322,8 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                            |
 | -------  | ----------------------------------------------------|
 | 201      | Permission denied.                                  |
@@ -369,7 +375,8 @@ addNetFirewallRule(rule: NetFirewallRule): Promise\<number>
 
 **错误码：**
 
-以下错误码的详细介绍请参见通用错误码和网络连接管理错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[网络连接管理错误码](errorcode-net-connection.md)。
+
 | 错误码ID | 错误信息                                                                 |
 | -------  | ------------------------------------------------------------------------ |
 | 201      | Permission denied.                                                       |

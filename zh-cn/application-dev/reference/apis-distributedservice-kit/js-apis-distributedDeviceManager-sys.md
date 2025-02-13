@@ -39,7 +39,7 @@ replyUiAction(action: number, actionResult: string): void;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | action        | number          | 是    | 用户操作动作。       |
+  | action        | number          | 是    | 用户操作动作。<br />-0：允许授权。<br />-1：取消授权。<br />-2：授权框用户操作超时。<br />-3：取消pin码框展示。<br />-4：取消pin码输入框展示。<br />-5：pin码输入框确定操作。     |
   | actionResult        | string          | 是    | 表示用户操作结果。 |
 
 **错误码：**

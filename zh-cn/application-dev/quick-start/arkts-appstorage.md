@@ -161,17 +161,17 @@ AppStorage中的属性可以被双向同步，数据可以是存在于本地或�
 
 1. \@StorageProp/\@StorageLink的参数必须为string类型，否则编译期会报错。
 
-```ts
-AppStorage.setOrCreate('PropA', 47);
+    ```ts
+    AppStorage.setOrCreate('PropA', 47);
 
-// 错误写法，编译报错
-@StorageProp() storageProp: number = 1;
-@StorageLink() storageLink: number = 2;
+    // 错误写法，编译报错
+    @StorageProp() storageProp: number = 1;
+    @StorageLink() storageLink: number = 2;
 
-// 正确写法
-@StorageProp('PropA') storageProp: number = 1;
-@StorageLink('PropA') storageLink: number = 2;
-```
+    // 正确写法
+    @StorageProp('PropA') storageProp: number = 1;
+    @StorageLink('PropA') storageLink: number = 2;
+    ```
 
 2. \@StorageProp与\@StorageLink不支持装饰Function类型的变量，框架会抛出运行时错误。
 

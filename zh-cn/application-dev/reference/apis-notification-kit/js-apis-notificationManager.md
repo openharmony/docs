@@ -57,9 +57,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // publish回调
 let publishCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("publish success");
+    console.info(`Succeeded in publishing notification.`);
   }
 }
 // 通知Request对象
@@ -137,9 +137,9 @@ let notificationRequest: notificationManager.NotificationRequest = {
   }
 };
 notificationManager.publish(notificationRequest).then(() => {
-  console.info("publish success");
+  console.info(`Succeeded in publishing notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`publish fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
 });
 
 ```
@@ -180,9 +180,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel回调
 let cancelCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancel success");
+    console.info(`Succeeded in canceling notification.`);
   } 
 }
 notificationManager.cancel(0, "label", cancelCallback);
@@ -227,9 +227,9 @@ cancel(id: number, label?: string): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancel(0).then(() => {
-  console.info("cancel success");
+  console.info(`Succeeded in canceling notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancel fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -268,9 +268,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel回调
 let cancelCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancel success");
+    console.info(`Succeeded in canceling notification.`);
   }
 }
 notificationManager.cancel(0, cancelCallback);
@@ -309,9 +309,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel回调
 let cancelAllCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel all notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancelAll success");
+    console.info(`Succeeded in canceling all notification.`);
   }
 }
 notificationManager.cancelAll(cancelAllCallback);
@@ -348,9 +348,9 @@ cancelAll(): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancelAll().then(() => {
-  console.info("cancelAll success");
+  console.info(`Succeeded in canceling all notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancelAll fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel all notification. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -389,9 +389,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // addslot回调
 let addSlotCallBack = (err: BusinessError): void => {
   if (err) {
-    console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("addSlot success");
+    console.info(`Succeeded in adding slot.`);
   }
 }
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
@@ -435,9 +435,9 @@ addSlot(type: SlotType): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
-  console.info("addSlot success");
+  console.info(`Succeeded in adding slot.`);
 }).catch((err: BusinessError) => {
-  console.error(`addSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -475,9 +475,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // getSlot回调
 let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
   if (err) {
-    console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getSlot success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
   }
 }
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -522,9 +522,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
-  console.info("getSlot success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -562,9 +562,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // getSlots回调
 let getSlotsCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
   if (err) {
-    console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getSlots success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
   }
 }
 notificationManager.getSlots(getSlotsCallback);
@@ -601,9 +601,9 @@ getSlots(): Promise\<Array\<NotificationSlot>>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
-  console.info("getSlots success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getSlots fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -641,9 +641,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // removeSlot回调
 let removeSlotCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to remove slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("removeSlot success");
+    console.info(`Succeeded in removing slot.`);
   }
 }
 let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -688,9 +688,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType).then(() => {
-  console.info("removeSlot success");
+  console.info(`Succeeded in removing slot.`);
 }).catch((err: BusinessError) => {
-  console.error(`removeSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to remove slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -726,9 +726,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let removeAllSlotsCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to remove all slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("removeAllSlots success");
+    console.info(`Succeeded in removing all slots.`);
   }
 }
 notificationManager.removeAllSlots(removeAllSlotsCallback);
@@ -765,9 +765,9 @@ removeAllSlots(): Promise\<void\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.removeAllSlots().then(() => {
-  console.info("removeAllSlots success");
+  console.info(`Succeeded in removing all slots.`);
 }).catch((err: BusinessError) => {
-  console.error(`removeAllSlots fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to remove all slots. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -849,7 +849,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isNotificationEnabled().then((data: boolean) => {
   console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+  console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -928,9 +928,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-  console.info("setBadgeNumber success");
+  console.info(`Succeeded in setting badge number.`);
 }).catch((err: BusinessError) => {
-  console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -973,9 +973,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let setBadgeNumberCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("setBadgeNumber success");
+    console.info(`Succeeded in setting badge number.`);
   }
 }
 let badgeNumber: number = 10;
@@ -1014,9 +1014,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let getActiveNotificationCountCallback = (err: BusinessError, data: number): void => {
   if (err) {
-    console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
   }
 }
 
@@ -1054,9 +1054,9 @@ getActiveNotificationCount(): Promise\<number\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotificationCount().then((data: number) => {
-  console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1092,9 +1092,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let getActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
   if (err) {
-    console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("getActiveNotifications success" + JSON.stringify(data));
+    console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
   }
 }
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
@@ -1131,9 +1131,9 @@ getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-  console.info("getActiveNotifications success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1170,9 +1170,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let cancelGroupCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel group. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancelGroup success");
+    console.info(`Succeeded in canceling group.`);
   }
 }
 let groupName: string = "GroupName";
@@ -1217,9 +1217,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupName: string = "GroupName";
 notificationManager.cancelGroup(groupName).then(() => {
-  console.info("cancelGroup success");
+  console.info(`Succeeded in canceling group.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancelGroup fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel group. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1305,7 +1305,7 @@ let templateName: string = 'downloadTemplate';
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
   console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isSupportTemplate fail: ${JSON.stringify(err)}`);
+  console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1394,7 +1394,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.requestEnableNotification().then(() => {
   console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
-  console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+  console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1599,7 +1599,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isDistributedEnabled().then((data: boolean) => {
   console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isDistributedEnabled fail: ${JSON.stringify(err)}`);
+  console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1689,8 +1689,8 @@ class MyAbility extends UIAbility {
 | 名称                              | 值          | 说明               |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | 表示关闭通知功能。     |
-| LEVEL_MIN                         | 1           | 表示通知功能已启用，但状态栏中不显示通知图标，且没有横幅或提示音。 |
-| LEVEL_LOW                         | 2           | 表示通知功能已启用，且状态栏中显示通知图标，但没有横幅或提示音。 |
+| LEVEL_MIN                         | 1           | 表示通知功能已启用，但状态栏中不显示通知图标，且没有横幅和提示音。 |
+| LEVEL_LOW                         | 2           | 表示通知功能已启用，且状态栏中显示通知图标，但没有横幅和提示音。 |
 | LEVEL_DEFAULT                     | 3           | 表示通知功能已启用，状态栏中显示通知图标，没有横幅但有提示音。 |
 | LEVEL_HIGH                        | 4           | 表示通知功能已启用，状态栏中显示通知图标，有横幅和提示音。 |
 

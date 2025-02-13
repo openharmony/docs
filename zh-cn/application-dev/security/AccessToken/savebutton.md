@@ -82,7 +82,7 @@
    
            SaveButton()
              .padding({top: 12, bottom: 12, left: 24, right: 24})
-             .onClick(async (event: ClickEvent, result: SaveButtonOnClickResult) => {
+             .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
                if (result === SaveButtonOnClickResult.SUCCESS) {
                  const context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
                  // 免去权限申请和权限请求等环节，获得临时授权，保存对应图片

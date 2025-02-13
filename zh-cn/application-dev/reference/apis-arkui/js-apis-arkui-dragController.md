@@ -436,41 +436,58 @@ startDrag(): Promise&lt;void&gt;
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
   build() {
     Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new unifiedDataChannel.Text()
-          let unifiedData = new unifiedDataChannel.UnifiedData(text)
-          let dragInfo: dragController.DragInfo = {
-            pointerId: 0,
-            data: unifiedData,
-            extraParams: ''
-          }
-          try {
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
-            if(!dragAction){
-              console.info("listener dragAction is null");
-              return
+      Button('touch to execute drag').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new unifiedDataChannel.PlainText()
+            text.textContent = 'drag text'
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
             }
-            dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.info("start drag Error:" + err.message);
-            })
-          } catch (err) {
-            console.info("create dragAction Error:" + err.message);
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              if(!this.dragAction){
+                console.info("listener dragAction is null");
+                return;
+              }
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.info("start drag Error:" + err.message);
+              })
+            } catch(err) {
+              console.info("create dragAction Error:" + err.message);
+            }
           }
-        })
+        }
+      }).margin({top:20})
     }
   }
 }
-
 ```
 
 ### on('statusChange')<sup>11+</sup>
@@ -496,40 +513,60 @@ on(type: 'statusChange', callback: Callback&lt;[DragAndDropInfo](#draganddropinf
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController, componentSnapshot } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
   build() {
     Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if (event && event.type == TouchType.Down) {
-            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-            customBuilders.push(()=>{});
-            let text = new unifiedDataChannel.Text()
+      Button('touch to execute drag').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new unifiedDataChannel.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
             }
+            let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
+              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+            }
             try{
-              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
-              if(!dragAction){
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              if(!this.dragAction){
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-                console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              // 监听状态改变，触发后打印func中的日志
+              this.dragAction.on('statusChange', func);
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.info("start drag Error:" + err.message);
               })
-            }catch(err) {
+            } catch(err) {
               console.info("create dragAction Error:" + err.message);
             }
           }
-        })
+        }
+      }).margin({top:20})
     }
   }
 }
@@ -558,40 +595,61 @@ struct DragControllerPage {
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getDragController](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取当前UI上下文关联的DragController对象。
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
   build() {
     Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if (event && event.type == TouchType.Down) {
-            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-            customBuilders.push(()=>{});
-            let text = new unifiedDataChannel.Text()
+      Button('touch to execute drag').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new unifiedDataChannel.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
             }
+            let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
+              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+            }
             try{
-              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // 建议使用 this.getUIContext().getDragController().createDragAction()接口
-              if(!dragAction){
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // 建议使用 this.getUIContext().getDragController().createDragAction()接口
+              if(!this.dragAction){
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-                console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+              this.dragAction.on('statusChange', func);
+              // 取消监听，发起拖拽后不会打印func中的日志
+              this.dragAction.off('statusChange', func);
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.info("start drag Error:" + err.message);
               })
-            }catch(err) {
+            } catch(err) {
               console.info("create dragAction Error:" + err.message);
             }
           }
-        })
+        }
+      }).margin({top:20})
     }
   }
 }

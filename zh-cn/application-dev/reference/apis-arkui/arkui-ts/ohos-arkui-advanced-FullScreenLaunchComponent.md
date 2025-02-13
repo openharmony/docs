@@ -54,6 +54,10 @@ onError(callback: ErrorCallback)
 
 被拉起的原子化服务扩展在运行过程中发生异常时触发本回调。可通过回调参数中的code、name和message获取错误信息并做处理。
 
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名                       | 类型   | 说明                                                         |
@@ -65,6 +69,10 @@ onError(callback: ErrorCallback)
 onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 被拉起的原子化服务通过调用[terminateSelfWithResult](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult)或者[terminateSelf](../../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself)正常退出时，触发本回调函数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
@@ -104,7 +112,13 @@ struct Index {
         FullScreenLaunchComponent({
           content: ColumChild,
           appId: this.appId,
-          options: {}
+          options: {},
+          onTerminated: (info) => {
+            console.info("onTerminated code: " + info.code.toString());
+          },
+          onError: (err) => {
+            console.error("onError code: " + err.code + ", message: ", err.message);
+          }
         }).width("80vp").height("80vp")
       }
       .width('100%')

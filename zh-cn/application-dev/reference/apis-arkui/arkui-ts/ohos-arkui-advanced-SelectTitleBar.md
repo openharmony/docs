@@ -54,6 +54,7 @@ SelectTitleBar({selected: number, options: Array&lt;SelectOption&gt;, menuItems?
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | [ResourceStr](ts-types.md#resourcestr) | 是 | 图标资源。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| symbolStyle<sup>16+</sup> | [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | Symbol图标资源，优先级大于value。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | label<sup>13+</sup> | [ResourceStr](ts-types.md#resourcestr) | 否 | 图标标签描述。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | isEnabled | boolean | 否 | 是否启用。<br>默认值：false。true：启用，false：禁用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | action | ()&nbsp;=&gt;&nbsp;void | 否 | 触发时的动作闭包。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -307,3 +308,137 @@ struct Index {
 }
 ```
 ![zh-cn_image_selecttitlebar_example02](figures/zh-cn_image_selecttitlebar_example02.png)
+
+### 示例3（设置Symbol类型图标）
+该示例通过设置SelectTitleBarMenuItem的属性symbolStyle，展示了自定义Symbol类型图标。
+```ts
+import { SelectTitleBar, promptAction, SelectTitleBarMenuItem, SymbolGlyphModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  // 定义右侧菜单项目列表
+  private menuItems: Array<SelectTitleBarMenuItem> =
+    [
+      {
+        // 菜单图片资源
+        value: $r('sys.media.ohos_save_button_filled'),
+        // 菜单图片symbol资源
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.save')),
+        // 启用图片
+        isEnabled: true,
+        // 点击菜单时触发事件
+        action: () => promptAction.showToast({ message: 'show toast index 1' }),
+        // 屏幕朗读播报文本，优先级比label高
+        accessibilityText: '保存',
+        // 屏幕朗读是否可以聚焦到
+        accessibilityLevel: 'yes',
+        // 屏幕朗读最后播报的描述文本
+        accessibilityDescription: '点击操作保存图标',
+      },
+      {
+        value: $r('sys.media.ohos_ic_public_copy'),
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.car')),
+        isEnabled: true,
+        action: () => promptAction.showToast({ message: 'show toast index 2' }),
+        accessibilityText: '复制',
+        // 此处为no，屏幕朗读不聚焦
+        accessibilityLevel: 'no',
+        accessibilityDescription: '点击操作复制图标',
+      },
+      {
+        value: $r('sys.media.ohos_ic_public_edit'),
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.ai_edit')),
+        isEnabled: true,
+        action: () => promptAction.showToast({ message: 'show toast index 3' }),
+        accessibilityText: '编辑',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: '点击操作编辑图标',
+      },
+      {
+        value: $r('sys.media.ohos_ic_public_remove'),
+        symbolStyle: new SymbolGlyphModifier($r('sys.symbol.remove_songlist')),
+        isEnabled: true,
+        action: () => promptAction.showToast({ message: "show toast index 4" }),
+        accessibilityText: '移除',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: '点击操作移除图标',
+      }
+    ]
+
+  build() {
+    Row() {
+      Column() {
+        Divider().height(2).color(0xCCCCCC)
+        SelectTitleBar({
+          // 定义下拉列表选项
+          options: [
+            { value: '所有照片' },
+            { value: '本地（设备）' },
+            { value: '本地本地本地本地本地（储存卡）' },
+          ],
+          // 初始选择第一个下拉选项
+          selected: 0,
+          // 选中时触发函数
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          // 隐藏左侧返回箭头
+          hidesBackButton: true,
+        })
+        Divider().height(2).color(0xCCCCCC)
+        SelectTitleBar({
+          options: [
+            { value: '所有照片' },
+            { value: '本地（设备）' },
+            { value: '本地本地本地本地本地（储存卡）' },
+          ],
+          selected: 0,
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          hidesBackButton: false,
+        })
+        Divider().height(2).color(0xCCCCCC)
+        SelectTitleBar({
+          options: [
+            { value: '所有照片' },
+            { value: '本地（设备）' },
+            { value: '本地本地本地本地本地（储存卡）' },
+          ],
+          selected: 1,
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          subtitle: 'example@example.com',
+        })
+        Divider().height(2).color(0xCCCCCC)
+        SelectTitleBar({
+          options: [
+            { value: '所有照片' },
+            { value: '本地（设备）' },
+            { value: '本地本地本地本地本地（储存卡）' },
+          ],
+          selected: 1,
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          subtitle: 'example@example.com',
+          menuItems: [{
+            isEnabled: true, value: $r('sys.media.ohos_save_button_filled'),
+            action: () => promptAction.showToast({ message: 'show toast index 1' }),
+          }],
+        })
+        Divider().height(2).color(0xCCCCCC)
+        SelectTitleBar({
+          options: [
+            { value: '所有照片' },
+            { value: '本地（设备）' },
+            { value: '本地本地本地本地本地（储存卡）' },
+          ],
+          selected: 0,
+          onSelected: (index) => promptAction.showToast({ message: 'page index ' + index }),
+          subtitle: 'example@example.com',
+          menuItems: this.menuItems,
+          badgeValue: 99,
+          hidesBackButton: true,
+        })
+        Divider().height(2).color(0xCCCCCC)
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+![zh-cn_image_selecttitlebar_example03](figures/zh-cn_image_selecttitlebar_example03.png)

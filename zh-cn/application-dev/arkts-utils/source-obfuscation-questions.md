@@ -72,6 +72,47 @@ let jsonObj = jsonStr.i
 
 **解决方案：** 使用`-keep-property-name`选项将使用到的数据库字段配置到白名单。
 
+**案例三：使用Record<string, Object>作为对象的类型时，该对象里的属性被混淆，导致功能异常**
+
+**问题现象：**
+
+`parameters`的类型为`Record<string, Object>`，在开启属性混淆后，`parameters`对象中的属性`linkSource`被混淆，进而导致功能异常。示例如下：
+
+```
+// 混淆前
+import { Want } from '@kit.AbilityKit';
+let petalMapWant: Want = {
+  bundleName: 'com.example.myapplication',
+  uri: 'maps://',
+  parameters: {
+    linkSource: 'com.other.app'
+  }
+}
+
+// 混淆后
+import type Want from "@ohos:app.ability.Want";
+let petalMapWant: Want = {
+    bundleName: 'com.example.myapplication',
+    uri: 'maps://',
+    parameters: {
+        i: 'com.other.app'
+    }
+};
+```
+
+**问题原因：**
+
+在这个示例中，所创建的对象的内容需要传递给系统来加载某个页面，因此对象中的属性名称不能被混淆，否则会造成功能异常。示例中`parameters`的类型为`Record<string, Object>`，这只是一个表示以字符串为键的对象的泛型定义，并没有详细描述其内部结构和属性类型。因此，混淆工具无法识别该对象内部哪些属性不应被混淆，从而可能导致内部属性名`linkSource`被混淆。
+
+**解决方案：**
+
+将混淆后会出现问题的属性名配置到属性白名单中，示例如下：
+
+```
+-keep-property-name
+linkSource
+```
+
 ### 同时开启-enable-export-obfuscation和-enable-toplevel-obfuscation选项可能出现的问题
 
 **当开启这两个选项时，主模块调用其他模块方法时涉及的方法名称混淆情况如下：**
