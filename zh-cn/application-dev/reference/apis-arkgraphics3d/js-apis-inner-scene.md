@@ -328,6 +328,31 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
+## RenderParameters
+渲染控制参数对象, 用于控制场景是否持续渲染。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ---- | ---- | ---- | ---- | ---- |
+| alwaysRender | boolean | 否 | 是 | 控制信号，由开发者填写。|
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
+
+function controlRender() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+         // 创建渲染控制参数并设置非持续渲染
+        let renderParameters: RenderParameters = { alwaysRender: false };
+        let controlResult: boolean = result.renderFrame(renderParameters);
+    }
+  });
+}
+```
+
 ## Scene
 用于设置场景。
 
@@ -427,6 +452,40 @@ function getFactory() : void {
     if (result) {
          // 获得SceneResourceFactory对象
         let sceneFactory: SceneResourceFactory = result.getResourceFactory();
+    }
+  });
+}
+```
+
+### renderFrame
+renderFrame(params?: RenderParameters): boolean
+
+渲染新的一帧，同时可以设置是否持续渲染。
+
+**系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| params | [RenderParameters](#RenderParameters) | 否 | 渲染控制参数，是否持续渲染，默认为空。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| boolean | 渲染及参数设置是否成功 |
+
+**示例：**
+```ts
+import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
+
+function renderFrame() : void {
+  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
+  scene.then(async (result: Scene) => {
+    if (result) {
+         // 执行渲染且持续渲染
+        let renderParameters: RenderParameters = { alwaysRender: true };
+        let controlResult: boolean = result.renderFrame(renderParameters);
     }
   });
 }
