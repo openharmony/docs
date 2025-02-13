@@ -4796,13 +4796,13 @@ try {
 }
 ```
 
-### on('windowHighlightChange')<sup>16+</sup>
+### on('windowHighlightChange')<sup>15+</sup>
 
 on(type:  'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
 
 开启窗口激活态变化的监听。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -4836,13 +4836,13 @@ try {
 }
 ```
 
-### off('windowHighlightChange')<sup>16+</sup>
+### off('windowHighlightChange')<sup>15+</sup>
 
 off(type: 'windowHighlightChange', callback?: Callback&lt;boolean&gt;): void
 
 关闭窗口激活态变化的监听。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -8222,7 +8222,7 @@ try {
 }
 ```
 
-### setExclusivelyHighlighted<sup>16+<sup>
+### setExclusivelyHighlighted<sup>15+<sup>
 
 setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;;
 
@@ -8231,7 +8231,7 @@ setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;;
 
 **系统能力：** SystemCapability.Window.SessionManager
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
