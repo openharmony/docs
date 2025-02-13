@@ -19,7 +19,7 @@ PinchGesture(value?: { fingers?: number, distance?: number })
 | -------- | -------- | -------- | -------- |
 | fingers | number | 否 | 触发捏合的最少手指数,&nbsp;最小为2指，最大为5指。<br/>默认值：2 <br/>触发手势手指可以多于fingers数目，但只有先落下的与fingers相同数目的手指参与手势计算。 |
 | distance | number | 否 | 最小识别距离，单位为vp。<br/>默认值：5 <br/>**说明：** <br/> 当识别距离的值小于等于0时，会被转化为默认值。|
-| isFingerCountLimited<sup>16+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指数量不等于设置的触发捏合的最少手指数（即上述fingers参数），手势将不会被识别。只有当触摸屏幕的手指数等于设置的触发捏合手势的最小手指数，并且滑动距离满足阈值要求时，手势才能被成功识别。对于已经成功识别的手势，后续改变触摸屏幕的手指数量，将不会触发[onActionUpdate](ts-basic-gestures-pinchgesture.md#事件)事件，但可以触发[onActionEnd](ts-basic-gestures-pinchgesture.md#事件)事件。<br>默认值：false。|
+| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指数量不等于设置的触发捏合的最少手指数（即上述fingers参数），手势将不会被识别。只有当触摸屏幕的手指数等于设置的触发捏合手势的最小手指数，并且滑动距离满足阈值要求时，手势才能被成功识别（只有先落下的两根手指参与手势计算，若抬起其中的一个，手势识别失败）。对于已经成功识别的手势，后续改变触摸屏幕的手指数量，将不会触发[onActionUpdate](ts-basic-gestures-pinchgesture.md#事件)事件，但可以触发[onActionEnd](ts-basic-gestures-pinchgesture.md#事件)事件。<br>默认值：false。|
 
 
 ## 事件
