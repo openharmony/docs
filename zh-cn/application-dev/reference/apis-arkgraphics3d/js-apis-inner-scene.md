@@ -354,12 +354,15 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function createGeometryPromise() : Promise<Geometry> {
   return new Promise(() => {
     let scene: Promise<Scene> = Scene.load();
-    scene.then(async (result: Scene) => {
+    scene.then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-      // Create geometry
       let cubeGeom = new CubeGeometry();
       cubeGeom.size = { x: 1, y: 1, z: 1 };
       let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
+      console.log("TEST createGeometryPromise");
       let geometry: Promise<Geometry> = sceneFactory.createGeometry({ name: "GeometryName" }, meshRes);
       return geometry;
     });
@@ -393,14 +396,14 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 function createMeshPromise() : Promise<MeshResource> {
   return new Promise(() => {
     let scene: Promise<Scene> = Scene.load();
-    scene.then(async (result: Scene) => {
+    scene.then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-      // Create geometry
       let cubeGeom = new CubeGeometry();
-      console.log("Cube size: {x:" + cubeGeom.size.x + ", y: " + cubeGeom.size.y + ", x: " + cubeGeom.size.z + "}");
       cubeGeom.size = { x: 1, y: 1, z: 1 };
-      console.log("Cube size: {x:" + cubeGeom.size.x + ", y: " + cubeGeom.size.y + ", x: " + cubeGeom.size.z + "}");
-      console.log("mason createMeshPromise");
+      console.log("TEST createMeshPromise");
       let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
       return meshRes;
     });
@@ -432,9 +435,12 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
 
 function createScenePromise() : Promise<Scene> {
   return new Promise(() => {
-    Scene.load().then(async (result: Scene) => {
+    Scene.load().then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-      console.log("mason createScenePromise");
+      console.log("TEST createScenePromise");
       let scene = sceneFactory.createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"));
       return scene;
     });
@@ -591,13 +597,14 @@ import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Envir
   LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
 
 function ImportNodeTest() {
-  Scene.load().then(async (result: Scene) => {
+  Scene.load().then(async (result: Scene | undefined) => {
     if (!result) {
       return;
     }
     Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
       .then(async (extScene: Scene) => {
         let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
+        console.log("TEST ImportNodeTest");
         let node = result.importNode("scene", extNode, result.root);
         if (node) {
           node.position.x = 5;
@@ -617,8 +624,18 @@ importScene(name: string, scene: Scene, parent: Node | null): Node
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
 
+function ImportSceneTest() {
+  Scene.load().then(async (result: Scene | undefined) => {
+    if (!result) {
+      return;
+    }
+    let content = await result.getResourceFactory().createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
+    console.log("TEST ImportSceneTest");
+    result.importScene("helmet", content, null);
+  });
+}
 ```
 
 ### renderFrame
@@ -631,6 +648,16 @@ renderFrame(params?: RenderParameters): boolean
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node } from '@kit.ArkGraphics3D';
+  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, Geometry, CubeGeometry, MeshResource} from '@kit.ArkGraphics3D';
 
+function RenderFrameTest() {
+  Scene.load($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
+    .then(async (result: Scene | undefined) => {
+      if (!result) {
+        return;
+      }
+      console.log("TEST RenderFrameTest");
+      result.renderFrame({ alwaysRender: true });
+  });
+}
 ```
