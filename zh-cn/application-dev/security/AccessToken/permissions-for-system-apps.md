@@ -409,18 +409,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_RUNNING_INFO
-
-允许应用获取运行态信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 允许应用在后台启动或者访问其他组件。
@@ -444,18 +432,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.RUNNING_STATE_OBSERVER
-
-允许应用监听应用状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -1409,18 +1385,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_WIFI_CONFIG
-
-允许应用获取Wi-Fi的配置信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 允许应用为其他应用授予敏感权限。
@@ -1756,18 +1720,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-允许应用配置Wi-Fi信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -3277,18 +3229,6 @@
 
 **起始版本**：12
 
-### ohos.permission.KILL_APP_PROCESSES
-
-允许系统应用杀掉其他应用。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
 允许系统应用获取用户账号的未成年使用者信息。
@@ -3736,30 +3676,6 @@
 ### ohos.permission.ALLOW_CONNECT_CAR
 
 允许应用连接车机。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.MANAGE_NET_FIREWALL
-
-允许系统应用配置防火墙规则。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.GET_NET_FIREWALL
-
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
 
 **权限级别**：system_basic
 
