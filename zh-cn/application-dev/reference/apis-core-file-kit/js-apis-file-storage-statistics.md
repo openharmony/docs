@@ -85,7 +85,7 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
   });
   ```
 
-## storageStatistics.getTotalSize<sup>16+</sup>
+## storageStatistics.getTotalSize<sup>15+</sup>
 
 getTotalSize(): Promise&lt;number&gt;
 
@@ -103,11 +103,10 @@ getTotalSize(): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -120,7 +119,7 @@ storageStatistics.getTotalSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getTotalSize<sup>16+</sup>
+## storageStatistics.getTotalSize<sup>15+</sup>
 
 getTotalSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -158,7 +157,7 @@ storageStatistics.getTotalSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getTotalSizeSync<sup>16+</sup>
+## storageStatistics.getTotalSizeSync<sup>15+</sup>
 
 getTotalSizeSync(): number
 
@@ -176,11 +175,10 @@ getTotalSizeSync(): number
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -195,7 +193,7 @@ try {
 }
   ```
 
-## storageStatistics.getFreeSize<sup>16+</sup>
+## storageStatistics.getFreeSize<sup>15+</sup>
 
 getFreeSize(): Promise&lt;number&gt;
 
@@ -213,11 +211,10 @@ getFreeSize(): Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 
@@ -230,7 +227,7 @@ storageStatistics.getFreeSize().then((number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSize<sup>16+</sup>
+## storageStatistics.getFreeSize<sup>15+</sup>
 
 getFreeSize(callback: AsyncCallback&lt;number&gt;): void
 
@@ -268,7 +265,7 @@ storageStatistics.getFreeSize((error: BusinessError, number: number) => {
 });
   ```
 
-## storageStatistics.getFreeSizeSync<sup>16+</sup>
+## storageStatistics.getFreeSizeSync<sup>15+</sup>
 
 getFreeSizeSync(): number
 
@@ -286,11 +283,10 @@ getFreeSizeSync(): number
 
 以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
 
-| 错误码ID | 错误信息                                                     |
-| -------- | ------------------------------------------------------------ |
-| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
-| 13600001 | IPC error.                                                   |
-| 13900042 | Unknown error.                                               |
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
 
 **示例：**
 

@@ -5,7 +5,7 @@
 
 声明主机侧访问输入设备的HID DDK接口。
 
-引用文件：&lt;[hid/hid_ddk_api.h](zh-cn_topic_0000002188217729.xml)&gt;
+引用文件：&lt;hid/hid_ddk_api.h&gt;
 
 **起始版本：** 11
 

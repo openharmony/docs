@@ -13,11 +13,14 @@
 - C API<!--media-c-->
   - 模块<!--media-module-->
     - [AVPlayer](_a_v_player.md)
+    - [AVRecorder](_a_v_recorder.md)
     - [AVScreenCapture](_a_v_screen_capture.md)
     - [VideoProcessing](_video_processing.md)
   - 头文件<!--media-headerfile-->
     - [avplayer.h](avplayer_8h.md)
     - [avplayer_base.h](avplayer__base_8h.md)
+    - [avrecorder.h](avrecorder_8h.md)
+    - [avrecorder_base.h](avrecorder__base_8h.md)
     - [native_avscreen_capture.h](native__avscreen__capture_8h.md)
     - [native_avscreen_capture_base.h](native__avscreen__capture__base_8h.md)
     - [native_avscreen_capture_errors.h](native__avscreen__capture__errors_8h.md)
@@ -25,6 +28,13 @@
     - [video_processing_types.h](video__processing__types_8h.md)
   - 结构体<!--media-struct-->
     - [AVPlayerCallback](_a_v_player_callback.md)
+    - [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md)
+    - [OH_AVRecorder_EncoderInfo](_o_h___a_v_recorder___encoder_info.md)
+    - [OH_AVRecorder_Location](_o_h___a_v_recorder___location.md)
+    - [OH_AVRecorder_Metadata](_o_h___a_v_recorder___metadata.md)
+    - [OH_AVRecorder_MetadataTemplate](_o_h___a_v_recorder___metadata_template.md)
+    - [OH_AVRecorder_Profile](_o_h___a_v_recorder___profile.md)
+    - [OH_AVRecorder_Range](_o_h___a_v_recorder___range.md)
     - [OH_AudioBuffer](_o_h___audio_buffer.md)
     - [OH_AudioCaptureInfo](_o_h___audio_capture_info.md)
     - [OH_AudioEncInfo](_o_h___audio_enc_info.md)

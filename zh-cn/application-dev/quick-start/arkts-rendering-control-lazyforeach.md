@@ -14,7 +14,8 @@ LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程
 - 键值生成器必须针对每个数据生成唯一的值，如果键值相同，将导致键值相同的UI组件渲染出现问题。
 - LazyForEach必须使用DataChangeListener对象进行更新，对第一个参数dataSource重新赋值会异常；dataSource使用状态变量时，状态变量改变不会触发LazyForEach的UI刷新。
 - 为了高性能渲染，通过DataChangeListener对象的onDataChange方法来更新UI时，需要生成不同于原来的键值来触发组件刷新。
-- LazyForEach和[@Reusable](arkts-reusable.md)装饰器一起使用能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[列表滚动配合LazyForEach使用](arkts-reusable.md#列表滚动配合LazyForEach使用)。
+- LazyForEach和[\@Reusable](./arkts-reusable.md)装饰器一起使用能触发节点复用。使用方法：将@Reusable装饰在LazyForEach列表的组件上，见[列表滚动配合LazyForEach使用](./arkts-reusable.md#列表滚动配合lazyforeach使用)。
+- LazyForEach和[\@ReusableV2](./arkts-new-reusableV2.md)装饰器一起使用能触发节点复用。详见[在LazyForEach组件中使用\@ReusableV2](./arkts-new-reusableV2.md#在lazyforeach组件中使用)。
 
 ## 键值生成规则
 
@@ -1046,7 +1047,7 @@ struct Parent {
 ```
 
 **图11** LazyForEach拖拽排序效果图  
-![LazyForEach-Drag-Sort](figures/ForEach-Drag-Sort.gif)
+![LazyForEach-Drag-Sort](./figures/ForEach-Drag-Sort.gif)
 
 ## 常见使用问题
 
@@ -1576,7 +1577,7 @@ struct MyComponent {
 ```
 
 当List下拉到底的时候，屏闪效果如下图  
-![LazyForEach-Screen-Flicker](figures/LazyForEach-Screen-Flicker.gif)
+![LazyForEach-Screen-Flicker](./figures/LazyForEach-Screen-Flicker.gif)
 
 用onDatasetChange代替onDataReloaded，不仅可以修复闪屏的问题，还能提升加载性能。
 
@@ -1649,7 +1650,7 @@ struct MyComponent {
 ```
 
 修复后的效果如下图  
-![LazyForEach-Screen-Flicker-Repair](figures/LazyForEach-Screen-Flicker-Repair.gif)
+![LazyForEach-Screen-Flicker-Repair](./figures/LazyForEach-Screen-Flicker-Repair.gif)
 
 ### 组件复用渲染异常
 

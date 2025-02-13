@@ -7,6 +7,7 @@
 ## 基本布局
 
   Tabs组件的页面组成包含两个部分，分别是TabContent和TabBar。TabContent是内容页，TabBar是导航页签栏，页面结构如下图所示，根据不同的导航类型，布局会有区别，可以分为底部导航、顶部导航、侧边导航，其导航栏分别位于底部、顶部和侧边。
+
   **图1** Tabs组件布局示意图  
 
 ![tabs-layout](figures/tabs-layout.png)
@@ -80,7 +81,7 @@ Tabs() {
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent的内容：首页、发现、推荐、我的
-  ...
+  // ...
 }
 ```
 
@@ -97,7 +98,7 @@ Tabs({ barPosition: BarPosition.End }) {
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent的内容:关注、视频、游戏、数码、科技、体育、影视
-  ...
+  // ...
 }
 ```
 
@@ -119,7 +120,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent的内容:首页、发现、推荐、我的
-  ...
+  // ...
 }
 .vertical(true)
 .barWidth(100)
@@ -137,6 +138,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ## 限制导航栏的滑动切换
 
   默认情况下，导航栏都支持滑动切换，在一些内容信息量需要进行多级分类的页面，如支持底部导航+顶部导航组合的情况下，底部导航栏的滑动效果与顶部导航出现冲突，此时需要限制底部导航的滑动，避免引起不好的用户体验。
+  
   **图6** 限制底部导航栏滑动  
 
 ![限制导航](figures/限制导航.gif)
@@ -150,7 +152,7 @@ Tabs({ barPosition: BarPosition.End }) {
     Column(){
       Tabs(){
         // 顶部导航栏内容
-        ...
+        // ...
       }
     }
     .backgroundColor('#ff08a8f1')
@@ -159,7 +161,7 @@ Tabs({ barPosition: BarPosition.End }) {
   .tabBar('首页')
 
   // 其他TabContent内容：发现、推荐、我的
-  ...
+  // ...
 }
 .scrollable(false)
 ```
@@ -180,7 +182,7 @@ Tabs的barMode属性用于控制导航栏是否可以滚动，默认值为BarMod
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent的内容：首页、发现、推荐、我的
-  ...
+  // ...
 }
 .barMode(BarMode.Fixed)
 ```
@@ -201,7 +203,7 @@ Tabs({ barPosition: BarPosition.End }) {
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent的内容：关注、视频、游戏、数码、科技、体育、影视、人文、艺术、自然、军事
-  ...
+  // ...
 }
 .barMode(BarMode.Scrollable)
 ```
@@ -282,19 +284,19 @@ struct TabsExample1 {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('首页', 0))
 
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('发现', 1))
 
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('推荐', 2))
 
         TabContent() {
-          ...
+          // ...
         }.tabBar(this.tabBuilder('我的', 3))
       }
       .animationDuration(0)
@@ -317,7 +319,7 @@ struct TabsExample1 {
 private controller: TabsController = new TabsController()
 
 Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
-  ...
+  // ...
 }
 .height(600)
 .animationMode(this.currentAnimationMode)
@@ -359,13 +361,15 @@ Button('changeIndex').width('50%').margin({ top: 20 })
 开发者可以通过Tabs组件的onContentWillChange接口，设置自定义拦截回调函数。拦截回调函数在下一个页面即将展示时被调用，如果回调返回true，新页面可以展示；如果回调返回false，新页面不会展示，仍显示原来页面。
   
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
-.onContentWillChange((currentIndex, comingIndex) => {
-  if (comingIndex == 2) {
-    return false
+Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+  // ...
   }
-  return true
-})
+  .onContentWillChange((currentIndex, comingIndex) => {
+    if (comingIndex == 2) {
+      return false
+    }
+    return true
+  })
 ```
   **图13** 支持开发者自定义页面切换拦截事件 
 

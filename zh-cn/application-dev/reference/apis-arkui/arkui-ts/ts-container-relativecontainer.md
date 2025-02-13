@@ -85,7 +85,7 @@ barrier(value: Array&lt;BarrierStyle&gt;)
 
 barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
-设置RelativeContaine容器内的屏障，Array中每个项目即为一条barrier。
+设置RelativeContainer容器内的屏障，Array中每个项目即为一条barrier。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -95,7 +95,7 @@ barrier(barrierStyle: Array&lt;LocalizedBarrierStyle&gt;)
 
 | 参数名 | 类型                                   | 必填 | 说明                           |
 | ------ | -------------------------------------- | ---- | ------------------------------ |
-| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12对象说明)\> | 是   | RelativeContaine容器内的屏障。 |
+| barrierStyle  | Array\<[LocalizedBarrierStyle](#localizedbarrierstyle12对象说明)\> | 是   | RelativeContainer容器内的屏障。 |
 
 ## GuideLineStyle<sup>12+</sup>对象说明
 

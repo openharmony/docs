@@ -3253,7 +3253,7 @@ audioVolumeGroupManager.off('micStateChange');
 // 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听
 let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
-});
+};
 
 audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
 
