@@ -1,28 +1,28 @@
 # 兼容JS的类Web开发范式（ArkUI.Lite）
 
-- 框架说明
+- 框架说明<!--js-lite-framework-overview-->
   - [文件组织](js-lite-framework-file.md)
   - [js标签配置](js-lite-framework-js-tag.md)
   - [app.js](js-lite-framework-js-file.md)
   - [生命周期](js-lite-framework-lifecycle.md)
   - [多语言](js-lite-framework-localization.md)
-  - 语法
+  - 语法<!--js-lite-syntax-->
     - [HML语法参考](js-lite-framework-syntax-hml.md)
     - [CSS语法参考](js-lite-framework-syntax-css.md)
     - [JS语法参考](js-lite-framework-syntax-js.md)
-- 组件通用信息
+- 组件通用信息<!--js-lite-universal-comp-infor-->
   - [通用事件](js-lite-common-events.md)
   - [通用属性](js-lite-common-attributes.md)
   - [通用样式](js-lite-common-styles.md)
   - [动画样式](js-lite-components-common-animation.md)
   - [媒体查询](js-lite-components-common-mediaquery.md)
-- 容器组件
+- 容器组件<!--js-lite-container-comp-->
   - [div](js-lite-components-container-div.md)
   - [list](js-lite-components-container-list.md)
   - [list-item](js-lite-components-container-list-item.md)
   - [stack](js-lite-components-container-stack.md)
   - [swiper](js-lite-components-container-swiper.md)
-- 基础组件
+- 基础组件<!--js-lite-basic-comp-->
   - [chart](js-lite-components-basic-chart.md)
   - [image](js-lite-components-basic-image.md)
   - [image-animator](js-lite-components-basic-image-animator.md)
@@ -34,6 +34,6 @@
   - [slider](js-lite-components-basic-slider.md)
   - [switch](js-lite-components-basic-switch.md)
   - [text](js-lite-components-basic-text.md)
-- 画布组件
+- 画布组件<!--js-lite-canvas-comp-->
   - [canvas组件](js-lite-components-canvas-canvas.md)
   - [CanvasRenderingContext2D对象](js-lite-components-canvas-canvasrenderingcontext2d.md)
