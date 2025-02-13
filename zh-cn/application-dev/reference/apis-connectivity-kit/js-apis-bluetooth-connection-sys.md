@@ -908,7 +908,7 @@ try {
 | deviceId<sup>12+</sup> | string      | 是    | 否    | 表示扫描到的设备ID。<br/>此接口为系统接口。          |
 | rssi<sup>12+</sup>     | number      | 是    | 否    | 表示扫描到的设备的信号强度。<br/>此接口为系统接口。   |
 | deviceName<sup>12+</sup>     | string      | 是    | 否    | 表示扫描到的设备的设备名称。<br/>此接口为系统接口。   |
-| deviceClass<sup>12+</sup>     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。<br/>此接口为系统接口。   |  
+| deviceClass<sup>12+</sup>     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。<br/>此接口为系统接口。   |
 
 
 ## DeviceType<sup>12+</sup>
