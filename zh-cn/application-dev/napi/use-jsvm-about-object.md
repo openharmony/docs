@@ -24,9 +24,9 @@
 | OH_JSVM_TypeTagObject       | 将type_tag指针的值与JavaScript对象或外部对象相关联。                  |
 | OH_JSVM_CheckObjectTypeTag | 检查给定的类型标签是否与对象上的类型标签匹配。 |
 | OH_JSVM_CreateSymbol         | 根据给定的描述符创建一个Symbol对象。                     |
-|OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol |
-| OH_JSVM_CreateExternal       | 创建一个包装了外部指针的JavaScript对象               |
-| OH_JSVM_GetValueExternal    | 获取先前传递给OH_JSVM_CreateExternal的外部数据指针                  |
+|OH_JSVM_SymbolFor | 在全局注册表中搜索具有给定描述的现有Symbol，如果该Symbol已经存在，它将被返回，否则将在注册表中创建一个新Symbol。 |
+| OH_JSVM_CreateExternal       | 创建一个包装了外部指针的JavaScript对象。               |
+| OH_JSVM_GetValueExternal    | 获取先前传递给OH_JSVM_CreateExternal的外部数据指针。                  |
 
 ## 使用示例
 
