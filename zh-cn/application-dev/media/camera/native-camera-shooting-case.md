@@ -23,18 +23,28 @@
         libohfileuri.so
     )
     ```
+2. 创建头文件ndk_camera.h
+   ```c++
+   #include "ohcamera/camera.h"
+   #include "ohcamera/camera_input.h"
+   #include "ohcamera/capture_session.h"
+   #include "ohcamera/photo_output.h"
+   #include "ohcamera/preview_output.h"
+   #include "ohcamera/video_output.h"
+   #include "ohcamera/camera_manager.h"
+   
+   class NDKCamera {
+   public:
+       ~NDKCamera();
+       NDKCamera(char *previewId);
+       Camera_ErrorCode RegisterBufferCb(void *cb);
+   };
+   ```
 
-2. cpp侧导入NDK接口，并根据传入的SurfaceId进行拍照。
+3. cpp侧导入NDK接口，并根据传入的SurfaceId进行拍照。
     ```c++
-    #include "camera_manager.h"
     #include "hilog/log.h"
-    #include "ohcamera/camera.h"
-    #include "ohcamera/camera_input.h"
-    #include "ohcamera/capture_session.h"
-    #include "ohcamera/photo_output.h"
-    #include "ohcamera/preview_output.h"
-    #include "ohcamera/video_output.h"
-    #include "ohcamera/camera_manager.h"
+    #include "ndk_camera.h"
 
     void CaptureSessionOnFocusStateChange(Camera_CaptureSession* session, Camera_FocusState focusState)
     {
@@ -247,10 +257,10 @@
         }
 
         // 创建拍照输出流
-        ret_ = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager, photoProfile, &photoOutput);
+        ret = OH_CameraManager_CreatePhotoOutputWithoutSurface(cameraManager, photoProfile, &photoOutput);
 
         // 监听单端式拍照回调
-        ret_ = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
+        ret = OH_PhotoOutput_RegisterPhotoAvailableCallback(photoOutput, OnPhotoAvailable);
 
         //创建会话
         ret = OH_CameraManager_CreateCaptureSession(cameraManager, &captureSession);

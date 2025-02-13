@@ -474,4 +474,4 @@ struct TimePickerDialogExample {
 }
 ```
 
-![timePicker](figures/TimePickerDemo9.gif)
+![timePicker](figures/TimePickerDialogDemo9.gif)

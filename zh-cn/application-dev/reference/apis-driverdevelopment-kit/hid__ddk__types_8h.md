@@ -5,7 +5,7 @@
 
 提供HID DDK中的枚举变量与结构体定义。
 
-引用文件：&lt;[hid/hid_ddk_types.h](zh-cn_topic_0000002188296053.xml)&gt;
+引用文件：&lt;hid/hid_ddk_types.h&gt;
 
 **起始版本：** 11
 

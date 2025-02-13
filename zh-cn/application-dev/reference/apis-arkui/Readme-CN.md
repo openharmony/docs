@@ -233,6 +233,7 @@
     - [SegmentButtonV2](arkui-ts/ohos-arkui-advanced-SegmentButtonV2.md)
     - [Filter](arkui-ts/ohos-arkui-advanced-Filter.md)
     - [ArcButton](arkui-ts/ohos-arkui-advanced-ArcButton.md)
+    - [ArcSlider](arkui-ts/ohos-arkui-advanced-ArcSlider.md)
   - 文本与输入<!--text-and-input-->
     - [Text](arkui-ts/ts-basic-components-text.md)
     - [TextArea](arkui-ts/ts-basic-components-textarea.md)
