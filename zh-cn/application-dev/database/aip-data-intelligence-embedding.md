@@ -30,13 +30,13 @@
 | 接口名称 | 描述 | 
 | -------- | -------- |
 | getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt; | 获取文本嵌入模型。 | 
-| loadModel(): Promise&lt;void&gt; | 加载嵌入模型。 | 
-| releaseModel(): Promise&lt;void&gt;; | 释放嵌入模型。 | 
+| loadModel(): Promise&lt;void&gt; | 加载文本嵌入模型。 | 
+| releaseModel(): Promise&lt;void&gt;; | 释放文本嵌入模型。 | 
 | getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt; | 获取给定文本的嵌入向量。 | 
 | getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | 获取给定批次文本的嵌入向量。 |
 | getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt; | 获取图像嵌入模型。 | 
-| loadModel(): Promise&lt;void&gt; | 加载嵌入模型。 | 
-| releaseModel(): Promise&lt;void&gt;; | 释放嵌入模型。 | 
+| loadModel(): Promise&lt;void&gt; | 加载图像嵌入模型。 | 
+| releaseModel(): Promise&lt;void&gt;; | 释放图像嵌入模型。 | 
 | getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt; | 获取给定图像的嵌入向量。 | 
 | splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | 获取文本的分块。 | 
 
@@ -44,255 +44,203 @@
 ## 开发步骤
 
 1. 导入模块。
-     
-   ```ts
-   import { intelligence } from '@kit.ArkData';
-   ```
+
+    ```ts
+    import { intelligence } from '@kit.ArkData';
+    ```
 
 2. 获取文本嵌入模型。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"test"
-   }
+    let config:intelligence.ModelConfig = {
+      version:1,
+      isNpuAvailable:false,
+      achePath:"/data"
+    }
+    let textEmbedding:intelligence.TextEmbedding;
 
-   intelligence.getTextEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
+    intelligence.getTextEmbeddingModel(config)
+      .then((data:intelligence.TextEmbedding) => {
+        console.info("Succeeded in getting TextModel");
+        textEmbedding = data;
       })
-      .catch((err) => {
-        console.log("get result filed" + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to get TextModel and code is " + err.code);
       })
-   ```
+    ```
 
-3. 加载嵌入模型。
+3. 加载文本嵌入模型。
+
+   > **说明：**
+   >
+   > 该接口都需先调用getTextEmbeddingModel接口获取到TextEmbedding实例，再通过此实例调用如下接口。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"test"
-   }
-
-   intelligence.getTextEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel()
-         .then(() => {
-          console.info("load success");
-         })
-         .catch((err) => {
-          console.log("load filed " + err.code);
-         })
+    textEmbedding.loadModel()
+      .then(() => {
+        console.info("Succeeded in loading Model");
       })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to load Model and code is " + err.code);
       })
-   ```
+    ```
 
 4. 释放嵌入模型。
+
+   > **说明：**
+   >
+   > 该接口都需先调用getTextEmbeddingModel接口获取到TextEmbedding实例，再通过此实例调用如下接口。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"test"
-   }
-
-   intelligence.getTextEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel();
-        data.releaseModel()
-         .then(() => {
-          console.info("release success");
-         })
-         .catch((err) => {
-          console.log("release filed " + err.code);
-         })
+    textEmbedding.releaseModel()
+      .then(() => {
+        console.info("Succeeded in releasing Model");
       })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to release Model and code is " + err.code);
       })
-   ```
+    ```
 
 5. 获取给定文本的嵌入向量。
+
+   > **说明：**
+   >
+   > 该接口需先调用loadModel接口加载文本嵌入模型，加载成功后调用getEmbedding。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"test"
-   }
-
-   intelligence.getTextEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel();
-        let text = 'text';
-        data.getEmbedding(text)
-         .then(() => {
-          console.info("getEmbedding success");
-         })
-         .catch((err) => {
-          console.log("getEmbedding filed " + err.code);
-         })
+    textEmbedding.loadModel();
+    let text = 'text';
+    textEmbedding.getEmbedding(text)
+      .then((data:Array<number>) => {
+        console.info("Succeeded in getting Embedding");
       })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to get Embedding and code is " + err.code);
       })
-   ```
+    ```
 
 6. 获取给定批次文本的嵌入向量。
+
+   > **说明：**
+   >
+   > 该接口需先调用loadModel接口加载文本嵌入模型，加载成功后调用getEmbedding。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"test"
-   }
-
-   intelligence.getTextEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel();
-        let batchTexts = ['text1','text2'];
-        data.getEmbedding(batchTexts)
-         .then(() => {
-          console.info("getEmbedding success");
-         })
-         .catch((err) => {
-          console.log("getEmbedding filed " + err.code);
-         })
+    textEmbedding.loadModel();
+    let batchTexts = ['text1','text2'];
+    textEmbedding.getEmbedding(batchTexts)
+      .then((data:Array<Array<number>>) => {
+        console.info("Succeeded in getting Embedding");
       })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to get Embedding and code is " + err.code);
       })
-   ```
+    ```
 
 7. 获取图像嵌入模型。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"image"
-   }
+    let config:intelligence.ModelConfig = {
+      version:1,
+      isNpuAvailable:false,
+      cachePath:"/data"
+    }
+    let imageEmbedding:intelligence.ImageEmbedding;
 
-   intelligence.getImageEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
+    intelligence.getImageEmbeddingModel(config)
+      .then((data:intelligence.ImageEmbedding) => {
+        console.info("Succeeded in getting ImageModel");
+        imageEmbedding = data;
       })
-      .catch((err) => {
-        console.log("get result filed" + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to get ImageModel and code is " + err.code);
       })
    ```
 
-8. 加载嵌入模型。
+8. 加载图像嵌入模型。
+
+   > **说明：**
+   >
+   > 该接口都需先调用getTextEmbeddingModel接口获取到TextEmbedding实例，再通过此实例调用如下接口。
+ 
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    imageEmbedding.loadModel()
+      .then(() => {
+        console.info("Succeeded in loading Model");
+      })
+      .catch((err:BusinessError) => {
+        console.error("Failed to load Model and code is " + err.code);
+      })
+    ```
+
+9. 释放图像嵌入模型。
+
+   > **说明：**
+   >
+   > 该接口都需先调用getTextEmbeddingModel接口获取到TextEmbedding实例，再通过此实例调用如下接口。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"image"
-   }
-
-   intelligence.getImageEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel()
-         .then(() => {
-          console.info("load success");
-         })
-         .catch((err) => {
-          console.log("load filed " + err.code);
-         })
+    imageEmbedding.releaseModel()
+      .then(() => {
+        console.info("Succeeded in releasing Model");
       })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to release Model and code is " + err.code);
       })
-   ```
-
-9. 释放嵌入模型。
-     
-   ```ts
-
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"image"
-   }
-
-   intelligence.getImageEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel();
-        data.releaseModel()
-         .then(() => {
-          console.info("release success");
-         })
-         .catch((err) => {
-          console.log("release filed " + err.code);
-         })
-      })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
-      })
-   ```
+    ```
 
 10. 获取给定图像的嵌入向量。
+
+   > **说明：**
+   >
+   > 该接口需先调用loadModel接口加载图像嵌入模型，加载成功后调用getEmbedding。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    version:1,
-    isNpuAvailable:false,
-    cachePath:"image"
-   }
-
-   intelligence.getImageEmbeddingModel(config)
-      .then((data) => {
-        console.info("get result success");
-        data.loadModel();
-        let image = 'image uri';
-        data.getEmbedding(image)
-         .then(() => {
-          console.info("getEmbedding success");
-         })
-         .catch((err) => {
-          console.log("getEmbedding filed " + err.code);
-         })
+    imageEmbedding.loadModel();
+    let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
+    imageEmbedding.getEmbedding(image)
+      .then((data:Array<number>) => {
+        console.info("Succeeded in getting Embedding");
       })
-      .catch((err) => {
-        console.log("get result filed " + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to get Embedding and code is " + err.code);
       })
-   ```
+    ```
 
 11. 获取文本的分块。
      
-   ```ts
+    ```ts
+    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config = {
-    size:10,
-    overlapRatio:0.1
-   }
+    let splitConfig:intelligence.SplitConfig = {
+      size:10,
+      overlapRatio:0.1
+    }
+    let text = 'text';
 
-   let text = 'text';
-
-   intelligence.splitText(text, config)
-      .then((data) => {
-        console.info("get result success");
+    intelligence.splitText(text, splitConfig)
+      .then((data:Array<string>) => {
+        console.info("Succeeded in splitting Text");
       })
-      .catch((err) => {
-        console.log("get result filed" + err.code);
+      .catch((err:BusinessError) => {
+        console.error("Failed to split Text and code is " + err.code);
       })
-   ```
+    ```
