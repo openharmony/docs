@@ -105,10 +105,10 @@ enum EffectErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| EFFECT_SUCCESS | 成功 | 
-| EFFECT_BAD_PARAMETER | 无效的参数 | 
-| EFFECT_UNSUPPORTED_OPERATION | 不支持的操作 | 
-| EFFECT_UNKNOWN_ERROR | 未知错误 | 
+| EFFECT_SUCCESS | 成功。 | 
+| EFFECT_BAD_PARAMETER | 无效的参数。 | 
+| EFFECT_UNSUPPORTED_OPERATION | 不支持的操作。 | 
+| EFFECT_UNKNOWN_ERROR | 未知错误。 | 
 
 
 ### EffectTileMode
