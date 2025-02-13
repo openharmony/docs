@@ -226,6 +226,8 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | video/avc | 视频/avc类型 | 
 | audio/mpeg | 音频/mpeg类型 | 
 | audio/g711mu | 音频/g711-mulaw类型 | 
+| audio/3gpp | 音频/amr-nb类型 | 
+| audio/amr-wb | 音频/amr-wb类型 | 
 
 支持的输出文件格式如下：
 
@@ -234,7 +236,8 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 | mp4 | 视频的容器格式，MP4。 | 
 | m4a | 音频的容器格式，M4A。 | 
 | mp3 | 音频的容器格式，MP3。 | 
-| wav | 音频的容器格式，wav。 | 
+| wav | 音频的容器格式，WAV。 | 
+| amr | 音频的容器格式，AMR。 | 
 
 ## AVScreenCapture
 

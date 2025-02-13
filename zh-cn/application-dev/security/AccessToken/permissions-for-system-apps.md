@@ -145,6 +145,16 @@
 
 **起始版本**：16
 
+### ohos.permission.PROXY_MESSAGE_AUTH
+
+允许系统应用调用“信息”应用授权接口。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_SETTINGS
 
 允许应用设置SettingsData中设备级配置数据表和用户级配置数据表。
@@ -459,18 +469,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_RUNNING_INFO
-
-允许应用获取运行态信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 允许应用在后台启动或者访问其他组件。
@@ -494,18 +492,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.RUNNING_STATE_OBSERVER
-
-允许应用监听应用状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -3357,18 +3343,6 @@
 
 **起始版本**：12
 
-### ohos.permission.KILL_APP_PROCESSES
-
-允许系统应用杀掉其他应用。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
 允许系统应用获取用户账号的未成年使用者信息。
@@ -4502,6 +4476,18 @@
 **ACL使能**：true
 
 **起始版本**：15
+
+### ohos.permission.GET_PAGE_INFO
+
+允许系统应用获取指定应用页面信息。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：16
 
 ## system_grant，不允许ACL跨级申请
 

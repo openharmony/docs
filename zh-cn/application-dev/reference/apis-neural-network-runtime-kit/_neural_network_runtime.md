@@ -1680,13 +1680,13 @@ OH_NN_ReturnCode OH_NNExecutor_GetInputDimRange (const OH_NNExecutor *executor, 
 
 获取所有输入张量的维度范围。
 
-当输入张量具有动态形状时，它在不同硬件上支持的维度范围可能是不同的，可以通过该接口获取当前设备上支持的维度范围。 **\*minInputDims**保存了指定输入张量的最小维度（维度数与形状匹配），而**\*maxInputDims**则保存了最大维度。 例如，一个输入张量具有动态形状 [-1, -1, -1, 3]，那么当前设备上它的**\*minInputDims**可以是[1, 10, 10, 3]， 而**\*maxInputDims**可以是[100, 1024, 1024, 3]。
+当输入张量具有动态形状时，它在不同硬件上支持的维度范围可能是不同的，可以通过该接口获取当前设备上支持的维度范围。 \***minInputDims**保存了指定输入张量的最小维度（维度数与形状匹配），而\***maxInputDims**则保存了最大维度。 例如，一个输入张量具有动态形状 [-1, -1, -1, 3]，那么当前设备上它的\***minInputDims**可以是[1, 10, 10, 3]， 而\***maxInputDims**可以是[100, 1024, 1024, 3]。
 
 注意：如果索引值**index**达到或超过输入张量的数量，接口将返回错误。输入张量的数量可以通过 [OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount)获取。
 
-作为输出参数，**\*minInputDims**和**\*maxInputDims**不能为空指针，否则会返回错误。 例如您应该定义int32_t\* minInDims = NULL，然后将&amp;minInDims作为参数传入。
+作为输出参数，\***minInputDims**和\***maxInputDims**不能为空指针，否则会返回错误。 例如您应该定义int32_t\* minInDims = NULL，然后将&amp;minInDims作为参数传入。
 
-您无需释放**\*minInputDims**和**\*maxInputDims**的内存，它会随**executor**一起被释放。
+您无需释放\***minInputDims**和\***maxInputDims**的内存，它会随**executor**一起被释放。
 
 **起始版本：** 11
 

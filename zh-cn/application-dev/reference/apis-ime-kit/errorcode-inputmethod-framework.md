@@ -270,11 +270,11 @@ The another side does not accept the request.
 
 **可能原因**
 
-开发者调用发送自定义通信数据接口时，若消息接收端未注册[MessageHandler](js-apis-inputmethodengine.md#messagehandler16)接收数据，则抛出此错误码。
+开发者调用发送自定义通信数据接口时，若消息接收端未注册[MessageHandler](js-apis-inputmethodengine.md#messagehandler15)接收数据，则抛出此错误码。
 
 **处理步骤**
 
-消息接收端需注册MessageHandler接收自定义通信数据，输入法应用侧调用[recvMessage](js-apis-inputmethodengine.md#recvmessage16)，输入法客户端侧调用[recvMessage](js-apis-inputmethod.md#recvmessage16)。
+消息接收端需注册MessageHandler接收自定义通信数据，输入法应用侧调用[recvMessage](js-apis-inputmethodengine.md#recvmessage15)，输入法客户端侧调用[recvMessage](js-apis-inputmethod.md#recvmessage15)。
 
 ## 12800016 输入法客户端未处于编辑状态
 

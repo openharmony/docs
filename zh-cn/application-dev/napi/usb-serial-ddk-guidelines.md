@@ -64,7 +64,7 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)。
+2. 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
 3. PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
 3. 用USB线缆将搭载OpenHarmony的设备连接到PC。
 4. 将USB串口设备接入OpenHarmony设备的USB口。

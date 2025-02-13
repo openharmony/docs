@@ -817,7 +817,7 @@ enum Image_ErrorCode
 | IMAGE_UNSUPPORTED_MEMORY_FORMAT  | 不支持的内存格式。<br/>**起始版本：** 13 | 
 | IMAGE_ALLOC_FAILED  | 申请内存失败。 | 
 | IMAGE_COPY_FAILED  | 内存拷贝失败。 | 
-| IMAGE_LOCK_UNLOCK_FAILED | 内存加锁或解锁失败。<br/>**起始版本：** 16 | 
+| IMAGE_LOCK_UNLOCK_FAILED | 内存加锁或解锁失败。<br/>**起始版本：** 15 | 
 | IMAGE_UNKNOWN_ERROR  | 未知错误。 | 
 | IMAGE_BAD_SOURCE  | 解码数据源异常。 | 
 | IMAGE_DECODE_FAILED  | 解码失败。 | 
@@ -4174,7 +4174,7 @@ Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void
 
 当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -4820,7 +4820,7 @@ Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)
 
 该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 

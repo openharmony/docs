@@ -61,7 +61,7 @@ addProfile\(profile: DownloadableProfile\): Promise\<boolean\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| profile | [DownloadableProfile](js-apis-esim-sys.md#downloadableprofile14) | 是   | 可下载的配置文件信息。 |
+| profile | DownloadableProfile | 是   | 可下载的配置文件信息。 |
 
 **返回值：**
 

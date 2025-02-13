@@ -21,7 +21,7 @@
    
    - 当数据量较小时，可以在init完成后直接调用doFinal。
    - 当数据量较大时，可以多次调用update，即分段加解密。
-   - 数据量大小可以使用者自行决定。比如大于20使用update。
+   - 数据量大小可以使用者自行决定。比如大于20字节使用update。
 
 5. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取加密后的数据。
    
