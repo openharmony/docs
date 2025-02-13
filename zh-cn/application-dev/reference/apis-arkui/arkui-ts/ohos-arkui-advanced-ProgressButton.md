@@ -71,7 +71,6 @@ struct Index {
   @State ButtonWidth: number = 200
   @State isRunning: boolean = false
   @State enableState: boolean = true
-  @State value: number = 0
 
   build() {
     Column() {
@@ -127,7 +126,6 @@ struct Index {
   @State ButtonWidth: number = 200
   @State isRunning: boolean = false
   @State enableState: boolean = true
-  @State value: number = 0
 
   build() {
     Column() {
@@ -187,7 +185,6 @@ struct Index {
   @State ButtonWidth: number = 200
   @State isRunning: boolean = false
   @State enableState: boolean = true
-  @State value: number = 0
 
   build() {
     Column() {
