@@ -19,7 +19,7 @@
 
 **起始版本**：10
 
-**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
+**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围变更为企业普通应用。
 
 ## ohos.permission.FILE_GUARD_MANAGER
 
@@ -34,7 +34,7 @@
 
 **起始版本**：10
 
-**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围从MDM应用变更为企业普通应用。
+**变更信息**：API 10-14时，其权限级别为system_core，仅面向MDM应用开放；从API 14开始，权限级别变更为system_basic，开发范围变更为企业普通应用。
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -49,7 +49,37 @@
 
 **起始版本**：7
 
-**变更信息**：API version 7-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围变更为企业普通应用。
+
+## ohos.permission.GET_RUNNING_INFO
+
+允许应用获取运行态信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：7
+
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
+
+## ohos.permission.RUNNING_STATE_OBSERVER
+
+允许应用监听应用状态。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：7
+
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.GET_WIFI_CONFIG
 
@@ -59,11 +89,12 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：8
 
-**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
 
 ## ohos.permission.SET_WIFI_CONFIG
 
@@ -73,11 +104,12 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：8
 
-**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 8-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
 
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
 
@@ -92,7 +124,7 @@
 
 **起始版本**：10
 
-**变更信息**：API version 10-13该权限仅向系统应用开放；从API version 14开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 10-13该权限仅向系统应用开放；从API 14开始，开放范围变更为企业普通应用。
 
 ## ohos.permission.QUERY_AUDIT_EVENT
 
@@ -107,7 +139,22 @@
 
 **起始版本**：12
 
-**变更信息**：API version 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围从MDM应用变更为企业普通应用。
+**变更信息**：API 12-13该权限仅面向MDM应用开放；从API 14开始，开放范围变更为企业普通应用。
+
+## ohos.permission.KILL_APP_PROCESSES
+
+允许系统应用杀掉其他应用。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：12
+
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
 ## ohos.permission.SET_TELEPHONY_ESIM_STATE_OPEN
 
@@ -166,7 +213,7 @@
 
 **起始版本**：12
 
-**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
 
 ## ohos.permission.GET_NET_FIREWALL
 
@@ -183,7 +230,7 @@
 
 **起始版本**：12
 
-**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围从系统应用变更为企业普通应用。
+**变更信息**：API 12-14该权限仅向系统应用开放；从API 15开始，开放范围变更为企业普通应用。
 
 ## ohos.permission.GET_DOMAIN_ACCOUNT_SERVER_CONFIGS
 

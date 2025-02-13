@@ -22,10 +22,10 @@ import { systemTimer } from '@kit.BasicServicesKit';
 
 | 名称                | 类型   | 值   | 说明                                          |
 | ------------------- | ------ | ---- |---------------------------------------------|
-| TIMER_TYPE_REALTIME | number | 1    | 系统启动时间定时器。（定时器启动时间不能晚于当前设置的系统时间）            |
-| TIMER_TYPE_WAKEUP   | number | 2    | 唤醒定时器。（如果未配置为唤醒定时器，则系统处于休眠状态下不会触发，直到退出休眠状态） |
-| TIMER_TYPE_EXACT    | number | 4    | 精准定时器。 （系统时间修改的情况下，可能会出现最多1s的前后偏移误差）        |
-| TIMER_TYPE_IDLE     | number | 8    | IDLE模式定时器（仅支持系统服务配置，不支持应用配置）。               |
+| TIMER_TYPE_REALTIME | number | 1    | 系统启动时间定时器（定时器启动时间不能晚于当前设置的系统时间）。|
+| TIMER_TYPE_WAKEUP   | number | 2    | 唤醒定时器（如果未配置为唤醒定时器，则系统处于休眠状态下不会触发，直到退出休眠状态）。|
+| TIMER_TYPE_EXACT    | number | 4    | 精准定时器 （系统时间修改的情况下，可能会出现最多1s的前后偏移误差）。|
+| TIMER_TYPE_IDLE     | number | 8    | IDLE模式定时器（仅支持系统服务配置，不支持应用配置）。|
 
  ## TimerOptions
 
@@ -40,8 +40,8 @@ import { systemTimer } from '@kit.BasicServicesKit';
 | autoRestore<sup>15+<sup> | boolean                                     | 否   | 是否在设备重启后恢复。<br>true为重启后恢复，false为重启后不恢复。<br>仅支持非`TIMER_TYPE_REALTIME`类型且配置了wantAgent的定时器配置为true。                                                                                                      |                                               |     |                                                                                                                                                                                                      |
 | name<sup>15+<sup> | string | 否 | 定时器名称，长度不超过64字节。<br>同一个UID中不可以同时存在两个同名定时器。如果创建了一个和之前已创建的定时器名字相同的定时器，先创建的定时器会被销毁。|
 | interval  | number                                        | 否   | 定时器时间间隔。<br>如果是循环定时器，interval值最小为1s，最大为365天，建议interval值不小于5000毫秒；<br>单次定时器interval值为0。                                                                                                               |
-| wantAgent | WantAgent | 否   | 设置通知的WantAgent，定时器到期后通知。（支持拉起应用MainAbility，不支持拉起ServiceAbility。）                                                                                                                                     |
-| callback  | void                                          | 否  | 用户需要执行的回调函数                                                                                                                                                                                          |
+| wantAgent | WantAgent | 否   | 设置通知的WantAgent，定时器到期后通知（支持拉起应用MainAbility，不支持拉起ServiceAbility）。                                                                                                                                     |
+| callback  | void                                          | 否  | 用户需要执行的回调函数。                                                                                                                                                                                          |
 
 
 ## systemTimer.createTimer

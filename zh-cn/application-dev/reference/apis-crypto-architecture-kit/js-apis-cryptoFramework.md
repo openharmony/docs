@@ -705,6 +705,28 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 >
 > 默认的模式为EXTRACT_AND_EXPAND，"HKDF|SHA256|EXTRACT_AND_EXPAND"等价于"HKDF|SHA256"。
 
+## ScryptSpec<sup>16+</sup>
+
+密钥派生函数参数[KdfSpec](#kdfspec11)的子类，作为SCRYPT密钥派生函数进行密钥派生时的输入。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Kdf
+
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| passphrase | string \| Uint8Array | 是   | 否   | 用户输入的原始密码。|
+| salt | Uint8Array | 是   | 否   | 盐值。 |
+| n | number | 是   | 否   | 迭代次数，需要为正整数。 |
+| p | number | 是   | 否   | 并行化参数，需要为正整数。 |
+| r | number | 是   | 否   | 块大小参数，需要为正整数。 |
+| maxMemory | number | 是   | 否   | 最大内存限制参数，需要为正整数。 |
+| keySize | number | 是   | 否   | 派生得到的密钥字节长度，需要为正整数。 |
+
+> **说明：**
+>
+> passphrase指的是原始密码，如果使用string类型，需要直接传入用于密钥派生的数据，而不是HexString、base64等字符串类型，同时需要确保该字符串为utf-8编码，否则派生结果会有差异。
+
 ## SM2CipherTextSpec<sup>12+</sup>
 
 SM2密文参数，使用SM2密文格式转换函数进行格式转换时，需要用到此对象。可以通过指定此参数，生成符合国密标准的ASN.1格式的SM2密文，反之，也可以从ASN.1格式的SM2密文中获取具体参数。
@@ -735,10 +757,10 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 
 **系统能力：** SystemCapability.Security.CryptoFramework.Key.AsymKey
 
-| 名称    | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| password | string | 是   | 是   | 密码|
-| cipherName | string | 是   | 是   | 算法名 |
+| password | string | 是   | 否   | 密码。|
+| cipherName | string | 是   | 否   | 算法名。 |
 
 > **说明：**
 >
@@ -746,6 +768,50 @@ RSA私钥编码参数，使用获取私钥字符串时，可以添加此参数�
 >
 > - cipherName是必选参数，可以指定编码用到的算法。当前仅支持AES-128-CBC、AES-192-CBC、AES-256-CBC、DES-EDE3-CBC。
 
+## MacSpec<sup>16+</sup>
+消息认证码参数，计算HMAC、CMAC消息认证码时，需要构建其子类对象并作为输入。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.mac
+
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| algName | string | 是   | 否   | 消息验证码算法名。|
+
+> **说明：**
+>
+> algName是必选参数，表示消息验证码使用的算法。
+
+## HmacSpec<sup>16+</sup>
+密钥派生函数参数[MacSpec](#macspec16)的子类，作为HMAC消息验证码计算的输入。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.mac
+
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| mdName | string | 是   | 否   | 摘要算法名。|
+
+> **说明：**
+>
+> mdName是必选参数，表示HMAC消息验证码使用的摘要算法名。
+
+## CmacSpec<sup>16+</sup>
+密钥派生函数参数[MacSpec](#macspec16)的子类，作为CMAC消息验证码计算的输入。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.mac
+
+| 名称    | 类型   | 只读 | 可选 | 说明                                                         |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| cipherName | string | 是   | 否   | 对称加密算法名。 |
+
+> **说明：**
+>
+> cipherName是必选参数，表示CMAC消息验证码使用的对称加密算法名。
 
 ## Key
 
@@ -5573,7 +5639,7 @@ createMac(algName: string): Mac
 
 生成Mac实例，用于进行消息认证码的计算与操作。
 
-支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。
+支持的规格详见[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5585,7 +5651,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定摘要算法，支持算法请参考[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac.md#支持的算法与规格)。 |
+| algName | string | 是   | 指定摘要算法，支持算法请参考[HMAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。 |
 
 **返回值**：
 
@@ -5610,6 +5676,57 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   // Set algName based on the algorithm supported.
   let mac = cryptoFramework.createMac('SHA256');
+} catch (error) {
+  let e: BusinessError = error as BusinessError;
+  console.error(`sync error, ${e.code}, ${e.message}`);
+}
+```
+
+## cryptoFramework.createMac<sup>16+</sup>
+
+createMac(macSpec: MacSpec): Mac
+
+生成Mac实例，用于进行消息认证码的计算与操作。
+
+支持的规格详见[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Security.CryptoFramework.Mac
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                                                         |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| macSpec | [MacSpec](#macspec16) | 是   | 根据消息验证码的不同算法，指定入参结构体，支持算法请参考[MAC消息认证码算法规格](../../security/CryptoArchitectureKit/crypto-compute-mac-overview.md#消息认证码计算介绍及算法规格)。 |
+
+**返回值**：
+
+| 类型 | 说明                                      |
+| ---- | ----------------------------------------- |
+| Mac  | 返回由指定入参结构体生成的[Mac](#mac)对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[crypto framework错误码](errorcode-crypto-framework.md)
+
+| 错误码ID | 错误信息           |
+| -------- | ------------------ |
+| 401 | invalid parameters. Possible causes: <br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.|
+| 17620001 | memory error.       |
+
+**示例：**
+
+```ts
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  // Set algName based on the algorithm supported.
+  let spec: cryptoFramework.HmacSpec = {
+    algName: "HMAC",
+    mdName: "SHA256",
+  };
+  let mac = cryptoFramework.createMac(spec);
 } catch (error) {
   let e: BusinessError = error as BusinessError;
   console.error(`sync error, ${e.code}, ${e.message}`);
@@ -5733,7 +5850,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5764,7 +5881,7 @@ update(input: DataBlob): Promise\<void>
 
 > **说明：**
 >
-> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用update更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5800,7 +5917,7 @@ updateSync(input: DataBlob): void
 
 > **说明：**
 >
-> HMAC算法多次调用updateSync更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+> HMAC算法多次调用updateSync更新的代码示例详见开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5854,7 +5971,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **示例：**
 
-此外，更多HMAC的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导中[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -5905,7 +6022,7 @@ API version9-11系统能力为SystemCapability.Security.CryptoFramework；从API
 
 **示例：**
 
-此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -5952,7 +6069,7 @@ doFinalSync(): DataBlob
 
 **示例：**
 
-此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-mac.md#分段hmac)。
+此外，更多HMAC的完整示例可参考开发指导[消息认证码计算](../../security/CryptoArchitectureKit/crypto-compute-hmac.md#分段hmac)。
 
 ```ts
 import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -6298,7 +6415,7 @@ API version11系统能力为SystemCapability.Security.CryptoFramework；从API v
 
 | 参数名  | 类型   | 必填 | 说明                              |
 | ------- | ------ | ---- | --------------------------------- |
-| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前支持PBKDF2、HKDF算法，如"PBKDF2\|SHA256", "HKDF\|SHA256"。 |
+| algName | string | 是   | 指定密钥派生算法（包含HMAC配套的散列函数）：目前支持PBKDF2、HKDF算法、SCRYPT算法，如"PBKDF2\|SHA256", "HKDF\|SHA256", "SCRYPT"。 |
 
 **返回值**：
 

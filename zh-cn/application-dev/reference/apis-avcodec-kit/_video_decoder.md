@@ -284,7 +284,7 @@ OH_AVFormat* OH_VideoDecoder_GetOutputDescription (OH_AVCodec *codec)
 **描述**
 获取解码器输出数据的OH_AVFormat信息，请参阅[OH_AVFormat](_core.md#oh_avformat)。 
 
-需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
+需要注意的是，指向的OH_AVFormat实例在生命周期结束时需要调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoDecoder
 

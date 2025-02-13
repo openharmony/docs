@@ -1203,64 +1203,9 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 })
 ```
 
-## adminManager.startAdminProvision<sup>15+</sup>
+## adminManager.getAdmins<sup>15+</sup>
 
-startAdminProvision(admin: Want, type: AdminType, context: common.Context, parameters: Record\<string, string>): void;
-
-设备管理应用拉起BYOD管理员激活页面进行激活。
-
-**需要权限：** ohos.permission.START_PROVISIONING_MESSAGE
-
-**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**模型约束**: 此接口仅可在Stage模型下使用。
-
-**参数：**
-
-| 参数名   | 类型                                  | 必填   | 说明      |
-| ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| type  | [AdminType](#admintype)             | 是    | 激活的设备管理应用类型。                   |
-| context  | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是 | 管理应用的上下文信息。 |
-| parameters  | Record\<string, string> | 是 | 自定义参数信息,其中Key值必须包含："activateId" |
-
-**错误码**：
-
-以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
-
-| 错误码ID | 错误信息                                               |
-| ------- | ----------------------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-
-**示例：**
-
-```ts
-import { common, Want } from '@kit.AbilityKit';
-import adminManager from '@ohos.enterprise.adminManager';
-let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
-};
-let context = getContext(this) as common.UIAbilityContext;
-let recordParameters: Record<string, string> = {
-  "activateId": "activateId testValue",
-  "customizedInfo": "customizedInfo testValue"
-}
-try {
-  console.info('context:' + JSON.stringify(context));
-  adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
-  console.info('startAdminProvision::success');
-} catch (error) {
-  console.info('startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
-}
-```
-
-## adminManager.getadmins<sup>15+</sup>
-
-getadmins(): Promise&lt;Array&lt;Want&gt;&gt;
+getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
 
 查询当前用户下的所有设备管理应用。使用promise异步回调。
 
@@ -1323,4 +1268,3 @@ adminManager.getAdmins().then((result) => {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
 | ADMIN_TYPE_SUPER  | 0x01 | 超级设备管理应用。 |
-| ADMIN_TYPE_BYOD  | 0x02 | 自带设备管理应用。 |

@@ -169,7 +169,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1240,7 +1240,7 @@ struct Index {
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
 
 ### 示例6（获取子组件索引）
-该示例展示了如何获得List组件的子组件索引
+该示例展示了如何获得List组件的子组件索引。
 
 ```ts
 // xxx.ets
@@ -1310,7 +1310,7 @@ struct ListExample {
 ![ScrollEdgeAtVelocity](figures/getItemIndex_list.gif)
 
 ### 示例7（设置边缘渐隐）
-该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度
+该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度。
 
 ```ts
 // xxx.ets

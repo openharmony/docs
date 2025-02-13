@@ -18,6 +18,18 @@ ArkUI提供了系统组件[NodeContainer](../../application-dev/reference/apis-a
 > 
 > - 需要保证一个节点只能作为一个父节点的子节点去使用，否则可能存在显示异常或者功能异常，尤其是页面路由场景或者动效场景。例如，如果通过NodeController将同一个节点挂载在多个NodeContainer上，仅一个占位容器下会显示节点，且多个NodeContainer的可见性、透明度等影响子组件状态的属性更新均会影响被挂载的子节点。
 
+## 基本概念
+
+- 自定义节点：使用ArkUI提供的接口，以命令式创建的节点。包括自定义组件节点（FrameNode）、自定义渲染节点（RenderNode）、自定义声明式节点（BuilderNode）、[ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md)等。
+
+- 自定义节点树：根节点为自定义节点的节点树。
+
+- 声明式节点树：根节点为声明式节点的节点树。
+
+- 节点树：一种常见的数据结构，用于表示节点的层级关系。
+
+- 占位节点：用于在声明式节点树上为自定义节点树预留位置的节点，主要包括NodeContainer和ContentSlot。鉴于页面的主树采用声明式节点树，因此，唯有借助占位节点，才能将命令式构建的自定义节点成功挂载至声明式节点树上。
+
 ## 使用NodeContainer挂载自定义节点
 
 通过NodeController在NodeContainer下挂载自定义节点。
@@ -62,6 +74,8 @@ export function getOrCreateNode(uiContext: UIContext): BuilderNode<[Params]> | n
 import { FrameNode, NodeController, Size, UIContext } from '@kit.ArkUI'
 import { getOrCreateNode } from "./common"
 
+const TEST_TAG: string = "NodeContainer";
+
 class MyNodeController extends NodeController {
   private isShow: boolean = false;
 
@@ -79,19 +93,19 @@ class MyNodeController extends NodeController {
   }
 
   aboutToResize(size: Size) {
-    console.log("aboutToResize width : " + size.width + " height : " + size.height)
+    console.log(TEST_TAG + " aboutToResize width : " + size.width + " height : " + size.height)
   }
 
   aboutToAppear() {
-    console.log("aboutToAppear")
+    console.log(TEST_TAG + " aboutToAppear")
   }
 
   aboutToDisappear() {
-    console.log("aboutToDisappear");
+    console.log(TEST_TAG + " aboutToDisappear");
   }
 
   onTouchEvent(event: TouchEvent) {
-    console.log("onTouchEvent");
+    console.log(TEST_TAG + " onTouchEvent");
   }
 
   toShow() {
@@ -181,6 +195,7 @@ class NodeContentCtrl {
 class MyNodeController extends NodeController {
   public rootNode: FrameNode | null = null;
   textNode: Array<typeNode.Text> = new Array();
+
   makeNode(uiContext: UIContext): FrameNode {
     this.rootNode = new FrameNode(uiContext);
     return this.rootNode;
@@ -210,6 +225,7 @@ struct Index {
   @State message: string = 'Hello World';
   controller = new NodeContentCtrl(this.getUIContext());
   myNodeController = new MyNodeController();
+
   build() {
     Row() {
       Column() {
@@ -218,30 +234,37 @@ struct Index {
           .onClick(() => {
             this.controller.AddNode()
           })
+          .margin(10)
         Button("RemoveBack")
           .onClick(() => {
             this.controller.RemoveNode()
           })
+          .margin(10)
         Button("RemoveFront")
           .onClick(() => {
             this.controller.RemoveFront()
           })
+          .margin(10)
       }
       .width('50%')
+
       Column() {
         NodeContainer(this.myNodeController)
         Button("AddToNodeContainer")
           .onClick(() => {
             this.myNodeController.AddNode(this.myNodeController.rootNode, this.getUIContext())
           })
+          .margin(10)
         Button("RemoveBack")
           .onClick(() => {
             this.myNodeController.RemoveNode(this.myNodeController.rootNode)
           })
+          .margin(10)
         Button("RemoveFront")
           .onClick(() => {
             this.myNodeController.RemoveFront(this.myNodeController.rootNode)
           })
+          .margin(10)
       }
       .width('50%')
     }

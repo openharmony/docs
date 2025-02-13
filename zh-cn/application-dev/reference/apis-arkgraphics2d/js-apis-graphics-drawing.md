@@ -3462,6 +3462,247 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
+### quickRejectPath<sup>16+</sup>
+
+quickRejectPath(path: Path): boolean
+
+判断路径与画布区域是否不相交。画布区域包含边界。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型          | 必填 | 说明               |
+| ------ | ------------- | ---- | ------------------ |
+| path   | [Path](#path) | 是   | 路径对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回路径是否与画布区域不相交的结果。true表示路径与画布区域不相交，false表示路径与画布区域相交。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let path = new drawing.Path();
+    path.moveTo(10, 10);
+    path.cubicTo(10, 10, 10, 10, 15, 15);
+    path.close();
+    if (canvas.quickRejectPath(path)) {
+      console.info("canvas and path do not intersect.");
+    } else {
+      console.info("canvas and path intersect.");
+    }
+  }
+}
+```
+
+### quickRejectRect<sup>16+</sup>
+
+quickRejectRect(rect: common2D.Rect): boolean
+
+判断矩形和画布区域是否不相交。画布区域包含边界。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 矩形区域。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回矩形是否与画布区域不相交的结果。true表示矩形与画布区域不相交，false表示矩形与画布区域相交。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let rect: common2D.Rect = { left : 10, top : 20, right : 50, bottom : 30 };
+    if (canvas.quickRejectRect(rect)) {
+      console.info("canvas and rect do not intersect.");
+    } else {
+      console.info("canvas and rect intersect.");
+    }
+  }
+}
+```
+
+### drawArcWithCenter<sup>16+</sup>
+
+drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
+
+在画布上绘制一段圆弧。该方法允许指定圆弧的起始角度、扫描角度以及圆弧的起点和终点是否连接圆弧的中心点。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| arc   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 包含要绘制的圆弧的椭圆的矩形边界。 |
+| startAngle      | number | 是   | 弧的起始角度，单位为度，该参数为浮点数。0度时起始点位于椭圆的右端点，为正数时以顺时针方向放置起始点，为负数时以逆时针方向放置起始点。 |
+| sweepAngle      | number | 是   | 弧的扫描角度，单位为度，该参数为浮点数。为正数时顺时针扫描，为负数时逆时针扫描。扫描角度可以超过360度，将绘制一个完整的椭圆。 |
+| useCenter       | boolean | 是   | 绘制时弧形的起点和终点是否连接弧形的中心点。true表示连接，false表示不连接。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    const pen = new drawing.Pen();
+    pen.setStrokeWidth(5);
+    const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
+    pen.setColor(color);
+    canvas.attachPen(pen);
+    const rect: common2D.Rect = { left: 100, top: 50, right: 400, bottom: 200 };
+    canvas.drawArcWithCenter(rect, 90, 180, false);
+    canvas.detachPen();
+  }
+}
+```
+
+### drawImageNine<sup>16+</sup>
+
+drawImageNine(pixelmap: image.PixelMap, center: common2D.Rect, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+通过绘制两条水平线和两条垂直线将图像分割成9个部分：四个边，四个角和中心。<br>
+若角落的4个区域尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形；如果还有剩余空间，剩下的5个区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| center    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 分割图像的中心矩形。矩形四条边所在的直线将图像分成了9个部分。 |
+| dstRect  | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 在画布上绘制的目标矩形区域。 |
+| filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_2.jpg");
+    canvas.drawImage(pixelMap, 0, 0); // 原图
+    let center: common2D.Rect = { left: 20, top: 10, right: 50, bottom: 40 };
+    let dst: common2D.Rect = { left: 70, top: 0, right: 100, bottom: 30 };
+    let dst1: common2D.Rect = { left: 110, top: 0, right: 200, bottom: 90 };
+    canvas.drawImageNine(pixelMap, center, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageNine(pixelMap, center, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+  }
+}
+```
+![zh-ch_image_Nine.png](figures/zh-ch_image_Nine.png)
+
+### drawImageLattice<sup>16+</sup>
+
+drawImageLattice(pixelmap: image.PixelMap, lattice: Lattice, dstRect: common2D.Rect, filterMode: FilterMode): void
+
+将图像按照矩形网格对象的设置划分为多个网格，并把图像的每个部分按照网格对象的设置绘制到画布上的目标矩形区域。<br>
+偶数行和列（起始计数为0）的每个交叉点都是固定的，若固定网格区域的尺寸不超过目标矩形，则会在不缩放的情况下被绘制在目标矩形，反之则会按比例缩放绘制在目标矩形；如果还有剩余空间，剩下的区域会通过拉伸或压缩来绘制，以便能够完全覆盖目标矩形。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| pixelmap   | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 用于绘制网格的像素图。 |
+| lattice  | [Lattice](#lattice12) | 是   | 矩形网格对象。 |
+| dstRect    | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 目标矩形区域。 |
+| filterMode | [FilterMode](#filtermode12) | 是   | 过滤模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3.Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+import { image } from '@kit.ImageKit';
+
+class DrawingRenderNode extends RenderNode {
+  draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let pixelMap: image.PixelMap = globalThis.getInstance().getPixelMap("test_3.jpg");
+    canvas.drawImage(pixelMap, 0, 0); // 原图
+    let xDivs: Array<number> = [28, 36, 44, 52];
+    let yDivs: Array<number> = [28, 36, 44, 52];
+    let lattice = drawing.Lattice.createImageLattice(xDivs, yDivs, 4, 4);
+    let dst: common2D.Rect = { left: 100, top: 0, right: 164, bottom: 64 };
+    let dst1: common2D.Rect = { left: 200, top: 0, right: 360, bottom: 160 };
+    canvas.drawImageLattice(pixelMap, lattice, dst, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例1
+    canvas.drawImageLattice(pixelMap, lattice, dst1, drawing.FilterMode.FILTER_MODE_NEAREST); // 示例2
+  }
+}
+```
+![zh-ch_image_Lattice.png](figures/zh-ch_image_Lattice.png)
+
 ## ImageFilter<sup>12+</sup>
 
 图像滤波器。
@@ -9003,11 +9244,11 @@ let endPt: common2D.Point = {x: 200, y: 200};
 let shaderEffect = drawing.ShaderEffect.createConicalGradient(startPt, 100, endPt, 50, [0xFF00FF00, 0xFFFF0000], drawing.TileMode.REPEAT);
 ```
 
-## Tool<sup>16+</sup>
+## Tool<sup>15+</sup>
 
 本模块定义的工具类，仅提供静态的方法，主要完成其他模块和[common2D](js-apis-graphics-common2D.md)中定义的数据结构的转换功能等操作。
 
-### makeColorFromResourceColor<sup>16+</sup>
+### makeColorFromResourceColor<sup>15+</sup>
 
 static makeColorFromResourceColor(resourceColor: ResourceColor): common2D.Color
 

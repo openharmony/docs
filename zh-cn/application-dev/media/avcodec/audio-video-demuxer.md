@@ -174,7 +174,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
-   在获取、解析DRM信息后，需创建对应DRM解决方案的[MediaKeySystem](../drm/native-drm-mediakeysystem-management.md#drm系统管理)、[MediaKeySession](../drm/native-drm-mediakeysession-management.md#drm会话管理)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](./audio-decoding.md#开发步骤)第4步)、设置视频解密配置(详见[视频解码开发指南开发步骤Surface模式](./video-decoding.md#surface模式)第5步或[Buffer模式](./video-decoding.md#buffer模式)第4步)，实现DRM内容解密。
+   在获取、解析DRM信息后，需创建对应DRM解决方案的[MediaKeySystem、MediaKeySession](../drm/drm-c-dev-guide.md)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](audio-decoding.md#开发步骤)第4步)、设置视频解密配置(详见[视频解码开发指南开发步骤Surface模式](video-decoding.md#surface模式)第5步或[Buffer模式](video-decoding.md#buffer模式)第4步)，实现DRM内容解密。
 
 5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
@@ -313,16 +313,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. 销毁解封装实例。
       ```c++
-      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
-      source = NULL;
-      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      source = nullptr;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }
-      demuxer = NULL;
+      demuxer = nullptr;
       close(fd);
       ```
 
@@ -331,6 +331,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **说明：**
 > 正常解析时才可以获取对应属性数据；如果文件信息错误或缺失，将导致解析异常，无法获取数据。
+> 当前GBK格式字符集数据会转换为UTF8提供，其他类型字符集如果需要转换为UTF8格式使用，需要调用方自行转换，参考[icu4c](../../reference/native-lib/icu4c.md)。
 > 
 > 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 

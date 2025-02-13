@@ -49,11 +49,11 @@ struct OverlayExample {
   @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
 
   build() {
-    Column() {
-      Button("++componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+    Column({space:10}) {
+      Button("递增componentContentIndex: " + this.componentContentIndex).onClick(()=>{
         ++this.componentContentIndex
       })
-      Button("--componentContentIndex: " + this.componentContentIndex).onClick(()=>{
+      Button("递减componentContentIndex: " + this.componentContentIndex).onClick(()=>{
         --this.componentContentIndex
       })
       Button("增加ComponentContent" + this.contentArray.length).onClick(()=>{
@@ -64,10 +64,10 @@ struct OverlayExample {
         this.contentArray.push(componentContent)
         this.overlayNode.addComponentContent(componentContent, this.componentContentIndex)
       })
-      Button("++arrayIndex: " + this.arrayIndex).onClick(()=>{
+      Button("递增arrayIndex: " + this.arrayIndex).onClick(()=>{
         ++this.arrayIndex
       })
-      Button("--arrayIndex: " + this.arrayIndex).onClick(()=>{
+      Button("递减arrayIndex: " + this.arrayIndex).onClick(()=>{
         --this.arrayIndex
       })
       Button("删除ComponentContent" + this.arrayIndex).onClick(()=>{
@@ -112,6 +112,8 @@ struct OverlayExample {
   }
 }
 ```
+![overlayManager-demo1](figures/overlaymanager-demo_1.gif)
+
 显示一个始终在屏幕左侧的悬浮球，点击可以弹出alertDialog弹窗。
 
 ```ts
@@ -134,12 +136,12 @@ function builderOverlay(params: Params) {
       params.context.showAlertDialog(
         {
           title: 'title',
-          message: 'text',
+          message: 'Text',
           autoCancel: true,
           alignment: DialogAlignment.Center,
           gridCount: 3,
           confirm: {
-            value: 'button',
+            value: 'Button',
             action: () => {}
           },
           cancel: () => {}
@@ -183,5 +185,5 @@ struct OverlayExample {
 }
 
 ```
-
+![overlayManager-demo2](figures/overlaymanager-demo_2.gif)
 
