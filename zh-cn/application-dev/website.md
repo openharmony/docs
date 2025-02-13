@@ -742,6 +742,7 @@
               - [卡片定点刷新](form/arkts-ui-widget-update-by-time-point.md)
               <!--Del-->
               - [卡片代理刷新](form/arkts-ui-widget-update-by-proxy.md)
+              - [卡片使用方主动请求刷新卡片内容（仅对系统应用开放）](form/arkts-ui-widget-content-update.md)
               <!--DelEnd-->
               - [刷新本地图片和网络图片](form/arkts-ui-widget-image-update.md)
               - [根据卡片状态刷新不同内容](form/arkts-ui-widget-update-by-status.md)
@@ -1672,8 +1673,6 @@
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
-      - 网络管理<!--network-management-->
-        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
@@ -3529,6 +3528,7 @@
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
+          - [@ohos.multimodalInput.gestureEvent (手势事件)(系统接口)](reference/apis-input-kit/js-apis-multimodalinput-gestureevent-sys.md)
           - 已停止维护的接口<!--input-arkts-dep-->
             - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(系统接口)](reference/apis-input-kit/js-apis-cooperate-sys.md)
           <!--DelEnd-->
