@@ -88,11 +88,9 @@ import { window } from '@kit.ArkUI';
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.Window.SessionManager
-
 | 名称                                   | 类型 |  必填 | 说明 |
 | ------------------------------------- | -------- | ---- |------- |
-| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式`#AARRGGBB`，如：`'#E5FFFFFF'`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
 ## SystemBarStyle<sup>12+</sup>
 
@@ -2836,13 +2834,13 @@ setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| color | [ColorMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V13/js-apis-arkui-graphics-V13#colormetrics12) | 是   | 欲设置的状态栏颜色值。 |
+| color | [ColorMetrics](./js-apis-arkui-graphics.md#colormetrics12) | 是   | 要设置的状态栏颜色值。 |
 
 **返回值：**
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5182,7 +5180,7 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 ### setWindowBackgroundColor<sup>16+</sup>
 
-setWindowBackgroundColor(colorMetrics: ColorMetrics): void
+setWindowBackgroundColor(color: ColorMetrics): void
 
 设置窗口的背景色。
 
@@ -5194,7 +5192,7 @@ setWindowBackgroundColor(colorMetrics: ColorMetrics): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| colorMetrics| [ColorMetrics](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V13/js-apis-arkui-graphics-V13#colormetrics12)| 是 | 需要设置的背景色。 |
+| color| [ColorMetrics](./js-apis-arkui-graphics.md#colormetrics12)| 是 | 需要设置的背景色。 |
 
 **错误码：**
 
