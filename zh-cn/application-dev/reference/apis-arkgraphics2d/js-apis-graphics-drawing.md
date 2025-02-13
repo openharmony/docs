@@ -5301,7 +5301,7 @@ class DrawingRenderNode extends RenderNode {
 }
 ```
 
-### setThemeFontFollowed<sup>16+</sup>
+### setThemeFontFollowed<sup>15+</sup>
 
 setThemeFontFollowed(followed: boolean): void
 
@@ -5333,7 +5333,7 @@ font.setThemeFontFollowed(true);
 console.info("font is theme font followed: " + font.isThemeFontFollowed());
 ```
 
-### isThemeFontFollowed()<sup>16+</sup>
+### isThemeFontFollowed()<sup>15+</sup>
 
 isThemeFontFollowed(): boolean
 
