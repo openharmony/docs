@@ -3871,6 +3871,71 @@ function testGetActiveProfile(videoOutput: camera.VideoOutput): camera.Profile |
   return activeProfile;
 }
 ```
+### isMirrorSupported<sup>16+</sup>
+
+isMirrorSupported(): boolean
+
+查询是否支持镜像录像。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型            | 说明                              |
+| -------------- |---------------------------------|
+| boolean | 返回是否支持镜像录像，true表示支持，false表示不支持。 |
+
+**示例：**
+
+```ts
+function testIsMirrorSupported(videoOutput: camera.VideoOutput): boolean {
+  let isSupported: boolean = videoOutput.isMirrorSupported();
+  return isSupported;
+}
+```
+### enableMirror<sup>16+</sup>
+
+enableMirror(enabled: boolean): void
+
+启用/关闭镜像录像。
+- 调用该接口前，需要通过[isMirrorSupported](#ismirrorsupported16)查询是否支录像镜像功能。
+
+- 启用/关闭录像镜像后，需要通过[getVideoRotation](#getvideorotation12)以及[updateRotation](../apis-media-kit/js-apis-media.md#updaterotation12)更新旋转角度。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名      | 类型                    | 必填 | 说明                        |
+|----------| ---------------------- | ---- |---------------------------|
+| enabled | boolean                | 是   | true为开启镜像录像，false为关闭镜像录像。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                                           |
+| -------- |------------------------------------------------|
+| 7400101  | Parameter missing or parameter type incorrect. |
+| 7400103  | Session not config.                    |
+
+
+**示例：**
+
+```ts
+import { camera } from '@kit.CameraKit';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableMirror(videoOutput: camera.VideoOutput, mirrorMode: boolean, aVRecorder: media.AVRecorder, deviceDegree : number): void {
+    try {
+        videoOutput.enableMirror(mirrorMode);
+        aVRecorder.updateRotation(videoOutput.getVideoRotation(deviceDegree));
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+}
+```
 
 ### getVideoRotation<sup>12+</sup>
 
@@ -3908,17 +3973,45 @@ getVideoRotation(deviceDegree: number): ImageRotation
 **示例：**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
-  let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
-  try {
-    videoRotation = videoOutput.getVideoRotation(deviceDegree);
-    console.log(`Video rotation is: ${videoRotation}`);
-  } catch (error) {
-    // 失败返回错误码error.code并处理
-    let err = error as BusinessError;
-    console.error(`The videoOutput.getVideoRotation call failed. error code: ${err.code}`);
-  }
-  return videoRotation;
+import { camera } from '@kit.CameraKit';
+import { Decimal } from '@kit.ArkTS';
+import { sensor } from '@kit.SensorServiceKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getVideoRotation(videoOutput: camera.VideoOutput): camera.ImageRotation {
+    let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
+    try {
+        videoRotation = videoOutput.getVideoRotation(getDeviceDegree());
+    } catch (error) {
+        let err = error as BusinessError;
+    }
+    return videoRotation;
+}
+
+//获取deviceDegree
+function getDeviceDegree(): number {
+    let deviceDegree: number = -1;
+    try {
+        sensor.once(sensor.SensorId.GRAVITY, (data: sensor.GravityResponse) => {
+            console.info('Succeeded in invoking once. X-coordinate component: ' + data.x);
+            console.info('Succeeded in invoking once. Y-coordinate component: ' + data.y);
+            console.info('Succeeded in invoking once. Z-coordinate component: ' + data.z);
+            let x = data.x;
+            let y = data.y;
+            let z = data.z;
+            if ((x * x + y * y) * 3 < z * z) {
+                deviceDegree = -1;
+            } else {
+                let sd: Decimal = Decimal.atan2(y, -x);
+                let sc: Decimal = Decimal.round(Number(sd) / 3.141592653589 * 180)
+                deviceDegree = 90 - Number(sc);
+                deviceDegree = deviceDegree >= 0 ? deviceDegree% 360 : deviceDegree% 360 + 360;
+            }
+        });
+    } catch (error) {
+        let err: BusinessError = error as BusinessError;
+    }
+    return deviceDegree;
 }
 ```
 

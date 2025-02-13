@@ -19,3 +19,4 @@ The **NotificationSubscribeInfo** module provides APIs for defining the informat
 | bundleNames          | Array<string\>         | No | Bundle names of the applications whose notifications are to be subscribed to.                             |
 | userId               | number                | No | User ID.                                     |
 | deviceType<sup>12+</sup>           | string                | No | Device type. The value is obtained based on [device information](../apis-basic-services-kit/js-apis-device-info.md).                                   |
+| slotTypes<sup>16+</sup>   | Array<[notificationManager.SlotType](js-apis-notificationManager.md#slottype)\>| No | Types of the notification slot.|

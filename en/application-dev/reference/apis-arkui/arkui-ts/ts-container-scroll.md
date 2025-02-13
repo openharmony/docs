@@ -636,7 +636,7 @@ currentOffset(): OffsetResult
 
 | Type | Description|
 | -------- | -------- |
-|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Obtains the scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
+|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
 
 ### scrollToIndex
 

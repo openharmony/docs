@@ -17,7 +17,7 @@ When an application has been released to the application market, consumers can i
 ## Updating an Application
 
 
-An application can be updated in either of the following ways:
+For developers, the application update and installation processes are the same. For users, the application may be updated in the following approaches:
 
 - In the application market: The application market notifies the user of an available update, and the user can install the update by following the onscreen instructions.
 - In the application: When the application for which an update is available starts up, the application market notifies the user of the update, and the user can install the update by following the onscreen instructions.

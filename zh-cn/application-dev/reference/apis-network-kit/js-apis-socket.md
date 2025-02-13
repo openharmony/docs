@@ -5454,13 +5454,15 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
+let connAddress: socket.TCPConnectOptions = {
+  address: '192.168.xx.xxx',
+  port: 8080
+};
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: {
-    address: '192.168.xx.xxx',
-    port: 8080
-  },
+  address: connAddress,
   timeout: 6000
 }
+
 tcp.connect(tcpconnectoptions, (err: BusinessError) => {
   if (err) {
     console.log('connect fail');

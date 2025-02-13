@@ -792,17 +792,17 @@ Enter键的功能类型。
 | BASIC_MODE  | 1 |基础模式。 |
 | FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
 
-## MessageHandler<sup>16+</sup>
+## MessageHandler<sup>15+</sup>
 
 自定义通信对象。
 
 > **说明**
 >
-> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage16)回调函数。
+> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
 >
-> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -811,7 +811,7 @@ Enter键的功能类型。
 | onTerminated | function | 否   | 对象终止接收的回调函数。           |
 | onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
 
-## MessageHandler.onMessage<sup>16+</sup>
+## MessageHandler.onMessage<sup>15+</sup>
 
 onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
@@ -852,7 +852,7 @@ try {
 }
 ```
 
-## MessageHandler.onTerminated<sup>16+</sup>
+## MessageHandler.onTerminated<sup>15+</sup>
 
 onTerminated(): void
 
@@ -1891,7 +1891,7 @@ inputMethodController.hideSoftKeyboard().then(() => {
 });
 ```
 
-### sendMessage<sup>16+</sup>
+### sendMessage<sup>15+</sup>
 
 sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
@@ -1945,7 +1945,7 @@ inputMethodController.sendMessage(msgId, msgParam).then(() => {
 });
 ```
 
-### recvMessage<sup>16+</sup>
+### recvMessage<sup>15+</sup>
 
 recvMessage(msgHandler?: MessageHandler): void
 
@@ -1953,9 +1953,9 @@ recvMessage(msgHandler?: MessageHandler): void
 
 > **说明：**
 >
-> [MessageHandler](#messagehandler16)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated16)回调函数。
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
 >
-> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler16)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated16)回调函数。
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
 
 **系统能力：**  SystemCapability.MiscServices.InputMethodFramework
 
@@ -1963,7 +1963,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 | 参数名     | 类型                                | 必填 | 说明                                                         |
 | ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
-| msgHandler | [MessageHandler](#messagehandler16) | 否   | 该对象将通过[onMessage](#messagehandleronmessage16)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated16)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler16)对象，并触发其[onTerminated](#messagehandleronterminated16)回调函数。 |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
 
 **返回值：**
 
@@ -3542,7 +3542,7 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
 })
 ```
 
-### getInputMethodState<sup>16+</sup>
+### getInputMethodState<sup>15+</sup>
 
 getInputMethodState(): Promise&lt;EnabledState&gt;
 

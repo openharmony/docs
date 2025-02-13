@@ -445,6 +445,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 | -------- | -------- | -------- | -------- |
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为字节。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为字节。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
@@ -750,7 +751,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用PUT修改资源，使用POST新增资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
@@ -766,9 +767,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                        |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
-| path | string | 是 | 文件路径                                                                                                                                      |
+| path | string | 是 | 文件路径。                                         |
 | responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息。此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
-| message | string | 是 | 上传任务结果描述信息                                                                                                                                |
+| message | string | 是 | 上传任务结果描述信息。                           |
 
 其中，responseCode包含的返回码值如下：
 
@@ -1101,6 +1102,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
 | totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+
 
 **错误码：**
 
@@ -2305,7 +2307,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。|
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
@@ -2429,7 +2431,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2452,6 +2454,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data，值为false时每个文件使用一个请求传输，值为true时使用多文件单请求上传。默认值为false。 |
 
 ## State<sup>10+</sup>  
 
@@ -4315,7 +4318,7 @@ setMaxSpeed(speed: number): Promise\<void\>
     // 设置任务速度上限。
     task.setMaxSpeed(10 * 1024 * 1024).then(() => {
       console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
-    }).catch((err: BussinessError) => {
+    }).catch((err: BusinessError) => {
       console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
     });
   }).catch((err: BusinessError) => {

@@ -10,7 +10,7 @@ FenceExtensionAbility为开发者提供的地理围栏相关的能力，继承�
 ## 导入模块
 
 ```ts
-import FenceExtensionAbility from '@kit.LocationKit';
+import { FenceExtensionAbility } from '@kit.LocationKit';
 ```
 
 ## 属性
@@ -19,7 +19,7 @@ import FenceExtensionAbility from '@kit.LocationKit';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext-sys.md) | 是 | 否 | 围栏服务上下文。 |
+| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext.md) | 是 | 否 | 围栏服务上下文。 |
 
 ## FenceExtensionAbility.onFenceStatusChange
 
@@ -40,14 +40,12 @@ onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions
 ```ts
 import { FenceExtensionAbility, geoLocationManager } from '@kit.LocationKit';
 import { notificationManager } from '@kit.NotificationKit';
-import { wantAgent } from '@kit.AbilityKit';
+import { Want, wantAgent } from '@kit.AbilityKit';
 
-export default class MyFenceExtensionAbility extends FenceExtensionAbility {
-  async onFenceStatusChange(transition: geoLocationManager.GeofenceTransition,
-    additions: Record<string, string>): void {
+export class MyFenceExtensionAbility extends FenceExtensionAbility {
+  onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record<string, string>): void {
     // 接受围栏状态变化事件，处理业务逻辑
-    hilog.info(0x0000, "TAG",
-      `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
+    console.info(`on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
 
     // 可以发送围栏业务通知
     let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -65,23 +63,23 @@ export default class MyFenceExtensionAbility extends FenceExtensionAbility {
       actionType: wantAgent.OperationType.START_ABILITY,
       requestCode: 100
     };
-    let wantAgentMy = await wantAgent.getWantAgent(wantAgentInfo);
-    let notificationRequest: notificationManager.NotificationRequest = {
-      id: 1,
-      content: {
-        notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-          title: `围栏通知`,
-          text: `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`,
-        }
-      },
-      notificationSlotType: notificationManager.SlotType.SOCIAL_COMMUNICATION,
-      wantAgent: wantAgentMy
-    };
-    notificationManager.publish(notificationRequest);
+    wantAgent.getWantAgent(wantAgentInfo).then((wantAgentMy) => {
+      let notificationRequest: notificationManager.NotificationRequest = {
+        id: 1,
+        content: {
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+          normal: {
+            title: `围栏通知`,
+            text: `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`,
+          }
+        },
+        notificationSlotType: notificationManager.SlotType.SOCIAL_COMMUNICATION,
+        wantAgent: wantAgentMy
+      };
+      notificationManager.publish(notificationRequest);
+    });
   }
 }
-
 ```
 ## FenceExtensionAbility.onDestroy
 

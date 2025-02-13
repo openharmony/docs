@@ -17,8 +17,9 @@ Path: **Settings** > **Privacy** > **Permission manager** > **Apps** > *Target a
 ## Supported Permissions
 
 Currently, the **Allow this time only** option is available only for the following permissions. When an application requests any of these permissions, the user authorization dialog box displayed contains the **Allow this time only** option, and permission settings dialog box contains the **Ask each time** option.
-
-- <!--RP1-->[ohos.permission.READ_PASTEBOARD](permissions-for-system-apps.md#ohospermissionread_pasteboard)<!--RP1End-->
+<!--RP1-->
+- [ohos.permission.READ_PASTEBOARD](permissions-for-system-apps.md#ohospermissionread_pasteboard)
+<!--RP1End-->
 - [ohos.permission.APPROXIMATELY_LOCATION](permissions-for-all-user.md#ohospermissionapproximately_location)
 - [ohos.permission.LOCATION](permissions-for-all-user.md#ohospermissionlocation)
 - [ohos.permission.LOCATION_IN_BACKGROUND](permissions-for-all-user.md#ohospermissionlocation_in_background)

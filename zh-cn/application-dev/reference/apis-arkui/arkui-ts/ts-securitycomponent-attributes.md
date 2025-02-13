@@ -13,7 +13,7 @@
 
 iconSize(value: Dimension): T
 
-设置安全控件上图标的尺寸。
+设置安全控件图标的尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -35,7 +35,7 @@ iconSize(value: Dimension): T
 
 layoutDirection(value: SecurityComponentLayoutDirection): T
 
-设置安全控件上图标和文字分布的方向。
+设置安全控件图标和文字分布的方向。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -123,7 +123,7 @@ offset(value: Position | Edges | LocalizedEdges): T
 
 fontSize(value: Dimension): T
 
-设置安全控件上文字的尺寸。
+设置安全控件文字的尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ fontSize(value: Dimension): T
 
 fontStyle(value: FontStyle): T
 
-设置安全控件上文字的样式。
+设置安全控件文字的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -167,7 +167,7 @@ fontStyle(value: FontStyle): T
 
 fontWeight(value: number | FontWeight | string): T
 
-设置安全控件上文字粗细。
+设置安全控件文字粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -189,7 +189,7 @@ fontWeight(value: number | FontWeight | string): T
 
 fontFamily(value: string | Resource): T
 
-设置安全控件上文字的字体。
+设置安全控件文字的字体。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -211,7 +211,7 @@ fontFamily(value: string | Resource): T
 
 fontColor(value: ResourceColor): T
 
-设置安全控件上文字的颜色。
+设置安全控件文字的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -233,7 +233,7 @@ fontColor(value: ResourceColor): T
 
 iconColor(value: ResourceColor): T
 
-设置安全控件上图标的颜色。
+设置安全控件图标的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -361,7 +361,7 @@ borderRadius(value: Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## borderRadius<sup>16+</sup>
+## borderRadius<sup>15+</sup>
 
 borderRadius(radius: Dimension | BorderRadiuses): T
 
@@ -405,7 +405,7 @@ padding(value: Padding | Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## align<sup>16+</sup>
+## align<sup>15+</sup>
 
 align(alignType: Alignment): T
 
@@ -537,7 +537,7 @@ constraintSize(value: ConstraintSizeOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: AlignRuleOption): T
 
@@ -559,7 +559,7 @@ alignRules(alignRule: AlignRuleOption): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: LocalizedAlignRuleOptions): T
 
@@ -581,7 +581,7 @@ alignRules(alignRule: LocalizedAlignRuleOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## id<sup>16+</sup>
+## id<sup>15+</sup>
 
 id(description: string): T
 
@@ -603,7 +603,7 @@ id(description: string): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## chainMode<sup>16+</sup>
+## chainMode<sup>15+</sup>
 
 chainMode(direction: Axis, style: ChainStyle): T
 
@@ -850,7 +850,7 @@ enabled(respond: boolean): T
 struct Index {
   build() {
     Row() {
-      Column({space:5}) {
+      Column({ space: 5 }) {
         // 生成一个保存按钮，并设置它的SecurityComponent属性
         SaveButton()
           .fontSize(35)
@@ -871,8 +871,8 @@ struct Index {
           .size({width:200, height:100})
           .align(Alignment.Start)
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .size({width:150, height:80})
-          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35})
+          .size({ width: 150, height: 80 })
+          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35 })
         SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
@@ -893,7 +893,7 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100).height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
@@ -902,7 +902,7 @@ struct Index {
           })
           .id("row1")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100).height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
@@ -911,7 +911,7 @@ struct Index {
           })
           .id("row2")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
@@ -921,7 +921,7 @@ struct Index {
           })
           .id("row3")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#2CA9E0")
           .alignRules({
             top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -931,7 +931,7 @@ struct Index {
           })
           .id("row4")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#30C9F7")
           .alignRules({
             top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -942,8 +942,8 @@ struct Index {
           .id("row5")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width:2, color: "#6699FF" })
     }
     .height('100%')
   }

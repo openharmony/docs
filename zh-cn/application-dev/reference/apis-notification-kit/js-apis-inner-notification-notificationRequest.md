@@ -18,9 +18,9 @@
 | notificationSlotType<sup>11+</sup> | [notificationManager.SlotType](js-apis-notificationManager.md#slottype) |   否  | 是  | 通知渠道类型。                        |
 | isOngoing                     | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
 | isUnremovable                 | boolean                                                  |   否  | 是  | 预留能力，暂未支持。  |
-| updateOnly<sup>16+</sup>        | boolean                                       | 否  | 是  | 是否仅更新通知，默认值为false。<br/>当指定值为true时，若相同ID通知存在，则更新通知；若相同ID通知不存在，则更新失败，不创建新的通知。<br/>当指定值为false时，若相同ID通知存在，则更新通知；若相同ID通知不存在，则创建通知。         |
+| updateOnly<sup>16+</sup>        | boolean                                       | 否  | 是  | 是否仅更新通知，默认值为false。<br/> - true：若相同ID通知存在，则更新通知；若相同ID通知不存在，则更新失败，不创建新的通知。<br/> - false：若相同ID通知存在，则更新通知；若相同ID通知不存在，则创建通知。         |
 | deliveryTime                  | number                                                   |   否  | 是  | 通知发送时间。系统自动生成，无需开发者配置。<br>数据格式：时间戳。<br>单位：ms。                                                               |
-| tapDismissed                  | boolean                                                  |   否  | 是  | 通知是否自动清除。预留能力，暂未支持。                                                             |
+| tapDismissed                  | boolean                                                  |   否  | 是  | 通知是否自动清除。当通知携带wantAgent或actionButtons时该字段生效。默认值为true。<br> - true：点击通知或按钮后，自动删除当前通知。<br> - false：点击通知或按钮后，保留当前通知。 |
 | autoDeletedTime               | number                                                   |   否  | 是  | 自动清除的时间。<br>数据格式：时间戳。<br>单位：ms。<br>例如，希望某通知存留3秒（3000ms）后对其进行清除，则对应的清除时间为：new Date().getTime() + 3000。                                                              |
 | wantAgent                     | [WantAgent](../apis-ability-kit/js-apis-app-ability-wantAgent.md)            |   否  | 是  | WantAgent封装了应用的行为意图，点击通知时触发该行为。                                       |
 | extraInfo                     | {[key: string]: any}                                     |   否  | 是  | 扩展参数。                                                                 |
@@ -33,7 +33,7 @@
 | label                         | string                                                   |   否  | 是  | 通知标签。<br>label字段的功能类似于id，可以单独使用，也可与id结合共同作为通知的标识。优先推荐使用id。<br>如果发布通知时label不为空，那么在更新或删除该通知时，也需要指定相应的label。                                                                 |
 | badgeIconStyle                | number                                                   |   否  | 是  | 通知角标类型。预留能力，暂未支持。                                                     |
 | showDeliveryTime              | boolean                                                  |   否  | 是  | 是否显示分发时间。预留能力，暂未支持。                                                             |
-| actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 是  | 通知按钮，一条通知中最多包含两个按钮。                                                          |
+| actionButtons                 | Array\<[NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)\>             |   否  | 是  | 通知按钮，默认一条通知中最多包含两个按钮。从API version 16开始，支持`wearable`设备，`wearable`设备中一条通知中最多包含三个按钮。                                                          |
 | smallIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知小图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
 | largeIcon                     | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)             |   否  | 是  | 通知大图标。可选字段，图标像素的总字节数不超过192KB（图标像素的总字节数通过[getPixelBytesNumber](../apis-image-kit/js-apis-image.md#getpixelbytesnumber7)获取），建议图标像素长宽为128*128。实际显示效果依赖于设备能力和通知中心UI样式。                                                 |
 | creatorBundleName             | string                                                   |   是  | 是  | 创建通知的包名。                                                              |

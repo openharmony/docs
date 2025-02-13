@@ -50,12 +50,12 @@
   
    ```ts
    @State isPresent: boolean = true;
-   ...
+   // ...
    if (this.isPresent) {
      Text('test')
        .transition(this.effect)
    }
-   ...
+   // ...
    // 控制新增或者删除组件
    // 方式一：将控制变量放到animateTo闭包内，未通过animation接口定义动画参数的TransitionEffect将跟随animateTo的动画参数
    this.getUIContext()?.animateTo({ curve: curves.springMotion() }, () => {
@@ -76,19 +76,20 @@ import { curves } from '@kit.ArkUI';
 @Component
 struct TransitionEffectDemo {
   @State isPresent: boolean = false;
-
   // 第一步，创建TransitionEffect
   private effect: TransitionEffect =
     // 创建默认透明度转场效果,并指定了springMotion(0.6, 0.8)曲线
-  TransitionEffect.OPACITY.animation({ curve: curves.springMotion(0.6, 0.8) })
-    // 通过combine方法,这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 0.8)
-    .combine(TransitionEffect.scale({ x: 0, y: 0 }))
-      // 添加旋转转场效果，这里的动画参数会跟随上面带animation的TransitionEffect，也就是springMotion(0.6, 0.8)
-    .combine(TransitionEffect.rotate({ angle: 90 }))
-      // 添加平移转场效果，这里的动画参数使用指定的springMotion()
-    .combine(TransitionEffect.translate({ y: 150 }).animation({ curve: curves.springMotion() }))
-      // 添加move转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion()
-    .combine(TransitionEffect.move(TransitionEdge.END))
+    TransitionEffect.OPACITY.animation({
+      curve: curves.springMotion(0.6, 0.8)
+    })// 通过combine方法,这里的动画参数会跟随上面的TransitionEffect，也就是springMotion(0.6, 0.8)
+      .combine(TransitionEffect.scale({
+        x: 0,
+        y: 0
+      }))// 添加旋转转场效果，这里的动画参数会跟随上面带animation的TransitionEffect，也就是springMotion(0.6, 0.8)
+      .combine(TransitionEffect.rotate({ angle: 90 }))// 添加平移转场效果，这里的动画参数使用指定的springMotion()
+      .combine(TransitionEffect.translate({ y: 150 })
+        .animation({ curve: curves.springMotion() }))// 添加move转场效果，这里的动画参数会跟随上面的TransitionEffect，也就是springMotion()
+      .combine(TransitionEffect.move(TransitionEdge.END))
 
   build() {
     Stack() {
@@ -148,7 +149,6 @@ const DURATION = 300;
 @Component
 struct Index1 {
   @State isGridShow: boolean = false;
-
   private dataArray: number[] = new Array(ITEM_COUNTS);
 
   aboutToAppear(): void {
@@ -169,8 +169,7 @@ struct Index1 {
               .size({ width: 50, height: 50 })
               .backgroundColor(ITEM_COLOR)
               .transition(TransitionEffect.OPACITY
-                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }))
-                // 对每个方格的转场添加delay，实现组件的渐次出现消失效果
+                .combine(TransitionEffect.scale({ x: 0.5, y: 0.5 }))// 对每个方格的转场添加delay，实现组件的渐次出现消失效果
                 .animation({ duration: DURATION, curve: Curve.Friction, delay: INTERVAL * index }))
               .borderRadius(10)
             }

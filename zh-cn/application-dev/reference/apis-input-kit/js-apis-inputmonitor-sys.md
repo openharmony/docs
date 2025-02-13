@@ -1161,3 +1161,107 @@ try {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## inputMonitor.on('keyPressed')<sup>16+</sup>
+
+on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEvent&gt;): void
+
+监听指定按键的按下抬起事件，支持监听META_LEFT键、META_RIGHT键、电源键、音量键。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                        | 必填 | 说明                                 |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                                      | 是   | 按键事件类型，取唯一值'keyPressed'。 |
+| keys     | Array<[KeyCode](js-apis-keycode.md#keycode)> | 是   | 按键码列表，支持如下取值：KEYCODE_META_LEFT、KEYCODE_META_RIGHT、KEYCODE_POWER、KEYCODE_VOLUME_DOWN、KEYCODE_VOLUME_UP。                      |
+| receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt;    | 是   | 用于接收上报数据的回调函数。         |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputkeymonitor.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 4100001  | Event listening not supported for the key.                   |
+
+**示例：**
+
+```js
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+try {
+  inputMonitor.on('keyPressed', keys, (event: KeyEvent ) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputMonitor.off('keyPressed')<sup>16+</sup>
+
+off(type: 'keyPressed', receiver?: Callback&lt;KeyEvent&gt;): void
+
+取消监听按键按下抬起事件。支持取消监听META_LEFT键、META_RIGHT键、电源键、音量键。需和inputMonitor.on('keyPressed')配套使用。
+
+**需要权限：** ohos.permission.INPUT_MONITORING
+
+**系统能力：** SystemCapability.MultimodalInput.Input.InputMonitor
+
+**参数：**
+
+| 参数名   | 类型                                                      | 必填 | 说明                                                         |
+| -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                                    | 是   | 按键事件类型，取唯一值'keyPressed'。                         |
+| receiver | Callback&lt;[KeyEvent](js-apis-keyevent.md#keyevent)&gt; | 否   | 需要取消监听的回调函数。若不填，取消应用所有按键监听的回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission denied.                                           |
+| 202      | Permission denied, non-system app called system api.         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```js
+// 取消监听单个回调函数
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+let callback = (event: KeyEvent) => {
+  console.log(`Monitor on success ${JSON.stringify(event)}`);
+};
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+try {
+  inputMonitor.on('keyPressed', keys, callback);
+  inputMonitor.off("keyPressed", callback);
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+```js
+// 取消监听所有回调函数
+import { inputMonitor, KeyEvent, KeyCode } from '@kit.InputKit';
+
+let keys: Array<KeyCode> = [KeyCode.KEYCODE_VOLUME_UP];
+try {
+  inputMonitor.on('keyPressed', keys, (event: KeyEvent) => {
+    console.log(`Monitor on success ${JSON.stringify(event)}`);
+  });
+  inputMonitor.off("keyPressed");
+} catch (error) {
+  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```

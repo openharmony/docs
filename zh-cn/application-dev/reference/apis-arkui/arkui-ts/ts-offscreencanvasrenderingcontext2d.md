@@ -43,7 +43,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: Rend
 | [lineCap](#linecap) | [CanvasLineCap](ts-canvasrenderingcontext2d.md#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
 | [lineJoin](#linejoin) | [CanvasLineJoin](ts-canvasrenderingcontext2d.md#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
 | [miterLimit](#miterlimit) | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px。<br/>单位：px。 <br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
-| [font](#font) | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。同时支持注册过的自定义字体（只能在主线程使用，worker线程不支持），具体使用方法参考[自定义字体示例](#font)。<br/>默认值：'normal normal 14px sans-serif'。 |
+| [font](#font) | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。同时支持注册过的自定义字体（只能在主线程使用，worker线程不支持；DevEco Studio的预览器不支持显示自定义字体），具体使用方法参考[自定义字体示例](#font)。<br/>默认值：'normal normal 14px sans-serif'。 |
 | [textAlign](#textalign) | [CanvasTextAlign](ts-canvasrenderingcontext2d.md#canvastextalign) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>> **说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'start'。 |
 | [textBaseline](#textbaseline)            | [CanvasTextBaseline](ts-canvasrenderingcontext2d.md#canvastextbaseline) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
 | [globalAlpha](#globalalpha) | number | 否 | 否 | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>默认值：1.0。 |
@@ -900,48 +900,49 @@ justifyContent: FlexAlign.Center }) {
     private settings: RenderingContextSettings = new RenderingContextSettings(true);
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+    private img: ImageBitmap = new ImageBitmap("common/images/example.jpg");
 
     build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.
-Center }) {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
-          .onReady(() =>{
+          .onReady(() => {
             let offContext = this.offCanvas.getContext("2d", this.settings)
-            let offctx = offContext
             let img = this.img
 
-            offctx.drawImage(img, 0, 0, 100, 100);
+            offContext.drawImage(img, 0, 0, 100, 100);
 
-            offctx.filter = 'grayscale(50%)';
-            offctx.drawImage(img, 100, 0, 100, 100);
+            offContext.filter = 'grayscale(50%)';
+            offContext.drawImage(img, 100, 0, 100, 100);
 
-            offctx.filter = 'sepia(60%)';
-            offctx.drawImage(img, 200, 0, 100, 100);
+            offContext.filter = 'sepia(60%)';
+            offContext.drawImage(img, 200, 0, 100, 100);
 
-            offctx.filter = 'saturate(30%)';
-            offctx.drawImage(img, 0, 100, 100, 100);
+            offContext.filter = 'saturate(30%)';
+            offContext.drawImage(img, 0, 100, 100, 100);
 
-            offctx.filter = 'hue-rotate(90degree)';
-            offctx.drawImage(img, 100, 100, 100, 100);
+            offContext.filter = 'hue-rotate(90degree)';
+            offContext.drawImage(img, 100, 100, 100, 100);
 
-            offctx.filter = 'invert(100%)';
-            offctx.drawImage(img, 200, 100, 100, 100);
+            offContext.filter = 'invert(100%)';
+            offContext.drawImage(img, 200, 100, 100, 100);
 
-            offctx.filter = 'opacity(25%)';
-            offctx.drawImage(img, 0, 200, 100, 100);
+            offContext.filter = 'opacity(25%)';
+            offContext.drawImage(img, 0, 200, 100, 100);
 
-            offctx.filter = 'brightness(0.4)';
-            offctx.drawImage(img, 100, 200, 100, 100);
+            offContext.filter = 'brightness(0.4)';
+            offContext.drawImage(img, 100, 200, 100, 100);
 
-            offctx.filter = 'contrast(200%)';
-            offctx.drawImage(img, 200, 200, 100, 100);
+            offContext.filter = 'contrast(200%)';
+            offContext.drawImage(img, 200, 200, 100, 100);
 
-            offctx.filter = 'blur(5px)';
-            offctx.drawImage(img, 0, 300, 100, 100);
+            offContext.filter = 'blur(5px)';
+            offContext.drawImage(img, 0, 300, 100, 100);
+
+            // Applying multiple filters
+            offContext.filter = 'opacity(50%) contrast(200%) grayscale(50%)';
+            offContext.drawImage(img, 100, 300, 100, 100);
 
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
@@ -1277,7 +1278,7 @@ measureText(text: string): TextMetrics
             let offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.font = '50px sans-serif'
             offContext.fillText("Hello World!", 20, 100)
-            offContext.fillText("width:" + this.context.measureText("Hello World!").width, 20, 200)
+            offContext.fillText("width:" + offContext.measureText("Hello World!").width, 20, 200)
             let image = this.offCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(image)
         })
@@ -1288,7 +1289,7 @@ measureText(text: string): TextMetrics
   }
   ```
 
-  ![zh-cn_image_0000001194032480](figures/zh-cn_image_0000001194032480.png)
+  ![offscreencanvasrenderingcontext2d-measureText](figures/offscreencanvasrenderingcontext2d-measureText.jpg)
 
 
 ### stroke
@@ -3344,7 +3345,7 @@ toDataURL(type?: string, quality?: any): string
 
 | 参数名     | 类型   | 必填   | 说明                                       |
 | ------- | ------ | ---- | ---------------------------------------- |
-| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。。<br>默认值：image/png。            |
+| type    | string | 否  | 用于指定图像格式。<br/>可选参数为："image/png", "image/jpeg", "image/webp"。<br>默认值：image/png。            |
 | quality | any | 否  | 在指定图片格式为image/jpeg或image/webp的情况下，可以从0到1的区间内选择图片的质量。如果超出取值范围，将会使用默认值0.92。<br>默认值：0.92。 |
 
 **返回值：** 

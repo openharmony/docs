@@ -1,6 +1,6 @@
 # @ohos.file.sendablePhotoAccessHelper (相册管理模块)(系统接口)
 
-该模块基于Sendable对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
+该模块基于[Sendable](../../arkts-utils/arkts-sendable.md#)对象，提供相册管理模块能力，包括创建相册以及访问、修改相册中的媒体数据信息等。
 
 > **说明：**
 >
@@ -403,6 +403,14 @@ async function example() {
 
 实体相册
 
+### 属性
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称           | 类型    | 只读   | 可选  | 说明   |
+| ------------ | ------ | ---- | ---- | ------- |
+| lpath<sup>16+</sup>    | string | 是    | 是   | 相册虚拟路径。<br>**系统接口**：此接口为系统接口。|
+
 ## AlbumType
 
 枚举，相册类型，表示是用户相册还是系统预置相册。
@@ -434,3 +442,13 @@ async function example() {
 | GROUP_PHOTO           | 4103 | 合影相册。**系统接口**：此接口为系统接口。                 |
 | HIGHLIGHT             | 4104 | 时刻相册。**系统接口**：此接口为系统接口。                 |
 | HIGHLIGHT_SUGGESTIONS | 4105 | 时刻建议相册。**系统接口**：此接口为系统接口。             |
+
+## AlbumKeys
+
+枚举，相册关键信息。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称                              | 值                    | 说明                                                       |
+| --------------------------------- | -------------------- | ----------------------------------------------------- |
+| ALBUM_LPATH<sup>16+</sup>         | 'lpath'                 | 相册的虚拟路径。<br>**系统接口**：此接口为系统接口。            |

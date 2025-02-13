@@ -5,7 +5,7 @@
 
 声明主机侧访问输入设备的HID DDK接口。
 
-引用文件：&lt;[hid/hid_ddk_api.h](zh-cn_topic_0000002188217729.xml)&gt;
+引用文件：&lt;hid/hid_ddk_api.h&gt;
 
 **起始版本：** 11
 
@@ -34,6 +34,6 @@
 | int32_t [OH_Hid_GetRawName](_hid_ddk.md#oh_hid_getrawname) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | 获取设备原始名称。  | 
 | int32_t [OH_Hid_GetPhysicalAddress](_hid_ddk.md#oh_hid_getphysicaladdress) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, char \*data, uint32_t bufSize) | 获取设备物理地址。  | 
 | int32_t [OH_Hid_GetRawUniqueId](_hid_ddk.md#oh_hid_getrawuniqueid) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, uint8_t \*data, uint32_t bufSize) | 获取设备原始唯一标识符。  | 
-| int32_t [OH_Hid_SendReport](_hid_ddk.md#oh_hid_sendreport) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, [Hid_ReportType](_hid_ddk.md#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | 向设备发送报告。  | 
-| int32_t [OH_Hid_GetReport](_hid_ddk.md#oh_hid_getreport) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, [Hid_ReportType](_hid_ddk.md#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | 获取设备报告。  | 
+|<!--DelRow--> int32_t [OH_Hid_SendReport](_hid_ddk.md#oh_hid_sendreport) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, [Hid_ReportType](_hid_ddk.md#hid_reporttype) reportType, const uint8_t \*data, uint32_t length) | 向设备发送报告。  | 
+|<!--DelRow--> int32_t [OH_Hid_GetReport](_hid_ddk.md#oh_hid_getreport) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, [Hid_ReportType](_hid_ddk.md#hid_reporttype) reportType, uint8_t \*data, uint32_t bufSize) | 获取设备报告。  | 
 | int32_t [OH_Hid_GetReportDescriptor](_hid_ddk.md#oh_hid_getreportdescriptor) ([Hid_DeviceHandle](_hid_ddk.md#hid_devicehandle) \*dev, uint8_t \*buf, uint32_t bufSize, uint32_t \*bytesRead) | 获取设备报告描述符。  | 

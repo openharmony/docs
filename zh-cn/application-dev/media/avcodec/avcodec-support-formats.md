@@ -8,10 +8,9 @@
 
 | 视频硬解类型       | 视频软解类型   |
 | --------------------- | ---------------- |
-| AVC(H.264)、HEVC(H.265) |AVC(H.264)<!--RP12--><!--RP12End--> |
+| AVC(H.264)、HEVC(H.265) | MPEG2、MPEG4、AVC(H.264)<!--RP12--><!--RP12End--> |
 
-视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->
-如果硬件平台支持，则可以使用H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)和H265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)硬件解码能力。
+视频解码软/硬件解码存在差异，基于MimeType创建解码器时，<!--RP13-->软解当前仅支持 MPEG2(OH_AVCODEC_MIMETYPE_VIDEO_MPEG2)、MPEG4(OH_AVCODEC_MIMETYPE_VIDEO_MPEG4_PART2)、 H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)，<!--RP13End-->如果硬件平台支持，则可以使用H264(OH_AVCODEC_MIMETYPE_VIDEO_AVC)和H265(OH_AVCODEC_MIMETYPE_VIDEO_HEVC)硬件解码能力。
 
 每一种解码的能力范围，可以通过[获取支持的编解码能力](obtain-supported-codecs.md)获取。
 
@@ -86,10 +85,10 @@
 | 音频       | m4a                        |<!--RP9-->音频码流：AAC<!--RP9End-->|
 | 音频       | aac                        |音频码流：AAC|
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
-| 音频       | ogg                        |音频码流：OGG|
-| 音频       | flac                       |音频码流：FLAC|
-| 音频       | wav                        |音频码流：PCM、PCM-MULAW|
-| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
+| 音频       | ogg                        |音频码流：Vorbis|
+| 音频       | flac                       |音频码流：Flac|
+| 音频       | wav                        |音频码流：PCM、G711mu|
+| 音频       | amr                        |音频码流：AMR(amrnb、amrwb)|
 | 音频       | ape                        |音频码流：APE|
 | 外挂字幕   | srt                        |字幕流：SRT|
 | 外挂字幕   | webvtt                     |字幕流：WEBVTT|

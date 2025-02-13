@@ -7,7 +7,7 @@
 
 **库：** libusb_serial.z.so
 
-**引用文件：**&lt;[serial/usb_serial_ddk_types.h](zh-cn_topic_0000002190682209.xml)&gt;
+**引用文件：**&lt;serial/usb_serial_ddk_types.h&gt;
 
 **系统能力：** SystemCapability.Driver.SERIAL.Extension
 

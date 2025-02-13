@@ -21,7 +21,7 @@ import { ComposeListItem } from "@kit.ArkUI"
 无
 
 ## 属性
-支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)
 
 
 ## ComposeListItem
@@ -195,7 +195,7 @@ struct ComposeListItemExample {
             operateItem: ({
               radio: {
                 accessibilityText: '单选框', // 该单选框屏幕朗读播报文本为‘单选框’
-                accessibilityDescription: '已选中', // 该单选框屏幕朗读播报描述为'已选中'
+                accessibilityDescription: '未选中', // 该单选框屏幕朗读播报描述为'未选中'
                 accessibilityLevel: 'yes'  // 该项可被无障碍屏幕朗读聚焦
               }
             })

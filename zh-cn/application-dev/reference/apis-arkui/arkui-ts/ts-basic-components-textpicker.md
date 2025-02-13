@@ -109,7 +109,7 @@ defaultPickerItemHeight(height: Optional\<number | string>)
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。 |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。<br/>当height的值为undefined时，维持上次取值。 |
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -131,7 +131,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
+设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -141,7 +141,7 @@ disappearTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>10+</sup>
 
@@ -163,7 +163,7 @@ textStyle(value: PickerTextStyle)
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
+设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -173,7 +173,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -195,7 +195,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持。
+设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -205,7 +205,7 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedIndex<sup>10+</sup>
 
@@ -227,7 +227,7 @@ selectedIndex(value: number | number[])
 
 selectedIndex(index: Optional\<number | number[]>)
 
-设置默认选中项在数组中的索引值，优先级高于options中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。与[selectedIndex<sup>10+</sup>](#selectedindex10)相比，index参数新增了对undefined类型的支持。
+设置默认选中项在数组中的索引值，优先级高于options中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。与[selectedIndex](#selectedindex10)相比，index参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -235,9 +235,9 @@ selectedIndex(index: Optional\<number | number[]>)
 
 **参数：**
 
-| 参数名 | 类型                         | 必填 | 说明                         |
-| ------ | ---------------------------- | ---- | ---------------------------- |
-| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值。<br/>默认值：0 <br/> |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值。<br/>当index的值为undefined时，默认值：0 <br/> |
 
 ### canLoop<sup>10+</sup>
 
@@ -259,7 +259,7 @@ canLoop(value: boolean)
 
 canLoop(isLoop: Optional\<boolean>)
 
-设置是否可循环滚动。与[canLoop](#canloop10)相比，isLoop参数新增了对undefined类型的支持。
+设置是否可循环滚动。与[canLoop](#canloop10)<sup>10+</sup>相比，isLoop参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -269,7 +269,7 @@ canLoop(isLoop: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>默认值：true |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>当isLoop的值为undefined时，默认值：true |
 
 ### divider<sup>12+</sup>
 
@@ -292,7 +292,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 
 divider(textDivider: Optional\<DividerOptions | null>)
 
-设置分割线样式，不设置该属性则按“默认值”展示分割线。与[divider<sup>12+</sup>](#divider12)相比，textDivider参数新增了对undefined类型的支持。
+设置分割线样式，不设置该属性则按“默认值”展示分割线。与[divider](#divider12)<sup>12+</sup>相比，textDivider参数新增了对undefined类型的支持。
 
 startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
 
@@ -303,7 +303,7 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| textDivider | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12对象说明) \| null> | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
+| textDivider | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12对象说明) \| null> | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>当textDivider的值为undefined时，默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
 
 ### gradientHeight<sup>12+</sup>
 
@@ -325,7 +325,7 @@ gradientHeight(value: Dimension)
 
 gradientHeight(height: Optional\<Dimension>)
 
-设置渐隐效果高度，不设置该属性则显示默认渐隐效果。与[gradientHeight<sup>12+</sup>](#gradientheight12)相比，height参数新增了对undefined类型的支持。
+设置渐隐效果高度，不设置该属性则显示默认渐隐效果。与[gradientHeight](#gradientheight12)<sup>12+</sup>相比，height参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -335,7 +335,7 @@ gradientHeight(height: Optional\<Dimension>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。<br/>当height的值为undefined时，默认值为36vp。 |
 
 > **说明：**
 >
@@ -394,13 +394,31 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >  **说明：**
 >
 >  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
-> ```json
-> "requestPermissions": [
+>  ```json
+>  "requestPermissions": [
 >  {
->     "name": "ohos.permission.VIBRATE",
+>   "name": "ohos.permission.VIBRATE",
 >  }
-> ]
-> ``
+>  ]
+>  ``
+>  ```
+
+### digitalCrownSensitivity<sup>16+</sup>
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity)> | 是    | 表冠灵敏度。                     |
+
+>  **说明：**
+>
+>  用于穿戴设备圆形屏幕使用。
 
 ## 事件
 
@@ -435,9 +453,9 @@ onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
 **参数：**
 
-| 参数名   | 类型                       | 必填 | 说明                                       |
-| -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ### onScrollStop<sup>14+</sup>
 
@@ -461,7 +479,7 @@ onScrollStop(callback: TextPickerScrollStopCallback)
 
 onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
 
-文本选择器的选项列滑动停止时触发该事件。与[onScrollStop<sup>14+</sup>](#onscrollstop14)相比，callback参数新增了对undefined类型的支持。
+文本选择器的选项列滑动停止时触发该事件。与[onScrollStop](#onscrollstop14)<sup>14+</sup>相比，callback参数新增了对undefined类型的支持。
 
 手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
 
@@ -473,7 +491,7 @@ onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | 是   | 文本选择器的选项列滑动停止时触发该事件。 |
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | 是   | 文本选择器的选项列滑动停止时触发该事件。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ### onEnterSelectedArea<sup>16+</sup>
 

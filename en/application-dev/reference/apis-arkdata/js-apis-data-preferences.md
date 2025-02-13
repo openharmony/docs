@@ -4,13 +4,13 @@ The **Preferences** module provides APIs for processing data in the form of key-
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
-The default encryption level of user preferences is EL2, and the persistent files are stored in the corresponding **el2/** directory. If there is no lock screen password, the sendable preferences can be directly accessed after the device is powered on. If there is a lock screen password, the data can be accessed only after at least one successful unlock operation (by PIN, fingerprint, or facial authentication). Avoid direct access to preferences data without the screen unlock operation. For details about how to modify the encryption level, see [Obtaining and Modifying Encryption Levels](../../../application-dev/application-models/application-context-stage.md#obtaining-and-modifying-encryption-levels).
+The persistent files of user preferences are stored in the [preferencesDir](../../../application-dev/application-models/application-context-stage.md#obtaining-application-file-path) directory. Before creating a preferences object, ensure that the **preferencesDir** path can be read and written. The [encryption level](../../../application-dev/reference/apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) of the persistent file path affects the read and write permissions on the file. For details, see [Application File Directory and Application File Path](../../../application-dev/file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path).
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - Preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use preferences in multi-process scenarios.
+> Preferences are not thread-safe and may cause file damage and data loss when used in multi-process scenarios. Do not use preferences in multi-process scenarios.
 
 ## Modules to Import
 
@@ -27,7 +27,7 @@ import { preferences } from '@kit.ArkData';
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 x 1024 x 1024 bytes.|
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 MB.|
 
 
 ## preferences.getPreferences
@@ -205,8 +205,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                  |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **Example**
 
@@ -289,8 +289,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **Example**
 
@@ -370,8 +370,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **Example**
 
@@ -435,7 +435,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
+| 15500010 | Failed to delete the user preferences persistence file. |
 
 **Example**
 
@@ -513,7 +513,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ------------------------------ |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
+| 15500010 | Failed to delete the user preferences persistence file. |
 
 **Example**
 
@@ -585,9 +585,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **Example**
 
@@ -669,9 +669,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **Example**
 
@@ -946,8 +946,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **Example**
 
@@ -1027,8 +1027,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **Example**
 
@@ -1100,8 +1100,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **Example**
 
@@ -1130,18 +1130,79 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## Options<sup>10+</sup>
+## StorageType<sup>16+</sup>
+Enumerates the storage types of preferences.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+| Name| Value  | Description|
+| ---- | ---- | ---- |
+| XML |  0    | XML, which is the default storage mode of preferences.<br> In this mode, data is stored in XML format. Data operations are performed in the memory. To persist data, call **flush()**.    |
+| CLKV |  1    |CLKV.<br> Data is stored in CLKV database mode. Data operations are flushed on a real-time basis without calling **flush()**.     |
+
+
+> **NOTE**
+>   - Before using this mode, you are advised to call **isStorageTypeSupported** to check whether this storage type is supported.
+>   - Once the storage type is selected and data instances are obtained via **getPreferences()**, the storage type cannot be changed.
+>   - Data cannot be directly migrated between the **Preferences** instances that use different storage types. To migrate data between them, you need to read the data to be migrated and then write the data.
+>   - If you need to change the storage directory of preferences, you cannot move or overwrite files. Instead, you need to read the data and then write the data.
+
+## preferences.isStorageTypeSupported<sup>16+</sup>
+isStorageTypeSupported(type: StorageType): boolean
+
+Checks whether the specified storage type is supported. This API returns the result synchronously.
+
+If the storage type is supported, **true** is returned. Otherwise, **false** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.DistributedDataManager.Preferences.Core
+
+**Parameters**
+
+| Name | Type                 | Mandatory| Description                                                        |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type | [StorageType](#storagetype16)               | Yes  | Storage type to check.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| boolean | Returns **true** if the storage type is supported; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [User Preference Error Codes](errorcode-preferences.md).
+
+| ID| Error Message                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error: Incorrect parameter types.  |
+
+
+**Example**
+
+```ts
+let xmlType = preferences.StorageType.XML;
+let clkvType = preferences.StorageType.CLKV;
+let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
+let isClkvSupported = preferences.isStorageTypeSupported(clkvType);
+console.info("Is xml supported in current platform: " + isXmlSupported);
+console.info("Is clkv supported in current platform: " + isClkvSupported);
+```
+
+## Options<sup>10+</sup> 
 
 Represents the configuration of a **Preferences** instance.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
 
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| name        | string | Yes  | Name of the **Preferences** instance.                                     |
-| dataGroupId | string\|null\|undefined | No  | Application group ID, which needs to be obtained from AppGallery. This parameter is not supported currently.<br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.|
+| name        | string | Yes  | Name of the **Preferences** instance.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>                                   |
+| dataGroupId | string\|null\|undefined | No  | Application group ID. <!--RP1-->Currently, this parameter is not supported.<!--RP1End--><br>This parameter is optional. A **Preferences** instance will be created in the sandbox path corresponding to the specified **dataGroupId**. If this parameter is not specified, the **Preferences** instance is created in the sandbox directory of the application.<br> **Model restriction**: This attribute can be used only in the stage model.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>|
+| storageType<sup>16+</sup> | [StorageType](#storagetype16)\|null\|undefined | No | Storage mode to be used by the **Preferences** instance. This parameter is optional. If this parameter is left blank, the XML storage type is used by default. After the storage type is set for a **Preferences** instance, it cannot be changed.<br>**Atomic service API**: This API can be used in atomic services since API version 16.<br>|
 
 
 ## Preferences
@@ -1418,6 +1479,8 @@ Writes data to this **Preferences** instance. This API uses an asynchronous call
 
   > **NOTE**
   >
+  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
+  >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -1463,6 +1526,8 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 Writes data to this **Preferences** instance. This API uses a promise to return the result. You can use [flush](#flush) to persist the **Preferences** instance.
 
   > **NOTE**
+  >
+  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **put()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1513,6 +1578,8 @@ putSync(key: string, value: ValueType): void
 Writes data to this **Preferences** instance. This API returns the result synchronously. You can use [flush](#flush) to persist the **Preferences** instance.
 
   > **NOTE**
+  >
+  > If the value contains a string that is not in UTF-8 format, store it in an Uint8Array. Otherwise, the persistent file may be damaged due to format errors.
   >
   > If the key already exists, **putSync()** overwrites the value. You can use **hasSync()** to check whether the KV pair exists.
 
@@ -1804,6 +1871,10 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 Flushes the data in this **Preferences** instance to the persistent file. This API uses an asynchronous callback to return the result.
 
+  > **NOTE**
+  >
+  > If no data is modified or the modified data is the same as the cached data, the persistence file will not be updated.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -1844,6 +1915,10 @@ flush(): Promise&lt;void&gt;
 
 Flushes the data in this **Preferences** instance to the persistent file. This API uses a promise to return the result.
 
+  > **NOTE**
+  >
+  > If no data is modified or the modified data is the same as the cached data, the persistence file will not be updated.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -1880,6 +1955,10 @@ promise.then(() => {
 flushSync(): void
 
 Flushes the data in the cached **Preferences** instance to the persistent file.
+
+  > **NOTE**
+  >
+  > If no data is modified or the modified data is the same as the cached data, the persistence file will not be updated.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -2000,6 +2079,10 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 Subscribes to data changes. The registered callback will be invoked to return the new value if the data change is [flushed](#flush).
 
+  > **NOTE**
+  >
+  > After [removePreferencesFromCache](#preferencesremovepreferencesfromcache) or [deletePreferences](#preferencesdeletepreferences) is called, the data change subscription will be automatically canceled. After [getPreferences](#preferencesgetpreferences) is called again, you need to subscribe to data changes again.
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.DistributedDataManager.Preferences.Core
@@ -2043,7 +2126,15 @@ dataPreferences.flush((err: BusinessError) => {
 
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
-Subscribes to inter-process data changes. For the multiple processes holding the same preference file, if the value of the subscribed key changes in any process, the callback in this API will be invoked after [flush()](#flush) is executed.
+Subscribes to inter-process data changes. When multiple processes hold the same preference file, calling [flush](#flush) in any process (including the current process) will trigger the callback in this API.
+
+This API is provided for applications that have applied for [dataGroupId](#options10). Avoid using this API for the applications that have not applied for **dataGroupId** because calling it in multiple process may damage the persistent files and cause data loss.
+
+  > **NOTE**
+  >
+  > The maximum number of subscriptions for inter-process data change of the same persistent file for the current process is 50. Once the limit is reached, the subscription will fail. You are advised to cancel the subscription in a timely manner after the callback is triggered.
+  >
+  > After [removePreferencesFromCache](#preferencesremovepreferencesfromcache) or [deletePreferences](#preferencesdeletepreferences) is called, the data change subscription will be automatically canceled. After [getPreferences](#preferencesgetpreferences) is called again, you need to subscribe to data changes again.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -2064,7 +2155,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | -------------------------------------- |
 | 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified;<br>2. Incorrect parameter types;<br>3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
-| 15500019 | Failed to obtain subscription service. |
+| 15500019 | Failed to obtain the subscription service. |
 
 **Example**
 
@@ -2090,6 +2181,10 @@ dataPreferences.flush((err: BusinessError) => {
 on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&lt;string, ValueType&gt;&gt;): void
 
 Subscribes to changes of specific data. The registered callback will be invoked only after the values of the specified keys are changed and [flushed](#flush).
+
+  > **NOTE**
+  >
+  > After [removePreferencesFromCache](#preferencesremovepreferencesfromcache) or [deletePreferences](#preferencesdeletepreferences) is called, the data change subscription will be automatically canceled. After [getPreferences](#preferencesgetpreferences) is called again, you need to subscribe to data changes again.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -2187,6 +2282,8 @@ dataPreferences.off('change', observer);
 off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from inter-process data changes.
+
+This API is provided for applications that have applied for [dataGroupId](#options10). Avoid using this API for the applications that have not applied for **dataGroupId** because calling it in multiple process may damage the persistent files and cause data loss.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

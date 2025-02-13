@@ -236,9 +236,7 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-获取对端蓝牙设备的类别。
-
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+获取对端蓝牙设备的类别。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
@@ -260,7 +258,6 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
@@ -1394,6 +1391,92 @@ try {
 ```
 
 
+## connection.on('discoveryResult')<sup>16+</sup>
+
+on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+订阅蓝牙设备发现上报事件。使用Callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                     |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('discoveryResult')<sup>16+</sup>
+
+off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+取消订阅蓝牙设备发现上报事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+    connection.off('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## BondStateParam
 
 描述配对状态参数。
@@ -1520,3 +1603,16 @@ try {
 | DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | 正在充电，不支持超级充电。|
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|
+
+## DiscoveryResult<sup>16+</sup>
+
+描述扫描设备状态参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId    | string      | 是    | 否    | 表示扫描到的设备ID。|
+| rssi     | number      | 是    | 否    | 表示扫描到的设备的信号强度。|
+| deviceName     | string      | 是    | 否    | 表示扫描到的设备的设备名称。|
+| deviceClass     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。|

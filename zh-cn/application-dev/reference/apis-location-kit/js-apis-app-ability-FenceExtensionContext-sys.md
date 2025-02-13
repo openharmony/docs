@@ -1,4 +1,4 @@
-# @ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)
+# @ohos.app.ability.FenceExtensionContext (FenceExtensionContext)(系统接口)
 
 FenceExtensionContext是FenceExtensionAbility的上下文环境，继承自[ExtensionContext](../apis-ability-kit/js-apis-inner-application-extensionContext.md)，提供FenceExtensionAbility的相关配置信息以及启动Ability接口。
 
@@ -75,14 +75,14 @@ startAbility(want: Want): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { FenceExtensionAbility, FenceExtensionContext, geoLocationManager } from '@kit.LocationKit';
+import { FenceExtensionAbility, geoLocationManager } from '@kit.LocationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { Want } from '@kit.AbilityKit';
 
-class MyFenceExtensionAbility extends FenceExtensionAbility {
+export class MyFenceExtensionAbility extends FenceExtensionAbility {
   onFenceStatusChange(transition: geoLocationManager.GeofenceTransition, additions: Record<string, string>): void {
     // 接受围栏状态变化事件，处理业务逻辑
-    hilog.info(0x0000, "TAG",
-      `on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
+    console.info(`on geofence transition,id:${transition.geofenceId},event:${transition.transitionEvent},additions:${JSON.stringify(additions)}`);
     let want: Want = {
       bundleName: "com.example.myapp",
       abilityName: "MyServiceExtensionAbility"
@@ -91,18 +91,18 @@ class MyFenceExtensionAbility extends FenceExtensionAbility {
       this.context.startAbility(want)
         .then(() => {
           // 执行正常业务
-          hilog.info(0x0000, "TAG", 'startAbility succeed');
+          console.info('startAbility succeed');
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          hilog.info(0x0000, "TAG", 'startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          console.info('startAbility failed, error.code: ' + JSON.stringify(error.code) +
             ' error.message: ' + JSON.stringify(error.message));
         });
     } catch (paramError) {
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      hilog.info(0x0000, "TAG", 'startAbility failed, error.code: ' + JSON.stringify(code) +
+      console.info('startAbility failed, error.code: ' + JSON.stringify(code) +
         ' error.message: ' + JSON.stringify(message));
     }
   }

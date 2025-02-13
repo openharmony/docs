@@ -28,31 +28,28 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | HiTraceId定义 | 
-
+| struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | HiTraceId定义。|
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](#hitraceid_valid) [HiTraceId_Valid](#hitraceid_valid) | HiTraceId是否有效标志 | 
-| typedef enum [HiTrace_Version](#hitrace_version) [HiTrace_Version](#hitrace_version) | HiTrace版本号 | 
-| typedef enum [HiTrace_Flag](#hitrace_flag) [HiTrace_Flag](#hitrace_flag) | HiTrace标志位 | 
-| typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | HiTrace打点类型 | 
-| typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode) [HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举 | 
-| typedef struct [HiTraceId](_hi_trace_id.md) HiTraceId | HiTraceId定义 | 
-
+| typedef enum [HiTraceId_Valid](#hitraceid_valid)[HiTraceId_Valid](#hitraceid_valid) | HiTraceId是否有效标志。  |
+| typedef enum [HiTrace_Version](#hitrace_version)[HiTrace_Version](#hitrace_version) | HiTrace版本号。  |
+| typedef enum [HiTrace_Flag](#hitrace_flag)[HiTrace_Flag](#hitrace_flag) | HiTrace标志位。  |
+| typedef enum [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type)[HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) | HiTrace打点类型。  |
+| typedef enum [HiTrace_Communication_Mode](#hitrace_communication_mode)[HiTrace_Communication_Mode](#hitrace_communication_mode) | HiTrace通信模式枚举。  |
+|  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  |
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiTraceId_Valid](#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | HiTraceId是否有效标志 | 
-| [HiTrace_Version](#hitrace_version) { HITRACE_VER_1 = 0 } | HiTrace版本号 | 
-| [HiTrace_Flag](#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位 | 
-| [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型 | 
-| [HiTrace_Communication_Mode](#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | HiTrace通信模式枚举 | 
-
+| [HiTraceId_Valid](#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | HiTraceId是否有效标志。  |
+| [HiTrace_Version](#hitrace_version) { HITRACE_VER_1 = 0 } | HiTrace版本号。  |
+| [HiTrace_Flag](#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  |
+| [HiTrace_Tracepoint_Type](#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  |
+| [HiTrace_Communication_Mode](#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | HiTrace通信模式枚举。  |
 
 ### 函数
 
@@ -90,13 +87,12 @@ hitraceChain为开发者提供跨线程、跨进程的分布式跟踪能力。 H
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint64_t [HiTraceId::valid](#valid): 1 | HiTraceId是否有效 | 
-| uint64_t [HiTraceId::ver](#ver): 3 | HiTraceId的版本号 | 
-| uint64_t [HiTraceId::chainId](#chainid): 60 | HiTraceId的链Id | 
-| uint64_t [HiTraceId::flags](#flags): 12 | HiTraceId的标志位 | 
-| uint64_t [HiTraceId::spanId](#spanid): 26 | HiTraceId的当前跨度号 | 
-| uint64_t [HiTraceId::parentSpanId](#parentspanid): 26 | HiTraceId的父跨度号 | 
-
+| uint64_t [HiTraceId::valid](#valid): 1 | HiTraceId是否有效。  |
+| uint64_t [HiTraceId::ver](#ver): 3 | HiTraceId的版本号。  |
+| uint64_t [HiTraceId::chainId](#chainid): 60 | HiTraceId的链Id。  |
+| uint64_t [HiTraceId::flags](#flags): 12 | HiTraceId的标志位。  |
+| uint64_t [HiTraceId::spanId](#spanid): 26 | HiTraceId的当前跨度号。  |
+| uint64_t [HiTraceId::parentSpanId](#parentspanid): 26 | HiTraceId的父跨度号。  |
 
 ## 类型定义说明
 
@@ -108,8 +104,7 @@ typedef enum HiTrace_Communication_Mode HiTrace_Communication_Mode
 ```
 
 **描述**
-
-HiTrace通信模式枚举
+HiTrace通信模式枚举。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -123,13 +118,11 @@ typedef enum HiTrace_Flag HiTrace_Flag
 ```
 
 **描述**
-
-HiTrace标志位
+HiTrace标志位。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
 **起始版本：** 12
-
 
 ### HiTrace_Tracepoint_Type
 
@@ -138,8 +131,7 @@ typedef enum HiTrace_Tracepoint_Type HiTrace_Tracepoint_Type
 ```
 
 **描述**
-
-HiTrace打点类型
+HiTrace打点类型。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -153,8 +145,7 @@ typedef enum HiTrace_Version HiTrace_Version
 ```
 
 **描述**
-
-HiTrace版本号
+HiTrace版本号。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -168,8 +159,7 @@ typedef enum HiTraceId_Valid HiTraceId_Valid
 ```
 
 **描述**
-
-HiTraceId是否有效标志
+HiTraceId是否有效标志。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -186,8 +176,7 @@ enum HiTrace_Communication_Mode
 ```
 
 **描述**
-
-HiTrace通信模式枚举
+HiTrace通信模式枚举。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -208,8 +197,7 @@ enum HiTrace_Flag
 ```
 
 **描述**
-
-HiTrace标志位
+HiTrace标志位。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -234,8 +222,7 @@ enum HiTrace_Tracepoint_Type
 ```
 
 **描述**
-
-HiTrace打点类型
+HiTrace打点类型。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -257,8 +244,7 @@ enum HiTrace_Version
 ```
 
 **描述**
-
-HiTrace版本号
+HiTrace版本号。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -276,8 +262,7 @@ enum HiTraceId_Valid
 ```
 
 **描述**
-
-HiTraceId是否有效标志
+HiTraceId是否有效标志。
 
 **系统能力：** SystemCapability.HiviewDFX.HiTrace
 
@@ -312,8 +297,8 @@ HiTraceId OH_HiTrace_BeginChain (const char * name, int flags )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 跟踪业务名 | 
-| flags | 跟踪功能标志，见[HiTrace_Flag](#hitrace_flag)。  | 
+| name | 跟踪业务名。 |
+| flags | 跟踪功能标志，见[HiTrace_Flag](#hitrace_flag)。  |
 
 **返回：**
 
@@ -891,7 +876,7 @@ uint64_t HiTraceId::chainId
 
 **描述**
 
-HiTraceId的链Id
+HiTraceId的链Id。
 
 
 ### flags
@@ -901,9 +886,7 @@ uint64_t HiTraceId::flags
 ```
 
 **描述**
-
-HiTraceId的标志位
-
+HiTraceId的标志位。
 
 ### parentSpanId
 
@@ -912,9 +895,7 @@ uint64_t HiTraceId::parentSpanId
 ```
 
 **描述**
-
-HiTraceId的父跨度号
-
+HiTraceId的父跨度号。
 
 ### spanId
 
@@ -923,9 +904,7 @@ uint64_t HiTraceId::spanId
 ```
 
 **描述**
-
-HiTraceId的当前跨度号
-
+HiTraceId的当前跨度号。
 
 ### valid
 
@@ -934,9 +913,7 @@ uint64_t HiTraceId::valid
 ```
 
 **描述**
-
-HiTraceId是否有效
-
+HiTraceId是否有效。
 
 ### ver
 
@@ -945,5 +922,4 @@ uint64_t HiTraceId::ver
 ```
 
 **描述**
-
-HiTraceId的版本号
+HiTraceId的版本号。
