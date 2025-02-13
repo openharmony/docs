@@ -622,7 +622,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_SetTextStyleFontSize](#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, double) | 设置字号。 |
 | void [OH_Drawing_SetTextStyleFontWeight](#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。 |
 | void [OH_Drawing_SetTextStyleBaseLine](#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置文本样式的字体基线位置。 |
-| void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线类型。 |
+| void [OH_Drawing_SetTextStyleDecoration](#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线类型，只能设置一个装饰线类型，添加多个需要使用[OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration)。 |
 | void [OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 新增指定装饰，可同时显示多种装饰线。 |
 | void [OH_Drawing_RemoveTextStyleDecoration](#oh_drawing_removetextstyledecoration) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 删除指定装饰。 |
 | void [OH_Drawing_SetTextStyleDecorationColor](#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, uint32_t) | 设置指定文本样式中的装饰线颜色。 |
@@ -13965,7 +13965,7 @@ void OH_Drawing_SetTextStyleDecoration (OH_Drawing_TextStyle* , int  )
 
 **描述**
 
-设置指定文本样式中的装饰线类型。
+设置指定文本样式中的装饰线类型，只能设置一个装饰线类型，添加多个需要使用[OH_Drawing_AddTextStyleDecoration](#oh_drawing_addtextstyledecoration)。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
