@@ -1892,7 +1892,7 @@ OH_AudioStream_Result OH_AudioRenderer_GetAudioTimestampInfo(OH_AudioRenderer* r
 
 **返回：**
 
-函数返回值：
+函数返回值[OH_AudioStream_Result](#oh_audiostream_result)：
 
 AUDIOSTREAM_SUCCESS：函数执行成功。
 
