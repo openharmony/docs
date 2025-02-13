@@ -329,7 +329,7 @@ function createEnvironmentPromise() : Promise<Environment> {
 ```
 
 ### createGeometry
-createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise<Geometry>
+createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometry>
 
 根据场景结点参数和网格数据创建几何对象, 使用Promise异步回调。
 
@@ -338,8 +338,8 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise<Geometry
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneNodeParameters](#SceneNodeParameters) | 是 | 场景结点参数。 |
-| mesh | [MeshResource](#MeshResource) | 是 | 网格数据参数。 |
+| params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
+| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource) | 是 | 网格数据参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -371,7 +371,7 @@ function createGeometryPromise() : Promise<Geometry> {
 ```
 
 ### createMesh
-createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise<MeshResource>
+createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
 根据场景资源参数和几何定义创建网格, 使用Promise异步回调。
 
@@ -380,8 +380,8 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | [SceneResourceParameters](#SceneResourceParameters) | 是 | 场景资源参数。 |
-| geometry | [GeometryDefinition](#GeometryDefinition) | 是 | 几何形状类型参数。 |
+| params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
+| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#GeometryDefinition) | 是 | 几何形状类型参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -412,7 +412,7 @@ function createMeshPromise() : Promise<MeshResource> {
 ```
 
 ### createScene
-createScene(uri?: ResourceStr): Promise<Scene>
+createScene(uri?: ResourceStr): Promise\<Scene>
 
 根据资源参数创建场景, 使用Promise异步回调。
 
@@ -421,7 +421,7 @@ createScene(uri?: ResourceStr): Promise<Scene>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| uri? | [ResourceStr](#ResourceStr) | 否 | 资源参数。 |
+| uri? | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否 | 资源参数。 |
 
 **返回值：**
 | 类型 | 说明 |
@@ -587,7 +587,7 @@ function destroy() : void {
 ### importNode
 importNode(name: string, node: Node, parent: Node | null): Node
 
-导入结点。
+一般用于从其他场景导入结点。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -617,7 +617,7 @@ function ImportNodeTest() {
 ### importScene
 importScene(name: string, scene: Scene, parent: Node | null): Node
 
-导入场景。
+在当前场景中导入其他场景。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -641,7 +641,7 @@ function ImportSceneTest() {
 ### renderFrame
 renderFrame(params?: RenderParameters): boolean
 
-渲染一帧。
+通过该接口可以实现按需渲染，例如控制渲染帧率。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
