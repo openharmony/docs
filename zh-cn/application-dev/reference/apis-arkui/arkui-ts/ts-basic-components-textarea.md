@@ -156,7 +156,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
@@ -804,18 +804,6 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
->  **说明：**
->
->  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -1060,7 +1048,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏和候选词操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -1246,6 +1234,18 @@ stopEditing(): void
 | NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
 | DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
 | FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
+| PASSPORT_NUMBER<sup>16+</sup>            | 26   | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。 |
+| VALIDITY<sup>16+</sup>                   | 27   | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。 |
+| ISSUE_AT<sup>16+</sup>                   | 28   | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。 |
+| ORGANIZATION<sup>16+</sup>               | 29   | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。 |
+| TAX_ID<sup>16+</sup>                     | 30   | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。 |
+| ADDRESS_CITY_AND_STATE<sup>16+</sup>     | 31   | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。 |
+| FLIGHT_NUMBER<sup>16+</sup>              | 32   | 【航班号】暂不支持自动保存和自动填充。 |
+| LICENSE_NUMBER<sup>16+</sup>             | 33   | 【驾驶证号】暂不支持自动保存和自动填充。 |
+| LICENSE_FILE_NUMBER<sup>16+</sup>        | 34   | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
+| LICENSE_PLATE<sup>16+</sup>              | 35   | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。 |
+| ENGINE_NUMBER<sup>16+</sup>              | 36   | 【行驶证发动机号】暂不支持自动保存和自动填充。 |
+| LICENSE_CHASSIS_NUMBER<sup>16+</sup>     | 37   | 【车牌识别号】暂不支持自动保存和自动填充。 |
 
 ## TextAreaSubmitCallback<sup>14+</sup>
 
@@ -2055,3 +2055,61 @@ struct TextAreaExample {
 ```
 ![textCustomPaste](figures/textarea_custom_paste.PNG)
 
+### 示例17（设置最小字体范围与最大字体范围）
+
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// xxx.ets
+@Entry
+@Component
+export struct TextAreaExample11 {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+  @State changeValue: string = 'abcde';
+  @State currentFontSizeScale : string = "";
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale;
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (!err) {
+        this.currentFontSizeScale = scale.toString();
+      }
+    });
+  }
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("字体倍数：" + this.currentFontSizeScale)
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        })
+          .minFontScale(this.minFontScale)
+          .maxFontScale(this.maxFontScale)
+      }.width('100%')
+      Row(){
+        Button("2倍").onClick(() => {
+          this.setFontScale(2)
+        }).alignSelf(ItemAlign.Start)
+        Button("1倍")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(1)
+          }).alignSelf(ItemAlign.Start)
+        Button("0.85")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(0.85)
+          }).alignSelf(ItemAlign.Start)
+      }.margin({ top: 30 })
+    }
+  }
+}
+```
+
+![textAreaMaxAndMinFontScale](figures/textAreaMaxAndMinFontScale.gif)

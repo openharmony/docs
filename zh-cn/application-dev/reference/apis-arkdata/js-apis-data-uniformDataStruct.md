@@ -179,7 +179,7 @@ let contentForm : uniformDataStruct.ContentForm = {
 console.info('contentForm.uniformDataType: ' + contentForm.uniformDataType);
 ```
 
-## Form<sup>16+</sup>
+## Form<sup>15+</sup>
 
 系统定义的卡片类型数据。
 
@@ -217,7 +217,7 @@ let form : uniformDataStruct.Form = {
 console.info('form.uniformDataType: ' + form.uniformDataType);
 ```
 
-## FileUri<sup>16+</sup>
+## FileUri<sup>15+</sup>
 
 文件地址类型数据。
 
@@ -249,7 +249,7 @@ let fileUri : uniformDataStruct.FileUri = {
 console.info('fileUri.uniformDataType: ' + fileUri.uniformDataType);
 ```
 
-## PixelMap<sup>16+</sup>
+## PixelMap<sup>15+</sup>
 
 系统定义的像素图类型数据。
 

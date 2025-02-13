@@ -605,7 +605,7 @@ let mm = 'https://username:password@host:8080/test/test1/test3';
 let urlObject = url.URL.parseURL(mm);
 let result = urlObject.toString(); // Output 'https://username:password@host:8080/test/test1/test3'
 // url内容为相对路径格式时，此时base参数的path为test/test1,解析后的URL的path为/test/path2/path3
-let url1 = url.URL.parseURL('path2/path3', 'https://www.huawei.com/test/test1'); // Output 'https://www.huawei.com/test/path2/path3'
+let url1 = url.URL.parseURL('path2/path3', 'https://www.example.com/test/test1'); // Output 'https://www.example.com/test/path2/path3'
 // url内容为指向根目录的格式时，此时base参数的path为/test/test1/test3，解析后的URL的path为/path1/path2
 let url2 = url.URL.parseURL('/path1/path2', urlObject); // Output 'https://username:password@host:8080/path1/path2'
 url.URL.parseURL('/path/path1', "https://www.exampleUrl/fr-FR/toot"); // Output 'https://www.exampleUrl/path/path1'

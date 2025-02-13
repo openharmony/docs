@@ -147,7 +147,7 @@ onChange(callback: Optional\<Callback\<Date>>)
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回掉函数。 |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 选中的日期值。<br>当callback的值为undefined时，不使用回调函数。 |
 
 ##  CalendarOptions对象说明
 
@@ -274,7 +274,7 @@ struct CalendarPickerExample {
         .onChange((value) => {
           console.info("CalendarPicker onChange:" + JSON.stringify(value))
         })
-    }.width('100%')
+    }.alignItems(HorizontalAlign.End).width('100%')
   }
 }
 ```
