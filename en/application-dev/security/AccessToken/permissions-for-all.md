@@ -428,3 +428,17 @@ Allows an application to start the device management service deployment process,
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 15
+
+<!--Del-->
+### ohos.permission.PRELOAD_FILE
+
+Allows an application to preload files to improve file opening speed.
+
+This permission is available only to document editing applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+<!--DelEnd-->
