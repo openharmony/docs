@@ -420,7 +420,8 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
 'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
-'announceForAccessibility'
+'announceForAccessibility' | 'requestFocusForAccessibilityNotInterrupt' |
+'announceForAccessibilityNotInterrupt' | 'scrolling'
 
 无障碍事件类型。
 
@@ -441,7 +442,9 @@ type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 | 'scroll'                  | 表示滚动视图的事件。    |
 | 'requestFocusForAccessibility'     | 表示主动聚焦的事件。 |
 | 'announceForAccessibility'         | 表示主动播报的事件。 |
-
+| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。 |
+| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。 |
+| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。    |
 
 ## TextMoveUnit
 
