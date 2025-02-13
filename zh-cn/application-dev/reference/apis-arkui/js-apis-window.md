@@ -2822,9 +2822,9 @@ export default class EntryAbility extends UIAbility {
 
 setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
-设置状态栏的颜色，使用Promise异步回调。
+设置主窗口状态栏的文字颜色，使用Promise异步回调。
 
-子窗口不支持设置状态栏颜色，调用无效果。
+子窗口不支持设置状态栏文字颜色，调用无效果。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -2834,7 +2834,7 @@ setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
 
 | 参数名              | 类型                                        | 必填 | 说明                   |
 | ------------------- | ------------------------------------------- | ---- | ---------------------- |
-| color | [ColorMetrics](./js-apis-arkui-graphics.md#colormetrics12) | 是   | 要设置的状态栏颜色值。 |
+| color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | 是   | 要设置的状态栏颜色值。 |
 
 **返回值：**
 
@@ -2892,7 +2892,9 @@ export default class EntryAbility extends UIAbility {
 
 getStatusBarProperty(): StatusBarProperty
 
-主窗口获取状态栏的属性，如状态栏颜色。
+获取主窗口状态栏的属性，如状态栏文字颜色。
+
+子窗口不支持查询，调用会返回错误码1300002。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -5132,7 +5134,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 ### setWindowBackgroundColor<sup>9+</sup>
 
-setWindowBackgroundColor(color: string): void
+setWindowBackgroundColor(color: string | ColorMetrics): void
 
 设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
@@ -5144,55 +5146,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息 |
-| ------- | ------------------------------ |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 1300002 | This window state is abnormal. |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let storage: LocalStorage = new LocalStorage();
-storage.setOrCreate('storageSimpleProp', 121);
-windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
-  let errCode: number = err.code;
-  if (errCode) {
-    console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in loading the content.');
-  let color: string = '#00ff33';
-  try {
-    windowClass?.setWindowBackgroundColor(color);
-  } catch (exception) {
-    console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
-  };
-});
-```
-
-### setWindowBackgroundColor<sup>16+</sup>
-
-setWindowBackgroundColor(color: ColorMetrics): void
-
-设置窗口的背景色。
-
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color| [ColorMetrics](./js-apis-arkui-graphics.md#colormetrics12)| 是 | 需要设置的背景色。 |
+| color | string \| [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)<sup>16+</sup> | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。<br>从API version 16开始，此参数支持ColorMetrics类型。|
 
 **错误码：**
 
@@ -5218,8 +5172,11 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
     return;
   }
   console.info('Succeeded in loading the content.');
+  let color1: string = '#00ff33';
+  let color2: ColorMetrics = ColorMetrics.numeric(0xff112233);
   try {
-    windowClass.setWindowBackgroundColor(ColorMetrics.numeric(0xff112233));
+    windowClass?.setWindowBackgroundColor(color1);
+    windowClass?.setWindowBackgroundColor(color2);
   } catch (exception) {
     console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
   };
