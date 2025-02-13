@@ -411,7 +411,7 @@ async function Demo(surfaceId: string) {
 }
 ```
 
-## image.createPixelMapFromSurface<sup>16+</sup>
+## image.createPixelMapFromSurface<sup>15+</sup>
 
 createPixelMapFromSurface(surfaceId: string): Promise\<PixelMap>
 
@@ -454,7 +454,7 @@ async function Demo(surfaceId: string) {
 } 
 ```
 
-## image.createPixelMapFromSurfaceSync<sup>16+</sup>
+## image.createPixelMapFromSurfaceSync<sup>15+</sup>
 
 createPixelMapFromSurfaceSync(surfaceId: string): PixelMap
 
