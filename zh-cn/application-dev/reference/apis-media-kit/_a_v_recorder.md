@@ -25,13 +25,13 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_AVRecorder_Profile](_o_h___a_v_recorder___profile.md) | 定义音视频录制的详细参数。<br/>可以通过参数设置选择只录制音频或只录制视频：当 audioBitrate 或 audioChannels 为 0 时，不录制音频；当 videoFrameWidth 或 videoFrameHeight 为 0 时，不录制视频。 | 
-| struct&nbsp;&nbsp;[OH_AVRecorder_Location](_o_h___a_v_recorder___location.md) | 提供媒体资源的地理位置信息。 | 
-| struct&nbsp;&nbsp;[OH_AVRecorder_MetadataTemplate](_o_h___a_v_recorder___metadata_template.md) | 定义元数据的基本模板。 | 
-| struct&nbsp;&nbsp;[OH_AVRecorder_Metadata](_o_h___a_v_recorder___metadata.md) | 设置元数据信息。 | 
-| struct&nbsp;&nbsp;[OH_AVRecorder_Config](_o_h___a_v_recorder___config.md) | 提供媒体AVRecorder的配置定义。 | 
-| struct&nbsp;&nbsp;[OH_AVRecorder_Range](_o_h___a_v_recorder___range.md) | 表示一个类型的范围。 | 
-| struct&nbsp;&nbsp;[OH_AVRecorder_EncoderInfo](_o_h___a_v_recorder___encoder_info.md) | 提供编码器信息。 | 
+| struct  [OH_AVRecorder_Profile](_o_h___a_v_recorder___profile.md) | 定义音视频录制的详细参数。<br/>可以通过参数设置选择只录制音频或只录制视频：当 audioBitrate 或 audioChannels 为 0 时，不录制音频；当 videoFrameWidth 或 videoFrameHeight 为 0 时，不录制视频。 | 
+| struct  [OH_AVRecorder_Location](_o_h___a_v_recorder___location.md) | 提供媒体资源的地理位置信息。 | 
+| struct  [OH_AVRecorder_MetadataTemplate](_o_h___a_v_recorder___metadata_template.md) | 定义元数据的基本模板。 | 
+| struct  [OH_AVRecorder_Metadata](_o_h___a_v_recorder___metadata.md) | 设置元数据信息。 | 
+| struct  [OH_AVRecorder_Config](_o_h___a_v_recorder___config.md) | 提供媒体AVRecorder的配置定义。 | 
+| struct  [OH_AVRecorder_Range](_o_h___a_v_recorder___range.md) | 表示一个类型的范围。 | 
+| struct  [OH_AVRecorder_EncoderInfo](_o_h___a_v_recorder___encoder_info.md) | 提供编码器信息。 | 
 
 
 ### 类型定义
@@ -248,7 +248,7 @@ typedef struct OH_AVRecorder_MetadataTemplate OH_AVRecorder_MetadataTemplate
 ### OH_AVRecorder_OnError
 
 ```
-typedef void(* OH_AVRecorder_OnError) (OH_AVRecorder *recorder, int32_t errorCode, const char *errorMsg, void *userData)
+typedef void (*OH_AVRecorder_OnError)(OH_AVRecorder *recorder, int32_t errorCode, const char *errorMsg, void *userData)
 ```
 
 **描述**
@@ -272,7 +272,7 @@ typedef void(* OH_AVRecorder_OnError) (OH_AVRecorder *recorder, int32_t errorCod
 ### OH_AVRecorder_OnStateChange
 
 ```
-typedef void(* OH_AVRecorder_OnStateChange) (OH_AVRecorder *recorder, OH_AVRecorder_State state, OH_AVRecorder_StateChangeReason reason, void *userData)
+typedef void (*OH_AVRecorder_OnStateChange)(OH_AVRecorder *recorder, OH_AVRecorder_State state, OH_AVRecorder_StateChangeReason reason, void *userData)
 ```
 
 **描述**
@@ -296,7 +296,7 @@ typedef void(* OH_AVRecorder_OnStateChange) (OH_AVRecorder *recorder, OH_AVRecor
 ### OH_AVRecorder_OnUri
 
 ```
-typedef void(* OH_AVRecorder_OnUri) (OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
+typedef void (*OH_AVRecorder_OnUri)(OH_AVRecorder *recorder, OH_MediaAsset *asset, void *userData)
 ```
 
 **描述**
@@ -562,7 +562,7 @@ AVRecorder的视频源类型。
 ### OH_AVRecorder_Create()
 
 ```
-OH_AVRecorder* OH_AVRecorder_Create (void )
+OH_AVRecorder *OH_AVRecorder_Create(void)
 ```
 
 **描述**
@@ -581,7 +581,7 @@ OH_AVRecorder* OH_AVRecorder_Create (void )
 ### OH_AVRecorder_GetAvailableEncoder()
 
 ```
-OH_AVErrCode OH_AVRecorder_GetAvailableEncoder (OH_AVRecorder * recorder, OH_AVRecorder_EncoderInfo ** info, int32_t * length )
+OH_AVErrCode OH_AVRecorder_GetAvailableEncoder(OH_AVRecorder *recorder, OH_AVRecorder_EncoderInfo **info, int32_t *length)
 ```
 
 **描述**
@@ -602,17 +602,19 @@ OH_AVErrCode OH_AVRecorder_GetAvailableEncoder (OH_AVRecorder * recorder, OH_AVR
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr；
+AV_ERR_OK：执行成功。
 
-**AV_ERR_NO_MEMORY** 如果内存不足，\*info 内存分配失败。
+AV_ERR_INVALID_VAL：输入的 recorder 为 nullptr。
+
+AV_ERR_NO_MEMORY：内存不足，\*info 内存分配失败。
 
 
 ### OH_AVRecorder_GetAVRecorderConfig()
 
 ```
-OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig (OH_AVRecorder * recorder, OH_AVRecorder_Config ** config )
+OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig(OH_AVRecorder *recorder, OH_AVRecorder_Config **config)
 ```
 
 **描述**
@@ -632,17 +634,17 @@ OH_AVErrCode OH_AVRecorder_GetAVRecorderConfig (OH_AVRecorder * recorder, OH_AVR
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或 \*config 不为 nullptr；
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或 \*config 不为 nullptr；
 
-**AV_ERR_NO_MEMORY** 如果内存不足，\*config 内存分配失败。
+AV_ERR_NO_MEMORY** 如果内存不足，\*config 内存分配失败。
 
 
 ### OH_AVRecorder_GetInputSurface()
 
 ```
-OH_AVErrCode OH_AVRecorder_GetInputSurface (OH_AVRecorder * recorder, OHNativeWindow ** window )
+OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWindow **window)
 ```
 
 **描述**
@@ -664,15 +666,15 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface (OH_AVRecorder * recorder, OHNativeWi
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr。
 
 
 ### OH_AVRecorder_Pause()
 
 ```
-OH_AVErrCode OH_AVRecorder_Pause (OH_AVRecorder * recorder)
+OH_AVErrCode OH_AVRecorder_Pause(OH_AVRecorder *recorder)
 ```
 
 **描述**
@@ -693,15 +695,15 @@ OH_AVErrCode OH_AVRecorder_Pause (OH_AVRecorder * recorder)
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或暂停失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或暂停失败。
 
 
 ### OH_AVRecorder_Prepare()
 
 ```
-OH_AVErrCode OH_AVRecorder_Prepare (OH_AVRecorder * recorder, OH_AVRecorder_Config * config )
+OH_AVErrCode OH_AVRecorder_Prepare(OH_AVRecorder *recorder, OH_AVRecorder_Config *config)
 ```
 
 **描述**
@@ -723,15 +725,15 @@ OH_AVErrCode OH_AVRecorder_Prepare (OH_AVRecorder * recorder, OH_AVRecorder_Conf
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或者准备失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或者准备失败。
 
 
 ### OH_AVRecorder_Release()
 
 ```
-OH_AVErrCode OH_AVRecorder_Release (OH_AVRecorder * recorder)
+OH_AVErrCode OH_AVRecorder_Release(OH_AVRecorder *recorder)
 ```
 
 **描述**
@@ -752,15 +754,15 @@ OH_AVErrCode OH_AVRecorder_Release (OH_AVRecorder * recorder)
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或释放失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或释放失败。
 
 
 ### OH_AVRecorder_Reset()
 
 ```
-OH_AVErrCode OH_AVRecorder_Reset (OH_AVRecorder * recorder)
+OH_AVErrCode OH_AVRecorder_Reset(OH_AVRecorder *recorder)
 ```
 
 **描述**
@@ -781,15 +783,15 @@ OH_AVErrCode OH_AVRecorder_Reset (OH_AVRecorder * recorder)
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或重置失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或重置失败。
 
 
 ### OH_AVRecorder_Resume()
 
 ```
-OH_AVErrCode OH_AVRecorder_Resume (OH_AVRecorder * recorder)
+OH_AVErrCode OH_AVRecorder_Resume(OH_AVRecorder *recorder)
 ```
 
 **描述**
@@ -808,15 +810,15 @@ OH_AVErrCode OH_AVRecorder_Resume (OH_AVRecorder * recorder)
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或恢复失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或恢复失败。
 
 
 ### OH_AVRecorder_SetErrorCallback()
 
 ```
-OH_AVErrCode OH_AVRecorder_SetErrorCallback (OH_AVRecorder * recorder, OH_AVRecorder_OnError callback, void * userData )
+OH_AVErrCode OH_AVRecorder_SetErrorCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnError callback, void *userData)
 ```
 
 **描述**
@@ -837,15 +839,15 @@ OH_AVErrCode OH_AVRecorder_SetErrorCallback (OH_AVRecorder * recorder, OH_AVReco
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
 
 
 ### OH_AVRecorder_SetStateCallback()
 
 ```
-OH_AVErrCode OH_AVRecorder_SetStateCallback (OH_AVRecorder * recorder, OH_AVRecorder_OnStateChange callback, void * userData )
+OH_AVErrCode OH_AVRecorder_SetStateCallback( OH_AVRecorder *recorder, OH_AVRecorder_OnStateChange callback, void *userData)
 ```
 
 **描述**
@@ -866,15 +868,15 @@ OH_AVErrCode OH_AVRecorder_SetStateCallback (OH_AVRecorder * recorder, OH_AVReco
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
 
 
 ### OH_AVRecorder_SetUriCallback()
 
 ```
-OH_AVErrCode OH_AVRecorder_SetUriCallback (OH_AVRecorder * recorder, OH_AVRecorder_OnUri callback, void * userData )
+OH_AVErrCode OH_AVRecorder_SetUriCallback(OH_AVRecorder *recorder, OH_AVRecorder_OnUri callback, void *userData)
 ```
 
 **描述**
@@ -895,15 +897,15 @@ OH_AVErrCode OH_AVRecorder_SetUriCallback (OH_AVRecorder * recorder, OH_AVRecord
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或回调函数为 nullptr。
 
 
 ### OH_AVRecorder_Start()
 
 ```
-OH_AVErrCode OH_AVRecorder_Start (OH_AVRecorder * recorder)
+OH_AVErrCode OH_AVRecorder_Start(OH_AVRecorder *recorder)
 ```
 
 **描述**
@@ -922,15 +924,15 @@ OH_AVErrCode OH_AVRecorder_Start (OH_AVRecorder * recorder)
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或启动失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或启动失败。
 
 
 ### OH_AVRecorder_Stop()
 
 ```
-OH_AVErrCode OH_AVRecorder_Stop (OH_AVRecorder * recorder)
+OH_AVErrCode OH_AVRecorder_Stop(OH_AVRecorder *recorder)
 ```
 
 **描述**
@@ -951,15 +953,15 @@ OH_AVErrCode OH_AVRecorder_Stop (OH_AVRecorder * recorder)
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或停止失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或停止失败。
 
 
 ### OH_AVRecorder_UpdateRotation()
 
 ```
-OH_AVErrCode OH_AVRecorder_UpdateRotation (OH_AVRecorder * recorder, int32_t rotation )
+OH_AVErrCode OH_AVRecorder_UpdateRotation(OH_AVRecorder *recorder, int32_t rotation)
 ```
 
 **描述**
@@ -979,6 +981,6 @@ OH_AVErrCode OH_AVRecorder_UpdateRotation (OH_AVRecorder * recorder, int32_t rot
 
 **返回：**
 
-函数结果代码： **AV_ERR_OK** 如果执行成功；
+函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)： AV_ERR_OK：执行成功。
 
-**AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或输入的 rotation 不符合要求或更新方向失败。
+AV_ERR_INVALID_VAL** 如果输入的 recorder 为 nullptr 或输入的 rotation 不符合要求或更新方向失败。
