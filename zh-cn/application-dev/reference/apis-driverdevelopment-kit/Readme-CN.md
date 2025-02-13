@@ -1,6 +1,6 @@
 # Driver Development Kit（驱动开发服务）
 
-- ArkTS API
+- ArkTS API<!--driver-development-arkts-->
   - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)
   <!--Del-->
@@ -8,13 +8,13 @@
   <!--DelEnd-->
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-- C API
-  - 模块
+- C API<!--driver-development-c-->
+  - 模块<!--driver-development-module-->
     - [BASE DDK](_base_ddk.md)
     - [HID DDK](_hid_ddk.md)
     - [Serial DDK](_serial_ddk.md)
     - [USB DDK](_usb_ddk.md)
-  - 头文件
+  - 头文件<!--driver-development-headerfile-->
     - [ddk_api.h](ddk_api.md)
     - [ddk_types.h](ddk_types.md)
     - [hid_ddk_api.h](hid__ddk__api_8h.md)
@@ -23,7 +23,7 @@
     - [usb_ddk_types.h](usb__ddk__types_8h.md)
     - [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md)
     - [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
-  - 结构体
+  - 结构体<!--driver-development-struct-->
     - [DDK_Ashmem](_ddk_ashmem.md)
     - [UsbConfigDescriptor](_usb_config_descriptor.md)
     - [UsbControlRequestSetup](_usb_control_request_setup.md)
