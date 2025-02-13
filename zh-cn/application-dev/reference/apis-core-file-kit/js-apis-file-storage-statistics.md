@@ -85,6 +85,222 @@ getCurrentBundleStats(callback: AsyncCallback&lt;BundleStats&gt;): void
   });
   ```
 
+## storageStatistics.getTotalSize<sup>15+</sup>
+
+getTotalSize(): Promise&lt;number&gt;
+
+获取内置存储的总空间大小（单位为Byte），以Promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**返回值：**
+
+| 类型                  | 说明                                                |
+| --------------------- | --------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getTotalSize().then((number: number) => {
+  console.info("getTotalSize successfully:" + JSON.stringify(number));
+}).catch((err: BusinessError) => {
+  console.error("getTotalSize failed with error:"+ JSON.stringify(err));
+});
+  ```
+
+## storageStatistics.getTotalSize<sup>15+</sup>
+
+getTotalSize(callback: AsyncCallback&lt;number&gt;): void
+
+获取内置存储的总空间大小（单位为Byte），以callback方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                               |
+| -------- | --------------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的总空间大小之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
+| 13600001 | IPC error.                                                   |
+| 13900042 | Unknown error.                                               |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getTotalSize((error: BusinessError, number: number) => {
+  if (error) {
+    console.error("getTotalSize failed with error:" + JSON.stringify(error));
+  } else {
+    // do something
+    console.info("getTotalSize successfully:" + number);
+  }
+});
+  ```
+
+## storageStatistics.getTotalSizeSync<sup>15+</sup>
+
+getTotalSizeSync(): number
+
+同步获取内置存储的总空间大小（单位为Byte）。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**返回值：**
+
+| 类型   | 说明                                   |
+| ------ | -------------------------------------- |
+| number | 返回内置存储的总空间大小（单位为Byte） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let number = storageStatistics.getTotalSizeSync();
+  console.info("getTotalSizeSync successfully:" + JSON.stringify(number));
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("getTotalSizeSync failed with error:" + JSON.stringify(error));
+}
+  ```
+
+## storageStatistics.getFreeSize<sup>15+</sup>
+
+getFreeSize(): Promise&lt;number&gt;
+
+获取内置存储的可用空间大小（单位为Byte），以Promise方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**返回值：**
+
+| 类型                  | 说明                                                  |
+| --------------------- | ----------------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getFreeSize().then((number: number) => {
+  console.info("getFreeSize successfully:" + JSON.stringify(number));
+}).catch((err: BusinessError) => {
+  console.error("getFreeSize failed with error:" + JSON.stringify(err));
+});
+  ```
+
+## storageStatistics.getFreeSize<sup>15+</sup>
+
+getFreeSize(callback: AsyncCallback&lt;number&gt;): void
+
+获取内置存储的可用空间大小（单位为Byte），以callback方式返回。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                 |
+| -------- | --------------------------- | ---- | ------------------------------------ |
+| callback | AsyncCallback&lt;number&gt; | 是   | 获取内置存储的可用空间大小之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
+| 13600001 | IPC error.                                                   |
+| 13900042 | Unknown error.                                               |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+storageStatistics.getFreeSize((error: BusinessError, number: number) => {
+  if (error) {
+    console.error("getFreeSize failed with error:" + JSON.stringify(error));
+  } else {
+    // do something
+    console.info("getFreeSize successfully:" + number);
+  }
+});
+  ```
+
+## storageStatistics.getFreeSizeSync<sup>15+</sup>
+
+getFreeSizeSync(): number
+
+同步获取内置存储的可用空间大小（单位为Byte）。
+
+**系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
+
+**返回值：**
+
+| 类型   | 说明                                     |
+| ------ | ---------------------------------------- |
+| number | 返回内置存储的可用空间大小（单位为Byte） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理错误码](errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息       |
+| -------- | -------------- |
+| 13600001 | IPC error.     |
+| 13900042 | Unknown error. |
+
+**示例：**
+
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let number = storageStatistics.getFreeSizeSync();
+  console.info("getFreeSizeSync successfully:" + JSON.stringify(number));
+} catch (err) {
+  let error: BusinessError = err as BusinessError;
+  console.error("getFreeSizeSync failed with error:" + JSON.stringify(error));
+}
+  ```
+
 ## BundleStats<sup>9+</sup>
 
 **系统能力**：SystemCapability.FileManagement.StorageService.SpatialStatistics
