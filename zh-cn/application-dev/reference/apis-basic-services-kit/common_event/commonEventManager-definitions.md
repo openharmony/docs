@@ -992,6 +992,20 @@ Wi-Fi状态变化。
 **取值：** "usual.event.wifi.p2p.GROUP_STATE_CHANGED"
 
 
+## MDM Kit
+
+### COMMON_EVENT_MANAGED_BROWSER_POLICY_CHANGED
+
+表示浏览器托管策略已更改。
+
+当浏览器托管策略发生变化，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅方需要的权限：** 无
+
+**取值：** "usual.event.MANAGED_BROWSER_POLICY_CHANGED"
+
 
 ## Localization Kit
 
