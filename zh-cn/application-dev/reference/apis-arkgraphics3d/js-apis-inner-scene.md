@@ -328,13 +328,13 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
-## RenderParameters
+## RenderParameters<sup>15+</sup>
 渲染控制参数对象, 用于控制场景是否持续渲染。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | 否 | 是 | 控制信号，由开发者填写。|
+| alwaysRender | boolean | 否 | 是 | 控制信号，true表示持续渲染，false表示非持续渲染。由开发者填写。|
 
 **示例：**
 ```ts
@@ -457,7 +457,7 @@ function getFactory() : void {
 }
 ```
 
-### renderFrame
+### renderFrame<sup>15+</sup>
 renderFrame(params?: RenderParameters): boolean
 
 渲染新的一帧，同时可以设置是否持续渲染。
@@ -472,7 +472,7 @@ renderFrame(params?: RenderParameters): boolean
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| boolean | 渲染及参数设置是否成功 |
+| boolean | 渲染及参数设置是否成功。true表示执行成功，false表示执行失败。 |
 
 **示例：**
 ```ts

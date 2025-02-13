@@ -329,30 +329,6 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
-## RenderParameters
-Describes the render parameters, which are used to set whether to continue rendering.
-
-**System capability**: SystemCapability.ArkUi.Graphics3D
-| Name| Type| Read Only| Optional| Description|
-| ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | No | Yes | Render parameter. If set true, the scene will render new frame always|
-
-**Example**
-```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
-
-function controlRender() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: Scene) => {
-    if (result) {
-         // Render a new frame and stop continue rendering
-        let renderParameters: RenderParameters = { alwaysRender: false };
-        let controlResult: boolean = result.renderFrame(renderParameters);
-    }
-  });
-}
-```
 
 ## Scene
 Used to set a scene.
@@ -458,39 +434,6 @@ function getFactory() : void {
 }
 ```
 
-### renderFrame
-renderFrame(params?: RenderParameters): boolean
-
-Render a new frame and set whether to continue rendering
-
-**System capability**: SystemCapability.ArkUi.Graphics3D
-
-**Parameters**
-| Name| Type| Mandatory| Description|
-| ---- | ---- | ---- | ---- |
-| params | [RenderParameters](#RenderParameters) | No | render parameters, the default value is undefined|
-
-**Return value**
-| Type| Description|
-| ---- | ---- |
-| boolean | Return true if this command is executed successfully, otherwise return false|
-
-**Example**
-```ts
-import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
-  LightType, Light, Camera, SceneResourceParameters, SceneResourceFactory, Scene, Node, RenderParameters } from '@kit.ArkGraphics3D';
-
-function renderFrame() : void {
-  let scene: Promise<Scene> = Scene.load($rawfile("gltf/CubeWithFloor/glTF/AnimatedCube.gltf"));
-  scene.then(async (result: Scene) => {
-    if (result) {
-         // Render a new frame and continue rendering
-        let renderParameters: RenderParameters = { alwaysRender: true };
-        let controlResult: boolean = result.renderFrame(renderParameters);
-    }
-  });
-}
-```
 
 ### destroy
 destroy(): void

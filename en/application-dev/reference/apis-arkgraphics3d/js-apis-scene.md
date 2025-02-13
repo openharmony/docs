@@ -52,7 +52,6 @@ import {
   SceneResourceParameters,
   SceneNodeParameters,
   SceneResourceFactory,
-  Scene,
-  RenderParameters
+  Scene
 } from '@kit.ArkGraphics3D';
 ```
