@@ -1121,6 +1121,9 @@
               <!--Del-->
               - [移除粘性公共事件（仅对系统应用开放）](basic-services/common-event/common-event-remove-sticky.md)
               <!--DelEnd-->
+              - [订阅公共事件（C/C++）](basic-services/common-event/native-common-event-subscription.md)
+              - [取消订阅公共事件（C/C++）](basic-services/common-event/native-common-event-unsubscription.md)
+              - [发布公共事件（C/C++）](basic-services/common-event/native-common-event-publish.md)
           - [使用Emitter进行线程间通信](basic-services/common-event/itc-with-emitter.md)
         - 账号管理<!--account-management-->
           <!--Del-->
