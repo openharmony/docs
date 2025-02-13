@@ -8227,7 +8227,7 @@ try {
 setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;;
 
 设置窗口独占激活态属性。独占激活态表示窗口获焦时，会导致当前父子窗口链中处于激活态的其他窗口失去激活态。使用Promise异步回调。
-此接口不对主窗、模态窗、dialog窗口生效。
+此接口对主窗、模态窗、dialog窗口不生效。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -8267,44 +8267,6 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to set the window to be exclusively highlight.. Cause code: ${exception.code}, message: ${exception.message}`);
-}
-```
-
-### isWindowHighlighted<sup>16+<sup>
-
-isWindowHighlighted(): boolean;
-
-判断当前窗口是否是激活态。
-
-**系统能力：** SystemCapability.Window.SessionManager
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**返回值：**
-
-| 类型                | 说明                                           |
-| ------------------- | --------------------------------------------- |
-| boolean             | 窗口是否是激活态。true 表示窗口是激活态，false 表示窗口不是激活态 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
-
-| 错误码ID | 错误信息                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------ |
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
-| 1300002  | This window state is abnormal.                                                                               |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-try {
-  let isHighlighted = windowClass.isWindowHighlighted();
-    console.info(`Succeeded to get the window highlight status: ${isHighlight}`);
-} catch (exception) {
-  console.error(`Failed to get the window highlight status.. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
