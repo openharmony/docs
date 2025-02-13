@@ -1,4 +1,4 @@
-# 消息摘要计算SHA256(C/C++)
+# 消息摘要计算MD5(C/C++)
 
 对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
@@ -17,7 +17,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 ### 摘要算法（一次性传入）
 
-1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要实例（OH_CryptoDigest）。
+1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法MD5，生成摘要实例（OH_CryptoDigest）。
 
 2. 调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update)，传入自定义消息，进行摘要更新计算。单次update长度没有限制。
 
@@ -27,7 +27,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 5. 调用[OH_DigestCrypto_Destroy](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_digestcrypto_destroy)，销毁摘要实例（OH_CryptoDigest）。
 
-- 以下使用单次传入数据，获取摘要计算结果为例：
+以下使用单次传入数据，获取摘要计算结果为例：
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
@@ -42,7 +42,7 @@ static OH_Crypto_ErrCode doTestMd()
     Crypto_DataBlob in = {.data = (uint8_t *)(testData), .len = strlen(testData)};
     Crypto_DataBlob out = {.data = nullptr, .len = 0};
     int mdLen = 0;
-    ret = OH_CryptoDigest_Create("SHA256", &ctx);
+    ret = OH_CryptoDigest_Create("MD5", &ctx);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }
@@ -65,7 +65,7 @@ static OH_Crypto_ErrCode doTestMd()
 
 ### 分段摘要算法
 
-1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法SHA256，生成摘要实例（OH_CryptoDigest）。
+1. 调用[OH_CryptoDigest_Create](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_create)，指定摘要算法MD5，生成摘要实例（OH_CryptoDigest）。
 
 2. 传入自定义消息，将一次传入数据量设置为20字节，多次调用[OH_CryptoDigest_Update](../../reference/apis-crypto-architecture-kit/_crypto_digest_api.md#oh_cryptodigest_update)，进行摘要更新计算。
 
@@ -93,7 +93,7 @@ static OH_Crypto_ErrCode doLoopMd()
     int isBlockSize = 20;
     int offset = 0;
 
-    ret = OH_CryptoDigest_Create("SHA256", &ctx);
+    ret = OH_CryptoDigest_Create("MD5", &ctx);
     if (ret != CRYPTO_SUCCESS) {
         return ret;
     }

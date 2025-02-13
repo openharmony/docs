@@ -72,7 +72,7 @@
     let keyPair = await generator.generateKeyPair();
     let signData = await signMessagePromise(keyPair.priKey);
     let verifyResult = await verifyMessagePromise(signData, keyPair.pubKey);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');
@@ -111,7 +111,7 @@
     let keyPair = generator.generateKeyPairSync();
     let signData = signMessagePromise(keyPair.priKey);
     let verifyResult = verifyMessagePromise(signData, keyPair.pubKey);
-    if (verifyResult == true) {
+    if (verifyResult === true) {
       console.info('verify success');
     } else {
       console.error('verify failed');
