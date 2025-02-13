@@ -1251,7 +1251,7 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态
+function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态。
     console.info('pair state = '+ JSON.stringify(data));
 }
 try {
