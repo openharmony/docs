@@ -70,7 +70,7 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
-| barStyle | [BarStyle<sup>12+</sup>](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+| barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
 
 ## GradientBackground<sup>16+</sup>
 供开发者设置品牌渐变色。
