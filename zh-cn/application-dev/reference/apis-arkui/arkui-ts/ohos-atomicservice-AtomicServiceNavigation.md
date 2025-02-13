@@ -50,7 +50,7 @@ AtomicServiceNavigation({
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。|
 | titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。|
-| gradientBackground | [GradientBackground](#gradientbackground16) | 否 | @Prop | 背景色选项。|
+| gradientBackground | [GradientBackground<sup>16+</sup>](#gradientbackground16) | 否 | @Prop | 背景色选项。|
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
@@ -109,9 +109,9 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 
 | 名称 | 值 | 说明 |
 | --------------- | ------ |-----|
-| AVERAGE  | 1 | 颜色混合模式是两种颜色各占一半。  |
-| CROSS  | 2 | 颜色混合模式是一种颜色从另一种颜色中穿过。 |
-| TOWARDS  | 3 | 颜色混合模式是一种颜色渐变为另一种颜色。 |
+| AVERAGE  | 1 | 两种颜色各占一半。  |
+| CROSS  | 2 | 一种颜色从另一种颜色中穿过。 |
+| TOWARDS  | 3 | 一种颜色渐变为另一种颜色。 |
 
 
 ## GradientAlpha<sup>16+</sup>
