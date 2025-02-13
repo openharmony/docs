@@ -12,19 +12,19 @@
       - [栅格布局 (GridRow/GridCol)](arkts-layout-development-grid-layout.md)
       - [媒体查询 (@ohos.mediaquery)](arkts-layout-development-media-query.md)
       - [创建列表 (List)](arkts-layout-development-create-list.md)
+      - [创建弧形列表 (ArcList)](arkts-layout-development-create-arclist.md)（圆形屏幕推荐使用）
       - [创建网格 (Grid/GridItem)](arkts-layout-development-create-grid.md)
       - [创建轮播 (Swiper)](arkts-layout-development-create-looping.md)
       - [选项卡 (Tabs)](arkts-navigation-tabs.md)
   - 添加组件<!--arkts-add-component-->
     - [按钮 (Button)](arkts-common-components-button.md)
+    - [弧形按钮 (ArcButton)](arkts-advanced-components-arcbutton.md)（圆形屏幕推荐使用）
     - [单选框 (Radio)](arkts-common-components-radio-button.md)
     - [切换按钮 (Toggle)](arkts-common-components-switch.md)
     - [进度条 (Progress)](arkts-common-components-progress-indicator.md)
     - [显示图片 (Image)](arkts-graphics-display.md)
     - [视频播放 (Video)](arkts-common-components-video-player.md)
     - [自定义渲染 (XComponent)](napi-xcomponent-guidelines.md)
-  - 添加弧形组件（圆形屏幕推荐使用）<!--arkts-add-arc-component-->
-    - [弧形按钮 (ArcButton)](arkts-advanced-components-arcbutton.md)
   - 设置组件导航和页面路由<!--arkts-set-navigation-routing-->
     - [组件导航和页面路由概述](arkts-navigation-introduction.md)
     - [组件导航 (Navigation)(推荐)](arkts-navigation-navigation.md)
