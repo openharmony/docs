@@ -2076,6 +2076,8 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SELECT_TEXT               | 针对文本组件进行选择操作。结合[ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments)使用，配置selectTextStart，selectTextEnd，selectTextInForWard。进入编辑区选择一段文本内容。 |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_TEXT                  | 针对文本组件设置文本内容。                                   |
 | ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_SET_CURSOR_POSITION       | 针对文本组件设置光标位置。结合[ArkUI_AccessibilityActionArguments](#arkui_accessibilityactionarguments)使用，配置offset设置位置。 |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_NEXT_HTML_ITEM            | 起始版本:API 15。配置后表示支持通过[findNextFocusAccessibilityNode](#findnextfocusaccessibilitynode-1)查找下一个焦点，方向为[ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_FORWARD](#arkui_accessibilityfocusmovedirection)。  |
+| ARKUI_ACCESSIBILITY_NATIVE_ACTION_TYPE_PREVIOUS_HTML_ITEM        | 起始版本:API 15。配置后表示支持通过[findNextFocusAccessibilityNode](#findnextfocusaccessibilitynode-1)查找上一个焦点，方向为[ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_BACKWARD](#arkui_accessibilityfocusmovedirection)。 |
 
 **起始版本：**
 
@@ -2122,8 +2124,8 @@ int32_t OH_ArkUI_FindAccessibilityActionArgumentByKey(
 | ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_DOWN     | 焦点向下移动。                       |
 | ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_LEFT     | 焦点向左移动。                       |
 | ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_RIGHT    | 焦点向右移动。                       |
-| ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_FORWARD  | 焦点向前移动，基于查询结果中的关系。 |
-| ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_BACKWARD | 焦点向前移动，基于查询结果中的关系。 |
+| ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_FORWARD  | 焦点向下一个可聚焦节点移动，基于查询请求中指定的基准节点。 |
+| ARKUI_ACCESSIBILITY_NATIVE_DIRECTION_BACKWARD | 焦点向上一个可聚焦节点移动，基于查询请求中指定的基准节点。 |
 
 **起始版本：**
 
