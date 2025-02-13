@@ -241,6 +241,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 
 | 名称 | 描述 |
 | -------- | -------- |
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontSetThemeFontFollowed](#oh_drawing_fontsetthemefontfollowed) ([OH_Drawing_Font](#oh_drawing_font) \*font, bool followed) | 设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。 | 
+| [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontIsThemeFontFollowed](#oh_drawing_fontisthemefontfollowed) (const [OH_Drawing_Font](#oh_drawing_font) \*font, bool \*followed) | 获取字型中的字体是否跟随主题字体。默认不跟随主题字体。 | 
 | OH_Drawing_FontCollection \* [OH_Drawing_GetFontCollectionGlobalInstance](#oh_drawing_getfontcollectionglobalinstance) (void) | 获取全局字体集对象OH_Drawing_FontCollection，可感知主题字信息，禁止释放该对象。  | 
 | [OH_Drawing_Bitmap](#oh_drawing_bitmap) \* [OH_Drawing_BitmapCreate](#oh_drawing_bitmapcreate) (void) | 用于创建一个位图对象。 |
 | void [OH_Drawing_BitmapDestroy](#oh_drawing_bitmapdestroy) ([OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于销毁位图对象并回收该对象占有内存。 |
@@ -2991,6 +2993,56 @@ enum OH_Drawing_WordBreakType
 
 
 ## 函数说明
+
+### OH_Drawing_FontSetThemeFontFollowed()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontSetThemeFontFollowed (OH_Drawing_Font* font, bool followed )
+```
+
+**描述**
+
+设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| followed | 字型中的字体是否跟随主题字体，true表示跟随主题字体，false表示不跟随主题字体。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font为空。
+
+### OH_Drawing_FontIsThemeFontFollowed()
+
+```
+OH_Drawing_ErrorCode OH_Drawing_FontIsThemeFontFollowed (const OH_Drawing_Font* font, bool* followed )
+```
+
+**描述**
+
+获取字型中的字体是否跟随主题字体。默认不跟随主题字体。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| font | 指示字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| followed | 返回字型中的字体是否跟随主题字体的结果，true表示跟随主题字体，false表示不跟随主题字体。作为出参使用。 | 
+
+**返回：**
+
+函数返回执行错误码。 返回OH_DRAWING_SUCCESS，表示执行成功。 返回OH_DRAWING_ERROR_INVALID_PARAMETER，表示参数font或者followed其中一个为空。
 
 ### OH_Drawing_GetFontCollectionGlobalInstance()
 

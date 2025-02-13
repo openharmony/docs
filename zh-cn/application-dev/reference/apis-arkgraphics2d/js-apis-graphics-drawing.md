@@ -4576,6 +4576,62 @@ let glyphs : number[] = font.textToGlyphs(text);
 console.info("drawing text toglyphs OnTestFunction num =  " + glyphs.length );
 ```
 
+### setThemeFontFollowed<sup>15+</sup>
+
+setThemeFontFollowed(followed: boolean): void
+
+设置字型中的字体是否跟随主题字体。设置跟随主题字体后，若系统启用主题字体并且字型未被设置字体，字型会使用该主题字体。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型   | 必填 | 说明             |
+| -------- | ------ | ---- | ---------------- |
+| followed | boolean | 是   | 字型中的字体是否跟随主题字体，true表示跟随主题字体，false表示不跟随主题字体。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setThemeFontFollowed(true);
+console.info("font is theme font followed: " + font.isThemeFontFollowed());
+```
+
+### isThemeFontFollowed()<sup>15+</sup>
+
+isThemeFontFollowed(): boolean
+
+获取字型中的字体是否跟随主题字体。默认不跟随主题字体。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| boolean | 返回字型中的字体是否跟随主题字体的结果，true表示跟随主题字体，false表示不跟随主题字体。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let font : drawing.Font = new drawing.Font();
+font.setThemeFontFollowed(true);
+console.info("font is theme font followed: " + font.isThemeFontFollowed());
+```
+
 ## FontMetricsFlags<sup>12+</sup>
 
 字体度量标志枚举，指示字体度量中的各字段数据是否有效。
