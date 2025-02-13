@@ -7827,7 +7827,7 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-  let promise = windowClass.setWindowCornerRadius(1.0f);
+  let promise = windowClass.setWindowCornerRadius(1.0);
   promise.then(() => {
     console.info('Succeeded in setting window corner radius.');
   }).catch((err: BusinessError) => {
