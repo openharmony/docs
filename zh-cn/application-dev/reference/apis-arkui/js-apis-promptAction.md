@@ -221,34 +221,27 @@ showDialog(options: ShowDialogOptions): Promise&lt;ShowDialogSuccessResponse&gt;
 
 ```ts
 import { promptAction } from '@kit.ArkUI'
-import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  promptAction.showDialog({
-    title: 'Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ],
+promptAction.showDialog({
+  title: 'Title Info',
+  message: 'Message Info',
+  buttons: [
+    {
+      text: 'button1',
+      color: '#000000'
+    },
+    {
+      text: 'button2',
+      color: '#000000'
+    }
+  ],
+})
+  .then(data => {
+    console.info('showDialog success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showDialog success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.info('showDialog error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.info('showDialog error: ' + err);
+  })
 ```
 
 ![zh-cn_image_0002](figures/zh-cn_image_0002.gif)
@@ -451,33 +444,26 @@ showActionMenu(options: ActionMenuOptions): Promise&lt;ActionMenuSuccessResponse
 
 ```ts
 import { promptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
-try {
-  promptAction.showActionMenu({
-    title: 'showActionMenu Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
+promptAction.showActionMenu({
+  title: 'showActionMenu Title Info',
+  buttons: [
+    {
+      text: 'item1',
+      color: '#666666'
+    },
+    {
+      text: 'item2',
+      color: '#000000'
+    },
+  ]
+})
+  .then(data => {
+    console.info('showActionMenu success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showActionMenu success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.info('showActionMenu error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message
-  let code = (error as BusinessError).code
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.info('showActionMenu error: ' + err);
+  })
 ```
 
 ![zh-cn_image_0006](figures/zh-cn_image_0006.gif)
