@@ -1,6 +1,6 @@
 # ArcSlider
 
-弧形滑动条组件，通常用于在可穿戴设备中快速调节设置值，如音量调节、亮度调节等应用场景。
+弧形滑动条组件，通常用于在圆形屏幕中快速调节设置值，如音量调节、亮度调节等应用场景。
 
 >  **说明：**
 >
@@ -100,9 +100,9 @@ ArcSliderOptions的构造函数。
 
 | 名称  | 类型   | 必填 | 装饰器类型 | 说明                                                         |
 | ----- | ------ | ---- | ---------- | ------------------------------------------------------------ |
-| value | number | 否   | @Trace     | 设置当前进度值。<br />默认值：与参数min的取值一致            |
+| progress | number | 否   | @Trace     | 设置当前进度值。<br />默认值：与参数min的取值一致            |
 | min   | number | 否   | @Trace     | 设置最小值。<br />默认值：0                                  |
-| max   | number | 否   | @Trace     | 设置最大值。<br />默认值：100<br />**说明：**<br/>当出现异常情况min >= max时，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
+| max   | number | 否   | @Trace     | 设置最大值。<br />默认值：100<br />**说明：**<br/>当出现异常情况min >= max时，min取默认值0，max取默认值100。<br/>progress不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 
 ### constructor
 
@@ -261,9 +261,9 @@ ArcSliderValueOptions的构造信息。
 
 | 名称  | 类型   | 必填 | 装饰器类型 | 说明                                                         |
 | ----- | ------ | ---- | ---------- | ------------------------------------------------------------ |
-| value | number | 否   | @Trace     | 设置当前进度值。<br />默认值：与参数min的取值一致            |
+| progress | number | 否   | @Trace     | 设置当前进度值。<br />默认值：与参数min的取值一致            |
 | min   | number | 否   | @Trace     | 设置最小值。<br />默认值：0                                  |
-| max   | number | 否   | @Trace     | 设置最大值。<br />默认值：100<br />**说明：**<br/>当出现异常情况min >= max时，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
+| max   | number | 否   | @Trace     | 设置最大值。<br />默认值：100<br />**说明：**<br/>当出现异常情况min >= max时，min取默认值0，max取默认值100。<br/>progress不在[min, max]范围之内，取min或者max，靠近min取min，靠近max取max。 |
 
 ## ArcSliderLayoutOptionsConstructorOptions
 
