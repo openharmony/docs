@@ -339,12 +339,12 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometr
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneNodeParameters](#scenenodeparameters) | 是 | 场景结点参数。 |
-| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource) | 是 | 网格数据参数。 |
+| mesh | [MeshResource](js-apis-inner-scene-resources.md#meshresource16) | 是 | 网格数据参数。 |
 
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Geometry](js-apis-inner-scene-resources.md#geometry)> | Promise对象，返回几何对象。 |
+| Promise\<[Geometry](js-apis-inner-scene-resources.md#geometry16)> | Promise对象，返回几何对象。 |
 
 **示例：**
 ```ts
@@ -381,12 +381,12 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
-| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#GeometryDefinition) | 是 | 几何形状类型参数。 |
+| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#GeometryDefinition16) | 是 | 几何形状类型参数。 |
 
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#MeshResource)> | Promise对象，返回几何对象。 |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#MeshResource16)> | Promise对象，返回几何对象。 |
 
 **示例：**
 ```ts
@@ -421,7 +421,7 @@ createScene(uri?: ResourceStr): Promise\<Scene>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| uri? | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否 | 资源参数。 |
+| uri? | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否 | 资源路径，默认值为undefined。 |
 
 **返回值：**
 | 类型 | 说明 |
