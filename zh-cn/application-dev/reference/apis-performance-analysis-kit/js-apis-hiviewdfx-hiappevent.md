@@ -343,7 +343,7 @@ setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&l
 
 | 错误码ID | 错误信息                                      |
 | -------- | --------------------------------------------- |
-| 401 | Parameter error. Possible causes: Parameter error. Possible reasons: 1. Incorrect number of parameters; 2. The parameter type is incorrect; 3.Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.3.Parameter verification failed. |
 
 **示例：**
 
