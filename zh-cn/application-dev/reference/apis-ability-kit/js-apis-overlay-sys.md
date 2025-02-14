@@ -18,7 +18,7 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean): Promise\<void>
 
-以异步方法设置指定应用的overlay module的禁用使能状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+设置指定应用的overlay module的禁用使能状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -81,7 +81,7 @@ try {
 
 setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
-以异步方法设置指定应用的overlay module的禁用使能状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+设置指定应用的overlay module的禁用使能状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -140,7 +140,7 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-以异步方法获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -199,7 +199,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-以异步方法获取指定应用中指定module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -256,7 +256,7 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-以异步方法获取指定应用中所有module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中所有module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -309,7 +309,7 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -368,7 +368,7 @@ let moduleName = "feature";
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -425,7 +425,7 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-以异步方法获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
