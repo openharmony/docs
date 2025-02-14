@@ -84,7 +84,7 @@ onClick(event: (event: ClickEvent) => void): T
 | 名称   | 参数类型                      | 描述         |
 | ---- | ------------------------- | ---------- |
 | area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
-| id<sup>16+</sup> | [string](ts-universal-attributes-component-id.md) | 开发者设置的节点id。 |
+| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | 开发者设置的节点id。 |
 
 ## 示例
 
