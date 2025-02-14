@@ -32,7 +32,7 @@ import { buffer } from '@kit.ArkTS';
 | 'ucs-2' | utf16le的别名。 |
 | 'base64' | 表示base64格式。 |
 | 'base64url' | 表示base64url格式。 |
-| 'latin1' | iso-8859-1的别名, 向下兼容ascii格式。 |
+| 'latin1' | iso-8859-1的别名，向下兼容ascii格式。 |
 | 'binary' | 表示二进制格式。 |
 | 'hex' | 表示十六进制格式。 |
 
@@ -51,8 +51,8 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer对象长度，单位：字节。 |
-| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 填充至新缓存区的值，默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。 默认值: 'utf8'。 |
+| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 填充至新缓存区的值，默认值：0。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -173,7 +173,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -342,7 +342,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 实例对象。 |
-| byteOffset | number | 否 | 字节偏移量，默认值: 0。 |
+| byteOffset | number | 否 | 字节偏移量，默认值：0。 |
 | length | number | 否 | 字节长度， 默认值: (arrayBuffer.byteLength - byteOffset)。 |
 
 **返回值：**
@@ -472,7 +472,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | String | 是 | 字符串。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -678,10 +678,10 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要比较的实例对象。 |
-| targetStart | number | 否 | `target`实例中开始的偏移量。 默认值: 0。 |
-| targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。 默认值: 目标对象的字节长度。 |
-| sourceStart | number | 否 | `this`实例中开始的偏移量。 默认值: 0。 |
-| sourceEnd | number | 否 | `this`实例中结束的偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
+| targetStart | number | 否 | `target`实例中开始的偏移量。默认值：0。 |
+| targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。默认值：目标对象的字节长度。 |
+| sourceStart | number | 否 | `this`实例中开始的偏移量。默认值：0。 |
+| sourceEnd | number | 否 | `this`实例中结束的偏移量（不包含结束位置）。默认值：当前对象的字节长度。 |
 
 **返回值：**
 
@@ -729,9 +729,9 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要复制到的Buffer或Uint8Array实例。 |
-| targetStart | number | 否 | `target`实例中开始写入的偏移量。 默认值: 0。 |
-| sourceStart | number | 否 | `this`实例中开始复制的偏移量。 默认值: 0。 |
-| sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
+| targetStart | number | 否 | `target`实例中开始写入的偏移量。默认值：0。 |
+| sourceStart | number | 否 | `this`实例中开始复制的偏移量。默认值: 0。 |
+| sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。默认值：当前对象的字节长度。 |
 
 **返回值：**
 
@@ -863,9 +863,9 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
-| offset | number | 否 | 起始偏移量。 默认值: 0。 |
-| end | number | 否 | 结束偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf8'。 |
+| offset | number | 否 | 起始偏移量。默认值：0。 |
+| end | number | 否 | 结束偏移量（不包含结束位置）。 默认值：当前对象的字节长度。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -908,8 +908,8 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
+| byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：0。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -952,8 +952,8 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要查找的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
+| byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：0。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -1032,8 +1032,8 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: Buffer.length。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
+| byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：Buffer.length。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -1076,7 +1076,7 @@ readBigInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。取值范围：0 <= offset <= Buffer.length - 8 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8 |
 
 **返回值：**
 
@@ -1123,7 +1123,7 @@ readBigInt64LE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1170,7 +1170,7 @@ readBigUInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1216,7 +1216,7 @@ readBigUInt64LE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1263,7 +1263,7 @@ readDoubleBE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1308,7 +1308,7 @@ readDoubleLE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1353,7 +1353,7 @@ readFloatBE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1398,7 +1398,7 @@ readFloatLE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1443,7 +1443,7 @@ readInt8(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值：0。 |
 
 **返回值：**
 
@@ -1490,7 +1490,7 @@ readInt16BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 **返回值：**
 
@@ -1535,7 +1535,7 @@ readInt16LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 **返回值：**
 
@@ -1580,7 +1580,7 @@ readInt32BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1625,7 +1625,7 @@ readInt32LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1670,7 +1670,7 @@ readIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
@@ -1719,7 +1719,7 @@ readIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。|
 
 
@@ -1766,7 +1766,7 @@ readUInt8(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值：0。 |
 
 
 **返回值：**
@@ -1814,7 +1814,7 @@ readUInt16BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 
 **返回值：**
@@ -1862,7 +1862,7 @@ readUInt16LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 
 **返回值：**
@@ -1910,7 +1910,7 @@ readUInt32BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 
 **返回值：**
@@ -1956,7 +1956,7 @@ readUInt32LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 
 **返回值：**
@@ -2002,7 +2002,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 要读取的字节数。读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
@@ -2049,7 +2049,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
@@ -2096,8 +2096,8 @@ subarray(start?: number, end?: number): Buffer
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| start | number | 否 | 截取开始位置。 默认值: 0。 |
-| end | number | 否 |  截取结束位置（不包含结束位置）。 默认值: 当前对象的字节长度。 |
+| start | number | 否 | 截取开始位置。默认值：0。 |
+| end | number | 否 |  截取结束位置（不包含结束位置）。默认值：当前对象的字节长度。 |
 
 **返回值：**
 
@@ -2276,15 +2276,15 @@ toString(encoding?: string, start?: number, end?: number): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 字符编码格式。 默认值: 'utf8'。 |
-| start  | number | 否 |  开始位置。 默认值: 0。 |
-| end  | number | 否 |  结束位置。 默认值: Buffer.length。 |
+| encoding | string | 否 | 字符编码格式。默认值：'utf8'。 |
+| start  | number | 否 |  开始位置。默认值：0。 |
+| end  | number | 否 |  结束位置。默认值：Buffer.length。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 字符串。 当start >= Buffer.length 或 start > end 时返回空字符串。 |
+| string | 字符串。当start >= Buffer.length或start > end时返回空字符串。 |
 
 **错误码：**
 
@@ -2360,9 +2360,9 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | str | string | 是 | 要写入Buffer的字符串。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| length | number | 否 | 最大字节长度。 默认值: (Buffer.length - offset)。|
-| encoding | string | 否 | 字符编码。 默认值: 'utf8'。 |
+| offset | number | 否 | 偏移量。默认值：0。 |
+| length | number | 否 | 最大字节长度。默认值：(Buffer.length - offset)。|
+| encoding | string | 否 | 字符编码。默认值：'utf8'。 |
 
 
 **返回值：**
@@ -2411,7 +2411,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2455,7 +2455,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2499,7 +2499,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2543,7 +2543,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2587,7 +2587,7 @@ writeDoubleBE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2631,7 +2631,7 @@ writeDoubleLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2675,7 +2675,7 @@ writeFloatBE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2720,7 +2720,7 @@ writeFloatLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2764,7 +2764,7 @@ writeInt8(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 1。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 1。 |
 
 
 **返回值：**
@@ -2812,7 +2812,7 @@ writeInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2857,7 +2857,7 @@ writeInt16LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2901,7 +2901,7 @@ writeInt32BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2946,7 +2946,7 @@ writeInt32LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2990,7 +2990,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3036,7 +3036,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3081,7 +3081,7 @@ writeUInt8(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 1。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 1。 |
 
 
 **返回值：**
@@ -3134,7 +3134,7 @@ writeUInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值为0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值为0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -3181,7 +3181,7 @@ writeUInt16LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -3228,7 +3228,7 @@ writeUInt32BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -3272,7 +3272,7 @@ writeUInt32LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer对象的数字。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -3316,7 +3316,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3361,7 +3361,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
