@@ -2140,6 +2140,65 @@ try {
 }
 ```
 
+### setImmersiveMode<sup>15+</sup>
+
+setImmersiveMode(mode: ImmersiveMode): void
+
+设置输入法应用的沉浸模式。只能设置不使用沉浸模式(NONE_IMMERSIVE)、浅色沉浸模式(LIGHT_IMMERSIVE)或深色沉浸模式(DARK_IMMERSIVE)。不能设置为沉浸模式(IMMERSIVE)。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| mode | [ImmersiveMode](#ImmersiveMode15) | 是   | 沉浸模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[输入法框架错误码](errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                                                |
+| -------- | ------------------------------------------------------- |
+| 401      | parameter error. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.           |
+| 12800002  | input method engine error.                                |
+| 12800013  | window manager service error.                          |
+
+**示例：**
+
+```ts
+try {
+  panel.setImmersiveMode(inputMethodEngine.ImmersiveMode.LIGHT_IMMERSIVE);
+} catch (err) {
+  console.error(`Failed to setImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+### getImmersiveMode<sup>15+</sup>
+
+getImmersiveMode(): ImmersiveMode
+
+获取输入法应用沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ------------------------------- | ---------- |
+| [ImmersiveMode](#ImmersiveMode15) | 沉浸模式。 |
+
+**示例：**
+
+```ts
+try {
+  let mode = panel.getImmersiveMode();
+} catch (err) {
+  console.error(`Failed to getImmersiveMode: ${JSON.stringify(err)}`);
+}
+```
+
+
 ## KeyboardController
 
 下列API均需使用[on('inputStart')](#oninputstart9)获取到KeyboardController实例后，通过实例调用。
@@ -4326,6 +4385,7 @@ inputMethodController.recvMessage();
 | inputPattern | number   | 是   | 否   | 编辑框的文本属性。 |
 | isTextPreviewSupported<sup>12+</sup> | boolean | 否 | 否 | 编辑框是否支持预上屏。 |
 | bundleName<sup>14+</sup> | string | 是 | 是 | 编辑框所属应用包名；该值可能为""，使用该属性时需要考虑为""的场景。 |
+| immersiveMode<sup>15+</sup> | number | 是   | 是   | 输入法沉浸模式。 |
 
 ## KeyEvent
 
@@ -4392,6 +4452,19 @@ inputMethodController.recvMessage();
 | ------ | ------------------------------------------------------------ | ---- | ---- | -------------- |
 | rect   | [window.Rect](../apis-arkui/js-apis-window.md#rect7)         | 否   | 否   | 窗口矩形区域。 |
 | status | [window.WindowStatusType](../apis-arkui/js-apis-window.md#windowstatustype11) | 否   | 否   | 窗口模式类型。 |
+
+## ImmersiveMode<sup>15+</sup>
+
+枚举，输入法沉浸模式。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 值 | 说明               |
+| ------------ | -- | ------------------ |
+| NONE_IMMERSIVE | 0 | 不使用沉浸模式。 |
+| IMMERSIVE      | 1 | 沉浸模式，由输入法应用确定沉浸模式类型。 |
+| LIGHT_IMMERSIVE  | 2 | 浅色沉浸模式。 |
+| DARK_IMMERSIVE   | 3 | 深色沉浸模式。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
