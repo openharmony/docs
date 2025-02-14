@@ -39,7 +39,7 @@
 
 【反例】
 
-在未初始化Web内核前提下，启动加载Web页面
+在未初始化Web内核前提下，启动加载Web页面。
 
 ```typescript
 import web_webview from '@ohos.web.webview';
@@ -203,7 +203,7 @@ struct WebComponent {
 
 **实践案例**
 
-1. 创建载体，并创建ArkWeb组件
+1. 创建载体，并创建ArkWeb组件。
    ```typescript
    // 载体Ability
    // EntryAbility.ets
@@ -223,7 +223,7 @@ struct WebComponent {
      }
    }
    ```
-2. 创建NodeContainer和对应的NodeController，渲染后台ArkWeb组件
+2. 创建NodeContainer和对应的NodeController，渲染后台ArkWeb组件。
 
     ```typescript
     // 创建NodeController
@@ -320,7 +320,7 @@ struct WebComponent {
       return NodeMap.get(url);
     }
     ```
-3. 通过NodeContainer使用已经预渲染的页面
+3. 通过NodeContainer使用已经预渲染的页面。
 
     ```typescript
     // 使用NodeController的Page页
