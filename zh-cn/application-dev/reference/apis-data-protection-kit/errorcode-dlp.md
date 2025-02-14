@@ -73,7 +73,7 @@ Encryption or decryption timeout.
 
 **可能原因**
 
-1. DLP文件加解密时间超过10秒。
+DLP文件加解密时间超过10秒。
 
 **处理步骤**
 
@@ -134,7 +134,7 @@ No permission to call this API, which is available only for DLP sandbox applicat
 
 **可能原因**
 
-1. 调用方不是DLP沙箱应用。
+调用方不是DLP沙箱应用。
 
 **处理步骤**
 
@@ -153,7 +153,7 @@ No permission to call this API, which is available only for non-DLP sandbox appl
 
 **可能原因**
 
-1. 调用方不可以是DLP沙箱应用。
+调用方不可以是DLP沙箱应用。
 
 **处理步骤**
 
@@ -172,7 +172,7 @@ The file is not a DLP file.
 
 **可能原因**
 
-1. 操作非DLP文件格式文件。
+操作非DLP文件格式文件。
 
 **处理步骤**
 
@@ -224,7 +224,7 @@ DLP文件只读。
 
 **处理步骤**
 
-1. 请确认文件权限。
+请确认文件权限。
 
 
 ## 19100011 系统服务工作异常
@@ -266,7 +266,7 @@ Out of memory.
 
 **可能原因**
 
-1. 系统内存不足。
+系统内存不足。
 
 **处理步骤**
 
@@ -360,7 +360,7 @@ Application not authorized.
 
 **可能原因**
 
-1. 应用不在授信应用白名单中。
+应用不在授信应用白名单中。
 
 **处理步骤**
 

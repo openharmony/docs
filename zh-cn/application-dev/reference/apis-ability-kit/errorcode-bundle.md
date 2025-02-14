@@ -939,7 +939,7 @@ Launch Want不存在。
 **处理步骤**<br/>
 应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
 
-## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
+## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.
 
@@ -947,12 +947,13 @@ Failed to install the HAP because an application with the same bundle name but d
 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败。
 
 **可能原因**<br/>
-1、由于设备上存在具有相同包名称但不同签名信息的已安装应用程序，导致安装失败。
-2、设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败。
+
+1. 由于设备上存在具有相同包名称但不同签名信息的已安装应用程序，导致安装失败。
+2. 设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败。
 
 **处理步骤**<br/>
-1、卸载设备上相同包名的应用。
-2、若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
+1. 卸载设备上相同包名的应用。
+2. 若设备上存在相同包名但签名信息不一致的应用被保留数据地卸载，导致安装失败，则先安装已卸载的应用之后不保留数据地卸载掉。
 
 ## 17700074 传入的appIdentifier无效
 
@@ -971,7 +972,7 @@ The specified appIdentifier is invalid.
 ## 17700075 want指定的bundleName与调用方不符
 
 **错误信息**<br/>
-The specified bundleName of want is not the same with caller. 
+The specified bundleName of want is not the same with caller.
 
 **错误描述**<br/>
 设置卸载处置规则时，want指定的bundleName与调用方不相同。

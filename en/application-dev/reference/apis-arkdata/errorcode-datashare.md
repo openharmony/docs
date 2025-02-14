@@ -32,7 +32,7 @@ The **DataShareHelper** class fails to be created.
 
 **Error Message**
 
-The uri does not exist.
+The URI does not exist.
 
 **Description**
 
@@ -55,7 +55,7 @@ The data area does not exist.
 
 **Description**
 
-This error code is returned when a data update operaton fails.
+This error code is returned when a data update fails.
 
 **Possible Causes**
 

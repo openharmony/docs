@@ -30,7 +30,6 @@ Defines the configuration of an RDB store.
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
-| vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.|
 | haMode<sup>12+</sup> | [HAMode](#hamode12) | No| High availability (HA) mode.<br>The value **SINGLE** means data can be written only to a single RDB store. The value **MAIN_REPLICA** means data can be written to the main and replica RDB stores to ensure HA. However, this mode is not supported in encryption and attach scenarios. The default value is **SINGLE**. The value **MAIN_REPLICA** may affect the database write performance.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12.<br>|
 
 ## HAMode<sup>12+</sup>
@@ -591,6 +590,10 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 Manually performs device-cloud sync based on specified conditions. This API uses an asynchronous callback to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
+> **NOTE**
+> 
+> Since API version 16, you can specify the asset download capability as a condition for device-cloud sync. If the sync mode is set to [SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode), the primary key (mandatory) and asset (optional) can be used as sync conditions in the predicates. If asset is used as the sync condition, only [equalTo](js-apis-data-relationalStore.md#equalto) is supported. If a large number of assets (max. 50) are specified, you are advised to use only the primary key in the predicates.
+
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **System API**: This is a system API.
@@ -615,7 +618,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 801       | Capability not supported.  |
 | 14800014  | Already closed.      |
 
-**Example**
+**Example 1**: Manually sync data on the local device with the cloud.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -633,12 +636,44 @@ if(store != undefined) {
   });
 };
 ```
+**Example 2**: Download the specified asset.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let asset : relationalStore.Asset = {
+  name: "name",
+  uri: "uri",
+  path: "path",
+  createTime: new Date().getTime().toString(),
+  modifyTime: new Date().getTime().toString(),
+  size: "1024"
+}
+// Specify the primary key and asset (asset column in the database ) in the predicates.
+predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }, (err) => {
+     if (err) {
+       console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+       return;
+     }
+     console.info('cloud sync succeeded');
+  });
+};
+```
 
 ### cloudSync<sup>11+</sup>
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
 Manually performs device-cloud sync based on specified conditions. This API uses a promise to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
+
+>**NOTE**
+> 
+>Since API version 16, you can specify the asset download capability as a condition for device-cloud sync. If the sync mode is set to [SYNC_MODE_CLOUD_FIRST](js-apis-data-relationalStore.md#syncmode), the primary key (mandatory) and asset (optional) can be used as sync conditions in the predicates. If asset is used as the sync condition, only [equalTo](js-apis-data-relationalStore.md#equalto) is supported. If a large number of assets (max. 50) are specified, you are advised to use only the primary key in the predicates.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -669,7 +704,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 801       | Capability not supported.       |
 | 14800014  | Already closed.      |
 
-**Example**
+**Example 1**: Manually sync data on the local device with the cloud.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -681,6 +716,32 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
+    console.info('cloud sync succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+  });
+};
+```
+**Example 2**: Download the specified asset.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let asset : relationalStore.Asset = {
+  name: "name",
+  uri: "uri",
+  path: "path",
+  createTime: new Date().getTime().toString(),
+  modifyTime: new Date().getTime().toString(),
+  size: "1024"
+}
+// Specify the primary key and asset (asset column in the database ) in the predicates.
+predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
@@ -1049,7 +1110,7 @@ Provides APIs to access the **resultSet** object returned by **query()**.
 
 getFloat32Array(columnIndex: number): Float32Array
 
-Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector database](#storeconfig).
+Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector store](#storeconfig).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 

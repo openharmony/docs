@@ -1929,7 +1929,6 @@
             <!--Del-->
             - [ApplicationInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-ApplicationInfo-sys.md)
             - [AppProvisionInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-AppProvisionInfo-sys.md)
-            - [BundleInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleInfo-sys.md)
             - [BundlePackInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundlePackInfo-sys.md)
             - [BundleResourceInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-BundleResourceInfo-sys.md)
             - [BusinessAbilityInfo (系统接口)](reference/apis-ability-kit/js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -2995,7 +2994,7 @@
         - [@ohos.i18n (国际化-I18n)(系统接口)](reference/apis-localization-kit/js-apis-i18n-sys.md)
         <!--DelEnd-->
         - global<!--localization-global-arkts-->
-          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md) 
+          - [RawFileDescriptor](reference/apis-localization-kit/rawFileDescriptor.md)
           - [Resource](reference/apis-localization-kit/resource.md)
           - [SendableResource](reference/apis-localization-kit/sendableResource.md)
       - C API<!--localization-c-->
@@ -3167,7 +3166,7 @@
           - [@ohos.nfc.tag (标准NFC-Tag)(系统接口)](reference/apis-connectivity-kit/js-apis-nfcTag-sys.md)
           - [@ohos.wifiManager (WLAN)(推荐)(系统接口)](reference/apis-connectivity-kit/js-apis-wifiManager-sys.md)
           <!--DelEnd-->
-          - tag<!--connectivity-nfc-tag-arkts--> 
+          - tag<!--connectivity-nfc-tag-arkts-->
             - [nfctech (标准NFC-Tag Nfc 技术)](reference/apis-connectivity-kit/js-apis-nfctech.md)
             - [tagSession (标准NFC-Tag TagSession)](reference/apis-connectivity-kit/js-apis-tagSession.md)
         - C API<!--connectivity-c-->
