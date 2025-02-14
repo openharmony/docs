@@ -24,7 +24,7 @@ enableBluetooth(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
@@ -59,7 +59,7 @@ disableBluetooth(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
@@ -92,7 +92,7 @@ getState(): BluetoothState
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -131,7 +131,7 @@ on(type: 'stateChange', callback: Callback&lt;BluetoothState&gt;): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -176,7 +176,7 @@ off(type: 'stateChange', callback?: Callback&lt;BluetoothState&gt;): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -218,7 +218,7 @@ try {
 
 **原子化服务API**: 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                    | 值  | 说明                 |
 | --------------------- | ---- | ------------------ |
