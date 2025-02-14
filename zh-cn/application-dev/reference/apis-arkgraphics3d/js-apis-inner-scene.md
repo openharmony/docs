@@ -344,7 +344,7 @@ createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometr
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Geometry](js-apis-inner-scene-resources.md#geometry16)> | Promise对象，返回几何对象。 |
+| Promise\<[Geometry](js-apis-inner-scene-nodes.md#geometry)> | Promise对象，返回几何对象。 |
 
 **示例：**
 ```ts
@@ -386,7 +386,7 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#MeshResource16)> | Promise对象，返回几何对象。 |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#MeshResource16)> | Promise对象，返回网格资源对象。 |
 
 **示例：**
 ```ts
