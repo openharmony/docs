@@ -121,7 +121,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | ---- | ---- | ---- | ---- | ---- |
 | topology | [PrimitiveTopology](#primitivetopology16)| 否 | 是 | 三角形图元的解析方式，默认值为TRIANGLE_LIST。 |
 | vertices | [Vec3](#vec3)[] | 否 | 否 | 模型的顶点数组。 |
-| indices | number[] | 否 | 是 | 顶点索引数组，默认值为undefined。 |
+| indices | number[] | 否 | 是 | 顶点索引数组，数组中元素的取值范围大于等于0，默认值为undefined。 |
 | normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为undefined。 |
 | uvs | [Vec2](#vec2)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为undefined。 |
 | colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为undefined。 |
@@ -151,8 +151,8 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| radius | number | 否 | 否 | 球体半径。 |
-| segmentCount | number | 否 | 否 | 在球体上以经纬度分割的段数。 |
+| radius | number | 否 | 否 | 球体半径，其中范围大于0。 |
+| segmentCount | number | 否 | 否 | 在球体上以经纬度分割的段数，取值范围大于0。 |
 
 ## Position3
 type Position3 = Vec3
