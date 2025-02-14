@@ -39,7 +39,7 @@
 
 【反例】
 
-在未初始化Web内核前提下，启动加载Web页面
+在未初始化Web内核前提下，启动加载Web页面。
 
 ```typescript
 import web_webview from '@ohos.web.webview';
@@ -301,7 +301,7 @@ struct WebComponent {
       return NodeMap.get(url);
     }
     ```
-3. 通过NodeContainer使用已经预渲染的页面
+3. 通过NodeContainer使用已经预渲染的页面。
 
     ```typescript
     // 使用NodeController的Page页
