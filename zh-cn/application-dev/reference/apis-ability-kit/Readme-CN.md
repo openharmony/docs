@@ -158,9 +158,11 @@
       - [MissionListener(系统接口)](js-apis-inner-application-missionListener-sys.md)
       - [MissionParameter(系统接口)](js-apis-inner-application-missionParameter-sys.md)
       - [MissionSnapshot(系统接口)](js-apis-inner-application-missionSnapshot-sys.md)
-      - [MissionSnapshot(系统接口)](js-apis-inner-application-pageNodeInfo-sys.md)
+      - [MultiAppMode (系统接口)](js-apis-inner-application-multiAppMode-sys.md)
       - [PageNodeInfo(系统接口)](js-apis-inner-application-pageNodeInfo-sys.md)
       - [ProcessData(系统接口)](js-apis-inner-application-processData-sys.md)
+      - [RunningAppClone (系统接口)](js-apis-inner-application-runningAppClone-sys.md)
+      - [RunningMultiAppInfo (系统接口)](js-apis-inner-application-runningMultiAppInfo-sys.md)
       - [ServiceExtensionContext(系统接口)](js-apis-inner-application-serviceExtensionContext-sys.md)
       - [UIAbilityContext(系统接口)](js-apis-inner-application-uiAbilityContext-sys.md)
       - [UIExtensionContext(系统接口)](js-apis-inner-application-uiExtensionContext-sys.md)
@@ -201,6 +203,9 @@
     - wantAgent<!--wantagent-->
       - [triggerInfo](js-apis-inner-wantAgent-triggerInfo.md)
       - [wantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)
+      <!--Del-->
+      - [TriggerInfo(系统接口)](js-apis-inner-wantAgent-triggerInfo-sys.md)
+      <!--DelEnd-->
   - 已停止维护的接口<!--ability-arkts-dep-->
     - [@ohos.ability.dataUriUtils (DataUriUtils模块)](js-apis-ability-dataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
