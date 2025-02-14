@@ -58,6 +58,7 @@
 | [弧形列表](arkts-layout-development-create-arclist.md)（ArcList）      | 使用弧形列表能够高效地展示结构化、可滚动的信息。在ArkUI中，弧形列表仅支持垂直布局，当内容超出屏幕范围时可实现滚动。弧形列表适用于展示同类数据类型或数据集合，例如图片和文本。 |
 | [网格](arkts-layout-development-create-grid.md)（Grid）      | 网格布局具有较强的页面均分能力、子元素占比控制能力。网格布局可以控制元素所占的网格数量、设置子元素横跨几行或者几列，当网格容器尺寸发生变化时，所有子元素以及间距等比例调整。推荐在需要按照固定比例或者均匀分配空间的布局场景下使用，例如计算器、相册、日历等。 |
 | [轮播](arkts-layout-development-create-looping.md)（Swiper） | 轮播组件通常用于实现广告轮播、图片预览等。       |
+| [弧形轮播](arkts-layout-development-arcswiper.md)（ArcSwiper） | 弧形轮播组件通常用于实现圆形屏幕设备上的广告轮播、图片预览等。       |
 | [选项卡](arkts-navigation-tabs.md)（Tabs） | 选项卡可以在一个页面内快速实现视图内容的切换，一方面提升查找信息的效率，另一方面精简用户单次获取到的信息量。       |
 
 
