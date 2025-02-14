@@ -362,7 +362,7 @@ function createGeometryPromise() : Promise<Geometry> {
       let cubeGeom = new CubeGeometry();
       cubeGeom.size = { x: 1, y: 1, z: 1 };
       let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
-      console.log("TEST createGeometryPromise");
+      console.info("TEST createGeometryPromise");
       let geometry: Promise<Geometry> = sceneFactory.createGeometry({ name: "GeometryName" }, meshRes);
       return geometry;
     });
@@ -403,7 +403,7 @@ function createMeshPromise() : Promise<MeshResource> {
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
       let cubeGeom = new CubeGeometry();
       cubeGeom.size = { x: 1, y: 1, z: 1 };
-      console.log("TEST createMeshPromise");
+      console.info("TEST createMeshPromise");
       let meshRes = await sceneFactory.createMesh({ name: "MeshName" }, cubeGeom);
       return meshRes;
     });
@@ -440,7 +440,7 @@ function createScenePromise() : Promise<Scene> {
         return;
       }
       let sceneFactory: SceneResourceFactory = result.getResourceFactory();
-      console.log("TEST createScenePromise");
+      console.info("TEST createScenePromise");
       let scene = sceneFactory.createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"));
       return scene;
     });
@@ -604,7 +604,7 @@ function ImportNodeTest() {
     Scene.load($rawfile("gltf/AnimatedCube/glTF/AnimatedCube.gltf"))
       .then(async (extScene: Scene) => {
         let extNode = extScene.getNodeByPath("rootNode_/Unnamed Node 1/AnimatedCube");
-        console.log("TEST ImportNodeTest");
+        console.info("TEST ImportNodeTest");
         let node = result.importNode("scene", extNode, result.root);
         if (node) {
           node.position.x = 5;
@@ -632,7 +632,7 @@ function ImportSceneTest() {
       return;
     }
     let content = await result.getResourceFactory().createScene($rawfile("gltf/DamagedHelmet/glTF/DamagedHelmet.gltf"))
-    console.log("TEST ImportSceneTest");
+    console.info("TEST ImportSceneTest");
     result.importScene("helmet", content, null);
   });
 }
@@ -656,7 +656,7 @@ function RenderFrameTest() {
       if (!result) {
         return;
       }
-      console.log("TEST RenderFrameTest");
+      console.info("TEST RenderFrameTest");
       result.renderFrame({ alwaysRender: true });
   });
 }
