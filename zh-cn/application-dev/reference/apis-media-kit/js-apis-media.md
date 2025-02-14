@@ -7695,6 +7695,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | audioChannelCount | number                                                       | 否   | 录屏的音频通道数，内录的系统音和外录的麦克风都是用此通道数，默认2声道，仅支持设置1或2声道。 |
 | audioBitrate      | number                                                       | 否   | 录屏的音频比特率，内录的系统音和外录的麦克风都是用此比特率，默认96000。 |
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
+| displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
