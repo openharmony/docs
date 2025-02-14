@@ -52,4 +52,4 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | toneMapping | [ToneMappingSettings](#tonemappingsettings) | 否 | 是 | 色调映射，默认值为undefined。 |
-| bloom<sup>16+</sup> | [BloomSettings](#bloomsettings) | 否 | 是 | 泛光，默认值为undefined。 |
+| bloom<sup>16+</sup> | [BloomSettings](#bloomsettings16) | 否 | 是 | 泛光，默认值为undefined。 |
