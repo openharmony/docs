@@ -272,7 +272,7 @@ typedef enum {
 
 * N-API 层封装了对外的接口，对接 libuv 层 uv_queue_work_with_qos(uv_loop_t* loop, uv_work_t* req, uv_work_cb work_cb, uv_after_work_cb after_work_cb, uv_qos_t qos) 函数。
 
-* 相较于已有接口 napi_queue_async_work，增加了 qos 等级，用于控制任务调度的优先级。使用示例:
+* 相较于已有接口 napi_queue_async_work，增加了 qos 等级，用于控制任务调度的优先级。使用示例：
 ```cpp
 static void PromiseOnExec(napi_env env, void *data) { 
     OH_LOG_INFO(LOG_APP, "PromiseOnExec"); 
