@@ -442,9 +442,12 @@ type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 | 'scroll'                  | 表示滚动视图的事件。    |
 | 'requestFocusForAccessibility'     | 表示主动聚焦的事件。 |
 | 'announceForAccessibility'         | 表示主动播报的事件。 |
-| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。 |
-| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。 |
-| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。    |
+| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。
+此事件是由 API Version 16 开始支持 |
+| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。
+此事件是由 API Version 16 开始支持 |
+| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。
+此事件是由 API Version 16 开始支持 |
 
 ## TextMoveUnit
 
