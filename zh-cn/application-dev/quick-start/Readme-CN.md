@@ -103,7 +103,7 @@
         - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)
         - [!!语法：双向绑定](arkts-new-binding.md)
         - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
-        - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
+        - [Repeat：可复用的循环渲染](arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](arkts-new-makeObserved.md)
       - [MVVM模式（状态管理V2）](arkts-mvvm-V2.md)
