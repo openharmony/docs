@@ -5327,6 +5327,6 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。  |
-| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。    |
-| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。  |
+| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。  |
