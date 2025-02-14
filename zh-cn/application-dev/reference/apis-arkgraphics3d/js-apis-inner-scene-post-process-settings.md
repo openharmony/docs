@@ -39,10 +39,10 @@ import { ToneMappingType, ToneMappingSettings, PostProcessSettings } from '@kit.
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| thresholdHard | number | 否 | 是 | 硬阈值，默认值为1.0。 |
-| thresholdSoft | number | 否 | 是 | 软阈值，默认值为2.0。 |
-| scaleFactor | number | 否 | 是 | 缩放因子，默认值为1.0。 |
-| scatter | number | 否 | 是 | 扩散量，默认值为1.0。 |
+| thresholdHard | number | 否 | 是 | 硬阈值，取值范围是非负数，默认值为1.0。 |
+| thresholdSoft | number | 否 | 是 | 软阈值，取值范围是非负数，默认值为2.0。 |
+| scaleFactor | number | 否 | 是 | 缩放因子，取值范围大于0，默认值为1.0。 |
+| scatter | number | 否 | 是 | 扩散量，取值范围大于0，默认值为1.0。 |
 
 ## PostProcessSettings
 后处理设置。
