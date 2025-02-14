@@ -7246,6 +7246,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
             this.controller.close()
           }
         })
@@ -7269,11 +7270,11 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
             this.dialogController.open()
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
-    .onFocus(()=>{this.getUIContext().getFocusController().setAutoFocusTransfer(false)})
   }
 }
 ```
