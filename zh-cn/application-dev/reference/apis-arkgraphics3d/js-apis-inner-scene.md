@@ -381,12 +381,12 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
-| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#GeometryDefinition16) | 是 | 几何形状类型参数。 |
+| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#geometrydefinition16) | 是 | 几何形状类型参数。 |
 
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[MeshResource](js-apis-inner-scene-resources.md#MeshResource16)> | Promise对象，返回网格资源对象。 |
+| Promise\<[MeshResource](js-apis-inner-scene-resources.md#meshresource16)> | Promise对象，返回网格资源对象。 |
 
 **示例：**
 ```ts
@@ -426,7 +426,7 @@ createScene(uri?: ResourceStr): Promise\<Scene>
 **返回值：**
 | 类型 | 说明 |
 | ---- | ---- |
-| Promise\<[Scene](js-apis-inner-scene-resources.md#Scene)> | Promise对象，返回场景对象。 |
+| Promise\<[Scene](js-apis-inner-scene-resources.md#scene)> | Promise对象，返回场景对象。 |
 
 **示例：**
 ```ts
