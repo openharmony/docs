@@ -835,7 +835,7 @@ export default class EntryAbility extends UIAbility {
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称             | 类型     | 只读     | 可选   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
 | slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否    | 否    | 长时任务通知的渠道类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 否    | 否    | 长时任务通知的内容类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | notificationId | number | 否    | 否    | 长时任务通知 Id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
