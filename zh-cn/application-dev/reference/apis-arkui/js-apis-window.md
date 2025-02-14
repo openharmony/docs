@@ -4798,9 +4798,9 @@ try {
 
 ### on('windowHighlightChange')<sup>15+</sup>
 
-on(type:  'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
+on(type: 'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
 
-开启窗口激活态变化的监听。
+开启窗口激活态变化事件的监听。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -4810,7 +4810,7 @@ on(type:  'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
 
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
-| type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活状态变化事件。 |
+| type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。 |
 | callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前的窗口激活态。   |
 
 **错误码：**
@@ -4840,7 +4840,7 @@ try {
 
 off(type: 'windowHighlightChange', callback?: Callback&lt;boolean&gt;): void
 
-关闭窗口激活态变化的监听。
+关闭窗口激活态变化事件的监听。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -8224,7 +8224,7 @@ try {
 
 ### setExclusivelyHighlighted<sup>15+<sup>
 
-setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;;
+setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;
 
 设置窗口独占激活态属性。独占激活态表示窗口获焦时，会导致当前父子窗口链中处于激活态的其他窗口失去激活态。使用Promise异步回调。
 此接口对主窗、模态窗、dialog窗口不生效。
@@ -8238,6 +8238,11 @@ setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;;
 | 参数名 | 类型 | 必填 | 说明 |
 | ----------- | ------- | -- | -------------------------------------------------------- |
 | isExclusivelyHighlight | boolean | 是 | 窗口是否独占激活态。true表示独占激活态；false表示不独占激活态。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
