@@ -3369,6 +3369,7 @@ enum ArkUI_NodeAttributeType
 | NODE_IMAGE_ANIMATOR_FIXED_SIZE  | 设置图片大小是否固定为组件大小。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置图片大小是否固定为组件大小，1表示图片大小与组件大小一致。0表示每一张图片的width、height、top和left都要单独设置，默认值为1。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置图片大小是否固定为组件大小，1表示图片大小与组件大小一致。0表示每一张图片的width、height、top和left都要单独设置。 | 
 | NODE_IMAGE_ANIMATOR_FILL_MODE  | 设置帧动画在当前播放方向下，动画开始前和结束后的状态。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：当前播放方向下，动画开始前和结束后的状态，参数类型为{ArkUI_AnimationFillMode}，默认值为FORWARDS。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：当前播放方向下，动画开始前和结束后的状态，参数类型为{ArkUI_AnimationFillMode}。 | 
 | NODE_IMAGE_ANIMATOR_ITERATION  | 设置帧动画的播放次数。支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：播放次数。 | 
+| NODE_BACKDROP_BLUR  | 设置背景模糊效果，支持属性设置，属性重置和属性获取。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px，默认值0.0。<br/>.value[1]?.f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2]?.f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：表示背景模糊半径，取值范围[0,+∞)。单位px。<br/>.value[1].f32：表示灰阶模糊参数，对黑色的提亮程度，取值范围为[0,127]。<br/>.value[2].f32：表示灰阶模糊参数，对白色的压暗程度，取值范围为[0,127]。 |
 
 
 ### ArkUI_NodeContentEventType
