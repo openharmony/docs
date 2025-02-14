@@ -1,7 +1,7 @@
 # Basic Services Kit（基础服务）
 
-- ArkTS API
-  - 账号管理
+- ArkTS API<!--basic-services-arkts-->
+  - 账号管理<!--account-management-arkts-->
     - [@ohos.account.appAccount (应用账号管理)](js-apis-appAccount.md)
     - [@ohos.account.distributedAccount (分布式账号管理)](js-apis-distributed-account.md)
     - [@ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)
@@ -9,7 +9,7 @@
     - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](js-apis-distributed-account-sys.md)
     - [@ohos.account.osAccount (系统账号管理)(系统接口)](js-apis-osAccount-sys.md)
     <!--DelEnd-->
-  - 设备管理
+  - 设备管理<!--device-management-arkts-->
     - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
     - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
     - [@ohos.power (系统电源管理)](js-apis-power.md)
@@ -29,7 +29,7 @@
     - [@ohos.usbManager (USB管理)(系统接口)](js-apis-usbManager-sys.md)
     - [@ohos.update (升级)(系统接口)](js-apis-update-sys.md)
     <!--DelEnd-->
-  - 数据文件处理
+  - 数据文件处理<!--data-file-processing-arkts-->
     - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
     - [@ohos.print (打印)](js-apis-print.md)
     - [@ohos.request (上传下载)](js-apis-request.md)
@@ -40,7 +40,7 @@
     - [@ohos.print (打印)(系统接口)](js-apis-print-sys.md)
     - [@ohos.request (上传下载)(系统接口)](js-apis-request-sys.md)
     <!--DelEnd-->
-  - 进程线程通信
+  - 进程线程通信<!--process-thread-communi-arkts-->
     - [系统定义的公共事件](common_event/commonEventManager-definitions.md)
     <!--Del-->
     - [系统定义的公共事件定义 (系统接口)](common_event/commonEventManager-definitions-sys.md)
@@ -57,7 +57,7 @@
       - [CommonEventPublishData](js-apis-inner-commonEvent-commonEventPublishData.md)
       - [CommonEventSubscriber](js-apis-inner-commonEvent-commonEventSubscriber.md)
       - [CommonEventSubscribeInfo](js-apis-inner-commonEvent-commonEventSubscribeInfo.md)
-  - 其他
+  - 其他<!--others-->
     <!--Del-->
     - [@ohos.ai.intelligentVoice (智能语音)(系统接口)](js-apis-intelligentVoice-sys.md)
     <!--DelEnd-->
@@ -75,7 +75,7 @@
     - [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility)(系统接口)](js-apis-WallpaperExtensionAbility-sys.md)
     - [@ohos.systemTimer (系统定时器)(系统接口)](js-apis-system-timer-sys.md)
     <!--DelEnd-->
-  - 已停止维护的接口
+  - 已停止维护的接口<!--basic-services-arkts-dep-->
     - [系统公共事件定义](common_event/commonEvent-definitions.md)
     - [@ohos.commonEvent (公共事件模块)](js-apis-commonEvent.md)
     - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
@@ -90,15 +90,15 @@
     - [@ohos.systemParameter (系统属性)(系统接口)](js-apis-system-parameter-sys.md)
     <!--DelEnd-->
     - [@ohos.systemTime(系统时间、时区)](js-apis-system-time.md)
-- C API
-  - 模块
+- C API<!--basic-services-c-->
+  - 模块<!--basic-services-module-->
     - [DeviceInfo](_device_info.md)
     - [InitSync](_init_sync.md)
     - [OsAccount](_os_account.md)
     - [OH_Scan](c-apis-scan.md)
     - [TimeService](_time_service.md)
     - [CommonEvent](capi-common-event.md)
-  - 头文件
+  - 头文件<!--basic-services-headerfile-->
     - [deviceinfo.h](deviceinfo_8h.md)
     - [init_sync.h](init__sync_8h.md)
     - [os_account.h](os__account_8h.md)
