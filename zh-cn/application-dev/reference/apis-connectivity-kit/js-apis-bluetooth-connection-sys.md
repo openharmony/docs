@@ -674,6 +674,7 @@ try {
 }
 ```
 
+
 ## connection.setRemoteDeviceType<sup>12+</sup>
 
 setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
@@ -803,7 +804,6 @@ try {
 | PIN_TYPE_DISPLAY_PIN_CODE    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。  |
 | PIN_TYPE_OOB_CONSENT    | 6 | 用户需要接受或拒绝OOB配对请求。<br/>此接口为系统接口。  |
 | PIN_TYPE_PIN_16_DIGITS    | 7 | 用户需要输入对端设备上显示的16位PIN码。<br/>此接口为系统接口。  |
-
 
 
 ## DeviceType<sup>12+</sup>
