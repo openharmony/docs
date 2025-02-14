@@ -2567,7 +2567,7 @@ libffrt.z.so
 void abnormal_case_1()
 {
     ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
-    ...
+    // ...
     ffrt_task_handle_destroy(h);
     ffrt_task_handle_destroy(h); // double free
 }
@@ -2580,7 +2580,7 @@ void abnormal_case_1()
 void abnormal_case_2()
 {
     ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
-    ...
+    // ...
     // memory leak
 }
 ```
@@ -2592,7 +2592,7 @@ void abnormal_case_2()
 void normal_case()
 {
     ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
-    ...
+    // ...
     ffrt_task_handle_destroy(h);
     h = nullptr; // if necessary
 }
