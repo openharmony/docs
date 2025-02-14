@@ -674,6 +674,95 @@ try {
 }
 ```
 
+## connection.on('discoveryResult')<sup>12+</sup>
+
+on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+订阅蓝牙设备发现上报事件。使用Callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.GET_BLUETOOTH_PEERS_MAC
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                     |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('discoveryResult')<sup>12+</sup>
+
+off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+取消订阅蓝牙设备发现上报事件。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.GET_BLUETOOTH_PEERS_MAC
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult12)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+    connection.off('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
 
 ## connection.setRemoteDeviceType<sup>12+</sup>
 
@@ -804,6 +893,22 @@ try {
 | PIN_TYPE_DISPLAY_PIN_CODE    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。  |
 | PIN_TYPE_OOB_CONSENT    | 6 | 用户需要接受或拒绝OOB配对请求。<br/>此接口为系统接口。  |
 | PIN_TYPE_PIN_16_DIGITS    | 7 | 用户需要输入对端设备上显示的16位PIN码。<br/>此接口为系统接口。  |
+
+
+## DiscoveryResult<sup>12+</sup>
+
+描述扫描设备状态参数。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId<sup>12+</sup> | string      | 是    | 否    | 表示扫描到的设备ID。<br/>此接口为系统接口。          |
+| rssi<sup>12+</sup>     | number      | 是    | 否    | 表示扫描到的设备的信号强度。<br/>此接口为系统接口。   |
+| deviceName<sup>12+</sup>     | string      | 是    | 否    | 表示扫描到的设备的设备名称。<br/>此接口为系统接口。   |
+| deviceClass<sup>12+</sup>     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。<br/>此接口为系统接口。   |
 
 
 ## DeviceType<sup>12+</sup>
