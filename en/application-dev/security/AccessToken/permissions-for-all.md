@@ -442,3 +442,15 @@ This permission is available only to document editing applications.
 
 **Valid since**: 15
 <!--DelEnd-->
+
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+Allows an application to set the icon and label information for each ability.
+
+The configured icon and label information can be displayed in the Task Center and shortcut bar.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
