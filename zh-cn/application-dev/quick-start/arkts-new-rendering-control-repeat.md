@@ -1,68 +1,155 @@
-# Repeat：子组件复用
+# Repeat：可复用的循环渲染
 
 > **说明：**
 > 
 > Repeat从API version 12开始支持。
+> 
+> 本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
 
-本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
+## 概述
 
-Repeat组件non-virtualScroll场景（不开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件，例如，ListItem组件要求Repeat的父容器组件必须为List组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
+Repeat基于数组类型数据来进行循环渲染，一般与容器组件配合使用。Repeat组件包含两种模式：**non-virtualScroll模式**和**virtualScroll模式**。
 
-Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件，必须与滚动类容器组件配合使用。当在滚动类容器组件中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
+- **non-virtualScroll模式**：Repeat在初始化页面时加载列表中的所有子组件。
+<br/>该模式和[ForEach](arkts-rendering-control-foreach.md)组件相比做了一些改进，一是优化了部分数组更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
+<br/>non-virtualScroll模式适合**渲染短数据列表、组件全部加载**的场景下使用。详细描述见[non-virtualScroll模式](#non-virtualscroll模式)。
+- **virtualScroll模式（开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）**：Repeat根据容器组件的**有效加载范围（可视区域+预加载区域）** 加载子组件。当容器滑动/数组改变时，Repeat会根据父容器组件传递的参数重新计算有效加载范围，实时管理列表节点的创建与销毁。
+<br/>virtualScroll模式适合**渲染需要懒加载的长数据列表、通过组件复用优化性能表现**的场景下使用。详细描述见[virtualScroll模式](#virtualscroll模式)。
 
-## 使用限制
+下面代码为使用Repeat组件virtualScroll模式进行循环渲染的示例Demo。
 
-- Repeat使用键值作为标识，因此键值生成函数`key()`必须针对每个数据生成唯一的值。
-- Repeat virtualScroll场景必须在滚动类容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持virtualScroll场景（此时配置cachedCount会生效）。其它容器组件只适用于non-virtualScroll场景。
-- Repeat开启virtualScroll后，在每次迭代中，必须创建且只允许创建一个子组件。不开启virtualScroll没有该限制。生成的子组件必须是允许包含在Repeat父容器组件中的子组件。
-- 当Repeat与自定义组件/@Builder函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
-- template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
-- totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
-- 在滚动容器组件（List、Grid、Swiper、WaterFlow）内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
-- Repeat组件的virtualScroll场景不支持V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
+```ts
+// 在List容器组件中使用Repeat virtualScroll模式
+@Entry
+@ComponentV2 // 推荐使用V2装饰器
+struct RepeatExample {
+  @Local dataArr: Array<string> = []; // 数据源
 
-## 键值生成规则
+  aboutToAppear(): void { // 为数组添加一些数据
+    for (let i = 0; i < 50; i++) {
+      this.dataArr.push(`data_${i}`);
+    }
+  }
 
-键值生成函数`key()`的目的是允许Repeat识别数组更改的细节：添加了哪些数据、删除了哪些数据，以及哪些数据改变了位置（索引）。
+  build() {
+    Column() {
+      List() {
+        Repeat<string>(this.dataArr)
+          .each((ri: RepeatItem<string>) => { // 默认文本颜色为红色
+            ListItem() {
+              Text('each_A_' + ri.item).fontSize(30).fontColor(Color.Red)
+            }
+          })
+          .key((item: string, index: number): string => item) // 键值生成函数
+          .virtualScroll({ totalCount: this.dataArr.length }) // 打开virtualScroll模式
+          .templateId((item: string, index: number): string => { // 根据返回值寻找对应的模板子组件进行渲染
+            return index <= 4 ? 'A' : (index <= 10 ? 'B' : ''); // 前5个节点模板为A，接下来的5个为B，其余为默认模板
+          })
+          .template('A', (ri: RepeatItem<string>) => { // 'A'模板文本颜色为蓝色
+            ListItem() {
+              Text('ttype_A_' + ri.item).fontSize(30).fontColor(Color.Green)
+            }
+          }, { cachedCount: 3 }) // 'A'缓存列表容量为3
+          .template('B', (ri: RepeatItem<string>) => { // 'B'模板文本颜色为蓝色
+            ListItem() {
+              Text('ttype_B_' + ri.item).fontSize(30).fontColor(Color.Blue)
+            }
+          }, { cachedCount: 4 }) // 'B'缓存列表容量为4
+      }
+      .cachedCount(2) // 容器组件的预加载区域大小
+      .height('70%')
+    }
+  }
+}
 
-开发者使用建议：
+```
+运行后界面如下图所示。
+
+![Repeat-NonVS-KeyGen](./figures/Repeat-Example.png)
+
+## 注意事项
+
+- Repeat一般与容器组件配合使用，子组件应当是允许包含在容器组件中的子组件，例如，Repeat与[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)组件配合使用时，子组件必须为[ListItem](../reference/apis-arkui/arkui-ts/ts-container-listitem.md)组件。
+- 当Repeat与自定义组件/@Builder函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。详细见[Repeat与@Builder混用的限制](#repeat与builder混用的限制)。
+
+Repeat virtualScroll模式使用限制：
+
+- 必须在滚动类容器组件内使用，仅有[List](../reference/apis-arkui/arkui-ts/ts-container-list.md)、[Grid](../reference/apis-arkui/arkui-ts/ts-container-grid.md)、[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md)以及[WaterFlow](../reference/apis-arkui/arkui-ts/ts-container-waterflow.md)组件支持Repeat virtualScroll模式。
+- virtualScroll模式不支持V1装饰器，混用V1装饰器会导致渲染异常，不建议开发者同时使用。
+- 必须创建且只允许创建一个子组件，生成的子组件必须是允许包含在Repeat父容器组件中的子组件。
+- 滚动容器组件内只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
+- totalCount值大于数组长度时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
+
+Repeat通过键值识别数组如何改变：增加了哪些数据、删除了哪些数据，以及哪些数据改变了位置（索引）。键值生成函数`.key()`的使用建议：
 
 - 即使数据项有重复，开发者也必须保证键值key唯一（即使数据源发生变化）。
-- 每次执行`key()`函数时，使用相同的数据项作为输入，输出必须是一致的。
-- `key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据项发生了变化，并触发UI重新渲染，会降低性能表现。
+- 每次执行`.key()`函数时，使用相同的数据项作为输入，输出必须是一致的。
+- `.key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据发生了变化，并触发子组件重新渲染，降低性能表现。
 - 推荐将简单类型数组转换为类对象数组，并添加一个`readonly id`属性，在构造函数中给它赋一个唯一的值。
 
-### non-virtualScroll规则
+> **说明：**
+> 
+> Repeat子组件节点的操作分为四种：节点创建、节点更新、节点复用、节点销毁。其中，节点更新和节点复用的区别为：
+> 
+> - **节点更新**：组件节点不下树，只有状态变量刷新
+> - **节点复用**：旧的节点下树，但不会销毁，存储在空闲节点缓存池；新节点从缓存池中获取可复用的节点，重新上树
 
-`key()`可以缺省，Repeat会生成默认key值。
+## non-virtualScroll模式
+
+### 键值生成规则
+
+`.key()`的逻辑如下图所示。
 
 ![Repeat-NonVS-KeyGen](./figures/Repeat-NonVS-KeyGen.png)
 
-### virtualScroll规则
+`.key()`可以缺省，Repeat会生成新的随机键值。
 
-和non-virtualScroll的键值生成规则基本一致，`key()`可以缺省。
+当发现有重复key时，Repeat会重新生成随机key作为当前数据项的键值并且放进该列表。列表中已有的键值不受影响。
+<br/>随机key由：1）索引index；2）数据项item的序列化表示；3）一个随机数 拼接生成。
 
-![Repeat-VS-KeyGen](./figures/Repeat-VS-KeyGen.png)
+### 子组件渲染逻辑
 
-## 组件生成及复用规则
+在Repeat首次渲染时，子组件全部创建。数组发生改变后，Repeat的处理分为以下几个步骤：
 
-### non-virtualScroll规则
-
-子组件在Repeat首次渲染时全部创建，在数据更新时会对原组件进行复用。
-
-在Repeat组件进行数据更新时，它会依次对比上次的所有键值和本次更新之后的区别。若当前键值和上次的某一项键值相同，Repeat会直接复用子组件并对RepeatItem.index索引做对应的更新。
-
-当Repeat将所有重复的键值对比完并做了相应的复用后，若上次的键值有不重复的且本次更新之后有新的键值生成需要新建子组件时，Repeat会复用上次多余的子组件并更新RepeatItem.item数据源和RepeatItem.index索引并刷新UI。
-
-若上次的剩余>=本次新更新的数量，则组件完全复用并释放多余的未被复用的组件。若上次的剩余小于本次新更新的数量，将剩余的组件复用完后，Repeat会新建多出来的数据项对应的组件。
+1）依次对比新旧数组键值的区别。若存在相同键值，Repeat直接使用旧节点，并更新这些节点的索引index；
+<br/>2）除去第1步中的重复键值后，若仍有新节点需要创建且旧数组存在键值，则更新旧数组中的节点；
+<br/>3）除去第2步中被使用的节点键值后，若仍有新节点需要创建，则创建新节点，否则销毁旧数组中剩余的节点。
 
 ![Repeat-NonVS-FuncGen](./figures/Repeat-NonVS-FuncGen.png)
 
-### virtualScroll规则
+以下图中的数组变化为例。
 
-子组件在Repeat首次渲染只生成当前需要的组件，在滑动和数据更新时会缓存下屏的节点，在需要生成新的组件时，对缓存里的组件进行复用。
+![Repeat-NonVS-Example](./figures/Repeat-NonVS-Example.png)
 
-Repeat组件在virtualScroll模式下默认启用复用功能。从API version 16开始，可以通过配置reusable字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。
+首先，遍历旧数组键值，如果新数组中没有该键值，将其加入deletedKeys。
+
+其次，遍历新数组键值，判断以下条件：
+<br/>1）通过键值能在旧数组中找到节点，直接更新索引index；
+<br/>2）若deletedKeys非空，按照先进后出的顺序更新节点；
+<br/>3）若deletedKeys为空，则没有可以更新的节点，需要创建新节点。
+
+最终，`item_0`没有变化，`item_1`和`item_2`只更新了索引，`item_n1`和`item_n2`分别由`item_4`和`item_3`进行节点更新而生成，`item_n3`为新创建的节点。
+
+## virtualScroll模式
+
+### 键值生成规则
+
+和non-virtualScroll模式的逻辑基本一致，如下图所示。
+
+![Repeat-VS-KeyGen](./figures/Repeat-VS-KeyGen.png)
+
+`.key()`可以缺省，Repeat会生成新的随机键值。
+
+当发现有重复key时，Repeat会重新生成随机key作为当前数据项的键值并且放进该列表。列表中已有的键值不受影响。
+<br/>随机key由：1）索引index；2）数据项item的序列化表示；3）一个随机数 拼接生成。
+
+### 子组件渲染逻辑
+
+在Repeat首次渲染时，根据容器组件的有效加载范围（可视区域+预加载区域）创建当前需要的子组件。
+
+在容器滑动/数组改变时，将失效的子组件节点（离开有效加载范围）加入空闲节点缓存列表中（断开与组件树的关系，但不销毁），在需要生成新的组件时，对缓存里的组件进行复用（更新被复用子组件的变量值，重新上树）。
+
+Repeat组件在virtualScroll模式下默认启用复用功能。从API version 16开始，可以通过配置`reusable`字段选择是否启用复用功能。为提高渲染性能，建议启用复用功能。代码示例见[virtualscrolloptions对象说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscrolloptions对象说明)。
 
 #### 滑动场景
 
@@ -96,7 +183,15 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 ![Repeat-Update-Done](./figures/Repeat-Update-Done.PNG)
 
-## totalCount规则
+### template：子组件渲染模板
+
+template模板目前只支持virtualScroll模式。
+
+- 每个节点会根据`.templateId()`得到template type，从而渲染对应的`.template()`中的子组件。
+- 当多个template type相同时，Repeat会覆盖旧的`.template()`函数，仅生效最新的`.template()`。
+- 如果找不到对应的template type，Repeat会优先渲染type为空的子组件`.template()`中的子组件，如果没有，则渲染`.each()`中的子组件。
+
+### totalCount：期望加载的数据长度
 
 数据源的总长度，可以大于已加载数据项的数量。令arr.length表示数据源长度，以下为totalCount的处理规则：
 
@@ -108,16 +203,17 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 >
 > 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
-## cachedCount规则
+### cachedCount：空闲节点缓存列表大小
 
-cachedCount是当前模板在Repeat的缓存池中可缓存子节点的最大数量，仅在virtualScroll场景下生效。
+cachedCount是相应的template type的缓存池中可缓存子组件节点的最大数量，仅在virtualScroll模式下生效。
 
-首先需要明确滚动类容器组件 `.cachedCount()`属性方法和Repeat `cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
+> **说明：**
+> 
+> 滚动类容器组件 `.cachedCount()`属性方法和virtualScroll模式中`cachedCount`的区别。这两者都是为了平衡性能和内存，但是其含义是不同的。
+> - 滚动类容器组件`.cachedCount()`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
+> - virtualScroll模式中`cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
 
-- 滚动类容器组件 `.cachedCount()`：是指在可见范围外预加载的节点，这些节点会位于组件树上，但不是可见范围内，List/Grid等容器组件会额外渲染这些可见范围外的节点，从而达到其性能收益。Repeat会将这些节点视为“可见”的。
-- Repeat `cachedCount`: 是指Repeat视为“不可见”的节点，这些节点是空闲的，框架会暂时保存，在需要使用的时候更新这些节点，从而实现复用。
-
-将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者依据具体情况自行把控。
+将cachedCount设置为当前模板的节点在屏上可能出现的最大数量时，Repeat可以做到尽可能多的复用。但后果是当屏上没有当前模板的节点时，缓存池也不会释放，应用内存会增大。需要开发者根据具体情况自行把控。
 
 - cachedCount缺省时，框架会分别对不同template，根据屏上节点+预加载的节点个数来计算cachedCount。当屏上节点+预加载的节点个数变多时，cachedCount也会对应增长。需要注意cachedCount数量不会减少。
 - 显式指定cachedCount，推荐设置成和屏幕上节点个数一致。需要注意，不推荐设置cachedCount小于2，因为这会导致在快速滑动场景下创建新的节点，从而导致性能劣化。
@@ -231,11 +327,11 @@ struct ChildItem {
 
 ### virtualScroll数据展示&操作
 
-本小节将展示virtualScroll场景下，Repeat的实际使用场景和组件节点的复用情况。根据复用规则可以衍生出大量的测试场景，篇幅原因，只对典型的数据变化进行解释。
+本小节将展示virtualScroll模式下，Repeat的实际使用场景和组件节点的复用情况。根据复用规则可以衍生出大量的测试场景，篇幅原因，只对典型的数据变化进行解释。
 
 #### 一个template
 
-下面的代码设计了Repeat组件的virtualScroll场景典型数据源操作，包括**插入数据、修改数据、删除数据、交换数据**。点击下拉框选择index值，点击相应的按钮即可进行数据修改操作。依次点击数据项可以交换被点击的两个数据项。
+下面的代码设计了Repeat组件的virtualScroll模式典型数据源操作，包括**插入数据、修改数据、删除数据、交换数据**。点击下拉框选择index值，点击相应的按钮即可进行数据修改操作。依次点击数据项可以交换被点击的两个数据项。
 
 ```ts
 @ObservedV2
@@ -369,7 +465,7 @@ struct RepeatVirtualScroll {
 
 #### 多个template
 
-```
+```ts
 @ObservedV2
 class Repeat006Clazz {
   @Trace message: string = '';
@@ -511,7 +607,7 @@ struct RepeatVirtualScroll2T {
 
 ### Repeat嵌套
 
-Repeat支持嵌套使用。示例代码：
+Repeat支持嵌套使用。下面是使用virtualScroll模式进行嵌套的示例代码：
 
 ```ts
 // Repeat嵌套
@@ -549,6 +645,7 @@ struct RepeatNest {
                       }
                     })
                     .key((item) => "innerList_" + item)
+                    .virtualScroll()
                 }
                 .width('80%')
                 .border({ width: 1 })
@@ -560,6 +657,7 @@ struct RepeatNest {
             .border({ width: 1 })
           })
           .key((item) => "outerList_" + item)
+          .virtualScroll()
       }
       .width('80%')
       .border({ width: 1 })
@@ -575,9 +673,11 @@ struct RepeatNest {
 
 ![Repeat-Nest](./figures/Repeat-Nest.png)
 
-## 父容器组件应用场景
+### 父容器组件应用场景
 
-### 与List组合使用
+本节展示Repeat virtualScroll模式与容器组件的常见应用场景。
+
+#### 与List组合使用
 
 在List容器组件中使用Repeat的virtualScroll模式，示例如下：
 
@@ -676,11 +776,12 @@ struct DemoList {
   }
 }
 ```
+
 右滑并点击按钮，或点击底部按钮，可删除视频卡片：
 
 ![Repeat-Demo-List](./figures/Repeat-Demo-List.gif)
 
-### 与Grid组合使用
+#### 与Grid组合使用
 
 在Grid容器组件中使用Repeat的virtualScroll模式，示例如下：
 
@@ -804,11 +905,12 @@ struct DemoGrid {
   }
 }
 ```
+
 下拉屏幕，或点击刷新按钮，或点击“先前浏览至此，点击刷新”，可加载新的视频内容：
 
 ![Repeat-Demo-Grid](./figures/Repeat-Demo-Grid.gif)
 
-### 与Swiper组合使用
+#### 与Swiper组合使用
 
 在Swiper容器组件中使用Repeat的virtualScroll模式，示例如下：
 
@@ -822,8 +924,8 @@ const remotePictures: Array<string> = [
   'https://www.example.com/xxx/0006.jpg',
   'https://www.example.com/xxx/0007.jpg',
   'https://www.example.com/xxx/0008.jpg',
-  'https://www.example.com/xxx/0009.jpg',
-]
+  'https://www.example.com/xxx/0009.jpg'
+];
 
 @ObservedV2
 class DemoSwiperItemInfo {
@@ -887,6 +989,7 @@ struct DemoSwiper {
   }
 }
 ```
+
 定时1秒后加载图片，模拟网络延迟：
 
 ![Repeat-Demo-Swiper](./figures/Repeat-Demo-Swiper.gif)
