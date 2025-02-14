@@ -330,7 +330,7 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 设置Swiper视窗内元素显示个数。
 
-使用字符串类型时，仅支持设置为'auto'。使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局，设置为小于等于0的值时，按默认值1显示。使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
+使用字符串类型时，仅支持设置为'auto'，此时，设置[customContentTransition](#customcontenttransition12)和[onContentDidScroll](#oncontentdidscroll12)事件不生效。使用number类型时，子组件按照主轴均分Swiper宽度（减去displayCount-1个itemSpace）的方式进行主轴拉伸（收缩）布局，设置为小于等于0的值时，按默认值1显示。使用SwiperAutoFill类型时，通过设置一个子组件最小宽度值minSize，会根据Swiper当前宽度和minSize值自动计算并更改一页内元素显示个数。当minSize为空或者小于等于0时，Swiper显示1列。
 
 当按组进行翻页时，判定翻页的拖拽距离阈值将调整为Swiper宽度的50%（若按子元素翻页，该阈值为子元素宽度的50%）。若最后一组的子元素数量少于displayCount，将利用占位子元素进行填充，占位子元素仅用于布局定位，不显示任何内容，其位置将直接显示Swiper的背景样式。
 
@@ -413,7 +413,7 @@ nextMargin(value: Length, ignoreBlank?:boolean)
 
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 后边距。<br/>默认值：0 |
+| value  | [Length](ts-types.md#length) | 是   | 后边距。不支持设置百分比。<br/>默认值：0 |
 | ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下尾页不显示nextMargin。在非loop场景下，设置为true时，尾页不显示空白的nextMargin，尾页的右边缘与Swiper视窗右边缘对齐；设置false时，尾页显示空白nextMargin，尾页的右边缘与Swiper视窗右边缘的距离为nextMargin。<br/>默认值：false <br/>**说明：**<br/>尾页场景下，prevMargin和nextMargin的值相加作为左边边距显示前一个页面。 |
 
 ### prevMargin<sup>10+</sup>
@@ -434,7 +434,7 @@ prevMargin(value: Length, ignoreBlank?:boolean)
 
 | 参数名 | 类型                         | 必填 | 说明                   |
 | ------ | ---------------------------- | ---- | ---------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 前边距。<br/>默认值：0 |
+| value  | [Length](ts-types.md#length) | 是   | 前边距。不支持设置百分比。<br/>默认值：0 |
 | ignoreBlank<sup>12+</sup>  | boolean | 否   | 非loop场景下首页不显示prevMargin。在非loop场景下，设置为true时，首页不显示空白的prevMargin，首页的左边缘与Swiper视窗左边缘对齐；设置false时，首页显示空白prevMargin，首页的左边缘与Swiper视窗左边缘的距离为prevMargin。<br/>默认值：false <br/>**说明：**<br/>首页场景下，prevMargin和nextMargin的值相加作为右边边距显示后一个页面。|
 
 ### nestedScroll<sup>11+</sup>
