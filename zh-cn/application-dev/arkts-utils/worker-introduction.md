@@ -19,7 +19,7 @@ Worker主要作用是为应用程序提供一个多线程的运行环境，可�
 - Worker创建后需要手动管理生命周期，且最多同时运行的Worker子线程数量为64个，并满足与[napi_create_ark_runtime](../reference/native-lib/napi.md#napi_create_ark_runtime)创建的runtime总数不超过80，详情请参见[生命周期注意事项](#生命周期注意事项)。
 - 由于不同线程中上下文对象是不同的，因此Worker线程只能使用线程安全的库，例如UI相关的非线程安全库不能使用。
 - 序列化传输的数据量大小限制为16MB。
-- 使用Worker模块时，需要在宿主线程中注册onerror接口，否则当Worker线程出现异常时会发生jscrash问题。
+- 使用Worker模块时，API Version 16及之后的版本推荐在宿主线程中注册onAllErrors回调，以捕获Worker线程生命周期内的各种异常，API Version 15及之前的版本需要注册onerror回调。如果未注册onAllErrors或onerror接口，当Worker线程出现异常时会发生jscrash问题。需要注意的是，onerror接口仅能捕获onmessage回调中的同步异常，且捕获异常后Worker线程会进入销毁流程，无法继续使用。详情请参见[onAllErrors接口与onerror接口之间的行为差异](#onallerrors接口与onerror接口之间的行为差异)。
 - 不支持跨HAP使用Worker线程文件。
 - 引用HAR/HSP前，需要先配置对HAR/HSP的依赖，详见[引用共享包](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-har-import-V5)。
 - 不支持在Worker工作线程中使用[AppStorage](../quick-start/arkts-appstorage.md)。
@@ -159,6 +159,29 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
 - Worker的数量由内存管理策略决定，设定的内存阈值为1.5GB和设备物理内存的60%中的较小者。在内存允许的情况下，系统最多可以同时运行64个Worker。如果尝试创建的Worker数量超出这一上限，系统将抛出错误：“Worker initialization failure, the number of workers exceeds the maximum.”。实际运行的Worker数量会根据当前内存使用情况动态调整。一旦所有Worker和主线程的累积内存占用超过了设定的阈值，系统将触发内存溢出（OOM）错误，导致应用程序崩溃。
 
 
+### onAllErrors接口与onerror接口之间的行为差异
+
+1. 异常捕获范围
+
+    onAllErrors接口可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常。
+
+    onerror接口仅捕获onmessage回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常。
+
+2. 异常捕获后的线程状态
+
+    onAllErrors接口捕获异常后，Worker线程仍然存活，可以继续使用。这使得开发者可以在捕获异常后继续执行其他操作，而不必担心线程被终止。
+
+    onerror接口一旦捕获到异常，Worker线程会进入销毁流程，无法继续使用。这意味着在onerror触发后，Worker线程将被终止，后续的操作将无法进行。
+
+3. 适用场景
+
+    onAllErrors接口适用于需要捕获Worker线程中所有类型异常的场景，尤其是在需要确保Worker线程在异常发生后仍然能够继续运行的复杂场景。
+
+    onerror接口适用于只需要捕获onmessage回调中同步异常的简单场景。由于捕获异常后线程会被销毁，适合在不需要继续使用Worker线程的情况下使用。
+
+    推荐使用onAllErrors接口，因为它提供了更全面的异常捕获能力，并且不会导致线程终止。
+
+
 ## Worker基本用法示例
 
 1. DevEco Studio支持一键生成Worker，在对应的{moduleName}目录下任意位置，点击鼠标右键 &gt; New &gt; Worker，即可自动生成Worker的模板文件及配置信息。本文以创建“worker”为例。
@@ -201,9 +224,9 @@ const workerFA3: worker.ThreadWorker = new worker.ThreadWorker("ThreadFile/worke
                   console.info("workerInstance onmessage is: ", data);
                 }
 
-                // 注册onerror回调，当Worker在执行过程中发生异常时被调用，在宿主线程执行
-                workerInstance.onerror = (err: ErrorEvent) => {
-                  console.info("workerInstance onerror message is: " + err.message);
+                // 注册onAllErrors回调，可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，在宿主线程执行
+                workerInstance.onAllErrors = (err: ErrorEvent) => {
+                  console.info("workerInstance onAllErrors message is: " + err.message);
                 }
 
                 // 注册onmessageerror回调，当Worker对象接收到一条无法被序列化的消息时被调用，在宿主线程执行
@@ -346,7 +369,7 @@ parentworker.onexit = () => {
   console.info("父worker退出");
 }
 
-parentworker.onerror = (err: ErrorEvent) => {
+parentworker.onAllErrors = (err: ErrorEvent) => {
   console.info("主线程接收到父worker报错 " + err);
 }
 
@@ -377,7 +400,7 @@ workerPort.onmessage = (e : MessageEvents) => {
       workerPort.close();
     }
 
-    childworker.onerror = (err: ErrorEvent) => {
+    childworker.onAllErrors = (err: ErrorEvent) => {
       console.info("子Worker发生报错 " + err);
     }
 
@@ -421,7 +444,7 @@ parentworker.onexit = () => {
   console.info("父Worker退出");
 }
 
-parentworker.onerror = (err: ErrorEvent) => {
+parentworker.onAllErrors = (err: ErrorEvent) => {
   console.info("主线程接收到父Worker报错 " + err);
 }
 
@@ -448,7 +471,7 @@ workerPort.onmessage = (e : MessageEvents) => {
     workerPort.postMessage("父Worker向主线程发送信息");
   }
 
-  childworker.onerror = (err: ErrorEvent) => {
+  childworker.onAllErrors = (err: ErrorEvent) => {
     console.info("子Worker发生报错 " + err);
   }
 
@@ -492,7 +515,7 @@ parentworker.onexit = () => {
   console.info("父Worker退出");
 }
 
-parentworker.onerror = (err: ErrorEvent) => {
+parentworker.onAllErrors = (err: ErrorEvent) => {
   console.info("主线程接收到父Worker报错 " + err);
 }
 
@@ -525,7 +548,7 @@ workerPort.onmessage = (e : MessageEvents) => {
     workerPort.postMessage("父Worker向主线程发送信息");
   }
 
-  childworker.onerror = (err: ErrorEvent) => {
+  childworker.onAllErrors = (err: ErrorEvent) => {
     console.info("子Worker发生报错 " + err);
   }
 

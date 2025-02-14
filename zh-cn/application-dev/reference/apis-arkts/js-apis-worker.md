@@ -191,7 +191,7 @@ struct Index {
               console.log("main thread terminate");
             }
 
-            workerInstance.onerror = (err: ErrorEvent) => {
+            workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.log("main error message " + err.message);
             }
           })
@@ -606,7 +606,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 
 ### onAllErrors<sup>16+</sup>
 
-onAllErrors?: [ErrorCallback](#errorcallback16)
+onAllErrors?: ErrorCallback
 
 回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
 [onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
@@ -2493,7 +2493,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   }
 ```
 ### Stage模型
-> 此处以API version 12的工程为例。
+> 此处以API version 16的工程为例。
 ```ts
 // Index.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -2527,7 +2527,7 @@ struct Index {
               console.log("main thread terminate");
             }
 
-            workerInstance.onerror = (err: ErrorEvent) => {
+            workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.log("main error message " + err.message);
             }
           })
