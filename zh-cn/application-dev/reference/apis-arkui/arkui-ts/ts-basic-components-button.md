@@ -343,10 +343,10 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
-| ------- | ------------------ |
-| SMALL | 小尺寸按钮。 |
-| NORMAL  | 正常尺寸按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| SMALL | "small" |小尺寸按钮。 |
+| NORMAL  | "normal" |正常尺寸按钮。              |
 
 ## ButtonRole<sup>12+</sup>枚举说明
 
@@ -356,10 +356,10 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 描述                 |
-| ------- | ------------------ |
-| NORMAL | 正常按钮。 |
-| ERROR  | 警示按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| NORMAL | 0 |正常按钮。 |
+| ERROR  | 1 |警示按钮。              |
 
 ## ButtonConfiguration<sup>12+</sup>对象说明
 
