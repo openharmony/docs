@@ -215,7 +215,7 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 
 |              类型                   |               说明                    |
 | ----------------------------------- | ------------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有临时或持久化授权，false表示不具有临时或持久化授权。 |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示授权类型匹配policyType的查询类型，否则返回false。 |
 
 **错误码：**
 
