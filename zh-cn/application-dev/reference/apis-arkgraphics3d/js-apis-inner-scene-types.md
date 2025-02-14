@@ -100,7 +100,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| geometryType | [GeometryType](#geometrytype)| 是 | 否 | 定义不同的几何类型。 |
+| geometryType | [GeometryType](#geometrytype16)| 是 | 否 | 定义不同的几何类型。 |
 
 ## PrimitiveTopology<sup>16+</sup>
  图元拓扑枚举，在顶点处理过程中，指定顶点不同的解释方式。
@@ -113,13 +113,13 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | TRIANGLE_STRIP | 1 | 每个顶点和前一个三角形的一条边构成新的三角形。 |
 
 ## CustomGeometry<sup>16+</sup>
-自定义几何类型，继承自[GeometryDefinition](#geometrydefinition)。
+自定义几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| topology | [PrimitiveTopology](#primitivetopology)| 否 | 是 | 三角形图元的解析方式，默认值为TRIANGLE_LIST。 |
+| topology | [PrimitiveTopology](#primitivetopology16)| 否 | 是 | 三角形图元的解析方式，默认值为TRIANGLE_LIST。 |
 | vertices | [Vec3](#vec3)[] | 否 | 否 | 模型的顶点数组。 |
 | indices | number[] | 否 | 是 | 顶点索引数组，默认值为null。 |
 | normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为null。 |
@@ -127,7 +127,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为null。 |
 
 ## CubeGeometry<sup>16+</sup>
-立方体几何类型，继承自[GeometryDefinition](#geometrydefinition)。
+立方体几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -136,7 +136,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | size | [Vec3](#vec3) | 否 | 否 | 立方体的宽、高和深度，表示立方体的大小。 |
 
 ## PlaneGeometry<sup>16+</sup>
-平面几何类型，继承自[GeometryDefinition](#geometrydefinition)。
+平面几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -145,7 +145,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | size | [Vec2](#vec2) | 否 | 否 | 平面的宽、高，表示平面的大小。 |
 
 ## SphereGeometry<sup>16+</sup>
-球体几何类型，继承自[GeometryDefinition](#geometrydefinition)。
+球体几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
