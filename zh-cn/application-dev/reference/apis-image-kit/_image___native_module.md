@@ -268,6 +268,8 @@
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetColorSpaceNative](#oh_pixelmapnative_setcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*colorSpaceNative) | 设置NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_GetColorSpaceNative](#oh_pixelmapnative_getcolorspacenative) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, [OH_NativeColorSpaceManager](#oh_nativecolorspacemanager) \*\*colorSpaceNative) | 获取NativeColorSpaceManager对象。  | 
 | [Image_ErrorCode](#image_errorcode) [OH_PixelmapNative_SetMemoryName](#oh_pixelmapnative_setmemoryname) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, char \*name, size_t \*size) | 设置pixelMap内存名字。  | 
+| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, void \*\*addr) | 获取Pixelmap像素数据的内存地址，并锁定这块内存。<br/>当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。 | 
+| [Image_ErrorCode](#image_errorcode)[OH_PixelmapNative_UnaccessPixels](#oh_pixelmapnative_unaccesspixels) ([OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap) | 释放Pixelmap像素数据的内存锁。<br/>该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。 | 
 
 
 ### 变量
@@ -811,6 +813,7 @@ enum Image_ErrorCode
 | IMAGE_UNSUPPORTED_MEMORY_FORMAT  | 不支持的内存格式。<br/>**起始版本：** 13 | 
 | IMAGE_ALLOC_FAILED  | 申请内存失败。 | 
 | IMAGE_COPY_FAILED  | 内存拷贝失败。 | 
+| IMAGE_LOCK_UNLOCK_FAILED | 内存加锁或解锁失败。<br/>**起始版本：** 15 | 
 | IMAGE_UNKNOWN_ERROR  | 未知错误。 | 
 | IMAGE_BAD_SOURCE  | 解码数据源异常。 | 
 | IMAGE_DECODE_FAILED  | 解码失败。 | 
@@ -4155,6 +4158,32 @@ Image_ErrorCode OH_PixelmapInitializationOptions_SetWidth(OH_Pixelmap_Initializa
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
+### OH_PixelmapNative_AccessPixels()
+
+```
+Image_ErrorCode OH_PixelmapNative_AccessPixels(OH_PixelmapNative *pixelmap, void **addr)
+```
+
+**描述**
+
+获取Pixelmap像素数据的内存地址，并锁定这块内存。
+
+当该内存被锁定时，任何修改或释放该Pixelmap的像素数据的操作均会失败或无效。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的Pixelmap指针。 | 
+| addr | Pixelmap内存地址的双指针。 | 
+
+**返回：**
+
+如果操作成功则返回IMAGE_SUCCESS， 如果pixelmap或addr参数无效则返回IMAGE_BAD_PARAMETER， 如果内存锁定失败则返回IMAGE_LOCK_UNLOCK_FAILED。 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
 ### OH_PixelmapNative_ConvertAlphaFormat()
 
 ```
@@ -4672,6 +4701,30 @@ Image_ErrorCode OH_PixelmapNative_Translate(OH_PixelmapNative *pixelmap, float x
 **返回：**
 
 如果操作成功返回 IMAGE_SUCCESS，如果参数错误返回 IMAGE_BAD_PARAMETER， 具体请参考 [Image_ErrorCode](#image_errorcode)。
+
+
+### OH_PixelmapNative_UnaccessPixels()
+
+```
+Image_ErrorCode OH_PixelmapNative_UnaccessPixels(OH_PixelmapNative *pixelmap)
+```
+
+**描述**
+
+释放Pixelmap像素数据的内存锁。
+
+该函数需要与[OH_PixelmapNative_AccessPixels](#oh_pixelmapnative_accesspixels)匹配使用。
+
+**起始版本：** 15
+
+**参数:**
+| 名称 | 描述 | 
+| -------- | -------- |
+| pixelmap | 被操作的Pixelmap指针。 | 
+
+**返回：**
+
+如果操作成功则返回IMAGE_SUCCESS， 如果pixelmap参数无效则返回IMAGE_BAD_PARAMETER， 如果内存解锁失败则返回IMAGE_LOCK_UNLOCK_FAILED。 具体请参考 [Image_ErrorCode](#image_errorcode)。
 
 
 ### OH_PixelmapNative_WritePixels()
