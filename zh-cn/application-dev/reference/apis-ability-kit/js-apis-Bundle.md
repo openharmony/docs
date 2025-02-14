@@ -27,7 +27,7 @@ import bundle from '@ohos.bundle';
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<ApplicationInfo>
 
-以异步方法根据给定的Bundle名称获取ApplicationInfo。使用Promise异步回调。
+根据给定的Bundle名称获取ApplicationInfo。使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -77,7 +77,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId)
 
 getApplicationInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-以异步方法根据给定的Bundle名称获取指定用户下的ApplicationInfo，使用callback形式返回结果。
+根据给定的Bundle名称获取指定用户下的ApplicationInfo，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -123,7 +123,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, userId, (err, data) => {
 
 getApplicationInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
 
-以异步方法根据给定的Bundle名称获取ApplicationInfo，使用callback形式返回结果。
+根据给定的Bundle名称获取ApplicationInfo，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -167,7 +167,7 @@ bundle.getApplicationInfo(bundleName, bundleFlags, (err, data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId?: number): Promise\<Array\<BundleInfo\>\>
 
-以异步方法获取指定用户所有的BundleInfo，使用Promise形式异步回调，
+获取指定用户所有的BundleInfo，使用Promise形式异步回调。
 
 **需要权限：**
 
@@ -214,7 +214,7 @@ bundle.getAllBundleInfo(bundleFlag, userId)
 
 getAllBundleInfo(bundleFlag: BundleFlag, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
-以异步方法获取当前用户所有的BundleInfo，使用callback形式返回结果。
+获取当前用户所有的BundleInfo，使用callback异步回调。
 
 **需要权限：**
 
@@ -254,7 +254,7 @@ bundle.getAllBundleInfo(bundleFlag, (err, data) => {
 
 getAllBundleInfo(bundleFlag: BundleFlag, userId: number, callback: AsyncCallback\<Array\<BundleInfo\>\>): void
 
-以异步方法获取系统中指定用户下所有的BundleInfo，使用callback形式返回结果。
+获取系统中指定用户下所有的BundleInfo，使用callback异步回调。
 
 **需要权限：**
 
@@ -297,7 +297,7 @@ bundle.getAllBundleInfo(bundleFlag, userId, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options?: BundleOptions): Promise\<BundleInfo>
 
-以异步方法根据给定的Bundle名称获取BundleInfo，使用Promise异步回调。
+根据给定的Bundle名称获取BundleInfo，使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -349,7 +349,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, options)
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的Bundle名称获取BundleInfo，使用callback异步回调。
+根据给定的Bundle名称获取BundleInfo，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -392,7 +392,7 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 
 getBundleInfo(bundleName: string, bundleFlags: number, options: BundleOptions, callback: AsyncCallback\<BundleInfo>): void
 
-以异步方法根据给定的Bundle名称获取BundleInfo，使用callback异步回调。
+根据给定的Bundle名称获取BundleInfo，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -566,7 +566,7 @@ bundle.getAllApplicationInfo(bundleFlags, (err, data) => {
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number) : Promise\<BundleInfo>
 
-获取有关HAP中包含的应用程序包的信息，使用Promise形式返回结果。
+获取有关HAP中包含的应用程序包的信息，使用Promise异步回调。
 
 **系统能力：**
 
@@ -607,7 +607,7 @@ bundle.getBundleArchiveInfo(hapFilePath, bundleFlags)
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>) : void
 
-以异步方法获取有关HAP中包含的应用程序包的信息，使用callback形式返回结果。
+获取有关HAP中包含的应用程序包的信息，使用callback异步回调。
 
 **系统能力：**
 
@@ -692,7 +692,7 @@ bundle.getAbilityInfo(bundleName, abilityName)
 
 getAbilityInfo(bundleName: string, abilityName: string, callback: AsyncCallback\<AbilityInfo>): void
 
-通过Bundle名称和组件名获取Ability组件信息，使用callback形式返回结果。
+通过Bundle名称和组件名获取Ability组件信息，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -735,7 +735,7 @@ bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
 
 getAbilityLabel(bundleName: string, abilityName: string): Promise\<string>
 
-通过Bundle名称和ability名称获取应用名称，使用Promise形式返回结果。
+通过Bundle名称和ability名称获取应用名称，使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -783,7 +783,7 @@ bundle.getAbilityLabel(bundleName, abilityName)
 
 getAbilityLabel(bundleName: string, abilityName: string, callback : AsyncCallback\<string>): void
 
-通过Bundle名称和Ability组件名获取应用名称，使用callback形式返回结果。
+通过Bundle名称和Ability组件名获取应用名称，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -826,7 +826,7 @@ bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
-以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用Promise形式返回结果。
+根据给定的AbilityInfo查询ability是否已经启用，使用Promise异步回调。
 
 **系统能力：**
 
@@ -868,7 +868,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 
 isAbilityEnabled(info : AbilityInfo, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的AbilityInfo查询ability是否已经启用，使用callback形式返回结果。
+根据给定的AbilityInfo查询ability是否已经启用，使用callback异步回调。
 
 **系统能力：**
 
@@ -906,7 +906,7 @@ bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
-以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用Promise形式返回结果。
+根据给定的bundleName查询指定应用程序是否已经启用，使用Promise异步回调。
 
 **系统能力：**
 
@@ -946,7 +946,7 @@ bundle.isApplicationEnabled(bundleName)
 
 isApplicationEnabled(bundleName: string, callback : AsyncCallback\<boolean>): void
 
-以异步方法根据给定的bundleName查询指定应用程序是否已经启用，使用callback形式返回结果。
+根据给定的bundleName查询指定应用程序是否已经启用，使用callback异步回调。
 
 **系统能力：**
 
@@ -981,7 +981,7 @@ bundle.isApplicationEnabled(bundleName, (err, data) => {
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId?: number): Promise\<Array\<AbilityInfo\>\>
 
-以异步方法根据给定的意图获取Ability组件信息，使用Promise形式返回结果。
+根据给定的意图获取Ability组件信息，使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1037,7 +1037,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId)
 
 queryAbilityByWant(want: Want, bundleFlags: number, userId: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
-以异步方法根据给定的意图获取指定用户下Ability信息，使用callback形式返回结果。
+根据给定的意图获取指定用户下Ability信息，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1086,7 +1086,7 @@ bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
 
 queryAbilityByWant(want: Want, bundleFlags: number, callback: AsyncCallback\<Array\<AbilityInfo\>\>): void
 
-以异步方法根据给定的意图获取Ability信息，使用callback形式返回结果。
+根据给定的意图获取Ability信息，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1135,7 +1135,7 @@ bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
 
 getLaunchWantForBundle(bundleName: string): Promise\<Want>
 
-以异步方法查询拉起指定应用的want对象，使用Promise形式返回结果。
+查询拉起指定应用的want对象，使用Promise异步回调。
 
 **需要权限：**
 
@@ -1178,7 +1178,7 @@ bundle.getLaunchWantForBundle(bundleName)
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
-以异步方法查询拉起指定应用的want对象，使用callback形式返回结果。
+查询拉起指定应用的want对象，使用callback异步回调。
 
 **需要权限：**
 
@@ -1218,7 +1218,7 @@ bundle.getLaunchWantForBundle(bundleName, (err, data) => {
 
 getNameForUid(uid: number): Promise\<string>
 
-以异步方法通过uid获取对应的Bundle名称，使用Promise形式返回结果。
+通过uid获取对应的Bundle名称，使用Promise异步回调。
 
 **系统能力：**
 
@@ -1257,7 +1257,7 @@ bundle.getNameForUid(uid)
 
 getNameForUid(uid: number, callback: AsyncCallback\<string>) : void
 
-以异步方法通过uid获取对应的Bundle名称，使用callback形式返回结果。
+通过uid获取对应的Bundle名称，使用callback异步回调。
 
 **系统能力：**
 
@@ -1293,7 +1293,7 @@ bundle.getNameForUid(uid, (err, data) => {
 
 getAbilityIcon(bundleName: string, abilityName: string): Promise\<image.PixelMap>
 
-以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/js-apis-image.md)，使用Promise形式返回结果。
+通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/js-apis-image.md)，使用Promise异步回调。
 
 获取调用方自己的信息时不需要权限。
 
@@ -1340,7 +1340,7 @@ bundle.getAbilityIcon(bundleName, abilityName)
 
 getAbilityIcon(bundleName: string, abilityName: string, callback: AsyncCallback\<image.PixelMap>): void
 
-以异步方法通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/js-apis-image.md)，使用callback形式返回结果。
+通过bundleName和abilityName获取对应Icon的[PixelMap](../apis-image-kit/js-apis-image.md)，使用callback异步回调。
 
 获取调用方自己的信息时不需要权限。
 
