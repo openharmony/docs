@@ -36,8 +36,8 @@ TimePicker(options?: TimePickerOptions)
 | -------------------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | selected             | Date                                            | 否   | 设置选中项的时间。<br/>默认值：当前系统时间<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | format<sup>11+</sup> | [TimePickerFormat](#timepickerformat11枚举说明) | 否   | 指定需要显示的TimePicker的格式。<br/>默认值：TimePickerFormat.HOUR_MINUTE <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date('00:00')，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date('23:59')，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| start<sup>16+</sup>  | Date | 否   | 指定时间选择组件的起始时间。<br/>默认值：Date(0, 0, 0, 0, 0, 0)，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。 <br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| end<sup>16+</sup>    | Date | 否   | 指定时间选择组件的结束时间。<br/>默认值：Date(0, 0, 0, 23, 59, 59)，仅生效设置日期的小时和分钟。<br/>设定了start和end的场景下，loop不生效。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## TimePickerFormat<sup>11+</sup>枚举说明
 
