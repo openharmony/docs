@@ -328,7 +328,7 @@ function createEnvironmentPromise() : Promise<Environment> {
 }
 ```
 
-### createGeometry
+### createGeometry\<sup>16+</sup>
 createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometry>
 
 根据场景结点参数和网格数据创建几何对象, 使用Promise异步回调。
@@ -370,7 +370,7 @@ function createGeometryPromise() : Promise<Geometry> {
 }
 ```
 
-### createMesh
+### createMesh\<sup>16+</sup>
 createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
 根据场景资源参数和几何定义创建网格, 使用Promise异步回调。
@@ -411,7 +411,7 @@ function createMeshPromise() : Promise<MeshResource> {
 }
 ```
 
-### createScene
+### createScene\<sup>16+</sup>
 createScene(uri?: ResourceStr): Promise\<Scene>
 
 根据资源参数创建场景, 使用Promise异步回调。
@@ -448,7 +448,7 @@ function createScenePromise() : Promise<Scene> {
 }
 ```
 
-## RenderParameters
+## RenderParameters\<sup>16+</sup>
 渲染参数接口。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
@@ -584,7 +584,7 @@ function destroy() : void {
 }
 ```
 
-### importNode
+### importNode\<sup>16+</sup>
 importNode(name: string, node: Node, parent: Node | null): Node
 
 一般用于从其他场景导入结点。
@@ -614,7 +614,7 @@ function ImportNodeTest() {
 }
 ```
 
-### importScene
+### importScene\<sup>16+</sup>
 importScene(name: string, scene: Scene, parent: Node | null): Node
 
 在当前场景中导入其他场景。
@@ -638,7 +638,7 @@ function ImportSceneTest() {
 }
 ```
 
-### renderFrame
+### renderFrame\<sup>16+</sup>
 renderFrame(params?: RenderParameters): boolean
 
 通过该接口可以实现按需渲染，例如控制渲染帧率。
