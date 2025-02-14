@@ -32,7 +32,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用callback形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfo信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -61,7 +61,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用Promise形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfo信息，使用Promise异步回调。
 
 **需要权限：**
 
@@ -93,7 +93,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用callback形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfos信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -122,7 +122,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用Promise形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfos信息，使用Promise异步回调。
 
 **需要权限：**
 

@@ -18,7 +18,7 @@ import appControl from '@ohos.bundle.appControl'
 
 setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
-以异步方法设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
+设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -79,7 +79,7 @@ try {
 
 setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<void>): void;
 
-以异步方法设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
+设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -186,7 +186,7 @@ try {
 
 getDisposedStatus(appId: string): Promise\<Want>;
 
-以异步方法获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -244,7 +244,7 @@ try {
 
 getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
-以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -352,7 +352,7 @@ try {
 
 deleteDisposedStatus(appId: string): Promise\<void>
 
-以异步方法删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
+删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -410,7 +410,7 @@ try {
 
 deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
-以异步方法删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
+删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
