@@ -759,18 +759,6 @@
 
 **变更信息**：API 9-11，权限级别为system_basic；从API 12开始，变更为system_core。
 
-### ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-允许查询应用的基本信息和其他敏感信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.CLOUDFILE_SYNC
 
 允许应用使用端云同步能力。
