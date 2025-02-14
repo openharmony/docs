@@ -4677,6 +4677,9 @@ copySignal.onCancel().then(() => {
 | atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
+| atimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| mtimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| ctimeNs<sup>15+</sup>  | bigint | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 ### isBlockDevice
