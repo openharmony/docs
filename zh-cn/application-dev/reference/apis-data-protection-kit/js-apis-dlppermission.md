@@ -257,7 +257,7 @@ getDLPSuffix(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件扩展名。例如：原文件"text.txt"，返回拓展名为".dlp"，加密后的DLP文件名为"test.txt.dlp"。 |
+| string | 返回DLP文件扩展名。例如：原文件"text.txt"，加密后的DLP文件名为"test.txt.dlp"，返回拓展名为".dlp"。 |
 
 **错误码：**
 
