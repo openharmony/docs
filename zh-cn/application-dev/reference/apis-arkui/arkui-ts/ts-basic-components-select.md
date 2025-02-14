@@ -718,11 +718,11 @@ menuBackgroundBlurStyle(style: Optional\<BlurStyle>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                | 说明             |
-| ------------------- | ------------------ |
-| START               | 按照语言方向起始端对齐。 |
-| CENTER              | 居中对齐。 |
-| END                 | 按照语言方向末端对齐。 |
+| 名称                | 值 | 说明             |
+| ------------------- | --- | ------------------ |
+| START               | 0 |按照语言方向起始端对齐。 |
+| CENTER              | 1 |居中对齐。 |
+| END                 | 2 |按照语言方向末端对齐。 |
 
 ## MenuItemConfiguration<sup>12+</sup>对象说明
 
@@ -805,6 +805,7 @@ struct SelectExample {
   @State index: number = 2
   @State space: number = 8
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.selection") },
@@ -819,13 +820,13 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .onSelect((index:number, text?: string | undefined)=>{
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -852,10 +853,15 @@ struct SelectExample {
   @State index: number = 2
   @State space: number = 8
   @State arrowPosition: ArrowPosition = ArrowPosition.END
-  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
-  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
-  @State symbolModifier3: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
-  @State symbolModifier4: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  @State symbolModifier1: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_wifi')).fontColor([Color.Green]);
+  @State symbolModifier2: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_star')).fontColor([Color.Red]);
+  @State symbolModifier3: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier4: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+
   build() {
     Column() {
       Select([{ value: 'aaa', symbolIcon: this.symbolModifier1 },
@@ -870,11 +876,11 @@ struct SelectExample {
         .optionFont({ size: 16, weight: 400 })
         .space(this.space)
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
-        .onSelect((index:number, text?: string | undefined)=>{
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -889,13 +895,15 @@ struct SelectExample {
 该示例实现了一个自定义下拉菜选项的Select组件。自定义下拉菜单选项样式为“文本 + Symbol图片 + 空白间隔 + 文本 + 绘制三角形”，点击菜单选项后Select组件显示菜单选项的文本内容。
 
 ```ts
-import { MenuItemModifier, SymbolGlyphModifier } from '@kit.ArkUI'
+import { SymbolGlyphModifier } from '@kit.ArkUI'
 
 class MyMenuItemContentModifier implements ContentModifier<MenuItemConfiguration> {
   modifierText: string = ""
+
   constructor(text: string) {
     this.modifierText = text;
   }
+
   applyContent(): WrappedBuilder<[MenuItemConfiguration]> {
     return wrapBuilder(MenuItemBuilder)
   }
@@ -931,15 +939,18 @@ function MenuItemBuilder(configuration: MenuItemConfiguration) {
 @Component
 struct SelectExample {
   @State text: string = "Content Modifier Select"
-  @State symbolModifier1: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
-  @State symbolModifier2: SymbolGlyphModifier = new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+  @State symbolModifier1: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.ohos_trash')).fontColor([Color.Gray]);
+  @State symbolModifier2: SymbolGlyphModifier =
+    new SymbolGlyphModifier($r('sys.symbol.exposure')).fontColor([Color.Gray]);
+
   build() {
     Column() {
       Row() {
         Select([{ value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier1 },
           { value: 'item1', icon: $r('app.media.icon'), symbolIcon: this.symbolModifier2 }])
           .value(this.text)
-          .onSelect((index:number, text?: string)=>{
+          .onSelect((index: number, text?: string) => {
             console.info('Select index:' + index)
             console.info('Select text:' + text)
           })
@@ -963,6 +974,7 @@ struct SelectExample {
   @State text: string = "TTTTT"
   @State index: number = -1
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
@@ -976,14 +988,19 @@ struct SelectExample {
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .divider( { strokeWidth: 5, color: Color.Blue, startMargin: 10, endMargin: 10 })
-        .onSelect((index:number, text?: string | undefined)=>{
+        .divider({
+          strokeWidth: 5,
+          color: Color.Blue,
+          startMargin: 10,
+          endMargin: 10
+        })
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
@@ -1004,6 +1021,7 @@ struct SelectExample {
   @State text: string = "TTTTT"
   @State index: number = -1
   @State arrowPosition: ArrowPosition = ArrowPosition.END
+
   build() {
     Column() {
       Select([{ value: 'aaa', icon: $r("app.media.icon") },
@@ -1017,14 +1035,14 @@ struct SelectExample {
         .selectedOptionFont({ size: 16, weight: 400 })
         .optionFont({ size: 16, weight: 400 })
         .arrowPosition(this.arrowPosition)
-        .menuAlign(MenuAlignType.START, {dx:0, dy:0})
+        .menuAlign(MenuAlignType.START, { dx: 0, dy: 0 })
         .optionWidth(200)
         .optionHeight(300)
-        .divider( null )
-        .onSelect((index:number, text?: string | undefined)=>{
+        .divider(null)
+        .onSelect((index: number, text?: string | undefined) => {
           console.info('Select:' + index)
           this.index = index;
-          if(text){
+          if (text) {
             this.text = text;
           }
         })
