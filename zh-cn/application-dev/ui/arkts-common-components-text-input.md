@@ -169,7 +169,7 @@ struct Index {
 
 ## 光标避让
 
-[keyBoardAvoidMode](../../application-dev/reference/apis-arkui/arkui-ts/ts-types.md#keyboardavoidmode11)默认的OFFSET和RESIZE在键盘抬起后，不支持二次避让，如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
+[keyBoardAvoidMode](../reference/apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11)默认的OFFSET和RESIZE在键盘抬起后，不支持二次避让，如果想要支持光标位置在点击或者通过接口设置变化后发生二次避让，可以考虑使用OFFSET_WITH_CARET和RESIZE_CARET替换原有的OFFSET和RESIZE模式。<br>
 对于滚动容器更推荐使用RESIZE_WITH_CARET，非滚动容器应该使用OFFSET_WITH_CARET。
 
 ```ts

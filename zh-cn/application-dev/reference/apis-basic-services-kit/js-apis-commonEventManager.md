@@ -53,9 +53,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 发布公共事件回调
 function publishCB(err: BusinessError) {
   if (err) {
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("publish success");
+    console.info(`Succeeded in publishing common event.`);
   }
 }
 // 发布公共事件
@@ -63,7 +63,7 @@ try {
   commonEventManager.publish("event", publishCB);
 } catch (error) {
   let err: BusinessError = error as BusinessError;
-  console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -103,7 +103,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 公共事件相关信息
-let options:commonEventManager.CommonEventPublishData = {
+let options: commonEventManager.CommonEventPublishData = {
   code: 0,			 // 公共事件的初始代码
   data: "initial data",// 公共事件的初始数据
   isOrdered: true	 // 有序公共事件
@@ -111,9 +111,9 @@ let options:commonEventManager.CommonEventPublishData = {
 // 发布公共事件回调
 function publishCB(err: BusinessError) {
   if (err) {
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("publish success");
+    console.info(`Succeeded in publishing common event.`);
   }
 }
 // 发布公共事件
@@ -121,7 +121,7 @@ try {
   commonEventManager.publish("event", options, publishCB);
 } catch (error) {
   let err: BusinessError = error as BusinessError;
-  console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to publish common event. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -156,18 +156,18 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber:commonEventManager.CommonEventSubscriber;
+let subscriber: commonEventManager.CommonEventSubscriber;
 // 订阅者信息
-let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["event"]
 };
 // 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if(!err) {
-    console.info("createSubscriber success");
+    console.info(`Succeeded in creating subscriber.`);
     subscriber = commonEventSubscriber;
   } else {
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
   }
 }
 // 创建订阅者
@@ -175,7 +175,7 @@ try {
   commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {
   let err: BusinessError = error as BusinessError;
-  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -214,17 +214,17 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber:commonEventManager.CommonEventSubscriber;
+let subscriber: commonEventManager.CommonEventSubscriber;
 // 订阅者信息
-let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["event"]
 };
 // 创建订阅者
-commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => {
-  console.info("createSubscriber success");
+commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber: commonEventManager.CommonEventSubscriber) => {
+  console.info(`Succeeded in creating subscriber.`);
   subscriber = commonEventSubscriber;
 }).catch((err: BusinessError) => {
-  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -273,7 +273,7 @@ try {
   subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
 } catch (error) {
   let err: BusinessError = error as BusinessError;
-  console.error(`createSubscriberSync failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -311,33 +311,33 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber:commonEventManager.CommonEventSubscriber;
+let subscriber: commonEventManager.CommonEventSubscriber;
 // 订阅者信息
-let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["event"]
 };
 // 订阅公共事件回调
-function SubscribeCB(err: BusinessError, data:commonEventManager.CommonEventData) {
+function SubscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
   if (err) {
-    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("subscribe success, Consume callback " + JSON.stringify(data));
+    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
   }
 }
 // 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if(!err) {
-    console.info("createSubscriber success");
+    console.info(`Succeeded in creating subscriber.`);
     subscriber = commonEventSubscriber;
     // 订阅公共事件
     try {
       commonEventManager.subscribe(subscriber, SubscribeCB);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
     }
   } else {
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
   }
 }
 // 创建订阅者
@@ -345,7 +345,7 @@ try {
   commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {
   let err: BusinessError = error as BusinessError;
-  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -383,41 +383,41 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
-let subscriber:commonEventManager.CommonEventSubscriber; 
+let subscriber: commonEventManager.CommonEventSubscriber; 
 // 订阅者信息
-let subscribeInfo:commonEventManager.CommonEventSubscribeInfo = {
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["event"]
 };
 // 订阅公共事件回调
-function subscribeCB(err: BusinessError, data:commonEventManager.CommonEventData) {
+function subscribeCB(err: BusinessError, data: commonEventManager.CommonEventData) {
   if (err) {
-    console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("subscribe success, Consume callback " + JSON.stringify(data));
+    console.info(`Succeeded in subscribing, data is ` + JSON.stringify(data));
   }
 }
 // 创建订阅者回调
-function createCB(err: BusinessError, commonEventSubscriber:commonEventManager.CommonEventSubscriber) {
+function createCB(err: BusinessError, commonEventSubscriber: commonEventManager.CommonEventSubscriber) {
   if (err) {
-    console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("createSubscriber success");
+    console.info(`Succeeded in creating subscriber.`);
     subscriber = commonEventSubscriber;
     // 订阅公共事件
     try {
       commonEventManager.subscribe(subscriber, subscribeCB);
     } catch (error) {
       let err: BusinessError = error as BusinessError;
-      console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
+      console.error(`Failed to subscribe. Code is ${err.code}, message is ${err.message}`);
     }
   }
 }
 // 取消订阅公共事件回调
 function unsubscribeCB(err: BusinessError) {
   if (err) {
-    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("unsubscribe success");
+    console.info(`Succeeded in unsubscribing.`);
   }
 }
 // 创建订阅者
@@ -425,7 +425,7 @@ try {
   commonEventManager.createSubscriber(subscribeInfo, createCB);
 } catch (error) {
   let err: BusinessError = error as BusinessError;
-  console.error(`createSubscriber failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
 }
 
 // 取消订阅公共事件
@@ -435,7 +435,7 @@ setTimeout(() => {
     commonEventManager.unsubscribe(subscriber, unsubscribeCB);
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to unsubscribe. Code is ${err.code}, message is ${err.message}`);
   }
 }, 500);
 ```

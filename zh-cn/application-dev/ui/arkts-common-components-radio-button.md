@@ -15,7 +15,7 @@ Radio(options: {value: string, group: string})
 
 其中，value是单选框的名称，group是单选框的所属群组名称。checked属性可以设置单选框的状态，状态分别为false和true，设置为true时表示单选框被选中。
 
-Radio支持设置选中状态和非选中状态的样式，不支持自定义形状。
+Radio支持设置选中状态和非选中状态的样式。
 
 ```ts
 Radio({ value: 'Radio1', group: 'radioGroup' })

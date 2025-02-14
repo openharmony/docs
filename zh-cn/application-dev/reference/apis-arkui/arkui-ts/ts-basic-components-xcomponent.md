@@ -154,7 +154,7 @@ onLoad(callback: OnNativeLoadCallback )
 
 插件加载完成时回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -170,7 +170,7 @@ onDestroy(event: VoidCallback )
 
 插件卸载完成时回调事件。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -621,7 +621,7 @@ struct XComponentExample {
 // xxx.ets
 @Entry
 @Component
-struct Index{
+struct Index {
   @State isLock: boolean = true;
   @State xc_width: number = 500;
   @State xc_height: number = 700;

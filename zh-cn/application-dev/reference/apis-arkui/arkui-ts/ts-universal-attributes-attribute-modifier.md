@@ -32,12 +32,20 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+>  **说明：**
+>
+>  在以下回调函数中，当对instance对象的同一个属性重复设置相同的值或对象时，不会触发该属性的更新。从API version 16开始，如果对instance对象的同一属性重复设置相同的资源类型对象，将会生效并触发更新。
+
 ### applyNormalAttribute
 applyNormalAttribute(instance: T) : void
 
 组件普通状态时的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### applyPressedAttribute
 applyPressedAttribute(instance: T) : void
@@ -46,6 +54,8 @@ applyPressedAttribute(instance: T) : void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### applyFocusedAttribute
 applyFocusedAttribute(instance: T) : void
 
@@ -53,12 +63,16 @@ applyFocusedAttribute(instance: T) : void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ### applyDisabledAttribute
 applyDisabledAttribute(instance: T) : void
 
 组件禁用状态的样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### applySelectedAttribute
 applySelectedAttribute(instance: T) : void
@@ -68,6 +82,8 @@ applySelectedAttribute(instance: T) : void
 开发者可根据需要自定义实现这些方法，通过传入的参数识别组件类型，对instance设置属性，支持使用if/else语法进行动态设置。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数**：
 
@@ -99,14 +115,15 @@ CommonModifier、ColumnModifier、ColumnSplitModifier、RowModifier、RowSplitMo
 6. 多次通过attributeModifier设置属性时，生效的属性为所有属性的并集，相同属性按照设置顺序生效。   
 
 ## 示例
-### 示例1（组件绑定Modifier）
+### 示例1（组件绑定Modifier切换背景颜色）
 
-该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
+该示例通过Button绑定Modifier实现了点击切换背景颜色的效果。
 
 ```ts
 // xxx.ets
 class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   isDark: boolean = false
+
   applyNormalAttribute(instance: ButtonAttribute): void {
     if (this.isDark) {
       instance.backgroundColor(Color.Black)
@@ -138,7 +155,9 @@ struct attributeDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
+### 示例2（组件绑定Modifier实现按压态效果）
 
+该示例通过Button绑定Modifier实现了按压态的效果。如果配合状态管理V2使用，详情见：[Modifier与makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier)。
 
 ```ts
 // xxx.ets
@@ -171,33 +190,35 @@ struct attributePressedDemo {
 ```
 ![attributeModifier_ifelse](figures/attributeModifier_ifelse.gif)
 
-### 示例2（自定义Modifier不支持感知@State装饰的状态数据变化）
+### 示例3（自定义Modifier不支持感知@State装饰的状态数据变化）
 
 该示例通过状态数据设置自定义Modifier的宽度，自定义Modifier不支持感知@State装饰的状态数据变化，点击按钮后宽度不发生改变。
 
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
+const TEST_TAG : string = "AttributeModifier";
 class MyModifier extends CommonModifier {
-  applyNormalAttribute(instance: CommonAttribute) : void{
+  applyNormalAttribute(instance: CommonAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 }
 
 @Component
 struct MyImage1 {
-  @Link modifier : CommonModifier
+  @Link modifier: CommonModifier
 
-  build(){
-    Image($r("app.media.testImage")).attributeModifier(this.modifier as MyModifier)
+  build() {
+    Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
   }
 }
+
 @Entry
 @Component
 struct Index {
-  index : number = 0;
-  @State width1 : number = 100;
-  @State height1 : number = 100;
+  index: number = 0;
+  @State width1: number = 100;
+  @State height1: number = 100;
   @State myModifier: CommonModifier = new MyModifier().width(this.width1).height(this.height1).margin(10)
 
   build() {
@@ -205,17 +226,17 @@ struct Index {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log("Modifier","onClick")
-          this.index ++;
-          if(this.index %2 === 1){
+          console.log(TEST_TAG, "onClick")
+          this.index++;
+          if (this.index % 2 === 1) {
             this.width1 = 10;
-            console.log("Modifier","setGroup1")
-          }else{
+            console.log(TEST_TAG, "setGroup1")
+          } else {
             this.width1 = 10;
-            console.log("Modifier","setGroup2")
+            console.log(TEST_TAG, "setGroup2")
           }
         })
-      MyImage1({modifier:this.myModifier})
+      MyImage1({ modifier: this.myModifier })
     }
     .width('100%')
   }
@@ -223,24 +244,26 @@ struct Index {
 ```
 ![attributeModifier2](figures/attributeModifier2.gif)
 
-### 示例3（Modifier和自定义Modifier的属性同时生效）
+### 示例4（Modifier和自定义Modifier的属性同时生效）
 
 该示例通过自定义Modifier设置了width和height，点击按钮时设置borderStyle和borderWidth，点击后4个属性同时生效。 
 
 ```ts
 import { CommonModifier } from "@kit.ArkUI"
 
+const TEST_TAG: string = "AttributeModifier";
+
 class MyModifier extends CommonModifier {
-  applyNormalAttribute(instance: CommonAttribute) : void{
+  applyNormalAttribute(instance: CommonAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
-  public setGroup1() : void {
+  public setGroup1(): void {
     this.borderStyle(BorderStyle.Dotted)
     this.borderWidth(8)
   }
 
-  public setGroup2() : void {
+  public setGroup2(): void {
     this.borderStyle(BorderStyle.Dashed)
     this.borderWidth(8)
   }
@@ -248,10 +271,10 @@ class MyModifier extends CommonModifier {
 
 @Component
 struct MyImage1 {
-  @Link modifier : CommonModifier
+  @Link modifier: CommonModifier
 
-  build(){
-    Image($r("app.media.testImage")).attributeModifier(this.modifier as MyModifier)
+  build() {
+    Image($r("app.media.startIcon")).attributeModifier(this.modifier as MyModifier)
   }
 }
 
@@ -259,24 +282,24 @@ struct MyImage1 {
 @Component
 struct Index {
   @State myModifier: CommonModifier = new MyModifier().width(100).height(100).margin(10)
-  index : number = 0;
+  index: number = 0;
 
   build() {
     Column() {
       Button($r("app.string.EntryAbility_label"))
         .margin(10)
         .onClick(() => {
-          console.log("Modifier","onClick")
-          this.index ++;
-          if(this.index %2 === 1){
+          console.log(TEST_TAG, "onClick")
+          this.index++;
+          if (this.index % 2 === 1) {
             (this.myModifier as MyModifier).setGroup1()
-            console.log("Modifier","setGroup1")
-          }else{
+            console.log(TEST_TAG, "setGroup1")
+          } else {
             (this.myModifier as MyModifier).setGroup2()
-            console.log("Modifier","setGroup2")
+            console.log(TEST_TAG, "setGroup2")
           }
         })
-      MyImage1({modifier:this.myModifier})
+      MyImage1({ modifier: this.myModifier })
     }
     .width('100%')
   }

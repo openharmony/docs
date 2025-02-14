@@ -47,7 +47,7 @@ Provides information about an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
 | Name                            | Type                                      | Readable  | Writable  | Description              |
 | ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------- |
@@ -172,7 +172,7 @@ Implements configuration management for captions. Before calling any API of **Ca
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-### Attributes
+### Properties
 
 | Name     | Type                              | Readable  | Writable  | Description         |
 | ------- | -------------------------------- | ---- | ---- | ----------- |
@@ -342,7 +342,7 @@ Describes a GUI change event.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-### Attributes
+### Properties
 
 | Name              | Type                                   | Mandatory | Description                   |
 | ---------------- | ------------------------------------- |-----|-----------------------|
@@ -721,7 +721,7 @@ Enables listening for the enabled status changes of the accessibility applicatio
 | Name  | Type                   | Mandatory| Description                                                        |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                  | Yes  | Listening type, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes  | Callback used to return the result. The returned result indicates the global enabled status of the accessibility application.|
+| callback | Callback&lt;boolean&gt; | Yes  | Callback invoked when the enabled status of accessibility application changes. The returned result indicates the global enabled status of the accessibility application.|
 
 **Error codes**
 
@@ -754,7 +754,7 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 | Name     | Type                     | Mandatory  | Description                                      |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | Yes   | Listening type, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of touch guide mode changes.          |
 
 **Error codes**
 
@@ -771,6 +771,39 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.on('touchGuideStateChange', (data: boolean) => {
   console.info(`subscribe touch guide state change, result: ${JSON.stringify(data)}`);
+});
+```
+
+## accessibility.on('screenReaderStateChange')<sup>16+</sup>
+
+on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
+
+Enables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Parameters**
+
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Listening type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of screen reader changes.          |
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.on('screenReaderStateChange', (data: boolean) => {
+  console.info(`subscribe screen reader state change, result: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -837,6 +870,39 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.off('touchGuideStateChange', (data: boolean) => {
   console.info(`Unsubscribe touch guide state change, result: ${JSON.stringify(data)}`);
+});
+```
+
+## accessibility.off('screenReaderStateChange')<sup>16+</sup>
+
+off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
+
+Disables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('screenReaderStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.off('screenReaderStateChange', (data: boolean) => {
+  console.info(`Unsubscribe screen reader state change, result: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1023,6 +1089,30 @@ Checks whether touch guide mode is enabled.
 import { accessibility } from '@kit.AccessibilityKit';
 
 let status: boolean = accessibility.isOpenTouchGuideSync();
+```
+
+## accessibility.isScreenReaderOpenSync<sup>16+</sup>
+
+isScreenReaderOpenSync(): boolean
+
+Checks whether the screen reader mode is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Return value**
+
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if screen reader is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+let status: boolean = accessibility.isScreenReaderOpenSync();
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>

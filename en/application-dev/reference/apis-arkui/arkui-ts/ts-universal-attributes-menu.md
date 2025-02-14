@@ -16,9 +16,7 @@ A context menu – a vertical list of items – can be bound to a component and 
 >
 >  - If a component is a draggable node and **bindContextMenu** is used without a preview specified, the menu will display a floating drag preview, and the menu options will not avoid the preview. To address this issue, you can set a preview or configure the target node to be non-draggable, based on the use case.
 >
->  - Since API version 12, a 500 ms long-press on the menu reveals submenus.
->
->  - Since API version 12, the pressed state of the menu follows finger movement.
+>  - Since API version 12, menus allow users to display a submenu with a 500 ms long press, with the pressed state following the movement of the finger.
 >
 >    1. This feature is only available in scenarios where the [Menu](ts-basic-components-menu.md) component is used and the child components include [MenuItem](ts-basic-components-menuitem.md) or [MenuItemGroup](ts-basic-components-menuitemgroup.md).
 >
@@ -127,7 +125,7 @@ Inherits from [ContextMenuOptions](#contextmenuoptions10).
 | offset                | [Position](ts-types.md#position)                            | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.<br>Default value: **{x:0, y:0}**<br>**NOTE**<br>When the menu is displayed relative to the parent component area, the width or height of the area is automatically counted into the offset based on the **placement** attribute of the menu.<br>When the menu is displayed above the parent component (that is, **placement** is set to **Placement.TopLeft**, **Placement.Top**, or **Placement.TopRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates upward movement.<br>When the menu is displayed below the parent component (that is, **placement** is set to **Placement.BottomLeft**, **Placement.Bottom**, or **Placement.BottomRight**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the left of the parent component (that is, **placement** is set to **Placement.LeftTop**, **Placement.Left**, or **Placement.LeftBottom**), a positive value of **x** indicates leftward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>When the menu is displayed on the right of the parent component (that is, **placement** is set to **Placement.RightTop**, **Placement.Right**, or **Placement.RightBottom**), a positive value of **x** indicates rightward movement relative to the parent component, and a positive value of **y** indicates downward movement.<br>If the display position of the menu is adjusted (different from the main direction of the initial **placement** value), the offset value is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | placement             | [Placement](ts-appendix-enums.md#placement8)                 | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>Setting **placement** to **undefined** or **null** is equivalent to not setting it at all. In this case, if [bindMenu](#bindmenu11) is used, the default value of **placement** is **Placement.BottomLeft**; if [bindContextMenu<sup>8+</sup>](#bindcontextmenu8) is used, the menu is displayed at the touched position; if [bindContextMenu<sup>12+</sup>](#bindcontextmenu12) is used, the default value is **Placement.BottomLeft**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | enableArrow           | boolean                                                      | No  | Whether to display an arrow. If the size and position of the context menu are insufficient for holding an arrow, no arrow is displayed.<br>Default value: **false**, indicating that no arrow is displayed<br>**NOTE**<br>When **enableArrow** is **true**, an arrow is displayed in the position specified by **placement**. If **placement** is not set or its value is invalid, the arrow is displayed above the target. If the position is insufficient for holding the arrow, it is automatically adjusted. When **enableArrow** is **undefined**, no arrow is displayed. This API is supported in **bindContextMenu** since API version 10 and **bindMenu** since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| enableHoverMode<sup>13+</sup>      | boolean                                                      | No  | Whether to enable the hover mode, that is, whether the menu responds in hover mode. When its touched position is within the crease region of the foldable device, the menu does not respond in hover mode.<br>Default value: **false**, indicating that the menu does not respond in hover mode<br>**NOTE**<br>The menu responds in hover mode when **enableHoverMode** is set to **true** and does not when **enableHoverMode** is set to **false** or an invalid value or is not set at all.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| enableHoverMode<sup>16+</sup>      | boolean                                                      | No  | Whether to enable the hover mode, that is, whether the menu responds in hover mode. When its touched position is within the crease region of the foldable device, the menu does not respond in hover mode.<br>Default value: **false**, indicating that the menu does not respond in hover mode<br>**NOTE**<br>The menu responds in hover mode when **enableHoverMode** is set to **true** and does not when **enableHoverMode** is set to **false** or an invalid value or is not set at all.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 | arrowOffset           | [Length](ts-types.md#length)                                 | No  | Offset of the arrow relative to the context menu. The offset settings take effect only when the value is valid, can be converted to a number greater than 0, and does not cause the arrow to extend beyond the safe area of the context menu.<br>Default value: **0**<br>Unit: vp<br>**NOTE**<br>The safe distance of the arrow from the four sides of the menu is the sum of the menu's corner radius and half the width of the arrow.<br>The value of **placement** determines whether the offset is horizontal or vertical.<br>When the arrow is in the horizontal direction of the menu, the offset is the distance from the arrow to the leftmost arrow's safe distance. When the arrow is in the vertical direction of the menu, the offset is the distance from the arrow to the topmost arrow's safe distance.<br>The default position where the arrow is displayed varies with the value of **placement**:<br>Without any avoidance by the menu, when **placement** is set to **Placement.Top** or **Placement.Bottom**, the arrow is displayed horizontally and is centered by default;<br>when **placement** is set to **Placement.Left** or **Placement.Right**, the arrow is displayed vertically and is centered by default;<br>when **placement** is set to **Placement.TopLeft** or **Placement.BottomLeft**, the arrow is displayed horizontally by default, and the distance from the arrow to the left edge of the menu is the arrow's safe distance;<br>when **placement** is set to **Placement.TopRight** or **Placement.BottomRight**, the arrow is displayed horizontally by default, and the distance from the arrow to the right edge of the menu is the arrow's safe distance;<br>when **placement** is set to **Placement.LeftTop** or **Placement.RightTop**, the arrow is displayed vertically by default, and the distance from the arrow to the top edge of the menu is the arrow's safe distance;<br>when **placement** is set to **Placement.LeftBottom** or **Placement.RightBottom**, the arrow is displayed vertically by default, and the distance from the arrow to the bottom edge of the menu is the arrow's safe distance.<br>  This API is supported in **bindContextMenu** since API version 10 and **bindMenu** since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | preview<sup>11+</sup> | [MenuPreviewMode](#menupreviewmode11)\| [CustomBuilder](ts-types.md#custombuilder8) | No  | Preview displayed when the context menu is triggered by a long-press or by calling [bindContextMenu<sup>12+</sup>](#bindcontextmenu12). It can be a screenshot of the target component or custom content.<br>Default value: **MenuPreviewMode.NONE**, indicating no preview.<br>**NOTE**<br>- This parameter has no effect when **responseType** is set to **ResponseType.RightClick**.<br>- If **preview** is set to **MenuPreviewMode.NONE** or is not set, the **enableArrow** parameter is effective.<br>- If **preview** is set to **MenuPreviewMode.IMAGE** or **CustomBuilder**, no arrow will be displayed even when **enableArrow** is **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | previewAnimationOptions<sup>11+</sup> | [ContextMenuAnimationOptions](#contextmenuanimationoptions11) | No   | Start scale ratio and end scale ratio (relative to the original preview image) of the preview animation displayed when the component is long pressed<br>Default value: **{ scale: [0.95, 1.1], transition: undefined, hoverScale: undefined }**<br>**NOTE**<br>If the value is less than or equal to 0, this API does not take effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -158,7 +156,7 @@ Inherits from [ContextMenuOptions](#contextmenuoptions10).
 
 | Name | Type                                      | Mandatory| Description                                |
 | ----- | ------------------------------------------ | ---- | ------------------------------------ |
-| scale | [AnimationRange](#animationrange11)\<number> | No  | Scale ratio of the preview image when the animation starts and scale ratio when the animation ends.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| scale | [AnimationRange](#animationrange11)\<number> | No  | Relative scale ratio at the start and end of the animation compared to the original preview image.<br>**NOTE**<br>The scale ratio must be set based on the specific use case. It is recommended that it be less than the width of the preview image or the maximum constraint of the layout.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | transition<sup>12+</sup> | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10)| No  | Transition effect for the entrance and exit of the menu.<br>**NOTE**<br>During the exit animation of the menu, if there is a switch between landscape and portrait modes, the menu will make way. Level-2 menus do not inherit custom animations. The level-2 menu can be clicked during the pop-up process, but not during the execution of the exit animation.<br>For details, see [TransitionEffect](ts-transition-animation-component.md#transitioneffect10).|
 | hoverScale<sup>12+</sup> | [AnimationRange](#animationrange11)\<number> | No  | Sets the scale ratio of the original component snapshot to the preview image at the beginning and end of the scale animation in a custom long press scenario. There is a transition animation for the switch with the preview image.<br>**NOTE**<br> If the value is less than or equal to 0, this API does not take effect.<br>This API does not take effect in [bindContextMenu<sup>12+</sup>](#bindcontextmenu12) scenarios.<br> This API does not take effect when **transition** is set.<br> If this API and the **scale** API are used at the same time, the start value of the **scale** API does not take effect.<br> To ensure the optimal experience, it is not recommended that the final preview image size be smaller than the size of the original component snapshot. The width and height of the preview animation are affected by the component snapshot and the custom preview size. Verify the display effect based on the actual use case.|
 
@@ -176,9 +174,9 @@ Describes the scale ratio relative to the preview image at the beginning and end
 
 ## Example
 
-### Example 1
+### Example 1: Displaying a Basic Menu
 
-Menu with textual menu items:
+This example demonstrates how to use **bindMenu** to display a basic menu using **MenuElement**.
 
 ```ts
 // xxx.ets
@@ -211,9 +209,9 @@ struct MenuExample {
 
 ![en_image_0000001174582862](figures/en_image_0000001174582862.gif)
 
-### Example 2
+### Example 2: Displaying a Custom Menu
 
-Menu with custom menu items:
+This example shows how to use **bindMenu** with a custom builder to create a custom menu.
 
 ```ts
 @Entry
@@ -261,9 +259,9 @@ struct MenuExample {
 
 ![en_image_0000001186807708](figures/en_image_0000001186807708.gif)
 
-### Example 3
+### Example 3: Displaying a Menu on Long Press
 
-Context menu displayed upon long-press:
+This example demonstrates how to use **bindContextMenu** with **ResponseType.LongPress** to display a menu on long press.
 
 ```ts
 // xxx.ets
@@ -299,9 +297,9 @@ struct ContextMenuExample {
 
 ![longMenu](figures/longMenu.gif)
 
-### Example 4
+### Example 4: Displaying a Menu with an Arrow on Right-Clicking
 
-Directive menu displayed upon right-click:
+This example shows how to use **bindContextMenu** with **ResponseType.RightClick** and **enableArrow** to display a menu with an arrow on right-clicking.
 
 ```ts
 // xxx.ets
@@ -342,9 +340,9 @@ struct DirectiveMenuExample {
 
 ![en-us_image_0000001689126950](figures/en-us_image_0000001689126950.png)
 
-### Example 5
+### Example 5: Displaying a Menu with a Screenshot Preview on Long Press
 
-Context menu displayed upon long-pressing (with preview of component screenshot):
+This example demonstrates how to use **bindContextMenu** with **ResponseType.LongPress** and **MenuPreviewMode.IMAGE** to display a menu with a screenshot preview on long pressure.
 
 ```ts
 // xxx.ets
@@ -386,9 +384,9 @@ struct Index {
 
 ![preview-image](figures/preview-image.png)
 
-### Example 6
+### Example 6: Displaying a Menu with a Custom Preview on Long Press
 
-Context menu displayed upon long-pressing (with preview of custom content):
+This example shows how to use **bindContextMenu** with **ResponseType.LongPress** and a custom preview builder to display a menu with a custom preview on long pressure.
 
 ```ts
 // xxx.ets
@@ -438,9 +436,9 @@ struct Index {
 
 ![preview-builder](figures/preview-builder.png)
 
-### Example 7
+### Example 7: Using a State Variable for Menu Visibility
 
-Context menu displayed upon setting isShown (with preview of custom content):
+This example demonstrates how to use **bindContextMenu** with a state variable to control the visibility of the menu.
 
 ```ts
 // xxx.ets
@@ -496,9 +494,9 @@ struct Index {
 }
 ```
 
-### Example 8
+### Example 8: Using Custom Menu and Preview Animations
 
-This example customizes the display and exit animation effects of the menu and preview through the **transition** attribute.
+This example demonstrates how to use **bindContextMenu** with custom animations for the menu and preview.
 
 ```ts
 // xxx.ets
@@ -564,9 +562,9 @@ struct MenuExample {
 
 ![preview-builder](figures/menu2.gif)
 
-### Example 9
+### Example 9: Setting the Symbol Icon
 
-This example demonstrates a regular menu (using symbol-type icons).
+This example shows how to use **bindMenu** with **symbolIcon** to display a menu with symbol icons.
 
 ```ts
 // xxx.ets
@@ -604,9 +602,9 @@ struct MenuExample {
 
 ![zh-cn_image_0000001174582862](figures/preview-symbol.jpeg)
 
-### Example 10
+### Example 10: Using Shared Element Transition
 
-This example uses **hoverScale** to implement the transition from the component snapshot to the custom preview image.
+This example demonstrates how to use **bindContextMenu** with **hoverScale** to create a shared element transition effect from the component screenshot to the custom preview.
 
 ```ts
 // xxx.ets

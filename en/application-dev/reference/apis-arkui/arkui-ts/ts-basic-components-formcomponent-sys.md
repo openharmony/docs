@@ -57,6 +57,7 @@ Represents the parameters for obtaining a widget ID (**formId**) when querying o
 | --------- | ------------------------------- | ---- | ----------------------------------------------------------------------- |
 | id        | number                 | Yes  | Widget ID of the number type.<br>**NOTE**<br>If the obtained ID is **-1**, the ID is greater than or equal to 2^53. In this case, you need to use **idString** to obtain the ID.                                       |
 | idString      | string                          | Yes  | Widget ID of the string type.                                                             |
+| isLocked<sup>16+</sup>  |boolean  | Yes          | Whether the widget is [locked](../../apis-form-kit/js-apis-app-form-formHost-sys.md#updateformlockedstate16). The value **true** means that the widget is locked, and **false** means the opposite.    |
 
 ## FormDimension
 
@@ -192,7 +193,7 @@ Called when an error occurs during component loading.
 
 | Name| Type                                                        | Mandatory| Description                                           |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error information.|
+| info   |  { errcode: number, msg: string } | Yes  | **errcode**: error code.<br>**msg**: error message.|
 
 ### onRouter
 
@@ -284,3 +285,4 @@ struct CardExample {
 ```
 
 ![Form](figures/form.png)
+<!--no_check-->

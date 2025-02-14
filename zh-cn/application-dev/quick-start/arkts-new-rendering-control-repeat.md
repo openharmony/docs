@@ -4,9 +4,9 @@
 > 
 > Repeat从API version 12开始支持。
 
-本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+本文档仅为开发者指南。API参数说明见：[Repeat API参数说明](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)。
 
-Repeat组件non-virtualScroll场景（不开启virtualScroll开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
+Repeat组件non-virtualScroll场景（不开启[virtualScroll](../reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md#virtualscroll)开关）中，Repeat基于数据源进行循环渲染，需要与容器组件配合使用，且接口返回的组件应当是允许包含在Repeat父容器组件中的子组件，例如，ListItem组件要求Repeat的父容器组件必须为List组件。Repeat循环渲染和ForEach相比有两个区别，一是优化了部分更新场景下的渲染性能，二是组件生成函数的索引index由框架侧来维护。
 
 Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件，必须与滚动类容器组件配合使用。当在滚动类容器组件中使用了Repeat，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会缓存组件，并在下一次迭代中使用。
 
@@ -18,7 +18,7 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 - 当Repeat与自定义组件/@Builder函数混用时，必须将RepeatItem类型整体进行传参，组件才能监听到数据变化，如果只传递`RepeatItem.item`或`RepeatItem.index`，将会出现UI渲染异常。
 - template模板目前只支持virtualScroll场景。当多个template type相同时，Repeat会覆盖旧的`template()`函数，仅生效最新的`template()`。
 - totalCount > array.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。解决方案见[totalCount值大于数据源长度](#totalcount值大于数据源长度)。
-- 在容器组件内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
+- 在滚动容器组件（List、Grid、Swiper、WaterFlow）内使用Repeat的时候，只能包含一个Repeat。以List为例，同时包含ListItem、ForEach、LazyForEach的场景是不推荐的；同时包含多个Repeat也是不推荐的。
 - Repeat组件的virtualScroll场景不支持V1装饰器，使用V1装饰器存在渲染异常，不建议开发者同时使用。
 
 ## 键值生成规则
@@ -27,9 +27,9 @@ Repeat组件virtualScroll场景中，Repeat将从提供的数据源中按需迭�
 
 开发者使用建议：
 
-- 即使数据项有重复，开发者也必须保证键值key唯一（即使数据源发生变化）；
-- 每次执行`key()`函数时，使用相同的数据项作为输入，输出必须是一致的；
-- `key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据项发生了变化，并触发UI重新渲染，会降低性能表现；
+- 即使数据项有重复，开发者也必须保证键值key唯一（即使数据源发生变化）。
+- 每次执行`key()`函数时，使用相同的数据项作为输入，输出必须是一致的。
+- `key()`中使用index是允许的，但不建议这样使用。原因是数据项移动时索引发生变化，即键值发生变化。因此Repeat会认为数据项发生了变化，并触发UI重新渲染，会降低性能表现。
 - 推荐将简单类型数组转换为类对象数组，并添加一个`readonly id`属性，在构造函数中给它赋一个唯一的值。
 
 ### non-virtualScroll规则
@@ -100,13 +100,13 @@ index=10的节点划出了屏幕及父组件预加载的范围。当UI主线程�
 
 数据源的总长度，可以大于已加载数据项的数量。令arr.length表示数据源长度，以下为totalCount的处理规则：
 
-- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动；
-- 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据；
+- totalCount缺省/非自然数时，totalCount默认为arr.length，列表正常滚动。
+- 0 <= totalCount < arr.length时，界面中只渲染“totalCount”个数据。
 - totalCount > arr.length时，代表Repeat将渲染totalCount个数据，滚动条样式根据totalCount值变化。
 
 > **注意：** 
 >
-> 当totalCount < arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
+> 当totalCount > arr.length时，在父组件容器滚动过程中，应用需要保证列表即将滑动到数据源末尾时请求后续数据，开发者需要对数据请求的错误场景（如网络延迟）进行保护操作，直到数据源全部加载完成，否则列表滑动的过程中会出现滚动效果异常。
 
 ## cachedCount规则
 
@@ -914,7 +914,7 @@ class ArrayHolder {
 
 @Entry
 @ComponentV2
-export struct RepeatTemplateSingle {
+struct RepeatTemplateSingle {
   @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
   @Local totalCount: number = this.arrayHolder.arr.length;
   scroller: Scroller = new Scroller();
@@ -967,7 +967,7 @@ export struct RepeatTemplateSingle {
 
 @Entry
 @ComponentV2
-export struct RepeatTemplateSingle {
+struct RepeatTemplateSingle {
   @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
   @Local totalCount: number = this.arrayHolder.arr.length;
   scroller: Scroller = new Scroller();

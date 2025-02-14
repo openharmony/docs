@@ -4148,12 +4148,12 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream;
   });
   ```
 
-## AtomicFile<sup>16+</sup>
+## AtomicFile<sup>15+</sup>
 用于保证文件操作的原子性。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-### constructor<sup>16+</sup>
+### constructor<sup>15+</sup>
 
 constructor(path: string)
 
@@ -4167,7 +4167,7 @@ AtomicFile的构造函数。
   | ------ | ------ | ---- | -------------------------------------- |
   | path   | string | 是    | 文件的沙箱路径。                       |
 
-### getBaseFile<sup>16+</sup>
+### getBaseFile<sup>15+</sup>
 
 getBaseFile(): File
 
@@ -4204,7 +4204,7 @@ try {
 }
 ```
 
-### openRead<sup>16+</sup>
+### openRead<sup>15+</sup>
 
 openRead(): ReadStream
 
@@ -4255,7 +4255,7 @@ try {
 }
 ```
 
-### readFully<sup>16+</sup>
+### readFully<sup>15+</sup>
 
 readFully(): ArrayBuffer
 
@@ -4302,7 +4302,7 @@ try {
 }
 ```
 
-### startWrite<sup>16+</sup>
+### startWrite<sup>15+</sup>
 
 startWrite(): WriteStream
 
@@ -4346,7 +4346,7 @@ try {
 }
 ```
 
-### finishWrite<sup>16+</sup>
+### finishWrite<sup>15+</sup>
 
 finishWrite(): void
 
@@ -4379,7 +4379,7 @@ try {
 }
 ```
 
-### failWrite<sup>16+</sup>
+### failWrite<sup>15+</sup>
 
 failWrite(): void
 
@@ -4415,7 +4415,7 @@ try {
 }
 ```
 
-### delete<sup>16+</sup>
+### delete<sup>15+</sup>
 
 delete(): void
 
@@ -4648,6 +4648,7 @@ copySignal.onCancel().then(() => {
 **示例：**
 
   ```ts
+  import { TaskSignal } from '@kit.CoreFileKit';
   let copySignal: fs.TaskSignal = new TaskSignal();
   let progressListener: fs.ProgressListener = (progress: fs.Progress) => {
     console.info(`processedSize: ${progress.processedSize}, totalSize: ${progress.totalSize}`);

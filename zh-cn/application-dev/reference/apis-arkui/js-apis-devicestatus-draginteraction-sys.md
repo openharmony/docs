@@ -166,7 +166,7 @@ let summarys: Array<dragInteraction.Summary> = dragInteraction.getDataSummary();
 console.log(`Drag interaction summarys: ${JSON.stringify(summarys)}`);
 ```
 
-## dragInteraction.setDragSwitchState<sup>14+</sup>
+## dragInteraction.setDragSwitchState<sup>16+</sup>
 
 setDragSwitchState(enabled: boolean): void
 
@@ -197,7 +197,7 @@ setDragSwitchState(enabled: boolean): void
 dragInteraction.setDragSwitchState(false);
 ```
 
-## dragInteraction.setAppDragSwitchState<sup>14+</sup>
+## dragInteraction.setAppDragSwitchState<sup>16+</sup>
 
 setAppDragSwitchState(enabled: boolean, bundleName: string): void
 

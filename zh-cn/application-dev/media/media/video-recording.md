@@ -61,11 +61,11 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    import { BusinessError } from '@kit.BasicServicesKit';
 
    // 状态上报回调函数
-   avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
+   this.avRecorder.on('stateChange', (state: media.AVRecorderState, reason: media.StateChangeReason) => {
      console.info('current state is: ' + state);
    })
    // 错误上报回调函数
-   avRecorder.on('error', (err: BusinessError) => {
+   this.avRecorder.on('error', (err: BusinessError) => {
      console.error('error happened, error message is ' + err);
    })
    ```
@@ -88,6 +88,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo as fs } form '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
@@ -100,7 +101,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 
    const context: Context = getContext(this); // 参考应用文件访问与管理
    let filePath: string = context.filesDir + '/example.mp4';
-   let videoFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
+   let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd = videoFile.fd; // 获取文件fd
   
    let avConfig: media.AVRecorderConfig = {
@@ -109,7 +110,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
      url: 'fd://' + fileFd.toString(), // 参考应用文件访问与管理开发示例新建并读写一个视频文件
      rotation : 0 // 视频旋转角度，默认为0不旋转，支持的值为0、90、180、270
    };
-   avRecorder.prepare(avConfig).then(() => {
+   this.avRecorder.prepare(avConfig).then(() => {
      console.info('avRecorder prepare success');
    }, (error: BusinessError) => {
      console.error('avRecorder prepare failed');
@@ -124,7 +125,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   avRecorder.getInputSurface().then((surfaceId: string) => {
+   this.avRecorder.getInputSurface().then((surfaceId: string) => {
      console.info('avRecorder getInputSurface success');
    }, (error: BusinessError) => {
      console.error('avRecorder getInputSurface failed');
@@ -154,7 +155,7 @@ AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { fileIo as fs, ReadOptions } from '@kit.CoreFileKit';
+import { fileIo as fs, fileUri } from '@kit.CoreFileKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
@@ -185,7 +186,7 @@ export class VideoRecorderDemo {
   // 创建文件以及设置avConfig.url
   async createAndSetFd() {
     const path: string = context.filesDir + '/example.mp4'; // 文件沙箱路径，文件后缀名应与封装格式对应
-    const videoFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
+    const videoFile: fs.File = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     this.avConfig.url = 'fd://' + videoFile.fd; // 设置url
     this.fileFd = videoFile.fd; // 文件fd
     this.filePath = path;
@@ -274,7 +275,7 @@ export class VideoRecorderDemo {
       // 3.释放录制实例
       await this.avRecorder.release();
       // 4.文件录制完成后，关闭fd,实现略
-      await fs.close(videoFile);
+      await fs.close(this.fileFd);
       // 5.释放相机相关实例
       await this.releaseCamera();
     }
@@ -284,7 +285,7 @@ export class VideoRecorderDemo {
   async saveRecorderAsset() {
     let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
     // 需要确保uriPath对应的资源存在
-    this.uriPath = file.Uri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库
+    this.uriPath = fileUri.getUriFromPath(this.filePath); // 获取录制文件的uri，用于安全控件保存至图库
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = 
       photoAccessHelper.MediaAssetChangeRequest.createVideoAssetRequest(this.context, this.uriPath);
     await phAccessHelper.applyChanges(assetChangeRequest);

@@ -653,33 +653,78 @@ try {
 }
 ```
 
+## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
+
+isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
+
+Checks whether the function key is enabled.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description                                                        |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | Yes  | ID of the function key.|
+
+**Return value**
+
+| Parameters                                         | Description                           |
+| --------------------------------------------- | ------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](errorcode-inputdevice.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 3900002      | There is currently no keyboard device connected. |
+
+**Example**
+
+```js
+// Query the CapsLock status.
+try {
+  inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
+    console.log(`capslock state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## inputDevice.setFunctionKeyEnabled<sup>15+</sup>
 
 setFunctionKeyEnabled(functionKey: FunctionKey, enabled: boolean): Promise&lt;void&gt;
 
 Sets whether to enable the function key.
 
-**System capability**：SystemCapability.MultimodalInput.Input.InputDevice
+**Required permissions**: ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
-**Parameters**：
+**System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
-| Parameters   | Type     | Mandatory | Description                      |
+**Parameters**
+
+| Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | ------------------------- |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15)  | Yes   | Function key id.              |
-| enabled  | boolean | Yes   | Setting the function key status, true is enable, false is disable. |
+| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | Yes  |  ID of the function key.         |
+| enabled  | boolean | Yes  | Whether the function key is enabled. The value **true** indicates that the function key is enabled, and the value **false** indicates the opposite.|
 
-**Error codes**：
+**Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input device Error Codes](errorcode-inputdevice.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Device Error Codes](errorcode-inputdevice.md).
 
-| ID | Error Message                                                     |
+
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permission denied.                                           |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 | 3900002      | There is currently no keyboard device connected. |
 | 3900003      | It is prohibited for non-input applications. |
 
-**Example**：
+**Example**
 
 ```js
 try {
@@ -690,48 +735,6 @@ try {
   });
 } catch (error) {
     console.info(`Set capslock enable error`);
-}
-```
-
-## inputDevice.isFunctionKeyEnabled<sup>15+</sup>
-
-isFunctionKeyEnabled(functionKey: FunctionKey): Promise&lt;boolean&gt;
-
-Checks whether the function key is enabled.
-
-**System capability**：SystemCapability.MultimodalInput.Input.InputDevice
-
-**Parameters**：
-
-| Name     | Type   | Mandatory | Description                                                         |
-| -------- | ------ | ---- | ------------------------------------------------------------ |
-| functionKey | [FunctionKey](js-apis-inputdevice.md#functionkey15) | Yes   | Function key id. |
-
-**Return value**：
-
-| Parameters                                          | Description                            |
-| --------------------------------------------- | ------------------------------- |
-| Promise&lt;boolean&gt; | Return the on/off status of the function key. If it is true, it means is enable, and false means is disable. |
-
-**Error codes**：
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input device Error Codes](errorcode-inputdevice.md).
-
-| ID  | Error Message             |
-| ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 3900002      | There is currently no keyboard device connected. |
-
-**Example**：
-
-```js
-// Checks whether the function key is enabled
-try {
-  inputDevice.isFunctionKeyEnabled(1).then((state: boolean) => {
-    console.log(`capslock state: ${JSON.stringify(state)}`);
-  });
-} catch (error) {
-  console.log(`Failed to get capslock state, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -747,13 +750,13 @@ Obtains the interval since the last system input event. This API uses a promise 
 
 | Parameters                                         | Description                           |
 | --------------------------------------------- | ------------------------------- |
-| Promise&lt;number&gt; | Promise used tothe interval since the last system input event, in μs.|
+| Promise&lt;number&gt; | Promise used to return the interval since the last system input event, in μs.|
 
 **Example**
 
 ```js
   inputDevice.getIntervalSinceLastInput().then((timeInterval: number) => {
-    console.log(`Interval since last input: ${JSON.stringify(number)}`);
+    console.log(`Interval since last input: ${JSON.stringify(timeInterval)}`);
   });
 ```
 
@@ -870,11 +873,10 @@ Enumerates the keyboard types.
 
 ## FunctionKey<sup>15+</sup>
 
-Enumerates function keys.
+Defines the type of a function key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputDevice
 
 | Name                 | Value   | Description       |
 | ------------------- | ---- | --------- |
-| CAPS_LOCK                | 1    | CapsLock key. Enabling or disabling the CapsLock key is allowed only for input keyboard extensions. |
-
+| CAPS_LOCK                | 1    | CapsLock key. This key can be enabled or disabled only for the input keyboard extension. |

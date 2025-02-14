@@ -2,9 +2,8 @@
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with devices over WLAN.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
 
 ## Modules to Import
 
@@ -491,7 +490,7 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| Configuration of the WLAN to connect. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
 
 **Error codes**
 
@@ -1024,7 +1023,7 @@ Removes the specified network configuration.
 
   | **Name**| **Type**| **Mandatory**| **Description**|
   | -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
+  | id | number | Yes| ID of the network configuration to disable.|
 
 **Error codes**
 
@@ -1377,6 +1376,47 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
+## wifiManager.isOpenSoftApAllowed<sup>16+</sup>
+
+isOpenSoftApAllowed(): boolean
+
+Checks whether the hotspot supports dual band.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.MANAGE_WIFI_HOTSPOT (available only to system applications)
+
+**System capability**: SystemCapability.Communication.WiFi.AP.Core
+
+**Return value**
+
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Whether the hotspot supports dual band. The value **true** indicates dual band is supported, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.isOpenSoftApAllowed();
+		console.info("result:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 ## wifiManager.isHotspotActive<sup>9+</sup>
 
 isHotspotActive(): boolean
@@ -1638,7 +1678,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 delHotspotBlockList(stationInfo: StationInfo)
 
-Delets a device from the list of blocked devices of the hotspot.
+Deletes a device from the list of blocked devices of the hotspot.
 
 **System API**: This is a system API.
 

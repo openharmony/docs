@@ -1,0 +1,50 @@
+name: 缺陷反馈|Bug
+description: 当您发现了一个缺陷，需要向社区反馈时，请使用此模板。
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢对OpenHarmony社区的支持与关注，欢迎反馈缺陷。
+  - type: textarea
+    attributes:
+      label: 发生了什么问题？
+      description: 提供尽可能多的信息描述产生了什么问题。
+      placeholder: ""
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 期望行为是什么？
+      description: 描述期望的行为应该是什么样子的。
+      placeholder: ""
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 如何复现该缺陷
+      description: 提供尽可能多的信息描述如何复现该缺陷。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 其他补充信息
+      description: 补充下其他您认为需要提供的信息。
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: 版本或分支信息
+      description: 在哪些版本、分支存在该缺陷的？
+      options:
+        - label: master
+        - label: OpenHarmony-5.0.3-Release
+        - label: OpenHarmony-5.0.2-Release
+        - label: OpenHarmony-5.0.1-Release
+        - label: OpenHarmony-5.0.0-Release
+        - label: OpenHarmony-4.1-Release
+        - label: OpenHarmony-4.0-Release
+        - label: OpenHarmony-3.2-Release
+    validations:
+      required: true

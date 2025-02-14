@@ -60,7 +60,7 @@ import backup from '@ohos.file.backup';
 | 名称                | 类型   | 必填 | 说明                                                                                                |
 | ------------------- | ------ | ---- | --------------------------------------------------------------------------------------------------- |
 | bundleName          | string | 是   | 应用名称，可通过[bundleManager.BundleInfo](../apis-ability-kit/js-apis-bundleManager-bundleInfo.md)提供的获取方式获取。 |
-| lastIncrementalTime | number | 是   | 最后一次的增量备份时间                                                                              |
+| lastIncrementalTime | number | 是   | 最后一次的增量备份时间。                                                                           |
 
 ## BackupParams<sup>12+</sup>
 
@@ -70,7 +70,7 @@ import backup from '@ohos.file.backup';
 
 | 名称       | 类型   | 必填 | 说明                                               |
 | ---------- | ------ | ---- | -------------------------------------------------- |
-| parameters | string | 否   | 以json格式为配置项的字符串，为备份恢复提供可选选项 |
+| parameters | string | 否   | 以json格式为配置项的字符串，为备份恢复提供可选选项。 |
 
 ## BackupPriority<sup>12+</sup>
 
@@ -80,7 +80,7 @@ import backup from '@ohos.file.backup';
 
 | 名称     | 类型   | 必填 | 说明                                                   |
 | -------- | ------ | ---- | ------------------------------------------------------ |
-| priority | number | 否   | 数值越大优先级越高，优先级相同的情况下，先调用的先执行 |
+| priority | number | 否   | 数值越大优先级越高，优先级相同的情况下，先调用的先执行。 |
 
 ## IncrementalBackupData<sup>12+</sup>
 
@@ -697,7 +697,7 @@ updateTimer(bundleName: string, timeout: number): void;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| boolean | 超时时间是否设置成功 |
+| boolean | 超时时间是否设置成功。true为设置成功，false为设置失败。 |
 
 **错误码：**
 
@@ -751,7 +751,7 @@ updateSendRate(bundleName: string, sendRate: number): boolean;
 
 | 类型                | 说明                    |
 | ------------------- | ----------------------- |
-| boolean | 发送速率是否设置成功 |
+| boolean | 发送速率是否设置成功。true为设置成功，false为设置失败。 |
 
 **错误码：**
 

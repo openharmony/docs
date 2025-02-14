@@ -1,5 +1,4 @@
 # Deferred Photo Delivery Sample (ArkTS)
-
 Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
 
 This topic provides sample code that covers the complete deferred photo delivery process to help you understand the complete API calling sequence.
@@ -25,6 +24,11 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 let context = getContext(this);
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
+let photoSession: camera.PhotoSession | undefined = undefined;
+let cameraInput: camera.CameraInput | undefined = undefined;
+let previewOutput: camera.PreviewOutput | undefined = undefined;
+let photoOutput: camera.PhotoOutput | undefined = undefined;
+
 class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayBuffer> {
   onDataPrepared(data: ArrayBuffer) {
     if (data === undefined) {
@@ -32,12 +36,14 @@ class MediaDataHandler implements photoAccessHelper.MediaAssetDataHandler<ArrayB
       return;
     }
     console.info('on image data prepared');
+    // Release the session after the photo buffer is obtained. Releasing it beforehand can lead to photo capture failures.
+    releaseCamSession();
   }
 }
 
 async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
   let requestOptions: photoAccessHelper.RequestOptions = {
-    deliveryMode: photoAccessHelper.DeliveryMode.HIGH_QUALITY_MODE,
+    deliveryMode: photoAccessHelper.DeliveryMode.FAST_MODE,
   }
   const handler = new MediaDataHandler();
   await photoAccessHelper.MediaAssetManager.requestImageData(context, photoAsset, requestOptions, handler);
@@ -46,7 +52,8 @@ async function mediaLibRequestBuffer(photoAsset: photoAccessHelper.PhotoAsset) {
 
 async function mediaLibSavePhoto(photoAsset: photoAccessHelper.PhotoAsset): Promise<void> {
   try {
-    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest =
+      new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
     assetChangeRequest.saveCameraPhoto();
     await phAccessHelper.applyChanges(assetChangeRequest);
     console.info('apply saveCameraPhoto successfully');
@@ -75,7 +82,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   // Create a CameraManager object.
   let cameraManager: camera.CameraManager = camera.getCameraManager(baseContext);
   if (!cameraManager) {
-    console.error("camera.getCameraManager error");
+    console.error('camera.getCameraManager error');
     return;
   }
   // Listen for camera status changes.
@@ -91,19 +98,18 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   // Obtain the camera list.
   let cameraArray: Array<camera.CameraDevice> = cameraManager.getSupportedCameras();
   if (cameraArray.length <= 0) {
-    console.error("cameraManager.getSupportedCameras error");
+    console.error('cameraManager.getSupportedCameras error');
     return;
   }
 
   for (let index = 0; index < cameraArray.length; index++) {
-    console.info('cameraId : ' + cameraArray[index].cameraId);                          // Obtain the camera ID.
-    console.info('cameraPosition : ' + cameraArray[index].cameraPosition);              // Obtain the camera position.
-    console.info('cameraType : ' + cameraArray[index].cameraType);                      // Obtain the camera type.
-    console.info('connectionType : ' + cameraArray[index].connectionType);              // Obtain the camera connection type.
+    console.info('cameraId : ' + cameraArray[index].cameraId); // Obtain the camera ID.
+    console.info('cameraPosition : ' + cameraArray[index].cameraPosition); // Obtain the camera position.
+    console.info('cameraType : ' + cameraArray[index].cameraType); // Obtain the camera type.
+    console.info('connectionType : ' + cameraArray[index].connectionType); // Obtain the camera connection type.
   }
 
   // Create a camera input stream.
-  let cameraInput: camera.CameraInput | undefined = undefined;
   try {
     cameraInput = cameraManager.createCameraInput(cameraArray[0]);
   } catch (error) {
@@ -131,25 +137,25 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     return;
   }
   // Obtain the output streams supported by the camera.
-  let cameraOutputCap: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
+  let cameraOutputCap: camera.CameraOutputCapability =
+    cameraManager.getSupportedOutputCapability(cameraArray[0], camera.SceneMode.NORMAL_PHOTO);
   if (!cameraOutputCap) {
-    console.error("cameraManager.getSupportedOutputCapability error");
+    console.error('cameraManager.getSupportedOutputCapability error');
     return;
   }
-  console.info("outputCapability: " + JSON.stringify(cameraOutputCap));
+  console.info('outputCapability: ' + JSON.stringify(cameraOutputCap));
 
   let previewProfilesArray: Array<camera.Profile> = cameraOutputCap.previewProfiles;
   if (!previewProfilesArray) {
-    console.error("createOutput previewProfilesArray == null || undefined");
+    console.error('createOutput previewProfilesArray == null || undefined');
   }
 
   let photoProfilesArray: Array<camera.Profile> = cameraOutputCap.photoProfiles;
   if (!photoProfilesArray) {
-    console.error("createOutput photoProfilesArray == null || undefined");
+    console.error('createOutput photoProfilesArray == null || undefined');
   }
 
   // Create a preview output stream. For details about the surfaceId parameter, see the XComponent. The preview stream uses the surface provided by the XComponent.
-  let previewOutput: camera.PreviewOutput | undefined = undefined;
   try {
     previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
   } catch (error) {
@@ -159,13 +165,13 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   if (previewOutput === undefined) {
     return;
   }
+
   // Listen for preview output errors.
   previewOutput.on('error', (error: BusinessError) => {
     console.error(`Preview output error code: ${error.code}`);
   });
 
   // Create a photo output stream.
-  let photoOutput: camera.PhotoOutput | undefined = undefined;
   try {
     photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
   } catch (error) {
@@ -180,7 +186,6 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   setPhotoOutputCb(photoOutput);
 
   // Create a session.
-  let photoSession: camera.PhotoSession | undefined = undefined;
   try {
     photoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
   } catch (error) {
@@ -254,7 +259,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
       let err = error as BusinessError;
       console.error('Failed to check whether the flash mode is supported. errorCode = ' + err.code);
     }
-    if(flashModeStatus) {
+    if (flashModeStatus) {
       // Set the flash mode to auto.
       try {
         photoSession.setFlashMode(camera.FlashMode.FLASH_MODE_AUTO);
@@ -296,6 +301,7 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
   if (zoomRatioRange.length <= 0) {
     return;
   }
+
   // Set a zoom ratio.
   try {
     photoSession.setZoomRatio(zoomRatioRange[0]);
@@ -307,7 +313,8 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     quality: camera.QualityLevel.QUALITY_LEVEL_HIGH, // Set the photo quality to high.
     rotation: camera.ImageRotation.ROTATION_0 // Set the rotation angle of the photo to 0.
   }
-  // Use the current photo capture settings to take photos.
+
+  // Use the current photo capture settings to take a photo.
   photoOutput.capture(photoCaptureSetting, (err: BusinessError) => {
     if (err) {
       console.error(`Failed to capture the photo ${err.message}`);
@@ -315,24 +322,64 @@ async function deferredCaptureCase(baseContext: common.BaseContext, surfaceId: s
     }
     console.info('Callback invoked to indicate the photo capture request success.');
   });
+}
 
-  // After the photo capture is complete, call the following APIs to close the camera and release the session. Do not release the session before the photo capture is complete.
+async function releaseCamSession() {
   // Stop the session.
-  await photoSession.stop();
+  await photoSession?.stop();
 
   // Release the camera input stream.
-  await cameraInput.close();
+  await cameraInput?.close();
 
   // Release the preview output stream.
-  await previewOutput.release();
+  await previewOutput?.release();
 
   // Release the photo output stream.
-  await photoOutput.release();
+  await photoOutput?.release();
 
   // Release the session.
-  await photoSession.release();
+  await photoSession?.release();
 
   // Set the session to null.
   photoSession = undefined;
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'PhotoAssetDemo';
+  private mXComponentController: XComponentController = new XComponentController();
+  private surfaceId = '';
+
+  build() {
+    Column() {
+      Column() {
+        XComponent({
+          id: 'componentId',
+          type: XComponentType.SURFACE,
+          controller: this.mXComponentController
+        })
+          .onLoad(async () => {
+            console.info('onLoad is called');
+            this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
+            console.info(`onLoad surfaceId: ${this.surfaceId}`);
+            deferredCaptureCase(context, this.surfaceId);
+          })// The width and height of the surface are opposite to those of the XComponent.
+          .renderFit(RenderFit.RESIZE_CONTAIN)
+      }.height('95%')
+      .justifyContent(FlexAlign.Center)
+
+      Text(this.message)
+        .id('PhotoAssetDemo')
+        .fontSize(38)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
 }
 ```

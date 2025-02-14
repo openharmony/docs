@@ -152,6 +152,7 @@ struct toastExample {
       Blank().height(50);
       Button('Close Toast')
         .height(100)
+        .type(ButtonType.Capsule)
         .onClick(() => {
           try {
             this.promptAction.closeToast(this.toastId);

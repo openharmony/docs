@@ -368,7 +368,7 @@ struct Index {
     '17:30 Dinner'
     '21:30 Snack'
     '22:30 Shower'
-    '1:30 Go to sleep'
+    '1:30 Go to bed'
   ];
 
   build() {
@@ -415,7 +415,7 @@ class TodoListData {
     '17:30 Dinner'
     '21:30 Snack'
     '22:30 Shower'
-    '1:30 Go to sleep'
+    '1:30 Go to bed'
   ];
 }
 
@@ -662,10 +662,12 @@ The code is as follows:
   }
   ```
 
+  
+
   * AllchooseComponent.ets
 
   ```typescript
-@Component
+  @Component
   export struct MultiChooseComponent {
     @Link isFinished: boolean;
   
@@ -685,11 +687,11 @@ The code is as follows:
     }
   }
   ```
-  
+
   * ThingsComponent
 
   ```typescript
-@Component
+  @Component
   export struct ThingsComponent {
     @Prop isFinished: boolean;
     @Prop things: string;
@@ -734,11 +736,11 @@ The code is as follows:
   }
   
   ```
-  
+
   ThingsViewModel.ets
 
   ```typescript
-@Observed
+  @Observed
   export class TodoListData {
     planList: string[] = [
       '7:30 Get up'
@@ -747,11 +749,11 @@ The code is as follows:
       '17:30 Dinner'
       '21:30 Snack'
       '22:30 Shower'
-      '1:30 Go to sleep'
+      '1:30 Go to bed'
     ];
   }
   ```
-  
+
   After the code is split in MVVM mode, the project structure and responsibilities of each module are clearer. If a new page needs to use the event component, you only need to import the corresponding component because the local data is fixed and the logic at the Model layer is not written. You can reconstruct your project structures based on the example.
 
   The following figure shows the effect.

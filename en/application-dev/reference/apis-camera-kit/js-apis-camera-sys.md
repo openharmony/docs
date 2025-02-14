@@ -13,31 +13,6 @@ The camera module provides a set of camera service APIs for you to easily develo
 import { camera } from '@kit.CameraKit';
 ```
 
-## CameraDevice
-
-Defines the camera device information.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name          | Type                              | Read-only| Mandatory| Description       |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| hostDeviceName | string                            | Yes  | Yes  | Name of the remote device. **System API**: This is a system API.|
-| hostDeviceType | [HostDeviceType](#hostdevicetype) | Yes  | Yes  | Type of the remote device. **System API**: This is a system API.|
-
-## HostDeviceType
-
-Enumerates the remote camera types.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.Multimedia.Camera.Core
-
-| Name                         | Value      | Description          |
-| ---------------------------- | ----     | ------------- |
-| UNKNOWN_TYPE                 | 0        | Unknown type.     |
-| PHONE                        | 0x0E     | Phone camera.|
-| TABLET                       | 0x11     | Tablet camera.|
-
 ## SceneMode<sup>11+</sup>
 
 Enumerates the camera scene modes.
@@ -346,9 +321,9 @@ Checks whether a camera device supports prelaunch.
 
 **Parameters**
 
-| Name    | Type            | Mandatory| Description      |
-| -------- | --------------- | ---- | --------- |
-| camera | [CameraDevice](#cameradevice) | Yes| Camera device.|
+| Name    | Type                                              | Mandatory| Description      |
+| -------- |--------------------------------------------------| ---- | --------- |
+| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | Yes| Camera device.|
 
 **Return value**
 
@@ -947,12 +922,12 @@ Currently, the configuration is used for sensor-level prelaunch. It will be used
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-|            Name                |                     Type                 |     Read-only   |     Mandatory    | Description      |
-| ------------------------------- | ---------------------------------------- | ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](#cameradevice)            |      No    |       Yes     | Camera device.        |
-| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)  |      No    |       No     | Type of the parameter used for prelaunch.   |
-| activeTime<sup>11+</sup>        | number                                   |      No    |       No     | Activation time, in minutes.|
-| settingParam<sup>11+</sup>      |  [SettingParam](#settingparam11)         |      No    |       No     | Setting parameter.     |
+|            Name                | Type                                              |     Read-only   |     Mandatory    | Description      |
+| ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
+| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      No    |       Yes     | Camera device.        |
+| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      No    |       No     | Type of the parameter used for prelaunch.   |
+| activeTime<sup>11+</sup>        | number                                           |      No    |       No     | Activation time, in minutes.|
+| settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      No    |       No     | Setting parameter.     |
 
 ## RestoreParamType<sup>11+</sup>
 

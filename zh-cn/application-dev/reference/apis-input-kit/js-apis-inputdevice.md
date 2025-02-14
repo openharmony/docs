@@ -800,14 +800,14 @@ type AxisType = 'touchmajor' | 'touchminor' | 'orientation' | 'x' | 'y' | 'press
 
 | 类型      |说明      |
 | --------- | ------- |
-| 'touchmajor'  | 表示touchmajor轴。|
-| 'touchminor'  | 表示touchminor轴。|
-| 'toolminor'   | 表示toolminor轴。 |
-| 'toolmajor'   | 表示toolmajor轴。 |
-| 'orientation' | 表示orientation轴。|
-|'pressure'    | 表示pressure轴。  |
-| 'x'          | 表示x轴。         |
-| 'y'           | 表示y轴。         |
+| 'touchmajor'  | 椭圆触摸区域长轴。 |
+| 'touchminor'  | 椭圆触摸区域短轴。 |
+| 'toolminor'   | 工具区域短轴。 |
+| 'toolmajor'   | 工具区域长轴。 |
+| 'orientation' | 方向轴。 |
+|'pressure'    | 压力轴。  |
+| 'x'          | 横坐标轴。         |
+| 'y'           | 纵坐标轴。         |
 |'null'        |  无。             |
 
 ## AxisRange

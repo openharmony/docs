@@ -4,7 +4,7 @@
 > 
 > 本模块首批接口从API version 12开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../quick-start/arkts-new-rendering-control-repeat.md)
+本文档仅为API参数说明。开发者指南见：[Repeat开发者指南](../../../quick-start/arkts-new-rendering-control-repeat.md)。
 
 ## 接口
 
@@ -61,7 +61,7 @@ each(itemGenerator: (repeatItem: RepeatItem\<T\>) => void): RepeatAttribute\<T\>
 
 | 参数名 | 类型   | 必填 | 说明 |
 | ------ | ---------- | -------- | -------- |
-| repeatItem  | [RepeatItem](#repeatitemt)\<T\> | 是 | repeat数据项 |
+| repeatItem  | [RepeatItem](#repeatitemt)\<T\> | 是 | repeat数据项。 |
 
 **示例：**
 ```ts
@@ -86,8 +86,8 @@ key(keyGenerator: (item: T, index: number) => string): RepeatAttribute\<T\>
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
-| item  | T | 是 | `arr`数组中的数据项 |
-| index  | number | 是 | `arr`数组中的数据项索引 |
+| item  | T | 是 | `arr`数组中的数据项。 |
+| index  | number | 是 | `arr`数组中的数据项索引。 |
 
 **示例：**
 ```ts
@@ -112,7 +112,7 @@ virtualScroll(virtualScrollOptions?: VirtualScrollOptions): RepeatAttribute\<T\>
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
-| virtualScrollOptions  | [VirtualScrollOptions](#virtualscrolloptions对象说明)  | 否 | 虚拟滚动配置项 |
+| virtualScrollOptions  | [VirtualScrollOptions](#virtualscrolloptions对象说明)  | 否 | 虚拟滚动配置项。 |
 
 **示例：**
 ```ts
@@ -139,9 +139,9 @@ template(type: string, itemBuilder: RepeatItemBuilder\<T\>, templateOptions?: Te
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
-| type | string | 是 | 当前模板类型 |
-| itemBuilder  | [RepeatItemBuilder](#repeatitembuildert)\<T\> | 是 | 组件生成函数 |
-| templateOptions | [TemplateOptions](#templateoptions对象说明) | 否 | 当前模板配置项 |
+| type | string | 是 | 当前模板类型。 |
+| itemBuilder  | [RepeatItemBuilder](#repeatitembuildert)\<T\> | 是 | 组件生成函数。 |
+| templateOptions | [TemplateOptions](#templateoptions对象说明) | 否 | 当前模板配置项。 |
 
 **示例：**
 ```ts
@@ -170,7 +170,7 @@ templateId(typedFunc: TemplateTypedFunc\<T\>): RepeatAttribute\<T\>
 
 | 参数名 | 类型   | 必填 | 说明  |
 | ------ | ---------- | -------- | -------- |
-| typedFunc | [TemplateTypedFunc](#templatetypedfunct)\<T\> | 是 | 生成当前数据项对应的templateId |
+| typedFunc | [TemplateTypedFunc](#templatetypedfunct)\<T\> | 是 | 生成当前数据项对应的templateId。 |
 
 **示例：**
 ```ts

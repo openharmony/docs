@@ -220,6 +220,79 @@ struct CustomLayout {
 
 ![custom_layout_demo2.png](figures/custom_layout_demo2.png)
 
+**示例三：** 
+通过uniqueId获取子组件的FrameNode，并调用FrameNode的API接口修改尺寸、背景颜色。
+```
+import { FrameNode, NodeController } from '@kit.ArkUI';
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      CustomLayout()
+    }
+  }
+}
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext)
+    return this.rootNode
+  }
+}
+
+@Component
+struct CustomLayout {
+  @Builder
+  childrenBuilder() {
+    ForEach([1, 2, 3], (index: number) => { //暂不支持lazyForEach的写法
+      NodeContainer(new MyNodeController())
+    })
+  };
+
+  @BuilderParam builder: () => void = this.childrenBuilder;
+  result: SizeResult = {
+    width: 0,
+    height: 0
+  };
+
+  onPlaceChildren(selfLayoutInfo: GeometryInfo, children: Array<Layoutable>, constraint: ConstraintSizeOptions) {
+    let prev = 0;
+    children.forEach((child) => {
+      let pos = prev + 10;
+      prev = pos + child.measureResult.width
+      child.layout({ x: pos, y: 0 })
+    })
+  }
+
+  onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
+    let size = 100;
+    children.forEach((child) => {
+      console.log("child uniqueId: ", child.uniqueId)
+      const uiContext = this.getUIContext()
+      if (uiContext) {
+        let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(child.uniqueId) // 获取NodeContainer组件的FrameNode
+        if (node) {
+          node.getChild(0)!.commonAttribute.width(100)
+          node.getChild(0)!.commonAttribute.height(100)
+          node.getChild(0)!.commonAttribute.backgroundColor(Color.Pink) // 修改FrameNode的尺寸与背景颜色
+        }
+      }
+      child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
+    })
+    this.result.width = 320;
+    this.result.height = 100;
+    return this.result;
+  }
+
+  build() {
+    this.builder()
+  }
+}
+```
+![custom_layout_demo3.jpg](figures/custom_layout_demo3.jpg)
+
 ## GeometryInfo<sup>10+</sup>
 
 父组件布局信息，继承自[SizeResult](#sizeresult10)。
@@ -248,7 +321,7 @@ struct CustomLayout {
 | 属性         | 类型       | 必填      |  说明                                                      |
 |--------------|---------------------------------- | -----------------------------------------------|---------------------|
 | measureResult| [MeasureResult](#measureresult10)      |   是| 子组件测量后的尺寸信息,继承自[SizeResult](#sizeresult10)<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
-
+| uniqueId<sup>16+</sup>| number | 否 | 系统为子组件分配的唯一标识UniqueID。<br> **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ### layout
 
@@ -315,6 +388,16 @@ getBorderWidth() : DirectionalEdgesT\<number>
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+### 属性
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+| 属性         | 类型       | 必填      |  说明                                                      |
+|--------------|---------------------------------- | -----------------------------------------------|---------------------|
+| uniqueId<sup>16+</sup>| number | 否 | 系统为子组件分配的唯一标识UniqueID。|
 
 ### measure
 

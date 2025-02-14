@@ -18,6 +18,8 @@
 
 ## Example
 
+This example demonstrates how to set different widths for various device types and individually configure the **span** and **offset** attributes for components. It also shows how to implement the same effect using **useSizeType** for sm-sized devices.
+
 <!--code_no_check-->
 
 ```ts

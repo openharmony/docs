@@ -14,7 +14,7 @@ This component can contain child components.
 
 ## APIs
 
-Stack(value?: { alignContent?: Alignment })
+Stack(options?: StackOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -26,6 +26,18 @@ Stack(value?: { alignContent?: Alignment })
 
 | Name      | Type                                   | Mandatory| Description                                                   |
 | ------------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
+| options | [StackOptions](#stackoptions14) | No  | Alignment of child components in the container.|
+
+## StackOptions<sup>14+</sup>
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name         | Type           | Mandatory| Description                       |
+| ------------ | --------------- | ---- | --------------------------- |
 | alignContent | [Alignment](ts-appendix-enums.md#alignment) | No  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
 
 ## Attributes
@@ -48,10 +60,12 @@ Sets the alignment of all child components in the container. When both this attr
 
 | Name| Type                                       | Mandatory| Description                                                       |
 | ------ | ------------------------------------------- | ---- | ----------------------------------------------------------- |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment of all child components in the container.<br>Default value: **Alignment.Center**|
+| value  | [Alignment](ts-appendix-enums.md#alignment) | Yes  | Alignment of child components in the container.<br>Default value: **Alignment.Center**|
 
 
 ## Example
+
+This example demonstrates the display effect of child components when the **alignContent** attribute of the **Stack** component is set to **Alignment.Bottom**.
 
 ```ts
 // xxx.ets

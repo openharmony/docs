@@ -57,8 +57,12 @@ Defines a custom dialog box.
 | shadow<sup>12+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10)   | No| Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | backgroundBlurStyle<sup>12+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | No  | Background blur style of the dialog box.<br>Default value: **BlurStyle.COMPONENT_ULTRA_THICK**<br>**NOTE**<br>Setting this parameter to **BlurStyle.NONE** disables the background blur. When **backgroundBlurStyle** is set to a value other than **NONE**, do not set **backgroundColor**. If you do, the color display may not produce the expected visual effect.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | keyboardAvoidMode<sup>12+</sup> | [KeyboardAvoidMode](../js-apis-promptAction.md#keyboardavoidmode12) | No| How the dialog box avoids the soft keyboard when it is brought up.<br>Default value: **KeyboardAvoidMode.DEFAULT**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| keyboardAvoidDistance<sup>16+</sup>       | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No  | Minimum distance between the dialog box and the keyboard after keyboard avoidance is applied.<br>**NOTE**<br>- Default value: **16vp**<br>- Default unit: vp<br>- This parameter takes effect only when **keyboardAvoidMode** is set to **DEFAULT**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| levelMode<sup>16+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode16) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY.**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| levelUniqueId<sup>16+</sup>       | number | No  | [Unique ID](../js-apis-arkui-frameNode.md#getuniqueid12) of the node under the display level for the page-level dialog box.<br>**NOTE**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
+| immersiveMode<sup>16+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode16) | No  | Overlay effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
 
 > **NOTE**
 >
@@ -67,7 +71,7 @@ Defines a custom dialog box.
 >   It should be noted that this height adjustment is applied to the outermost container. If a child component within this container has been assigned a larger fixed height, since the container does not clip its content by default, parts of the dialog box may still be displayed off-screen.
 > - Use the custom dialog box to contain simple alert messages only. Do not use it as a page. When the dialog box avoids the soft keyboard, there is a 16 vp safe spacing between the two.
 >
-> - Currently, ArkUI dialog boxes do not close automatically when you switch pages unless you manually call **close**. If you need a dialog box to close in sync with page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](../../../ui/arkts-navigation-navigation.md#page-display-mode).
+> - Currently, dialog boxes in ArkUI do not close automatically when you switch pages unless you manually call **close**. To enable a dialog box to be covered during page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](../../../ui/arkts-navigation-navigation.md#page-display-mode).
 
 ## DismissDialogAction<sup>12+</sup>
 
@@ -97,7 +101,24 @@ dialogController : CustomDialogController | null = new CustomDialogController(Cu
 >
 > **CustomDialogController** is effective only when it is a member variable of the **@CustomDialog** and **@Component** decorated struct and is defined in the **@Component** decorated struct. For details, see the following example.
 
+### constructor
+
+constructor(value: CustomDialogControllerOptions)
+
+Constructor for a custom dialog box.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description                  |
+| ------ | ------------------------------------------------------------ | ---- | ---------------------- |
+| value  | [CustomDialogControllerOptions](#customdialogcontrolleroptions) | Yes  | Parameters of the custom dialog box.|
+
 ### open
+
 open()
 
 Opens the content of the custom dialog box. This API can be called multiple times. If the dialog box is displayed in a subwindow, no new subwindow is allowed.
@@ -108,6 +129,7 @@ Opens the content of the custom dialog box. This API can be called multiple time
 
 
 ### close
+
 close()
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -119,7 +141,9 @@ Closes the custom dialog box. If the dialog box is closed, this API does not tak
 
 ## Example
 
-### Example 1
+### Example 1: Opening Nested Dialog Boxes
+
+This example demonstrates how to open one or more custom dialog boxes within another custom dialog box.
 
 ```ts
 // xxx.ets
@@ -266,7 +290,9 @@ struct CustomDialogUser {
 
 ![en-us_image_custom](figures/en-us_image_custom.gif)
 
-### Example 2
+### Example 2: Opening a Dialog Box Outside the Main Window
+
+This example demonstrates how to configure a dialog box to display outside the main window by setting **showInSubWindow** to **true**.
 
 ```ts
 // xxx.ets
@@ -352,7 +378,7 @@ struct CustomDialogUser {
 
 ![en-us_image_custom-showinsubwindow](figures/en-us_image_custom-showinsubwindow.jpg)
 
-### Example 3
+### Example 3: Setting the Dialog Box Style
 This example demonstrates how to set styles of a custom dialog box, including the width, height, background color, and shadow.
 ```ts
 // xxx.ets
@@ -442,7 +468,7 @@ struct CustomDialogUser {
 
 ![en-us_image_custom_style](figures/en-us_image_custom_style.gif)
 
-### Example 4
+### Example 4: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in the hover state on a foldable device.
 
@@ -538,3 +564,4 @@ struct CustomDialogUser {
 ```
 
 ![en-us_image_custom](figures/en-us_image_custom_hovermode.gif)
+<!--no_check-->

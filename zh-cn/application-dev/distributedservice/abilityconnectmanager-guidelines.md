@@ -3,18 +3,18 @@
 
 ## 简介
 
-应用跨设备连接管理可以通过分布式操作系统，将用户拥有的多个设备整合为一个整体，实现设备与设备之间的能力互助，为用户提供比单设备更加高效的沉浸式体验。例如通过手表相机应用拉起手机的相机功能并实现实时画面预览和遥控拍照。
+应用跨设备连接管理可以通过分布式操作系统，将用户拥有的多个设备整合为一个整体，实现设备与设备之间的能力互助，为用户提供比单设备更加高效的沉浸式体验。<!--Del-->例如通过手表相机应用拉起手机的相机功能并实现实时画面预览和遥控拍照。<!--DelEnd-->
 
 
 ### 能力范围
 
 - 跨设备拉起应用：可以通过本设备应用，拉起其他组网设备的同应用，并进行协同作业。
-- 数据交互：实现跨设备数据传输，包括文本信息、字节流、图片、传输流（三方应用仅支持文本信息交互能力）。
+- 数据交互：实现跨设备数据传输<!--Del-->，包括文本信息、字节流、图片、传输流（三方应用仅支持文本信息交互能力）<!--DelEnd-->。
 
 
 ### 亮点特征
 
-通过多样化的跨设备传输流特性，实现本设备相机拉起对端设备相机功能。为用户提供实时预览对端设备摄像头的画面、文本信息交互、接受回传照片、遥控拍照等能力。
+通过多样化的跨设备传输流特性，实现本设备相机拉起对端设备相机功能。为用户提供<!--Del-->实时预览对端设备摄像头的画面、<!--DelEnd-->文本信息交互<!--Del-->、接受回传照片、遥控拍照等<!--DelEnd-->能力。
 
 
 ### 基本概念
@@ -24,7 +24,7 @@
 - **DMS**
   
   DMS（Distributedsched Management Service）是分布式组件管理框架，提供分布式组件的管理能力。
-
+<!--Del-->
 - **字节流**
   
   字节流是数据类型为[ArrayBuffer](../arkts-utils/arraybuffer-object.md)类型的数据。可以被用于存储二进制数据，例如图像或音频数据。
@@ -32,7 +32,7 @@
 - **传输流**
 
   可进行图片、视频流传输的媒体流。
-
+<!--DelEnd-->
 ### 实现原理
 
 应用跨设备连接管理生长在分布式组件管理框架之上，在分布式组件管理框架上进行了JS对象型的封装，能通过分布式组件管理框架服务建立协同关系并进行应用间的连接，数据的交互能力由系统支持。
@@ -47,9 +47,9 @@
 - 设备间需要登录相同的华为账号。
 
 - 不同设备间只有相同bundleName的UIAbility应用才能进行协同。
-
+<!--Del-->
 - 字节流、图片以及传输流的能力仅支持系统应用。
-
+<!--DelEnd-->
 - 业务协同完毕后需及时结束协同状态。未申请长时任务的应用，在锁屏或退至后台5秒以上，会被结束掉协同生命周期。
 
 - 分布式组件管理框架在协同过程中不会对传输内容进行审查。涉及隐私敏感数据时，建议业务通过数据加密、弹框提醒等方式加强信息安全。
@@ -65,7 +65,7 @@
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)。
+2. 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
 3. 用USB线缆将两台调测设备（设备A和设备B）连接到PC。
 4. 打开设备A和设备B的蓝牙，互相识别，实现组网。
 
@@ -100,18 +100,18 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 | connect(sessionId:&nbsp;number):&nbsp;Promise&lt;ConnectResult&gt;; | source侧进行ability的连接。 |
 | acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;void&gt;; | sink侧进行ability的连接。 |
 | disconnect(sessionId:&nbsp;number):&nbsp;void; | 断开ability的连接。 |
-| on(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 监听connect/disconnect/receiveMessage/receiveData/receiveImage事件。 |
-| off(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 取消connect/disconnect/receiveMessage/receiveData/receiveImage事件的监听。 |
+| on(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 监听<!--Del-->connect/disconnect/receiveMessage/receiveData/receiveImage<!--DelEnd-->事件。 |
+| off(type:&nbsp;'connect'&nbsp;\| &nbsp;'disconnect'&nbsp;\| &nbsp;'receiveMessage'&nbsp;\| &nbsp;'receiveData'&nbsp;\| &nbsp;'receiveImage',&nbsp;'connect',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void | 取消<!--Del-->connect/disconnect/receiveMessage/receiveData/receiveImage<!--DelEnd-->事件的监听。 |
 | sendMessage(sessionId:&nbsp;number,&nbsp;msg:&nbsp;string):&nbsp;Promise&lt;void&gt;; | 发送文本信息。 |
-| sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;; | 发送字节流（仅支持系统应用调用）。 |
-| sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap):&nbsp;Promise&lt;void&gt;; | 发送图片（仅支持系统应用调用）。 |
-| createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise&lt;number&gt;; | 创建传输流（仅支持系统应用调用）。 |
-| destroyStream(sessionId:&nbsp;number):&nbsp;void; | 关闭传输流（仅支持系统应用调用）。 |
+|<!--DelRow--> sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;void&gt;; | 发送字节流（仅支持系统应用调用）。 |
+|<!--DelRow--> sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap):&nbsp;Promise&lt;void&gt;; | 发送图片（仅支持系统应用调用）。 |
+|<!--DelRow--> createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise&lt;number&gt;; | 创建传输流（仅支持系统应用调用）。 |
+|<!--DelRow--> destroyStream(sessionId:&nbsp;number):&nbsp;void; | 关闭传输流（仅支持系统应用调用）。 |
 
 
 ### 开发步骤
 
-通过应用跨设备管理模块，设备A拉起并连接设备B上的应用。连接成功后，设备A和设备B通过on接口注册相应事件的回调监听。设备A或设备B通过sendMessage、sendData、sendImage、createStream等接口发送消息、字节流、传输流。对端通过监听到的回调信息进行后续协同业务。
+通过应用跨设备管理模块，设备A拉起并连接设备B上的应用。连接成功后，设备A和设备B通过on接口注册相应事件的回调监听。设备A或设备B通过sendMessage<!--Del-->、sendData、sendImage、createStream等<!--DelEnd-->接口发送消息<!--Del-->、字节流、传输流<!--DelEnd-->。对端通过监听到的回调信息进行后续协同业务。
 
 #### 导入AbilityConnectionManager模块文件
 
@@ -270,7 +270,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 #### 注册事件监听
 
 在应用创建会话成功并获得sessionId后，开发者可调用on()方法进行对应事件的监听，通过触发回调函数的方式通知监听者，以便执行对应业务。
-
+<!--RP1-->
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -290,7 +290,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   abilityConnectionManager.on("receiveImage", this.sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
   });
-  ```
+<!--RP1End-->  ```
 
 #### 发送数据
 
@@ -307,7 +307,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
     hilog.error(0x0000, 'testTag', "connect failed");
   })
   ```
-
+<!--Del-->
 ##### 发送字节流数据
 
 应用连接成功后，开发者可在设备A或者设备B上调用sendData()方法给对端应用发送字节数据（仅支持系统应用调用）。
@@ -388,7 +388,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
     abilityConnectionManager.startStream(streamId);
   })
   ```
-
+<!--DelEnd-->
 #### 结束协同
 
 业务协同完毕后需及时结束协同状态。若是后续短期内还有协同需要，可调用disconnect()方法断开应用间的连接，保留sessionId，以便下次继续使用该sessionId进行连接。若是短期无需使用协同业务，可直接调用destroyAbilityConnectionSession()接口销毁会话，此时会自动断开连接。
@@ -415,11 +415,12 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 
 1. 点击设备A应用的“连接”按钮，此时设备B上的应用被拉起。
 2. 点击设备A应用的“sendMessage”按钮，此时设备B上的应用会触发on()方法的回调，接受该字符串。
+<!--Del-->
 3. 点击设备A应用的“sendData”按钮，此时设备B上的应用会触发on()方法的回调，接受该字节流。
 4. 点击设备A应用的“sendImage”按钮，此时设备B上的应用会触发on()方法的回调，接受该图片。
 5. 点击设备A应用的“启动传输流”按钮，此时设备B上的应用会触发on()方法的回调，接受传输流内容。
+<!--DelEnd-->
 6. 点击设备A或设备B应用的“disconnect”按钮，此时双端会断开连接，触发connect()接口的回调，将断连信息上报给双端应用。
-
 
 ## 常见问题
 

@@ -1,6 +1,6 @@
 # Custom Event Interception
 
-The custom event interception capability provided for components lets you determine the **HitTestMode** attribute of a component based on the position where the event is triggered on the component, and other event information such as the input source.
+The custom event interception capability provided for components allows you to dynamically determine the **HitTestMode** attribute of a component based on the position where the event is triggered on the component, as well as other event information such as the input source.
 
 >  **NOTE**
 >
@@ -19,10 +19,12 @@ onTouchIntercept(callback: Callback<TouchEvent, HitTestMode>)
 
 | Name       | Type                   | Mandatory | Description                         |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#HitTestMode)> | Yes    |  Custom event interception callback to bind to the component, which is called during hit testing. |
+| callback      | Callback<[TouchEvent](ts-universal-events-touch.md#touchevent), [HitTestMode](ts-universal-attributes-hit-test-behavior.md#HitTestMode)>| Yes    |  Custom event interception callback to bind to the component, which is called during hit testing.|
 
 
 ## Example
+
+This example demonstrates how to modify the **HitTestMode** attribute of a component using **onTouchIntercept**.
 
 ```ts
 // xxx.ets

@@ -90,8 +90,8 @@ import { worker } from '@kit.ArkTS';
 // worker线程文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStage1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ets');
 
-// worker线程文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// worker线程文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStage2: worker.ThreadWorker = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 2） 加载[HSP](../quick-start/in-app-hsp.md)中Worker线程文件场景

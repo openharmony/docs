@@ -22,7 +22,7 @@ During the evolution of the state management framework, state management V1 and 
 | \@Observed              | \@ObservedV2              | Indicates that this object is an observable object. However, they have different capabilities.<br>\@Observed is used to observe the top-level properties and it takes effect only when it is used together with \@ObjectLink.<br>\@ObservedV2 does not have the observation capability. It only indicates that this class is observable. To observe the class properties, use together with \@Trace. |
 | \@Track                 | \@Trace                   | \@Track is used for accurate observation. If it is not used, class properties cannot be accurately observed.<br>\@Trace decorated properties can be accurately traced and observed.|
 | \@Component             | \@ComponentV2             | \@Component is the custom component decorator used with the state variables of V1.<br>@ComponentV2 is the custom component decorator used with the state variables of V2.|
-|\@State                 | No external initialization: @Local<br>External initialization once: \@Param and \@Once| Similar to \@Local, \@State decorated variables can work as the data source which can be directly migrated without external initialization. If the external initialization is required, use \@Param and \@Once. For details, see [@State -> @Local](#state---local). |
+|\@State                 | No external initialization: @Local<br>External initialization once: \@Param and \@Once| Similar to \@Local, \@State decorated variables can work as the data source which can be directly migrated without external initialization. If the external initialization is required, use \@Param and \@Once. For details, see [@State -> @Local](#state-local).|
 | \@Prop                  | \@Param                   | Similar to \@Param, \@Prop is used to decorate custom component variables. When the input parameter is of the complex type, \@Prop is used to deep copy and \@Param is used to import the parameter.|
 | \@Link                  | \@Param\@Event    | \@Link implements a two-way synchronization encapsulated by the framework of V1. Developers using V2 can implement the two-way synchronization through @Param and @Event.|
 | \@ObjectLink            | \@Param                   | Compatible. \@ObjectLink needs to be initialized by the instance of the @Observed decorated class, but \@Param does not have this constraint.|
@@ -36,7 +36,7 @@ During the evolution of the state management framework, state management V1 and 
 
 ## Decorator Migration Examples
 
-### @State -> @Local
+### @State->@Local
 
 #### Migration Rules
 In V1, the \@State decorator is used to decorate state variables inside a component. In V2, the \@Local decorator is provided as a substitute. However, the observation capability and initialization rules of the two decorators are obviously different. The migration policies for different use scenarios are as follows:
@@ -1833,7 +1833,7 @@ struct NavigationContentMsgStack {
 }
 ```
 
-### AppStorage -> AppStorageV2
+### AppStorage->AppStorageV2
 In the previous section, the global @ObserveV2 or @Trace reconstruction is not suitable for cross-ability data sharing. In this case, **AppStorageV2** can be used.
 
 V1:
@@ -2205,7 +2205,7 @@ struct Index {
 }
 ```
 
-### PersistentStorage -> PersistenceV2
+### PersistentStorage->PersistenceV2
 In V1, **PersistentStorage** provides the capability of persisting UI data. In V2, **PersistenceV2** APIs are provided to replace **PersistentStorage**.
 - The triggering time of **PersistentStorage** depends on the observation capability of **AppStorage** and is coupled with **AppStorage**. You cannot select the time to write or read persistent data.
 - **PersistentStorage** uses serialization and deserialization. Without inputting types, **PersistentStorage** will lose its type and the property method of the object cannot be persisted.
@@ -3077,5 +3077,3 @@ struct Index {
   }
 }
 ```
-
-<!--no_check-->

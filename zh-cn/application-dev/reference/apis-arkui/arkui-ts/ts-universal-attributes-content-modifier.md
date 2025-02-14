@@ -32,6 +32,8 @@ applyContent() : WrappedBuilder<[T]>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数**：
 
 | 参数 | 描述                                                         |
@@ -51,6 +53,8 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 参数名  | 类型    | 说明              |
 | ------ | ------ | ---------------- |
 | enabled | boolean | 如果该值为true，则contentModifier可用，并且可以响应triggerChange等操作，如果设置为false，则不会响应triggerChange等操作。 |
@@ -65,40 +69,59 @@ ButtonConfiguration、CheckBoxConfiguration、DataPanelConfiguration、TextClock
 // xxx.ets
 class MyCheckboxStyle implements ContentModifier<CheckBoxConfiguration> {
   selectedColor: Color = Color.White
+
   constructor(selectedColor: Color) {
     this.selectedColor = selectedColor;
   }
-  applyContent() : WrappedBuilder<[CheckBoxConfiguration]>
-  {
+
+  applyContent(): WrappedBuilder<[CheckBoxConfiguration]> {
     return wrapBuilder(buildCheckbox)
   }
 }
 
-@Builder function buildCheckbox(config: CheckBoxConfiguration) {
-  Column({space:10}) {
-      Text(config.name  + (config.selected ? "（ 选中 ）" : "（ 非选中 ）"))
-      Shape() {
-        Path().width(200).height(60).commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z').fillOpacity(0).strokeWidth(3)
-        Path().width(10).height(10).commands('M50 0 L100 100 L0 100 Z')
-          .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
-          .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
-          .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
-          .margin({left:11,top:10})
-      }
-      .width(300)
-      .height(200)
-      .viewPort({ x: 0, y: 0, width: 310, height: 310 })
-      .strokeLineJoin(LineJoinStyle.Miter)
-      .strokeMiterLimit(5)
-      .onClick(()=>{
-            if (config.selected) {
-              config.triggerChange(false)
-            } else {
-              config.triggerChange(true)
-            }
-      }).margin({left:150})
+@Builder
+function buildCheckbox(config: CheckBoxConfiguration) {
+  Column({ space: 10 }) {
+    Text(config.name + (config.selected ? "（ 选中 ）" : "（ 非选中 ）"))
+    Shape() {
+      // 五边形复选框样式
+      Path()
+        .width(200)
+        .height(60)
+        .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
+        .fillOpacity(0)
+        .strokeWidth(3)
+      // 红色三角图案样式
+      Path()
+        .width(10)
+        .height(10)
+        .commands('M50 0 L100 100 L0 100 Z')
+        .visibility(config.selected ? Visibility.Visible : Visibility.Hidden)
+        .fill(config.selected ? (config.contentModifier as MyCheckboxStyle).selectedColor : Color.Black)
+        .stroke((config.contentModifier as MyCheckboxStyle).selectedColor)
+        .margin({ left: 11, top: 10 })
     }
+    .width(300)
+    .height(200)
+    .viewPort({
+      x: 0,
+      y: 0,
+      width: 310,
+      height: 310
+    })
+    .strokeLineJoin(LineJoinStyle.Miter)
+    .strokeMiterLimit(5)
+    .onClick(() => {
+      // 点击后，触发复选框点击状态变化
+      if (config.selected) {
+        config.triggerChange(false)
+      } else {
+        config.triggerChange(true)
+      }
+    })
+    .margin({ left: 150 })
   }
+}
 
 @Entry
 @Component
@@ -107,11 +130,11 @@ struct Index {
     Row() {
       Column() {
         Checkbox({ name: '复选框状态', group: 'checkboxGroup' })
-        .select(true)
-        .contentModifier(new MyCheckboxStyle(Color.Red))
-        .onChange((value: boolean) => {
-          console.info('Checkbox change is' + value)
-        })
+          .select(true)
+          .contentModifier(new MyCheckboxStyle(Color.Red))
+          .onChange((value: boolean) => {
+            console.info('Checkbox change is' + value)
+          })
       }
       .width('100%')
     }

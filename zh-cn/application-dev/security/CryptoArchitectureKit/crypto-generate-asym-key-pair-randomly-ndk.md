@@ -8,7 +8,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 随机生成RSA密钥对

@@ -707,7 +707,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.on('continuousTaskCancel')<sup>16+</sup>
+## backgroundTaskManager.on('continuousTaskCancel')<sup>15+</sup>
 
 on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&gt;): void
 
@@ -721,8 +721,8 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 是    | 长时任务取消回调信息。 |
+| type   | string                            | 是    | 取消长时任务，固定取值为'continuousTaskCancel'。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 是    | 回调函数，返回长时任务取消原因。 |
 
 **错误码**：
 
@@ -760,7 +760,7 @@ export default class EntryAbility extends UIAbility {
     }
 };
 ```
-## backgroundTaskManager.off('continuousTaskCancel')<sup>16+</sup>
+## backgroundTaskManager.off('continuousTaskCancel')<sup>15+</sup>
 
 off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInfo&gt;): void
 
@@ -774,8 +774,8 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 
 | 参数名       | 类型                                 | 必填   | 说明                                       |
 | --------- | ---------------------------------- | ---- | ---------------------------------------- |
-| type   | continuousTaskCancel                            | 是    | 固定取值为'continuousTaskCancel'，表示取消长时任务。 |
-| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason16)>       | 否    | 长时任务取消回调信息，未传入则取消所有注册回调。 |
+| type   | string                            | 是    | 取消长时任务，固定取值为'continuousTaskCancel'。 |
+| callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册回调。 |
 
 **错误码**：
 
@@ -846,18 +846,16 @@ export default class EntryAbility extends UIAbility {
 
 长时任务通知信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。|
-| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。|
-| notificationId | number | 是    | 长时任务通知 Id。|
-| continuousTaskId<sup>16+</sup> | number | 是    | 长时任务 Id。|
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| notificationId | number | 是    | 长时任务通知 Id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| continuousTaskId<sup>15+</sup> | number | 是    | 长时任务 Id。|
 
-## ContinuousTaskCancelInfo<sup>16+</sup>
+## ContinuousTaskCancelInfo<sup>15+</sup>
 
 长时任务取消信息。
 
@@ -865,10 +863,10 @@ export default class EntryAbility extends UIAbility {
 
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
-| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason16) | 是    | 长时任务取消原因。|
+| reason | [ContinuousTaskCancelReason](#continuoustaskcancelreason15) | 是    | 长时任务取消原因。|
 | id | number | 是    | 被取消的长时任务 Id。|
 
-## ContinuousTaskCancelReason<sup>16+</sup>
+## ContinuousTaskCancelReason<sup>15+</sup>
 
 长时任务取消原因。
 
@@ -879,11 +877,11 @@ export default class EntryAbility extends UIAbility {
 | USER_CANCEL             | 1    | 用户取消。                  |
 | SYSTEM_CANCEL           | 2    | 系统取消。                  |
 | USER_CANCEL_REMOVE_NOTIFICATION         | 3    | 用户移除通知。预留接口，暂未启用。                    |
-| SYSTEM_CANCEL_DATA_TRANSFER_LOW_SPEED                | 4    | 申请dataTransfer类型长时任务，但是网络传输速率低。预留接口，暂未启用。                  |
-| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | 申请audioPlayback类型长时任务，但是未接入avseesion。预留接口，暂未启用。                  |
-| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING | 6    | 申请audioPlayback类型长时任务，但是未播音。预留接口，暂未启用。                 |
-| SYSTEM_CANCEL_AUDIO_RECORDING_NOT_RUNNING | 7    | 申请audioRecording类型长时任务，但是未录制。预留接口，暂未启用。                 |
-| SYSTEM_CANCEL_NOT_USE_LOCATION            | 8    | 申请location类型长时任务，但是未使用定位。预留接口，暂未启用。        |
-| SYSTEM_CANCEL_NOT_USE_BLUETOOTH            | 9    | 申请bluetoothInteraction类型长时任务，但是未使用蓝牙。预留接口，暂未启用。        |
-| SYSTEM_CANCEL_NOT_USE_MULTI_DEVICE            | 10    | 申请multiDeviceConnection类型长时任务，但是未使用分布式。预留接口，暂未启用。        |
-| SYSTEM_CANCEL_USE_ILLEGALLY            | 11    | 使用非法类型的长时任务，如申请audioPlayback类型长时任务，但是使用播音及定位业务。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_DATA_TRANSFER_LOW_SPEED                | 4    | 申请DATA_TRANSFER类型长时任务，但是数据传输速率低。预留接口，暂未启用。                  |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_USE_AVSESSION   | 5    | 申请AUDIO_PLAYBACK类型长时任务，但是未接入[AVSession](../../media/avsession/avsession-overview.md)。预留接口，暂未启用。                  |
+| SYSTEM_CANCEL_AUDIO_PLAYBACK_NOT_RUNNING | 6    | 申请AUDIO_PLAYBACK类型长时任务，但是未播放音视频。预留接口，暂未启用。                 |
+| SYSTEM_CANCEL_AUDIO_RECORDING_NOT_RUNNING | 7    | 申请AUDIO_RECORDING类型长时任务，但是未录制。预留接口，暂未启用。                 |
+| SYSTEM_CANCEL_NOT_USE_LOCATION            | 8    | 申请LOCATION类型长时任务，但是未使用定位导航。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_NOT_USE_BLUETOOTH            | 9    | 申请BLUETOOTH_INTERACTION类型长时任务，但是未使用蓝牙相关业务。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_NOT_USE_MULTI_DEVICE            | 10    | 申请MULTI_DEVICE_CONNECTION类型长时任务，但是未使用多设备互联。预留接口，暂未启用。        |
+| SYSTEM_CANCEL_USE_ILLEGALLY            | 11    | 使用非法类型的长时任务，如申请AUDIO_PLAYBACK类型长时任务，但是使用音视频播放及定位导航业务。预留接口，暂未启用。        |
