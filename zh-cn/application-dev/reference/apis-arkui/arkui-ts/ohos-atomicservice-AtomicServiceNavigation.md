@@ -50,7 +50,7 @@ AtomicServiceNavigation({
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。|
 | titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。|
-| gradientBackground | [GradientBackground<sup>16+</sup>](#gradientbackground16) | 否 | @Prop | 背景色选项。|
+| gradientBackground<sup>16+</sup> | [GradientBackground](#gradientbackground16) | 否 | @Prop | 背景色选项。|
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
