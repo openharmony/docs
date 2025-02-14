@@ -81,6 +81,21 @@
 
 **变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
 
+### ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+允许查询应用的基本信息和其他敏感信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：7
+
+**变更信息**：API 7-13该权限仅向系统应用开放；从API 14开始，开放范围从系统应用变更为企业普通应用。
+
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
 
 允许应用查询域账号信息。
