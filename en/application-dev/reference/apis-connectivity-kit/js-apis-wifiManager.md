@@ -1012,7 +1012,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
       }
       wifiManager.addDeviceConfig(config,(error,result) => {
         console.info("result:" + JSON.stringify(result));
-        });
+      });
     }catch(error){
       console.error("failed:" + JSON.stringify(error));
     }
@@ -1054,14 +1054,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
     try {
       let configs = wifiManager.getDeviceConfigs();
       console.info("configs:" + JSON.stringify(configs));
-      let len = configs.length;
-      console.log("result len: " + len);
-      if(len > 0){
-        for (let i = 0; i < len; ++i) {
-          console.info("ssid: " + configs[i].ssid);
-          console.info("bssid: " + configs[i].bssid);
-        }
-      }
     }catch(error){
       console.error("failed:" + JSON.stringify(error));
     }
