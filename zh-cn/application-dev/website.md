@@ -1172,7 +1172,7 @@
         - HiAppEvent使用指导<!--hiappevent-->
           - [HiAppEvent介绍](dfx/hiappevent-intro.md)
           - 事件订阅<!--event-subscription-->
-            - 应用事件<!--app-event-->
+            - 进程线程通信<!--app-event-->
               - [订阅应用事件（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
               - [订阅应用事件（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
             - 系统事件<!--system-events-->
@@ -1656,8 +1656,6 @@
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
         - [Rawfile开发指导](napi/rawfile-guidelines.md)
-      - 网络管理
-        - [NetConnection开发指导](napi/native-netmanager-guidelines.md)
       - 线程调度<!--thread-scheduling-->
         - [QOS开发指导](napi/qos-guidelines.md)
       - 内存管理<!--memory-management-->
@@ -2095,7 +2093,9 @@
         - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
         - [分布式键值数据库错误码](reference/apis-arkdata/errorcode-distributedKVStore.md)
         - [用户首选项错误码](reference/apis-arkdata/errorcode-preferences.md)
+        <!--Del-->
         - [统一数据管理框架错误码](reference/apis-arkdata/errorcode-udmf.md)
+        <!--DelEnd-->
     - ArkTS（方舟编程语言）<!--arkts-api-->
       - ArkTS API<!--arkts-arkts--> 
         - [@arkts.collections (ArkTS容器集)](reference/apis-arkts/js-apis-arkts-collections.md)
@@ -3393,6 +3393,7 @@
           - [系统电源管理错误码](reference/apis-basic-services-kit/errorcode-power.md)
           - [账号管理错误码](reference/apis-basic-services-kit/errorcode-account.md)
           - [升级错误码](reference/apis-basic-services-kit/errorcode-update.md)
+          - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
           <!--Del-->
           - [锁屏服务错误码](reference/apis-basic-services-kit/errorcode-screenlock.md)
           - [设备证明错误码](reference/apis-basic-services-kit/errorcode-deviceAttest.md)
