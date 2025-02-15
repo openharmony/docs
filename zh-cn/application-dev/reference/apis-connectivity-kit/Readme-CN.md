@@ -1,4 +1,4 @@
-# Connectivity Kit（短距通信服务）<!--connectivity-api-->
+# Connectivity Kit（短距通信服务）
 
 - ArkTS API<!--connectivity-arkts-->
   - [@ohos.bluetooth.a2dp(蓝牙a2dp模块)(推荐)](js-apis-bluetooth-a2dp.md)
