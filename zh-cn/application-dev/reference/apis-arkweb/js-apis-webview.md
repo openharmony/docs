@@ -14370,7 +14370,7 @@ struct WebComponent {
 }
 ```
 
-## ProxySchemeFilter<sup>16+</sup>
+## ProxySchemeFilter<sup>15+</sup>
 
 使用代理的请求的scheme信息。
 
@@ -14382,11 +14382,11 @@ struct WebComponent {
 | MATCH_HTTP        | 1 |HTTP请求会使用代理。|
 | MATCH_HTTPS       | 2 |HTTPS请求会使用代理。|
 
-## ProxyConfig<sup>16+</sup>
+## ProxyConfig<sup>15+</sup>
 
 可以通过该类提供的接口对代理进行配置。
 
-### insertProxyRule<sup>16+</sup>
+### insertProxyRule<sup>15+</sup>
 
 insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
 
@@ -14413,7 +14413,7 @@ insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### insertDirectRule<sup>16+</sup>
+### insertDirectRule<sup>15+</sup>
 
 insertDirectRule(schemeFilter?: ProxySchemeFilter): void
 
@@ -14439,7 +14439,7 @@ insertDirectRule(schemeFilter?: ProxySchemeFilter): void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### insertBypassRule<sup>16+</sup>
+### insertBypassRule<sup>15+</sup>
 
 insertBypassRule(bypassRule: string): void
 
@@ -14465,7 +14465,7 @@ insertBypassRule(bypassRule: string): void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### bypassHostnamesWithoutPeriod<sup>16+</sup>
+### bypassHostnamesWithoutPeriod<sup>15+</sup>
 
 bypassHostnamesWithoutPeriod(): void
 
@@ -14477,7 +14477,7 @@ bypassHostnamesWithoutPeriod(): void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### clearImplicitRules<sup>16+</sup>
+### clearImplicitRules<sup>15+</sup>
 
 clearImplicitRules(): void
 
@@ -14489,7 +14489,7 @@ clearImplicitRules(): void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### enableReverseBypass<sup>16+</sup>
+### enableReverseBypass<sup>15+</sup>
 
 enableReverseBypass(reverse: boolean): void
 
@@ -14515,7 +14515,7 @@ enableReverseBypass(reverse: boolean): void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### getBypassRules<sup>16+</sup>
+### getBypassRules<sup>15+</sup>
 
 getBypassRules(): Array\<string\>
 
@@ -14533,7 +14533,7 @@ getBypassRules(): Array\<string\>
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### getProxyRules<sup>16+</sup>
+### getProxyRules<sup>15+</sup>
 
 getProxyRules(): Array\<ProxyRule\>
 
@@ -14551,7 +14551,7 @@ getProxyRules(): Array\<ProxyRule\>
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### isReverseBypassEnabled<sup>16+</sup>
+### isReverseBypassEnabled<sup>15+</sup>
 
 isReverseBypassEnabled(): boolean
 
@@ -14570,11 +14570,11 @@ isReverseBypassEnabled(): boolean
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
 
-## ProxyRule<sup>16+</sup>
+## ProxyRule<sup>15+</sup>
 
 [insertProxyRule](#insertproxyrule16)中使用的代理规则。
 
-### getSchemeFilter<sup>16+</sup>
+### getSchemeFilter<sup>15+</sup>
 
 getSchemeFilter(): ProxySchemeFilter
 
@@ -14592,7 +14592,7 @@ getSchemeFilter(): ProxySchemeFilter
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### getUrl<sup>16+</sup>
+### getUrl<sup>15+</sup>
 
 getUrl(): string
 
@@ -14610,7 +14610,7 @@ getUrl(): string
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-## OnProxyConfigChangeCallback<sup>16+</sup>
+## OnProxyConfigChangeCallback<sup>15+</sup>
 
 type OnProxyConfigChangeCallback = () => void
 
@@ -14622,11 +14622,11 @@ type OnProxyConfigChangeCallback = () => void
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-## ProxyController<sup>16+</sup>
+## ProxyController<sup>15+</sup>
 
 此类用于为应用程序设置代理。
 
-### applyProxyOverride<sup>16+</sup>
+### applyProxyOverride<sup>15+</sup>
 
 static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChangeCallback): void
 
@@ -14653,7 +14653,7 @@ static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChang
 
 完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
 
-### removeProxyOverride<sup>16+</sup>
+### removeProxyOverride<sup>15+</sup>
 
 static removeProxyOverride(callback: OnProxyConfigChangeCallback): void
 
