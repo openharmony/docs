@@ -1,4 +1,4 @@
-# Connectivity Kit（短距通信服务）<!--connectivity-kit-->
+# Connectivity Kit（短距通信服务）
 
 - [Connectivity Kit简介](connectivity-kit-intro.md)
 - 蓝牙<!--bluetooth-->
