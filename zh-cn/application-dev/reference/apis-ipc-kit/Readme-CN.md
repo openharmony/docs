@@ -1,4 +1,4 @@
-# IPC Kit（进程间通信服务）<!--ipc-api-->
+# IPC Kit（进程间通信服务）
 
 - ArkTS API<!--ipc-arkts-->
   - [@ohos.rpc (RPC通信)](js-apis-rpc.md)
