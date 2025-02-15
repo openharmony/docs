@@ -1086,3 +1086,16 @@ bundleName没有动态图标。
 
 **处理步骤**<br/>
 查询动态图标前确保bundleName存在动态图标。
+
+## 17700076 签名文件中的分发类型被限制，不允许安装到当前设备中，导致安装失败
+**错误信息**<br/>
+Failed to install the HAP or HSP because the app distribution type is not allowed.
+
+**错误描述**<br/>
+签名文件中的分发类型不允许安装的限制，导致安装失败。
+
+**可能原因**<br/>
+该签名的分发类型被限制，禁止安装到当前设备中。
+
+**处理步骤**<br/>
+更换签名文件的分发类型。
