@@ -6,7 +6,7 @@ Radio是单选框组件，通常用于提供相应的用户交互选择项，同
 
 ## 创建单选框
 
-Radio通过调用接口来创建，接口调用形式如下：
+Radio通过调用[RadioOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-radio.md#radiooptions对象说明)来创建，以RadioOptions中的value和group为例：
 
 
 ```ts

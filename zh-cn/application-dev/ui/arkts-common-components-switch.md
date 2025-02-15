@@ -6,7 +6,7 @@ Toggle组件提供状态按钮样式、勾选框样式和开关样式，一般�
 
 ## 创建切换按钮
 
-Toggle通过调用接口来创建，接口调用形式如下：
+Toggle通过调用[ToggleOptions](../reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md#toggleoptions16对象说明)来创建，具体调用形式如下：
 
 ```ts
 Toggle(options: { type: ToggleType, isOn?: boolean })
