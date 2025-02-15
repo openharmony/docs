@@ -23,8 +23,6 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -41,10 +39,10 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.      |
 
@@ -78,8 +76,6 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[La
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -101,10 +97,10 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[La
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
 
@@ -136,8 +132,6 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -159,10 +153,10 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
 
@@ -186,11 +180,9 @@ try {
 
 getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
 
-查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)
+查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
@@ -207,10 +199,10 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[Launc
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700004 | The specified user ID is not found.      |
 
 示例：
@@ -242,8 +234,6 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -264,10 +254,10 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700004 | The specified user ID is not found.      |
 
 **示例：**
@@ -298,8 +288,6 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInf
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -315,10 +303,10 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInf
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 
 **示例：**
@@ -351,8 +339,6 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bu
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -373,10 +359,10 @@ getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bu
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 
 **示例：**
@@ -407,8 +393,6 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -429,10 +413,10 @@ getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleM
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 
 **示例：**
@@ -459,8 +443,6 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -482,10 +464,10 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.     |
 
@@ -513,8 +495,6 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 
 **需要权限：** ohos.permission.START_SHORTCUT
 
-**系统接口：** 此接口为系统接口。
-
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Launcher
 
 **参数：**
@@ -530,10 +510,10 @@ startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void
 
 | 错误码ID | 错误信息                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 202 | Permission denied, non-system app called system api. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
-| 801 | Capability not support. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801 | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 17700065 | The ability specified by want in the ShortcutInfo struct cannot be started.  |
 
 **示例：**
