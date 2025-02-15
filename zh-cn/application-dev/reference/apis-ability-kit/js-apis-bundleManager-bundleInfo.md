@@ -7,7 +7,7 @@
 
 ## BundleInfo
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -33,12 +33,11 @@
 
 应用运行时需向系统申请的权限集合的详细信息。
 > **说明：**
->
 > - 如果应用内多包申请的权限名称一样，但是权限申请理由不一致，系统只会返回一个权限申请理由，优先级从高到低顺序为entry类型HAP、feature类型HAP、应用内HSP。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                    | 只读 | 可选 | 说明                 |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------|
@@ -56,7 +55,7 @@
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
@@ -67,7 +66,7 @@
 
 描述应用包的签名信息。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
