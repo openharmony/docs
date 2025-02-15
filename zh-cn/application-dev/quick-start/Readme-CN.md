@@ -110,7 +110,7 @@
     - V1V2混用和迁移指导<!--v1v2-migration-->
       - [自定义组件混用场景指导](arkts-custom-component-mixed-scenarios.md)
       - [V1->V2迁移指导](arkts-v1-v2-migration.md)
-  - 渲染控制
+  - 渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](arkts-rendering-control-overview.md)
       - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
       - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
