@@ -12,8 +12,6 @@
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：**  系统接口，三方应用不支持调用。
-
 | 名称           | 类型   | 只读 | 可选 | 说明           |
 | -------------- | ------ | ---- | ---- | -------------- |
 | permissionName | string | 是   | 否   | 用户权限名称。   |
