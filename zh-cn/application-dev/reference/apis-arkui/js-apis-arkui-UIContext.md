@@ -285,7 +285,7 @@ uiContext.getOverlayManager();
 
 ### setOverlayManagerOptions<sup>15+</sup>
 
-setOverlayManagerOptions(value: OverlayManagerOptions): void
+setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
 
@@ -297,7 +297,13 @@ setOverlayManagerOptions(value: OverlayManagerOptions): void
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| value | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否设置成功。 |
 
 **示例：**
 
