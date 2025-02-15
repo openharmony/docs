@@ -10646,6 +10646,27 @@ int32_t OH_ArkUI_KeyframeAnimateOption_GetIterations (ArkUI_KeyframeAnimateOptio
 
 动画播放次数。
 
+### OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate()
+
+```
+ArkUI_ExpectedFrameRateRange* OH_ArkUI_KeyframeAnimateOption_GetExpectedFrameRate(ArkUI_KeyframeAnimateOption* option)
+```
+**描述：**
+
+获取关键帧动画参数的期望帧率。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | 关键帧动画参数。  | 
+
+**返回：**
+
+关键帧动画参数的期望帧率。
+
 
 ### OH_ArkUI_KeyframeAnimateOption_RegisterOnEventCallback()
 
@@ -10780,6 +10801,28 @@ int32_t OH_ArkUI_KeyframeAnimateOption_SetIterations (ArkUI_KeyframeAnimateOptio
 **返回：**
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+### OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate()
+
+```
+int32_t OH_ArkUI_KeyframeAnimateOption_SetExpectedFrameRate(
+    ArkUI_KeyframeAnimateOption* option, ArkUI_ExpectedFrameRateRange* frameRate)
+```
+**描述：**
+
+设置关键帧动画期望帧率。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| option | 关键帧动画参数。  | 
+| frameRate | 关键帧动画的期望帧率。  | 
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR 成功。
+ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
 
 ### OH_ArkUI_LayoutConstraint_Copy()
