@@ -4994,6 +4994,15 @@ off(type: 'castControlDrmError', callback?: ErrorCallback): void
 aVCastController.off('castControlDrmError');
 ```
 
+## ExtraInfo<sup>16+</sup>
+type ExtraInfo = { [key: string]: Object; }
+
+媒体提供方设置的自定义媒体数据包对象。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
 ## KeyRequestCallback<sup>12+</sup>
 type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
 
@@ -6610,6 +6619,85 @@ if (avSessionController !== undefined) {
       console.info(`getExtras : SUCCESS : ${extras}`);
     }
   });
+}
+```
+
+### getExtrasWithEvent<sup>16+</sup>
+
+getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
+
+根据远端分布式事件类型，获取远端分布式媒体提供方设置的自定义媒体数据包。结果通过Promise异步回调方式返回。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**参数：**
+
+| 参数名   | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| extraEvent | string | 是 | 远端分布式事件类型。<br>当前支持的事件类型包括：<br>'AUDIO_GET_VOLUME'：获取远端设备音量，<br>'AUDIO_GET_AVAILABLE_DEVICES'：获取远端所有可连接设备，<br>'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'：获取远端实际发声设备。 |
+
+**返回值：**
+
+| 类型                                | 说明                          |
+| ----------------------------------- | ----------------------------- |
+| Promise<[ExtraInfo](#extrainfo16)\>   | Promise对象，返回远端分布式媒体提供方设置的自定义媒体数据包。 |
+
+> **说明：**
+
+> 参数ExtraInfo支持的数据类型有：字符串、数字、布尔、对象、数组和文件描述符等，详细介绍请参见[@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md)。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function getExtrasWithEventTest() {
+  let controllerList: Array<avSession.AVSessionController>;
+  let controller: avSession.AVSessionController | ESObject;
+  
+  try {
+    controllerList = await avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
+    controller = controllerList[0];
+  } catch (err) {
+    console.info(`getDistributedSessionController fail with err: ${err}`);
+  }
+
+  const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
+  const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
+  const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
+  if (controller !== undefined) {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+  }
 }
 ```
 
