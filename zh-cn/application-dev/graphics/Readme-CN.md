@@ -33,7 +33,7 @@
 - [使用Text模块实现文本显示](text-js-guidelines.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
-- [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
+- [NativeVSync开发指导 (C/C++)](native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
 - [图形开发术语](graphic-term.md)
 

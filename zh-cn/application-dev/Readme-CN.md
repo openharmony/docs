@@ -34,7 +34,7 @@
       - [Network Kit（网络服务）](network/Readme-CN.md)
       - [Telephony Kit（蜂窝通信服务）](telephony/Readme-CN.md)
     - 基础功能<!--system-basicfun-->
-      - [Basics Service Kit（基础服务）](basic-services/Readme-CN.md)
+      - [Basic Service Kit（基础服务）](basic-services/Readme-CN.md)
       - [Function Flow Runtime Kit（任务并发调度服务）](ffrt/Readme-CN.md)
       - [Input Kit（多模输入服务）](device/input/Readme-CN.md)
       - [MDM Kit（企业设备管理服务）](mdm/Readme-CN.md)

@@ -37,20 +37,20 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗<!--arkts-use-dialog-->
-     - [弹窗概述](arkts-dialog-overview.md)
-     - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
-       - [弹出框概述](arkts-base-dialog-overview.md)
-       - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
-       - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
-       - [固定样式弹出框](arkts-fixes-style-dialog.md)
-     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
-     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-     - 绑定模态页面<!--arkts-bind-modal-->
-        - [绑定模态页面概述](arkts-modal-overview.md)
-        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
-        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
-     - [即时反馈 (Toast)](arkts-create-toast.md)
-     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
+    - [弹窗概述](arkts-dialog-overview.md)
+    - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
+      - [弹出框概述](arkts-base-dialog-overview.md)
+      - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
+      - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
+      - [固定样式弹出框](arkts-fixes-style-dialog.md)
+    - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+    - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+    - 绑定模态页面<!--arkts-bind-modal-->
+      - [绑定模态页面概述](arkts-modal-overview.md)
+      - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
+      - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
+    - [即时反馈 (Toast)](arkts-create-toast.md)
+    - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形<!--arkts-draw-graphics-->
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -65,7 +65,7 @@
       - [出现/消失转场](arkts-enter-exit-transition.md)
       - [模态转场](arkts-modal-transition.md)
       - [共享元素转场 (一镜到底)](arkts-shared-element-transition.md)
-      - [旋转屏动画](arkts-rotation-transition-animation.md)    
+      - [旋转屏动画](arkts-rotation-transition-animation.md)
       - [页面转场动画 (不推荐)](arkts-page-transition-animation.md)
     - [粒子动画](arkts-particle-animation.md)
     - [组件动画](arkts-component-animation.md)
@@ -111,7 +111,7 @@
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
   <!--Del-->
-    - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+  - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
   <!--DelEnd-->
   - 使用NDK接口构建UI<!--arkts-use-ndk-->
     - [NDK接口概述](ndk-build-ui-overview.md)
