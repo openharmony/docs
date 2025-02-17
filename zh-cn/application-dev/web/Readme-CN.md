@@ -11,7 +11,7 @@
   - [管理位置权限](web-geolocation-permission.md)
   - [使用隐私模式](web-incognito-mode.md)
   - [使用运动和方向传感器监测设备状态](web-sensor.md)
-- Web渲染和布局<!--web-render-layout--->
+- Web渲染和布局<!--web-render-layout-->
   - [Web渲染模式](web-render-mode.md)
   - [使用Web组件大小自适应页面内容布局](web-fit-content.md)
   - [优化跳转至新Web组件过程中的页面闪烁现象](web-router-flash-optimization.md)
