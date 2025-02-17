@@ -11,6 +11,9 @@
   - [通过用户首选项实现数据持久化](data-persistence-by-preferences.md)
   - [通过键值型数据库实现数据持久化](data-persistence-by-kv-store.md)
   - [通过关系型数据库实现数据持久化](data-persistence-by-rdb-store.md)
+  <!--Del-->
+  - [通过图数据库实现数据持久化（仅对系统应用开放）](data-persistence-by-graph-store.md)
+  <!--DelEnd-->
 - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
   - [同应用跨设备数据同步概述](sync-app-data-across-devices-overview.md)
   - [键值型数据库跨设备数据同步](data-sync-of-kv-store.md)
