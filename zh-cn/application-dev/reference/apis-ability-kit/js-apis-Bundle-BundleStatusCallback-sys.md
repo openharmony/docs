@@ -11,6 +11,8 @@
 ## BundleStatusCallback<sup>(deprecated)<sup>
 > 从API version 9开始不再支持。建议使用[bundleMonitor](js-apis-bundleMonitor-sys.md)替代。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
 
 | 监听类型   | 注册回调                                          | 说明                                   |
