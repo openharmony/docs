@@ -141,8 +141,6 @@
 8. 获取图像嵌入模型。
      
    ```ts
-   import { BusinessError } from '@kit.BasicServicesKit';
-
    let config:intelligence.ModelConfig = {
      version:1,
      isNpuAvailable:false,
@@ -158,7 +156,7 @@
      .catch((err:BusinessError) => {
        console.error("Failed to get ImageModel and code is " + err.code);
      })
-  ```
+   ```
 
 9. 加载图像嵌入模型。
      
