@@ -170,6 +170,44 @@
      })
    ```
 
+10. 获取给定图像的嵌入向量。
+
+   ```ts
+   let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
+   imageEmbedding.getEmbedding(image)
+     .then((data:Array<number>) => {
+       console.info("Succeeded in getting Embedding");
+     })
+     .catch((err:BusinessError) => {
+       console.error("Failed to get Embedding and code is " + err.code);
+     })
+   ```
+
+11. 释放图像嵌入模型。
+
+   ```ts
+   imageEmbedding.releaseModel()
+     .then(() => {
+       console.info("Succeeded in releasing Model");
+     })
+     .catch((err:BusinessError) => {
+       console.error("Failed to release Model and code is " + err.code);
+     })
+   ```
+
+10. 获取给定图像的嵌入向量。
+
+   ```ts
+   let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
+   imageEmbedding.getEmbedding(image)
+     .then((data:Array<number>) => {
+       console.info("Succeeded in getting Embedding");
+     })
+     .catch((err:BusinessError) => {
+       console.error("Failed to get Embedding and code is " + err.code);
+     })
+   ```
+
 11. 释放图像嵌入模型。
 
    ```ts
