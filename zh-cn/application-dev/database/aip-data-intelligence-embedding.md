@@ -195,12 +195,12 @@
      })
    ```
 
-6. 获取给定批次文本的嵌入向量。
+10. 获取给定图像的嵌入向量。
 
    ```ts
-   let batchTexts = ['text1','text2'];
-   textEmbedding.getEmbedding(batchTexts)
-     .then((data:Array<Array<number>>) => {
+   let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
+   imageEmbedding.getEmbedding(image)
+     .then((data:Array<number>) => {
        console.info("Succeeded in getting Embedding");
      })
      .catch((err:BusinessError) => {
@@ -208,10 +208,10 @@
      })
    ```
 
-7. 释放文本嵌入模型。
+11. 释放图像嵌入模型。
 
    ```ts
-   textEmbedding.releaseModel()
+   imageEmbedding.releaseModel()
      .then(() => {
        console.info("Succeeded in releasing Model");
      })
