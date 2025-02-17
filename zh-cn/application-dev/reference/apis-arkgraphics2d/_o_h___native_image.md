@@ -170,26 +170,26 @@ enum OHNativeErrorCode
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| NATIVE_ERROR_OK  | 成功   | 
-| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | 内存操作错误 | 
-| NATIVE_ERROR_INVALID_ARGUMENTS  | 入参无效   | 
-| NATIVE_ERROR_NO_PERMISSION  | 无权限操作   | 
-| NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer   | 
-| NATIVE_ERROR_NO_CONSUMER  | 消费端不存在   | 
-| NATIVE_ERROR_NOT_INIT  | 未初始化   | 
-| NATIVE_ERROR_CONSUMER_CONNECTED  | 消费端已经被连接   | 
-| NATIVE_ERROR_BUFFER_STATE_INVALID  | buffer状态不符合预期   | 
-| NATIVE_ERROR_BUFFER_IN_CACHE  | buffer已在缓存队列中   | 
-| NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满   | 
-| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | buffer不在缓存队列中   | 
-| NATIVE_ERROR_CONSUMER_DISCONNECTED | 消费端已经被断开连接 |
-| NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | 消费端未注册listener回调函数 |
-| NATIVE_ERROR_UNSUPPORTED  | 当前设备或平台不支持   | 
-| NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志   | 
-| NATIVE_ERROR_HDI_ERROR  | HDI接口调用失败   | 
-| NATIVE_ERROR_BINDER_ERROR  | 跨进程通信失败   | 
-| NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常   | 
-| NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败   | 
+| NATIVE_ERROR_OK  | 成功。   | 
+| NATIVE_ERROR_MEM_OPERATION_ERROR<sup>15+</sup> | 内存操作错误。 | 
+| NATIVE_ERROR_INVALID_ARGUMENTS  | 入参无效。   | 
+| NATIVE_ERROR_NO_PERMISSION  | 无权限操作。   | 
+| NATIVE_ERROR_NO_BUFFER  | 无空闲可用的buffer。   | 
+| NATIVE_ERROR_NO_CONSUMER  | 消费端不存在。   | 
+| NATIVE_ERROR_NOT_INIT  | 未初始化。   | 
+| NATIVE_ERROR_CONSUMER_CONNECTED  | 消费端已经被连接。   | 
+| NATIVE_ERROR_BUFFER_STATE_INVALID  | buffer状态不符合预期。   | 
+| NATIVE_ERROR_BUFFER_IN_CACHE  | buffer已在缓存队列中。   | 
+| NATIVE_ERROR_BUFFER_QUEUE_FULL  | 队列已满。   | 
+| NATIVE_ERROR_BUFFER_NOT_IN_CACHE  | buffer不在缓存队列中。   | 
+| NATIVE_ERROR_CONSUMER_DISCONNECTED | 消费端已经被断开连接。 |
+| NATIVE_ERROR_CONSUMER_NO_LISTENER_REGISTERED | 消费端未注册listener回调函数。 |
+| NATIVE_ERROR_UNSUPPORTED  | 当前设备或平台不支持。   | 
+| NATIVE_ERROR_UNKNOWN  | 未知错误，请查看日志。   | 
+| NATIVE_ERROR_HDI_ERROR  | HDI接口调用失败。   | 
+| NATIVE_ERROR_BINDER_ERROR  | 跨进程通信失败。   | 
+| NATIVE_ERROR_EGL_STATE_UNKNOWN  | egl环境状态异常。   | 
+| NATIVE_ERROR_EGL_API_FAILED  | egl接口调用失败。   | 
 
 
 ## 函数说明
