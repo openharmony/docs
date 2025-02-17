@@ -46,68 +46,68 @@ zh-cn/application-dev/quick-start/typescript-to-arkts-migration-guide.md @zhang_
 zh-cn/application-dev/quick-start/arkts-more-cases.md @zhang_yixin13 @qyhuo32
 zh-cn/application-dev/quick-start/arkts-high-performance-programming.md @zhang_yixin13 @qyhuo32
 
-zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-page-custom-components-lifecycle.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-custom-components-freeze.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-custom-components-access-restrictions.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-builder.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-builderparam.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-wrapBuilder.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-style.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-extend.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-animatable-extend.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-require.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-reusable.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-basic-syntax-overview.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-declarative-ui-description.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-create-custom-components.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-page-custom-components-lifecycle.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-custom-components-freeze.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-custom-components-access-restrictions.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-builder.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-builderparam.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-wrapBuilder.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-style.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-extend.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-statestyles.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-animatable-extend.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-require.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-reusable.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
 
-zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu 
-zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-link.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-provide-and-consume.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-application-state-management-overview.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-localstorage.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-appstorage.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-persiststorage.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-environment.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-other-state-mgmt-functions-overview.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-watch.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-two-way-sync.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-track.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-mvvm.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-state-management-best-practices.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/properly-use-state-management-to-develope.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state-management-overview.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-prop.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-link.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-provide-and-consume.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-observed-and-objectlink.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-application-state-management-overview.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-localstorage.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-appstorage.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-persiststorage.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-environment.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-other-state-mgmt-functions-overview.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-watch.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-two-way-sync.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-track.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-mvvm.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-state-management-best-practices.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/properly-use-state-management-to-develope.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
 
-zh-cn/application-dev/quick-start/arkts-new-observedV2-and-trace.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-componentV2.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-local.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-param.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-once.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-event.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-monitor.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-Provider-and-Consumer.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-Computed.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-binding.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-type.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-appstoragev2.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-persistencev2.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-custom-components-freezeV2.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-rendering-control-repeat.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-getTarget.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-new-makeObserved.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-mvvm-V2.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-custom-component-mixed-scenarios.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-v1-v2-migration.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-rendering-control-contentslot.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-observedV2-and-trace.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-componentV2.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-local.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-param.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-once.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-event.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-monitor.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-Provider-and-Consumer.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-Computed.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-binding.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-type.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-appstoragev2.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-persistencev2.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-custom-components-freezeV2.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-rendering-control-repeat.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-getTarget.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-new-makeObserved.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-mvvm-V2.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-custom-component-mixed-scenarios.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-v1-v2-migration.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-contentslot.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
 
-zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
-zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @munancheng @s10021109 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-overview.md @zhang_yixin13 @TerryTsao @lixingchi1 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-ifelse.md @zhang_yixin13 @TerryTsao @lixingchi1 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md @zhang_yixin13 @TerryTsao @lixingchi1 @jiyujia926 @seaside_wu
+zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md @zhang_yixin13 @TerryTsao @s10021109 @jiyujia926 @seaside_wu
 
 [开发-Ability Kit-元能力]
 zh-cn/application-dev/kit-readme/Readme-Ability-Kit.md @huipeizi  @ccllee  @lxfycode  @lixueqing513
@@ -347,6 +347,7 @@ zh-cn/application-dev/calendarmanager/calendarmanager-guidelines.md @liuqian677 
 [开发-Connectivity Kit]
 zh-cn/application-dev/communication/bluetooth/  @zhang_yixin13 @xujiang1981 @quanli125
 zh-cn/application-dev/communication/nfc/ @knpingan @zhang_yixin13 @projectmanagement-zhang @heli_bbd
+zh-cn/application-dev/communication/wlan/ @zhang_yixin13 @legendtau
 
 
 [开发-Contacts Kit]
@@ -373,14 +374,14 @@ zh-cn/application-dev/dfx/ @foryourself
 zh-cn/application-dev/IDL/ @huipeizi  @ccllee  @lxfycode  @lixueqing513
 
 [开发-IME kit]
-zh-cn/application-dev/inputmethod/ @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
-zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/inputmethod/ @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/kit-readme/Readme-IME-Kit.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/Readme-CN.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/custom_input_box_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/ime-kit-intro.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/input_method_subtype_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/inputmethod_application_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
+zh-cn/application-dev/inputmethod/switch_inputmehod_guide.md @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp 
 
 [开发-Input kit]
 zh-cn/application-dev/device/inputdevice-guidelines.md @Brilliantry_Rui @mayunteng 
@@ -846,7 +847,7 @@ zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-methods-menu.md	@zhangfan
 
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md	@seaside_wu	 @s10021109	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-custom-component-api.md     	 @s10021109	@HelloCrease
-zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management.md	@seaside_wu	 @s10021109	@fredyuan0912	@zhang_yixin13
+zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-state-management.md	@jiyujia926	 @s10021109	@fredyuan0912	@zhang_yixin13
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-pixel-units.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
 zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-types.md	@jiangtao92	@sunfei2021	@fredyuan0912	@HelloCrease
@@ -968,11 +969,11 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @li
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @li-yan339 @Kevin-Lau @liuhonggang123
 
 [API参考-Basic Services Kit-数据文件处理]
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13 @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13 @hanruofei @murphy1984
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request-sys.md @zhang_yixin13 @@xue-lei3 @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-request.md @zhang_yixin13 @@xue-lei3 @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-system-request.md @zhang_yixin13 @@xue-lei3 @murphy1984
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-update-sys.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @hanruofei @murphy1984
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @zhang_yixin13 @@xue-lei3 @murphy1984
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-update.md @hughes802 @zhang_yixin13 @zhangzhengxue @mamba-ting
 
 [API参考-Basic Services Kit-时间时区、公共回调、系统设置]
@@ -1081,7 +1082,7 @@ zh-cn/application-dev/reference/apis-form-kit/  @Eiln  @cmz001  @Brilliantry_Rui
 
 
 [API参考-IME kit]
-zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp @murphy1984
+zh-cn/application-dev/reference/apis-ime-kit/ @illybyy @murphy1984 @feng-aiwen  @zhang_yixin13 @SuperShrimp
 
 
 [API参考-Input Kit]

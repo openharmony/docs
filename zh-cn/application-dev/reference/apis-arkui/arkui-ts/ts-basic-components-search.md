@@ -66,7 +66,7 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 placeholderColor(value: ResourceColor)
 
-设置placeholder文本颜色。
+设置placeholder文本颜色，wearable设备上默认值为：'#99ffffff'。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,6 +84,8 @@ placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
+wearable设备上大小为：18px
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -99,6 +101,8 @@ placeholderFont(value?: Font)
 textFont(value?: Font)
 
 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+wearable设备上默认字体大小为：18fp
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -181,6 +185,8 @@ cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 fontColor(value: ResourceColor)
 
 设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
+
+wearable设备上默认值为：'#dbffffff'
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -926,6 +932,8 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 在文本内容将要发生变化时，触发该回调。
 
+onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -934,7 +942,7 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
 
 ## SearchController
 
