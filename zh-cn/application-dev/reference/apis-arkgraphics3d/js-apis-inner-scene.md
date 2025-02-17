@@ -381,7 +381,7 @@ createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promi
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 | params | [SceneResourceParameters](#sceneresourceparameters) | 是 | 场景资源参数。 |
-| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#geometrydefinition16) | 是 | 几何形状类型参数。 |
+| geometry | [GeometryDefinition](js-apis-inner-scene-types.md#geometrydefinition16) | 是 | 几何实例参数。 |
 
 **返回值：**
 | 类型 | 说明 |
