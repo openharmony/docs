@@ -285,7 +285,7 @@ struct Index {
 
 ### constructor
 
-constructor(context: common.Context);
+constructor(context: common.Context)
 
 构造函数。
 
