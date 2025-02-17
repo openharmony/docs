@@ -8,10 +8,7 @@ Video组件用于播放视频文件并控制其播放状态，常用于为短视
 
 Video通过调用接口来创建，接口调用形式如下：
 
-Video(value: VideoOptions)
-
-VideoOptions对象包含参数src、currentProgressRate、previewUri、controller。其中，src指定视频播放源的路径，加载方式请参考[加载视频资源](#加载视频资源)，currentProgressRate用于设置视频播放倍速，previewUri指定视频未播放时的预览图片路径，controller设置视频控制器，用于自定义控制视频。具体用法请参考[VideoOptions对象说明](../reference/apis-arkui/arkui-ts/ts-media-components-video.md#videooptions对象说明)。
-
+`Video(value: VideoOptions)`
 
 ## 加载视频资源
 
@@ -73,7 +70,7 @@ Video组件支持加载本地视频和网络视频。
 
 ### 加载沙箱路径视频
 
-支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+支持file://路径前缀的字符串，用于读取应用沙箱路径内的资源，需要保证应用沙箱目录路径下的文件存在并且有可读权限。
 
 ```ts
 // xxx.ets
