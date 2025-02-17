@@ -6948,13 +6948,13 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称                  | 类型                        | 可读  | 可写 | 说明                                     |
-  | --------------------- | ----------------------------| ------|------------------------------------------------ |
-  | PING_TRANSACTION      | [RemoteProxy](#remoteproxy) | 是    | 否   | 内部指令码，用于测试IPC服务是否正常。     |
-  | DUMP_TRANSACTION      | [RemoteProxy](#remoteproxy) | 是    | 否   | 内部指令码，获取IPC服务相关的状态信息。   |
-  | INTERFACE_TRANSACTION | [RemoteProxy](#remoteproxy) | 是    | 否   | 内部指令码，获取对端接口描述符。          |
-  | MIN_TRANSACTION_ID    | [RemoteProxy](#remoteproxy) | 是    | 否   | 最小有效指令码。                          |
-  | MAX_TRANSACTION_ID    | [RemoteProxy](#remoteproxy) | 是    | 否   | 最大有效指令码。                          |
+  | 名称                  | 类型   | 可读  | 可写 | 说明                                     |
+  | --------------------- | -------| ------|------|------------------------------------------ |
+  | PING_TRANSACTION      | number | 是    | 否   | 内部指令码，用于测试IPC服务是否正常。     |
+  | DUMP_TRANSACTION      | number | 是    | 否   | 内部指令码，获取IPC服务相关的状态信息。   |
+  | INTERFACE_TRANSACTION | number | 是    | 否   | 内部指令码，获取对端接口描述符。          |
+  | MIN_TRANSACTION_ID    | number | 是    | 否   | 最小有效指令码。                          |
+  | MAX_TRANSACTION_ID    | number | 是    | 否   | 最大有效指令码。                          |
 
 
 ### sendRequest<sup>(deprecated)</sup>
@@ -8099,12 +8099,12 @@ isObjectDead(): boolean
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 类型                            | 可读  | 可写  | 说明                                                                      |
-  | ------------- | ------------------------------- | ----- | ----- | ------------------------------------------------------------------------ |
-  | TF_SYNC       | [MessageOption](#messageoption) | 是    | 否    | 同步调用标识。                                                            |
-  | TF_ASYNC      | [MessageOption](#messageoption) | 是    | 否    | 异步调用标识。                                                            |
-  | TF_ACCEPT_FDS | [MessageOption](#messageoption) | 是    | 否    | 指示sendMessageRequest<sup>9+</sup>接口可以传递文件描述符。               |
-  | TF_WAIT_TIME  | [MessageOption](#messageoption) | 是    | 是    | RPC等待时间(单位/秒)，IPC场景下无效。默认等待为8秒（不建议修改等待时间）。 |
+  | 名称          | 类型   | 可读  | 可写  | 说明                                                                      |
+  | ------------- | ------ | ----- | ----- | ------------------------------------------------------------------------ |
+  | TF_SYNC       | number | 是    | 否    | 同步调用标识。                                                            |
+  | TF_ASYNC      | number | 是    | 否    | 异步调用标识。                                                            |
+  | TF_ACCEPT_FDS | number | 是    | 否    | 指示sendMessageRequest<sup>9+</sup>接口可以传递文件描述符。               |
+  | TF_WAIT_TIME  | number | 是    | 是    | RPC等待时间(单位/秒)，IPC场景下无效。默认等待为8秒（不建议修改等待时间）。 |
 
 ### constructor<sup>9+</sup>
 
@@ -9690,12 +9690,12 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称       | 类型               | 可读  | 可写  | 说明                                     |
-  | ---------- | ------------------ | ----- | ----- |----------------------------------------- |
-  | PROT_EXEC  | [Ashmem](#ashmem8) | 是    | 否    | 映射内存保护类型，代表映射的内存可执行。  |
-  | PROT_NONE  | [Ashmem](#ashmem8) | 是    | 否    | 映射内存保护类型，代表映射的内存不可访问。|
-  | PROT_READ  | [Ashmem](#ashmem8) | 是    | 否    | 映射内存保护类型，代表映射的内存可读。    |
-  | PROT_WRITE | [Ashmem](#ashmem8) | 是    | 否    | 映射内存保护类型，代表映射的内存可写。    |
+  | 名称       | 类型   | 可读  | 可写  | 说明                                     |
+  | ---------- | ------ | ----- | ----- |----------------------------------------- |
+  | PROT_EXEC  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可执行。  |
+  | PROT_NONE  | number | 是    | 否    | 映射内存保护类型，代表映射的内存不可访问。|
+  | PROT_READ  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可读。    |
+  | PROT_WRITE | number | 是    | 否    | 映射内存保护类型，代表映射的内存可写。    |
 
 ### create<sup>9+</sup>
 
