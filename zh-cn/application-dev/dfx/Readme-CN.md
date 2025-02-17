@@ -7,7 +7,7 @@
 - HiAppEvent使用指导
   - [HiAppEvent介绍](hiappevent-intro.md)
   - 事件订阅
-    - 应用事件
+    - 进程线程通信
       - [订阅应用事件（ArkTS）](hiappevent-watcher-app-events-arkts.md)
       - [订阅应用事件（C/C++）](hiappevent-watcher-app-events-ndk.md)
     - 系统事件
