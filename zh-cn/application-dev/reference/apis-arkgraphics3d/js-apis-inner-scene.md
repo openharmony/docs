@@ -454,7 +454,7 @@ function createScenePromise() : Promise<Scene> {
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
-| alwaysRender | boolean | 否 | 是 | 为true表示一直渲染，为false表示按需渲染，默认值为true。 |
+| alwaysRender | boolean | 否 | 是 | 表示每一帧都渲染，为true表示一直渲染，为false表示按需渲染，默认值为true。 |
 
 
 ## Scene
