@@ -591,6 +591,18 @@ importNode(name: string, node: Node, parent: Node | null): Node
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| name | string | 是 | 导入结点后的名称。|
+| node | [Node](js-apis-inner-scene-nodes.md#node) | 是 | 被导入的结点。|
+| parent | [Node](js-apis-inner-scene-nodes.md#node) \| null | 是 | 被导入结点在新场景中的父结点。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| [Node](js-apis-inner-scene-nodes.md#node) | 被导入的结点。|
+
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
@@ -621,6 +633,18 @@ importScene(name: string, scene: Scene, parent: Node | null): Node
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| name | string | 是 | 导入结点后的名称。|
+| scene | [Scene](#scene-1) | 是 | 被导入的场景。|
+| parent | [Node](js-apis-inner-scene-nodes.md#node) \| null | 是 | 被导入场景在新场景中的父结点。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| [Node](js-apis-inner-scene-nodes.md#node) | 被导入场景的根结点。|
+
 **示例：**
 ```ts
 import { Image, Shader, MaterialType, Material, ShaderMaterial, Animation, Environment, Container, SceneNodeParameters,
@@ -644,6 +668,16 @@ renderFrame(params?: RenderParameters): boolean
 通过该接口可以实现按需渲染，例如控制渲染帧率。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ---- | ---- | ---- | ---- |
+| params | RenderParameters | 否 | 渲染参数，默认值为undefined。|
+
+**返回值：**
+| 类型 | 说明 |
+| ---- | ---- |
+| boolean | 渲染被成功调度返回true，否则返回false。|
 
 **示例：**
 ```ts
