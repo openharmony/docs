@@ -124,7 +124,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | indices | number[] | 否 | 是 | 顶点索引数组，数组中元素的取值范围大于等于0，默认值为undefined。 |
 | normals| [Vec3](#vec3)[] | 否 | 是 | 顶点数组对应的法向量数组，默认值为undefined。 |
 | uvs | [Vec2](#vec2)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为undefined。 |
-| colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的UV坐标数组，默认值为undefined。 |
+| colors | [Color](#color)[] | 否 | 是 | 顶点数组对应的颜色数组，默认值为undefined。 |
 
 ## CubeGeometry<sup>16+</sup>
 立方体几何类型，继承自[GeometryDefinition](#geometrydefinition16)。
