@@ -30,14 +30,14 @@
 | -------- | -------- |
 | getTextEmbeddingModel(config: ModelConfig): Promise&lt;TextEmbedding&gt; | 获取文本嵌入模型。 | 
 | loadModel(): Promise&lt;void&gt; | 加载文本嵌入模型。 | 
-| releaseModel(): Promise&lt;void&gt; | 释放文本嵌入模型。 | 
+| splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | 获取文本的分块。 | 
 | getEmbedding(text: string): Promise&lt;Array&lt;number&gt;&gt; | 获取给定文本的嵌入向量。 | 
 | getEmbedding(batchTexts: Array&lt;string&gt;): Promise&lt;Array&lt;Array&lt;number&gt;&gt;&gt; | 获取给定批次文本的嵌入向量。 |
+| releaseModel(): Promise&lt;void&gt; | 释放文本嵌入模型。 | 
 | getImageEmbeddingModel(config: ModelConfig): Promise&lt;ImageEmbedding&gt; | 获取图像嵌入模型。 | 
 | loadModel(): Promise&lt;void&gt; | 加载图像嵌入模型。 | 
-| releaseModel(): Promise&lt;void&gt; | 释放图像嵌入模型。 | 
 | getEmbedding(image: Image): Promise&lt;Array&lt;number&gt;&gt; | 获取给定图像的嵌入向量。 | 
-| splitText(text: string, config: SplitConfig): Promise&lt;Array&lt;string&gt;&gt; | 获取文本的分块。 | 
+| releaseModel(): Promise&lt;void&gt; | 释放图像嵌入模型。 | 
 
 
 ## 开发步骤
@@ -162,7 +162,7 @@
   ```
 
 9. 加载图像嵌入模型。
-
+     
    ```ts
    imageEmbedding.loadModel()
      .then(() => {
@@ -171,7 +171,7 @@
      .catch((err:BusinessError) => {
         console.error("Failed to load Model and code is " + err.code);
      })
-   ```
+  ```
 
 10. 获取给定图像的嵌入向量。
      
