@@ -24,7 +24,7 @@
 
 ## 接口说明
 
-以下是智慧数据向量化功能的相关接口，接口为异步接口。异步接口通过Promise方式返回，更多接口具体可见[Intelligence接口](../reference/apis-arkdata/js-apis-data-intelligence.md)。
+以下是智慧数据向量化功能的相关接口，接口为异步接口。异步接口通过Promise方式返回，更多接口具体可见[智慧数据平台](../reference/apis-arkdata/js-apis-data-intelligence.md)。
 
 | 接口名称 | 描述 | 
 | -------- | -------- |
@@ -100,7 +100,7 @@
      })
    ```
 
-5. 获取给定文本的嵌入向量。
+5. 获取给定文本的嵌入向量。给定的文本数据可以为单个文本数据或者一个文本数据的集合。
 
    ```ts
    let text = 'text';
@@ -113,8 +113,6 @@
      })
    ```
 
-6. 获取给定批次文本的嵌入向量。
-
    ```ts
    let batchTexts = ['text1','text2'];
    textEmbedding.getEmbedding(batchTexts)
@@ -126,7 +124,7 @@
      })
    ```
 
-7. 释放文本嵌入模型。
+6. 释放文本嵌入模型。
 
    ```ts
    textEmbedding.releaseModel()
@@ -138,7 +136,7 @@
      })
    ```
 
-8. 获取图像嵌入模型。
+7. 获取图像嵌入模型。
 
    ```ts
    let config:intelligence.ModelConfig = {
@@ -158,7 +156,7 @@
      })
    ```
 
-9. 加载图像嵌入模型。
+8. 加载图像嵌入模型。
 
    ```ts
    imageEmbedding.loadModel()
@@ -170,7 +168,8 @@
      })
    ```
 
-10. 获取给定图像的嵌入向量。
+9. 获取给定图像的嵌入向量。
+
     ```ts
     let image = "file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg";
     imageEmbedding.getEmbedding(image)
@@ -182,7 +181,7 @@
       })
     ```
 
-11. 释放图像嵌入模型。
+10. 释放图像嵌入模型。
 
     ```ts
     imageEmbedding.releaseModel()
