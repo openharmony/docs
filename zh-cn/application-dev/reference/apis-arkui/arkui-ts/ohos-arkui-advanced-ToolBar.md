@@ -21,7 +21,7 @@ import { ToolBar, ToolBarOptions } from '@kit.ArkUI'
 无
 
 ## 属性
-支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-universal-attributes-size.md)
 
 ## ToolBar
 
@@ -39,7 +39,7 @@ Toolbar({toolBarList: ToolBarOptions, activateIndex?: number, controller: TabsCo
 | -------- | -------- | -------- |-------------|---------------------|
 | toolBarList | [ToolBarOptions](#toolbaroptions) | 是 | @ObjectLink | 工具栏列表。              |
 | activateIndex | number | 否 | @Prop       | 激活态的子项。<br/>默认值：-1。 |
-| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 筛选器的样式类型。           |
+| controller | [TabsController](ts-container-tabs.md#tabscontroller) | 是 | -           | 工具栏控制器，不支持控制工具栏子项。  |
 
 ## ToolBarOptions
 
