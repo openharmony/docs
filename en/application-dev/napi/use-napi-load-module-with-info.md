@@ -28,7 +28,7 @@ napi_status napi_load_module_with_info(napi_env env,
 
 | Scenario           | Description          | Description                        |
 | :------------- | :----------------------------- | :--------------------------- |
-| Local project module  | Load the module file. | The file path must start with **moduleName**.            |
+| Local project module  | Load the module file.      | The file path must start with **moduleName**.            |
 | Local project module  | Load the HAR module name.          | -                            |
 | Remote package        | Load the remote HAR module name.       | -                            |
 | Remote package        | Load the ohpm package name.           | -                            |
