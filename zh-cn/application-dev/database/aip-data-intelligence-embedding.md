@@ -104,7 +104,6 @@
 5. 获取给定文本的嵌入向量。
      
    ```ts
-   textEmbedding.loadModel();
    let text = 'text';
    textEmbedding.getEmbedding(text)
      .then((data:Array<number>) => {
@@ -118,7 +117,6 @@
 6. 获取给定批次文本的嵌入向量。
      
    ```ts
-   textEmbedding.loadModel();
    let batchTexts = ['text1','text2'];
    textEmbedding.getEmbedding(batchTexts)
      .then((data:Array<Array<number>>) => {
@@ -164,21 +162,20 @@
   ```
 
 9. 加载图像嵌入模型。
- 
+
    ```ts
    imageEmbedding.loadModel()
      .then(() => {
-       console.info("Succeeded in loading Model");
+        console.info("Succeeded in loading Model");
      })
      .catch((err:BusinessError) => {
-       console.error("Failed to load Model and code is " + err.code);
+        console.error("Failed to load Model and code is " + err.code);
      })
    ```
 
 10. 获取给定图像的嵌入向量。
      
    ```ts
-   imageEmbedding.loadModel();
    let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
    imageEmbedding.getEmbedding(image)
      .then((data:Array<number>) => {
