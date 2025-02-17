@@ -672,7 +672,7 @@ renderFrame(params?: RenderParameters): boolean
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| params | RenderParameters | 否 | 渲染参数，默认值为undefined。|
+| params | [RenderParameters](#renderparameters16) | 否 | 渲染参数，默认值为undefined。|
 
 **返回值：**
 | 类型 | 说明 |
