@@ -57,7 +57,7 @@ HiLog模块实现日志打印功能。
 | int [OH_LOG_Print](#oh_log_print) ([LogType](#logtype) type, [LogLevel](#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute\_\_((\_\_format\_\_(os_log | 写日志接口。 | 
 | int bool [OH_LOG_IsLoggable](#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 | 
 | void [OH_LOG_SetCallback](#oh_log_setcallback) ([LogCallback](#logcallback) callback) | 注册函数。 | 
-
+| void [OH_LOG_SetMinLogLevel](#oh_log_setminloglevel) ([LogLevel](#loglevel) level) | 设置当前应用进程的最低日志级别。  |
 
 ## 宏定义说明
 
@@ -246,7 +246,7 @@ typedef void(* LogCallback) (const LogType type, const LogLevel level, const uns
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
-| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。 |
 | tag | 日志TAG，字符串，标识调用所在的类或者业务。tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。 | 
 | msg | 日志内容，格式化之后的日志字符串。 | 
 
@@ -354,7 +354,7 @@ int OH_LOG_Print (LogType type, LogLevel level, unsigned int domain, const char 
 | -------- | -------- |
 | type | 日志类型，三方应用日志类型为LOG_APP。 | 
 | level | 日志级别，日志级别包括LOG_DEBUG、LOG_INFO、LOG_WARN、LOG_ERROR、LOG_FATAL。 | 
-| domain | 日志业务领域，16进制整数，范围0x0~0xFFFF。 | 
+| domain | 日志业务领域，16进制整数，范围为0x0~0xFFFF。  |
 | tag | 日志TAG，字符串，标识调用所在的类或者业务。 tag最多为31字节，超出后会截断，不建议使用中文字符，可能出现乱码或者对齐问题。| 
 | fmt | 格式化字符串，基于类printf格式的增强，支持隐私参数标识，即在格式字符串每个参数中符号后类型前增加{public}、{private}标识。 | 
 | ... | 与格式字符串里参数类型对应的参数列表，参数数目、参数类型必须与格式字符串中的标识一一对应。 | 
@@ -383,3 +383,21 @@ void OH_LOG_SetCallback (LogCallback callback)
 | 名称 | 描述 | 
 | -------- | -------- |
 | callback | 用户实现的回调函数。如果不需要处理hilog日志，可以传输空指针。 | 
+
+### OH_LOG_SetMinLogLevel()
+
+```
+void OH_LOG_SetMinLogLevel(LogLevel level)
+```
+
+**描述**
+
+设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](..\..\dfx\hilog.md#查看和设置日志级别)默认为Info。
+
+**起始版本** 15
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| level | 日志级别。  |
