@@ -24,6 +24,8 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名          | 类型                                                         | 必填 | 说明                                                         |
@@ -75,6 +77,8 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                           |
@@ -125,6 +129,8 @@ ohos.permission.INSTALL_BUNDLE
 
 SystemCapability.BundleManager.BundleFramework
 
+**系统接口：** 此接口为系统接口。
+
 **参数：**
 
 | 参数名     | 类型                                                         | 必填 | 说明                                               |
@@ -165,6 +171,8 @@ bundleInstall.getBundleInstaller().then(installer => {
 安装、恢复或卸载时需要指定的参数。
 
  **系统能力:** SystemCapability.BundleManager.BundleFramework
+
+ **系统接口：** 此接口为系统接口。
 
 | 名称        | 类型    | 只读 | 可选 | 说明               |
 | ----------- | ------- | ---- | ---- | ------------------ |
