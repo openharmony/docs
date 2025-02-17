@@ -128,6 +128,7 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode)[OH_AVScreenCapture_ShowCursor](#oh_avscreencapture_showcursor) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool showCursor) | 设置光标显示开关。 | 
 
 
 ## 类型定义说明
@@ -883,7 +884,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_AcquireAudioBuffer (struct OH_AVS
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -946,7 +947,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ContentFilter_AddAudioContent (st
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1033,7 +1034,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ExcludeContent (struct OH_AVScree
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1076,7 +1077,7 @@ OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然�
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1105,7 +1106,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_Release (struct OH_AVScreenCaptur
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1138,7 +1139,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseAudioBuffer (struct OH_AVS
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1167,7 +1168,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseContentFilter (struct OH_A
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1198,7 +1199,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseVideoBuffer (struct OH_AVS
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1232,7 +1233,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCallback (struct OH_AVScreenCa
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1266,7 +1267,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCanvasRotation (struct OH_AVSc
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1306,7 +1307,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetDataCallback (struct OH_AVScre
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1343,7 +1344,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetErrorCallback (struct OH_AVScr
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1377,7 +1378,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMicrophoneEnabled (struct OH_A
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1418,7 +1419,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetStateCallback (struct OH_AVScr
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1451,7 +1452,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCapture (struct OH_AVS
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1481,7 +1482,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenCaptureWithSurface (st
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1510,7 +1511,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StartScreenRecording (struct OH_A
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1539,7 +1540,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenCapture (struct OH_AVSc
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1568,7 +1569,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StopScreenRecording (struct OH_AV
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1602,13 +1603,45 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ResizeCanvas (struct OH_AVScreenC
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
+
+### OH_AVScreenCapture_ShowCursor()
+
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ShowCursor(struct OH_AVScreenCapture *capture, bool showCursor)
+```
+
+**描述**
+
+设置光标显示开关。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
+| showCursor | 光标显示参数。 | 
+
+**返回：**
+
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针。
+
+AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作，设置光标失败。
+
 
 ### OH_AVScreenCapture_SkipPrivacyMode()
 
@@ -1634,7 +1667,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SkipPrivacyMode (struct OH_AVScre
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 
@@ -1669,7 +1702,7 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 
 **返回：**
 
-函数结果代码[OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode-1)：
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
 
 AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 

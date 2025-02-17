@@ -3764,6 +3764,54 @@ async function example(asset: photoAccessHelper.PhotoAsset) {
 }
 ```
 
+### setOrientation<sup>15+</sup>
+
+setOrientation(orientation: number): void
+
+修改图片的旋转角度。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| orientation | number | 是   | 待修改的图片旋转角度，且只能为0、90、180、270。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  Internal system error.         |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example() {
+  console.info('setOrientationDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setOrientation(90);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setOrientation successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setOrientation failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
 ## MediaAlbumChangeRequest<sup>11+</sup>
 
 相册变更请求。
@@ -4274,6 +4322,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 | -------- | ---------------------------------------- |
 | 201      |  Permission denied         |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 801<sup>15+</sup>   | Capability not supported.       |
 | 14000011       | System inner fail.         |
 
 **示例：**
@@ -5059,6 +5108,8 @@ title参数规格为：
 | 名称                   | 类型                        | 只读 | 可选 | 说明                                         |
 | ---------------------- |----------------------------| ---- | ---- | ------------------------------------------- |
 | deliveryMode           | [DeliveryMode](#deliverymode11) | 否   | 否   | 请求资源分发模式，可以指定对于该资源的请求策略，可被配置为快速模式，高质量模式，均衡模式三种策略。 |
+| compatibleMode<sup>15+</sup>      | [CompatibleMode](#compatiblemode15) | 否   | 是   | 配置HDR视频转码模式，可指定配置为转码和不转码两种策略。 |
+| mediaAssetProgressHandler<sup>15+</sup> | [MediaAssetProgressHandler](#mediaassetprogresshandler15) | 否   | 是   | 配置HDR视频转码为SDR视频时的进度级回调。 |
 
 ## MediaChangeRequest<sup>11+</sup>
 
@@ -5319,6 +5370,17 @@ async function example() {
 | photoType | [PhotoType](#phototype) | 是  | 创建的文件类型，IMAGE或者VIDEO。|
 | subtype | [PhotoSubtype](#photosubtype12) | 否  | 图片或者视频的文件子类型，DEFAULT或者MOVING_PHOTO。|
 
+## CompatibleMode<sup>15+</sup>
+
+配置转码模式。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+| 名称  |  值 |  说明 |
+| ----- | ---- | ---- |
+| ORIGINAL_FORMAT_MODE |  0 |  原视频资源内容模式。  |
+| COMPATIBLE_FORMAT_MODE    |  1 |  兼容模式，从HDR视频转换为SDR视频。    |
+
 ## CompleteButtonText<sup>14+</sup>
 
 配置完成按钮显示内容。
@@ -5327,6 +5389,26 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。  |
-| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。    |
-| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。  |
+| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。  |
+
+## MediaAssetProgressHandler<sup>15+</sup>
+
+媒体资产进度处理器，应用在onProgress方法中获取媒体资产进度。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+### onProgress<sup>15+</sup>
+
+onProgress(progress: number): void
+
+当所请求的视频资源返回进度时系统会回调此方法。
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名  | 类型    | 必填 | 说明                       |
+| ------- | ------- | ---- | -------------------------- |
+| progress | number | 是   | 返回的进度百分比，范围为0~100。 |

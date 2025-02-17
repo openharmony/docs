@@ -14,7 +14,7 @@
 
 install(bundleFilePaths: Array&lt;string&gt;, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
-以异步方法在应用中安装hap，支持多hap安装。使用callback形式返回结果。
+在应用中安装hap，支持多hap安装。使用callback异步回调。
 
 **需要权限：**
 
@@ -67,7 +67,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 uninstall(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
-以异步方法卸载应用程序，使用callback异步回调，返回安装状态信息。
+卸载应用程序，使用callback异步回调，返回安装状态信息。
 
 **需要权限：**
 
@@ -119,7 +119,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 recover(bundleName: string, param: InstallParam, callback: AsyncCallback&lt;InstallStatus&gt;): void;
 
-以异步方法恢复一个应用程序，使用callback形式返回结果。当预置应用被卸载后，可以通过此接口进行恢复。
+恢复一个应用程序，使用callback异步回调。当预置应用被卸载后，可以通过此接口进行恢复。
 
 **需要权限：**
 

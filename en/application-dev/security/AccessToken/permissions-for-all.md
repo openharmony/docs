@@ -402,3 +402,55 @@ After the application has this permission, the system JS engine can request anon
 **Authorization mode**: system_grant
 
 **Valid since**: 14
+
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+Allows a device administrator application to manage personal device restrictions.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.START_PROVISIONING_MESSAGE
+
+Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+<!--Del-->
+### ohos.permission.PRELOAD_FILE
+
+Allows an application to preload files to improve file opening speed.
+
+This permission is available only to document editing applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+<!--DelEnd-->
+
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+Allows an application to set the icon and label information for each ability.
+
+The configured icon and label information can be displayed in the Task Center and shortcut bar.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15

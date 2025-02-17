@@ -11,9 +11,9 @@
 
 2. 调用[cryptoFramework.createKeyAgreement](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement)，指定字符串参数'X25519'，创建密钥算法为X25519的密钥协议生成器（KeyAgreement）。
 
-3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘密。
+3. 调用[KeyAgreement.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-1)，基于传入的私钥（KeyPair.priKey）与公钥（KeyPair.pubKey）进行密钥协商，返回共享秘钥。
 
-- 以使用await方式，完成密钥协商为例：
+- 异步方法示例：
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -33,7 +33,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = await keyAgreement.generateSecret(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('x25519 success');
       console.info('x25519 output is ' + secret1.data);
     } else {
@@ -47,7 +47,7 @@
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-  function x25519Await() {
+  function x25519AgreementSync() {
     // 假设此公私钥对数据为外部传入
     let pubKeyArray = new Uint8Array([48, 42, 48, 5, 6, 3, 43, 101, 110, 3, 33, 0, 36, 98, 216, 106, 74, 99, 179, 203, 81, 145, 147, 101, 139, 57, 74, 225, 119, 196, 207, 0, 50, 232, 93, 147, 188, 21, 225, 228, 54, 251, 230, 52]);
     let priKeyArray = new Uint8Array([48, 46, 2, 1, 0, 48, 5, 6, 3, 43, 101, 110, 4, 34, 4, 32, 112, 65, 156, 73, 65, 89, 183, 39, 119, 229, 110, 12, 192, 237, 186, 153, 21, 122, 28, 176, 248, 108, 22, 242, 239, 179, 106, 175, 85, 65, 214, 90]);
@@ -62,7 +62,7 @@
     // 使用A的私钥和B的公钥进行密钥协商
     let secret2 = keyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
     // 两种协商的结果应当一致
-    if (secret1.data.toString() == secret2.data.toString()) {
+    if (secret1.data.toString() === secret2.data.toString()) {
       console.info('x25519 success');
       console.info('x25519 output is ' + secret1.data);
     } else {

@@ -5,7 +5,6 @@ FenceExtensionAbility为开发者提供的地理围栏相关的能力，继承�
 > **说明：**
 >
 > 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口仅可在Stage模型下使用。  
 
 ## 导入模块
 
@@ -19,7 +18,7 @@ import { FenceExtensionAbility } from '@kit.LocationKit';
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | FenceExtensionContext | 是 | 否 | 围栏服务上下文。 |
+| context | [FenceExtensionContext](js-apis-app-ability-FenceExtensionContext.md) | 是 | 否 | 围栏服务上下文。 |
 
 ## FenceExtensionAbility.onFenceStatusChange
 

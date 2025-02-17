@@ -239,3 +239,75 @@ Window manager service error.
 **处理步骤**
 
 建议重启设备后重试调用接口。
+
+## 12800014 输入法应用非完全访问模式
+
+**错误信息**
+
+The intput method is basic mode.
+
+**错误描述**
+
+输入法应用非完全访问模式。
+
+**可能原因**
+
+开发者调用要求需开启完全访问模式的接口后，若当前输入法非完全访问模式，则抛出此错误码。
+
+**处理步骤**
+
+在设置中开启当前输入法的完全访问模式。
+
+## 12800015 消息接收端无法接收自定义通信数据
+
+**错误信息**
+
+The another side does not accept the request.
+
+**错误描述**
+
+消息接收端无法接收自定义通信数据。
+
+**可能原因**
+
+开发者调用发送自定义通信数据接口时，若消息接收端未注册[MessageHandler](js-apis-inputmethodengine.md#messagehandler15)接收数据，则抛出此错误码。
+
+**处理步骤**
+
+消息接收端需注册MessageHandler接收自定义通信数据，输入法应用侧调用[recvMessage](js-apis-inputmethodengine.md#recvmessage15)，输入法客户端侧调用[recvMessage](js-apis-inputmethod.md#recvmessage15)。
+
+## 12800016 输入法客户端未处于编辑状态
+
+**错误信息**
+
+The edit mode need enable.
+
+**错误描述**
+
+输入法客户端未处于编辑状态。
+
+**可能原因**
+
+输入法客户端绑定后退出了编辑状态。如：自绘控件调用Attach后又调用了[hideTextInput](js-apis-inputmethod.md#hidetextinput10)操作等。
+
+**处理步骤**
+
+输入法客户端绑定后退出编辑状态，需重新进入编辑状态。如：自绘控件需调用[showTextInput](js-apis-inputmethod.md#showtextinput10)重新进入编辑状态。
+
+## 12800017 无效的面板类型或面板状态
+
+**错误信息**
+
+Invalid panel type or panel flag.
+
+**错误描述**
+
+无效的面板类型或面板状态。
+
+**可能原因**
+
+当前的输入法[面板类型](js-apis-inputmethodengine.md#paneltype10)或[面板状态](js-apis-inputmethodengine.md#panelflag10)不支持其调用此接口，或者此接口不支持开发者传入当前面板类型或面板状态，则抛出此错误码。
+
+**处理步骤**
+
+建议开发者进一步阅读接口使用说明，按要求调整当前输入法面板类型或面板状态、调整传入的参数，或者即当前面板无法使用此接口能力。

@@ -1203,6 +1203,46 @@ adminManager.authorizeAdmin(wantTemp, bundleName).then(() => {
 })
 ```
 
+## adminManager.getAdmins<sup>15+</sup>
+
+getAdmins(): Promise&lt;Array&lt;Want&gt;&gt;
+
+查询当前用户下的所有设备管理应用。使用promise异步回调。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+
+**返回值：**
+
+| 类型   | 说明                                  |
+| ----- | ----------------------------------- |
+| Promise&lt;Array&lt;Want&gt;&gt; | 包含所有已激活的设备管理应用的Promise对象。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+adminManager.getAdmins().then((result) => {
+  console.info(`Succeeded in getting admins :${JSON.stringify(result)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get admins. Code: ${err.code}, message: ${err.message}`);
+})
+```
+
 ## EnterpriseInfo
 
 设备管理应用的企业信息。

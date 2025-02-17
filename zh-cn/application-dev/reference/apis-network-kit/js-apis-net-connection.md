@@ -1561,6 +1561,8 @@ addCustomDnsRule(host: string, ip: Array\<string\>, callback: AsyncCallback\<voi
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1605,6 +1607,8 @@ addCustomDnsRule(host: string, ip: Array\<string\>): Promise\<void\>
 为当前应用程序添加自定义host和对应的IP地址的映射，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1654,6 +1658,8 @@ removeCustomDnsRule(host: string, callback: AsyncCallback\<void\>): void
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -1697,6 +1703,8 @@ removeCustomDnsRule(host: string): Promise\<void\>
 删除当前应用程序中对应host的自定义DNS规则，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -1818,6 +1826,73 @@ connection.clearCustomDnsRules().then(() => {
 }).catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
 })
+```
+
+## connection.setPacUrl<sup>15+</sup>
+
+setPacUrl(pacUrl: string): void
+
+设置系统级代理自动配置（PAC）脚本地址。
+
+**需要权限**：ohos.permission.SET_PAC_URL
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| pacUrl   | string                                            | 是   | 需要设置的PAC脚本地址，该接口不会对脚本地址进行校验。             |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 201     | Permission denied.                |
+| 401     | Parameter error.                  |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = "xxx";
+connection.setPacUrl(pacUrl);
+```
+
+## connection.getPacUrl<sup>15+</sup>
+
+getPacUrl(): string
+
+获取系统级代理自动配置（PAC）脚本地址。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                   | 说明                    |
+| ---------------------- | ----------------------- |
+| string        | 返回PAC脚本地址。不存在时，抛出2100003错误码。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[网络连接管理错误码](errorcode-net-connection.md)。
+
+| 错误码ID | 错误信息                          |
+| ------- | --------------------------------- |
+| 2100002 | Failed to connect to the service. |
+| 2100003 | System internal error.            |
+
+**示例：**
+
+```ts
+import { connection } from '@kit.NetworkKit';
+
+let pacUrl = connection.getPacUrl();
 ```
 
 
@@ -2358,6 +2433,8 @@ getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>\>\)
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **参数：**
@@ -2408,6 +2485,8 @@ getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 使用对应网络解析主机名以获取所有IP地址，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 

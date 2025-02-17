@@ -314,6 +314,91 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 });
 ```
 
+## hiAppEvent.setEventConfig<sup>15+</sup>
+
+setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&lt;void&gt;
+
+事件自定义门限触发条件的参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，自定义事件门限触发条件相关的参数。**现在仅支持MAIN_THREAD_JANK事件。参数配置详见：[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义采样栈参数介绍)**。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+
+**参数：**
+
+| 参数名 | 类型                           | 必填 | 说明           |
+| ------ | ------------------------------ | ---- | -------------- |
+| name   | string                        | 是 | 事件名称。 |
+| config | Record<string, ParamType> | 是 | 事件自定义参数对象。参数名和参数值规格定义如下：<br>- 参数名为string类型，要求非空，且参数名长度需在1024个字符以内。<br>- 参数值为ParamType类型，参数值长度需在1024个字符以内。 |
+
+**返回值：**
+
+| 类型                | 说明          |
+| ------------------- | ------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[应用事件打点错误码](errorcode-hiappevent.md)。
+
+| 错误码ID | 错误信息                                      |
+| -------- | --------------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.3.Parameter verification failed. |
+
+**示例：**
+
+该步骤用于模拟自定义MAIN_THREAD_JANK事件参数，以log_type的三种类型为例：
+
+log_type=0，采样栈或者采样trace。
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "0"
+};
+
+hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
+log_type=1，仅采集调用栈。
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "1",
+  "sample_interval": "100",
+  "ignore_startup_time": "11",
+  "sample_count": "21",
+  "report_times_per_app": "3",
+};
+hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
+log_type=2，仅收集trace。
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let params: Record<string, hiAppEvent.ParamType> = {
+  "log_type": "2"
+};
+hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+  hilog.info(0x0000, 'hiAppEvent', `success to set event config`);
+}).catch((err: BusinessError) => {
+  hilog.error(0x0000, 'hiAppEvent', `code: ${err.code}, message: ${err.message}`);
+});
+```
+
 ## ParamType<sup>12+</sup>
 
 type ParamType = number | string | boolean | Array&lt;string&gt;

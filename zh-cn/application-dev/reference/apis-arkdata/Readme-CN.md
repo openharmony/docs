@@ -1,6 +1,6 @@
 # ArkData（方舟数据管理）
 
-- ArkTS API 
+- ArkTS API<!--arkdata-arkts-->
   - [@ohos.data.commonType (数据通用类型)](js-apis-data-commonType.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
@@ -27,20 +27,20 @@
   - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](js-apis-distributedKVStore-sys.md)
   - [@ohos.data.relationalStore (关系型数据库)(系统接口)](js-apis-data-relationalStore-sys.md)
   <!--DelEnd-->
-  - 已停止维护的接口
+  - 已停止维护的接口<!--arkdata-arkts-dep-->
     - [@ohos.data.distributedData (分布式数据管理)](js-apis-distributed-data.md)
     - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
     - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
     - [@system.storage数据存储](js-apis-system-storage.md)
     - data/rdb
       - [resultSet结果集](js-apis-data-resultset.md)
-- C API
-  - 模块
+- C API<!--arkdata-c-->
+  - 模块<!--arkdata-module-->
     - [Data](_data.md)
     - [RDB](_r_d_b.md)
     - [UDMF](_u_d_m_f.md)
     - [Preferences](_preferences.md)
-  - 头文件
+  - 头文件<!--arkdata-headerfile-->
     - [data_asset.h](data__asset_8h.md)
     - [oh_cursor.h](oh__cursor_8h.md)
     - [oh_predicates.h](oh__predicates_8h.md)
@@ -57,7 +57,7 @@
     - [oh_preferences_err_code.h](oh__preferences__err__code_8h.md)
     - [oh_preferences_option.h](oh__preferences__option_8h.md)
     - [oh_preferences_value.h](oh__preferences__value_8h.md)
-  - 结构体
+  - 结构体<!--arkdata-struct-->
     - [OH_Cursor](_o_h___cursor.md)
     - [OH_Predicates](_o_h___predicates.md)
     - [OH_Rdb_Config](_o_h___rdb___config.md)
@@ -74,7 +74,7 @@
     - [Rdb_Statistic](_rdb___statistic.md)
     - [Rdb_SubscribeCallback](union_rdb___subscribe_callback.md)
     - [Rdb_TableDetails](_rdb___table_details.md)
-- 错误码
+- 错误码<!--arkdata-arkts-errcode-->
   - [关系型数据库错误码](errorcode-data-rdb.md)
   - [数据共享错误码](errorcode-datashare.md)
   - [分布式数据对象错误码](errorcode-distributed-dataObject.md)

@@ -2733,6 +2733,18 @@ Allows a system application to set dynamic sandbox policies.
 
 **Valid since**: 11
 
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+Allows a system application or system service to check sandbox policies of other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 Allows an SA to call **Find Device**.
@@ -4200,6 +4212,34 @@ Allows a system application to access the application installation directory.
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.SET_PAC_URL
+
+Allows an application to set the URL of the proxy auto config (PAC) script.
+
+After the script address is configured, other applications can read and parse this script and determine whether to use a proxy based on the parsing result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+Allows a system application or system service to call APIs to perform encryption and decryption.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 12
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
 
 ## system_grant Permissions (Unavailable via ACL)
 

@@ -22,7 +22,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。该参数支持[!!语法](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。 |
+| show   | boolean                                                      | 是   | 弹窗显示状态，默认值为false，隐藏弹窗。popup弹窗必须等待页面全部构建完成才能展示，因此show不能在页面构建中设置为true，否则会导致popup弹窗显示位置及形状错误。该参数从API Version 13开始支持[!!语法](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。 |
 | popup  | [PopupOptions](#popupoptions类型说明)&nbsp;\|&nbsp;[CustomPopupOptions](#custompopupoptions8类型说明)<sup>8+</sup> | 是   | 配置弹出弹窗的参数。                                         |
 
 ## PopupOptions类型说明

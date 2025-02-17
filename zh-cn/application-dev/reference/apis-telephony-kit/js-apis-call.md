@@ -218,7 +218,7 @@ call.makeCall("138xxxxxxxx").then(() => {
 
 makeCall\(context: Context, phoneNumber: string\): Promise\<void\>
 
-跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。后台调用需要申请ohos.permission.START_ABILITIES_FROM_BACKGROUND权限
+跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。后台调用需要申请ohos.permission.START_ABILITIES_FROM_BACKGROUND权限。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 

@@ -409,18 +409,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_RUNNING_INFO
-
-允许应用获取运行态信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
-
 ### ohos.permission.START_ABILITIES_FROM_BACKGROUND
 
 允许应用在后台启动或者访问其他组件。
@@ -444,18 +432,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.RUNNING_STATE_OBSERVER
-
-允许应用监听应用状态。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -720,18 +696,6 @@
 **ACL使能**：true
 
 **起始版本**：9
-
-### ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
-
-允许查询应用的基本信息和其他敏感信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：7
 
 ### ohos.permission.CLOUDFILE_SYNC
 
@@ -1409,18 +1373,6 @@
 
 **起始版本**：7
 
-### ohos.permission.GET_WIFI_CONFIG
-
-允许应用获取Wi-Fi的配置信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 允许应用为其他应用授予敏感权限。
@@ -1756,18 +1708,6 @@
 **ACL使能**：true
 
 **起始版本**：7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-允许应用配置Wi-Fi信息。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -2733,6 +2673,18 @@
 
 **起始版本**：11
 
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+允许系统应用或系统服务查询其他应用的沙箱管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 允许系统SA调用“查找设备”。
@@ -3277,18 +3229,6 @@
 
 **起始版本**：12
 
-### ohos.permission.KILL_APP_PROCESSES
-
-允许系统应用杀掉其他应用。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.GET_ACCOUNT_MINORS_INFO
 
 允许系统应用获取用户账号的未成年使用者信息。
@@ -3745,30 +3685,6 @@
 
 **起始版本**：12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-允许系统应用配置防火墙规则。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
-### ohos.permission.GET_NET_FIREWALL
-
-允许系统应用查询防火墙规则和查询防火墙拦截记录。
-
-**权限级别**：system_basic
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：12
-
 ### ohos.permission.ACCESS_IDM_WIDGET
 
 允许系统应用拉起用户凭据录入控件。
@@ -4200,6 +4116,34 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.SET_PAC_URL
+
+允许应用设置代理自动配置脚本地址。
+
+应用完成脚本地址配置后，其他应用可读取此脚本并进行解析，根据解析结果决定是否使用代理。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
+### ohos.permission.STORAGE_MANAGER_CRYPT
+
+允许系统应用和系统服务调用接口完成加解密操作。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：12
+
+**变更信息**：API 12-14仅对系统服务开放；从API 15开始对系统应用开放。
 
 ## system_grant，不允许ACL跨级申请
 

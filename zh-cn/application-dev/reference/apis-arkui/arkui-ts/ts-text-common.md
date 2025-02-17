@@ -328,6 +328,21 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText) =
 | SELECTION_MENU | 0 | 文本选择菜单。|
 | PREVIEW_MENU | 1 | 图片预览菜单。|
 
+## KeyboardAppearance<sup>15+</sup>枚举说明
+
+键盘外观。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| NONE_IMMERSIVE | 0 | 默认外观模式，不采用沉浸式风格。|
+| IMMERSIVE | 1 | 沉浸式模式，跟随系统。|
+| LIGHT_IMMERSIVE | 2 | 浅色沉浸式风格。|
+| DARK_IMMERSIVE | 3 | 深色沉浸式风格。|
+
 ## InsertValue<sup>12+</sup>对象说明
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。

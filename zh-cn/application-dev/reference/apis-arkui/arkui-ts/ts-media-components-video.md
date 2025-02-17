@@ -182,6 +182,22 @@ analyzerConfig(config: ImageAnalyzerConfig)
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
 
+### enableShortcutKey<sup>15+</sup>
+
+enableShortcutKey(enabled: boolean)
+
+设置组件支持快捷键响应。
+
+目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型    | 必填 | 说明                                   |
+| ------- | ------- | ---- | -------------------------------------- |
+| enabled | boolean | 是   | 是否启用快捷键响应。<br/>默认值：false |
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
@@ -510,7 +526,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法，包括控制栏、预览图、自动播放、播放速度、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）以及一些状态回调方法。
+基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）以及一些状态回调方法。
 
 ```ts
 // xxx.ets
@@ -522,6 +538,7 @@ struct VideoCreateComponent {
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = false
   @State showControls: boolean = true
+  @State isShortcutKeyEnabled: boolean = false
   controller: VideoController = new VideoController()
 
   build() {
@@ -536,6 +553,7 @@ struct VideoCreateComponent {
         .height(600)
         .autoPlay(this.isAutoPlay)
         .controls(this.showControls)
+        .enableShortcutKey(this.isShortcutKeyEnabled)
         .onStart(() => {
           console.info('onStart')
         })

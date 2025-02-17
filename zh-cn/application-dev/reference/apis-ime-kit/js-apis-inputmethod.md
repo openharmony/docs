@@ -780,6 +780,111 @@ Enter键的功能类型。
 | width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。|
 | height  | number | 否 | 否 | 输入法窗口的高度，单位为px。|
 
+## EnabledState<sup>15+</sup>
+
+输入法启用状态。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| DISABLED   | 0 |未启用。 |
+| BASIC_MODE  | 1 |基础模式。 |
+| FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
+## MessageHandler<sup>15+</sup>
+
+自定义通信对象。
+
+> **说明**
+>
+> 开发者可通过注册此对象来接收输入法应用发送的自定义通信数据，接收到自定义通信数据时会触发此对象中[onMessage](#messagehandleronmessage15)回调函数。
+>
+> 此对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+>
+> 若取消注册全局已注册的对象时，会触发被取消对象中[onTerminated](#messagehandleronterminated15)回调函数。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称         | 类型     | 必填 | 说明                               |
+| ------------ | -------- | ---- | ---------------------------------- |
+| onTerminated | function | 是   | 对象终止接收的回调函数。           |
+| onMessage    | function | 是   | 对象接收自定义通信数据的回调函数。 |
+
+## MessageHandler.onMessage<sup>15+</sup>
+
+onMessage(msgId: string, msgParam?: ArrayBuffer): void
+
+接收输入法应用发送的自定义数据回调函数。
+
+> **说明**
+>
+> 当已注册的MeesageHandler接收到来自输入法应用发送的自定义通信数据时，会触发该回调函数。
+>
+> msgId为必选参数，msgParam为可选参数。存在收到仅有msgId自定义数据的可能，需与数据发送方确认自定义数据。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                             |
+| -------- | ----------- | ---- | -------------------------------- |
+| msgId    | string      | 是   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 接收到的自定义通信数据的消息体。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
+## MessageHandler.onTerminated<sup>15+</sup>
+
+onTerminated(): void
+
+监听对象终止回调函数。
+
+> **说明**
+>
+> 当应用注册新的MessageHandler对象时，会触发上一个已注册MessageHandler对象的OnTerminated回调函数。
+>
+> 当应用取消注册时，会触发当前已注册MessageHandler对象的OnTerminated回调函数。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    let messageHandler: inputmethod.MessageHandler = {
+        onTerminated(): void {
+            console.log('OnTerminated.');
+        },
+        onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+            console.log('recv message.');
+        }
+    }
+    inputMethodController.recvMessage(messageHandler);
+} catch(err) {
+  console.error(`Failed to recvMessage: ${JSON.stringify(err)}`);
+}
+```
+
 ## InputMethodController
 
 下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过实例调用对应方法。
@@ -1783,6 +1888,110 @@ inputMethodController.hideSoftKeyboard().then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
 });
+```
+
+### sendMessage<sup>15+</sup>
+
+sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
+
+发送自定义通信至输入法应用。使用Promise异步回调。
+
+> **说明：**
+>
+> 该接口需要编辑框与输入法绑定并进入编辑状态，且输入法应用处于完整体验模式时才能调用。
+>
+> msgId最大限制256B，msgParam最大限制128KB。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型        | 必填 | 说明                                       |
+| -------- | ----------- | ---- | ------------------------------------------ |
+| msgId    | string      | 是   | 需要发送至输入法应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 需要发送至输入法应用的自定义数据的消息体。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length. |
+| 12800003 | input method client error.                  |
+| 12800009 | input method client detached.               |
+| 12800014 | the input method is in basic mode.          |
+| 12800015 | the other side does not accept the request. |
+| 12800016 | input method client is not editable.        |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let msgId: string = "testMsgId";
+let msgParam: ArrayBuffer = new ArrayBuffer(128);
+inputMethodController.sendMessage(msgId, msgParam).then(() => {
+  console.log('Succeeded send message.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to send message: ${JSON.stringify(err)}`);
+});
+```
+
+### recvMessage<sup>15+</sup>
+
+recvMessage(msgHandler?: MessageHandler): void
+
+注册或取消注册Messagehandler。
+
+> **说明：**
+>
+> [MessageHandler](#messagehandler15)对象全局唯一，多次注册仅保留最后一次注册的对象及有效性，并触发上一个已注册对象的[onTerminated](#messagehandleronterminated15)回调函数。
+>
+> 未填写参数，则取消全局已注册的[MessageHandler](#messagehandler15)，并会触发被取消注册对象中[onTerminated](#messagehandleronterminated15)回调函数。
+
+**系统能力：**  SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明                                                         |
+| ---------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
+| msgHandler | [MessageHandler](#messagehandler15) | 否   | 该对象将通过[onMessage](#messagehandleronmessage15)接收来自输入法应用所发送的自定义通信数据，以及[onTerminated](#messagehandleronterminated15)接收终止此对象订阅的消息。若不填写此参数，则取消全局已注册的[MessageHandler](#messagehandler15)对象，并触发其[onTerminated](#messagehandleronterminated15)回调函数。 |
+
+**返回值：**
+
+| 类型 | 说明         |
+| ---- | ------------ |
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息         |
+| -------- | ---------------- |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let messageHandler: inputmethod.MessageHandler = {
+    onTerminated(): void {
+        console.log('OnTerminated.');
+    },
+    onMessage(msgId: string, msgParam?:ArrayBuffer): void {
+        console.log('recv message.');
+    }
+}
+inputMethodController.recvMessage(messageHandler);
+inputMethodController.recvMessage();
 ```
 
 ### stopInput<sup>(deprecated)</sup>
@@ -3329,5 +3538,40 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
+})
+```
+
+### getInputMethodState<sup>15+</sup>
+
+getInputMethodState(): Promise&lt;EnabledState&gt;
+
+查询输入法的启用状态。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                    | 说明                                                         |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[EnabledState](#enabledstate15)> | Promise对象，返回EnabledState.DISABLED表示未启用; 返回EnabledState.BASIC_MODE表示基础模式; 返回EnabledState.FULL_EXPERIENCE_MODE表示完整体验模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800004 | not an input method application.    |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
+  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })
 ```

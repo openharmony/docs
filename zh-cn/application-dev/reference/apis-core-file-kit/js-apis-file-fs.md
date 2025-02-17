@@ -4148,6 +4148,312 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream;
   });
   ```
 
+## AtomicFile<sup>15+</sup>
+用于保证文件操作的原子性。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+### constructor<sup>15+</sup>
+
+constructor(path: string)
+
+AtomicFile的构造函数。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**参数：**
+
+  | 参数名  | 类型     | 必填   | 说明                               |
+  | ------ | ------ | ---- | -------------------------------------- |
+  | path   | string | 是    | 文件的沙箱路径。                       |
+
+### getBaseFile<sup>15+</sup>
+
+getBaseFile(): File
+
+通过AtomicFile对象获取文件对象。
+
+文件fd由用户自己调用close关闭。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+try {
+  let atomicFile = new fs.AtomicFile(`${pathDir}/write.txt`);
+  let writeSream = atomicFile.startWrite();
+  writeSream.write("xxxxx","utf-8",()=> {
+    atomicFile.finishWrite();
+    let File = atomicFile.getBaseFile();
+    hilog.info(0x0000, 'AtomicFile', 'getBaseFile File.fd is:%{public}d, path:%{public}s, name:%{public}s', File.fd, File.path, File.path);
+  })
+} catch (err) {
+  hilog.error(0x0000, 'AtomicFile', 'failed! err :%{public}s', err.message);
+}
+```
+
+### openRead<sup>15+</sup>
+
+openRead(): ReadStream
+
+创建一个读文件流。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                | 说明        |
+  | ------------------ | --------- |
+  | [ReadStream](#readstream12) | 文件可读流。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+try {
+  let file = new fs.AtomicFile(`${pathDir}/read.txt`);
+  let writeSream = file.startWrite();
+  writeSream.write("xxxxxx","utf-8",()=> {
+    file.finishWrite();
+    setTimeout(()=>{
+      let readStream = file.openRead();
+      readStream.on('readable', () => {
+        const data = readStream.read();
+        if (!data) {
+          hilog.error(0x0000, 'AtomicFile', 'Read data is null');
+          return;
+        }
+        hilog.info(0x0000, 'AtomicFile', 'Read data is:%{public}s!', data);
+      });
+    },1000);
+  })
+} catch (err) {
+  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+}
+```
+
+### readFully<sup>15+</sup>
+
+readFully(): ArrayBuffer
+
+读取文件全部内容。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                | 说明        |
+  | ------------------ | --------- |
+  | ArrayBuffer | 文件的全部内容。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+import { util, buffer } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+try {
+  let file = new fs.AtomicFile(`${pathDir}/read.txt`);
+  let writeSream = file.startWrite();
+  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+    file.finishWrite();
+    setTimeout(()=>{
+      let data = file.readFully();
+      let decoder = util.TextDecoder.create('utf-8');
+      let str = decoder.decodeToString(new Uint8Array(data));
+      hilog.info(0x0000, 'AtomicFile', 'readFully str is :%{public}s!', str);
+    },1000);
+  })
+} catch (err) {
+  hilog.error(0x0000, 'AtomicFile', 'failed!, Cause: %{public}s', JSON.stringify(err) ?? '');
+}
+```
+
+### startWrite<sup>15+</sup>
+
+startWrite(): WriteStream
+
+创建一个写文件流。
+
+当文件不存在时新建文件。
+
+在写入文件完成后，写入成功需要调用finishWrite()，写入失败需要调用failWrite()。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**返回值：**
+
+  | 类型                | 说明        |
+  | ------------------ | --------- |
+  | [WriteStream](#writestream12) | 文件可写流。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+try {
+  let file = new fs.AtomicFile(`${pathDir}/write.txt`);
+  let writeSream = file.startWrite();
+  hilog.error(0x0000, 'AtomicFile', 'startWrite end');
+  writeSream.write("xxxxxxxx","utf-8",()=> {
+    hilog.info(0x0000, 'AtomicFile', 'write end');
+  })
+} catch (err) {
+  hilog.error(0x0000, 'AtomicFile', 'failed! err :%{public}s', err.message);
+}
+```
+
+### finishWrite<sup>15+</sup>
+
+finishWrite(): void
+
+文件写入成功后关闭文件。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+try {
+  let file = new fs.AtomicFile(`${pathDir}/write.txt`);
+  let writeSream = file.startWrite();
+  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+    file.finishWrite();
+  })
+} catch (err) {
+  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+}
+```
+
+### failWrite<sup>15+</sup>
+
+failWrite(): void
+
+文件写入失败后执行文件回滚操作。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+import { util, buffer } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+let file = new fs.AtomicFile(`${pathDir}/write.txt`);
+try {
+  let writeSream = file.startWrite();
+  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+    hilog.info(0x0000, 'AtomicFile', 'write succeed!');
+  })
+} catch (err) {
+  file.failWrite();
+  hilog.error(0x0000, 'AtomicFile', 'failed! , Cause: %{public}s', JSON.stringify(err) ?? '');
+}
+```
+
+### delete<sup>15+</sup>
+
+delete(): void
+
+删除文件。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[基础文件IO错误码](errorcode-filemanagement.md#基础文件IO错误码)和[通用错误码](../errorcode-universal.md#通用错误码)。
+
+**示例：**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs} from '@kit.CoreFileKit';
+
+let context = getContext(this) as common.UIAbilityContext;
+let pathDir = context.filesDir;
+
+try {
+  let file = new fs.AtomicFile(`${pathDir}/read.txt`);
+  let writeSream = file.startWrite();
+  writeSream.write("xxxxxxxxxxx","utf-8",()=> {
+    file.finishWrite();
+    setTimeout(()=>{
+      let data = file.readFully();
+      let decoder = util.TextDecoder.create('utf-8');
+      let str = decoder.decodeToString(new Uint8Array(data));
+      hilog.info(0x0000, 'AtomicFile', 'readFully str is :%{public}s!', str);
+      file.delete();
+    },1000);
+  })
+} catch (err) {
+  hilog.error(0x0000, 'AtomicFile', 'failed!, Cause: %{public}s', JSON.stringify(err) ?? '');
+}
+```
+
 ## fs.createWatcher<sup>10+</sup>
 
 createWatcher(path: string, events: number, listener: WatchEventListener): Watcher
@@ -4371,6 +4677,9 @@ copySignal.onCancel().then(() => {
 | atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
+| atimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| mtimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| ctimeNs<sup>15+</sup>  | bigint | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 ### isBlockDevice
