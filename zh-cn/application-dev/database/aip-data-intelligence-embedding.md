@@ -194,3 +194,28 @@
        console.error("Failed to release Model and code is " + err.code);
      })
    ```
+
+6. 获取给定批次文本的嵌入向量。
+
+   ```ts
+   let batchTexts = ['text1','text2'];
+   textEmbedding.getEmbedding(batchTexts)
+     .then((data:Array<Array<number>>) => {
+       console.info("Succeeded in getting Embedding");
+     })
+     .catch((err:BusinessError) => {
+       console.error("Failed to get Embedding and code is " + err.code);
+     })
+   ```
+
+7. 释放文本嵌入模型。
+
+   ```ts
+   textEmbedding.releaseModel()
+     .then(() => {
+       console.info("Succeeded in releasing Model");
+     })
+     .catch((err:BusinessError) => {
+       console.error("Failed to release Model and code is " + err.code);
+     })
+   ```
