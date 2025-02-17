@@ -22,9 +22,9 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | 获取Download根目录沙箱路径。只支持2in1设备 |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | 获取Desktop根目录沙箱路径。只支持2in1设备 |
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | 获取Document根目录沙箱路径。只支持2in1设备 |
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDownloadDir](#oh_environment_getuserdownloaddir) (char \*\*result) | 获取Download根目录沙箱路径。只支持2in1设备。 |
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDesktopDir](#oh_environment_getuserdesktopdir) (char \*\*result) | 获取Desktop根目录沙箱路径。只支持2in1设备。 |
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_Environment_GetUserDocumentDir](#oh_environment_getuserdocumentdir) (char \*\*result) | 获取Document根目录沙箱路径。只支持2in1设备。 |
 
 
 ## 函数说明
