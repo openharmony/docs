@@ -4948,7 +4948,7 @@ on(type: 'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                     |
 | -------- | ------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 是   | 回调函数。返回当前的窗口激活态。   |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当本窗口的激活态发生变化时的回调。回调函数返回boolean类型参数。当返回参数为true表示激活态；false表示非激活态。   |
 
 **错误码：**
 
@@ -4988,7 +4988,7 @@ off(type: 'windowHighlightChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名   | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。     |
-| callback | Callback&lt;boolean&gt; | 否   | 回调函数。返回当前的窗口激活态。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口激活态变化的监听。 |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。当本窗口的激活态发生变化时的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口激活态变化的监听。 |
 
 **错误码：**
 
@@ -8409,10 +8409,10 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting the window to be exclusively highlight.');
   }).catch((err: BusinessError) => {
-    console.error(`Failed to set the window to be exclusively highlight.. Cause code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to set the window to be exclusively highlight. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
-  console.error(`Failed to set the window to be exclusively highlight.. Cause code: ${exception.code}, message: ${exception.message}`);
+  console.error(`Failed to set the window to be exclusively highlight. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
