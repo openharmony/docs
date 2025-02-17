@@ -1516,3 +1516,49 @@ struct Index {
 ```
 
 ![objectRepeatExample](figures/objectRepeatExample.png)
+
+### 示例15（设置SVG图片的填充颜色）
+
+该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("不设置fillColor")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Text("fillColor传入ColorContent.ORIGIN")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(ColorContent.ORIGIN)
+      Text("fillColor传入Color.Blue")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(Color.Blue)
+      Text("fillColor传入undefined")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(undefined)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![fillColorExample](figures/fillColorExample.png)
