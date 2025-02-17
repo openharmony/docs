@@ -26,9 +26,7 @@ import { bundleManager } from '@kit.AbilityKit';
 
 权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
-## 枚举
-
-### BundleFlag
+## BundleFlag
 
 包信息标志，指示需要获取的包信息的内容。
 
@@ -50,7 +48,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_BUNDLE_INFO_WITH_SKILL<sup>12+</sup>      | 0x00000800 | 用于获取包含skills的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_HAP_MODULE、GET_BUNDLE_INFO_WITH_ABILITY、GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY一起使用。 |
 | GET_BUNDLE_INFO_OF_ANY_USER<sup>12+</sup>      | 0x00002000 | 用于获取任意用户安装的bundleInfo。它不能单独使用，需要与GET_BUNDLE_INFO_WITH_APPLICATION一起使用。它仅在[getBundleInfo](#bundlemanagergetbundleinfo)、[getAllBundleInfo](#bundlemanagergetallbundleinfo)接口生效。<br/>**系统API：** 从API version 12开始，该接口支持在系统API中使用。 |
 
-### ApplicationFlag
+## ApplicationFlag
 
 应用信息标志，指示需要获取的应用信息的内容。
 
@@ -65,7 +63,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | GET_APPLICATION_INFO_WITH_METADATA   | 0x00000002 | 用于获取包含metadata的applicationInfo。                      |
 | GET_APPLICATION_INFO_WITH_DISABLE    | 0x00000004 | 用于获取包含禁用应用程序的applicationInfo。                  |
 
-### AbilityFlag
+## AbilityFlag
 
 Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 
@@ -84,7 +82,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | GET_ABILITY_INFO_WITH_APP_LINKING<sup>12+</sup>  | 0x00000040 | 用于获取通过域名校验筛选的abilityInfo。                         |
 | GET_ABILITY_INFO_WITH_SKILL<sup>12+</sup>   | 0x00000080 | 用于获取包含skills的abilityInfo。                         |
 
-### ExtensionAbilityFlag
+## ExtensionAbilityFlag
 
 扩展组件信息标志，指示需要获取的扩展组件信息的内容。
 
@@ -100,7 +98,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | GET_EXTENSION_ABILITY_INFO_WITH_METADATA    | 0x00000004 | 用于获取包含metadata的extensionAbilityInfo。                 |
 | GET_EXTENSION_ABILITY_INFO_WITH_SKILL<sup>12+</sup>     | 0x00000010 | 用于获取包含skills的extensionAbilityInfo。                 |
 
-### ProfileType<sup>11+</sup>
+## ProfileType<sup>11+</sup>
 
 标识配置文件类型。
 
@@ -112,7 +110,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | -------------- | ---- | --------------- |
 | INTENT_PROFILE  | 1    | 意图框架配置文件。    |
 
-### AppDistributionType<sup>12+</sup>
+## AppDistributionType<sup>12+</sup>
 
 标识应用分发类型。
 
@@ -130,7 +128,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | CROWDTESTING      | 6    | 众包测试应用。    |
 | NONE              | 7    | 其他。           |
 
-### ApplicationInfoFlag<sup>12+</sup>
+## ApplicationInfoFlag<sup>12+</sup>
 标识应用和用户之间的各种状态类型。
 
  **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
@@ -141,9 +139,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 |----------------|---|---|
 | FLAG_INSTALLED|  0x00000001 | 表示指定用户安装应用的状态，1表示指定用户安装了，0表示未安装。|
 
-## 接口
-
-### bundleManager.getBundleInfo
+## bundleManager.getBundleInfo
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -227,7 +223,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo
+## bundleManager.getBundleInfo
 
 getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -285,7 +281,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfo
+## bundleManager.getBundleInfo
 
 getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<BundleInfo>
 
@@ -369,7 +365,7 @@ try {
 
 ```
 
-### bundleManager.getApplicationInfo
+## bundleManager.getApplicationInfo
 
 getApplicationInfo(bundleName: string, appFlags: number, userId: number, callback: AsyncCallback\<ApplicationInfo>): void
 
@@ -429,7 +425,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfo
+## bundleManager.getApplicationInfo
 
 getApplicationInfo(bundleName: string, appFlags: number, callback: AsyncCallback\<ApplicationInfo>): void
 
@@ -486,7 +482,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfo
+## bundleManager.getApplicationInfo
 
 getApplicationInfo(bundleName: string, appFlags: number, userId?: number): Promise\<ApplicationInfo>
 
@@ -549,7 +545,7 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfo
+## bundleManager.getAllBundleInfo
 
 getAllBundleInfo(bundleFlags: number, userId: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
@@ -603,7 +599,7 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfo
+## bundleManager.getAllBundleInfo
 
 getAllBundleInfo(bundleFlags: number, callback: AsyncCallback<Array\<BundleInfo>>): void
 
@@ -654,7 +650,7 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfo
+## bundleManager.getAllBundleInfo
 
 getAllBundleInfo(bundleFlags: number, userId?: number): Promise<Array\<BundleInfo>>
 
@@ -710,7 +706,7 @@ try {
 }
 ```
 
-### bundleManager.getAllApplicationInfo
+## bundleManager.getAllApplicationInfo
 
 getAllApplicationInfo(appFlags: number, userId: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
@@ -764,7 +760,7 @@ try {
 }
 ```
 
-### bundleManager.getAllApplicationInfo
+## bundleManager.getAllApplicationInfo
 
 getAllApplicationInfo(appFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>): void
 
@@ -815,7 +811,7 @@ try {
 }
 ```
 
-### bundleManager.getAllApplicationInfo
+## bundleManager.getAllApplicationInfo
 
 getAllApplicationInfo(appFlags: number, userId?: number): Promise<Array\<ApplicationInfo>>
 
@@ -872,7 +868,7 @@ try {
 
 ```
 
-### bundleManager.queryAbilityInfo
+## bundleManager.queryAbilityInfo
 
 queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
@@ -936,7 +932,7 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfo
+## bundleManager.queryAbilityInfo
 
 queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void
 
@@ -997,7 +993,7 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfo
+## bundleManager.queryAbilityInfo
 
 queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
@@ -1087,7 +1083,7 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfoSync<sup>10+</sup>
+## bundleManager.queryAbilityInfoSync<sup>10+</sup>
 
 queryAbilityInfoSync(want: Want, abilityFlags: number, userId?: number): Array\<AbilityInfo>
 
@@ -1172,7 +1168,7 @@ try {
 }
 ```
 
-### bundleManager.queryAbilityInfo<sup>12+</sup>
+## bundleManager.queryAbilityInfo<sup>12+</sup>
 
 queryAbilityInfo(wants: Array\<Want>, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>
 
@@ -1243,7 +1239,7 @@ let wants: Array<Want> = [ want, want1 ];
     }
 ```
 
-### bundleManager.queryExtensionAbilityInfo
+## bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
@@ -1308,7 +1304,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfo
+## bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, callback: AsyncCallback<Array\<ExtensionAbilityInfo>>): void
 
@@ -1370,7 +1366,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfo
+## bundleManager.queryExtensionAbilityInfo
 
 queryExtensionAbilityInfo(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Promise<Array\<ExtensionAbilityInfo>>
 
@@ -1463,7 +1459,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
+## bundleManager.queryExtensionAbilityInfoSync<sup>10+</sup>
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: ExtensionAbilityType, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
@@ -1550,7 +1546,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid
+## bundleManager.getBundleNameByUid
 
 getBundleNameByUid(uid: number, callback: AsyncCallback\<string>): void
 
@@ -1601,7 +1597,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUid
+## bundleManager.getBundleNameByUid
 
 getBundleNameByUid(uid: number): Promise\<string>
 
@@ -1655,7 +1651,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleNameByUidSync<sup>10+</sup>
+## bundleManager.getBundleNameByUidSync<sup>10+</sup>
 
 getBundleNameByUidSync(uid: number): string
 
@@ -1706,7 +1702,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleArchiveInfo
+## bundleManager.getBundleArchiveInfo
 
 getBundleArchiveInfo(hapFilePath: string, bundleFlags: number, callback: AsyncCallback\<BundleInfo>): void
 
@@ -1760,7 +1756,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleArchiveInfo
+## bundleManager.getBundleArchiveInfo
 
 getBundleArchiveInfo(hapFilePath: string,  bundleFlags: number): Promise\<BundleInfo>
 
@@ -1817,7 +1813,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleArchiveInfoSync<sup>10+</sup>
+## bundleManager.getBundleArchiveInfoSync<sup>10+</sup>
 
 getBundleArchiveInfoSync(hapFilePath: string, bundleFlags: number): BundleInfo
 
@@ -1871,7 +1867,7 @@ try {
 }
 ```
 
-### bundleManager.cleanBundleCacheFiles
+## bundleManager.cleanBundleCacheFiles
 
 cleanBundleCacheFiles(bundleName: string, callback: AsyncCallback\<void>): void
 
@@ -1926,7 +1922,7 @@ try {
 }
 ```
 
-### bundleManager.cleanBundleCacheFiles
+## bundleManager.cleanBundleCacheFiles
 
 cleanBundleCacheFiles(bundleName: string): Promise\<void>
 
@@ -1984,7 +1980,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabled
+## bundleManager.setApplicationEnabled
 
 setApplicationEnabled(bundleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
@@ -2037,7 +2033,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabled
+## bundleManager.setApplicationEnabled
 
 setApplicationEnabled(bundleName: string, isEnabled: boolean): Promise\<void>
 
@@ -2093,7 +2089,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabled<sup>12+</sup>
+## bundleManager.setApplicationEnabled<sup>12+</sup>
 
 setApplicationEnabled(bundleName: string, appIndex: number, isEnabled: boolean): Promise\<void>
 
@@ -2151,7 +2147,7 @@ try {
 }
 ```
 
-### bundleManager.setApplicationEnabledSync<sup>10+</sup>
+## bundleManager.setApplicationEnabledSync<sup>10+</sup>
 
 setApplicationEnabledSync(bundleName: string, isEnabled: boolean): void
 
@@ -2198,7 +2194,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabled
+## bundleManager.setAbilityEnabled
 
 setAbilityEnabled(info: AbilityInfo, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
@@ -2265,7 +2261,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabled
+## bundleManager.setAbilityEnabled
 
 setAbilityEnabled(info: AbilityInfo, isEnabled: boolean): Promise\<void>
 
@@ -2335,7 +2331,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabled<sup>12+</sup>
+## bundleManager.setAbilityEnabled<sup>12+</sup>
 
 setAbilityEnabled(info: AbilityInfo, appIndex: number, isEnabled: boolean): Promise\<void>
 
@@ -2407,7 +2403,7 @@ try {
 }
 ```
 
-### bundleManager.setAbilityEnabledSync<sup>10+</sup>
+## bundleManager.setAbilityEnabledSync<sup>10+</sup>
 
 setAbilityEnabledSync(info: AbilityInfo, isEnabled: boolean): void
 
@@ -2473,7 +2469,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabled
+## bundleManager.isApplicationEnabled
 
 isApplicationEnabled(bundleName: string, callback: AsyncCallback\<boolean>): void
 
@@ -2522,7 +2518,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabled
+## bundleManager.isApplicationEnabled
 
 isApplicationEnabled(bundleName: string): Promise\<boolean>
 
@@ -2574,7 +2570,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabled<sup>12+</sup>
+## bundleManager.isApplicationEnabled<sup>12+</sup>
 
 isApplicationEnabled(bundleName: string, appIndex: number): Promise\<boolean>
 
@@ -2628,7 +2624,7 @@ try {
 }
 ```
 
-### bundleManager.isApplicationEnabledSync<sup>10+</sup>
+## bundleManager.isApplicationEnabledSync<sup>10+</sup>
 
 isApplicationEnabledSync(bundleName: string): boolean
 
@@ -2677,7 +2673,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabled
+## bundleManager.isAbilityEnabled
 
 isAbilityEnabled(info: AbilityInfo, callback: AsyncCallback\<boolean>): void
 
@@ -2740,7 +2736,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabled
+## bundleManager.isAbilityEnabled
 
 isAbilityEnabled(info: AbilityInfo): Promise\<boolean>
 
@@ -2806,7 +2802,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabled<sup>12+</sup>
+## bundleManager.isAbilityEnabled<sup>12+</sup>
 
 isAbilityEnabled(info: AbilityInfo, appIndex: number): Promise\<boolean>
 
@@ -2874,7 +2870,7 @@ try {
 }
 ```
 
-### bundleManager.isAbilityEnabledSync<sup>10+</sup>
+## bundleManager.isAbilityEnabledSync<sup>10+</sup>
 
 isAbilityEnabledSync(info: AbilityInfo): boolean
 
@@ -2942,7 +2938,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWantForBundle
+## bundleManager.getLaunchWantForBundle
 
 getLaunchWantForBundle(bundleName: string, userId: number, callback: AsyncCallback\<Want>): void
 
@@ -2998,7 +2994,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWantForBundle
+## bundleManager.getLaunchWantForBundle
 
 getLaunchWantForBundle(bundleName: string, callback: AsyncCallback\<Want>): void
 
@@ -3051,7 +3047,7 @@ try {
 }
 ```
 
-### bundleManager.getLaunchWantForBundle
+## bundleManager.getLaunchWantForBundle
 
 getLaunchWantForBundle(bundleName: string, userId?: number): Promise\<Want>
 
@@ -3111,7 +3107,7 @@ try {
 ```
 
 
-### bundleManager.getLaunchWantForBundleSync<sup>10+</sup>
+## bundleManager.getLaunchWantForBundleSync<sup>10+</sup>
 
 getLaunchWantForBundleSync(bundleName: string, userId?: number): Want
 
@@ -3185,7 +3181,7 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDef
+## bundleManager.getPermissionDef
 
 getPermissionDef(permissionName: string, callback: AsyncCallback\<PermissionDef>): void
 
@@ -3236,7 +3232,7 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDef
+## bundleManager.getPermissionDef
 
 getPermissionDef(permissionName: string): Promise\<PermissionDef>
 
@@ -3290,7 +3286,7 @@ try {
 }
 ```
 
-### bundleManager.getPermissionDefSync<sup>10+</sup>
+## bundleManager.getPermissionDefSync<sup>10+</sup>
 
 getPermissionDefSync(permissionName: string): PermissionDef;
 
@@ -3341,7 +3337,7 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabel
+## bundleManager.getAbilityLabel
 
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string, callback: AsyncCallback\<string>): void
 
@@ -3402,7 +3398,7 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabel
+## bundleManager.getAbilityLabel
 
 getAbilityLabel(bundleName: string, moduleName: string, abilityName: string): Promise\<string>
 
@@ -3466,7 +3462,7 @@ try {
 }
 ```
 
-### bundleManager.getAbilityLabelSync<sup>10+</sup>
+## bundleManager.getAbilityLabelSync<sup>10+</sup>
 
 getAbilityLabelSync(bundleName: string, moduleName: string, abilityName: string): string
 
@@ -3527,7 +3523,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfoSync
+## bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number, userId: number) : ApplicationInfo
 
@@ -3585,7 +3581,7 @@ try {
 }
 ```
 
-### bundleManager.getApplicationInfoSync
+## bundleManager.getApplicationInfoSync
 
 getApplicationInfoSync(bundleName: string, applicationFlags: number) : ApplicationInfo
 
@@ -3640,7 +3636,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync
+## bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): BundleInfo
 
@@ -3698,7 +3694,7 @@ try {
 }
 ```
 
-### bundleManager.getBundleInfoSync
+## bundleManager.getBundleInfoSync
 
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
@@ -3752,7 +3748,7 @@ try {
 }
 ```
 
-### bundleManager.getSharedBundleInfo<sup>10+</sup>
+## bundleManager.getSharedBundleInfo<sup>10+</sup>
 
 getSharedBundleInfo(bundleName: string,  moduleName: string, callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void
 
@@ -3807,7 +3803,7 @@ try {
 }
 ```
 
-### bundleManager.getSharedBundleInfo<sup>10+</sup>
+## bundleManager.getSharedBundleInfo<sup>10+</sup>
 
 getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>
 
@@ -3865,7 +3861,7 @@ try {
 }
 ```
 
-### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
+## bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
 getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo\>\>): void
 
@@ -3913,7 +3909,7 @@ try {
 }
 ```
 
-### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
+## bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
 getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>
 
@@ -3959,7 +3955,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfo<sup>10+</sup>
+## bundleManager.getAppProvisionInfo<sup>10+</sup>
 
 getAppProvisionInfo(bundleName: string, callback: AsyncCallback\<AppProvisionInfo\>): void
 
@@ -4011,7 +4007,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfo<sup>10+</sup>
+## bundleManager.getAppProvisionInfo<sup>10+</sup>
 
 getAppProvisionInfo(bundleName: string, userId: number, callback: AsyncCallback\<AppProvisionInfo\>): void
 
@@ -4067,7 +4063,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfo<sup>10+</sup>
+## bundleManager.getAppProvisionInfo<sup>10+</sup>
 
 getAppProvisionInfo(bundleName: string, userId?: number): Promise\<AppProvisionInfo\>
 
@@ -4137,7 +4133,7 @@ try {
 }
 ```
 
-### bundleManager.getAppProvisionInfoSync<sup>10+</sup>
+## bundleManager.getAppProvisionInfoSync<sup>10+</sup>
 
 getAppProvisionInfoSync(bundleName: string, userId?: number): AppProvisionInfo
 
@@ -4201,7 +4197,7 @@ try {
 }
 ```
 
-### bundleManager.getSpecifiedDistributionType<sup>10+</sup>
+## bundleManager.getSpecifiedDistributionType<sup>10+</sup>
 getSpecifiedDistributionType(bundleName: string): string
 
 以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的[InstallParam](./js-apis-installer-sys.md#installparam)中的specifiedDistributionType字段。
@@ -4251,7 +4247,7 @@ try {
 ```
 
 
-### bundleManager.getAdditionalInfo<sup>10+</sup>
+## bundleManager.getAdditionalInfo<sup>10+</sup>
 
 getAdditionalInfo(bundleName: string): string
 
@@ -4302,7 +4298,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
+## bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(want: Want, extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
@@ -4392,7 +4388,7 @@ try {
 }
 ```
 
-### bundleManager.getJsonProfile<sup>12+</sup>
+## bundleManager.getJsonProfile<sup>12+</sup>
 
 getJsonProfile(profileType: ProfileType, bundleName: string, moduleName?: string, userId?: number): string
 
@@ -4456,7 +4452,7 @@ try {
 }
 ```
 
-### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+## bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
 
 getRecoverableApplicationInfo(callback: AsyncCallback\<Array\<RecoverableApplicationInfo\>\>): void
 
@@ -4504,7 +4500,7 @@ try {
 }
 ```
 
-### bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
+## bundleManager.getRecoverableApplicationInfo<sup>11+</sup>
 
 getRecoverableApplicationInfo(): Promise\<Array\<RecoverableApplicationInfo\>\>
 
@@ -4550,7 +4546,7 @@ try {
 }
 ```
 
-### bundleManager.setAdditionalInfo<sup>11+</sup>
+## bundleManager.setAdditionalInfo<sup>11+</sup>
 
 setAdditionalInfo(bundleName: string, additionalInfo: string): void
 
@@ -4600,7 +4596,7 @@ try {
 }
 ```
 
-### bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
+## bundleManager.getAllPreinstalledApplicationInfo<sup>12+</sup>
 
 getAllPreinstalledApplicationInfo(): Promise\<Array\<PreinstalledApplicationInfo\>\>
 
@@ -4643,7 +4639,7 @@ try {
 }
 ```
 
-### bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
+## bundleManager.queryExtensionAbilityInfoSync<sup>11+</sup>
 
 queryExtensionAbilityInfoSync(extensionAbilityType: string, extensionAbilityFlags: number, userId?: number): Array\<ExtensionAbilityInfo>
 
@@ -4720,7 +4716,7 @@ try {
 }
 ```
 
-### bundleManager.getAllBundleInfoByDeveloperId<sup>12+</sup>
+## bundleManager.getAllBundleInfoByDeveloperId<sup>12+</sup>
 
 getAllBundleInfoByDeveloperId(developerId: string): Array\<BundleInfo>
 
@@ -4773,7 +4769,7 @@ try {
 }
 ```
 
-### bundleManager.getDeveloperIds<sup>12+</sup>
+## bundleManager.getDeveloperIds<sup>12+</sup>
 
 getDeveloperIds(appDistributionType?: number): Array\<String>
 
@@ -4825,7 +4821,7 @@ try {
 }
 ```
 
-### bundleManager.switchUninstallState<sup>12+</sup>
+## bundleManager.switchUninstallState<sup>12+</sup>
 
 switchUninstallState(bundleName: string, state: boolean): void
 
@@ -4871,7 +4867,7 @@ try {
 }
 ```
 
-### bundleManager.getExtResource<sup>12+</sup>
+## bundleManager.getExtResource<sup>12+</sup>
 
 getExtResource(bundleName: string): Promise\<Array\<string>>;
 
@@ -4929,7 +4925,7 @@ try {
 }
 ```
 
-### bundleManager.enableDynamicIcon<sup>12+</sup>
+## bundleManager.enableDynamicIcon<sup>12+</sup>
 
 enableDynamicIcon(bundleName: string, moduleName: string): Promise\<void>;
 
@@ -4988,7 +4984,7 @@ try {
 }
 ```
 
-### bundleManager.disableDynamicIcon<sup>12+</sup>
+## bundleManager.disableDynamicIcon<sup>12+</sup>
 
 disableDynamicIcon(bundleName: string): Promise\<void>;
 
@@ -5044,7 +5040,7 @@ try {
 }
 ```
 
-### bundleManager.getDynamicIcon<sup>12+</sup>
+## bundleManager.getDynamicIcon<sup>12+</sup>
 
 getDynamicIcon(bundleName: string): Promise\<string>;
 
@@ -5100,7 +5096,7 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneIdentity<sup>12+</sup>
+## bundleManager.getAppCloneIdentity<sup>12+</sup>
 
 getAppCloneIdentity(uid: number): Promise\<AppCloneIdentity>;
 
@@ -5155,7 +5151,7 @@ try {
 }
 ```
 
-### bundleManager.getAppCloneBundleInfo<sup>12+</sup>
+## bundleManager.getAppCloneBundleInfo<sup>12+</sup>
 
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;
 
@@ -5218,7 +5214,7 @@ try {
 }
 ```
 
-### bundleManager.getAllAppCloneBundleInfo<sup>12+</sup>
+## bundleManager.getAllAppCloneBundleInfo<sup>12+</sup>
 
 getAllAppCloneBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise\<Array\<BundleInfo>>;
 
@@ -5280,7 +5276,7 @@ try {
     hilog.error(0x0000, 'testTag', 'getAllAppCloneBundleInfo failed. Cause: %{public}s', message);
 }
 ```
-### bundleManager.verifyAbc<sup>11+</sup>
+## bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean, callback: AsyncCallback\<void>): void
 
@@ -5334,7 +5330,7 @@ try {
 }
 ```
 
-### bundleManager.verifyAbc<sup>11+</sup>
+## bundleManager.verifyAbc<sup>11+</sup>
 
 verifyAbc(abcPaths: Array\<string>, deleteOriginalFiles: boolean): Promise\<void>
 
@@ -5391,7 +5387,7 @@ try {
 }
 ```
 
-### bundleManager.deleteAbc<sup>11+</sup>
+## bundleManager.deleteAbc<sup>11+</sup>
 
 deleteAbc(abcPath: string): Promise\<void>
 
