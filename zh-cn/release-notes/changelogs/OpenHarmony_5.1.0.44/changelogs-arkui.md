@@ -337,3 +337,62 @@ struct Index {
   }
 }
 ```
+
+## cl.arkui.4 textClock的format处理12/24小时制逻辑修改
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+在将textClock的format动态修改为HH（24小时制）之后，再切换回hh（12小时制），12小时制未能正确生效。
+
+**变更影响**
+
+此变更涉及应用适配。
+
+变更前：
+
+1. 在将textClock的format设置动态修改为'HH'后，时间显示为24小时制。再修改format为'hh'后，时间显示依然为24小时制，而预期应切换至12小时制显示。
+
+2. 在将textClock的format设置为'hh'后，若系统设置开启24小时制，时间显示将调整为24小时制。当系统设置关闭24小时制时，时间显示则会切换至12小时制。
+
+变更后：
+
+1. 在将textClock的format设置动态修改为'HH'后，时间显示为24小时制。再修改format为'hh'后，时间显示为12小时制。
+
+2. 在将textClock的format设置为'hh'后，若系统设置开启24小时制，时间显示为12小时制。当系统设置关闭24小时制时，时间显示依旧为12小时制。
+
+**起始API Level**
+
+API 8
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.44开始
+
+**变更的接口/组件**
+
+textClock组件的format
+
+**适配指导**
+
+如果开发者原本使用hh来适应系统12/24小时制的特性，使得应用的时间格式能够根据系统设置变化。可以使用i18n.System.is24HourClock()来判断系统的设置，从而相应地调整format设置。
+```ts
+import { i18n } from '@kit.LocalizationKit';
+
+@Entry
+@Component
+struct textClock {
+  // 使用i18n.System.is24HourClock()来获取系统是否使用24小时制
+  @State formatString: string = i18n.System.is24HourClock() ? "HH:mm:ss" : "aa hh:mm"
+
+  build() {
+    Column(){
+      TextClock()
+        .format(this.formatString)
+    }
+  }
+}
+```

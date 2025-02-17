@@ -23,7 +23,8 @@ AtomicServiceNavigation({
     navPathStack?: NavPathStack,
     navigationContent: Callback<void>,
     title?: ResourceStr,
-    titleBackgroundColor?: ResourceColor,
+    titleOptions?: TitleOptions,
+    gradientBackground?: GradientBackground,
     hideTitleBar?: boolean,
     navBarWidth?: Length,
     mode?: NavigationMode,
@@ -49,6 +50,7 @@ AtomicServiceNavigation({
 | navigationContent | Callback\<void\> | 否 | @BuilderParam | Navigation容器内容。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 |@Prop | 设置页面标题。|
 | titleOptions | [TitleOptions](#titleoptions) | 否 | @Prop | 标题栏选项。|
+| gradientBackground<sup>16+</sup> | [GradientBackground](#gradientbackground16) | 否 | @Prop | 背景色选项。|
 | hideTitleBar | boolean | 否 | @Prop | 设置是否隐藏标题栏。|
 | navBarWidth | [Length](ts-types.md#length)| 否 | @Prop | 设置导航栏宽度。<br>仅在Navigation组件分栏时生效。|
 | mode| [NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明) | 否 | @Prop |设置导航栏的显示模式。<br>支持Stack、Split与Auto模式。|
@@ -59,7 +61,7 @@ AtomicServiceNavigation({
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
 ## TitleOptions
-
+标题栏选项。
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -68,7 +70,22 @@ AtomicServiceNavigation({
 | --------------- | ------ | ---- | ---------- |
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
-| barStyle | [BarStyle<sup>12+</sup>](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+| barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+
+## GradientBackground<sup>16+</sup>
+供开发者设置品牌渐变色。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| --------------- | ------ | ---- | ---------- |
+| primaryColor | [ResourceColor](ts-types.md#resourcecolor)  | 是 | 单色渐变色彩值和双色渐变第一色彩值。无默认值。|
+| secondaryColor |[ResourceColor](ts-types.md#resourcecolor)  | 否 |双色渐变色第二色彩值。无默认值。|
+| backgroundTheme |[BackgroundTheme<sup>16+</sup>](#backgroundtheme16)  | 否 |导航栏背景底色。默认值为DEFAULT。|
+| mixMode | [MixMode<sup>16+</sup>](#mixmode16)  | 否 |同时设置primaryColor和secondaryColor时此参数生效。代表双色渐变下两种颜色的融合方式。默认值为TOWARDS。|
+| alpha | [GradientAlpha<sup>16+</sup>](#gradientalpha16)  | 否 |设置渐变色显示区域的透明度。默认值为OPACITY_20。|
 
 ## NavDestinationBuilder
 
@@ -83,12 +100,53 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | name | string | 是 | [NavDestination](ts-basic-components-navdestination.md)页面名称。 |
 | param | Object | 是 | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 
+## MixMode<sup>16+</sup>
+背景色颜色混合模式的可选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| --------------- | ------ |-----|
+| AVERAGE  | 1 | 两种颜色各占一半。  |
+| CROSS  | 2 | 一种颜色从另一种颜色中穿过。 |
+| TOWARDS  | 3 | 一种颜色渐变为另一种颜色。 |
+
+
+## GradientAlpha<sup>16+</sup>
+导航栏背景底色的可选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| --------------- | ------ |-----|
+| OPACITY_20| 1 | 不透明度为0.2。 |
+| OPACITY_60| 2 | 不透明度为0.6。|
+| OPACITY_80| 3 | 不透明度为0.8。 |
+| OPACITY_100| 4 | 不透明度为1.0。 |
+
+## BackgroundTheme<sup>16+</sup>
+导航栏背景色底色的可选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| --------------- | ------ |-----|
+| DARK  | 1 | 背景底色为黑色。 |
+| LIGHT  | 2 | 背景底色为白色。|
+| DEFAULT  | 3 | 背景底色为灰白色。颜色值`#F1F3F5` 。|
+
+
 ## 示例
 
 ```ts
-// Index.ets
 import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
-
+import { MixMode, GradientAlpha, BackgroundTheme} from '@ohos.atomicservice.AtomicServiceNavigation'
 @Entry
 @Component
 struct Index {
@@ -163,8 +221,14 @@ struct Index {
           },
           title: this.message,
           titleOptions: {
-            backgroundColor: 'rgb(61, 157, 180)',
             isBlurEnabled: false
+          },
+          gradientBackground: {
+            primaryColor: 'red',
+            secondaryColor: 'green',
+            backgroundTheme: BackgroundTheme.LIGHT,
+            mixMode: MixMode.AVERAGE,
+            alpha: GradientAlpha.OPACITY_100
           },
           navDestinationBuilder: this.pageMap,
           navPathStack: this.childNavStack,
@@ -211,4 +275,4 @@ export struct PageTwo {
 }
 ```
 
-![](figures/AtomicServiceNavigationDemo01.png)
+![](figures/AtomicServiceNavigationDemo02.jpg)

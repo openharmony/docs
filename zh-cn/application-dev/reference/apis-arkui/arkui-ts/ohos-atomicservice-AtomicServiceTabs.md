@@ -37,6 +37,7 @@ AtomicServiceTabs ({
                         TabBarOptions?
                       ],
    tabBarPosition?: TabBarPosition,
+   layoutMode?: LayoutMode,
    barBackgroundColor?: ResourceColor,
    index?: number,
    barOverlap?: boolean,
@@ -59,17 +60,16 @@ AtomicServiceTabs ({
 | tabContents | [[TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder),[TabContentBuilder?](#tabcontentbuilder), [TabContentBuilder?](#tabcontentbuilder)] | 否 | @BuilderParam| 内容视图容器数组。|
 | tabBarOptionsArray | [[TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions),[TabBarOptions?](#tabbaroptions), [TabBarOptions?](#tabbaroptions)]  | 是 | @Prop | 页签容器数组。 |
 | tabBarPosition | [TabBarPosition](#tabbarposition) | 否   |@Prop | 设置页签栏位置。|
+| layoutMode<sup>16+</sup> | [LayoutMode](ts-container-tabcontent.md#layoutmode10) | 否   |@Prop | 设置底部页签的图片、文字排布的方式。|
 | barBackgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | @Prop | 设置TabBar的背景颜色。|
 | index | number | 否 | @Prop | 设置当前显示页签的索引。|
 | barOverlap | boolean| 否 | @Prop | 设置TabBar是否背后变模糊并叠加在TabContent之上。|
-| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | - |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
+| controller|[TabsController](ts-container-tabs#tabscontroller) | 否 | @Prop |Tabs组件的控制器，用于控制Tabs组件进行页签切换。|
 | onChange | Callback\<number\> | 否 | - | Tabs页签切换后触发的事件。 |
 | onTabBarClick | Callback\<number\> | 否 | - |Tabs页签点击后触发的事件。|
 | onContentWillChange | [OnContentWillChangeCallback](#oncontentwillchangecallback) | 否 | - | Tabs页面切换拦截事件能力，新页面即将显示时触发该回调。|
 
 ## TabContentBuilder
-
-type TabContentBuilder = () => void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -80,12 +80,6 @@ type TabContentBuilder = () => void
 | () => void | 内容视图容器 |
 
 ## TabBarOptions
-
-初始化页签的构造函数，包括icon，text，unselectColor和SelectedColor。
-
-### constructor
-
-constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor?: ResourceColor, selectedColor?: ResourceColor);
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -111,8 +105,6 @@ constructor(icon: ResourceStr | TabBarSymbol, text: ResourceStr, unselectedColor
 
 ## OnContentWillChangeCallback
 
-type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) => boolean
-
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -123,6 +115,8 @@ type OnContentWillChangeCallback = (currentIndex: number, comingIndex: number) =
 | comingIndex | number | 是 | 即将切换的页签索引。 |
 
 ## 示例
+
+### 示例1(纯文本样式)
 
 ```ts
 // Index.ets
@@ -175,9 +169,9 @@ struct Index {
         }
       ],
       tabBarOptionsArray: [
-        new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '绿色', Color.Black, Color.Blue),
-        new TabBarOptions($r('sys.media.ohos_ic_public_location'), '蓝色', Color.Black, Color.Blue),
-        new TabBarOptions($r('sys.media.ohos_ic_public_more'), '黄色', Color.Black, Color.Blue)
+        new TabBarOptions('', '绿色', Color.Black, Color.Green),
+        new TabBarOptions('', '蓝色', Color.Black, Color.Blue),
+        new TabBarOptions('', '黄色', Color.Black, Color.Yellow),
       ],
       tabBarPosition: TabBarPosition.BOTTOM,
       barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'),
@@ -192,4 +186,171 @@ struct Index {
   }
 }
 ```
-![atomicservicetabs](figures/atomicservicetabs.gif)
+![atomicservicetabs](figures/atomicserviceTabs_text.PNG)
+
+### 示例2(纯图标样式)
+
+```ts
+// Index.ets
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition, OnContentWillChangeCallback } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '首页';
+  @State onClickNumber: number = 0;
+  @State currentIndex: number = 0;
+  @State comingIndex: number = 0;
+  onContentWillChangeCallBack:  OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {
+    this.currentIndex = currentIndex;
+    this.comingIndex = comingIndex;
+    console.log('OnContentWillChangeCallback')
+     return true;
+  }
+  onTabClick: Callback<number> = (index:number)=>{
+    this.onClickNumber ++;
+    console.log('onTabClick');
+  }
+  @Builder
+  tabContent1() {
+    Column().width('100%').height('100%').alignItems(HorizontalAlign.Center).backgroundColor('#00CB87')
+  }
+
+  @Builder
+  tabContent2() {
+    Column().width('100%').height('100%').backgroundColor('#007DFF')
+  }
+
+  @Builder
+  tabContent3() {
+    Column().width('100%').height('100%').backgroundColor('#FFBF00')
+  }
+
+  build() {
+    Stack() {
+    AtomicServiceTabs({
+      tabContents: [
+        () => {
+          this.tabContent1()
+        },
+        () => {
+          this.tabContent2()
+        },
+        () => {
+          this.tabContent3()
+        }
+      ],
+      tabBarOptionsArray: [
+          new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '', Color.Black, Color.Blue),
+          new TabBarOptions($r('sys.media.ohos_ic_public_location'), '', Color.Black, Color.Blue),
+          new TabBarOptions($r('sys.media.ohos_ic_public_more'), '', Color.Black, Color.Blue),
+      ],
+      tabBarPosition: TabBarPosition.BOTTOM,
+      barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'),
+      onTabBarClick:this.onTabClick,
+      onContentWillChange: this.onContentWillChangeCallBack,
+    })
+    Column() {
+      Text("onchange回调次数:" + this.onClickNumber)
+      Text("comingIndex = " + this.comingIndex + ", currentIndex = " + this.currentIndex)
+    }.margin({top:500})
+    }.height('100%')
+  }
+}
+```
+![atomicservicetabs](figures/atomicserviceTabs_icon.PNG)
+
+
+### 示例3(图标加文本，自定义图文排布)
+
+```ts
+// Index.ets
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition, OnContentWillChangeCallback } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct AtomicserviceTabs  {
+  @State flag: boolean = false;
+  @State message: string = '首页';
+  @State onClickNumber: number = 0;
+  @State currentIndex: number = 0;
+  @State comingIndex: number = 0;
+  @State layoutMode: LayoutMode = LayoutMode.VERTICAL;
+  onContentWillChangeCallBack: OnContentWillChangeCallback = (currentIndex: number, comingIndex: number): boolean => {
+    this.currentIndex = currentIndex;
+    this.comingIndex = comingIndex;
+    console.log('OnContentWillChangeCallback')
+    return true;
+  }
+  onTabClick: Callback<number> = (index: number) => {
+    this.onClickNumber++;
+    console.log('onTabClick');
+  }
+  onChange: Callback<number, void> = (Index: number) => {
+    console.log('onChange');
+    console.log('onChange2');
+  }
+
+  @Builder
+  tabContent1() {
+    Column().width('100%').height('100%').alignItems(HorizontalAlign.Center).backgroundColor('#00CB87')
+  }
+
+  @Builder
+  tabContent2() {
+    Column().width('100%').height('100%').backgroundColor(Color.Blue)
+  }
+
+  @Builder
+  tabContent3() {
+    Column().width('100%').height('100%').backgroundColor('#FFBF00')
+  }
+
+  build() {
+    Stack() {
+      AtomicServiceTabs({
+        tabContents: [
+          () => {
+            this.tabContent1()
+          },
+          () => {
+            this.tabContent2()
+          },
+          () => {
+            this.tabContent3()
+          },
+        ],
+        tabBarOptionsArray: [
+        new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '绿色', Color.Black, Color.Blue),
+        new TabBarOptions($r('sys.media.ohos_ic_public_location'), '蓝色', Color.Black, Color.Blue),
+        new TabBarOptions($r('sys.media.ohos_ic_public_more'), '黄色', Color.Black, Color.Blue),
+        ],
+        tabBarPosition: TabBarPosition.BOTTOM,
+        barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'),
+        onTabBarClick: this.onTabClick,
+        onContentWillChange: this.onContentWillChangeCallBack,
+        onChange: this.onChange,
+        layoutMode: this.layoutMode,
+      })
+
+      Column() {
+        Button("layoutMode垂直 ")
+          .width('30%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.layoutMode = LayoutMode.VERTICAL;
+          })
+        Button("layoutMode水平 ")
+          .width('30%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.layoutMode = LayoutMode.HORIZONTAL;
+          })
+      }.margin({ top: 10 })
+    }.height('100%')
+  }
+}
+```
+![atomicservicetabs](figures/atomicservicetabs_layoutMode.gif)

@@ -199,6 +199,8 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 
 **需要权限**：ohos.permission.CHECK_SANDBOX_POLICY
 
+**系统接口**：此接口为系统接口
+
 **系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
 
 **参数：**
@@ -213,7 +215,7 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
 
 |              类型                   |               说明                    |
 | ----------------------------------- | ------------------------------------- |
-| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示有持久化授权，false表示不具有持久化授权。 |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示授权类型匹配policyType的查询类型，否则返回false。 |
 
 **错误码：**
 
@@ -238,7 +240,7 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
         path: "/storage/Users/currentUser/Documents/1.txt",
         operationMode: fileshare.OperationMode.READ_MODE,
       }
-        let pathPolicyInfo2: fileshare.PathPolicyInfo = {
+      let pathPolicyInfo2: fileshare.PathPolicyInfo = {
         path: "/storage/Users/currentUser/Desktop/2.txt",
         operationMode: fileshare.OperationMode.READ_MODE,
       }

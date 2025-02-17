@@ -82,6 +82,16 @@ import { window } from '@kit.ArkUI';
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
+## StatusBarProperty<sup>16+</sup>
+
+状态栏的属性。在获取状态栏属性信息时返回。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+| 名称                                   | 类型 |  必填 | 说明 |
+| ------------------------------------- | -------- | ---- |------- |
+| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+
 ## SystemBarStyle<sup>12+</sup>
 
 状态栏的属性。在设置页面级状态栏属性时使用。
@@ -2808,6 +2818,133 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### setStatusBarColor<sup>16+</sup>
+
+setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
+
+设置主窗口状态栏的文字颜色，使用Promise异步回调。
+
+子窗口不支持设置状态栏文字颜色，调用无效果。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | 是   | 要设置的状态栏颜色值。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported on this device. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let promise = windowClass.setStatusBarColor(ColorMetrics.numeric(0x112233));
+        promise.then(() => {
+          console.info('Succeeded in setting the status bar color.');
+        }).catch((err: BusinessError) => {
+          console.error(`Set the status bar color failed. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the status bar color. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### getStatusBarProperty<sup>16+</sup>
+
+getStatusBarProperty(): StatusBarProperty
+
+获取主窗口状态栏的属性，如状态栏文字颜色。
+
+子窗口不支持查询，调用会返回错误码1300002。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------------------------- | ------------- |
+| [StatusBarProperty](#statusbarproperty16) | 当前状态栏属性，如状态栏颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801 | Capability not supported on this device. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let statusBarProperty = windowClass.getStatusBarProperty();
+        console.info('Succeeded in obtaining system bar properties. Property: ' + JSON.stringify(statusBarProperty));
+      } catch (err) {
+        console.error(`Failed to get system bar properties. Code: ${err.code}, message: ${err.message}`);
+      }
+    });
+  }
+};
+```
+
 ### setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
@@ -5083,7 +5220,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 ### setWindowBackgroundColor<sup>9+</sup>
 
-setWindowBackgroundColor(color: string): void
+setWindowBackgroundColor(color: string | ColorMetrics): void
 
 设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
@@ -5095,7 +5232,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
+| color | string \| [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)<sup>16+</sup> | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。<br>从API version 16开始，此参数支持ColorMetrics类型。|
 
 **错误码：**
 
@@ -5110,6 +5247,7 @@ setWindowBackgroundColor(color: string): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics } from '@kit.ArkUI';
 
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
@@ -5120,9 +5258,11 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
     return;
   }
   console.info('Succeeded in loading the content.');
-  let color: string = '#00ff33';
+  let color1: string = '#00ff33';
+  let color2: ColorMetrics = ColorMetrics.numeric(0xff112233);
   try {
-    windowClass?.setWindowBackgroundColor(color);
+    windowClass?.setWindowBackgroundColor(color1);
+    windowClass?.setWindowBackgroundColor(color2);
   } catch (exception) {
     console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
   };
@@ -7843,7 +7983,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 | 参数名     | 类型       | 必填     | 说明                                                 |
 | --------- | --------- | ------- |----------------------------------------------------|
 | offsetX | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的x轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口宽度为非法参数，窗口宽度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
-| offsetY | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的y轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口高度为非法参数，窗口宽度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
+| offsetY | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的y轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口高度为非法参数，窗口高度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
 
 **返回值：**
 
@@ -8172,7 +8312,7 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-  let promise = windowClass.setWindowCornerRadius(1.0f);
+  let promise = windowClass.setWindowCornerRadius(1.0);
   promise.then(() => {
     console.info('Succeeded in setting window corner radius.');
   }).catch((err: BusinessError) => {

@@ -543,7 +543,7 @@ typedef enum Camera_HostDeviceTypeCamera_HostDeviceType
 
 远程设备类型枚举。
 
-**起始版本：** 16
+**起始版本：** 15
 
 
 ### Camera_ImageRotation
@@ -1783,7 +1783,7 @@ enum Camera_HostDeviceType
 
 远程设备类型枚举。
 
-**起始版本：** 16
+**起始版本：** 15
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -6563,7 +6563,7 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceName(Camera_Device* camera, char**
 
 获取远程设备名称。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -6593,7 +6593,7 @@ Camera_ErrorCode OH_CameraDevice_GetHostDeviceType(Camera_Device* camera, Camera
 
 获取远程设备类型。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 

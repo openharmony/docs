@@ -104,7 +104,7 @@ struct Index {
       }
     })
 
-    workerInstance.onerror = (() => {
+    workerInstance.onAllErrors = (() => {
       // 接收Worker子线程的错误信息
     })
 
