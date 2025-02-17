@@ -1247,6 +1247,8 @@ request方法回调函数的返回值类型。
 
 数据接收信息
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 | 名称 | 类型 | 必填 | 说明 |
