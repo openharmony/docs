@@ -472,11 +472,12 @@ for (let ii = 0; ii < appThreadCpuUsage.length; ii++) {
 
 startAppTraceCapture(tags : number[], flag: TraceFlag, limitSize: number) : string
 
-启动应用trace采集，'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应。
+该接口是对[hitrace](../../dfx/hitrace.md)功能的一个补充，开发者可通过该接口完成指定范围的trace自动化采集。
+由于该接口中trace采集过程中消耗的性能与需要采集的范围成正相关，建议开发者在使用该接口前，通过hitrace命令抓取应用的trace日志，从中筛选出所需trace采集的关键范围，以提高该接口性能。
 
-先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+'startAppTraceCapture()'方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
 
-应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集，因此limitSize大小设置不当，将导致采集trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
+应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集。因此limitSize大小设置不当，将导致采集trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
 
 评估方法：limitSize = 预期trace采集时长 * trace单位流量。
 
@@ -490,10 +491,10 @@ trace单位流量实测方法：limitSize设置为最大值500M，调用startApp
 
 **参数：**
 
-| 参数名   | 类型     | 必填 | 说明                                   |
-| -------- | ------   | ---- |--------------------------------------|
-| tags     | number[] | 是   | 详情请见[tags](#hidebugtags12)           |
-| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)        |
+| 参数名   | 类型     | 必填 | 说明                                 |
+| -------- | ------   | ---- |------------------------------------|
+| tags     | number[] | 是   | trace范围，详情请见[tags](#hidebugtags12) |
+| flag     | TraceFlag| 是   | 详情请见[TraceFlag](#traceflag12)      |
 | limitSize| number   | 是   | 开启trace文件大小限制，单位为Byte，单个文件大小上限为500MB |
 
 **返回值：**
@@ -537,9 +538,7 @@ try {
 
 stopAppTraceCapture() : void
 
-停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集。
-
-先开启后关闭，严禁使用'start->start->stop'，'start->stop->stop'，'start->start->stop->stop'等类似的顺序调用。
+停止应用trace采集，在停止采集前，需要通过'[startAppTraceCapture()](#hidebugstartapptracecapture12)'方法开始采集，关闭前未开启trace采集或重复关闭将导致接口调用异常。
 
 调用startAppTraceCapture接口，如果没有合理传入limitSize参数，生成trace的大小大于传入的limitSize大小，系统内部会自动调用stopAppTraceCapture，再次手动调用stopAppTraceCapture就会抛出错误码11400105。
 
@@ -831,44 +830,46 @@ try {
 
 ## hidebug.tags<sup>12+</sup>
 
-描述支持/使用场景标签。
+描述支持trace使用场景的标签, 用户可通过[hitrace](../../dfx/hitrace.md)中的命令行工具，抓取指定标签的trace内容以进行预览。
+
+注意：以下标签实际值由系统定义，可能随版本升级而发生改变，为避免升级后出现兼容性问题，在生产中应直接使用标签名称而非标签数值。
 
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.HiviewDFX.HiProfiler.HiDebug
 
-| 名称                     | 类型    | 只读  |说明                                |
-| -------------------------| ------- |-----|----------------------------------- |
-| ABILITY_MANAGER          | number  | 是 |  能力管理标签                         |
-| ARKUI                    | number  | 是 |  ArkUI开发框架标签                    |
-| ARK                      | number  | 是 |  JSVM虚拟机标签                       |
-| BLUETOOTH                | number  | 是 |  蓝牙标签                            |
-| COMMON_LIBRARY           | number  | 是 |  公共库子系统标签                     |
-| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 |  分布式硬件设备管理标签     |
-| DISTRIBUTED_AUDIO        | number  | 是 |        分布式音频标签                 |
-| DISTRIBUTED_CAMERA       | number  | 是 |  分布式相机标签                       |
-| DISTRIBUTED_DATA         | number  | 是 |  分布式数据管理模块标签                |
-| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 |  分布式硬件框架标签              |
-| DISTRIBUTED_INPUT        | number  | 是 |  分布式输入标签                       |
-| DISTRIBUTED_SCREEN       | number  | 是 |  分布式屏幕标签                       |
-| DISTRIBUTED_SCHEDULER    | number  | 是 |  分布式调度器标签                     |
-| FFRT                     | number  | 是 |  FFRT任务标签.                        |
-| FILE_MANAGEMENT          | number  | 是 |  文件管理系统标签                     |
-| GLOBAL_RESOURCE_MANAGER  | number  | 是 |  全局资源管理标签                     |
-| GRAPHICS                 | number  | 是 |  图形模块标签                        |
-| HDF                      | number  | 是 |  HDF子系统标签                       |
-| MISC                     | number  | 是 |  MISC模块标签                        |
-| MULTIMODAL_INPUT         | number  | 是 |  多模态输入模块标签                   |
-| NET                      | number  | 是 |  网络标签                             |
-| NOTIFICATION             | number  | 是 |  通知模块标签                         |
-| NWEB                     | number  | 是 |  Nweb标签                            |
-| OHOS                     | number  | 是 |  OHOS通用标签                         |
-| POWER_MANAGER            | number  | 是 |  电源管理标签                         |
-| RPC                      | number  | 是 |  RPC标签                             |
-| SAMGR                    | number  | 是 |  系统能力管理标签                     |
-| WINDOW_MANAGER           | number  | 是 |  窗口管理标签                         |
-| AUDIO                    | number  | 是 |  音频模块标签                        |
-| CAMERA                   | number  | 是 |  相机模块标签                        |
-| IMAGE                    | number  | 是 |  图片模块标签                        |
-| MEDIA                    | number  | 是 |  媒体模块标签                        |
+| 名称                     | 类型    | 只读  | 说明                                         |
+| -------------------------| ------- |-----|--------------------------------------------|
+| ABILITY_MANAGER          | number  | 是 | 能力管理标签，hitrace命令行工具对应tagName:ability                  |
+| ARKUI                    | number  | 是 | ArkUI开发框架标签， hitrace命令行工具对应tagName:ace                |
+| ARK                      | number  | 是 | JSVM虚拟机标签， hitrace命令行工具对应tagName:ark                  |
+| BLUETOOTH                | number  | 是 | 蓝牙标签， hitrace命令行工具对应tagName:bluetooth                 |
+| COMMON_LIBRARY           | number  | 是 | 公共库子系统标签， hitrace命令行工具对应tagName:commonlibrary         |
+| DISTRIBUTED_HARDWARE_DEVICE_MANAGER | number  | 是 | 分布式硬件设备管理标签， hitrace命令行工具对应tagName:devicemanager      |
+| DISTRIBUTED_AUDIO        | number  | 是 | 分布式音频标签， hitrace命令行工具对应tagName:daudio                 |
+| DISTRIBUTED_CAMERA       | number  | 是 | 分布式相机标签， hitrace命令行工具对应tagName:dcamera                |
+| DISTRIBUTED_DATA         | number  | 是 | 分布式数据管理模块标签， hitrace命令行工具对应tagName:distributeddatamgr |
+| DISTRIBUTED_HARDWARE_FRAMEWORK | number  | 是 | 分布式硬件框架标， hitrace命令行工具对应tagName:dhfwk                 |
+| DISTRIBUTED_INPUT        | number  | 是 | 分布式输入标签， hitrace命令行工具对应tagName:dinput                 |
+| DISTRIBUTED_SCREEN       | number  | 是 | 分布式屏幕标签， hitrace命令行工具对应tagName:dscreen                |
+| DISTRIBUTED_SCHEDULER    | number  | 是 | 分布式调度器标签， hitrace命令行工具对应tagName:dsched                |
+| FFRT                     | number  | 是 | FFRT任务标签， hitrace命令行工具对应tagName:ffrt                  |
+| FILE_MANAGEMENT          | number  | 是 | 文件管理系统标签， hitrace命令行工具对应tagName:filemanagement        |
+| GLOBAL_RESOURCE_MANAGER  | number  | 是 | 全局资源管理标签， hitrace命令行工具对应tagName:gresource             |
+| GRAPHICS                 | number  | 是 | 图形模块标签， hitrace命令行工具对应tagName:graphic                 |
+| HDF                      | number  | 是 | HDF子系统标签， hitrace命令行工具对应tagName:hdf                   |
+| MISC                     | number  | 是 | MISC模块标签， hitrace命令行工具对应tagName:misc                  |
+| MULTIMODAL_INPUT         | number  | 是 | 多模态输入模块标签， hitrace命令行工具对应tagName:multimodalinput      |
+| NET                      | number  | 是 | 网络标签， hitrace命令行工具对应tagName:net                       |
+| NOTIFICATION             | number  | 是 | 通知模块标签， hitrace命令行工具对应tagName:notification            |
+| NWEB                     | number  | 是 | Nweb标签， hitrace命令行工具对应tagName:nweb                    |
+| OHOS                     | number  | 是 | OHOS通用标签， hitrace命令行工具对应tagName:ohos                  |
+| POWER_MANAGER            | number  | 是 | 电源管理标签， hitrace命令行工具对应tagName:power                   |
+| RPC                      | number  | 是 | RPC标签， hitrace命令行工具对应tagName:rpc                      |
+| SAMGR                    | number  | 是 | 系统能力管理标签， hitrace命令行工具对应tagName:samgr                 |
+| WINDOW_MANAGER           | number  | 是 | 窗口管理标签， hitrace命令行工具对应tagName:window                  |
+| AUDIO                    | number  | 是 | 音频模块标签， hitrace命令行工具对应tagName:zaudio                  |
+| CAMERA                   | number  | 是 | 相机模块标签， hitrace命令行工具对应tagName:zcamera                 |
+| IMAGE                    | number  | 是 | 图片模块标签， hitrace命令行工具对应tagName:zimage                  |
+| MEDIA                    | number  | 是 | 媒体模块标签， hitrace命令行工具对应tagName:zmedia                  |
 
 ## NativeMemInfo<sup>12+</sup>
 
