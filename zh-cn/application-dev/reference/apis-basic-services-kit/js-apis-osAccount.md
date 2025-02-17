@@ -2841,7 +2841,7 @@ getOsAccountDomainInfo(localId: number): Promise&lt;DomainAccountInfo&gt;;
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | The system service works abnormally. |
 | 12300003 | OS account not found. |
 
