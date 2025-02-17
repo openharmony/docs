@@ -192,7 +192,7 @@ minFontScale(scale: Optional<number | Resource>)
 
 ### maxFontScale<sup>16+</sup>
 
-maxFontScale(scale: Optional<number | Resource>)
+maxFontScale(scale: Optional\<number | Resource>)
 
 设置SymbolGlyph组件最大的字体缩放倍数。
 
