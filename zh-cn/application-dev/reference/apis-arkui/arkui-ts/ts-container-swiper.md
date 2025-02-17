@@ -121,6 +121,25 @@ indicator(value: DotIndicator | DigitIndicator | boolean)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DotIndicator](#dotindicator10)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 
+### indicator<sup>15+</sup>
+
+indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicator | boolean)
+
+设置外部绑定的导航点组件控制器。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| indicator  | [IndicatorComponentController](ts-swiper-components-indicator.md#indicatorcomponentcontroller)<sup>15+</sup>&nbsp;\| [DotIndicator](#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)&nbsp;\|&nbsp;boolean| 是   | 可选导航点指示器样式。<br/>\- IndicatorComponentController：单独导航点指示器控制器。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator。|
+
+
 ### loop
 
 loop(value: boolean)
