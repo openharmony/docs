@@ -53,14 +53,14 @@
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
 
-   let config:intelligence.ModelConfig = {
+   let textConfig:intelligence.ModelConfig = {
      version:1,
      isNpuAvailable:false,
      achePath:"/data"
    }
    let textEmbedding:intelligence.TextEmbedding;
 
-   intelligence.getTextEmbeddingModel(config)
+   intelligence.getTextEmbeddingModel(textConfig)
      .then((data:intelligence.TextEmbedding) => {
        console.info("Succeeded in getting TextModel");
        textEmbedding = data;
@@ -139,14 +139,14 @@
 7. 获取图像嵌入模型。
 
    ```ts
-   let config:intelligence.ModelConfig = {
+   let imageConfig:intelligence.ModelConfig = {
      version:1,
      isNpuAvailable:false,
      cachePath:"/data"
    }
    let imageEmbedding:intelligence.ImageEmbedding;
 
-   intelligence.getImageEmbeddingModel(config)
+   intelligence.getImageEmbeddingModel(imageConfig)
      .then((data:intelligence.ImageEmbedding) => {
        console.info("Succeeded in getting ImageModel");
        imageEmbedding = data;
