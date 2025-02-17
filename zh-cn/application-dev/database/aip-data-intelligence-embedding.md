@@ -168,7 +168,7 @@
      .catch((err:BusinessError) => {
         console.error("Failed to load Model and code is " + err.code);
      })
-  ```
+   ```
 
 10. 获取给定图像的嵌入向量。
      
