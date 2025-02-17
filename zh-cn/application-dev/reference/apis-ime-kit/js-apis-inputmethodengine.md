@@ -1264,8 +1264,8 @@ try {
 ```
 
 ### on('editorAttributeChanged')<sup>10+</sup>
-
 on(type: 'editorAttributeChanged', callback: (attr: EditorAttribute) => void): void
+
 
 订阅编辑框属性变化事件。使用callback异步回调。
 
@@ -2479,10 +2479,10 @@ keyboardController.exitCurrentInputType().then(() => {
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称         | 类型     | 可选 | 说明                               |
+| 名称         | 类型     | 必填 | 说明                               |
 | ------------ | -------- | ---- | ---------------------------------- |
-| onTerminated | function | 否   | 对象终止接收的回调函数。           |
-| onMessage    | function | 否   | 对象接收自定义通信数据的回调函数。 |
+| onTerminated | function | 是   | 对象终止接收的回调函数。           |
+| onMessage    | function | 是   | 对象接收自定义通信数据的回调函数。 |
 
 ## MessageHandler.onMessage<sup>15+</sup>
 
@@ -2500,10 +2500,10 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                             |
+| 参数名   | 类型        | 必填 | 说明                             |
 | -------- | ----------- | ---- | -------------------------------- |
-| msgId    | string      | 否   | 接收到的自定义通信数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 接收到的自定义通信数据的消息体。 |
+| msgId    | string      | 是   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 接收到的自定义通信数据的消息体。 |
 
 **示例：**
 
@@ -4285,10 +4285,10 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                                                         |
+| 参数名   | 类型        | 必填 | 说明                                                         |
 | -------- | ----------- | ---- | ------------------------------------------------------------ |
-| msgId    | string      | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
+| msgId    | string      | 是   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 需要发送至已绑定当前输入法应用的编辑框应用的自定义数据的消息体。 |
 
 **返回值：**
 
@@ -4302,7 +4302,7 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | parameter error.                            |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
 | 12800003 | input method client error.                  |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
@@ -4355,7 +4355,7 @@ recvMessage(msgHandler?: MessageHandler): void;
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
-| 401      | parameter error. |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -4408,6 +4408,7 @@ inputMethodController.recvMessage();
 | ------------ | -- | ------------------ |
 | FLG_FIXED  | 0 | 固定态面板类型。 |
 | FLG_FLOATING | 1 | 悬浮态面板类型。 |
+| FLAG_CANDIDATE<sup>15+</sup> | 2 | 候选词态面板类型。 |
 
 ## PanelType<sup>10+</sup>
 
