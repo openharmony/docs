@@ -24,11 +24,11 @@ FoldSplitContainer({
   primary: Callback&lt;void&gt;,
   secondary: Callback&lt;void&gt;,
   extra?: Callback&lt;void&gt;,
-  expandedLayoutOptions?: ExpandedRegionLayoutOptions,
-  hoverModeLayoutOptions?: HoverModeRegionLayoutOptions,
-  foldedLayoutOptions?: FoldedRegionLayoutOptions,
+  expandedLayoutOptions: ExpandedRegionLayoutOptions,
+  hoverModeLayoutOptions: HoverModeRegionLayoutOptions,
+  foldedLayoutOptions: FoldedRegionLayoutOptions,
   animationOptions?: AnimateParam,
-  onHoverStatusChange?: onHoverStatusChangeHandler
+  onHoverStatusChange?: OnHoverStatusChangeHandler
 })
 
 **装饰器类型：**\@Component
@@ -39,14 +39,14 @@ FoldSplitContainer({
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| primary | ()=>void | 否 | @BuilderParam | 主要区域回调函数。 |
-| secondary | ()=>void | 否 | @BuilderParam | 次要区域回调函数。 |
+| primary | ()=>void | 是 | @BuilderParam | 主要区域回调函数。 |
+| secondary | ()=>void | 是 | @BuilderParam | 次要区域回调函数。 |
 | extra | ()=>void | 否 | @BuilderParam | 扩展区域回调函数，不传入的情况，没有对应区域。 |
-| expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | 否 | @Prop | 展开态布局信息。 |
-| hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | 否 | @Prop | 悬停态布局信息。 |
-| foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | 否 | @Prop | 折叠态布局信息。 |
+| expandedLayoutOptions | [ExpandedRegionLayoutOptions](#expandedregionlayoutoptions) | 是 | @Prop | 展开态布局信息。 |
+| hoverModeLayoutOptions | [HoverModeRegionLayoutOptions](#hovermoderegionlayoutoptions) | 是 | @Prop | 悬停态布局信息。 |
+| foldedLayoutOptions | [FoldedRegionLayoutOptions](#foldedregionlayoutoptions) | 是 | @Prop | 折叠态布局信息。 |
 | animationOptions | [AnimateParam](ts-explicit-animation.md#animateparam对象说明) \| null | 否 | @Prop | 设置动画效果相关的参数，null表示表示关闭动效。 |
-| onHoverStatusChange | [onHoverStatusChangeHandler](#onhoverstatuschangehandler) | 否 | - | 折叠屏进入或退出悬停模式时触发的回调函数。 |
+| onHoverStatusChange | [OnHoverStatusChangeHandler](#onhoverstatuschangehandler) | 否 | - | 折叠屏进入或退出悬停模式时触发的回调函数。 |
 
 ## ExpandedRegionLayoutOptions
 
@@ -94,7 +94,7 @@ FoldSplitContainer({
 | -------- | -------- | -------- | -------- |
 | verticalSplitRatio | number | 否 | 主要区域与次要区域之间的高度比例。默认值：PresetSplitRatio.LAYOUT_1V1。 |
 
-## onHoverStatusChangeHandler
+## OnHoverStatusChangeHandler
 
 type OnHoverStatusChangeHandler = (status: HoverModeStatus) => void
 
@@ -148,9 +148,9 @@ onHoverStatusChange事件处理。
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
-| LAYOUT_1V1 | 1/1 | 1:1比例。 |
-| LAYOUT_3V2 | 3/2 | 3:2比例。 |
-| LAYOUT_2V3 | 2/3 | 2:3比例。 |
+| LAYOUT_1V1 | 1 | 1:1比例。 |
+| LAYOUT_3V2 | 1.5 | 3:2比例。 |
+| LAYOUT_2V3 | 0.6666666666666666 | 2:3比例。 |
 
 ## 示例
 
