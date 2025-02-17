@@ -131,15 +131,17 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
 
-### imageMatrix<sup>16+</sup>
+### imageMatrix<sup>15+</sup>
 
 imageMatrix(matrix: ImageMatrix)
 
 设置图片的变换矩阵。svg类型图源不支持该属性。
 
-设置resizable属性时，该属性设置不生效。
+设置resizable、objectRepeat、orientation属性时，该属性设置不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+该属性只针对图源做处理，不会触发Image组件的回调事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
