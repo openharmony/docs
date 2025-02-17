@@ -138,8 +138,8 @@ struct Index {
 > 
 > 嵌套使用形成各自独立的复用缓存池之后，生命周期的传递存在问题，资源和变量管理无法共享，并不方便维护，容易引发问题;
 >
-> 示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池使用，但PlayButton02自己形成复用缓存相互可以使用；
-> 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题；
+> 示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池使用，但PlayButton02自己形成复用缓存相互可以使用;
+> 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题;
 > 
 > 综上，不建议嵌套使用。
 
@@ -161,15 +161,15 @@ struct Index {
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying02 })
       }
-      Text(`==================`).fontSize(14)
+      Text(`==================`).fontSize(14);
 
-      // 初始态是显示的按钮
+      // 初始态是隐藏的按钮
       if (this.isPlaying01) {
-        Text("Default hiden childbutton")
+        Text("Default hidden childbutton")
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying01 })
       }
-      Text(`==================`).fontSize(14)
+      Text(`==================`).fontSize(14);
 
       // 父子嵌套
       if (this.isPlaying) {
@@ -190,8 +190,8 @@ struct Index {
       Text(`==================`).fontSize(14);
 
       //  默认隐藏按钮控制
-      Text(`hidedchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
-      Button('Button===hidedchild==control==' + this.isPlaying01)
+      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
+      Button('Button===hiddenchild==control==' + this.isPlaying01)
         .margin(14)
         .onClick(() => {
           this.isPlaying01 = !this.isPlaying01;
@@ -537,8 +537,8 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 
 ### Foreach使用场景
 
-- 示例点击update，数据刷新成功，但是滑动列表，组件复用无法使用，Foreach的折叠展开属性的原因;
-- 点击clear，再次update，复用成功；符合一帧内重复创建多个已被销毁的自定义组件。
+- 使用Foreach创建可复用的自定义组件，由于Foreach渲染控制语法的全展开属性，导致复用组件无法复用；如下示例点击update，数据刷新成功，但是滑动列表，ListItemView无法复用;
+- 点击clear，再次点击update，ListItemView复用成功，因为一帧内重复创建多个已被销毁的自定义组件。
 
 ```ts
 // xxx.ets
@@ -632,14 +632,14 @@ struct ListItemView {
 
   aboutToAppear(): void {
     // 点击 update，首次进入，上下滑动，由于Foreach折叠展开属性，无法复用
-    console.log("=====abouTo===Appear=====ListItemView==创建了==" + this.item)
+    console.log("=====aboutToAppear=====ListItemView==创建了==" + this.item);
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     // 点击 clear，再次update，复用成功
     // 符合一帧内重复创建多个已被销毁的自定义组件
-    console.log("=====aboutTo===Reuse====ListItemView==复用了==" + this.item)
+    console.log("=====aboutToReuse====ListItemView==复用了==" + this.item);
   }
 
   build() {
@@ -1358,7 +1358,7 @@ struct ReusableComponent {
 #### 组合型
 
 - 复用组件之间有不同，情况非常多，但是拥有共同的子组件;
-- 示例按照组合型的组件复用方式，将上述示例中的三种复用组件转变为Builder函数后，内部共同的子组件就处于同一个父组件MyComponent下;
+- 示例按照组合型的组件复用方式，将三种复用组件转变为Builder函数后，内部共同的子组件就处于同一个父组件MyComponent下;
 - 对这些子组件使用组件复用时，它们的缓存池也会在父组件上共享，节省组件创建时的消耗。
 
 ```ts
@@ -1402,6 +1402,7 @@ struct MyComponent {
     }
   }
 
+// itemBuilderOne作为复用组件的写法未展示，以下为转为Builder之后的写法
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -1411,6 +1412,7 @@ struct MyComponent {
     }
   }
 
+// itemBuilderTwo转为Builder之后的写法
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -1420,6 +1422,7 @@ struct MyComponent {
     }
   }
 
+// itemBuilderThree转为Builder之后的写法
   @Builder
   itemBuilderThree(item: string) {
     Column() {

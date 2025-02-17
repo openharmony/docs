@@ -101,8 +101,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 
@@ -604,6 +604,37 @@ workerInstance.onerror = (err: ErrorEvent) => {
 }
 ```
 
+### onAllErrors<sup>16+</sup>
+
+onAllErrors?: [ErrorCallback](#errorcallback16)
+
+回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
+[onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
+onAllErrors可以捕获Worker线程的onmessage回调、timer回调以及文件执行等流程产生的全局异常，且onAllErrors捕获异常后Worker线程仍存活可以继续使用。推荐使用onAllErrors代替onerror。
+
+**原子化服务API**：从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**错误码：**
+
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息                                   |
+| -------- | -------------------------------------------- |
+| 10200004 | The Worker instance is not running.              |
+| 10200005 | The called API is not supported in the worker thread. |
+
+**示例：**
+
+```ts
+import { worker, ErrorEvent } from '@kit.ArkTS';
+
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+workerInstance.onAllErrors = (err: ErrorEvent) => {
+  console.log("onAllErrors" + err.message);
+}
+```
 
 ### onmessage<sup>9+</sup>
 
@@ -1524,6 +1555,22 @@ type MessageType = 'message' | 'messageerror';
 | 'message'  | 表示消息类型为message，值固定为'message'字符串。 |
 | 'messageerror'  | 表示消息类型为messageerror，值固定为'messageerror'字符串。 |
 
+## ErrorCallback<sup>16+</sup>
+
+type ErrorCallback = (err: ErrorEvent) => void
+
+表示异常回调类型。
+
+**原子化服务API：** 从API version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名    | 类型                            | 必填 | 说明                                                         |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| err | ErrorEvent                          | 是   | 错误事件类，用于表示Worker执行过程中出现异常的详细信息。 |
+
 ## Worker<sup>(deprecated)</sup>
 
 使用以下方法前，均需先构造Worker实例，Worker类继承[EventTarget](#eventtargetdeprecated)。
@@ -1562,8 +1609,8 @@ import { worker } from '@kit.ArkTS';
 // 场景1： worker文件所在路径："entry/src/main/ets/workers/worker.ets"
 const workerStageModel01 = new worker.ThreadWorker('entry/ets/workers/worker.ets', {name:"first worker in Stage model"});
 
-// 场景2： worker文件所在路径："phone/src/main/ets/ThreadFile/workers/worker.ets"
-const workerStageModel02 = new worker.ThreadWorker('phone/ets/ThreadFile/workers/worker.ets');
+// 场景2： worker文件所在路径："testworkers/src/main/ets/ThreadFile/workers/worker.ets"
+const workerStageModel02 = new worker.ThreadWorker('testworkers/ets/ThreadFile/workers/worker.ets');
 ```
 
 ### postMessage<sup>(deprecated)</sup>

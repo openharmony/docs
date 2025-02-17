@@ -285,6 +285,16 @@ stopPlayback(): void
 
 **系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+### refreshMovingPhoto<sup>16+</sup>
+
+refreshMovingPhoto(): void
+
+强制刷新动态照片组件加载的视频和图片资源，会打断组件当前的行为，使用时要谨慎。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
 ## 示例1：多种形式播放动态照片
 
 ```ts
@@ -659,6 +669,10 @@ struct Index {
           Button('StopPlay')
             .onClick(() => {
               this.controller.stopPlayback()
+            })
+          Button('refreshMovingPhoto')
+            .onClick(() => {
+              this.controller.refreshMovingPhoto()
             })
           Button('mute').id('MovingPhotoView_true')
             .onClick(() => {

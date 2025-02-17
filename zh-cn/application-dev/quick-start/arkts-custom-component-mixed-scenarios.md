@@ -1039,7 +1039,7 @@ struct Index {
 }
 ```
 
-当使用\@observedV2 + \@Trace可以发现：
+当使用\@ObservedV2 + \@Trace可以发现：
 
-* \@observedV2 + \@Trace将观测能力嵌套到类属性上，所以当类属性被@Trace标记时，无论嵌套多少层都可以观测到变化。
+* \@ObservedV2 + \@Trace将观测能力嵌套到类属性上，所以当类属性被@Trace标记时，无论嵌套多少层都可以观测到变化。
 * \@ObservdV2和\@Observed嵌套混用时，类对象能否被V1的装饰器装饰取决于最外层Class所使用的类装饰器，例如示例中嵌套在深处的\@ObservedV2装饰的Class不影响最外层的Class被V1的装饰器装饰。

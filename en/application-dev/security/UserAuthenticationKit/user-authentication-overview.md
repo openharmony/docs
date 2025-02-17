@@ -8,9 +8,9 @@ Before accessing personal data or performing sensitive operations upon a user re
 
 User identity authentication can be used in authentication scenarios, such as in-app login and payment.
 
-<!--RP1-->
+
 ![en_image_0000001742639520](figures/user_authentication.png)
-<!--RP1End-->
+
 
 ## Features
 

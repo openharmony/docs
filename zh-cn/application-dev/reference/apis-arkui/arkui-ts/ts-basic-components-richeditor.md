@@ -335,7 +335,7 @@ maxLength(value: Optional\<number\>)
 
 maxLines(value: Optional\<number\>)
 
-设置文本可显示的最大行数。
+设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -345,7 +345,7 @@ maxLines(value: Optional\<number\>)
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置文本可显示的最大行数。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
+| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 设置富文本可显示的最大行数。maxLines为可显示行数，当设置maxLines时，超出内容可滚动显示。同时设置组件高度和最大行数，组件高度优先生效。<br/>默认值：Infinity，可以无限输入，支持undefined类型。 <br/>取值范围：(0, +∞) |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -376,6 +376,20 @@ keyboardAppearance(appearance: KeyboardAppearance)
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘的外观。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: Optional&lt;boolean&gt;)
+
+设置是否阻止返回键向其它组件或应用侧传递。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| isStopped  | Optional&lt;boolean&gt; | 否   | 是否阻止返回键。默认值：true |
 
 ## 事件
 
@@ -1462,8 +1476,6 @@ onContentChanged(listener: StyledStringChangedListener): void
 
 定义RichEditor的范围。
 
-继承自[RichEditorRange](#richeditorrange)。
-
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1697,6 +1709,8 @@ SymbolSpan样式选项。
 | 名称     | 类型     | 必填   | 说明                                    |
 | ------ | ------ | ---- | ------------------------------------- |
 | offset | number | 否    | 添加builder的位置。省略或者为异常值时，添加到所有内容的最后。 |
+| dragBackgroundColor<sup>16+</sup> | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12) | 否    | 添加builder单独拖拽时的背板背景颜色。不配置或者异常值时，颜色按系统默认配置。 |
+| isDragShadowNeeded<sup>16+</sup> | boolean | 否    | 添加builder单独拖拽时是否需要投影。不配置或者异常值时，默认需要投影。 |
 
 ## RichEditorSpan<sup>12+</sup>
 
@@ -1724,8 +1738,8 @@ RichEditor span信息。
 | onAppear    | [MenuOnAppearCallback](#menuonappearcallback12) | 否    | 自定义选择菜单弹出时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onDisappear | Callback\<void\>  | 否    | 自定义选择菜单关闭时回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | menuType<sup>13+</sup> | [MenuType](ts-text-common.md#menutype13枚举说明) | 否 | 自定义选择菜单类型。<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。<br/>默认值：MenuType.SELECTION_MENU。 |
-| onMenuShow<sup>16+</sup> | [MenuType](#menucallback16) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| onMenuHide<sup>16+</sup> | [MenuType](#menucallback16) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| onMenuShow<sup>16+</sup> | [MenuCallBack](#menucallback16) | 否 |  自定义选择菜单显示时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| onMenuHide<sup>16+</sup> | [MenuCallBack](#menucallback16) | 否 |  自定义选择菜单隐藏时回调。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PasteEvent<sup>11+</sup>
 
@@ -1870,7 +1884,35 @@ type OnHoverCallback = (status: boolean, event: HoverEvent) => void
 | 参数名     | 类型                                             | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------ | ---- | -------------------------------------------------------- |
 | status  | boolean                            | 是   | 表示鼠标是否悬浮在组件上，鼠标进入组件时为true，离开组件时为false。|
-| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent11) | 是   | 设置阻塞事件冒泡属性。 |
+| event   | [HoverEvent](ts-universal-events-hover.md#hoverevent10对象说明) | 是   | 设置阻塞事件冒泡属性。 |
+
+## RichEditorTextSpan
+
+文本Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                            | 类型                                       | 必填   | 说明                     |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
+| spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | 是    | Span位置。|
+| value                         | string                                   | 是    | 文本Span内容。|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本Span样式信息。|
+
+## RichEditorImageSpan
+
+图片Span信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称               | 类型                                                                | 必填  | 说明               |
+|------------------|-------------------------------------------------------------------|-----|------------------|
+| spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
+| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## 示例
 
@@ -4448,6 +4490,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.removeString(start, end - start);
@@ -4475,6 +4520,9 @@ struct Index {
             let richEditorSelection = this.controller.getSelection();
             let start = richEditorSelection.start ? richEditorSelection.start : 0;
             let end = richEditorSelection.end ? richEditorSelection.end : 0;
+            if (start < 0 || end <= start) {
+              return;
+            }
             // 获取组件展示的属性字符串
             this.richEditorStyledString = this.controller.getStyledString();
             this.richEditorStyledString.setStyle({
@@ -4639,7 +4687,7 @@ struct RichEditorExample {
 ![RichEditorSelectionMenuOptions](figures/richEditorSelectionMenuOptions.png)
 
 ### 示例23（组件部分常用属性）
-通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。
+通过[barState](#barstate13)属性设置组件编辑态时滚动条的显示模式。通过[enableKeyboardOnFocus](#enablekeyboardonfocus12)属性设置组件通过点击以外的方式获焦时，是否主动拉起软键盘。通过[enableHapticFeedback](#enablehapticfeedback13)属性设置组件是否支持触控反馈。通过[getPreviewText](#getpreviewtext12)接口获取组件预上屏信息。通过[stopBackPress](#stopbackpress16)属性设置是否阻止返回键向其它组件或应用侧传递。
 
 ```ts
 // xxx.ets
@@ -4692,6 +4740,7 @@ struct RichEditor_example {
         .barState(this.bs[this.bs_num])
         .enableKeyboardOnFocus(this.e)
         .enableHapticFeedback(true)
+        .stopBackPress(false);
 
       RichEditor(this.options1).width(300)
 
@@ -4787,8 +4836,8 @@ struct Index {
 @Entry
 @Component
 struct RichEditorExample {
-  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky,"+
-    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, "+
+  @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
+    "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
     " pink, and lavender, creating a breathtaking tapestry that stretches as far as the eye can see." +
     "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil." +
     "it casts a warm," +
@@ -4805,7 +4854,7 @@ struct RichEditorExample {
     "it casts a warm," +
     "golden hue that spreads like liquid amber across the vast expanse of the sky." +
     "The once-blue heavens gradually transform, "
-  @State maxLineList: (number | undefined)[] = [ 2, 6, undefined]
+  @State maxLineList: (number | undefined)[] = [2, 6, undefined]
   @State maxLineIndex: number = 0
   @State maxLineStringList: (string)[] = ["2", "6", "undefined"]
   richEditorStyledString: MutableStyledString = new MutableStyledString("");
@@ -4818,7 +4867,7 @@ struct RichEditorExample {
 
   build() {
     Column() {
-      Text("当前的maxLength为7 " )
+      Text("当前的maxLength为7 ")
         .margin(10)
         .fontSize(25)
       Row() {
@@ -4842,21 +4891,23 @@ struct RichEditorExample {
                 }
               })
           })
-          .margin({left:20})
+          .margin({ left: 20 })
       }
-        RichEditor({ controller: this.controller1 })
-          .width('95%')
-          .margin(10)
-          .maxLength(7)
-          .backgroundColor('rgb(240,250,255)')
-        Text("当前的maxLine为 " + this.maxLineStringList[this.maxLineIndex]).margin(10)
-          .fontSize(25)
-        Button("更改maxLines").onClick(() => {
-          this.maxLineIndex++
-          if (this.maxLineIndex > this.maxLineList.length - 1) {
-            this.maxLineIndex = 0
-          }
-        })
+
+      RichEditor({ controller: this.controller1 })
+        .width('95%')
+        .margin(10)
+        .height(60)
+        .maxLength(7)
+        .backgroundColor('rgb(240,250,255)')
+      Text("当前的maxLine为 " + this.maxLineStringList[this.maxLineIndex]).margin(10)
+        .fontSize(25)
+      Button("更改maxLines").onClick(() => {
+        this.maxLineIndex++
+        if (this.maxLineIndex > this.maxLineList.length - 1) {
+          this.maxLineIndex = 0
+        }
+      })
       RichEditor({ controller: this.controller3 })
         .onReady(() => {
           this.controller3.addTextSpan(this.text,
@@ -4870,10 +4921,67 @@ struct RichEditorExample {
         .margin(10)
         .width('95%')
         .maxLines(this.maxLineList[this.maxLineIndex])
-        .height(105)
         .backgroundColor('rgb(240,250,255)')
     }
   }
 }
 ```
 ![StyledString](figures/maxLengthmaxLines.gif)
+
+### 示例26（设置自定义布局拖拽背板及拖拽投影配置）
+通过addBuilderSpan，可以在拖拽场景下，对自定义布局的拖拽背板及拖拽投影的参数进行设置。
+
+```ts
+// xxx.ets
+import { ColorMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct richEditorNew03 {
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+  build() {
+    Column({ space: 10 }) {
+      Column() {
+        RichEditor(this.options)
+          .onReady(() => {
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.rgba(0xff, 0x80, 0, 0xff),
+              isDragShadowNeeded: false
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, {
+              offset: -1,
+              dragBackgroundColor: ColorMetrics.resourceColor("#ffff0000")
+                .blendColor(ColorMetrics.resourceColor("#ff00ff00")),
+              isDragShadowNeeded: true
+            })
+            this.controller.addBuilderSpan(() => {
+              this.placeholderBuilder()
+            }, { offset: -1 })
+          })
+          .borderWidth(1)
+          .width("100%")
+          .height("50%")
+          .margin(50)
+      }
+      .width('100%')
+      .margin({top:100})
+    }
+  }
+
+  @Builder
+  placeholderBuilder() {
+    Row() {
+      Text('是BuilderSpan，不是纯文本内容')
+        .fontSize(22)
+        .copyOption(CopyOptions.InApp)
+    }
+  }
+}
+```
+![StyledString](figures/builderspan_drag_config.gif)

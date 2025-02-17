@@ -22,7 +22,7 @@ ArkWeb是多进程模型，分为应用进程、Web渲染进程、Web GPU进程�
 
 - Web孵化进程（系统唯一）
 
-  - 负责接收Foundation进程的请求，执行孵化Web渲染进行与Web GPU进程。
+  - 负责接收Foundation进程的请求，执行孵化Web渲染进程与Web GPU进程。
 
   - 执行孵化后处理安全沙箱降权、预加载动态库，以提升性能。
 

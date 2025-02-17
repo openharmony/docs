@@ -34,7 +34,7 @@ API version 9 and later: Apply for **ohos.permission.APPROXIMATELY\_LOCATION**, 
 
 To access the device location information when running in the background, an application needs to request for a continuous task of the LOCATION type. In this way, the system continues to report device location information after your application moves to the background. For details about how to request for a continuous task, see [Continuous Task](../../task-management/continuous-task.md).
 
-A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all.md#ohospermissionlocation_in_background).
+A user can grant the **ohos.permission.LOCATION_IN_BACKGROUND** permission for an application on the setting page. For details, see [ohos.permission.LOCATION_IN_BACKGROUND](../../security/AccessToken/permissions-for-all-user.md#ohospermissionlocation_in_background).
 
 You can declare the required permission in your application's configuration file. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
@@ -64,7 +64,7 @@ Location information.
 
 | Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| isFromMock | Boolean | No| Yes| **true**: The location information is obtained from the mock location function.<br>**false**: The location information is not obtained from the location simulation function.<br>**System API**: This is a system API.|
+| isFromMock | Boolean | No| Yes| **true**: The location information is obtained from the mock location switch.<br>**false**: The location information is not obtained from the location simulation function.<br>**System API**: This is a system API.|
 
 
 ## ReverseGeocodingMockInfo
@@ -83,7 +83,7 @@ Defines the configuration of the mock reverse geocoding function.
 
 ## LocationMockConfig
 
-Defines the configuration of the mock location function.
+Defines the configuration of the mock location switch.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -423,7 +423,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 enableLocationMock(): void
 
-Enables the mock location function.
+Enables the mock location switch.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -456,7 +456,7 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
 
 disableLocationMock(): void
 
-Disables the mock location function.
+Disables the mock location switch.
 
 **System capability**: SystemCapability.Location.Location.Core
 
@@ -911,6 +911,194 @@ For details about the error codes, see [Location Error Codes]](errorcode-geoLoca
   import { geoLocationManager } from '@kit.LocationKit';
   try {
       let iconStatus = geoLocationManager.getLocationIconStatus();
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.enableLocationByUserId<sup>16+</sup>
+
+enableLocationByUserId(userId: number): Promise&lt;void&gt;
+
+Enables the location switch for the specified system account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS and ohos.permission.CONTROL_LOCATION_SWITCH
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | userId | number | Yes| System account ID. For details about how to obtain the system account ID, see [Obtaining All System Accounts](../../basic-services/account/manage-os-account.md#obtaining-all-system-accounts).|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  try {
+      // Enable the location switch for the specified system account. For example, if the account ID is below 101, you can enable the location switch for the account whose ID is 100.
+      let userId:number = 100;
+      geoLocationManager.enableLocationByUserId(userId).then(() => {
+          console.info('promise, enableLocationByUserId succeed');
+      })
+      .catch((error:BusinessError) => {
+          console.error('promise, enableLocationByUserId: error=' + JSON.stringify(error));
+      });
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.disableLocationByUserId<sup>16+</sup>
+
+disableLocationByUserId(userId: number): void
+
+Disables the location switch for the specified system account.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS and ohos.permission.CONTROL_LOCATION_SWITCH
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | userId | number | Yes| System account ID. For details about how to obtain the system account ID, see [Obtaining All System Accounts](../../basic-services/account/manage-os-account.md#obtaining-all-system-accounts).|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      // Disable the location switch for the specified system account. For example, if the account ID is below 101, you can disable the location switch for the account whose ID is 100.
+      let userId:number = 100;
+      geoLocationManager.disableLocationByUserId(userId);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.isLocationEnabledByUserId<sup>16+</sup>
+
+isLocationEnabledByUserId(userId: number): boolean
+
+Checks whether the location switch is enabled for the specified system account.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | userId | number | Yes| System account ID. For details about how to obtain the system account ID, see [Obtaining All System Accounts](../../basic-services/account/manage-os-account.md#obtaining-all-system-accounts).|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | boolean | **true**: The location switch is enabled.<br>**false**: The location switch is disabled.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      // Check whether the location switch is enabled for the specified system account. For example, if the account ID is below 101, you can check whether the location switch is enabled for the account whose ID is 100.
+      let userId:number = 100;
+      let locationEnabled = geoLocationManager.isLocationEnabledByUserId(userId);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.setLocationSwitchIgnored<sup>16+</sup>
+
+setLocationSwitchIgnored(isIgnored: boolean): void
+
+Sets whether the location switch is ignored.
+
+If this parameter is set to **true**, the application can obtain the location information when the location switch is disabled. The setting takes effect 2 minutes after the API is successfully called.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.LOCATION_SWITCH_IGNORED
+
+**System capability**: SystemCapability.Location.Location.Core
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | isIgnored | boolean | Yes| **true**: The application can obtain location information when the location switch is disabled. The setting takes effect 2 minutes after the API is successfully called.<br>**false**: The application cannot obtain location information when the location switch is disabled.|
+
+**Error codes**
+
+For details about the error codes, see [Location Error Codes]](errorcode-geoLocationManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**Example**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      let isIgnored:boolean = true;
+      geoLocationManager.setLocationSwitchIgnored(isIgnored);
   } catch (err) {
       console.error("errCode:" + err.code + ", message:"  + err.message);
   }

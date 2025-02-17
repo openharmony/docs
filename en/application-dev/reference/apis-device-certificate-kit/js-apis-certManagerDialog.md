@@ -49,7 +49,10 @@ Defines the usage scope of the certificate to be installed.
 
 | Name      | Value|  Description     |
 | ---------- | ------ | --------- |
-| CURRENT_USER | 1      | Current user.|
+| NOT_SPECIFIED<sup>16+</sup>  | 0      | No user is specified.|
+| CURRENT_USER | 1      | The installed certificate is accessible only to the current user.|
+| GLOBAL_USER<sup>16+</sup> | 2      | The installed certificate is accessible to all users.|
+
 
 ## CertificateDialogErrorCode
 
@@ -127,6 +130,8 @@ openInstallCertificateDialog(context: common.Context, certType: CertificateType,
 
 Opens a dialog box for installing a certificate. This API uses a promise to return the result.
 
+This API is available only to 2-in-1 devices.
+
 **Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
 
 **System capability**: SystemCapability.Security.CertificateManagerDialog
@@ -138,8 +143,8 @@ Opens a dialog box for installing a certificate. This API uses a promise to retu
 | Name  | Type                                             | Mandatory| Description                      |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | Yes  | Context of the application.|
-| certType<sup>14+</sup> | [CertificateType](#certificatetype14)                   | Yes  | Type of the certificate to install.|
-| certScope<sup>14+</sup> | [CertificateScope](#certificatescope14)                   | Yes  | Usage scope of the certificate.|
+| certType | [CertificateType](#certificatetype14)                   | Yes  | Type of the certificate to install.|
+| certScope | [CertificateScope](#certificatescope14)                   | Yes  | Usage scope of the certificate.|
 | cert | Uint8Array                  | Yes  | Data of the certificate to install.|
 
 **Return value**
@@ -157,9 +162,10 @@ For details about the error codes, see [Certificate Management Dialog Box Error 
 | 201      | Permission verification failed. The application does not have the permission required to call the API.     |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 29700001 | Internal error.     |
-| 29700002<sup>14+</sup> | The user cancels the installation operation.     |
-| 29700003<sup>14+</sup> | The user install certificate failed in the certificate manager dialog.     |
-| 29700004<sup>14+</sup> | The API is not supported on this device.     |
+| 29700002 | The user cancels the installation operation.     |
+| 29700003 | The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.     |
+| 29700004 | The API is not supported on this device.     |
+| 29700005<sup>16+</sup> | The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.     |
 
 **Example**
 ```ts
@@ -185,5 +191,70 @@ try {
   })
 } catch (error) {
   console.error(`Failed to open install certificate dialog. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## certificateManagerDialog.openUninstallCertificateDialog<sup>16+</sup>
+
+openUninstallCertificateDialog(context: common.Context, certType: CertificateType, certUri: string): Promise\<void>
+
+Opens a dialog box for uninstalling a certificate. This API uses a promise to return the result.
+
+This API is available only to 2-in-1 devices.
+
+**Required permissions**: ohos.permission.ACCESS_CERT_MANAGER
+
+**System capability**: SystemCapability.Security.CertificateManagerDialog
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                      |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| context | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md)                   | Yes  | Context of the application.|
+| certType | [CertificateType](#certificatetype14)                   | Yes  | Type of the certificate to uninstall.|
+| certUri | string                  | Yes  | Unique identifier of the certificate to uninstall.|
+
+**Return value**
+
+| Type                                       | Description                |
+| ------------------------------------------- | -------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Certificate Management Dialog Box Error Codes](errorcode-certManagerDialog.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 29700001 | Internal error.     |
+| 29700002 | The user cancels the uninstallation operation.     |
+| 29700003 | The user uninstall certificate failed in the certificate manager dialog, such as the certificate uri is not exist.     |
+| 29700004 | The API is not supported on this device.     |
+| 29700005 | The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.     |
+
+**Example**
+```ts
+import certificateManagerDialog from '@ohos.security.certManagerDialog';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
+/* context is application context information, which is obtained by the caller. The context here is only an example. */
+let context: common.Context = getContext(this);
+/* certificateType specifies the certificate type. The value CA_CERT here indicates a CA certificate. */
+let certificateType: certificateManagerDialog.CertificateType = certificateManagerDialog.CertificateType.CA_CERT;
+/* certUri is the unique identifier of the certificate installed. The value here is only an example. */
+let certUri: string = "test";
+try {
+  certificateManagerDialog.openUninstallCertificateDialog(context, certificateType, certUri).then(() => {
+    console.info('Succeeded opening uninstall certificate');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to open uninstall certificate dialog. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (error) {
+  console.error(`Failed to open uninstall certificate dialog. Code: ${error.code}, message: ${error.message}`);
 }
 ```

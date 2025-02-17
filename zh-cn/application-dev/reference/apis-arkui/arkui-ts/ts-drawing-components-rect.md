@@ -356,6 +356,7 @@ struct RectExample {
           .fill(Color.Pink)
           .stroke(Color.Transparent)
       }.width('100%').margin({ top: 10 })
+
       // 绘制90% * 50矩形, 左上圆角宽高40,右上圆角宽高20,右下圆角宽高40,左下圆角宽高20
       Rect({ width: '90%', height: 80 })
         .radius([[40, 40], [20, 20], [40, 40], [20, 20]])
@@ -389,12 +390,12 @@ struct RectExample {
       Rect()
         .width(100)
         .height(100)
-          // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
+        // 设置矩形填充，如果需要显示背景的渐变色，请设置区域透明度.fillOpacity(0.0)
         .fill(Color.Pink)
-          // 设置倒角为40
+        // 设置倒角为40
         .radius(40)
         .stroke(Color.Black)
-          // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
+        // 设置渐变色，仅100*100的矩形区域生效，渐变色的边界不包含倒角
         .linearGradient({
           direction: GradientDirection.Right,
           colors: [[0xff0000, 0.0], [0x0000ff, 0.3], [0xffff00, 1.0]]

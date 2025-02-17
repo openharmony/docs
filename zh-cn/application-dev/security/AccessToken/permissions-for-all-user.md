@@ -182,11 +182,13 @@
 
 <!--RP2--><!--RP2End-->
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+**权限级别**：normal
 
 **授权方式**：user_grant
 
 **起始版本**：11
+
+**变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
 
 ## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
@@ -196,11 +198,13 @@
 
 <!--RP2--><!--RP2End-->
 
-**权限级别**：API version 11为system_basic; 从API version 12开始为normal。
+**权限级别**：normal
 
 **授权方式**：user_grant
 
 **起始版本**：11
+
+**变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
 
 ## ohos.permission.READ_MEDIA
 

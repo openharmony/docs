@@ -130,7 +130,7 @@ textAlign(value: TextAlign)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制、剪切和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前Search中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -575,18 +575,6 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
->  **说明：**
->
->  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -614,13 +602,29 @@ enableHapticFeedback(isEnabled: boolean)
 > ]
 > ```
 
-### stopBackPress<sup>16+</sup>
+### keyboardAppearance<sup>15+</sup>
 
-stopBackPress(isStopped: boolean)
+keyboardAppearance(appearance: KeyboardAppearance)
+
+设置输入框拉起的键盘样式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
+### stopBackPress<sup>15+</sup>
+
+stopBackPress(isStopped: Optional\<boolean>)
 
 设置是否阻止返回键向其它组件或应用侧传递。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -628,7 +632,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isStopped | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -802,7 +806,7 @@ onPaste(callback:OnPasteCallback )
 **参数：** 
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](ts-basic-components-textinput#onpastecallback16对象说明)       | 是   | 粘贴回调。 |
+| callback | [OnPasteCallback](ts-basic-components-textinput.md#onpastecallback16)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
@@ -818,7 +822,7 @@ onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 | 参数名         | 类型   | 必填 | 说明                                              |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput#ontextselectionchangecallback16对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
+| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput.md#ontextselectionchangecallback16) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
@@ -834,7 +838,7 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](ts-basic-components-textinput#oncontentscrollcallback16对象说明) | 是   | 文本内容滚动回调。 |
+| callback | [OnContentScrollCallback](ts-basic-components-textinput.md#oncontentscrollcallback16) | 是   | 文本内容滚动回调。 |
 
 ### onEditChange<sup>12+</sup>
 
@@ -866,7 +870,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏和候选词操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -915,6 +919,22 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillChange<sup>16+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+在文本内容将要发生变化时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
 
 ## SearchController
 
@@ -1073,12 +1093,12 @@ struct SearchExample {
       Search({ value: this.changeValue, placeholder: 'Type to search...' })
         .searchButton('SEARCH')
         .searchIcon({
-          src: $r('app.media.search')
+          src: $r('sys.media.ohos_ic_public_search_filled')
         })
         .cancelButton({
           style: CancelButtonStyle.CONSTANT,
           icon: {
-            src: $r('app.media.cancel')
+            src: $r('sys.media.ohos_ic_public_cancel_filled')
           }
         })
         .width('90%')
@@ -1771,3 +1791,64 @@ struct SearchExample {
 ```
 
 ![searchOnContentScroll](figures/searchOnContentScroll.gif)
+
+### 示例19（设置最小字体范围与最大字体范围）
+
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// xxx.ets
+@Entry
+@Component
+export struct TextAreaExample11 {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+  @State changeValue: string = 'abcde';
+  @State currentFontSizeScale : string = "";
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (!err) {
+        this.currentFontSizeScale = scale.toString();
+      }
+    });
+  }
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("字体倍数：" + this.currentFontSizeScale)
+        Search({ value: this.changeValue,
+          placeholder: 'Type to search...'
+        })
+          .minFontScale(this.minFontScale)
+          .maxFontScale(this.maxFontScale)
+      }.width('100%')
+        
+      Row(){
+        Button("2倍").onClick(() => {
+          this.setFontScale(2)
+        }).alignSelf(ItemAlign.Start)
+        Button("1倍")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(1)
+          }).alignSelf(ItemAlign.Start)
+        Button("0.85")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(0.85)
+          }).alignSelf(ItemAlign.Start)
+      }.margin({ top: 30 })
+    }
+  }
+}
+```
+
+![searchMaxAndMinFontScale](figures/searchMaxAndMinFontScale.gif)
+

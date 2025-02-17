@@ -13,6 +13,122 @@ The **observer** module provides event subscription management functions. You ca
 import { observer } from '@kit.TelephonyKit';
 ```
 
+## NetworkState
+
+type NetworkState = radio.NetworkState
+
+Defines the network status.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [radio.NetworkState](js-apis-radio.md#networkstate) | Network status.|
+
+## SignalInformation
+
+type SignalInformation = radio.SignalInformation
+
+Defines the signal strength.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [radio.SignalInformation](js-apis-radio.md#signalinformation) | Signal strength.|
+
+
+## CellInformation
+
+type CellInformation = radio.CellInformation
+
+Defines the cell information.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [radio.CellInformation](js-apis-radio.md#cellinformation8) | Cell information.|
+
+
+## DataConnectState
+
+type DataConnectState = data.DataConnectState
+
+Describes the connection status of a cellular data link.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [data.DataConnectState](js-apis-telephony-data.md#dataconnectstate) | Connection status of a cellular data link.|
+
+
+## RatType
+
+type RatType = radio.RadioTechnology
+
+Enumerates the radio access technologies.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [radio.RadioTechnology](js-apis-radio.md#radiotechnology) | Radio access technology.|
+
+
+## DataFlowType
+
+type DataFlowType = data.DataFlowType
+
+Defines the cellular data flow type.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [data.DataFlowType](js-apis-telephony-data.md#dataflowtype) | Cellular data flow type.|
+
+
+## CallState
+
+type CallState = call.CallState
+
+Enumerates call states.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [call.CallState](js-apis-call.md#callstate) | Call state.|
+
+
+## CardType
+
+type CardType = sim.CardType
+
+Enumerates SIM card types.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [sim.CardType](js-apis-sim.md#cardtype7) | SIM card type.|
+
+
+## SimState
+
+type SimState = sim.SimState
+
+SIM card state.
+
+**System capability**: SystemCapability.Telephony.StateRegistry
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [sim.SimState](js-apis-sim.md#simstate) | SIM card state.|
+
+
 ## observer.on('networkStateChange')
 
 on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void

@@ -197,7 +197,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | certType          | [CertType](#certtype16)                     | 否  | 否  | 表示证书的类型。 |
-| certScope        | [CertScope](#certscope16)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CURRENT_USER时，此项为必选项。 |
+| certScope        | [CertScope](#certscope16)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。 |
 
 
 ## certificateManager.installPrivateCertificate
@@ -1426,7 +1426,7 @@ try {
 
 getCertificateStorePath(property: CertStoreProperty): string;
 
-表示获取证书的存储位置。
+表示获取证书的存储路径。
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
@@ -1434,13 +1434,13 @@ getCertificateStorePath(property: CertStoreProperty): string;
 
 | 参数名   | 类型                                      | 必填 | 说明                             |
 | -------- | ----------------------------------------- | ---- | -------------------------------- |
-| property | [CertStoreProperty](#certstoreproperty16) | 是   | 表示获取证书存储位置的参数集合。 |
+| property | [CertStoreProperty](#certstoreproperty16) | 是   | 表示获取证书存储路径的参数集合。 |
 
 **返回值**：
 
 | 类型   | 说明                 |
 | ------ | -------------------- |
-| string | 表示证书的存储位置。 |
+| string | 表示证书的存储路径。 |
 
 **错误码：**
 

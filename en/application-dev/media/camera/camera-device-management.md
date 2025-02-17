@@ -29,7 +29,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    >
    > If obtaining the object fails, the camera device may be occupied or unusable. If it is occupied, wait until it is released.
 
-3. Call [getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) in the [cameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
+3. Call [getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) in the [CameraManager](../../reference/apis-camera-kit/js-apis-camera.md#cameramanager) class to obtain the list of cameras supported by the current device. The list stores the IDs of all cameras supported. If the list is not empty, each ID in the list can be used to create an independent camera object. If the list is empty, no camera is available for the current device and subsequent operations cannot be performed.
 
    ```ts
    function getCameraDevices(cameraManager: camera.CameraManager): Array<camera.CameraDevice> {

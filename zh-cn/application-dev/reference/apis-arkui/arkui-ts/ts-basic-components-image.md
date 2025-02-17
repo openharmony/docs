@@ -12,7 +12,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 >
 > 动图的播放依赖于Image节点的可见性变化，其默认行为是不播放的。当节点可见时，通过回调启动动画，当节点不可见时，停止动画。可见性状态的判断是通过[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)事件触发的，当可见阈值ratios大于0时，表明Image处于可见状态。
 >
-> API version 14及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至上传下载模块进行统一管理。上传下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向上传下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 14之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 14及之后的版本，缓存则移至应用根目录下的cache目录中。
+> API version 16及之后，Image组件在显示网络图片时，网络图片下载与缓存能力将不再内嵌于Image组件中，而是剥离至[缓存下载模块](../../apis-basic-services-kit/js-apis-request-cacheDownload.md)进行统一管理。缓存下载模块提供独立的预下载接口，允许应用开发者在创建Image组件前预下载所需图片。组件创建后，通过向缓存下载模块请求数据，从而优化了Image组件的显示流程。关于网络缓存的位置，对于API version 16之前的版本，Image组件的缓存位于应用的本地沙箱路径下，而对于API version 16及之后的版本，缓存则移至应用根目录下的cache目录中。
 
 ## 需要权限
 
@@ -131,17 +131,17 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
 
-### imageMatrix<sup>16+</sup>
+### imageMatrix<sup>15+</sup>
 
 imageMatrix(matrix: ImageMatrix)
 
 设置图片的变换矩阵。svg类型图源不支持该属性。
 
-设置resizable属性时，该属性设置不生效。
+设置resizable、objectRepeat、orientation属性时，该属性设置不生效。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+该属性只针对图源做处理，不会触发Image组件的回调事件。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -293,17 +293,17 @@ fillColor(value: ResourceColor)
 | ------ | ------------------------------------------ | ---- | -------------- |
 | value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 |
 
-### fillColor<sup>16+</sup>
+### fillColor<sup>15+</sup>
 
 fillColor(value: ResourceColor|ColorContent)
 
-设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent16)类型。
+设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -311,7 +311,7 @@ fillColor(value: ResourceColor|ColorContent)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent16) | 是   | 设置填充颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 |
 
 ### autoResize
 
@@ -582,10 +582,10 @@ orientation(orientation: ImageRotateOrientation)
 
 | 名称 | 类型 | 必填 | 说明 |
 | --------- |-----------|-----------|-----------|
-|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
-|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时保持不变距离。<br>默认值：0<br>单位：vp |
+|  top    |  [Length](ts-types.md#length)  |  否  | 图片顶部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
+|  right  |  [Length](ts-types.md#length)  |  否  | 图片右部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
+|  bottom |  [Length](ts-types.md#length)  |  否  | 图片底部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
+|  left   |  [Length](ts-types.md#length)  |  否  | 图片左部拉伸时，图片的像素值保持不变。<br>默认值：0<br>单位：vp |
 
 ![edgewidths](figures/edgewidths.png)
 
@@ -674,11 +674,11 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
-## ColorContent<sup>16+</sup>
+## ColorContent<sup>15+</sup>
 
 指定颜色填充内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -988,21 +988,21 @@ struct ImageExample4 {
 @Entry
 @Component
 struct Index {
-  @State top: number = 40
-  @State bottom: number = 5
-  @State left: number = 40
+  @State top: number = 10
+  @State bottom: number = 10
+  @State left: number = 10
   @State right: number = 10
 
   build() {
     Column({ space: 5 }) {
       // 原图效果
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .width(200).height(200)
         .border({ width: 2, color: Color.Pink })
         .objectFit(ImageFit.Contain)
 
       // 图像拉伸效果，设置resizable属性，对图片不同方向进行拉伸
-      Image($r("app.media.sky"))
+      Image($r("app.media.landscape"))
         .resizable({
           slice: {
             left: this.left,
@@ -1019,22 +1019,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 2
+            this.top += 10
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 2
+            this.bottom += 10
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 2
+            this.left += 10
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 2
+            this.right += 10
           })
       }
 
@@ -1432,3 +1432,87 @@ struct Test {
 ```
 
 ![imageMatrix](figures/imageMatrix.jpeg)
+
+### 示例13（通过sourceSize设置图片解码尺寸）
+
+该示例通过[sourceSize](ts-basic-components-image.md#sourcesize)接口自定义图片的解码尺寸。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .sourceSize({width:1393, height:1080})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Image($r("app.media.sky"))
+        .sourceSize({width:13, height:10})
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![sourceSizeExample](figures/sourceSizeExample.png)
+
+### 示例14（通过renderMode设置图片的渲染模式）
+
+该示例通过[renderMode](ts-basic-components-image.md#rendermode)接口设置图片渲染模式为黑白模式。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .renderMode(ImageRenderMode.Template)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![renderModeExample](figures/renderModeExample.png)
+
+### 示例15（通过objectRepeat设置图片的重复样式）
+
+该示例通过[objectRepeat](ts-basic-components-image.md#objectrepeat)接口在竖直轴上重复绘制图片。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State borderRadiusValue: number = 10;
+  build() {
+    Column() {
+      Image($r("app.media.sky"))
+        .objectRepeat(ImageRepeat.Y)
+        .height(300)
+        .width(300)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![objectRepeatExample](figures/objectRepeatExample.png)

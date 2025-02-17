@@ -156,7 +156,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
@@ -227,7 +227,7 @@ inputFilter(value: ResourceStr, error?: (value: string) => void)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制、剪切和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextArea中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -804,18 +804,6 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
->  **说明：**
->
->  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -861,13 +849,29 @@ EllipsisMode.START和EllipsisMode.CENTER仅在maxLines设置为1生效。
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | value  | [EllipsisMode](ts-appendix-enums.md#ellipsismode11) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
-### stopBackPress<sup>16+</sup>
+### keyboardAppearance<sup>15+</sup>
 
-stopBackPress(isStopped: boolean)
+keyboardAppearance(appearance: KeyboardAppearance)
+
+设置输入框拉起的键盘样式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
+### stopBackPress<sup>15+</sup>
+
+stopBackPress(isStopped: Optional\<boolean>)
 
 设置是否阻止返回键向其它组件或应用侧传递。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -875,7 +879,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## 事件
 
@@ -1044,7 +1048,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏和候选词操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -1093,6 +1097,22 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillChange<sup>16+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+在文本内容将要发生变化时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
 
 ## TextAreaController<sup>8+</sup>
 
@@ -1214,6 +1234,18 @@ stopEditing(): void
 | NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
 | DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
 | FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
+| PASSPORT_NUMBER<sup>16+</sup>            | 26   | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。 |
+| VALIDITY<sup>16+</sup>                   | 27   | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。 |
+| ISSUE_AT<sup>16+</sup>                   | 28   | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。 |
+| ORGANIZATION<sup>16+</sup>               | 29   | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。 |
+| TAX_ID<sup>16+</sup>                     | 30   | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。 |
+| ADDRESS_CITY_AND_STATE<sup>16+</sup>     | 31   | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。 |
+| FLIGHT_NUMBER<sup>16+</sup>              | 32   | 【航班号】暂不支持自动保存和自动填充。 |
+| LICENSE_NUMBER<sup>16+</sup>             | 33   | 【驾驶证号】暂不支持自动保存和自动填充。 |
+| LICENSE_FILE_NUMBER<sup>16+</sup>        | 34   | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
+| LICENSE_PLATE<sup>16+</sup>              | 35   | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。 |
+| ENGINE_NUMBER<sup>16+</sup>              | 36   | 【行驶证发动机号】暂不支持自动保存和自动填充。 |
+| LICENSE_CHASSIS_NUMBER<sup>16+</sup>     | 37   | 【车牌识别号】暂不支持自动保存和自动填充。 |
 
 ## TextAreaSubmitCallback<sup>14+</sup>
 
@@ -1469,31 +1501,31 @@ struct TextAreaExample {
     Row() {
       Column() {
         Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'lineHeight unset'})
+        TextArea({ text: 'lineHeight unset' })
           .border({ width: 1 }).padding(10).margin(5)
-        TextArea({text: 'lineHeight 15'})
+        TextArea({ text: 'lineHeight 15' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextArea({text: 'lineHeight 30'})
+        TextArea({ text: 'lineHeight 30' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
 
         Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'letterSpacing 0'})
+        TextArea({ text: 'letterSpacing 0' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextArea({text: 'letterSpacing 3'})
+        TextArea({ text: 'letterSpacing 3' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextArea({text: 'letterSpacing -1'})
+        TextArea({ text: 'letterSpacing -1' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
 
         Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({text: 'LineThrough, Red\nsecond line'})
+        TextArea({ text: 'LineThrough, Red\nsecond line' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextArea({text: 'Overline, Red, DOTTED\nsecond line'})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+        TextArea({ text: 'Overline, Red, DOTTED\nsecond line' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED})
-        TextArea({text: 'Underline, Red, WAVY\nsecond line'})
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DOTTED })
+        TextArea({ text: 'Underline, Red, WAVY\nsecond line' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
       }.height('90%')
     }
     .width('90%')
@@ -1517,13 +1549,13 @@ struct TextAreaExample {
   @State text2: string = 'This is ss01 off: 0123456789'
 
   build() {
-    Column(){
-      TextArea({text: this.text1})
+    Column() {
+      TextArea({ text: this.text1 })
         .fontSize(20)
-        .margin({top:200})
+        .margin({ top: 200 })
         .fontFeature("\"ss01\" on")
-      TextArea({text : this.text2})
-        .margin({top:10})
+      TextArea({ text: this.text2 })
+        .margin({ top: 10 })
         .fontSize(20)
         .fontFeature("\"ss01\" off")
     }
@@ -1545,19 +1577,21 @@ struct TextAreaExample {
 struct TextAreaExample {
   controller: TextAreaController = new TextAreaController()
   @State inputValue: string = ""
-  @State height1:string|number = '80%'
-  @State height2:number = 100
-  @State supportAvoidance:boolean = true;
+  @State height1: string | number = '80%'
+  @State height2: number = 100
+  @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
-      Row(){
+      Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
           this.controller.stopEditing()
         }).margin(10)
       }
+
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
@@ -1573,16 +1607,16 @@ struct TextAreaExample {
 
   build() {
     Column() {
-      Row(){
+      Row() {
         Button("20%")
           .fontSize(24)
-          .onClick(()=>{
+          .onClick(() => {
             this.height1 = "20%"
           })
         Button("80%")
           .fontSize(24)
-          .margin({left:20})
-          .onClick(()=>{
+          .margin({ left: 20 })
+          .onClick(() => {
             this.height1 = "80%"
           })
       }
@@ -1590,12 +1624,13 @@ struct TextAreaExample {
       .alignItems(VerticalAlign.Bottom)
       .height(this.height1)
       .width("100%")
-      .padding({bottom:50})
-      TextArea({ controller: this.controller, text: this.inputValue})
+      .padding({ bottom: 50 })
+
+      TextArea({ controller: this.controller, text: this.inputValue })
         .height(100)
-        // 绑定自定义键盘
-        .customKeyboard(this.CustomKeyboardBuilder(),{ supportAvoidance: this.supportAvoidance }).margin(10).border({ width: 1 })
-        // .height(200)
+        .customKeyboard(this.CustomKeyboardBuilder(), { supportAvoidance: this.supportAvoidance })// 绑定自定义键盘
+        .margin(10)
+        .border({ width: 1 })
     }
   }
 }
@@ -1655,26 +1690,26 @@ import { LengthMetrics } from '@kit.ArkUI'
 @Component
 struct TextAreaExample {
   build() {
-      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-        Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
-        TextArea({ placeholder: 'This is the TextArea with no lineSpacing set.' })
-          .fontSize(12)
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_px.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.px(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_vp.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.vp(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_fp.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.fp(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 20_lpx.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.lpx(20))
-        TextArea({ placeholder: 'This is the TextArea with lineSpacing set to 100%.' })
-          .fontSize(12)
-          .lineSpacing(LengthMetrics.percent(1))
-      }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+      Text('TextArea lineSpacing.').fontSize(9).fontColor(0xCCCCCC)
+      TextArea({ text: 'This is the TextArea with no lineSpacing set.' })
+        .fontSize(12)
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_px.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.px(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_vp.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.vp(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_fp.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.fp(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 20_lpx.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.lpx(20))
+      TextArea({ text: 'This is the TextArea with lineSpacing set to 100%.' })
+        .fontSize(12)
+        .lineSpacing(LengthMetrics.percent(1))
+    }.height(600).width(350).padding({ left: 35, right: 35, top: 35 })
   }
 }
 ```
@@ -1971,8 +2006,7 @@ struct TextAreaExample {
         .fontStyle(FontStyle.Italic)
         .fontWeight(FontWeight.Bold)
         .fontFamily('HarmonyOS Sans')
-        // 只允许字母输入
-        .inputFilter('[a-zA-Z]+', (value) => {
+        .inputFilter('[a-zA-Z]+', (value) => { // 只允许字母输入
           console.error(`unsupport char ${value}`)
         })
         .copyOption(CopyOptions.LocalDevice)
@@ -1987,8 +2021,7 @@ struct TextAreaExample {
         .maxFontScale(2)
         .enablePreviewText(true)
         .enableHapticFeedback(true)
-        // 返回键交给其他组件处理
-        .stopBackPress(false)
+        .stopBackPress(false)//返回键交给其他组件处理
         .width(336)
         .height(56)
         .margin(20)
@@ -1996,19 +2029,19 @@ struct TextAreaExample {
         .onEditChange((isEditing: boolean) => {
           console.log(`isEditing ${isEditing}`)
         })
-        .onCopy((value)=> {
+        .onCopy((value) => {
           console.log(`copy ${value}`)
         })
-        .onCut((value)=> {
+        .onCut((value) => {
           console.log(`cut ${value}`)
         })
-        .onPaste((value, event)=> {
-            // 阻止系统粘贴功能，开发者可自行实现
-            if (event.preventDefault) {
-              event.preventDefault()
-            }
-            console.log(`paste:${value}`)
-            this.text = value
+        .onPaste((value, event) => {
+          // 阻止系统粘贴功能，开发者可自行实现
+          if (event.preventDefault) {
+            event.preventDefault()
+          }
+          console.log(`paste:${value}`)
+          this.text = value
         })
         .onTextSelectionChange((start: number, end: number) => {
           console.log(`onTextSelectionChange start ${start}, end ${end}`)
@@ -2019,7 +2052,64 @@ struct TextAreaExample {
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
 }
-
 ```
 ![textCustomPaste](figures/textarea_custom_paste.PNG)
 
+### 示例17（设置最小字体范围与最大字体范围）
+
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// xxx.ets
+@Entry
+@Component
+export struct TextAreaExample11 {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+  @State changeValue: string = 'abcde';
+  @State currentFontSizeScale : string = "";
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale;
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (!err) {
+        this.currentFontSizeScale = scale.toString();
+      }
+    });
+  }
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("字体倍数：" + this.currentFontSizeScale)
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
+        })
+          .minFontScale(this.minFontScale)
+          .maxFontScale(this.maxFontScale)
+      }.width('100%')
+      Row(){
+        Button("2倍").onClick(() => {
+          this.setFontScale(2)
+        }).alignSelf(ItemAlign.Start)
+        Button("1倍")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(1)
+          }).alignSelf(ItemAlign.Start)
+        Button("0.85")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(0.85)
+          }).alignSelf(ItemAlign.Start)
+      }.margin({ top: 30 })
+    }
+  }
+}
+```
+
+![textAreaMaxAndMinFontScale](figures/textAreaMaxAndMinFontScale.gif)

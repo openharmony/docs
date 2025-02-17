@@ -192,6 +192,7 @@ Provides C APIs for the multimodal input module.
 | [Input_Result](#input_result) [OH_Input_RegisterDeviceListener](#oh_input_registerdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | Registers a listener for device hot swap events. | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListener](#oh_input_unregisterdevicelistener) ([Input_DeviceListener](_input___device_listener.md) \*listener) | Unregisters the listener for device hot swap events. | 
 | [Input_Result](#input_result) [OH_Input_UnregisterDeviceListeners](#oh_input_unregisterdevicelisteners) () | Unregisters the listener for all device hot swap events. | 
+| [Input_Result](#input_result) [OH_Input_GetFunctionKeyState](#oh_input_getfunctionkeystate) (int32_t keyCode, int32_t \*state) | Obtains the function key status.  |
 
 
 ## Type Description
@@ -203,6 +204,7 @@ Provides C APIs for the multimodal input module.
 typedef struct Input_AxisEventInput_AxisEvent
 ```
 **Description**
+
 Defines an axis event.
 
 **Since**: 12
@@ -214,6 +216,7 @@ Defines an axis event.
 typedef void(* Input_AxisEventCallback) (const Input_AxisEvent *axisEvent)
 ```
 **Description**
+
 Defines a lifecycle callback for **axisEvent**. If the callback is triggered, **axisEvent** will be destroyed.
 
 **Since**: 12
@@ -224,6 +227,7 @@ Defines a lifecycle callback for **axisEvent**. If the callback is triggered, **
 typedef void(* Input_DeviceAddedCallback) (int32_t deviceId)
 ```
 **Description**
+
 Defines a callback used to receive device insertion events.
 
 **Since**: 13
@@ -240,6 +244,7 @@ Defines a callback used to receive device insertion events.
 typedef struct Input_DeviceInfoInput_DeviceInfo
 ```
 **Description**
+
 Defines the input device information.
 
 **Since**: 13
@@ -250,6 +255,7 @@ Defines the input device information.
 typedef struct Input_DeviceListenerInput_DeviceListener
 ```
 **Description**
+
 Defines a listener for device hot swap events.
 
 **Since**: 13
@@ -260,6 +266,7 @@ Defines a listener for device hot swap events.
 typedef void(* Input_DeviceRemovedCallback) (int32_t deviceId)
 ```
 **Description**
+
 Defines a callback used to receive device removal events.
 
 **Since**: 13
@@ -277,6 +284,7 @@ Defines a callback used to receive device removal events.
 typedef struct Input_Hotkey Input_Hotkey
 ```
 **Description**
+
 Defines the shortcut key structure.
 
 **Since**: 14
@@ -288,6 +296,7 @@ Defines the shortcut key structure.
 typedef void(* Input_HotkeyCallback) (Input_Hotkey *hotkey)
 ```
 **Description**
+
 Defines the callback used to return shortcut key events.
 
 **Since**: 14
@@ -299,6 +308,7 @@ Defines the callback used to return shortcut key events.
 typedef struct Input_InterceptorEventCallbackInput_InterceptorEventCallback
 ```
 **Description**
+
 Defines the structure of the interceptor for callback events, including mouse events, touch events, and axis events.
 
 **Since**: 12
@@ -310,6 +320,7 @@ Defines the structure of the interceptor for callback events, including mouse ev
 typedef struct Input_InterceptorOptionsInput_InterceptorOptions
 ```
 **Description**
+
 Defines event interception options.
 
 **Since**: 12
@@ -321,6 +332,7 @@ Defines event interception options.
 typedef enum Input_KeyboardTypeInput_KeyboardType
 ```
 **Description**
+
 Enumerates keyboard types of the input device.
 
 **Since**: 13
@@ -332,6 +344,7 @@ Enumerates keyboard types of the input device.
 typedef struct Input_KeyEventInput_KeyEvent
 ```
 **Description**
+
 Defines the key event to be injected.
 
 **Since**: 12
@@ -343,6 +356,7 @@ Defines the key event to be injected.
 typedef enum Input_KeyEventActionInput_KeyEventAction
 ```
 **Description**
+
 Provides the enum values of the key event type.
 
 **Since**: 12
@@ -354,6 +368,7 @@ Provides the enum values of the key event type.
 typedef void(* Input_KeyEventCallback) (const Input_KeyEvent *keyEvent)
 ```
 **Description**
+
 Defines a lifecycle callback for **keyEvent**. If the callback is triggered, **keyEvent** will be destroyed.
 
 **Since**: 12
@@ -365,6 +380,7 @@ Defines a lifecycle callback for **keyEvent**. If the callback is triggered, **k
 typedef struct Input_KeyStateInput_KeyState
 ```
 **Description**
+
 Defines key information, which identifies a key pressing behavior. For example, the Ctrl key information contains the key value and key type.
 
 **Since**: 12
@@ -376,6 +392,7 @@ Defines key information, which identifies a key pressing behavior. For example, 
 typedef enum Input_KeyStateActionInput_KeyStateAction
 ```
 **Description**
+
 Provides the enum values of the key status.
 
 **Since**: 12
@@ -387,6 +404,7 @@ Provides the enum values of the key status.
 typedef struct Input_MouseEventInput_MouseEvent
 ```
 **Description**
+
 Defines the mouse event to be injected.
 
 **Since**: 12
@@ -397,6 +415,7 @@ Defines the mouse event to be injected.
 typedef enum Input_MouseEventActionInput_MouseEventAction
 ```
 **Description**
+
 Provides the enum values of mouse actions.
 
 **Since**: 12
@@ -408,6 +427,7 @@ Provides the enum values of mouse actions.
 typedef enum Input_MouseEventButtonInput_MouseEventButton
 ```
 **Description**
+
 Provides the enum values of mouse buttons.
 
 **Since**: 12
@@ -419,6 +439,7 @@ Provides the enum values of mouse buttons.
 typedef void(* Input_MouseEventCallback) (const Input_MouseEvent *mouseEvent)
 ```
 **Description**
+
 Defines a lifecycle callback for **mouseEvent**. If the callback is triggered, **mouseEvent** will be destroyed.
 
 **Since**: 12
@@ -430,6 +451,7 @@ Defines a lifecycle callback for **mouseEvent**. If the callback is triggered, *
 typedef enum Input_ResultInput_Result
 ```
 **Description**
+
 Provides the enum values of error codes.
 
 **Since**: 12
@@ -441,6 +463,7 @@ Provides the enum values of error codes.
 typedef struct Input_TouchEventInput_TouchEvent
 ```
 **Description**
+
 Defines the touch event to be injected.
 
 **Since**: 12
@@ -452,6 +475,7 @@ Defines the touch event to be injected.
 typedef enum Input_TouchEventActionInput_TouchEventAction
 ```
 **Description**
+
 Provides the enum values of touch actions.
 
 **Since**: 12
@@ -463,6 +487,7 @@ Provides the enum values of touch actions.
 typedef void(* Input_TouchEventCallback) (const Input_TouchEvent *touchEvent)
 ```
 **Description**
+
 Defines a lifecycle callback for **touchEvent**. If the callback is triggered, **touchEvent** will be destroyed.
 
 **Since**: 12
@@ -474,6 +499,7 @@ Defines a lifecycle callback for **touchEvent**. If the callback is triggered, *
 typedef enum InputEvent_AxisActionInputEvent_AxisAction
 ```
 **Description**
+
 Action of the input device.
 
 **Since**: 12
@@ -485,6 +511,7 @@ Action of the input device.
 typedef enum InputEvent_AxisEventTypeInputEvent_AxisEventType
 ```
 **Description**
+
 Event type of the input device.
 
 **Since**: 12
@@ -496,6 +523,7 @@ Event type of the input device.
 typedef enum InputEvent_AxisTypeInputEvent_AxisType
 ```
 **Description**
+
 Defines the axis type of an input device.
 
 **Since**: 12
@@ -507,6 +535,7 @@ Defines the axis type of an input device.
 typedef enum InputEvent_MouseAxisInputEvent_MouseAxis
 ```
 **Description**
+
 Provides the enum values of mouse axis event types.
 
 **Since**: 12
@@ -518,6 +547,7 @@ Provides the enum values of mouse axis event types.
 typedef enum InputEvent_SourceTypeInputEvent_SourceType
 ```
 **Description**
+
 Enter the event source type.
 
 **Since**: 12
@@ -532,6 +562,7 @@ Enter the event source type.
 enum Input_KeyboardType
 ```
 **Description**
+
 Enumerates keyboard types of the input device.
 
 **Since**: 13
@@ -552,6 +583,7 @@ Enumerates keyboard types of the input device.
 enum Input_KeyCode
 ```
 **Description**
+
 Enumerates key code values.
 
 **Since**: 12
@@ -699,6 +731,7 @@ Enumerates key code values.
 enum Input_KeyEventAction
 ```
 **Description**
+
 Provides the enum values of the key event type.
 
 **Since**: 12
@@ -716,6 +749,7 @@ Provides the enum values of the key event type.
 enum Input_KeyStateAction
 ```
 **Description**
+
 Provides the enum values of the key status.
 
 **Since**: 12
@@ -735,6 +769,7 @@ Provides the enum values of the key status.
 enum Input_MouseEventAction
 ```
 **Description**
+
 Provides the enum values of mouse actions.
 
 **Since**: 12
@@ -756,6 +791,7 @@ Provides the enum values of mouse actions.
 enum Input_MouseEventButton
 ```
 **Description**
+
 Provides the enum values of mouse buttons.
 
 **Since**: 12
@@ -776,6 +812,7 @@ Provides the enum values of mouse buttons.
 enum Input_Result
 ```
 **Description**
+
 Provides the enum values of error codes.
 
 **Since**: 12
@@ -798,6 +835,7 @@ Provides the enum values of error codes.
 enum Input_TouchEventAction
 ```
 **Description**
+
 Provides the enum values of touch actions.
 
 **Since**: 12
@@ -816,6 +854,7 @@ Provides the enum values of touch actions.
 enum InputEvent_AxisAction
 ```
 **Description**
+
 Action of the input device.
 
 **Since**: 12
@@ -834,6 +873,7 @@ Action of the input device.
 enum InputEvent_AxisEventType
 ```
 **Description**
+
 Event type of the input device.
 
 **Since**: 12
@@ -850,6 +890,7 @@ Event type of the input device.
 enum InputEvent_AxisType
 ```
 **Description**
+
 Defines the axis type of an input device.
 
 **Since**: 12
@@ -869,6 +910,7 @@ Defines the axis type of an input device.
 enum InputEvent_MouseAxis
 ```
 **Description**
+
 Provides the enum values of mouse axis event types.
 
 **Since**: 12
@@ -885,6 +927,7 @@ Provides the enum values of mouse axis event types.
 enum InputEvent_SourceType
 ```
 **Description**
+
 Enter the event source type.
 
 **Since**: 12
@@ -905,6 +948,7 @@ Enter the event source type.
 Input_Result OH_Input_AddAxisEventMonitor (InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback )
 ```
 **Description**
+
 Adds a listener for the specified type of axis events, which are defined in [InputEvent_AxisEventType](#inputevent_axiseventtype).
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -933,6 +977,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddAxisEventMonitorForAll (Input_AxisEventCallback callback)
 ```
 **Description**
+
 Adds a listener for all types of axis events, which are defined in [InputEvent_AxisEventType](#inputevent_axiseventtype).
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -960,6 +1005,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_AddHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **Description**
+
 Subscribes to shortcut key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -992,6 +1038,7 @@ INPUT_OCCUPIED_BY_OTHER if the shortcut key has been occupied by another applica
 Input_Result OH_Input_AddInputEventInterceptor (Input_InterceptorEventCallback *callback Input_InterceptorOptions * option)
 ```
 **Description**
+
 Adds an interceptor for input events, including mouse, touch, and axis events. If multiple interceptors are added, only the first one takes effect.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1028,6 +1075,7 @@ or **INPUT_SERVICE_EXCEPTION** if the service is abnormal.
 Input_Result OH_Input_AddKeyEventInterceptor (Input_KeyEventCallback callback, Input_InterceptorOptions * option )
 ```
 **Description**
+
 Adds an interceptor for key events. If multiple interceptors are added, only the first one takes effect.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1064,6 +1112,7 @@ or **INPUT_SERVICE_EXCEPTION** if the service is abnormal.
 Input_Result OH_Input_AddKeyEventMonitor (Input_KeyEventCallback callback)
 ```
 **Description**
+
 Adds a listener for key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1097,6 +1146,7 @@ or **INPUT_SERVICE_EXCEPTION** if the service is abnormal.
 Input_Result OH_Input_AddMouseEventMonitor (Input_MouseEventCallback callback)
 ```
 **Description**
+
 Adds a listener for mouse events, including mouse click and movement events, but not scroll wheel events. Scroll wheel events are axis events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1130,6 +1180,7 @@ or **INPUT_SERVICE_EXCEPTION** if the service is abnormal.
 Input_Result OH_Input_AddTouchEventMonitor (Input_TouchEventCallback callback)
 ```
 **Description**
+
 Adds a listener for touch events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1157,6 +1208,7 @@ ohos.permission.INPUT_MONITORING
 void OH_Input_CancelInjection ()
 ```
 **Description**
+
 Stops event injection and revokes authorization.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1170,6 +1222,7 @@ Stops event injection and revokes authorization.
 Input_Hotkey** OH_Input_CreateAllSystemHotkeys (int32_t count)
 ```
 **Description**
+
 Creates an array of [Input_Hotkey](#input_hotkey) instances.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1193,6 +1246,7 @@ OH_Input_CreateAllSystemHotkey status code, which is **INPUT_SUCCESS** if a doub
 Input_AxisEvent* OH_Input_CreateAxisEvent (void )
 ```
 **Description**
+
 Creates an axis event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1210,6 +1264,7 @@ An [Input_AxisEvent](#input_axisevent) object if the operation is successful; **
 Input_DeviceInfo* OH_Input_CreateDeviceInfo (void )
 ```
 **Description**
+
 Creates a **deviceInfo** object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1227,6 +1282,7 @@ Pointer to an [Input_DeviceInfo](#input_deviceinfo) object if the operation is s
 Input_Hotkey* OH_Input_CreateHotkey ()
 ```
 **Description**
+
 Creates a shortcut key object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1244,6 +1300,7 @@ An [Input_Hotkey](#input_hotkey) pointer object if the operation is successful; 
 struct Input_KeyEvent* OH_Input_CreateKeyEvent ()
 ```
 **Description**
+
 Creates a key event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1261,6 +1318,7 @@ An [Input_KeyEvent](#input_keyevent) pointer object if the operation is successf
 struct Input_KeyState* OH_Input_CreateKeyState ()
 ```
 **Description**
+
 Creates a key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1278,6 +1336,7 @@ An [Input_KeyState](#input_keystate) pointer object if the operation is successf
 struct Input_MouseEvent* OH_Input_CreateMouseEvent ()
 ```
 **Description**
+
 Creates a mouse event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1295,6 +1354,7 @@ An [Input_MouseEvent](#input_mouseevent) pointer object if the operation is succ
 struct Input_TouchEvent* OH_Input_CreateTouchEvent ()
 ```
 **Description**
+
 Creates a touch event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1312,6 +1372,7 @@ An [Input_TouchEvent](#input_touchevent) pointer object if the operation is succ
 void OH_Input_DestroyAllSystemHotkeys (Input_Hotkey ** hotkeys, int32_t count )
 ```
 **Description**
+
 Destroys the array of [Input_Hotkey](#input_hotkey) instances and reclaims the memory.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1332,6 +1393,7 @@ Destroys the array of [Input_Hotkey](#input_hotkey) instances and reclaims the m
 Input_Result OH_Input_DestroyAxisEvent (Input_AxisEvent ** axisEvent)
 ```
 **Description**
+
 Destroys an axis event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1355,6 +1417,7 @@ Destroys an axis event object.
 void OH_Input_DestroyDeviceInfo (Input_DeviceInfo ** deviceInfo)
 ```
 **Description**
+
 Destroys a **deviceInfo** object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1374,6 +1437,7 @@ Destroys a **deviceInfo** object.
 void OH_Input_DestroyHotkey (Input_Hotkey ** hotkey)
 ```
 **Description**
+
 Destroys a shortcut key object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1393,6 +1457,7 @@ Destroys a shortcut key object.
 void OH_Input_DestroyKeyEvent (struct Input_KeyEvent ** keyEvent)
 ```
 **Description**
+
 Destroys a key event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1412,6 +1477,7 @@ Destroys a key event object.
 void OH_Input_DestroyKeyState (struct Input_KeyState ** keyState)
 ```
 **Description**
+
 Destroys a key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1431,6 +1497,7 @@ Destroys a key status enum object.
 void OH_Input_DestroyMouseEvent (struct Input_MouseEvent ** mouseEvent)
 ```
 **Description**
+
 Destroys a mouse event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1450,6 +1517,7 @@ Destroys a mouse event object.
 void OH_Input_DestroyTouchEvent (struct Input_TouchEvent ** touchEvent)
 ```
 **Description**
+
 Destroys a touch event object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1469,6 +1537,7 @@ Destroys a touch event object.
 Input_Result OH_Input_GetAllSystemHotkeys (Input_Hotkey ** hotkey, int32_t * count )
 ```
 **Description**
+
 Obtains all configured shortcut keys.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1495,6 +1564,7 @@ Status code of the **OH_Input_GetAllSystemHotkeys** function, which is
 Input_Result OH_Input_GetAxisEventAction (const Input_AxisEvent * axisEvent, InputEvent_AxisAction * action )
 ```
 **Description**
+
 Obtains the action of an axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1518,6 +1588,7 @@ Obtains the action of an axis event.
 Input_Result OH_Input_GetAxisEventActionTime (const Input_AxisEvent * axisEvent, int64_t * actionTime )
 ```
 **Description**
+
 Obtains the time when an axis event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1542,6 +1613,7 @@ Obtains the time when an axis event occurs.
 Input_Result OH_Input_GetAxisEventAxisValue (const Input_AxisEvent * axisEvent, InputEvent_AxisType axisType, double * axisValue )
 ```
 **Description**
+
 Obtains the axis value for the specified axis type of the axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1567,6 +1639,7 @@ Obtains the axis value for the specified axis type of the axis event.
 Input_Result OH_Input_GetAxisEventDisplayX (const Input_AxisEvent * axisEvent, float * displayX )
 ```
 **Description**
+
 Obtains the X coordinate of an axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1591,6 +1664,7 @@ Obtains the X coordinate of an axis event.
 Input_Result OH_Input_GetAxisEventDisplayY (const Input_AxisEvent * axisEvent, float * displayY )
 ```
 **Description**
+
 Obtains the Y coordinate of an axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1615,6 +1689,7 @@ Obtains the Y coordinate of an axis event.
 Input_Result OH_Input_GetAxisEventSourceType (const Input_AxisEvent * axisEvent, InputEvent_SourceType * sourceType )
 ```
 **Description**
+
 Obtains the axis event source type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1639,6 +1714,7 @@ Obtains the axis event source type.
 Input_Result OH_Input_GetAxisEventType (const Input_AxisEvent * axisEvent, InputEvent_AxisEventType * axisEventType )
 ```
 **Description**
+
 Obtains the axis event type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1663,6 +1739,7 @@ Obtains the axis event type.
 Input_Result OH_Input_GetCapabilities (Input_DeviceInfo * deviceInfo, int32_t * capabilities )
 ```
 **Description**
+
 Obtains the capabilities of an input device, for example, a touchscreen, touchpad, or keyboard.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1687,6 +1764,7 @@ Obtains the capabilities of an input device, for example, a touchscreen, touchpa
 Input_Result OH_Input_GetDevice (int32_t deviceId, Input_DeviceInfo ** deviceInfo )
 ```
 **Description**
+
 Obtains information about the input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1713,6 +1791,7 @@ Obtains information about the input device.
 Input_Result OH_Input_GetDeviceAddress (Input_DeviceInfo * deviceInfo, char ** address )
 ```
 **Description**
+
 Obtains the physical address of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1737,6 +1816,7 @@ Obtains the physical address of an input device.
 Input_Result OH_Input_GetDeviceId (Input_DeviceInfo * deviceInfo, int32_t * id )
 ```
 **Description**
+
 Obtains the ID of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1761,6 +1841,7 @@ Obtains the ID of an input device.
 Input_Result OH_Input_GetDeviceIds (int32_t * deviceIds, int32_t inSize, int32_t * outSize )
 ```
 **Description**
+
 Obtains the IDs of all input devices.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1786,6 +1867,7 @@ Obtains the IDs of all input devices.
 Input_Result OH_Input_GetDeviceName (Input_DeviceInfo * deviceInfo, char ** name )
 ```
 **Description**
+
 Obtains the name of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1810,6 +1892,7 @@ Obtains the name of an input device.
 Input_Result OH_Input_GetDeviceProduct (Input_DeviceInfo * deviceInfo, int32_t * product )
 ```
 **Description**
+
 Obtains the product information of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1834,6 +1917,7 @@ Obtains the product information of an input device.
 Input_Result OH_Input_GetDeviceVendor (Input_DeviceInfo * deviceInfo, int32_t * vendor )
 ```
 **Description**
+
 Obtains the vendor information of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1858,6 +1942,7 @@ Obtains the vendor information of an input device.
 Input_Result OH_Input_GetDeviceVersion (Input_DeviceInfo * deviceInfo, int32_t * version )
 ```
 **Description**
+
 Obtains the version information of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1882,6 +1967,7 @@ Obtains the version information of an input device.
 Input_Result OH_Input_GetFinalKey (const Input_Hotkey * hotkey, int32_t * finalKeyCode )
 ```
 **Description**
+
 Obtains the modified key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1908,6 +1994,7 @@ Status code of the **OH_Input_GetfinalKey** function, which is **INPUT_SUCCESS**
 int32_t OH_Input_GetIntervalSinceLastInput (int64_t * timeInterval)
 ```
 **Description**
+
 Obtains the interval since the last system input event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1933,6 +2020,7 @@ which is **INPUT_SUCCESS** if the operation is successful; **INPUT_SERVICE_EXCEP
 Input_Result OH_Input_GetKeyboardType (int32_t deviceId, int32_t * keyboardType )
 ```
 **Description**
+
 Obtains the keyboard type of an input device.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1957,6 +2045,7 @@ Obtains the keyboard type of an input device.
 int32_t OH_Input_GetKeyCode (const struct Input_KeyState * keyState)
 ```
 **Description**
+
 Obtains the key value of a key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -1980,6 +2069,7 @@ Key value of the key status enum object.
 int32_t OH_Input_GetKeyEventAction (const struct Input_KeyEvent * keyEvent)
 ```
 **Description**
+
 Obtains the key event type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2003,6 +2093,7 @@ Key event type.
 int64_t OH_Input_GetKeyEventActionTime (const struct Input_KeyEvent * keyEvent)
 ```
 **Description**
+
 Obtains the time when a key event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2026,6 +2117,7 @@ Time when a key event occurs.
 int32_t OH_Input_GetKeyEventKeyCode (const struct Input_KeyEvent * keyEvent)
 ```
 **Description**
+
 Obtains the key code value of a key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2049,6 +2141,7 @@ Key code.
 int32_t OH_Input_GetKeyPressed (const struct Input_KeyState * keyState)
 ```
 **Description**
+
 Checks whether the key specific to a key status enum object is pressed.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2072,6 +2165,7 @@ Key pressing status of the key status enum object.
 Input_Result OH_Input_GetKeyState (struct Input_KeyState * keyState)
 ```
 **Description**
+
 Queries a key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2097,6 +2191,7 @@ an error code defined in [Input_Result](#input_result) otherwise.
 int32_t OH_Input_GetKeySwitch (const struct Input_KeyState * keyState)
 ```
 **Description**
+
 Obtains the key switch of the key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2120,6 +2215,7 @@ Key switch of the key status enum object.
 int32_t OH_Input_GetMouseEventAction (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the action of a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2143,6 +2239,7 @@ Mouse action.
 int64_t OH_Input_GetMouseEventActionTime (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the time when a mouse event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2166,6 +2263,7 @@ Time when the mouse event occurs.
 int32_t OH_Input_GetMouseEventAxisType (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the axis type of a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2189,6 +2287,7 @@ Axis type.
 float OH_Input_GetMouseEventAxisValue (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the axis value of a mouse axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2212,6 +2311,7 @@ Axis value of the mouse axis event.
 int32_t OH_Input_GetMouseEventButton (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the button of a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2235,6 +2335,7 @@ Enumerates mouse buttons.
 int32_t OH_Input_GetMouseEventDisplayX (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the X coordinate of a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2258,6 +2359,7 @@ X coordinate on the screen.
 int32_t OH_Input_GetMouseEventDisplayY (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Obtains the Y coordinate of a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2281,6 +2383,7 @@ Y coordinate on the screen.
 Input_Result OH_Input_GetPreKeys (const Input_Hotkey * hotkey, int32_t ** preKeys, int32_t * preKeyCount )
 ```
 **Description**
+
 Obtains the modifier key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2307,6 +2410,7 @@ Status code of the **OH_Input_GetpressedKeys** function, which is **INPUT_SUCCES
 Input_Result OH_Input_GetRepeat (const Input_Hotkey * hotkey, bool * isRepeat )
 ```
 **Description**
+
 Checks whether to report repeated key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2332,6 +2436,7 @@ OH_Input_GetIsRepeat status code, specifically, **INPUT_SUCCESS** if the operati
 int32_t OH_Input_GetTouchEventAction (const struct Input_TouchEvent * touchEvent)
 ```
 **Description**
+
 Obtains the action of a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2355,6 +2460,7 @@ Action of the touch event.
 int64_t OH_Input_GetTouchEventActionTime (const struct Input_TouchEvent * touchEvent)
 ```
 **Description**
+
 Obtains the time when a touch event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2378,6 +2484,7 @@ Time when the touch event occurs.
 int32_t OH_Input_GetTouchEventDisplayX (const struct Input_TouchEvent * touchEvent)
 ```
 **Description**
+
 Obtains the X coordinate of a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2401,6 +2508,7 @@ X coordinate on the touchscreen.
 int32_t OH_Input_GetTouchEventDisplayY (const struct Input_TouchEvent * touchEvent)
 ```
 **Description**
+
 Obtains the Y coordinate of a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2424,6 +2532,7 @@ Y coordinate on the touchscreen.
 int32_t OH_Input_GetTouchEventFingerId (const struct Input_TouchEvent * touchEvent)
 ```
 **Description**
+
 Obtains the finger ID of a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2447,6 +2556,7 @@ Finger ID of a touch event.
 int32_t OH_Input_InjectKeyEvent (const struct Input_KeyEvent * keyEvent)
 ```
 **Description**
+
 Injects a key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2470,6 +2580,7 @@ Injects a key event.
 int32_t OH_Input_InjectMouseEvent (const struct Input_MouseEvent * mouseEvent)
 ```
 **Description**
+
 Injects a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2493,6 +2604,7 @@ Injects a mouse event.
 int32_t OH_Input_InjectTouchEvent (const struct Input_TouchEvent * touchEvent)
 ```
 **Description**
+
 Injects a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2515,6 +2627,7 @@ Injects a touch event.
 Input_Result OH_Input_RegisterDeviceListener (Input_DeviceListener * listener)
 ```
 **Description**
+
 Registers a listener for device hot swap events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2539,6 +2652,7 @@ Registers a listener for device hot swap events.
 Input_Result OH_Input_RemoveAxisEventMonitor (InputEvent_AxisEventType axisEventType, Input_AxisEventCallback callback )
 ```
 **Description**
+
 Removes the listener for the specified type of axis events, which are defined in [InputEvent_AxisEventType](#inputevent_axiseventtype).
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2567,6 +2681,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveAxisEventMonitorForAll (Input_AxisEventCallback callback)
 ```
 **Description**
+
 Removes the listener for all types of axis events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2594,6 +2709,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveHotkeyMonitor (const Input_Hotkey * hotkey, Input_HotkeyCallback callback )
 ```
 **Description**
+
 Unsubscribes from shortcut key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2620,6 +2736,7 @@ OH_Input_RemoveHotkeyMonitor status code, specifically, **INPUT_SUCCESS** if the
 Input_Result OH_Input_RemoveInputEventInterceptor ()
 ```
 **Description**
+
 Removes the interceptor for input events, including mouse, touch, and axis events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2641,6 +2758,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 Input_Result OH_Input_RemoveKeyEventInterceptor ()
 ```
 **Description**
+
 Removes the interceptor for key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2662,6 +2780,7 @@ ohos.permission.INTERCEPT_INPUT_EVENT
 Input_Result OH_Input_RemoveKeyEventMonitor (Input_KeyEventCallback callback)
 ```
 **Description**
+
 Removes the listener for key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2689,6 +2808,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveMouseEventMonitor (Input_MouseEventCallback callback)
 ```
 **Description**
+
 Removes the listener for mouse events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2716,6 +2836,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_RemoveTouchEventMonitor (Input_TouchEventCallback callback)
 ```
 **Description**
+
 Removes the listener for touch events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2743,6 +2864,7 @@ ohos.permission.INPUT_MONITORING
 Input_Result OH_Input_SetAxisEventAction (Input_AxisEvent * axisEvent, InputEvent_AxisAction action )
 ```
 **Description**
+
 Sets the action for an axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2766,6 +2888,7 @@ Sets the action for an axis event.
 Input_Result OH_Input_SetAxisEventActionTime (Input_AxisEvent * axisEvent, int64_t actionTime )
 ```
 **Description**
+
 Sets the time when an axis event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2790,6 +2913,7 @@ Sets the time when an axis event occurs.
 Input_Result OH_Input_SetAxisEventAxisValue (Input_AxisEvent * axisEvent, InputEvent_AxisType axisType, double axisValue )
 ```
 **Description**
+
 Sets the axis value of the axis type specified by the axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2815,6 +2939,7 @@ Sets the axis value of the axis type specified by the axis event.
 Input_Result OH_Input_SetAxisEventDisplayX (Input_AxisEvent * axisEvent, float displayX )
 ```
 **Description**
+
 Sets the X coordinate for an axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2839,6 +2964,7 @@ Sets the X coordinate for an axis event.
 Input_Result OH_Input_SetAxisEventDisplayY (Input_AxisEvent * axisEvent, float displayY )
 ```
 **Description**
+
 Sets the Y coordinate for an axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2863,6 +2989,7 @@ Sets the Y coordinate for an axis event.
 Input_Result OH_Input_SetAxisEventSourceType (Input_AxisEvent * axisEvent, InputEvent_SourceType sourceType )
 ```
 **Description**
+
 Sets the axis event source type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2887,6 +3014,7 @@ Sets the axis event source type.
 Input_Result OH_Input_SetAxisEventType (Input_AxisEvent * axisEvent, InputEvent_AxisEventType axisEventType )
 ```
 **Description**
+
 Sets the axis event type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2911,6 +3039,7 @@ Sets the axis event type.
 void OH_Input_SetFinalKey (Input_Hotkey * hotkey, int32_t finalKey )
 ```
 **Description**
+
 Sets the modified key.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2931,6 +3060,7 @@ Sets the modified key.
 void OH_Input_SetKeyCode (struct Input_KeyState * keyState, int32_t keyCode )
 ```
 **Description**
+
 Sets the key value of a key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2951,6 +3081,7 @@ Sets the key value of a key status enum object.
 void OH_Input_SetKeyEventAction (struct Input_KeyEvent * keyEvent, int32_t action )
 ```
 **Description**
+
 Sets the key event type.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2971,6 +3102,7 @@ Sets the key event type.
 void OH_Input_SetKeyEventActionTime (struct Input_KeyEvent * keyEvent, int64_t actionTime )
 ```
 **Description**
+
 Sets the time when a key event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -2991,6 +3123,7 @@ Sets the time when a key event occurs.
 void OH_Input_SetKeyEventKeyCode (struct Input_KeyEvent * keyEvent, int32_t keyCode )
 ```
 **Description**
+
 Sets the key code value for a key event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3011,6 +3144,7 @@ Sets the key code value for a key event.
 void OH_Input_SetKeyPressed (struct Input_KeyState * keyState, int32_t keyAction )
 ```
 **Description**
+
 Sets whether the key specific to a key status enum object is pressed.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3031,6 +3165,7 @@ Sets whether the key specific to a key status enum object is pressed.
 void OH_Input_SetKeySwitch (struct Input_KeyState * keyState, int32_t keySwitch )
 ```
 **Description**
+
 Sets the key switch of the key status enum object.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3051,6 +3186,7 @@ Sets the key switch of the key status enum object.
 void OH_Input_SetMouseEventAction (struct Input_MouseEvent * mouseEvent, int32_t action )
 ```
 **Description**
+
 Sets the action for a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3071,6 +3207,7 @@ Sets the action for a mouse event.
 void OH_Input_SetMouseEventActionTime (struct Input_MouseEvent * mouseEvent, int64_t actionTime )
 ```
 **Description**
+
 Sets the time when a mouse event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3091,6 +3228,7 @@ Sets the time when a mouse event occurs.
 void OH_Input_SetMouseEventAxisType (struct Input_MouseEvent * mouseEvent, int32_t axisType )
 ```
 **Description**
+
 Sets the axis type for a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3111,6 +3249,7 @@ Sets the axis type for a mouse event.
 void OH_Input_SetMouseEventAxisValue (struct Input_MouseEvent * mouseEvent, float axisValue )
 ```
 **Description**
+
 Sets the axis value for a mouse axis event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3131,6 +3270,7 @@ Sets the axis value for a mouse axis event.
 void OH_Input_SetMouseEventButton (struct Input_MouseEvent * mouseEvent, int32_t button )
 ```
 **Description**
+
 Sets the button for a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3151,6 +3291,7 @@ Sets the button for a mouse event.
 void OH_Input_SetMouseEventDisplayX (struct Input_MouseEvent * mouseEvent, int32_t displayX )
 ```
 **Description**
+
 Sets the X coordinate for a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3171,6 +3312,7 @@ Sets the X coordinate for a mouse event.
 void OH_Input_SetMouseEventDisplayY (struct Input_MouseEvent * mouseEvent, int32_t displayY )
 ```
 **Description**
+
 Sets the Y coordinate for a mouse event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3191,6 +3333,7 @@ Sets the Y coordinate for a mouse event.
 void OH_Input_SetPreKeys (Input_Hotkey * hotkey, int32_t * preKeys, int32_t size )
 ```
 **Description**
+
 Sets the modifier keys.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3212,6 +3355,7 @@ Sets the modifier keys.
 void OH_Input_SetRepeat (Input_Hotkey * hotkey, bool isRepeat )
 ```
 **Description**
+
 Specifies whether to report repeated key events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3232,6 +3376,7 @@ Specifies whether to report repeated key events.
 void OH_Input_SetTouchEventAction (struct Input_TouchEvent * touchEvent, int32_t action )
 ```
 **Description**
+
 Sets the action for a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3252,6 +3397,7 @@ Sets the action for a touch event.
 void OH_Input_SetTouchEventActionTime (struct Input_TouchEvent * touchEvent, int64_t actionTime )
 ```
 **Description**
+
 Sets the time when a touch event occurs.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3272,6 +3418,7 @@ Sets the time when a touch event occurs.
 void OH_Input_SetTouchEventDisplayX (struct Input_TouchEvent * touchEvent, int32_t displayX )
 ```
 **Description**
+
 Sets the X coordinate for a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3292,6 +3439,7 @@ Sets the X coordinate for a touch event.
 void OH_Input_SetTouchEventDisplayY (struct Input_TouchEvent * touchEvent, int32_t displayY )
 ```
 **Description**
+
 Sets the Y coordinate for a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3312,6 +3460,7 @@ Sets the Y coordinate for a touch event.
 void OH_Input_SetTouchEventFingerId (struct Input_TouchEvent * touchEvent, int32_t id )
 ```
 **Description**
+
 Sets the finger ID for a touch event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3331,6 +3480,7 @@ Sets the finger ID for a touch event.
 Input_Result OH_Input_UnregisterDeviceListener (Input_DeviceListener * listener)
 ```
 **Description**
+
 Unregisters the listener for device hot swap events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3360,6 +3510,7 @@ Unregisters the listener for device hot swap events.
 Input_Result OH_Input_UnregisterDeviceListeners ()
 ```
 **Description**
+
 Unregisters the listener for all device hot swap events.
 
 **System capability**: SystemCapability.MultimodalInput.Input.Core
@@ -3371,3 +3522,34 @@ Unregisters the listener for all device hot swap events.
 **OH_Input_UnregisterDeviceListener** status code, specifically:
 
 **INPUT_SUCCESS** if the operation is successful; **INPUT_SERVICE_EXCEPTION** if the service is abnormal.
+
+### OH_Input_GetFunctionKeyState()
+
+```
+Input_Result OH_Input_GetFunctionKeyState(int32_t keyCode, int32_t *state)
+```
+**Description**
+
+Obtains the function key status.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Core
+
+**Since**: 15
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| keyCode | Function key value. The supported function keys include CapsLock key.  |
+| state | function key state. The value 1 indicates that the function key is enabled, and the value 0 indicates the
+ opposite.  | 
+
+**Returns**
+
+Execution result of  **OH_Input_GetFunctionKeyState** ,specifically:
+
+ **INPUT_SUCCESS** The operation is successful.
+
+ **INPUT_PARAMETER_ERROR** Invalid keycode.
+
+ **INPUT_DEVICE_NOT_EXIST** No keyboard device connected.

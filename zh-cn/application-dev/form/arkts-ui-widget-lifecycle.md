@@ -12,7 +12,6 @@
     ```
 
 2. 在EntryFormAbility.ets中，实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口，其中在onAddForm的入参[want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中可以通过[FormParam](../reference/apis-form-kit/js-apis-app-form-formInfo.md#formparam)取出卡片的相关信息。
-   
       ```ts
       const TAG: string = 'EntryFormAbility';
       const DOMAIN_NUMBER: number = 0xFF00;
@@ -37,6 +36,7 @@
           // 1、临时卡、常态卡是卡片使用方的概念。
           // 2、临时卡是短期存在的，在特定事件或用户行为后显示，完成后自动消失。
           // 3、常态卡是持久存在的，在用户未进行清除或更改的情况下，会一直存在，平时开发的功能卡片属于常态卡。
+          // 4、目前手机上没有地方会使用临时卡。
           hilog.info(DOMAIN_NUMBER, TAG, '[EntryFormAbility] onCastToNormalForm');
         }
     
@@ -83,7 +83,6 @@
         }
       }
       ```
-
 
 > **说明：**
 >

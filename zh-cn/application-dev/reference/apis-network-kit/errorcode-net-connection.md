@@ -97,6 +97,7 @@ The callback already exists.
 **处理步骤**
 
 1.确保待注册的callback对象未进行过注册
+
 2.若callback对象已进行过注册，执行已存在的注册。
 
 

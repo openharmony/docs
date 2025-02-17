@@ -350,7 +350,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 ### onAdLoadSuccess
 
-onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
+onAdLoadSuccess(ads: Array&lt;Advertisement&gt;): void
 
 广告请求成功后回调。
 
@@ -360,7 +360,7 @@ onAdLoadSuccess(ads: Array&lt;advertising.Advertisement&gt;): void
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| ads | Array&lt;advertising.[Advertisement](#advertisement)&gt; | 是 | 广告数据。 | 
+| ads | Array&lt;[Advertisement](#advertisement)&gt; | 是 | 广告数据。 | 
 
 
 **示例：**
@@ -404,7 +404,7 @@ onAdLoadFailure(errorCode: number, errorMsg: string): void
 
 ### onAdLoadSuccess
 
-onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt;): void
+onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;Advertisement&gt;&gt;): void
 
 多广告位广告请求成功后回调。
 
@@ -414,7 +414,7 @@ onAdLoadSuccess(adsMap: Map&lt;string, Array&lt;advertising.Advertisement&gt;&gt
 
 | **参数名** | **类型** | 必填 | 说明 | 
 | -------- | -------- | -------- | -------- |
-| adsMap |  Map&lt;string, Array&lt;advertising.[Advertisement](#advertisement)&gt;&gt;| 是 | 广告数据。 | 
+| adsMap |  Map&lt;string, Array&lt;[Advertisement](#advertisement)&gt;&gt;| 是 | 广告数据。 | 
 
 
 **示例：**
@@ -441,15 +441,15 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 **系统能力：** SystemCapability.Advertising.Ads
 
 
-| 名称 | 类型| 只读 | 必填 | 说明 |
+| 名称 | 类型| 只读 | 可选 | 说明 |
 | -------- | --------| -------- | -------- | -------- |
-| adType | number | 否 |是 | 广告类型。 | 
-| uniqueId | string | 否 |是 | 广告唯一标识。 | 
-| rewarded | boolean | 否 |是 | 广告是否获得奖励。<br/>- true：获得奖励。<br/>- false：没有获得奖励。 | 
-| shown | boolean | 否 |是 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
-| clicked | boolean | 否 |是 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
-| rewardVerifyConfig | Map&lt;string, string&gt; | 否 |是 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
-| [key: string] | Object | 否 |是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
+| adType | number | 否 | 否 | 广告类型。 | 
+| uniqueId | string | 否 | 否 | 广告唯一标识。 | 
+| rewarded | boolean | 否 | 否 | 广告是否获得奖励。<br/>- true：获得奖励。<br/>- false：没有获得奖励。 | 
+| shown | boolean | 否 | 否 | 广告是否展示。<br/>- true：展示。<br/>- false：未展示。 | 
+| clicked | boolean | 否 | 否 | 广告是否被点击。<br/>- true：被点击。<br/>- false：未被点击。 | 
+| rewardVerifyConfig | Map&lt;string, string&gt; | 否 | 否 | 服务器验证参数。<br/>{<br/>customData: "test",<br/>userId: "12345"<br/>} | 
+| [key: string] | Object | 否 | 是 | 自定义参数。<br/>- isFullScreen：类型boolean。开屏广告自定义参数，用于标识返回的广告是否为全屏，true为全屏广告，false为半屏广告。 |
 
 
 ## AdDisplayOptions
@@ -483,7 +483,7 @@ let adLoaderListener: advertising.MultiSlotsAdLoadListener = {
 
 ### onStatusChanged
 
-onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement), data: string)
+onStatusChanged(status: string, ad: [Advertisement](#advertisement), data: string)
 
 广告状态回调。
 
@@ -494,7 +494,7 @@ onStatusChanged(status: string, ad: advertising.[Advertisement](#advertisement),
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | status | string | 是 | status：广告展示状态，取值<br/>onAdOpen（打开广告回调）、onAdClose（关闭广告回调）、onAdClick（点击广告回调）、onVideoPlayBegin（广告视频开始播放回调）、onVideoPlayEnd（广告视频播放结束回调）、onAdLoad（广告加载成功回调）、onAdFail（广告加载失败回调）、onMediaProgress（广告播放进度回调）、onMediaStart（广告开始播放回调）、onMediaPause（广告暂停播放回调）、onMediaStop（广告停止播放回调）、onMediaComplete（广告播放完成回调）、onMediaError（广告播放失败回调）、onLandscape（竖屏状态下点击全屏按钮回调）、onPortrait（全屏状态下点击返回按钮回调）、onAdReward (广告获得奖励回调) 、onMediaCountDown (广告倒计时回调) 、onBackClicked (返回点击广告回调)。 | 
-| ad | advertising.[Advertisement](#advertisement) | 是 | 发生状态变化的广告内容。 | 
+| ad | [Advertisement](#advertisement) | 是 | 发生状态变化的广告内容。 | 
 | data | string | 是 | 扩展信息。 | 
 
 **示例：**
@@ -534,7 +534,7 @@ getAdRequestBody(adParams: AdRequestParams[], adOptions: AdOptions): Promise&lt;
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 
@@ -606,7 +606,7 @@ parseAdResponse(adResponse: string, listener: MultiSlotsAdLoadListener, context:
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
-| 401      | Invalid input parameter. Possible causes: 1.Mandatory parameters are left unspecified |
+| 401      | Invalid input parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801      | Device not supported.            |
 | 21800001 | System internal error.           |
 | 21800005 | Failed to parse the ad response. |

@@ -48,6 +48,7 @@
       - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](use-napi-event-loop.md)
       - [使用Node-API接口进行模块加载](use-napi-load-module-with-info.md)
       - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](use-call-threadsafe-function-with-priority.md)
+      - [使用Node-API接口产生的异常日志/崩溃分析](use-napi-about-crash.md)
     - [Node-API常见问题](use-napi-faqs.md)
   - 使用JSVM-API实现JS与C/C++语言交互
     - [JSVM-API简介](jsvm-introduction.md)
@@ -70,7 +71,7 @@
       - [使用JSVM-API接口进行object相关开发](use-jsvm-about-object.md)
       - [使用JSVM-API接口进行primitive类相关开发](use-jsvm-about-primitive.md)
       - [使用JSVM-API接口处理异步操作](use-jsvm-about-promise.md)
-      - [使用Node-API接口设置JavaScript对象的属性](use-jsvm-about-property.md)
+      - [使用JSVM-API接口设置JavaScript对象的属性](use-jsvm-about-property.md)
       - [使用JSVM-API接口创建和获取string值](use-jsvm-about-string.md)
       - [使用JSVM-API接口获取JSVM API的版本号](use-jsvm-about-version.md)
       - [使用JSVM-API接口进行错误处理开发](use-jsvm-error.md)
@@ -85,9 +86,11 @@
       - [使用JSVM-API接口进行Proxy相关开发](use-jsvm-about-proxy.md)
       - [使用JSVM-API接口进行well-known symbols相关开发](use-jsvm-about-well-known-symbols.md)
       - [使用JSVM-API接口进行装箱类型判断相关开发](use-jsvm-about-wrapper-object.md)
+      - [使用JSVM-API接口创建基本数据类型](use-jsvm-basic-data-types.md)
     - JSVM-API典型使用场景指导
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
       - JSVM-API调优&高性能使用示例
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)
@@ -95,8 +98,10 @@
   - OpenMP支持
     - [OpenMP简介](openmp-overview.md)
     - [OpenMP应用构建和运行指南](openmp-guideline.md)
-  - 资源管理
+  - 资源管理<!--resource-management-->
     - [Rawfile开发指导](rawfile-guidelines.md)
+  - 网络管理
+    - [NetConnection开发指导](native-netmanager-guidelines.md) 
   - 线程调度
     - [QOS开发指导](qos-guidelines.md)
   - 内存管理
@@ -104,6 +109,7 @@
   - 设备管理
     - [USB DDK开发指导](usb-ddk-guidelines.md)
     - [HID DDK开发指导](hid-ddk-guidelines.md)
+    - [USB SERIAL DDK开发指导](usb-serial-ddk-guidelines.md)
   - 包管理
     - [NativeBundle开发指导](native-bundle-guidelines.md)
 - 调试和性能分析

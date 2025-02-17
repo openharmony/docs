@@ -106,6 +106,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 （2）再在Web组件中拉起软键盘。
 
 ```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -120,10 +121,12 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 
 ```ts
 //Index.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct KeyboardAvoidExample {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column() {
       Row().height("50%").width("100%").backgroundColor(Color.Gray)
@@ -159,10 +162,12 @@ struct KeyboardAvoidExample {
 
 ```ts
 // Index.ets
+import { webview } from '@kit.ArkWeb';
+
 @Entry
 @Component
 struct KeyboardAvoidExample {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   build() {
     Column() {
       Row().height("50%").width("100%").backgroundColor(Color.Gray)
@@ -201,7 +206,7 @@ struct KeyboardAvoidExample {
 - 使用完全由应用自定义的软键盘
 
 ```ts
- // xxx.ets
+  // Index.ets
   import { webview } from '@kit.ArkWeb';
   import { inputMethodEngine } from '@kit.IMEKit';
 

@@ -83,6 +83,9 @@ Provides attribute names and value types of a node element.
 | textType<sup>12+</sup>             | string                                                             | Yes  | No  | Accessibility text type of an element, which is configured by the **accessibilityTextHint** attribute of the component.|
 | offset<sup>12+</sup>             | number                                                             | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**.|
 | hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | Yes  | No  | Touchable area of an element.|
+| customComponentType<sup>16+</sup>             | string                                                             | Yes  | No  | Custom component type.|
+| accessibilityNextFocusId<sup>16+</sup>             | number                                                             | Yes  | No  | ID of the next component to be focused on.|
+| extraInfo<sup>16+</sup>             | string                                                             | Yes  | No  | Extended attribute, which is used to define the attributes that are available only to specific components.|
 
 ## FocusDirection
 
@@ -562,7 +565,7 @@ axContext.getWindows().then((data: AccessibilityElement[]) => {
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-Obtains the list of windows on this display. This API uses an asynchronous callback to return the result.
+Obtains the list of windows on a display. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -604,7 +607,7 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-Obtains the list of windows on this display. This API uses an asynchronous callback to return the result.
+Obtains the list of windows on a display. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -1030,7 +1033,7 @@ Performs an action based on the specified action name. This API uses a promise t
 
 | Name        | Type                                    | Mandatory  | Description                                                      |
 | ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
 | parameters | object | No   | Parameters required for performing the target action. Empty by default.                            |
 
 **Return value**
@@ -1125,7 +1128,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**

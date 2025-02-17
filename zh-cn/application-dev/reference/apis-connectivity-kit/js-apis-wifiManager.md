@@ -539,6 +539,8 @@ WAPI认证方式的枚举。
 | DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
 | WIFI6 | 2 | Wifi6。 |
 | WIFI6_PLUS | 3 | Wifi6+。 |
+| WIFI7<sup>15+</sup> | 4 | Wifi7。 |
+| WIFI7_PLUS<sup>15+</sup> | 5 | Wifi7+。 |
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
@@ -612,7 +614,7 @@ addCandidateConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&g
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。如果操作出现错误，err为非0值。 |
+| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。err为0时：操作成功，data为添加的网络配置ID，如果data值为-1，表示添加失败。<br /> err为非0值时：操作出现错误。 |
 
 **错误码：**
 
@@ -1025,8 +1027,8 @@ getLinkedInfoSync(): WifiLinkedInfo;
 | maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率，单位Mbps/s。 |
 | maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率，单位Mbps/s。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
-| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
+| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络, true:是隐藏网络，false:不是隐藏网络。 |
+| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量，true: 限制，false:不限制。 |
 | macType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址(wifi连接信息和关于本机里的状态信息可以查看)。|
@@ -1398,6 +1400,44 @@ isMeteredHotspot(): boolean
 ```
 
 
+## wifiManager.isHotspotActive<sup>15+</sup>
+
+isHotspotActive(): boolean
+
+热点是否已使能。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:已使能，&nbsp;false:未使能。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.isHotspotActive();
+		console.info("result:" + ret);		
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>
 
@@ -1633,7 +1673,7 @@ API 10起：ohos.permission.GET_WIFI_INFO
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 	// p2p发现阶段完成，才能正常获取到对端设备列表信息
-	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+	wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
     if (err) {
         console.error("get P2P peer devices error");
         return;
@@ -1903,14 +1943,14 @@ API 10起：ohos.permission.GET_WIFI_INFO
   }
   wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
   
-  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice) => {
+  let recvP2pDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p device change receive event: " + JSON.stringify(result));
   }
   wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
   
   let recvP2pPeerDeviceChangeFunc = (result:wifiManager.WifiP2pDevice[]) => {
       console.info("p2p peer device change receive event: " + JSON.stringify(result));
-      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice) => {
+      wifiManager.getP2pPeerDevices((err, data:wifiManager.WifiP2pDevice[]) => {
           if (err) {
               console.error('failed to get peer devices: ' + JSON.stringify(err));
               return;

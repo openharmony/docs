@@ -21,7 +21,7 @@ Defines the gesture APIs.
 | ArkUI_GestureRecognizer \*(\* [createTapGesture](#createtapgesture) )(int32_t countNum, int32_t fingersNum) | Creates a tap gesture. | 
 | ArkUI_GestureRecognizer \*(\* [createTapGestureWithDistance](#createtapgesturewithdistance) )(int32_t countNum, int32_t fingersNum, int32_t distance) | Creates a tap gesture that is subject to distance restrictions. | 
 | ArkUI_GestureRecognizer \*(\* [createLongPressGesture](#createlongpressgesture) )(int32_t fingersNum, bool repeatResult, int32_t durationNum) | Creates a long press gesture. | 
-| ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | Creates a pan gesture. | 
+| ArkUI_GestureRecognizer \*(\* [createPanGesture](#createpangesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double distanceNum) | Creates a pan gesture. The default value of **directions** is **NONE**. | 
 | ArkUI_GestureRecognizer \*(\* [createPinchGesture](#createpinchgesture) )(int32_t fingersNum, double distanceNum) | Creates a pinch gesture. | 
 | ArkUI_GestureRecognizer \*(\* [createRotationGesture](#createrotationgesture) )(int32_t fingersNum, double angleNum) | Creates a rotation gesture. | 
 | ArkUI_GestureRecognizer \*(\* [createSwipeGesture](#createswipegesture) )(int32_t fingersNum, [ArkUI_GestureDirectionMask](_ark_u_i___native_module.md#arkui_gesturedirectionmask) directions, double speedNum) | Creates a swipe gesture. | 
@@ -119,7 +119,7 @@ Creates a long press gesture.
 | -------- | -------- |
 | fingersNum | Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10. | 
 | repeatResult | Whether to continuously trigger the event callback. | 
-| durationNum | Minimum hold-down time, in ms. If the value is less than or equal to 0, the default value <b>500</b> is used. | 
+| durationNum | Minimum hold-down time, in ms. If the value is less than or equal to 0, the default value **500** is used. | 
 
 **Returns**
 
@@ -161,7 +161,7 @@ Creates a pinch gesture.
 
 | Name| Description| 
 | -------- | -------- |
-| fingersNum | Minimum number of fingers to trigger a pinch. The value ranges from 2 to 5. The default value is **2**. | 
+| fingersNum | Minimum number of fingers required to trigger the pinch gesture. The value ranges from 2 to 5. The default value is **2**. | 
 | distanceNum | Minimum recognition distance, in vp. If this parameter is set to a value less than or equal to 0, the default value **5** is used. | 
 
 **Returns**
@@ -182,8 +182,8 @@ Creates a rotation gesture.
 
 | Name| Description| 
 | -------- | -------- |
-| fingersNum | Minimum number of fingers to trigger a rotation. The value ranges from 2 to 5. The default value is **2**. | 
-| angleNum | Minimum degree that can trigger the rotation gesture. The default value is **1**. If this parameter is set to a value less than or equal to 0 or greater than 360, the default value **1** is used. | 
+| fingersNum | Minimum number of fingers required to trigger the rotation gesture. The value ranges from 2 to 5. The default value is **2**. | 
+| angleNum | Minimum angle change required to trigger the rotation gesture, in degrees (deg). The default value is **1**. If this parameter is set to a value less than or equal to 0 or greater than 360, the default value **1** is used. | 
 
 **Returns**
 
@@ -203,9 +203,9 @@ Creates a swipe gesture.
 
 | Name| Description| 
 | -------- | -------- |
-| fingersNum | Minimum number of fingers to trigger a swipe gesture. The value ranges from 1 to 10. | 
-| directions | Swipe direction. | 
-| speedNum | Minimum speed of the swipe gesture, in px/s. If this parameter is set to a value less than or equal to 0, the default value **100** is used. | 
+| fingersNum | Minimum number of fingers required to trigger the swipe gesture. The value ranges from 1 to 10. | 
+| directions | Directions in which the swipe gesture can be recognized. | 
+| speedNum | Minimum speed required to recognize the swipe gesture, in px/s. If this parameter is set to a value less than or equal to 0, the default value **100** is used. | 
 
 **Returns**
 
@@ -226,7 +226,7 @@ Creates a tap gesture.
 | Name| Description| 
 | -------- | -------- |
 | countNum | Number of consecutive taps. If the value is less than 1 or is not set, the default value **1** is used. | 
-| fingersNum | Number of fingers required to trigger a tap. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
+| fingersNum | Number of fingers required to trigger the tap gesture. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
 
 **Returns**
 
@@ -247,7 +247,7 @@ Creates a tap gesture that is subject to distance restrictions.
 | Name| Description| 
 | -------- | -------- |
 | countNum | Number of consecutive taps. If the value is less than 1 or is not set, the default value **1** is used. | 
-| fingersNum | Number of fingers required to trigger a tap. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
+| fingersNum | Number of fingers required to trigger the tap gesture. The value ranges from 1 to 10. If the value is less than 1 or is not set, the default value **1** is used. | 
 | distance | Allowed moving distance of a finger. If the value is less than 0 or is not set, it will be converted to the default value of infinity. | 
 
 **Returns**
@@ -369,7 +369,7 @@ Sets a gesture interruption callback for a node.
 
 | Name| Description| 
 | -------- | -------- |
-| node | ArkUI node for which you want to set a gesture interruption callback. | 
+| node | Node for which you want to set a gesture interruption callback. | 
 | interrupter | Gesture interruption callback to set. **info** indicates the gesture interruption data. If **interrupter** returns **GESTURE_INTERRUPT_RESULT_CONTINUE**, the gesture recognition process continues. If it returns **GESTURE_INTERRUPT_RESULT_REJECT**, the gesture recognition process is paused. | 
 
 **Returns**
@@ -390,8 +390,8 @@ Sets the callback function for the parallel internal gesture event.
 
 | Name| Description| 
 | -------- | -------- |
-| node | ArkUI node for which the callback of the parallel internal gesture event is to be set. | 
-| userData | User-defined data. | 
+| node | Node for which the callback of the parallel internal gesture event is to be set. | 
+| userData | Custom data. | 
 | parallelInnerGesture | Parallel internal gesture event. **event** returns the data of the parallel internal gesture event. **parallelInnerGesture** returns the pointer to the gesture recognizer that requires parallel recognition. | 
 
 **Returns**

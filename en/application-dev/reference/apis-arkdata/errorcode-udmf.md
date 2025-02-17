@@ -16,8 +16,8 @@ The data to be set by **setAppShareOptions()** already exists.
 
 **Possible Causes**
 
-This error is reported when duplicate data is found.
+This error is reported when [setAppShareOptions](js-apis-data-unifiedDataChannel.md#unifieddatachannelsetappshareoptions14) is called repeatedly to set **ShareOptions** of the drag-and-drop channel data.
 
 **Solution**
 
-To remove the existing settings, use [removeAppShareOptions](js-apis-data-unifiedDataChannel-sys.md#unifieddatachannelremoveappshareoptions12).
+Call [removeAppShareOptions](js-apis-data-unifiedDataChannel.md#unifieddatachannelremoveappshareoptions14) to clear the **ShareOptions** of the current drag-and-drop channel data, and then call [setAppShareOptions](js-apis-data-unifiedDataChannel.md#unifieddatachannelsetappshareoptions14) to set **ShareOptions**.

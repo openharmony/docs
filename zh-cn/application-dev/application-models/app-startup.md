@@ -116,7 +116,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
               "excludeFromAutoStart": true
             }
           ],
-          "appPrelodHintStartupTasks": [
+          "appPreloadHintStartupTasks": [
             {
               "name": "libentry_001",
               "srcEntry": "libentry_001.so",
@@ -140,7 +140,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
               "srcEntry": "libentry_003.so",
               "dependencies": [
                 "libentry_004"
-              ]
+              ],
               "runOnThread": "taskPool"
             },
             {
@@ -154,13 +154,13 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
               "dependencies": [
                 "libentry_006"
               ],
-              "runOnThread": "taskPool"
+              "runOnThread": "taskPool",
               "excludeFromAutoStart": true
             },
             {
               "name": "libentry_006",
               "srcEntry": "libentry_006.so",
-              "runOnThread": "taskPool"
+              "runOnThread": "taskPool",
               "excludeFromAutoStart": true
             }
           ],
@@ -174,7 +174,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
         | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
         | -------- | -------- | -------- | -------- |
         | startupTasks | 启动任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
-        | appPrelodHintStartupTasks | 预加载so任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
+        | appPreloadHintStartupTasks | 预加载so任务配置信息，标签说明详见下表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
         | configEntry | 启动参数配置文件所在路径。<br/>**说明：**<br/> HSP、HAR中不允许配置`configEntry`字段。 | 字符串 | 该标签不可缺省。 |
         
         
@@ -189,7 +189,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
         | runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
         | waitOnMainThread | 主线程是否需要等待启动框架执行。当runOnThread取值为`taskPool`时，该字段生效。 <br/>-&nbsp;true：主线程等待启动框架执行完之后，才会加载应用首页。 <br/>-&nbsp;false：主线程不等待启动任务执行。 | 布尔值 | 该标签可缺省，缺省值为true。 |
         
-        **表3** appPrelodHintStartupTasks标签说明
+        **表3** appPreloadHintStartupTasks标签说明
 
         | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
         | -------- | -------- | -------- | -------- |
@@ -325,10 +325,11 @@ export default class StartupTask_001 extends StartupTask {
                 "HAR1_Task_01"
               ],
               "runOnThread": "taskPool",
-              "waitOnMainThread": false
+              "waitOnMainThread": false,
+              "excludeFromAutoStart": true
             }
           ],
-          "appPrelodHintStartupTasks": [
+          "appPreloadHintStartupTasks": [
             {
               "name": "libhsp1_01",
               "srcEntry": "libhsp1_01.so",
@@ -337,7 +338,7 @@ export default class StartupTask_001 extends StartupTask {
                 "libhar1_01"
               ],
               "runOnThread": "taskPool",
-              "waitOnMainThread": true
+              "excludeFromAutoStart": true
             }
           ]
         }

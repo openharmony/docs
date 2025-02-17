@@ -63,7 +63,7 @@ Radio(options: RadioOptions)
 
 ### checked
 
-checked(value: Optional\<boolean>)
+checked(value: boolean)
 
 设置单选框的选中状态。
 
@@ -79,7 +79,27 @@ checked(value: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 单选框的选中状态。<br/>默认值：false |
+| value  | boolean | 是   | 单选框的选中状态。<br/>默认值：false |
+
+### checked<sup>16+</sup>
+
+checked(isChecked: Optional\<boolean>)
+
+设置单选框的选中状态。与[checked](#checked)相比，isChecked参数新增了对undefined类型的支持。
+
+该属性支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名    | 类型                                                         | 必填 | 说明                                                         |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| isChecked | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 单选框的选中状态。<br/>当isChecked的值为undefined时，默认值：false |
 
 ### radioStyle<sup>10+</sup>
 
@@ -101,7 +121,7 @@ radioStyle(value?: RadioStyle)
 
 ### contentModifier<sup>12+</sup>
 
-contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
+contentModifier(modifier: ContentModifier\<RadioConfiguration>)
 
 定制Radio内容区的方法。
 
@@ -113,7 +133,23 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
-| modifier  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+| modifier  | [ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明) | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
+
+## contentModifier<sup>16+</sup>
+
+contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
+
+定制Radio内容区的方法。与[contentModifier](#contentmodifier12)<sup>12+</sup>相比，modifier参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| modifier | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ContentModifier\<RadioConfiguration>](#radioconfiguration12对象说明)> | 是   | 在Radio组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。<br/>当modifier的值为undefined时，不使用内容修改器。 |
 
 ## 事件
 
@@ -121,7 +157,7 @@ contentModifier(modifier: Optional<ContentModifier\<RadioConfiguration>>)
 
 ### onChange
 
-onChange(callback: Optional\<OnRadioChangeCallback>)
+onChange(callback: OnRadioChangeCallback)
 
 单选框选中状态改变时触发回调。
 
@@ -133,9 +169,27 @@ onChange(callback: Optional\<OnRadioChangeCallback>)
 
 **参数：** 
 
-| 参数名   | 类型                  | 必填 | 说明                           |
-| -------- | --------------------- | ---- | ------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRadioChangeCallback](#onradiochangecallback16)> | 是   | 单选框选中状态改变时触发该回调 |
+| 参数名   | 类型                                              | 必填 | 说明                           |
+| -------- | ------------------------------------------------- | ---- | ------------------------------ |
+| callback | [OnRadioChangeCallback](#onradiochangecallback16) | 是   | 单选框选中状态改变时触发该回调 |
+
+### onChange<sup>16+</sup>
+
+onChange(callback: Optional\<OnRadioChangeCallback>)
+
+单选框选中状态改变时触发回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnRadioChangeCallback](#onradiochangecallback16)> | 是   | 单选框选中状态改变时触发该回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## OnRadioChangeCallback<sup>16+</sup>
 

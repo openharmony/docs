@@ -257,7 +257,7 @@ getDLPSuffix(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回DLP文件扩展名。例如：原文件"text.txt"，返回拓展名为".dlp"，加密后的DLP文件名为"test.txt.dlp"。 |
+| string | 返回DLP文件扩展名。例如：原文件"text.txt"，加密后的DLP文件名为"test.txt.dlp"，返回拓展名为".dlp"。 |
 
 **错误码：**
 
@@ -1066,7 +1066,7 @@ try {
 ## dlpPermission.getSandboxAppConfig<sup>11+<sup>
 getSandboxAppConfig(): Promise&lt;string&gt;
 
-获取沙箱应用配置信息，使用Promise方式异步返回结果
+获取沙箱应用配置信息，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1103,7 +1103,7 @@ try {
 ## dlpPermission.isDLPFeatureProvided<sup>12+<sup>
 isDLPFeatureProvided(): Promise&lt;boolean&gt;
 
-查询当前系统是否提供DLP特性，使用Promise方式异步返回结果
+查询当前系统是否提供DLP特性，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1135,7 +1135,7 @@ dlpPermission.isDLPFeatureProvided().then((res) => {
 
 ## ActionFlagType
 
-可以对DLP文件进行的操作类型枚举。例如：DLP沙箱应用可以根据是否具有操作权限，对其按钮进行置灰
+可以对DLP文件进行的操作类型枚举。例如：DLP沙箱应用可以根据是否具有操作权限，对其按钮进行置灰。
 
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
@@ -1174,7 +1174,7 @@ DLP文件授权类型的枚举。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读 |
+| dlpFileAccess | [DLPFileAccess](#dlpfileaccess) | 是 | 否 | 表示DLP文件针对用户的授权类型，例如：只读。 |
 | flags | number | 是 | 否 | 表示DLP文件的详细操作权限，是不同[ActionFlagType](#actionflagtype)的组合。 |
 
 ## AccessedDLPFileInfo

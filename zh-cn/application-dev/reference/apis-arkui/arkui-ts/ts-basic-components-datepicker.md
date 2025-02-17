@@ -111,7 +111,7 @@ lunar(isLunar: Optional\<boolean>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| isLunar | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
+| isLunar | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>当isLunar的值为undefined时，默认值：false |
 
 ### disappearTextStyle<sup>10+</sup>
 
@@ -133,7 +133,7 @@ disappearTextStyle(value: PickerTextStyle)
 
 disappearTextStyle(style: Optional\<PickerTextStyle>)
 
-设置所有选项中最上和最下两个选项的文本样式。与[disappearTextStyle<sup>10+</sup>](#disappeartextstyle10)相比，style参数新增了对undefined类型的支持。
+设置所有选项中最上和最下两个选项的文本样式。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -141,9 +141,9 @@ disappearTextStyle(style: Optional\<PickerTextStyle>)
 
 **参数：**
 
-| 参数名 | 类型                                          | 必填 | 说明                                                         |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>10+</sup>
 
@@ -165,7 +165,7 @@ textStyle(value: PickerTextStyle)
 
 textStyle(style: Optional\<PickerTextStyle>)
 
-设置所有选项中除了最上、最下及选中项以外的文本样式。与[textStyle<sup>10+</sup>](#textstyle10)相比，style参数新增了对undefined类型的支持。
+设置所有选项中除了最上、最下及选中项以外的文本样式。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -175,7 +175,7 @@ textStyle(style: Optional\<PickerTextStyle>)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
@@ -197,7 +197,7 @@ selectedTextStyle(value: PickerTextStyle)
 
 selectedTextStyle(style: Optional\<PickerTextStyle>)
 
-设置选中项的文本样式。与[selectedTextStyle<sup>10+</sup>](#selectedtextstyle10)相比，style参数新增了对undefined类型的支持。
+设置选中项的文本样式。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -205,9 +205,9 @@ selectedTextStyle(style: Optional\<PickerTextStyle>)
 
 **参数：**
 
-| 参数名 | 类型                                          | 必填 | 说明                                                         |
-| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### enableHapticFeedback<sup>16+</sup>
 
@@ -226,13 +226,31 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >  **说明：**
 >
 >  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
-> ```json
-> "requestPermissions": [
+>  ```json
+>  "requestPermissions": [
 >  {
->     "name": "ohos.permission.VIBRATE",
+>   "name": "ohos.permission.VIBRATE",
 >  }
-> ]
-> ``
+>  ]
+>  ``
+>  ```
+
+### digitalCrownSensitivity<sup>16+</sup>
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity)> | 是    | 表冠灵敏度。                     |
+
+>  **说明：**
+>
+>  用于穿戴设备圆形屏幕使用。
 
 ## PickerTextStyle<sup>10+</sup>类型说明
 
@@ -283,7 +301,7 @@ onDateChange(callback: (value: Date) => void)
 
 onDateChange(callback: Optional\<Callback\<Date>>)
 
-选择日期时触发该事件。与[onDateChange<sup>10+</sup>](#ondatechange10)相比，callback参数新增了对undefined类型的支持。
+选择日期时触发该事件。与[onDateChange](#ondatechange10)<sup>10+</sup>相比，callback参数新增了对undefined类型的支持。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -291,9 +309,9 @@ onDateChange(callback: Optional\<Callback\<Date>>)
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                         |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ## DatePickerResult对象说明
 

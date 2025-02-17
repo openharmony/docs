@@ -16,7 +16,7 @@ arkOptions主要提供ArkTS编译相关配置，当前文档介绍arkOptions中t
 
 ### arkOptions中的types字段配置说明
 
-arkOptions中types字段示例
+arkOptions中types字段示例：
 
 在模块build-profile.json5配置文件buildOption标签的arkOptions属性中添加types字段。
 ```json
@@ -100,3 +100,37 @@ arkOptions/tscConfig中maxFlowDepth字段展示
   ```
 
 - 如果代码中函数或者模块过长导致控制流分析深度大于或者等于该字段所配置/默认的值，则会终止控制流分析并且报错：The containing function or module body is too large for control flow analysis.
+
+## transformLib
+
+### transformLib配置文件标签说明
+
+arkOptions的transformLib字段配置文件标签说明
+
+| 属性名称 | 含义 | 配置范围 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- | -------- |
+| transformLib | 字节码插桩插件配置，允许开发者在编译时对字节码进行插桩修改，仅支持Stage模型，格式为相对路径，指向实现插桩功能的动态库，不同系统要求的动态库文件类型如下，动态库文件内容需要在对应平台生成，不能拷贝修改后缀名混用。| 模块级 | 字符串型 | 该标签可缺省，缺省值时代表不使用该功能。 |
+
+### arkOptions中的transformLib字段配置说明
+
+arkOptions中transformLib字段示例：
+
+在模块build-profile.json5配置文件buildOption标签的arkOptions属性中添加transformLib字段。
+```json
+// 在/entry/build-profile.json5
+{
+  "buildOption": {
+    "arkOptions": {
+      "transformLib": "./dll/example.dll"
+    }
+  }
+}
+
+```
+修改方舟字节码能力可参考[编译期自定义修改方舟字节码](customize-bytecode-during-compilation.md)。
+
+### 注意事项
+
+- 若开发者未对字段进行配置时，则默认不使用该功能。
+- HAP、HSP模块配置即生效，HAR模块仅字节码HAR配置生效，非字节码HAR配置不生效。
+- 文件格式要求：Windows：.dll文件，Linux/Mac：.so文件。

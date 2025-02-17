@@ -330,6 +330,61 @@ try {
 }
 ```
 
+## adminManager.startAdminProvision<sup>15+</sup>
+
+startAdminProvision(admin: Want, type: AdminType, context: common.Context, parameters: Record\<string, string>): void;
+
+设备管理应用拉起BYOD管理员激活页面进行激活。
+
+**需要权限：** ohos.permission.START_PROVISIONING_MESSAGE
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数：**
+
+| 参数名   | 类型                                  | 必填   | 说明      |
+| ----- | ----------------------------------- | ---- | ------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| type  | [AdminType](#admintype15)             | 是    | 激活的设备管理应用类型，仅支持ADMIN_TYPE_BYOD类型。  |
+| context  | [common.Context](../apis-ability-kit/js-apis-app-ability-common.md) | 是 | 管理应用的上下文信息。 |
+| parameters  | Record\<string, string> | 是 | 自定义参数信息，其中Key值必须包含："activateId"。 |
+
+**错误码**：
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import adminManager from '@ohos.enterprise.adminManager';
+let wantTemp: Want = {
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
+};
+let context = getContext(this) as common.UIAbilityContext;
+let recordParameters: Record<string, string> = {
+  "activateId": "activateId testValue",
+  "customizedInfo": "customizedInfo testValue"
+}
+try {
+  console.info('context:' + JSON.stringify(context));
+  adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
+  console.info('startAdminProvision::success');
+} catch (error) {
+  console.info('startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
+}
+```
+
 ## ManagedEvent
 
 可订阅的系统管理事件。
@@ -345,6 +400,19 @@ try {
 | MANAGED_EVENT_APP_START      | 2    | 应用启动事件。 |
 | MANAGED_EVENT_APP_STOP       | 3    | 应用停止事件。 |
 | MANAGED_EVENT_SYSTEM_UPDATE  | 4    | 系统更新事件。 |
+| MANAGED_EVENT_ACCOUNT_ADDED<sup>16+</sup>  | 5    | 账号新增事件。 |
+| MANAGED_EVENT_ACCOUNT_SWITCHED<sup>16+</sup>  | 6    | 账号切换事件。 |
+| MANAGED_EVENT_ACCOUNT_REMOVED<sup>16+</sup>  | 7    | 账号删除事件。 |
+
+## AdminType<sup>15+</sup>
+
+设备管理应用的类型。 
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| ADMIN_TYPE_BYOD  | 0x02 | 自带设备管理应用。 |
 
 ## 附录
 ### 可委托策略列表
