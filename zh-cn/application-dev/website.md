@@ -1079,7 +1079,7 @@
     - 基础功能<!--system-basicfun-->
       - Basic Services Kit（基础服务）<!--basic-services-kit-->
         - [Basic Services Kit简介](basic-services/basic-services-kit-overview.md)
-        - 应用事件<!--app-events-->
+        - 进程线程通信<!--app-events-->
           - 使用公共事件进行进程间通信<!--common-event-communication-->
               - [公共事件简介](basic-services/common-event/common-event-overview.md)
               - [动态订阅公共事件](basic-services/common-event/common-event-subscription.md)
@@ -1172,7 +1172,7 @@
         - HiAppEvent使用指导<!--hiappevent-->
           - [HiAppEvent介绍](dfx/hiappevent-intro.md)
           - 事件订阅<!--event-subscription-->
-            - 进程线程通信<!--app-event-->
+            - 应用事件<!--app-event-->
               - [订阅应用事件（ArkTS）](dfx/hiappevent-watcher-app-events-arkts.md)
               - [订阅应用事件（C/C++）](dfx/hiappevent-watcher-app-events-ndk.md)
             - 系统事件<!--system-events-->
