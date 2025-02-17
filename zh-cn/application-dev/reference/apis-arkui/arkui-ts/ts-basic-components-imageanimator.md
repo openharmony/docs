@@ -181,7 +181,7 @@ monitorInvisibleArea(monitorInvisibleArea: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| monitorInvisibleArea  | boolean | 是 | 当设置为true时，组件将基于系统的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见性判定，控制组件的暂停与播放。<br/> 当组件的运行状态为[AnimationStatus](ts-appendix-enums.md#animationstatus)的Running时，若判定组件不可见，则自动执行暂停操作；若判定为可见，则自动恢复播放。<br/>默认值：false <br/> **说明：**当该属性由true动态修改为false时，组件将依据当前的[AnimationStatus](ts-appendix-enums.md#animationstatus)状态进行处理。<br/> 例如，若当前状态为Running且因[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的不可见回调暂停，则在属性由true改为false后，组件会从上次暂停的位置重新开始播放。|
+| monitorInvisibleArea  | boolean | 是 | 当设置为true时，组件将基于系统的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见性判定，控制组件的暂停与播放。<br/> 当组件的运行状态为[AnimationStatus](ts-appendix-enums.md#animationstatus)的Running时，若判定组件不可见，则自动执行暂停操作；若判定为可见，则自动恢复播放。<br/>默认值：false <br/> **说明：**当该属性由true动态修改为false时，组件将依据当前的[AnimationStatus](ts-appendix-enums.md#animationstatus)状态进行处理。<br/> 例如，若当前状态为Running且因[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的不可见回调暂停，则在属性由true改为false后，组件会从上次暂停的位置重新开始播放。<br/>由该属性导致的不可见暂停和可见暂停操作不会改变用户设置的[state](./ts-basic-components-imageanimator.md#state)值。|
 
 ## ImageFrameInfo对象说明
 
