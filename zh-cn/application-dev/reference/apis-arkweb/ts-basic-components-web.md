@@ -8173,7 +8173,7 @@ setGestureEventResult(result: boolean): void
 
 请参考[onNativeEmbedGestureEvent事件](#onnativeembedgestureevent11)。
 
-### setGestureEventResult<sup>12+</sup>
+### setGestureEventResult<sup>14+</sup>
 
 设置手势事件消费结果。
 
