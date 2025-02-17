@@ -24,9 +24,9 @@ import { FrameNode, LayoutConstraint, ExpandMode, typeNode, NodeAdapter } from "
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称   | 类型   | 可读 | 可写 | 说明                   |
+| 名称   | 类型   | 只读 | 可选 | 说明                   |
 | ------ | ------ | ---- | ---- | ---------------------- |
-| attributeSetting  | boolean | 是   | 是   | FrameNode是否支持跨语言属性设置。默认为不支持。 |
+| attributeSetting  | boolean | 否   | 是   | FrameNode是否支持跨语言属性设置。默认为false。 |
 
 ## ExpandMode<sup>15+</sup>
 
@@ -414,8 +414,8 @@ moveTo(targetParent: FrameNode, index?: number): void
 
 | 参数名        | 类型                    | 必填 | 说明                  |
 | ------------ | ----------------------- | ---- | --------------------- |
-| targetParent | [FrameNode](#framenode) | 是   | 目标父节点。<br/>**说明：**<br/> targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
-| index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前。若参数无效或不指定，则添加到目标FrameNode的最后。 |
+| targetParent | [FrameNode](#framenode) | 是   | 目标父节点。<br/>**说明：**<br/>targetParent节点不可以为声明式创建的节点，即不可修改的FrameNode。若目标父节点不符合规格，则抛出异常信息。 |
+| index        | number                  | 否   | 子节点序列号。当前FrameNode将被添加到目标FrameNode对应序列号的子节点之前，取值范围为0到targetParent.getChildrenCount()-1。<br/>若参数无效或不指定，则添加到目标FrameNode的最后。<br/>默认值：-1 |
 
 **错误码：**
 
