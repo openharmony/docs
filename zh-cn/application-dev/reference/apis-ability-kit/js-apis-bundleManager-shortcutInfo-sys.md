@@ -14,6 +14,8 @@
 
 **系统能力:** SystemCapability.BundleManager.BundleFramework.Launcher
 
+**系统接口：**  此接口为系统接口。
+
 | 名称                      | 类型   | 只读 | 可选 | 说明                 |
 | ------------------------- | ------ | ---- | ---- | -------------------- |
 | targetBundle              | string | 是   | 否   | 快捷方式的目标bundleName。 |
@@ -24,6 +26,8 @@
 ## ShortcutInfo
 
 **系统能力:**  SystemCapability.BundleManager.BundleFramework.Launcher
+
+**系统接口：**  此接口为系统接口。
 
 | 名称                    | 类型                                       | 只读 | 可选 | 说明                         |
 | ----------------------- | ------------------------------------------ | ---- | ---- | ---------------------------- |
