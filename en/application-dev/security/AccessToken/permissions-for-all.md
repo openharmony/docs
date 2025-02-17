@@ -401,6 +401,16 @@ Allows an application to use the scam call log Picker to obtain call logs.
 
 **Valid since**: 16
 
+## ohos.permission.USE_FRAUD_APP_PICKER
+
+Allows an application to use the fraud app Picker to obtain application information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 16
+
 ## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
