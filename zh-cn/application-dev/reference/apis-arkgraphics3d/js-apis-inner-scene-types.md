@@ -83,7 +83,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | height | number | 否 | 否 | 矩形高度，有效取值范围大于0。 |
 
 ## GeometryType<sup>16+</sup>
-几何类型枚举，用于指定几何形状。
+几何类型枚举，用于指定不同的几何类型。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -95,7 +95,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | SPHERE | 3 | 球体类型。 |
 
 ## GeometryDefinition<sup>16+</sup>
-几何定义抽象类，用于解释特定几何类型的属性。
+几何类型定义抽象类，用于解释特定几何类型的属性。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -103,7 +103,7 @@ import { Vec2, Vec3, Vec4, Color, Rect, Quaternion, Aabb, Position3, Rotation3,
 | geometryType | [GeometryType](#geometrytype16)| 是 | 否 | 定义不同的几何类型。 |
 
 ## PrimitiveTopology<sup>16+</sup>
- 图元拓扑枚举，在顶点处理过程中，指定顶点不同的解释方式。
+ 图元拓扑枚举，在顶点处理过程中，指定顶点的不同处理方式。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
