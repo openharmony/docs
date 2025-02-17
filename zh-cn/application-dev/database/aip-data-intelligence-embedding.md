@@ -49,7 +49,7 @@
    ```
 
 2. 获取文本嵌入模型。
-     
+
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -71,7 +71,7 @@
    ```
 
 3. 加载文本嵌入模型。
-     
+
    ```ts
    textEmbedding.loadModel()
      .then(() => {
@@ -83,7 +83,7 @@
    ```
 
 4. 获取文本的分块。当需要进行向量化的数据长度过长时，使用splitText()接口对其进行文本分块，然后再进行数据向量化。
-     
+
    ```ts
    let splitConfig:intelligence.SplitConfig = {
      size:10,
@@ -101,7 +101,7 @@
    ```
 
 5. 获取给定文本的嵌入向量。
-     
+
    ```ts
    let text = 'text';
    textEmbedding.getEmbedding(text)
@@ -114,7 +114,7 @@
    ```
 
 6. 获取给定批次文本的嵌入向量。
-     
+
    ```ts
    let batchTexts = ['text1','text2'];
    textEmbedding.getEmbedding(batchTexts)
@@ -127,7 +127,7 @@
    ```
 
 7. 释放文本嵌入模型。
-     
+
    ```ts
    textEmbedding.releaseModel()
      .then(() => {
@@ -139,7 +139,7 @@
    ```
 
 8. 获取图像嵌入模型。
-     
+
    ```ts
    let config:intelligence.ModelConfig = {
      version:1,
@@ -159,7 +159,7 @@
    ```
 
 9. 加载图像嵌入模型。
-     
+
    ```ts
    imageEmbedding.loadModel()
      .then(() => {
@@ -171,7 +171,7 @@
    ```
 
 10. 获取给定图像的嵌入向量。
-     
+
    ```ts
    let image = 'file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg';
    imageEmbedding.getEmbedding(image)
@@ -184,7 +184,7 @@
    ```
 
 11. 释放图像嵌入模型。
-     
+
    ```ts
    imageEmbedding.releaseModel()
      .then(() => {
