@@ -10,6 +10,8 @@
 
 ## BundlePackInfo
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称     | 类型                                    | 只读 | 可选 | 说明                      |
@@ -18,6 +20,8 @@
 | summary  | [PackageSummary](#packagesummary)       | 是   | 否   | pack.info中的包摘要信息。 |
 
 ## PackageConfig
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
@@ -30,6 +34,8 @@
 
 ## PackageSummary
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称    | 类型                                          | 只读 | 可选 | 说明                 |
@@ -39,6 +45,8 @@
 
 ## BundleConfigInfo
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称       | 类型                | 只读 | 可选 | 说明                                   |
@@ -47,6 +55,8 @@
 | version    | [Version](#version) | 是   | 否   | 包的版本。                             |
 
 ## ModuleConfigInfo
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
@@ -61,6 +71,8 @@
 
 ## ModuleDistroInfo
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称                | 类型    | 只读 | 可选 | 说明                                                         |
@@ -71,6 +83,8 @@
 | moduleType          | string  | 是   | 否   | module类型。                                                 |
 
 ## ModuleAbilityInfo
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
@@ -83,6 +97,8 @@
 
 ## ExtensionAbility
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称  | 类型                                        | 只读 | 可选 | 说明                                                         |
@@ -91,6 +107,8 @@
 | forms | Array\<[AbilityFormInfo](#abilityforminfo)> | 是   | 否   | 表示form卡片的规格，form卡片是可以嵌入桌面上并接收定时更新的应用简要视图。 |
 
 ## AbilityFormInfo
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
@@ -106,6 +124,8 @@
 
 ## ApiVersion
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称        | 类型   | 只读 | 可选 | 说明                 |
@@ -115,6 +135,8 @@
 | target      | number | 是   | 否   | 目标版本号。         |
 
 ## Version
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
