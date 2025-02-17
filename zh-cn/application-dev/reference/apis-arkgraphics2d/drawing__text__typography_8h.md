@@ -99,8 +99,8 @@
 | void [OH_Drawing_SetTextStyleFontSize](_drawing.md#oh_drawing_settextstylefontsize) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置字号。  | 
 | void [OH_Drawing_SetTextStyleFontWeight](_drawing.md#oh_drawing_settextstylefontweight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字重。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold时字体粗细无变化，当设置字重值大于等于semi-bold时可能会触发伪加粗效果。  | 
 | void [OH_Drawing_SetTextStyleBaseLine](_drawing.md#oh_drawing_settextstylebaseline) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字体基线位置。  | 
-| void [OH_Drawing_SetTextStyleDecoration](_drawing.md#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置装饰。  | 
-| void [OH_Drawing_SetTextStyleDecorationColor](_drawing.md#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置装饰颜色。  | 
+| void [OH_Drawing_SetTextStyleDecoration](_drawing.md#oh_drawing_settextstyledecoration) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线类型。  | 
+| void [OH_Drawing_SetTextStyleDecorationColor](_drawing.md#oh_drawing_settextstyledecorationcolor) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, uint32_t) | 设置指定文本样式中的装饰线颜色。  | 
 | void [OH_Drawing_SetTextStyleFontHeight](_drawing.md#oh_drawing_settextstylefontheight) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置行高，按当前字体大小的倍数进行设置。  | 
 | void [OH_Drawing_SetTextStyleFontFamilies](_drawing.md#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置字体类型。  | 
 | void [OH_Drawing_SetTextStyleFontStyle](_drawing.md#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置字体风格。  | 
@@ -121,7 +121,7 @@
 | [OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \* [OH_Drawing_CreateTypography](_drawing.md#oh_drawing_createtypography) ([OH_Drawing_TypographyCreate](_drawing.md#oh_drawing_typographycreate) \*) | 创建指向OH_Drawing_Typography对象的指针。  | 
 | void [OH_Drawing_DestroyTypography](_drawing.md#oh_drawing_destroytypography) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 释放OH_Drawing_Typography对象占据的内存。  | 
 | void [OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, double) | 排版布局。  | 
-| void [OH_Drawing_TypographyPaint](_drawing.md#oh_drawing_typographypaint) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, double, double) | 显示文本。  | 
+| void [OH_Drawing_TypographyPaint](_drawing.md#oh_drawing_typographypaint) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, double, double) | 在指定位置绘制文本，从左上角开始绘制，该接口需要在[OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout)接口调用并生效之后调用。  | 
 | void [OH_Drawing_TypographyPaintOnPath](_drawing.md#oh_drawing_typographypaintonpath) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, [OH_Drawing_Canvas](_drawing.md#oh_drawing_canvas) \*, [OH_Drawing_Path](_drawing.md#oh_drawing_path) \*, double, double) | 沿路径绘制文本。  | 
 | double [OH_Drawing_TypographyGetMaxWidth](_drawing.md#oh_drawing_typographygetmaxwidth) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取最大宽度。  | 
 | double [OH_Drawing_TypographyGetHeight](_drawing.md#oh_drawing_typographygetheight) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取高度。  | 
@@ -149,7 +149,7 @@
 | size_t [OH_Drawing_GetStartFromRange](_drawing.md#oh_drawing_getstartfromrange) ([OH_Drawing_Range](_drawing.md#oh_drawing_range) \*) | 获取OH_Drawing_Range对象开始位置。  | 
 | size_t [OH_Drawing_GetEndFromRange](_drawing.md#oh_drawing_getendfromrange) ([OH_Drawing_Range](_drawing.md#oh_drawing_range) \*) | 获取OH_Drawing_Range对象结束位置。  | 
 | size_t [OH_Drawing_TypographyGetLineCount](_drawing.md#oh_drawing_typographygetlinecount) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取文本行数。  | 
-| void [OH_Drawing_SetTextStyleDecorationStyle](_drawing.md#oh_drawing_settextstyledecorationstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置文本装饰样式。  | 
+| void [OH_Drawing_SetTextStyleDecorationStyle](_drawing.md#oh_drawing_settextstyledecorationstyle) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, int) | 设置指定文本样式中的装饰线样式。  | 
 | void [OH_Drawing_SetTextStyleDecorationThicknessScale](_drawing.md#oh_drawing_settextstyledecorationthicknessscale) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置文本装饰线的厚度缩放比例。  | 
 | void [OH_Drawing_SetTextStyleLetterSpacing](_drawing.md#oh_drawing_settextstyleletterspacing) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置文本的字符间距。  | 
 | void [OH_Drawing_SetTextStyleWordSpacing](_drawing.md#oh_drawing_settextstylewordspacing) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*, double) | 设置文本的单词间距。  | 
@@ -232,14 +232,14 @@
 | void [OH_Drawing_TextStyleSetPlaceholder](_drawing.md#oh_drawing_textstylesetplaceholder) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style) | 设置占位符。  | 
 | bool [OH_Drawing_TextStyleIsPlaceholder](_drawing.md#oh_drawing_textstyleisplaceholder) ([OH_Drawing_TextStyle](_drawing.md#oh_drawing_textstyle) \*style) | 返回是否有设置文本占位符。  | 
 | [OH_Drawing_TextAlign](_drawing.md#oh_drawing_textalign) [OH_Drawing_TypographyStyleGetEffectiveAlignment](_drawing.md#oh_drawing_typographystylegeteffectivealignment) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本对齐模式。  | 
-| bool [OH_Drawing_TypographyStyleIsHintEnabled](_drawing.md#oh_drawing_typographystyleishintenabled) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否启用字体提示。字体提示用于在渲染小字号文本时改善其可读性和外观。  | 
+| bool [OH_Drawing_TypographyStyleIsHintEnabled](_drawing.md#oh_drawing_typographystyleishintenabled) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style) | 获取文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。  | 
 | void [OH_Drawing_SetTypographyStyleTextStrutStyle](_drawing.md#oh_drawing_settypographystyletextstrutstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*, [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*) | 设置文本支柱样式。  | 
 | [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \* [OH_Drawing_TypographyStyleGetStrutStyle](_drawing.md#oh_drawing_typographystylegetstrutstyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本支柱样式。  | 
 | void [OH_Drawing_TypographyStyleDestroyStrutStyle](_drawing.md#oh_drawing_typographystyledestroystrutstyle) ([OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*) | 释放被支柱样式对象占据的内存。  | 
 | bool [OH_Drawing_TypographyStyleStrutStyleEquals](_drawing.md#oh_drawing_typographystylestrutstyleequals) ([OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*from, [OH_Drawing_StrutStyle](_o_h___drawing___strut_style.md) \*to) | 判断支柱样式结构体是否相同。  | 
-| void [OH_Drawing_TypographyStyleSetHintsEnabled](_drawing.md#oh_drawing_typographystylesethintsenabled) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, bool hintsEnabled) | 设置文本是否启用字体提示。字体提示用于在渲染小字号文本时改善其可读性和外观。  | 
+| void [OH_Drawing_TypographyStyleSetHintsEnabled](_drawing.md#oh_drawing_typographystylesethintsenabled) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*style, bool hintsEnabled) | 设置文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。  | 
 | void [OH_Drawing_TypographyMarkDirty](_drawing.md#oh_drawing_typographymarkdirty) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 将排版标记为脏数据，用于初始化排版状态。  | 
-| int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](_drawing.md#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量。  | 
+| int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](_drawing.md#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量，该接口需要在[OH_Drawing_TypographyLayout](_drawing.md#oh_drawing_typographylayout)接口调用并生效之后调用。  | 
 | void [OH_Drawing_TypographyUpdateFontSize](_drawing.md#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](_drawing.md#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新文本中的字体大小。  | 
 | bool [OH_Drawing_TypographyTextGetLineStyle](_drawing.md#oh_drawing_typographytextgetlinestyle) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本排版是否启用行样式。  | 
 | [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [OH_Drawing_TypographyTextlineStyleGetFontWeight](_drawing.md#oh_drawing_typographytextlinestylegetfontweight) ([OH_Drawing_TypographyStyle](_drawing.md#oh_drawing_typographystyle) \*) | 获取文本排版行样式字重。  | 
