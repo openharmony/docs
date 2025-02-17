@@ -171,16 +171,47 @@
    ```
 
 10. 获取给定图像的嵌入向量。
+    ```ts
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    async function getRetentionSandboxList() {
+      try {
+        let res:Array<dlpPermission.RetentionSandboxInfo> = await dlpPermission.getRetentionSandboxList(); // 获取沙箱保留列表
+        console.info('res', JSON.stringify(res))
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
+
+11. 释放图像嵌入模型。
+
+    ```ts
+    import { dlpPermission } from '@kit.DataProtectionKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
+
+    async function setSandboxAppConfig() {
+      try {
+        await dlpPermission.setSandboxAppConfig('configInfo'); // 设置沙箱应用配置信息
+      } catch (err) {
+        console.error('error', (err as BusinessError).code, (err as BusinessError).message); // 失败报错
+      }
+    }
+    ```
+
+
+10. 获取给定图像的嵌入向量。
 
    ```ts
    let image = "file://<packageName>/data/storage/el2/base/haps/entry/files/xxx.jpg";
    imageEmbedding.getEmbedding(image)
-      .then((data:Array<number>) => {
-        console.info("Succeeded in getting Embedding");
-      })
-      .catch((err:BusinessError) => {
-        console.error("Failed to get Embedding and code is " + err.code);
-      })
+     .then((data:Array<number>) => {
+       console.info("Succeeded in getting Embedding");
+     })
+     .catch((err:BusinessError) => {
+       console.error("Failed to get Embedding and code is " + err.code);
+     })
    ```
 
 11. 释放图像嵌入模型。
