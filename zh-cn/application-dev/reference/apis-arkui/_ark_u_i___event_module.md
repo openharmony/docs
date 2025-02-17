@@ -38,6 +38,7 @@
 | {<br/>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br/>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br/>} | 定义鼠标事件的按键类型。  | 
 | [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
 | {<br/>UI_FOCUS_AXIS_EVENT_ABS_X = 0, UI_FOCUS_AXIS_EVENT_ABS_Y = 1, UI_FOCUS_AXIS_EVENT_ABS_Z = 2, UI_FOCUS_AXIS_EVENT_ABS_RZ = 3,<br/>UI_FOCUS_AXIS_EVENT_ABS_GAS = 4, UI_FOCUS_AXIS_EVENT_ABS_BRAKE = 5, UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6, UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7<br/>} | 定义焦点轴事件的轴类型。  | 
+| {<br/>ARKUI_EVENT_HAND_NONE = 0, ARKUI_EVENT_HAND_LEFT = 1, ARKUI_EVENT_HAND_RIGHT = 2<br/>} | 定义事件是由左手点击触发还是右手点击触发。  | 
 
 
 ### 函数
@@ -94,6 +95,8 @@
 | int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取所有按下的按键，当前只支持按键事件。  | 
+| int32_t [OH_ArkUI_PointerEvent_GetInteractionHand](#oh_arkui_pointerevent_getinteractionhand) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_InteractionHand](_ark_u_i___event_module.md#interactionhand) \*hand) | 获取当前触摸事件是左手点击触发还是右手点击触发。  | 
+| int32_t [OH_ArkUI_PointerEvent_GetInteractionHandByIndex](#oh_arkui_pointerevent_getinteractionhandbyindex) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t pointerIndex, [ArkUI_InteractionHand](_ark_u_i___event_module.md#interactionhand) \*hand) | 获取当前触摸事件是左手点击触发还是右手点击触发。  | 
 
 
 ## 类型定义说明
@@ -287,6 +290,23 @@ anonymous enum
 | UI_FOCUS_AXIS_EVENT_ABS_BRAKE  | 游戏手柄BRAKE轴。   | 
 | UI_FOCUS_AXIS_EVENT_ABS_HAT0X  | 游戏手柄HAT0X轴。   | 
 | UI_FOCUS_AXIS_EVENT_ABS_HAT0Y  | 游戏手柄HAT0Y轴。 | 
+
+### InteractionHand
+
+```
+enum ArkUI_InteractionHand
+```
+**描述：**
+
+定义事件是由左手点击触发还是右手点击触发。
+
+**起始版本：** 16
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_EVENT_HAND_NONE  | 未知。  | 
+| ARKUI_EVENT_HAND_LEFT  | 左手。  | 
+| ARKUI_EVENT_HAND_RIGHT  | 右手。  | 
 
 
 ## 函数说明
@@ -1474,6 +1494,53 @@ int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation (const ArkUI_UIInputEvent * e
 | -------- | -------- |
 | event | 表示指向当前UI输入事件的指针。  | 
 | stopPropagation | 是否阻止事件冒泡。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+
+### OH_ArkUI_PointerEvent_GetInteractionHand()
+
+```
+int32_t OH_ArkUI_PointerEvent_GetInteractionHand (const ArkUI_UIInputEvent * event, ArkUI_InteractionHand * hand)
+```
+**描述：**
+
+获取当前触摸事件是左手点击触发还是右手点击触发。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| hand | 返回当前事件识别的交互手。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+
+### OH_ArkUI_PointerEvent_GetInteractionHandByIndex()
+
+```
+int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEvent * event, int32_t pointerIndex, ArkUI_InteractionHand * hand)
+```
+**描述：**
+
+获取当前触摸事件是左手点击触发还是右手点击触发。
+
+**起始版本：** 16
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| pointerIndex | 表示多点触控数据列表中的序号。  | 
+| hand | 返回指定手指的交互手。  | 
 
 **返回：**
 

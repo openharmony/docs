@@ -361,13 +361,13 @@ borderRadius(value: Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## borderRadius<sup>16+</sup>
+## borderRadius<sup>15+</sup>
 
 borderRadius(radius: Dimension | BorderRadiuses): T
 
 设置安全控件的边框圆角半径，支持分别设置四个圆角。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -405,13 +405,13 @@ padding(value: Padding | Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## align<sup>16+</sup>
+## align<sup>15+</sup>
 
 align(alignType: Alignment): T
 
 设置安全控件图标文本的对齐方式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -537,13 +537,13 @@ constraintSize(value: ConstraintSizeOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: AlignRuleOption): T
 
 指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -559,13 +559,13 @@ alignRules(alignRule: AlignRuleOption): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: LocalizedAlignRuleOptions): T
 
-指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代上述[alignRules](#alignrules16)的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代上述[alignRules](#alignrules15)的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -581,13 +581,13 @@ alignRules(alignRule: LocalizedAlignRuleOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## id<sup>16+</sup>
+## id<sup>15+</sup>
 
 id(description: string): T
 
 组件的唯一标识，唯一性由使用者保证。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -603,13 +603,13 @@ id(description: string): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## chainMode<sup>16+</sup>
+## chainMode<sup>15+</sup>
 
 chainMode(direction: Axis, style: ChainStyle): T
 
 指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

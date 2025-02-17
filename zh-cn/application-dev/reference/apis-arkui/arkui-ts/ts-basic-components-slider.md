@@ -106,9 +106,11 @@ trackColor(value: ResourceColor | LinearGradient)
 
 ### selectedColor
 
-selectedColor(value: ResourceColor)
+selectedColor(value: ResourceColor | LinearGradient)
 
 设置滑轨的已滑动部分颜色。
+
+从API version 16开始支持利用LinearGradient设置滑轨的已滑动部分的渐变色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -118,9 +120,9 @@ selectedColor(value: ResourceColor)
 
 **参数：** 
 
-| 参数名 | 类型                                       | 必填 | 说明                                          |
-| ------ | ------------------------------------------ | ---- | --------------------------------------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>16+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
 
 ### showSteps
 
@@ -440,6 +442,22 @@ slideRange(value: SlideRange)
 | ------ | ----------------------------------- | ---- | ---------------- |
 | value  | [SlideRange](#sliderange12对象说明) | 是   | 设置有效滑动区间 |
 
+### digitalCrownSensitivity<sup>16+</sup>
+
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置旋转表冠的灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity16) | 是   | 旋转表冠的灵敏度。<br />默认值：CrownSensitivity.MEDIUM |
+
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
 Slider组件滑块形状参数。
@@ -462,11 +480,11 @@ Slider组件滑块形状枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称    | 说明                 |
-| ------- | ---------------------- |
-| DEFAULT | 使用默认滑块（圆形）。   |
-| IMAGE   | 使用图片资源作为滑块。   |
-| SHAPE   | 使用自定义形状作为滑块。 |
+| 名称    | 值 | 说明                 |
+| ------- | -- | ---------------------- |
+| DEFAULT | 0 | 使用默认滑块（圆形）。   |
+| IMAGE   | 1 | 使用图片资源作为滑块。   |
+| SHAPE   | 2 | 使用自定义形状作为滑块。 |
 
 ## SliderInteraction<sup>12+</sup>枚举说明
 
@@ -476,11 +494,11 @@ Slider组件滑块形状枚举。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 说明                          |
-| ------ | ----------------------------- |
-| SLIDE_AND_CLICK | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
-| SLIDE_ONLY | 不允许用户通过点击滑轨使滑块移动。|
-| SLIDE_AND_CLICK_UP | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指抬起时，若与屏幕按压位置一致，则触发移动。|
+| 名称     | 值 |说明                          |
+| ------ | -- | ----------------------------- |
+| SLIDE_AND_CLICK | 0 | 用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指按下即发生移动。|
+| SLIDE_ONLY | 1 | 不允许用户通过点击滑轨使滑块移动。|
+| SLIDE_AND_CLICK_UP | 2 |用户可拖拽滑块或者点击滑轨使滑块移动，鼠标或手指抬起时，若与屏幕按压位置一致，则触发移动。|
 
 ## SlideRange<sup>12+</sup>对象说明
 
@@ -584,6 +602,16 @@ enableHapticFeedback(enabled: boolean)
 
 设置是否开启触控反馈。
 
+开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+
+```json
+"requestPermissions": [
+  {
+    "name": "ohos.permission.VIBRATE",
+  }
+ ]
+```
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -591,17 +619,6 @@ enableHapticFeedback(enabled: boolean)
 | 参数名 | 类型                                          | 必填  | 说明                                                                                  |
 | ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
 | enabled  | boolean | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
-
->  **说明：**
->
->  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
-> ```json
-> "requestPermissions": [
->  {
->     "name": "ohos.permission.VIBRATE",
->  }
-> ]
-> ``
 
 
 ## 示例

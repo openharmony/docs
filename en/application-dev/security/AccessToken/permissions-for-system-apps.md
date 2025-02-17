@@ -145,6 +145,16 @@ Allows an application to read the protection advice database.
 
 **Valid since**: 16
 
+### ohos.permission.PROXY_MESSAGE_AUTH
+
+Allows a system application to call the Message application authorization interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ### ohos.permission.MANAGE_SETTINGS
 
 Allows an application to set the device-level configuration table and user-level configuration table in **SettingsData**.
@@ -4487,6 +4497,71 @@ After the script address is configured, other applications can read and parse th
 **Enable via ACL**: true
 
 **Valid since**: 15
+
+### ohos.permission.GET_PAGE_INFO
+
+Allows a system application to obtain the page information of a specified application.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DDK_DRIVERS
+
+Allows a peripheral extension driver client to bind to the driver server.
+
+This permission can be requested successfully only when:
+
+1) The target extension driver server in the value field of the permission declaration for the peripheral extension driver client has been launched or both the server and client have been launched.
+2) The capabilities provided by the target extension driver server comply with the requirements of the peripheral extension driver client.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
+
+Allow a peripheral extension driver to access the SCSI DDK APIs.
+
+The SCSI DDK APIs can be used to develop the following types of peripheral extension drivers:
+peripherals connected to the host via a USB bus and:
+
+1) InterfaceClass of the peripheral is Mass Storage (0x08) and InterfaceSubClass is SCSI Transparent Command Set (0x06).
+2) The peripheral can simulate a SCSI device in a way that is transparent to the operating system.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DDK_USB_SERIAL
+
+Allows a peripheral extension driver to access the USB Serial DDK APIs.
+
+The USB Serial DDK APIs can be used to develop the following types of peripheral extension drivers:
+peripherals connected to the host via a USB bus and:
+
+1) InterfaceClass of the peripheral is Communication Device Control Class (0x02) and InterfaceSubClass follows ACMSubClass model(0x02).
+2) The peripheral can simulate traditional serial communication through a USB interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ## system_grant Permissions (Unavailable via ACL)
 

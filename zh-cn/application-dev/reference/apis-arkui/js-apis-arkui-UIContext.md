@@ -101,100 +101,6 @@ getUIObserver(): UIObserver
 uiContext.getUIObserver();
 ```
 
-### notifyDragStartRequest<sup>16+</sup>
-
-notifyDragStartRequest(requestStatus: DragStartRequestStatus): void
-
-控制应用是否可以发起拖拽。
-
-**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力**: SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型   | 必填| 说明                                                        |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| requestStatus  | [DragStartRequestStatus](#dragstartrequeststatus16枚举说明)    | 是  |定义应用是否可以发起拖拽。|
-
-## DragStartRequestStatus<sup>16+</sup>枚举说明
-
-定义应用是否可以发起拖拽的枚举类型，取值有WAITING与READY。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 说明                                                         |
-| -------- | ------------------------------------------------------------ |
-| WAITING   | 应用无法发起拖拽。 |
-| READY | 应用可以发起拖拽。 |
-
-**示例：**
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct NormalEts {
-  @State finished: boolean = false
-  @State timeout1: number = 1
-  @State pixmap: image.PixelMap | undefined = undefined
-  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
-  @State previewData: DragItemInfo | undefined = undefined
-
-  loadData() {
-    let timeout = setTimeout(() => {
-      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
-        this.pixmap = pixmap
-        this.previewData = {
-          pixelMap: this.pixmap
-        }
-      })
-
-      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
-      data.imageUri = "app.media.startIcon";
-      let unifiedData = new unifiedDataChannel.UnifiedData(data);
-      this.unifiedData1 = unifiedData
-
-      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
-    }, 4000);
-    this.timeout1 = timeout
-  }
-
-
-    build() {
-      Column({space: 20}) {
-        Image($r("app.media.startIcon"))
-          .width(300)
-          .height(200)
-          .id("image1")
-          .draggable(true)
-          .dragPreview(this.previewData)
-          .onPreDrag((status: PreDragStatus) => {
-            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
-              this.loadData()
-            } else {
-              clearTimeout(this.timeout1);
-            }
-          })
-          .onDragStart((event: DragEvent) => {
-            if (this.finished == false) {
-              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
-            } else {
-              event.setData(this.unifiedData1);
-            }
-          })
-          .onDragEnd(()=>{
-            this.finished = false
-          })
-      }
-      .height(400)
-      .backgroundColor(Color.Pink)
-    }
-}
-```
-
 ### getMediaQuery
 
 getMediaQuery(): MediaQuery
@@ -285,7 +191,7 @@ uiContext.getOverlayManager();
 
 ### setOverlayManagerOptions<sup>15+</sup>
 
-setOverlayManagerOptions(value: OverlayManagerOptions): void
+setOverlayManagerOptions(options: OverlayManagerOptions): boolean
 
 设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
 
@@ -297,7 +203,13 @@ setOverlayManagerOptions(value: OverlayManagerOptions): void
 
 | 参数名   | 类型                                       | 必填   | 说明                                    |
 | ----- | ---------------------------------------- | ---- | ------------------------------------- |
-| value | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否设置成功。 |
 
 **示例：**
 
@@ -1771,7 +1683,7 @@ struct Index {
 
 postFrameCallback(frameCallback: FrameCallback): void
 
-注册一个在下一帧进行渲染时执行的回调。
+注册一个回调，仅在下一帧渲染时调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2563,6 +2475,87 @@ getTextMenuController(): TextMenuController
 **示例：**
 
 参考[TextMenuController](#textmenucontroller16)接口示例。
+
+### notifyDragStartRequest<sup>16+</sup>
+
+notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
+
+控制应用是否可以发起拖拽。
+
+**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填| 说明                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus16)    | 是  |定义应用是否可以发起拖拽。|
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
+}
+```
 
 ## Font
 
@@ -5767,10 +5760,6 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class ButtonsModel {
-  text: string = ""
-  color: string = ""
-}
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -5780,11 +5769,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as ButtonsModel,
+      },
       {
         text: 'button2',
         color: '#000000'
-      } as ButtonsModel
+      }
     ]
   }, (err, data) => {
     if (err) {
@@ -5835,35 +5824,28 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ],
+promptAction.showDialog({
+  title: 'Title Info',
+  message: 'Message Info',
+  buttons: [
+    {
+      text: 'button1',
+      color: '#000000'
+    },
+    {
+      text: 'button2',
+      color: '#000000'
+    }
+  ],
+})
+  .then(data => {
+    console.info('showDialog success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showDialog success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.error('showDialog error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.error('showDialog error: ' + err);
+  })
 ```
 
 ### showActionMenu<sup>11+</sup>
@@ -6014,35 +5996,28 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 **示例：**
 
 ```ts
-import { PromptAction,promptAction  } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { PromptAction } from '@kit.ArkUI';
 
 let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showActionMenu({
-    title: 'showActionMenu Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
+promptAction.showActionMenu({
+  title: 'showActionMenu Title Info',
+  buttons: [
+    {
+      text: 'item1',
+      color: '#666666'
+    },
+    {
+      text: 'item2',
+      color: '#000000'
+    },
+  ]
+})
+  .then(data => {
+    console.info('showActionMenu success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showActionMenu success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.error('showActionMenu error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.error('showActionMenu error: ' + err);
+  })
 ```
 
 ### openCustomDialog<sup>12+</sup>
@@ -6655,6 +6630,166 @@ struct Index {
 }
 ```
 
+### getTopOrder<sup>16+</sup>
+
+getTopOrder(): LevelOrder
+
+返回最顶层显示的弹窗的顺序。
+
+获取最顶层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+
+**示例：**
+
+该示例通过调用getTopOrder接口，展示了获取最顶层显示的弹窗的顺序的功能。
+
+```ts
+import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column({ space: 20 }) {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '弹窗'
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private contentNode: ComponentContent<Object> =
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+
+  private baseDialogOptions: promptAction.BaseDialogOptions = {
+    showInSubWindow: false,
+    levelOrder: LevelOrder.clamp(30.1),
+  }
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('openCustomDialog弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
+              .catch((err: BusinessError) => {
+                console.error("openCustomDialog error: " + err.code + " " + err.message)
+              })
+              .then(() => {
+                let topOrder: LevelOrder = this.promptAction.getTopOrder();
+                if (topOrder !== undefined) {
+                  console.error('topOrder: ' + topOrder.getOrder());
+                }
+              })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+### getBottomOrder<sup>16+</sup>
+
+getBottomOrder(): LevelOrder
+
+返回最底层显示的弹窗的顺序。
+
+获取最底层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+
+**示例：**
+
+该示例通过调用getBottomOrder接口，展示了获取最底层显示的弹窗的顺序的功能。
+
+```ts
+import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column({ space: 20 }) {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '弹窗'
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private contentNode: ComponentContent<Object> =
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+
+  private baseDialogOptions: promptAction.BaseDialogOptions = {
+    showInSubWindow: false,
+    levelOrder: LevelOrder.clamp(30.1),
+  }
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('openCustomDialog弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
+              .catch((err: BusinessError) => {
+                console.error("openCustomDialog error: " + err.code + " " + err.message)
+              })
+              .then(() => {
+                let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
+                if (bottomOrder !== undefined) {
+                  console.error('bottomOrder: ' + bottomOrder.getOrder());
+                }
+              })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
 ### openPopup<sup>16+</sup>
 
 openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
@@ -6967,7 +7102,7 @@ openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, o
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
 | target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreview类型。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreviewMode类型。 |
 
 **返回值：**
 
@@ -7703,6 +7838,106 @@ struct OverlayExample {
 }
 ```
 
+### addComponentContentWithOrder<sup>16+</sup>
+
+addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
+
+指定显示顺序创建浮层节点。
+
+支持在浮层节点创建时指定显示的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中位置，按层级堆叠。|
+| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder16) | 否    | 新增浮层节点的显示顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0)。|
+
+**示例：**
+
+该示例通过调用addComponentContentWithOrder接口，展示了指定显示顺序创建浮层节点的功能。
+
+```ts
+import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  offset: Position
+  constructor(text: string, offset: Position) {
+    this.text = text
+    this.offset = offset
+  }
+}
+@Builder
+function builderText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }.offset(params.offset)
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '弹窗'
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private overlayNode: OverlayManager = this.ctx.getOverlayManager()
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0
+  @StorageLink('arrayIndex') arrayIndex: number = 0
+  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('OverlayManager下面弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            let componentContent = new ComponentContent(
+              this.ctx, wrapBuilder<[Params]>(builderText),
+              new Params(this.message + (this.contentArray.length), this.componentOffset)
+            )
+            this.contentArray.push(componentContent)
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1))
+            let topOrder: LevelOrder = this.promptAction.getTopOrder();
+            if (topOrder !== undefined) {
+              console.error('topOrder: ' + topOrder.getOrder());
+            }
+            let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
+            if (bottomOrder !== undefined) {
+              console.error('bottomOrder: ' + bottomOrder.getOrder());
+            }
+          })
+        Button('OverlayManager上面弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            let componentContent = new ComponentContent(
+              this.ctx, wrapBuilder<[Params]>(builderText),
+              new Params(this.message + (this.contentArray.length), this.componentOffset)
+            )
+            this.contentArray.push(componentContent)
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2))
+            let topOrder: LevelOrder = this.promptAction.getTopOrder();
+            if (topOrder !== undefined) {
+              console.error('topOrder: ' + topOrder.getOrder());
+            }
+            let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
+            if (bottomOrder !== undefined) {
+              console.error('bottomOrder: ' + bottomOrder.getOrder());
+            }
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
 ### removeComponentContent<sup>12+</sup>
 
 removeComponentContent(content: ComponentContent): void
@@ -8300,6 +8535,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
             this.controller.close()
           }
         })
@@ -8323,11 +8559,11 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
             this.dialogController.open()
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
-    .onFocus(()=>{this.getUIContext().getFocusController().setAutoFocusTransfer(false)})
   }
 }
 ```

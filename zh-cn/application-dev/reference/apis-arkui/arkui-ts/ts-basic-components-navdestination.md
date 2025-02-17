@@ -316,6 +316,26 @@ hideBackButton(hide: Optional&lt;boolean&gt;)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | hide  | Optional&lt;boolean&gt; | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 |
 
+### customTransition<sup>15+</sup>
+
+customTransition(delegate: NavDestinationTransitionDelegate)
+
+设置NavDestination自定义转场动画。
+
+> **说明：**
+>
+> 该属性与[systemTransition](#systemtransition14)同时设置时，后设置的属性生效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | 是   | NavDestination自定义动画的代理函数。 |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -329,16 +349,18 @@ hideBackButton(hide: Optional&lt;boolean&gt;)
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 值   | 说明 |
 | ----  | ---   | ----- |
-| DEFAULT  | 0 | 默认系统转场动画。|
-| NONE| 1 | 无系统转场动画。|
-| TITLE | 2 | 标题栏系统转场动画。|
-| CONTENT | 3 | 内容区系统转场动画。|
+| DEFAULT | 0 | 默认系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| NONE| 1 | 无系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| TITLE | 2 | 标题栏系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| CONTENT | 3 | 内容区系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| FADE<sup>15+</sup> | 4 | 渐变类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| EXPLODE<sup>15+</sup> | 5 | 中心缩放类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| SLIDE_RIGHT<sup>15+</sup> | 6 | 右侧平移类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| SLIDE_BOTTOM<sup>15+</sup> | 7 | 底部平移类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 **说明：**
 >
@@ -523,9 +545,48 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
 | child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
 
+## NavDestinationTransition<sup>15+</sup>
+
+NavDestination自定义动画接口。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   |必填 | 说明 |
+| ----  | ---   | ---- |----- |
+| onTransitionEnd | Callback\<void> | 否 | 转场动画结束时的回调函数。 |
+| duration | number | 否 | 转场动画的持续时间，默认值为1000（毫秒）。 |
+| curve | [Curve](ts-appendix-enums.md#curve) | 否 | 动画的曲线类型，默认值为[Curve.EaseInOut](ts-appendix-enums.md#curve)。 |
+| delay | number | 否 | 转场动画的延迟。默认值为0。 |
+| event | Callback\<void> | 是 | 指定转场动效的闭包函数，系统会根据闭包中对组件UI状态的修改，生成对应的过渡动画。参见[animateTo](../js-apis-arkui-UIContext.md#animateto)中的event。 |
+
+## NavDestinationTransitionDelegate<sup>15+</sup>
+
+type NavDestinationTransitionDelegate = (operation: NavigationOperation, isEnter: boolean) => Array\<NavDestinationTransition> | undefined
+
+NavDestination自定义转场动画的代理函数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明                    |
+|------|--------|----|-----------------------|
+| operation | [NavigationOperation](ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是  | 当前页面转场的操作类型。 |
+| isEnter | boolean | 是  | 当前页面是否为入场页面。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | NavDestination页面的自定义动画集合。如果返回undefined则做系统默认动画。 |
+
 ## 示例
 
-### 示例1
+### 示例1（标题栏工具栏与可滚动类组件联动）
 
 以下示例主要演示NavDestination绑定可滚动容器组件来实现滚动内容时触发标题栏和工具栏显示隐藏的效果。
 
@@ -667,5 +728,388 @@ struct Index {
 }
 ```
 ![navdestination_bind_scrollable](figures/navdestination_bind_scrollable.gif)
+
+### 示例2（设置NavDestination自定义转场）
+
+以下示例主要演示NavDestination设置自定义转场动画属性[customTransition](#customtransition15)的效果。
+
+```ts
+@Entry
+@Component
+struct NavDestinationCustomTransition {
+  stack: NavPathStack = new NavPathStack()
+
+  @Builder
+  pageMap(name: string) {
+    if (name) {
+      NavDest()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.stack.pushPath({name: 'dest0'})
+  }
+
+  build() {
+    Navigation(this.stack) {
+      // empty
+    }
+    .navDestination(this.pageMap)
+    .hideNavBar(true)
+    .title('Main Page')
+    .titleMode(NavigationTitleMode.Mini)
+  }
+}
+
+declare type voidFunc = () => void;
+
+@Component
+struct NavDest {
+  @State name: string = 'NA'
+  @State destWidth: string = '100%'
+  stack: NavPathStack = new NavPathStack()
+  @State y: string = '0';
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('push next page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" })
+          })
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title(this.name)
+    .translate({ y: this.y })
+    .onReady((context) => {
+      this.name = context.pathInfo.name;
+      this.stack = context.pathStack;
+    })
+    .backgroundColor(this.name == 'PageOne' ? '#F1F3F5' : '#ff11dee5')
+    .customTransition(
+      (op: NavigationOperation, isEnter: boolean)
+        : Array<NavDestinationTransition> | undefined => {
+        console.log('[NavDestinationTransition]', 'reached delegate in frontend, op: ' + op + ', isEnter: ' + isEnter);
+
+        let transitionOneEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOne, empty now!'); }
+        let transitionOneFinishEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOneFinish, empty now!'); }
+        let transitionOneDuration: number = 500;
+        if (op === NavigationOperation.PUSH) {
+          if (isEnter) {
+            // ENTER_PUSH
+            this.y = '100%';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, push & isEnter');
+              this.y = '0';
+            }
+          } else {
+            // EXIT_PUSH
+            this.y = '0';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
+              this.y = '0';
+            }
+            transitionOneDuration = 450
+          }
+        } else if (op === NavigationOperation.POP) {
+          if (isEnter) {
+            // ENTER_POP
+            this.y = '0';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, pop & isEnter');
+              this.y = '0';
+            }
+          } else {
+            // EXIT_POP
+            this.y = '0';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, pop & !isEnter');
+              this.y = '100%';
+            }
+          }
+        } else {
+          console.log('[NavDestinationTransition]', '----- NOT-IMPL BRANCH of NAV-DESTINATION CUSTOM TRANSITION -----');
+        }
+
+        let transitionOne: NavDestinationTransition = {
+          duration: transitionOneDuration,
+          delay: 0,
+          curve: Curve.Friction,
+          event: transitionOneEvent,
+          onTransitionEnd: transitionOneFinishEvent
+        };
+
+        let transitionTwoEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionTwo, empty now!'); }
+        let transitionTwo: NavDestinationTransition = {
+          duration: 1000,
+          delay: 0,
+          curve: Curve.EaseInOut,
+          event: transitionTwoEvent,
+          onTransitionEnd: () => { console.log('[NavDestinationTransition]', 'reached Two\'s finish'); }
+        };
+
+        return [
+          transitionOne,
+          transitionTwo,
+        ];
+      })
+  }
+}
+```
+![navdestination_custom_transition](figures/navdestination_custom_transition.gif)
+
+### 示例3（设置指定的NavDestination系统转场）
+
+以下示例主要演示NavDestination设置系统转场动画[systemTransition](#systemtransition14)为Fade、Explode、SlideBottom与SlideRight时的转场效果。
+
+```ts
+@Entry
+@Component
+struct NavDestinationSystemTransition {
+  @Provide stack: NavPathStack = new NavPathStack()
+  @Provide homePageTransitionType: NavigationSystemTransitionType = NavigationSystemTransitionType.DEFAULT;
+
+  @Builder
+  pageMap(name: string) {
+    if (name === 'Fade') {
+      Fade()
+    } else if (name === 'Explode') {
+      Explode()
+    } else if (name === 'SlideRight') {
+      SlideRight()
+    } else if (name === 'SlideBottom') {
+      SlideBottom()
+    } else {
+      Dest()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.stack.pushPath({name: 'Dest'})
+  }
+
+  build() {
+    Navigation(this.stack) {
+      // empty
+    }
+    .navDestination(this.pageMap)
+    .hideNavBar(true)
+  }
+}
+
+@Component
+struct Dest {
+  @Consume stack: NavPathStack;
+  @Consume homePageTransitionType: NavigationSystemTransitionType;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      HomeBody()
+    }
+    .title('Navigation System Animation')
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(this.homePageTransitionType)
+  }
+}
+
+@Component
+struct Fade {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.FADE)
+  }
+}
+
+@Component
+struct Explode {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.EXPLODE)
+  }
+}
+
+@Component
+struct SlideRight {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.SLIDE_RIGHT)
+  }
+}
+
+@Component
+struct SlideBottom {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.SLIDE_BOTTOM)
+  }
+}
+
+@Component
+struct DestBody {
+  name: string = 'NA'
+
+  columnTextSize: number = 22
+  columnTextFontWeight: FontWeight = FontWeight.Bolder
+  columnWidth: string = '65%'
+  columnPadding: number = 22
+  columnMargin: number = 10
+  columnBorderRadius: number = 10
+
+  build() {
+    Column() {
+      Column()
+        .width('85')
+        .height(50)
+        .backgroundColor(Color.White)
+      Column() {
+        Text(this.name)
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+    }
+  }
+}
+
+@Component
+struct HomeBody {
+  @Consume stack: NavPathStack;
+  @Consume homePageTransitionType: NavigationSystemTransitionType;
+
+  columnTextSize: number = 22
+  columnTextFontWeight: FontWeight = FontWeight.Bolder
+  columnWidth: string = '85%'
+  columnPadding: number = 22
+  columnMargin: number = 10
+  columnBorderRadius: number = 10
+  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD
+
+  build() {
+    Column() {
+      Search({ value: 'Search' })
+        .width(this.columnWidth)
+
+      Column() {
+        Text('fade')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.FADE
+        this.stack.pushPath({name: 'Fade'})
+      })
+
+      Column() {
+        Text('explode')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE
+        this.stack.pushPath({name: 'Explode'})
+      })
+
+      Column() {
+        Text('slide right')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT
+        this.stack.pushPath({name: 'SlideRight'})
+      })
+
+      Column() {
+        Text('slide bottom')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM
+        this.stack.pushPath({name: 'SlideBottom'})
+      })
+    }
+  }
+}
+```
+![navdestination_fade](figures/navdestination_fade_transition.gif)
+![navdestination_explode](figures/navdestination_explode_transition.gif)
+![navdestination_slide_bottom](figures/navdestination_slide_bottom_transition.gif)
+![navdestination_slide_right](figures/navdestination_slide_right_transition.gif)
 
 NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。

@@ -539,6 +539,8 @@ WAPI认证方式的枚举。
 | DEFAULT | 1 | Default。Wifi6以下的wifi类别。 |
 | WIFI6 | 2 | Wifi6。 |
 | WIFI6_PLUS | 3 | Wifi6+。 |
+| WIFI7<sup>15+</sup> | 4 | Wifi7。 |
+| WIFI7_PLUS<sup>15+</sup> | 5 | Wifi7+。 |
 
 ## wifiManager.addCandidateConfig<sup>9+</sup>
 
@@ -1397,6 +1399,44 @@ isMeteredHotspot(): boolean
 	}
 ```
 
+
+## wifiManager.isHotspotActive<sup>15+</sup>
+
+isHotspotActive(): boolean
+
+热点是否已使能。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO
+
+**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | boolean | true:已使能，&nbsp;false:未使能。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
+
+**示例：**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.isHotspotActive();
+		console.info("result:" + ret);		
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 
 ## wifiManager.getP2pLinkedInfo<sup>9+</sup>

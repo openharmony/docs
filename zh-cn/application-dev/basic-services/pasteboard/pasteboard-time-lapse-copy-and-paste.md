@@ -172,7 +172,7 @@
    })
    ```
 
-4. 从系统剪贴板中读取这条text数据
+4. 从系统剪贴板中读取这条text数据。
 
    ```ts
    let GetPlainTextUnifiedData = (() => {

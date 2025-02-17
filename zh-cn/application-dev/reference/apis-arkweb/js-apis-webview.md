@@ -14422,6 +14422,397 @@ struct WebComponent {
 }
 ```
 
+## ProxySchemeFilter<sup>16+</sup>
+
+使用代理的请求的scheme信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称          | 值 | 说明                                      |
+| ------------- | -- |----------------------------------------- |
+| MATCH_ALL_SCHEMES | 0 |所有的scheme都会使用代理。|
+| MATCH_HTTP        | 1 |HTTP请求会使用代理。|
+| MATCH_HTTPS       | 2 |HTTPS请求会使用代理。|
+
+## ProxyConfig<sup>16+</sup>
+
+可以通过该类提供的接口对代理进行配置。
+
+### insertProxyRule<sup>16+</sup>
+
+insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
+
+插入一条代理规则，与schemeFilter匹配的URL都会使用指定代理。如果schemeFilter为空，所有URL都将使用指定代理。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| proxyRule      | string  | 是   | URL要使用的代理。 |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter16)  | 否   | 与schemeFilter匹配的URL会使用代理。默认值：MATCH_ALL_SCHEMES |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### insertDirectRule<sup>16+</sup>
+
+insertDirectRule(schemeFilter?: ProxySchemeFilter): void
+
+插入一条代理规则，指明符合schemeFilter条件的URL将直接连接到服务器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter16)  | 否   | 与schemeFilter匹配的URL会直接与服务器相连。默认值：MATCH_ALL_SCHEMES |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### insertBypassRule<sup>16+</sup>
+
+insertBypassRule(bypassRule: string): void
+
+插入一条bypass规则，指明哪些URL应该绕过代理并直接连接到服务器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| bypassRule     | string  | 是   | 与bypassRule匹配的URL会绕过代理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### bypassHostnamesWithoutPeriod<sup>16+</sup>
+
+bypassHostnamesWithoutPeriod(): void
+
+没有点字符的域名将跳过代理并直接连接到服务器。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### clearImplicitRules<sup>16+</sup>
+
+clearImplicitRules(): void
+
+默认情况下，如果某些主机名是本地IP地址或localhost地址，它们会绕过代理。调用此函数以覆盖默认行为，并强制将localhost或本地IP地址通过代理发送。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### enableReverseBypass<sup>16+</sup>
+
+enableReverseBypass(reverse: boolean): void
+
+反转bypass规则。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| reverse     | boolean  | 是   | 参数值默认是false，表示与[insertBypassRule](#insertbypassrule16)中的bypassRule匹配的URL会绕过代理，参数值为true时，表示与[insertBypassRule](#insertbypassrule16)中的bypassRule匹配的URL会使用代理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### getBypassRules<sup>16+</sup>
+
+getBypassRules(): Array\<string\>
+
+获取不使用代理的URL列表。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Array\<string\> | 不使用代理的URL列表。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### getProxyRules<sup>16+</sup>
+
+getProxyRules(): Array\<ProxyRule\>
+
+获取代理规则。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| Array\<[ProxyRule](#proxyrule16)\> | 代理规则。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### isReverseBypassEnabled<sup>16+</sup>
+
+isReverseBypassEnabled(): boolean
+
+获取[enableReverseBypass](#enablereversebypass16)的参数值，详见[enableReverseBypass](#enablereversebypass16)。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| boolean | [enableReverseBypass](#enablereversebypass16)的参数值。参数值为false，表示与[insertBypassRule](#insertbypassrule16)中的bypassRule匹配的URL会绕过代理，参数值为true时，表示与[insertBypassRule](#insertbypassrule16)中的bypassRule匹配的URL会使用代理。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+
+## ProxyRule<sup>16+</sup>
+
+[insertProxyRule](#insertproxyrule16)中使用的代理规则。
+
+### getSchemeFilter<sup>16+</sup>
+
+getSchemeFilter(): ProxySchemeFilter
+
+获取代理规则中的[ProxySchemeFilter](#proxyschemefilter16)信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| [ProxySchemeFilter](#proxyschemefilter16) | 代理规则中的[ProxySchemeFilter](#proxyschemefilter16)信息。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### getUrl<sup>16+</sup>
+
+getUrl(): string
+
+获取代理规则中的代理的URL信息。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型   | 说明                      |
+| ------ | ------------------------- |
+| string | 代理规则中的代理的Url信息。 |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+## OnProxyConfigChangeCallback<sup>16+</sup>
+
+type OnProxyConfigChangeCallback = () => void
+
+回调函数，回调成功表示代理设置成功。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+## ProxyController<sup>16+</sup>
+
+此类用于为应用程序设置代理。
+
+### applyProxyOverride<sup>16+</sup>
+
+static applyProxyOverride(proxyConfig: ProxyConfig, callback: OnProxyConfigChangeCallback): void
+
+设置应用中所有Web使用的代理配置，与[insertBypassRule](#insertbypassrule16)中插入的bypass规则匹配的URL将不会使用代理，而是直接向URL指定的源地址发起请求。代理设置成功后，不保证网络连接后会立即使用新的代理设置，在加载页面之前请等待监听器触发，这个监听器将在UI线程上被调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| proxyConfig     | [ProxyConfig](#proxyconfig16)  | 是   | 对代理的配置。 |
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback16)   | 是   | 代理设置成功的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**示例：**
+
+完整示例代码参考[removeProxyOverride](#removeproxyoverride16)。
+
+### removeProxyOverride<sup>16+</sup>
+
+static removeProxyOverride(callback: OnProxyConfigChangeCallback): void
+
+移除代理配置。移除代理配置后，不保证网络连接后会立即使用新的代理设置，在加载页面之前等待监听器，这个监听器将在UI线程上被调用。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型     |  必填  | 说明           |
+| ---------------| ------- | ---- | ------------- |
+| callback     | [OnProxyConfigChangeCallback](#onproxyconfigchangecallback16)   | 是   | 代理设置成功的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)说明文档。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+|  401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.  |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  proxyRules: webview.ProxyRule[] = [];
+
+  build() {
+    Row() {
+      Column() {
+        Button("applyProxyOverride").onClick(()=>{
+          let proxyConfig:webview.ProxyConfig = new webview.ProxyConfig();
+          //优先使用第一个代理配置https://proxy.XXX.com
+          //代理失败后会回落到直连服务器insertDirectRule
+          try {
+            proxyConfig.insertProxyRule("https://proxy.XXX.com", webview.ProxySchemeFilter.MATCH_ALL_SCHEMES);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          try {
+            proxyConfig.insertDirectRule(webview.ProxySchemeFilter.MATCH_HTTP);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          try {
+            proxyConfig.insertBypassRule("*.example.com");
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          proxyConfig.clearImplicitRules();
+          proxyConfig.bypassHostnamesWithoutPeriod();
+          try {
+            proxyConfig.enableReverseBypass(true);
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+          let bypassRules = proxyConfig.getBypassRules();
+          for (let i = 0; i < bypassRules.length; i++) {
+            console.log("bypassRules: " + bypassRules[i]);
+          }
+          this.proxyRules = proxyConfig.getProxyRules();
+          for (let i = 0; i < this.proxyRules.length; i++) {
+            console.log("SchemeFiletr: " + this.proxyRules[i].getSchemeFilter());
+            console.log("Url: " + this.proxyRules[i].getUrl());
+          }
+          let isReverseBypassRule = proxyConfig.isReverseBypassEnabled();
+          console.log("isReverseBypassRules: " + isReverseBypassRule);
+          try {
+            webview.ProxyController.applyProxyOverride(proxyConfig, () => {
+              console.log("PROXYCONTROLLER proxy changed");
+            });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Button("loadUrl-https").onClick(()=>{
+          this.controller.loadUrl("https://www.example.com")
+        })
+        Button("loadUrl-http").onClick(()=>{
+          this.controller.loadUrl("http://www.example.com")
+        })
+        Button("removeProxyOverride").onClick(()=>{
+          try {
+          webview.ProxyController.removeProxyOverride(() => {
+            console.log("PROXYCONTROLLER proxy changed");
+          });
+          } catch (error) {
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+          }
+        })
+        Web({ src: 'www.example.com', controller: this.controller})
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+
+```
+
 ## WebHttpBodyStream<sup>12+</sup>
 
 POST、PUT请求的数据体，支持BYTES、FILE、BLOB、CHUNKED类型的数据。注意本类中其他接口需要在[initialize](#initialize12)成功后才能调用。

@@ -65,7 +65,7 @@
 ### 搭建环境
 
 1. 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
-2. 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)。
+2. 将public-SDK更新到API 16或以上<!--Del-->，更新SDK的具体操作可参见[更新指南](../faqs/full-sdk-switch-guide.md)<!--DelEnd-->。
 3. 用USB线缆将两台调测设备（设备A和设备B）连接到PC。
 4. 打开设备A和设备B的蓝牙，互相识别，实现组网。
 
@@ -270,7 +270,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
 #### 注册事件监听
 
 在应用创建会话成功并获得sessionId后，开发者可调用on()方法进行对应事件的监听，通过触发回调函数的方式通知监听者，以便执行对应业务。
-
+<!--RP1-->
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
@@ -290,7 +290,7 @@ hidumper -s 4700 -a "buscenter -l remote_device_info"
   abilityConnectionManager.on("receiveImage", this.sessionId,(callbackInfo) => {
     hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
   });
-  ```
+<!--RP1End-->  ```
 
 #### 发送数据
 

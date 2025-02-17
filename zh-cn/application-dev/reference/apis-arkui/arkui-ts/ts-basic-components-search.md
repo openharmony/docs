@@ -66,7 +66,7 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 placeholderColor(value: ResourceColor)
 
-设置placeholder文本颜色。
+设置placeholder文本颜色，wearable设备上默认值为：'#99ffffff'。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,6 +84,8 @@ placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
+wearable设备上大小为：18px
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -99,6 +101,8 @@ placeholderFont(value?: Font)
 textFont(value?: Font)
 
 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
+
+wearable设备上默认字体大小为：18fp
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -181,6 +185,8 @@ cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 fontColor(value: ResourceColor)
 
 设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
+
+wearable设备上默认值为：'#dbffffff'
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -618,13 +624,13 @@ keyboardAppearance(appearance: KeyboardAppearance)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
-### stopBackPress<sup>16+</sup>
+### stopBackPress<sup>15+</sup>
 
-stopBackPress(isStopped: boolean)
+stopBackPress(isStopped: Optional\<boolean>)
 
 设置是否阻止返回键向其它组件或应用侧传递。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -632,7 +638,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isStopped | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## IconOptions<sup>10+</sup>对象说明
 
@@ -926,6 +932,8 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 在文本内容将要发生变化时，触发该回调。
 
+onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -934,7 +942,7 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
 
 ## SearchController
 
@@ -1807,48 +1815,47 @@ export struct TextAreaExample11 {
   @State minFontScale: number = 0.85;
   @State maxFontScale: number = 2;
   @State changeValue: string = 'abcde';
-  @State currentFontSizeScale : string = "";
-  async setFontScale(scale: number): Promise<void> {
-    let configInit: Configuration = {
-      fontSizeScale: scale
-    };
-    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
-      if (!err) {
-        this.currentFontSizeScale = scale.toString();
-      }
-    });
-  }
 
   build() {
     Column() {
       Column({ space: 30 }) {
-        Text("字体倍数：" + this.currentFontSizeScale)
-        Search({ value: this.changeValue,
-          placeholder: 'Type to search...'
+        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
+        TextArea({
+          placeholder: 'The text area can hold an unlimited amount of text. input your word...',
         })
-          .minFontScale(this.minFontScale)
-          .maxFontScale(this.maxFontScale)
+        //设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
+          .minFontScale(0.85)
+          //设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
+          .maxFontScale(2)
       }.width('100%')
-        
-      Row(){
-        Button("2倍").onClick(() => {
-          this.setFontScale(2)
-        }).alignSelf(ItemAlign.Start)
-        Button("1倍")
-          .margin({ left: 20 })
-          .onClick(() => {
-            this.setFontScale(1)
-          }).alignSelf(ItemAlign.Start)
-        Button("0.85")
-          .margin({ left: 20 })
-          .onClick(() => {
-            this.setFontScale(0.85)
-          }).alignSelf(ItemAlign.Start)
-      }.margin({ top: 30 })
     }
   }
 }
 ```
 
-![searchMaxAndMinFontScale](figures/searchMaxAndMinFontScale.gif)
+```ts
+路径：AppScope/resources/base，新建文件夹profile。
+路径：AppScope/resources/base/profile，新建文件configuration.json。
+路径：AppScope/resources/base/profile/configuration.json，增加如下代码。
+{
+  "configuration":{
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
+}
+}
+```
 
+```ts
+路径：AppScope/app.json5，修改如下代码。
+{
+  "app": {
+    "bundleName": "com.example.myapplication",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "configuration": "$profile:configuration"
+  }
+}
+```

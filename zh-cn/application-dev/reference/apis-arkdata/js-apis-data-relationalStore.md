@@ -63,7 +63,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14800010  | Invalid database path.   |
 | 14800011  | Database corrupted.    |
 | 14801001  | The operation is supported in the stage model only.    |
-| 14801002  | Invalid data ground ID.     |
+| 14801002  | Invalid data group ID.   |
 | 14800017  | Config changed.   |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error.    |
@@ -170,7 +170,7 @@ getRdbStore目前不支持多线程并发操作。
 | 14800010  | Invalid database path. |
 | 14800011  | Database corrupted.  |
 | 14801001  | The operation is supported in the stage model only.                               |
-| 14801002  | Invalid data ground ID.                             |
+| 14801002  | Invalid data group ID.                             |
 | 14800017  | Config changed. |
 | 14800020  | The secret key is corrupted or lost.   |
 | 14800021  | SQLite: Generic error. |
@@ -407,7 +407,7 @@ deleteRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback\<v
 | 14800000  | Inner error.        |
 | 14800010  | Failed to open or delete database by invalid database path.        |
 | 14801001  | The operation is supported in the stage model only.         |
-| 14801002  | Invalid data ground ID.        |
+| 14801002  | Invalid data group ID.        |
 
 **示例：**
 
@@ -497,7 +497,7 @@ deleteRdbStore(context: Context, config: StoreConfig): Promise\<void>
 | 14800000  | Inner error.      |
 | 14800010  | Invalid database path.   |
 | 14801001  | The operation is supported in the stage model only.   |
-| 14801002  | Invalid data ground ID.   |
+| 14801002  | Invalid data group ID.   |
 
 **示例：**
 
@@ -5079,7 +5079,11 @@ createTransaction(options?: TransactionOptions): Promise&lt;Transaction&gt;
 
 创建一个事务对象并开始事务，使用Promise异步回调。
 
-与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多。如果已无法优化，可以等其它事务释放后再次尝试创建事务对象。
+与[beginTransaction](#begintransaction)的区别在于：createTransaction接口会返回一个事务对象，不同事务对象之间是隔离的。使用事务对象进行插入、删除或更新数据等操作，无法被注册数据变更通知[on('dataChange')](#ondatachange)监听到。
+
+一个store最多支持同时存在四个事务对象，超过后会返回14800015错误码，此时需要检查是否持有事务对象时间过长或并发事务过多，若确认无法通过上述优化解决问题，建议等待现有事务释放后，再尝试新建事务对象。
+
+优先使用createTransaction，不再推荐使用beginTransaction。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -7211,7 +7215,7 @@ attach不能并发调用，可能出现未响应情况，报错14800015，需要
 | 14800015  | The database does not respond.                 |
 | 14800016  | The database alias already exists.                |
 | 14801001  | The operation is supported in the stage model only.                 |
-| 14801002  | Invalid data ground ID.                |
+| 14801002  | Invalid data group ID.                |
 | 14800021  | SQLite: Generic error. |
 | 14800022  | SQLite: Callback routine requested an abort. |
 | 14800023  | SQLite: Access permission denied. |

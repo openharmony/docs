@@ -817,7 +817,7 @@ try {
 
 addContinuousEvent(time: number, duration: number, options?: ContinuousParam): VibratorPatternBuilder;
 
-添加长振或短振事件的方法成VibratorPattern对象。
+添加长振事件的方法成VibratorPattern对象。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -825,11 +825,11 @@ addContinuousEvent(time: number, duration: number, options?: ContinuousParam): V
 
 **参数**：
 
-| 参数名   | 类型            | 必填 | 说明                     |
-| -------- | --------------- | ---- | ------------------------ |
-| time     | number          | 是   | 长期振动的起始时间。     |
-| duration | number          | 是   | 长期振动的持续时间。     |
-| options  | ContinuousParam | 否   | 可选参数，可选参数对象。 |
+| 参数名   | 类型                                  | 必填 | 说明                     |
+| -------- | ------------------------------------- | ---- | ------------------------ |
+| time     | number                                | 是   | 长期振动的起始时间。     |
+| duration | number                                | 是   | 长期振动的持续时间。     |
+| options  | [ContinuousParam](#continuousparam16) | 否   | 可选参数，可选参数对象。 |
 
 **错误码**：
 
@@ -878,7 +878,7 @@ try {
 
 addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilder;
 
-添加长振或短振事件的方法成VibratorPattern对象。
+添加短振事件的方法成VibratorPattern对象。
 
 **需要权限**：ohos.permission.VIBRATE
 
@@ -886,10 +886,10 @@ addTransientEvent(time: number, options?: TransientParam): VibratorPatternBuilde
 
 **参数**：
 
-| 参数名  | 类型            | 必填 | 说明                     |
-| ------- | --------------- | ---- | ------------------------ |
-| time    | number          | 是   | 长期振动的起始时间。     |
-| options | ContinuousParam | 否   | 可选参数，可选参数对象。 |
+| 参数名  | 类型                                | 必填 | 说明                     |
+| ------- | ----------------------------------- | ---- | ------------------------ |
+| time    | number                              | 是   | 长期振动的起始时间。     |
+| options | [TransientParam](#transientparam16) | 否   | 可选参数，可选参数对象。 |
 
 **错误码**：
 
@@ -1106,10 +1106,10 @@ try {
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | eventType | VibratorEventType               | 是   | 振动事件类型。                                               |
 | time      | number                          | 是   | 振动起始时间。                                               |
-| duration  | number                          | 否   | 可选参数，表示振动持续时间，取值范围为0-5000，短振默认值为35，长振默认值为1000。 |
+| duration  | number                          | 否   | 可选参数，表示振动持续时间，取值范围为0-5000，短振默认值为48，长振默认值为1000。 |
 | intensity | number                          | 否   | 可选参数，表示振动强度，取值范围为0-100，省略时默认值为100。 |
 | frequency | number                          | 否   | 可选参数，表示振动频率，取值范围为0-100，省略时默认值为50。  |
-| index     | number                          | 否   | 可选参数，表示通道编号，取值为0，1，2，省略时默认值为0。     |
+| index     | number                          | 否   | 可选参数，表示通道编号，省略时默认值为0。                    |
 | points    | Array&lt;VibratorCurvePoint&gt; | 否   | 可选参数，表示振动调节曲线数组。                             |
 
 ## VibratorPattern<sup>16+</sup>

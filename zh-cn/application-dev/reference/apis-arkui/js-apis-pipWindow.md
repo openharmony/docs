@@ -1015,3 +1015,92 @@ off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 ```ts
 pipController.off('controlEvent', () => {});
 ```
+
+### on('pipWindowSizeChange')<sup>15+</sup>
+
+on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
+
+开启画中画窗口尺寸变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型                                          | 必填    | 说明                                                |
+|----------|---------------------------------------------|-------|---------------------------------------------------|
+| type     | string                                      | 是     | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。 |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)> | 是     | 回调函数。返回当前画中画窗口的尺寸。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |    
+
+**示例：**
+
+```ts
+try {
+  pipcontroller.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
+    console.info('Succeeded in enabling the listener for pip window size changes. size: ' + JSON.stringify(size));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('pipWindowSizeChange')<sup>15+</sup>
+
+off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
+
+关闭画中画窗口尺寸变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型         | 必填 | 说明                                                                  |
+|----------|------------|----|---------------------------------------------------------------------|
+| type     | string     | 是  | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。                         |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)> | 否  | 回调函数。返回当前画中画窗口的尺寸。如果传入参数，则关闭该监听。如果未传入参数，解除type为'pipWindowSizeChange'的所有回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |    
+
+**示例：**
+
+```ts
+const callback = (size: PiPWindow.PiPWindowSize) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  pipcontroller.on('pipWindowSizeChange', callback);
+} catch (exception) {
+  console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
+try {
+  // 关闭指定callback的监听
+  pipcontroller.off('pipWindowSizeChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  pipcontroller.off('pipWindowSizeChange');
+} catch (exception) {
+  console.error(`Failed to disable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```

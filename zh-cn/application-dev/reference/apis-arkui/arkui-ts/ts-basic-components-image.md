@@ -131,15 +131,17 @@ objectFit(value: ImageFit)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------- |
 | value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 图片的填充效果。<br/>默认值：ImageFit.Cover |
 
-### imageMatrix<sup>16+</sup>
+### imageMatrix<sup>15+</sup>
 
 imageMatrix(matrix: ImageMatrix)
 
 设置图片的变换矩阵。svg类型图源不支持该属性。
 
-设置resizable属性时，该属性设置不生效。
+设置resizable、objectRepeat、orientation属性时，该属性设置不生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+该属性只针对图源做处理，不会触发Image组件的回调事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -289,19 +291,19 @@ fillColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 设置填充颜色。  <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。|
 
-### fillColor<sup>16+</sup>
+### fillColor<sup>15+</sup>
 
 fillColor(value: ResourceColor|ColorContent)
 
-设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent16)类型。
+设置填充颜色，设置后填充颜色会覆盖在图片上。仅对svg图源生效，设置后会替换svg图片中所有可绘制元素的填充颜色。如需对png图片进行修改颜色，可以使用[colorFilter](#colorfilter9)。如果想重置填充颜色可以传入[ColorContent](#colorcontent15)类型。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -309,7 +311,7 @@ fillColor(value: ResourceColor|ColorContent)
 
 | 参数名 | 类型                                       | 必填 | 说明           |
 | ------ | ------------------------------------------ | ---- | -------------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent16) | 是   | 设置填充颜色。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)\|[ColorContent](#colorcontent15) | 是   | 设置填充颜色。 <br/>**说明：**<br/> 默认不对组件进行填充。当传入异常值时，系统将使用默认的主题色：浅色模式下为黑色，深色模式下为白色。 |
 
 ### autoResize
 
@@ -672,11 +674,11 @@ type DrawingLattice = Lattice
 | ------ | ---------- |
 | [Lattice](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#lattice12) | 返回一个矩阵网格对象。 |
 
-## ColorContent<sup>16+</sup>
+## ColorContent<sup>15+</sup>
 
 指定颜色填充内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1514,3 +1516,49 @@ struct Index {
 ```
 
 ![objectRepeatExample](figures/objectRepeatExample.png)
+
+### 示例15（设置SVG图片的填充颜色）
+
+该示例通过[fillColor](#fillcolor15)为SVG图片设置不同颜色的填充效果。
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Text("不设置fillColor")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+      Text("fillColor传入ColorContent.ORIGIN")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(ColorContent.ORIGIN)
+      Text("fillColor传入Color.Blue")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(Color.Blue)
+      Text("fillColor传入undefined")
+      Image($r("app.media.svgExample"))
+        .height(100)
+        .width(100)
+        .objectFit(ImageFit.Contain)
+        .borderWidth(1)
+        .fillColor(undefined)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![fillColorExample](figures/fillColorExample.png)

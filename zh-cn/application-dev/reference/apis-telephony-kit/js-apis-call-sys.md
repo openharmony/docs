@@ -7,7 +7,7 @@
 >**说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.call (拨打电话)](js-apis-call.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.telephony.call (拨打电话)](js-apis-call.md)。
 
 
 ## 导入模块
@@ -4401,7 +4401,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                   |
 
 **返回值：**
@@ -4504,7 +4504,7 @@ getVoNRState\(slotId: number\): Promise\<VoNRState\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 
 **返回值：**
 
@@ -4605,7 +4605,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 | 参数名      | 类型                           | 必填 | 说明                                        |
 | ----------- | ----------------------------- | ---- | ------------------------------------------- |
-| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2。     |
+| slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2     |
 
 **返回值：**
 
@@ -5714,7 +5714,7 @@ setDeviceDirection\(callId: number, deviceDirection: DeviceDirection\): Promise\
 | 参数名 | 类型                                             | 必填 | 说明           |
 | ------ | ----------------------------------------------- | ---- | -------------- |
 | callId | number                                          | 是   | 呼叫Id。可以通过订阅callDetailsChange事件获得。|
-| deviceDirection  | [DeviceDirection](#devicedirection11) | 是   | 画面方向。该参数根据设备方向获取     |
+| deviceDirection  | [DeviceDirection](#devicedirection11) | 是   | 画面方向。该参数根据设备方向获取。     |
 
 **返回值：**
 
