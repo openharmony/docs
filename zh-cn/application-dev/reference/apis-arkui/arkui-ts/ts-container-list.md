@@ -50,7 +50,7 @@
 
 ## 接口
 
-List(value?:{space?: number&nbsp;|&nbsp;string, initialIndex?: number, scroller?: Scroller})
+List(value?:{initialIndex?: number, space?: number&nbsp;|&nbsp;string, scroller?: Scroller})
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
