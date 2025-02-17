@@ -1,6 +1,6 @@
 # 入门
 <!--Del-->
-- 快速入门
+- 快速入门<!--quick-start-->
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
 <!--DelEnd-->
