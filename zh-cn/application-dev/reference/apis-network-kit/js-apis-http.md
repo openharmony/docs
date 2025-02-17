@@ -455,6 +455,8 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 **需要权限**：ohos.permission.INTERNET
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -528,6 +530,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -625,6 +629,8 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 根据URL地址，发起HTTP网络请求并返回流式响应，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -836,6 +842,8 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 
 订阅HTTP Response Header 事件，只能触发一次。触发之后，订阅器就会被移除。使用callback方式作为异步方法。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -861,6 +869,8 @@ httpRequest.once("headersReceive", (header: Object) => {
 on(type: "dataReceive", callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -892,6 +902,8 @@ off(type: "dataReceive", callback?: Callback\<ArrayBuffer\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -918,6 +930,8 @@ httpRequest.off("dataReceive");
 on(type: "dataEnd", callback: Callback\<void\>): void
 
 订阅HTTP流式响应数据接收完毕事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -949,6 +963,8 @@ off(type: "dataEnd", callback?: Callback\<void\>): void
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -975,6 +991,8 @@ httpRequest.off("dataEnd");
 on(type: 'dataReceiveProgress', callback: Callback\<DataReceiveProgressInfo\>): void
 
 订阅HTTP流式响应数据接收进度事件。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1005,6 +1023,8 @@ off(type: 'dataReceiveProgress', callback?: Callback\<DataReceiveProgressInfo\>)
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1226,6 +1246,8 @@ request方法回调函数的返回值类型。
 ## DataReceiveProgressInfo<sup>11+</sup>
 
 数据接收信息
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
