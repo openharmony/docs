@@ -9239,7 +9239,7 @@ struct SnapshotExample {
 }
 ```
 
-### getWithUniqueId<sup>16+</sup>
+### getWithUniqueId<sup>15+</sup>
 
 getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
@@ -9249,7 +9249,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -9337,7 +9337,7 @@ struct SnapshotExample {
 }
 ```
 
-### getSyncWithUniqueId<sup>16+</sup>
+### getSyncWithUniqueId<sup>15+</sup>
 
 getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
@@ -9347,7 +9347,7 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 >
 > 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
