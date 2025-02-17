@@ -17,10 +17,10 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [width](#width) | 宽度，单位为像素 | 
-| int32_t [height](#height) | 高度，单位为像素 | 
-| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) [colorType](#colortype) | 颜色类型[OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) | 
-| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) [alphaType](#alphatype) | 透明度类型[OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) | 
+| int32_t [width](#width) | 宽度，单位为像素。 | 
+| int32_t [height](#height) | 高度，单位为像素。 | 
+| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) [colorType](#colortype) | 颜色类型[OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)。 | 
+| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) [alphaType](#alphatype) | 透明度类型[OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)。 | 
 
 
 ## 结构体成员变量说明
