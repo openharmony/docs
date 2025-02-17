@@ -49,3 +49,37 @@ struct SlideExample {
   }
 }
 ```
+
+## cl.arkui.2 Tabs组件TabBar的显示和隐藏动效变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Tabs组件的TabBar上滑隐藏，下滑消失，2s不操作后自动显示。
+  
+- 变更后：Tabs组件的TabBar上滑隐藏，下滑消失，2s不操作后不会自动显示。
+
+**起始API Level**
+
+13
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**变更的接口/组件**
+
+UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
+
+**适配指导**
+
+默认行为变更，无需适配。
