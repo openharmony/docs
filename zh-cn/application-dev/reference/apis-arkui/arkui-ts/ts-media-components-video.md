@@ -204,7 +204,7 @@ enableShortcutKey(enabled: boolean)
 
 ### onStart
 
-onStart(event:&nbsp;VoidCallback)
+onStart(event: () => void)
 
 播放时触发该事件。
 
@@ -212,15 +212,9 @@ onStart(event:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
-
-| 参数名 | 类型                                           | 必填 | 说明                                 |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放的回调函数。        |
-
 ### onPause
 
-onPause(event:&nbsp;VoidCallback)
+onPause(event: () => void)
 
 暂停时触发该事件。
 
@@ -228,15 +222,9 @@ onPause(event:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
-
-| 参数名 | 类型                                           | 必填 | 说明                                 |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频暂停的回调函数。        |
-
 ### onFinish
 
-onFinish(event:&nbsp;VoidCallback)
+onFinish(event: () => void)
 
 播放结束时触发该事件。
 
@@ -244,15 +232,9 @@ onFinish(event:&nbsp;VoidCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
-
-| 参数名 | 类型                                           | 必填 | 说明                                 |
-| ------ | --------------------------------------------- | ---- | ----------------------------------- |
-| event  | [VoidCallback](ts-types.md#voidcallback12)    | 是   | 视频播放结束的回调函数。        |
-
 ### onError
 
-onError(event:()&nbsp;=&gt;&nbsp;void)
+onError(event: () => void)
 
 播放失败时触发该事件。
 
@@ -272,7 +254,7 @@ onStop(event: Callback&lt;void&gt;)
 
 ### onPrepared
 
-onPrepared(callback: Callback\<PreparedInfo>)
+onPrepared(callback: (event: { duration: number }) => void)
 
 视频准备完成时触发该事件。
 
@@ -284,11 +266,11 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| callback | Callback\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
+| duration | number | 是   | 当前视频的时长，单位为秒。 |
 
 ### onSeeking
 
-onSeeking(callback: Callback\<PlaybackInfo>)
+onSeeking(callback: (event: { time: number }) => void)
 
 操作进度条过程时上报时间信息。
 
@@ -300,11 +282,11 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
 
 ### onSeeked
 
-onSeeked(callback: Callback\<PlaybackInfo>)
+onSeeked(callback: (event: { time: number }) => void)
 
 操作进度条完成后，上报播放时间信息。
 
@@ -316,11 +298,11 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
 
 ### onUpdate
 
-onUpdate(callback: Callback\<PlaybackInfo>)
+onUpdate(callback: (event: { time: number }) => void)
 
 播放进度变化时触发该事件。
 
@@ -332,11 +314,11 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| time   | number | 是   | 当前视频播放的进度，单位为秒。 |
 
 ### onFullscreenChange
 
-onFullscreenChange(callback: Callback\<FullscreenInfo>)
+onFullscreenChange(callback: (event: { fullscreen: boolean }) => void)
 
 在全屏播放与非全屏播放状态之间切换时触发该事件。
 
@@ -348,43 +330,7 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
-
-### FullscreenInfo<sup>14+</sup>对象说明
-
-用于描述当前视频是否进入全屏播放状态。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
-
-### PreparedInfo<sup>14+</sup>对象说明
-
-用于描述当前视频的时长。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
-
-### PlaybackInfo<sup>14+</sup>对象说明
-
-用于描述当前视频播放的进度。
-
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 参数名       | 类型    | 必填 | 说明                         |
-| ----------- | ------- | ---- | ---------------------------- |
-| time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
+| fullscreen | boolean | 是   | 为true表示进入全屏播放状态，为false则表示非全屏播放。 |
 
 ## VideoController
 
