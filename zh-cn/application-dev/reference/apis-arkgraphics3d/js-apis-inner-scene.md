@@ -636,7 +636,7 @@ importScene(name: string, scene: Scene, parent: Node | null): Node
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| name | string | 是 | 导入结点后的名称。|
+| name | string | 是 | 导入结点后的名称，由开发者自定义，无特殊要求。|
 | scene | [Scene](#scene-1) | 是 | 被导入的场景。|
 | parent | [Node](js-apis-inner-scene-nodes.md#node) \| null | 是 | 被导入场景在新场景中的父结点。|
 
