@@ -37,7 +37,7 @@ enable(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息          |
 | -------- | -----------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.      |
+| 401 | Parameter error.      |
 
 
 **示例**：
@@ -86,7 +86,7 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息          |
 | -------- | -----------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.      |
+| 401 | Parameter error.      |
 
 **示例**：
 
@@ -127,9 +127,9 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.    |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
-| 4400002  | Failed to operate the input device.   |
+| 4400002  | Screen hop failed.   |
 
 **示例**：
 
@@ -181,9 +181,9 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.    |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.          |
-| 4400002  | Failed to operate the input device.              |
+| 4400002  | Screen hop failed.              |
 
 **示例**：
 
@@ -224,7 +224,7 @@ stop(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息           |
 | -------- | ----------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.  |
+| 401      | Parameter error.  |
 
 **示例**：
 
@@ -297,7 +297,7 @@ getState(deviceDescriptor: string, callback: AsyncCallback<{ state: boolean }>):
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.  |
+| 401      | Parameter error.  |
 
 
 **示例**：
@@ -346,7 +346,7 @@ getState(deviceDescriptor: string): Promise<{ state: boolean }>
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.  |
+| 401      | Parameter error.  |
 
 
 **示例**：
@@ -388,7 +388,7 @@ on(type: 'cooperation', callback: AsyncCallback<{ deviceDescriptor: string, even
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.  |
+| 401      | Parameter error.  |
 
 
 **示例**：
@@ -428,7 +428,7 @@ off(type: 'cooperation', callback?: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息          |
 | -------- | ----------------- |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.  |
+| 401      | Parameter error.  |
 
 
 **示例**：
