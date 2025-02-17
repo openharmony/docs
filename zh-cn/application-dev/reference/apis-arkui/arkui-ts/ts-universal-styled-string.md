@@ -16,6 +16,8 @@
 
 ## StyledString
 
+## constructor
+
 constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -50,7 +52,7 @@ getString(): string
 **返回值：**
 
 | 类型              |说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | string | 属性字符串文本内容。<br/>**说明：** <br/>当属性字符串中包含图片时，其返回的结果用空格表示。 |
 
 ### equals
@@ -72,7 +74,7 @@ equals(other: StyledString): boolean
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | boolean | 两个属性字符串是否相等。<br/>**说明：** <br/>当属性字符串的文本及样式均一致，视为相等。<br/>不比较GestureStyle，当属性字符串配置了不同事件，文本和其他样式相同时，亦视为相等。<br/>当比较CustomSpan时，比较的是地址，地址相等，视为相等。 |
 
 ### subStyledString
@@ -95,7 +97,7 @@ subStyledString(start: number , length?: number): StyledString
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | [StyledString](#styledstring) | 子属性字符串。<br/>**说明：** <br/>当start为合法入参时，length的默认值是被查询属性字符串对象的长度与start的值的差。<br/>当start和length越界或者必填传入undefined时，会抛出异常。|
 
 **错误码**：
@@ -127,7 +129,7 @@ getStyles(start: number , length: number , styledKey?: StyledStringKey): Array\<
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | Array<[SpanStyle](#spanstyle对象说明)> | 各样式对象的数组。<br/>**说明：** <br/>当指定范围属性字符串未设置任何样式，则返回空数组。<br/>当start和length越界或者必填传入undefined时，会抛出异常；<br/>当styledKey传入异常值或undefined时，会抛出异常。<br/>当styledKey为CustomSpan时，返回的是创建CustomSpan时传入的样式对象，即修改该样式对象也会影响实际的显示效果。 |
 
 **错误码**：
@@ -815,7 +817,7 @@ abstract onMeasure(measureInfo: CustomSpanMeasureInfo): CustomSpanMetrics
 **返回值：**
 
 | 类型              |       说明       |
-| ------- | --------------------------------- | 
+| ------- | --------------------------------- |
 | [CustomSpanMetrics](#customspanmetrics对象说明) | 自定义绘制Span的尺寸信息。<br/>**说明：** <br/>最终的CustomSpan的高度是由当前Text组件的行高所决定的。当height不传值，则默认取Text组件的fontSize的值作为CustomSpan的高度；当height大于当前行的其他子组件的高度时，此时height即为Text组件的行高。 |
 
 ### onDraw
