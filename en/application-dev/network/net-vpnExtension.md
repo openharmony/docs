@@ -45,7 +45,7 @@ Next, you need to configure, start, and stop the VPN in the created **VpnExtensi
 
 - Establish a VPN tunnel. The following uses the UDP tunnel as an example.
 - Use [VpnConnection.protect](../reference/apis-network-kit/js-apis-net-vpnExtension.md#protect) to enable protection for the UDP tunnel.
-- Construct VPN Config parameters. For details, see [VPN Config Parameters](#vpn-config Parameters).
+- Construct VPN Config parameters. For details, see [VPN Config Parameters](#description-of-vpn-config-parameters).
 - Use [VpnConnection.create](../reference/apis-network-kit/js-apis-net-vpnExtension.md#create) to establish a VPN connection.
 - Process data of the virtual network interface card (vNIC), such as reading or writing data.
 
