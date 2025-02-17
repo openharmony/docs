@@ -421,7 +421,7 @@ createScene(uri?: ResourceStr): Promise\<Scene>
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
-| uri? | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否 | 资源路径，默认值为undefined。 |
+| uri | [ResourceStr](../apis-arkui/arkui-ts/ts-types.md#resourcestr) | 否 | 资源路径，默认值为undefined。 |
 
 **返回值：**
 | 类型 | 说明 |
