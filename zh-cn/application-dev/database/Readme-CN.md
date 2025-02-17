@@ -32,7 +32,7 @@
   - 多对多跨应用数据共享 
     - [通过标准化数据通路实现数据共享](unified-data-channels.md)
 - 智慧化数据构建与检索
-  - [智慧数据平台概述](aip-data-intelligence-overview.md)
+  - [智慧化数据构建与检索概述](aip-data-intelligence-overview.md)
   - [应用数据向量化](aip-data-intelligence-embedding.md)
 - [RelationalStore开发指导 (C/C++)](native-relational-store-guidelines.md)
 - [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
