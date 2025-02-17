@@ -126,7 +126,7 @@
   - [系统电源管理错误码](errorcode-power.md)
   - [账号管理错误码](errorcode-account.md)
   - [升级错误码](errorcode-update.md)
-  - [打印服务错误码](reference/apis-basic-services-kit/errorcode-print.md)
+  - [打印服务错误码](errorcode-print.md)
   <!--Del--> 
   - [锁屏服务错误码](errorcode-screenlock.md)
   - [设备证明错误码](errorcode-deviceAttest.md)
