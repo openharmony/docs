@@ -7725,6 +7725,22 @@ import { window, UIContext } from '@kit.ArkUI';
 }
 ```
 
+### cancelDataLoading<sup>16+</sup>
+
+cancelDataLoading(key: string): void
+
+当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -10042,19 +10058,3 @@ struct Index {
   }
 }
 ```
-
-## cancelDataLoading<sup>16+</sup>
-
-cancelDataLoading(key: string): void
-
-当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
-
-**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明                                                         |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
