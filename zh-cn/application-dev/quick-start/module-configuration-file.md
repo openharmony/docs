@@ -1126,16 +1126,16 @@ fileContextMenu标签示例
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| abilityName | 表示当前右键菜单对应的需要拉起的ability名称。 | 字符串 | 不可缺省 |
-| menuItem | 右键菜单显示的信息。 | 资源id | 不可缺省 |
-| menuHandler | 一个ability可以创建多个右键菜单， 用该字段来区分用户拉起的不同右键菜单项。该字段在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省 |
-| menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省 |
+| abilityName | 表示当前右键菜单对应的需要拉起的ability名称。 | 字符串 | 不可缺省。 |
+| menuItem | 右键菜单显示的信息。 | 资源id | 不可缺省。 |
+| menuHandler | 一个ability可以创建多个右键菜单， 用该字段来区分用户拉起的不同右键菜单项。该字段在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省。 |
+| menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省。 |
 
 **表27** menuContext标签配置说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| menuKind | 表示单击如下类型时会触发右键菜单。取值范围如下：<br/>-&nbsp;0：空白处<br/>-&nbsp;1：文件<br/>-&nbsp;2：文件夹<br/>-&nbsp;3：文件和文件夹 | 数值 | 不可缺省 |
+| menuKind | 表示单击如下类型时会触发右键菜单。取值范围如下：<br/>-&nbsp;0：空白处<br/>-&nbsp;1：文件<br/>-&nbsp;2：文件夹<br/>-&nbsp;3：文件和文件夹 | 数值 | 不可缺省。 |
 | menuRule | 表示采用什么方式选择文件或文件夹时，会触发右键菜单。取值范围如下：<br/>-&nbsp;single：单选<br/>-&nbsp;multi：多选<br/>-&nbsp;both：单选或多选 | 字符串 | 仅当menuKind为1或2时，才会读取该字段，此时不可缺省。 |
 | fileSupportType | 表示当选中的文件列表里包含指定的文件类型时，显示右键菜单。<br/>当该字段取值为["*"]时，将会读取fileNotSupportType字段。<br/>当该字段取值为[]时，将不做任何处理。 | 字符串数组 | 仅当menuKind为1时，才会读取该字段，此时不可缺省。 |
 | fileNotSupportType | 	表示当选中的文件列表里包含这些文件类型时，不显示该右键菜单。<br/>仅当menuKind为1、且fileSupportType为["*"]时，才会读取该字段。 | 字符串数组 | 可缺省，缺省值为空。 |
@@ -1200,7 +1200,7 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 | startWindowBrandingImage | 标识当前UIAbility组件启动页面品牌标识资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
 | startWindowBackgroundColor | 标识当前UIAbility组件启动页面背景颜色资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 不可缺省。 |
 | startWindowBackgroundImage | 标识当前UIAbility组件启动页面背景图片资源文件的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
-| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式的索引，取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省值为空。 |
+| startWindowBackgroundImageFit | 标识当前UIAbility组件启动页面背景图像适应方式，支持的取值如下：<br/>-&nbsp;Contain：按照宽高比进行缩小或放大，图片完全显示在显示边界内。<br/>-&nbsp;Cover：按照宽高比进行缩小或放大，图片两边都大于或等于显示边界。<br/>-&nbsp;Auto：自适应显示。<br/>-&nbsp;Fill：不按照宽高比进行放大或缩小，图片充满显示边界。<br/>-&nbsp;ScaleDown：按照宽高比显示，图片缩小或保持不变。<br/>-&nbsp;None：保持原有尺寸显示。 | 字符串 | 可缺省，缺省值为Cover。 |
 
 resources/base/profile路径下的start_window.json资源文件示例如下：
 ```json
@@ -1210,6 +1210,6 @@ resources/base/profile路径下的start_window.json资源文件示例如下：
   "startWindowBrandingImage": "$media:start_window_branding_image",
   "startWindowBackgroundColor": "$color:start_window_back_ground_color",
   "startWindowBackgroundImage": "$media:start_window_back_ground_image",
-  "startWindowBackgroundImageFit": "$string:start_window_back_ground_image_fit"
+  "startWindowBackgroundImageFit": "Cover"
 }
 ```
