@@ -38,7 +38,7 @@
 - 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [ArkTS语言规范](arkts-coding-style-guide.md)
+  - [ArkTS编程规范](arkts-coding-style-guide.md)
   - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
@@ -111,8 +111,8 @@
       - [自定义组件混用场景指导](arkts-custom-component-mixed-scenarios.md)
       - [V1->V2迁移指导](arkts-v1-v2-migration.md)
   - 渲染控制<!--arkts-rendering-control-->
-      - [渲染控制概述](arkts-rendering-control-overview.md)
-      - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
-      - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
-      - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)
+    - [渲染控制概述](arkts-rendering-control-overview.md)
+    - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
+    - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
+    - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
+    - [ContentSlot：混合开发](arkts-rendering-control-contentslot.md)

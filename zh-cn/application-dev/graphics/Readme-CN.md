@@ -14,7 +14,7 @@
     - [画布的获取与绘制结果的显示（ArkTS）](canvas-get-result-draw-arkts.md)
     - [画布的获取与绘制结果的显示（C/C++）](canvas-get-result-draw-c.md)
   - 画布操作及状态<!--canvas-operation-state-->
-    - [画布操作及状态（ArkTS）](canvas-operation-state-arkts.md)
+    - [画布操作及状态处理（ArkTS）](canvas-operation-state-arkts.md)
     - [画布操作及状态处理（C/C++）](canvas-operation-state-c.md)
   - 绘制效果<!--drawing-effect-->
     - [绘制效果概述](drawing-effect-overview.md)
@@ -33,7 +33,7 @@
 - [使用Text模块实现文本显示](text-js-guidelines.md)
 - [NativeBuffer开发指导 (C/C++)](native-buffer-guidelines.md)
 - [NativeImage开发指导 (C/C++)](native-image-guidelines.md)
-- [NativeVsync开发指导 (C/C++)](native-vsync-guidelines.md)
+- [NativeVSync开发指导 (C/C++)](native-vsync-guidelines.md)
 - [NativeWindow开发指导 (C/C++)](native-window-guidelines.md)
 - [图形开发术语](graphic-term.md)
 
