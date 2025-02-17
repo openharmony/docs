@@ -1,4 +1,4 @@
-  # Bluetooth<!--bluetooth-->
+# Bluetooth<!--bluetooth-->
   - [Bluetooth Overview](bluetooth-overview.md)
   - [Bluetooth Setting Development](br-development-guide.md)
   - [BLE Development](ble-development-guide.md)
