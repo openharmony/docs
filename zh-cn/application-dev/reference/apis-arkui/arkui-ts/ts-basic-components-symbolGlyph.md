@@ -176,7 +176,7 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 
 ### minFontScale<sup>16+</sup>
 
-minFontScale(scale: Optional<number | Resource>)
+minFontScale(scale: Optional\<number | Resource>)
 
 设置SymbolGlyph组件最小的字体缩放倍数。
 
