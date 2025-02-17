@@ -743,7 +743,7 @@ queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}}).then((res:usageStatistics.AppStatsMap) => {
+usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
   console.log('queryLastUseTime promise success.');
   console.log('queryLastUseTime promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
