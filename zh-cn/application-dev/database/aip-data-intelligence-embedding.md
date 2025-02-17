@@ -56,7 +56,7 @@
    let textConfig:intelligence.ModelConfig = {
      version:1,
      isNpuAvailable:false,
-     achePath:"/data"
+     cachePath:"/data"
    }
    let textEmbedding:intelligence.TextEmbedding;
 
