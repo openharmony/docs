@@ -1777,7 +1777,7 @@ type PasteEventCallback = (event?: PasteEvent) => void
 | ----------------------------- | ---------------------------------------- | ---- | ---------------------- |
 | spanPosition                  | [RichEditorSpanPosition](#richeditorspanposition) | 是    | Span位置。|
 | value                         | string                                   | 是    | 文本Span内容。|
-| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | 是    | 文本Span样式信息。|
+| textStyle                     | [RichEditorTextStyle](#richeditortextstyle) | 否    | 文本Span样式信息。|
 
 ## RichEditorImageSpan
 
@@ -1790,7 +1790,7 @@ type PasteEventCallback = (event?: PasteEvent) => void
 | 名称               | 类型                                                                | 必填  | 说明               |
 |------------------|-------------------------------------------------------------------|-----|------------------|
 | spanPosition     | [RichEditorSpanPosition](#richeditorspanposition)                 | 是   | Span位置。|
-| valuePixelMap    | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
+| value            | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)\|[ResourceStr](ts-types.md#resourcestr)  | 是   | 图片内容。|
 | imageStyle       | [RichEditorImageSpanStyle](#richeditorimagespanstyle) | 否 | 图片样式。|
 
 ## 示例
