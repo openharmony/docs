@@ -15,7 +15,7 @@ import formInfo from '@ohos.application.formInfo';
 
 ## FormInfo
 
-卡片信息
+卡片信息。
 
 **系统能力：** SystemCapability.Ability.Form
 
