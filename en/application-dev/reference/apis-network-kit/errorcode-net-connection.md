@@ -97,6 +97,7 @@ The **callback** object has been registered for activating a network or listenin
 **Procedure**
 
 1. Check whether the **callback** object has been registered.
+
 2. If the **callback** object has been registered, use the registered **callback** object.
 
 

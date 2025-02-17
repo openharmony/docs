@@ -9,7 +9,7 @@ Defines the file descriptor of a rawfile.
 
 **Since**: 8
 
-**Related module**: [Rawfile](rawfile.md)
+**Related module**: [Rawfile] (rawfile.md)
 
 
 ## Summary
@@ -33,6 +33,7 @@ Defines the file descriptor of a rawfile.
 int RawFileDescriptor::fd
 ```
 **Description**
+
 File descriptor of the rawfile, in int.
 
 
@@ -42,6 +43,7 @@ File descriptor of the rawfile, in int.
 long RawFileDescriptor::length
 ```
 **Description**
+
 Length of the rawfile in the HAP, in long.
 
 
@@ -51,4 +53,5 @@ Length of the rawfile in the HAP, in long.
 long RawFileDescriptor::start
 ```
 **Description**
+
 Start position of the rawfile in the HAP, in long.
