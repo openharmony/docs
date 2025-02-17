@@ -726,6 +726,8 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 
 **错误码**：
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201 | Permission denied. |
@@ -771,6 +773,8 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 | callback   | Callback\<[ContinuousTaskCancelReason](#continuoustaskcancelreason15)>       | 否    | 需要取消监听的回调函数，未传入则取消所有注册回调。 |
 
 **错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
