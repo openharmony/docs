@@ -28,8 +28,8 @@ FA模型中的DataAbility对应Stage模型中的DataShareExtensionAbility。
    | openFile?(uri:&nbsp;string,&nbsp;mode:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;number&gt;):&nbsp;void | NA | Stage模型不支持uri跨进程访问，建议通过[want携带FD和文件信息](file-processing-apps-startup.md)进行跨进程文件访问。 |
    | getFileTypes?(uri:&nbsp;string,&nbsp;mimeTypeFilter:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;Array&lt;string&gt;&gt;):&nbsp;void | NA | Stage模型不支持uri跨进程访问，建议通过[want携带FD和文件信息](file-processing-apps-startup.md)进行跨进程文件访问。 |
    | getType?(uri:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;string&gt;):&nbsp;void | NA | Stage模型不支持uri跨进程访问，建议通过[want携带FD和文件信息](file-processing-apps-startup.md)进行跨进程文件访问。 |
-   | executeBatch?(ops:&nbsp;Array&lt;DataAbilityOperation&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;Array&lt;DataAbilityResult&gt;&gt;):&nbsp;void | NA | DataShareExtensonAbility不提供该接口，开发者需根据业务功能重新实现。 |
-   | call?(method:&nbsp;string,&nbsp;arg:&nbsp;string,&nbsp;extras:&nbsp;PacMap,&nbsp;callback:&nbsp;AsyncCallback&lt;PacMap&gt;):&nbsp;void | NA | DataShareExtensonAbility不提供该接口，开发者需根据业务功能重新实现。 |
+   | executeBatch?(ops:&nbsp;Array&lt;DataAbilityOperation&gt;,&nbsp;callback:&nbsp;AsyncCallback&lt;Array&lt;DataAbilityResult&gt;&gt;):&nbsp;void | NA | DataShareExtensionAbility不提供该接口，开发者需根据业务功能重新实现。 |
+   | call?(method:&nbsp;string,&nbsp;arg:&nbsp;string,&nbsp;extras:&nbsp;PacMap,&nbsp;callback:&nbsp;AsyncCallback&lt;PacMap&gt;):&nbsp;void | NA | DataShareExtensionAbility不提供该接口，开发者需根据业务功能重新实现。 |
 
 
 ## 三方应用DataAbility改造为公共模块
