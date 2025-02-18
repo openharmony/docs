@@ -874,7 +874,7 @@ selectedBackgroundColor(color: ResourceColor)
 | TEXT | 0 | Span为文字类型。 |
 | IMAGE | 1 | Span为图像类型。|
 | MIXED | 2 | Span为图文混合类型。|
-| DEFAULT<sup>16+</sup> | 3 | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
+| DEFAULT<sup>15+</sup> | 3 | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
 
 >  **说明：**
 >
@@ -895,7 +895,7 @@ selectedBackgroundColor(color: ResourceColor)
 | RIGHT_CLICK | 0 | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 1 | 通过长按触发菜单弹出。   |
 | SELECT | 2 | 通过鼠标选中触发菜单弹出。 |
-| DEFAULT<sup>16+</sup> | 3 | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
+| DEFAULT<sup>15+</sup> | 3 | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
 
 >  **说明：**
 >
