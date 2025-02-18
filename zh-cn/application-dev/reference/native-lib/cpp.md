@@ -1,4 +1,3 @@
-
 # 标准C++库
 
 OpenHarmony使用llvm开源项目的C++标准库[libc++](https://libcxx.llvm.org/)作为C++运行时库。
