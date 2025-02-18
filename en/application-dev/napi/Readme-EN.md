@@ -78,14 +78,20 @@
       - [Performing Lifecycle Management Using JSVM-API](use-jsvm-life-cycle.md)
       - [Performing Memory Management Using JSVM-API](use-jsvm-memory-management.md)
       - [Comparing JS Values Using JSVM-API](use-jsvm-strict-equals.md)
+      - [Creating Basic Data Types Using JSVM-API](use-jsvm-basic-data-types.md)
     - Typical JSVM-API Use Cases
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - JSVM-API Tuning and Performant Coding Cases
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
         - [JSVM Tuning Practices](jsvm-optimizations.md)
-  - Resource Management
+  - OpenMP Support
+    - [OpenMP Overview](openmp-overview.md)
+    - [Building and Running Applications Using OpenMP](openmp-guideline.md)
+  - Resource Management<!--resource-management-->
     - [Raw File Development](rawfile-guidelines.md)
+  - Network Management
+    - [NetConnection Development](native-netmanager-guidelines.md)
   - Thread Scheduling
     - [QoS Development](qos-guidelines.md)
   - Memory Management
