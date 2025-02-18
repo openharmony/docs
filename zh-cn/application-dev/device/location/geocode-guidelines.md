@@ -14,8 +14,6 @@
 
 进行坐标和地理编码信息的相互转化，所使用的接口说明如下，详细信息参见：[Location Kit](../../reference/apis-location-kit/js-apis-geoLocationManager.md)。
 
-**表3** 地理编码转化与逆地理编码转化接口介绍
-
 | 接口名 | 功能描述 | 
 | -------- | -------- |
 | [isGeocoderAvailable(): boolean;](../../reference/apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerisgeocoderavailable) | 判断地理编码与逆地理编码服务是否可用。 | 
