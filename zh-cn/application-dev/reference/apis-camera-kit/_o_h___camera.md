@@ -6213,7 +6213,7 @@ Camera_ErrorCode OH_VideoOutput_EnableMirror(Camera_VideoOutput* videoOutput, bo
 
 打开/关闭当前视频输出镜像功能。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -6361,7 +6361,7 @@ Camera_ErrorCode OH_VideoOutput_IsMirrorSupported(Camera_VideoOutput* videoOutpu
 
 判断当前视频输出是否支持镜像。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
