@@ -18,7 +18,7 @@ Checks whether a SysCap is supported.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| syscap | string | Yes| Name of the SysCap to check.|
+| syscap | string | Yes| Name of the SysCap to check.The current version does not support input of null or undefined.|
 
 **Return value**
 
