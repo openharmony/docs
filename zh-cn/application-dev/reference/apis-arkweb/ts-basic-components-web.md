@@ -3178,7 +3178,7 @@ enableFollowSystemFontWeight(follow: boolean)
   }
   ```
 
-### optimizeParserBudget<sup>16+</sup>
+### optimizeParserBudget<sup>15+</sup>
 
 optimizeParserBudget(optimizeParserBudget: boolean)
 
