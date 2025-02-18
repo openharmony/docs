@@ -263,7 +263,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
 > **说明：**
 >
@@ -283,7 +283,7 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 ### bindToNestedScrollable<sup>14+</sup>
 bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
-绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
 > **说明：**
 >
