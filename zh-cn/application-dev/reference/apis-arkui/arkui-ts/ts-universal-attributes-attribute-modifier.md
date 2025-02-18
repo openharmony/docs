@@ -22,8 +22,8 @@ attributeModifier(modifier:&nbsp;AttributeModifier\<T>)
 
 **参数：**
 
-| 参数名   | 类型                  | 必填 | 说明                                                         |
-| -------- | --------------------- | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                                         | 必填 | 说明                                                                                                                             |
+| -------- | -------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------- |
 | modifier | [AttributeModifier\<T>](#attributemodifiert) | 是   | 在当前组件上，动态设置属性方法，支持使用if/else语法。<br/>modifier: 属性修改器，开发者需要自定义class实现AttributeModifier接口。 |
 
 ## AttributeModifier\<T>
@@ -87,9 +87,9 @@ applySelectedAttribute(instance: T) : void
 
 **参数**：
 
-| 参数             | 描述                                                         |
-| -------------------- | ------------------------------------------------------------ |
-| instance |组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。|
+| 参数     | 描述                                                                                                         |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| instance | 组件的属性类，用来标识进行属性设置的组件的类型，比如Button组件的ButtonAttribute，Text组件的TextAttribute等。 |
 
 **instance参数支持范围:**
 
@@ -97,7 +97,17 @@ AlphabetIndexerAttribute、BadgeAttribute、BlankAttribute、ButtonAttribute、C
 
 **属性支持范围:**
 
-不支持入参为[CustomBuilder](ts-types.md#custombuilder8)或Lamda表达式的属性，且不支持手势，事件仅支持onClick、onTouch、onAppear、onDisAppear、onMouse、onHover、onKeyEvent、onBlur、onFocus、onAreaChange、onSizeChange、onGestureJudgeBegin、onGestureRecognizerJudgeBegin、shouldBuiltInRecognizerParallelWith。不支持已废弃属性，未支持的属性在使用时会抛异常"Method not implemented"。
+1. 不支持入参或者返回值为[CustomBuilder](ts-types.md#custombuilder8)的属性。
+2. 不支持入参为[modifier](../../../ui/arkts-user-defined-modifier.md)类型的属性，具体为以下属性方法：[attributeModifier](#attributemodifier)，[drawModifier](./ts-universal-attributes-draw-modifier.md)和[gestureModifier](./ts-universal-attributes-gesture-modifier.md)。
+3. 不支持[animation](./ts-animatorproperty.md)属性。
+4. 不支持[gesture](../../../ui/arkts-gesture-events-binding.md)类型的属性。
+5. 不支持[stateStyles](./ts-universal-attributes-polymorphic-style.md)属性。
+6. 不支持已废弃属性。
+<!--Del-->
+7. 不支持系统组件属性。<!--DelEnd-->
+
+不支持或者未实现的属性在使用时会抛出"Method not implemented."、"is not callable"、"Builder is not supported."等异常信息。具体Modifier支持范围同基类属性接口的支持范围，详见表格[Attribute支持范围](#attribute支持范围)。
+
 ## 自定义Modifier
 从API version 12开始，开发者可使用自定义Modifier构建组件并配置属性，通过此自定义的Modifier可调用所封装组件的属性和样式接口。 
 
@@ -306,3 +316,43 @@ struct Index {
 }
 ```
 ![attributeModifier](figures/attributeModifier.gif)
+
+## Attribute支持范围
+
+未在表格中列举的属性默认为支持。
+
+**表1** CommonAttribute属性接口支持例外范围
+
+| 属性                     | 支持情况 | 告警信息                  | 备注                                      |
+| ------------------------ | -------- | ------------------------- | ----------------------------------------- |
+| accessibilityChecked     | 不支持   | is not callable           | -                                         |
+| accessibilitySelected    | 不支持   | is not callable           | -                                         |
+| accessibilityTextHint    | 不支持   | is not callable           | -                                         |
+| accessibilityVirtualNode | 不支持   | is not callable           | 不支持入参为CustomBuilder。               |
+| animation                | 不支持   | Method not implemented.   | 不支持animation相关属性。                 |
+| attributeModifier        | 不支持   | -                         | attributeModifier不支持嵌套使用，不生效。 |
+| background               | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| backgroundFilter         | 不支持   | is not callable           | -                                         |
+| bindContentCover         | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| bindContextMenu          | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| bindPopup                | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| bindSheet                | 不支持   | Method not implemented.   | 不支持入参为CustomBuilder。               |
+| compositingFilter        | 不支持   | is not callable           | -                                         |
+| drawModifier             | 不支持   | is not callable           | 不支持modifier相关的属性。                |
+| foregroundFilter         | 不支持   | is not callable           | -                                         |
+| freeze                   | 不支持   | is not callable           | -                                         |
+| gesture                  | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
+| gestureModifier          | 不支持   | is not callable           | 不支持modifier相关的属性。                |
+| onChildTouchTest         | 不支持   | is not callable           | -                                         |
+| onDragStart              | 不支持   | Method not implemented.   | 不支持返回值为CustomBuilder。             |
+| onPreDrag                | 不支持   | Method not implemented.   | -                                         |
+| onTouchIntercept         | 不支持   | is not callable           | -                                         |
+| onVisibleAreaChange      | 不支持   | Method not implemented.   | -                                         |
+| parallelGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
+| priorityGesture          | 不支持   | Method not implemented.   | 不支持gesture相关的属性。                 |
+| reuseId                  | 不支持   | Method not implemented.   | -                                         |
+| stateStyles              | 不支持   | Method not implemented.   | 不支持stateStyles相关的属性。             |
+| useSizeType              | 不支持   | Method not implemented.   | 不支持已废弃属性。                        |
+| visualEffect             | 不支持   | is not callable           | -                                         |
+| bindMenu                 | 部分支持 | -                         | 不支持入参为CustomBuilder。               |
+| dragPreview              | 部分支持 | Builder is not supported. | 不支持入参为CustomBuilder。               |
