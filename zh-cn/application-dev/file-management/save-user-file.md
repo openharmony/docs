@@ -13,7 +13,7 @@
 - 通过Picker保存的文件存储在用户指定的目录。此类文件与图库管理的资源隔离，无法在图库中看到。
 - 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
-## 图片或视频类文件保存流程
+## 保存图片或视频类文件
 
 [PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，建议使用[Media Library Kit（媒体文件管理服务）中能力来保存媒体库资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
