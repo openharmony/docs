@@ -249,7 +249,7 @@ fitOriginalSize(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                             |
 | ------ | ------- | ---- | ------------------------------------------------ |
-| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
+| value  | boolean | 是   | 图片的显示尺寸是否跟随图源尺寸。<br/>默认值：false <br/>**说明：**<br/>当不设置fitOriginalSize或者设置fitOriginalSize为false时，组件显示大小不跟随图源大小。<br/> 当设置fitOriginalSize为true时，组件显示大小跟随图源大小。 |
 
 ### fillColor
 
@@ -381,7 +381,7 @@ enableAnalyzer(enable:&nbsp;boolean)
 
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时overlay中CustomBuilder属性将失效。该特性依赖设备能力。
 
-分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4)。
+分析图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，支持传入[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)进行分析，目前仅支持[RGBA_8888](../../apis-image-kit/js-apis-image.md#pixelmapformat7)类型，使用方式见[示例4](#示例4开启图像ai分析)。
 
 alt占位图不支持分析，objectRepeat属性仅在ImageRepeat.NoRepeat下支持分析，隐私遮罩属性[obscured](ts-universal-attributes-obscured.md)打开时不支持分析。
 
@@ -459,7 +459,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12-1) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
 
 ## ImageContent<sup>12+</sup>
 
@@ -531,7 +531,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 ![edgewidths](figures/edgewidths.png)
 
-## DynamicRangeMode<sup>12+</sup>
+## DynamicRangeMode<sup>12+</sup>枚举说明
 
 期望展示的图像动态范围。
 
