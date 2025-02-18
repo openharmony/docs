@@ -208,7 +208,6 @@ import { TipsDialog } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
