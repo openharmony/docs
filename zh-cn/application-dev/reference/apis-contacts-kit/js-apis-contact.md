@@ -3743,6 +3743,91 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
   });
   ```
 
+## contact.addContactViaUI<sup>15+</sup>
+
+addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+调用新建联系人接口，打开新建联系人UI界面，新建完成。使用Promise异步回调。
+
+**原子化服务API**: 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。   |
+| contact | [Contact](#contact) | 是   | 联系人信息。 |
+
+**返回值：**
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象。返回添加的联系人id。 |
+
+**错误码**:
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**示例：**
+
+ ```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// 获取context
+let context = getContext(this) as Context;
+let promise = contact.addContactViaUI(context, contactInfo);
+ ```
+
+ ## contact.saveToExistingContactViaUI<sup>15+</sup>
+
+saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
+
+调用保存至已有联系人接口，选择联系人UI界面并完成编辑。使用Promise异步回调。
+
+**原子化服务API**: 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+**参数：**
+
+| 参数名 | 类型              | 必填 | 说明                   |
+| ------ | ----------------- | ---- | ---------------------- |
+| context | Context          | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。   |
+| contact | [Contact](#contact) | 是   | 联系人信息。 |
+
+**返回值：**
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| Promise&lt;number&gt; | Promise对象。返回添加的联系人id。 |
+
+**错误码**:
+
+| 类型                  | 说明                                       |
+| --------------------- | ------------------------------------------ |
+| 401       | Parameter error. Possible causes: Mandatory parameters are left unspecified. |
+| 801       | The specified SystemCapability name was not found. |
+| 16700001       | General error. |
+| 16700101       | Failed to get value to contacts data. |
+| 16700102       | Failed to set value to contacts data. |
+| 16700103       | User cancel. |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+// 获取context
+let context = getContext(this) as Context;
+let promise = contact.saveToExistingContactViaUI(context, contactInfo);
+``` 
+
 ## ContactSelectionOptions<sup>10+</sup>
 
 选择联系人条件。
@@ -3753,7 +3838,109 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选     |
+| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选。     |
+| maxSelectable <sup>15+</sup>         | number | 否   | 联系人选择数量上限。     |
+| isDisplayedByName <sup>15+</sup>         | boolean | 否   | 是否按联系人姓名维度展示。     |
+| filter <sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 联系人查询过滤器。     |
+
+## ContactSelectionFilter<sup>15+</sup>
+
+联系人查询过滤器。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| filterClause <sup>15+</sup>         | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
+| filterType <sup>15+</sup>         | [FilterType](#filtertype15) | 是   | 过滤类型。     |
+
+## FilterType<sup>15+</sup>
+
+枚举，联系人过滤类型。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.ContactsData。
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
+| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件联系人。                     |
+
+## FilterClause<sup>15+</sup>
+
+联系人过滤条件。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| id <sup>15+</sup>         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     |
+| name <sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     |
+| dataItem <sup>15+</sup>         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
+| focusModeList <sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     |
+
+## FilterOptions<sup>15+</sup>
+
+联系人过滤参数。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| filterCondition <sup>15+</sup>         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
+| value <sup>15+</sup>         | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
+
+## FilterCondition<sup>15+</sup>
+
+枚举，过滤条件。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.ContactsData。
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | 0 |对应字段不为空。 |
+| EQUAL_TO            | 1 | 对应字段等于某值。                 |
+| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
+| IN | 3 | 对应字段值在某数组中。                     |
+| NOT_IN | 4 | 对应字段值不在某数组中。                     |
+| CONTAINS | 5 | 对应字段值包含某值。                     |
+
+## DataFilter<sup>15+</sup>
+
+联系人数据过滤项。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.Contacts
+
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| field <sup>15+</sup>         | [DataField](#datafield15) | 是   | 联系人数据字段。     |
+| options <sup>15+</sup>         | [FilterOptions](#filteroptions15)[] | 是   | 过滤参数。     |
+
+## DataField<sup>15+</sup>
+
+枚举，联系人数据字段。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Applications.ContactsData。
+
+| 名称                  | 值 | 说明                               |
+| --------------------- | --- | ---------------------------------- |
+| EMAIL    | 0 |联系人邮箱。 |
+| PHONE            | 1 | 联系人电话。                 |
+| ORGANIZATION | 2 | 联系人单位。                     |
 
 
 
