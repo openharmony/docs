@@ -102,7 +102,7 @@ MSG:ablity:EntryAbility background timeout
 | 主要信息字段 | 说明 |
 | -------- | -------- |
 | EVENTNAME | 应用无响应原因，或者组成卡死检测的不同事件 |
-| TIMESTAMP | 发生故障时上报时刻的事件，可以根据[应用无响应检测能力点](#应用无响应检测能力点)中说明的超时时间，在相应流水日志中缩小查看日志的时间范围 |
+| TIMESTAMP | 发生故障时上报事件的时刻，可以根据[应用无响应检测能力点](#应用无响应检测能力点)中说明的超时时间，在相应流水日志中缩小查看日志的时间范围 |
 | PID | 发生故障时候的pid，可以与发生时间和超时时间配合用于在流水日志中搜索相关进程信息 |
 | PACKAGE_NAME | 应用进程包名 |
 | MSG | 发生故障时dump信息或者说明信息，后面具体说明 |
@@ -155,7 +155,7 @@ Tid:1561,Name:i.myapplication
 #15 pc 0045dd4b /system/lib/libace.z.so
 #16 pc 00d24fef /system/lib/libace.z.so
 #17 pc 0041e6e9 /system/lib/libace.z.so
-#18 pc 0000b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<0 #19 pc 00012829 /system/lib/platformsdk/libeventhandler.z.so
+#18 pc 0000b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<0 #19 pc 00012829 /system/lib/platformsdk/libeventhandler.z.so))
 #20 pc 00011841 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventRunner:Run()+64)
 #21 pc 00054a8b /system/lib/libappkit_native.z.so(OHOS:AppExecFwk:MainThread:Start()+278)
 #22 pc 00011503 /system/bin/appspawn
@@ -209,7 +209,7 @@ Tid:658,Name:wifi_manager_service
 #08 pc 0002666f /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderInvoker:StartWorkLoop()+18)
 #09 pc 000270a9 /system/lib/platformsdk/libipc_core.z.so(OHOS:BinderInvoker:JoinThread(bool)+32)
 #10 pc 00023783 /system/lib/platformsdk/libipc_core.z.so(OHOS:IPCWorkThread:ThreadHandler(void*)+290)
-#11 pc 0007b4d9 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventHandler:DistributeEvent(std::__h:unique_ptr<OHOS:Ap
+#11 pc 0007b4d9 /system/lib/platformsdk/libeventhandler.z.so
 #12 pc 00072829 /system/lib/platformsdk/libeventhandler.z.so
 #13 pc 00071841 /system/lib/platformsdk/libeventhandler.z.so(OHOS:AppExecFwk:EventRunner:Run()+64)
 #14 pc 00094a8b /system/lib/libappkit_native.z.so(OHOS:AppExecFwk:MainThread:Start()+278)
@@ -286,7 +286,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
   Immediate priority event queue information:
   Total size of Immediate events 0
   High priority event queue information:
-  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1
+  No.1 Event send thread 1561,send time 2017-08-08 05:06:18.039,handle time 2017-08-08 05:06:21.539,task name [anr_handler.cpp(Send Total size of High events 1)]
   Low priority event queue information:
   No.1:Event{send thread=1566,send time=2017-08-0805:06:21.062,handle time=2017-08-0805:06:21.062,id=1}
   Total size of Low events 1
@@ -302,7 +302,7 @@ MSG = App main thread is not response!EventHandler dump begin curTime:2017-08-08
    at anonymous entry (D:/project/OpenHarmonyOS/MyApplication_test/entry/build/default/intermediates/loader_out/default/ets,pages/Index_.js:0:1)
    #00 pc 0017909c /system/lib/libark_jsruntime.so
    #01 pc 00177ebb /system/lib/libark_jsruntime.so
-   #02 pc 0024b4bb /system/lib/libark_jsruntime.so(panda:FunctionRef:Call(panda:ecmascript:EcmaVM const*,panda:Local<panda:JSValueRef>,panda
+   #02 pc 0024b4bb /system/lib/libark_jsruntime.so
    #03 pc 00fbed23 /system/lib/libace.z.so
    #04 pc 00d8208f /system/lib/libace.z.so
    ...
