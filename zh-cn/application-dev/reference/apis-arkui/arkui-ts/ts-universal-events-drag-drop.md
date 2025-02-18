@@ -539,13 +539,13 @@ struct DropAnimationExample {
         .draggable(true)
         .margin({ left: 15 })
         .border({ color: Color.Black, width: 1 })
-        .allowDrop([udmfType.UniformDataType.IMAGE])
+        .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
         .onDrop((dragEvent: DragEvent) => {
-          let records: Array<udmf.UnifiedRecord> = dragEvent.getData().getRecords();
+          let records: Array<unifiedDataChannel.UnifiedRecord> = dragEvent.getData().getRecords();
           let rect: Rectangle = dragEvent.getPreviewRect();
           this.imageWidth = Number(rect.width);
           this.imageHeight = Number(rect.height);
-          this.targetImage = (records[0] as udmf.Image).imageUri;
+          this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
           dragEvent.useCustomDropAnimation = true;
           dragEvent.executeDropAnimation(this.customDropAnimation)
         })
