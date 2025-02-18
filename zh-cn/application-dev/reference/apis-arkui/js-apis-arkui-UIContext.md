@@ -7014,6 +7014,51 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
+
+### getBarRect<sup>15+</sup>
+
+getBarRect(): Frame
+
+获取原子化服务menuBar相对窗口的布局信息。
+> **说明：**
+>
+> 布局信息包含了原子化服务menuBar的左右margin。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明            |
+| ----------------- | ------------- |
+| [Frame](./js-apis-arkui-graphics.md#frame) | 原子化服务menuBar的大小和位置。 |
+
+**示例：**
+
+```ts
+import { AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+@Entry
+@Component
+struct Index {
+  build() {
+    Button("getBarRect")
+      .onClick(() => {
+        let uiContext: UIContext = this.getUIContext();
+        let currentBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+        if (currentBar != undefined) {
+          let rect = currentBar.getBarRect();
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully. x:' +
+            rect.x + ' y:' + rect.y + ' width:' + rect.width + ' height:' + rect.height);
+        } else {
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar failed.');
+        }
+      })
+  }
+}
+```
+
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
