@@ -671,6 +671,7 @@ Error: signature verification failed due to not trusted app source.
 		hdc shell bm get -u
 		```
   <!--RP2End-->
+  3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 
