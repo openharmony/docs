@@ -43,7 +43,7 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [WindowManager_ErrorCode](#windowmanager_errorcode) {<br/>OK = 0, WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201, WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401, WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,<br/>INVAILD_WINDOW_ID = 1000, SERVICE_ERROR = 2000, WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002, WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003<br/>} | 窗口管理接口返回状态码枚举。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1) {<br/>OK = 0, WINDOW_MANAGER_ERRORCODE_NO_PERMISSION = 201, WINDOW_MANAGER_ERRORCODE_INVALID_PARAM = 401, WINDOW_MANAGER_ERRORCODE_DEVICE_NOT_SUPPORTED = 801,<br/>INVAILD_WINDOW_ID = 1000, SERVICE_ERROR = 2000, WINDOW_MANAGER_ERRORCODE_STATE_ABNORMAL = 1300002, WINDOW_MANAGER_ERRORCODE_SYSTEM_ABNORMAL = 1300003<br/>} | 窗口管理接口返回状态码枚举。 |
 | [WindowManager_AvoidAreaType](#windowmanager_avoidareatype) {<br/>WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM = 0, WINDOW_MANAGER_AVOID_AREA_TYPE_CUTOUT = 1, WINDOW_MANAGER_AVOID_AREA_TYPE_SYSTEM_GESTURE = 2, WINDOW_MANAGER_AVOID_AREA_TYPE_KEYBOARD = 3,<br/>WINDOW_MANAGER_AVOID_AREA_TYPE_NAVIGATION_INDICATOR = 4<br/>} | 避让区域枚举类型。 |
 | [WindowManager_WindowType](#windowmanager_windowtype) { WINDOW_MANAGER_WINDOW_TYPE_APP = 0, WINDOW_MANAGER_WINDOW_TYPE_MAIN = 1, WINDOW_MANAGER_WINDOW_TYPE_FLOAT = 8, WINDOW_MANAGER_WINDOW_TYPE_DIALOG = 16 } | 窗口类型。 |
 
@@ -56,8 +56,8 @@
 | int32_t [OH_WindowManager_SetWindowStatusBarColor](#oh_windowmanager_setwindowstatusbarcolor) (int32_t windowId, int32_t color) | 设置指定窗口的状态栏内容颜色。 |
 | int32_t [OH_WindowManager_SetWindowNavigationBarEnabled](#oh_windowmanager_setwindownavigationbarenabled) (int32_t windowId, bool enabled, bool enableAnimation) | 设置指定窗口是否显示导航栏。 |
 | int32_t [OH_WindowManager_GetWindowAvoidArea](#oh_windowmanager_getwindowavoidarea) (int32_t windowId, [WindowManager_AvoidAreaType](#windowmanager_avoidareatype) type, [WindowManager_AvoidArea](_window_manager___avoid_area.md) \*avoidArea) | 获取指定窗口的避让区域。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_WindowManager_IsWindowShown](#oh_windowmanager_iswindowshown) (int32_t windowId, bool \*isShow) | 判断指定窗口是否显示。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_WindowManager_ShowWindow](#oh_windowmanager_showwindow) (int32_t windowId) | 显示指定窗口。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_WindowManager_IsWindowShown](#oh_windowmanager_iswindowshown) (int32_t windowId, bool \*isShow) | 判断指定窗口是否显示。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_WindowManager_ShowWindow](#oh_windowmanager_showwindow) (int32_t windowId) | 显示指定窗口。 |
 | int32_t [OH_WindowManager_SetWindowTouchable](#oh_windowmanager_setwindowtouchable) (int32_t windowId, bool isTouchable) | 设置指定窗口是否可触。 |
 | int32_t [OH_WindowManager_SetWindowFocusable](#oh_windowmanager_setwindowfocusable) (int32_t windowId, bool isFocusable) | 设置指定窗口是否可获焦。 |
 | int32_t [OH_WindowManager_SetWindowBackgroundColor](#oh_windowmanager_setwindowbackgroundcolor) (int32_t windowId, const char \*color) | 设置指定窗口背景颜色。 |
@@ -66,12 +66,12 @@
 | int32_t [OH_WindowManager_SetWindowPrivacyMode](#oh_windowmanager_setwindowprivacymode) (int32_t windowId, bool isPrivacy) | 设置指定窗口是否开启隐私模式。 |
 | int32_t [OH_WindowManager_GetWindowProperties](#oh_windowmanager_getwindowproperties) (int32_t windowId, [WindowManager_WindowProperties](_window_manager___window_properties.md) \*windowProperties) | 获取指定窗口属性。 |
 | int32_t [OH_WindowManager_Snapshot](#oh_windowmanager_snapshot) (int32_t windowId, OH_PixelmapNative \*pixelMap) | 获取指定窗口截图。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_NativeWindowManager_RegisterKeyEventFilter](#oh_nativewindowmanager_registerkeyeventfilter) (int32_t windowId, [OH_NativeWindowManager_KeyEventFilter](#oh_nativewindowmanager_keyeventfilter) keyEventFilter) | 注册按键事件的过滤函数。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode)  [OH_NativeWindowManager_UnregisterKeyEventFilter](#oh_nativewindowmanager_unregisterkeyeventfilter) (int32_t windowId) | 取消注册窗口的按键事件过滤函数。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode )  [OH_NativeWindowManager_RegisterMouseEventFilter](#oh_nativewindowmanager_registermouseeventfilter) (int32_t windowId, [OH_NativeWindowManager_MouseEventFilter](#oh_nativewindowmanager_mouseeventfilter) mouseEventFilter) | 注册鼠标事件的过滤函数。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode )  [OH_NativeWindowManager_UnregisterMouseEventFilter](#oh_nativewindowmanager_unregistermouseeventfilter) (int32_t windowId) | 取消注册窗口的鼠标事件过滤函数。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode )  [OH_NativeWindowManager_RegisterTouchEventFilter](#oh_nativewindowmanager_registertoucheventfilter) (int32_t windowId, [OH_NativeWindowManager_TouchEventFilter](#oh_nativewindowmanager_toucheventfilter) touchEventFilter) | 注册触摸事件的过滤函数。 |
-| [WindowManager_ErrorCode](#windowmanager_errorcode )  [OH_NativeWindowManager_UnregisterTouchEventFilter](#oh_nativewindowmanager_unregistertoucheventfilter) (int32_t windowId) | 取消注册窗口的触摸事件过滤函数。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_NativeWindowManager_RegisterKeyEventFilter](#oh_nativewindowmanager_registerkeyeventfilter) (int32_t windowId, [OH_NativeWindowManager_KeyEventFilter](#oh_nativewindowmanager_keyeventfilter) keyEventFilter) | 注册按键事件的过滤函数。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_NativeWindowManager_UnregisterKeyEventFilter](#oh_nativewindowmanager_unregisterkeyeventfilter) (int32_t windowId) | 取消注册窗口的按键事件过滤函数。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_NativeWindowManager_RegisterMouseEventFilter](#oh_nativewindowmanager_registermouseeventfilter) (int32_t windowId, [OH_NativeWindowManager_MouseEventFilter](#oh_nativewindowmanager_mouseeventfilter) mouseEventFilter) | 注册鼠标事件的过滤函数。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_NativeWindowManager_UnregisterMouseEventFilter](#oh_nativewindowmanager_unregistermouseeventfilter) (int32_t windowId) | 取消注册窗口的鼠标事件过滤函数。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_NativeWindowManager_RegisterTouchEventFilter](#oh_nativewindowmanager_registertoucheventfilter) (int32_t windowId, [OH_NativeWindowManager_TouchEventFilter](#oh_nativewindowmanager_toucheventfilter) touchEventFilter) | 注册触摸事件的过滤函数。 |
+| [WindowManager_ErrorCode](#windowmanager_errorcode-1)  [OH_NativeWindowManager_UnregisterTouchEventFilter](#oh_nativewindowmanager_unregistertoucheventfilter) (int32_t windowId) | 取消注册窗口的触摸事件过滤函数。 |
 
 
 ## 类型定义说明
