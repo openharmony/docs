@@ -230,7 +230,6 @@ import { TipsDialog } from '@kit.ArkUI';
 @Component
 struct Index {
   @State pixelMap: PixelMap | undefined = undefined;
-  isChecked = false;
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
