@@ -72,6 +72,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13枚举说明) | 否 | 设置半模态激活输入法时对软键盘的避让方式。<br/> **默认值：** TRANSLATE_AND_SCROLL<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br />**说明：**<br />底部弹窗样式和跟手弹窗样式不响应悬停态。|
 | hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN|
+| detentSelection<sup>15+</sup>          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 支持非手势切换挡位。<br/>**说明：**<br/>当设置SheetSize.FIT_CONTENT时，该接口无效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## SheetSize枚举说明
 
