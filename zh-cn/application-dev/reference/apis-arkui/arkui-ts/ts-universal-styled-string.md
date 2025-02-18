@@ -803,7 +803,7 @@ constructor(value: ShadowOptions | Array\<ShadowOptions>)
 | ------------ |---------------------| ---- | ---- | ------ |
 | value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  |  否  | 获取属性字符串的图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size  | [SizeOptions](ts-types.md#sizeoptions) |  是  |  是  | 获取属性字符串的图片尺寸。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  是  |  是  | 获取属性字符串的图片对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  是  |  是  | 获取属性字符串的图片缩放类型。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) |  是  |  是  | 获取属性字符串的图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  是  |  是  | 获取属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
@@ -863,7 +863,7 @@ type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  是  | 设置图片数据源。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | size | [SizeOptions](ts-types.md#sizeoptions) | 否   | 设置图片大小。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | 否   | 设置图片基于文本的对齐方式。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | 否   | 设置图片的缩放类型。 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle对象说明) | 否   | 设置图片布局。**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | colorFilter<sup>16+</sup>  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) |  否  | 设置属性字符串的图片颜色滤镜效果。**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
