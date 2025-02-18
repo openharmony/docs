@@ -393,7 +393,7 @@
 
 **授权方式**：system_grant
 
-**起始版本**：16
+**起始版本**：15
 
 ## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
@@ -403,7 +403,7 @@
 
 **授权方式**：system_grant
 
-**起始版本**：16
+**起始版本**：15
 
 ## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
