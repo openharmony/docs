@@ -42,10 +42,10 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | Name           | Type                       | Description        |
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | Gesture tag.<br>**NOTE**<br>If the event tag is not set, **undefined** or no gesture tag is returned. |
-| type             | [GestureControl.GestureType](#gesturetype11)  | Gesture type.<br>**NOTE**<br> When the gesture is a built-in gesture event of an unexposed type, the value of **type** is **-1**.|
+| type             | [GestureControl.GestureType](#gesturetype12)  | Gesture type.<br>**NOTE**<br> When the gesture is a built-in gesture event of an unexposed type, the value of **type** is **-1**.|
 | isSystemGesture  | boolean                     | Whether the current gesture is system gesture, that is, a built-in gesture of the component.<br>Default value: **false**|
 
-## GestureType<sup>11+</sup>
+## GestureType<sup>12+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -62,7 +62,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | DRAG    | 6 | Drag.|
 | CLICK   | 7 | Click.|
 
-## BaseEvent
+## BaseEvent<sup>8+</sup>
 
 
 | Name   | Type                                     | Description        |
@@ -70,10 +70,10 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | target   | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | timestamp| number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | source   | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| pressure | number | Press pressure.<br>Default value: **0**<br>Value range: [0, 1], typical value 0.913168, where higher values indicate greater pressure.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| tiltX | number | Angle between the projection of the stylus on the device plane and the x-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| tiltY | number | Angle between the projection of the stylus on the device plane and the y-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| pressure<sup>9+</sup> | number | Press pressure.<br>Default value: **0**<br>Value range: [0, 1], typical value 0.913168, where higher values indicate greater pressure.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | axisHorizontal<sup>12+</sup> | number | Horizontal axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | axisVertical<sup>12+</sup> | number | Vertical axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -88,7 +88,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
 ## BaseGestureEvent
-Extended from [BaseEvent](#baseevent).
+Inherits from [BaseEvent](#baseevent8).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

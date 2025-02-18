@@ -37,7 +37,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 
   ```ts
-  TextArea({text:"I am TextArea I am TextArea I am TextArea"}).width(300)
+  TextArea({ text: "I am TextArea I am TextArea I am TextArea" }).width(300)
   ```
 
   ![en-us_image_0000001511580836](figures/en-us_image_0000001511580836.png)
@@ -45,7 +45,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 
 ## Setting the Input Box Type
 
-The **TextInput** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**,<!--Del--> **SCREEN_LOCK_PASSWORD**,<!--DelEnd--> and **NUMBER_DECIMAL**.
+The **TextInput** component comes in nine types. You can specify its type by setting the **type** parameter to any of the following: **Normal**, **Password**, **Email**, **Number**, **PhoneNumber**, **USER_NAME**, **NEW_PASSWORD**, **NUMBER_PASSWORD**,<!--Del--> **SCREEN_LOCK_PASSWORD**,<!--DelEnd--> and **NUMBER_DECIMAL**.  
 
 
 - Normal type (default type)
@@ -73,7 +73,7 @@ The **TextInput** component comes in nine types. You can specify its type by set
 
 
   ```ts
-  TextInput({placeholder:'I am placeholder text'})
+  TextInput({ placeholder: 'I am placeholder text' })
   ```
 
   ![en-us_image_0000001511900400](figures/en-us_image_0000001511900400.png)
@@ -82,7 +82,7 @@ The **TextInput** component comes in nine types. You can specify its type by set
 - Set the current text input.
 
   ```ts
-  TextInput({placeholder:'I am placeholder text',text:'I am current text input'})
+  TextInput({ placeholder: 'I am placeholder text', text: 'I am current text input' })
   ```
 
   ![en-us_image_0000001562820761](figures/en-us_image_0000001562820761.png)
@@ -90,7 +90,7 @@ The **TextInput** component comes in nine types. You can specify its type by set
 - Use **backgroundColor** to set the background color of the text box.
 
   ```ts
-  TextInput({placeholder:'I am placeholder text',text:'I am current text input'})
+  TextInput({ placeholder: 'I am placeholder text', text: 'I am current text input' })
     .backgroundColor(Color.Pink)
   ```
 
@@ -124,12 +124,12 @@ struct TextInputSample {
   build() {
     Column() {
       TextInput({ placeholder: 'input your username' }).margin({ top: 20 })
-        .onSubmit((EnterKeyType)=>{
-          console.info(EnterKeyType+'Enter key type')
+        .onSubmit((EnterKeyType) => {
+          console.info(EnterKeyType + 'Enter key type');
         })
       TextInput({ placeholder: 'input your password' }).type(InputType.Password).margin({ top: 20 })
-        .onSubmit((EnterKeyType)=>{
-          console.info(EnterKeyType+'Enter key type')
+        .onSubmit((EnterKeyType) => {
+          console.info(EnterKeyType + 'Enter key type');
         })
       Button('Sign in').width(150).margin({ top: 20 })
     }.padding(20)
@@ -148,7 +148,7 @@ After the keyboard is raised, scrollable container components will only activate
 @Entry
 @Component
 struct Index {
-  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7']
+  placeHolderArr: string[] = ['1', '2', '3', '4', '5', '6', '7'];
 
   build() {
     Scroll() {
@@ -169,13 +169,14 @@ struct Index {
 
 ## Caret Avoidance
 
-The **OFFSET** and **RESIZE** modes of [keyBoardAvoidMode](../../application-dev/reference/apis-arkui/arkui-ts/ts-types.md#keyboardavoidmode11) do not allow for secondary avoidance actions after the keyboard has been lifted. To support additional caret avoidance actions, you can use the **OFFSET_WITH_CARET** and **RESIZE_CARET** options.<br>
+The **OFFSET** and **RESIZE** modes of [keyBoardAvoidMode](../reference/apis-arkui/js-apis-arkui-UIContext.md#keyboardavoidmode11) do not allow for secondary avoidance actions after the keyboard has been lifted. To support additional caret avoidance actions, you can use the **OFFSET_WITH_CARET** and **RESIZE_CARET** options.<br>
 **RESIZE_WITH_CARET** is recommended for scrollable containers, and **OFFSET_WITH_CARET** is recommended for non-scrollable containers.
 
 ```ts
 // EntryAbility.ets
 import { KeyboardAvoidMode } from '@kit.ArkUI';
 
+// Used in UIAbility
 onWindowStageCreate(windowStage: window.WindowStage) {
   // The main window is created. Set a main page for this ability.
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
@@ -197,9 +198,8 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 @Entry
 @Component
 struct Index {
-  @State caretPosition: number = 600
-  areaController: TextAreaController = new TextAreaController()
-
+  @State caretPosition: number = 600;
+  areaController: TextAreaController = new TextAreaController();
   text = "Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
   So the best way to destroy happiness is to look at something and focus on even the smallest flaw. It is the smallest flaw that would make us complain. And it is the complaint that leads to us becoming unhappy.\
   If one chooses to be happy, he will be blessed; if he chooses to be unhappy, he will be cursed. Happiness is just what you think will make you happy.Most of us compare ourselves with anyone we think is happier — a relative, someone we know a lot, or someone we hardly know. As a result, what we do remember is anything that makes others happy, anything that makes ourselves unhappy, totally forgetting that there is something happy in our own life.\
@@ -216,13 +216,13 @@ struct Index {
       Column() {
         Row() {
           Button('CaretPostiion++: ' + this.caretPosition).onClick(() => {
-            this.caretPosition += 1
+            this.caretPosition += 1;
           }).fontSize(10)
           Button('CaretPostiion--: ' + this.caretPosition).onClick(() => {
-            this.caretPosition -= 1
+            this.caretPosition -= 1;
           }).fontSize(10)
-          Button('SetCaretPostion:').onClick(() => {
-            this.areaController.caretPosition(this.caretPosition)
+          Button('SetCaretPostion: ').onClick(() => {
+            this.areaController.caretPosition(this.caretPosition);
           }).fontSize(10)
         }
 
