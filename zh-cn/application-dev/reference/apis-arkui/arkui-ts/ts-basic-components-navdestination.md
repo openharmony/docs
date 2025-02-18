@@ -473,6 +473,36 @@ NavDestination返回时触发该回调。
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
 
+### onActive<sup>16+</sup>
+
+onActive(callback:&nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
+
+NavDestination处于激活态（处于栈顶可操作，且上层无特殊组件遮挡）时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason16)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
+
+### onInactive<sup>16+</sup>
+
+onInactive(callback: &nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
+
+NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶时上层有特殊组件遮挡）时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason16)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
+
 ## NavDestinationCommonTitle
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -544,6 +574,22 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | ----  | ---   | ---- |----- |
 | parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
 | child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
+
+### NavDestinationActiveReason<sup>16+</sup>
+
+NavDestination激活态或者非激活态变化的原因。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明                                     |
+| ---- | ---------------------------------------- |
+| TRANSITION | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
+| CONTENT_COVER | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
+| SHEET | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
+| DIALOG | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
+| APP_STATE_CHANGE | 通过前后台切换使NavDestination激活态发生变化。 |
 
 ## NavDestinationTransition<sup>15+</sup>
 
