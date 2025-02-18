@@ -650,9 +650,9 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 | 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最大限制为256 x 256像素。 |
-| focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。默认为0。 |
-| focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。默认为0。 |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
+| focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的宽度最大值，该参数缺省时默认为0。 |
+| focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的高度最大值，该参数缺省时默认为0。 |
 
 ## CursorConfig<sup>14+</sup>
 
@@ -677,9 +677,9 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 参数名    | 类型    | 必填    | 说明    |
 | -------- | -------- | -------- | -------- |
-| windowId  | number  | 是    | 窗口id。                          |
+| windowId  | number  | 是    | 窗口id。如果传入无效的窗口id,返回错误码26500001。                          |
 | cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。 |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。是否根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256] |
 
 **返回值**：
 
