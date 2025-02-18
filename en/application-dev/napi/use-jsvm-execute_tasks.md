@@ -1,4 +1,4 @@
-# Working with Task Queues Using JSVM-API
+# Working with Tasks Using JSVM-API
 
 ## Introduction
 
@@ -15,26 +15,22 @@ JSVM-API provides APIs for processing and dispatching the tasks that are queued 
 | -------- | -------- |
 |OH_JSVM_PumpMessageLoop| Starts running a task queue.|
 |OH_JSVM_PerformMicrotaskCheckpoint| Executes micro tasks in a task queue.|
+| OH_JSVM_SetMicrotaskPolicy | Sets the execution policy for micro tasks.|
+
 ## Example
 
 If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in task queue development.
-
+> **NOTE**<br>To run the WebAssembly (Wasm) bytecode, the application must have the JIT permission. For details about how to apply for the permission, see [Requesting the JIT Permission](jsvm-apply-jit-profile.md).
 ### OH_JSVM_PumpMessageLoop and OH_JSVM_PerformMicrotaskCheckpoint
 
-Use **OH_JSVM_PumpMessageLoop** to start running a task queue.
+Call **OH_JSVM_PumpMessageLoop** to start running a task queue.
 
 CPP code:
 
 ```cpp
-#include "ark_runtime/jsvm.h"
-#include <cassert>
+#include <chrono>
 #include <string.h>
-#include "hilog/log.h"
-#include <unistd.h>
-#undef  LOG_TAG
-#define LOG_TAG "log"
-#undef  LOG_DOMAIN
-#define LOG_DOMAIN 0x1
+
 
 // JS code to be executed.
 static const char *STR_TASK = R"JS( 
@@ -95,12 +91,12 @@ static int32_t TestJSVM() {
     JSVM_VM vm;
     JSVM_CreateVMOptions options;
     memset(&options, 0, sizeof(options));
-    CHECK(OH_JSVM_CreateVM(&options, &vm) == JSVM_OK);
+    CHECK(OH_JSVM_CreateVM(&options, &vm));
     JSVM_VMScope vm_scope;
-    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope) == JSVM_OK);
+    CHECK(OH_JSVM_OpenVMScope(vm, &vm_scope));
     
     JSVM_Env env;
-    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env) == JSVM_OK);
+    CHECK(OH_JSVM_CreateEnv(vm, sizeof(descriptor) / sizeof(descriptor[0]), descriptor, &env));
     JSVM_EnvScope envScope;
     CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
     JSVM_HandleScope handlescope;
@@ -128,10 +124,115 @@ static int32_t TestJSVM() {
     // Close and destroy the environment and the VM.
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handlescope));
     CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
-    CHECK(OH_JSVM_DestroyEnv(env) == JSVM_OK);
-    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope) == JSVM_OK);
-    CHECK(OH_JSVM_DestroyVM(vm) == JSVM_OK);
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_CloseVMScope(vm, vm_scope));
+    CHECK(OH_JSVM_DestroyVM(vm));
     return 0;
 }
 
+```
+Expected result:
+```
+JSVM API TEST: Called with instance [object Object]
+JSVM API TEST: Called Finally
+```
+### OH_JSVM_SetMicrotaskPolicy
+Call **OH_JSVM_SetMicrotaskPolicy** to set the execution policy for micro tasks.  
+
+The execution policy can be any of the following:
+- **JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT**: executes micro tasks after **OH_JSVM_PerformMicrotaskCheckpoint** is called.
+- **JSVM_MicrotaskPolicy::JSVM_MICROTASK_AUTO** (default): executes micro tasks automatically when the JS call stack is empty.
+
+CPP code:
+
+```
+// Define OH_JSVM_SetMicrotaskPolicy.
+static int SetMicrotaskPolicy(JSVM_VM vm, JSVM_Env env) {
+    // Use the default policy or set the policy to JSVM_MICROTASK_AUTO.
+    const char *scriptEvalMicrotask = R"JS(
+        evaluateMicrotask = false;
+        Promise.resolve().then(()=>{
+            evaluateMicrotask = true;
+        });
+    )JS";
+    JSVM_Script script;
+    JSVM_Value jsSrc;
+    JSVM_Value result;
+    CHECK_RET(OH_JSVM_CreateStringUtf8(env, scriptEvalMicrotask, JSVM_AUTO_LENGTH, &jsSrc));
+    CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+    JSVM_Value global;
+    CHECK_RET(OH_JSVM_GetGlobal(env, &global));
+    JSVM_Value hasEvaluateMicrotask;
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
+    bool val;
+    CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
+
+    OH_LOG_INFO(LOG_APP, "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : %{public}d", val);
+
+    // Set the policy to JSVM_MICROTASK_EXPLICIT.
+    CHECK_RET(OH_JSVM_SetMicrotaskPolicy(vm, JSVM_MicrotaskPolicy::JSVM_MICROTASK_EXPLICIT));
+    CHECK_RET(OH_JSVM_RunScript(env, script, &result));
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
+    CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
+    OH_LOG_INFO(
+        LOG_APP,
+        "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
+        val);
+
+    CHECK_RET(OH_JSVM_PerformMicrotaskCheckpoint(vm));
+    CHECK_RET(OH_JSVM_GetNamedProperty(env, global, "evaluateMicrotask", &hasEvaluateMicrotask));
+    CHECK_RET(OH_JSVM_GetValueBool(env, hasEvaluateMicrotask, &val));
+    OH_LOG_INFO(
+        LOG_APP,
+        "Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask after calling OH_JSVM_PerformMicrotaskCheckpoint: %{public}d",
+        val);
+
+    return 0;
+}
+
+static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+    if (SetMicrotaskPolicy(vm, env) != 0) {
+        OH_LOG_INFO(LOG_APP, "Run Microtask Policy failed");
+    }
+}
+
+static int32_t TestJSVM() {
+    JSVM_InitOptions initOptions = {0};
+    JSVM_VM vm;
+    JSVM_Env env = nullptr;
+    JSVM_VMScope vmScope;
+    JSVM_EnvScope envScope;
+    JSVM_HandleScope handleScope;
+    JSVM_Value result;
+    // Initialize the JSVM instance.
+    if (g_aa == 0) {
+        g_aa++;
+        CHECK(OH_JSVM_Init(&initOptions));
+    }
+    // Create a JSVM environment.
+    CHECK(OH_JSVM_CreateVM(nullptr, &vm));
+    CHECK(OH_JSVM_CreateEnv(vm, 0, nullptr, &env));
+    CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
+    CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
+    CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
+
+    // Call the demo function using the script.
+    RunDemo(vm, env);
+
+    // Destroy the JSVM environment.
+    CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
+    CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
+    CHECK(OH_JSVM_CloseVMScope(vm, vmScope));
+    CHECK(OH_JSVM_DestroyEnv(env));
+    CHECK(OH_JSVM_DestroyVM(vm));
+    return 0;
+}
+```
+
+Expected result:
+```
+Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask : 1
+Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask before calling OH_JSVM_PerformMicrotaskCheckpoint: 0
+Policy :JSVM_MICROTASK_AUTO, evaluateMicrotask after calling OH_JSVM_PerformMicrotaskCheckpoint: 1
 ```

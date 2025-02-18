@@ -1073,7 +1073,7 @@ OH_JSVM_CreateSet(env, &value);
 
 #### When to Use
 
-Obtaining C types or JS type information from JS types.
+Obtain C types or JS type information from JS types.
 
 #### Available APIs
 | API| Description|
@@ -1499,6 +1499,7 @@ Wrap native classes and instances so that the class constructor and methods can 
 |OH_JSVM_CheckObjectTypeTag | Check whether a tag matches the tag type of an object.|
 |OH_JSVM_AddFinalizer | Add a **JSVM_Finalize** callback to a JS object. The callback will be invoked to release the native object when the JS object is garbage-collected.|
 |OH_JSVM_DefineClassWithPropertyHandler | Defines a JS class with the given class name, constructor, property, and callback handler, and calls it as a function callback. The property operations include getter, setter, deleter, and enumerator.|
+|OH_JSVM_DefineClassWithOptions | Defines a JS class with the given class name, constructor, properties, callback handler, and parent class. The **DefineClassOptions** parameter specifies whether to set a property proxy for the defined class, reserve the internal-field slot, and set a callback when the class is called as a function.|
 
 Example:
 Wrap a native object in a JS object.
@@ -1978,6 +1979,9 @@ static napi_value TestDefineClassWithProperty(napi_env env1, napi_callback_info 
     return nullptr;
 }
 ```
+Example: Set a parent class and register a listener for property access operations.
+
+See [Working with Classes Using JSVM-API](use-jsvm-about-class.md).
 
 ### Version Management
 
@@ -2018,8 +2022,7 @@ Perform memory management.
 
 > Using a backing store is a critical operation. You must ensure correct use of memory and exercise caution when using it. For details, see the following example.
 
-Example:
-Perform memory management. 
+Example: Perform memory management. 
 
 ```c++
 // Before and after calling OH_JSVM_AdjustExternalMemory, check the memory allocated externally from the perspective of the underlying VM.

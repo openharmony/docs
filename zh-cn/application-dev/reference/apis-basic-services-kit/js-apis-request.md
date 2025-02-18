@@ -2557,7 +2557,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | object | 否 | 任务的额外部分。|
-| notification | [Notification](#notification15) | 否 | 通知栏自定义设置。|
+| notification<sup>15+</sup> | [Notification](#notification15) | 否 | 通知栏自定义设置。|
 
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
