@@ -1650,6 +1650,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 **描述**
 设置录屏的最大帧率。
 
+该接口应在录屏启动之后被调用。
+
 调用该方法可以设置录屏时的最大帧率，frameRate为想要设置的最大帧率。
 
 该接口设置最大帧率时，实际设置的帧率受限设备的能力，由底层的系统能力决定。
