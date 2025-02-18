@@ -1028,15 +1028,15 @@ Error: bundle manager service is died.
 
 **处理步骤**
 
-1.请重启手机后再次尝试安装应用，依次多次重试几次。
+1. 重启手机后再次尝试安装应用。
 
-2.重试多次依旧安装失败，需要查询设备/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件
+2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
 ```
 hdc shell
 cd /data/log/faultlog/faultlogger/
 ls -ls
 ```
-3.请导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 ```
 hdc file recv /data/log/faultlog/faultlogger/
 hdc file recv /data/log/hilog/
