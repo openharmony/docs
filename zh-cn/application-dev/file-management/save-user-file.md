@@ -19,7 +19,7 @@
 
 如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
 
-## 文档类文件保存流程
+## 保存文档类文件
 
 1. 模块导入。
 
@@ -82,7 +82,7 @@
    fs.closeSync(file);
    ```
 
-## 音频类文件保存流程
+## 保存音频类文件
 
 1. 模块导入。
 
