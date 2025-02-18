@@ -137,7 +137,7 @@ struct CustomDialogExample {
   };
   confirm: () => void = () => {
   };
-  controller: CustomDialogController;
+  controller?: CustomDialogController;
 
   // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，
   // 那么此处需要将指向自己的controller放在最后
@@ -154,13 +154,13 @@ struct CustomDialogExample {
       Flex({ justifyContent: FlexAlign.SpaceAround }) {
         Button('cancel')
           .onClick(() => {
-            this.controller.close();
+            this.controller?.close();
             this.cancel();
           }).backgroundColor(0xffffff).fontColor(Color.Black)
         Button('confirm')
           .onClick(() => {
             this.inputValue = this.textValue;
-            this.controller.close();
+            this.controller?.close();
             this.confirm();
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
