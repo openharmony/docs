@@ -39,8 +39,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md) = 1 &lt;&lt; 1 } | URI操作模式枚举值。  | 
-| [FileShare_PolicyErrorCode](file_share.md#fileshare_policyerrorcode) { [PERSISTENCE_FORBIDDEN](file_share.md) = 1, [INVALID_MODE](file_share.md) = 2, [INVALID_PATH](file_share.md) = 3, [PERMISSION_NOT_PERSISTED](file_share.md) = 4 } | 授予或使能权限策略失败的URI对应的错误码枚举值。  | 
+| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md#枚举类型说明) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md#枚举类型说明) = 1 &lt;&lt; 1 } | URI操作模式枚举值。  | 
+| [FileShare_PolicyErrorCode](file_share.md#枚举类型说明) { [PERSISTENCE_FORBIDDEN](file_share.md#枚举类型说明) = 1, [INVALID_MODE](file_share.md#枚举类型说明) = 2, [INVALID_PATH](file_share.md#枚举类型说明) = 3, [PERMISSION_NOT_PERSISTED](file_share.md#枚举类型说明) = 4 } | 授予或使能权限策略失败的URI对应的错误码枚举值。  | 
 
 
 ### 函数
