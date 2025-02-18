@@ -120,7 +120,7 @@ i18n.SystemLocaleManager.getRegionInfoArray
 
 **变更原因**
 
-接口返回值错误，例如简体中文（zh-Hans）和中国香港（HK）是不匹配的却返回了true。
+接口返回值错误，例如语言为简体中文（zh-Hans）、地区为中国香港（HK），语言和地区不匹配，但返回为true。
 
 **变更影响**
 
