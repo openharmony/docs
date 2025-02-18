@@ -1409,18 +1409,6 @@ Allows an application to read wallpaper files.
 
 **Valid since**: 7
 
-### ohos.permission.GET_WIFI_CONFIG
-
-Allows an application to obtain the Wi-Fi configuration.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
-
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
 Allows an application to grant sensitive permissions to other applications.
@@ -1768,18 +1756,6 @@ Allows an application to set the system time zone.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-Allows an application to configure Wi-Fi information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
