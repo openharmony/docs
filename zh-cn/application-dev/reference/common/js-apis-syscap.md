@@ -20,7 +20,7 @@ canIUse(syscap: string): boolean
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| syscap | string | 是 | 待查询的系统能力名称。当前版本不支持输入null、undefined。 |
+| syscap | string | 是 | 待查询的系统能力名称。不支持输入null、undefined。 |
 
 **返回值：**
 
