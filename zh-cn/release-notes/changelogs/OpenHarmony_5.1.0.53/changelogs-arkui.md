@@ -12,80 +12,37 @@
 
 **变更影响**
 
-该变更为不兼容变更，以下生命周期接口行为将会受到影响
+此变更涉及应用适配，以下生命周期接口行为将会受到影响。如果开发者在以下生命周期接口中存在业务代码，由于变更前后，通过BuilderNode进行跨页面复用场景，生命周期接口是否触发存在差异，若想保持原有的业务行为，则需要进行适配。
 
-1. FrameNode
-
-使用router.replace、router.back或router.clear发生页面跳转后，被复用的FrameNode无法在新页面中进行布局和绘制，变更前onMeasure、onLayout和onDraw生命周期函数不触发，变更后将会触发。
-
-2. RenderNode
-
-使用router.replace、router.back或router.clear发生页面跳转后，被复用的RenderNode无法在新页面中进行绘制，draw回调接口不触发，变更后将会触发。
-
-3. CustomSpan
-
-使用router.replace、router.back或router.clear发生页面跳转后，被复用的CustomSpan无法在新页面中进行布局和绘制，onMeasure和onDraw生命周期函数不触发，变更后将会触发。
-
-4. CustomComponent
-
-使用router.replace、router.back或router.clear发生页面跳转后，当自定义组件CustomComponent用于BuilderNode进行复用时，自定义组件无法在新页面中进行布局，onMeasureSize生命周期函数不触发，变更后将会触发。
-
-5. LazyForEach
-
-使用router.replace、router.back或router.clear发生页面跳转后，当LazyForEach用于BuilderNode进行复用时，BuilderNode无法在新页面中进行布局，getData不触发。
-
-6. DrawModifier
-
-使用router.replace、router.back或router.clear发生页面跳转后，在BuilderNode中使用的DrawModifier，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，drawFront、drawContent和drawBehind生命周期函数不触发，变更后将会触发。
-
-7. NDK
-
-使用router.replace、router.back或router.clear发生页面跳转后，当NDK自定义组件用于BuilderNode进行复用时，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE、ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT、ARKUI_NODE_CUSTOM_EVENT_ON_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW生命周期函数不触发，变更后将会触发。
-
-不兼容场景：
-
-如果开发者在上述生命周期接口中存在业务代码，由于变更前后，在上述节点通过BuilderNode进行跨页面复用场景，生命周期接口是否触发存在差异，会出现不兼容情况。
-
-**起始API Level**
-
-| 文件               | 接口                                       | 起始API Level |
-| ------------------ | ------------------------------------------ | ------------- |
-| FrameNode.d.ts     | FrameNode#onMeasure                        | API 12        |
-| FrameNode.d.ts     | FrameNode#onLayout                         | API 12        |
-| FrameNode.d.ts     | FrameNode#onDraw                           | API 12        |
-| styled_string.d.ts | CustomSpan#onMeasure                       | API 12        |
-| styled_string.d.ts | CustomSpan#onDraw                          | API 12        |
-| common.d.ts        | CustomComponent#onMeasureSize              | API 10        |
-| common.d.ts        | DrawModifier#drawBehind                    | API 12        |
-| common.d.ts        | DrawModifier#drawContent                   | API 12        |
-| common.d.ts        | DrawModifier#drawFront                     | API 12        |
-| lazy_for_each.d.ts | IDataSource#getData                        | API 7         |
-| RenderNode.d.ts    | RenderNode#draw                            | API 11        |
-| native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE         | API 12        |
-| native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT          | API 12        |
-| native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_DRAW            | API 12        |
-| native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW | API 12        |
-| native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW    | API 12        |
+| 模块            | 变更说明                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FrameNode       | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的FrameNode无法在新页面中进行布局和绘制，变更前onMeasure、onLayout和onDraw生命周期函数不触发，变更后将会触发。                                                                                                                                                                                                             |
+| RenderNode      | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的RenderNode无法在新页面中进行绘制，draw回调接口不触发，变更后将会触发。                                                                                                                                                                                                                                                   |
+| CustomSpan      | 使用router.replace、router.back或router.clear发生页面跳转后，被复用的CustomSpan无法在新页面中进行布局和绘制，onMeasure和onDraw生命周期函数不触发，变更后将会触发。                                                                                                                                                                                                                            |
+| CustomComponent | 使用router.replace、router.back或router.clear发生页面跳转后，当自定义组件CustomComponent用于BuilderNode进行复用时，自定义组件无法在新页面中进行布局，onMeasureSize生命周期函数不触发，变更后将会触发。                                                                                                                                                                                        |
+| LazyForEach     | 使用router.replace、router.back或router.clear发生页面跳转后，当LazyForEach用于BuilderNode进行复用时，BuilderNode无法在新页面中进行布局，getData不触发。                                                                                                                                                                                                                                       |
+| DrawModifier    | 使用router.replace、router.back或router.clear发生页面跳转后，在BuilderNode中使用的DrawModifier，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，drawFront、drawContent和drawBehind生命周期函数不触发，变更后将会触发。                                                                                                                                                                 |
+| NDK             | 使用router.replace、router.back或router.clear发生页面跳转后，当NDK自定义组件用于BuilderNode进行复用时，由于BuilderNode及其子节点无法在新页面中进行布局和绘制，ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE、ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT、ARKUI_NODE_CUSTOM_EVENT_ON_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_FOREGROUND_DRAW、ARKUI_NODE_CUSTOM_EVENT_ON_OVERLAY_DRAW生命周期函数不触发，变更后将会触发。 |
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.52 版本开始。
+从OpenHarmony SDK 5.1.0.53 版本开始。
 
 **变更的接口/组件**
 
 | 文件               | 接口                                       |
 | ------------------ | ------------------------------------------ |
-| FrameNode.d.ts     | FrameNode#onMeasure                        |
-| FrameNode.d.ts     | FrameNode#onLayout                         |
-| FrameNode.d.ts     | FrameNode#onDraw                           |
-| styled_string.d.ts | CustomSpan#onMeasure                       |
-| styled_string.d.ts | CustomSpan#onDraw                          |
-| common.d.ts        | CustomComponent#onMeasureSize              |
-| common.d.ts        | DrawModifier#drawBehind                    |
-| common.d.ts        | DrawModifier#drawContent                   |
-| common.d.ts        | DrawModifier#drawFront                     |
-| lazy_for_each.d.ts | IDataSource#getData                        |
-| RenderNode.d.ts    | RenderNode#draw                            |
+| FrameNode.d.ts     | FrameNode的onMeasure                       |
+| FrameNode.d.ts     | FrameNode的onLayout                        |
+| FrameNode.d.ts     | FrameNode的onDraw                          |
+| styled_string.d.ts | CustomSpan的onMeasure                      |
+| styled_string.d.ts | CustomSpan的onDraw                         |
+| common.d.ts        | CustomComponent的onMeasureSize             |
+| common.d.ts        | DrawModifier的drawBehind                   |
+| common.d.ts        | DrawModifier的drawContent                  |
+| common.d.ts        | DrawModifier的drawFront                    |
+| lazy_for_each.d.ts | IDataSource的getData                       |
+| RenderNode.d.ts    | RenderNode的draw                           |
 | native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_MEASURE         |
 | native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_LAYOUT          |
 | native_node.h      | ARKUI_NODE_CUSTOM_EVENT_ON_DRAW            |
