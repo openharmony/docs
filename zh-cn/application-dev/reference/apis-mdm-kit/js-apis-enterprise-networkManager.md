@@ -21,7 +21,7 @@ import { networkManager } from '@kit.MDMKit';
 
 getAllNetworkInterfacesSync(admin: Want): Array&lt;string&gt;
 
-指定设备管理应用获取所有激活的网络接口。
+获取所有激活的网络接口。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -72,7 +72,7 @@ try {
 
 getIpAddressSync(admin: Want, networkInterface: string): string
 
-指定设备管理应用根据网络接口获取设备IP地址。
+根据网络接口获取设备IP地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -124,7 +124,7 @@ try {
 
 getMacSync(admin: Want, networkInterface: string): string
 
-指定设备管理应用根据网络接口获取设备MAC地址。
+根据网络接口获取设备MAC地址。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -176,7 +176,7 @@ try {
 
 isNetworkInterfaceDisabledSync(admin: Want, networkInterface: string): boolean
 
-指定设备管理应用查询指定网络接口是否被禁用。
+查询指定网络接口是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -228,7 +228,7 @@ try {
 
 setNetworkInterfaceDisabledSync(admin: Want, networkInterface: string, isDisabled: boolean): void
 
-指定设备管理应用禁止设备使用指定网络。
+禁止设备使用指定网络。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -276,7 +276,7 @@ try {
 
 setGlobalProxySync(admin: Want, httpProxy: connection.HttpProxy): void
 
-指定设备管理应用设置网络全局代理。
+设置网络全局代理。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -326,11 +326,64 @@ try {
 }
 ```
 
+## networkManager.setGlobalProxyForAccount<sup>15+</sup>
+
+setGlobalProxyForAccount(admin: Want, httpProxy: connection.HttpProxy, accountId: number): void
+
+设置指定用户下的网络代理，当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名    | 类型                                                         | 必填 | 说明                       |
+| --------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md)      | 是   | 设备管理应用。             |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+| httpProxy | [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 是   | 网络代理配置信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { connection } from '@kit.NetworkKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+let httpProxy: connection.HttpProxy = {
+  host: '192.168.xx.xxx',
+  port: 8080,
+  exclusionList: ['192.168', 'baidu.com']
+};
+
+try {
+  networkManager.setGlobalProxyForAccount(wantTemp, httpProxy, 100);
+  console.info(`Succeeded in setting network global proxy.`);
+} catch (err) {
+  console.error(`Failed to set network global proxy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## networkManager.getGlobalProxySync
 
 getGlobalProxySync(admin: Want): connection.HttpProxy
 
-指定设备管理应用获取网络全局代理。
+获取网络全局代理。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -364,7 +417,6 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -379,11 +431,64 @@ try {
 }
 ```
 
+## networkManager.getGlobalProxyForAccount<sup>15+</sup>
+
+getGlobalProxyForAccount(admin: Want, accountId: number): connection.HttpProxy
+
+获取指定用户下的网络代理，当前仅支持2in1设备。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明           |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| accountId | number                                                  | 是   | 用户ID，取值范围：大于等于0。<br> accountId可以通过@ohos.account.osAccount中的[getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9-1)等接口来获取。|
+
+**返回值：**
+
+| 类型                                                         | 说明                           |
+| ------------------------------------------------------------ | ------------------------------ |
+| [connection.HttpProxy](../apis-network-kit/js-apis-net-connection.md#httpproxy10) | 网络代理配置信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { connection } from '@kit.NetworkKit';
+let wantTemp: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+
+try {
+  let result: connection.HttpProxy = networkManager.getGlobalProxyForAccount(wantTemp, 100);
+  console.info(`Succeeded in getting network global proxy, result : ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get network global proxy. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## networkManager.addFirewallRule
 
 addFirewallRule(admin: Want, firewallRule: FirewallRule): void
 
-指定设备管理应用为设备添加防火墙过滤规则。<br/>
+为设备添加防火墙过滤规则。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的网络数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -436,7 +541,7 @@ networkManager.addFirewallRule(wantTemp, firewallRule);
 
 removeFirewallRule(admin: Want, firewallRule?: FirewallRule): void
 
-指定设备管理应用移除设备防火墙过滤规则。<br/>
+移除设备防火墙过滤规则。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addFirewallRule](#networkmanageraddfirewallrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -492,7 +597,7 @@ networkManager.removeFirewallRule(wantTemp);
 
 getFirewallRules(admin: Want): Array\<FirewallRule>
 
-指定设备管理应用查询防火墙过滤规则。
+查询防火墙过滤规则。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -539,7 +644,7 @@ firewallRule = networkManager.getFirewallRules(wantTemp);
 
 addDomainFilterRule(admin: Want, domainFilterRule: DomainFilterRule): void
 
-指定设备管理应用为设备添加域名过滤规则。<br/>
+为设备添加域名过滤规则。<br/>
 添加了[Action](#action)为ALLOW规则后，将会默认添加DENY规则，不在ALLOW规则之内的域名解析数据包将会被丢弃或拦截。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -587,7 +692,7 @@ networkManager.addDomainFilterRule(wantTemp, domainFilterRule);
 
 removeDomainFilterRule(admin: Want, domainFilterRule?: DomainFilterRule): void
 
-指定设备管理应用移除设备域名过滤规则。<br/>
+移除设备域名过滤规则。<br/>
 移除规则后如果不存在[Action](#action)为ALLOW规则后，会将[addDomainFilterRule](#networkmanageradddomainfilterrule)添加的默认DENY规则清空。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
@@ -638,7 +743,7 @@ networkManager.removeDomainFilterRule(wantTemp);
 
 getDomainFilterRules(admin: Want): Array\<DomainFilterRule>
 
-指定设备管理应用查询域名过滤规则。
+查询域名过滤规则。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_NETWORK
 
@@ -695,8 +800,8 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | srcPort   | string                  | 否   | 源端口。                                                     |
 | destPort  | string                  | 否   | 目标端口。                                                   |
 | appUid    | string                  | 否   | 应用uid。                                                    |
-| direction | [Direction](#direction) | 否   | 规则链。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的[Direction](#direction)链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| action    | [Action](#action)       | 否   | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| direction | [Direction](#direction) | 否   | 规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| action    | [Action](#action)       | 否   | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
 | protocol  | [Protocol](#protocol)   | 否   | 网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
 
 ## DomainFilterRule
@@ -710,7 +815,8 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | ---------- | ----------------- | ---- | ------------------------------------------------------------ |
 | domainName | string            | 否   | 域名。添加域名过滤规则时必填。                               |
 | appUid     | string            | 否   | 应用uid。                                                    |
-| action     | [Action](#action) | 否   | 接收或者丢弃数据包。<br/>添加域名过滤规则时必填；移除域名过滤规则时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时，domainName，appUid也必须传入空值。 |
+| action     | [Action](#action) | 否   | 接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
+| direction<sup>15+</sup> | [Direction](#direction) | 否 |规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且domainName，appUid也必须传入空值。|
 
 ## Direction
 
@@ -723,6 +829,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | ------ | ---- | -------- |
 | INPUT  | 0    | 输入链。 |
 | OUTPUT | 1    | 输出链。 |
+| FORWARD<sup>15+</sup> | 2   | 转发链。  |
 
 ## Action
 
@@ -735,6 +842,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | ----- | ---- | ------------ |
 | ALLOW | 0    | 接收数据包。 |
 | DENY  | 1    | 丢弃数据包。 |
+| REJECT<sup>15+</sup> | 2 | 拒绝数据包。 |
 
 ## Protocol
 
