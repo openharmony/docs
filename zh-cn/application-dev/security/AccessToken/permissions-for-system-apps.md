@@ -4712,3 +4712,15 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15

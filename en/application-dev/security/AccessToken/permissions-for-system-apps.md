@@ -4808,3 +4808,15 @@ With this permission, the application can perform operations such as taking scre
 **Enable via ACL**: true
 
 **Valid since**: 14
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+Allows an application to initiate screen recording without displaying the user authorization dialog box.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
