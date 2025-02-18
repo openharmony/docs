@@ -49,7 +49,7 @@
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
-#include "CryptoArchitectureKit/crypto/crypto_sym_cipher.h"
+#include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <string.h>
 
 static OH_Crypto_ErrCode doTestSm4Ecb() {

@@ -75,7 +75,7 @@ int main()
 
             // 调用CancelRequest接口，用来取消尚在处理中的请求
             // 注：OH_MediaAssetManager_CancelRequest不是必须流程，开发者可根据实际情况选择是否调用该接口来取消尚未回调返回的资源请求
-            bool ret = OH_MediaAssetManager_CancelRequest(manager, requestId);
+            bool ret = OH_MediaAssetManager_CancelRequest(manager, requestIdStruct);
         }
     }
     return 0;

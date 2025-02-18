@@ -28,7 +28,7 @@ The **drawing_text_font_descriptor.h** file declares the capabilities of font in
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Drawing_SystemFontType](_drawing.md#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3 } | Enumerates the system font types. |
+| [OH_Drawing_SystemFontType](_drawing.md#oh_drawing_systemfonttype-1) { ALL = 1 &lt;&lt; 0, GENERIC = 1 &lt;&lt; 1, STYLISH = 1 &lt;&lt; 2, INSTALLED = 1 &lt;&lt; 3, CUSTOMIZED = 1 &lt;&lt; 4 } | Enumerates the system font types. |
 
 
 ### Functions

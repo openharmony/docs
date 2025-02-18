@@ -13,7 +13,7 @@
 
 iconSize(value: Dimension): T
 
-设置安全控件上图标的尺寸。
+设置安全控件图标的尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -35,7 +35,7 @@ iconSize(value: Dimension): T
 
 layoutDirection(value: SecurityComponentLayoutDirection): T
 
-设置安全控件上图标和文字分布的方向。
+设置安全控件图标和文字分布的方向。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -123,7 +123,7 @@ offset(value: Position | Edges | LocalizedEdges): T
 
 fontSize(value: Dimension): T
 
-设置安全控件上文字的尺寸。
+设置安全控件文字的尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ fontSize(value: Dimension): T
 
 fontStyle(value: FontStyle): T
 
-设置安全控件上文字的样式。
+设置安全控件文字的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -167,7 +167,7 @@ fontStyle(value: FontStyle): T
 
 fontWeight(value: number | FontWeight | string): T
 
-设置安全控件上文字粗细。
+设置安全控件文字粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -189,7 +189,7 @@ fontWeight(value: number | FontWeight | string): T
 
 fontFamily(value: string | Resource): T
 
-设置安全控件上文字的字体。
+设置安全控件文字的字体。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -211,7 +211,7 @@ fontFamily(value: string | Resource): T
 
 fontColor(value: ResourceColor): T
 
-设置安全控件上文字的颜色。
+设置安全控件文字的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -233,7 +233,7 @@ fontColor(value: ResourceColor): T
 
 iconColor(value: ResourceColor): T
 
-设置安全控件上图标的颜色。
+设置安全控件图标的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -811,6 +811,29 @@ enabled(respond: boolean): T
 | HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL | 1 | 安全控件上图标和文字分布的方向为垂直排列。 |
 
+## ButtonType枚举说明
+
+按钮类型。
+
+不同的按钮类型将影响属性[borderRadius（边框圆角半径）](ts-securitycomponent-attributes.md#borderradius)的设置效果。影响如下：
+
+- 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角半径始终为宽、高中较小值的一半。
+- 当按钮类型为Circle时：
+  - 若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；
+  - 若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；
+  - 若不设置宽高或者borderRadius的值为负，borderRadius不生效，按钮半径根据具体布局确定。
+- 在不设置borderRadius时，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
+| ------- | ------------------ |
+| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
+| Circle  | 圆形按钮。              |
+| Normal  | 普通按钮（默认不带圆角）。      |
+| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
 
 ## 示例
 
@@ -827,7 +850,7 @@ enabled(respond: boolean): T
 struct Index {
   build() {
     Row() {
-      Column({space:5}) {
+      Column({ space: 5 }) {
         // 生成一个保存按钮，并设置它的SecurityComponent属性
         SaveButton()
           .fontSize(35)
@@ -848,8 +871,8 @@ struct Index {
           .size({width:200, height:100})
           .align(Alignment.Start)
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .size({width:150, height:80})
-          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35})
+          .size({ width: 150, height: 80 })
+          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35 })
         SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
@@ -870,7 +893,7 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100).height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
@@ -879,7 +902,7 @@ struct Index {
           })
           .id("row1")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100).height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
@@ -888,7 +911,7 @@ struct Index {
           })
           .id("row2")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
@@ -898,7 +921,7 @@ struct Index {
           })
           .id("row3")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#2CA9E0")
           .alignRules({
             top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -908,7 +931,7 @@ struct Index {
           })
           .id("row4")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#30C9F7")
           .alignRules({
             top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -919,8 +942,8 @@ struct Index {
           .id("row5")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width:2, color: "#6699FF" })
     }
     .height('100%')
   }

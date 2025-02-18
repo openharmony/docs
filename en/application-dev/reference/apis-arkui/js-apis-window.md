@@ -223,7 +223,7 @@ Describes the window properties.
 
 | Name                                 | Type                 | Read-Only| Optional| Description                                                                                                    |
 | ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecyle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | No  | No  | Window size, which can be obtained from the page lifecycle [onPageShow](./arkui-ts/ts-custom-component-lifecycle.md#onpageshow) or the application lifecycle [onForeground](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonforeground).<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                 |
 | drawableRect<sup>11+</sup>            | [Rect](#rect7)             | No  | No  | Size of the rectangle that can be drawn in the window. The upper boundary and left boundary are calculated relative to the window.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | type<sup>7+</sup>                     | [WindowType](#windowtype7) | No  | No  | Window type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                 |
 | isFullScreen                          | boolean                   | No  | No  | Whether the window is displayed in full-screen mode. The default value is **false**. The value **true** means that the window is displayed in full-screen mode, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                                                                 |
@@ -352,6 +352,32 @@ Describes the window movement configuration.
 | Name  | Type  | Mandatory| Description                                      |
 | ------ | ------ | ---- | ------------------------------------------ |
 | displayId | number | No| Target display ID. The value must be an integer. If a non-integer is passed in, the value is rounded down. If this parameter is not set or the target displayed ID does not exist, the current display is used by default.|
+
+## WindowDensityInfo<sup>15+</sup>
+
+Describes the information about the display density of the screen where the window is located and the window's custom display density. It is a scale factor independent of pixel units, that is, a factor for scaling display size.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name  | Type| Readable| Writable| Description      |
+| ------ | -------- | ---- | ---- | ---------- |
+| systemDensity  | number   | Yes  | No  | System's display size scale factor for the screen where the window is located. The value ranges from 0.5 to 4.0 and varies according to user settings.|
+| defaultDensity | number   | Yes  | No  | Default display size scale factor for the screen where the window is located. The value ranges from 0.5 to 4.0 and varies with the screen.|
+| customDensity | number   | Yes  | No  | Custom display size scale factor of the window. The value ranges from 0.5 to 4.0. If this parameter is left unspecified, the system's display size scale factor is used.|
+
+## WindowLayoutInfo<sup>16+</sup>
+
+Describes the information about the window layout.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+| Name  | Type  | Mandatory| Description                                      |
+| ------ | ------ | ---- | ------------------------------------------ |
+| windowRect<sup>16+</sup> | [Rect](#rect7)  | Yes| Window rectangle, that is, the position and size of the window on the display.|
 
 ## window.createWindow<sup>9+</sup>
 
@@ -795,6 +821,56 @@ try {
     });
 } catch (exception) {
     console.error(`Failed to get window from point. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.getAllWindowLayoutInfo<sup>16+</sup>
+
+getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&gt;&gt;
+
+Obtains the layout information array of all windows visible on a display. The layout information is arranged based on the current window stacking order, and the topmost window in the hierarchy is at index 0 of the array. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                                       |
+| ------ | ---------- |----|---------------------------------------------------------------------------|
+| displayId   | number| Yes | ID of the display where the windows are located. The value must be an integer and can be obtained from [WindowProperties](#windowproperties).|
+
+**Return value**
+
+| Type                            | Description                     |
+| -------------------------------- |-------------------------|
+| Promise&lt;Array&lt;[WindowLayoutInfo](#windowlayoutinfo16)&gt;&gt; | Promise used to return an array of window layout information objects.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID   | Error Message|
+|----------| ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let displayId = 0;
+  let promise = window.getAllWindowLayoutInfo(displayId)
+  promise.then((data) => {
+    console.info('Succeeded in obtaining all window layout info. Data: ' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain all window layout info. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain all window layout info. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1952,6 +2028,41 @@ try {
 }
 ```
 
+### getWindowDensityInfo<sup>15+</sup>
+
+getWindowDensityInfo(): WindowDensityInfo
+
+Obtains the display density information of this window.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**Return value**
+
+| Type| Description|
+| ------------------------------------- | ------------- |
+| [WindowDensityInfo](#windowdensityinfo15) | Display density information of the window.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+try {
+  let densityInfo = windowClass.getWindowDensityInfo();
+} catch (exception) {
+  console.error(`Failed to obtain the window densityInfo. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### getGlobalRect<sup>13+</sup>
 
 getGlobalRect(): Rect
@@ -2101,7 +2212,7 @@ export default class EntryAbility extends UIAbility {
 
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
-Sets whether the main window layout or the subwindow layout is immersive. This API uses a promise to return the result. From API version 14, this API does not take effect on 2-in-1 devices.
+Sets whether the main window layout or the subwindow layout is immersive. This API uses a promise to return the result. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
 - An immersive layout means that the layout does not avoid the status bar and navigation bar, and components may overlap with them.
 - A non-immersive layout means that the layout avoids the status bar and navigation bar, and components do not overlap with them.
 
@@ -2170,7 +2281,7 @@ export default class EntryAbility extends UIAbility {
 
 setImmersiveModeEnabledState(enabled: boolean): void
 
-Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. From API version 14, this API does not take effect on 2-in-1 devices.
+Sets whether to enable the immersive layout for the main window. This API does not change the window mode or size. <!--RP8-->From API version 14, this API does not take effect on 2-in-1 devices.<!--RP8End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2517,7 +2628,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
+Sets the preferred orientation for the main window. This API uses an asynchronous callback to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the subwindow mode.<!--RP9End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -2580,7 +2691,7 @@ export default class EntryAbility extends UIAbility {
 
 setPreferredOrientation(orientation: Orientation): Promise&lt;void&gt;
 
-Sets the preferred orientation for the main window. This API uses a promise to return the result. This API takes effect only on the device that supports rotation with the sensor. It does not take effect after it is called by the subwindow.
+Sets the preferred orientation for the main window. This API uses a promise to return the result. <!--RP9-->This API takes effect only on devices that support rotation with the sensor. It does not take effect on 2-in-1 devices or in the subwindow mode.<!--RP9End-->
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3942,6 +4053,91 @@ try {
 }
 ```
 
+### on('systemDensityChange')<sup>15+</sup>
+
+on(type: 'systemDensityChange', callback: Callback&lt;number&gt;): void
+
+Subscribes to the system density change event, which is triggered when the system's display size scale factor changes for the screen where the window is located.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                      | Mandatory| Description                                                        |
+| -------- | --------------------------| ---- | ------------------------------------------------------------ |
+| type     | string                    | Yes  | Event type. The value is fixed at **'systemDensityChange'**, indicating the system density change event.|
+| callback | Callback&lt;number&gt;   | Yes  | Callback invoked when the system's display size scale factor changes. The callback contains a parameter of the number type, indicating the new scale factor.                              |
+
+**Error codes**
+
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+
+**Example**
+
+```ts
+const callback = (density: number) => {
+  console.info('System density changed, density=' + JSON.stringify(density));
+}
+try {
+  windowClass.on('systemDensityChange', callback);
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+### off('systemDensityChange')<sup>15+</sup>
+
+off(type: 'systemDensityChange', callback?: Callback&lt;number&gt;): void
+
+Unsubscribes from the system density change event.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                  |
+| -------- |----------------------------| ---- |--------------------------------------|
+| type     | string                     | Yes  | Event type. The value is fixed at **'systemDensityChange'**, indicating the system density change event.|
+| callback | Callback&lt;number&gt;    | No  | Callback invoked when the system's display size scale factor changes. If a value is passed in, the corresponding subscription is canceled. If no value is passed in, all subscriptions to the specified event are canceled.           |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+
+**Example**
+
+```ts
+const callback = (density: number) => {
+  // ...
+}
+try {
+  // Enable listening through the on API.
+  windowClass.on('systemDensityChange', callback);
+  // Disable the listening of a specified callback.
+  windowClass.off('systemDensityChange', callback);
+  // Unregister all the callbacks that have been registered through on().
+  windowClass.off('systemDensityChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### on('noInteractionDetected')<sup>12+</sup>
 
 on(type: 'noInteractionDetected', timeout: number, callback: Callback&lt;void&gt;): void
@@ -4125,7 +4321,7 @@ Sets the grayscale effect for this window. This API uses a promise to return the
 
 | Name| Type| Mandatory| Description                                    |
 | --------- | ------ | -- | ---------------------------------------- |
-| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0], The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
+| grayScale | number | Yes| Grayscale of the window. The value is a floating point number in the range [0.0, 1.0]. The value **0.0** means that the window image does not change, and **1.0** means that the window image is completely turned into grayscale. The effect changes linearly between 0.0 and 1.0.|
 
 **Return value**
 
@@ -4675,7 +4871,8 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 Sets the screen brightness for the main window. This API uses an asynchronous callback to return the result.
 
-When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+- For non-2-in-1 devices, when the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
+- For 2-in-1 devices, Control Panel has the same priority as this API. Event if this API is called to set the window-specific screen brightness, Control Panel can adjust the overall system screen brightness.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -4741,7 +4938,8 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for the main window. This API uses a promise to return the result.
 
-When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+- For non-2-in-1 devices, when the screen brightness setting for the window by this API takes effect, Control Panel cannot adjust the overall system screen brightness. It can do so only after the window-specific screen brightness is restored to the default value.
+- For 2-in-1 devices, Control Panel has the same priority as this API. Event if this API is called to set the window-specific screen brightness, Control Panel can adjust the overall system screen brightness.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5536,11 +5734,11 @@ export default class EntryAbility extends UIAbility {
 
 minimize(callback: AsyncCallback&lt;void&gt;): void
 
-Implements different functionalities based on the caller:
+The behavior of this API varies based on the caller:
 
-Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+- Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar. For 2-in-1 devices, it can be restored by calling [restore()](#restore14).
 
-Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+- Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar. It can be made visible again by calling [showWindow()](#showwindow9).
 
 This API uses an asynchronous callback to return the result.
 
@@ -5583,11 +5781,11 @@ windowClass.minimize((err: BusinessError) => {
 
 minimize(): Promise&lt;void&gt;
 
-Implements different functionalities based on the caller:
+The behavior of this API varies based on the caller:
 
-Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar.
+- Minimizes the main window if the caller is the main window. The main window can be restored in the dock bar. For 2-in-1 devices, it can be restored by calling [restore()](#restore14).
 
-Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar.
+- Hides the subwindow if the caller is a subwindow. The subwindow cannot be restored in the dock bar. It can be made visible again by calling [showWindow()](#showwindow9).
 
 This API uses a promise to return the result.
 
@@ -5691,7 +5889,7 @@ export default class EntryAbility extends UIAbility {
 ### setResizeByDragEnabled<sup>14+</sup>
 setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets whether to enable the main window or subwindow to resize itself by dragging. This API uses an asynchronous callback to return the result.
+Sets whether to enable the main window or subwindow with decorations to resize itself by dragging. This API uses an asynchronous callback to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -5733,7 +5931,7 @@ windowClass.setResizeByDragEnabled(enabled, (err) => {
 ### setResizeByDragEnabled<sup>14+</sup>
 setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 
-Sets whether to enable the main window or subwindow to resize itself by dragging. This API uses a promise to return the result.
+Sets whether to enable the main window or subwindow with decorations to resize itself by dragging. This API uses a promise to return the result.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -5889,7 +6087,7 @@ export default class EntryAbility extends UIAbility {
               promise.then(() => {
                   console.info('Succeeded in restoring the window.');
               }).catch((err: BusinessError) => {
-                  console.error(`Failed to restore the window. Cause code: ${err.code}, 
+                  console.error(`Failed to restore the window. Cause code: ${err.code},
                   message: ${err.message}`);
               });
           },5000);
@@ -5987,6 +6185,67 @@ try {
   };
   let promise = windowClass.setWindowLimits(windowLimits);
     promise.then((data) => {
+    console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to change the window limits. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to change the window limits. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setWindowLimits<sup>15+</sup>
+
+setWindowLimits(windowLimits: WindowLimits, isForcible: boolean): Promise&lt;WindowLimits&gt;
+
+Sets the size limits for this application window. This API uses a promise to return the result.
+
+By default, system size limits are provided. They are determined by the product configuration and cannot be modified. If **setWindowLimits** has not been called, you can call [getWindowLimits](#getwindowlimits11) to obtain the system size limits.
+
+This API can be used only on 2-in-1 devices.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name      | Type                         | Mandatory| Description                          |
+| :----------- | :---------------------------- | :--- | :----------------------------- |
+| windowLimits | [WindowLimits](#windowlimits11) | Yes  | Target size limits, in px.|
+| isForcible | boolean | Yes  | Whether to forcibly set the window size limits.<br>If this parameter is set to **true**, the minimum window width and height are not restricted by the system size limits, whereas the maximum window width and height are still restricted by the system size limits. However, the minimum window width and height cannot be less than 40 vp. If a value less than 40 vp is passed in, the value 40 vp is used.<br>If this parameter is set to **false**, the minimum and maximum window width and height are restricted by the system size limits.|
+
+**Return value**
+
+| Type                                        | Description                               |
+| :------------------------------------------- | :---------------------------------- |
+| Promise&lt;[WindowLimits](#windowlimits11)&gt; | Promise used to return the new window size limits. Depending on the value of **isForcible**, the return value represents the intersection between the value passed and the system size limits.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                                     |
+| :------- | :-------------------------------------------- |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal.                |
+| 1300003  | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+try {
+  let windowLimits: window.WindowLimits = {
+    maxWidth: 1500,
+    maxHeight: 1000,
+    minWidth: 100,
+    minHeight: 100
+  };
+  let promise = windowClass.setWindowLimits(windowLimits, true);
+  promise.then((data) => {
     console.info('Succeeded in changing the window limits. Cause:' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
     console.error(`Failed to change the window limits. Cause code: ${err.code}, message: ${err.message}`);
@@ -6145,6 +6404,63 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
       console.error(`Failed to set the visibility of window decor. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 });
+```
+
+### setWindowTitle<sup>15+</sup>
+
+setWindowTitle(titleName: string): Promise&lt;void&gt;
+
+Sets the window title. This API uses a promise to return the result. The setting takes effect for a window with a title bar. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name   | Type    | Mandatory| Description                                         |
+| --------- | ------- | ---- | --------------------------------------------- |
+| titleName | string  | Yes  | Window title.|
+
+**Return value**
+
+| Type| Description|
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | Promise that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message                      |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+
+**Example**
+
+```ts
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowClass: window.Window | undefined = undefined;
+try {
+  let promise = window.getLastWindow(this.context);
+  promise.then((data) => {
+    windowClass = data;
+    let title = "title";
+    windowClass.setWindowTitle(title).then(() => {
+      console.info('Succeeded in setting the window title.');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the window title. Cause code: ${err.code}, message: ${err.message}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setWindowTitleMoveEnabled<sup>14+</sup>
@@ -6384,7 +6700,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
 
 ### setDecorButtonStyle<sup>14+</sup>
 
-setDecorButtonStyle(decorStyle: DecorButtonStyle): void
+setDecorButtonStyle(dectorStyle: DecorButtonStyle): void
 
 Sets the button style of the decoration bar. The setting takes effect only for the main window on 2-in-1 devices and the subwindow with the window title enabled.
 
@@ -6396,7 +6712,7 @@ Sets the button style of the decoration bar. The setting takes effect only for t
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| decorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | Yes  | Button style of the decoration bar.|
+| dectorStyle | [DecorButtonStyle](#decorbuttonstyle14)  | Yes  | Button style of the decoration bar.|
 
 **Error codes**
 
@@ -6649,7 +6965,7 @@ Creates a subwindow under the main window or another subwindow. This API uses a 
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the subwindow.|
-| options  | [SubWindowOptions](#subwindowoptions12) | Yes  | Parameters used for creating the subwindow. |
+| options  | [SubWindowOptions](#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
@@ -6693,11 +7009,13 @@ try {
 
 ### setWindowTitleButtonVisible<sup>14+</sup>
 
-setWindowTitleButtonVisible(isMaximizeVisible: boolean, isMinimizeVisible: boolean): void
+setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVisible: boolean, isCloseButtonVisible?: boolean): void
 
-Shows or hides the maximize and minimize buttons on the title bar of the main window.
+Shows or hides the maximize, minimize, and close buttons on the title bar of the main window.
 
 This API can be used only on 2-in-1 devices.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6705,8 +7023,9 @@ This API can be used only on 2-in-1 devices.
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| isMaximizeVisible | boolean | Yes  | Whether to show the maximize button. The value **true** means to show the button, and **false** means to hide it. If the maximize button is hidden, the corresponding restore button is also hidden in the maximize scenario.|
-| isMinimizeVisible | boolean | Yes  | Whether to show the minimize button. The value **true** means to show the button, and **false** means to hide it.|
+| isMaximizeButtonVisible | boolean | Yes  | Whether to show the maximize button. The value **true** means to show the button, and **false** means to hide it. If the maximize button is hidden, the corresponding restore button is also hidden in the maximize scenario.|
+| isMinimizeButtonVisible | boolean | Yes  | Whether to show the minimize button. The value **true** means to show the button, and **false** means to hide it.|
+| isCloseButtonVisible | boolean | No  | Whether to show the close button. The value **true** means to show the button, and **false** means to hide it.|
 
 **Error codes**
 
@@ -6737,8 +7056,8 @@ export default class EntryAbility extends UIAbility {
         data => {
           mainWindow = data;
           console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-          // Call setWindowTitleButtonVisible to hide the maximize and minimize buttons on the title bar of the main window.
-          mainWindow.setWindowTitleButtonVisible(false, false);
+          // Call setWindowTitleButtonVisible to hide the maximize, minimize, and close buttons on the title bar of the main window.
+          mainWindow.setWindowTitleButtonVisible(false, false, false);
         }
       ).catch((err: BusinessError) => {
           if(err.code){
@@ -6759,6 +7078,8 @@ Places the main window above all the other windows of the application. This API 
 Applications use custom shortcut keys to pin or unpin the main window.
 
 <!--RP6-->This API can be used only on 2-in-1 devices.<!--RP6End-->
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.Window.SessionManager
 
@@ -6837,6 +7158,115 @@ struct Index {
         }
       }
     })
+  }
+}
+```
+
+### raiseToAppTop<sup>14+</sup>
+
+raiseToAppTop(): Promise&lt;void&gt;
+
+Called by a subwindow to elevate the subwindow to the topmost layer. Its effect is limited to subwindows of the same type that share the same parent window of the current application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let promise = windowClass.raiseToAppTop();
+promise.then(() => {
+  console.info('Succeeded in raising the window to app top.');
+}).catch((err: BusinessError) => {
+  console.error(`Failed to raise the window to app top. Cause code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### setRaiseByClickEnabled<sup>14+</sup>
+
+setRaiseByClickEnabled(enable: boolean): Promise&lt;void&gt;
+
+Sets whether to enable a subwindow to raise itself by click. This API uses a promise to return the result.
+
+Generally, when a subwindow is clicked, it is brought to the forefront among sibling subwindows of the same type that share the same parent window within the application. If the **enable** parameter is set to **false**, when the subwindow is clicked, it still stays in its existing position.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description      |
+| -------- | ------------------------- | ---- | ---------- |
+| enable   | boolean                   | Yes  | Whether a subwindow can be raised by clicking. The value **true** means that the subwindow can be raised by clicking, and **false** means the opposite.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invalid. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    // Create a subwindow.
+    try {
+      let subWindow = windowStage.createSubWindow("testSubWindow");
+      subWindow.then((data) => {
+        if (data == null) {
+          console.error("Failed to create the subWindow. Cause: The data is empty");
+          return;
+        }
+        windowClass = data;
+        let enabled = false;
+        let promise = windowClass.setRaiseByClickEnabled(enabled);
+        promise.then(()=> {
+          console.info('Succeeded in disabling the raise-by-click function.');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      });
+    } catch (exception) {
+      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
   }
 }
 ```
@@ -6971,7 +7401,7 @@ Sets whether the modal window responds to the back gesture event. An error code 
 
 | Name     | Type   | Mandatory| Description                                                        |
 | ---------- | ------- | ---- | ------------------------------------------------------------ |
-| enabled    | boolean | Yes  | Whether to respond to the back gesture event.<br>The value **true** means to respond to the back gesture event and trigger the **onBackPress** callback, and **false** means the opposite.|
+| enabled    | boolean | Yes  | Whether to respond to the back gesture event.<br>The value **true** means to respond to the back gesture event and trigger the **onBackPress** callback, and **false** means the opposite.<br>|
 
 **Return value**
 
@@ -7178,7 +7608,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      
+
       // Disable the back gesture feature in the current window.
       try {
         let gestureBackEnabled: boolean = false;
@@ -7243,7 +7673,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      
+
       // Check whether the back gesture feature is enabled in the current window.
       try {
         let gestureBackEnabled: boolean = windowClass.isGestureBackEnabled();
@@ -9399,20 +9829,19 @@ Enumerates the modality types of the subwindow.
 | WINDOW_MODALITY      | 0      | Window-modal. Select this value when you want the parent window not to respond to user interactions.|
 | APPLICATION_MODALITY | 1      | Application-modal. Select this value when you want both the parent window and all windows of other instances of the application not to respond to user interactions.<br>This API can be used only on 2-in-1 devices.|
 
-## SubWindowOptions<sup>12+</sup>
+## SubWindowOptions<sup>11+</sup>
 
 Describes the parameters used for creating a subwindow.
-
-**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Window.SessionManager
 
 | Name     | Type | Read-Only| Optional| Description        |
 | ---------- | ---- | ---- | ---- | ----------- |
-| title<sup>12+</sup>    | string | No| No| Title of the subwindow.      |
-| decorEnabled<sup>12+</sup> | boolean | No| No| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.      |
-| isModal<sup>12+</sup>    | boolean | No| Yes| Whether the modal property is enabled for the subwindow. The value** true** means that the modal property is enabled for the subwindow, and **false** means to disable it. The default value is **false**.      |
-| modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | No| Yes| Modality type of the subwindow. This parameter takes effect only when the modal property is enabled for the subwindow. **WINDOW_MODALITY** means window-modal, and **APPLICATION_MODALITY** means application-modal. The default value is **WINDOW_MODALITY**.      |
+| title<sup>11+</sup>    | string | No| No| Title of the subwindow.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| decorEnabled<sup>11+</sup> | boolean | No| No| Whether decorations are displayed in the subwindow. The value **true** means decorations are displayed, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| isModal<sup>12+</sup>    | boolean | No| Yes| Whether the modal property is enabled for the subwindow. The value** true** means that the modal property is enabled for the subwindow, and **false** means to disable it. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | No| Yes| Modality type of the subwindow. This parameter takes effect only when the modal property is enabled for the subwindow. **WINDOW_MODALITY** means window-modal, and **APPLICATION_MODALITY** means application-modal. The default value is **WINDOW_MODALITY**.<br>**Atomic service API**: This API can be used in atomic services since API version 14.      |
+| windowRect<sup>15+</sup>    | [Rect](#rect7) | No| Yes| Rectangle of the subwindow, and the size of the subwindow is limited. For details, see [resize ()](#resize9). If this parameter is not specified, the window is displayed in full screen by default.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## WindowStage<sup>9+</sup>
 
@@ -9458,7 +9887,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     windowStage.getMainWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
@@ -9511,7 +9940,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     let promise = windowStage.getMainWindow();
     promise.then((data) => {
@@ -9561,7 +9990,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       let windowClass = windowStage.getMainWindowSync();
     } catch (exception) {
@@ -9611,7 +10040,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       windowStage.createSubWindow('mySubWindow', (err: BusinessError, data) => {
@@ -9681,7 +10110,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window | undefined = undefined;
     try {
       let promise = windowStage.createSubWindow('mySubWindow');
@@ -9715,7 +10144,7 @@ Creates a subwindow for this window stage. This API uses a promise to return the
 | Name| Type  | Mandatory| Description          |
 | ------ | ------ | ---- | -------------- |
 | name   | string | Yes  | Name of the subwindow.|
-| options  | [SubWindowOptions](#subwindowoptions12) | Yes  | Parameters used for creating the subwindow. |
+| options  | [SubWindowOptions](#subwindowoptions11) | Yes  | Parameters used for creating the subwindow. |
 
 **Return value**
 
@@ -9803,7 +10232,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window[] = [];
     windowStage.getSubWindow((err: BusinessError, data) => {
       const errCode: number = err.code;
@@ -9855,7 +10284,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     let windowClass: window.Window[] = [];
     let promise = windowStage.getSubWindow();
     promise.then((data) => {
@@ -9912,7 +10341,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.storage.setOrCreate('storageSimpleProp', 121);
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.loadContent('pages/page2', this.storage, (err: BusinessError) => {
         const errCode: number = err.code;
@@ -9978,7 +10407,7 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     this.storage.setOrCreate('storageSimpleProp', 121);
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       let promise = windowStage.loadContent('pages/page2', this.storage);
       promise.then(() => {
@@ -10034,7 +10463,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.loadContent('pages/page2', (err: BusinessError) => {
         const errCode: number = err.code;
@@ -10096,7 +10525,7 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     this.storage.setOrCreate('storageSimpleProp', 121);
     try {
       windowStage.loadContentByName(Index.entryName, this.storage, (err: BusinessError) => {
@@ -10177,7 +10606,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.loadContentByName(Index.entryName, (err: BusinessError) => {
         const errCode: number = err.code;
@@ -10259,7 +10688,7 @@ export default class EntryAbility extends UIAbility {
   storage: LocalStorage = new LocalStorage();
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     this.storage.setOrCreate('storageSimpleProp', 121);
     try {
       let promise = windowStage.loadContentByName(Index.entryName, this.storage);
@@ -10335,7 +10764,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.on('windowStageEvent', (data) => {
         console.info('Succeeded in enabling the listener for window stage event changes. Data: ' +
@@ -10387,7 +10816,7 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     const callback = (windowStageEventType: window.WindowStageEventType) => {
       // ...
     }
@@ -10557,11 +10986,60 @@ export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.log('onWindowStageCreate');
+    console.info('onWindowStageCreate');
     try {
       windowStage.setDefaultDensityEnabled(true);
     } catch (exception) {
       console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+};
+```
+
+### setCustomDensity<sup>15+</sup>
+
+setCustomDensity(density: number): void
+
+Called by the main window to set its own display size scale factor for the main window. Any subwindows will adopt the same scale factor as the main window. If both this API and [setDefaultDensityEnabled(true)](#setdefaultdensityenabled12) are called to set a display size scale factor, the settings from the last called API will be applied.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Window.SessionManager
+
+**Parameters**
+
+| Name          | Type   | Mandatory| Description                        |
+| ---------------- | ------- | ---- | ---------------------------- |
+| density | number | Yes  | Custom display size scale factor. The value is a floating point number in the range [0.5, 4.0] or set to **-1.0**, The value **4.0** indicates the largest permissible display size scale factor for the window, and **-1.0** means that the window uses the system's default display size scale factor.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Window Error Codes](errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300005 | This window stage is abnormal. |
+
+**Example**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      windowStage.setCustomDensity(-1.0);
+    } catch (exception) {
+      console.error(`Failed to set custom density. Cause code: ${exception.code}, message: ${exception.message}`);
     }
   }
 };
@@ -10664,7 +11142,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300003 | This window manager serivce works abnormally. |
+| 1300003 | This window manager service works abnormally. |
 
 **Example**
 
@@ -10689,7 +11167,7 @@ export default class EntryAbility extends UIAbility {
 
 ### setWindowRectAutoSave<sup>14+</sup>
 
-setWindowRectAutoSave(enable: boolean): Promise&lt;void&gt;
+setWindowRectAutoSave(enabled: boolean): Promise&lt;void&gt;
 
 Sets whether to enable the auto-save feature for the size of the main window. This API uses a promise to return the result. It takes effect only on 2-in-1 devices.
 
@@ -10697,8 +11175,8 @@ This API must be called by the main window and the setting takes effect for the 
 
 Upon relaunch, the window will reopen in accordance with these remembered size and state.
 
-The following rules apply in stacking scenarios: 
-1. If the current instance is a free-form window, the next opened window will adopt the same size when stacked.   
+The following rules apply in stacking scenarios:
+1. If the current instance is a free-form window, the next opened window will adopt the same size when stacked.
 2. If the current instance is maximized or in full-screen mode, the next opened window will maintain the maximized state when stacked.
 
 The following table describes the memory rules:
@@ -10720,7 +11198,7 @@ The following table describes the memory rules:
 
 | Name   | Type   | Mandatory| Description                                         |
 | --------- | ------- | ---- | --------------------------------------------- |
-| enable | boolean | Yes  | Whether to enable the auto-save feature for the main window's size. The value **true** means to enable the auto-save feature, and **false** means the opposite.|
+| enabled | boolean | Yes  | Whether to enable the auto-save feature for the main window's size. The value **true** means to enable the auto-save feature, and **false** means the opposite.|
 
 
 **Return value**

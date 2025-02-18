@@ -20,9 +20,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback. Otherwise, frame freezing may occur during the playback.
-
-
+> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -61,7 +59,7 @@ Sets whether to mute the player.
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite. |
+| isMuted | boolean | Yes  | Whether to mute the player.<br>Default value: **false**<br>The value **true** means to mute the player; the value **false** means the opposite.|
 
 ### objectFit
 
@@ -97,8 +95,8 @@ Before this API is called, [autoPlay](#autoplay13) must be set to **true**. Othe
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| number| Yes  | Start playback time, in ms.<br>Value range: [0, 3000]|
-| endTime| number| Yes  | End playback time, in ms.<br>Value range: [0, 3000]|
+| startTime| number| Yes  | Start playback time, in ms.<br>The value must be greater than or equal to 0.|
+| endTime| number| Yes  | End playback time, in ms.<br>The value must be greater than **startTime**.|
 
 ### autoPlay<sup>13+</sup>
 
@@ -115,7 +113,7 @@ Sets autoplay. After the moving photo is played once, a static image is displaye
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false** |
+| isAutoPlay| boolean| Yes  | Whether to enable autoplay.<br>The value **true** means to enable autoplay; the value **false** means the opposite.<br>Default value: **false**|
 
 ### repeatPlay<sup>13+</sup>
 
@@ -132,13 +130,13 @@ Sets repeat play. **repeatPlay** is mutually exclusive with **autoPlay** and **L
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false** |
+| isRepeatPlay| boolean| Yes  | Whether to enable repeat play.<br>The value **true** means to enable repeat play; the value **false** means the opposite.<br>Default value: **false**|
 
 ### enableAnalyzer<sup>14+</sup>
 
 enableAnalyzer(enabled: boolean)
 
-Sets the image AI analyzer. Currently, the image AI analyzer supports features, such as subject recognition, text recognition, and object search.
+Sets the AI analyzer. Currently, the AI analyzer supports features, such as subject recognition, text recognition, and object search.
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -149,7 +147,7 @@ Sets the image AI analyzer. Currently, the image AI analyzer supports features, 
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| enabled| boolean| Yes  | Whether to enable the image AI analyzer.<br>The value **true** means to enable the AI analyzer; the value **false** means the opposite.<br>Default value: **true** |
+| enabled| boolean| Yes  | Whether to enable the AI analyzer.<br>The value **true** means to enable the AI analyzer, and **false** means the opposite.<br>Default value: **true**|
 
 ## Events
 
@@ -170,7 +168,7 @@ Called when the image of a moving photo is loaded.
 
 | Name  | Type                                                         | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------------ |
-| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the image of a moving photo is loaded. |
+| callback | [MovingPhotoViewEventCallback](#movingphotovieweventcallback) | Yes  | Callback to be invoked when the image of a moving photo is loaded.|
 
 ### onStart
 
@@ -287,9 +285,7 @@ Stops playback. Once started again, the playback starts from the beginning.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-## Example
-
-Example 1: Play a moving photo in multiple modes.
+## Example 1: Play a moving photo in multiple modes.
 
 ```ts
 // xxx.ets
@@ -434,7 +430,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
-Example 2: Enable the AI analyzer.
+## Example 2: Enable the AI analyzer.
 
 ```ts
 // xxx.ets
@@ -587,7 +583,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
   }
 }
 ```
-Example 3: Use moving photos in an atomic service.
+## Example 3: Use moving photos in an atomic service.
 
 ```ts
 // xxx.ets

@@ -15,6 +15,19 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+Defines the profile connection status of the Bluetooth device.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                 | Description                 |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Profile connection status of the Bluetooth device.|
+
+
 ## ble.createGattServer<a name="createGattServer"></a>
 
 createGattServer(): GattServer
@@ -2139,7 +2152,7 @@ Subscribes to MTU status changes for the server. This API uses an asynchronous c
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | Yes   | Callback used to return the number of MTU bytes.|
 
 **Error codes**
@@ -2181,7 +2194,7 @@ Unsubscribes from MTU status changes for the server.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
+| type     | string                                   | Yes   | Event type. The value is **BLEMtuChange**, which indicates the MTU status changes. If this parameter is not set correctly, the callback cannot be registered.|
 | callback | Callback&lt;number&gt; | No   | Callback to unregister. If this parameter is not set, this API unregisters all callbacks for the specified **type**.|
 
 **Error codes**
@@ -3313,7 +3326,7 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -3377,7 +3390,7 @@ Sets an indication for the change of a characteristic. The GATT client must ackn
 | Name           | Type                                     | Mandatory  | Description                           |
 | -------------- | --------------------------------------- | ---- | ----------------------------- |
 | characteristic | [BLECharacteristic](#blecharacteristic) | Yes   | BLE characteristic to listen for.                     |
-| enable         | boolean                                 | Yes   | Whether to indicate the client of the characteristic change. The value **true** means to indicate the client, and the value **false** means the opposite. |
+| enable         | boolean                                 | Yes   | Whether to notify the client of the characteristic change. The value **true** means to notify the client, and the value **false** means the opposite.|
 
 **Return value**
 
@@ -3748,7 +3761,7 @@ Defines the parameters in the notifications sent when the server characteristic 
 | serviceUuid         | string      | Yes   | Yes   | UUID of the service, for example, **00001888-0000-1000-8000-00805f9b34fb**.|
 | characteristicUuid  | string      | Yes   | Yes   | UUID of the characteristic, for example, **00002a11-0000-1000-8000-00805f9b34fb**.|
 | characteristicValue | ArrayBuffer | Yes   | Yes   | Binary value of the characteristic.                              |
-| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end. Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end. |
+| confirm             | boolean     | Yes   | Yes   | Whether the indication or notification needs to be acknowledged by the remote end. Set this parameter to **true** for an indication, which needs to be acknowledged by the remote end. Set this parameter to **false** for a notification, which does not need to be acknowledged by the remote end.|
 
 
 ## CharacteristicReadRequest
@@ -3887,7 +3900,7 @@ Defines the BLE advertising parameters.
 | ----------- | ------- | ---- | ---- | ---------------------------------------- |
 | interval    | number  | Yes   | Yes   | Interval for BLE advertising. The minimum value is **160** slots (100 ms). The maximum value is **16384** slots. The default value is **1600** slots (1s).|
 | txPower     | number  | Yes   | Yes   | Transmit power, in dBm. The value range is -127 to 1. The default value is **-7**. Recommended value: **1** for high transmit power, **-7** for medium transmit power, and **-15** for low transmit power.  |
-| connectable | boolean | Yes   | Yes   | Whether the advertisement is connectable. The value **true** (default) means the advertisement is connectable; the value **false** means the opposite.                  |
+| connectable | boolean | Yes   | Yes   | Whether the advertising is connectable. The value **true** (default) means the advertising is connectable; the value **false** means the opposite.                  |
 
 
 ## AdvertiseData

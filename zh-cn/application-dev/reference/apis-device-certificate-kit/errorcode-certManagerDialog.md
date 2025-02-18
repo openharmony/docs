@@ -36,7 +36,7 @@ The user cancels the installation operation.
 
 **错误信息**
 
-The user install certificate failed in the certificate manager dialog.
+The user install certificate failed in the certificate manager dialog, such as the certificate is in an invalid format.
 
 **可能原因**
 
@@ -59,3 +59,17 @@ The API is not supported on this device.
 **处理步骤**
 
 更换PC设备调用此API。
+
+## 29700005 操作不符合设备安全政策
+
+**错误信息**
+
+The operation does not comply with the device security policy, such as the device does not allow users to manage the ca certificate of the global user.
+
+**可能原因**
+
+调用API时当前设备非企业设备。
+
+**处理步骤**
+
+更换企业设备调用此API。

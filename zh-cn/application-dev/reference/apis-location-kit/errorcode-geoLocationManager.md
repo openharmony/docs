@@ -48,6 +48,42 @@ The location switch is off.
 
 **错误信息**
 
+The network locating is failed because the network cannot be accessed.
+
+**错误描述**
+
+无法访问网络导致网络定位失败。
+
+**处理步骤**
+
+请检查设备是否能联网，设备是否插入SIM卡，Wi-Fi开关是否开启等。
+
+**错误信息**
+
+The positioning result does not meet the precision requirement (maxAccuracy) in the positioning request parameters.
+
+**错误描述**
+
+定位结果不满足定位请求参数中的精度要求(maxAccuracy)，导致定位超时。
+
+**处理步骤**
+
+请检查定位请求中的maxAccuracy字段是否合理。
+
+**错误信息**
+
+The system does not have a cache locaiton.
+
+**错误描述**
+
+系统无缓存位置，导致获取上一次位置失败。
+
+**处理步骤**
+
+系统未提前将位置信息进行缓存的情况下，需使用getCurrentLocation接口获取实时位置信息。
+
+**错误信息**
+
 Failed to obtain the geographical location.
 
 **错误描述**
@@ -58,25 +94,13 @@ Failed to obtain the geographical location.
 
 1.GNSS信号弱，导致定位超时。
 
-2.网络定位异常，导致定位超时。
-
-3.定位结果不满足定位请求参数中的精度要求(maxAccuracy)，导致定位超时。
-
-4.系统无缓存位置，导致获取上一次位置失败。
-
-5.系统时间设置错误，导致获取位置失败。
+2.系统时间设置错误，导致获取位置失败。
 
 **处理步骤**
 
 1.请移动至开阔地带再发起定位。
 
-2.请检查设备是否能联网，设备是否插入SIM卡，Wi-Fi开关是否开启等。
-
-3.请检查定位请求中的maxAccuracy字段是否合理。
-
-4.系统无缓存位置的情况下，请使用getCurrentLocation接口获取实时位置信息。
-
-5.请在“日期和时间”页面勾选自动设置。
+2.请在“日期和时间”页面勾选自动设置。
 
 
 ## 3301300 逆地理编码查询失败

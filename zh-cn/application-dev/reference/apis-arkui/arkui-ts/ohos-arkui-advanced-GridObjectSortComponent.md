@@ -98,67 +98,25 @@ struct Index {
   @State dataList: GridObjectSortComponentItem[] = [
     {
       id: 0,
-      url: $r('app.media.ic_controlcenter_location_filled'),
-      text: '位置信息',
+      url: $r('sys.media.ohos_save_button_filled'),
+      text: '下载',
       selected: true,
       order: 3
     },
     {
       id: 1,
-      url: $r('app.media.ic_controlcenter_mobiledata_filled'),
-      text: '移动数据',
+      url: $r('sys.media.ohos_ic_public_web'),
+      text: '网路',
       selected: true,
       order: 9
     },
     {
       id: 2,
-      url: $r('app.media.ic_controlcenter_nfc_filled'),
-      text: 'NFC',
+      url: $r('sys.media.ohos_ic_public_video'),
+      text: '视频',
       selected: false,
       order: 1
-    },
-    {
-      id: 3,
-      url: $r('app.media.ic_controlcenter_ring_off_filled'),
-      text: '响铃关闭',
-      selected: true,
-      order: 4
-    },
-    {
-      id: 4,
-      url: $r('app.media.ic_controlcenter_ring_on_filled'),
-      text: '响铃',
-      selected: false,
-      order: 5
-    },
-    {
-      id: 5,
-      url: $r('app.media.ic_controlcenter_ultra_power_saver_filled'),
-      text: '低电量模式',
-      selected: true,
-      order: 6
-    },
-    {
-      id: 6,
-      url: $r('app.media.ic_controlcenter_screenshot_filled'),
-      text: '截屏',
-      selected: true,
-      order: 7
-    },
-    {
-      id: 7,
-      url: $r('app.media.ic_controlcenter_screen_recording_filled'),
-      text: '屏幕录制',
-      selected: true,
-      order: 8
-    },
-    {
-      id: 8,
-      url: $r('app.media.ic_controlcenter_super_power_saver_filled'),
-      text: '超级省电',
-      selected: false,
-      order: 9
-    },
+    }
   ]
 
   // 组件配置信息初始化

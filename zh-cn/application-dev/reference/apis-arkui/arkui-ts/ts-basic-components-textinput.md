@@ -73,6 +73,8 @@ placeholderColor(value: ResourceColor)
 
 设置placeholder文本颜色。
 
+wearable设备上默认值为：'#99ffffff'
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -88,6 +90,8 @@ placeholderColor(value: ResourceColor)
 placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
+
+wearable设备上默认值为：18fp
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -156,6 +160,8 @@ fontColor(value: ResourceColor)
 
 设置字体颜色。
 
+wearable设备上默认值为：'#dbffffff'
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -171,6 +177,8 @@ fontColor(value: ResourceColor)
 fontSize(value: Length)
 
 设置字体大小。
+
+wearable设备上默认值为：18fp
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -253,7 +261,7 @@ inputFilter(value: ResourceStr, error?: Callback\<string>)
 
 copyOption(value: CopyOptions)
 
-设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切和帮写，仅支持粘贴。
+设置输入的文本是否可复制。设置CopyOptions.None时，当前TextInput中的文字无法被复制、剪切、翻译、分享、搜索和帮写，仅支持粘贴。
 
 设置CopyOptions.None时，不允许拖拽。
 
@@ -389,6 +397,8 @@ showError(value?: ResourceStr | undefined)
 
 设置错误状态下提示的错误文本或者不显示错误状态。
 
+wearable设备上字体大小为：13fp，对齐方式为：居中对齐
+
 当参数类型为ResourceStr并且输入内容不符合定义规范时，提示错误文本，当提示错误单行文本超长时，末尾以省略号显示。当参数类型为undefined时，不显示错误状态。请参考[示例2](#示例2设置下划线)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -425,7 +435,7 @@ passwordIcon(value: PasswordIcon)
 
 支持jpg、png、bmp、heic和webp类型的图片格式。
 
-该图标的固定尺寸为24vp，若引用的图标过大或过小，均显示为固定尺寸。
+该图标的固定尺寸为24vp，wearable设备上默认值为28vp，若引用的图标过大或过小，均显示为固定尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -571,6 +581,8 @@ passwordRules(value: string)
 cancelButton(options: CancelButtonOptions)
 
 设置右侧清除按钮样式。不支持内联模式。
+
+wearable设备上默认值为：28vp
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -833,7 +845,7 @@ maxFontSize(value: number | string | Resource)
 
 ### halfLeading<sup>16+</sup>
 
-halfLeading(halfLeading: boolean)
+halfLeading(halfLeading: Optional\<boolean>)
 
 设置文本是否将行间距平分至行的顶部与底部。
 
@@ -845,11 +857,11 @@ halfLeading(halfLeading: boolean)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| halfLeading | boolean | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
+| halfLeading | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是  | 文本是否将行间距平分至行的顶部与底部。<br/>true表示将行间距平分至行的顶部与底部，false则不平分。<br/>默认值：false |
 
 ### minFontScale<sup>16+</sup>
 
-minFontScale(scale: number | Resource)
+minFontScale(scale: Optional\<number | Resource>)
 
 设置文本最小的字体缩放倍数。
 
@@ -861,11 +873,11 @@ minFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最小的字体缩放倍数，支持undefined类型。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理。设置的值大于1，按值为1处理。异常值默认不生效。 |
 
 ### maxFontScale<sup>16+</sup>
 
-maxFontScale(scale: number | Resource)
+maxFontScale(scale: Optional\<number | Resource>)
 
 设置文本最大的字体缩放倍数。
 
@@ -877,7 +889,7 @@ maxFontScale(scale: number | Resource)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
+| scale  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number \| [Resource](ts-types.md#resource)> | 是   | 文本最大的字体缩放倍数，支持undefined类型。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理。异常值默认不生效。 |
 
 ### heightAdaptivePolicy<sup>12+</sup>
 
@@ -957,7 +969,7 @@ editMenuOptions(editMenu: EditMenuOptions)
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions对象说明) | 是   | 扩展菜单选项。 |
+| editMenu  | [EditMenuOptions](ts-text-common.md#editmenuoptions) | 是   | 扩展菜单选项。 |
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -976,18 +988,6 @@ enablePreviewText(enable: boolean)
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
-
->  **说明：**
->
->  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -1034,11 +1034,11 @@ cancelButton(value: CancelButtonSymbolOptions)
 
 ### ellipsisMode<sup>16+</sup>
 
-ellipsisMode(value: EllipsisMode)
+ellipsisMode(mode: Optional\<EllipsisMode>)
 
 设置省略位置。ellipsisMode属性需要配合overflow设置为TextOverflow.Ellipsis使用，单独设置ellipsisMode属性不生效。
 
-EllipsisMode仅在内联模式下生效。
+EllipsisMode.START和EllipsisMode.CENTER仅在内联模式下maxLines设置为1时生效。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -1048,9 +1048,25 @@ EllipsisMode仅在内联模式下生效。
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| value  | [EllipsisMode](ts-basic-components-richeditor#ellipsismode16) | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+| mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
 
-### stopBackPress<sup>16+</sup>
+### keyboardAppearance<sup>15+</sup>
+
+keyboardAppearance(appearance: KeyboardAppearance)
+
+设置输入框拉起的键盘样式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
+| appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
+
+### stopBackPress(isStopped: Optional\<boolean>)
 
 stopBackPress(isStopped: boolean)
 
@@ -1064,7 +1080,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## InputType枚举说明
 
@@ -1114,6 +1130,18 @@ stopBackPress(isStopped: boolean)
 | NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
 | DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
 | FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
+| PASSPORT_NUMBER<sup>16+</sup>            | 26   | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。 |
+| VALIDITY<sup>16+</sup>                   | 27   | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。 |
+| ISSUE_AT<sup>16+</sup>                   | 28   | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。 |
+| ORGANIZATION<sup>16+</sup>               | 29   | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。 |
+| TAX_ID<sup>16+</sup>                     | 30   | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。 |
+| ADDRESS_CITY_AND_STATE<sup>16+</sup>     | 31   | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。 |
+| FLIGHT_NUMBER<sup>16+</sup>              | 32   | 【航班号】暂不支持自动保存和自动填充。 |
+| LICENSE_NUMBER<sup>16+</sup>             | 33   | 【驾驶证号】暂不支持自动保存和自动填充。 |
+| LICENSE_FILE_NUMBER<sup>16+</sup>        | 34   | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
+| LICENSE_PLATE<sup>16+</sup>              | 35   | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。 |
+| ENGINE_NUMBER<sup>16+</sup>              | 36   | 【行驶证发动机号】暂不支持自动保存和自动填充。 |
+| LICENSE_CHASSIS_NUMBER<sup>16+</sup>     | 37   | 【车牌识别号】暂不支持自动保存和自动填充。 |
 
 ## TextInputStyle<sup>9+</sup>枚举说明
 
@@ -1143,15 +1171,15 @@ stopBackPress(isStopped: boolean)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称                   | 描述               |
-| ---------------------- | ------------------ |
-| Go                     | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| Search                 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Send                   | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| Next                   | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| Done                   | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| PREVIOUS<sup>11+</sup> | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| NEW_LINE<sup>11+</sup> | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| 名称                   | 值 | 说明               |
+| ---------------------- | --- | ------------------ |
+| Go                     | 2 | 显示为开始样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| Search                 | 3 | 显示为搜索样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| Send                   | 4 | 显示为发送样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| Next                   | 5 | 显示为下一步样式。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Done                   | 6 | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
+| PREVIOUS<sup>11+</sup> | 7 | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| NEW_LINE<sup>11+</sup> | 8 | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
 
 
 ## 事件
@@ -1190,7 +1218,7 @@ onSubmit(callback:OnSubmitCallback)
 
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback            | [OnSubmitCallback](#onsubmitcallback14对象说明) | 是   | 提交回调。 |
+| callback            | [OnSubmitCallback](#onsubmitcallback16) | 是   | 提交回调。 |
 
 ### onEditChanged<sup>(deprecated)</sup>
 
@@ -1269,7 +1297,7 @@ onPaste(callback:OnPasteCallback )
 **参数：** 
 | 参数名              | 类型                                                         | 必填 | 说明                   |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | [OnPasteCallback](#onpastecallback14对象说明)       | 是   | 粘贴回调。 |
+| callback | [OnPasteCallback](#onpastecallback16)       | 是   | 粘贴回调。 |
 
 ### onTextSelectionChange<sup>10+</sup>
 
@@ -1285,7 +1313,7 @@ onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 | 参数名         | 类型   | 必填 | 说明                                    |
 | -------------- | ------ | ---- | --------------------------------------- |
-| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback14对象说明) | 是   | 文本选择变化回调或光标位置变化回调。 |
+| callback | [OnTextSelectionChangeCallback](#ontextselectionchangecallback16) | 是   | 文本选择变化回调或光标位置变化回调。 |
 
 ### onContentScroll<sup>10+</sup>
 
@@ -1301,7 +1329,7 @@ onContentScroll(callback: OnContentScrollCallback)
 
 | 参数名       | 类型   | 必填 | 说明                               |
 | ------------ | ------ | ---- | ---------------------------------- |
-| callback | [OnContentScrollCallback](#oncontentscrollcallback14对象说明) | 是   | 文本内容滚动回调。 |
+| callback | [OnContentScrollCallback](#oncontentscrollcallback16) | 是   | 文本内容滚动回调。 |
 
 ### onSecurityStateChange<sup>12+</sup>
 
@@ -1333,7 +1361,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏和候选词操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -1382,6 +1410,22 @@ onDidDelete(callback: Callback\<DeleteValue>)
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | callback  | Callback\<[DeleteValue](ts-text-common.md#deletevalue12对象说明)> | 是   | 在删除完成时调用的回调。<br/>仅支持系统输入法输入的场景。 |
+
+### onWillChange<sup>16+</sup>
+
+onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
+
+在文本内容将要发生变化时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
 
 ## TextInputController<sup>8+</sup>
 
@@ -1470,7 +1514,7 @@ stopEditing(): void
 | error   | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 错误时下划线颜色。不填写、undefined、null、无效值时恢复默认。此选项会修改showCounter属性中达到最大字符数时的颜色。 |
 | disable | [ResourceColor](ts-types.md#resourcecolor) \| undefined | 否   | 禁用时下划线颜色。不填写、undefined、null、无效值时恢复默认。 |
 
-## SubmitEvent<sup>11+</sup>对象说明
+## SubmitEvent<sup>11+</sup>
 
 定义用户提交事件。
 
@@ -1498,13 +1542,13 @@ keepEditableState(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-## OnPasteCallback<sup>14+</sup>对象说明
+## OnPasteCallback<sup>16+</sup>
 
 type OnPasteCallback = (content: string, event: PasteEvent) => void
 
 粘贴回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1515,13 +1559,13 @@ type OnPasteCallback = (content: string, event: PasteEvent) => void
 | content               | string                                                       | 是   | 粘贴的文本内容。       |
 | event | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | 是   | 用户自定义的粘贴事件。 |
 
-## OnSubmitCallback<sup>14+</sup>对象说明
+## OnSubmitCallback<sup>16+</sup>
 
 type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 
 提交回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1530,15 +1574,15 @@ type OnSubmitCallback = (enterKey: EnterKeyType, event: SubmitEvent) => void
 | 参数名              | 类型                                             | 必填 | 说明                                                         |
 | ------------------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | enterKey            | [EnterKeyType](#enterkeytype枚举说明) | 是   | 输入法回车键类型。 |
-| event | [SubmitEvent](#submitevent11对象说明)         | 是   | 提交事件。                                                   |
+| event | [SubmitEvent](#submitevent11)         | 是   | 提交事件。                                                   |
 
-## OnTextSelectionChangeCallback<sup>14+</sup>对象说明
+## OnTextSelectionChangeCallback<sup>16+</sup>
 
 type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: number) => void
 
 文本选择变化回调或光标位置变化回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1549,13 +1593,13 @@ type OnTextSelectionChangeCallback = (selectionStart: number, selectionEnd: numb
 | selectionStart | number | 是   | 所选文本的起始位置，文字的起始位置为0。 |
 | selectionEnd   | number | 是   | 所选文本的结束位置。                    |
 
-## OnContentScrollCallback<sup>14+</sup>对象说明
+## OnContentScrollCallback<sup>16+</sup>
 
 type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => void
 
 文本内容滚动回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1622,7 +1666,7 @@ struct TextInputExample {
         .showPassword(this.passwordState)
         .onSecurityStateChange(((isShowPassword: boolean) => {
           // 更新密码显示状态
-          console.info('isShowPassword',isShowPassword)
+          console.info('isShowPassword', isShowPassword)
           this.passwordState = isShowPassword
         }))
       // 邮箱地址自动填充类型
@@ -1651,16 +1695,18 @@ struct TextInputExample {
 该示例通过showUnderline、showError、showUnit、passwordIcon属性展示了下划线在不同场景的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State passWordSrc1: Resource = $r('app.media.ImageOne')
-  @State passWordSrc2: Resource = $r('app.media.ImageTwo')
-  @State textError: string = ''
-  @State text: string = ''
-  @State nameText: string = 'test'
+  @State passWordSrc1: Resource = $r('app.media.ImageOne');
+  @State passWordSrc2: Resource = $r('app.media.ImageTwo');
+  @State textError: string = '';
+  @State text: string = '';
+  @State nameText: string = 'test';
 
-  @Builder itemEnd() {
+  @Builder
+  itemEnd() {
     Select([{ value: 'KB' },
       { value: 'MB' },
       { value: 'GB' },
@@ -1675,9 +1721,14 @@ struct TextInputExample {
       .selectedOptionFont({ size: 20, weight: 400 })
       .optionFont({ size: 20, weight: 400 })
       .backgroundColor(Color.Transparent)
-      .responseRegion({ height: "40vp", width: "80%", x: '10%', y: '6vp' })
+      .responseRegion({
+        height: "40vp",
+        width: "80%",
+        x: '10%',
+        y: '6vp'
+      })
       .onSelect((index: number) => {
-        console.info('Select:' + index)
+        console.info('Select:' + index);
       })
   }
 
@@ -1709,12 +1760,12 @@ struct TextInputExample {
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
           if (this.text == this.nameText) {
-            this.textError = ''
+            this.textError = '';
           } else {
-            this.textError = '用户名输入错误'
-            this.text = ''
+            this.textError = '用户名输入错误';
+            this.text = '';
             // 调用keepEditableState方法，输入框保持编辑态
-            event.keepEditableState()
+            event.keepEditableState();
           }
         })
       // 设置下划线颜色
@@ -1748,22 +1799,23 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State inputValue: string = ""
+  controller: TextInputController = new TextInputController();
+  @State inputValue: string = "";
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Button('x').onClick(() => {
         // 关闭自定义键盘
-        this.controller.stopEditing()
+        this.controller.stopEditing();
       })
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item:number|string) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1773,8 +1825,7 @@ struct TextInputExample {
 
   build() {
     Column() {
-      TextInput({ controller: this.controller, text: this.inputValue })
-        // 绑定自定义键盘
+      TextInput({ controller: this.controller, text: this.inputValue })// 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 }).height('48vp')
     }
   }
@@ -1792,8 +1843,8 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1804,12 +1855,12 @@ struct TextInputExample {
           style: CancelButtonStyle.CONSTANT,
           icon: {
             size: 45,
-            src: $r('app.media.icon'),
+            src: $r('app.media.app_icon'),
             color: Color.Blue
           }
         })
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }
   }
@@ -1827,8 +1878,8 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1838,12 +1889,12 @@ struct TextInputExample {
         .height(56)
         .maxLength(6)
         .showUnderline(true)
-		.showCounter(true, { thresholdPercentage: 50, highlightBorder: true })
-		//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
-        //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
-        //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
+        .showCounter(true,
+          { thresholdPercentage: 50, highlightBorder: true })//计数器显示效果为用户当前输入字符数/最大字符限制数。最大字符限制数通过maxLength()接口设置。
+          //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
+          //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1858,33 +1909,34 @@ struct TextInputExample {
 该示例通过onChange回调实现了电话号码格式化为XXX XXXX XXXX的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State submitValue: string = ''
-  @State text: string = ''
-  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13
-  @State teleNumberNoSpace: string = ""
-  @State nextCaret: number = -1 // 用于记录下次光标设置的位置
-  @State actualCh: number = -1 // 用于记录光标在第i个数字后插入或者第i个数字前删除
-  @State lastCaretPosition: number = 0
-  @State lastCaretPositionEnd: number = 0
-  controller: TextInputController = new TextInputController()
+  @State submitValue: string = '';
+  @State text: string = '';
+  public readonly NUM_TEXT_MAXSIZE_LENGTH = 13;
+  @State teleNumberNoSpace: string = "";
+  @State nextCaret: number = -1; // 用于记录下次光标设置的位置
+  @State actualCh: number = -1; // 用于记录光标在第i个数字后插入或者第i个数字前删除
+  @State lastCaretPosition: number = 0;
+  @State lastCaretPositionEnd: number = 0;
+  controller: TextInputController = new TextInputController();
 
   isEmpty(str?: string): boolean {
-    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str)
+    return str == 'undefined' || !str || !new RegExp("[^\\s]").test(str);
   }
 
   checkNeedNumberSpace(numText: string) {
-    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g')
-    let isRule: RegExp = new RegExp('^\\+.*')
+    let isSpace: RegExp = new RegExp('[\\+;,#\\*]', 'g');
+    let isRule: RegExp = new RegExp('^\\+.*');
 
     if (isSpace.test(numText)) {
       // 如果电话号码里有特殊字符，就不加空格
       if (isRule.test(numText)) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     }
     return true;
@@ -1892,61 +1944,61 @@ struct TextInputExample {
 
   removeSpace(str: string): string {
     if (this.isEmpty(str)) {
-      return ''
+      return '';
     }
-    return str.replace(new RegExp("[\\s]", "g"), '')
+    return str.replace(new RegExp("[\\s]", "g"), '');
   }
 
   setCaret() {
     if (this.nextCaret != -1) {
-      console.log("to keep caret position right, change caret to", this.nextCaret)
-      this.controller.caretPosition(this.nextCaret)
-      this.nextCaret = -1
+      console.log("to keep caret position right, change caret to", this.nextCaret);
+      this.controller.caretPosition(this.nextCaret);
+      this.nextCaret = -1;
     }
   }
 
   calcCaretPosition(nextText: string) {
-    let befNumberNoSpace: string = this.removeSpace(this.text)
-    this.actualCh = 0
+    let befNumberNoSpace: string = this.removeSpace(this.text);
+    this.actualCh = 0;
     if (befNumberNoSpace.length < this.teleNumberNoSpace.length) { // 插入场景
       for (let i = 0; i < this.lastCaretPosition; i++) {
         if (this.text[i] != ' ') {
-          this.actualCh += 1
+          this.actualCh += 1;
         }
       }
-      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length
-      console.log("actualCh: " + this.actualCh)
+      this.actualCh += this.teleNumberNoSpace.length - befNumberNoSpace.length;
+      console.log("actualCh: " + this.actualCh);
       for (let i = 0; i < nextText.length; i++) {
         if (nextText[i] != ' ') {
-          this.actualCh -= 1
+          this.actualCh -= 1;
           if (this.actualCh <= 0) {
-            this.nextCaret = i + 1
+            this.nextCaret = i + 1;
             break;
           }
         }
       }
     } else if (befNumberNoSpace.length > this.teleNumberNoSpace.length) { // 删除场景
       if (this.lastCaretPosition === this.text.length) {
-        console.log("Caret at last, no need to change")
+        console.log("Caret at last, no need to change");
       } else if (this.lastCaretPosition === this.lastCaretPositionEnd) {
         // 按键盘上回退键一个一个删的情况
         for (let i = this.lastCaretPosition; i < this.text.length; i++) {
           if (this.text[i] != ' ') {
-            this.actualCh += 1
+            this.actualCh += 1;
           }
         }
         for (let i = nextText.length - 1; i >= 0; i--) {
           if (nextText[i] != ' ') {
-            this.actualCh -= 1
+            this.actualCh -= 1;
             if (this.actualCh <= 0) {
-              this.nextCaret = i
+              this.nextCaret = i;
               break;
             }
           }
         }
       } else {
         // 剪切/手柄选择 一次删多个字符
-        this.nextCaret = this.lastCaretPosition // 保持光标位置
+        this.nextCaret = this.lastCaretPosition; // 保持光标位置
       }
     }
   }
@@ -1957,39 +2009,39 @@ struct TextInputExample {
         TextInput({ text: `${this.text}`, controller: this.controller }).type(InputType.PhoneNumber).height('48vp')
           .onChange((number: string) => {
             this.teleNumberNoSpace = this.removeSpace(number);
-            let nextText: string = ""
+            let nextText: string = "";
             if (this.teleNumberNoSpace.length > this.NUM_TEXT_MAXSIZE_LENGTH - 2) {
-              nextText = this.teleNumberNoSpace
+              nextText = this.teleNumberNoSpace;
             } else if (this.checkNeedNumberSpace(number)) {
               if (this.teleNumberNoSpace.length <= 3) {
-                nextText = this.teleNumberNoSpace
+                nextText = this.teleNumberNoSpace;
               } else {
-                let split1: string = this.teleNumberNoSpace.substring(0, 3)
-                let split2: string = this.teleNumberNoSpace.substring(3)
-                nextText = split1 + ' ' + split2
+                let split1: string = this.teleNumberNoSpace.substring(0, 3);
+                let split2: string = this.teleNumberNoSpace.substring(3);
+                nextText = split1 + ' ' + split2;
                 if (this.teleNumberNoSpace.length > 7) {
-                  split2 = this.teleNumberNoSpace.substring(3, 7)
-                  let split3: string = this.teleNumberNoSpace.substring(7)
-                  nextText = split1 + ' ' + split2 + ' ' + split3
+                  split2 = this.teleNumberNoSpace.substring(3, 7);
+                  let split3: string = this.teleNumberNoSpace.substring(7);
+                  nextText = split1 + ' ' + split2 + ' ' + split3;
                 }
               }
             } else {
-              nextText = number
+              nextText = number;
             }
-            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number)
+            console.log("onChange Triggered:" + this.text + "|" + nextText + "|" + number);
             if (this.text === nextText && nextText === number) {
               // 此时说明数字已经格式化完成了 在这个时候改变光标位置不会被重置掉
-              this.setCaret()
+              this.setCaret();
             } else {
-              this.calcCaretPosition(nextText)
+              this.calcCaretPosition(nextText);
             }
-            this.text = nextText
+            this.text = nextText;
           })
           .onTextSelectionChange((selectionStart, selectionEnd) => {
             // 记录光标位置
-            console.log("selection change: ", selectionStart, selectionEnd)
-            this.lastCaretPosition = selectionStart
-            this.lastCaretPositionEnd = selectionEnd
+            console.log("selection change: ", selectionStart, selectionEnd);
+            this.lastCaretPosition = selectionStart;
+            this.lastCaretPositionEnd = selectionEnd;
           })
       }
     }
@@ -2009,50 +2061,62 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
+  @State textStrEn: string =
+    'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.';
+  @State textStrZn: string =
+    '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。';
+
   build() {
-    Column() {
-      Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline) // Inline模式
-        .wordBreak(WordBreak.NORMAL) // 非Inline模式该属性无效
+    Row() {
+      Column() {
+        Text("TextInput为inline模式，WordBreakType属性为NORMAL的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)// Inline模式
+          .wordBreak(WordBreak.NORMAL) // 非Inline模式该属性无效
 
-      Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
+        Text("TextInput为inline模式，英文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_ALL)
 
-      Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: '多行文本输入框组件，当输入的文本内容超过组件宽度时会自动换行显示。\n高度未设置时，组件无默认高度，自适应内容高度。宽度未设置时，默认撑满最大宽度。'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_ALL)
+        Text("TextInput为inline模式，中文文本，WordBreakType属性为BREAK_ALL的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrZn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_ALL)
 
-      Text("TextInput为inline模式，WordBreakType属性为BREAK_WORD的样式：").fontSize(16).fontColor(0xFF0000)
-      TextInput({
-        text: 'This is set wordBreak to WordBreak text Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu.'
-      })
-        .fontSize(16)
-        .style(TextInputStyle.Inline)
-        .wordBreak(WordBreak.BREAK_WORD)
-    }
+        Text("TextInput为inline模式，WordBreakType属性为BREAK_WORD的样式：").fontSize(16).fontColor(0xCCCCCC)
+        TextInput({
+          text: this.textStrEn
+        })
+          .margin(10)
+          .fontSize(16)
+          .style(TextInputStyle.Inline)
+          .wordBreak(WordBreak.BREAK_WORD)
+      }.width('100%')
+    }.height('100%').margin(10)
   }
 }
 ```
-![TextInputWordBreak](figures/TextInputWordBreak.jpeg)
+![TextInputWordBreak](figures/TextInputWordBreak.png)
 
 ### 示例8（设置文本样式）
 
 该示例通过lineHeight、letterSpacing、decoration属性展示了不同样式的文本效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -2060,31 +2124,31 @@ struct TextInputExample {
     Row() {
       Column() {
         Text('lineHeight').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'lineHeight unset'})
+        TextInput({ text: 'lineHeight unset' })
           .border({ width: 1 }).padding(10).margin(5)
-        TextInput({text: 'lineHeight 15'})
+        TextInput({ text: 'lineHeight 15' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(15)
-        TextInput({text: 'lineHeight 30'})
+        TextInput({ text: 'lineHeight 30' })
           .border({ width: 1 }).padding(10).margin(5).lineHeight(30)
 
         Text('letterSpacing').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'letterSpacing 0'})
+        TextInput({ text: 'letterSpacing 0' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(0)
-        TextInput({text: 'letterSpacing 3'})
+        TextInput({ text: 'letterSpacing 3' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(3)
-        TextInput({text: 'letterSpacing -1'})
+        TextInput({ text: 'letterSpacing -1' })
           .border({ width: 1 }).padding(5).margin(5).letterSpacing(-1)
 
         Text('decoration').fontSize(9).fontColor(0xCCCCCC)
-        TextInput({text: 'LineThrough, Red'})
+        TextInput({ text: 'LineThrough, Red' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.LineThrough, color: Color.Red})
-        TextInput({text: 'Overline, Red, DASHED'})
+          .decoration({ type: TextDecorationType.LineThrough, color: Color.Red })
+        TextInput({ text: 'Overline, Red, DASHED' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED})
-        TextInput({text: 'Underline, Red, WAVY'})
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red, style: TextDecorationStyle.DASHED })
+        TextInput({ text: 'Underline, Red, WAVY' })
           .border({ width: 1 }).padding(5).margin(5)
-          .decoration({type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY})
+          .decoration({ type: TextDecorationType.Underline, color: Color.Red, style: TextDecorationStyle.WAVY })
       }.height('90%')
     }
     .width('90%')
@@ -2100,11 +2164,12 @@ struct TextInputExample {
 该示例通过fontFeature属性实现了文本在不同文字特性下的展示效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
+  @State text1: string = 'This is ss01 on : 0123456789';
+  @State text2: string = 'This is ss01 off: 0123456789';
 
   build() {
     Column() {
@@ -2130,13 +2195,14 @@ struct TextInputExample {
 该示例通过自定义键盘实现了键盘避让的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State inputValue: string = ""
-  @State height1: string | number = '80%'
-  @State supportAvoidance: boolean = true
+  controller: TextInputController = new TextInputController();
+  @State inputValue: string = "";
+  @State height1: string | number = '80%';
+  @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
   @Builder
@@ -2145,7 +2211,7 @@ struct TextInputExample {
       Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
-          this.controller.stopEditing()
+          this.controller.stopEditing();
         }).margin(10)
       }
 
@@ -2154,7 +2220,7 @@ struct TextInputExample {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -2168,13 +2234,13 @@ struct TextInputExample {
         Button("20%")
           .fontSize(24)
           .onClick(() => {
-            this.height1 = "20%"
+            this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
           .margin({ left: 20 })
           .onClick(() => {
-            this.height1 = "80%"
+            this.height1 = "80%";
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -2200,6 +2266,7 @@ struct TextInputExample {
 该示例通过minFontSize、maxFontSize、heightAdaptivePolicy属性实现了文本自适应字号的功能。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
@@ -2251,16 +2318,18 @@ struct TextInputExample {
 该示例通过lineBreakStrategy属性实现了TextArea不同折行规则下的效果。
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct TextInputExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State lineBreakStrategyIndex: number = 0
-  @State lineBreakStrategy: LineBreakStrategy[] = [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State lineBreakStrategyIndex: number = 0;
+  @State lineBreakStrategy: LineBreakStrategy[] =
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
@@ -2275,9 +2344,9 @@ struct TextInputExample {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
         Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
-          if(this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+          this.lineBreakStrategyIndex++;
+          if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }
@@ -2295,11 +2364,11 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State insertValue: string = ""
-  @State deleteValue: string = ""
-  @State insertOffset: number = 0
-  @State deleteOffset: number = 0
-  @State deleteDirection: number = 0
+  @State insertValue: string = "";
+  @State deleteValue: string = "";
+  @State insertOffset: number = 0;
+  @State deleteOffset: number = 0;
+  @State deleteDirection: number = 0;
 
   build() {
     Row() {
@@ -2307,11 +2376,11 @@ struct TextInputExample {
         TextInput({ text: "TextInput支持插入回调文本" })
           .height(60)
           .onWillInsert((info: InsertValue) => {
-            this.insertValue = info.insertValue
+            this.insertValue = info.insertValue;
             return true;
           })
           .onDidInsert((info: InsertValue) => {
-            this.insertOffset = info.insertOffset
+            this.insertOffset = info.insertOffset;
           })
 
         Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
@@ -2319,13 +2388,13 @@ struct TextInputExample {
         TextInput({ text: "TextInput支持删除回调文本b" })
           .height(60)
           .onWillDelete((info: DeleteValue) => {
-            this.deleteValue = info.deleteValue
-            info.direction
+            this.deleteValue = info.deleteValue;
+            info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
-            this.deleteOffset = info.deleteOffset
-            this.deleteDirection = info.direction
+            this.deleteOffset = info.deleteOffset;
+            this.deleteDirection = info.direction;
           })
 
         Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
@@ -2355,30 +2424,30 @@ struct TextInputExample {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
-    menuItems.push(item1)
-    menuItems.unshift(item2)
-    return menuItems
+    };
+    menuItems.push(item1);
+    menuItems.unshift(item2);
+    return menuItems;
   }
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
+    return false;
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
@@ -2411,9 +2480,9 @@ import { SymbolGlyphModifier } from '@kit.ArkUI';
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
+  @State text: string = '';
   symbolModifier: SymbolGlyphModifier =
-    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular)
+    new SymbolGlyphModifier($r('sys.symbol.trash')).fontColor([Color.Red]).fontSize(16).fontWeight(FontWeight.Regular);
 
   build() {
     Column() {
@@ -2486,3 +2555,177 @@ struct EllipsisModeExample {
 ```
 
 ![textInputEllipsisMode](figures/textInputEllipsisMode.png)
+
+### 示例17（输入框支持输入状态变化等回调）
+
+该示例通过onEditChange、onCopy、onCut、onPaste、onContentScroll接口实现了输入框监测输入状态变化、复制、剪切、粘贴、文本内容滚动回调的效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextInputExample {
+  @State editStatus: boolean = false;
+  @State copyValue: string = "";
+  @State cutValue: string = "";
+  @State pasteValue: string = "";
+  @State totalOffsetX: number = 0;
+  @State totalOffsetY: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "TextInput支持输入状态变化时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .caretPosition(10)// 设置TextInput光标位置
+          .selectionMenuHidden(true)// 设置TextInput不弹出系统文本选择菜单
+          .onEditChange((status: boolean) => {
+            this.editStatus = status;
+          })
+          .defaultFocus(true)// 设置TextInput默认获焦
+          .enableKeyboardOnFocus(false)// 设置TextInput通过点击以外的方式获焦时，不主动拉起软键盘
+          .selectAll(false)
+
+        Text("editStatus:" + this.editStatus).height(30)
+
+        TextInput({ text: "TextInput支持复制操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCopy((copyValue: string) => {
+            this.copyValue = copyValue;
+          })
+
+        Text("copyValue:" + this.copyValue).height(30)
+
+        TextInput({ text: "TextInput支持剪切操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onCut((cutValue: string) => {
+            this.cutValue = cutValue;
+          })
+
+        Text("cutValue:" + this.cutValue).height(30)
+
+        TextInput({ text: "TextInput支持粘贴操作时回调" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onPaste((pasteValue: string) => {
+            this.pasteValue = pasteValue;
+          })
+
+        Text("pasteValue:" + this.pasteValue).height(30)
+
+        TextInput({ text: "TextInput支持文本内容滚动时回调: 文本内容宽度超出输入框宽度，滚动文本查看偏移量变化" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .fontFamily("HarmonyOS Sans")
+          .copyOption(CopyOptions.LocalDevice)
+          .textAlign(TextAlign.Center)
+          .selectedBackgroundColor(Color.Blue)
+          .caretStyle({ width: '4vp' })
+          .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
+            this.totalOffsetX = totalOffsetX;
+            this.totalOffsetY = totalOffsetY;
+          })
+
+        Text("totalOffsetX:" + this.totalOffsetX + "  totalOffsetY:" + this.totalOffsetY).height(30)
+
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![TextInputEditChange](figures/TextInputEditChange.png)
+
+### 示例18（设置最小字体范围与最大字体范围）
+
+该示例通过minFontScale、maxFontScale设置字体显示最小与最大范围。
+
+```ts
+import { abilityManager, Configuration } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// xxx.ets
+@Entry
+@Component
+export struct TextAreaExample11 {
+  @State minFontScale: number = 0.85;
+  @State maxFontScale: number = 2;
+  @State changeValue: string = 'abcde';
+  @State currentFontSizeScale : string = "";
+  async setFontScale(scale: number): Promise<void> {
+    let configInit: Configuration = {
+      fontSizeScale: scale;
+    };
+    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
+      if (!err) {
+        this.currentFontSizeScale = scale.toString();
+      }
+    });
+  }
+
+  build() {
+    Column() {
+      Column({ space: 30 }) {
+        Text("字体倍数：" + this.currentFontSizeScale)
+        TextInput({
+          placeholder: 'input your word...'
+        })
+          .cancelButton({ style: CancelButtonStyle.CONSTANT})
+          .maxLength(6)
+          .showCounter(true, { thresholdPercentage: 3, highlightBorder: true })
+          .showUnderline(false)
+          .showError('Error')
+          .minFontScale(this.minFontScale)
+          .maxFontScale(this.maxFontScale)
+      }.width('100%')
+      Row(){
+        Button("2倍").onClick(() => {
+          this.setFontScale(2)
+        }).alignSelf(ItemAlign.Start)
+        Button("1倍")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(1)
+          }).alignSelf(ItemAlign.Start)
+        Button("0.85")
+          .margin({ left: 20 })
+          .onClick(() => {
+            this.setFontScale(0.85)
+          }).alignSelf(ItemAlign.Start)
+      }
+      .margin({ top: 30 })
+    }
+  }
+}
+```
+
+![textInputMaxAndMinFontScale](figures/textInputMaxAndMinFontScale.gif)

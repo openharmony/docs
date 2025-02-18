@@ -165,6 +165,36 @@ The authentication fails because the system lock screen password has expired. Th
 
 Initiate an authentication again after the user sets a new lock screen password.
 
+<!--Del-->
+## 12500015 AuthToken Integrity Check Failed
+
+**Error Message**
+
+Operation failed because of authToken integrity check failed.
+
+**Possible Causes**
+
+The authentication token is invalid.
+
+**Solution**
+
+Initiate authentication again and issue a valid token.
+
+## 12500016 AuthToken Has Expired
+
+**Error Message**
+
+Operation failed because of authToken has expired.
+
+**Possible Causes**
+
+The authentication token has expired. The interval between the time when the AuthToken is issued and the time when the verification is initiated exceeds the AuthToken validity period passed in.
+
+**Solution**
+
+Initiate authentication again and issue a valid token.
+<!--DelEnd-->
+
 ## 12700001 Failed to Enroll Faces
 
 **Error Message**

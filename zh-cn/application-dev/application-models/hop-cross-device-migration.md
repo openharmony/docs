@@ -186,7 +186,7 @@
 
 **设置迁移能力的时机**
 
-如果需要实现某些特殊场景，比如只在具体某个页面下支持迁移，或只在某个事件发生时才支持迁移，可以按照如下步骤进行配置
+如果需要实现某些特殊场景，比如只在具体某个页面下支持迁移，或只在某个事件发生时才支持迁移，可以按照如下步骤进行配置。
 
 1. 在[UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调中，关闭迁移能力。
 
@@ -984,15 +984,15 @@ export default class MigrationAbility extends UIAbility {
 >
 > 本文中的截图仅为参考，具体的显示界面请以实际使用的DevEco Studio和SDK的版本为准。
 
-1. 编译安装全局任务中心
+1. 编译安装全局任务中心。
 
     1. 为了正确编译安装全局任务中心，开发者需要替换Full-SDK，具体操作可参见[替换指南](../faqs/full-sdk-switch-guide.md)。
 
-    2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码
+    2. 下载[MissionCenter_Demo](https://gitee.com/openharmony/ability_dmsfwk/tree/master/services/dtbschedmgr/test/missionCenterDemo/dmsDemo/entry/src/main)示例代码。
 
-    3. 编译工程文件
+    3. 编译工程文件。
 
-        1. 新建一个工程，找到对应的文件夹替换下载文件
+        1. 新建一个工程，找到对应的文件夹替换下载文件。
 
             ![hop-cross-device-migration](figures/hop-cross-device-migration1.png)
 
@@ -1010,7 +1010,7 @@ export default class MigrationAbility extends UIAbility {
 
         3. 连接开发板运行生成demo。
 
-2. 设备组网
+2. 设备组网。
 
     1. 打开A，B两设备的计算器。
     2. 点击右上角箭头选择B设备。
@@ -1018,7 +1018,7 @@ export default class MigrationAbility extends UIAbility {
     4. 在A设备输入PIN码。
     5. 已组网成功，验证方法：在A设备输入数字，B设备同步出现则证明组网成功。
 
-3. 发起迁移
+3. 发起迁移。
 
     1. 在B设备打开多设备协同权限的应用，A设备打开全局任务中心demo，demo显示A设备名称和B设备名称。
     2. 点击B设备名称，列表显示B设备的应用卡片列表。

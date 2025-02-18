@@ -112,7 +112,7 @@ off(type: 'draw', callback?: () => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 必须填写字符串'layout'或'draw'。<br>layout: 组件布局完成。<br>draw: 组件绘制完成。 |
-| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。 |
+| callback | void   | 否   | 需要取消注册的回调，如果参数缺省则取消注册该句柄下所有的回调。callback需要和on方法中的callback为相同对象时才能取消回调成功。 |
 
 **示例：**
 
@@ -149,16 +149,10 @@ off(type: 'draw', callback?: () => void): void
       let onDrawComplete:()=>void=():void=>{
           // do something here
       }
-      let offLayoutComplete:()=>void=():void=>{
-          // do something here
-      }
-      let offDrawComplete:()=>void=():void=>{
-          // do something here
-      }
       let FuncLayout = onLayoutComplete // bind current js instance
       let FuncDraw = onDrawComplete // bind current js instance
-      let OffFuncLayout = offLayoutComplete // bind current js instance
-      let OffFuncDraw = offDrawComplete // bind current js instance
+      let OffFuncLayout = onLayoutComplete // bind current js instance
+      let OffFuncDraw = onDrawComplete // bind current js instance
 
       this.listener.on('layout', FuncLayout)
       this.listener.on('draw', FuncDraw)

@@ -1,7 +1,7 @@
 # \@BuilderParam装饰器：引用\@Builder函数
 
 
-当开发者创建了自定义组件，并想对该组件添加特定功能时，例如在自定义组件中添加一个点击跳转操作。若直接在组件内嵌入事件方法，将会导致所有引入该自定义组件的地方均增加了该功能。为解决此问题，ArkUI引入了\@BuilderParam装饰器，\@BuilderParam用来装饰指向[\@Builder](./arkts-builder.md)方法的变量（@BuilderParam是用来承接@Builder函数的）。开发者可以在初始化自定义组件时，使用不同的方式（如：参数修改、尾随闭包、借用箭头函数等）对\@BuilderParam装饰的自定义构建函数进行传参赋值，在自定义组件内部通过调用\@BuilderParam为组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
+当开发者创建了自定义组件，并想对该组件添加特定功能，例如想在某一个指定的自定义组件中添加一个点击跳转操作，此时若直接在组件内嵌入事件方法，将会导致所有该自定义组件的实例都增加了功能。为解决此问题，ArkUI引入了\@BuilderParam装饰器，\@BuilderParam用来装饰指向[\@Builder](./arkts-builder.md)方法的变量（@BuilderParam是用来承接@Builder函数的）。开发者可以在初始化自定义组件时，使用不同的方式（如：参数修改、尾随闭包、借用箭头函数等）对\@BuilderParam装饰的自定义构建函数进行传参赋值，在自定义组件内部通过调用\@BuilderParam为组件增加特定的功能。该装饰器用于声明任意UI描述的一个元素，类似slot占位符。
 
 
 在阅读本文档前，建议提前阅读：[\@Builder](./arkts-builder.md)。
@@ -18,7 +18,7 @@
 
 ### 初始化\@BuilderParam装饰的方法
 
-\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。
+\@BuilderParam装饰的方法只能被自定义构建函数（\@Builder装饰的方法）初始化。
 
 - 使用所属自定义组件的自定义构建函数或者全局的自定义构建函数，在本地初始化\@BuilderParam。
 
@@ -28,7 +28,6 @@
   @Component
   struct Child {
     @Builder doNothingBuilder() {};
-
     // 使用自定义组件的自定义构建函数初始化@BuilderParam
     @BuilderParam customBuilderParam: () => void = this.doNothingBuilder;
     // 使用全局自定义构建函数初始化@BuilderParam
@@ -43,7 +42,6 @@
   @Component
   struct Child {
     @Builder customBuilder() {};
-    // 使用父组件@Builder装饰的方法初始化子组件@BuilderParam
     @BuilderParam customBuilderParam: () => void = this.customBuilder;
 
     build() {
@@ -74,98 +72,63 @@
 
 - 需要注意this的指向。
 
-以下示例对this的指向做了介绍。
+  以下示例对this的指向做了介绍。
 
-  ```ts
-  @Component
-  struct Child {
-    label: string = `Child`;
-    @Builder customBuilder() {};
-    @Builder customChangeThisBuilder() {};
-    @BuilderParam customBuilderParam: () => void = this.customBuilder;
-    @BuilderParam customChangeThisBuilderParam: () => void = this.customChangeThisBuilder;
+    ```ts
+    @Component
+    struct Child {
+      label: string = `Child`;
+      @Builder customBuilder() {};
+      @Builder customChangeThisBuilder() {};
+      @BuilderParam customBuilderParam: () => void = this.customBuilder;
+      @BuilderParam customChangeThisBuilderParam: () => void = this.customChangeThisBuilder;
 
-    build() {
-      Column() {
-        this.customBuilderParam()
-        this.customChangeThisBuilderParam()
+      build() {
+        Column() {
+          this.customBuilderParam()
+          this.customChangeThisBuilderParam()
+        }
       }
     }
-  }
 
-  @Entry
-  @Component
-  struct Parent {
-    label: string = `Parent`;
+    @Entry
+    @Component
+    struct Parent {
+      label: string = `Parent`;
 
-    @Builder componentBuilder() {
-      Text(`${this.label}`)
-    }
+      @Builder componentBuilder() {
+        Text(`${this.label}`)
+      }
 
-    build() {
-      Column() {
-        // 调用this.componentBuilder()时，this指向当前@Entry所装饰的Parent组件，即label变量的值为"Parent"。
-        this.componentBuilder()
-        Child({
-          // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
-          customBuilderParam: this.componentBuilder,
-          // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderParam，
-          // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
-          customChangeThisBuilderParam: (): void => { this.componentBuilder() }
-        })
+      build() {
+        Column() {
+          // 调用this.componentBuilder()时，this指向当前@Entry所装饰的Parent组件，即label变量的值为"Parent"。
+          this.componentBuilder()
+          Child({
+            // 把this.componentBuilder传给子组件Child的@BuilderParam customBuilderParam，this指向的是子组件Child，即label变量的值为"Child"。
+            customBuilderParam: this.componentBuilder,
+            // 把():void=>{this.componentBuilder()}传给子组件Child的@BuilderParam customChangeThisBuilderParam，
+            // 因为箭头函数的this指向的是宿主对象，所以label变量的值为"Parent"。
+            customChangeThisBuilderParam: (): void => { this.componentBuilder() }
+          })
+        }
       }
     }
-  }
-  ```
- **图2** 示例效果图
+    ```
+  **图2** 示例效果图
 
- ![builderparam-demo2](figures/builderparam-demo2.png)
+  ![builderparam-demo2](figures/builderparam-demo2.png)
 
 
 ## 限制条件
 
-- \@BuilderParam装饰的变量接收来自父组件使用\@Builder装饰的函数，且\@Builder函数是参数传递类型，仅支持局部\@Builder函数作为参数传递。
+- \@BuilderParam装饰的变量只能使用\@Builder函数来进行初始化。详情见[@BuilderParam装饰器初始化的值必须为@Builder](#builderparam装饰器初始化的值必须为builder)。
 
-```ts
-@Component
-struct Child {
-  header: string = '';
-  @BuilderParam content: () => void;
-  footer: string = '';
-
-  build() {
-    Column() {
-      Text(this.header)
-      this.content();
-      Text(this.footer)
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @Builder
-  test() {
-    Text('Hello')
-  }
-
-  build() {
-    Column() {
-      // 错误写法，@BuilderParam需要被初始化
-      Child()
-      // 正确写法
-      Child({ content: this.test })
-    }
-  }
-}
-```
+- 当@Require装饰器和\@BuilderParam装饰器一起使用的时候，\@BuilderParam装饰器必须进行初始化。详情见[@Require装饰器和@BuilderParam装饰器联合使用](#require装饰器和builderparam装饰器联合使用)。
 
 - 在自定义组件尾随闭包的场景下，子组件有且仅有一个\@BuilderParam用来接收此尾随闭包，且此\@BuilderParam不能有参数。详情见[尾随闭包初始化组件](#尾随闭包初始化组件)。
 
-
 ## 使用场景
-
 
 ### 参数初始化组件
 
@@ -589,6 +552,131 @@ struct ParentPage {
         .onClick(() => {
           this.label = 'Hello World';
         })
+    }
+  }
+}
+```
+
+### @Require装饰器和@BuilderParam装饰器联合使用
+
+由于@Require装饰器所装饰的变量需进行初始化，若变量未初始化，在编译时会输出报错信息。
+
+【反例】
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+
+@Entry
+@Component
+struct customBuilderDemo {
+  build() {
+    Column() {
+      // 由于未对子组件ChildBuilder进行赋值，此处无论是编译还是编辑，均会报错。
+      ChildPage()
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @Require @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
+    }
+  }
+}
+```
+
+对使用@Require装饰器修饰的变量进行初始化，此时，编译不会报错，无报错信息。
+
+【正例】
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+
+@Entry
+@Component
+struct customBuilderDemo {
+  build() {
+    Column() {
+      ChildPage({ChildBuilder: globalBuilder})
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @Require @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
+    }
+  }
+}
+```
+
+### @BuilderParam装饰器初始化的值必须为@Builder
+
+使用@State装饰器修饰的变量，给子组件@BuilderParam和ChildBuilder变量进行初始化，在编译时会输出报错信息。
+
+【反例】
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+@Entry
+@Component
+struct customBuilderDemo {
+  @State message: string = "";
+  build() {
+    Column() {
+      // 子组件ChildBuilder接收@State修饰的变量，会出现编译和编辑报错
+      ChildPage({ChildBuilder: this.message})
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
+    }
+  }
+}
+```
+
+使用全局的@Builder修饰的globalBuilder()给子组件@BuilderParam修饰的ChildBuilder变量进行初始化，编译时没有报错，功能正常。
+
+【正例】
+
+```ts
+@Builder function globalBuilder() {
+  Text('Hello World')
+}
+@Entry
+@Component
+struct customBuilderDemo {
+  build() {
+    Column() {
+      ChildPage({ChildBuilder: globalBuilder})
+    }
+  }
+}
+
+@Component
+struct ChildPage {
+  @BuilderParam ChildBuilder: () => void = globalBuilder;
+  build() {
+    Column() {
+      this.ChildBuilder()
     }
   }
 }

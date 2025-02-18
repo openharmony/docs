@@ -30,7 +30,7 @@ HiDumper为开发、测试人员提供统一的系统信息获取工具，可帮
 | --zip | 保存命令输出到/data/log/hidumper下的压缩文件。 |
 | --ipc pid/-a --start-stat/stop-stat/stat | 统计一段时间进程IPC信息，如果使用-a则统计所有进程IPC数据，--start-stat开始统计，--stat获取统计数据，--stop-stat结束统计。 |
 | --mem-smaps pid [-v] | 获取pid内存统计信息，数据来源于/proc/pid/smaps，使用-v指定更多详细信息。 (仅限制debug版本使用) |
-| --mem-jsheap pid [-T tid] [--gc] [--leakobj] | pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则获取泄露对象的列表 |
+| --mem-jsheap pid [-T tid] [--gc] [--leakobj] | pid 必选参数。命令触发所有线程gc和快照导出。如果指定线程的tid，只触发该线程gc和快照导出；如果指定--gc，只触发gc不做快照导出；如果指定--leakobj，则获取泄露对象的列表。 |
 
 ## 常用命令
 

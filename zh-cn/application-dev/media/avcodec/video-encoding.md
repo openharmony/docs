@@ -14,6 +14,7 @@
 |          支持的能力                       |                              使用简述                                            |
 | --------------------------------------- | ---------------------------------------------------------------------------------- |
 | 分层编码 <br> 设置LTR帧、参考帧                      | 具体可参考：[时域可分层视频编码](video-encoding-temporal-scalability.md)        |
+| 支持历史帧repeat编码                    | 具体可参考：[OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_FRAME_AFTER](../../reference/apis-avcodec-kit/_codec_base.md#oh_md_key_video_encoder_repeat_previous_frame_after)、<br> [OH_MD_KEY_VIDEO_ENCODER_REPEAT_PREVIOUS_MAX_COUNT](../../reference/apis-avcodec-kit/_codec_base.md#oh_md_key_video_encoder_repeat_previous_max_count)    |
 <!--RP4End-->
 
 ## 限制约束
@@ -220,7 +221,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过codec name创建编码器，应用有特殊需求，比如选择支持某种分辨率规格的编码器，可先查询capability，再根据codec name创建编码器。
     OH_AVCapability *capability = OH_AVCodec_GetCapability(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true);
     // 创建硬件编码器实例
-    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, false, HARDWARE);
+    OH_AVCapability *capability= OH_AVCodec_GetCapabilityByCategory(OH_AVCODEC_MIMETYPE_VIDEO_AVC, true, HARDWARE);
     const char *codecName = OH_AVCapability_GetName(capability);
     OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByName(codecName);
     ```
@@ -298,7 +299,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     ```c++
     // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback()接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
-    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL); // NULL:用户特定数据userData为空 
+    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr); // nullptr:用户特定数据userData为空
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -323,7 +324,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     // 4.2 注册随帧参数回调
     OH_VideoEncoder_OnNeedInputParameter inParaCb = OnNeedInputParameter;
-    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, NULL); // NULL:用户特定数据userData为空
+    OH_VideoEncoder_RegisterParameterCallback(videoEnc, inParaCb, nullptr); // nullptr:用户特定数据userData为空
     ```
     <!--RP7End-->
 
@@ -358,7 +359,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     int32_t rateMode = static_cast<int32_t>(OH_VideoEncodeBitrateMode::VBR);
     // 配置关键帧的间隔，单位为毫秒
     int32_t iFrameInterval = 1000;
-    // 配置比特率
+    // 配置比特率，单位为bps
     int64_t bitRate = 5000000;
     // 配置编码质量
     int64_t quality = 90;
@@ -408,7 +409,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过OHNativeWindow*变量类型，可通过生产者接口获取待填充数据地址。
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)。
 
 7. 调用OH_VideoEncoder_Prepare()编码器就绪。
 
@@ -452,7 +453,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     <!--RP8End-->
 
 10. 写入编码图像。
-    在之前的第6步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的Surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
+    在之前的第6步中，开发者已经对OH_VideoEncoder_GetSurface接口返回的OHNativeWindow*类型变量进行配置。因为编码所需的数据，由配置的surface进行持续地输入，所以开发者无需对OnNeedInputBuffer回调函数进行处理，也无需使用OH_VideoEncoder_PushInputBuffer接口输入数据。
     <!--RP13--><!--RP13End-->
 
 11. （可选）调用OH_VideoEncoder_PushInputParameter()通知编码器随帧参数配置输入完成。
@@ -492,7 +493,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     以下示例中：
 
-    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识。
+    - index：回调函数OnNewOutputBuffer传入的参数，与buffer唯一对应的标识；
     - buffer：回调函数OnNewOutputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
 
     ```c++
@@ -584,22 +585,22 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     > **说明：**
     >
-    > 不能在回调函数中调用；
-    > 执行该步骤之后，需要调用者将videoEnc指向NULL，防止野指针导致程序错误。
+    > 1. 不能在回调函数中调用；
+    > 2. 执行该步骤之后，需要调用者将videoEnc指向nullptr，防止野指针导致程序错误。
     >
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
     // 释放nativeWindow实例
-    if(nativeWindow != NULL){
+    if(nativeWindow != nullptr){
         OH_NativeWindow_DestroyNativeWindow(nativeWindow);
-        nativeWindow = NULL;
+        nativeWindow = nullptr;
     }
     // 调用OH_VideoEncoder_Destroy，注销编码器
     int32_t ret = AV_ERR_OK;
-    if (videoEnc != NULL) {
+    if (videoEnc != nullptr) {
         ret = OH_VideoEncoder_Destroy(videoEnc);
-        videoEnc = NULL;
+        videoEnc = nullptr;
     }
     if (ret != AV_ERR_OK) {
         // 异常处理
@@ -685,7 +686,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 编码输入回调OH_AVCodecOnNeedInputBuffer实现
     static void OnNeedInputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
     {
-        // 获取视频宽高跨距
+        // 获取视频宽、高跨距
         if (isFirstFrame) {
             OH_AVFormat *format = OH_VideoEncoder_GetInputDescription(codec);
             OH_AVFormat_GetIntValue(format, OH_MD_KEY_VIDEO_STRIDE, &widthStride);
@@ -713,9 +714,9 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     <!--RP10End-->
 
     ```c++
-    // 配置异步回调，调用 OH_VideoEncoder_RegisterCallback 接口
+    // 配置异步回调，调用OH_VideoEncoder_RegisterCallback接口
     OH_AVCodecCallback cb = {&OnError, &OnStreamChanged, &OnNeedInputBuffer, &OnNewOutputBuffer};
-    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, NULL);
+    int32_t ret = OH_VideoEncoder_RegisterCallback(videoEnc, cb, nullptr);
     if (ret != AV_ERR_OK) {
         // 异常处理
     }
@@ -795,7 +796,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
 
     - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
     - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
-    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)
+    - flags：缓冲区标记的类别，请参考[OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags)；
     - widthStride: 获取到的buffer数据的跨距。
 
     ```c++
@@ -911,18 +912,18 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     src = nullptr;
     ```
 
-    硬件编码在处理buffer数据时（推送数据前），需要调用者拷贝宽高对齐后的图像数据到输入回调的AVbuffer中。
-    一般需要获取数据的宽高、跨距、像素格式来保证编码输入数据被正确的处理。
+    硬件编码在处理buffer数据时（推送数据前），需要调用者拷贝宽、高对齐后的图像数据到输入回调的AVbuffer中。
+    一般需要获取数据的宽、高、跨距、像素格式来保证编码输入数据被正确的处理。
 
-    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoEncoder_RegisterCallback接口设置回调函数来获取数据的宽高、跨距、像素格式。
+    具体实现请参考：[Buffer模式](#buffer模式)的步骤3-调用OH_VideoEncoder_RegisterCallback接口设置回调函数来获取数据的宽、高、跨距、像素格式。
 
 9. 通知编码器结束。
 
     以下示例中：
-    - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识。
-    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针；
+    - index：回调函数OnNeedInputBuffer传入的参数，与buffer唯一对应的标识；
+    - buffer：回调函数OnNeedInputBuffer传入的参数，可以通过[OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr)接口得到共享内存地址的指针。
 
-    与“8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。
+    与“步骤-8. 写入编码图像”一样，使用同一个接口OH_VideoEncoder_PushInputBuffer，通知编码器输入结束，需要将flag标识成AVCODEC_BUFFER_FLAGS_EOS。
 
     ```c++
     std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();

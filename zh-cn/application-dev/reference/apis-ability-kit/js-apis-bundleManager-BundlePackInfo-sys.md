@@ -104,7 +104,7 @@
 
 | 名称  | 类型                                        | 只读 | 可选 | 说明                                                         |
 | ----- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| name | string | 是 | 否 | 表示该ExtensionAbility的名称 |
+| name | string | 是 | 否 | 表示该ExtensionAbility的名称。 |
 | forms | Array\<[AbilityFormInfo](#abilityforminfo)> | 是   | 否   | 表示form卡片的规格，form卡片是可以嵌入桌面上并接收定时更新的应用简要视图。 |
 
 ## AbilityFormInfo

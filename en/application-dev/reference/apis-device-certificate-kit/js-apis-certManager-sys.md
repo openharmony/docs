@@ -19,9 +19,9 @@ Enumerates the error codes used in the certificate management APIs.
 
 **System capability**: System SystemCapability.Security.CertificateManager
 
-| Name      | Value |  Description     |
+| Name      | Value|  Description     |
 | ---------- | ------ | --------- |
-| CM_ERROR_NOT_SYSTEM_APP   | 202      | The caller is not a system application.<br>**System API**: This is a system API. |
+| CM_ERROR_NOT_SYSTEM_APP   | 202      | The caller is not a system application.<br> **System API**: This is a system API.|
 
 ## certificateManager.getAllAppPrivateCertificates
 
@@ -37,15 +37,15 @@ Obtains all private credentials. This API uses an asynchronous callback to retur
 
 **Parameters**
 
-| Name  | Type                                                       | Mandatory | Description                                                        |
+| Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **credentialList** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object. |
+| callback | AsyncCallback\<[CMResult](js-apis-certManager.md#cmresult)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **null** and **data** is **credentialList** in the [CMResult](#cmresult) object. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID | Error Message                                                    |
+| ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
@@ -61,7 +61,9 @@ try {
     if (err != null) {
       console.error(`Failed to get all app private certificates. Code: ${err.code}, message: ${err.message}`);
     } else {
-      if (cmResult.credentialList == undefined) {
+      if (cmResult == undefined) { // If the number of private credentials is 0, return undefined in cmResult.
+        console.info('the count of the app private certificates is 0');
+      } else if (cmResult.credentialList == undefined) {
         console.info('The result of getting all app private certificates is undefined.');
       } else {
         let list = cmResult.credentialList;
@@ -90,13 +92,13 @@ Obtains all private credentials. This API uses a promise to return the result.
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the private credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object. |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the private credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
@@ -109,7 +111,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllAppPrivateCertificates().then((cmResult) => {
-    if (cmResult.credentialList == undefined) {
+    if (cmResult == undefined) { // If the number of private credentials is 0, return undefined in cmResult.
+      console.info('the count of the app private certificates is 0');
+    } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all app private certificates is undefined.');
     } else {
       let list = cmResult.credentialList;
@@ -139,13 +143,13 @@ Obtains all system credentials. This API uses a promise to return the result.
 
 | Type                                                 | Description                                                        |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the system credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object. |
+| Promise\<[CMResult](js-apis-certManager.md#cmresult)> | Promise used to return all the system credentials obtained, that is, **credentialList** in the [CMResult](#cmresult) object.|
 
 **Error codes**
 
 For details about the following error codes, see [Certificate Management Error Codes](errorcode-certManager.md).
 
-| ID | Error Message     |
+| ID| Error Message     |
 | -------- | ------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API. |
 | 202 | Permission verification failed. A non-system application calls a system API. |
@@ -158,7 +162,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   certificateManager.getAllSystemAppCertificates().then((cmResult) => {
-    if (cmResult.credentialList == undefined) {
+    if (cmResult == undefined) { // If the number of system credentials is 0, return undefined in cmResult.
+      console.info('the count of the system certificates is 0');
+    } else if (cmResult.credentialList == undefined) {
       console.info('The result of getting all system app certificates is undefined.');
     } else {
       let list = cmResult.credentialList;

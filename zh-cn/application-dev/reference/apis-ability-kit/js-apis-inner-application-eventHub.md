@@ -41,7 +41,7 @@ on(event: string, callback: Function): void;
 >
 >  callback被emit触发时，调用方是EventHub对象，如果要修改callback中this的指向，可以使用箭头函数。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -147,7 +147,7 @@ off(event: string, callback?: Function): void;
  - 传入callback：取消指定的callback对指定事件的订阅，当该事件触发后，将不会回调该callback。
  - 不传callback：取消所有callback对指定事件的订阅。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -203,7 +203,7 @@ emit(event: string, ...args: Object[]): void;
 
 触发指定事件。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

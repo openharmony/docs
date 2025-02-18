@@ -17,7 +17,7 @@ The key management service specifications include mandatory specifications and o
 | -------- | -------- | -------- | -------- |
 | <!--DelRow-->RSA/MD5/PKCS1_V1_5<br>RSA/SHA1/PKCS1_V1_5<br>RSA/SHA224/PKCS1_V1_5<br>RSA/SHA224/PSS | In PSS mode, the salt length can be set to the digest length or maximum length (Maximum length = Key length - Digest length - 2). For details, see [HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10).| 8+ | No|
 | RSA/SHA256/PKCS1_V1_5<br>RSA/SHA384/PKCS1_V1_5<br>RSA/SHA512/PKCS1_V1_5<br>RSA/SHA256/PSS<br>RSA/SHA384/PSS<br>RSA/SHA512/PSS | In PSS mode, the salt length can be set to the digest length or maximum length (Maximum length = Key length - Digest length - 2). For details, see [HuksRsaPssSaltLenType](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksrsapsssaltlentype10).| 8+ | Yes|
-| RSA/NoDigest/PKCS1_V1_5 | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | Yes|
+| RSA/NoDigest/PKCS1_V1_5 | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**. The service side hashes the plaintext and passes in the hashed data. The length of the hashed data must meet the MD algorithm specifications supported by RSA signing and signature verification.| 9+ | Yes|
 | <!--DelRow-->DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512 | - | 8+ | No|
 | <!--DelRow-->DSA/NoDigest | **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be specified with **NoDigest**.| 9+ | No|
 | <!--DelRow-->ECC/SHA1<br>ECC/SHA224 | - | 8+ | No|
@@ -36,4 +36,4 @@ Before implementing the specifications for mini-system devices, determine whethe
 | -------- | -------- | -------- |
 | RSA/SHA256/PKCS1_V1_5 | - | 12+ |
 | RSA/SHA256/PSS | - | 12+ |
-| RSA/SHA1/ISO_IEC_9796_2 | Minimum data length = Key length - 22 bytes| 12+ |
+| RSA/SHA1/ISO_IEC_9796_2 | Minimum data length = Key length - 21 bytes| 12+ |

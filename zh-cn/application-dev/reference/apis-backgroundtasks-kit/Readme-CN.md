@@ -13,7 +13,9 @@
   <!--DelEnd-->
   - application
     - [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)
+    <!--Del-->
     - [WorkSchedulerExtensionContext(系统接口)](js-apis-inner-application-WorkSchedulerExtensionContext-sys.md)
+    <!--DelEnd-->
   - 已停止维护
     - [@ohos.backgroundTaskManager (后台任务管理)](js-apis-backgroundTaskManager.md)
     - [@ohos.bundleState (设备使用信息统计)](js-apis-deviceUsageStatistics.md)

@@ -1,20 +1,24 @@
 # Ads Service Framework Error Codes
 
 
+<!--RP1-->
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
-
+<!--RP1End-->
 
 ## 21800001 Internal System Error
 
-**Error Message**
+<!--RP2--> **Error Message**<!--RP2End-->
 
 System internal error.
 
+
+<!--RP3-->
 **Description**
 
 This error code is reported if an internal system error occurs.
+<!--RP3End-->
 
 **Possible Causes**
 

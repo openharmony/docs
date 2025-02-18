@@ -74,14 +74,15 @@ HILOG_WARN(LOG_APP, "Failed to visit %{private}s, reason:%{public}d.", url, errn
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [LogType](_hi_log.md#logtype) { [LOG_APP](_hi_log.md) = 0 } | 日志类型。 | 
-| [LogLevel](_hi_log.md#loglevel) {<br/>LOG_DEBUG = 3, LOG_INFO = 4, LOG_WARN = 5, LOG_ERROR = 6, LOG_FATAL = 7<br/>} | 日志级别。 | 
-
+| [LogType](_hi_log.md#logtype) { [LOG_APP](_hi_log.md) = 0 } | 日志类型。  |
+| [LogLevel](_hi_log.md#loglevel) {<br/>[LOG_DEBUG](_hi_log.md) = 3, [LOG_INFO](_hi_log.md) = 4, [LOG_WARN](_hi_log.md) = 5, [LOG_ERROR](_hi_log.md) = 6,<br/>[LOG_FATAL](_hi_log.md) = 7<br/>} | 日志级别。  |
 
 ### 函数
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int [OH_LOG_Print](_hi_log.md#oh_log_print) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) \_\_attribute__((\_\_format__(os_log | 写日志接口。 | 
-| int bool [OH_LOG_IsLoggable](_hi_log.md#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](_hi_log.md#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。 | 
-| void [OH_LOG_SetCallback](_hi_log.md#oh_log_setcallback) ([LogCallback](_hi_log.md#logcallback) callback) | 注册函数。 | 
+| int [OH_LOG_Print](_hi_log.md#oh_log_print) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*fmt,...) **attribute**((**format**(os_log | 写日志接口。  |
+| int bool [OH_LOG_IsLoggable](_hi_log.md#oh_log_isloggable) (unsigned int domain, const char \*tag, [LogLevel](_hi_log.md#loglevel) level) | 检查指定业务领域、TAG、级别的日志是否可以打印。  |
+| void [OH_LOG_SetCallback](_hi_log.md#oh_log_setcallback) ([LogCallback](_hi_log.md#logcallback) callback) | 注册函数。  |
+| void [OH_LOG_SetMinLogLevel](_hi_log.md#oh_log_setminloglevel) ([LogLevel](_hi_log.md#loglevel) level) | 设置当前应用进程的最低日志级别。  |
+| int [OH_LOG_PrintMsg](_hi_log.md#oh_log_printmsg) ([LogType](_hi_log.md#logtype) type, [LogLevel](_hi_log.md#loglevel) level, unsigned int domain, const char \*tag, const char \*message) int OH_LOG_PrintMsgByLen([LogType](_hi_log.md#logtype) type | 输出指定type、level、domain、tag的常量日志字符串。  |

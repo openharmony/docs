@@ -41,7 +41,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_IPC_RequestMode](#oh_ipc_requestmode) { OH_IPC_REQUEST_MODE_SYNC = 0, OH_IPC_REQUEST_MODE_ASYNC = 1 } | IPC请求模式定义 | 
+| [OH_IPC_RequestMode](#oh_ipc_requestmode) { OH_IPC_REQUEST_MODE_SYNC = 0, OH_IPC_REQUEST_MODE_ASYNC = 1 } | IPC请求模式定义。 | 
 
 
 ### 函数
@@ -185,7 +185,7 @@ IPC请求模式定义
 ### OH_IPCDeathRecipient_Create()
 
 ```
-OHIPCDeathRecipient* OH_IPCDeathRecipient_Create (OH_OnDeathRecipientCallback deathRecipientCallback, OH_OnDeathRecipientDestroyCallback destroyCallback, void * userData )
+OHIPCDeathRecipient* OH_IPCDeathRecipient_Create (OH_OnDeathRecipientCallback deathRecipientCallback, OH_OnDeathRecipientDestroyCallback destroyCallback, void * userData)
 ```
 
 **描述**
@@ -206,7 +206,7 @@ OHIPCDeathRecipient* OH_IPCDeathRecipient_Create (OH_OnDeathRecipientCallback de
 
 **返回：**
 
-成功返回OHIPCDeathRecipient对象指针;否则返回NULL。
+成功返回OHIPCDeathRecipient对象指针；否则返回NULL。
 
 
 ### OH_IPCDeathRecipient_Destroy()
@@ -233,7 +233,7 @@ void OH_IPCDeathRecipient_Destroy (OHIPCDeathRecipient * recipient)
 ### OH_IPCRemoteProxy_AddDeathRecipient()
 
 ```
-int OH_IPCRemoteProxy_AddDeathRecipient (OHIPCRemoteProxy * proxy, OHIPCDeathRecipient * recipient )
+int OH_IPCRemoteProxy_AddDeathRecipient (OHIPCRemoteProxy * proxy, OHIPCDeathRecipient * recipient)
 ```
 
 **描述**
@@ -284,7 +284,7 @@ void OH_IPCRemoteProxy_Destroy (OHIPCRemoteProxy * proxy)
 ### OH_IPCRemoteProxy_GetInterfaceDescriptor()
 
 ```
-int OH_IPCRemoteProxy_GetInterfaceDescriptor (OHIPCRemoteProxy * proxy, char ** descriptor, int32_t * len, OH_IPC_MemAllocator allocator )
+int OH_IPCRemoteProxy_GetInterfaceDescriptor (OHIPCRemoteProxy * proxy, char ** descriptor, int32_t * len, OH_IPC_MemAllocator allocator)
 ```
 
 **描述**
@@ -339,13 +339,13 @@ int OH_IPCRemoteProxy_IsRemoteDead (const OHIPCRemoteProxy * proxy)
 
 **返回：**
 
-远端OHIPCRemoteStub对象死亡返回1; 否则，返回0。参数非法时，说明其远端OHIPCRemoteStub对象不存在，返回1。
+远端OHIPCRemoteStub对象死亡返回1；否则，返回0。参数非法时，说明其远端OHIPCRemoteStub对象不存在，返回1。
 
 
 ### OH_IPCRemoteProxy_RemoveDeathRecipient()
 
 ```
-int OH_IPCRemoteProxy_RemoveDeathRecipient (OHIPCRemoteProxy * proxy, OHIPCDeathRecipient * recipient )
+int OH_IPCRemoteProxy_RemoveDeathRecipient (OHIPCRemoteProxy * proxy, OHIPCDeathRecipient * recipient)
 ```
 
 **描述**
@@ -375,7 +375,7 @@ int OH_IPCRemoteProxy_RemoveDeathRecipient (OHIPCRemoteProxy * proxy, OHIPCDeath
 ### OH_IPCRemoteProxy_SendRequest()
 
 ```
-int OH_IPCRemoteProxy_SendRequest (const OHIPCRemoteProxy * proxy, uint32_t code, const OHIPCParcel * data, OHIPCParcel * reply, const OH_IPC_MessageOption * option )
+int OH_IPCRemoteProxy_SendRequest (const OHIPCRemoteProxy * proxy, uint32_t code, const OHIPCParcel * data, OHIPCParcel * reply, const OH_IPC_MessageOption * option)
 ```
 
 **描述**
@@ -391,7 +391,7 @@ IPC消息发送函数。
 | 名称 | 描述 | 
 | -------- | -------- |
 | proxy | OHIPCRemoteProxy对象指针，不能为空。 | 
-| code | 用户定义的IPC命令字，范围:[0x01,0x00ffffff]。 | 
+| code | 用户定义的IPC命令字，范围:[0x01, 0x00ffffff]。 | 
 | data | 请求数据对象指针，不能为空。 | 
 | reply | 回应数据对象指针，同步请求时，不能为空；异步请求时，可以为空。 | 
 | option | 消息选项指针，可以为空，为空时按同步处理。 | 
@@ -412,7 +412,7 @@ code超出范围返回[OH_IPC_ErrorCode#OH_IPC_CODE_OUT_OF_RANGE](_o_h_i_p_c_err
 ### OH_IPCRemoteStub_Create()
 
 ```
-OHIPCRemoteStub* OH_IPCRemoteStub_Create (const char * descriptor, OH_OnRemoteRequestCallback requestCallback, OH_OnRemoteDestroyCallback destroyCallback, void * userData )
+OHIPCRemoteStub* OH_IPCRemoteStub_Create (const char * descriptor, OH_OnRemoteRequestCallback requestCallback, OH_OnRemoteDestroyCallback destroyCallback, void * userData)
 ```
 
 **描述**

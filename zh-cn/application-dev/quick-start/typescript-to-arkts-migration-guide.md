@@ -207,6 +207,8 @@ structural typing是否有助于生成清晰、易理解的代码，关于这一
 
 **级别：错误**
 
+**错误码：10605001**
+
 在ArkTS中，对象的属性名不能为数字或字符串。例外：ArkTS支持属性名为字符串字面量和枚举中的字符串值。通过属性名访问类的属性，通过数值索引访问数组元素。
 
 **TypeScript**
@@ -255,6 +257,8 @@ let obj: Record<string, number> = {
 
 **级别：错误**
 
+**错误码：10605002**
+
 TypeScript中的`Symbol()`API用于在运行时生成唯一的属性名称。由于该API的常见使用场景在静态类型语言中没有意义，因此，ArkTS不支持`Symbol()`API。在ArkTS中，对象布局在编译时就确定了，且不能在运行时被更改。
 
 ArkTS只支持`Symbol.iterator`。
@@ -264,6 +268,8 @@ ArkTS只支持`Symbol.iterator`。
 **规则：**`arkts-no-private-identifiers`
 
 **级别：错误**
+
+**错误码：10605003**
 
 ArkTS不支持使用`#`符号开头声明的私有字段。改用`private`关键字。
 
@@ -289,6 +295,8 @@ class C {
 
 **级别：错误**
 
+**错误码：10605004**
+
 类型（类、接口、枚举）、命名空间的命名必须唯一，且与其他名称（例如：变量名、函数名）不同。
 
 **TypeScript**
@@ -310,6 +318,8 @@ type T = number[] // 为避免名称冲突，此处不允许使用X
 **规则：**`arkts-no-var`
 
 **级别：错误**
+
+**错误码：10605005**
 
 `let`关键字可以在块级作用域中声明变量，帮助程序员避免错误。因此，ArkTS不支持`var`，请使用`let`声明变量。
 
@@ -366,6 +376,8 @@ scopedLet = 5; //编译时错误
 
 **级别：错误**
 
+**错误码：10605008**
+
 ArkTS不支持`any`和`unknown`类型。显式指定具体类型。
 
 **TypeScript**
@@ -394,6 +406,8 @@ let value_o2: Object = 42;
 **规则：**`arkts-no-call-signatures`
 
 **级别：错误**
+
+**错误码：10605014**
 
 ArkTS不支持对象类型中包含call signature。
 
@@ -436,6 +450,8 @@ doSomething(new DescribableFunction());
 
 **级别：错误**
 
+**错误码：10605015**
+
 ArkTS不支持对象类型中的构造签名。改用类。
 
 **TypeScript**
@@ -472,6 +488,8 @@ function fn(s: string): SomeObject {
 **规则：**`arkts-no-multiple-static-blocks`
 
 **级别：错误**
+
+**错误码：10605016**
 
 ArkTS不允许类中有多个静态块，如果存在多个静态块语句，请合并到一个静态块中。
 
@@ -513,6 +531,8 @@ class C {
 
 **级别：错误**
 
+**错误码：10605017**
+
 ArkTS不允许index signature，改用数组。
 
 **TypeScript**
@@ -547,6 +567,8 @@ const secondItem = myArray.f[1];
 **规则：**`arkts-no-intersection-types`
 
 **级别：错误**
+
+**错误码：10605019**
 
 目前ArkTS不支持intersection type，可以使用继承作为替代方案。
 
@@ -588,6 +610,8 @@ interface Employee extends Identity,  Contact {}
 
 **级别：错误**
 
+**错误码：10605021**
+
 ArkTS不支持`this`类型，改用显式具体类型。
 
 **TypeScript**
@@ -628,6 +652,8 @@ class C {
 
 **级别：错误**
 
+**错误码：10605022**
+
 ArkTS不支持条件类型别名，引入带显式约束的新类型，或使用`Object`重写逻辑。
 不支持`infer`关键字。
 
@@ -656,6 +682,8 @@ type YI<Item, T extends Array<Item>> = Item
 **规则：**`arkts-no-ctor-prop-decls`
 
 **级别：错误**
+
+**错误码：10605025**
 
 ArkTS不支持在`constructor`中声明类字段。在`class`中声明这些字段。
 
@@ -705,6 +733,8 @@ class Person {
 
 **级别：错误**
 
+**错误码：10605027**
+
 ArkTS不支持在接口中使用构造签名。改用函数或者方法。
 
 **TypeScript**
@@ -737,6 +767,8 @@ function fn(i: I) {
 
 **级别：错误**
 
+**错误码：10605028**
+
 ArkTS不支持索引访问类型。
 
 ### 不支持通过索引访问字段
@@ -744,6 +776,8 @@ ArkTS不支持索引访问类型。
 **规则：**`arkts-no-props-by-index`
 
 **级别：错误**
+
+**错误码：10605029**
 
 ArkTS不支持动态声明字段，不支持动态访问字段。只能访问已在类中声明或者继承可见的字段，访问其他字段将会造成编译时错误。
 使用点操作符访问字段，例如（`obj.field`），不支持索引访问（`obj[field]`）。
@@ -811,6 +845,8 @@ arr[0];
 **规则：**`arkts-no-structural-typing`
 
 **级别：错误**
+
+**错误码：10605030**
 
 ArkTS不支持structural typing，编译器无法比较两种类型的`public`API并决定它们是否相同。使用其他机制，例如继承、接口或类型别名。
 
@@ -924,6 +960,8 @@ foo(new Y());
 
 **级别：错误**
 
+**错误码：10605034**
+
 如果可以从传递给泛型函数的参数中推断出具体类型，ArkTS允许省略泛型类型实参。否则，省略泛型类型实参会发生编译时错误。
 禁止仅基于泛型函数返回类型推断泛型类型参数。
 
@@ -964,6 +1002,8 @@ let z = greet<string>();
 **规则：**`arkts-no-untyped-obj-literals`
 
 **级别：错误**
+
+**错误码：10605038**
 
 在ArkTS中，需要显式标注对象字面量的类型，否则，将发生编译时错误。在某些场景下，编译器可以根据上下文推断出字面量的类型。
 
@@ -1147,6 +1187,8 @@ getPoint({x: 5, y: 10});
 
 **级别：错误**
 
+**错误码：10605040**
+
 ArkTS不支持使用对象字面量声明类型，可以使用类或者接口声明类型。
 
 **TypeScript**
@@ -1179,6 +1221,8 @@ type S = Set<O>
 
 **级别：错误**
 
+**错误码：10605043**
+
 本质上，ArkTS将数组字面量的类型推断为数组所有元素的联合类型。如果其中任何一个元素的类型无法根据上下文推导出来（例如，无类型的对象字面量），则会发生编译时错误。
 
 **TypeScript**
@@ -1205,6 +1249,8 @@ let a2: C[] = [{n: 1, s: '1'}, {n: 2, s: '2'}];    // a2的类型为“C[]”
 
 **级别：错误**
 
+**错误码：10605046**
+
 ArkTS不支持函数表达式，使用箭头函数。
 
 **TypeScript**
@@ -1228,6 +1274,8 @@ let f = (s: string) => {
 **规则：**`arkts-no-class-literals`
 
 **级别：错误**
+
+**错误码：10605050**
 
 ArkTS不支持使用类表达式，必须显式声明一个类。
 
@@ -1269,6 +1317,8 @@ const rectangle = new Rectangle(0.0, 0.0);
 
 **级别：错误**
 
+**错误码：10605051**
+
 ArkTS不允许类被`implements`，只有接口可以被`implements`。
 
 **TypeScript**
@@ -1300,6 +1350,8 @@ class C1 implements C {
 **规则：**`arkts-no-method-reassignment`
 
 **级别：错误**
+
+**错误码：10605052**
 
 ArkTS不支持修改对象的方法。在静态语言中，对象的布局是确定的。一个类的所有对象实例享有同一个方法。
 如果需要为某个特定的对象增加方法，可以封装函数或者使用继承的机制。
@@ -1360,6 +1412,8 @@ c3.foo(); // Extra foo
 
 **级别：错误**
 
+**错误码：10605053**
+
 在ArkTS中，`as`关键字是类型转换的唯一语法，错误的类型转换会导致编译时错误或者运行时抛出`ClassCastException`异常。ArkTS不支持使用`<type>`语法进行类型转换。
 
 当需要将`primitive`类型（如`number`或`boolean`）转换成引用类型时，请使用`new`表达式。
@@ -1416,6 +1470,8 @@ let e2 = (new Number(5.0)) instanceof Number; // true
 
 **级别：错误**
 
+**错误码：10605054**
+
 不支持使用JSX。
 
 ### 一元运算符`+`、`-`和`~`仅适用于数值类型
@@ -1423,6 +1479,8 @@ let e2 = (new Number(5.0)) instanceof Number; // true
 **规则：**`arkts-no-polymorphic-unops`
 
 **级别：错误**
+
+**错误码：10605055**
 
 ArkTS仅允许一元运算符用于数值类型，否则会发生编译时错误。与TypeScript不同，ArkTS不支持隐式将字符串转换成数值，必须进行显式转换。
 
@@ -1478,6 +1536,8 @@ let y = +returnString(); // 编译时错误
 
 **级别：错误**
 
+**错误码：10605059**
+
 ArkTS中，对象布局在编译时就确定了，且不能在运行时被更改。因此，删除属性的操作没有意义。
 
 **TypeScript**
@@ -1511,6 +1571,8 @@ p.y = null;
 
 **级别：错误**
 
+**错误码：10605060**
+
 ArkTS仅支持在表达式中使用`typeof`运算符，不允许使用`typeof`作为类型。
 
 **TypeScript**
@@ -1541,6 +1603,8 @@ let s2: string
 
 **级别：错误**
 
+**错误码：10605065**
+
 在TypeScript中，`instanceof`运算符的左操作数的类型必须为`any`类型、对象类型，或者它是类型参数，否则结果为`false`。在ArkTS中，`instanceof`运算符的左操作数的类型必须为引用类型（例如，对象、数组或者函数），否则会发生编译时错误。此外，在ArkTS中，`instanceof`运算符的左操作数不能是类型，必须是对象的实例。
 
 ### 不支持`in`运算符
@@ -1548,6 +1612,8 @@ let s2: string
 **规则：**`arkts-no-in`
 
 **级别：错误**
+
+**错误码：10605066**
 
 由于在ArkTS中，对象布局在编译时是已知的并且在运行时无法修改，因此，不支持`in`运算符。如果仍需检查某些类成员是否存在，使用`instanceof`代替。
 
@@ -1578,6 +1644,8 @@ let b = p instanceof Person; // true，且属性name一定存在
 **规则：**`arkts-no-destruct-assignment`
 
 **级别：错误**
+
+**错误码：10605069**
 
 ArkTS不支持解构赋值。可使用其他替代方法，例如，使用临时变量。
 
@@ -1616,6 +1684,8 @@ for (let i = 1; i < data.length; ++i) {
 
 **级别：错误**
 
+**错误码：10605071**
+
 为了方便理解执行顺序，在ArkTS中，逗号运算符仅适用于`for`循环语句中。注意与声明变量、函数参数传递时的逗号分隔符不同。
 
 **TypeScript**
@@ -1647,6 +1717,8 @@ x = x++;
 **规则：**`arkts-no-destruct-decls`
 
 **级别：错误**
+
+**错误码：10605074**
 
 ArkTS不支持解构变量声明。它是一个依赖于结构兼容性的动态特性并且解构声明中的名称必须和被解构对象中的属性名称一致。
 
@@ -1689,6 +1761,8 @@ let y = zp.y;
 
 **级别：错误**
 
+**错误码：10605079**
+
 在TypeScript的catch语句中，只能标注`any`或`unknown`类型。由于ArkTS不支持这些类型，应省略类型标注。
 
 **TypeScript**
@@ -1717,6 +1791,8 @@ try {
 
 **级别：错误**
 
+**错误码：10605080**
+
 由于在ArkTS中，对象布局在编译时是确定的、并且不能在运行时被改变，所以不支持使用`for .. in`迭代一个对象的属性。对于数组来说，可以使用常规的`for`循环。
 
 **TypeScript**
@@ -1742,6 +1818,8 @@ for (let i = 0; i < a.length; ++i) {
 **规则：**`arkts-no-mapped-types`
 
 **级别：错误**
+
+**错误码：10605083**
 
 ArkTS不支持映射类型，使用其他语法来表示相同的语义。
 
@@ -1773,6 +1851,8 @@ class CFlags {
 
 **级别：错误**
 
+**错误码：10605084**
+
 ArkTS不支持`with`语句，使用其他语法来表示相同的语义。
 
 **TypeScript**
@@ -1797,6 +1877,8 @@ let area: number = Math.PI * r * r;
 
 **级别：错误**
 
+**错误码：10605087**
+
 ArkTS只支持抛出`Error`类或其派生类的实例。禁止抛出其他类型（例如`number`或`string`）的数据。
 
 **TypeScript**
@@ -1818,6 +1900,8 @@ throw new Error();
 **规则：**`arkts-no-implicit-return-types`
 
 **级别：错误**
+
+**错误码：10605090**
 
 ArkTS在部分场景中支持对函数返回类型进行推断。当`return`语句中的表达式是对某个函数或方法进行调用，且该函数或方法的返回类型没有被显著标注时，会出现编译时错误。在这种情况下，请标注函数返回类型。
 
@@ -1876,6 +1960,8 @@ doOperation(2, 3);
 
 **级别：错误**
 
+**错误码：10605091**
+
 ArkTS要求实参必须直接传递给函数，且必须指定到形参。
 
 **TypeScript**
@@ -1913,6 +1999,8 @@ function main() {
 **规则：**`arkts-no-nested-funcs`
 
 **级别：错误**
+
+**错误码：10605092**
 
 ArkTS不支持在函数内声明函数，改用lambda函数。
 
@@ -1953,6 +2041,8 @@ function addNum(a: number, b: number): void {
 **规则：**`arkts-no-standalone-this`
 
 **级别：错误**
+
+**错误码：10605093**
 
 ArkTS不支持在函数和类的静态方法中使用`this`，只能在类的实例方法中使用`this`。
 
@@ -1998,6 +2088,8 @@ function main(): void {
 
 **级别：错误**
 
+**错误码：10605094**
+
 目前ArkTS不支持生成器函数，使用`async`或`await`机制进行并行任务处理。
 
 **TypeScript**
@@ -2036,6 +2128,8 @@ foo()
 **规则：**`arkts-no-is`
 
 **级别：错误**
+
+**错误码：10605096**
 
 ArkTS不支持`is`运算符，必须用`instanceof`运算符替代。在使用之前，必须使用`as`运算符将对象转换为需要的类型。
 
@@ -2111,6 +2205,8 @@ function main(): void {
 
 **级别：错误**
 
+**错误码：10605099**
+
 ArkTS仅支持使用展开运算符展开数组、`Array`的子类和`TypedArray`（例如`Int32Array`）。仅支持使用在以下场景中：
 1. 传递给剩余参数时 
 2. 复制一个数组到数组字面量 
@@ -2175,6 +2271,8 @@ let arr4 = [...arr1, 10, ...arr2, 11, ...arr3];
 **规则：**`arkts-no-extend-same-prop`
 
 **级别：错误**
+
+**错误码：106050102**
 
 在TypeScript中，如果一个接口继承了具有相同方法的两个接口，则该接口必须使用联合类型来声明该方法的返回值类型。在ArkTS中，由于一个接口中不能包含两个无法区分的方法（例如两个参数列表相同但返回类型不同的方法），因此，接口不能继承具有相同方法的两个接口。
 
@@ -2269,6 +2367,8 @@ class C implements Mover, Shaker {
 
 **级别：错误**
 
+**错误码：10605103**
+
 ArkTS不支持类、接口的声明合并。
 
 **TypeScript**
@@ -2307,6 +2407,8 @@ interface Document {
 
 **级别：错误**
 
+**错误码：10605104**
+
 ArkTS不支持接口继承类，接口只能继承接口。
 
 **TypeScript**
@@ -2338,6 +2440,8 @@ interface SelectableControl extends Control {
 **规则：**`arkts-no-ctor-signatures-funcs`
 
 **级别：错误**
+
+**错误码：10605106**
 
 ArkTS不支持使用构造函数类型，改用lambda函数。
 
@@ -2388,6 +2492,8 @@ const person = createPerson(Impersonizer, 'John', 30);
 
 **级别：错误**
 
+**错误码：10605111**
+
 ArkTS不支持使用在运行期间才能计算的表达式来初始化枚举成员。此外，枚举中所有显式初始化的成员必须具有相同的类型。
 
 **TypeScript**
@@ -2434,6 +2540,8 @@ enum E2 {
 
 **级别：错误**
 
+**错误码：10605113**
+
 ArkTS不支持`enum`声明合并。
 
 **TypeScript**
@@ -2470,6 +2578,8 @@ enum ColorSet {
 
 **级别：错误**
 
+**错误码：10605114**
+
 ArkTS不支持将命名空间用作对象，可以使用类或模块。
 
 **TypeScript**
@@ -2498,6 +2608,8 @@ MyNamespace.x = 2;
 **规则：**`arkts-no-ns-statements`
 
 **级别：错误**
+
+**错误码：10605116**
 
 在ArkTS中，命名空间用于定义标志符可见范围，只在编译时有效。因此，不支持命名空间中的非声明语句。可以将非声明语句写在函数中。
 
@@ -2531,6 +2643,8 @@ A.init();
 
 **级别：错误**
 
+**错误码：10605121**
+
 ArkTS不支持通过`require`导入，也不支持`import`赋值表达式，改用`import`。
 
 **TypeScript**
@@ -2550,6 +2664,8 @@ import * as m from 'mod'
 **规则：**`arkts-no-export-assignment`
 
 **级别：错误**
+
+**错误码：10605126**
 
 ArkTS不支持`export = ...`语法，改用常规的`export`或`import`。
 
@@ -2591,6 +2707,8 @@ let p = Pt.Point.origin
 
 **级别：错误**
 
+**错误码：10605128**
+
 由于ArkTS本身有与JavaScript交互的机制，ArkTS不支持ambient module声明。
 
 **TypeScript**
@@ -2613,6 +2731,8 @@ import { normalize } from 'someModule'
 **规则：**`arkts-no-module-wildcards`
 
 **级别：错误**
+
+**错误码：10605129**
 
 由于在ArkTS中，导入是编译时而非运行时行为，因此，不支持在模块名中使用通配符。
 
@@ -2648,6 +2768,8 @@ console.log('N.foo called: ' + N.foo(42));
 
 **级别：错误**
 
+**错误码：10605130**
+
 ArkTS不支持通用模块定义（UMD）。因为在ArkTS中没有“脚本”的概念（相对于“模块”）。此外，在ArkTS中，导入是编译时而非运行时特性。改用`export`和`import`语法。
 
 **TypeScript**
@@ -2680,6 +2802,8 @@ mathLib.isPrime(2)
 
 **级别：错误**
 
+**错误码：10605132**
+
 ArkTS没有原型的概念，因此不支持`new.target`。此特性不符合静态类型的原则。
 
 ### 不支持确定赋值断言
@@ -2687,6 +2811,8 @@ ArkTS没有原型的概念，因此不支持`new.target`。此特性不符合静
 **规则：**`arkts-no-definite-assignment`
 
 **级别：警告**
+
+**错误码：10605134**
 
 ArkTS不支持确定赋值断言，例如：`let v!: T`。改为在声明变量的同时为变量赋值。
 
@@ -2721,6 +2847,8 @@ console.log('x = ' + x);
 **规则：**`arkts-no-prototype-assignment`
 
 **级别：错误**
+
+**错误码：10605136**
 
 ArkTS没有原型的概念，因此不支持在原型上赋值。此特性不符合静态类型的原则。
 
@@ -2762,6 +2890,8 @@ class C {
 
 **级别：警告**
 
+**错误码：10605137**
+
 由于ArkTS不支持动态更改对象的布局，因此不支持全局作用域和`globalThis`。
 
 **TypeScript**
@@ -2792,6 +2922,8 @@ let x = M.abc;
 
 **级别：错误**
 
+**错误码：10605138**
+
 ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScript中其他的`Utility Types`。
 
 对于`Record`类型的对象，通过索引访问到的值的类型是包含`undefined`的联合类型。
@@ -2802,6 +2934,8 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 
 **级别：错误**
 
+**错误码：10605139**
+
 由于ArkTS不支持动态改变函数对象布局，因此，不支持对函数声明属性。
 
 ### 不支持`Function.apply`和`Function.call`
@@ -2809,6 +2943,8 @@ ArkTS仅支持`Partial`、`Required`、`Readonly`和`Record`，不支持TypeScri
 **规则：**`arkts-no-func-apply-call`
 
 **级别：错误**
+
+**错误码：10605152**
 
 ArkTS不允许使用标准库函数`Function.apply`和`Function.call`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
 
@@ -2818,6 +2954,8 @@ ArkTS不允许使用标准库函数`Function.apply`和`Function.call`。标准�
 
 **级别：警告**
 
+**错误码：10605140**
+
 ArkTS不允许使用标准库函数`Function.bind`。标准库使用这些函数来显式设置被调用函数的`this`参数。在ArkTS中，`this`的语义仅限于传统的OOP风格，函数体中禁止使用`this`。
 
 
@@ -2826,6 +2964,8 @@ ArkTS不允许使用标准库函数`Function.bind`。标准库使用这些函数
 **规则：**`arkts-no-as-const`
 
 **级别：错误**
+
+**错误码：10605142**
 
 ArkTS不支持`as const`断言。在标准TypeScript中，`as const`用于标注字面量的相应字面量类型，而ArkTS不支持字面量类型。
 
@@ -2867,6 +3007,8 @@ let z: Label = {
 
 **级别：错误**
 
+**错误码：10605143**
+
 由于在ArkTS中，导入是编译时而非运行时特性，因此，ArkTS不支持导入断言。在运行时检查导入的API是否正确，对于静态类型的语言来说是没有意义的。改用常规的`import`语法。
 
 **TypeScript**
@@ -2887,6 +3029,8 @@ import { something } from 'module'
 **规则：**`arkts-limited-stdlib`
 
 **级别：错误**
+
+**错误码：10605144**
 
 ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部分接口与动态特性有关。ArkTS中禁止使用以下接口：
 
@@ -2917,6 +3061,8 @@ ArkTS不允许使用TypeScript或JavaScript标准库中的某些接口。大部�
 **规则：**`arkts-strict-typing`
 
 **级别：错误**
+
+**错误码：10605145**
 
 在编译阶段，会进行TypeScript严格模式的类型检查，包括：
 `noImplicitReturns`, 
@@ -2993,6 +3139,8 @@ c.initAge(10);
 
 **级别：错误**
 
+**错误码：10605146**
+
 在ArkTS中，类型检查不是可选项。不允许通过注释关闭类型检查，不支持使用`@ts-ignore`和`@ts-nocheck`。
 
 **TypeScript**
@@ -3021,6 +3169,8 @@ let s2: string = null; // 编译时报错
 **规则：**`arkts-no-ts-deps`
 
 **级别：错误**
+
+**错误码：10605147**
 
 .ets文件可以`import`.ets/.ts/.js文件源码，但是.ts/.js文件不允许`import`.ets文件源码。
 
@@ -3054,6 +3204,8 @@ import { C } from 'lib1'
 
 **级别：警告**
 
+**错误码：10605149**
+
 在ArkTS中，`class`声明的是一个新的类型，不是一个值。因此，不支持将`class`用作对象（例如将`class`赋值给一个对象）。
 
 ### 不支持在`import`语句前使用其他语句
@@ -3061,6 +3213,8 @@ import { C } from 'lib1'
 **规则：**`arkts-no-misplaced-imports`
 
 **级别：错误**
+
+**错误码：10605150**
 
 在ArkTS中，除动态`import`语句外，所有`import`语句需要放在所有其他语句之前。
 
@@ -3093,6 +3247,8 @@ import('module2').then(() => {}).catch(() => {})  // 动态import
 **规则：**`arkts-limited-esobj`
 
 **级别：警告**
+
+**错误码：10605151**
 
 为了防止动态对象（来自.ts/.js文件）在静态代码（.ets文件）中的滥用，`ESObject`类型在ArkTS中的使用是受限的。唯一允许使用`ESObject`类型的场景是将其用在局部变量的声明中。`ESObject`类型变量的赋值也是受限的，只能被来自跨语言调用的对象赋值，例如：`ESObject`、`any`、`unknown`、匿名类型等类型的变量。禁止使用静态类型的值（在.ets文件中定义的）初始化`ESObject`类型变量。`ESObject`类型变量只能用在跨语言调用的函数里或者赋值给另一个`ESObject`类型变量。
 

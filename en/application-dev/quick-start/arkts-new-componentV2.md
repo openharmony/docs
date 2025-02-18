@@ -2,6 +2,9 @@
 
 To use the capability of the state variable decorator V2 in a custom component, you can use the \@ComponentV2 Decorator to decorate the custom component.
 
+
+\@ComponentV2 is used together with state management V2. Before reading this topic, you are advised to read [State Management Overview](./arkts-state-management-overview.md).
+
 >**NOTE**
 >
 >The \@ComponentV2 decorator is supported since API version 12.

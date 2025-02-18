@@ -417,7 +417,8 @@ H5的分析：
 ![alt text](./figures/webview-render-app-components_4.png)  
 非同层渲染的分析：
 - 在应用侧，红蓝线之间为测量和计算布局，图片加载被延后到了蓝线之外。  
-- 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。  
+- 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。
+  
 **图五：非同层渲染情况下的单帧放大图**  
 ![alt text](./figures/webview-render-app-components_6.png)  
 从图五可以明显的看到，其中的RSUniRender::Process耗时比起其他帧大幅增加，说明是应用侧组件层叠导致render_service侧的绘任务过重。 

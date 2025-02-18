@@ -7,7 +7,7 @@ restool是一种应用工程资源编译工具，通过编译资源文件创建�
 
 ## 参数说明
 
-restool当前支持以下命令选项:
+### restool支持的命令选项
 
 | 选项 | 是否可缺省 | 是否存在入参 | 描述 |
 | -------- | -------- | -------- | -------- |
@@ -16,7 +16,7 @@ restool当前支持以下命令选项:
 | -o | 不可缺省 | 带参数 | 指定已编译资源的输出路径。 |
 | -p | 不可缺省 | 带参数 | 指定编译资源的bundle名称。 |
 | -r | 不可缺省 | 带参数 | 指定资源的头文件路径，有三种格式：“.txt”、“.js”、“.h”。 |
-| -e | 可缺省 | 带参数 | 指定生成资源的起始ID值，例如：0x01000000,范围[0x01000000, 0x06FFFFFF),[0x08000000, 0x41FFFFFF) |
+| -e | 可缺省 | 带参数 | 指定生成资源的起始ID值，例如：0x01000000,范围[0x01000000, 0x06FFFFFF),[0x08000000, 0x41FFFFFF)。 |
 | -f | 可缺省 | 不带参数 | 如果输出路径已经存在。强制删除，重新生成。 |
 | -h | 可缺省 | 不带参数 | 查看工具帮助信息。 |
 | -m | 可缺省 | 带参数 | 多模块联合编译时，指定多个模块名。用“，”连接。 |
@@ -26,9 +26,10 @@ restool当前支持以下命令选项:
 | --ids | 可缺省 | 带参数 | 指定生成id_defined.json的输出目录。 |
 | --defined-ids | 可缺省 | 带参数 | 指定id_defined.json文件路径，一般都是通过--ids生成。<br>id_defined.json包含资源类型、名称及其ID的列表。<br>开发者可以自定义id_defined.json中的资源ID。 |
 | --icon-check | 可缺省 | 不带参数 | 开启icon和startWindowIcon的PNG图片校验功能。 |
-| --target-config | 可缺省 | 带参数 | 与“-i”命令同时使用，支持选择编译。<br>[参数说明](#target-config参数说明)：指定要包含的配置。|
+| --thread | 可缺省 | 带参数 | 指定资源编译时开启的子线程数量。 |
+| --target-config | 可缺省 | 带参数 | 与“-i”命令同时使用，支持选择编译。<br>具体可参考如下**target-config参数说明**。|
 
-### target-config参数说明
+**target-config参数说明**
 
 支持参数配置类型：MccMnc、Locale、Orientation、Device、ColorMode、Density。
 
@@ -45,6 +46,34 @@ Locale匹配规则：Locale匹配需满足以下三条规则。
 3、国家或地区不存在时默认匹配，否则必须相同。
 
 参数举例说明：Locale[zh_CN,en_US];Device[phone]，该参数过滤其他语言，保留能匹配上zh_CN和en_US的语言；过滤其他设备，保留phone；其他参数（如MccMnc、Orientation等）配置不过滤均保留。
+
+### restool支持的子命令
+
+| 命令  | 描述 |
+| ---  | ---- |
+| dump | 以json的格式输出hap包中resource的内容。 |
+
+**dump命令**
+
+```
+restool dump [-h] [config] filePath
+```
+
+dump命令参数列表：
+
+| 参数 | 是否可缺省 | 是否存在入参 | 描述 |
+| --- | --------- | ---------- |------- |
+| -h  | 可缺省 | 不带参数 | 帮助信息。 |
+| config | 可缺省 | 不带参数 | 只打印hap包中资源的限定词信息。 |
+
+示例：
+
+```sh
+# 打印hap包中所有的资源信息
+restool dump entry.hap
+# 打印hap包中资源的限定词信息
+restool dump config entry.hap
+```
 
 ## 使用实例
 

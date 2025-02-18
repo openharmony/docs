@@ -156,7 +156,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
   > **说明：**
   >
-  > 当useSharedStorage设置为true，并且storage又被赋值时，useSharedStorage的值优先级更高。
+  > 当useSharedStorage设置为true，并且storage也被赋值时，useSharedStorage的值优先级更高。
 
   ```ts
   @Entry({ routeName : 'myPage' })
@@ -168,7 +168,7 @@ build()函数用于定义自定义组件的声明式UI描述，自定义组件�
 
 ### \@Reusable
 
-\@Reusable装饰的自定义组件具备可复用能力。
+\@Reusable装饰的自定义组件具备可复用能力。详细请参考：[\@Reusable装饰器：组件复用](./arkts-reusable.md#使用场景)。
 
   > **说明：**
   >
@@ -398,7 +398,7 @@ struct Son {
   }
   ```
 
-- 不允许直接改变状态变量，反例如下。详细分析见[\@State常见问题：不允许在build里改状态变量](./arkts-state.md#不允许在build里改状态变量)
+- 不允许直接改变状态变量，反例如下。详细分析见[\@State常见问题：不允许在build里改状态变量](./arkts-state.md#不允许在build里改状态变量)。
 
   ```ts
   @Component

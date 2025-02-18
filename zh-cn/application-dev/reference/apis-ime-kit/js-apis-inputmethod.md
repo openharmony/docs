@@ -13,7 +13,7 @@
 import { inputMethod } from '@kit.IMEKit';
 ```
 
-## 常量<sup>8+</sup>
+## 常量
 
 常量值。
 
@@ -21,7 +21,7 @@ import { inputMethod } from '@kit.IMEKit';
 
 | 参数名 | 类型 | 常量值 | 说明 |
 | -------- | -------- | -------- | -------- |
-| MAX_TYPE_NUM | number | 128 | 可支持的最大输入法个数。 |
+| MAX_TYPE_NUM<sup>8+</sup> | number | 128 | 可支持的最大输入法个数。 |
 
 ## InputMethodProperty<sup>8+</sup>
 
@@ -779,6 +779,18 @@ Enter键的功能类型。
 | top  | number | 否 | 否 | 输入法窗口左上顶点的纵坐标，单位为px。|
 | width  | number | 否 | 否 | 输入法窗口的宽度，单位为px。|
 | height  | number | 否 | 否 | 输入法窗口的高度，单位为px。|
+
+## EnabledState<sup>15+</sup>
+
+输入法启用状态。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| DISABLED   | 0 |未启用。 |
+| BASIC_MODE  | 1 |基础模式。 |
+| FULL_EXPERIENCE_MODE  | 2 |完整体验模式。 |
 
 ## MessageHandler<sup>16+</sup>
 
@@ -2965,7 +2977,7 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.           |
-| 12800001 | bunder manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3012,7 +3024,7 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | bunder manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3055,7 +3067,7 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | bunder manager error.                 |
+| 12800001 | bundle manager error.                 |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3104,7 +3116,7 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | bunder manager error.               |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3158,7 +3170,7 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 401      | parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 12800001 | bunder manager error.               |
+| 12800001 | bundle manager error.               |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3527,5 +3539,40 @@ inputMethodSetting.displayOptionalInputMethod().then(() => {
   console.log('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
+})
+```
+
+### getInputMethodState<sup>16+</sup>
+
+getInputMethodState(): Promise&lt;EnabledState&gt;
+
+查询输入法的启用状态。使用promise异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**返回值：**
+
+| 类型                                    | 说明                                                         |
+| --------------------------------------- | ------------------------------------------------------------ |
+| Promise\<[EnabledState](#enabledstate15)> | Promise对象，返回EnabledState.DISABLED表示未启用; 返回EnabledState.BASIC_MODE表示基础模式; 返回EnabledState.FULL_EXPERIENCE_MODE表示完整体验模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 12800004 | not an input method.              |
+| 12800008 | input method manager service error. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
+  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })
 ```

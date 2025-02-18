@@ -6,7 +6,7 @@ PersistenceV2是应用程序中的可选单例对象。此对象的作用是持�
 
 PersistenceV2提供状态变量持久化能力，开发者可以通过connect或者globalConnect绑定同一个key，在状态变量变换和应用冷启动时，实现持久化能力。
 
-在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md)
+在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[PersistentV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md)。
 
 >**说明：**
 >
@@ -44,13 +44,13 @@ static connect<T extends object>(
 
 >**说明：**
 >
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+>1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
 >
->2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+>2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
 >
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+>3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配。
 >
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+>4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 >
@@ -79,7 +79,7 @@ class ConnectOptions<T extends object> {
 
 | globalConnect | 说明                                                      |
 | ------------- | --------------------------------------------------------- |
-| 参数          | type：传入的connect参数，详细说明见ConnectOptions参数说明 |
+| 参数          | type：传入的connect参数，详细说明见ConnectOptions参数说明。 |
 | 返回值        | 创建或获取数据成功时，返回数据；否则返回undefined。       |
 
 | ConnectOptions参数 | 说明                                                         |
@@ -91,13 +91,13 @@ class ConnectOptions<T extends object> {
 
 > **说明：**
 >
-> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+> 1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
 >
-> 2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+> 2、确保数据已经存储在PersistenceV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
 >
-> 3、同一个key，globalConnect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+> 3、同一个key，globalConnect不同类型的数据会导致应用异常，应用需要确保类型匹配。
 >
-> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+> 4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
 > 5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，因为该类型的name属性未定义，需要指定key或者自定义name属性。
 >
@@ -107,7 +107,7 @@ class ConnectOptions<T extends object> {
 >
 > 8、connect和globalConnect不建议混用，因为数据副本路径不同，如果混用，则key不可以一样，否则会crash。
 >
-> 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../security/AccessToken/declare-permissions.md)
+> 9、EL5加密要想生效，需要开发者在module.json中配置字段ohos.permission.PROTECT_SCREEN_LOCK_DATA，使用说明见[声明权限](../security/AccessToken/declare-permissions.md)。
 
 ### remove：删除指定key的储存数据
 
@@ -152,7 +152,7 @@ static save<T>(keyOrType: string | TypeConstructorWithArgs<T>): void;
 
 >**说明：**
 >
->由于非[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据；
+>由于非[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变不会触发PersistenceV2的自动持久化，如有必要，可调用该接口持久化对应key的数据。
 >
 >手动持久化当前内存中不处于connect状态的key是无意义的。
 
@@ -175,19 +175,19 @@ static notifyOnError(callback: PersistenceErrorCallback | undefined): void;
 
 ## 使用限制
 
-1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable；
+1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
 
-2、不支持collections.Set、collections.Map等类型；
+2、不支持collections.Set、collections.Map等类型。
 
-3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型；
+3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
-4、单个key支持数据大小约8k，过大会导致持久化失败；
+4、单个key支持数据大小约8k，过大会导致持久化失败。
 
-5、持久化的数据必须是class对象，不能是容器（如Array、Set、Map），不能是buildin的构造对象（如Date、Number）；
+5、持久化的数据必须是class对象，不能是容器（如Array、Set、Map），不能是buildin的构造对象（如Date、Number）。
 
-6、不支持循环引用的对象；
+6、不支持循环引用的对象。
 
-7、只有[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变会触发自动持久化，如V1状态变量、[\@Observed](arkts-observed-and-objectlink.md)对象、普通数据的改变不会触发持久化；
+7、只有[\@Trace](arkts-new-observedV2-and-trace.md)的数据改变会触发自动持久化，如V1状态变量、[\@Observed](arkts-observed-and-objectlink.md)对象、普通数据的改变不会触发持久化。
 
 8、不宜大量持久化数据，可能会导致页面卡顿。
 
@@ -500,7 +500,7 @@ struct Page1 {
 
 globalConnect虽然是应用级别的路径，但是可以设置不同的加密分区，不同加密分区即代表不同的存储路径。connect不支持设置加密分区，但是module自身切换加密级别时，module存储路径也会切换成对应加密分区路径。
 
-示例代码如下：开发者需要在项目基础上，新建一个module，并按照示例代码跳转到新module中
+示例代码如下：开发者需要在项目基础上，新建一个module，并按照示例代码跳转到新module中。
 
 ```ts
 // 模块1

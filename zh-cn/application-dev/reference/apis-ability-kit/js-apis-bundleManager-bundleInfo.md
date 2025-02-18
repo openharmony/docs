@@ -26,6 +26,7 @@
 | updateTime                        | number                                                       | 是   | 否   | 应用包更新时间。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12)>           | 是   | 否   | 应用的路由表配置，由hapModulesInfo下的routerMap信息，根据RouterItem中的name字段进行去重后合并得到。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
+| firstInstallTime<sup>16+</sup>                        | number                                                       | 是   | 是   | 应用在当前设备的首次安装时间。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 
 ## ReqPermissionDetail
@@ -60,22 +61,20 @@
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | abilities | Array\<string> | 否   | 否   | 使用到该权限的Ability集合。   |
-| when      | string         | 否   | 否   | 使用该权限的时机。          |
+| when      | string         | 否   | 否   | 使用该权限的时机。支持的取值有inuse（使用时）、always（始终）。          |
 
 ## SignatureInfo
 
 描述应用包的签名信息。
 
- **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
-| appId     | string         | 是   | 否   | 应用的appId。                 |
-|fingerprint| string         | 是   | 否   | 应用包的指纹信息。使用的签名证书发生变化，该字段会发生变化。            |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，由云端统一分配。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。            |
-|certificate<sup>14+</sup>| string         | 是   | 是   | 应用的证书公钥。            |
+| appId     | string         | 是   | 否   | 应用的appId。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
+|fingerprint| string         | 是   | 否   | 应用包的指纹信息。使用的签名证书发生变化，该字段会发生变化。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
+|certificate<sup>14+</sup>| string         | 是   | 是   | 应用的证书公钥。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
 
 ## AppCloneIdentity<sup>14+<sup>
 

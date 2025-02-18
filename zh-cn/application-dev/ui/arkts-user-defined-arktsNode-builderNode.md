@@ -518,7 +518,7 @@ struct Index {
 
 ## 通过系统环境变化更新节点
 
-使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
+使用[updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#updateconfiguration12)来监听[系统环境变化](../reference/apis-ability-kit/js-apis-app-ability-configuration.md)事件，以触发节点的全量更新。
 
 > **说明：**
 >
@@ -660,3 +660,211 @@ struct Index {
 }
 ```
 
+## 跨页面复用注意事项
+
+在使用[路由](../reference/apis-arkui/js-apis-router.md)接口[router.replaceUrl](../reference/apis-arkui/js-apis-router.md#routerreplaceurl9)、[router.back](../reference/apis-arkui/js-apis-router.md#routerback)、[router.clear](../reference/apis-arkui/js-apis-router.md#routerclear)、[router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10)操作页面时，若某个被缓存的BuilderNode位于即将销毁的页面内，那么在新页面中复用该BuilderNode时，可能会存在数据无法更新或新创建节点无法显示的问题。以[router.replaceNamedRoute](../reference/apis-arkui/js-apis-router.md#routerreplacenamedroute10)为例，在以下示例代码中，当点击“router replace”按钮后，页面将切换至PageTwo，同时标志位isShowText会被设定为false。
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // @Builder中使用语法节点生成BuilderProxyNode
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // 复用AppStorage中的BuilderNode
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // 将创建的BuilderNode存入AppStorage
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // 改变AppStorage中的状态变量触发Text节点的重新创建
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```
+
+PageTwo的实现如下：
+
+```ts
+// ets/pages/PageTwo.ets
+// 该页面中存在一个按钮，可跳转回主页面，回到主页面后，原有的文字消失
+import "ets/pages/Index"
+
+@Entry({ routeName: "pageTwo" })
+@Component
+struct PageTwo {
+  build() {
+    Column() {
+      Button('Router replace to index')
+        .onClick(() => {
+          this.getUIContext().getRouter().replaceNamedRoute({ name: "myIndex" });
+        })
+    }
+    .height('100%')
+    .width('100%')
+    .alignItems(HorizontalAlign.Center)
+    .padding(16)
+  }
+}
+```
+
+![BuilderNode Reuse Example](./figures/builder_node_reuse.gif)
+
+在API version 16之前，解决该问题的方法是在页面销毁时，将页面上的BuilderNode从缓存中移除。以上述例子为例，可以在页面跳转前，通过点击事件将BuilderNode从AppStorage中移除，以此达到预期效果。
+
+API version 16及之后版本，BuilderNode在新页面被复用时，会自动刷新自身内容，无需在页面销毁时将BuilderNode从缓存中移除。
+
+```ts
+// ets/pages/Index.ets
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import "ets/pages/PageTwo"
+
+@Builder
+function buildText() {
+  // @Builder中使用语法节点生成BuilderProxyNode
+  if (true) {
+    MyComponent()
+  }
+}
+
+@Component
+struct MyComponent {
+  @StorageLink("isShowText") isShowText: boolean = true;
+
+  build() {
+    if (this.isShowText) {
+      Column() {
+        Text("BuilderNode Reuse")
+          .fontSize(36)
+          .fontWeight(FontWeight.Bold)
+          .padding(16)
+      }
+    }
+  }
+}
+
+class TextNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private textNode: BuilderNode<[]> | null = null;
+
+  makeNode(context: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(context);
+
+    if (AppStorage.has("textNode")) {
+      // 复用AppStorage中的BuilderNode
+      this.textNode = AppStorage.get<BuilderNode<[]>>("textNode") as BuilderNode<[]>;
+      const parent = this.textNode.getFrameNode()?.getParent();
+      if (parent) {
+        parent.removeChild(this.textNode.getFrameNode());
+      }
+    } else {
+      this.textNode = new BuilderNode(context);
+      this.textNode.build(wrapBuilder<[]>(buildText));
+      // 将创建的BuilderNode存入AppStorage
+      AppStorage.setOrCreate<BuilderNode<[]>>("textNode", this.textNode);
+    }
+    this.rootNode.appendChild(this.textNode.getFrameNode());
+
+    return this.rootNode;
+  }
+}
+
+@Entry({ routeName: "myIndex" })
+@Component
+struct Index {
+  aboutToAppear(): void {
+    AppStorage.setOrCreate<boolean>("isShowText", true);
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(new TextNodeController())
+          .width('100%')
+          .backgroundColor('#FFF0F0F0')
+        Button('Router pageTwo')
+          .onClick(() => {
+            // 改变AppStorage中的状态变量触发Text节点的重新创建
+            AppStorage.setOrCreate<boolean>("isShowText", false);
+            // 将BuilderNode从AppStorage中移除
+            AppStorage.delete("textNode");
+
+            this.getUIContext().getRouter().replaceNamedRoute({ name: "pageTwo" });
+          })
+          .margin({ top: 16 })
+      }
+      .width('100%')
+      .height('100%')
+      .padding(16)
+    }
+    .height('100%')
+  }
+}
+```

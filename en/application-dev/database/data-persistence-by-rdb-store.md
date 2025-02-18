@@ -5,6 +5,11 @@
 
 A relational database (RDB) store is used to store data in complex relational models, such as the student information including names, student IDs, and scores of each subject, or employee information including names, employee IDs, and positions, based on SQLite. The data is more complex than key-value (KV) pairs due to strict mappings. You can use **RelationalStore** to implement persistence of this type of data.
 
+Querying data from a large amount of data may take time or even cause application suspension. In this case, you can perform batch operations. For details, see [Batch Database Operations](../arkts-utils/batch-database-operations-guide.md). Moreover, observe the following:
+- The number of data records to be queried at a time should not exceed 5000.
+- Use [TaskPool](../reference/apis-arkts/js-apis-taskpool.md) if there is a large amount of data needs to be queried.
+- Keep concatenated SQL statements as concise as possible.
+- Query data in batches.
 
 ## Basic Concepts
 
@@ -18,7 +23,7 @@ A relational database (RDB) store is used to store data in complex relational mo
 **RelationalStore** provides APIs for applications to perform data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 **Figure 1** Working mechanism
-
+ 
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -40,15 +45,15 @@ A relational database (RDB) store is used to store data in complex relational mo
 
 The following table lists the APIs used for RDB data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-| API| Description|
+| API| Description| 
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.|
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.|
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.|
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.|
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.|
-| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.|
-| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.|
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.| 
+| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.| 
+| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.| 
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.| 
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.| 
+| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
+| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
 
 
 ## How to Develop
@@ -59,7 +64,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
    Stage model:
-   
+     
    ```ts
    import { relationalStore} from '@kit.ArkData'; // Import the relationalStore module.
    import { UIAbility } from '@kit.AbilityKit';
@@ -175,7 +180,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
 2. Use **insert()** to insert data to the RDB store. <br>Example:
-   
+     
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -315,9 +320,39 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    >
    > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
-5. Back up the database in the same directory. 
+   The RDB store also supports full-text search (FTS) in Chinese or English. The ICU tokenizer is supported.
 
-   Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
+   The following example demonstrates how to perform FTS with Chinese keywords:
+
+   ```ts
+   let store: relationalStore.RdbStore | undefined = undefined;
+   if (store !== undefined) {
+     // Create an FTS table.
+     const  SQL_CREATE_TABLE = "CREATE VIRTUAL TABLE example USING fts4(name, content, tokenize=icu zh_CN)";
+     (store as relationalStore.RdbStore).executeSql(SQL_CREATE_TABLE, (err: BusinessError) => {
+       if (err) {
+         console.error(`Failed to creating fts table.`);
+         return;
+       }
+       console.info(`Succeeded in creating fts table.`);
+     })
+   }
+   if(store != undefined) {
+      (store as relationalStore.RdbStore).querySql("SELECT name FROM example WHERE example MATCH '测试'", (err, resultSet) => {
+        if (err) {
+          console.error(`Query failed.`);
+          return;
+        }
+        while (resultSet.goToNextRow()) {
+          const name = resultSet.getString(resultSet.getColumnIndex("name"));
+          console.info(`name=${name}`);
+        }
+        resultSet.close();
+      })
+   }
+   ```
+
+5. Back up the database in the same directory. <br>Two backup modes are available: manual backup and automatic backup (available only for system applications). For details, see [Backing Up an RDB Store](data-backup-and-restore.md#backing-up-an-rdb store).
 
    Example: Perform manual backup of an RDB store.
 
@@ -334,9 +369,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    }
    ```
 
-6. Restore data from the database backup. 
-
-   You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
+6. Restore data from the database backup. <br>You can restore an RDB store from the manual backup data or automatic backup data (available only for system applications). For details, see [Restoring RDB Store Data](data-backup-and-restore.md#restoring-rdb-store-data).
 
    Example: Call [restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore) to restore an RDB store from the data that is manually backed up.
 
@@ -379,3 +412,4 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
+<!--no_check-->

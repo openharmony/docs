@@ -15,7 +15,7 @@
 
 ## 概述
 
-当\@Require装饰器和\@Prop、\@State、\@Provide、\@BuilderParam、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
+当\@Require装饰器和\@Prop、\@State、\@Provide、\@Param、\@BuilderParam、普通变量(无状态装饰器修饰的变量)结合使用时，在构造该自定义组件时，\@Prop、\@State、\@Provide、\@Param、\@BuilderParam和普通变量(无状态装饰器修饰的变量)必须在构造时传参。
 
 ## 限制条件
 
@@ -81,7 +81,7 @@ struct Child {
 
  ![img](figures/9e2d58bc-b0e1-4613-934b-8e4237bd5c05.png) 
 
-使用@ComponentV2修饰的自定义组件ChildPage通过父组件ParentPage进行初始化，因为有@Require装饰，所以父组件必须进行构造赋值。
+使用\@ComponentV2修饰的自定义组件ChildPage通过父组件ParentPage进行初始化，因为有\@Require装饰\@Param，所以父组件必须进行构造赋值。
 
 ```ts
 @ObservedV2
@@ -142,6 +142,30 @@ struct ParentPage {
           this.label1 = "Luck"; // 不会刷新，原因是没有装饰器修饰监听不到值的改变。
           this.label2 = "Luck"; // 会刷新，原因是有装饰器修饰，可以监听到值的改变。
         })
+    }
+  }
+}
+```
+
+从API version 16开始，使用\@Require装饰\@State、\@Prop、\@Provide装饰的状态变量，可以在无本地初始值的情况下直接在组件内使用，不会编译报错。
+
+```ts
+@Entry
+@Component
+struct Index {
+  message: string = 'Hello World';
+  build() {
+    Column() {
+      Child({ message: this.message })
+    }
+  }
+}
+@Component
+struct Child {
+  @Require @State message: string;
+  build() {
+    Column() {
+      Text(this.message) // 从API version 16开始，可以编译通过
     }
   }
 }

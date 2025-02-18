@@ -485,9 +485,9 @@ struct Index {
 
 ![](figures/chip5.gif)
 
-### Example 6: Implementing a Mirror Effect
+### Example 6: Implementing a Mirroring Effect
 
-This example shows how to achieve a mirror effect for a chip by configuring **direction**.
+This example shows how to achieve a mirroring effect for a chip by configuring **direction**.
 
 ```ts
 

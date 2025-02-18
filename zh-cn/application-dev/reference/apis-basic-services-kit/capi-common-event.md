@@ -88,7 +88,7 @@
 |static const char* const [COMMON_EVENT_PACKAGE_FULLY_REMOVED](common_event/commonEventManager-definitions.md#common_event_package_fully_removed) = "usual.event.PACKAGE_FULLY_REMOVED"|表示已从设备中完全卸载已安装的应用程序（包括应用程序数据和代码）的公共事件。 |
 |static const char* const [COMMON_EVENT_PACKAGE_CHANGED](common_event/commonEventManager-definitions.md#common_event_package_changed) = "usual.event.PACKAGE_CHANGED"| 表示应用包已更改的公共事件（例如，包中的组件已启用或禁用）。|
 |static const char* const [COMMON_EVENT_PACKAGE_RESTARTED](common_event/commonEventManager-definitions.md#common_event_package_restarted) = "usual.event.PACKAGE_RESTARTED"| 表示用户重启应用包并杀死其所有进程的公共事件。|
-|static const char* const [COMMON_EVENT_PACKAGE_DATA_CLEARED](common_event/commonEventManager-definitions.md#common_event_package_data_cleared) = "usual.event.PACKAGE_DATA_CLEARED"| 表示用户清除应用包数据的公共事件|
+|static const char* const [COMMON_EVENT_PACKAGE_DATA_CLEARED](common_event/commonEventManager-definitions.md#common_event_package_data_cleared) = "usual.event.PACKAGE_DATA_CLEARED"| 表示用户清除应用包数据的公共事件。|
 |static const char* const [COMMON_EVENT_PACKAGE_CACHE_CLEARED](common_event/commonEventManager-definitions.md#common_event_package_cache_cleared) = "usual.event.PACKAGE_CACHE_CLEARED"|表示用户清除应用包缓存数据的公共事件。 |
 |static const char* const [COMMON_EVENT_PACKAGES_SUSPENDED](common_event/commonEventManager-definitions.md#common_event_packages_suspended) = "usual.event.PACKAGES_SUSPENDED"|表示应用包已挂起的公共事件。 |
 |static const char* const [COMMON_EVENT_MY_PACKAGE_SUSPENDED](common_event/commonEventManager-definitions.md#common_event_my_package_suspended) = "usual.event.MY_PACKAGE_SUSPENDED"| 表示应用程序包已被挂起的公共事件，该事件可以发送到被挂起的应用程序包。|

@@ -1,8 +1,10 @@
 # Enterprise Device Management Error Codes
 
+<!--RP1-->
 > **NOTE**
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
+<!--RP1End-->
 
 ## 9200001 DeviceAdmin Not Enabled
 

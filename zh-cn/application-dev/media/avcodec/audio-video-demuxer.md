@@ -313,16 +313,16 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 10. 销毁解封装实例。
       ```c++
-      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
+      // 需要用户调用 OH_AVSource_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVSource_Destroy 会导致程序错误
       if (OH_AVSource_Destroy(source) != AV_ERR_OK) {
          printf("destroy source pointer error");
       }
-      source = NULL;
-      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为 NULL，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
+      source = nullptr;
+      // 需要用户调用 OH_AVDemuxer_Destroy 接口成功后，手动将对象置为nullptr，对同一对象重复调用 OH_AVDemuxer_Destroy 会导致程序错误
       if (OH_AVDemuxer_Destroy(demuxer) != AV_ERR_OK) {
          printf("destroy demuxer pointer error");
       }
-      demuxer = NULL;
+      demuxer = nullptr;
       close(fd);
       ```
 
@@ -331,6 +331,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 > **说明：**
 > 正常解析时才可以获取对应属性数据；如果文件信息错误或缺失，将导致解析异常，无法获取数据。
+> 当前GBK格式字符集数据会转换为UTF8提供，其他类型字符集如果需要转换为UTF8格式使用，需要调用方自行转换，参考[icu4c](../../reference/native-lib/icu4c.md)。
 > 
 > 数据类型及详细取值范围参考[媒体数据键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 

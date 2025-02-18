@@ -116,9 +116,9 @@ async function example() {
 
 You can set **forChildUris** to **true** to enable fuzzy listening.<br>If **uri** is an album URI, the value **true** of **forChildUris** enables listening for the changes of the files in the album, and the value **false** enables listening for only the changes of the album itself. <br>If **uri** is the URI of a **photoAsset**, there is no difference between **true** and **false** for **forChildUris**.<br>If **uri** is **DefaultChangeUri**, **forChildUris** must be set to **true**. If **forChildUris** is **false**, the URI cannot be found and no notification can be received.
 
-### Listening for All Media Assets
+### Listening for All PhotoAssets
 
-Register a listener for all media assets. When a media asset changes, the registered callback will be invoked.
+Register a listener for all **PhotoAssets**. When a **PhotoAsset** object changes, the registered callback will be invoked.
 
 **Prerequisites**
 

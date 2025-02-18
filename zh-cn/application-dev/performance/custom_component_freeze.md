@@ -304,11 +304,13 @@ struct NotUseFreezeItem {
 如图1所示，在Grid预加载GridItem数量设置200的情况下，不开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的UIVsyncTask（执行布局任务、执行渲染任务并通知图形进行渲染）耗时为162ms。其中FlushDirtyNodeUpdate（更新脏节点）耗时104ms,UITaskScheduler::FlushTask（主要是对懒加载的GridItem进行重新布局）耗时28ms。
 
 图1 不开启自定义组件冻结功能
+
 ![](./figures/custom_component_freeze_not_freeze_duration.png)
 
 如图2所示，FlushDirtyNodeUpdate里可以看到执行了832个CustomNodeUpdate NotUseFreezeItem（自定义组件节点刷新）任务，这里的832个自定义组件节点指的是屏幕内可见的32个GridItem节点和不可见的800个缓存GridItem节点。
 
 图2 不开启冻结功能后CustomNodeUpdate耗时
+
 ![](./figures/custom_component_freeze_not_freeze_item.png)
 
 ### 开启冻结功能
@@ -316,11 +318,13 @@ struct NotUseFreezeItem {
 如图3所示，在Grid预加载GridItem数量设置200的情况下，开启组件冻结功能，抓取长按图片显示复选框的trace。可以看出显示复选框的UIVsyncTask耗时仅为32ms。其中FlushDirtyNodeUpdate耗时7ms，UITaskScheduler::FlushTask耗时14ms。和不开启冻结功能相比耗时减少了约80%（性能耗时数据因设备型号版本而异，以实测为准）。
 
 图3 开启自定义组件冻结功能
+
 ![](./figures/custom_component_freeze_freeze_duration.png)
 
 如图4所示，FlushDirtyNodeUpdate里执行了32个CustomNodeUpdate UseFreezeItem（自定义组件节点刷新）任务，这里的32个自定义组件节点指的是屏幕内可见的所有GridItem节点。和图2相比，可以发现开启冻结功能比不开启冻结功能少执行了800个自定义组件节点的刷新任务，大大缩短了渲染耗时。
 
 图4 开启冻结功能后CustomNodeUpdate耗时
+
 ![](./figures/custom_component_freeze_freeze_item.png)
 
 图5为Grid懒加载场景下，设置不同预加载缓存GridItem数量（cachedCount）的UIVsyncTask耗时对比图。可以看出懒加载中设置的预加载缓存GridItem的数量越大，UIVsyncTask耗时越长。

@@ -19,4 +19,4 @@
   - [删除关键资产(C/C++)](asset-native-remove.md)
   - [更新关键资产(C/C++)](asset-native-update.md)
   - [查询关键资产(C/C++)](asset-native-query.md)
-  - [管理群组关键资产(ArkTS)](asset-native-group-access-control.md)
+  - [管理群组关键资产(C/C++)](asset-native-group-access-control.md)

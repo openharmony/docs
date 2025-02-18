@@ -223,6 +223,8 @@ Tabs({ barPosition: BarPosition.Start }) {
 设置自定义导航栏需要使用tabBar的参数，以其支持的CustomBuilder的方式传入自定义的函数组件样式。例如这里声明tabBuilder的自定义函数组件，传入参数包括页签文字title，对应位置index，以及选中状态和未选中状态的图片资源。通过当前活跃的currentIndex和页签对应的targetIndex匹配与否，决定UI显示的样式。
 
 ```ts
+@State currentIndex: number = 0;
+
 @Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
   Column() {
     Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
@@ -311,14 +313,31 @@ struct TabsExample1 {
 若希望不滑动内容页和点击页签也能实现内容页和页签的切换，可以将currentIndex传给Tabs的index参数，通过改变currentIndex来实现跳转至指定索引值对应的TabContent内容。也可以使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行内容页切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
 ```ts
 @State currentIndex: number = 2
+@State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
 private controller: TabsController = new TabsController()
 
 Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
   ...
 }
 .height(600)
+.animationMode(this.currentAnimationMode)
 .onChange((index: number) => {
    this.currentIndex = index
+})
+
+Button('动态修改AnimationMode').width('50%').margin({ top: 1 }).height(25)
+  .onClick(()=>{
+    if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+      this.currentAnimationMode = AnimationMode.NO_ANIMATION
+    } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+    }
 })
 
 Button('动态修改index').width('50%').margin({ top: 20 })

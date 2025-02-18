@@ -76,18 +76,20 @@
 
 | 媒体格式  | 封装格式                      | 码流格式                      |
 | -------- | :----------------------------| :----------------------------|
-| 音视频     | mp4                        |<!--RP4-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)，字幕流：WEBVTT<!--RP4End-->|
+| 音视频     | mp4                        |<!--RP4-->视频码流：AVC(H.264)、MPEG4，音频码流：AAC、MPEG(MP3)，字幕流：WEBVTT<!--RP4End-->|
 | 音视频     | fmp4                       |<!--RP5-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP5End-->|
 | 音视频     | mkv                        |<!--RP6-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)、OPUS<!--RP6End-->|
-| 音视频     | mpeg-ts                    |<!--RP7-->视频码流：AVC(H.264)，音频码流：AAC、MPEG(MP3)<!--RP7End-->|
+| 音视频     | mpeg-ts                    |<!--RP7-->视频码流：AVC(H.264)、MPEG2、MPEG4，音频码流：AAC、MPEG(MP3)<!--RP7End-->|
 | 音视频     | flv                        |<!--RP8-->视频码流：AVC(H.264)，音频码流：AAC<!--RP8End-->|
+| 音视频     | mpeg-ps                    |视频码流：AVC(H.264)、MPEG2，音频码流：MPEG(MP2、MP3)|
+| 音视频     | avi                        |视频码流：H.263、AVC(H.264)、MPEG2、MPEG4，音频码流：AAC、MPEG(MP2、MP3)、PCM|
 | 音频       | m4a                        |<!--RP9-->音频码流：AAC<!--RP9End-->|
 | 音频       | aac                        |音频码流：AAC|
 | 音频       | mp3                        |音频码流：MPEG(MP3)|
-| 音频       | ogg                        |音频码流：OGG|
-| 音频       | flac                       |音频码流：FLAC|
-| 音频       | wav                        |音频码流：PCM、PCM-MULAW|
-| 音频       | amr                        |音频码流：AMR(AMR-NB、AMR-WB)|
+| 音频       | ogg                        |音频码流：Vorbis|
+| 音频       | flac                       |音频码流：Flac|
+| 音频       | wav                        |音频码流：PCM、G711mu|
+| 音频       | amr                        |音频码流：AMR(amrnb、amrwb)|
 | 音频       | ape                        |音频码流：APE|
 | 外挂字幕   | srt                        |字幕流：SRT|
 | 外挂字幕   | webvtt                     |字幕流：WEBVTT|

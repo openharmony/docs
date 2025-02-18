@@ -156,6 +156,7 @@ attributeModifier(modifier: AttributeModifier\<SymbolSpanAttribute>)
 
 ## 示例
 
+### 示例1（设置渲染和动效策略）
 该示例通过renderingStrategy、effectStrategy属性展示了不同的渲染和动效策略。
 
 ```ts
@@ -259,3 +260,30 @@ struct Index {
 }
 ```
 ![SymbolSpan](figures/symbolSpan.gif)
+
+### 示例2（设置动态属性）
+该示例通过attributeModifier属性创建指定样式图标。
+
+```ts
+import { SymbolSpanModifier } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State modifier: SymbolSpanModifier =
+    new SymbolSpanModifier($r("sys.symbol.ohos_wifi")).fontColor([Color.Blue]).fontSize(100);
+
+  build() {
+    Row() {
+      Column() {
+        Text() {
+          SymbolSpan(undefined).attributeModifier(this.modifier)
+        }
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![SymbolSpanModifier](figures/symbolSpanModifier.png)

@@ -34,7 +34,7 @@ Describes the initialization options of the **Search** component.
 
 | Name     | Type        | Mandatory| Description       |
 | ----------- | ------------- | ---- | ------------- |
-| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 16, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr) | No  | Text displayed when there is no input.                                    |
 | icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, pixelmap, and HEIF.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp\|heif];base64,[base64 data], where *[base64 data]* is a Base64 string.<br>If this attribute and the **searchIcon** attribute are both set, the **searchIcon** attribute takes precedence.|
 | controller  | [SearchController](#searchcontroller) | No  | Controller of the **Search** component.                                      |
@@ -249,7 +249,7 @@ Sets whether to hide the system text selection menu.
 
 customKeyboard(value: CustomBuilder, options?: KeyboardOptions)
 
-Custom keyboard.
+Sets the custom keyboard.
 
 When a custom keyboard is set, activating the text box opens the specified custom component, instead of the system input method.
 
@@ -262,6 +262,8 @@ The custom keyboard cannot obtain the focus, but it blocks gesture events.
 By default, the custom keyboard is closed when the input component loses the focus. You can also use the [stopEditing](#stopediting10) API to close the keyboard.
 
 When a custom keyboard is set, the text box does not support camera input, even when the device supports.
+
+When setting a custom keyboard, you can bind the [onKeyPrelme](ts-universal-events-key.md#onkeypreime12) event to prevent input from the physical keyboard.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -320,7 +322,7 @@ Sets the type of the Enter key.
 
 | Name| Type                                            | Mandatory| Description                                              |
 | ------ | ------------------------------------------------ | ---- | -------------------------------------------------- |
-| value  | [EnterKeyType](ts-types.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Search**|
+| value  | [EnterKeyType](ts-basic-components-textinput.md#enterkeytype) | Yes  | Type of the Enter key.<br>Default value: **EnterKeyType.Search**|
 
 ### lineHeight<sup>12+</sup>
 
@@ -491,6 +493,54 @@ When the adaptive font size is used, the **fontSize** settings do not take effec
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | number \| string \| [Resource](ts-types.md#resource) | Yes  | Maximum font size.|
 
+### halfLeading<sup>16+</sup>
+
+halfLeading(halfLeading: boolean)
+
+Sets whether half leading is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| halfLeading | boolean | Yes | Whether half leading is enabled.<br>Whether half leading is enabled. Half leading is the leading split in half and applied equally to the top and bottom edges. The value **true** means that half leading is enabled, and **false** means the opposite.<br>Default value: **false**|
+
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: number | Resource)
+
+Sets the minimum font scale factor for text.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Minimum font scale factor for text.<br>Value range: [0, 1]<br>**NOTE**<br>A value less than 0 is handled as 0. A value greater than 1 is handled as 1. Abnormal values are ineffective by default.|
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: number | Resource)
+
+Sets the maximum font scale factor for text.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                         | Mandatory| Description                                         |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | Yes  | Maximum font scale factor for text.<br>Value range: [1, +∞)<br>**NOTE**<br>A value less than 1 is handled as 1. Abnormal values are ineffective by default.|
+
 ### editMenuOptions<sup>12+</sup>
 
 editMenuOptions(editMenu: EditMenuOptions)
@@ -564,6 +614,22 @@ Specifies whether to enable haptic feedback.
 > ]
 > ```
 
+### stopBackPress<sup>16+</sup>
+
+stopBackPress(isStopped: boolean)
+
+Sets whether to prevent the back button press from being propagated to other components or applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                              |
+| ------ | ------- | ---- | ---------------------------------- |
+| isStopped | boolean | Yes  | Whether to consume the back button press.<br>Default value: **true**|
+
 ## IconOptions<sup>10+</sup>
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -586,6 +652,7 @@ Specifies whether to enable haptic feedback.
 | --------- | ------------------------------------------ | ---- | ---------------- |
 | fontSize  | [Length](ts-types.md#length)               | No  | Font size of the button. It cannot be set in percentage.|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | No  | Font color of the button.|
+| autoDisable<sup>16+</sup>  | boolean                   | No | Whether the search button is disabled and grayed out when there is no text content.|
 
 ## CancelButtonStyle<sup>10+</sup>
 
@@ -593,7 +660,7 @@ Specifies whether to enable haptic feedback.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                   | Description            |
+| Name                   | Description       |
 | ----------------------- | ---------------- |
 | CONSTANT  | The Cancel button is always displayed.|
 | INVISIBLE | The Cancel button is always hidden.|
@@ -605,7 +672,7 @@ Specifies whether to enable haptic feedback.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name                | Value           | Description           |
+| Name                | Value           | Description         |
 | ------------------ | ------ | ------------- |
 | NORMAL   | 0 | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | NUMBER   | 2 | Digit input mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
@@ -642,7 +709,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 ### onSubmit
 
-onSubmit(callback: (value: string) => void)
+onSubmit(callback: Callback\<string>)
 
 Invoked when users click the search icon or the search button, or touch the search button on a soft keyboard.
 
@@ -654,7 +721,23 @@ Invoked when users click the search icon or the search button, or touch the sear
 
 | Name| Type  | Mandatory| Description                        |
 | ------ | ------ | ---- | ---------------------------- |
-| value  | string | Yes  | Current text input.|
+| callback  | Callback\<string> | Yes  | Search submission callback, which returns the text content currently in the search box.|
+
+### onSubmit<sup>14+</sup>
+
+onSubmit(callback: SearchSubmitCallback)
+
+Invoked when the search icon, search button, or soft keyboard search button is clicked. The submission event provides a method to maintain the edit state of the **Search** component.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                         |
+| ------ | ------- | ---- | ----------------------------- |
+| callback | [SearchSubmitCallback](#searchsubmitcallback14) | Yes  | Callback triggered when the search icon, search button, or soft keyboard search button is clicked.|
 
 ### onChange
 
@@ -662,7 +745,7 @@ onChange(callback: EditableTextOnChangeCallback)
 
 Invoked when the input in the text box changes.
 
-In this callback, if cursor operations are performed, you must adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
+In this callback, if cursor operations are performed, developers need to adjust the cursor logic based on the **previewText** parameter to ensure it works seamlessly within the preview display scenario.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -676,7 +759,7 @@ In this callback, if cursor operations are performed, you must adjust the cursor
 
 ### onCopy
 
-onCopy(callback: (value: string) => void)
+onCopy(callback:Callback\<string>)
 
 Invoked when a copy operation is performed.
 
@@ -686,13 +769,13 @@ Invoked when a copy operation is performed.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | Yes  | Text that is copied.|
+| Name   | Type   | Mandatory| Description            |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | Yes  | Callback used to return the copied text content.|
 
 ### onCut
 
-onCut(callback: (value: string) => void)
+onCut(callback:Callback\<string>)
 
 Invoked when a cut operation is performed.
 
@@ -702,13 +785,13 @@ Invoked when a cut operation is performed.
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description            |
-| ------ | ------ | ---- | ---------------- |
-| value  | string | Yes  | Text that is cut.|
+| Name   | Type   | Mandatory| Description            |
+| --------- | ------- | ---- | ---------------- |
+| callback | Callback\<string> | Yes  | Callback used to return the cut text content.|
 
 ### onPaste
 
-onPaste(callback: (value: string, event: PasteEvent) => void)
+onPaste(callback:OnPasteCallback )
 
 Invoked when a paste operation is performed.
 
@@ -717,15 +800,13 @@ Invoked when a paste operation is performed.
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
-
 | Name             | Type                                                        | Mandatory| Description                  |
 | ------------------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| value               | string                                                       | Yes  | Text to be pasted.      |
-| event<sup>11+</sup> | [PasteEvent](ts-basic-components-richeditor.md#pasteevent11) | Yes  | Custom paste event.|
+| callback | [OnPasteCallback](ts-basic-components-textinput#onpastecallback14)       | Yes  | Callback used to return the pasted text content.|
 
 ### onTextSelectionChange<sup>10+</sup>
 
-onTextSelectionChange(callback: (selectionStart: number, selectionEnd: number) => void)
+onTextSelectionChange(callback: OnTextSelectionChangeCallback)
 
 Invoked when the position of the text selection changes or when the cursor position changes during the editing state.
 
@@ -737,12 +818,11 @@ Invoked when the position of the text selection changes or when the cursor posit
 
 | Name        | Type  | Mandatory| Description                                             |
 | -------------- | ------ | ---- | ------------------------------------------------- |
-| selectionStart | number | Yes  | Start position of the text selection range. The start position of text in the text box is 0.|
-| selectionEnd   | number | Yes  | End position of the text selection range.                           |
+| callback | [OnTextSelectionChangeCallback](ts-basic-components-textinput#ontextselectionchangecallback14) | Yes  | Callback for text selection changes or cursor position changes.|
 
 ### onContentScroll<sup>10+</sup>
 
-onContentScroll(callback: (totalOffsetX: number, totalOffsetY: number) => void)
+onContentScroll(callback: OnContentScrollCallback)
 
 Invoked when the text content is scrolled.
 
@@ -754,14 +834,13 @@ Invoked when the text content is scrolled.
 
 | Name      | Type  | Mandatory| Description                              |
 | ------------ | ------ | ---- | ---------------------------------- |
-| totalOffsetX | number | Yes  | Offset in the X coordinate of the text in the content area, in px.|
-| totalOffsetY | number | Yes  | Offset in the Y coordinate of the text in the content area, in px.|
+| callback | [OnContentScrollCallback](ts-basic-components-textinput#oncontentscrollcallback14) | Yes  | Callback for text content scrolling.|
 
 ### onEditChange<sup>12+</sup>
 
 onEditChange(callback: Callback< boolean >)
 
-Invoked when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. If the value of **isEditing** is **true**, the text box is in the editing state.
+Invoked when the input status changes. The text box is in the editing state when it has the caret placed in it, and is in the non-editing state otherwise. The callback returns **true** when the component is in an editing state.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -771,7 +850,7 @@ Invoked when the input status changes. The text box is in the editing state when
 
 | Name   | Type                               | Mandatory| Description                |
 | --------- | ---------------------------------- | ---- | -------------------- |
-| isEditing |  Callback< boolean > | Yes  | Whether the text box is in the editing state. The value **true** indicates that the text box is in the editing state.|
+| callback |  Callback< boolean > | Yes  | Callback triggered when the editing state changes. Returns **true** if the component is in an editing state.|
 
 ### onWillInsert<sup>12+</sup>
 
@@ -908,10 +987,29 @@ Sets the text selection range and highlights the selected text when the componen
 >
 >  If the selected text contains an emoji, the emoji is selected when its start position is within the text selection range.
 
+## SearchSubmitCallback<sup>14+</sup>
+
+type SearchSubmitCallback = (searchContent: string, event?: SubmitEvent) => void
+
+Represents the callback triggered when the search icon, search button, or soft keyboard search button is clicked.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                                                    |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
+| searchContent | string             | Yes  | Current text input.|
+| event    | [SubmitEvent](ts-basic-components-textinput.md#submitevent11) | No  | Submit event.   |
+
 ##  Example
 
-### Example 1
-This example demonstrates the basic usage of **Search**.
+### Example 1: Setting and Obtaining the Cursor Position
+
+This example demonstrates how to use the controller to set and obtain the cursor position within a text box.
+
 ```ts
 // xxx.ets
 @Entry
@@ -957,8 +1055,10 @@ struct SearchExample {
 
 ![search](figures/search.gif)
 
-### Example 2
-This example shows how to set the **searchButton**, **searchIcon**, and **cancelButton** attributes.
+### Example 2: Setting Search and Delete Icons
+
+This example demonstrates how to set search and delete icons using the **searchButton**, **searchIcon**, and **cancelButton** attributes.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1003,8 +1103,10 @@ struct SearchExample {
 ![searchButton](figures/searchButton.gif)
 
 
-### Example 3
-This example illustrates how to bind a custom keyboard to the **Search** component.
+### Example 3: Implementing a Custom Keyboard
+
+This example demonstrates how to implement a custom keyboard using the **customKeyboard** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1045,8 +1147,10 @@ struct SearchExample {
 
 ![customKeyboard](figures/searchCustomKeyboard.png)
 
-### Example 4
-This example shows how to set the **enterKeyType** attribute.
+### Example 4: Setting the Enter Key Type
+
+This example shows how to use the **enterKeyType** attribute to dynamically change the effect of the Enter key on the soft keyboard.
+
 ```ts
 // xxx.ets
 @Entry
@@ -1077,9 +1181,9 @@ struct SearchExample {
 
 ![searchEnterKeyType](figures/searchEnterKey.gif)
 
-### Example 5
+### Example 5: Setting the Text Style
 
-This example shows how to use the **lineHeight**, **letterSpacing**, and **decoration** attributes.
+This example showcases various text styles by using the **lineHeight**, **letterSpacing**, and **decoration** attributes.
 
 ```ts
 // xxx.ets
@@ -1126,13 +1230,15 @@ struct SearchExample {
 
 ![SearchDecoration](figures/search_decoration.png)
 
-### Example 6
-This example shows how to set the **fontFeature** attribute, with a comparison between the ss01-enabled and ss01-disabled effects.
+### Example 6: Setting Text Feature Effects
+
+This example demonstrates how to use the **fontFeature** attribute to display text with various typographic features.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
-struct search {
+struct SearchExample {
   @State text1: string = 'This is ss01 on : 0123456789'
   @State text2: string = 'This is ss01 off: 0123456789'
 
@@ -1152,11 +1258,12 @@ struct search {
 ```
 ![fontFeature](figures/searchFontFeature.png)
 
-### Example 7
+### Example 7: Setting Custom Keyboard Avoidance
 
-This example shows how to support custom keyboard avoidance.
+This example illustrates the implementation of a custom keyboard that automatically adjusts its position to avoid covering the text box.
 
 ```ts
+// xxx.ets
 @Entry
 @Component
 struct SearchExample {
@@ -1225,9 +1332,9 @@ struct SearchExample {
 
 ![CustomSearchKeyType](figures/searchCustomKeyboard.gif)
 
-### Example 8
+### Example 8: Setting Text Auto-Adaptation
 
-This example shows how to set **minFontSize** and **maxFontSize**.
+This example showcases the implementation of text auto-adaptation features using the **minFontSize** and **maxFontSize** attributes.
 
 ```ts
 // xxx.ets
@@ -1255,9 +1362,9 @@ struct SearchExample {
 
 ![searchAdaptFont](figures/search_adapt_font.png)
 
-### Example 9
+### Example 9: Setting Insert and Delete Callbacks
 
-This example shows how to use the insert and delete callbacks.
+This example showcases the implementation of insert and delete operations using the **onWillInsert**, **onDidInsert**, **onWillDelete**, and **onDidDelete** APIs.
 
 ```ts
 // xxx.ets
@@ -1309,34 +1416,24 @@ struct SearchExample {
 
 ![SearchInsertAndDelete](figures/SearchInsertAndDelete.PNG)
 
-### Example 10
+### Example 10: Setting Custom Menu Extensions
 
-This example shows how to set **editMenuOptions**.
+This example demonstrates how to use the **editMenuOptions** API to create custom menu extensions for text settings. It includes customizing text content, icons, and callbacks for these extensions.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
-struct Index {
+struct SearchExample {
   @State text: string = 'Search editMenuOptions'
-
-  onCreateMenu(menuItems: Array<TextMenuItem>) {
-    menuItems.forEach((value, index) => {
-      value.icon = $r('app.media.startIcon')
-      if (value.id.equals(TextMenuItemId.COPY)) {
-        value.content = "Copy_custom"
-      }
-      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
-        value.content = "Select all_custom"
-      }
-    })
+  onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
-      content: 'custom1',
+      content: 'Custom 1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
     }
     let item2: TextMenuItem = {
-      content: 'custom2',
+      content: 'Custom 2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
     }
@@ -1344,28 +1441,30 @@ struct Index {
     menuItems.unshift(item2)
     return menuItems
   }
+  onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
+    if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
+      console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.COPY)) {
+      console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
+      return true
+    }
+    if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
+      console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
+      return false
+    }
+    return false
+  }
+  @State editMenuOptions: EditMenuOptions = {
+    onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
+  }
 
   build() {
     Column() {
       Search({ value: this.text })
         .width('95%')
-        .editMenuOptions({
-          onCreateMenu: this.onCreateMenu, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
-            if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-              console.log("Intercept id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.COPY)) {
-              console.log("Intercept COPY start:" + textRange.start + "; end:" + textRange.end)
-              return true;
-            }
-            if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-              console.log("Do not intercept SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-              return false;
-            }
-            return false;
-          }
-        })
+        .editMenuOptions(this.editMenuOptions)
         .margin({ top: 100 })
     }
     .width("90%")
@@ -1376,9 +1475,9 @@ struct Index {
 
 ![searchEditMenuOptions](figures/searchEditMenuOptions.gif)
 
-### Example 11
+### Example 11: Setting a Custom Symbol-Type Cancel Button
 
-This example shows how to set icon styles for **searchIcon** and **cancelButton** using **SymbolGlyphModifier**.
+This example demonstrates how to use the **searchIcon** and **cancelButton** attributes to customize the style of the symbol-type cancel button on the right side of the text box.
 
 ```ts
 // xxx.ets

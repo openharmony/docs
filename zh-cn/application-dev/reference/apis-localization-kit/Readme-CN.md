@@ -25,6 +25,7 @@
   - 结构体
     - [RawFileDescriptor](_raw_file_descriptor.md)
     - [RawFileDescriptor64](_raw_file_descriptor64.md)
+    - [ResourceManager_Configuration](_resource_manager___configuration.md)
 - 错误码
   - [I18n错误码](errorcode-i18n.md)
   - [资源管理错误码](errorcode-resource-manager.md)

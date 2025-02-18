@@ -42,7 +42,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | Name           | Type                       | Description        |
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | Gesture tag.<br>**NOTE**<br>If the event tag is not set, **undefined** or no gesture tag is returned. |
-| type             | [GestureControl.GestureType](#gesturetype11)  | Gesture type.|
+| type             | [GestureControl.GestureType](#gesturetype11)  | Gesture type.<br>**NOTE**<br> When the gesture is a built-in gesture event of an unexposed type, the value of **type** is **-1**.|
 | isSystemGesture  | boolean                     | Whether the current gesture is system gesture, that is, a built-in gesture of the component.<br>Default value: **false**|
 
 ## GestureType<sup>11+</sup>
@@ -51,16 +51,16 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name | Description                                  |
-| ----- | -------------------------------------- |
-| TAP_GESTURE   | Tap gesture.|
-| LONG_PRESS_GESTURE  | Long press gesture.|
-| PAN_GESTURE    | Pan gesture.|
-| PINCH_GESTURE   | Pinch gesture.|
-| SWIPE_GESTURE    | Swipe gesture.|
-| ROTATION_GESTURE   | Rotation gesture.|
-| DRAG    | Drag.|
-| CLICK   | Click.|
+| Name | Value| Description                                  |
+| ----- | -------- | -------------------------------------- |
+| TAP_GESTURE   | 0 | Tap gesture.|
+| LONG_PRESS_GESTURE  | 1 | Long press gesture.|
+| PAN_GESTURE    | 2 | Pan gesture.|
+| PINCH_GESTURE   | 3 | Pinch gesture.|
+| SWIPE_GESTURE    | 4 | Swipe gesture.|
+| ROTATION_GESTURE   | 5 | Rotation gesture.|
+| DRAG    | 6 | Drag.|
+| CLICK   | 7 | Click.|
 
 ## BaseEvent
 
@@ -68,9 +68,9 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | Name   | Type                                     | Description        |
 | ---------| ----------------------------------------  | -----------|
 | target   | [EventTarget](ts-universal-events-click.md#eventtarget8) | Display area of the element that triggers the gesture event.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| timestamp| number | Timestamp of the event.<br>Unit: ns<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| timestamp| number | Timestamp of the event. It is the interval between the time when the event is triggered and the time when the system starts.<br>Unit: ns<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | source   | [SourceType](ts-gesture-settings.md#sourcetype)| Event input device.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
-| pressure | number | Press pressure.<br>Default value: **0**<br>Value range: [0, 65535). The greater the pressure, the larger the value.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
+| pressure | number | Press pressure.<br>Default value: **0**<br>Value range: [0, 1], typical value 0.913168, where higher values indicate greater pressure.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | tiltX | number | Angle between the projection of the stylus on the device plane and the x-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | tiltY | number | Angle between the projection of the stylus on the device plane and the y-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | sourceTool | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
@@ -154,7 +154,10 @@ Extended from [BaseGestureEvent](#basegestureevent). This object can be passed i
 | speed         | number | Swipe gesture speed, that is, the average swipe speed of all fingers relative to the original area of the current component. The unit is vp/s. |
 ## Example
 
-### Example 1
+### Example 1: Implementing Custom Gesture Judgment
+
+This example demonstrates how to implement custom judgment for long press, swipe, and pan gestures using **onGestureJudgeBegin**.
+
 ```ts
 // xxx.ets
 @Entry
@@ -234,7 +237,11 @@ struct Index {
 }
 ```
 ![gestures1](figures/gestures1.gif)
-### Example 2
+
+### Example 2: Implementing Custom Area Gesture Judgment
+
+This example demonstrates how to use **onGestureJudgeBegin** to determine whether to respond to long press and pan gestures based on the area.
+
 ```ts
 // xxx.ets
 import { promptAction } from '@kit.ArkUI';
@@ -247,7 +254,7 @@ struct Index {
   build() {
     Scroll(this.scroller) {
       Column({ space: 8 }) {
-        Text("The upper red area is bound to the long press gesture, and the lower blue area is bound to a drag gesture. If a pan is performed after a long press in the upper red area, the area only responds to the long press. In the same case, the lower blue area only responds to the drag.) .width('100%').fontSize(20).fontColor('0xffdd00')
+        Text("The upper red area is bound to the long press gesture, and the lower blue area is bound to a drag gesture. If a pan is performed after a long press in the upper red area, the area only responds to the long press. In the same case, the lower blue area only responds to the drag.").width('100%').fontSize(20).fontColor('0xffdd00')
           .backgroundColor(0xeeddaa00)
         Stack({ alignContent: Alignment.Center }) {
           Column() {
@@ -289,7 +296,7 @@ struct Index {
           .gesture(GestureGroup(GestureMode.Parallel,
             LongPressGesture()
               .onAction((event: GestureEvent) => {
-                promptAction.showToast ({ message: "When long pressed, the red area responds." })
+                promptAction.showToast({ message: "When long pressed, the red area responds." })
               })
               .tag("tap111")
           ))

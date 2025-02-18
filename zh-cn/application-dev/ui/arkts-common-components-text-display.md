@@ -100,8 +100,8 @@ Text可通过以下两种方式来创建：
   Text() {
     Span('I am Upper-span').fontSize(12)
       .textCase(TextCase.UpperCase)
-      .onClick(()=>{
-        console.info('我是Span——onClick')
+      .onClick(() => {
+        console.info('我是Span——onClick');
       })
   }
   ```
@@ -213,7 +213,6 @@ Text可通过以下两种方式来创建：
     .padding(10)
     .width('100%')
     .margin(5)
-
   Text('This is the text content with baselineOffset -20.')
     .baselineOffset(-20)
     .fontSize(12)
@@ -303,14 +302,12 @@ Text可通过以下两种方式来创建：
     .border({ width: 1 })
     .padding(10)
     .margin(5)
-
   // 文本全小写展示
   Text('This is the text content with textCase set to LowerCase.')
     .textCase(TextCase.LowerCase)
     .border({ width: 1 })
     .padding(10)
     .margin(5)
-
   // 文本全大写展示
   Text('This is the text content with textCase set to UpperCase.')
     .textCase(TextCase.UpperCase)
@@ -338,7 +335,7 @@ Text组件可以添加通用事件，可以绑定[onClick](../reference/apis-ark
 
 ```ts
 Text('点我')
-  .onClick(()=>{
+  .onClick(() => {
       console.info('我是Text的点击响应事件');
    })
 ```

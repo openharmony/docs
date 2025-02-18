@@ -445,6 +445,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 | -------- | -------- | -------- | -------- |
 | uploadedSize | number | 是 | 当前已上传文件大小，单位为字节。 |
 | totalSize | number | 是 | 上传文件的总大小，单位为字节。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
@@ -750,7 +751,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。 |
 | header | Object | 是 | 添加要包含在上传请求中的HTTP或HTTPS标志头。 |
 | method | string | 是 |  HTTP请求方法：POST、PUT，缺省为POST。使用PUT修改资源，使用POST新增资源。 |
 | index<sup>11+</sup> | number | 否 | 任务的路径索引，默认值为0。 |
@@ -766,9 +767,9 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 名称 | 类型 | 必填 | 说明                                                                                                                                        |
 | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------------------------------------------------|
-| path | string | 是 | 文件路径                                                                                                                                      |
+| path | string | 是 | 文件路径。                                         |
 | responseCode | number | 是 | 上传任务返回值，0表示任务成功，其它返回码为失败，具体请查看message上传任务结果描述信息。此处推荐使用[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)创建上传任务，并获取标准错误码处理异常分支。 |
-| message | string | 是 | 上传任务结果描述信息                                                                                                                                |
+| message | string | 是 | 上传任务结果描述信息。                           |
 
 其中，responseCode包含的返回码值如下：
 
@@ -1101,6 +1102,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 | -------- | -------- | -------- |-------------------------------------------------------------------------|
 | receivedSize | number | 是 | 当前下载的进度，单位为字节。                                                           |
 | totalSize | number | 是 | 下载文件的总大小，单位为字节。在下载过程中，若服务器使用 chunk 方式传输导致无法从请求头中获取文件总大小时，totalSize 为 -1。 |
+
 
 **错误码：**
 
@@ -2305,7 +2307,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。|
 | enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
@@ -2429,7 +2431,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| url | string | 是 | 资源地址，其最大长度为2048个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| url | string | 是 | 资源地址。从API 6到API 14，最大长度为2048个字符；从API 15开始，最大长度为8192个字符。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | title | string | 否 | 任务标题，其最大长度为256个字符，默认值为小写的 upload 或 download，与上面的 action 保持一致。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -2452,6 +2454,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | priority<sup>11+</sup> | number | 否 | 任务的优先级。任务模式相同的情况下，该配置项的数字越小优先级越高，默认值为0。 |
 | extras | object | 否 | 配置的附加功能，默认为空。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| multipart<sup>15+</sup> | boolean | 否 | 是否使用单个请求进行上传，单个请求上传时必定使用multipart/form-data，值为false时每个文件使用一个请求传输，值为true时使用多文件单请求上传。默认值为false。 |
 
 ## State<sup>10+</sup>  
 
@@ -2554,7 +2557,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | faults | [Faults](#faults10) | 是 | 任务的失败原因。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | object | 否 | 任务的额外部分。|
-
+| notification | [Notification](#notification15) | 否 | 通知栏自定义设置。|
 
 ## HttpResponse<sup>12+</sup> 
 任务响应头的数据结构。
@@ -2569,6 +2572,28 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | statusCode | number | 是 | Http响应状态码。 |
 | reason | string | 是 | Http响应原因。|
 | headers | Map&lt;string, Array&lt;string&gt;&gt; | 是 | Http响应头部。 |
+
+## Notification<sup>15+</sup>
+
+通知栏自定义信息。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称      | 类型     | 必填 | 说明                                      |
+|---------|--------|----|-----------------------------------------|
+| title   | string | 否  | 通知栏自定义标题。若不设置则使用默认显示方式。title长度上限为1024B。 |
+| text    | string | 否  | 通知栏自定义正文。若不设置则使用默认显示方式。text长度上限为3072B。  |
+
+## GroupConfig<sup>15+</sup>
+
+下载任务分组配置选项。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称           | 类型                                            | 必填 | 说明                                                           |
+|--------------|-----------------------------------------------|----|--------------------------------------------------------------|
+| gauge        | boolean                                       | 否  | 后台任务的进度通知策略，若为true，显示进度、成功、失败通知，若为false，仅显示成功、失败通知。默认为false。 |
+| notification | [Notification](#notification15) | 否  | 通知栏自定义设置。                                                    |
 
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
@@ -4250,6 +4275,57 @@ stop(): Promise&lt;void&gt;
   });
   ```
 
+### setMaxSpeed<sup>16+</sup>
+
+setMaxSpeed(speed: number): Promise\<void\>
+
+设置任务每秒能传输的字节数上限。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                 |
+|-------|--------|----|------------------------------------|
+| speed | number | 是  | 设置任务每秒能传输的字节数上限，单位为字节，最小值为16384字节。 |
+
+**返回值：**
+
+| 类型              | 说明                         |
+|-----------------|----------------------------|
+| Promise\<void\> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息                                                                                                                           |
+|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Missing mandatory parameters 2. Incorrect parameter type 3. Parameter verification failed |
+| 13400003 | task service ability error.                                                                                                    |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let config: request.agent.Config = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1', // 需要手动将 url 替换为真实服务器的 HTTP 协议地址
+    saveas: "./",
+  };
+  request.agent.create(getContext(), config).then((task: request.agent.Task) => {
+    // 设置任务速度上限。
+    task.setMaxSpeed(10 * 1024 * 1024).then(() => {
+      console.info(`Succeeded in setting the max speed of the task. result: ${task.tid}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set the max speed of the task. result: ${task.tid}`);
+    });
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
 ## request.agent.create<sup>10+</sup>
 
 create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
@@ -4839,5 +4915,144 @@ search(filter?: Filter): Promise&lt;Array&lt;string&gt;&gt;
   });
   ```
 
+## request.agent.createGroup<sup>15+</sup>
 
+createGroup(config: GroupConfig): Promise\<string\>
 
+根据[GroupConfig<sup>15+</sup>](#groupconfig15)分组条件创建分组，并返回分组ID。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名    | 类型                                          | 必填 | 说明        |
+|--------|---------------------------------------------|----|-----------|
+| config | [GroupConfig<sup>15+</sup>](#groupconfig15) | 是  | 下载任务分组选项。 |
+
+**返回值：**
+
+| 类型                | 说明                               |
+|-------------------|----------------------------------|
+| Promise\<string\> | Promise对象。返回创建完成的分组ID的Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息                                                                                           |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error.                                                                    |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // 准备分组配置选项 GroupConfig 对象。
+  let config: request.agent.GroupConfig = {
+      notification: {},
+  };
+  // 调用 createGroup 接口创建分组。
+  request.agent.createGroup(config).then((gid: string) => {
+    console.info(`Succeeded in creating a download task group. `);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to search a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.attachGroup<sup>15+</sup>
+
+attachGroup(gid: string, tids: string[]): Promise\<void\>
+
+向指定分组ID中绑定多个下载任务ID。使用Promise异步回调。
+
+任意一个任务ID不满足添加条件则所有列表中的任务都不会添加到分组中。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名  | 类型       | 必填 | 说明                  |
+|------|----------|----|---------------------|
+| gid  | string   | 是  | 目标分组ID。             |
+| tids | string[] | 是  | 待绑定的任务ID列表。 |
+
+**返回值：**
+
+| 类型              | 说明         |
+|-----------------|------------|
+| Promise\<void\> | Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息                                                                                           |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error                                                                     |
+| 21900005 | task mode error                                                                                |
+| 21900007 | task state error                                                                               |
+| 21900008 | group deleted or not found                                                                     |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // 准备分组ID和任务ID列表。
+  let groupId: string = "123456789";
+  let taskIds: string[] = ["1111", "2222", "3333", "4444"];
+  // 调用 attachGroup 接口向分组中添加任务ID列表。
+  request.agent.attachGroup(groupId, taskIds).then(() => {
+    console.info(`Succeeded in attaching tasks to the download task group.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to attach tasks to the download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+## request.agent.deleteGroup<sup>15+</sup>
+
+deleteGroup(gid: string): Promise\<void\>
+
+移除指定分组，后续不能再往该分组中添加任务。使用Promise异步回调。
+
+当分组中的所有任务达到完成、失败、移除状态，且分组被移除时，显示该分组的完成、失败通知。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名  | 类型       | 必填 | 说明      |
+|------|----------|----|---------|
+| gid  | string   | 是  | 目标分组ID。 |
+
+**返回值：**
+
+| 类型              | 说明         |
+|-----------------|------------|
+| Promise\<void\> | Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](errorcode-request.md)与[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息                                                                                           |
+|----------|------------------------------------------------------------------------------------------------|
+| 401      | parameter error. Possible causes: 1. Incorrect parameter type 2. Parameter verification failed |
+| 13400003 | task service ability error                                                                     |
+| 21900008 | group deleted or not found                                                                     |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  // 准备分组ID。
+  let groupId: string = "123456789";
+  
+  // 调用 deleteGroup 接口移除分组。
+  request.agent.deleteGroup(groupId).then(() => {
+    console.info(`Succeeded in deleting the download task group.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to delete the download group, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```

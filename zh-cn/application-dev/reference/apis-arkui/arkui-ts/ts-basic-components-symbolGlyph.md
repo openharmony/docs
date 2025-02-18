@@ -174,17 +174,7 @@ symbolEffect(symbolEffect: SymbolEffect, triggerValue?: number)
 >
 >  动效属性，仅支持使用effectStrategy属性或单个symbolEffect属性，不支持多种动效属性混合使用。
 
-## SymbolEffect<sup>12+</sup>对象说明
-
-定义SymbolEffect类。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-## ScaleSymbolEffect<sup>12+</sup>对象说明
+## ScaleSymbolEffect<sup>12+</sup>
 
 ScaleSymbolEffect继承自父类SymbolEffect。
 
@@ -220,7 +210,7 @@ ScaleSymbolEffect的构造函数，缩放动效。
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
-## HierarchicalSymbolEffect<sup>12+</sup>对象说明
+## HierarchicalSymbolEffect<sup>12+</sup>
 
 HierarchicalSymbolEffect继承自父类SymbolEffect。
 
@@ -254,7 +244,7 @@ HierarchicalSymbolEffect的构造函数，层级动效。
 | ---- | ---- | ---- | ---- |
 | fillStyle | [EffectFillStyle](#effectfillstyle12枚举说明) | 否   | 动效模式。<br/>默认值：EffectFillStyle.CUMULATIVE |
 
-## AppearSymbolEffect<sup>12+</sup>对象说明
+## AppearSymbolEffect<sup>12+</sup>
 
 AppearSymbolEffect继承自父类SymbolEffect。
 
@@ -288,7 +278,7 @@ AppearSymbolEffect的构造函数，出现动效。
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
-## DisappearSymbolEffect<sup>12+</sup>对象说明
+## DisappearSymbolEffect<sup>12+</sup>
 
 DisappearSymbolEffect继承自父类SymbolEffect。
 
@@ -322,7 +312,7 @@ DisappearSymbolEffect的构造函数，消失动效。
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
 
-## BounceSymbolEffect<sup>12+</sup>对象说明
+## BounceSymbolEffect<sup>12+</sup>
 
 BounceSymbolEffect继承自父类SymbolEffect。
 
@@ -358,7 +348,7 @@ BounceSymbolEffect的构造函数，弹跳动效。
 | scope     | [EffectScope](#effectscope12枚举说明)         | 否   | 动效范围。<br/>默认值：EffectScope.LAYER    |
 | direction | [EffectDirection](#effectdirection12枚举说明) | 否   | 动效方向。<br/>默认值：EffectDirection.DOWN |
 
-## ReplaceSymbolEffect<sup>12+</sup>对象说明
+## ReplaceSymbolEffect<sup>12+</sup>
 
 ReplaceSymbolEffect继承自父类SymbolEffect。
 
@@ -391,6 +381,48 @@ ReplaceSymbolEffect的构造函数，替换动效。
 | 参数名 | 类型 | 必填 | 说明  |
 | ---- | ---- | ---- | ---- |
 | scope  | [EffectScope](#effectscope12枚举说明) | 否   | 动效范围。<br/>默认值：EffectScope.LAYER |
+
+## SymbolEffectStrategy<sup>11+</sup>枚举说明
+
+动效类型的枚举值。设置动效后，动效启动即生效，无需触发。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                          |
+| ------ | ----------------------------- |
+| NONE | 无动效（默认值）。 |
+| SCALE | 整体缩放动效。                 |
+|  HIERARCHICAL  | 层级动效。  |
+
+## SymbolRenderingStrategy<sup>11+</sup>枚举说明
+
+渲染模式的枚举值。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 说明                          |
+| ------ | ----------------------------- |
+| SINGLE  | 单色模式（默认值）。<br/> 可以设置一个或者多个颜色，默认为黑色。<br/> 当设置多个颜色时，仅生效第一个颜色。 |
+| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当只设置一个颜色时，修改symbol图标的第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，设置透明度设置不生效。|
+|  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个或者多个颜色。当设置多个颜色时，仅生效第一个颜色。<br/>不透明度与图层相关，symbol图标的第一层透明度为100%、第二层透明度为50%、第三层透明度为20%。  |
+
+## SymbolEffect<sup>12+</sup>对象说明
+
+定义SymbolEffect类。
+
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ## PulseSymbolEffect<sup>12+</sup>对象说明
 
@@ -440,38 +472,6 @@ PulseSymbolEffect的构造函数，脉冲动效。
 | ---------- | ---- | ---------- |
 | CUMULATIVE | 0    | 累加模式。 |
 | ITERATIVE  | 1    | 迭代模式。 |
-
-## SymbolEffectStrategy<sup>11+</sup>枚举说明
-
-动效类型的枚举值。设置动效后启动即生效，无需触发。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 说明                          |
-| ------ | ----------------------------- |
-| NONE | 无动效（默认值）。 |
-| SCALE | 整体缩放动效。                 |
-|  HIERARCHICAL  | 层级动效。  |
-
-## SymbolRenderingStrategy<sup>11+</sup>枚举说明
-
-渲染模式的枚举值。
-
-**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称     | 说明                          |
-| ------ | ----------------------------- |
-| SINGLE  | 单色模式（默认值）。<br/> 默认为黑色，可以设置一个颜色。<br/> 当用户设置多个颜色时，仅生效第一个颜色。 |
-| MULTIPLE_COLOR  |  多色模式。<br/> 最多可以设置三个颜色。当用户只设置一个颜色时，修改第一层颜色，其他颜色保持默认颜色。<br/> 颜色设置顺序与图标分层顺序匹配，当颜色数量大于图标分层时，多余的颜色不生效。<br/> 仅支持设置颜色，不透明度设置不生效。|
-|  MULTIPLE_OPACITY   | 分层模式。<br/> 默认为黑色，可以设置一个颜色。当用户设置多个颜色时，仅生效第一个颜色。<br/> 不透明度与图层相关，第一层100%、第二层50%、第三层20%。  |
 
 ## 事件
 
@@ -591,7 +591,7 @@ struct Index {
           Button(this.isActive ? '关闭' : '播放').onClick(() => {
             this.isActive = !this.isActive;
           })
-        }.margin({right:20})
+        }.margin({ right: 20 })
 
         Column() {
           Text("替换动效")
@@ -605,8 +605,8 @@ struct Index {
         }
       }
     }.margin({
-      left:30,
-      top:50
+      left: 30,
+      top: 50
     })
   }
 }

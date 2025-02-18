@@ -84,7 +84,7 @@ getType(): GestureControl.GestureType
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype11) | 当前手势识别器的类型。 |
+| [GestureControl.GestureType](ts-gesture-customize-judge.md#gesturetype12) | 当前手势识别器的类型。 |
 
 ### isBuiltIn
 

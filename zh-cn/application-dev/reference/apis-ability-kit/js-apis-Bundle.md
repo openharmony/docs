@@ -1416,7 +1416,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 标志可以叠加使用，例如使用GET_APPLICATION_INFO_WITH_PERMISSION + GET_APPLICATION_INFO_WITH_DISABLE可以使结果同时包含应用权限信息和被禁用的应用信息。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称                                            | 值         | 说明                            |
 | ----------------------------------------------- | ---------- | ------------------------------- |
@@ -1450,7 +1450,7 @@ bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
 
 Ability组件类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称 | 值 | 说明                        |
 | ------- | ---- | --------------------------- |
@@ -1465,7 +1465,7 @@ Ability组件类型。
 
 屏幕显示方向。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称          | 值   | 说明                     |
 | ------------- | ---- | ------------------------ |
@@ -1479,7 +1479,7 @@ Ability组件类型。
 
 Ability组件的启动模式。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称      | 值   | 说明                |
 | --------- | ---- | ------------------- |
@@ -1491,7 +1491,7 @@ Ability组件的启动模式。
 
 Ability组件的子类型。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称        | 值   | 说明                          |
 | ----------- | ---- | ----------------------------- |
@@ -1503,7 +1503,7 @@ Ability组件的子类型。
 
 应用、卡片等的颜色模式。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称       | 值   | 说明     |
 | ---------- | ---- | -------- |
@@ -1518,7 +1518,7 @@ Ability组件的子类型。
 
 权限授予状态。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称               | 值   | 说明         |
 | ------------------ | ---- | ------------ |

@@ -102,7 +102,8 @@
     ​创建AVScreenCaptureRecorder实例screenCapture后，可以设置屏幕录制所需要的参数。
 
     ​参数videoBitrate、audioSampleRate、audioChannelCount、audioBitrate、preset、displayId为可选参数，若不设置则可按默认值进行设置，如下示例中提供了可选参数的默认值。麦克风和系统音的音频流共用一套音频参数，分别是音频采样率、音频通道数和音频比特率，对应audioSampleRate、audioChannelCount和audioBitrate参数。
-    2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，最终录屏内容以Picker弹出后，用户在弹窗上的选择为准。
+
+    2in1设备配置displayId为扩展屏Id，可拉起录屏窗口选择界面，用户在界面上选择录屏内容，最终录屏内容以用户在弹窗界面上的选择为准。
 
     ```javascript
     captureConfig: media.AVScreenCaptureRecordConfig = {

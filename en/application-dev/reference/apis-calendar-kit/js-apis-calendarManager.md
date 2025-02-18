@@ -571,7 +571,7 @@ calendarMgr?.getAllCalendars().then((data: calendarManager.Calendar[]) => {
 
 editEvent(event: Event): Promise\<number>
 
-Creates a single event. If the input parameter **Event** is not set to the event ID, the event creation screen is displayed when this API is called. This API uses a promise to return the result.
+Creates a single event. If the input parameter **Event** is not set to the event ID, the event creation screen is displayed when this API is called. This API uses a promise to return the result. Events created using this API cannot be queried or modified by third-party applications, but only by the system calendar.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1531,7 +1531,7 @@ Describes an **Event** object, including the event title, start time, and end ti
 | attendee       | [Attendee](#attendee)[]           | No  | Yes | Attendee of the conference event. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                             |
 | timeZone       | string                            | No  | Yes | Time zone of the event. If this parameter is not set, the current system time zone is used. You can call the [getTimeZone()](../apis-basic-services-kit/js-apis-date-time.md#systemdatetimegettimezone) API to obtain the current system time zone.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | reminderTime   | number[]                          | No  | Yes | Amount of time that the reminder occurs before the start of the event, in minutes. For example, if the value is 5, the reminder occurs 5 minutes before the event starts. If this parameter is not set, no reminder is set. A negative value indicates the delay time for sending a notification.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                       |
-| recurrenceRule | [RecurrenceRule](#recurrencerule) | No  | Yes | Recurrence rule of the event. If this parameter is not set, the value does not recur.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
+| recurrenceRule | [RecurrenceRule](#recurrencerule) | No  | Yes | Recurrence rule of an event. If this parameter is not set, the value does not recur.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
 | description    | string                            | No  | Yes | Event description. If this parameter is not set, an empty string is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                                |
 | service        | [EventService](#eventservice)     | No  | Yes | Event service. If this parameter is not set, no service is available.<br>**Atomic service API**: This API can be used in atomic services since API version 11.                                                                                                                              |
 | identifier<sup>12+</sup>     | string                            | No  | Yes | A unique ID of an event can be specified. If this parameter is not set, the default null value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                                                                        |
@@ -1774,7 +1774,7 @@ Enumerates event types.
 
 ## RecurrenceRule
 
-Describes the recurrence rule of the event.
+Describes the recurrence rule of an event.
 
 **System capability**: SystemCapability.Applications.CalendarData
 
@@ -1808,7 +1808,7 @@ Enumerates the types of the event recurrence rule.
 
 ## Attendee
 
-Describes the attendee information of the conference event.
+Describes the attendee information of a conference event.
 
 **System capability**: SystemCapability.Applications.CalendarData
 

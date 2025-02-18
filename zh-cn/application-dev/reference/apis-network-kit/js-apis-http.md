@@ -1536,7 +1536,7 @@ http协议版本。
 | publicKeyHash       | string | 是 |字符串类型的证书PIN码。 |
 | hashAlgorithm        | 'SHA-256' |  是  |加密算法，当前仅支持该算法。 |
 
-## HttpProxy
+## HttpProxy<sup>10+</sup>
 
 type HttpProxy = connection.HttpProxy
 

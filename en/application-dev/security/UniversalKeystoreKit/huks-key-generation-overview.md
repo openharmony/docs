@@ -24,6 +24,7 @@ The key management service specifications include mandatory specifications and o
 | AES | 128, 192, 256| 8+ | Yes|
 | <!--DelRow-->RSA | 512, 768, 1024| 8+ | No|
 | RSA | 2048, 3072, 4096| 8+ | Yes|
+| RSA | An integer multiple of 8, ranging from 1024 to 2048 (inclusive)| 16+ | Yes|
 | HMAC | An integer multiple of 8, ranging from 8 to 1024 (inclusive)| 8+ | Yes|
 | <!--DelRow-->ECC | 224 | 8+ | No|
 | ECC | 256, 384, 521| 8+ | Yes|
@@ -34,6 +35,8 @@ The key management service specifications include mandatory specifications and o
 | <!--DelRow-->DH | 3072, 4096| 8+ | No|
 | SM2 | 256 | 9+ | Yes|
 | SM4 | 128 | 9+ | Yes|
+| DES | 64 | 16+ | Yes|
+| 3DES | 128, 192| 16+ | Yes|
 
 > **NOTE**<br>
 > The DH algorithm uses the FFDHE named safe prime groups.

@@ -1,7 +1,7 @@
 # HMAC (ArkTS)
 
 
-This topic walks you through on how to generate a hash-based message authentication code (HMAC), which provides authentication using a shared secret instead of using digital signatures with asymmetric cryptography.
+A Hash-based Message Authentication Code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic has function and a secret cryptographic key. For details about the scenarios and supported algorithm specifications, see [HMAC Overview and Algorithm Specifications](huks-hmac-overview.md).
 
 
 

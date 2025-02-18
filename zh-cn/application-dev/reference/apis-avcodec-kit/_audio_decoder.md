@@ -21,7 +21,7 @@ AudioDecoder模块提供用于音频解码功能的函数。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md) | 声明用于音频解码的Native API。 | 
+| [native_avcodec_audiodecoder.h](native__avcodec__audiodecoder_8h.md) | 音频解码Native API的声明。 | 
 
 
 ### 函数
@@ -40,7 +40,7 @@ AudioDecoder模块提供用于音频解码功能的函数。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_Reset](#oh_audiodecoder_reset) (OH_AVCodec \*codec) | 重置解码器。如果要继续解码，需要再次调用Configure接口配置解码器实例。 | 
 | OH_AVFormat \* [OH_AudioDecoder_GetOutputDescription](#oh_audiodecoder_getoutputdescription) (OH_AVCodec \*codec) | 获取解码器输出数据的描述信息。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_SetParameter](#oh_audiodecoder_setparameter) (OH_AVCodec \*codec, OH_AVFormat \*format) | 配置解码器的动态参数。 | 
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 将填充有数据的输入缓冲区提交给音频解码器。 | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_PushInputData](#oh_audiodecoder_pushinputdata) (OH_AVCodec \*codec, uint32_t index, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) attr) | 通知音频解码器已完成对index所对应缓冲区进行输入数据的填充。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_FreeOutputData](#oh_audiodecoder_freeoutputdata) (OH_AVCodec \*codec, uint32_t index) | 将处理后的输出缓冲区返回给解码器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AudioDecoder_IsValid](#oh_audiodecoder_isvalid) (OH_AVCodec \*codec, bool \*isValid) | 检查当前解码器实例是否有效，可用于后台故障恢复或应用程序从后台恢复时检测解码器有效状态。 | 
 
@@ -326,7 +326,7 @@ OH_AVErrCode OH_AudioDecoder_PushInputData (OH_AVCodec *codec, uint32_t index, O
 
 **描述**
 
-将填充有数据的输入缓冲区提交给音频解码器。
+通知音频解码器已完成对index所对应缓冲区进行输入数据的填充。
 
 [OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调将报告可用的输入缓冲区和相应的索引值。一旦具有指定索引的缓冲区提交到音频解码器，则无法再次访问此缓冲区， 直到再次收到[OH_AVCodecOnNeedInputData](_codec_base.md#oh_avcodeconneedinputdata)回调，收到相同索引时此缓冲区才可使用。
 

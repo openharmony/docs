@@ -12,7 +12,7 @@
 
 ### marshalling
 
-marshalling(styledString: StyledString): ArrayBuffer
+static marshalling(styledString: StyledString): ArrayBuffer
 
 序列化属性字符串。
 
@@ -35,7 +35,7 @@ marshalling(styledString: StyledString): ArrayBuffer
 
 ### unmarshalling
 
-unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
+static unmarshalling(buffer: ArrayBuffer): Promise\<StyledString>
 
 反序列化后得到属性字符串。
 

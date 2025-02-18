@@ -4,7 +4,7 @@
 
 半模态页面适用于展示简单的任务或信息面板，例如，个人信息、文本简介、分享面板、创建日程、添加内容等。若需展示可能影响父视图的半模态页面，半模态支持配置为非模态交互形式。
 
-半模态在不同宽度的设备上存在不同的形态能力，开发者对不同宽度的设备上有不同的形态诉求请参考([preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindoptions))属性。可以使用bindSheet构建半模态转场效果,详见[模态转场](arkts-modal-transition.md#使用bindsheet构建半模态转场效果)。对于复杂或者冗长的用户流程，建议考虑其他的转场方式替代半模态。如[全模态转场](arkts-contentcover-page.md)和[Navigation转场](arkts-navigation-transition.md)。
+半模态在不同宽度的设备上存在不同的形态能力，开发者对不同宽度的设备上有不同的形态诉求请参考([preferType](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions))属性。可以使用bindSheet构建半模态转场效果,详见[模态转场](arkts-modal-transition.md#使用bindsheet构建半模态转场效果)。对于复杂或者冗长的用户流程，建议考虑其他的转场方式替代半模态。如[全模态转场](arkts-contentcover-page.md)和[Navigation转场](arkts-navigation-transition.md)。
 
 ## 使用约束
 
@@ -62,41 +62,48 @@
 @Component
 struct SheetDemo {
   @State isShowSheet: boolean = false
-  private items : number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   @Builder
   SheetBuilder() {
     Column() {
       // 第一步：自定义滚动容器
-      List({space:'10vp'}) {
-        ForEach(this.items,(item : number) => {
+      List({ space: '10vp' }) {
+        ForEach(this.items, (item: number) => {
           ListItem() {
             Text(String(item)).fontSize(16).fontWeight(FontWeight.Bold)
           }.width('90%').height('80vp').backgroundColor('#ff53ecd9').borderRadius(10)
         })
-      }.alignListItem(ListItemAlign.Center).margin({top:'10vp'}).width('100%').height('900px')
+      }
+      .alignListItem(ListItemAlign.Center)
+      .margin({ top: '10vp' })
+      .width('100%')
+      .height('900px')
       // 第二步：设置滚动组件的嵌套滚动属性
       .nestedScroll({
         scrollForward: NestedScrollMode.PARENT_FIRST,
         scrollBackward: NestedScrollMode.SELF_FIRST,
       })
 
-      Text("非滚动区域").width('100%').backgroundColor(Color.Gray)
+      Text("非滚动区域")
+        .width('100%')
+        .backgroundColor(Color.Gray)
         .layoutWeight(1)
         .textAlign(TextAlign.Center)
         .align(Alignment.Top)
     }.width('100%').height('100%')
   }
+
   build() {
     Column() {
       Button('Open Sheet').width('90%').height('80vp')
-        .onClick(()=>{
+        .onClick(() => {
           this.isShowSheet = !this.isShowSheet
         })
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
-          detents:[SheetSize.MEDIUM, SheetSize.LARGE, 600],
+          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
           preferType: SheetType.BOTTOM,
-          title: {title: '嵌套滚动场景'},
+          title: { title: '嵌套滚动场景' },
         })
     }.width('100%').height('100%')
     .justifyContent(FlexAlign.Center)

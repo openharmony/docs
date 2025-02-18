@@ -30,7 +30,14 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
 ### 首选项通用限制
 
 - Key键为string类型，要求非空且长度不超过1024个字节。
+
 - 如果Value值为string类型，请使用UTF-8编码格式，可以为空，不为空时长度不超过16MB。
+
+- 当存储的数据中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
+
+- 当调用removePreferencesFromCache或者deletePreferences后，订阅的数据变更会主动取消订阅，重新getPreferences后需要重新订阅数据变更。
+
+- 不允许deletePreferences与其他接口多线程、多进程并发调用，否则会发生不可预期行为。
 
 ### XML模式约束限制
 
@@ -41,7 +48,6 @@ CLKV是从API version 16起提供的一种存储模式，该模式的优点是�
 ### CLKV模式约束限制
 
 - CLKV模式不支持跨平台，使用该模式前需调用isStorageTypeSupported接口判断当前平台是否支持该模式。
-- 不允许deletePreferences与其他接口多线程、多进程并发调用，否则会发生不可预期行为。
 - 在OpenHarmony中，用户组（Group）是具有相同特征用户的逻辑集合，这些用户共享一定的权限。用户组的概念主要是为了方便系统管理和控制用户的访问权限。 多进程使用CLKV模式首选项时，若涉及group权限，需确保不同进程属于同一group权限。
 
 

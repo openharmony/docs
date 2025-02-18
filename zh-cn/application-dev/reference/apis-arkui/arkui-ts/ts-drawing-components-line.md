@@ -357,7 +357,8 @@ struct LineExample1 {
         .stroke(Color.Black)
         .strokeWidth(20)
         .strokeLineCap(LineCapStyle.Butt)
-        .backgroundColor('#F5F5F5').margin(10)
+        .backgroundColor('#F5F5F5')
+        .margin(10)
       // 当LineCapStyle值为Round时
       Line()
         .width(100)
@@ -439,7 +440,6 @@ struct LineExample {
         .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50, 10, 20, 30])
-
     }
   }
 }

@@ -19,11 +19,20 @@
 ```ts
 import { Animator as animator, AnimatorOptions,AnimatorResult } from '@kit.ArkUI';
 ```
-## create<sup>9+</sup>
+
+## Animator
+
+定义Animator类。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+### create<sup>9+</sup>
 
 create(options: AnimatorOptions): AnimatorResult
 
-定义Animator类。
+创建动画。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -55,21 +64,63 @@ create(options: AnimatorOptions): AnimatorResult
 >
 > 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)接口明确UI上下文。
 
-  ```ts
-import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+```ts
+import { Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let options: AnimatorOptions = {
-   duration: 1500,
-   easing: "friction",
-   delay: 0,
-   fill: "forwards",
-   direction: "normal",
-   iterations: 3,
-   begin: 200.0,
-   end: 400.0
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0
 };
-animator.create(options);// 建议使用 UIContext.creatAnimator()接口
-  ```
+animator.create(options); // 建议使用 UIContext.creatAnimator()接口
+```
+
+### createAnimator<sup>(deprecated)</sup>
+
+createAnimator(options: AnimatorOptions): AnimatorResult
+
+创建动画
+
+从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
+
+**返回值：** 
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [AnimatorResult](#animatorresult) | Animator结果接口。 |
+
+**示例：** 
+
+```ts
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
+let options: AnimatorOptions = {
+  // xxx.js文件中不需要强调显式类型AnimatorOptions
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0,
+};
+this.animator = animator.createAnimator(options);
+```
 
 ## AnimatorResult
 
@@ -104,8 +155,9 @@ reset(options: AnimatorOptions): void
 **示例：**
 
 ```ts
-import {Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
+import { Animator as animator, AnimatorOptions, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let options: AnimatorOptions = {
   duration: 1500,
   easing: "friction",
@@ -127,9 +179,9 @@ let optionsNew: AnimatorOptions = {
   end: 400.0
 };
 try {
-  let animatorResult:AnimatorResult|undefined = animator.create(options)
+  let animatorResult: AnimatorResult | undefined = animator.create(options)
   animatorResult.reset(optionsNew);
-} catch(error) {
+} catch (error) {
   let message = (error as BusinessError).message
   let code = (error as BusinessError).code
   console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
@@ -235,9 +287,10 @@ onFrame: (progress: number) => void
 **示例：**
 
 ```ts
-import {Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onFrame = (value:number)=> {
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.onFrame = (value: number) => {
   console.info("onFrame callback")
 }
 ```
@@ -276,8 +329,9 @@ onCancel: () => void
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onCancel = ()=> {
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.onCancel = () => {
   console.info("onCancel callback")
 }
 ```
@@ -295,9 +349,10 @@ onRepeat: () => void
 **示例：**
 
 ```ts
-import {Animator as animator, AnimatorResult} from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onRepeat = ()=> {
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.onRepeat = () => {
   console.info("onRepeat callback")
 }
 ```
@@ -325,9 +380,10 @@ onframe: (progress: number) => void
 **示例：**
 
 ```ts
-import  { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onframe = (value)=> {
+import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.onframe = (value) => {
   console.info("onframe callback")
 }
 ```
@@ -350,8 +406,9 @@ onfinish: () => void
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onfinish = ()=> {
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.onfinish = () => {
   console.info("onfinish callback")
 }
 ```
@@ -375,8 +432,9 @@ oncancel: () => void
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.oncancel = ()=> {
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.oncancel = () => {
   console.info("oncancel callback")
 }
 ```
@@ -399,8 +457,9 @@ onrepeat: () => void
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-let animatorResult:AnimatorResult|undefined = animator.create(options)
-animatorResult.onrepeat = ()=> {
+
+let animatorResult: AnimatorResult | undefined = animator.create(options)
+animatorResult.onrepeat = () => {
   console.info("onrepeat callback")
 }
 ```
@@ -425,6 +484,7 @@ setExpectedFrameRateRange(rateRange: ExpectedFrameRateRange): void
 
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
+
 let animatorResult: AnimatorResult | undefined = animator.create({
   duration: 2000,
   easing: "ease",
@@ -441,6 +501,28 @@ let expectedFrameRate: ExpectedFrameRateRange = {
   expected: 30
 }
 animatorResult.setExpectedFrameRateRange(expectedFrameRate);
+```
+
+### update<sup>(deprecated)</sup>
+
+update(options: AnimatorOptions): void
+
+更新当前动画器。
+
+从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
+
+**示例：**
+
+```ts
+animator.update(options);
 ```
 
 ## AnimatorOptions
@@ -477,75 +559,83 @@ animatorResult.setExpectedFrameRateRange(expectedFrameRate);
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
-let DataTmp:Record<string,Animator> = {
+
+let DataTmp: Record<string, Animator> = {
   'divWidth': 200,
   'divHeight': 200,
   'animator': animator
 }
-class Tmp{
-  data:animator = DataTmp
-  onInit:Function = ()=>{}
-  Show:Function = ()=>{}
-}
-class DateT{
-  divWidth:number = 0
-  divHeight:number = 0
-  animator:AnimatorResult | null = null
-}
-(Fn:(v:Tmp) => void) => {Fn({
-  data: DataTmp,
-  onInit() {
-    let options:AnimatorOptions = {
-      duration: 1500,
-      easing: "friction",
-      delay: 0,
-      fill: "forwards",
-      direction: "normal",
-      iterations: 2,
-      begin: 200.0,
-      end: 400.0
-    };
-    let DataTmp:DateT = {
-      divWidth: 200,
-      divHeight: 200,
-      animator: null
-    }
-    DataTmp.animator = animator.create(options);
-  },
-  Show() {
-    let options1:AnimatorOptions = {
-      duration: 1500,
-      easing: "friction",
-      delay: 0,
-      fill: "forwards",
-      direction: "normal",
-      iterations: 2,
-      begin: 0,
-      end: 400.0,
-    };
-    let DataTmp:DateT = {
-      divWidth: 200,
-      divHeight: 200,
-      animator: null
-    }
-    try {
-      DataTmp.animator = animator.create(options1);
-      DataTmp.animator.reset(options1);
-    } catch(error) {
-      let message = (error as BusinessError).message
-      let code = (error as BusinessError).code
-      console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
-    }
-    let _this = DataTmp;
-    if(DataTmp.animator){
-      DataTmp.animator.onFrame = (value:number)=> {
-        _this.divWidth = value;
-        _this.divHeight = value;
-      };
-      DataTmp.animator.play();
-    }
+
+class Tmp {
+  data: animator = DataTmp
+  onInit: Function = () => {
   }
-})}
+  Show: Function = () => {
+  }
+}
+
+class DateT {
+  divWidth: number = 0
+  divHeight: number = 0
+  animator: AnimatorResult | null = null
+}
+
+(Fn: (v: Tmp) => void) => {
+  Fn({
+    data: DataTmp,
+    onInit() {
+      let options: AnimatorOptions = {
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 2,
+        begin: 200.0,
+        end: 400.0
+      };
+      let DataTmp: DateT = {
+        divWidth: 200,
+        divHeight: 200,
+        animator: null
+      }
+      DataTmp.animator = animator.create(options);
+    },
+    Show() {
+      let options1: AnimatorOptions = {
+        duration: 1500,
+        easing: "friction",
+        delay: 0,
+        fill: "forwards",
+        direction: "normal",
+        iterations: 2,
+        begin: 0,
+        end: 400.0,
+      };
+      let DataTmp: DateT = {
+        divWidth: 200,
+        divHeight: 200,
+        animator: null
+      }
+      try {
+        DataTmp.animator = animator.create(options1);
+        DataTmp.animator.reset(options1);
+      } catch (error) {
+        let message = (error as BusinessError).message
+        let code = (error as BusinessError).code
+        console.error(`Animator reset failed, error code: ${code}, message: ${message}.`);
+      }
+      let _this = DataTmp;
+      if (DataTmp.animator) {
+        DataTmp.animator.onFrame = (value: number) => {
+          _this.divWidth = value;
+          _this.divHeight = value;
+        };
+        DataTmp.animator.play();
+      }
+    }
+  })
+}
 ```
 
   ![zh-cn_image_00007](figures/zh-cn_image_00007.gif)
@@ -559,7 +649,6 @@ class DateT{
 ```ts
 import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
 
-
 @Entry
 @Component
 struct AnimatorTest {
@@ -570,7 +659,8 @@ struct AnimatorTest {
   @State hei: number = 100
 
   create() {
-    this.backAnimator = animator.create({// 建议使用 this.getUIContext.creatAnimator()接口
+    this.backAnimator = animator.create({
+      // 建议使用 this.getUIContext.creatAnimator()接口
       duration: 2000,
       easing: "ease",
       delay: 0,
@@ -580,17 +670,17 @@ struct AnimatorTest {
       begin: 100,
       end: 200
     })
-    this.backAnimator.onFinish = ()=> {
+    this.backAnimator.onFinish = () => {
       this.flag = true
       console.info(this.TAG, 'backAnimator onfinish')
     }
-    this.backAnimator.onRepeat = ()=> {
+    this.backAnimator.onRepeat = () => {
       console.info(this.TAG, 'backAnimator repeat')
     }
-    this.backAnimator.onCancel = ()=> {
+    this.backAnimator.onCancel = () => {
       console.info(this.TAG, 'backAnimator cancel')
     }
-    this.backAnimator.onFrame = (value:number)=> {
+    this.backAnimator.onFrame = (value: number) => {
       this.wid = value
       this.hei = value
     }
@@ -630,7 +720,7 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              if(this.backAnimator){
+              if (this.backAnimator) {
                 this.backAnimator.play()
               }
             })
@@ -642,7 +732,7 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              if(this.backAnimator){
+              if (this.backAnimator) {
                 this.backAnimator.pause()
               }
             })
@@ -655,7 +745,7 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = true
-              if(this.backAnimator){
+              if (this.backAnimator) {
                 this.backAnimator.finish()
               }
             })
@@ -668,7 +758,7 @@ struct AnimatorTest {
             .fontColor(Color.Black)
             .onClick(() => {
               this.flag = false
-              if(this.backAnimator){
+              if (this.backAnimator) {
                 this.backAnimator.reverse()
               }
             })
@@ -680,7 +770,7 @@ struct AnimatorTest {
             .fontSize(30)
             .fontColor(Color.Black)
             .onClick(() => {
-              if(this.backAnimator){
+              if (this.backAnimator) {
                 this.backAnimator.cancel()
               }
             })
@@ -694,7 +784,7 @@ struct AnimatorTest {
             .onClick(() => {
               if (this.flag) {
                 this.flag = false
-                if(this.backAnimator){
+                if (this.backAnimator) {
                   this.backAnimator.reset({
                     duration: 3000,
                     easing: "ease-in",
@@ -718,64 +808,3 @@ struct AnimatorTest {
 }
 ```
 
-## update<sup>(deprecated)</sup>
-
-update(options: AnimatorOptions): void
-
-更新当前动画器。
-
-从API version9开始不再维护，建议使用[reset<sup>9+</sup>](#reset9)
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型                                  | 必填   | 说明      |
-| ------- | ----------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
-
-**示例：**
-
-```ts
-animator.update(options);
-```
-
-## createAnimator<sup>(deprecated)</sup>
-
-createAnimator(options: AnimatorOptions): AnimatorResult
-
-定义Animator类。
-
-从API version9开始不再维护，建议使用[create<sup>9+</sup>](#create9)
-
-**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
-
-**参数：** 
-
-| 参数名     | 类型                                  | 必填   | 说明      |
-| ------- | ----------------------------------- | ---- | ------- |
-| options | [AnimatorOptions](#animatoroptions) | 是    | 定义动画选项。 |
-
-**返回值：** 
-
-| 类型                                | 说明            |
-| --------------------------------- | ------------- |
-| [AnimatorResult](#animatorresult) | Animator结果接口。 |
-
-**示例：** 
-
-```ts
-import { Animator as animator, AnimatorResult } from '@kit.ArkUI';
-
-let options: AnimatorOptions = { // xxx.js文件中不需要强调显式类型AnimatorOptions
-  duration: 1500,
-  easing: "friction",
-  delay: 0,
-  fill: "forwards",
-  direction: "normal",
-  iterations: 3,
-  begin: 200.0,
-  end: 400.0,
-};
-this.animator = animator.createAnimator(options);
-```

@@ -2,8 +2,8 @@
 
 创建卡片当前有两种入口：
 
-- 创建工程时，选择Application，默认不带卡片，可以在创建工程后右键新建卡片。
-- 创建工程时，选择Atomic Service，也可以在创建工程后右键新建卡片。
+- 创建工程时，选择Application，可以在创建工程后右键新建卡片。
+- 创建工程时，选择Atomic Service（元服务），也可以在创建工程后右键新建卡片。
 
 ![WidgetCreateProject](figures/WidgetCreateProject.png)
 >**说明：** 
@@ -23,7 +23,7 @@
 
 3. 在选择卡片的开发语言类型（Language）时，选择ArkTS选项，然后单击“Finish”，即可完成ArkTS卡片创建。  
    ![WidgetProjectCreate3](figures/WidgetProjectCreate3.png)
-
-   ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。  
+   
+   建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。  
    ![WidgetProjectView](figures/WidgetProjectView.png)
 

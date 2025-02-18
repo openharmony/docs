@@ -170,7 +170,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 安装、恢复或卸载时需要指定的参数。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
  **系统接口：**  此接口为系统接口。
 
@@ -184,7 +184,7 @@ bundleInstall.getBundleInstaller().then(installer => {
 
 应用程序安装卸载的结果。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+ **系统能力:** SystemCapability.BundleManager.BundleFramework
 
  **系统接口：**  此接口为系统接口。
 

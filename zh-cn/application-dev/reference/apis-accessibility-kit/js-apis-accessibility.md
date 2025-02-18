@@ -362,6 +362,7 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | itemCount        | number                                | 否   | 条目总数。        |
 | elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
@@ -1315,6 +1316,28 @@ let eventInfo: accessibility.EventInfo = ({
   bundleName: 'com.example.MyApplication',
   triggerAction: 'common',
   customId: 'click' // 对应待聚焦组件id属性值
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**主动播报支持Resource示例<sup>16+</sup>：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'announceForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

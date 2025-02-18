@@ -645,7 +645,7 @@ Obtains the physical pixel density of the default display.
 
 | Name| Description| 
 | -------- | -------- |
-| densityDpi | Pointer to the physical pixel density, that is, the number of pixels per inch. The value is a floating point number, in px. The actual value depends on the options provided in device settings.  | 
+| densityDpi | Pointer to the physical pixel density, that is, the number of pixels per inch. The value is an integer, in px. The actual value depends on the options provided in device settings.  | 
 
 **Returns**
 

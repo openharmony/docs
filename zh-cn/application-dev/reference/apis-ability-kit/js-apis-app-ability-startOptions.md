@@ -21,7 +21,7 @@ import { StartOptions } from '@kit.AbilityKit';
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | windowMode<sup>12+<sup> | number | 否 | 是 | 启动Ability时的窗口模式，详见[WindowMode](./js-apis-app-ability-abilityConstant.md#windowmode12)。 |
-| displayId | number | 否 | 是 | 屏幕ID模式。默认是0，表示当前屏幕。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| displayId | number | 否 | 是 | 屏幕ID模式。默认是0，表示当前屏幕。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | withAnimation<sup>11+</sup> | boolean | 否 | 是 | Ability是否具有动画效果。 |
 | windowLeft<sup>11+</sup> | number | 否 | 是 | 窗口左边的位置。 |
 | windowTop<sup>11+</sup> | number | 否 | 是 | 窗口顶部的位置。 |

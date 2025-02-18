@@ -46,6 +46,7 @@ Video(value: VideoOptions)
 | previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 | imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| posterOptions<sup>16+</sup>  | [PosterOptions](#posteroptions16对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
@@ -386,6 +387,18 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ---------------------------- |
 | time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
 
+### PosterOptions<sup>16+</sup>对象说明
+
+用于描述当前视频是否配置首帧送显。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| showFirstFrame   | boolean  | 否   | 当前视频是否配置首帧送显。<br/>默认值：false      |
+
 ## VideoController
 
 一个VideoController对象可以控制一个或多个video，可用视频播放实例请参考[@ohos.multimedia.media](../../apis-media-kit/js-apis-media.md)。
@@ -526,7 +539,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）以及一些状态回调方法。
+基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
 
 ```ts
 // xxx.ets
@@ -539,6 +552,7 @@ struct VideoCreateComponent {
   @State isAutoPlay: boolean = false
   @State showControls: boolean = true
   @State isShortcutKeyEnabled: boolean = false
+  @State showFirstFrame: boolean = false
   controller: VideoController = new VideoController()
 
   build() {
@@ -547,7 +561,8 @@ struct VideoCreateComponent {
         src: this.videoSrc,
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
-        controller: this.controller
+        controller: this.controller,
+        posterOptions: { showFirstFrame: this.showFirstFrame }
       })
         .width('100%')
         .height(600)
@@ -587,6 +602,11 @@ struct VideoCreateComponent {
         .onUpdate((e?: TimeObject) => {
           if (e != undefined) {
             console.info('onUpdate is ' + e.time)
+          }
+        })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
           }
         })
 
@@ -641,6 +661,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -707,6 +731,7 @@ struct ImageAnalyzerExample {
 以下示例展示了如何使Video组件能够播放拖入的视频。
 
 ```ts
+// xxx.ets
 import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
 
 @Entry

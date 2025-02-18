@@ -482,13 +482,106 @@ async function setListener() {
 
 ## Adapting to Media Notification
 
-Currently, the system does not provide APIs for proactively sending control notifications to applications. When an application enters the playing state, the system automatically sends a notification and displays the notification in the notification center and on the lock screen.
+Currently, the system does not provide APIs for proactively sending control notifications to applications. When an application that has integrated the media controller enters the playing state, the system automatically sends a notification and displays the notification in the notification center and on the lock screen.
 
 > **NOTE**
 >
-> Currently, notifications are displayed for audio AVSession, but not video AVSession.
->
 > The system sends playback control widgets in the notification center and on the lock screen and controls their lifecycle.
+
+## Adapting to Bluetooth and Wired Key Events
+
+Currently, the system does not provide APIs for listening for multimodal key events for applications. If an application needs to listen for media key events from Bluetooth and wired headsets, the application can register control commands with AVSession. AVSession provides the following two methods for implementation:
+- Method 1 (recommended)
+
+  Integrate the media controller based on service requirements, [register the required control commands](#registering-control-commands), and implement the corresponding functionalities. AVSession listens for multimodal key events, converts them into AVSession control commands, and sends them to the application. The application does not need to differentiate between various key events. Instead, it processes the key events based on the callback of AVSession. Implementing play and pause functions through this method also adapts to the wear detection of Bluetooth headsets, with play and pause commands received upon wearing or removing both earpieces. Currently, the following AVSession control commands can be converted:
+  | Control Command| Description  |
+  | ------  | -------------------------|
+  | play    | Plays the media.|
+  | pause    | Pauses the playback.|
+  | stop    | Stops the playback.|
+  | playNext    | Plays the next media asset.|
+  | playPrevious    | Plays the previous media asset.|
+  | fastForward    | Fast-forwards.|
+  | rewind    | Rewinds.|
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
+  let context: Context = getContext(this);
+  async function setListenerForMesFromController() {
+    let type: AVSessionManager.AVSessionType = 'audio';
+    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+    // Set the necessary media information. This step is mandatory. Otherwise, the application cannot receive control events.
+    let metadata: AVSessionManager.AVMetadata = {
+      assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
+      title: 'TITLE',
+      mediaImage: 'IMAGE',
+      artist: 'ARTIST'
+    };
+    session.setAVMetadata(metadata).then(() => {
+      console.info(`SetAVMetadata successfully`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+    });
+    // Generally, logic processing on the player is implemented in the listener.
+    // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
+    session.on('play', () => {
+      console.info(`on play , do play task`);
+      // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('play') to cancel listening.
+      // After the processing is complete, call SetAVPlayState to report the playback state.
+    });
+    session.on('pause', () => {
+      console.info(`on pause , do pause task`);
+      // If this command is not supported, do not register it. If the command has been registered but is not used temporarily, use session.off('pause') to cancel listening.
+      // After the processing is complete, call SetAVPlayState to report the playback state.
+    });
+  }
+  ```
+
+- Method 2
+
+  Register the [HandleMediaKeyEvent](../../reference/apis-avsession-kit/js-apis-avsession.md#onhandlekeyevent10) callback through AVSession. The callback directly forwards the [KeyEvent](../../reference/apis-input-kit/js-apis-keyevent.md). The application is required to identify the type of the key event and implement the corresponding functionalities. Currently, the following key events can be forwarded:
+  | Key Type ([KeyCode](../../reference/apis-input-kit/js-apis-keycode.md#keycode))| Description  |
+  | ------  | -------------------------|
+  | KEYCODE_MEDIA_PLAY_PAUSE    | Play/Pause key. |
+  | KEYCODE_MEDIA_STOP    | Stop key. |
+  | KEYCODE_MEDIA_NEXT    | Next key. |
+  | KEYCODE_MEDIA_PREVIOUS    | Previous key. |
+  | KEYCODE_MEDIA_REWIND    | Rewind key. |
+  | KEYCODE_MEDIA_FAST_FORWARD    | Fast forward key. |
+  | KEYCODE_MEDIA_PLAY    | Play key. |
+  | KEYCODE_MEDIA_PAUSE   | Pause key. |
+
+  ```ts
+  import { avSession as AVSessionManager } from '@kit.AVSessionKit';
+
+  let context: Context = getContext(this);
+  async function setListenerForMesFromController() {
+    let type: AVSessionManager.AVSessionType = 'audio';
+    let session = await AVSessionManager.createAVSession(context, 'SESSION_NAME', type);
+    // Set the necessary media information. This step is mandatory. Otherwise, the application cannot receive key events.
+    let metadata: AVSessionManager.AVMetadata = {
+      assetId: '0', // Specified by the application, used to identify the media asset in the application media library.
+      title: 'TITLE',
+      mediaImage: 'IMAGE',
+      artist: 'ARTIST'
+    };
+    session.setAVMetadata(metadata).then(() => {
+      console.info(`SetAVMetadata successfully`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to set AVMetadata. Code: ${err.code}, message: ${err.message}`);
+    });
+    session.on('handleKeyEvent', (event) => {
+      // Parse the key code. The application must perform logic processing on the player based on the key code.
+      console.info(`on handleKeyEvent, keyCode=${event.key.code}`);
+    });
+  }
+  ```
+
+> **NOTE**
+>
+> 1. Both methods require the accurate configuration of media information AVMetadata and the registration of corresponding control interfaces to receive control commands and key events.
+> 2. Choose either method for integration. Method 1 is recommended.
 
 <!--RP2-->
 <!--RP2End-->

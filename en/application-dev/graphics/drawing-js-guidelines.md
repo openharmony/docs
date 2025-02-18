@@ -77,16 +77,16 @@ Follow the steps below to draw 2D graphics and text blobs by using the canvas an
 
     // Create a path object and use the APIs to construct a pentagram.
     let path = new drawing.Path()
-    
+  
     // Specify the start point of the path.
     path.moveTo(aX, aY)
-    
+  
     // Draw a line segment from the last point of a path to the target point.
     path.lineTo(bX, bY)
     path.lineTo(cX, cY)
     path.lineTo(dX, dY)
     path.lineTo(eX, eY)
-    
+  
     // Close the path. Now the path is drawn.
     path.close()
     ```

@@ -215,6 +215,9 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     //设置状态回调
     OH_AVScreenCapture_SetStateCallback(capture, OnStateChange, nullptr);
 
+    // 可选 设置光标显示开关，开始录屏前后均可调用
+    OH_AVScreenCapture_ShowCursor(capture, false);
+
     // 进行初始化操作
     int32_t retInit = OH_AVScreenCapture_Init(capture, config);
     
