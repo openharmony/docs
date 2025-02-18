@@ -83,7 +83,7 @@ Version:1.0.0
 Pid:1561
 Uid:20010039
 Reason:LIFECYCLE_TIMEOUT
-sysfreeze: LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
+sysfreeze:LIFECYCLE_TIMEOUT LIFECYCLE_TIMEOUT at 20230317170653
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 DOMAIN:AAFWK
 STRINGID:LIFECYCLE_TIMEOUT
@@ -107,9 +107,9 @@ MSG:ablity:EntryAbility background timeout
 | PACKAGE_NAME | 应用进程包名 |
 | MSG | 发生故障时dump信息或者说明信息，后面具体说明 |
 | BinderCatcher | 进程与其他系统进程间通信的调用信息，显示调用等待时间长的情况 |
-| PeerBinder Stacktrace | 跟当前进程相关的对端进程有卡死，会抓取对端的进程堆栈 |
-| cpuusage | 跟当前时间段整机CPU使用情况 |
-| memory | 跟当前时间当前进程的内存使用情况 |
+| PeerBinder Stacktrace | 当前进程相关的对端进程有卡死，会抓取对端的进程堆栈 |
+| cpuusage | 当前时间段整机CPU使用情况 |
+| memory | 当前时间当前进程的内存使用情况 |
 
 > **说明：**
 >
@@ -174,7 +174,8 @@ PeerBinderCatcher -pid==1561 Layer_==0
 
 
 BinderCatcher --
-    1561::1561t0685:0c0de0Wait:10.366245919s 1329::1376t0487:794c0de0Wait:0.12070041s
+    1561:1561 to 685:0 code 0 Wait:10.366245919 s
+    1329:1376 to 487:794 code 0 Wait:0.12070041 s
 
 pid   context  request  started  max  ready free_async_space
 1561   binder    0       3       16     4       520192
@@ -363,7 +364,7 @@ APP_INPUT_BLOCK的日志信息可以参考[通用日志信息](#日志主干通�
 
 ### 日志主干特异性信息(生命周期切换超时)
 
-Reason是LIFECYCLE_TIMEOUT的日志与上文THREAD_BLOCK_6S和THREAD_BLOCK_3S一样都是有两个事件。分别是LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT
+Reason是LIFECYCLE_TIMEOUT的日志与上文THREAD_BLOCK_6S和THREAD_BLOCK_3S一样都是有两个事件。分别是LIFECYCLE_HALF_TIMEOUT和LIFECYCLE_TIMEOUT。
 
 MSG说明当前是什么生命周期的超时。
 
