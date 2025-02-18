@@ -5409,6 +5409,130 @@ async function example() {
 }
 ```
 
+### setSubTitle<sup>16+</sup>
+
+setSubTitle(title: string): void;
+
+设置时刻副标题内容。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| title       | string | 是    | 需要设置的时刻副标题内容。 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('setSubTitle');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.notEqualTo('album', 'fake');
+    predicates.equalTo('highlight_status', '1');
+    predicates.orderByDesc('generate_time');
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    const context = getContext(this);
+    let phAccesseHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let fetchResult = await phAccesseHelper.getAlbums(TestHighlightAlbumPage.PORTRAIT_QUERY_TYPE, TestHighlightAlbumPage.HIGHLIGHT_QUERY_SUB_TYPE, fetchOptions);
+    let albums = await fetchResult.getAllObjects();
+    let highlightIndexNumber: number = Number(this.highlightIndex);
+    if (highlightIndexNumber < 0 || highlightIndexNumber > albums.length) {
+      this.result = 'highlight albums not found';
+      return;
+    }
+    let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(albums[highlightIndexNumber]);
+    changeHighlightAlbumRequest.setSubTitle(this.input);
+  } catch (err) {
+    console.error(`setSubTitle with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
+### deleteHighlightAlbums<sup>16+</sup>
+
+static deleteHighlightAlbums(context: Context, albums: Array&lt;Album&gt;): Promise&lt;void&gt;
+
+删除指定时刻相册。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.WRITE\_IMAGEVIDEO
+
+**系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
+| albums       | Array&lt;[Album](#album)&gt;   | 是    | 需要删除的时刻相册 |
+
+**错误码：**
+
+接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息                              |
+| :------- | :-------------------------------- |
+| 201      | Permission denied.                |
+| 202      | Called by non-system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 | Internal system error. It is recommended to retry and check the logs. Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out.            |
+
+**示例：**
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+
+async function example() {
+  try {
+    console.info('deleteHighlightAlbums');
+    let predicates = new dataSharePredicates.DataSharePredicates();
+    predicates.notEqualTo('album', 'fake');
+    predicates.equalTo('highlight_status', '1');
+    predicates.orderByDesc('generate_time');
+    let fetchOptions: photoAccessHelper.FetchOptions = {
+      fetchColumns: [],
+      predicates: predicates
+    };
+    const context = getContext(this);
+    let phAccesseHelper = photoAccessHelper.getPhotoAccessHelper(context);
+    let fetchResult = await phAccesseHelper.getAlbums(TestHighlightAlbumPage.PORTRAIT_QUERY_TYPE, TestHighlightAlbumPage.HIGHLIGHT_QUERY_SUB_TYPE, fetchOptions);
+    let albums = await fetchResult.getAllObjects();
+    let highlightIndexNumber: number = Number(this.highlightIndex);
+    if (highlightIndexNumber < 0 || highlightIndexNumber > albums.length) {
+      this.result = 'highlight albums not found';
+      return;
+    }
+    photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(context, [albums[0]]);
+  } catch (err) {
+    console.error(`setSubTitle with error: ${err.code}, ${err.message}`);
+  }
+}
+```
+
 ## CloudEnhancement<sup>13+</sup>
 
 云增强管理类，该类用于生成AI云增强照片任务的管理、获取原照片与AI云增强照片的关联关系。
