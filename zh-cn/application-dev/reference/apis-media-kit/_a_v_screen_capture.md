@@ -1740,6 +1740,8 @@ AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：不允许操作。
 OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_AVScreenCapture * capture, int32_t frameRate)
 ```
 **描述**
+{@link OH_AVScreenCapture_SetMaxVideoFrameRate} This interface should be called after Start is called.
+
 设置录屏的最大帧率。
 
 调用该方法可以设置录屏时的最大帧率，frameRate为想要设置的最大帧率。
