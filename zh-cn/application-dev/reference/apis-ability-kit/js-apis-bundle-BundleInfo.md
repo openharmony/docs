@@ -57,7 +57,7 @@
 
 ## UsedScene<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[BundleInfo](js-apis-bundleManager-bundleInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[UsedScene](js-apis-bundleManager-bundleInfo.md#usedscene)替代。
 
 描述权限使用的场景和时机。
 
