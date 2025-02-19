@@ -206,7 +206,7 @@ toybox的执行方式有两种：
 | sntp    | SNTP客户端。<br />usage: sntp [-saSdDqm] [-r SHIFT] [-m ADDRESS] [-p PORT] [SERVER] |
 | telnet  | 连接telnet服务器。<br />usage: telnet HOST [PORT] |
 | traceroute/traceroute6 | 跟踪报文到HOST的路径。traceroute6自带-6选项。<br />usage: traceroute [-46FUIldnvr] [-f 1ST_TTL] [-m MAXTTL] [-p PORT] [-q PROBES] [-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-g GATEWAY] [-i IFACE] [-z PAUSE_MSEC] HOST [BYTES]<br />usage: traceroute6 [-dnrv] [-m MAXTTL] [-p PORT] [-q PROBES][-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-i IFACE] HOST [BYTES] |
-| wget    | 从网络上下载资源。<br />usage: wget -O filename URL |
+| wget    | 从网络上下载资源。<br />usage: wget [-O filename] [-d] [-p data] URL |
 
 ### 文件操作
 
