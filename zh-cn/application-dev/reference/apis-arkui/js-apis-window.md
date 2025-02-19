@@ -11173,3 +11173,69 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+
+### setSupportedWindowModes<sup>15+</sup>
+
+setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowMode>): Promise&lt;void&gt;
+
+设置主窗的窗口支持模式，使用Promise异步回调。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名    | 类型    | 必填 | 说明                                          |
+| --------- | ------- | ---- | --------------------------------------------- |
+| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | 是   | 设置主窗的窗口支持模式。<br>- FULL_SCREEN：支持全屏模式。<br>- FLOATING：支持悬浮窗模式。<br>- SPLIT：支持分屏模式。需要配合FULL_SCREEN或FLOATING一起使用，不支持仅配置SPLIT。<br> 注：数组中SupportWindowMode字段取值不应该与该UIAbility对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段取值或者[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)中[属性](../apis-ability-kit/js-apis-app-ability-startOptions.md#属性)的supportWindowModes字段取值冲突。当取值冲突时，最终以该参数设置的窗口支持模式为准。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+| 1300003  | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility, bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    try {
+      let promise = windowStage.setSupportedWindowModes([
+        bundleManager.SupportWindowMode.FULL_SCREEN,
+        bundleManager.SupportWindowMode.SPLIT,
+        bundleManager.SupportWindowMode.FLOATING
+      ]);
+      promise.then(() => {
+        console.info('Succeeded in setting window support modes');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to set window support modes. Cause code: ${err.code}, message: ${err.message}`);
+      });
+    } catch (exception) {
+      console.error(`Failed to set window support modes. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
