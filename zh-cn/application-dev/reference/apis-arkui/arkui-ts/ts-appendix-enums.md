@@ -48,6 +48,7 @@
 | BOTTOM_START<sup>12+</sup> | 图像显示在Image组件的底部起始端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
 | BOTTOM<sup>12+</sup>    | 图像显示在Image组件的底部横向居中，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples14](figures/image_fit_bottom.png) |
 | BOTTOM_END<sup>12+</sup>| 图像显示在Image组件的底部尾端，保持原有尺寸显示。<br/>**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br/>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
+| MATRIX<sup>15+</sup>| 配合[imageMatrix](ts-basic-components-image.md#imagematrix15)使用，使图像在Image组件自定义位置显示，保持原有尺寸显示。不支持svg图源。<br/>**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## BorderStyle
 
@@ -251,6 +252,7 @@
 | -------- | ---------- |
 | Unknown  | 输入设备类型未知。  |
 | Keyboard | 输入设备类型为键盘。 |
+| JOYSTICK<sup>15+</sup> | 输入设备类型为游戏手柄。 |
 
 ## Edge
 
@@ -1118,3 +1120,16 @@ Nullable\<T> {
 >
 > - 示意图中，蓝色区域表示内容，橙黄色区域表示节点大小。
 > - 不同的内容填充方式在宽高动画过程中效果不一致，开发者需要选择合适的内容填充方式以实现需要的动画效果。
+
+### PageFlipMode<sup>15+</sup>
+
+表示鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 名称     | 值   | 说明                   |
+| -------- | ---- | ---------------------- |
+| CONTINUOUS | 0   | 连续翻页模式，鼠标滚轮连续滚动时连续翻多页。 |
+| SINGLE | 1   | 单次翻页模式，在一次翻页动画结束前不响应滚轮事件。 |

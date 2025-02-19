@@ -13,31 +13,6 @@
 import { camera } from '@kit.CameraKit';
 ```
 
-## CameraDevice
-
-相机设备信息。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称           | 类型                               | 只读 | 必填 | 说明        |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| hostDeviceName | string                            | 是   | 是   | 远端设备名称。**系统接口：** 此接口为系统接口。 |
-| hostDeviceType | [HostDeviceType](#hostdevicetype) | 是   | 是   | 远端相机设备类型。**系统接口：** 此接口为系统接口。 |
-
-## HostDeviceType
-
-枚举，远端相机设备类型。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Multimedia.Camera.Core
-
-| 名称                          | 值       | 说明           |
-| ---------------------------- | ----     | ------------- |
-| UNKNOWN_TYPE                 | 0        | 未知设备类型。      |
-| PHONE                        | 0x0E     | 手机相机。 |
-| TABLET                       | 0x11     | 平板相机。 |
-
 ## SceneMode<sup>11+</sup>
 
 枚举，相机支持模式。
@@ -345,9 +320,9 @@ isPrelaunchSupported(camera: CameraDevice): boolean
 
 **参数：**
 
-| 参数名     | 类型             | 必填 | 说明       |
-| -------- | --------------- | ---- | --------- |
-| camera | [CameraDevice](#cameradevice) | 是 | 相机信息。|
+| 参数名     | 类型                                               | 必填 | 说明       |
+| -------- |--------------------------------------------------| ---- | --------- |
+| camera | [CameraDevice](./js-apis-camera.md#cameradevice) | 是 | 相机信息。|
 
 **返回值：**
 
@@ -946,12 +921,12 @@ function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput)
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-|            名称                 |                     类型                  |     只读    |     必填     | 说明       |
-| ------------------------------- | ---------------------------------------- | ----------- | ------------ | ---------- |
-| cameraDevice                    | [CameraDevice](#cameradevice)            |      否     |       是      | 相机信息。         |
-| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)  |      否     |       否      | 预保存参数类型。    |
-| activeTime<sup>11+</sup>        | number                                   |      否     |       否      | 激活时间，单位min。 |
-| settingParam<sup>11+</sup>      |  [SettingParam](#settingparam11)         |      否     |       否      | 设置参数内容。      |
+|            名称                 | 类型                                               |     只读    |     必填     | 说明       |
+| ------------------------------- |--------------------------------------------------| ----------- | ------------ | ---------- |
+| cameraDevice                    | [CameraDevice](./js-apis-camera.md#cameradevice) |      否     |       是      | 相机信息。         |
+| restoreParamType<sup>11+</sup>  | [RestoreParamType](#restoreparamtype11)          |      否     |       否      | 预保存参数类型。    |
+| activeTime<sup>11+</sup>        | number                                           |      否     |       否      | 激活时间，单位min。 |
+| settingParam<sup>11+</sup>      | [SettingParam](#settingparam11)                  |      否     |       否      | 设置参数内容。      |
 
 ## RestoreParamType<sup>11+</sup>
 
