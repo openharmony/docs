@@ -269,3 +269,29 @@ class MyAbility extends UIAbility {
   }
 }
 ```
+
+## PrepareTermination<sup>15+</sup>
+
+应用被用户关闭时的动作枚举值，需要配合[AbilityStage](js-apis-app-ability-abilityStage.md)的[onPrepareTermination](js-apis-app-ability-abilityStage.md#abilitystageonpreparetermination15)或者[onPrepareTerminationAsync](js-apis-app-ability-abilityStage.md#abilitystageonprepareterminationasync15)方法使用。
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 值 | 说明 |
+| ------------- | --------- | ----------- |
+| TERMINATE_IMMEDIATELY | 0 | 表示立即执行结束动作，默认值。|
+| CANCEL | 1 | 表示取消结束动作。|
+
+**示例：**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onPrepareTermination(): AbilityConstant.PrepareTermination {
+    console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```
