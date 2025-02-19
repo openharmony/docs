@@ -73,7 +73,7 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
@@ -633,6 +633,84 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
       let windowId = win.getWindowProperties().id;
         try {
           pointer.setCustomCursor(windowId, pixelMap).then(() => {
+            console.log(`setCustomCursor success`);
+          });
+        } catch (error) {
+          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+        }
+      });
+  });
+});
+```
+
+## CustomCursor<sup>15+</sup>
+
+自定义光标资源。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+| 名称     | 类型     | 可读     | 可写     | 说明     |
+| -------- | ------- | -------- | -------- | ------- |
+| pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 否   | 否   | 自定义光标。最小限制为资源图本身的最小限制。最大限制为256 x 256px。 |
+| focusX  | number | 否   | 是   | 自定义光标焦点的水平坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的宽度最大值，该参数缺省时默认为0。 |
+| focusY  | number | 否   | 是   | 自定义光标焦点的垂直坐标。该坐标受自定义光标大小的限制。最小值为0，最大值为资源图的高度最大值，该参数缺省时默认为0。 |
+
+## CursorConfig<sup>15+</sup>
+
+自定义光标配置。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称     | 类型     | 可读     | 可写     | 说明     |
+| -------- | ------- | -------- | -------- | ------- |
+| followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256]。 |
+
+## pointer.setCustomCursor<sup>15+</sup>
+
+setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): Promise&lt;void&gt;
+
+设置自定义光标样式，使用Promise异步回调。应用窗口布局改变、热区切换、页面跳转、光标移出再回到窗口、光标在窗口不同区域移动，以上场景可能导致光标切换回系统样式，需要开发者重新设置光标样式。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**参数**：
+
+| 参数名    | 类型    | 必填    | 说明    |
+| -------- | -------- | -------- | -------- |
+| windowId  | number  | 是    | 窗口id。                          |
+| cursor  | [CustomCursor](js-apis-pointer.md#customcursor15) | 是    | 自定义光标资源。 |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig15) | 是    | 自定义光标配置，用于配置是否根据系统设置调整光标大小。如果CursorConfig中followSystem设置为true，则光标大小的可调整范围为：[光标资源图大小，256×256]。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 通过Promise返回结果。0为设置成功，其他值为设置失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[输入设备错误码](./errorcode-inputdevice.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | 401 - Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
+| 26500001 | Invalid windowID. |
+
+**示例**：
+
+```js
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
+  const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
+  let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
+  let svgDecodingOptions: image.DecodingOptions = {desiredSize: { width: 50, height:50 }};
+  svgImagesource.createPixelMap(svgDecodingOptions).then((pixelMap) => {
+    window.getLastWindow(getContext(), (error: BusinessError, win: window.Window) => {
+      let windowId = win.getWindowProperties().id;
+        try {
+          pointer.setCustomCursor(windowId, {pixelMap: pixelMap, focusX: 25, focusY: 25}, {followSystem: false}).then(() => {
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
