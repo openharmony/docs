@@ -51,6 +51,34 @@ Allows an application to interact across local accounts.
 
 **Changelog**: For API version 7 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
 
+### ohos.permission.GET_WIFI_CONFIG
+
+Allows an application to obtain the Wi-Fi configuration.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 8
+
+**Changelog**: This permission is available only to system applications in API versions 8 to 14. From API version 15, it is available to normal enterprise applications.
+
+### ohos.permission.SET_WIFI_CONFIG
+
+Allows an application to configure Wi-Fi information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 8
+
+**Changelog**: This permission is available only to system applications in API versions 8 to 14. From API version 15, it is available to normal enterprise applications.
+
 ## ohos.permission.GET_DOMAIN_ACCOUNTS
 
 Allows an application to obtain domain account information.
@@ -65,3 +93,15 @@ Allows an application to obtain domain account information.
 **Valid since**: 10
 
 **Changelog**: For API version 10 to 13, the permission is available only to system applications. Starting with API version 14, the permission becomes accessible to normal enterprise applications.
+
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+Allows an application to manage Wi-Fi connections.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15

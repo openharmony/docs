@@ -435,6 +435,22 @@ indicatorInteractive(value: boolean)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 导航点是否可交互。<br/>默认值：true |
 
+### pageFlipMode<sup>15+</sup>
+
+pageFlipMode(value: PageFlipMode)
+
+设置鼠标滚轮翻页模式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [PageFlipMode](ts-appendix-enums.md#PageFlipMode) | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
 从API version 8开始支持，从API version 10开始不再维护，建议使用[indicator](#indicator10)代替。
@@ -1210,6 +1226,56 @@ onContentDidScroll(handler: ContentDidScrollCallback)
 | ------ | ---- | ---- | ---- |
 | handler | [ContentDidScrollCallback](#contentdidscrollcallback12) | 是 | Swiper滑动时触发的回调。 |
 
+### onContentWillScroll<sup>15+</sup>
+
+onContentWillScroll(handler: ContentWillScrollCallback)
+
+Swiper滑动行为拦截事件，在滑动前触发。Swiper会依据该事件的返回值来决定是否允许此次滑动行为。若返回true，表示允许此次滑动行为，Swiper页面将跟随滑动。若返回false，表示不允许此次滑动，页面将保持静止。
+
+1. 触发该事件的场景仅限于手势操作，具体包括手指滑动、滚动鼠标滚轮以及使用键盘方向键进行焦点移动。
+
+2. 在手指滑动的过程中，每帧都将触发该事件，系统会依据事件的返回值判断是否对每帧的滑动做出响应。
+
+3. 对于滚动鼠标滚轮和使用键盘方向键进行焦点移动的场景，每次翻页操作都会触发一次该事件，翻页是否被允许将根据事件的返回值来决定。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| handler | [ContentWillScrollCallback](#contentwillscrollcallback15) | 是 | Swiper滑动时触发的回调。 |
+
+## ContentWillScrollCallback<sup>15+</sup>
+
++type ContentWillScrollCallback = (result: SwiperContentWillScrollResult) => boolean
+
+Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ---- | ---- | ---- |
+| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult15) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
+
+## SwiperContentWillScrollResult<sup>15+</sup>
+
+滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 说明 |
+| ------ | ---- | ---- |
+| currentIndex | number | 当前页面对应的index。在一次跟手滑动过程中，只要手指未离开屏幕，该值将保持不变，即使该页面已完全移出视窗，如在涉及多个页面的场景中。 |
+| comingIndex | number | 滑动方向上即将显示的页面index。 |
+| offset | number | 此次滑动的位移，带有符号，正负分别指示不同的翻页方向。正数表示从index=1向index=0翻页，负数表示从index=0向index=1翻页。<br>在手指滑动的场景中，该值为滑动事件中每帧传递下来的偏移量。在滚动鼠标滚轮和使用键盘方向键导航的场景中，该值代表即将翻页的距离。 |
+
 ## SwiperAnimationEvent<sup>10+</sup>对象说明
 
 Swiper组件动画相关信息集合。
@@ -1752,3 +1818,86 @@ struct Index {
 ```
 
 ![swiper](figures/point_animation.gif)
+
+### 示例6（滑动行为拦截事件）
+
+本示例通过onContentWillScroll事件实现了单方向的滑动翻页，即只能滑动向前翻页，滑动向后翻页的行为会被拦截。
+
+```ts
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct SwiperExample {
+  private swiperController: SwiperController = new SwiperController()
+  private data: MyDataSource = new MyDataSource([])
+  private currentIndex: number = 4
+
+  aboutToAppear(): void {
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
+    }
+    this.data = new MyDataSource(list)
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper(this.swiperController) {
+        LazyForEach(this.data, (item: string) => {
+          Text(item.toString())
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .index(this.currentIndex)
+      .loop(false)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .onContentWillScroll((result: SwiperContentWillScrollResult) => {
+        if (result.comingIndex > this.currentIndex) {
+          return false;
+        }
+        return true;
+      })
+
+      Row({ space: 12 }) {
+        Button('showNext')
+          .onClick(() => {
+            this.swiperController.showNext()
+          })
+        Button('showPrevious')
+          .onClick(() => {
+            this.swiperController.showPrevious()
+          })
+      }.margin(5)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```

@@ -391,6 +391,26 @@ Allows an application to set pinned windows.
 
 **Valid since**: 13
 
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
+
+Allows an application to use the scam message Picker to obtain SMS messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+
+Allows an application to use the scam call log Picker to obtain call logs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
 ### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.

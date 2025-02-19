@@ -102,7 +102,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom)        | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left)     | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 | [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right)     | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
-
+| [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr)     | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。该键是可选的且只用于视频解码。 |
 
 音频专有的键值对：
 
@@ -274,6 +274,7 @@ CodecBase模块提供用于音视频封装、解封装、编解码基础功能�
 | const char \* [OH_MD_KEY_VIDEO_CROP_BOTTOM](#oh_md_key_video_crop_bottom) | 描述裁剪矩形底部坐标(y)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_LEFT](#oh_md_key_video_crop_left) | 描述裁剪矩形左坐标(x)值的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_CROP_RIGHT](#oh_md_key_video_crop_right) | 描述裁剪矩形右坐标(x)值的键，值类型为int32_t。 | 
+| const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
 | const char \* [OH_MD_KEY_VIDEO_STRIDE](#oh_md_key_video_stride) | 描述视频帧宽跨距的键，值类型为int32_t。本。  | 
 | const char \* [OH_MD_KEY_VIDEO_SLICE_HEIGHT](#oh_md_key_video_slice_height) | 描述视频帧高跨距的键，值类型为int32_t。  | 
 | const char \* [OH_MD_KEY_VIDEO_PIC_WIDTH](#oh_md_key_video_pic_width) | 描述视频帧真实宽度的键，值类型为int32_t。  | 
@@ -2739,3 +2740,15 @@ const char* OH_MD_KEY_VIDEO_SAR
 **系统能力：** SystemCapability.Multimedia.Media.CodecBase
 
 **起始版本：** 12
+
+### OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR
+
+```
+const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR
+```
+**描述**
+解码器是否打开视频可变帧率功能的键，值类型为int32_t。1代表使能视频可变帧率功能，0代表不使能。
+
+**系统能力：** SystemCapability.Multimedia.Media.CodecBase
+
+**起始版本：** 15

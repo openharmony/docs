@@ -186,7 +186,7 @@ minFontSize(value: number | string | Resource)
 
 自适应字号生效时，fontSize设置不生效。
 
-minFontSize小于或等于0时，自适应字号不生效。
+minFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -209,6 +209,8 @@ maxFontSize(value: number | string | Resource)
 需配合[minFontSize](#minfontsize)以及[maxLines](#maxlines)或布局大小限制使用，单独设置不生效，对子组件和属性字符串不生效。
 
 自适应字号生效时，fontSize设置不生效。
+
+maxFontSize小于或等于0时，自适应字号不生效，此时按照[fontSize](#fontsize)属性的值生效，未设置时按照其默认值生效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -874,7 +876,7 @@ selectedBackgroundColor(color: ResourceColor)
 | TEXT | 0 | Span为文字类型。 |
 | IMAGE | 1 | Span为图像类型。|
 | MIXED | 2 | Span为图文混合类型。|
-| DEFAULT<sup>16+</sup> | 3 | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
+| DEFAULT<sup>15+</sup> | 3 | 注册此类型菜单但未注册TEXT、IMAGE、MIXED菜单时，文字类型、图片类型、图文混合类型都会触发并显示此类型对应的菜单。|
 
 >  **说明：**
 >
@@ -895,7 +897,7 @@ selectedBackgroundColor(color: ResourceColor)
 | RIGHT_CLICK | 0 | 通过鼠标右键触发菜单弹出。 |
 | LONG_PRESS  | 1 | 通过长按触发菜单弹出。   |
 | SELECT | 2 | 通过鼠标选中触发菜单弹出。 |
-| DEFAULT<sup>16+</sup> | 3 | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
+| DEFAULT<sup>15+</sup> | 3 | 注册此类型的菜单但未注册RIGHT_CLICK、LONG_PRESS、SELECT时，右键、长按、鼠标选中都会触发并显示此类型对应的菜单。|
 
 >  **说明：**
 >

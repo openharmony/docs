@@ -818,3 +818,17 @@ wantAgent.getWantAgent({
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 是   | 公共事件收集的最终数据。  |
 | extraInfo      | { [key: string]: any }            | 否   | 额外数据。               |
+
+## WantAgent
+
+type WantAgent = object
+
+WantAgent对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| object | WantAgent对象。 |

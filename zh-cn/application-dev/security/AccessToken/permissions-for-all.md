@@ -381,6 +381,26 @@
 
 **起始版本**：13
 
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
+
+允许应用使用诈骗短信选择器，获取短信内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+
+允许应用使用诈骗通话记录选择器，获取通话记录内容。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：15
+
 ## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。

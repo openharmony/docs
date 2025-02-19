@@ -180,3 +180,4 @@
 | const char \* [OH_MD_KEY_START_TIME](_codec_base.md#oh_md_key_start_time) | 媒体文件中第一帧起始位置的开始时间的键，以微秒为单位，值类型为int64_t。     |
 | const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE](_codec_base.md#oh_md_key_video_decoder_output_color_space)   | 设置视频解码器输出色彩空间的键，值类型为int32_t。 支持的值为OH_COLORSPACE_BT709_LIMIT。|
 | const char \* [OH_MD_KEY_VIDEO_SAR](_codec_base.md#oh_md_key_video_sar)            | 样本长宽比的键，值类型为double。 |
+| const char \* [OH_MD_KEY_VIDEO_DECODER_OUTPUT_ENABLE_VRR](_codec_base.md#oh_md_key_video_decoder_output_enable_vrr) | 解码器是否打开视频可变帧率功能的键，值类型为int32_t。 |
