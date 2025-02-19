@@ -481,7 +481,7 @@
 
 **起始版本**：15
 
-### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
 允许设备管理应用管理个人设备限制策略。
 
@@ -494,7 +494,7 @@
 
 **起始版本**：15
 
-### ohos.permission.START_PROVISIONING_MESSAGE
+## ohos.permission.START_PROVISIONING_MESSAGE
 
 允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
 
@@ -507,7 +507,7 @@
 
 **起始版本**：15
 
-### ohos.permission.ACCESS_DISK_PHY_INFO
+## ohos.permission.ACCESS_DISK_PHY_INFO
 
 允许应用获取硬盘的硬件信息。
 
