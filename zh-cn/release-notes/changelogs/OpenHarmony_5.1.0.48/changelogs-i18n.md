@@ -124,7 +124,7 @@ i18n.SystemLocaleManager.getRegionInfoArray
 
 **变更影响**
 
-该变更为不兼容性变更。
+该变更不涉及应用适配。
 
 变更前：
 
