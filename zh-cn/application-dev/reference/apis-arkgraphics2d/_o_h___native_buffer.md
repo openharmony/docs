@@ -463,7 +463,7 @@ OH_NativeBuffer的格式。
 | NATIVEBUFFER_PIXEL_FMT_YCRCB_P010<sup>12+</sup> | YCRCB420 semi-planar 10bit packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_RAW10<sup>12+</sup> | Raw 10bit packed 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_BLOB<sup>15+</sup> | BLOB格式  | 
-| NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT<sup>15+</sup> | vender mask 格式 | 
+| NATIVEBUFFER_PIXEL_FMT_RGBA16_FLOAT<sup>15+</sup> | RGBA16 float格式 | 
 | NATIVEBUFFER_PIXEL_FMT_VENDER_MASK<sup>12+</sup> | vendor mask 格式 | 
 | NATIVEBUFFER_PIXEL_FMT_BUTT | 无效格式 | 
 
