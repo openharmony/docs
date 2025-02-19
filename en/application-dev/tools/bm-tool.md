@@ -660,12 +660,11 @@ When you start debugging or run an application, the error message "error: signat
 * Scenario 1:
 * Scenario 1:
 	1. Use [automatic signing](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237) to sign the HAP file. after the device is connected.
-	2. If manual signature is used,<!--RP2--> add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see [hapsigner Guide](../security/hapsigntool-guidelines.md).
+	2. If manual signature is used, add the UDID of the device to the **UnsgnedDebugProfileTemplate.json** file. For details, see<!--RP2--> [hapsigner Guide](../security/hapsigntool-guidelines.md)<!--RP2End-->.
 		```
 		// Command for obtaining the UDID
 		hdc shell bm get -u
 		```
-  <!--RP2End-->
   3. Check whether the signature contains the UDID of the debugging device. You can use a text editor to open the signed HAP and search for **device-ids**.
 * Scenario 2: Use the [debug certificate and debug profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-debug-app-0000001914423098) to re-sign the application.
 
