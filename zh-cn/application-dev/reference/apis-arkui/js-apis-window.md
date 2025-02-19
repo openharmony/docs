@@ -6448,9 +6448,11 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 
 getWindowDecorVisible(): boolean
 
-查询窗口标题栏是否可见，对存在标题栏和三键区的窗口形态生效。仅对2in1设备的窗口生效，其它设备类型调用此接口会返回错误码801。
+查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
-Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+当窗口存在标题栏且可见时返回true，反之返回false。当窗口处于沉浸式时，只有当标题栏被呼出时接口返回true，否则返回false。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> 
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
