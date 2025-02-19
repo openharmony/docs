@@ -14545,7 +14545,7 @@ getProxyRules(): Array\<ProxyRule\>
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| Array\<[ProxyRule](#proxyrule16)\> | 代理规则。 |
+| Array\<[ProxyRule](#proxyrule15)\> | 代理规则。 |
 
 **示例：**
 
