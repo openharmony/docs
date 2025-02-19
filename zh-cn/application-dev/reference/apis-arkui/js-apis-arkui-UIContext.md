@@ -8269,7 +8269,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 }
 ```
 
-### getBarRect<sup>16+</sup>
+### getBarRect<sup>15+</sup>
 
 getBarRect(): Frame
 
@@ -8278,7 +8278,7 @@ getBarRect(): Frame
 >
 > 布局信息包含了原子化服务menuBar的左右margin。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
