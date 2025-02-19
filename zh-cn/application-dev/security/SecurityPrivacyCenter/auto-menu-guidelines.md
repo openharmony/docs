@@ -118,7 +118,7 @@
 
 业务接入方需申请权限[ohos.permission.ACCESS_SECURITY_PRIVACY_CENTER](../AccessToken/permissions-for-system-apps.md#ohospermissionaccess_security_privacy_center)，来确保应用可以接入框架菜单。
 
-申请方式请参考[访问控制开发指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/AccessToken/determine-application-mode.md)。
+申请方式请参考[访问控制开发指导](../AccessToken/determine-application-mode.md)。
 
 ## 配置Ability页面（以UIAbility方式接入）
 
