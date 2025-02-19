@@ -3853,8 +3853,8 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterClause<sup>15+</sup>         | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
-| filterType<sup>15+</sup>         | [FilterType](#filtertype15) | 是   | 过滤类型。     |
+| filterClause        | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
+| filterType        | [FilterType](#filtertype15) | 是   | 过滤类型。     |
 
 ## FilterType<sup>15+</sup>
 
@@ -3880,10 +3880,10 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |        默认值      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- | ---------------- |
-| id<sup>15+</sup>         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     | undefined     |
-| name<sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     | undefined     |
-| dataItem<sup>15+</sup>         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     | undefined     |
-| focusModeList<sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     | undefined     |
+| id         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     | undefined     |
+| name         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     | undefined     |
+| dataItem         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     | undefined     |
+| focusModeList        | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     | undefined     |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3895,8 +3895,8 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterCondition<sup>15+</sup>         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
-| value<sup>15+</sup>         | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
+| filterCondition         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
+| value        | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
 
 ## FilterCondition<sup>15+</sup>
 
