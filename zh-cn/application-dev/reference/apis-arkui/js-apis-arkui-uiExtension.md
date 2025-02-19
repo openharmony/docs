@@ -15,7 +15,7 @@ import { uiExtension } from '@kit.ArkUI'
 
 ## WindowProxy
 
-### properties<sup>14+</sup>
+### properties
 
 组件相关信息。
 
