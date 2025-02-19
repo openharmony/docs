@@ -665,12 +665,11 @@ Error: signature verification failed due to not trusted app source.
 
 * 场景一：
 	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，<!--RP2-->对于OpenHarmony应用，请参考[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 		```
 		//UDID获取命令
 		hdc shell bm get -u
 		```
-  <!--RP2End-->
   3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
