@@ -4791,7 +4791,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res = bitVector.pop(); // bitVector: [0, 1, 0, 1]
-console.info("bitVector pop:", res) // 0
+console.info("bitVector pop:", res); // 0
 ```
 
 ### has
@@ -4810,7 +4810,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | --------- | ------ | ---- | ------------------------------------ |
 | element   | number | 是   | 待判断的bit值，0表示0，其余值表示1。 |
 | fromIndex | number | 是   | 范围起始索引，包含本索引值。         |
-| toIndex   | number | 是   | 范围终止索引，包含本索引值。       |
+| toIndex   | number | 是   | 范围终止索引，包含本索引值。当toIndex等于容器的长度时，在API version 18前后接口会有不同的表现，具体可见示例2。       |
 
 **返回值：**
 
@@ -4829,7 +4829,7 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |
 
-**示例：**
+**示例1：**
 
 ```ts
 let bitVector: collections.BitVector = new collections.BitVector(0);
@@ -4839,7 +4839,31 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res0: boolean = bitVector.has(0, 1, 4);
-console.info("bitVector has 0:", res0) // true
+console.info("bitVector has 0:", res0); // true
+```
+
+**示例2：**
+
+API version 18之前，针对开发者调用push接口初始化BitVector容器值皆为1的情况，再调用has接口查询容器是否含有0时，若传入的toIndex等于容器的长度时会返回错误的结果。
+
+从API version 18开始，调用collections模块has接口时，当传入的toIndex等于容器的长度时，会触发jscrash从而报错返回异常信息。
+```ts
+let bitVector: collections.BitVector = new collections.BitVector(0);
+
+bitVector.push(1);
+bitVector.push(1);
+bitVector.push(1);
+bitVector.push(1);
+bitVector.push(1); // bitVector: [1, 1, 1, 1, 1]
+
+try {
+  let res: boolean = bitVector.has(0, 0, 5);
+  console.info("res: " + res);
+  // API version 18之前，输出结果为res: true
+} catch (err) {
+  console.error("error message: " + err.message);
+  // API version 18，因为越界发生jscrash，输出结果为error message: The value of "toIndex" is out of range. It must be >= 0 && < 5. Received value is: 5
+}
 ```
 
 ### setBitsByRange
@@ -4965,7 +4989,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let bitVector2 = bitVector.getBitsByRange(1, 3); // bitVector2: [1, 0]
-console.info("bitVector2 length:", bitVector2.length) // 2
+console.info("bitVector2 length:", bitVector2.length); // 2
 ```
 
 ### resize
@@ -5008,9 +5032,9 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 bitVector.resize(10); // bitVector: [0, 1, 0, 1, 0, 0, 0, 0, 0, 0]
-console.info("bitVector get bit vector's length:", bitVector.length) // 10
+console.info("bitVector get bit vector's length:", bitVector.length); // 10
 bitVector.resize(3); // bitVector: [0, 1, 0]
-console.info("bitVector get bit vector's length:", bitVector.length) // 3
+console.info("bitVector get bit vector's length:", bitVector.length); // 3
 ```
 
 ### getBitCountByRange
@@ -5058,7 +5082,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getBitCountByRange(1, 1, 4);
-console.info("bitVector getBitCountByRange:", res) // 2
+console.info("bitVector getBitCountByRange:", res); // 2
 ```
 
 ### getIndexOf
@@ -5106,7 +5130,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getIndexOf(0, 1, 4);
-console.info("bitVector getIndexOf:", res) // 2
+console.info("bitVector getIndexOf:", res); // 2
 ```
 
 ### getLastIndexOf
@@ -5154,7 +5178,7 @@ bitVector.push(0);
 bitVector.push(1);
 bitVector.push(0); // bitVector: [0, 1, 0, 1, 0]
 let res: number = bitVector.getLastIndexOf(0, 1, 4);
-console.info("bitVector getLastIndexOf:", res) // 2
+console.info("bitVector getLastIndexOf:", res); // 2
 ```
 
 ### flipBitByIndex
