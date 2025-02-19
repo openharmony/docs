@@ -26,11 +26,11 @@ Before using JSVM-API to operate JS objects, you need to understand the followin
 
 ## Example
 
-If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to primitives.
+If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ and ArkTS code related to primitive development.
 
 ### OH_JSVM_CoerceToBool
 
-Use **OH_JSVM_CoerceToBool** to forcibly convert a JS value to a JS Boolean value.
+Call **OH_JSVM_CoerceToBool** to forcibly convert a JS value to a JS Boolean value.
 
 CPP code:
 
@@ -44,7 +44,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToBool},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named coerceToBool and associate it with a callback. This allows the CoerceToBool callback to be called from JS.
+// Alias for the CoerceToBool method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"coerceToBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -84,7 +84,7 @@ try {
 
 ### OH_JSVM_CoerceToNumber
 
-Use **OH_JSVM_CoerceToNumber** to forcibly convert a JS value to a JS number.
+Call **OH_JSVM_CoerceToNumber** to forcibly convert a JS value to a JS number.
 
 CPP code:
 
@@ -98,7 +98,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToNumber},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named coerceToNumber and associate it with a callback. This allows the CoerceToNumber callback to be called from JS.
+// Alias for the CoerceToNumber method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"coerceToNumber", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -138,7 +138,7 @@ try {
 
 ### OH_JSVM_CoerceToObject
 
-Use **OH_JSVM_CoerceToObject** to forcibly convert a JS value to a JS object.
+Call **OH_JSVM_CoerceToObject** to forcibly convert a JS value to a JS object.
 
 CPP code:
 
@@ -152,7 +152,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToObject},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named coerceToObject and associate it with a callback. This allows the CoerceToObject callback to be called from JS.
+// Alias for the CoerceToObject method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"coerceToObject", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -191,7 +191,7 @@ try {
 
 ### OH_JSVM_CoerceToString
 
-Use **OH_JSVM_CoerceToString** to forcibly convert a JS value to a JS string.
+Call **OH_JSVM_CoerceToString** to forcibly convert a JS value to a JS string.
 
 CPP code:
 
@@ -205,7 +205,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = CoerceToString},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named coerceToString and associate it with a callback. This allows the CoerceToString callback to be called from JS.
+// Alias for the CoerceToString method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"coerceToString", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -244,7 +244,7 @@ try {
 
 ### OH_JSVM_GetBoolean
 
-Use **OH_JSVM_GetBoolean** to obtain a JS singleton object that is used to represent the given Boolean value.
+Call **OH_JSVM_GetBoolean** to obtain a JS singleton object that is used to represent the given Boolean value.
 
 CPP code:
 
@@ -258,7 +258,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetBoolean},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getBoolean and associate it with a callback. This allows the GetBoolean callback to be called from JS.
+// Alias for the GetBoolean method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getBoolean", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -320,7 +320,7 @@ try {
 
 ### OH_JSVM_GetValueBool
 
-Use **OH_JSVM_GetValueBool** to obtain the C Boolean primitive equivalent of the given JS Boolean.
+Call **OH_JSVM_GetValueBool** to obtain the C Boolean primitive equivalent of the given JS Boolean.
 
 CPP code:
 
@@ -334,7 +334,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetValueBool},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getValueBool and associate it with a callback. This allows the GetValueBool callback to be called from JS.
+// Alias for the GetValueBool method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getValueBool", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -394,7 +394,7 @@ try {
 
 ### OH_JSVM_GetGlobal
 
-Use **OH_JSVM_GetGlobal** to obtain a JS **global** object. You can use this API to obtain the **JSVM_Value** that represents a JS global object, so that the JSVM module can interact with the global variables and functions defined in the JS context.
+Call **OH_JSVM_GetGlobal** to obtain a JS **global** object. You can use this API to obtain the **JSVM_Value** that represents a JS global object, so that the JSVM module can interact with the global variables and functions defined in the JS context.
 
 CPP code:
 
@@ -408,7 +408,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetGlobal},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getGlobal and associate it with a callback. This allows the GetGlobal callback to be called from JS.
+// Alias for the GetGlobal method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getGlobal", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -447,7 +447,7 @@ try {
 
 ### OH_JSVM_GetNull
 
-Use **OH_JSVM_GetNull** to obtain a JS **null** object.
+Call **OH_JSVM_GetNull** to obtain a JS **null** object.
 
 CPP code:
 
@@ -461,7 +461,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetNull},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getNull and associate it with a callback. This allows the GetNull callback to be called from JS.
+// Alias for the GetNull method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getNull", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
@@ -495,7 +495,7 @@ try {
 
 ### OH_JSVM_GetUndefined
 
-Use **OH_JSVM_GetUndefined** to obtain a JS **undefined** object.
+Call **OH_JSVM_GetUndefined** to obtain a JS **undefined** object.
 
 CPP code:
 
@@ -509,7 +509,7 @@ static JSVM_CallbackStruct param[] = {
     {.data = nullptr, .callback = GetUndefined},
 };
 static JSVM_CallbackStruct *method = param;
-// Set a property descriptor named getUndefined and associate it with a callback. This allows the GetUndefined callback to be called from JS.
+// Alias for the GetUndefined method to be called from JS.
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getUndefined", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
