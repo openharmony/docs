@@ -69,7 +69,7 @@ Canvas(context: CanvasRenderingContext2D | DrawingRenderingContext, imageAIOptio
 
 ### onReady
 
-onReady(event: VoidCallback)
+onReady(event: () => void)
 
 Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调。
 
@@ -80,12 +80,6 @@ Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件�
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名 | 类型    | 必填 | 说明 |
-| ------ | ------- | ---- | ------------------------------------------------------------ |
-| event  | [VoidCallback](ts-types.md#voidcallback12) | 是   | Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调事件。 |
 
 ## 示例
 
