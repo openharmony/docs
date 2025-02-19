@@ -87,6 +87,7 @@
       - [组件快捷键事件](arkui-ts/ts-universal-events-keyboardshortcut.md)
       - [自定义事件分发](arkui-ts/ts-universal-attributes-on-child-touch-test.md)
       - [自定义事件拦截](arkui-ts/ts-universal-attributes-on-touch-intercept.md)
+      - [焦点轴事件](arkui-ts/ts-universal-events-focus_axis.md)
     - 通用属性<!--universal-attributes-->
       - [尺寸设置](arkui-ts/ts-universal-attributes-size.md)
       - [位置设置](arkui-ts/ts-universal-attributes-location.md)

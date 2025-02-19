@@ -37,6 +37,7 @@
 | { UI_MOUSE_EVENT_ACTION_UNKNOWN = 0, UI_MOUSE_EVENT_ACTION_PRESS = 1, UI_MOUSE_EVENT_ACTION_RELEASE = 2, UI_MOUSE_EVENT_ACTION_MOVE = 3 } | 定义鼠标事件的Action Code。  | 
 | {<br/>UI_MOUSE_EVENT_BUTTON_NONE = 0, UI_MOUSE_EVENT_BUTTON_LEFT = 1, UI_MOUSE_EVENT_BUTTON_RIGHT = 2, UI_MOUSE_EVENT_BUTTON_MIDDLE = 3,<br/>UI_MOUSE_EVENT_BUTTON_BACK = 4, UI_MOUSE_EVENT_BUTTON_FORWARD = 5<br/>} | 定义鼠标事件的按键类型。  | 
 | [ArkUI_ModifierKeyName](#arkui_modifierkeyname) { ARKUI_MODIFIER_KEY_CTRL = 1 &lt;&lt; 0, ARKUI_MODIFIER_KEY_SHIFT = 1 &lt;&lt; 1, ARKUI_MODIFIER_KEY_ALT = 1 &lt;&lt; 2, ARKUI_MODIFIER_KEY_FN = 1 &lt;&lt; 3 } | 定义modifier按键。  | 
+| {<br/>UI_FOCUS_AXIS_EVENT_ABS_X = 0, UI_FOCUS_AXIS_EVENT_ABS_Y = 1, UI_FOCUS_AXIS_EVENT_ABS_Z = 2, UI_FOCUS_AXIS_EVENT_ABS_RZ = 3,<br/>UI_FOCUS_AXIS_EVENT_ABS_GAS = 4, UI_FOCUS_AXIS_EVENT_ABS_BRAKE = 5, UI_FOCUS_AXIS_EVENT_ABS_HAT0X = 6, UI_FOCUS_AXIS_EVENT_ABS_HAT0Y = 7<br/>} | 定义焦点轴事件的轴类型。  | 
 
 
 ### 函数
@@ -260,6 +261,29 @@ enum HitTestMode
 | HTMBLOCK  | 自身响应触摸测试，阻塞子节点和兄弟节点的触摸测试。  | 
 | HTMTRANSPARENT  | 自身和子节点都响应触摸测试，不会阻塞兄弟节点的触摸测试。  | 
 | HTMNONE  | 自身不响应触摸测试，不会阻塞子节点和兄弟节点的触摸测试。  | 
+
+
+### anonymous enum
+
+```
+anonymous enum
+```
+**描述：**
+
+定义焦点轴事件的轴类型。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| UI_FOCUS_AXIS_EVENT_ABS_X  | 游戏手柄X轴。  | 
+| UI_FOCUS_AXIS_EVENT_ABS_Y  | 游戏手柄Y轴。 | 
+| UI_FOCUS_AXIS_EVENT_ABS_Z  | 游戏手柄Z轴。  | 
+| UI_FOCUS_AXIS_EVENT_ABS_RZ  | 游戏手柄RZ轴。  | 
+| UI_FOCUS_AXIS_EVENT_ABS_GAS  | 游戏手柄GAS轴。 | 
+| UI_FOCUS_AXIS_EVENT_ABS_BRAKE  | 游戏手柄BRAKE轴。   | 
+| UI_FOCUS_AXIS_EVENT_ABS_HAT0X  | 游戏手柄HAT0X轴。   | 
+| UI_FOCUS_AXIS_EVENT_ABS_HAT0Y  | 游戏手柄HAT0Y轴。 | 
 
 
 ## 函数说明
@@ -1360,3 +1384,49 @@ int32_t OH_ArkUI_UIInputEvent_GetType (const ArkUI_UIInputEvent * event)
 **返回：**
 
 返回当前UI输入事件的类型，如果参数异常则返回0。
+
+
+### OH_ArkUI_FocusAxisEvent_SetStopPropagation()
+
+```
+double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event， int32_t axis)
+```
+**描述：**
+
+获取焦点轴事件的轴值。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| axis | 焦点轴事件的轴类型。  | 
+
+**返回：**
+
+返回焦点轴事件的轴值，如果参数异常则返回0.0。
+
+
+### OH_ArkUI_FocusAxisEvent_SetStopPropagation()
+
+```
+int32_t OH_ArkUI_FocusAxisEvent_SetStopPropagation (const ArkUI_UIInputEvent * event， bool stopPropagation)
+```
+**描述：**
+
+设置是否阻止焦点轴事件冒泡。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| stopPropagation | 是否阻止事件冒泡。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
