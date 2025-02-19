@@ -1057,7 +1057,7 @@ Error: verify code signature failed.
 
 1. 安装最新版本DevEco Studio，重新签名。
 
-
+<!--Del-->
 ### 9568257 验证pkcs7文件失败
 **错误信息**
 
@@ -1068,13 +1068,14 @@ Error: fail to verify pkcs7 file.
 验证pkcs7文件失败。
 
 **可能原因**
-<!--RP3-->
-应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。<!--RP3End-->
+
+应用当前使用的签名不符合HarmonyOS应用签名要求。
 
 **处理步骤**
 
-1. 在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
+在为应用/服务签名时勾选“Support HarmonyOS”，完成HarmonyOS应用签名后再次启动调试或运行应用。  
 ![示例图](figures/zh-cn_image_9868257_1.png)
+<!--DelEnd-->
 
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
