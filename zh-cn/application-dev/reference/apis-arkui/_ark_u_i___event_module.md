@@ -94,6 +94,8 @@
 | int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取功能键按压状态。报错信息请参考以下错误码。支持功能键 'Ctrl'\|'Alt'\|'Shift'\|'Fn'，设备外接带Fn键的键盘不支持Fn键查询。  | 
+| double [OH_ArkUI_FocusAxisEvent_GetAxisValue](#oh_arkui_focusaxisevent_getaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t \*axis) | 获取焦点轴事件的轴值。  | 
+| int32_t [OH_ArkUI_FocusAxisEvent_SetStopPropagation](#oh_arkui_focusaxisevent_setstoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool \*stopPropagation) | 设置是否阻止焦点轴事件冒泡。  | 
 
 
 ## 类型定义说明
@@ -1433,7 +1435,7 @@ int32_t OH_ArkUI_UIInputEvent_GetType (const ArkUI_UIInputEvent * event)
 返回当前UI输入事件的类型，如果参数异常则返回0。
 
 
-### OH_ArkUI_FocusAxisEvent_SetStopPropagation()
+### OH_ArkUI_FocusAxisEvent_GetAxisValue()
 
 ```
 double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event， int32_t axis)
