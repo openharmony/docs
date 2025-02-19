@@ -1086,7 +1086,7 @@ OH_AVScreenCaptureConfig结构体变量的所有内存字节均设置为0，然�
 音频采样参数结构体[OH_AudioCaptureInfo](#oh_audiocaptureinfo)，若audioSampleRate和audioChannels同时为0，
 则录屏实例OH_AVScreenCapture将忽略该类型的音频参数，且不采集该类型的音频数据。
 
-视频采样参数结构体[OH_AudioCaptureInfo](#oh_audiocaptureinfo)，若videoFrameWidth和videoFrameHeight同时为0，
+视频采样参数结构体[OH_VideoCaptureInfo](#oh_videocaptureinfo)，若videoFrameWidth和videoFrameHeight同时为0，
 则录屏实例OH_AVScreenCapture将忽略对应视频参数，且不采集屏幕数据。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
@@ -1741,6 +1741,8 @@ OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetMaxVideoFrameRate (struct OH_A
 ```
 **描述**
 设置录屏的最大帧率。
+
+该接口应在录屏启动之后被调用。
 
 调用该方法可以设置录屏时的最大帧率，frameRate为想要设置的最大帧率。
 

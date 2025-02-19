@@ -17,8 +17,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) [colorFormat](#colorformat) | 描述位图像素的存储格式 | 
-| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) [alphaFormat](#alphaformat) | 描述位图像素的透明度分量 | 
+| [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) [colorFormat](#colorformat) | 描述位图像素的存储格式。 | 
+| [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) [alphaFormat](#alphaformat) | 描述位图像素的透明度分量。 | 
 
 
 ## 结构体成员变量说明

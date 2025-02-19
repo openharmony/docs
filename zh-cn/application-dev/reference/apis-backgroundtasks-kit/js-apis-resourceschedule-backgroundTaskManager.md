@@ -726,17 +726,12 @@ on(type: 'continuousTaskCancel', callback: Callback&lt;ContinuousTaskCancelInfo&
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Internal transaction failed. |
-| 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
-| 18700001 | Caller information verification failed for an energy resource request. |
+| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Register a exist callback type; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -779,17 +774,12 @@ off(type: 'continuousTaskCancel', callback?: Callback&lt;ContinuousTaskCancelInf
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
-| 9800002 | Parcel operation failed. |
-| 9800003 | Internal transaction failed. |
-| 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
-| 18700001 | Caller information verification failed for an energy resource request. |
+| 401 | Parameter error. Possible causes: 1. Callback parameter error; 2. Unregister type has not register; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -848,12 +838,12 @@ export default class EntryAbility extends UIAbility {
 
 **系统能力:** SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-| 名称             | 类型     | 必填   | 说明                                       |
-| --------------- | ------ | ---- | ---------------------------------------- |
-| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 是    | 长时任务通知的渠道类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 是    | 长时任务通知的内容类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| notificationId | number | 是    | 长时任务通知 Id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| continuousTaskId<sup>15+</sup> | number | 是    | 长时任务 Id。|
+| 名称             | 类型     | 只读     | 可选   | 说明                                       |
+| --------------- | ------ | ---- | ---- | ---------------------------------------- |
+| slotType       | [notificationManager.SlotType](../apis-notification-kit/js-apis-notificationManager.md#slottype) | 否    | 否    | 长时任务通知的渠道类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| contentType | [notificationManager.ContentType](../apis-notification-kit/js-apis-notificationManager.md#contenttype) | 否    | 否    | 长时任务通知的内容类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| notificationId | number | 否    | 否    | 长时任务通知 Id。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| continuousTaskId<sup>15+</sup> | number | 否    | 是    | 长时任务 Id。|
 
 ## ContinuousTaskCancelInfo<sup>15+</sup>
 

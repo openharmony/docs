@@ -98,7 +98,7 @@ constructor(options: ProgressButtonV2ColorOptions);
 | backgroundColor | ColorMetrics | 否 | 按钮背景颜色。<br/>默认值：undefined |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-universal-events-click.md)
 
 ## 示例
 
@@ -114,7 +114,6 @@ struct Index {
   @Local ButtonWidth: LengthMetrics = LengthMetrics.vp(200);
   @Local isRunning: boolean = false;
   @Local enableState: boolean = true;
-  @Local value: number = 0;
 
   build() {
     Column() {

@@ -42,7 +42,7 @@ If an unexpected behavior occurs during the running of the application, locate t
 
 2. Q: The application crashes when the native function injected during JSVM initialization is executed by JS.
 
-   A: Check whether **JSVM_CallbackStruce** is a variable in the stack. When **JSVM_CallbackStruct** is used across functions, the lifecycle of **JSVM_CallbackStruct** must be greater than that of **JSVM_Env**.
+   A: Check whether **JSVM_CallbackStruct** is a variable in the stack. When **JSVM_CallbackStruct** is used across functions, the lifecycle of **JSVM_CallbackStruct** must be greater than that of **JSVM_Env**.
 
    ```
    func {

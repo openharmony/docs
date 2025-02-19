@@ -1348,6 +1348,7 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
@@ -2084,6 +2085,19 @@
         - [访问控制错误码](reference/apis-ability-kit/errorcode-access-token.md)
         - [锁屏敏感数据管理错误码](reference/apis-ability-kit/errorcode-screenLockFileManager.md)
         - [应用域名校验错误码](reference/apis-ability-kit/errorcode-appDomainVerify.md)
+    - Accessibility Kit（无障碍开发服务）<!--accessibility-api-->
+      - ArkTS API<!--accessibility-arkts--> 
+        - [@ohos.accessibility (辅助功能)](reference/apis-accessibility-kit/js-apis-accessibility.md)
+        - [@ohos.accessibility.GesturePath (手势路径)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePath.md)
+        - [@ohos.accessibility.GesturePoint (手势触摸点)](reference/apis-accessibility-kit/js-apis-accessibility-GesturePoint.md)
+        - [@ohos.application.AccessibilityExtensionAbility (辅助功能扩展能力)](reference/apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)
+        - [AccessibilityExtensionContext (辅助功能扩展上下文)](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)
+        <!--Del-->
+        - [@ohos.accessibility.config (系统辅助功能配置)(系统接口)](reference/apis-accessibility-kit/js-apis-accessibility-config-sys.md)
+        - [AccessibilityExtensionContext (辅助功能扩展上下文)(系统接口)](reference/apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext-sys.md)
+        <!--DelEnd-->
+      - 错误码<!--accessibility-arkts-errcode--> 
+        - [无障碍子系统错误码](reference/apis-accessibility-kit/errorcode-accessibility.md)
     - ArkData（方舟数据管理）<!--arkdata-api-->
       - ArkTS API<!--arkdata-arkts-->
         - [@ohos.data.commonType (数据通用类型)](reference/apis-arkdata/js-apis-data-commonType.md)
@@ -2837,6 +2851,7 @@
           - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
           - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
           - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
+          - [oh_window.h](reference/apis-arkui/oh__window_8h.md)
           - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
           - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
           - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
@@ -2880,6 +2895,9 @@
           - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
           - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
           - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
+          - [WindowManager_AvoidArea](reference/apis-arkui/_window_manager___avoid_area.md)
+          - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
+          - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)

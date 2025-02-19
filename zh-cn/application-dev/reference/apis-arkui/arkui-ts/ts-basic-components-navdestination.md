@@ -263,7 +263,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
 > **说明：**
 >
@@ -283,7 +283,7 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 ### bindToNestedScrollable<sup>14+</sup>
 bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
-绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
 > **说明：**
 >
@@ -458,11 +458,26 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### onResult<sup>16+</sup>
+### onResult<sup>15+</sup>
 
 onResult(callback:&nbsp;Optional\<Callback\<ESObject\>\>)
 
 NavDestination返回时触发该回调。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
+
+### onActive<sup>16+</sup>
+
+onActive(callback:&nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
+
+NavDestination处于激活态（处于栈顶可操作，且上层无特殊组件遮挡）时，触发该回调。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -471,7 +486,22 @@ NavDestination返回时触发该回调。
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ---- | ---------------- |
-|callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason16)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
+
+### onInactive<sup>16+</sup>
+
+onInactive(callback: &nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
+
+NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶时上层有特殊组件遮挡）时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason16)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
 
 ## NavDestinationCommonTitle
 
@@ -544,6 +574,22 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | ----  | ---   | ---- |----- |
 | parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
 | child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
+
+### NavDestinationActiveReason<sup>16+</sup>
+
+NavDestination激活态或者非激活态变化的原因。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明                                     |
+| ---- | ---------------------------------------- |
+| TRANSITION | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
+| CONTENT_COVER | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
+| SHEET | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
+| DIALOG | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
+| APP_STATE_CHANGE | 通过前后台切换使NavDestination激活态发生变化。 |
 
 ## NavDestinationTransition<sup>15+</sup>
 
