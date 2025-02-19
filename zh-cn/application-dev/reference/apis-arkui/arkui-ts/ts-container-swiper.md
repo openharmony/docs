@@ -234,6 +234,25 @@ cachedCount(value: number)
 | ------ | ------ | ---- | -------------------------------- |
 | value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
 
+### cachedCount<sup>15+</sup>
+
+cachedCount(count: number, isShown: boolean)
+
+设置预加载子组件个数。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                             |
+| ------ | ------ | ---- | -------------------------------- |
+| count  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
+| isShown  | boolean | 是   | 预加载范围内的节点是否全部进行绘制，不下渲染树。<br/>默认值：false |
+
 ### disableSwipe<sup>8+</sup>
 
 disableSwipe(value: boolean)
