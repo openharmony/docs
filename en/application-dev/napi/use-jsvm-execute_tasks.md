@@ -20,6 +20,7 @@ JSVM-API provides APIs for processing and dispatching the tasks that are queued 
 ## Example
 
 If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in task queue development.
+
 ### OH_JSVM_PumpMessageLoop and OH_JSVM_PerformMicrotaskCheckpoint
 
 Call **OH_JSVM_PumpMessageLoop** to start running a task queue.
