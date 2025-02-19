@@ -65,13 +65,15 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称           | 类型                               | 只读 | 可选 | 说明        |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | 是   | 否   | 相机id。|
-| cameraPosition | [CameraPosition](#cameraposition) | 是   | 否   | 相机位置。    |
-| cameraType     | [CameraType](#cameratype)         | 是   | 否   | 相机类型。    |
-| connectionType | [ConnectionType](#connectiontype) | 是   | 否   | 相机连接类型。 |
-| cameraOrientation<sup>12+</sup> | number | 是   | 否   | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
+| 名称                              | 类型                                  | 只读 | 可选 | 说明        |
+|---------------------------------|-------------------------------------| ---- |----|---------- |
+| cameraId                        | string                              | 是   | 否  | 相机id。|
+| cameraPosition                  | [CameraPosition](#cameraposition)   | 是   | 否  | 相机位置。    |
+| cameraType                      | [CameraType](#cameratype)           | 是   | 否  | 相机类型。    |
+| connectionType                  | [ConnectionType](#connectiontype)   | 是   | 否  | 相机连接类型。 |
+| cameraOrientation<sup>12+</sup> | number                              | 是   | 否  | 镜头的安装角度，不会随着屏幕旋转而改变，取值范围为0°-360°。 |
+| hostDeviceName<sup>15+</sup>    | string                              | 是   | 否  | 远端设备名称。 |
+| hostDeviceType<sup>15+</sup>    | [HostDeviceType](#hostdevicetype15) | 是   | 否  | 远端设备类型。 |
 
 ## CameraPosition
 
@@ -113,6 +115,18 @@ function getCameraManager(context: common.BaseContext): camera.CameraManager | u
 | CAMERA_CONNECTION_BUILT_IN   | 0    | 内置相机。      |
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | USB连接的相机。 |
 | CAMERA_CONNECTION_REMOTE     | 2    | 远程连接的相机。 |
+
+## HostDeviceType<sup>15+</sup>
+
+枚举，远端相机设备类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                          | 值       | 说明      |
+| ---------------------------- | ----     |---------|
+| UNKNOWN_TYPE                 | 0        | 未知设备类型。 |
+| PHONE                        | 0x0E     | 手机设备。   |
+| TABLET                       | 0x11     | 平板设备。   |
 
 ## CameraStatus
 
