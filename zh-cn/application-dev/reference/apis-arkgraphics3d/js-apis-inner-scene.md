@@ -10,7 +10,7 @@ import { SceneResourceParameters, SceneNodeParameters, SceneResourceFactory, Sce
 ```
 
 ## SceneResourceParameters
-场景资源参数对象。包含name和uri。用于提供场景资源的名称以及3D场景所需的资源文件路径。
+场景资源参数对象，包含name和uri，用于提供场景资源的名称以及3D场景所需的资源文件路径。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 | 名称 | 类型 | 只读 | 可选 | 说明 |
@@ -74,7 +74,7 @@ function createNodePromise() : Promise<Node> {
 ### createCamera
 createCamera(params: SceneNodeParameters): Promise\<Camera>
 
-根据结点参数创建相机, 使用Promise异步回调。
+根据结点参数创建相机，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -110,7 +110,7 @@ function createCameraPromise() : Promise<Camera> {
 ### createLight
 createLight(params: SceneNodeParameters, lightType: LightType): Promise\<Light>
 
-根据结点参数和灯光类型创建灯光, 使用Promise异步回调。
+根据结点参数和灯光类型创建灯光，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -147,7 +147,7 @@ function createLightPromise() : Promise<Light> {
 ### createNode
 createNode(params: SceneNodeParameters): Promise\<Node>
 
-创建结点, 使用Promise异步回调。
+创建结点，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -221,7 +221,7 @@ function createMaterialPromise() : Promise<Material> {
 ### createShader
 createShader(params: SceneResourceParameters): Promise\<Shader>
 
-根据场景资源参数创建着色器, 使用Promise异步回调。
+根据场景资源参数创建着色器，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -259,7 +259,7 @@ function createShaderPromise() : Promise<Shader> {
 ### createImage
 createImage(params: SceneResourceParameters): Promise\<Image>
 
-创建图片资源, 使用Promise异步回调。
+创建图片资源，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -295,7 +295,7 @@ function createImagePromise() : Promise<Image> {
 ### createEnvironment
 createEnvironment(params: SceneResourceParameters): Promise\<Environment>
 
-根据场景资源参数创建环境, 使用Promise异步回调。
+根据场景资源参数创建环境，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -331,7 +331,7 @@ function createEnvironmentPromise() : Promise<Environment> {
 ### createGeometry<sup>16+</sup>
 createGeometry(params: SceneNodeParameters, mesh:MeshResource): Promise\<Geometry>
 
-根据场景结点参数和网格数据创建几何对象, 使用Promise异步回调。
+根据场景结点参数和网格数据创建几何对象，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -373,7 +373,7 @@ function createGeometryPromise() : Promise<Geometry> {
 ### createMesh<sup>16+</sup>
 createMesh(params: SceneResourceParameters, geometry: GeometryDefinition): Promise\<MeshResource>
 
-根据场景资源参数和几何定义创建网格, 使用Promise异步回调。
+根据场景资源参数和几何定义创建网格，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -414,7 +414,7 @@ function createMeshPromise() : Promise<MeshResource> {
 ### createScene<sup>16+</sup>
 createScene(uri?: ResourceStr): Promise\<Scene>
 
-根据资源参数创建场景, 使用Promise异步回调。
+根据资源参数创建场景，使用Promise异步回调。
 
 **系统能力：** SystemCapability.ArkUi.Graphics3D
 
@@ -467,7 +467,7 @@ function createScenePromise() : Promise<Scene> {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ---- | ---- | ---- | ---- | ---- |
 | environment | [Environment](js-apis-inner-scene-resources.md#environment) | 否 | 否 | 环境对象。 |
-| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 否 | 动画数组。 用于保存3D场景中的动画对象。|
+| animations | [Animation](js-apis-inner-scene-resources.md#animation)[] | 是 | 否 | 动画数组，用于保存3D场景中的动画对象。|
 | root | [Node](js-apis-inner-scene-nodes.md#node) \| null | 是 | 否 | 3D场景树根结点。 |
 
 ### load
