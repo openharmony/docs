@@ -189,3 +189,42 @@ MenuItem组件
 **适配指导**
 
 默认效果变更，无需适配。
+
+## cl.arkui.6 Toast新增与软键盘最小8vp间距
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+优化Toast的避让行为，增强用户体验。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：Toast与软键盘无最小间距。
+
+- 变更后：Toast与软键盘保持至少8vp间距。
+
+| 变更前 | 变更后 |
+|---------|---------|
+|![变更前](figures/toast/toast-avoid-before.png)       |![变更后](figures/toast/toast-avoid-after.png)  |
+
+
+**起始API Level**
+
+API 9
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**变更的接口/组件**
+
+promptAction.showToast, promptAction.openToast
+
+**适配指导**
+
+默认行为变更，无需适配。
