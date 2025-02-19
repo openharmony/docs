@@ -405,6 +405,16 @@
 
 **起始版本**：16
 
+## ohos.permission.USE_FRAUD_APP_PICKER
+
+允许应用使用诈骗应用选择器，获取应用信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**起始版本**：16
+
 ## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 允许系统JS引擎申请带MAP_FORT标识的匿名可执行内存。
