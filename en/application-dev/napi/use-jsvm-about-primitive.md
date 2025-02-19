@@ -69,7 +69,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(coerceToBool("123"))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 SVM OH_JSVM_CoerceToBool success:1
 ```
@@ -115,7 +115,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(coerceToNumber(true))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_CoerceToNumber success:1
 ```
@@ -160,7 +160,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(coerceToObject(123))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_CoerceToObject success
 ```
@@ -205,7 +205,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(coerceToString(22222))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_CoerceToString success
 ```
@@ -263,7 +263,7 @@ const char *srcCallNative1 = R"JS(getBoolean(1, 2))JS";
 const char *srcCallNative2 = R"JS(getBoolean(1, 1))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_CoerceToNumber success:0
 JSVM resultType equal
@@ -315,7 +315,7 @@ const char *srcCallNative = R"JS(getValueBool(true))JS";
 const char *srcCallNative = R"JS(getValueBool(false))JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_GetValueBool fail:7
 JSVM OH_JSVM_GetValueBool success:1
@@ -362,7 +362,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getGlobal())JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_GetGlobal success
 ```
@@ -402,7 +402,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getNull())JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_GetNull success
 ```
@@ -448,7 +448,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char *srcCallNative = R"JS(getUndefined())JS";
 ```
 
-Expected Result
+Expected result:
 ```
 JSVM OH_JSVM_GetUndefined success
 ```
