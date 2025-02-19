@@ -714,7 +714,29 @@
 
 **取值：** "usual.event.EXIT_FORCE_SLEEP"
 
+### COMMON_EVENT_ENTER_HIBERNATE<sup>15+<sup>
 
+表示设备即将进入休眠模式的公共事件的动作。
+
+当设备即将进入休眠模式时，将会触发事件通知服务发布该系统公共事件。所有订阅者必须在1秒钟内处理该事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.ENTER_HIBERNATE"
+
+### COMMON_EVENT_EXIT_HIBERNATE<sup>15+<sup>
+
+表示设备退出休眠模式的公共事件的动作。
+
+当设备退出休眠模式时，将会触发事件通知服务发布该系统公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**订阅者所需权限：** 无
+
+**取值：** "usual.event.EXIT_HIBERNATE"
 
 
 

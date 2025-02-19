@@ -1457,6 +1457,18 @@
 
 **起始版本**：7
 
+### ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+允许应用管理Wi-Fi的连接。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15
+
 ### ohos.permission.MANAGE_WIFI_CONNECTION
 
 允许应用管理Wi-Fi的连接。
@@ -4712,3 +4724,15 @@
 **ACL使能**：true
 
 **起始版本**：14
+
+### ohos.permission.EXEMPT_CAPTURE_SCREEN_AUTHORIZE
+
+允许应用发起录屏的时候，不弹出隐私授权弹窗。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：true
+
+**起始版本**：15

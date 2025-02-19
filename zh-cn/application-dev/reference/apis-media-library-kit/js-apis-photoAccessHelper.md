@@ -3770,8 +3770,6 @@ setOrientation(orientation: number): void
 
 修改图片的旋转角度。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -3787,6 +3785,7 @@ setOrientation(orientation: number): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  Internal system error.         |
 
 **示例：**
 
@@ -5390,9 +5389,9 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。  |
-| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。    |
-| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。  |
+| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。  |
 
 ## MediaAssetProgressHandler<sup>15+</sup>
 

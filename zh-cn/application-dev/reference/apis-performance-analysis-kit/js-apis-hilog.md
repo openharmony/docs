@@ -225,6 +225,44 @@ hilog.fatal(0x0001, "testTag", "%{public}s World %{private}d", "hello", 3);
 08-05 12:21:47.579  2695 2703 F A00001/testTag: hello World <private>
 ```
 
+## hilog.setMinLogLevel<sup>15+</sup>
+
+setMinLogLevel(level: LogLevel): void;
+
+设置应用日志打印的最低日志级别，进程在打印日志时，需要同时校验该日志级别和全局日志级别，所以设置的日志级别不能低于全局日志级别，[全局日志级别](../../dfx/hilog.md#查看和设置日志级别)默认为Info。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.HiviewDFX.HiLog
+
+**参数：**
+
+| 参数名 | 类型                  | 必填 | 说明                                                         |
+| ------ | --------------------- | ---- | ------------------------------------------------------------ |
+| level  | [LogLevel](#loglevel) | 是   | 日志级别。                                                   |
+
+**示例：**
+
+打印5条不同级别的hilog日志，在打印过程中调用两次setMinLogLevel接口：
+
+```js
+hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 1);
+hilog.setMinLogLevel(hilog.LogLevel.WARN);
+hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 2);
+hilog.error(0x0001, 'testTag', 'this is an error level log, id: %{public}d', 3);
+hilog.setMinLogLevel(hilog.LogLevel.DEBUG);
+hilog.debug(0x0001, "testTag", 'this is a debug level log, id: %{public}d', 4);
+hilog.info(0x0001, "testTag", 'this is an info level log, id: %{public}d', 5);
+```
+
+全局日志默认级别为Info，第一条日志可以正常打印，在设置进程最低可打印日志级别为Warn后，第二条日志不符合该日志级别，第二条日志打印失败，第三条日志可以正常打印，在设置进程最低日志级别为Debug后，但是全局默认日志级别为Info，所以第四条日志不满足全局日志级别，打印失败，第五条日志可以打印，结果如下所示：
+
+```
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 1
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  E     this is an error level log, id: 3
+08-07 23:50:01.532   13694-13694   A00001/testTag                  com.example.hilogemo  I     this is an info level log, id: 5
+```
+
 ## 参数格式符
 
 上述接口中，日志打印的格式化参数需按照如下格式打印：

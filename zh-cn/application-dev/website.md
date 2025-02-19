@@ -365,6 +365,7 @@
             - [全局配置项功能场景](arkts-utils/global-configuration-guide.md)
             - [ArkUI数据更新场景](arkts-utils/makeobserved-sendable.md)
             - [C++线程间数据共享场景](arkts-utils/native-interthread-shared.md)
+            - [ArkUI瀑布流渲染场景](arkts-utils/taskpool-waterflow.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -604,6 +605,9 @@
         - [屏幕管理简介](displaymanager/displayManager-overview.md)
         - [使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](displaymanager/native-display-manager.md)
         - [使用Display实现屏幕属性获取及状态监听 (ArkTS)](displaymanager/screenProperty-guideline.md)
+        <!--Del-->
+        - [虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](displaymanager/virtualScreen-guideline.md)
+        <!--DelEnd-->
     - ArkWeb（方舟Web）<!--arkweb-->
       - [ArkWeb简介](web/web-component-overview.md)
       - [ArkWeb进程](web/web_component_process.md)
@@ -758,6 +762,7 @@
       - [切换输入法应用](inputmethod/switch-inputmehod-guide.md)
       - [输入法子类型开发指南](inputmethod/input-method-subtype-guide.md)
       - [在自绘编辑框中使用输入法 (C/C++)](inputmethod/use-inputmethod-in-custom-edit-box-ndk.md)
+      - [输入法应用沉浸模式](inputmethod/inputmethod-immersive-mode-guide.md)
     - IPC Kit（进程间通信服务）<!--ipc-kit-->
       - [IPC Kit简介](ipc/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](ipc/ipc-rpc-development-guideline.md)
@@ -865,10 +870,10 @@
             - [随机生成非对称密钥对(C/C++)](security/CryptoArchitectureKit/crypto-generate-asym-key-pair-randomly-ndk.md)
             - [指定二进制数据转换非对称密钥对(ArkTS)](security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair.md)
             - [指定二进制数据转换非对称密钥对(C/C++)](security/CryptoArchitectureKit/crypto-convert-binary-data-to-asym-key-pair-ndk.md)
-            - [指定密钥参数生成非对称密钥对](security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec.md)
+            - [指定密钥参数生成非对称密钥对(ArkTS)](security/CryptoArchitectureKit/crypto-generate-asym-key-pair-from-key-spec.md)
             - [使用ECC压缩/非压缩公钥格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey.md)
             - [使用ECC压缩/非压缩公钥格式转换(C/C++)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-pubkey-ndk.md)
-            - [使用ECC压缩/非压缩点格式转换](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
+            - [使用ECC压缩/非压缩点格式转换(ArkTS)](security/CryptoArchitectureKit/crypto-convert-compressed-or-uncompressed-ECC-point.md)
             - [指定PEM格式字符串数据转换非对称密钥对(ArkTS)](security/CryptoArchitectureKit/crypto-convert-string-data-to-asym-key-pair.md)
             - [指定PEM格式字符串数据转换非对称密钥对(C/C++)](security/CryptoArchitectureKit/crypto-convert-string-data-to-asym-key-pair-ndk.md)
         - 加解密<!--crypto-encryption-decryption-->
@@ -927,8 +932,10 @@
         - 消息摘要计算<!--crypto-generate-message-->
           - [消息摘要计算介绍及算法规格](security/CryptoArchitectureKit/crypto-generate-message-digest-overview.md)
           - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
-            - [消息摘要计算(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
-            - [消息摘要计算(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+            - [消息摘要计算SHA256(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest.md)
+            - [消息摘要计算SHA256(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-ndk.md)
+            - [消息摘要计算MD5(ArkTS)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5.md)
+            - [消息摘要计算MD5(C/C++)](security/CryptoArchitectureKit/crypto-generate-message-digest-md5-ndk.md)
         - [消息认证码计算](security/CryptoArchitectureKit/crypto-compute-mac.md)
         - [安全随机数生成](security/CryptoArchitectureKit/crypto-generate-random-number.md)
         - 密钥派生<!--crypto-key-derivation-->
@@ -1073,6 +1080,7 @@
             - [网络连接管理](network/net-connection-manager.md)
             - [NetConnection开发指导(C/C++)](network/native-netmanager-guidelines.md)
             - [流量管理](network/net-statistics.md)
+            - [VPN应用开发指南](network/net-vpnExtension.md)
           <!--Del-->
             - [网络防火墙（仅对系统应用开放）](network/net-netfirewall.md)
             - [网络共享（仅对系统应用开放）](network/net-sharing.md)
@@ -1102,10 +1110,10 @@
         - 账号管理<!--account-management-->
           <!--Del-->
           - [账号管理概述](basic-services/account/account-overview.md)
-          - 系统账号 <!--os-account-->
-            - [管理系统账号（仅对系统应用开放）](basic-services/account/manage-os-account.md)
+          - 系统账号（仅对系统应用开放）<!--os-account-->
+            - [管理系统账号](basic-services/account/manage-os-account.md)
             - [使用约束管控系统账号](basic-services/account/control-os-account-by-constraints.md)
-            - [管理系统账号凭据（仅对系统应用开放）](basic-services/account/manage-os-account-credential.md)
+            - [管理系统账号凭据](basic-services/account/manage-os-account-credential.md)
           - 域账号（仅对系统应用开放）<!--domain-account-->
             - [管理域账号](basic-services/account/manage-domain-account.md)
             - [认证域账号](basic-services/account/auth-domain-account.md)
@@ -1267,7 +1275,7 @@
           - [toybox工具](tools/toybox.md)
           - [mediatool工具](tools/mediatool.md)
           - [devicedebug工具](tools/devicedebug-tool.md)
-          - [rawheap_translator工具](tools/rawheap-translator.md)
+          - [rawheap-translator工具](tools/rawheap-translator.md)
   - 媒体<!--media-->
     - Audio Kit（音频服务）<!--audio-kit-->
       - [Audio Kit简介](media/audio/audio-kit-intro.md)
@@ -1320,6 +1328,7 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
@@ -1429,7 +1438,7 @@
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
           - [使用AVPlayer播放视频(ArkTS)](media/media/video-playback.md)
-          - [使用AVPlayer设置播放URL](media/media/playback-url-setting-method.md)
+          - [使用AVPlayer设置播放URL(ArkTS)](media/media/playback-url-setting-method.md)
           - [使用AVPlayer播放流媒体(ArkTS)](media/media/streaming-media-playback-development-guide.md)
           - [使用AVPlayer添加视频外挂字幕(ArkTS)](media/media/video-subtitle.md)
           - [使用SoundPool播放短音频(ArkTS)](media/media/using-soundpool-for-playback.md)
@@ -1667,7 +1676,7 @@
               - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](napi/use-jsvm-runtime-task.md)
               - [使用 code cache 加速编译](napi/use-jsvm-about-code-cache.md)
               - [JSVM 通用调优实践](napi/jsvm-optimizations.md)
-      - OpenMP支持
+      - OpenMP支持<!--openmp-->
         - [OpenMP简介](napi/openmp-overview.md)
         - [OpenMP应用构建和运行指南](napi/openmp-guideline.md)
       - 资源管理<!--resource-management-->
@@ -1925,6 +1934,7 @@
             - [ContinueCallback(系统接口)](reference/apis-ability-kit/js-apis-inner-application-continueCallback-sys.md)
             - [ContinueDeviceInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-continueDeviceInfo-sys.md)
             - [ContinueMissionInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-continueMissionInfo-sys.md)
+            - [CustomData (系统接口)](reference/apis-ability-kit/js-apis-inner-application-customData-sys.md)
             - [ExtensionRunningInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-extensionRunningInfo-sys.md)
             - [MissionCallbacks(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionCallbacks-sys.md)
             - [MissionDeviceInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionDeviceInfo-sys.md)
@@ -1932,8 +1942,11 @@
             - [MissionListener(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionListener-sys.md)
             - [MissionParameter(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionParameter-sys.md)
             - [MissionSnapshot(系统接口)](reference/apis-ability-kit/js-apis-inner-application-missionSnapshot-sys.md)
-            - [MissionSnapshot(系统接口)](reference/apis-ability-kit/js-apis-inner-application-pageNodeInfo-sys.md)
+            - [MultiAppMode (系统接口)](reference/apis-ability-kit/js-apis-inner-application-multiAppMode-sys.md)
             - [PageNodeInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-application-pageNodeInfo-sys.md)
+            - [RunningAppClone (系统接口)](reference/apis-ability-kit/js-apis-inner-application-runningAppClone-sys.md)
+            - [RunningMultiAppInfo (系统接口)](reference/apis-ability-kit/js-apis-inner-application-runningMultiAppInfo-sys.md)
+            - [RunningMultiInstanceInfo (系统接口)](reference/apis-ability-kit/js-apis-inner-application-runningMultiInstanceInfo-sys.md)
             - [ServiceExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-serviceExtensionContext-sys.md)
             - [UIServiceExtensionContext(系统接口)](reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md)
             - [UIServiceHostProxy(系统接口)](reference/apis-ability-kit/js-apis-inner-application-uiservicehostproxy-sys.md)
@@ -1975,6 +1988,9 @@
           - wantAgent<!--wantagent-->
             - [triggerInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo.md)
             - [wantAgentInfo](reference/apis-ability-kit/js-apis-inner-wantAgent-wantAgentInfo.md)
+            <!--Del-->
+            - [TriggerInfo(系统接口)](reference/apis-ability-kit/js-apis-inner-wantAgent-triggerInfo-sys.md)
+            <!--DelEnd-->
         - 已停止维护的接口<!--ability-arkts-dep-->
           - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-ability-dataUriUtils.md)
           - [@ohos.ability.errorCode (ErrorCode)](reference/apis-ability-kit/js-apis-ability-errorCode.md)
@@ -2153,6 +2169,9 @@
         - [@ohos.util.TreeMap (非线性容器TreeMap)](reference/apis-arkts/js-apis-treemap.md)
         - [@ohos.util.TreeSet (非线性容器TreeSet)](reference/apis-arkts/js-apis-treeset.md)
         - [@ohos.worker (启动一个Worker)](reference/apis-arkts/js-apis-worker.md)
+        <!--Del-->
+        - [@ohos.worker (启动一个Worker)(系统接口)](reference/apis-arkts/js-apis-worker-sys.md)
+        <!--DelEnd-->
         - [@ohos.xml (xml解析与生成)](reference/apis-arkts/js-apis-xml.md)
         - 已停止维护的接口<!--arkts-arkts-dep-->
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
@@ -2408,6 +2427,7 @@
           <!--Del-->
           - [Image (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-image-sys.md)
           - [MediaCachedImage (系统接口)](reference/apis-arkui/arkui-ts/ts-basic-components-mediacachedimage-sys.md)
+          - [Video (系统接口)](reference/apis-arkui/arkui-ts/ts-media-components-video-sys.md)
           <!--DelEnd-->
         - 信息展示<!--information-display-->
           - [AlphabetIndexer](reference/apis-arkui/arkui-ts/ts-container-alphabet-indexer.md)
@@ -2529,6 +2549,9 @@
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
+          <!--Del-->
+          - [应用级变量的状态管理（系统接口）](reference/apis-arkui/arkui-ts/ts-state-management-sys.md)
+          <!--DelEnd-->
         - 公共定义<!--common-definitions-->
           - [基础类型定义](reference/apis-arkui/arkui-ts/ts-types.md)
           - [像素单位](reference/apis-arkui/arkui-ts/ts-pixel-units.md)
@@ -2759,6 +2782,7 @@
             - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
             - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
             - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
+            - [oh_window.h](reference/apis-arkui/oh__window_8h.md)
             - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
             - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
             - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
@@ -2799,6 +2823,9 @@
             - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
             - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
             - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
+            - [WindowManager_AvoidArea](reference/apis-arkui/_window_manager___avoid_area.md)
+            - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
+            - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
@@ -3346,8 +3373,8 @@
             - [@ohos.account.distributedAccount (分布式账号管理)](reference/apis-basic-services-kit/js-apis-distributed-account.md)
             - [@ohos.account.osAccount (系统账号管理)](reference/apis-basic-services-kit/js-apis-osAccount.md)
             <!--Del-->
-            - [@ohos.account.distributedAccount (分布式帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
-            - [@ohos.account.osAccount (系统帐号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
+            - [@ohos.account.distributedAccount (分布式账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-distributed-account-sys.md)
+            - [@ohos.account.osAccount (系统账号管理)(系统接口)](reference/apis-basic-services-kit/js-apis-osAccount-sys.md)
             <!--DelEnd-->
           - 设备管理<!--device-management-arkts-->
             - [@ohos.batteryInfo (电量信息)](reference/apis-basic-services-kit/js-apis-battery-info.md)
@@ -4190,7 +4217,7 @@
         - [@ohos.geoLocationManager (位置服务)(系统接口)](reference/apis-location-kit/js-apis-geoLocationManager-sys.md)
         <!--DelEnd-->
         - [@ohos.app.ability.FenceExtensionAbility (FenceExtensionAbility)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)
-        - [@ohos.app.ability.FenceExtensionContext](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
+        - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext.md)
         <!--Del-->
         - [@ohos.app.ability.FenceExtensionContext (FenceExtensionContext系统接口)](reference/apis-location-kit/js-apis-app-ability-FenceExtensionContext-sys.md)
         <!--DelEnd-->
