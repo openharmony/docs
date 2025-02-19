@@ -502,3 +502,18 @@ Allows an application to start the device management service deployment process,
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+Allows an application to obtain the disk hardware information.
+
+This permission is available only to securities applications for securities and stock trading.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
