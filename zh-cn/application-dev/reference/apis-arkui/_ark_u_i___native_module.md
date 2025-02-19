@@ -760,6 +760,7 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | void OH_ArkUI_FocusClear([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext); | 将当前焦点清除到根容器节点。 |
 | void OH_ArkUI_FocusActivate([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool isActive, bool isAutoInactive); | 设置当前界面的焦点激活态，获焦节点显示焦点框。|
 | void OH_ArkUI_FocusSetAutoTransfer([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, bool autoTransfer); | 设置页面切换时，焦点转移行为。 | 
+| void OH_ArkUI_FocusSetKeyProcessingMode([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) uiContext, ArkUI_KeyProcessingMode mode); | 设置按键事件处理的优先级。 | 
 | [ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* [OH_ArkUI_ProgressLinearStyleOption_Create](#oh_arkui_progresslinearstyleoption_create)(void) | 创建线性进度条样式信息。 |
 | void [OH_ArkUI_ProgressLinearStyleOption_Destroy](#oh_arkui_progresslinearstyleoption_destroy)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)* option) | 销毁线性进度条样式信息。 |
 | void [OH_ArkUI_ProgressLinearStyleOption_SetScanEffectEnabled](#oh_arkui_progresslinearstyleoption_setscaneffectenabled)([ArkUI_ProgressLinearStyleOption](#arkui_progresslinearstyleoption)\* option, bool enabled) | 设置线性进度条进度平滑动效的开关。 |
@@ -3533,6 +3534,8 @@ enum ArkUI_NodeEventType
 | NODE_ON_DRAG_END  | 拖拽发起方可通过注册该回调感知拖拽结束后的结果。<br/>触发该事件的条件：用户松手，拖拽行为结束时触发。 事件回调发生时，可从事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中获取[ArkUI_DragEvent](#arkui_dragevent)。 | 
 | NODE_ON_KEY_EVENT  | 绑定该方法的组件获焦后，按键动作触发该回调。<br/>触发该事件的条件 ：由外设键盘等设备与获焦窗口交互触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>14 | 
 | NODE_ON_KEY_PRE_IME  | 绑定该方法的组件获焦后，按键动作在响应输入法前优先触发该回调。<br/>该回调的返回值为true时，视作该按键事件已被消费，后续的事件回调（keyboardShortcut、输入法事件、onKeyEvent）会被拦截，不再触发。 触发该事件的条件 ：由外设键盘等设备与获焦窗口交互触发此回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>14 | 
+| NODE_DISPATCH_KEY_EVENT  | 组件按键事件重新派发事件。当组件节点接收到按键事件时，将触发此回调函数，而非将事件分发给其子节点。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>起始版本：<br/>15 | 
+| NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_EVENT  | 组件可见区域变化事件。<br/>触发该事件的条件：组件可见面积与自身面积的比值接近设置的阈值时触发回调，注册事件前需先使用 NODE_VISIBLE_AREA_APPROXIMATE_CHANGE_RATIO 配置阈值。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含2个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：组件可见面积与自身面积的比值与上次变化相比的情况，变大为1，变小为0。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：触发回调时组件可见面积与自身面积的比值。 <br/>起始版本：<br/>16 | 
 | NODE_TEXT_ON_DETECT_RESULT_UPDATE  | 文本设置TextDataDetectorConfig且识别成功时，触发onDetectResultUpdate回调。<br/>触发该事件的条件：文本设置TextDataDetectorConfig且识别成功后。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)。<br/>[ArkUI_StringAsyncEvent](_ark_u_i___string_async_event.md)中包含1个参数：<br/>**[ArkUI_StringAsyncEvent.pStr](_ark_u_i___string_async_event.md#pstr)**：表示文本识别的结果，Json格式。 | 
 | NODE_IMAGE_ON_COMPLETE  | 图片加载成功事件。<br/>触发该事件的条件 ：图片数据加载成功和解码成功均触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含9个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**：表示加载状态，0表示数据加载成功，1表示解码成功。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[1].f32**：表示图片的宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[2].f32**：表示图片的高度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[3].f32**：表示当前组件的宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[4].f32**：表示当前组件的高度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[5].f32**：图片绘制区域相对组件X轴位置，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[6].f32**：图片绘制区域相对组件Y轴位置，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[7].f32**：图片绘制区域宽度，单位px。<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[8].f32**：图片绘制区域高度，单位px。 | 
 | NODE_IMAGE_ON_ERROR  | 图片加载失败事件。<br/>触发该事件的条件：图片加载异常时触发该回调。<br/>事件回调发生时，事件参数[ArkUI_NodeEvent](#arkui_nodeevent-12)对象中的联合体类型为[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)。<br/>[ArkUI_NodeComponentEvent](_ark_u_i___node_component_event.md)中包含1个参数：<br/>**[ArkUI_NodeComponentEvent.data](_ark_u_i___node_component_event.md#data)[0].i32**错误码信息：<br/>401: 图片路径参数异常，无法获取到图片数据。<br/>103101: 图片格式不支持。 | 
@@ -8917,6 +8920,23 @@ void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTrans
 | uiContext | UI实例对象指针。 | 
 | autoTransfer | 页面切换时，是否转移焦点。 |
 
+### OH_ArkUI_FocusSetKeyProcessingMode()
+```
+void OH_ArkUI_FocusSetKeyProcessingMode(ArkUI_ContextHandle uiContext, ArkUI_KeyProcessingMode mode)
+```
+**描述：**
+
+设置按键事件处理的优先级。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| uiContext | UI实例对象指针。 | 
+| mode | 按键处理模式。 |
+
 ### OH_ArkUI_GestureEvent_GetActionType()
 
 ```
@@ -10520,6 +10540,24 @@ void OH_ArkUI_KeyEvent_StopPropagation (const ArkUI_UIInputEvent * event, bool s
 | event | ArkUI_UIInputEvent事件指针。  | 
 | stopPropagation | 表示是否阻止事件冒泡。  | 
 
+
+### OH_ArkUI_KeyEvent_Dispatch()
+
+```
+void OH_ArkUI_KeyEvent_Dispatch(ArkUI_NodeHandle node, const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+将按键事件分发到特定组件节点。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| node | 需要注册事件的节点对象。  | 
+| event | ArkUI_UIInputEvent事件指针。  | 
 
 ### OH_ArkUI_KeyframeAnimateOption_Create()
 
