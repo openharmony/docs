@@ -3778,14 +3778,14 @@ addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
 **示例：**
 
- ```js
+```js
 import { BusinessError } from '@kit.BasicServicesKit';
-// 获取context
+// 获取context。
 let context = getContext(this) as Context;
 let promise = contact.addContactViaUI(context, contactInfo);
- ```
+```
 
- ## contact.saveToExistingContactViaUI<sup>15+</sup>
+## contact.saveToExistingContactViaUI<sup>15+</sup>
 
 saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
@@ -3823,7 +3823,7 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
-// 获取context
+// 获取context。
 let context = getContext(this) as Context;
 let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 ``` 
@@ -3836,12 +3836,12 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| isMultiSelect <sup>10+</sup>         | boolean | 否   | 是否为多选。     |
-| maxSelectable <sup>15+</sup>         | number | 否   | 联系人选择数量上限。     |
-| isDisplayedByName <sup>15+</sup>         | boolean | 否   | 是否按联系人姓名维度展示。     |
-| filter <sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 联系人查询过滤器。     |
+|                名称               |                  类型                 | 必填  |        说明      |        默认值      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- | ---------------- |
+| isMultiSelect<sup>10+</sup>         | boolean | 否   | 是否为多选。     | false   |
+| maxSelectable<sup>15+</sup>         | number | 否   | 联系人选择数量上限。     | 10000    |
+| isDisplayedByName<sup>15+</sup>         | boolean | 否   | 是否按联系人姓名维度展示。     | false   |
+| filter<sup>15+</sup>         | [ContactSelectionFilter](#contactselectionfilter15) | 否   | 联系人查询过滤器。     | undefined   |
 
 ## ContactSelectionFilter<sup>15+</sup>
 
@@ -3853,8 +3853,8 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterClause <sup>15+</sup>         | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
-| filterType <sup>15+</sup>         | [FilterType](#filtertype15) | 是   | 过滤类型。     |
+| filterClause<sup>15+</sup>         | [FilterClause](#filterclause15) | 是   | 过滤条件。     |
+| filterType<sup>15+</sup>         | [FilterType](#filtertype15) | 是   | 过滤类型。     |
 
 ## FilterType<sup>15+</sup>
 
@@ -3862,7 +3862,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | ---- | ---------------------------------- |
@@ -3878,12 +3878,12 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-|                名称               |                  类型                 | 必填  |        说明      |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id <sup>15+</sup>         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     |
-| name <sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     |
-| dataItem <sup>15+</sup>         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     |
-| focusModeList <sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     |
+|                名称               |                  类型                 | 必填  |        说明      |        默认值      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- | ---------------- |
+| id<sup>15+</sup>         | [FilterOptions](#filteroptions15)[] | 否   | 联系人id。     | undefined     |
+| name<sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 联系人姓名。     | undefined     |
+| dataItem<sup>15+</sup>         | [DataFilter](#datafilter15) | 否   | 联系人数据过滤项。     | undefined     |
+| focusModeList<sup>15+</sup>         | [FilterOptions](#filteroptions15)[]  | 否   | 专注模式。     | undefined     |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3895,8 +3895,8 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterCondition <sup>15+</sup>         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
-| value <sup>15+</sup>         | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
+| filterCondition<sup>15+</sup>         | [FilterCondition](#filtercondition15) | 是   | 过滤条件。     |
+| value<sup>15+</sup>         | string 或 ValueType[] | 否   | 过滤值，默认为undefined。     |
 
 ## FilterCondition<sup>15+</sup>
 
@@ -3904,7 +3904,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | ---- | ---------------------------------- |
@@ -3925,8 +3925,8 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| field <sup>15+</sup>         | [DataField](#datafield15) | 是   | 联系人数据字段。     |
-| options <sup>15+</sup>         | [FilterOptions](#filteroptions15)[] | 是   | 过滤参数。     |
+| field         | [DataField](#datafield15) | 是   | 联系人数据字段。     |
+| options         | [FilterOptions](#filteroptions15)[] | 是   | 过滤参数。     |
 
 ## DataField<sup>15+</sup>
 
@@ -3934,7 +3934,7 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Applications.ContactsData。
+**系统能力**：SystemCapability.Applications.ContactsData
 
 | 名称                  | 值 | 说明                               |
 | --------------------- | --- | ---------------------------------- |
