@@ -5577,7 +5577,7 @@ async function example() {
     fetchColumns: [],
     predicates: new dataSharePredicates.DataSharePredicates()
   };
-  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
+  let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
     await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumType.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
     console.error(TAG, 'No album');
@@ -5646,7 +5646,7 @@ async function example() {
       fetchColumns: [],
       predicates: predicates
     };
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
+    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
       await highlightAlbum.getAssets(fetchOption);
     let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjects();
     let indexes: number[] = [];
