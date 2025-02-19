@@ -10294,7 +10294,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | -------------- | ---- | ---- | ---------------------------------------- |
 | handler | [SslErrorHandler](#sslerrorhandler9) | 是 | 通知Web组件用户操作行为。 |
 | error   | [SslError](#sslerror9枚举说明)           | 是 | 错误码。           |
-| certChainData<sup>14+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
+| certChainData<sup>15+</sup>   | Array<Uint8Array\>           | 否 | 证书链数据。           |
 
 ## OnClientAuthenticationEvent<sup>12+</sup>
 
