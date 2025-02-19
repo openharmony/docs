@@ -506,3 +506,18 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：15
+
+### ohos.permission.ACCESS_DISK_PHY_INFO
+
+允许应用获取硬盘的硬件信息。
+
+仅面向金融证券类应用开放，用于证券、股票交易。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：15
