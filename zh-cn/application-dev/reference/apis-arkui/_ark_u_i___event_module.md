@@ -945,7 +945,7 @@ int32_t OH_ArkUI_PointerEvent_GetChangedPointerId (const ArkUI_UIInputEvent * ev
 
 获取当前触摸事件触发的id。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
