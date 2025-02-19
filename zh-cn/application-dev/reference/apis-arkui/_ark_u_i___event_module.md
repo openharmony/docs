@@ -389,7 +389,7 @@ int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event)
 
 获取当前轴事件的操作类型的值。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
