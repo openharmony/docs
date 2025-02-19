@@ -4852,6 +4852,12 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
 开启子窗口关闭事件的监听。此监听仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
 
+当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
+
+该接口触发的窗口关闭事件监听回调函数是同步执行，子窗口的异步关闭事件监听参考[on('windowWillClose')](#onwindowwillclose15)方法。
+
+如果存在[on('windowWillClose')](#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](#onwindowwillclose15)接口。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -4930,6 +4936,129 @@ try {
   windowClass.off('subWindowClose');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('windowWillClose')<sup>15+</sup>
+
+on(type: 'windowWillClose', callback: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
+
+开启主窗口或子窗口关闭事件的监听。此监听仅能通过系统提供的窗口标题栏关闭按键触发，其余关闭窗口的方式不触发回调。
+
+该接口触发的回调函数是异步执行。子窗口的同步关闭事件监听参考[on('subWindowClose')](#onsubwindowclose12)方法。主窗口的同步关闭事件监听参考[on('windowStageClose')](#onwindowstageclose14)方法。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->  </br>
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowWillClose'，即窗口关闭事件。 |
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | 是   | 回调函数。当点击窗口系统提供的右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有Promise&lt;boolean&gt;类型的返回值。在返回的Promise函数里，执行resolve(true) 方法表示不关闭当前窗口，执行resolve(false) 方法或者reject方法均表示关闭当前窗口。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = () => {
+      // ...
+      return new Promise<boolean>((resolve, reject) => {
+        // 是否关闭该窗口
+        let result: boolean = true;
+        resolve(result);
+      });
+    }
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowWillClose', callback);
+    } catch (exception) {
+      console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### off('windowWillClose')<sup>15+</sup>
+
+off(type: 'windowWillClose', callback?: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
+
+关闭主窗口或子窗口关闭事件的监听。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> </br>
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowWillClose'，即窗口关闭事件。 |
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | 否   | 回调函数。当点击窗口系统提供的右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有Promise&lt;boolean&gt;类型的返回值。在返回的Promise函数里，执行resolve(true) 方法表示不关闭当前窗口，执行resolve(false) 方法或者reject方法均表示关闭当前窗口。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      const callback = () => {
+        // ...
+        return new Promise<boolean>((resolve, reject) => {
+          // 是否关闭该窗口
+          let result: boolean = true;
+          resolve(result);
+        });
+      }
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowWillClose', callback);
+      windowClass.off('windowWillClose', callback);
+      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+      windowClass.off('windowWillClose');
+    } catch (exception) {
+      console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
 }
 ```
 
@@ -11567,6 +11696,12 @@ export default class EntryAbility extends UIAbility {
 on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
 开启点击主窗三键区的关闭按钮监听事件。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonpreparetoterminate10)生命周期回调函数。
+
+当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
+
+触发的回调函数是同步执行，主窗口的异步关闭事件监听参考[on('windowWillClose')](#onwindowwillclose15)方法。
+
+如果存在[on('windowWillClose')](#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](#onwindowwillclose15)接口。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
