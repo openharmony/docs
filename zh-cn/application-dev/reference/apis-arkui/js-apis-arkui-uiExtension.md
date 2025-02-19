@@ -15,6 +15,19 @@ import { uiExtension } from '@kit.ArkUI'
 
 ## WindowProxy
 
+### properties<sup>14+</sup>
+
+组件相关信息。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+### 属性
+
+
+| 名称                                 | 类型                  | 只读 | 可选 | 说明                                                                                                     |
+| ------------------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
+| properties<sup>14+</sup>            | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>**约束：** properties中的uiExtensionHostWindowProxyRect的更新，发生在对应的[UIExtesionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiononcreate)阶段，在开发者主动进行[loadContent](js-apis-window.md#loadContent)，且宿主成功和提供方进程建立好会话连接后，在这之后通过该种方式获取出来的UIExtension的布局信息才是准确的，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiononcreate)阶段同步获取该值，由于架构约束，在宿主和提供方未建立会话时直接获取该值为0，建议在收到[on('windowSizeChange')](js-apis-window.md#on('windowSizeChange'))回调之后获取。                                                                               |
+
 ### getWindowAvoidArea
 
 getWindowAvoidArea(type: window.AvoidAreaType): window.AvoidArea
@@ -303,18 +316,6 @@ export default class EntryAbility extends EmbeddedUIExtensionAbility {
   }
 }
 ```
-
-### properties<sup>14+</sup>
-
-组件相关信息。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-属性
-
-| 名称                     | 类型                  | 只读 | 可选 | 说明                                                                                                     |
-| ------------------------| -------------------------------------------------- | ---- | ---- | ------------------------------------------------------------------------------------------------------ |
-| properties              | [WindowProxyProperties](#windowproxyproperties14) |  否  |  否  | 组件（EmbeddedComponent或UIExtensionComponent）的信息。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。<br/>**约束：** properties中的uiExtensionHostWindowProxyRect的更新，发生在对应的[UIExtesionAbility](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md)的[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiononcreate)阶段，在开发者主动进行[loadContent](js-apis-window.md#loadContent)，且宿主成功和提供方进程建立好会话连接后，在这之后通过该种方式获取出来的UIExtension的布局信息才是准确的，不建议在[onSessionCreate](../apis-ability-kit/js-apis-app-ability-uiExtensionAbility.md#uiextensionabilityonsessiononcreate)阶段同步获取该值，由于架构约束，在宿主和提供方未建立会话时直接获取该值为0，建议在收到[on('windowSizeChange')](js-apis-window.md#on('windowSizeChange'))回调之后获取。                                                                               |
 
 ### createSubWindowWithOptions
 
