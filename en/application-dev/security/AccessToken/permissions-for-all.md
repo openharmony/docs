@@ -389,7 +389,7 @@ Allows an application to use the scam message Picker to obtain SMS messages.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Valid since**: 15
 
 ## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
 
@@ -399,7 +399,7 @@ Allows an application to use the scam call log Picker to obtain call logs.
 
 **Authorization mode**: system_grant
 
-**Valid since**: 16
+**Valid since**: 15
 
 ## ohos.permission.USE_FRAUD_APP_PICKER
 
