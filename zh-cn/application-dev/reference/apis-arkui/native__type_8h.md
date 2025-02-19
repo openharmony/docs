@@ -63,6 +63,7 @@
 | typedef struct [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) [ArkUI_CustomSpanDrawInfo](_ark_u_i___native_module.md#arkui_customspandrawinfo) | 自定义段落组件的绘制信息。  | 
 | typedef struct [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) [ArkUI_SwiperIndicator](_ark_u_i___native_module.md#arkui_swiperindicator) | 定义 Swiper 组件的导航指示器风格。  | 
 | typedef struct [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) [ArkUI_StyledString_Descriptor](_ark_u_i___native_module.md#arkui_styledstring_descriptor) | 定义文本组件支持的属性字符串的数据对象。  | 
+| typedef struct [ArkUI_SnapshotOptions ](_ark_u_i___node_component_snapshot.md#ArkUI_SnapshotOptions) [ArkUI_LayoutConstraint](_ark_u_i___native_module.md#arkui_layoutconstraint) | 组件截图参数。  | 
 
 
 ### 枚举
@@ -354,3 +355,6 @@
 | void [OH_ArkUI_ActiveChildrenInfo_Destroy](_ark_u_i___native_module.md#oh_arkui_activechildreninfo_destroy) (ArkUI_ActiveChildrenInfo \*handle) | 销毁ActiveChildrenInfo实例。  | 
 | [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) [OH_ArkUI_ActiveChildrenInfo_GetNodeByIndex](_ark_u_i___native_module.md#oh_arkui_activechildreninfo_getnodebyindex) (ArkUI_ActiveChildrenInfo \*handle, int32_t index) | 获取ActiveChildrenInfo结构体的下标为index的子节点。  | 
 | int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___native_module.md#oh_arkui_activechildreninfo_getcount) (ArkUI_ActiveChildrenInfo \*handle) | 获取ActiveChildrenInfo结构体内的节点数量。  | 
+| ArkUI_SnapshotOptions* [OH_ArkUI_CreateSnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_CreateSnapshotOptions) () |  创建快照选项。  | 
+| void [OH_ArkUI_DestroySnapshotOptions](_ark_u_i___node_component_snapshot.md#OH_ArkUI_DestroySnapshotOptions) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions) | 销毁快照选项。  | 
+| int32_t [OH_ArkUI_ActiveChildrenInfo_GetCount](_ark_u_i___node_component_snapshot.md#OH_ArkUI_SnapshotOptions_SetScale) ([ArkUI_SnapshotOptions](_ark_u_i___node_component_snapshot#ArkUI_SnapshotOptions)* snapshotOptions, float scale) | 设置快照选项的缩放比例。  | 

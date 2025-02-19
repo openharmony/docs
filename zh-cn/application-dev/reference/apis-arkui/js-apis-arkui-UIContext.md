@@ -7014,6 +7014,51 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
+
+### getBarRect<sup>15+</sup>
+
+getBarRect(): Frame
+
+获取原子化服务menuBar相对窗口的布局信息。
+> **说明：**
+>
+> 布局信息包含了原子化服务menuBar的左右margin。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明            |
+| ----------------- | ------------- |
+| [Frame](./js-apis-arkui-graphics.md#frame) | 原子化服务menuBar的大小和位置。 |
+
+**示例：**
+
+```ts
+import { AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+@Entry
+@Component
+struct Index {
+  build() {
+    Button("getBarRect")
+      .onClick(() => {
+        let uiContext: UIContext = this.getUIContext();
+        let currentBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+        if (currentBar != undefined) {
+          let rect = currentBar.getBarRect();
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully. x:' +
+            rect.x + ' y:' + rect.y + ' width:' + rect.width + ' height:' + rect.height);
+        } else {
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar failed.');
+        }
+      })
+  }
+}
+```
+
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
@@ -7946,6 +7991,197 @@ struct SnapshotExample {
             this.pixmap = pixelmap
           } catch (error) {
             console.error("getSync errorCode: " + error.code + " message: " + error.message)
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getWithUniqueId<sup>15+</sup>
+
+getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。通过Promise返回结果。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public node: FrameNode | null = null;
+
+  public imageNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute.width('100%').height('100%')
+
+    let image = typeNode.createNode(uiContext, 'Image');
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    this.imageNode = image;
+
+    this.node.appendChild(image);
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SnapshotExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        NodeContainer(this.myNodeController).width(200).height(200).margin(5)
+      }
+      Button("UniqueId get snapshot")
+        .onClick(() => {
+          try {
+            this.getUIContext()
+              .getComponentSnapshot()
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .then((pixmap: image.PixelMap) => {
+                this.pixmap = pixmap
+              })
+              .catch((err: Error) => {
+                console.log("error: " + err)
+              })
+          } catch (error) {
+            console.error("UniqueId get snapshot Error: " + JSON.stringify(error))
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getSyncWithUniqueId<sup>15+</sup>
+
+getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): image.PixelMap
+
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public node: FrameNode | null = null;
+
+  public imageNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute.width('100%').height('100%')
+
+    let image = typeNode.createNode(uiContext, 'Image');
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    this.imageNode = image;
+
+    this.node.appendChild(image);
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SnapshotExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        NodeContainer(this.myNodeController).width(200).height(200).margin(5)
+      }
+      Button("UniqueId getSync snapshot")
+        .onClick(() => {
+          try {
+            this.pixmap = this.getUIContext()
+              .getComponentSnapshot()
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+          } catch (error) {
+            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error))
           }
         }).margin(10)
     }

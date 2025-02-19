@@ -82,6 +82,7 @@ onClick(event: (event: ClickEvent) => void): T
 | 名称   | 参数类型                      | 描述         |
 | ---- | ------------------------- | ---------- |
 | area | [Area](ts-types.md#area8) | 目标元素的区域信息。 |
+| id<sup>15+</sup> | [string](ts-universal-attributes-component-id.md) | 开发者设置的节点id。 |
 
 ## 示例
 
@@ -97,22 +98,24 @@ struct ClickExample {
   build() {
     Column() {
       Row({ space: 20 }) {
-        Button('Click').width(100).height(40)
+        Button('Click').width(100).height(40).id('click')
           .onClick((event?: ClickEvent) => {
             if(event){
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
-              + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
-              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-              + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
+                + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
+                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
+                + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
+                + '\n id:'+ event.target.id;
             }
           }, 20)
-        Button('Click').width(200).height(50)
+        Button('Click').width(200).height(50).id('click')
           .onClick((event?: ClickEvent) => {
             if(event){
               this.text = 'Click Point:' + '\n  windowX:' + event.windowX + '\n  windowY:' + event.windowY
-              + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
-              + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
-              + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp;
+                + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
+                + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
+                + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
+                + '\n id:'+ event.target.id;
             }
           }, 20)
       }.margin(20)
@@ -123,5 +126,4 @@ struct ClickExample {
 }
 ```
 
-
-![zh-cn_image_0000001210353788](figures/zh-cn_image_0000001210353788.gif)
+![zh-cn_image_0000001210353788](figures/Event-handling-and-information-display.gif)
