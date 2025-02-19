@@ -5589,9 +5589,9 @@ async function example() {
 }
 ```
 
-### setOrdrtPosition<sup>16+</sup>
+### setOrderPosition<sup>16+</sup>
 
-setOrdrtPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void;
+setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void;
 
 设置智慧相册中资产的顺序位置。
 
@@ -5607,7 +5607,7 @@ setOrdrtPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;)
 | 参数名        | 类型      | 必填   | 说明                                 |
 | ---------- | ------- | ---- | ---------------------------------- |
 | assets | Array&lt;[PhotoAsset](#photoasset)&gt; | 是   | 需要设置顺序位置的相册中资产。 |
-| albums       | Array&lt;number&gt;   | 是    | 相册中资产的顺序位置 |
+| position       | Array&lt;number&gt;   | 是    | 相册中资产的顺序位置 |
 
 **错误码：**
 
@@ -5627,7 +5627,7 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
-    console.info('setOrdrtPosition');
+    console.info('setOrderPosition');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
@@ -5648,17 +5648,17 @@ async function example() {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
       await highlightAlbum.getAssets(fetchOption);
-    let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjecs();
+    let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjects();
     let indexes: number[] = [];
     for (let i = 0; i < assets.length; i++) {
       indexes.push(i);
     }
-    let changeRequest = new photoAccessHelper.MediaAnalysisAlbumChangeRequest(analysisAlbum);
-    changeRequest.setOrdrtPosition(assets, indexes);
+    let changeRequest = new photoAccessHelper.MediaAnalysisAlbumChangeRequest(highlightAlbum);
+    changeRequest.setOrderPosition(assets, indexes);
     await helper.applyChanges(changeRequest);
-    console.info(TAG, `setOrdrtPosition ${indexes}`);
+    console.info(TAG, `setOrderPosition ${indexes}`);
   } catch (err) {
-    console.error(TAG, `setOrdrtPosition error: ${err}`);
+    console.error(TAG, `setOrderPosition error: ${err}`);
   }
 }
 ```
@@ -5666,8 +5666,6 @@ async function example() {
 ## AnalysisAlbum<sup>16+</sup>
 
 智慧相册。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -5710,7 +5708,7 @@ async function example() {
     predicates: new dataSharePredicates.DataSharePredicates()
   };
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumType.HIGHLIGHT, albumFetchOption);
+    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubType.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
     console.error(TAG, 'No album');
     return;
@@ -5721,9 +5719,9 @@ async function example() {
 }
 ```
 
-### getOrdrtPosition<sup>16+</sup>
+### getOrderPosition<sup>16+</sup>
 
-getOrdrtPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;;
+getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;;
 
 获取智慧相册中资产的顺序位置。
 
@@ -5764,32 +5762,33 @@ import { dataSharePredicates } from '@kit.ArkData';
 
 async function example() {
   try {
-    console.info('getOrdrtPosition');
+    console.info('getOrderPosition');
     let helper: photoAccessHelper.PhotoAccessHelper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
     let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: new dataSharePredicates.DataSharePredicates()
     };
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumType.HIGHLIGHT, albumFetchOption);
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubType.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
       console.error(TAG, 'No album');
       return;
     }
     let highlightAlbum: photoAccessHelper.Album = await albumFetchResult.getFirstObject();
     albumFetchResult.close();
-    let predicates = new dataSharePredicates.DataSharePredicates();
+    let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+    let analysisAlbum = new photoAccessHelper.AnalysisAlbum(highlightAlbum);
     const fetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
       predicates: predicates
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = 
       await highlightAlbum.getAssets(fetchOption);
-    let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjecs();
+    let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjects();
     let positions: number[] = await analysisAlbum.getOrderPosition(assets);
-    console.info(TAG, `getOrdrtPosition ${positions}`);
+    console.info(TAG, `getOrderPosition ${positions}`);
   } catch (err) {
-    console.error(TAG, `getOrdrtPosition error: ${err}`);
+    console.error(TAG, `getOrderPosition error: ${err}`);
   }
 }
 ```
