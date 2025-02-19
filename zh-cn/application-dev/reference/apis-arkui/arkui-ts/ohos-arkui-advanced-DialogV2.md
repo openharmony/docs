@@ -6,11 +6,11 @@
 
 > **说明：**
 >
-> 该组件从API Version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 16开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
-    import { TipsDialogV2, SelectDialogV2, ConfirmDialogV2, AlertDialogV2, LoadingDialogV2, CustomContentDialogV2，PopoverDialogV2 } from '@kit.ArkUI'
+    import { TipsDialogV2, SelectDialogV2, ConfirmDialogV2, AlertDialogV2, LoadingDialogV2, CustomContentDialogV2，PopoverDialogV2 } from '@kit.ArkUI';
 
 ## 子组件
 
@@ -28,33 +28,33 @@ TipsDialogV2({imageRes: ResourceStr, imageSize?: SizeOptions, imageBorderColor: 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称               | 类型                                                                                                    | 必填 | 装饰器类型                | 说明                                                            |
-|------------------|-------------------------------------------------------------------------------------------------------|----|----------------------|---------------------------------------------------------------|
-| imageRes         | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是  | @Param<br />@Require | 展示的图片。<br />                                                  |
-| imageSize        | [SizeOptions](ts-types.md#sizeoptions)                                                                | 否  | @Param               | 自定义图片尺寸。<br />默认值：64\*64vp。                                   |
-| imageBorderColor | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)                                                              | 否  | @Param               | 图片描边颜色。<br/>默认值：Color.Black。                                  |
-| imageBorderWidth | [LengthMetrics](js-apis-arkui-graphics.md#LengthMetrics12)                                                            | 否  | @Param               | 图片描边宽度。<br/>默认无描边效果。                                          |
-| title            | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框标题。默认不显示。<br />                                          |
-| content          | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框内容。默认不显示。<br />                                          |
-| checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | checkbox的提示内容。默认不显示。                                          |
-| checked          | boolean                                                                                               | 否  | @Param               | value为true时，表示checkbox已选中，value为false时，表示未选中。<br />默认值：false。 |
-| onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | 否  | @Param               | checkbox的选中状态改变事件。默认无事件。<br />                                |
-| primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框左侧按钮。默认不显示。<br />                                          |
-| secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框右侧按钮。默认不显示。<br />                                          |
+| 名称               | 类型                                                                                                    | 必填 | 装饰器类型                | 说明                                                                 |
+|------------------|-------------------------------------------------------------------------------------------------------|----|----------------------|--------------------------------------------------------------------|
+| imageRes         | [ResourceStr](ts-types.md#resourcestr) \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) | 是  | @Param<br ></div>@Require | 展示的图片。                                                             |
+| imageSize        | [SizeOptions](ts-types.md#sizeoptions)                                                                | 否  | @Param               | 自定义图片尺寸。<br />默认值：64\*64vp。                                        |
+| imageBorderColor | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                                              | 否  | @Param               | 图片描边颜色。<br/>默认值：Color.Black。                                       |
+| imageBorderWidth | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)                                                            | 否  | @Param               | 图片描边宽度。<br/>默认无描边效果。                                               |
+| title            | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框标题。<br ></div>默认不显示。                                          |
+| content          | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 提示弹出框内容。<br ></div>默认不显示。                                          |
+| checkTips        | [ResourceStr](ts-types.md#resourcestr)                                                                | 否  | @Param               | 选择框的提示内容。<br ></div>默认不显示。                                         |
+| checked          | boolean                                                                                               | 否  | @Param               | value为true时，表示选择框已选中。value为false时，表示未选中。<br ></div>默认值：false。 |
+| onCheckedChange  | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange)                                   | 否  | @Param               | 选择框选择框的选中状态改变事件。<br ></div>默认无事件。                                |
+| primaryButton    | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框左侧按钮。<br ></div>默认不显示。                                          |
+| secondaryButton  | [AdvancedDialogV2Button](#advanceddialogv2button)                                                     | 否  | @Param               | 提示框右侧按钮。<br ></div>默认不显示。                                          |
 
 ## AdvancedDialogV2OnCheckedChange
 
 type AdvancedDialogV2OnCheckedChange = (checked: boolean) => void
 
-checkbox选中状态改变事件。
+选择框选中状态改变事件。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型     | 必填 | 说明                                                  |
-| :------ | :----- | :- | :-------------------------------------------------- |
-| checked | number | 是  | checkbox选中状态改变事件的回调。<br />-checked: 表示checkbox选中状态。 |
+| 参数名     | 类型      | 必填 | 说明                                                  |
+| :------ |:--------| :- | :-------------------------------------------------- |
+| checked | boolean | 是  | 选择框选中状态改变事件的回调。<br />-checked: 表示选择框选中状态。 |
 
 ## SelectDialogV2
 
@@ -68,13 +68,13 @@ SelectDialogV2({title: ResourceStr, content?: ResourceStr, selectedIndex?: numbe
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称            | 类型                                                       | 必填 | 说明                                |
-| ------------- | -------------------------------------------------------- | -- | --------------------------------- |
-| title         | [ResourceStr](ts-types.md#resourcestr)                   | 是  | 选择弹出框标题。<br />                    |
-| content       | [ResourceStr](ts-types.md#resourcestr)                   | 否  | 选择弹出框内容。默认不显示。                    |
-| selectedIndex | number                                                   | 否  | 选择弹出框的选中项。<br />默认值：-1。           |
-| confirm       | [AdvacnedDialogV2Button](#advanceddialogv2button)        | 否  | 选择弹出框底部按钮。默认不显示。                  |
-| radioContent  | [SheetInfo](ts-methods-action-sheet.md#sheetinfo对象说明)\[] | 是  | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。 |
+| 名称            | 类型                                                       | 必填 | 装饰器类型               | 说明                                                  |
+| ------------- | -------------------------------------------------------- | -- |---------------------|-----------------------------------------------------|
+| title         | [ResourceStr](ts-types.md#resourcestr)                   | 是  | @Param<br/>@Require | 选择弹出框标题。                                            |
+| content       | [ResourceStr](ts-types.md#resourcestr)                   | 否  | @Param              | 选择弹出框内容。默认不显示。                                      |
+| selectedIndex | number                                                   | 否  | @Parma              | 选择弹出框的选中项。<br />默认值：-1。 <br/>取值范围：小于选择弹出框的子项内容列表长度。 |
+| confirm       | [AdvacnedDialogV2Button](#advanceddialogv2button)        | 否  | @Param              | 选择弹出框底部按钮。<br ></div>默认不显示。                         |
+| radioContent  | [SheetInfo](ts-methods-action-sheet.md#sheetinfo对象说明)\[] | 是  | @Param<br/>@Require | 选择弹出框的子项内容列表，每个选择项支持设置文本和选中的回调事件。                   |
 
 ## ConfirmDialogV2
 
@@ -88,21 +88,21 @@ ConfirmDialogV2({title: ResourceStr, content?: ResourceStr, checkTips?: Resource
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型                                                                  | 必填 | 装饰器类型  | 说明                                                           |
-| --------------- | ------------------------------------------------------------------- | -- | ------ | ------------------------------------------------------------ |
-| title           | [ResourceStr](ts-types.md#resourcestr)                              | 是  | @Param | 确认弹出框标题。                                                     |
-| content         | [ResourceStr](ts-types.md#resourcestr)                              | 否  | @Param | 确认弹出框内容。默认不显示。                                               |
-| checkTips       | [ResourceStr](ts-types.md#resourcestr)                              | 否  | @Param | checkbox的提示内容。默认不显示。                                         |
-| isChecked       | boolean                                                             | 否  | @Param | value为true时，表示checkbox已选中，value为false时，表示未选中。<br />默认值：false |
-| onCheckedChange | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange) | 否  | @Param | checkbox的选中状态改变事件。默认无事件。                                     |
-| primaryButton   | [AdvacnedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认框左侧按钮。默认不显示。                                               |
-| secondaryButton | [AdvacnedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认框右侧按钮。默认不显示。                                               |
+| 名称              | 类型                                                                  | 必填 | 装饰器类型  | 说明                                                         |
+|-----------------| ------------------------------------------------------------------- | -- | ------ |------------------------------------------------------------|
+| title           | [ResourceStr](ts-types.md#resourcestr)                              | 是  | @Param | 确认弹出框标题。                                                   |
+| content         | [ResourceStr](ts-types.md#resourcestr)                              | 否  | @Param | 确认弹出框内容。<br ></div>默认不显示。                                  |
+| checkTips       | [ResourceStr](ts-types.md#resourcestr)                              | 否  | @Param | checkbox的提示内容。<br ></div>默认不显示。                            |
+| checked         | boolean                                                             | 否  | @Param | checked为true时，表示checkbox已选中，为false时，表示未选中。<br />默认值：false。 |
+| onCheckedChange | [AdvancedDialogV2OnCheckedChange](#advanceddialogv2oncheckedchange) | 否  | @Param | checkbox的选中状态改变事件。<br ></div>默认无事件。                        |
+| primaryButton   | [AdvacnedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认框左侧按钮。<br ></div>默认不显示。                                  |
+| secondaryButton | [AdvacnedDialogV2Button](#advanceddialogv2button)                   | 否  | @Param | 确认框右侧按钮。<br ></div>默认不显示。                                  |
 
 ## AlertDialogV2
 
 AlertDialogV2({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content: ResourceStr, primaryButton?: AdvancedDialogV2Button, secondaryButton?: AdvancedDialogV2Button})
 
-操作确认类弹出框，触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等。
+操作确认类弹出框。当触发一个将产生严重后果的不可逆操作时，如删除、重置、取消编辑、停止等，会触发该类弹出框提示。
 
 **装饰器类型：**@ComponentV2
 
@@ -112,11 +112,11 @@ AlertDialogV2({primaryTitle?: ResourceStr, secondaryTitle?: ResourceStr, content
 
 | 名称              | 类型                                                | 必填 | 装饰器类型                | 说明                   |
 | --------------- | ------------------------------------------------- | -- | :------------------- | -------------------- |
-| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框一级标题。默认不显示<br />  |
-| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框二级标题。默认不显示。       |
+| primaryTitle    | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框一级标题。<br ></div>默认不显示。  |
+| secondaryTitle  | [ResourceStr](ts-types.md#resourcestr)            | 否  | @Param               | 确认框二级标题。<br ></div>默认不显示。       |
 | content         | [ResourceStr](ts-types.md#resourcestr)            | 是  | @Param<br />@Require | 确认弹出框内容。<br />       |
-| primaryButton   | [AdvacnedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框左侧按钮。默认不显示。<br /> |
-| secondaryButton | [AdvacnedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框右侧按钮。默认不显示。<br /> |
+| primaryButton   | [AdvacnedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框左侧按钮。<br ></div>默认不显示。 |
+| secondaryButton | [AdvacnedDialogV2Button](#advanceddialogv2button) | 否  | @Param               | 确认框右侧按钮。<br ></div>默认不显示。 |
 
 ## LoadingDialogV2
 
@@ -130,9 +130,9 @@ LoadingDialogV2({content?: ResourceStr})
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                     | 必填 | 装饰器类型  | 说明             |
-| ------- | -------------------------------------- | -- | :----- | -------------- |
-| content | [ResourceStr](ts-types.md#resourcestr) | 否  | @Param | 加载弹出框内容。<br /> |
+| 名称      | 类型                                     | 必填 | 装饰器类型  | 说明                  |
+| ------- | -------------------------------------- | -- | :----- |---------------------|
+| content | [ResourceStr](ts-types.md#resourcestr) | 否  | @Param | 加载弹出框内容。<br />默认为空。 |
 
 ## CustomContentDialogV2
 
@@ -149,10 +149,10 @@ CustomContentDialogV2({contentBuilder: () => void, primaryTitle?: ResourceStr, s
 | 名称                 | 类型                                                   | 必填 | 装饰器类型         | 说明                       |
 | ------------------ | ---------------------------------------------------- | -- | ------------- | ------------------------ |
 | contentBuilder     | [CustomBuilder](ts-types.md#custombuilder8)          | 是  | @BuilderParam | 弹出框内容。                   |
-| primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框标题。默认不显示。             |
-| secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框辅助文本。默认不显示。           |
-| contentAreaPadding | [LocalizedPadding](ts-types.md#LocalizedPadding)     | 否  | @Param        | 弹出框内容区内边距。默认不显示。         |
-| buttons            | [AdvacnedDialogV2Button](#advanceddialogv2button)\[] | 否  | @Param        | 弹出框操作区按钮，最多支持4个按钮。默认不显示。 |
+| primaryTitle       | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框标题。<br ></div>默认不显示。             |
+| secondaryTitle     | [ResourceStr](ts-types.md#resourcestr)               | 否  | @Param        | 弹出框辅助文本。<br ></div>默认不显示。           |
+| contentAreaPadding | [LocalizedPadding](ts-types.md#localizedpadding12)     | 否  | @Param        | 弹出框内容区内边距。<br ></div>默认不显示。         |
+| buttons            | [AdvacnedDialogV2Button](#advanceddialogv2button)\[] | 否  | @Param        | 弹出框操作区按钮，最多支持4个按钮。<br ></div>默认不显示。 |
 
 ## PopoverDialogV2OnVisibleChange
 
@@ -164,9 +164,9 @@ type PopoverDialogV2OnVisibleChange = (visible: boolean) => void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型      | 必填 | 说明                                            |
-| :------ | :------ | :- | :-------------------------------------------- |
-| visible | boolean | 是  | 跟手弹出框显示状态改变事件的回调。<br />-visible: 表示跟手弹出框显示状态。 |
+| 参数名     | 类型      | 必填 | 说明                                                                     |
+| :------ | :------ | :- |:-----------------------------------------------------------------------|
+| visible | boolean | 是  | 跟手弹出框显示状态改变事件的回调。<br />-visible: 表示跟手弹出框显示状态。值为true时跟手弹出框显示，为false时隐藏。 |
 
 ## PopoverDialogV2
 
@@ -181,11 +181,11 @@ PopoverDialogV2({visible: boolean, \$visible: PopoverDialogV2OnVisibleChange, po
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                                                                | 必填 | 装饰器类型               | 说明                                                 |
-| ------------- | ----------------------------------------------------------------- | -- |---------------------| -------------------------------------------------- |
-| visible       | boolean                                                           | 是  | @Param              | 跟手弹出框显示状态。                                         |
-| \$visible     | [PopoverDialogV2OnVisibleChange](#popoverdialogv2onvisiblechange) | 否  | @Event              | 修改跟手弹出框显示状态时触发的回调函数，建议在visible后使用!!语法设置双向同步。默认无事件。 |
+| ------------- |-------------------------------------------------------------------| -- |---------------------| -------------------------------------------------- |
+| visible       | boolean                                                           | 是  | @Param<br/>@Require | 跟手弹出框显示状态。                                         |
+| \$visible     | [PopoverDialogV2OnVisibleChange](#popoverdialogv2onvisiblechange) | 否  | @Event              | 修改跟手弹出框显示状态时触发的回调函数，建议在visible后使用!!语法设置双向同步。<br ></div>默认无事件。 |
 | popover       | [PopoverDialogV2Options](#popoverdialogv2options)                 | 是  | @Param<br/>@Require | 配置跟手弹窗的参数。                                         |
-| targetBuilder | [CustomBuilder](ts-types#custombuilder)                           | 是  | <br />@BuilderParam | 跟手弹出框基于的目标组件。                                      |
+| targetBuilder | [CustomBuilder](ts-types.md#custombuilder8)                       | 是  | @BuilderParam       | 跟手弹出框基于的目标组件。                                      |
 
 ## PopoverDialogV2Options
 
@@ -224,13 +224,13 @@ type AdvancedDialogV2ButtonAction = () => void
 | 名称           | 类型                                                                     | 必填 | 装饰器类型  | 说明                                                                                |
 |:-------------|:-----------------------------------------------------------------------|:---|:-------|:----------------------------------------------------------------------------------|
 | content      | [ResourceStr](ts-types.md#resourcestr)                                 | 是  | @Trace | 按钮的内容。                                                                            |
-| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | @Trace | 按钮的点击事件。默认无事件。                                                                    |
-| background   | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的背景。<br />默认值跟随buttonStyle。                                                     |
-| fontColor    | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                                   |
-| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | @Trace | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br /> |
-| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | @Trace | 按钮的角色。<br />默认值：ButtonRole.NORMAL。<br />                                          |
-| defaultFocus | boolean                                                                | 否  | @Trace | 是否为默认焦点。默认值：false。                                                                |
-| enable       | boolean                                                                | 否  | @Trace | 是否可用。<br/>默认值：true。                                                               |
+| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | @Trace | 按钮的点击事件。<br ></div>默认无事件。                                                                    |
+| background   | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的背景。<br />默认值跟随buttonStyle。                                                     |
+| fontColor    | [ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)                                | 否  | @Trace | 按钮的字体颜色。<br />默认值跟随buttonStyle。                                                   |
+| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | @Trace | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。 |
+| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | @Trace | 按钮的角色。<br />默认值：ButtonRole.NORMAL。                                         |
+| defaultFocus | boolean                                                                | 否  | @Trace | 是否为默认焦点。<br ></div>默认值：false。                                                                |
+| enabled       | boolean                                                                | 否  | @Trace | 是否可用。<br></div>默认值：true。                                                               |
 
 > **说明：**
 >
@@ -263,13 +263,13 @@ AdvancedDialogV2Button的构造函数。
 | 名称           | 类型                                                                     | 必填 | 说明                                                                                |
 |:-------------|:-----------------------------------------------------------------------|:---|:----------------------------------------------------------------------------------|
 | content      | [ResourceStr](ts-types.md#resourcestr)                                 | 是  | 按钮的内容。                                                                            |
-| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | 按钮的点击事件。默认无事件。                                                                    |
+| action       | [AdvancedDialogV2ButtonAction](#advanceddialogv2buttonaction)          | 否  | 按钮的点击事件。<br ></div>默认无事件。                                                                    |
 | background   | [ColorMetrics](ts-types.md#colormetrics8)                              | 否  | 按钮的背景。<br /> 默认值跟随buttonStyle。                                                    |
-| fontColor    | [ColorMetrics](ts-types.md#colormetrics8)                              | 否  | 按钮的字体颜色。默认值跟随buttonStyle。                                                         |
-| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | 按钮的样式。<br />默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。<br /> |
-| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | 按钮的角色。<br />默认值：ButtonRole.NORMAL。<br />                                          |
-| defaultFocus | boolean                                                                | 否  | 是否为默认焦点。默认值：false。                                                                |
-| enable       | boolean                                                                | 否  | 是否可用。<br/>默认值：true。                                                               |
+| fontColor    | [ColorMetrics](ts-types.md#colormetrics8)                              | 否  | 按钮的字体颜色。<br></div>默认值跟随buttonStyle。                                                         |
+| buttonStyle  | [ButtonStyleMode](ts-basic-components-button.md#buttonstylemode11枚举说明) | 否  | 按钮的样式。<br ></div>默认值：2in1设备为ButtonStyleMode.NORMAL，其他设备为ButtonStyleMode.TEXTUAL。|
+| role         | [ButtonRole](ts-basic-components-button.md#buttonrole12枚举说明)           | 否  | 按钮的角色。<br ></div>默认值：ButtonRole.NORMAL。                                          |
+| defaultFocus | boolean                                                                | 否  | 是否为默认焦点。<br></div>默认值：false。                                                                |
+| enabled       | boolean                                                                | 否  | 是否可用。<br></div>默认值：true。                                                               |
 
 ## 示例
 
@@ -477,7 +477,7 @@ struct Index {
 纯文本弹出框，包含primaryTitle、secondaryTitle、content等内容。
 
 ```ts
-import { AlertDialogV2, AdvancedDialogV2Button, promptAction } from '@kit.ArkUI'
+import { AlertDialogV2, AdvancedDialogV2Button, promptAction } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -534,7 +534,7 @@ struct Index {
 进度条弹出框，包含content等内容。
 
 ```ts
-import { LoadingDialogV2, promptAction } from '@kit.ArkUI'
+import { LoadingDialogV2, promptAction } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -577,7 +577,7 @@ struct Index {
 自定义主题风格弹出框，包含content、theme等内容。
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialogV2, promptAction } from '@kit.ArkUI'
+import { CustomColors, CustomTheme, LoadingDialogV2, promptAction } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;
@@ -694,7 +694,7 @@ struct Index {
 跟手弹窗（警告弹窗为例），包含visible、popover、targetBuilder等内容。
 
 ```ts
-import { AlertDialogV2, PopoverDialogV2, PopoverDialogV2Options ,AdvancedDialogV2Button} from '@kit.ArkUI';
+import { AlertDialogV2, PopoverDialogV2, PopoverDialogV2Options, AdvancedDialogV2Button} from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
