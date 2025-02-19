@@ -51,6 +51,7 @@
 | int64_t [OH_ArkUI_UIInputEvent_GetEventTime](#oh_arkui_uiinputevent_geteventtime) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取UI输入事件发生的时间。  | 
 | uint32_t [OH_ArkUI_PointerEvent_GetPointerCount](#oh_arkui_pointerevent_getpointercount) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取多点触控的接触点数量。  | 
 | int32_t [OH_ArkUI_PointerEvent_GetPointerId](#oh_arkui_pointerevent_getpointerid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取多点触控的接触点标识。  | 
+| int32_t [OH_ArkUI_PointerEvent_GetChangedPointerId](#oh_arkui_pointerevent_getchangedpointerid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t \*pointerIndex) | 获取当前触摸事件触发的id。  | 
 | float [OH_ArkUI_PointerEvent_GetX](#oh_arkui_pointerevent_getx) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取相对于当前组件左上角的X坐标。  | 
 | float [OH_ArkUI_PointerEvent_GetXByIndex](#oh_arkui_pointerevent_getxbyindex) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, uint32_t pointerIndex) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取特定接触点相对于当前组件左上角的X坐标。  | 
 | float [OH_ArkUI_PointerEvent_GetY](#oh_arkui_pointerevent_gety) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 从带有指向性的输入事件（如触摸事件、鼠标事件、轴事件）中获取相对于当前组件左上角的Y坐标。  | 
@@ -887,6 +888,29 @@ int32_t OH_ArkUI_PointerEvent_GetPointerId (const ArkUI_UIInputEvent * event, ui
 **返回：**
 
 返回特定接触点标识。
+
+
+### OH_ArkUI_PointerEvent_GetChangedPointerId()
+
+```
+int32_t OH_ArkUI_PointerEvent_GetChangedPointerId (const ArkUI_UIInputEvent * event, uint32_t * pointerIndex )
+```
+**描述：**
+
+获取当前触摸事件触发的id。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | 表示指向当前UI输入事件的指针。  | 
+| pointerIndex | 表示多点触控数据列表中的序号。  | 
+
+**返回：**
+
+返回执行的状态代码。返回0表示设置成功，如果返回401，表示返回失败，可能的原因是参数异常，例如event是一个空指针。
 
 
 ### OH_ArkUI_PointerEvent_GetPressure()
