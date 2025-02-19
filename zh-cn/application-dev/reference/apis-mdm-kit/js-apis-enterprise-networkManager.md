@@ -364,7 +364,6 @@ getGlobalProxySync(admin: Want): connection.HttpProxy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { connection } from '@kit.NetworkKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
@@ -695,8 +694,8 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | srcPort   | string                  | 否   | 源端口。                                                     |
 | destPort  | string                  | 否   | 目标端口。                                                   |
 | appUid    | string                  | 否   | 应用uid。                                                    |
-| direction | [Direction](#direction) | 否   | 规则链。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的[Direction](#direction)链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
-| action    | [Action](#action)       | 否   | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；移除防火墙时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| direction | [Direction](#direction) | 否   | 规则链。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的[Direction](#direction)链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
+| action    | [Action](#action)       | 否   | 接收或者丢弃数据包。<br/>添加防护墙过滤规则时必填；<br/>移除防火墙时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且srcAddr，destAddr，srcPort，destPort，appUid也必须传入空值。 |
 | protocol  | [Protocol](#protocol)   | 否   | 网络协议。当值为ALL或者ICMP时，不允许设置srcPort与destPort。 |
 
 ## DomainFilterRule
@@ -710,7 +709,7 @@ domainFilterRule = networkManager.getDomainFilterRules(wantTemp);
 | ---------- | ----------------- | ---- | ------------------------------------------------------------ |
 | domainName | string            | 否   | 域名。添加域名过滤规则时必填。                               |
 | appUid     | string            | 否   | 应用uid。                                                    |
-| action     | [Action](#action) | 否   | 接收或者丢弃数据包。<br/>添加域名过滤规则时必填；移除域名过滤规则时非必填，表示清空所有的匹配[Action](#action)规则的链。<br/>当值为空时，domainName，appUid也必须传入空值。 |
+| action     | [Action](#action) | 否   | 接收或者丢弃数据包。<br/>添加域名过滤规则时必填；<br/>移除域名过滤规则时非必填，当值为空时，表示清空所有的匹配[Action](#action)规则的链，且domainName，appUid也必须传入空值。 |
 
 ## Direction
 
