@@ -33,9 +33,9 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
+| permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 3表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 
 **返回值：**
 
@@ -90,10 +90,10 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user_grant权限。当授予权限成功时，err为undefined；否则为错误对象。 |
+| permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 3表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user_grant权限，当授予权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -144,15 +144,15 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
-| permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
+| permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 3表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -201,10 +201,10 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 64表示当次用户若选择仅本次允许，权限仅本次授权，应用切换后台状态或退出后取消授权。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user_grant权限。当撤销权限成功时，err为undefined；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user_grant权限，当撤销权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -255,7 +255,7 @@ getPermissionFlags(tokenID: number, permissionName: Permissions): Promise&lt;num
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions              | 是   | 查询的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
@@ -370,7 +370,7 @@ getPermissionRequestToggleStatus(permissionName: Permissions): Promise&lt;Permis
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[PermissionRequestToggleStatus](#permissionrequesttogglestatus12)&gt; | Promise对象。返回指定权限的弹窗开关状态值。 |
+| Promise&lt;[PermissionRequestToggleStatus](#permissionrequesttogglestatus12)&gt; | Promise对象，返回指定权限的弹窗开关状态值。 |
 
 **错误码：**
 
@@ -419,7 +419,7 @@ getVersion(): Promise&lt;number&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回查询到的版本号。 |
+| Promise&lt;number&gt; | Promise对象，返回查询到的版本号。 |
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
@@ -453,14 +453,14 @@ getPermissionsStatus(tokenID: number, permissionList: Array&lt;Permissions&gt;):
 
 | 参数名    | 类型                | 必填 | 说明                          |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionList | Array&lt;Permissions&gt;   | 是   | 待获取权限状态的权限名列表，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise对象。返回查询到的权限状态列表。 |
+| Promise&lt;Array&lt;[PermissionStatus](#permissionstatus12)&gt;&gt; | Promise对象，返回查询到的权限状态列表。 |
 
 **错误码：**
 
@@ -617,13 +617,13 @@ requestPermissionOnApplicationSetting(tokenID: number): Promise&lt;void&gt;
 
 | 参数名    | 类型                | 必填 | 说明                                                         |
 | --------- | ------------------- | ---- | ------------------------------------------------------------ |
-| tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID      | number              | 是   | 目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
