@@ -5578,7 +5578,7 @@ async function example() {
     predicates: new dataSharePredicates.DataSharePredicates()
   };
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> =
-    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumType.HIGHLIGHT, albumFetchOption);
+    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
     console.error(TAG, 'No album');
     return;
@@ -5634,7 +5634,7 @@ async function example() {
       predicates: new dataSharePredicates.DataSharePredicates()
     };
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumType.HIGHLIGHT, albumFetchOption);
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
       console.error(TAG, 'No album');
       return;
@@ -5708,7 +5708,7 @@ async function example() {
     predicates: new dataSharePredicates.DataSharePredicates()
   };
   let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubType.HIGHLIGHT, albumFetchOption);
+    await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
   if (albumFetchResult.getCount() === 0) {
     console.error(TAG, 'No album');
     return;
@@ -5769,7 +5769,7 @@ async function example() {
       predicates: new dataSharePredicates.DataSharePredicates()
     };
     let albumFetchResult: photoAccessHelper.FetchResult<photoAccessHelper.Album> = 
-      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubType.HIGHLIGHT, albumFetchOption);
+      await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
     if (albumFetchResult.getCount() === 0) {
       console.error(TAG, 'No album');
       return;
@@ -5786,9 +5786,9 @@ async function example() {
       await highlightAlbum.getAssets(fetchOption);
     let assets: photoAccessHelper.PhotoAsset[] = await fetchResult.getAllObjects();
     let positions: number[] = await analysisAlbum.getOrderPosition(assets);
-    console.info(TAG, `getOrderPosition ${positions}`);
+    console.info(`getOrderPosition ${positions}`);
   } catch (err) {
-    console.error(TAG, `getOrderPosition error: ${err}`);
+    console.error(`getOrderPosition error: ${err}`);
   }
 }
 ```
