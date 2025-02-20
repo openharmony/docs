@@ -8585,6 +8585,69 @@ struct CustomDialogUser {
   }
 }
 ```
+
+### setKeyProcessingMode<sup>15+</sup>
+
+setKeyProcessingMode(mode: KeyProcessingMode): void
+
+设置按键事件处理的优先级。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | ------- | ------- | ------- |
+| mode | [KeyProcessingMode](./arkui-ts/ts-universal-attributes-focus.md#keyprocessingmode15)| 是 | 按键处理模式。 |
+
+```ts
+
+// 该示例演示了在页面加载完成后设置走焦类型的实现方式。
+@Entry
+@Component
+struct Index {
+
+  aboutToAppear() {
+    this.getUIContext().getFocusController().setKeyProcessingMode(KeyProcessingMode.ANCESTOR_EVENT)
+  }
+
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
+
 ## PointerStyle<sup>12+</sup>
 
 type PointerStyle = pointer.PointerStyle
@@ -9933,11 +9996,11 @@ struct MarqueeExample {
   }
 }
 ```
-## dispatchKeyEvent<sup>16+</sup>
+## dispatchKeyEvent<sup>15+</sup>
 
 按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  SystemCapability.ArkUI.ArkUI.Full
 
