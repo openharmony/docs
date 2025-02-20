@@ -6450,7 +6450,7 @@ getWindowDecorVisible(): boolean
 
 查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> 
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 <br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -6460,7 +6460,7 @@ getWindowDecorVisible(): boolean
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| boolean | 返回的窗口标题栏是否可见，true为可见，false为不可见。|
+| boolean | 返回当前窗口标题栏是否可见，true表示可见，false表示不可见。|
 
 **错误码：**
 
@@ -6474,29 +6474,14 @@ getWindowDecorVisible(): boolean
 **示例：**
 
 ```ts
-// EntryAbility.ets
-import { UIAbility } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
-
-export default class EntryAbility extends UIAbility {
-  onWindowStageCreate(windowStage: window.WindowStage): void {
-    try {
-      // 加载主窗口对应的页面
-      windowStage.loadContent('pages/Index').then(()=> {
-        let mainWindow: window.Window | undefined = undefined;
-        // 获取应用主窗口。
-        windowStage.getMainWindow().then(data => {
-          mainWindow = data;
-          // 获取窗口标题栏的可见性
-          let isVisible: boolean = mainWindow.getWindowDecorVisible();
-          console.info(`Succeeded in getting the visible of window decor: ${isVisible}`);
-        });
-      });
-    } catch (exception) {
-      console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+let isVisible: boolean | undefined = undefined;
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    isVisible = windowClass.getWindowDecorVisible();
+  } catch (exception) {
+    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
   }
-}
+})
 ```
 
 ### setWindowTitle<sup>15+</sup>
