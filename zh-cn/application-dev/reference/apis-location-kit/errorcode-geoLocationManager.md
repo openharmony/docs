@@ -203,7 +203,7 @@ The number of geofences exceeds the maximum.
 
 **可能原因**
 
-1.系统中存在的地理围栏个数超过最大值(1000)限制。
+系统中存在的地理围栏个数超过最大值(1000)限制。
 
 **处理步骤**
 
@@ -221,7 +221,7 @@ Failed to delete a geofence due to an incorrect ID.
 
 **可能原因**
 
-1.APP调用删除地理围栏接口时传入的围栏ID错误。
+APP调用删除地理围栏接口时传入的围栏ID错误。
 
 **处理步骤**
 
