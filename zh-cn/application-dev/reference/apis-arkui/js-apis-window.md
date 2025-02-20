@@ -6477,7 +6477,7 @@ getWindowDecorVisible(): boolean
 let isVisible: boolean | undefined = undefined;
 windowClass.setUIContent('pages/WindowPage').then(() => {
   try {
-    isVisible = windowClass.getWindowDecorVisible();
+    isVisible = windowClass?.getWindowDecorVisible();
   } catch (exception) {
     console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
   }
