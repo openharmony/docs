@@ -80,7 +80,7 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 
 可能的故障原因：
 1. dataSource为nullptr；
-2. dataSource-&gt，size == 0；
+2. dataSource-&gt;size == 0；
 3. 设置数据源失败；
 4. 内存不足；
 5. 解码器引擎为nullptr。 
