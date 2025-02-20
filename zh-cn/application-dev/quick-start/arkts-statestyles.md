@@ -5,7 +5,7 @@
 
 > **说明**：
 >
-> 多态样式仅支持通用属性。
+> 多态样式仅支持通用属性。如果多态样式不生效，则该属性可能为组件的私有属性，例如：[fontColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-text-style.md)、[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md)组件的[backgroundColor](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md)等。此时，可以通过[attributeModifier](../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置组件属性来解决此问题。
 
 ## 概述
 
