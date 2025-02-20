@@ -413,7 +413,7 @@
 
 **起始版本**：14
 
-### ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
 
 允许设备管理应用管理个人设备限制策略。
 
@@ -426,7 +426,7 @@
 
 **起始版本**：15
 
-### ohos.permission.START_PROVISIONING_MESSAGE
+## ohos.permission.START_PROVISIONING_MESSAGE
 
 允许应用启动设备管理业务部署流程，将该应用激活为个人设备管理应用。
 
@@ -440,7 +440,7 @@
 **起始版本**：15
 
 <!--Del-->
-### ohos.permission.PRELOAD_FILE
+## ohos.permission.PRELOAD_FILE
 
 允许应用预加载文件以提升文件打开速度。
 
@@ -461,5 +461,20 @@
 **权限级别**：normal
 
 **授权方式**：system_grant
+
+**起始版本**：15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+允许应用获取硬盘的硬件信息。
+
+仅面向金融证券类应用开放，用于证券、股票交易。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：15
