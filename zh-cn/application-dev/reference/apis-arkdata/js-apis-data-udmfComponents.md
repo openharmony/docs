@@ -40,9 +40,9 @@ ContentForm卡片控件，将 ContentForm数据展示在卡片控件中。
 
 | 名称 | 参数类型 | 必填 | 装饰器类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| contentFormData | uniformDataStruct.ContentForm | 是 | - | contentForm数据<br />4x4卡片：样式固定，有缺省参数时显示占位图<br />4x2卡片：thumbData缺省时显示纯文本卡片，title为空字符串时显示图片卡片，其他信息缺省时显示占位图<br />2x1卡片：thumbData缺省时显示纯文本卡片，title为空字符串时显示图片卡片，其他信息缺省时显示占位图|
+| contentFormData | uniformDataStruct.ContentForm | 是 | - | contentForm数据<br />4x4卡片：样式固定，有缺省参数时显示占位图<br />4x2卡片：thumbData缺省时显示纯文本卡片，title为空字符串时显示图片卡片，其他信息缺省时显示占位图<br />2x1卡片：显示纯文本卡片，title为空字符串时显示图片卡片，其他信息缺省时显示占位图|
 | formType | [FormType](#FormType) | 是 | \@Prop | 卡片类型 |
-| formWidth | number | 否 | \@Prop | 卡片宽度<br />不传时使用默认卡片宽度：<br />4x4卡片：200；<br />4x2卡片：200；<br />2x1卡片：100<br />最大宽度为默认宽度的1.2倍<br />最小宽度为默认宽度的0.8倍<br /> |
+| formWidth | number | 否 | \@Prop | 卡片宽度<br />不传时使用默认卡片宽度：<br />4x4卡片：200；<br />4x2卡片：200；<br />2x1卡片：100<br />最大宽度为默认宽度的1.2倍<br />最小宽度4x4/4x2卡片时为默认宽度的0.8倍，2x1卡片时为默认宽度的0.6倍<br /> |
 
 ## FormType
 
