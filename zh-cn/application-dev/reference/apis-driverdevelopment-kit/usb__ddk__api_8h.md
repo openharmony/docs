@@ -23,7 +23,7 @@
 | -------- | -------- |
 | [OH_Usb_Init](_usb_ddk.md#oh_usb_init)&nbsp;(void) | 初始化DDK。 |
 | [OH_Usb_Release](_usb_ddk.md#oh_usb_release)&nbsp;(void) | 释放DDK。 |
-| [OH_Usb_ReleaseResource](_usb_ddk.md#oh_usb_releaseResource)&nbsp;(void) | 释放DDK。 |
+| [OH_Usb_ReleaseResource](_usb_ddk.md#oh_usb_releaseResource14)&nbsp;(void) | 释放DDK。 |
 | [OH_Usb_GetDeviceDescriptor](_usb_ddk.md#oh_usb_getdevicedescriptor)&nbsp;(uint64_t&nbsp;deviceId,&nbsp;struct&nbsp;[UsbDeviceDescriptor](_usb_device_descriptor.md)&nbsp;\*desc) | 获取设备描述符。 |
 | [OH_Usb_GetConfigDescriptor](_usb_ddk.md#oh_usb_getconfigdescriptor)&nbsp;(uint64_t&nbsp;deviceId,&nbsp;uint8_t&nbsp;configIndex,&nbsp;struct&nbsp;[UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md)&nbsp;\*\*const&nbsp;config) | 获取配置描述符。请在描述符使用完后使用[OH_Usb_FreeConfigDescriptor()](_usb_ddk.md#oh_usb_freeconfigdescriptor)释放描述符，否则会造成内存泄露。 |
 | [OH_Usb_FreeConfigDescriptor](_usb_ddk.md#oh_usb_freeconfigdescriptor)&nbsp;(const&nbsp;struct&nbsp;[UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md)&nbsp;\*const&nbsp;config) | 释放配置描述符，请在描述符使用完后释放描述符，否则会造成内存泄露。 |
