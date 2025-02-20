@@ -294,7 +294,6 @@ enableHapticFeedback(enable: Optional\<boolean>)
 >   "name": "ohos.permission.VIBRATE",
 >  }
 >  ]
->  ``
 >  ```
 
 ### enableCascade<sup>16+</sup>
