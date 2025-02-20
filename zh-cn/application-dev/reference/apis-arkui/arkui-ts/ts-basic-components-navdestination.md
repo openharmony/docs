@@ -567,7 +567,8 @@ NavDestination激活态或者非激活态变化的原因。
 | CONTENT_COVER | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
 | SHEET | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
 | DIALOG | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
-| APP_STATE_CHANGE | 通过前后台切换使NavDestination激活态发生变化。 |
+| OVERLAY | 通过OverlayManager开启或者关闭Overlay使NavDestination激活态发生变化。|
+| APP_STATE | 通过前后台切换使NavDestination激活态发生变化。 |
 
 ## 示例
 
