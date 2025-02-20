@@ -10,7 +10,7 @@ Different permissions have different Ability Privilege Levels (APLs), authorizat
 
 - ① For details about the mappings between application APLs and permission APLs, see [APL](app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
-- ②Permissions can be classified into system_grant permissions and user_grant permissions based on the authorization mode. For details, see [Authorization Mode](app-permission-mgmt-overview.md#authorization-mode).
+- ② Permissions can be classified into system_grant permissions and user_grant permissions based on the authorization mode. For details, see [Authorization Mode](app-permission-mgmt-overview.md#authorization-mode).
   - A system_grant permission is pre-granted when the application is installed.
   - For a user_grant permission, apply for the permission as follows:
      1. In the configuration file, declare the permissions required by your application.
@@ -26,9 +26,9 @@ The operation for requesting a permission varies, depending on the permission AP
 
 | Permission Type| Authorization Mode| Operation Path|
 | -------- | -------- | -------- |
-| [Open system_grant permissions](permissions-for-all.md)| system_grant | [Declare permission](declare-permissions.md) &gt; Access API|
-| [Open user_grant permissions](permissions-for-all-user.md)| user_grant  | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
-| <!--DelRow-->[system_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#system_grant-permissions-requestable-via-acl)| system_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API|
+| [Open system_grant permissions](permissions-for-all.md)| system_grant | [Declare permission](declare-permissions.md) &gt; Access API| 
+| [Open user_grant permissions](permissions-for-all-user.md)| user_grant  | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API| 
+| <!--DelRow-->[system_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#system_grant-permissions-requestable-via-acl)| system_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API| 
 | <!--DelRow-->[user_grant permissions available for normal applications via ACL](permissions-for-system-apps.md#user_grant-permissions-requestable-via-acl)| user_grant | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API|
 <!--RP2--><!--RP2End-->
 
@@ -40,14 +40,14 @@ The operation for requesting a permission varies, depending on the permission AP
 
 ## Requesting Permissions for system_basic Applications
 
-| Permission APL| Authorization Mode| Enable via ACL| Operation Path|
+| Permission APL| Authorization Mode| Enable via ACL| Operation Path| 
 | -------- | -------- | -------- | -------- |
-| normal or system_basic| system_grant | - | [Declare permission](declare-permissions.md) &gt; Access API|
-| normal or system_basic| user_grant | - | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API|
-| system_core | system_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API|
-| system_core | user_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API |
+| normal or system_basic| system_grant | - | [Declare permission](declare-permissions.md) &gt; Access API| 
+| normal or system_basic| user_grant | - | [Declare permission](declare-permissions.md) &gt; [Request user authorization](request-user-authorization.md) &gt; Access API| 
+| system_core | system_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > Access API| 
+| system_core | user_grant | true | [Request restricted permission](declare-permissions-in-acl.md) &gt; [Declare permission](declare-permissions.md) > [Request user authorization](request-user-authorization.md) > Access API| 
 
-To change the application APL to system_basic or system_core, modify the HarmonyAppProvision file (**Toolchains/_{Version}_/lib/UnsgnedReleasedProfileTemplate.json** file in the SDK directory) of the application when developing the application installation package, and sign the application again.
+To change the application APL to system_basic or system_core, modify the HarmonyAppProvision file (**Toolchains / _{Version} _/ lib / UnsgnedReleasedProfileTemplate.json** file in the SDK directory) of the application when developing the application installation package, and sign the application again.
 
 **Example**
 

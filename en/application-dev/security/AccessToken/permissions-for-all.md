@@ -355,7 +355,7 @@ Allows an application to support persistent access to file URIs.
 
 <!--RP2--><!--RP2End-->
 
-**Permission level**: system_basic for API version 11 and normal for API versions 12 and later.
+**Permission level**: system_basic for API version 11; normal for API version 12 and later
 
 **Authorization mode**: system_grant
 
@@ -381,9 +381,29 @@ Allows an application to set pinned windows.
 
 **Valid since**: 13
 
-## ohos.permission.USE_MESSAGES_PICKER
+## ohos.permission.USE_FRAUD_MESSAGES_PICKER
 
-Allows an application to use the message Picker to obtain SMS messages.
+Allows an application to use the scam message Picker to obtain SMS messages.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.USE_FRAUD_CALL_LOG_PICKER
+
+Allows an application to use the scam call log Picker to obtain call logs.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.USE_FRAUD_APP_PICKER
+
+Allows an application to use the fraud app Picker to obtain application information.
 
 **Permission level**: system_basic
 
@@ -391,17 +411,7 @@ Allows an application to use the message Picker to obtain SMS messages.
 
 **Valid since**: 16
 
-## ohos.permission.USE_CALL_LOG_PICKER
-
-Allows an application to use the call log Picker to obtain call logs.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Valid since**: 16
-
-### ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
+## ohos.permission.kernel.ALLOW_EXECUTABLE_FORT_MEMORY
 
 Allows an application to have its system JS engine to apply for anonymous executable memory with the MAP_FORT identifier.
 
@@ -414,9 +424,9 @@ After the application has this permission, the system JS engine can request anon
 **Valid since**: 14
 
 <!--Del-->
-### ohos.permission.PRELOAD_FILE
+## ohos.permission.PRELOAD_FILE
 
-Allows an application to preload files to improve file opening speed.
+Allows an application to preload files to improve the file opening speed.
 
 This permission is available only to document editing applications.
 
@@ -427,12 +437,11 @@ This permission is available only to document editing applications.
 **Valid since**: 15
 <!--DelEnd-->
 
-### ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
+## ohos.permission.MANAGE_INPUT_INFRARED_EMITTER
 
 Allows a system application to use infrared interfaces.
 
-With this permission, the application can query the maximum frequency supported by the infrared 
-and send infrared signals of a specific frequency.
+With this permission, the application can obtain the maximum frequency supported by the infrared module and send infrared signals at a specific frequency.
 
 **Permission level**: normal
 
@@ -440,17 +449,81 @@ and send infrared signals of a specific frequency.
 
 **Valid since**: 12
 
-**Changelog**: This permission is available to system applications in API versions 12 to 15,
-and available to normal applications since API version 16.
+**Changelog**: This permission is available to system applications in API versions 12 to 15, and available to normal applications since API version 16.
 
-### ohos.permission.INPUT_KEYBOARD_CONTROLLER
+## ohos.permission.INPUT_KEYBOARD_CONTROLLER
 
 Allows an application to set the status of keyboard function keys.
 
-With this permission, the application can turn on or off the function keys, such as CapsLock.
+With this permission, the application can turn on or off the function keys, such as **CapsLock**.
 
 **Permission level**: normal
 
 **Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.SET_ABILITY_INSTANCE_INFO
+
+Allows an application to set the icon and label information for each ability.
+
+The configured icon and label information can be displayed in the Task Center and shortcut bar.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.NDK_START_SELF_UI_ABILITY
+
+Allows an application to start its UIAbility by using C APIs.
+
+Currently, this permission is available only to 2-in-1 device applications.
+
+**Permission level**: normal
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
+
+## ohos.permission.PERSONAL_MANAGE_RESTRICTIONS
+
+Allows a device administrator application to manage personal device restrictions.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.START_PROVISIONING_MESSAGE
+
+Allows an application to start the device management service deployment process, which activates the application as a personal device administrator application.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Valid since**: 15
+
+## ohos.permission.ACCESS_DISK_PHY_INFO
+
+Allows an application to obtain the disk hardware information.
+
+This permission is available only to securities applications for securities and stock trading.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 15

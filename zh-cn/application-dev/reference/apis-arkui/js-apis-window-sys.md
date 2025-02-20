@@ -45,7 +45,9 @@ import { window } from '@kit.ArkUI';
 | TYPE_DIVIDER<sup>11+</sup>          | 19      | 表示分屏条。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | TYPE_GLOBAL_SEARCH<sup>11+</sup>    | 20      | 表示全局搜索窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.WindowManager.WindowManager.Core |
 | TYPE_HANDWRITE<sup>12+</sup>        | 21      | 表示手写笔窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
-| TYPE_SCREEN_CONTROL<sup>15+</sup>   | 22      | 表示锁定触控的顶层窗口，用于拦截屏幕触摸和点击事件。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_WALLET_SWIPE_CARD<sup>15+</sup>| 22      | 表示钱包刷卡窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+| TYPE_SCREEN_CONTROL<sup>15+</sup>   | 23      | 表示锁定触控的顶层窗口，用于拦截屏幕触摸和点击事件。<br>**模型约束：** 此接口仅可在Stage模型下使用。<br>**系统接口：** 此接口为系统接口。<br>**系统能力：** SystemCapability.Window.SessionManager |
+
 
 ## WindowMode<sup>7+</sup>
 
@@ -144,13 +146,13 @@ import { window } from '@kit.ArkUI';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 只读 | 必填 | 说明                                          |
+| 名称   | 类型 | 只读 | 可选 | 说明                                          |
 | ------ | -------- | ---- |---- |---------------------------------------------|
-| x      | number   | 否   | 否  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| y      | number   | 否   | 否  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| z      | number   | 否   | 否  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
-| pivotX | number   | 否   | 否  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
-| pivotY | number   | 否   | 否  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
+| x      | number   | 否   | 是  | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 是  | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 是  | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 是  | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是  | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -160,11 +162,11 @@ import { window } from '@kit.ArkUI';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 只读 | 必填 | 说明                         |
+| 名称 | 类型 | 只读 | 可选 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 否  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| y    | number   | 否   | 否  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
-| z    | number   | 否   | 否  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| x    | number   | 否   | 是  | X轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| y    | number   | 否   | 是  | Y轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
+| z    | number   | 否   | 是  | Z轴的平移参数。该参数为浮点数，默认值为0.0，单位为px。 |
 
 ## WindowInfo<sup>12+</sup>
 
@@ -2568,7 +2570,7 @@ raiseAboveTarget(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。 |
 
 **错误码：**
@@ -2639,7 +2641,7 @@ raiseAboveTarget(windowId: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
-| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取 |
+| windowId | number                    | 是   | 目标子窗口的id，通过[getWindowProperties](js-apis-window.md#getwindowproperties9)接口获取到[properties](js-apis-window.md#windowproperties)后，再通过properties.id获取。 |
 
 **返回值：**
 

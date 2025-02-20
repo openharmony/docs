@@ -42,7 +42,7 @@ When used in horizontal layout, the list can contain one or more scrollable rows
 ![en-us_image_0000001511421344](figures/en-us_image_0000001511421344.png)
 
 
-**Grid** and **WaterFlow** can also achieve single-column and multi-column layouts. If the layout requires columns of equal width and does not need to span rows or columns, **List** is preferred over **Grid** and WaterFlow.
+While **Grid** and **WaterFlow** can also create single-column and multi-column layouts, there are scenarios where the **List** is the more suitable choice. Specifically, if your layout design requires columns of equal width and items do not need to span rows or columns, opt for the **List**.
 
 ### Constraints
 
@@ -191,7 +191,7 @@ List() {
         .height(40)
         .margin(10)
 
-      Text ('Tom')
+      Text('Tom')
         .fontSize(20)
     }
   }
@@ -203,7 +203,7 @@ List() {
         .height(40)
         .margin(10)
 
-      Text ('Tracy')
+      Text('Tracy')
         .fontSize(20)
     }
   }
@@ -236,8 +236,8 @@ class Contact {
 @Component
 struct SimpleContacts {
   private contacts: Array<object> = [
-    new Contact ('Tom', $r ("app.media.iconA")),
-    new Contact ('Tracy', $r ("app.media.iconB")),
+    new Contact('Tom', $r ("app.media.iconA")),
+    new Contact('Tracy', $r ("app.media.iconB")),
   ]
 
   build() {
@@ -546,7 +546,7 @@ struct ContactsList {
         // Recalculate the value of this.selectedIndex in the alphabetical index bar based on the index of the item to which the list has scrolled.
       })
 
-      // <AlphabetIndexer> component
+      // AlphabetIndexer component
       AlphabetIndexer({ arrayValue: alphabets, selected: 0 })
         .selected(this.selectedIndex)
     }
@@ -625,7 +625,7 @@ ListItem() {
     position: BadgePosition.RightTop,
     style: { badgeSize: 16, badgeColor: '#FA2A2D' }
   }) {
-    // The <Image> component implements the contact profile picture.
+    // The Image component implements the contact profile picture.
     // ...
   }
 }
@@ -878,7 +878,7 @@ The process of implementing the deletion feature is as follows:
     ```
     ```ts
     // Implementation reference
-    Button ('Delete')
+    Button('Delete')
       .onClick(() => {
         // this.toDoData is the to-do list item, which can be constructed based on service requirements. After an item is clicked, the corresponding data is removed.
         let leftData = this.toDoData.filter((item) => {

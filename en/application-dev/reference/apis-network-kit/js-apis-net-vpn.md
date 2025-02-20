@@ -42,6 +42,9 @@ Defines the network route information.
 
 type AbilityContext = _AbilityContext
 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | [_AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Context of the target **UIAbility**. It is inherited from **Context** and provides the **UIAbility** configuration and methods for operating **UIAbility** and **ServiceExtensionAbility**.|

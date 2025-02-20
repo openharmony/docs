@@ -6,7 +6,7 @@ The **Scroll** component scrolls the content when the layout size of a component
 >  - This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 >  - When nesting a **List** within this component, specify the width and height for the **List** under scenarios where consistently high performance is required. If the width and height are not specified, this component will load all content of the **List**.
 >  - This component can scroll only when the size on the main axis is less than the content size.
->  - This component can produce a bounce effect only when there is more than one screen of content.
+>  - The default value of the universal attribute [clip](ts-universal-attributes-sharp-clipping.md) is **true** for the **Scroll** component.
 
 
 ## Child Components
@@ -103,6 +103,8 @@ Sets the scrollbar width. This attribute cannot be set in percentage. After the 
 scrollSnap(value: ScrollSnapOptions)
 
 Sets the scroll snapping mode.
+
+During the snap animation, the scroll operation source type reported by the **onWillScroll** event is **ScrollSource.FLING**.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -215,7 +217,7 @@ Sets the initial scrolling offset. This attribute takes effect only during the i
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name      | Description                    |
+| Name      | Description                  |
 | ---------- | ------------------------ |
 | Horizontal | Only horizontal scrolling is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | Vertical   | Only vertical scrolling is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -241,7 +243,7 @@ In addition to [universal events](ts-universal-events-click.md) and [scrollable 
 
 ### onScrollFrameBegin<sup>9+</sup>
 
-onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number; })
+onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **Scroll** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.
 
@@ -259,16 +261,9 @@ Notes:
 
 **Parameters**
 
-| Name| Type                                                   | Mandatory| Description                      |
-| ------ | ------------------------------------------------------- | ---- | -------------------------- |
-| offset | number                                                  | Yes  | Amount to scroll by, in vp.|
-| state  | [ScrollState](ts-container-list.md#scrollstate)| Yes  | Current scroll state.            |
-
-**Return value**
-
-| Type                    | Description                |
-| ------------------------ | -------------------- |
-| { offsetRemain: number } | Actual amount by which the grid scrolls, in vp.|
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [OnScrollFrameBeginCallback](#onscrollframebegincallback16) | Yes  | Callback triggered when each frame scrolling starts.|
 
 ### onScroll<sup>(deprecated)</sup>
 
@@ -351,7 +346,7 @@ The return value is the scrolling offset amount in the current frame, along with
 
 ### onScrollEdge
 
-onScrollEdge(event: (side: Edge) => void)
+onScrollEdge(event: OnScrollEdgeCallback)
 
 Triggered when scrolling reaches the edge.
 
@@ -367,7 +362,7 @@ Triggered when scrolling reaches the edge.
 
 | Name| Type                             | Mandatory| Description              |
 | ------ | --------------------------------- | ---- | ------------------ |
-| side   | [Edge](ts-appendix-enums.md#edge) | Yes  | Edge position to scroll to.|
+| event   | [OnScrollEdgeCallback](#onscrolledgecallback16) | Yes  | Edge position to scroll to.|
 
 ### onScrollEnd<sup>(deprecated) </sup>
 
@@ -385,7 +380,7 @@ This event is deprecated since API version 9. Use the **onScrollStop** event ins
 
 ### onScrollStart<sup>9+</sup>
 
-onScrollStart(event: () => void)
+onScrollStart(event: VoidCallback)
 
 Triggered when scrolling starts and is initiated by the user's finger dragging the **Scroll** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.
 
@@ -397,9 +392,15 @@ Triggered when scrolling starts and is initiated by the user's finger dragging t
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
+**Parameters**
+
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [VoidCallback](ts-types.md#voidcallback12) | Yes  | Callback triggered when scrolling starts.|
+
 ### onScrollStop<sup>9+</sup>
 
-onScrollStop(event: () => void)
+onScrollStop(event: VoidCallback)
 
 Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.
 
@@ -410,6 +411,12 @@ Triggered when scrolling stops after the user's finger leaves the screen. This e
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                             | Mandatory| Description              |
+| ------ | --------------------------------- | ---- | ------------------ |
+| event   | [VoidCallback](ts-types.md#voidcallback12) | Yes  | Callback triggered when scrolling stops.|
 
 ## ScrollOnScrollCallback<sup>12+</sup>
 
@@ -445,7 +452,7 @@ Callback triggered before scrolling.
 | ----------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | xOffset     | number                                                  | Yes  | Horizontal offset per frame during scrolling. A positive offset indicates scrolling to the left, and a negative offset indicates scrolling to the right.<br>Unit: vp|
 | yOffset     | number                                                  | Yes  | Vertical offset per frame during scrolling. A positive offset indicates scrolling upward, and a negative offset indicates scrolling downward.<br>Unit: vp|
-| scrollState | [ScrollState](ts-container-list.md#scrollstate)| Yes | Current scrolling state.                                              | 
+| scrollState | [ScrollState](ts-container-list.md#scrollstate)| Yes | Current scrolling state.                                              |
 | scrollSource | [ScrollSource](ts-appendix-enums.md#scrollsource12) | Yes| Source of the current scrolling operation.|
 
 **Return value**
@@ -454,10 +461,63 @@ Callback triggered before scrolling.
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | void \| [OffsetResult](#offsetresult11) |  If **OffsetResult** is returned, the scrolling will be performed with the offsets specified. Otherwise, the scrolling will be performed with the offsets determined by **(xOffset, yOffset)**.|
 
+## OnScrollEdgeCallback<sup>16+</sup>
+
+type OnScrollEdgeCallback = (side: Edge) => void
+
+Represents the callback triggered when scrolling reaches an edge.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type  | Mandatory| Description   |
+| ------- | ----- | ---- | ------ |
+| side    | [Edge](ts-appendix-enums.md#edge)  | Yes  | Edge position to scroll to.|
+
+## OnScrollFrameBeginCallback<sup>16+</sup>
+
+type OnScrollFrameBeginCallback = (offset: number, scrollState: ScrollState) => OnScrollFrameBeginHandlerResult;
+
+Represents the callback triggered before each frame scrolling starts.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description                      |
+| ------ | ------------------------------------------------------- | ---- | -------------------------- |
+| offset | number                                                  | Yes  | Amount to scroll by, in vp.|
+| state  | [ScrollState](ts-container-list.md#scrollstate)| Yes  | Current scroll state.            |
+
+**Return value**
+
+| Type                    | Description                |
+| ------------------------ | -------------------- |
+| [OnScrollFrameBeginHandlerResult](#onscrollframebeginhandlerresult16) | Actual scroll offset.|
+
+## OnScrollFrameBeginHandlerResult<sup>16+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type | Mandatory| Description |
+| ----- | ------ | ---- | ----- |
+| offsetRemain     | number                                                  | Yes  | Actual scroll offset.<br>Unit: vp|
+
 ## Scroller
 
 Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **List**, **Scroll**, **ScrollBar**, **Grid**, and **WaterFlow**.
 
+>**NOTE**
+>
+>1. The binding of a **Scroller** instance to a scrollable container component occurs during the component creation phase.<br>
+>2. **Scroller** APIs can only be effectively called after the **Scroller** instance is bound to a scrollable container component. Otherwise, depending on the API called, it may have no effect or throw an exception.<br>
+>3. For example, with [aboutToAppear](ts-custom-component-lifecycle.md#abouttoappear), this callback is executed after a new instance of a custom component is created and before its **build()** method is called. Therefore, if a scrollable component is defined within the **build** method of a custom component, the internal scrollable component has not yet been created during the **aboutToAppear** callback of that custom component, and therefore the **Scroller** APIs cannot be called effectively.<br>
+>4. For example, with [onAppear](ts-universal-events-show-hide.md#onappear), this callback is triggered after the component is mounted and displayed. Therefore, when the **onAppear** callback of a scrollable component is executed, the scrollable component has already been created and successfully bound to the **Scroller** instance, allowing the **Scroller** APIs to be called effectively.
 
 ### Objects to Import
 
@@ -477,7 +537,7 @@ A constructor used to create a **Scroller** object.
 
 ### scrollTo
 
-scrollTo(value: { xOffset: number | string, yOffset: number | string, animation?: { duration?: number, curve?: Curve | ICurve, canOverScroll?: boolean } | boolean })
+scrollTo(value: [ScrollOptions](#scrolloptions16))
 
 
 Scrolls to the specified position.
@@ -488,12 +548,9 @@ Scrolls to the specified position.
 
 **Parameters**
 
-| Name   | Type                                                    | Mandatory| Description                                                    |
-| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for non-animated scrolling. Animated scrolling stops at the starting position by default. By setting the **animation** parameter, you can enable a bounce effect when the scrolling goes beyond the boundary.<br>This parameter takes effect only when the scroll axis is the x-axis.|
-| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for non-animated scrolling. Animated scrolling stops at the starting position by default. By setting the **animation** parameter, you can enable a bounce effect when the scrolling goes beyond the boundary.<br>This parameter takes effect only when the scroll axis is the y-axis.|
-| animation | [ScrollAnimationOptions](#scrollanimationoptions12)<sup>12+</sup> \| boolean<sup>10+ </sup> | No  | Animation configuration, which includes the following:<br>- **ScrollAnimationOptions**: custom animation settings.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br>boolean: false<br>**NOTE**<br>Currently, the **List**, **Scroll**, **Grid**, and **WaterFlow** support the **Boolean** type and **ICurve**.<br>Since API version 12, {duration?: number, curve?: [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>10+ </sup>}  is abstracted as the **ScrollAnimationOptions** API, and the **canOverScroll** parameter is added to the API.|
-
+| Name  | Type| Mandatory  | Description     |
+| ----- | ---- | ---- | --------- |
+| value | [ScrollOptions](#scrolloptions16) | Yes   | Parameters for scrolling to the specified position.
 
 ### scrollEdge
 
@@ -502,8 +559,6 @@ scrollEdge(value: Edge, options?: ScrollEdgeOptions)
 
 Scrolls to the edge of the container, regardless of the scroll axis direction. **Edge.Top** and **Edge.Start** produce the same effect, and **Edge.Bottom** and **Edge.End** produce the same effect.
 By default, the **Scroll** component comes with an animation, while the **Grid**, **List**, and **WaterFlow** components do not.
-
-**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -554,7 +609,7 @@ Scrolls to the next or previous page.
 
 | Name| Type                                          | Mandatory| Description      |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| value  | [ScrollPageOptions](#scrollpageoptions12)| Yes  | Set the Home screen mode|
+| value  | [ScrollPageOptions](#scrollpageoptions14) | Yes  | Set the Home screen mode|
 
 ### scrollPage<sup>(deprecated)</sup>
 
@@ -581,7 +636,7 @@ currentOffset(): OffsetResult
 
 | Type | Description|
 | -------- | -------- |
-|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Obtains the scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
+|  [OffsetResult<sup>11+</sup>](#offsetresult11) | Scrolling offset.<br>**NOTE**<br>If **Scroller** is not bound to a container component or the container component is released abnormally, the return value for **currentOffset** is null.|
 
 ### scrollToIndex
 
@@ -656,7 +711,7 @@ Checks whether the component has scrolled to the bottom.
 
 getItemRect(index: number): RectResult
 
-Obtains the size and position of a child component.
+Obtains the size and position of a child component relative to its container.
 
 >  **NOTE**
 >
@@ -691,6 +746,45 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
 | 100004   | Controller not bound to component.                               |
+### getItemIndex<sup>14+</sup>
+
+getItemIndex(x: number, y: number): number
+
+Obtains the index of a child component based on coordinates.
+
+>  **NOTE**
+>
+>  This API is available for the **List**, **Grid**, and **WaterFlow** components.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type  | Mandatory  | Description             |
+| ----- | ------ | ---- | ----------------- |
+| x | number | Yes   | X-coordinate, in vp.|
+| y | number | Yes| Y-coordinate, in vp.|
+
+> **NOTE**
+>
+> The returned index is **-1** for invalid coordinates.
+
+**Return value**
+
+| Type      | Description      |
+| -------------------  | -------- |
+| number | Index of the child component, in vp.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100004   | Controller not bound to component.                               |
 
 ## OffsetResult<sup>11+</sup>
 
@@ -712,7 +806,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | Name  | Type  | Mandatory  | Description             |
 | ----- | ------ | ------ | ----------------- |
 | duration | number | No| Scrolling duration.<br>Default value: **1000**<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
-| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9)<sup>9+ </sup> | No| Scrolling curve.<br>Default value: **Curve.Ease**|
+| curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9) | No| Scrolling curve.<br>Default value: **Curve.Ease**|
 | canOverScroll | boolean | No| Whether to enable overscroll.<br>Default value: **false**<br>**NOTE**<br> Scrolling can exceed the boundary and initiate a bounce animation when this parameter is set to **true**, and the component's **edgeEffect** attribute is set to [EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect).|
 
 ## ScrollAlign<sup>10+</sup>
@@ -721,7 +815,7 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name    | Description                            |
+| Name    | Description                          |
 | ------ | ------------------------------ |
 | START   | The start edge of the list item is flush with the start edge of the list. |
 | CENTER | The list item is centered along the main axis of the list.       |
@@ -738,9 +832,9 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | ----- | ------ | ------ | ----------------- |
 | extraOffset | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | No| Extra offset for scrolling to a specified index.|
 
-## ScrollPageOptions<sup>12+</sup>
+## ScrollPageOptions<sup>14+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -770,8 +864,21 @@ For details about the error codes, see [Universal Error Codes](../../errorcode-u
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity      | number  | No  | Fixed velocity for scrolling to the edge of the container. If the value specified is less than or equal to 0, the parameter will not take effect.<br>Default value: **0**<br>  Unit: vp/s         |
 
+## ScrollOptions<sup>16+</sup>
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                                    | Mandatory| Description                                                    |
+| --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for non-animated scrolling. Animated scrolling stops at the starting position by default. By setting the **animation** parameter, you can enable a bounce effect when the scrolling goes beyond the boundary.<br>This parameter takes effect only when the scroll axis is the x-axis.|
+| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>If the value is less than 0, the offset will be 0 for non-animated scrolling. Animated scrolling stops at the starting position by default. By setting the **animation** parameter, you can enable a bounce effect when the scrolling goes beyond the boundary.<br>This parameter takes effect only when the scroll axis is the y-axis.|
+| animation | [ScrollAnimationOptions](#scrollanimationoptions12) \| boolean | No  | Animation configuration, which includes the following:<br>- **ScrollAnimationOptions**: custom animation settings.<br>- **boolean**: whether to enable the default spring animation.<br>Default value:<br>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br>boolean: false<br>**NOTE**<br>Currently, the **List**, **Scroll**, **Grid**, and **WaterFlow** support the **Boolean** type and **ICurve**.|
+
 ## Example
-### Example 1
+### Example 1: Setting the Scroller
+This example demonstrates the use of some attributes of the **Scroll** component and the **Scroller**.
 
 ```ts
 // xxx.ets
@@ -848,15 +955,30 @@ struct ScrollExample {
           this.scroller.scrollPage({ next: true ,animation: true })
         })
         .margin({ top: 210, left: 20 })
+      Button('fling -3000')
+        .height('5%')
+        .onClick(() => { // Trigger a fling with an initial velocity of -3000 vp/s.
+          this.scroller.fling(-3000)
+        })
+        .margin({ top: 260, left: 20 })
+      Button('scroll to bottom 700')
+        .height('5%')
+        .onClick(() => {// After the button is clicked, the component scrolls to the bottom edge at a velocity of 700 vp/s.
+          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
+        })
+        .margin({ top: 310, left: 20 })
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
   }
 }
 ```
 
-![en-us_image_0000001174104386](figures/en-us_image_0000001174104386.gif)
+![en-us_image_0000001174104386](figures/scroll_scroller.gif)
 
-### Example 2
+### Example 2: Implementing Nested Scrolling (Method 1)
+This example uses the **onScrollFrameBegin** event to achieve nested scrolling between an inner **List** component and an outer **Scroll** component.
 ```ts
+import { LengthMetrics } from '@kit.ArkUI'
+
 @Entry
 @Component
 struct NestedScroll {
@@ -876,7 +998,7 @@ struct NestedScroll {
             .fontSize(16)
             .textAlign(TextAlign.Center)
             .onClick(() => {
-              this.scrollerForList.scrollToIndex(5)
+              this.scrollerForList.scrollToIndex(5, false, ScrollAlign.START, { extraOffset: LengthMetrics.vp(5) })
             })
 
           List({ space: 20, scroller: this.scrollerForList }) {
@@ -927,7 +1049,8 @@ struct NestedScroll {
 
 ![NestedScroll](figures/NestedScroll.gif)
 
-### Example 3
+### Example 3: Implementing Nested Scrolling (Method 2)
+This example uses the **nestedScroll** attribute to achieve nested scrolling between an inner **List** component and an outer **Scroll** component.
 ```ts
 @Entry
 @Component
@@ -990,7 +1113,99 @@ struct StickyNestedScroll {
 }
 ```
 ![NestedScroll2](figures/NestedScroll2.gif)
-### Example 4
+### Example 4: Implementing Nested Scrolling with Parent-to-Child Scrolling Propagation
+This example demonstrates how to propagate scrolling from a parent component to a child component using the **enableScrollInteraction** attribute and the **onScrollFrameBegin** event.
+```ts
+@Entry
+@Component
+struct NestedScroll {
+  private headerHeight: number = 0;
+  private arr: number[] = []
+  private scrollerForParent: Scroller = new Scroller()
+  private scrollerForChild: Scroller = new Scroller()
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 10; i++) {
+      this.arr.push(i)
+    }
+  }
+
+  build() {
+    Scroll(this.scrollerForParent) {
+      Column() {
+        Text("Scroll Area")
+          .width("100%")
+          .height("40%")
+          .backgroundColor(0X330000FF)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.scrollerForChild.scrollToIndex(5)
+          })
+          .onSizeChange((oldValue: SizeOptions, newValue: SizeOptions) => {
+            this.headerHeight = newValue.height! as number
+          })
+        List({ space: 20, scroller: this.scrollerForChild }) {
+          ForEach(this.arr, (item: number) => {
+            ListItem() {
+              Text("ListItem" + item)
+                .width("100%")
+                .height("100%")
+                .borderRadius(15)
+                .fontSize(16)
+                .textAlign(TextAlign.Center)
+                .backgroundColor(Color.White)
+            }.width("100%").height(100)
+          }, (item: string) => item)
+        }
+        .width("100%")
+        .height("100%")
+        .edgeEffect(EdgeEffect.None)
+        .scrollBar(BarState.Off)
+        .enableScrollInteraction(false)
+
+        Text("Scroll Area")
+          .width("100%")
+          .height("40%")
+          .backgroundColor(0X330000FF)
+          .fontSize(16)
+          .textAlign(TextAlign.Center)
+      }
+    }
+    .scrollBar(BarState.Off)
+    .edgeEffect(EdgeEffect.Spring)
+    .onScrollFrameBegin((offset: number, state: ScrollState) => {
+      let retOffset = offset;
+      let currOffset = this.scrollerForParent.currentOffset().yOffset;
+      let newOffset = currOffset + offset;
+      if (offset > 0) {
+        if (this.scrollerForChild.isAtEnd()) {
+          return { offsetRemain: offset }
+        }
+        if (newOffset > this.headerHeight) {
+          retOffset = this.headerHeight - currOffset
+        }
+        this.scrollerForChild.scrollBy(0, offset - retOffset)
+      } else {
+        if (this.scrollerForChild.currentOffset().yOffset <= 0) {
+          return { offsetRemain: offset }
+        }
+        if (newOffset < this.headerHeight) {
+          retOffset = this.headerHeight - currOffset
+        }
+        this.scrollerForChild.scrollBy(0, offset - retOffset)
+      }
+      return { offsetRemain: retOffset }
+    })
+    .width("100%")
+    .height("100%")
+    .backgroundColor(0xDCDCDC)
+  }
+}
+```
+![NestedScroll3](figures/NestedScroll3.gif)
+### Example 5: Setting Scroll Snapping
+This example shows how to set scroll snapping for a **Scroll** component.
 ```ts
 @Entry
 @Component
@@ -1022,62 +1237,87 @@ struct Index {
 ```
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
 
-### Example 5
-```ts
-@Entry
-@Component
-// The fling function performs inertial scrolling based on the initial velocity passed in.
-struct ListExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-  scrollerForList: Scroller = new Scroller()
-  build() {
-    Column() {
-      Button('Fling-1000')
-        .height('5%')
-        .onClick(() => {
-          this.scrollerForList.fling(-1000)
-        })
-      Button('Fling3000')
-        .height('5%')
-        .onClick(() => {
-          this.scrollerForList.fling(3000)
-        })
-      List({ space: 20, initialIndex: 0, scroller: this.scrollerForList }) {
-        ForEach(this.arr, (item: number) => {
-          ListItem() {
-            Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
-          }
-        }, (item: string) => item)
-      }
-      .listDirection(Axis.Vertical) // Arrangement direction
-      .scrollBar(BarState.Off)
-      .friction(0.9)
-      .divider({ strokeWidth: 2, color: 0xFFFFFF, startMargin: 20, endMargin: 20 }) // Divider
-      .edgeEffect(EdgeEffect.Spring) // Set the edge scrolling effect to Spring.
-      .width('90%')
-    }
-    .width('100%')
-    .height('100%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
-  }
-}
-```
-
-![scroller_fling](figures/scroller_fling.gif)
-
-### Example 6
-This example implements scrolling to the bottom edge of the **Scroll** component at a velocity of 700 vp/s.
+### Example 6: Obtaining the Index of a Child Component
+This example demonstrates how to obtain the index of a child component in a **List** component.
 
 ```ts
 // xxx.ets
 @Entry
 @Component
+struct ListExample {
+  private arr: number[] = []
+  private scroller: ListScroller = new ListScroller()
+  @State listSpace: number = 10
+  @State listChildrenSize: ChildrenMainSize = new ChildrenMainSize(100)
+  @State listIndex: number = -1
+  @State mess:string = "null"
+  @State itemBackgroundColorArr: boolean[] = [false]
+  aboutToAppear(){
+    // Initialize the data source.
+    for (let i = 0; i < 10; i++) {
+      this.arr.push(i)
+    }
+    this.listChildrenSize.splice(0, 5, [100, 100, 100, 100, 100])
+  }
+  build() {
+    Column() {
+      List({ space: this.listSpace, initialIndex: 4, scroller: this.scroller }) {
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('item-' + item)
+              .height( item < 5 ? 100 : this.listChildrenSize.childDefaultSize)
+              .width('90%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor( this.itemBackgroundColorArr[item] ? 0x68B4FF: 0xFFFFFF)
+          }
+        }, (item: string) => item)
+      }
+      .backgroundColor(Color.Gray)
+      .layoutWeight(1)
+      .scrollBar(BarState.On)
+      .childrenMainSize(this.listChildrenSize)
+      .alignListItem(ListItemAlign.Center)
+      .gesture(
+        PanGesture()
+          .onActionUpdate((event: GestureEvent) => {
+            if (event.fingerList[0] != undefined && event.fingerList[0].localX != undefined && event.fingerList[0].localY != undefined) {
+              this.listIndex = this.scroller.getItemIndex(event.fingerList[0].localX, event.fingerList[0].localY)
+              this.itemBackgroundColorArr[this.listIndex] = true;
+            }
+          })
+      )
+      .gesture(
+        TapGesture({ count: 1 })
+          .onAction((event: GestureEvent) => {
+            if (event) {
+              this.itemBackgroundColorArr.splice(0,this.itemBackgroundColorArr.length);
+            }
+          })
+      )
+
+      Text('You are currently at index '+ this.listIndex)
+        .fontColor(Color.Red)
+        .height(50)
+    }
+  }
+}
+```
+
+![ScrollEdgeAtVelocity](figures/getItemIndex_list.gif)
+
+### Example 7: Setting Edge Fading
+This example demonstrates how to implement a **Scroll** component with an edge fading effect and set the length of the fading edge.
+
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+@Entry
+@Component
 struct ScrollExample {
   scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -1095,31 +1335,49 @@ struct ScrollExample {
           }, (item: string) => item)
         }.width('100%')
       }
-      .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
-      .scrollBar(BarState.On) // The scrollbar is always displayed.
-      .scrollBarColor(Color.Gray) // The scrollbar color is gray.
-      .scrollBarWidth(10) // The scrollbar width is 10.
-      .friction(0.6)
-      .edgeEffect(EdgeEffect.None)
-      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
-        console.info(xOffset + ' ' + yOffset)
-      })
-      .onScrollEdge((side: Edge) => {
-        console.info('To the edge')
-      })
-      .onScrollStop(() => {
-        console.info('Scroll Stop')
-      })
+      .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
 
-      Button('scroll to bottom 700')
-        .height('5%')
-        .onClick(() => {// After the button is clicked, the component scrolls to the bottom edge at a velocity of 700 vp/s.
-          this.scroller.scrollEdge(Edge.Bottom, { velocity: 700 })
-        })
-        .margin({ top: 100, left: 20 })
+
+
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
   }
 }
 ```
 
-![ScrollEdgeAtVelocity](figures/ScrollEdgeAtVelocity.gif)
+![fadingEdge_scroll](figures/fadingEdge_scroll.gif)
+
+### Example 9: Setting the Single-Side Edge Effect
+
+This example demonstrates how to set a single-side edge effect for the **Scroll** component using the **edgeEffect** API.
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ScrollExample {
+  scroller: Scroller = new Scroller()
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![edgeEffect_scroll](figures/edgeEffect_scroll.gif)

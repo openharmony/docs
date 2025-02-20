@@ -27,19 +27,15 @@ interface ParticleInterface {
     ACC_SPEED_UPDATER extends ParticleUpdater,
     ACC_ANGLE_UPDATER extends ParticleUpdater,
     SPIN_UPDATER extends ParticleUpdater
-  >(value: {
-    particles: Array<
-    ParticleOptions<
-    PARTICLE,
-    COLOR_UPDATER,
-    OPACITY_UPDATER,
-    SCALE_UPDATER,
-    ACC_SPEED_UPDATER,
-    ACC_ANGLE_UPDATER,
-    SPIN_UPDATER
-    >
-    >;
-  }): ParticleAttribute;
+  >(particles: Particles<
+      PARTICLE,
+      COLOR_UPDATER,
+      OPACITY_UPDATER,
+      SCALE_UPDATER,
+      ACC_SPEED_UPDATER,
+      ACC_ANGLE_UPDATER,
+      SPIN_UPDATER
+    >): ParticleAttribute;
 }
 ```
 
@@ -49,7 +45,7 @@ interface ParticleInterface {
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | {<br>particles:Array&lt;[ParticleOptions](#particleoptions)&lt;<br>[PARTICLE](#particletype), <br>[COLOR_UPDATER](#particleupdater),<br>[OPACITY_UPDATER](#particleupdater),<br>[SCALE_UPDATER](#particleupdater),<br>[ACC_SPEED_UPDATER](#particleupdater),<br> [ACC_ANGLE_UPDATER](#particleupdater),<br>[SPIN_UPDATER](#particleupdater)<br>&gt;&gt;<br>} | Yes| An array of particle options, each of which covers the emitter, color, opacity, scale, velocity, acceleration, and spin speed of particles. For details, see [ParticleOptions](#particleoptions).
+| particles | [Particles](#particles14)<<br>  [PARTICLE](#particletype), <br>  [COLOR_UPDATER](#particleupdater),<br>  [OPACITY_UPDATER](#particleupdater),<br>  [SCALE_UPDATER](#particleupdater),<br>  [ACC_SPEED_UPDATER](#particleupdater),<br>  [ACC_ANGLE_UPDATER](#particleupdater),<br>  [SPIN_UPDATER](#particleupdater)<br>><br>| Yes| Particles. For details, see [Particles](#particles14).|
 
 ## Attributes
 
@@ -105,14 +101,8 @@ interface ParticleOptions<
   color?: ParticleColorPropertyOptions<COLOR_UPDATER>;
   opacity?: ParticlePropertyOptions<number, OPACITY_UPDATER>;
   scale?: ParticlePropertyOptions<number, SCALE_UPDATER>;
-  velocity?: {
-    speed: [number, number];
-    angle: [number, number];
-  };
-  acceleration?: {
-    speed?: ParticlePropertyOptions<number, ACC_SPEED_UPDATER>;
-    angle?: ParticlePropertyOptions<number, ACC_ANGLE_UPDATER>;
-  };
+  velocity?: VelocityOptions;
+  acceleration?: AccelerationOptions<ACC_SPEED_UPDATER, ACC_ANGLE_UPDATER>;
   spin?: ParticlePropertyOptions<number, SPIN_UPDATER>;
 }
 ```
@@ -127,8 +117,8 @@ interface ParticleOptions<
 | color | [ParticleColorPropertyOptions](#particlecolorpropertyoptions)<[COLOR_UPDATER](#particleupdater)> | No| Particle color.<br>**NOTE**<br>Default value: **{ range:[Color.White,Color.White] }.** Colors cannot be set for image particles.|
 | opacity | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [OPACITY_UPDATER](#particleupdater)> | No| Particle opacity.<br>Default value: **{ range:[1.0,1.0] }**|
 | scale | [ParticlePropertyOptions](#particlepropertyoptions)\<number, [SCALE_UPDATER](#particleupdater)> | No| Particle scale.<br>Default value: **{ range:[1.0,1.0] }**|
-| velocity | {<br>speed: [number, number];<br>angle: [number, number];<br>} |No| Particle velocity.<br>**NOTE**<br>**speed** indicates the time rate at which the particle moves. **angle** indicates the direction (in angles) in which the particle moves, with the geometric center of the element as the coordinate origin and the horizontal direction as the x-axis. A positive number indicates clockwise rotation.<br>Default value: **{speed: [0.0,0.0],angle: [0.0,0.0] }**|
-| acceleration | {<br>speed?: [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>;<br>angle?:  [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_ANGLE_UPDATER](#particleupdater)>;<br>} | No| Particle acceleration.<br>**NOTE**<br>**speed** indicates the acceleration speed, and **angle** indicates the acceleration direction (in angles).<br>Default value: **{ speed:{range:[0.0,0.0]},angle:{range:[0.0,0.0]} }**|
+| velocity | [VelocityOptions](#velocityoptions14) |No| Particle velocity.<br>**NOTE**<br>**speed** indicates the time rate at which the particle moves. **angle** indicates the direction (in angles) in which the particle moves, with the geometric center of the element as the coordinate origin and the horizontal direction as the x-axis. A positive number indicates clockwise rotation.<br>Default value: **{speed: [0.0,0.0],angle: [0.0,0.0] }**|
+| acceleration | [AccelerationOptions](#accelerationoptions14)<[ACC_SPEED_UPDATER](#particleupdater), [ACC_ANGLE_UPDATER](#particleupdater)> | No| Particle acceleration.<br>**NOTE**<br>**speed** indicates the acceleration speed, and **angle** indicates the acceleration direction (in angles).<br>Default value: **{ speed:{range:[0.0,0.0]},angle:{range:[0.0,0.0]} }**|
 | spin | [ParticlePropertyOptions](#particlepropertyoptions)<number, [SPIN_UPDATER](#particleupdater)> | No| Particle spin angle.<br>Default value: **{range:[0.0,0.0]}**<br>Direction: A positive number indicates clockwise spinning, and a negative number indicates anticlockwise spinning.|
 
 
@@ -137,17 +127,11 @@ Provides particle emitter configuration.
 
 ```typescript
 interface EmitterOptions<PARTICLE extends ParticleType> {   
-  particle: {
-    type: PARTICLE;
-    config: ParticleConfigs[PARTICLE];
-    count: number;
-    lifetime?: number;
-    lifetimeRange?: number;
-  };
+  particle: EmitterParticleOptions<PARTICLE>;
   emitRate?: number;
   shape?: ParticleEmitterShape;
-  position?: [Dimension, Dimension];
-  size?: [Dimension, Dimension];
+  position?: ParticleTuple<Dimension, Dimension>;
+  size?: ParticleTuple<Dimension, Dimension>;
 }
 ```
 
@@ -157,11 +141,11 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| particle | {<br>type: [PARTICLE](#particletype),<br>config: [ParticleConfigs](#particleconfigs),<br>count: number,<br>lifetime?: number<br>lifeTimeRange?:number<sup>12+<sup><br>} | Yes| Particle configuration.<br>- **type**: particle type, which can be **IMAGE** or **POINT**.<br><br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **config**: configuration of the particle type.<br>- The value type of **config** is subject to the value of **type**.<br>1. If **type** is **ParticleType.POINT**, the **config** type is [PointParticleParameters](#pointparticleparameters).<br>2. If **type** is **ParticleType.IMAGE**, the **config** type is [ImageParticleParameters](#imageparticleparameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **count**: number of particles. The value is greater than or equal to -1. The value **-1** indicates that the number of particles is infinite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **lifetime**: lifetime of a single particle. The default value is **1000** (that is, 1000 ms, 1s). The value is greater than or equal to -1. The value **-1** indicates that the lifetime of the particle is infinite. If the value specified is less than **-1**, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **lifeTimeRange**: range of particle lifetime values. After **lifeTimeRange** is set, the lifetime of a particle is a random integer between [lifetime – lifeTimeRange, lifetime + lifeTimeRange]. **lifeTimeRange** has a default value of 0, and its value range is from 0 to positive infinity. If it is set to a negative value, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| particle | [EmitterParticleOptions](#emitterparticleoptions14)<[PARTICLE](#particletype)> | Yes| Particle configuration.<br>- **type**: particle type, which can be **IMAGE** or **POINT**.<br><br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **config**: configuration of the particle type.<br>- The value type of **config** is subject to the value of **type**.<br>1. If **type** is **ParticleType.POINT**, the **config** type is [PointParticleParameters](#pointparticleparameters).<br>2. If **type** is **ParticleType.IMAGE**, the **config** type is [ImageParticleParameters](#imageparticleparameters).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **count**: number of particles. The value is greater than or equal to -1. The value **-1** indicates that the number of particles is infinite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **lifetime**: lifetime of a single particle. The default value is **1000** (that is, 1000 ms, 1s). The value is greater than or equal to -1. The value **-1** indicates that the lifetime of the particle is infinite. If the value specified is less than **-1**, the default value is used.<br>**NOTE**<br>Setting the lifespan to **-1** is not recommended unless continuous animation is required, as it may significantly impact performance.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>- **lifeTimeRange**: range of particle lifetime values. After **lifeTimeRange** is set, the lifetime of a particle is a random integer between [lifetime – lifeTimeRange, lifetime + lifeTimeRange]. **lifeTimeRange** has a default value of 0, and its value range is from 0 to positive infinity. If it is set to a negative value, the default value is used.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | emitRate | number | No| Emit rate (that is, the number of particles emitted per second).<br> Default value: **5**. If the value specified is less than 0, the default value is used.<br> The **emitRate** value can significantly impact performance when it exceeds 5000; you are advised to set it to be less than 5000.|
 | shape | [ParticleEmitterShape](#particleemittershape) | No| Emitter shape.<br> Default value: **ParticleEmitterShape.RECTANGLE**|
-| position | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\] | No| Emitter position (distance from the upper left corner of the component). The first parameter indicates the relative offset along the x-axis, and the second parameter indicates the relative offset along the y-axis.<br>Default value: **[0.0, 0.0]**|
-| size |  \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]     |No| Size of the emit window. The first parameter indicates the emitter width, and the second parameter indicates the emitter height.<br>Default value: **['100%', '100%']** (that is, the emit window fully occupies the component).|
+| position | [ParticleTuple](#particletuple14)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | No| Emitter position (distance from the upper left corner of the component). The first parameter indicates the relative offset along the x-axis, and the second parameter indicates the relative offset along the y-axis.<br>Default value: **[0.0, 0.0]**|
+| size |  [ParticleTuple](#particletuple14)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)>     |No| Size of the emit window. The first parameter indicates the emitter width, and the second parameter indicates the emitter height.<br>Default value: **['100%', '100%']** (that is, the emit window fully occupies the component).|
 
 ## ParticleConfigs
 
@@ -200,7 +184,7 @@ interface PointParticleParameters {
 ```typescript
 interface ImageParticleParameters {
   src: ResourceStr;
-  size: [Dimension, Dimension];
+  size: ParticleTuple<Dimension, Dimension>;
   objectFit?: ImageFit;
 }
 ```
@@ -212,19 +196,16 @@ interface ImageParticleParameters {
 | Name  | Type  | Mandatory| Description|
 | -------- | -------------- | -------- | -------- |
 | src      | [ResourceStr](ts-types.md#resourcestr) | Yes   | Image path. SVG images are not supported.|
-| size     | \[[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)\]| Yes   | Image size.|
+| size     | [ParticleTuple](#particletuple14)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | Yes   | Image size.|
 | objectFit| [ImageFit](ts-appendix-enums.md#imagefit)| No   | Image display mode.|
 
 ## ParticleColorPropertyOptions
 
 ```typescript
 interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
-  range: [ResourceColor, ResourceColor]; 
+  range: ParticleTuple<ResourceColor, ResourceColor>; 
   distributionType?: DistributionType;
-  updater?: {
-    type: UPDATER;
-    config: ParticleColorPropertyUpdaterConfigs[UPDATER];
-  };
+  updater?: ParticleColorUpdaterOptions<UPDATER>;
 }
 ```
 **Atomic service API**: This API can be used in atomic services since API version 11.
@@ -233,21 +214,16 @@ interface ParticleColorPropertyOptions<UPDATER extends ParticleUpdater> {
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | \[[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)\] | Yes| Initial color range of the particle. The initial color of particles generated by the particle emitter is randomly selected in this range.<br>Default value: **range:[Color.White,Color.White]**<br>**Atomic service API**: This API can be used in atomic services since API version 11.
-| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | No| Type of random value distribution for the initial color of the particle. Both uniform distribution and normal (Gaussian) distribution are supported.<br>Default value: **DistributionType.UNIFORM**<br>**Atomic service API**: This API can be used in atomic services since API version 12.
-| updater | {<br>type: [UPDATER](#particleupdater);<br>config: [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[UPDATER];<br>} | No| How the color property is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE].<br>The default value of **type** is **ParticleUpdater.NONE**.<br>**NOTE**<br>When **type** is set to **ParticleUpdater.RANDOM** or **ParticleUpdater.CURVE**, the color configuration in **updater** has higher priority than that in **range**. During the animation time period configured in **updater**, the color configuration from **updater** is used. Outside of the animation time period configured in **updater**, the color configuration from **range** is used.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| range | [ParticleTuple](#particletuple14)<[ResourceColor](ts-types.md#resourcecolor), [ResourceColor](ts-types.md#resourcecolor)> | Yes| Initial color range of the particle. The initial color of particles generated by the particle emitter is randomly selected in this range.<br>Default value: **range:[Color.White,Color.White]**|
+| distributionType<sup>12+<sup> | [DistributionType](#distributiontype12) | No| Type of random value distribution for the initial color of the particle. Both uniform distribution and normal (Gaussian) distribution are supported.<br>Default value: **DistributionType.UNIFORM**<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| updater | [ParticleColorUpdaterOptions](#particlecolorupdateroptions14)<[UPDATER](#particleupdater)> | No| How the color property is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE].<br>The default value of **type** is **ParticleUpdater.NONE**.<br>**NOTE**<br>When **type** is set to **ParticleUpdater.RANDOM** or **ParticleUpdater.CURVE**, the color configuration in **updater** has higher priority than that in **range**. During the animation time period configured in **updater**, the color configuration from **updater** is used. Outside of the animation time period configured in **updater**, the color configuration from **range** is used.|
 
 
 ## ParticleColorPropertyUpdaterConfigs
 ```typescript
 interface ParticleColorPropertyUpdaterConfigs {
   [ParticleUpdater.NONE]: void;
-  [ParticleUpdater.RANDOM]: {
-    r: [number, number];
-    g: [number, number];
-    b: [number, number];
-    a: [number, number];
-  };
+  [ParticleUpdater.RANDOM]: ParticleColorOptions;
   [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<ResourceColor>>;
 }
 ```
@@ -259,17 +235,14 @@ interface ParticleColorPropertyUpdaterConfigs {
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |[ParticleUpdater.NONE]|void | Yes| The color does not change.|
-| [ParticleUpdater.RANDOM] | {<br>  r: [number, number];<br>  g: [number, number];<br>  b: [number, number];<br>  a: [number, number];<br>} | Yes| The color changes randomly, with the per-second change difference being a value randomly generated from the range. The target color is obtained by applying the change difference to the current color value of each of the R, G, B, A channels.  |
+| [ParticleUpdater.RANDOM] | [ParticleColorOptions](#particlecoloroptions14) | Yes| The color changes randomly, with the per-second change difference being a value randomly generated from the range. The target color is obtained by applying the change difference to the current color value of each of the R, G, B, A channels.  |
 [ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<[ResourceColor](ts-types.md#resourcecolor)\>> | Yes| The color changes with the animation curve. The array type indicates that multiple animation segments can be set for the current property, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms.|
 
 ## ParticlePropertyOptions
 ```typescript
 interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
-  range: [TYPE, TYPE];
-  updater?: {
-    type: UPDATER;
-    config: ParticlePropertyUpdaterConfigs<TYPE>[UPDATER];
-  };
+  range: ParticleTuple<TYPE, TYPE>;
+  updater?: ParticleUpdaterOptions<TYPE, UPDATER>;
 }
 ```
 
@@ -279,15 +252,15 @@ interface ParticlePropertyOptions<TYPE, UPDATER extends ParticleUpdater> {
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | [TYPE, TYPE] | Yes| Initial property value range of the particle. The initial property value of particles generated by the particle emitter is randomly selected in this range.<br>**NOTE**<br>If a property is set to an invalid value, the default value will be used. If the maximum value is less than the minimum value, the default range will be used. **TYPE** is number.<br>The default value varies by property:<br>1. **opacity** property: **range:[1.0,1.0]**; the value ranges from 0 to 1; the default value is **0.0**.<br>2. **scale** property: **range:[1.0,1.0]**; the value is greater than or equal to 0; the default value is **1.0**.<br>3. **speed** property in **acceleration**: **range:[0.0,0.0]**; the value is greater than or equal to 0; the default value is **0.0**.<br>4. **angle** property in **acceleration**: **range:[0.0,0.0]**; the value range is (-∞, +∞); the default value is **0.0**.<br>5. **spin** property: **range:[0.0,0.0]**; the default value is **0.0**.
-| updater | {type: [UPDATER](#particleupdater);config: [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[UPDATER];} | No| How the property is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE].<br>The default value of **type** is **ParticleUpdater.NONE**.|
+| range | [ParticleTuple](#particletuple14)<[TYPE](#particleupdater), [TYPE](#particleupdater)> | Yes| Initial property value range of the particle. The initial property value of particles generated by the particle emitter is randomly selected in this range.<br>**NOTE**<br>If a property is set to an invalid value, the default value will be used. If the maximum value is less than the minimum value, the default range will be used. **TYPE** is number.<br>The default value varies by property:<br>1. **opacity** property: **range:[1.0,1.0]**; the value ranges from 0 to 1; the default value is **0.0**.<br>2. **scale** property: **range:[1.0,1.0]**; the value is greater than or equal to 0; the default value is **1.0**.<br>3. **speed** property in **acceleration**: **range:[0.0,0.0]**; the value is greater than or equal to 0; the default value is **0.0**.<br>4. **angle** property in **acceleration**: **range:[0.0,0.0]**; the value range is (-∞, +∞); the default value is **0.0**.<br>5. **spin** property: **range:[0.0,0.0]**; the default value is **0.0**.
+| updater | [ParticleUpdaterOptions](#particleupdateroptions14)<[TYPE](#particleupdater), [UPDATER](#particleupdater)> | No| How the property is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE].<br>The default value of **type** is **ParticleUpdater.NONE**.|
 
 
 ## ParticlePropertyUpdaterConfigs
 ```typescript
 interface ParticlePropertyUpdaterConfigs<T> {
     [ParticleUpdater.NONE]: void;
-    [ParticleUpdater.RANDOM]: [T, T];
+    [ParticleUpdater.RANDOM]: ParticleTuple<T, T>;
     [ParticleUpdater.CURVE]: Array<ParticlePropertyAnimation<T>>;
 }
 ```
@@ -299,10 +272,8 @@ interface ParticlePropertyUpdaterConfigs<T> {
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | [ParticleUpdater.NONE]|void | Yes| The color does not change.|
-| [ParticleUpdater.RANDOM] | [T, T] | Yes| The property changes randomly, with the per-second change difference being a value randomly generated from the range.<br>The target property value is obtained by applying the change difference to the current property value. For example, if the current property value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target property value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current property value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target property value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target property value does. Therefore, if the target property value is greater than the maximum property value, the maximum property value will be used instead; if the target property value is less than the minimum property value, the minimum property value will be used instead. **T** represents a number.<br>For example, if the value range of **opacity** is **[0.0, 1.0]**, then if the target property value is greater than 1.0, **1.0** will be used instead.|
+| [ParticleUpdater.RANDOM] | [ParticleTuple](#particletuple14)<T, T> | Yes| The property changes randomly, with the per-second change difference being a value randomly generated from the range.<br>The target property value is obtained by applying the change difference to the current property value. For example, if the current property value is **0.2** and **config** is set to **[0.1,1.0]**, then:<br>1. When the random change difference is 0.5, the target property value is 0.2 + 0.5 = 0.7.<br>2. The change difference may also be a negative value. For example, if the current property value is **0.2** and **config** is set to **[-3.0,2.0]**, then when the random change difference is **-2.0**, the target property value is 0.2 - 2.0 = -1.8.<br>**NOTE**<br>**config** sets the value range of the change difference. While the change difference does not have a maximum or minimum value limit, the target property value does. Therefore, if the target property value is greater than the maximum property value, the maximum property value will be used instead; if the target property value is less than the minimum property value, the minimum property value will be used instead. **T** represents a number.<br>For example, if the value range of **opacity** is **[0.0, 1.0]**, then if the target property value is greater than 1.0, **1.0** will be used instead.|
 |[ParticleUpdater.CURVE]|Array<[ParticlePropertyAnimation](#particlepropertyanimation)\<T\>> | Yes| The property changes with the animation curve. The array type indicates that multiple animation segments can be set for the current property, for example, 0-3000 ms, 3000-5000 ms, and 5000-8000 ms. **T** represents a number.|
-
-
 
 ## ParticlePropertyAnimation
 ```typescript
@@ -442,11 +413,196 @@ enum ParticleUpdater {
 | position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | No  |Array of emitter positions. Only the number type is supported.<br>If no value is passed in, the current emitter position is retained. Two valid values must be passed in; if either is an invalid value, **position** will not take effect.|
 | size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| No |Size of the emit window. Only the number type is supported.<br>If no value is passed in, the current emitter window size is retained. Two valid values greater than 0 must be passed in; if either is an invalid value, **size** will not take effect.|
 
+## ParticleTuple<sup>14+</sup>
+
+```typescript
+declare type ParticleTuple<T1, T2> = [T1, T2];
+```
+
+Defines the tuple type representing a pair of animation parameters.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type        | Description                                          |
+| ----------- | ---------------------------------------------- |
+| [T1, T2]    | A pair of animation parameters, which can be of any type.             |
+
+## Particles<sup>14+</sup>
+
+```typescript
+interface Particles<
+  PARTICLE extends ParticleType,
+  COLOR_UPDATER extends ParticleUpdater,
+  OPACITY_UPDATER extends ParticleUpdater,
+  SCALE_UPDATER extends ParticleUpdater,
+  ACC_SPEED_UPDATER extends ParticleUpdater,
+  ACC_ANGLE_UPDATER extends ParticleUpdater,
+  SPIN_UPDATER extends ParticleUpdater
+> {
+  particles: Array<
+    ParticleOptions<
+      PARTICLE,
+      COLOR_UPDATER,
+      OPACITY_UPDATER,
+      SCALE_UPDATER,
+      ACC_SPEED_UPDATER,
+      ACC_ANGLE_UPDATER,
+      SPIN_UPDATER
+    >
+  >;
+}
+```
+
+Defines an array of particle options.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                          | Mandatory| Description                                                                                                                    |
+| ------ | ------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| particles  | Array<<br>  ParticleOptions<<br>    PARTICLE,<br>    COLOR_UPDATER,<br>    OPACITY_UPDATER,<br>    SCALE_UPDATER,<br>    ACC_SPEED_UPDATER,<br>    ACC_ANGLE_UPDATER,<br>    SPIN_UPDATER<br>  ><br>>  | Yes  | An array of particle options, each of which covers the emitter, color, opacity, scale, velocity, acceleration, and spin speed of particles. For details, see [ParticleOptions](#particleoptions).|
+
+## VelocityOptions<sup>14+</sup>
+
+```typescript
+declare interface VelocityOptions {
+  speed: ParticleTuple<number, number>;
+  angle: ParticleTuple<number, number>;
+}
+```
+
+Defines the particle velocity.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                          | Mandatory| Description                                                                                                                    |
+| ------ | ------------------------------ | ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| speed  | [ParticleTuple](#particletuple14)<number, number>  | Yes  | Time rate at which the particle moves.<br>Default value: **{range:[0.0,0.0]}**                                                                             |
+| angle  | [ParticleTuple](#particletuple14)<number, number>  | Yes  | Direction (in angles) in which the particle moves, with the geometric center of the element as the coordinate origin and the horizontal direction as the x-axis. A positive number indicates clockwise rotation.<br>Default value: **{range:[0.0,0.0]}**|
+
+## AccelerationOptions<sup>14+</sup>
+
+```typescript
+declare interface AccelerationOptions<
+  ACC_SPEED_UPDATER extends ParticleUpdater,
+  ACC_ANGLE_UPDATER extends ParticleUpdater
+> {
+  speed?: ParticlePropertyOptions<number, ACC_SPEED_UPDATER>;
+  angle?: ParticlePropertyOptions<number, ACC_ANGLE_UPDATER>;
+}
+```
+
+Defines the particle acceleration.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                               | Mandatory| Description                                                      |
+| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
+| speed  | [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>  | No  | Acceleration speed.<br>Default value: **{range:[0.0,0.0]}**             |
+| angle  | [ParticlePropertyOptions](#particlepropertyoptions)<number, [ACC_SPEED_UPDATER](#particleupdater)>  | No  | Acceleration direction (in angles).<br>Default value: **{range:[0.0,0.0]}**|
+
+## EmitterParticleOptions<sup>14+</sup>
+
+```typescript
+interface EmitterParticleOptions<PARTICLE extends ParticleType> {
+  type: PARTICLE;
+  config: ParticleConfigs[PARTICLE];
+  count: number;
+  lifetime?: number;
+  lifetimeRange?: number;
+}
+```
+
+Defines the particle configuration.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                               | Mandatory| Description                                                      |
+| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type  | [PARTICLE](#particletype)  | Yes  | Particle type, which can be **IMAGE** or **POINT**.             |
+| config  | [ParticleConfigs](#particleconfigs)[PARTICLE]  | Yes  | Configuration of the particle type.<br>The value type of **config** is subject to the value of **type**.<br>1. If **type** is **ParticleType.POINT**, the **config** type is [PointParticleParameters](#pointparticleparameters).<br>2. If **type** is **ParticleType.IMAGE**, the **config** type is [ImageParticleParameters](#imageparticleparameters).|
+| count  | number  | Yes  | Number of particles. The value is greater than or equal to -1. The value **-1** indicates that the number of particles is infinite.|
+| lifetime  | number  | No  | Lifetime of a single particle. The default value is **1000** (that is, 1000 ms, 1s). The value is greater than or equal to -1. The value **-1** indicates that the lifetime of the particle is infinite. If the value specified is less than **-1**, the default value is used.<br>**NOTE**<br>Setting the lifespan to **-1** is not recommended unless continuous animation is required, as it may significantly impact performance.|
+| lifeTimeRange  | number  | No  | Range of particle lifetime values. After **lifeTimeRange** is set, the lifetime of a particle is a random integer between [lifetime – lifeTimeRange, lifetime + lifeTimeRange]. **lifeTimeRange** has a default value of 0, and its value range is from 0 to positive infinity. If it is set to a negative value, the default value is used.|
+
+## ParticleUpdaterOptions<sup>14+</sup>
+
+```typescript
+interface ParticleUpdaterOptions<TYPE, UPDATER extends ParticleUpdater> {
+  type: UPDATER;
+  config: ParticlePropertyUpdaterConfigs<TYPE>[UPDATER];
+}
+```
+
+Defines how the color property is updated.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                               | Mandatory| Description                                                      |
+| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type  | [UPDATER](#particleupdater)  | Yes  | Type of property updating.<br>The default value of **type** is **ParticleUpdater.NONE**.             |
+| config  | [UPDATER](#particleupdater)  | Yes  | How the property is updated. The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticlePropertyUpdaterConfigs](#particlepropertyupdaterconfigs)[ParticleUpdater.CURVE].|
+
+## ParticleColorUpdaterOptions<sup>14+</sup>
+
+```typescript
+interface ParticleColorUpdaterOptions<UPDATER extends ParticleUpdater> {
+  type: UPDATER;
+  config: ParticleColorPropertyUpdaterConfigs[UPDATER];
+}
+```
+
+Defines how the color property is updated.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Type                                               | Mandatory| Description                                                      |
+| ------ | --------------------------------------------------- | ---- | --------------------------------------------------------- |
+| type  | [UPDATER](#particleupdater)  | Yes  | Type of property updating.<br>The default value of **type** is **ParticleUpdater.NONE**.             |
+| config  | [UPDATER](#particleupdater)  | Yes  | The available options of **type** are as follows:<br>1. **ParticleUpdater.NONE**: The property does not change. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.NONE].<br>2. **ParticleUpdater.RANDOM**: The property changes randomly. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.RANDOM].<br>3. **ParticleUpdater.CURVE**: The property changes with the animation curve. In this case, the **config** type is [ParticleColorPropertyUpdaterConfigs](#particlecolorpropertyupdaterconfigs)[ParticleUpdater.CURVE].<br>**NOTE**<br>When **type** is set to **ParticleUpdater.RANDOM** or **ParticleUpdater.CURVE**, the color configuration in **updater** has higher priority than that in **range**. During the animation time period configured in **updater**, the color configuration from **updater** is used. Outside of the animation time period configured in **updater**, the color configuration from **range** is used.|
+
+## ParticleColorOptions<sup>14+</sup>
+
+```typescript
+interface ParticleColorOptions {
+  r: ParticleTuple<number, number>;
+  g: ParticleTuple<number, number>;
+  b: ParticleTuple<number, number>;
+  a: ParticleTuple<number, number>;
+}
+```
+
+Defines the particle color options. The color changes randomly, with the per-second change difference being a value randomly generated from the range. The target color is obtained by applying the change difference to the current color value of each of the R, G, B, A channels.  
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type                          | Mandatory| Description                        |
+| ---- | ------------------------------ | ---- | --------------------------- |
+| r    | [ParticleTuple](#particletuple14)<number, number>  | Yes  | Difference value for the red color channel.           |
+| g    | [ParticleTuple](#particletuple14)<number, number>  | Yes  | Difference value for the green color channel.           |
+| b    | [ParticleTuple](#particletuple14)<number, number>  | Yes  | Difference value for the blue color channel.           |
+| a    | [ParticleTuple](#particletuple14)<number, number>  | Yes  | Difference value for the alpha (transparency) channel.           |
+
 ## Example
 
-### Example 1
+### Example 1: Initializing Particles with Circular Shapes
 
-This example demonstrates the basic usage of particle animation, initializing point particles.
+This example demonstrates the basic usage of particle animations by initializing particles with circular shapes.
 
 ```ts
 // xxx.ets
@@ -562,9 +718,9 @@ struct ParticleExample {
 
 ![particle](figures/particle.gif)
 
-### Example 2
+### Example 2: Initializing Particles with Images
 
-This example demonstrates the basic usage of particle animation, initializing image particles.
+This example demonstrates the basic usage of particle animations by initializing particles with images.
 
 ```ts
 @Entry
@@ -953,9 +1109,10 @@ struct ParticleExample {
 ```
 ![particle](figures/particle_inage_one.gif)
 
-### Example 3
+### Example 3: Changing Motion Trajectories with the Particle Disturbance Field
 
-This example demonstrates how particles' trajectories change under the influence of a particle disturbance field.
+This example demonstrates how to change the motion trajectories of particles by applying disturbances through the particle disturbance field.
+
 ```
 @Entry
 @Component
@@ -1077,7 +1234,7 @@ struct ParticleExample {
 ```
 ![particle](figures/disturbanceFields.gif)
 
-### Example 4
+### Example 4: Adjusting the Emitter Position
 This example demonstrates how to adjust the position of the particle emitter through **emitter()**.
 ```ts
 @Entry

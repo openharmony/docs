@@ -15,6 +15,21 @@ import { ble } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState<sup>12+</sup>
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+蓝牙设备的profile连接状态。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
+
+
 ## ble.createGattServer<a name="createGattServer"></a>
 
 createGattServer(): GattServer

@@ -4,7 +4,7 @@
 
 AppStorageV2是提供状态变量在应用级全局共享的能力，开发者可以通过connect绑定同一个key，进行跨ability的数据共享。
 
-在阅读本文当前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[AppStorageV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#appstoragev2)。
+在阅读本文档前，建议提前阅读：[\@ComponentV2](./arkts-new-componentV2.md)，[\@ObservedV2和\@Trace](./arkts-new-observedV2-and-trace.md)，配合阅读：[AppStorageV2-API文档](../reference/apis-arkui/js-apis-StateManagement.md#appstoragev2)。
 
 >**说明：**
 >
@@ -40,13 +40,13 @@ static connect<T extends object>(
 
 >**说明：**
 >
->1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）；
+>1、若未指定key，使用第二个参数作为默认构造器；否则使用第三个参数作为默认构造器（第二个参数非法也使用第三个参数作为默认构造器）。
 >
->2、确保数据已经存储在AppStorageV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常；
+>2、确保数据已经存储在AppStorageV2中，可省略默认构造器，获取存储的数据；否则必须指定默认构造器，不指定将导致应用异常。
 >
->3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配；
+>3、同一个key，connect不同类型的数据会导致应用异常，应用需要确保类型匹配。
 >
->4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的；
+>4、key建议使用有意义的值，可由字母、数字、下划线组成，长度不超过255，使用非法字符或空字符的行为是未定义的。
 >
 >5、关联[\@Observed](arkts-observed-and-objectlink.md)对象时，由于该类型的name属性未定义，需要指定key或者自定义name属性。
 
@@ -79,9 +79,9 @@ static keys(): Array<string>;
 
 ## 使用限制
 
-1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable；
+1、需要配合UI使用（UI线程），不能在其他线程使用，如不支持@Sendable。
 
-2、不支持collections.Set、collections.Map等类型；
+2、不支持collections.Set、collections.Map等类型。
 
 3、不支持非buildin类型，如PixelMap、NativePointer、ArrayList等Native类型。
 
@@ -192,7 +192,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [

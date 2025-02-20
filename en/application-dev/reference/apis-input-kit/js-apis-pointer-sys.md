@@ -2303,3 +2303,161 @@ try {
   console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean, callback: AsyncCallback\<void>): void
+
+Sets the double-tap and drag switch for the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| isOpen | boolean | Yes   | Status of the double-tap and drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
+    if (error) {
+      console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean): Promise\<void>
+
+Sets the double-tap and drag switch for the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Status of the double-tap and drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(false).then(() => {
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(callback: AsyncCallback\<boolean>): void
+
+Obtains the status of the double-tap and drag switch for the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the status of the double-tap drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState((error: Error, state: boolean) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(): Promise\<boolean>
+
+Obtains the status of the double-tap and drag switch for the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the status of the touchpad double-tap drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState().then((state) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```

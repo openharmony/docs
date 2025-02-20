@@ -16,17 +16,8 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    - Method 1: Obtain the sandbox path. For details about how to obtain the sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
 
       ```ts
-      // Code on the stage model
       const context : Context = getContext(this);
       const filePath : string = context.cacheDir + '/test.jpg';
-      ```
-
-      ```ts
-      // Code on the FA model
-      import { featureAbility } from '@kit.AbilityKit';
-      
-      const context = featureAbility.getContext();
-      const filePath = context.getCacheDir() + "/test.jpg";
       ```
 
    - Method 2: Obtain the file descriptor of the image through the sandbox path. For details, see [file.fs API Reference](../../reference/apis-core-file-kit/js-apis-file-fs.md).
@@ -39,42 +30,18 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       Then call **fileIo.openSync()** to obtain the file descriptor.
   
       ```ts
-      // Code on the stage model
       const context = getContext(this);
       const filePath = context.cacheDir + '/test.jpg';
       const file : fileIo.File = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE);
       const fd : number = file?.fd;
       ```
 
-      ```ts
-      // Code on the FA model
-      import { featureAbility } from '@kit.AbilityKit';
-      
-      const context = featureAbility.getContext();
-      const filePath = context.getCacheDir() + "/test.jpg";
-      const file : fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
-      const fd : number = file?.fd;
-      ```
-
    - Method 3: Obtain the array buffer of the resource file through the resource manager. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfilecontent9-1).
 
       ```ts
-      // Code on the stage model
       const context : Context = getContext(this);
       // Obtain a resource manager.
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-      ```
-
-      ```ts
-      // Code on the FA model
-      // Import the resourceManager module.
-      import { resourceManager } from '@kit.LocalizationKit';
-      import { BusinessError } from '@kit.BasicServicesKit';
-      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
-         console.log("Succeeded in getting resourceManager")
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get resourceManager")
-      });
       ```
 
       The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFileContent()** to obtain the array buffer of the resource file.
@@ -93,22 +60,9 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    - Method 4: Obtain the raw file descriptor of the resource file through the resource manager. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9-1).
 
       ```ts
-      // Code on the stage model
       const context : Context = getContext(this);
       // Obtain a resource manager.
       const resourceMgr : resourceManager.ResourceManager = context.resourceManager;
-      ```
-
-      ```ts
-      // Code on the FA model
-      // Import the resourceManager module.
-      import { resourceManager } from '@kit.LocalizationKit';
-      import { BusinessError } from '@kit.BasicServicesKit';
-      resourceManager.getResourceManager().then((resourceMgr : resourceManager.ResourceManager) => {
-         console.log("Succeeded in getting resourceManager")
-      }).catch((err : BusinessError) => {
-         console.error("Failed to get resourceManager")
-      });
       ```
 
       The method of obtaining the resource manager varies according to the application model. After obtaining the resource manager, call **resourceMgr.getRawFd()** to obtain the raw file descriptor of the resource file.
@@ -169,7 +123,28 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
       });
       ```
 
-5. Release the **Picture** instance.
+5. Manipulate the picture, for example, obtaining an auxiliary picture. For details about how to manipulate a picture and auxiliary picture, see [Image API](../../reference/apis-image-kit/js-apis-image.md#picture13).
+
+   ```ts
+   // Obtain an auxiliary picture.
+   let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+   let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+   // Obtain the information of the auxiliary picture.
+   let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+   console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
+      ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
+      ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
+      ' colorSpace: ' +  auxinfo.colorSpace);
+   // Read data of the auxiliary picture and write the data to an ArrayBuffer.
+   auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+      console.info('Read pixels to buffer success.');
+   }).catch((error: BusinessError) => {
+      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+   });
+   auxPicture.release();
+   ```
+
+6. Release the **Picture** instance.
 
    ```ts
    picture.release();
@@ -223,7 +198,28 @@ Read [Image](../../reference/apis-image-kit/js-apis-image.md#imagesource) for AP
    });
    ```
 
-4. Release the **Picture** instance.
+4. Manipulate the picture, for example, obtaining an auxiliary picture. For details about how to manipulate a picture and auxiliary picture, see [Image API](../../reference/apis-image-kit/js-apis-image.md#picture13).
+
+   ```ts
+   // Obtain an auxiliary picture.
+   let type: image.AuxiliaryPictureType = image.AuxiliaryPictureType.GAINMAP;
+   let auxPicture: image.AuxiliaryPicture | null = picture.getAuxiliaryPicture(type);
+   // Obtain the information of the auxiliary picture.
+   let auxinfo: image.AuxiliaryPictureInfo = auxPicture.getAuxiliaryPictureInfo();
+   console.info('GetAuxiliaryPictureInfo Type: ' + auxinfo.auxiliaryPictureType +
+      ' height: ' + auxinfo.size.height + ' width: ' + auxinfo.size.width +
+      ' rowStride: ' +  auxinfo.rowStride +  ' pixelFormat: ' + auxinfo.pixelFormat +
+      ' colorSpace: ' +  auxinfo.colorSpace);
+   // Read data of the auxiliary picture and write the data to an ArrayBuffer.
+   auxPicture.readPixelsToBuffer().then((pixelsBuffer: ArrayBuffer) => {
+      console.info('Read pixels to buffer success.');
+   }).catch((error: BusinessError) => {
+      console.error('Read pixels to buffer failed error.code: ' + JSON.stringify(error.code) + ' ,error.message:' + JSON.stringify(error.message));
+   });
+   auxPicture.release();
+   ```
+
+5. Release the **Picture** instance.
 
    ```ts
    picture.release();

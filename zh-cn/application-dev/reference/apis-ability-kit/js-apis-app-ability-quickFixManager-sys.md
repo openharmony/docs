@@ -17,9 +17,9 @@ import { quickFixManager } from '@kit.AbilityKit';
 
 hap级别的快速修复信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称        | 类型                 | 只读 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -31,9 +31,9 @@ hap级别的快速修复信息。
 
 应用级别的快速修复信息。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称        | 类型                 | 只读 | 必填 | 说明                                                         |
 | ----------- | -------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -50,11 +50,11 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 快速修复的补丁安装接口。使用callback异步回调。
 
-**需要权限**: ohos.permission.INSTALL_BUNDLE
+**需要权限**：ohos.permission.INSTALL_BUNDLE
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -104,11 +104,11 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 快速修复的补丁安装接口。使用Promise异步回调。
 
-**需要权限**: ohos.permission.INSTALL_BUNDLE
+**需要权限**：ohos.permission.INSTALL_BUNDLE
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -161,11 +161,11 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
 获取应用的快速修复信息。使用callback异步回调。
 
-**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -212,11 +212,11 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 获取应用的快速修复信息。使用Promise异步回调。
 
-**需要权限**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -268,9 +268,9 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.INSTALL_BUNDLE
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -313,9 +313,9 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 **需要权限**：ohos.permission.GET_BUNDLE_INFO_PRIVILEGED, ohos.permission.INSTALL_BUNDLE
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+**系统能力**：SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 

@@ -36,7 +36,7 @@ InterstitialDialogAction的构造函数
 
 **参数**：
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
 | dialogOptions | [DialogOptions](#dialogoptions)| 是 | 设置弹框特有的属性。 |
 
@@ -71,6 +71,7 @@ closeDialog(): void
 | 名称| 类型 | 必填 | 说明 |
 | - | - | - | - |
 | uiContext | [UIContext](../js-apis-arkui-UIContext.md#uicontext) | 是 | UI上下文实例。 |
+| bottomOffsetType | [BottomOffset](#bottomoffset) | 否 | 弹框距离底部偏移类型。 |
 | title | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框标题文本。 |
 | subtitle | [ResourceStr](ts-types.md#resourcestr) | 否 | 弹框副标题文本。 |
 | titleColor | [ResourceStr](ts-types.md#resourcestr) \| [Color](ts-appendix-enums.md#color) | 否 | 弹框标题文本颜色。 |

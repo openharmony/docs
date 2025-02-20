@@ -394,6 +394,8 @@ getSelectedIndex(): number
 
 获取保存成功后的文件后缀类型的下标。
 
+仅支持2in1设备。
+
 该方法只在调用 [save()](#save)时使用生效，其他场景下不可以使用。
 
 该方法需要配置参数[DocumentSaveOptions.fileSuffixChoices](#documentsaveoptions)使用。
@@ -756,6 +758,8 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 
 枚举，picker选择的文档类型。
 
+仅支持2in1设备。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection
@@ -779,8 +783,11 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 | maxSelectNumber<sup>10+</sup>       | number                                      | 否   | 选择文件最大个数，上限500，有效值范围1-500（选择目录仅对具有该系统能力的设备开放。且目录选择的最大个数为1）。默认值是1。**系统能力：** SystemCapability.FileManagement.UserFileService  |
 | defaultFilePathUri<sup>10+</sup>    | string                                      | 否   | 指定选择的文件或者目录路径                            |
 | fileSuffixFilters<sup>10+</sup>     | Array&lt;string&gt;                         | 否   | 选择文件的后缀类型，传入字符串数组，每一项代表一个后缀选项，每一项内部用"\|\"分为两部分，第一部分为描述，第二部分为过滤后缀。没有"\|\"则没有描述，该项整体是一个过滤后缀。每项过滤后缀可以存在多个后缀名，则每一个后缀名之间用英文逗号进行分隔，传入数组长度不能超过100。仅对具有该系统能力的设备开放。默认全部过滤，即显示所有文件。**系统能力：** SystemCapability.FileManagement.UserFileService   |
-| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 支持选择的资源类型，比如：文件、文件夹和二者混合，仅对具有该系统能力的设备开放，默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |
-| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅对具有该系统能力的设备开放，**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |     
+| selectMode<sup>11+</sup>         | [DocumentSelectMode](#documentselectmode11) | 否   | 仅支持2in1设备。默认值是文件类型。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  |
+| authMode<sup>12+</sup>    | boolean                              | 否   | 拉起授权picker，默认为false（非授权模式）。当authMode为true时为授权模式，defaultFilePathUri必填，表明待授权uri。仅支持2in1设备。**系统能力：** SystemCapability.FileManagement.UserFileService.FolderSelection  | 
+|multiAuthMode<sup>15+</sup>  | boolean                             |否    | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。|
+|multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    | 传入需要批量授权的uri数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。仅支持手机设备。|
+|mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。|    
 
 ## DocumentPickerMode<sup>12+</sup>
 
@@ -794,6 +801,22 @@ async function example18(context: common.Context) { // 需确保 context 由 UIA
 | ----- |  ---- | ---- |
 | DEFAULT  | 0  | 标准模式 |
 | DOWNLOAD | 1  | 下载模式 |
+
+## MergeTypeMode<sup>15+</sup>
+
+枚举，文件聚合类型。仅支持手机设备。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.FileManagement.UserFileService
+
+| 名称  |  值 |  说明 |
+| ----- | ---- | ---- |
+| DEFAULT  | 0  | 默认模式，表示该参数不生效。 |
+| AUDIO | 1  | 音频文件模式。 |
+| VIDEO  | 2  | 视频文件模式。 |
+| DOCUMENT | 3  | 文档文件模式。 |
+| PICTURE  | 4  | 图片文件模式。 |
 
 ## DocumentSaveOptions
 
@@ -895,7 +918,7 @@ constructor()
 let photoPicker = new picker.PhotoViewPicker(); // 不推荐使用无参构造，会出现概率性拉起失败问题
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option?: PhotoSelectOptions): Promise&lt;PhotoSelectResult&gt;
 
@@ -947,7 +970,7 @@ async function example01(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -996,7 +1019,7 @@ async function example02(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### select<sup>(deprecated)</sup>
+### select
 
 select(callback: AsyncCallback&lt;PhotoSelectResult&gt;): void
 
@@ -1041,7 +1064,7 @@ async function example03(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option?: PhotoSaveOptions): Promise&lt;Array&lt;string&gt;&gt;
 
@@ -1090,7 +1113,7 @@ async function example04(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(option: PhotoSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
@@ -1136,7 +1159,7 @@ async function example05(context: common.Context) { // 需确保 context 由 UIA
 }
 ```
 
-### save<sup>(deprecated)</sup>
+### save
 
 save(callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 

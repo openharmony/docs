@@ -6,9 +6,11 @@ You can use WebSocket to establish a bidirectional connection between a server a
 
 If an error occurs in any of the preceding processes, the client will receive a callback of the **error** event.
 
+The WebSocket module supports the heartbeat detection mechanism. After a WebSocket connection is established between the client and server, the client sends a ping frame to the server at a specified interval. On receiving the ping frame, the server immediately returns a Pong frame.
+
 ## Available APIs
 
-The WebSocket connection function is mainly implemented by the WebSocket module. To use related APIs, you must declare the **ohos.permission.INTERNET** permission. The following table describes the related APIs.
+The WebSocket connection function is mainly implemented by the [WebSocket module](../reference/apis-network-kit/js-apis-webSocket.md). To use related APIs, you must declare the **ohos.permission.INTERNET** permission. The following table describes the related APIs.
 
 | API             | Description                                     |
 | ------------------ | ----------------------------------------- |
@@ -48,7 +50,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   // When receiving the on('open') event, the client can use the send() API to communicate with the server.
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
-      console.log("Message sent successfully");
+      console.log("Message send successfully");
     } else {
       console.log("Failed to send the message. Err:" + JSON.stringify(err));
     }
@@ -81,3 +83,4 @@ ws.connect(defaultIpAddress, (err: BusinessError, value: boolean) => {
   }
 });
 ```
+

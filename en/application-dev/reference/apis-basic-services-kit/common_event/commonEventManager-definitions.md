@@ -1,7 +1,7 @@
 # System Common Events
 
 This document provides a list of common events defined by the system.
-Common event types are defined in [Support enumeration of the ohos.commonEventManager module](../js-apis-commonEventManager.md#support).
+Common event types are defined in [Support](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-commonEventManager.md#support) of the **ohos.commonEventManager** module.
 
 ## Ability Kit
 
@@ -358,7 +358,7 @@ Indicates that the user information has been updated.
 
 When the distributed account information, system account profile picture, or system account name is changed, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, and **setOsAccountDistributedInfon**. The first two are system APIs, and the last is a public API. For details, see [@ohos.account.osAccount (System Account Management)](../js-apis-osAccount.md) and [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountName**, **setOsAccountProfilePhoto**, and **setOsAccountDistributedInfon**. The first two are system APIs, and the last is a public API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md) and [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -375,7 +375,7 @@ Indicates that the credential-encrypted storage has been unlocked for the curren
 
 When the device is unlocked with the lock screen password the first time after user switching, the event notification service is triggered to publish this event carrying the system account ID that identifies the user.
 
-APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (OS Account Management)](../js-apis-osAccount.md).
+APIs related to this event: **auth**. This API is a system API. For details, see [@ohos.account.osAccount (System Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -392,7 +392,7 @@ Indicates a successful login from a distributed account.
 
 When a distributed account is successfully logged in, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -409,7 +409,7 @@ Indicates a successful logout from a distributed account.
 
 When a distributed account is successfully logged out, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -426,7 +426,7 @@ Indicates that the token of a distributed account is invalid.
 
 When the token of a distributed account is invalid, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
 
 **Required subscriber permissions**: none
 
@@ -442,7 +442,7 @@ Indicates that a distributed account is deregistered.
 
 When a distributed account is deregistered, the event notification service is triggered to publish this event carrying the system account ID.
 
-APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](../js-apis-distributed-account.md).
+APIs related to this event: **setOsAccountDistributedInfo** and **updateOsAccountDistributedInfo** (discarded), and **setOsAccountDistributedInfoByLocalId**. The first two are public APIs, and the last one is a system API. For details, see [@ohos.account.distributedAccount (Distributed Account Management)](https://gitee.com/hu-zhishan/docs/blob/master/en/application-dev/reference/apis-basic-services-kit/js-apis-distributed-account.md).
 
 **System capability**: SystemCapability.Notification.CommonEvent
 
@@ -687,6 +687,30 @@ When the device exits the forced sleep mode, the event notification service is t
 **Required subscriber permissions**: none
 
 **Value**: "usual.event.EXIT_FORCE_SLEEP"
+
+### COMMON_EVENT_ENTER_HIBERNATE<sup>15+</sup>
+
+Indicates that the device is about to enter the hibernation mode.
+
+When the device is about to enter the hibernation mode, the event notification service is triggered to publish this event. This event should be processed within one second.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.ENTER_HIBERNATE"
+
+### COMMON_EVENT_EXIT_HIBERNATE<sup>15+</sup>
+
+Indicates that the device exits the hibernation mode.
+
+When the device exits the hibernation mode, the event notification service is triggered to publish this event.
+
+**System capability**: SystemCapability.Notification.CommonEvent
+
+**Required subscriber permissions**: none
+
+**Value**: "usual.event.EXIT_HIBERNATE"
 
 
 
@@ -949,7 +973,6 @@ When the system language is set, the event notification service is triggered to 
 **Required subscriber permissions**: none
 
 **Value**: usual.event.LOCALE_CHANGED
-
 
 
 
@@ -1671,6 +1694,8 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 
 **Value**: "usual.event.bluetooth.host.REQ_ENABLE"
 
+
+
 ### COMMON_EVENT_BLUETOOTH_HOST_REQ_DISABLE
 (Reserved, not supported yet) Indicates the common event about the request for the user to disable Bluetooth.
 
@@ -1689,6 +1714,8 @@ Indicates the common event that the state of a Bluetooth adapter has been change
 **Required subscriber permissions**: ohos.permission.USE_BLUETOOTH
 
 **Value**: "usual.event.bluetooth.host.SCAN_MODE_UPDATE"
+
+
 
 
 ### COMMON_EVENT_BLUETOOTH_HOST_DISCOVERY_STARTED

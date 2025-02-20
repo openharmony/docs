@@ -1,6 +1,6 @@
 # Driver Development Kit（驱动开发服务）
 
-- ArkTS API
+- ArkTS API<!--driver-development-arkts-->
   - [@ohos.app.ability.DriverExtensionAbility (驱动程序扩展能力)](js-apis-app-ability-driverExtensionAbility.md)
   - [@ohos.driver.deviceManager (外设管理)](js-apis-driver-deviceManager.md)
   <!--Del-->
@@ -8,19 +8,22 @@
   <!--DelEnd-->
   - application
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
-- C API
-  - 模块
+- C API<!--driver-development-c-->
+  - 模块<!--driver-development-module-->
     - [BASE DDK](_base_ddk.md)
     - [HID DDK](_hid_ddk.md)
+    - [Serial DDK](_serial_ddk.md)
     - [USB DDK](_usb_ddk.md)
-  - 头文件
+  - 头文件<!--driver-development-headerfile-->
     - [ddk_api.h](ddk_api.md)
     - [ddk_types.h](ddk_types.md)
-    - [usb_ddk_api.h](usb__ddk__api_8h.md)
-    - [usb_ddk_types.h](usb__ddk__types_8h.md)
     - [hid_ddk_api.h](hid__ddk__api_8h.md)
     - [hid_ddk_types.h](hid__ddk__types_8h.md)
-  - 结构体
+    - [usb_ddk_api.h](usb__ddk__api_8h.md)
+    - [usb_ddk_types.h](usb__ddk__types_8h.md)
+    - [usb_serial_ddk_api.h](usb__serial__ddk__api_8h.md)
+    - [usb_serial_ddk_types.h](usb__serial__ddk__types_8h.md)
+  - 结构体<!--driver-development-struct-->
     - [DDK_Ashmem](_ddk_ashmem.md)
     - [UsbConfigDescriptor](_usb_config_descriptor.md)
     - [UsbControlRequestSetup](_usb_control_request_setup.md)
@@ -33,6 +36,7 @@
     - [UsbEndpointDescriptor](_usb_endpoint_descriptor.md)
     - [UsbInterfaceDescriptor](_usb_interface_descriptor.md)
     - [UsbRequestPipe](_usb_request_pipe.md)
+    - [Usb_DeviceArray](_usb_device_array.md)
     - [Hid_AbsAxesArray](_hid___abs_axes_array.md)
     - [Hid_Device](_hid___device.md)
     - [Hid_EmitItem](_hid___emit_item.md)
@@ -40,4 +44,6 @@
     - [Hid_EventTypeArray](_hid___event_type_array.md)
     - [Hid_KeyCodeArray](_hid___key_code_array.md)
     - [Hid_MscEventArray](_hid___msc_event_array.md)
+    - [Hid_RawDevInfo](_hid___raw_dev_info.md)
     - [Hid_RelAxesArray](_hid___rel_axes_array.md)
+    - [UsbSerial_Params](_usb_serial___params.md)

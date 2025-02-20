@@ -16,7 +16,7 @@ import { overlay } from '@kit.AbilityKit';
 
 setOverlayEnabled(moduleName:string, isEnabled: boolean): Promise\<void>
 
-以异步方法设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
+设置当前应用中overlay特征module的禁用使能状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -68,9 +68,9 @@ try {
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabled(moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
-以异步方法设置当前应用中overlay module的禁用使能状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
+设置当前应用中overlay module的禁用使能状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -120,7 +120,7 @@ try {
 
 getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>
 
-以异步方法获取当前应用中指定的module的overlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取当前应用中指定的module的overlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -171,7 +171,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleInfo>): void
 
-以异步方法获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取当前应用中指定的module的overlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -220,7 +220,7 @@ try {
 
 getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayModuleInfo>>
 
-以异步方法获取指定的目标module的OverlayModuleInfo。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定的目标module的OverlayModuleInfo。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -270,7 +270,7 @@ let targetModuleName = "feature";
 
 getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-以异步方法获取指定的目标module的OverlayModuleInfo。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定的目标module的OverlayModuleInfo。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
 
@@ -313,6 +313,18 @@ try {
   console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
+
+## OverlayModuleInfo
+
+type OverlayModuleInfo = _OverlayModuleInfo.OverlayModuleInfo
+
+OverlayModuleInfo信息。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Overlay
+
+| 类型                                                         | 说明           |
+| ------------------------------------------------------------ | -------------- |
+| [_OverlayModuleInfo.OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md#overlaymoduleinfo-1) |OverlayModuleInfo信息。 |
 
 ## overlay特征应用介绍
 

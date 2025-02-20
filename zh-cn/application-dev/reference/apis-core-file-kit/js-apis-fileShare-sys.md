@@ -31,7 +31,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags, ca
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
  | callback | AsyncCallback&lt;void&gt;  | 是    | 异步授权之后的回调                             |
 
 **错误码：**
@@ -85,7 +85,7 @@ grantUriPermission(uri: string, bundleName: string, flag: wantConstant.Flags): P
 | ------ | ------ | ---- | -------------------------- |
 | uri   | string | 是   | 公共目录文件URI |
 | bundleName   | string | 是   | 分享目标的包名 |
-| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#wantconstantflags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
+| flag   | [wantConstant.Flags](../apis-ability-kit/js-apis-app-ability-wantConstant.md#flags) | 是   | 授权的权限。<br/>wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION：读授权<br/>wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION：写授权|
 
 **返回值：**
 
@@ -187,6 +187,78 @@ import  { picker } from '@kit.CoreFileKit';
     } catch (error) {
       let err: BusinessError = error as BusinessError;
       console.error('deactivatePermission failed with err: ' + JSON.stringify(err));
+    }
+  }
+  ```
+
+## fileShare.checkPathPermission<sup>15+</sup>
+
+checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, policyType: PolicyType): Promise&lt;Array&lt;boolean&gt;&gt;
+
+异步方法校验所选择的多个文件或目录是否有临时或持久化授权，以promise形式返回结果。
+
+**需要权限**：ohos.permission.CHECK_SANDBOX_POLICY
+
+**系统接口**：此接口为系统接口
+
+**系统能力：** SystemCapability.FileManagement.AppFileService.FolderAuthorization
+
+**参数：**
+
+| 参数名 | 类型                                    | 必填 | 说明                      |
+| -------- |---------------------------------------| -------- |-------------------------|
+| tokenID| number | 是 | 目标应用的身份标识。可通过应用的[ApplicationInfo](../apis-ability-kit/js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| policies| Array&lt;[PathPolicyInfo](js-apis-fileShare.md#pathpolicyinfo15)> | 是 | 需要授权路径的策略信息，policies数组大小上限为500。|
+| policyType| [PolicyType](js-apis-fileShare.md#policytype15) | 是 | 要查询的授权类型，具体是临时授权或持久化授权。 |
+
+**返回值：**
+
+|              类型                   |               说明                    |
+| ----------------------------------- | ------------------------------------- |
+| Promise&lt;Array&lt;boolean&gt;&gt; | Promise对象，返回true表示授权类型匹配policyType的查询类型，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID    | 错误信息       |
+|----------| --------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | The caller is not a system application.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801      | Capability not supported. |                         |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@ohos.base';
+  import fileshare from '@ohos.fileshare';
+  
+  async function checkPersistentPermissionExample() {
+    try {
+      let pathPolicyInfo1: fileshare.PathPolicyInfo = {
+        path: "/storage/Users/currentUser/Documents/1.txt",
+        operationMode: fileshare.OperationMode.READ_MODE,
+      }
+      let pathPolicyInfo2: fileshare.PathPolicyInfo = {
+        path: "/storage/Users/currentUser/Desktop/2.txt",
+        operationMode: fileshare.OperationMode.READ_MODE,
+      }
+
+      let policies: Array<fileshare.PathPolicyInfo> = [pathPolicyInfo1, pathPolicyInfo2];
+      let policyType: fileshare.PolicyType = fileshare.PolicyType.PERSISTENT_TYPE;
+      let tokenid = 537688848; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
+      
+      fileshare.checkPathPermission(tokenid, policies, policyType).then((result:Array<boolean>) => {
+        for (let x of result) {
+          console.info('check permission result is', x);
+        }
+      })
+      this.message = "checkPathPermission finish";
+    }
+    catch (error) {
+      this.message = error.message;
+      console.info(error.code + 'checkPathPermission error' + error.message);
     }
   }
   ```

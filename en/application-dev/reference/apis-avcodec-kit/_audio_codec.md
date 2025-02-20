@@ -5,6 +5,11 @@
 
 The AudioCodec module provides the functions for audio encoding and decoding.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Audio Encoding](../../media/avcodec/audio-encoding.md)
+- [Audio Decoding](../../media/avcodec/audio-decoding.md)
+
 **System capability**: SystemCapability.Multimedia.Media.AudioCodec
 
 **Since**: 11

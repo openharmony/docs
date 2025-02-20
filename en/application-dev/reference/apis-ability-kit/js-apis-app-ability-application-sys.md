@@ -1,5 +1,4 @@
 #  @ohos.app.ability.application (Application) (System API)
-
 You can use this module to create a [Context](../../application-models/application-context-stage.md).
 
 > **NOTE**
@@ -17,6 +16,10 @@ import { application } from '@kit.AbilityKit';
 createModuleContext(context: Context, bundleName: string, moduleName: string): Promise\<Context>
 
 Creates the context for a module.
+
+> **NOTE**
+>
+> Since API version 16, the context can obtain the [process name](js-apis-inner-application-context.md#properties) of the current application. The **processName** property in the context created by **createModuleContext** is the same as the **processName** property in the input parameter **Context**. The values of other properties are obtained based on the input parameters **Context**, **bundleName**, and **moduleName**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -76,6 +79,10 @@ export default class EntryAbility extends UIAbility {
 createBundleContext(context: Context, bundleName: string): Promise\<Context>
 
 Creates the context for an application.
+
+> **NOTE**
+>
+> Since API version 16, the context can obtain the [process name](js-apis-inner-application-context.md#properties) of the current application. The **processName** property in the context created by **createBundleContext** is the same as the **processName** property in the input parameter **Context**. The values of other properties are obtained based on the input parameters **Context**, **bundleName**, and **moduleName**.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

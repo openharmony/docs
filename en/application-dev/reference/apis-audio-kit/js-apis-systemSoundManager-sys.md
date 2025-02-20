@@ -361,9 +361,7 @@ Enumerates the haptics styles for system ringtones.
 | STANDARD| 0  | Standard haptics style.|
 | GENTLE   | 1  | Gentle haptics style.|
 
-## ToneHapticsType<sup>13+</sup>
-
-type ToneHapticsType = RingtoneType | SystemToneType
+## ToneHapticsType<sup>14+</sup>
 
 Enumerates the haptics types for system ringtones.
 
@@ -371,12 +369,15 @@ Enumerates the haptics types for system ringtones.
 
 **System capability**: SystemCapability.Multimedia.SystemSound.Core
 
-| Name                                | Description        |
-| ------------------------------------|------------|
-| [RingtoneType](#ringtonetype)       | Ringtone type.|
-| [SystemToneType](#systemtonetype11) | System alert tone type.|
+| Name                    | Value| Description        |
+| ------------------------|----|--------|
+| CALL_SIM_CARD_0         | 0  | Haptic feedback with the ringtone for an incoming call on SIM card 1.|
+| CALL_SIM_CARD_1         | 1  | Haptic feedback with the ringtone for an incoming call on SIM card 2.|
+| TEXT_MESSAGE_SIM_CARD_0 | 20 | Haptic feedback with the ringtone for an incoming message on SIM card 1.|
+| TEXT_MESSAGE_SIM_CARD_1 | 21 | Haptic feedback with the ringtone for an incoming message on SIM card 2.|
+| NOTIFICATION            | 40 | Haptic feedback with the notification tone.|
 
-## ToneHapticsMode<sup>13+</sup>
+## ToneHapticsMode<sup>14+</sup>
 
 Enumerates the haptics modes in system ringtone scenarios.
 
@@ -390,7 +391,7 @@ Enumerates the haptics modes in system ringtone scenarios.
 | SYNC        | 1  | Sync mode, where the haptic feedback is aligned with the system ringtone.|
 | NON_SYNC    | 2  | Non-sync mode, where the haptic feedback is not aligned with the system ringtone.|
 
-## ToneHapticsSettings<sup>13+</sup>
+## ToneHapticsSettings<sup>14+</sup>
 
 Describes the haptics settings of a system ringtone.
 
@@ -400,14 +401,14 @@ Describes the haptics settings of a system ringtone.
 
 | Name         | Type| Read-Only| Optional| Description                |
 | ------------ | -- | -- | -- | -------------------- |
-| mode | [ToneHapticsMode](#tonehapticsmode13) | No| No| Haptics mode.|
-| hapticsUri | string                          | No| Yes| URI of the haptics resource. The URI, obtained by calling [getToneHapticsList](#gettonehapticslist13), is valid only in the non-sync mode and should be ignored in other haptics modes.|
+| mode | [ToneHapticsMode](#tonehapticsmode14) | No| No| Haptics mode.|
+| hapticsUri | string                          | No| Yes| URI of the haptics resource. The URI, obtained by calling [getToneHapticsList](#gettonehapticslist14), is valid only in the non-sync mode and should be ignored in other haptics modes.|
 
-## ToneHapticsAttrs<sup>13+</sup>
+## ToneHapticsAttrs<sup>14+</sup>
 
-Manages haptics attributes of system ringtones. Before calling any API in **ToneHapticsAttrs<sup>13+</sup>**, you must call [getToneHapticsList](#gettonehapticslist13) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone13) to obtain an instance.
+Manages haptics attributes of system ringtones. Before calling any API in **ToneHapticsAttrs<sup>14+</sup>**, you must call [getToneHapticsList](#gettonehapticslist14) or [getHapticsAttrsSyncedWithTone](#gethapticsattrssyncedwithtone14) to obtain an instance.
 
-### getUri<sup>13+</sup>
+### getUri<sup>14+</sup>
 
 getUri(): string
 
@@ -435,7 +436,7 @@ Obtains the URI of this haptics resource.
 toneHapticsAttrs.getUri();
 ```
 
-### getTitle<sup>13+</sup>
+### getTitle<sup>14+</sup>
 
 getTitle(): string
 
@@ -463,7 +464,7 @@ Obtains the title of this haptics resource.
 toneHapticsAttrs.getTitle();
 ```
 
-### getFileName<sup>13+</sup>
+### getFileName<sup>14+</sup>
 
 getFileName(): string
 
@@ -491,7 +492,7 @@ Obtains the file name of this haptics resource.
 toneHapticsAttrs.getFileName();
 ```
 
-## ToneHapticsAttrsArray<sup>13+</sup>
+## ToneHapticsAttrsArray<sup>14+</sup>
 
 type ToneHapticsAttrsArray = Array&lt;ToneHapticsAttrs&gt;
 
@@ -501,7 +502,7 @@ Describes the haptics attribute array of a system ringtone.
 
 | Type                                    | Description     |
 |----------------------------------------|---------|
-| Array&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | Array of haptics attributes.|
+| Array&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Array of haptics attributes.|
 
 ## systemSoundManager.getSystemSoundManager
 
@@ -547,7 +548,7 @@ Sets a URI for a system ringtone. This API uses an asynchronous callback to retu
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)   | Yes  | Application context.          |
-| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                                   | Yes  | URI of the system ringtone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.    |
 | callback | AsyncCallback&lt;void&gt;                | Yes  | Callback used to return the result.    |
 
@@ -590,7 +591,7 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 | Name  | Type                                     | Mandatory| Description                    |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)  | Yes  | Application context.        |
-| uri      | string                                   | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                                   | Yes  | URI of the system ringtone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype)            | Yes  | Type of the system ringtone.  |
 
 **Return value**
@@ -806,7 +807,7 @@ Sets a URI for a system ringtone. This API uses a promise to return the result.
 | Name  | Type                           | Mandatory| Description                    |
 | -------- |-------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md)            | Yes  | Application context.        |
-| uri      | string                        | Yes  | URI of the system ringtone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                        | Yes  | URI of the system ringtone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [RingtoneType](#ringtonetype) | Yes  | Type of the system ringtone.  |
 
 **Return value**
@@ -959,7 +960,7 @@ Sets a URI for a system alert tone. This API uses a promise to return the result
 | Name  | Type                                 | Mandatory| Description                    |
 | -------- |-------------------------------------| ---- | ------------------------ |
 | context  | [BaseContext](../apis-ability-kit/js-apis-inner-application-baseContext.md) | Yes  | Application context.        |
-| uri      | string                              | Yes  | URI of the system alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string                              | Yes  | URI of the system alert tone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 | type     | [SystemToneType](#systemtonetype11) | Yes  | Type of the system alert tone.  |
 
 **Return value**
@@ -1118,7 +1119,7 @@ Obtains the attributes of the default system ringtone. This API uses a promise t
 
 | Type                                      | Description                 |
 |------------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system ringtone.|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise used to return the attributes of the default system ringtone.|
 
 **Error codes**
 
@@ -1168,7 +1169,7 @@ Obtains the list of attributes of the default system ringtone. This API uses a p
 
 | Type                                                | Description                   |
 |----------------------------------------------------|-----------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system ringtone.|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise used to return an array of the attributes of the default system ringtone.|
 
 **Error codes**
 
@@ -1218,7 +1219,7 @@ Obtains the attributes of the default system alert tone. This API uses a promise
 
 | Type                                     | Description                  |
 |-----------------------------------------|----------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default system alert tone.|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise used to return the attributes of the default system alert tone.|
 
 **Error codes**
 
@@ -1268,7 +1269,7 @@ Obtains the list of attributes of the default system alert tone. This API uses a
 
 | Type                                               | Description                    |
 |---------------------------------------------------|------------------------|
-| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; |  Promise used to return an array of the attributes of the default system alert tone.|
+| Promise&lt;[ToneAttrsArray](#toneattrsarray12)&gt; | Promise used to return an array of the attributes of the default system alert tone.|
 
 **Error codes**
 
@@ -1317,7 +1318,7 @@ Obtains the attributes of the default alarm alert tone. This API uses a promise 
 
 | Type                                     | Description                 |
 |-----------------------------------------|---------------------|
-| Promise&lt;[ToneAttrs](#toneattrs12)&gt; |  Promise used to return the attributes of the default alarm alert tone.|
+| Promise&lt;[ToneAttrs](#toneattrs12)&gt; | Promise used to return the attributes of the default alarm alert tone.|
 
 **Error codes**
 
@@ -1360,7 +1361,7 @@ Sets a URI for an alarm alert tone. This API uses a promise to return the result
 | Name  | Type       | Mandatory| Description  |
 | -------- | --------- | ---- |--------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                          |
-| uri      | string    | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string    | Yes  | URI of the alarm alert tone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 
 **Return value**
 
@@ -1486,7 +1487,7 @@ Enables an alarm alert tone. This API uses a promise to return the result.
 | Name  | Type      | Mandatory| Description                                                                                 |
 | -------- | ---------| ---- |-------------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.                                                                          |
-| uri      | string   | Yes  | URI of the alarm alert tone. For details, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
+| uri      | string   | Yes  | URI of the alarm alert tone. For details about supported resources, see [media.AVPlayer](../apis-media-kit/js-apis-media.md#avplayer9).|
 
 **Return value**
 
@@ -1751,7 +1752,7 @@ systemSoundManagerInstance.removeCustomizedTone(context, uri).then(() => {
 });
 ```
 
-### getToneHapticsSettings<sup>13+</sup>
+### getToneHapticsSettings<sup>14+</sup>
 
 getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;ToneHapticsSettings&gt;
 
@@ -1766,13 +1767,13 @@ Obtains the haptics settings of the system ringtone. This API uses a promise to 
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
-| type  | [ToneHapticsType](#tonehapticstype13)    | Yes  | Haptics type of the system ringtone.|
+| type  | [ToneHapticsType](#tonehapticstype14)    | Yes  | Haptics type of the system ringtone.|
 
 **Return value**
 
 | Type                 | Description                   |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsSettings](#tonehapticssettings13)&gt; | Promise used to return the haptics settings.|
+| Promise&lt;[ToneHapticsSettings](#tonehapticssettings14)&gt; | Promise used to return the haptics settings.|
 
 **Error codes**
 
@@ -1792,7 +1793,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 
 let systemSoundManagerInstance: systemSoundManager.SystemSoundManager = systemSoundManager.getSystemSoundManager();
 systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: systemSoundManager.ToneHapticsSettings) => {
@@ -1802,7 +1803,7 @@ systemSoundManagerInstance.getToneHapticsSettings(context, type).then((value: sy
 });
 ```
 
-### setToneHapticsSettings<sup>13+</sup>
+### setToneHapticsSettings<sup>14+</sup>
 
 setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: ToneHapticsSettings): Promise&lt;void&gt;
 
@@ -1817,8 +1818,8 @@ Sets the haptics settings for the system ringtone. This API uses a promise to re
 | Name| Type       | Mandatory| Description                                                                         |
 |-----|-----------| ---- |----------------------------------------------------------------------------------|
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | Yes  | Application context.  |
-| type  | [ToneHapticsType](#tonehapticstype13)    | Yes  | Haptics type of the system ringtone.|
-| settings  | [ToneHapticsSettings](#tonehapticssettings13)    | Yes  | Haptics settings of the system ringtone.|
+| type  | [ToneHapticsType](#tonehapticstype14)    | Yes  | Haptics type of the system ringtone.|
+| settings  | [ToneHapticsSettings](#tonehapticssettings14)    | Yes  | Haptics settings of the system ringtone.|
 
 **Return value**
 
@@ -1845,7 +1846,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
 let context: common.BaseContext = getContext(this);
-let type: systemSoundManager.ToneHapticsType = systemSoundManager.RingtoneType.RINGTONE_TYPE_SIM_CARD_0;
+let type: systemSoundManager.ToneHapticsType = systemSoundManager.ToneHapticsType.CALL_SIM_CARD_0;
 let toneHapticsSettings: systemSoundManager.ToneHapticsSettings = {
   mode: systemSoundManager.ToneHapticsMode.NON_SYNC,
   hapticsUri: '/data/storage/el2/base/haptics/synchronized/alarms/test.json', // Use the URI obtained through getToneHapticsList.
@@ -1859,7 +1860,7 @@ systemSoundManagerInstance.setToneHapticsSettings(context, type, toneHapticsSett
 });
 ```
 
-### getToneHapticsList<sup>13+</sup>
+### getToneHapticsList<sup>14+</sup>
 
 getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapticsAttrsArray&gt;
 
@@ -1880,7 +1881,7 @@ Obtains the haptics attributes of the system ringtone in sync or non-sync mode. 
 
 | Type                 | Description                   |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray13)&gt; | Promise used to return the haptics attributes.|
+| Promise&lt;[ToneHapticsAttrsArray](#tonehapticsattrsarray14)&gt; | Promise used to return the haptics attributes.|
 
 **Error codes**
 
@@ -1909,7 +1910,7 @@ systemSoundManagerInstance.getToneHapticsList(context, false).then((value: syste
 });
 ```
 
-### getHapticsAttrsSyncedWithTone<sup>13+</sup>
+### getHapticsAttrsSyncedWithTone<sup>14+</sup>
 
 getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt;ToneHapticsAttrs&gt;
 
@@ -1930,7 +1931,7 @@ Obtains the attributes of the haptics feedback synchronized with the system ring
 
 | Type                 | Description                   |
 |---------------------|-----------------------|
-| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs13)&gt; | Promise used to return the haptics attributes.|
+| Promise&lt;[ToneHapticsAttrs](#tonehapticsattrs14)&gt; | Promise used to return the haptics attributes.|
 
 **Error codes**
 
@@ -1961,7 +1962,7 @@ systemSoundManagerInstance.getHapticsAttrsSyncedWithTone(context, toneUri).then(
 });
 ```
 
-### openToneHaptics<sup>13+</sup>
+### openToneHaptics<sup>14+</sup>
 
 openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 

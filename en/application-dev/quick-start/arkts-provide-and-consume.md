@@ -6,6 +6,7 @@
 
 An \@Provide decorated state variable exists in the ancestor component and is said to be "provided" to descendent components. An \@Consume decorated state variable is used in a descendent component. It is linked to ("consumes") the provided state variable in its ancestor component.
 
+Before reading this topic, you are advised to read [Basic Syntax Overview](./arkts-basic-syntax-overview.md), [Declarative UI Description](./arkts-declarative-ui-description.md), and [Creating a Custom Component](./arkts-create-custom-components.md) to have an understanding of the basic syntax of the UI paradigm and custom components.
 
 > **NOTE**
 >
@@ -26,12 +27,12 @@ An \@Provide decorated state variable exists in the ancestor component and is sa
 
 ```ts
 // Binding through the same variable name
-@Provide a: number = 0;
-@Consume a: number;
+@Provide age: number = 0;
+@Consume age: number;
 
 // Binding through the same variable alias
-@Provide('a') b: number = 0;
-@Consume('a') c: number;
+@Provide('a') id: number = 0;
+@Consume('a') age: number;
 ```
 
 
@@ -46,7 +47,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the variable is provided under the alias name only. If the alias is not specified, the variable is provided under the variable name.|
 | Synchronization type          | Two-way:<br>from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \**| **undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended.
+| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>(Applicable to API version 11 or later) Map and Set types.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported.<br>The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined** or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Provide a: string \| undefined = undefined** is recommended; **@Provide a: string = undefined** is not recommended. |
 | Initial value for the decorated variable     | Mandatory.                                   |
 | Support for the **allowOverride** parameter         | Yes. After **allowOverride** is declared, both aliases and attribute names can be overridden. For details, see [Support for the allowOverride Parameter](#support-for-the-allowoverride-parameter).|
 
@@ -54,9 +55,8 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 | -------------- | ---------------------------------------- |
 | Decorator parameters         | Alias: constant string, optional.<br>If the alias is specified, the alias name is used for matching with the \@Provide decorated variable. Otherwise, the variable name is used.|
 | Synchronization type          | Two-way: from the \@Provide decorated variable to all \@Consume decorated variables; and the other way around. The two-way synchronization behaviour is the same as that of the combination of \@State and \@Link.|
-| Allowed variable types     | Object, class, string, number, Boolean, enum, and array of these types.<br>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported. The type must be specified.<br>The type of the provided and the consumed variables must be the same.<br>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, string \| number, string \| undefined or ClassA \| null. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, @Consume a: string \| undefined.
-| Initial value for the decorated variable     | Initialization of the decorated variables is forbidden.                              |
-
+| Allowed variable types | Object, class, string, number, Boolean, enum, and array of these types.<br/>Date type.<br>The union types defined by the ArkUI framework, including Length, ResourceStr, and ResourceColor, are supported. The type must be specified.<br/>The type of the provided and the consumed variables must be the same.<br/>An \@Consume decorated variable must have a matching \@Provide decorated variable with the corresponding attribute and alias on its parent or ancestor component.<br>For details about the scenarios of supported types, see [Observed Changes](#observed-changes).<br/>**any** is not supported.<br>(Applicable to API version 11 and later versions) Union type of the preceding types, for example, **string \| number**, **string \| undefined**, or **ClassA \| null**. For details, see [Support for Union Type](#support-for-union-type).<br>**NOTE**<br>When **undefined** or **null** is used, you are advised to explicitly specify the type to pass the TypeScript type check. For example, **@Consume a: string \| undefined**. |
+| Initial value for the decorated variable | Initialization of the decorated variables is forbidden. |
 
 ## Variable Transfer/Access Rules
 
@@ -105,7 +105,7 @@ The rules of \@State also apply to \@Provide. The difference is that \@Provide a
 
 ```ts
 @Component
-struct CompD {
+struct Child {
   @Consume selectedDate: Date;
 
   build() {
@@ -130,7 +130,7 @@ struct CompD {
 
 @Entry
 @Component
-struct CompA {
+struct Parent {
   @Provide selectedDate: Date = new Date('2021-08-08')
 
   build() {
@@ -150,7 +150,7 @@ struct CompA {
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
-      CompD()
+      Child()
     }
   }
 }
@@ -210,7 +210,7 @@ struct Child {
 
 @Entry
 @Component
-struct Example {
+struct Parent {
   @Provide message: string = 'Hello';
 
   build() {
@@ -327,54 +327,54 @@ struct Parent {
 
 ## Application Scenarios
 
-The following example shows the two-way synchronization between \@Provide and \@Consume decorated variables. When the buttons in the **CompA** and **CompD** components are clicked, the changes to **reviewVotes** are synchronized to the **CompA** and **CompD** components.
+The following example shows the two-way synchronization between \@Provide and \@Consume decorated variables. When you click the **ToDo** and **ToDoItem** buttons, the **count** changes in both components are synchronized in a two-way manner.
 
 
 
 ```ts
 @Component
-struct CompD {
-  // The @Consume decorated variable is bound to the @Provide decorated variable in its ancestor component CompA under the same attribute name.
-  @Consume reviewVotes: number;
+struct ToDoItem {
+  // The @Consume decorated variable is bound to the @Provide decorated variable in its ancestor component ToDo under the same attribute name.
+  @Consume count: number;
 
   build() {
     Column() {
-      Text(`reviewVotes(${this.reviewVotes})`)
-      Button(`reviewVotes(${this.reviewVotes}), give +1`)
-        .onClick(() => this.reviewVotes += 1)
+      Text(`count(${this.count})`)
+      Button(`count(${this.count}), count + 1`)
+        .onClick(() => this.count += 1)
     }
     .width('50%')
   }
 }
 
 @Component
-struct CompC {
+struct ToDoList {
   build() {
     Row({ space: 5 }) {
-      CompD()
-      CompD()
+      ToDoItem()
+      ToDoItem()
     }
   }
 }
 
 @Component
-struct CompB {
+struct ToDoDemo {
   build() {
-    CompC()
+    ToDoList()
   }
 }
 
 @Entry
 @Component
-struct CompA {
-  // @Provide decorated variable reviewVotes is provided by the entry component CompA.
-  @Provide reviewVotes: number = 0;
+struct ToDo {
+  // @Provide decorated variable index is provided by the entry component ToDo.
+  @Provide count: number = 0;
 
   build() {
     Column() {
-      Button(`reviewVotes(${this.reviewVotes}), give +1`)
-        .onClick(() => this.reviewVotes += 1)
-      CompB()
+      Button(`count(${this.count}), count + 1`)
+        .onClick(() => this.count += 1)
+      ToDoDemo()
     }
   }
 }
@@ -560,6 +560,8 @@ struct MyComponent {
   @Provide({allowOverride : "reviewVotes"}) reviewVotes: number = 10;
 }
 ```
+
+The complete sample code is as follows:
 
 ```ts
 @Component
@@ -761,78 +763,78 @@ class Animal {
     this.age = age;
   }
 
-  static changeName1(animal:Animal) {
-    animal.name = 'Black';
+  static changeName(animal:Animal) {
+    animal.name = 'Jack';
   }
-  static changeAge1(animal:Animal) {
+  static changeAge(animal:Animal) {
     animal.age += 1;
   }
 }
 
 @Entry
 @Component
-struct Demo1 {
+struct Zoo {
   @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
 
-  changeAge2(animal:Animal) {
+  changeZooDogAge(animal:Animal) {
     animal.age += 2;
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`Zoo: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Red)
         .fontSize(30)
-      Button('changeAge1')
+      Button('changeAge')
         .onClick(()=>{
           // The UI cannot be re-rendered using a static method.
-          Animal.changeAge1(this.dog);
+          Animal.changeAge(this.dog);
         })
-      Button('changeAge2')
+      Button('changeZooDogAge')
         .onClick(()=>{
           // The UI cannot be re-rendered using this.
-          this.changeAge2(this.dog);
+          this.changeZooDogAge(this.dog);
         })
-      Demo2()
+      ZooChild()
     }
   }
 }
 
 @Component
-struct Demo2 {
+struct ZooChild {
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo2.`)
+      Text(`ZooChild`)
         .fontColor(Color.Blue)
         .fontSize(30)
-      Demo3()
+      ZooGrandChild()
     }
   }
 }
 
 @Component
-struct Demo3 {
+struct ZooGrandChild {
   @Consume dog:Animal;
 
-  changeName2(animal:Animal) {
-    animal.name = 'White';
+  changeZooGrandChildName(animal:Animal) {
+    animal.name = 'Marry';
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`ZooGrandChild: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Yellow)
         .fontSize(30)
-      Button('changeName1')
+      Button('changeName')
         .onClick(()=>{
           // The UI cannot be re-rendered using a static method.
-          Animal.changeName1(this.dog);
+          Animal.changeName(this.dog);
         })
-      Button('changeName2')
+      Button('changeZooGrandChildName')
         .onClick(()=>{
           // The UI cannot be re-rendered using this.
-          this.changeName2(this.dog);
+          this.changeZooGrandChildName(this.dog);
         })
     }
   }
@@ -855,82 +857,82 @@ class Animal {
     this.age = age;
   }
 
-  static changeName1(animal:Animal) {
-    animal.name = 'Black';
+  static changeName(animal:Animal) {
+    animal.name = 'Jack';
   }
-  static changeAge1(animal:Animal) {
+  static changeAge(animal:Animal) {
     animal.age += 1;
   }
 }
 
 @Entry
 @Component
-struct Demo1 {
+struct Zoo {
   @Provide dog:Animal = new Animal('WangCai', 'dog', 2);
 
-  changeAge2(animal:Animal) {
+  changeZooDogAge(animal:Animal) {
     animal.age += 2;
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo1: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`Zoo: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Red)
         .fontSize(30)
-      Button('changeAge1')
+      Button('changeAge')
         .onClick(()=>{
           // Add a proxy by assigning a value.
-          let a1 = this.dog;
-          Animal.changeAge1(a1);
+          let newDog = this.dog;
+          Animal.changeAge(newDog);
         })
-      Button('changeAge2')
+      Button('changeZooDogAge')
         .onClick(()=>{
           // Add a proxy by assigning a value.
-          let a2 = this.dog;
-          this.changeAge2(a2);
+          let newDog = this.dog;
+          this.changeZooDogAge(newDog);
         })
-      Demo2()
+      ZooChild()
     }
   }
 }
 
 @Component
-struct Demo2 {
+struct ZooChild {
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo2.`)
+      Text(`ZooChild.`)
         .fontColor(Color.Blue)
         .fontSize(30)
-      Demo3()
+      ZooGrandChild()
     }
   }
 }
 
 @Component
-struct Demo3 {
+struct ZooGrandChild {
   @Consume dog:Animal;
 
-  changeName2(animal:Animal) {
-    animal.name = 'White';
+  changeZooGrandChildName(animal:Animal) {
+    animal.name = 'Marry';
   }
 
   build() {
     Column({ space:10 }) {
-      Text(`Demo3: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
+      Text(`ZooGrandChild: This is a ${this.dog.age}-year-old ${this.dog.type} named ${this.dog.name}.`)
         .fontColor(Color.Yellow)
         .fontSize(30)
-      Button('changeName1')
+      Button('changeName')
         .onClick(()=>{
           // Add a proxy by assigning a value.
-          let b1 = this.dog;
-          Animal.changeName1(b1);
+          let newDog = this.dog;
+          Animal.changeName(newDog);
         })
-      Button('changeName2')
+      Button('changeZooGrandChildName')
         .onClick(()=>{
           // Add a proxy by assigning a value.
-          let b2 = this.dog;
-          this.changeName2(b2);
+          let newDog = this.dog;
+          this.changeZooGrandChildName(newDog);
         })
     }
   }

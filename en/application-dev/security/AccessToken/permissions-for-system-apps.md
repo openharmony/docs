@@ -61,6 +61,18 @@ Allows an application to turn on and off the location service.
 
 **Valid since**: 12
 
+### ohos.permission.LOCATION_SWITCH_IGNORED
+
+Allows a system application to obtain location information when the location switch is turned off.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.SUBSCRIBE_SWING_ABILITY
 
 Allows an application to use the subscription capability powered by smart sensing.
@@ -108,6 +120,40 @@ Allows a system application to display the **Learn more** dialog for detailed in
 **Enable via ACL**: true
 
 **Valid since**: 13
+
+### ohos.permission.WRITE_PROTECTION_ADVICE_POLIVY
+
+Allows an application to write the protection advice database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.READ_PROTECTION_ADVICE_POLICY
+
+Allows an application to read the protection advice database.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.PROXY_MESSAGE_AUTH
+
+Allows a system application to call the Message application authorization interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Valid since**: 15
 
 ### ohos.permission.MANAGE_SETTINGS
 
@@ -324,6 +370,18 @@ Allows an application to start the upgrade service to perform assisted or collab
 **Enable via ACL**: true
 
 **Valid since**: 12
+
+### ohos.permission.PLUGIN_UPDATE
+
+Allows a system application or system service to call the update APIs to download and update plug-ins and AI models.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.RECEIVE_UPDATE_MESSAGE
 
@@ -1035,7 +1093,19 @@ Allows an application to control the microphone, for example, persisting the mut
 
 ### ohos.permission.CAPTURE_PLAYBACK
 
-Allows a system service to capture internal audio without using the AVScreenCapture framework.
+Allows a system service to capture audio without using the AVScreenCapture framework.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.MICROPHONE_BACKGROUND
+
+Allows a system application to use the microphone in the background.
 
 **Permission level**: system_core
 
@@ -1171,7 +1241,7 @@ Allows an application to obtain the MAC address of the local Wi-Fi device.
 
 Allows an application to obtain the MAC address of the peer Wi-Fi device.
 
-To obtain the MAC address of the peer device when obtaining Wi-Fi scanning results, you need to apply for this permission.
+This permission is required if you want to obtain the MAC address of the peer device when obtaining the Wi-Fi scanning result.
 
 **Permission level**: system_basic
 
@@ -1391,7 +1461,7 @@ Allows an application to obtain information about local accounts.
 
 ### ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -1424,18 +1494,6 @@ Allows an application to read wallpaper files.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.GET_WIFI_CONFIG
-
-Allows an application to obtain the Wi-Fi configuration.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.GRANT_SENSITIVE_PERMISSIONS
 
@@ -1677,6 +1735,18 @@ Allows an application to obtain the Ability Form.
 
 **Valid since**: 7
 
+### ohos.permission.START_DESKTOP_UI_COMPONENT
+
+Allows an application to start desktop UI components.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.REVOKE_SENSITIVE_PERMISSIONS
 
 Allows an application to revoke the sensitive permissions it has granted to other applications.
@@ -1772,18 +1842,6 @@ Allows an application to set the system time zone.
 **Enable via ACL**: true
 
 **Valid since**: 7
-
-### ohos.permission.SET_WIFI_CONFIG
-
-Allows an application to configure Wi-Fi information.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 8
 
 ### ohos.permission.START_ABILIIES_FROM_BACKGROUND
 
@@ -2749,6 +2807,18 @@ Allows a system application to set dynamic sandbox policies.
 
 **Valid since**: 11
 
+### ohos.permission.CHECK_SANDBOX_POLICY
+
+Allows a system application or system service to check sandbox policies of other applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
 ### ohos.permission.TRIGGER_ACTIVATIONLOCK
 
 Allows an SA to call **Find Device**.
@@ -2899,7 +2969,7 @@ Allows an application or system ability to initiate the process for registering 
 
 ### ohos.permission.MANAGE_SHUTDOWN_FINDNETWORK
 
-Allows an application or system ability to manage the service that enables a powered-off device to be found by another device with the same account.
+Allows a system application or system ability to manage the service that enables a powered-off device to be found by another device with the same account.
 
 **Permission level**: system_basic
 
@@ -3595,15 +3665,15 @@ Allows a system application to filter input events.
 
 ### ohos.permission.INPUT_DEVICE_CONTROLLER
 
-Allows an application to query and set the status of input devices.
+Allows an application to obtain and set the status of input devices.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.ACTIVATE_DEVICE_PSI
 
@@ -3773,29 +3843,6 @@ Allows an application to connect to a telematics device.
 
 **Valid since**: 12
 
-### ohos.permission.MANAGE_NET_FIREWALL
-
-Allows a system application to configure firewall rules.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
-
-### ohos.permission.GET_NET_FIREWALL
-
-Allows a system application to obtain firewall rules and firewall interception records.
-
-**Permission level**: system_basic
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: true
-
-**Valid since**: 12
 
 ### ohos.permission.ACCESS_IDM_WIDGET
 
@@ -4107,13 +4154,25 @@ Allows an application to utilize the recovery key to reset the lock screen passw
 
 Allows an application to access the confidential computing zone.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
+
+### ohos.permission.SYNC_ASSET_BETWEEN_TRUSTED_ACCOUNT
+
+Allows an application to synchronize assets between the devices logged with the same trusted account.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ### ohos.permission.GET_RECOVERY_KEY_BRIEF_INFORMATION
 
@@ -4257,17 +4316,17 @@ Allows a system application to access the application installation directory.
 
 Allows a system application to invoke the services provided by the account ServiceExtensionAbility.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：13
+**Valid since**: 15
 
 ### ohos.permission.ANTI_FRAUD
 
-Allows an application to access risk control probes to detect device security risks. The detection result can be used as input for risk control decision-making in the cloud.
+Allows an application to access risk control probes to detect device security risks. The detection result can be used as the input for risk control decision-making in the cloud.
 
 **Permission level**: system_basic
 
@@ -4287,7 +4346,7 @@ Allows an application to initiate screen recording without displaying the user a
 
 **Enable via ACL**: true
 
-**Valid since**: 16
+**Valid since**: 15
 
 ### ohos.permission.STORAGE_MANAGER_CRYPT
 
@@ -4305,30 +4364,44 @@ Allows a system application or system service to call APIs to perform encryption
 
 Allows an application to read the SOS emergency information.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.WATCH_WRITE_EMERGENCY_INFO
 
 Allows an application to write the SOS emergency information.
 
-**Permission level**：system_basic
+**Permission level**: system_basic
 
-**Authorization mode**：system_grant
+**Authorization mode**: system_grant
 
-**Enable via ACL**：true
+**Enable via ACL**: true
 
-**Valid since**：16
+**Valid since**: 16
 
 ### ohos.permission.WATCH_START_SOS_SERVICE
 
 Allows an application to enable or access the SOS service.
 
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+**Changelog**: This permission is available only to system services in API versions 12 to 14, and is available to system applications since API version 15.
+
+### ohos.permission.ACCESS_DLP_HIDE_INFO
+
+Allows a system application to start the page for setting privacy protection.
+
 **Permission level**：system_basic
 
 **Authorization mode**：system_grant
@@ -4337,7 +4410,158 @@ Allows an application to enable or access the SOS service.
 
 **Valid since**：16
 
-**Changelog**: This permission is available only to system services in API versions 12 to 14. From API version 15, it is also available to system applications.
+### ohos.permission.DLP_GET_HIDE_STATUS
+
+Allows a system application to use the information hiding APIs to obtain the information hiding status.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Valid since**：16
+
+### ohos.permission.GET_ANIM_POLICY
+
+Allows a system application to register the animation plugin to obtain animation policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.VIRTUAL_KEYBOARD_WINDOW
+
+Allows a system application to create a virtual keyboard window.
+
+A system application can create a virtual keyboard window only after obtaining this permission. Currently, this permission is available only to system applications running on 2-in-1 devices.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
+### ohos.permission.GET_FAMILY_INFO
+
+Allows a system application to obtain the group information of Family Sharing.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_FUSION_AWARENESS_DATA
+
+Allows a system application to obtain fusion awareness data.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_ACCOUNT_RECOMMENDATION_DATA
+
+Allows an application to read the data of Account Suggestions and start the UIExtensionAbility of the account suggestion list.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.SET_PAC_URL
+
+Allows an application to set the URL of the proxy auto config (PAC) script.
+
+After the script address is configured, other applications can read and parse this script and determine whether to use a proxy based on the parsing result.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 15
+
+### ohos.permission.GET_PAGE_INFO
+
+Allows a system application to obtain the page information of a specified application.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DDK_DRIVERS
+
+Allows a peripheral extension driver client to bind to the driver server.
+
+This permission can be requested successfully only when:
+
+1) The target extension driver server in the value field of the permission declaration for the peripheral extension driver client has been launched or both the server and client have been launched.
+2) The capabilities provided by the target extension driver server comply with the requirements of the peripheral extension driver client.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DDK_SCSI_PERIPHERAL
+
+Allow a peripheral extension driver to access the SCSI DDK APIs.
+
+The SCSI DDK APIs can be used to develop the following types of peripheral extension drivers:
+peripherals connected to the host via a USB bus and:
+
+1) InterfaceClass of the peripheral is Mass Storage (0x08) and InterfaceSubClass is SCSI Transparent Command Set (0x06).
+2) The peripheral can simulate a SCSI device in a way that is transparent to the operating system.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
+### ohos.permission.ACCESS_DDK_USB_SERIAL
+
+Allows a peripheral extension driver to access the USB Serial DDK APIs.
+
+The USB Serial DDK APIs can be used to develop the following types of peripheral extension drivers:
+peripherals connected to the host via a USB bus and:
+
+1) InterfaceClass of the peripheral is Communication Device Control Class (0x02) and InterfaceSubClass follows ACMSubClass model(0x02).
+2) The peripheral can simulate traditional serial communication through a USB interface.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
 
 ## system_grant Permissions (Unavailable via ACL)
 

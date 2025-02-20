@@ -7,6 +7,10 @@ If you need the environment parameters of the device where the application runs 
 Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
 
 
+Environment provides the capability of reading some environment variables of the system (for details, see [Environment Built-in Parameters](#environment-built-in-parameters)) and writing the values of the variables to AppStorage. Therefore, you can use AppStorage to obtain the values of environment variables.
+
+Before reading this topic, you are advised to read [AppStorage](./arkts-appstorage.md).
+
 ## Environment Built-in Parameters
 
 | Key| Data Type| Description                                     |

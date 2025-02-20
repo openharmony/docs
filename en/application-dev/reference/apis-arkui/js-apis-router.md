@@ -1403,7 +1403,7 @@ struct Index {
   async routePage() {
     let options:router.RouterOptions = {
       url: 'pages/second',
-      params: new routerParams ('This is the value on the first page', [12, 45, 78])
+      params: new routerParams('This is the value on the first page', [12, 45, 78])
     }
     try {
       // You are advised to use this.getUIContext().getRouter().pushUrl().

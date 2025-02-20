@@ -128,12 +128,12 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 ```js
 
-runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL, (err: Error, lock: runningLock.RunningLock) => {
-    if (typeof err === 'undefined') {
-        console.info('created running lock: ' + lock);
-    } else {
-        console.error('create running lock failed, err: ' + err);
-    }
+runningLock.create('running_lock_test', runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
+.then((lock: runningLock.RunningLock) => {
+    console.info('created running lock: ' + lock);
+})
+.catch((err: Error) => {
+    console.error('create running lock failed, err: ' + err);
 });
 ```
 

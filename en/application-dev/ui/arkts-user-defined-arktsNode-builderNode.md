@@ -1,16 +1,22 @@
-# BuilderNode
+# Custom Declarative Node (BuilderNode)
 
 ## Overview
 
-The [BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) provides the capability to mount built-in components. It creates component trees with a stateless UI method, the [global custom builder function](../quick-start/arkts-builder.md#global-custom-builder-function), which is decorated by @Builder, and accesses the root [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) through [getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode). This node can be directly returned by [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) and mounted under the [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md) node. It also enables embedding declarative component structures within **FrameNode** and [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) tree structures for mixed display capabilities. Additionally, the BuilderNode offers texture export functionality, with exported textures used for same-layer rendering in the [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md) is a custom declarative nodedesigned to seamlessly mount built-in components. With BuilderNode, you can build a custom component tree within stateless UI environments through the [global custom builder function](../quick-start/arkts-builder.md#global-custom-builder-function), which is decorated by @Builder. Once your custom component tree is established, you can obtain its root [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md) by calling [getFrameNode](../reference/apis-arkui/js-apis-arkui-builderNode.md#getframenode). The root node can be directly returned by [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md) and mounted under a [NodeContainer](../reference/apis-arkui/arkui-ts/ts-basic-components-nodecontainer.md). **BuilderNode** facilitates embedding of embedding declarative components within **FrameNode** and [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md) trees for mixed display. **BuilderNode** also offers a feature for exporting textures, which can be used for rendering within the same layer of the [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
-The BuilderNode enables the combination of ArkTS built-in component trees with custom nodes (such as FrameNodes and RenderNodes) for mixed display. It also allows built-in components to be embedded within third-party frameworks that use custom nodes.
+The ArkTS built-in component tree constructed by **BuilderNode** can be used together with custom nodes, such as FrameNodes and RenderNodes, to achieve the mixed display effect. **BuilderNode** offers a suite of APIs designed to integrate built-in components within third-party frameworks. This is particularly beneficial for scenarios where these frameworks require interaction with custom nodes
 
-The BuilderNode offers the capability to pre-create built-in components, enabling their initialization at customized times and dynamic mounting as needed in operations. This is particularly useful for reducing the initialization time of declarative components such as [Web](../reference/apis-arkweb/ts-basic-components-web.md) and [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), which typically take longer to initialize.
+**BuilderNode** offers the capability to pre-create components, allowing you to dictate when built-in components are instantiated. This feature is useful for dynamically mounting and displaying components, especially for those that have a longer initialization period, such as [Web](../reference/apis-arkweb/ts-basic-components-web.md) and [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
 ![builder-node](figures/builder-node.png)
 
-A BuilderNode can be used only as a leaf node. If an update is required, you are advised to use the [update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update) APIs provided by the BuilderNode, rather than making modifications directly to the RenderNode obtained from it. 
+## Basic Concepts
+
+- [Built-in component](arkts-ui-development-overview.md): component provided directly by ArkUI. Components are essential elements of the UI, working together to shape the UI.
+
+- Entity node: native node created by the backend.
+
+A BuilderNode can be used only as a leaf node. If an update is required, you are advised to use the [update](../reference/apis-arkui/js-apis-arkui-builderNode.md#update) API provided by the BuilderNode, rather than making modifications directly to the RenderNode obtained from it. 
 
 > **NOTE**
 > 
@@ -42,7 +48,7 @@ Use the **build** API of **BuilderNode** to create a built-in component tree. Th
 >
 > In scenarios where @Builder is nested within another @Builder in the **build** method, ensure that the parameters of the nested @Builder match the input parameters provided to the **build** method.
 > 
-> For scenarios where @Builder is nested within another @Builder, if the parameter types do not match, you must include the BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12) field as a parameter for the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12) method.
+> For scenarios where @Builder is nested within another @Builder, if the parameter types do not match, you must include the [BuilderOptions](../reference/apis-arkui/js-apis-arkui-builderNode.md#buildoptions12) field as a parameter for the [build](../reference/apis-arkui/js-apis-arkui-builderNode.md#build12) method.
 > 
 > To operate objects in a BuilderNode, ensure that the reference to the BuilderNode is not garbage collected. Once a BuilderNode object is collected by the virtual machine, its FrameNode and RenderNode objects will also be dereferenced from the backend nodes. This means that any FrameNode objects obtained from a BuilderNode will no longer correspond to any actual node if the BuilderNode is garbage collected.
 
@@ -186,7 +192,7 @@ struct Index {
 
 Create a built-in component tree using the **build** API of a **BuilderNode** object. The tree is constructed based on the **WrappedBuilder** object passed in, and the root node of the component tree is retained.
 
-Custom component updates follow the update mechanisms of [state management](../quick-start/arkts-state-management-overview.md). For custom components used directly in a **WrappedBuilder** object, their parent component is the **BuilderNode** object. Therefore, to update child components defined in the **WrappedBuilder** objects, you need to define the relevant state variables with the [@Prop](../quick-start/arkts-prop.md) or [@ObjectLink](../quick-start/arkts-observed-and-objectlink.md) decorator, in accordance with the specifications of state management and the needs of your application development.
+Custom component updates follow the update mechanisms of [state management](../quick-start/arkts-state-management-overview.md). For custom components used directly in a **WrappedBuilder** object, their parent component is the **BuilderNode** object. Therefore, to update child components defined in the **WrappedBuilder** objects, you need to define the relevant state variables with the [\@Prop](../quick-start/arkts-prop.md) or [\@ObjectLink](../quick-start/arkts-observed-and-objectlink.md) decorator, in accordance with the specifications of state management and the needs of your application development.
 
 To update nodes within a BuilderNode:
 
@@ -369,6 +375,287 @@ struct MyComponent {
           }
         })
     }
+  }
+}
+```
+
+## Reusing a BuilderNode
+
+To reuse a BuilderNode, pass the [reuse](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12) and [recycle](../reference/apis-arkui/js-apis-arkui-builderNode.md#recycle12) events to the custom components within the BuilderNode.
+
+```ts
+import { FrameNode,NodeController,BuilderNode,UIContext } from "@kit.ArkUI";
+
+class MyDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | null = null
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number) {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string) {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(): void {
+    this.listener = null;
+  }
+}
+
+class Params {
+  item: string = '';
+
+  constructor(item: string) {
+    this.item = item;
+  }
+}
+
+@Builder
+function buildNode(param: Params = new Params("hello")) {
+  ReusableChildComponent2({ item: param.item });
+}
+
+class MyNodeController extends NodeController {
+  public builderNode: BuilderNode<[Params]> | null = null;
+  public item: string = "";
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.builderNode == null) {
+      this.builderNode = new BuilderNode(uiContext, { selfIdealSize: { width: 300, height: 200 } });
+      this.builderNode.build(wrapBuilder<[Params]>(buildNode), new Params(this.item));
+    }
+    return this.builderNode.getFrameNode();
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = '';
+  private controller: MyNodeController = new MyNodeController();
+
+  aboutToAppear() {
+    this.controller.item = this.item;
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.item);
+    this.controller?.builderNode?.recycle();
+  }
+
+  aboutToReuse(params: object): void {
+    console.log("ReusableChildComponent aboutToReuse " + JSON.stringify(params));
+    this.controller?.builderNode?.reuse(params);
+  }
+
+  build() {
+    NodeContainer(this.controller);
+  }
+}
+
+@Component
+struct ReusableChildComponent2 {
+  @Prop item: string = "false";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent2 Reusable 2 " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent2 aboutToRecycle 2 " + this.item);
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .backgroundColor(Color.Yellow)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
+
+
+@Entry
+@Component
+struct Index {
+  @State data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0;i < 100; i++) {
+      this.data.pushData(i.toString());
+    }
+  }
+
+  build() {
+    Column() {
+      List({ space: 3 }) {
+        LazyForEach(this.data, (item: string) => {
+          ListItem() {
+            ReusableChildComponent({ item: item })
+          }
+        }, (item: string) => item)
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}
+```
+
+## Updating Nodes Based on System Environment Changes
+
+Use the [updateConfiguration](../reference/apis-arkui/js-apis-arkui-builderNode.md#reuse12) API to listen for [system environment changes](../reference/apis-ability-kit/js-apis-app-ability-configuration.md). This will trigger a full update of all nodes within the BuilderNode.
+
+> **NOTE**
+>
+> The **updateConfiguration** API is designed to inform objects of the need to update, with the updates reflecting changes in the application's current system environment.
+
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from "@kit.ArkUI";
+import { AbilityConstant, Configuration, EnvironmentCallback } from '@kit.AbilityKit';
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+// Custom component
+@Component
+struct TextBuilder {
+  // The @Prop decorated attribute is the attribute to be updated in the custom component. It is a basic attribute.
+  @Prop message: string = "TextBuilder";
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 36 })
+          .fontColor($r(`app.color.text_color`))
+          .backgroundColor($r(`app.color.start_window_background`))
+      }
+    }
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+      .fontColor($r(`app.color.text_color`))
+    TextBuilder({ message: params.text }) // Custom component
+  }.backgroundColor($r(`app.color.start_window_background`))
+}
+
+class TextNodeController extends NodeController {
+  private textNode: BuilderNode<[Params]> | null = null;
+  private message: string = "";
+
+  constructor(message: string) {
+    super()
+    this.message = message;
+  }
+
+  makeNode(context: UIContext): FrameNode | null {
+    return this.textNode?.getFrameNode() ? this.textNode?.getFrameNode() : null;
+  }
+
+  createNode(context: UIContext) {
+    this.textNode = new BuilderNode(context);
+    this.textNode.build(wrapBuilder<[Params]>(buildText), new Params(this.message));
+    builderNodeMap.push(this.textNode);
+  }
+
+  deleteNode() {
+    let node = builderNodeMap.pop();
+    node?.dispose();
+  }
+
+  update(message: string) {
+    if (this.textNode !== null) {
+      // Call update to perform an update.
+      this.textNode.update(new Params(message));
+    }
+  }
+}
+
+// Record the created custom node object.
+const builderNodeMap: Array<BuilderNode<[Params]>> = new Array();
+
+function updateColorMode() {
+  builderNodeMap.forEach((value, index) => {
+    // Notify BuilderNode of the environment changes.
+    value.updateConfiguration();
+  })
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = "hello"
+  private textNodeController: TextNodeController = new TextNodeController(this.message);
+  private count = 0;
+
+  aboutToAppear(): void {
+    let environmentCallback: EnvironmentCallback = {
+      onMemoryLevel: (level: AbilityConstant.MemoryLevel): void => {
+        console.log('onMemoryLevel');
+      },
+      onConfigurationUpdated: (config: Configuration): void => {
+        console.log('onConfigurationUpdated ' + JSON.stringify(config));
+        updateColorMode();
+      }
+    }
+    // Register a callback.
+    this.getUIContext().getHostContext()?.getApplicationContext().on('environment', environmentCallback);
+    // Create a custom node and add it to the map.
+    this.textNodeController.createNode(this.getUIContext());
+  }
+
+  aboutToDisappear(): void {
+    // Remove the reference to the custom node from the map and release the node.
+    this.textNodeController.deleteNode();
+  }
+
+  build() {
+    Row() {
+      Column() {
+        NodeContainer(this.textNodeController)
+          .width('100%')
+          .height(200)
+          .backgroundColor('#FFF0F0F0')
+        Button('Update')
+          .onClick(() => {
+            this.count += 1;
+            const message = "Update " + this.count.toString();
+            this.textNodeController.update(message);
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
   }
 }
 ```

@@ -1,8 +1,10 @@
 # 使用MovingPhotoView播放动态照片
 
-用于播放动态照片文件并控制其播放状态的组件。
+系统提供了MovingPhotoView组件，在一些社交类、图库类应用中，可用于播放动态照片文件。
 
 ## 约束与限制
+
+针对MovingPhotoView组件的使用，有以下约束与限制：
 
 - 当前不支持动态属性设置。
 - 当前不支持设置ArkUI通用属性[expandSafeArea](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)。
@@ -17,26 +19,26 @@
    import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
    ```
 
-2. 获取动态照片对象（MovingPhoto）。
+2. 获取动态照片对象（[MovingPhoto](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#movingphoto12)）。
 
    MovingPhoto对象需要通过photoAccessHelper接口创建或获取，MovingPhotoView只接收构造完成的MovingPhoto对象。
-     
+
    创建、获取的方式可参考[访问和管理动态照片资源](photoAccessHelper-movingphoto.md)。
 
    ```ts
    src: photoAccessHelper.MovingPhoto | undefined = undefined;
    ```
 
-3. 创建动态照片控制器（MovingPhotoViewController），用于控制动态照片的播放状态。
-   
+3. 创建动态照片控制器（[MovingPhotoViewController](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md#movingphotoviewcontroller)），用于控制动态照片的播放状态（如播放、停止）。
+
    ```ts
    controller: MovingPhotoViewController = new MovingPhotoViewController();
-   ```   
+   ```
 
 4. 创建动态照片组件。
 
    以下参数取值仅为举例，具体每个属性的取值范围，可参考API文档：[@ohos.multimedia.movingphotoview](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md)。
-   
+
    ```ts
     import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 

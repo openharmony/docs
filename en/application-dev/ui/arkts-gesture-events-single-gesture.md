@@ -367,7 +367,7 @@ struct Index {
       .width(300)
       .height(200)
       .margin(100)
-      // Bind rotation to the <Column> component and change the rotation angle through the swipe speed and angle.
+      // Bind rotation to the Column component and change the rotation angle through the swipe speed and angle.
       .rotate({ angle: this.rotateAngle })
       .gesture(
         // Bind to the component the swipe gesture that can be triggered only when the user swipes in the vertical direction.

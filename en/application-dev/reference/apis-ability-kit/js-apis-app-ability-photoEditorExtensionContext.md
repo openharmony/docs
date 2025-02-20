@@ -62,21 +62,21 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("RotateAndSaveImg").onClick(event => {
+        Button('RotateAndSaveImg').onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
             const imagePackerApi: image.ImagePacker = image.createImagePacker();
-            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
-            imagePackerApi.packing(this.originalImage, packOpts).then((data: ArrayBuffer) => {
+            let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
+            imagePackerApi.packToData(this.originalImage, packOpts).then((data: ArrayBuffer) => {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
-              let filePath = context.filesDir + "/edited.jpg";
+              let filePath = context.filesDir + '/edited.jpg';
               let file: fileIo.File | undefined;
               try{
                 file = fileIo.openSync(filePath, fileIo.OpenMode.READ_WRITE
                 | fileIo.OpenMode.CREATE | fileIo.OpenMode.TRUNC);
                 let writeLen = fileIo.writeSync(file.fd, data);
-                hilog.info(0x0000, TAG, "write data to file succeed and size is:"
+                hilog.info(0x0000, TAG, 'write data to file succeed and size is:'
                   + writeLen);
                 fileIo.closeSync(file);
                 context.saveEditedContentWithUri(filePath).then
@@ -149,11 +149,11 @@ struct Index {
   build() {
     Row() {
       Column() {
-        Button("RotateAndSaveImg").onClick(event => {
+        Button('RotateAndSaveImg').onClick(event => {
           hilog.info(0x0000, TAG, `Start to edit image and save.`);
 
           this.originalImage?.rotate(90).then(() => {
-            let packOpts: image.PackingOption = { format: "image/jpeg", quality: 98 };
+            let packOpts: image.PackingOption = { format: 'image/jpeg', quality: 98 };
             try {
               let context = getContext(this) as common.PhotoEditorExtensionContext;
               context.saveEditedContentWithImage(this.originalImage as image.PixelMap,

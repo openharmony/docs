@@ -18,18 +18,64 @@
 - \@Reusable装饰器仅用于自定义组件。
 
 ```ts
-// 编译报错，仅用于自定义组件
- @Reusable
- @Builder
- function buildCreativeLoadingDialog(closedClick: () => void) {
-   Crash()
- }
+import { ComponentContent } from "@kit.ArkUI";
 
+// @Builder加上@Reusable编译报错,不适用于builder
+// @Reusable
+@Builder
+function buildCreativeLoadingDialog(closedClick: () => void) {
+  Crash()
+}
+
+@Component
+export struct Crash {
+  build() {
+    Column() {
+      Text("Crash")
+        .fontSize(12)
+        .lineHeight(18)
+        .fontColor(Color.Blue)
+        .margin({
+          left: 6
+        })
+    }.width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  private uicontext = this.getUIContext()
+
+  build() {
+    RelativeContainer() {
+      Text(this.message)
+        .id('Index')
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .alignRules({
+          center: { anchor: '__container__', align: VerticalAlign.Center },
+          middle: { anchor: '__container__', align: HorizontalAlign.Center }
+        })
+        .onClick(() => {
+          let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
+          });
+          this.uicontext.getPromptAction().openCustomDialog(contentNode);
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
 ```
 
 - ComponentContent不支持传入\@Reusable装饰器装饰的自定义组件。
 
 ```ts
+import { ComponentContent } from "@kit.ArkUI";
 @Builder
 function buildCreativeLoadingDialog(closedClick: () => void) {
   Crash()
@@ -83,117 +129,125 @@ struct Index {
 }
 ```
 
-- \@Reusable装饰器不支持嵌套使用。
+- \@Reusable装饰器不支持嵌套使用，存在增加内存和不方便维护的问题；
+
+
+> **说明：**
+>
+> 不支持嵌套使用，只是标记，会多增加一个缓存池，各自的复用缓存池存在相同树状结构，复用效率低，引发复用内存增加;
+> 
+> 嵌套使用形成各自独立的复用缓存池之后，生命周期的传递存在问题，资源和变量管理无法共享，并不方便维护，容易引发问题;
+>
+> 示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池使用，但PlayButton02自己形成复用缓存相互可以使用;
+> 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题;
+> 
+> 综上，不建议嵌套使用。
+
 
 ```ts
-export class Message {
-  value: string | undefined;
-
-  constructor(value: string) {
-    this.value = value;
-  }
-}
-
 @Entry
 @Component
 struct Index {
-  @State switch: boolean = true;
-  @State childswitch: boolean = false;
+  @State isPlaying: boolean = false;
+  @State isPlaying02: boolean = true;
+  @State isPlaying01: boolean = false;
 
   build() {
     Column() {
-      Button('click')
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
+      if (this.isPlaying02) {
+
+        // 初始态是显示的按钮
+        Text("Default shown childbutton")
+          .fontSize(14)
+        PlayButton02({ isPlaying02: $isPlaying02 })
+      }
+      Text(`==================`).fontSize(14);
+
+      // 初始态是隐藏的按钮
+      if (this.isPlaying01) {
+        Text("Default hidden childbutton")
+          .fontSize(14)
+        PlayButton02({ isPlaying02: $isPlaying01 })
+      }
+      Text(`==================`).fontSize(14);
+
+      // 父子嵌套
+      if (this.isPlaying) {
+        Text("parent child 嵌套")
+          .fontSize(14)
+        PlayButton({ buttonPlaying: $isPlaying })
+      }
+      Text(`==================`).fontSize(14);
+
+      // 父子嵌套控制
+      Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
+      Button('Parent=child===controll=' + this.isPlaying)
+        .margin(14)
         .onClick(() => {
-          this.switch = !this.switch;
+          this.isPlaying = !this.isPlaying;
         })
 
-      if (this.switch) {
-        // 父自定义组件已经添加@Reusable（出于描述方便，以下子组件代指自定义组件，父组件代指父自定义组件）
-        Parent({ message: new Message('Parent') })
-          .reuseId('Parent')
-      }
+      Text(`==================`).fontSize(14);
+
+      //  默认隐藏按钮控制
+      Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
+      Button('Button===hiddenchild==control==' + this.isPlaying01)
+        .margin(14)
+        .onClick(() => {
+          this.isPlaying01 = !this.isPlaying01;
+        })
+      Text(`==================`).fontSize(14);
+
+      // 默认显示按钮控制
+      Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
+      Button('Button===shownchid==control==:' + this.isPlaying02)
+        .margin(15)
+        .onClick(() => {
+          this.isPlaying02 = !this.isPlaying02;
+        })
     }
-    .height("100%")
-    .width('100%')
   }
 }
 
+// 复用1
 @Reusable
 @Component
-struct Parent {
-  @State message: Message = new Message('AboutToReuse');
-  @State switchchild: boolean = true;
-
-  aboutToRecycle(): void {
-    console.info("aboutToRecycle===Parent ====Child==");
-  }
-
-  aboutToReuse(params: Record<string, ESObject>) {
-    this.message = params.message as Message;
-    console.info("aboutToReuse==Parent====Child==" + this.message.value);
-  }
+struct PlayButton {
+  @Link buttonPlaying: boolean;
 
   build() {
     Column() {
-      Button('click child')
-        .fontSize(30)
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          this.switchchild = !this.switchchild;
-        })
 
-      // 子自定义组件
-      if (this.switchchild) {
-        // 父自定义组件已经添加@Reusable
-        HasReusableChild({ message: new Message('From ChildReuse') });
-      }
-      Text(this.message.value)
-        .fontSize(30)
+      // 复用
+      PlayButton02({ isPlaying02: $buttonPlaying })
+      Button(this.buttonPlaying ? 'parent_pause' : 'parent_play')
+        .margin(12)
+        .onClick(() => {
+          this.buttonPlaying = !this.buttonPlaying;
+        })
     }
-    .borderWidth(1)
-    .height(100)
   }
 }
 
-// 可复用的自定义组件的子树中存在可复用的自定义组件，如果子组件标记@Reuable，会导致同一颗子树下复用率变低，因此不建议子组件加上@Reusable
+//  复用2 不建议嵌套使用
 @Reusable
 @Component
-export struct HasReusableChild {
-  @State message: Message = new Message('AboutToReuse');
-
-  // 子组件有@Reusable，单独刷新子组件,执行了子组件的aboutToReuse,父组件是不复用的
-  aboutToAppear(): void {
-    console.info("aboutToAppear=== HasReusableChild ====Child==");
-  }
-
-  aboutToDisappear(): void {
-    console.info("aboutToDisappear=== HasReusableChild ====Child==");
-  }
+struct PlayButton02 {
+  @Link isPlaying02: boolean;
 
   aboutToRecycle(): void {
-    console.info("aboutToRecycle=== HasReusableChild ====Child==");
+    console.log("=====aboutToRecycle====PlayButton02====");
   }
 
-  // 正常复用，父组件刷新，引发子组件aboutToReuse方法的执行
-  aboutToReuse(params: Record<string, ESObject>) {
-    this.message = params.message as Message;
-    console.info("aboutToReuse== HasReusableChild ====Child==" + this.message.value);
+  aboutToReuse(params: ESObject): void {
+    console.log("=====aboutToReuse====PlayButton02====");
   }
 
   build() {
     Column() {
-      Text(this.message.value)
-        .fontSize(12)
-        .lineHeight(18)
-        .fontColor(Color.Blue)
-        .margin({
-          left: 6
-        })
-    }.width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
+      Button('===commonbutton=====')
+        .margin(12)
+    }
   }
 }
 ```
@@ -310,6 +364,12 @@ class MyDataSource implements IDataSource {
 struct ReuseDemo {
   private data: MyDataSource = new MyDataSource();
 
+  aboutToAppear() {
+    for (let i = 1; i < 1000; i++) {
+      this.data.pushData(i+"");
+    }
+  }
+
   // ...
   build() {
     Column() {
@@ -354,56 +414,131 @@ export struct CardView {
 ```ts
 @Entry
 @Component
-struct withoutReuseId {
+struct Index {
+  private dataSource = new MyDataSource<FriendMoment>();
+
   aboutToAppear(): void {
-    getFriendMomentFromRawfile();
+    for (let i = 0; i < 20; i++) {
+      let title = i + 1 + "test_if";
+      this.dataSource.pushData(new FriendMoment(i.toString(), title, 'app.media.app_icon'))
+    }
+
+    for (let i = 0; i < 50; i++) {
+      let title = i + 1 + "test_if";
+      this.dataSource.pushData(new FriendMoment(i.toString(), title, ''))
+    }
   }
- 
+
   build() {
     Column() {
-      TopBar()
-      List({ space: ListConstants.LIST_SPACE }) {
-        LazyForEach(momentData, (moment: FriendMoment) => {
+      // TopBar()
+      List({ space: 3 }) {
+        LazyForEach(this.dataSource, (moment: FriendMoment) => {
           ListItem() {
-            OneMoment({moment: moment})
-              // 使用reuseId进行组件复用的控制
+            OneMoment({ moment: moment })// 使用reuseId进行组件复用的控制
               .reuseId((moment.image !== '') ? 'withImage' : 'noImage')
           }
         }, (moment: FriendMoment) => moment.id)
       }
-      .cachedCount(Constants.CACHED_COUNT)
+      .cachedCount(0)
     }
   }
 }
- 
+
+class FriendMoment {
+  id: string = '';
+  text: string = '';
+  title: string = '';
+  image: string = '';
+  answers: Array<ResourceStr> = [];
+
+  constructor(id: string, title: string, image: string) {
+    this.text = id;
+    this.title = title;
+    this.image = image;
+  }
+}
+
 @Reusable
 @Component
 export struct OneMoment {
   @Prop moment: FriendMoment;
- 
+
+  // 复用id相同的同才能触发复用
+  aboutToReuse(params: ESObject): void {
+    console.log("=====aboutToReuse====OneMoment==复用了==" + this.moment.text);
+  }
+
   build() {
     Column() {
-      ...
       Text(this.moment.text)
- 
+      // if分支判断
       if (this.moment.image !== '') {
         Flex({ wrap: FlexWrap.Wrap }) {
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
-          Image($r(this.moment.image))
+          Image($r(this.moment.image)).height(50).width(50);
+          Image($r(this.moment.image)).height(50).width(50);
+          Image($r(this.moment.image)).height(50).width(50);
+          Image($r(this.moment.image)).height(50).width(50);
         }
       }
-      ...
     }
+  }
+}
+
+class BasicDataSource<T> implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: T[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): T {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+}
+
+export class MyDataSource<T> extends BasicDataSource<T> {
+  private dataArray: T[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): T {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: T): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
   }
 }
 ```
 
 ### Foreach使用场景
 
-- 示例点击update，数据刷新成功，但是滑动列表，组件复用无法使用，Foreach的折叠展开属性的原因;
-- 点击clear，再次update，复用成功；符合一帧内重复创建多个已被销毁的自定义组件;
+- 使用Foreach创建可复用的自定义组件，由于Foreach渲染控制语法的全展开属性，导致复用组件无法复用；如下示例点击update，数据刷新成功，但是滑动列表，ListItemView无法复用;
+- 点击clear，再次点击update，ListItemView复用成功，因为一帧内重复创建多个已被销毁的自定义组件。
 
 ```ts
 // xxx.ets
@@ -439,11 +574,11 @@ struct Index {
 
   aboutToAppear() {
     for (let i = 0; i < 100; i++) {
-      this.data.pushData(i.toString())
+      this.data.pushData(i.toString());
     }
 
     for (let i = 30; i < 80; i++) {
-      this.data02.pushData(i.toString())
+      this.data02.pushData(i.toString());
     }
   }
 
@@ -497,14 +632,14 @@ struct ListItemView {
 
   aboutToAppear(): void {
     // 点击 update，首次进入，上下滑动，由于Foreach折叠展开属性，无法复用
-    console.log("=====abouTo===Appear=====ListItemView==创建了==" + this.item)
+    console.log("=====aboutToAppear=====ListItemView==创建了==" + this.item);
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     // 点击 clear，再次update，复用成功
     // 符合一帧内重复创建多个已被销毁的自定义组件
-    console.log("=====aboutTo===Reuse====ListItemView==复用了==" + this.item)
+    console.log("=====aboutToReuse====ListItemView==复用了==" + this.item);
   }
 
   build() {
@@ -620,7 +755,8 @@ struct ReusableChildComponent {
 
   build() {
     Column() {
-      Image($r('app.media.icon'))
+      // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错
+      Image($r('app.media.app_icon'))
         .objectFit(ImageFit.Fill)
         .layoutWeight(1)
       Text(`图片${this.item}`)
@@ -636,59 +772,492 @@ struct ReusableChildComponent {
 
 ### WaterFlow使用场景
 
-- WaterFlow滑动场景存在FlowItem及其子组件的频繁创建和销毁，可以将FlowItem中的组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力；
+- WaterFlow滑动场景存在FlowItem及其子组件的频繁创建和销毁，可以将FlowItem中的组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
 
 ```ts
-  build() {
-    Column({ space: 2 }) {
-      WaterFlow() {
-        LazyForEach(this.datasource, (item: number) => {
-          FlowItem() {
-            // 使用可复用自定义组件  
-            ReusableFlowItem({ item: item })
-          }
-          .onAppear(() => {
-            // 即将触底时提前增加数据  
-            if (item + 20 == this.datasource.totalCount()) {
-              for (let i = 0; i < 100; i++) {
-                this.datasource.AddLastItem()
-              }
-            }
-          })
-          .width('100%')
-          .height(this.itemHeightArray[item % 100])
-          .backgroundColor(this.colors[item % 5])
-        }, (item: string) => item)
-      }
-      .columnsTemplate("1fr 1fr")
-      .columnsGap(10)
-      .rowsGap(5)
-      .backgroundColor(0xFAEEE0)
-      .width('100%')
-      .height('80%')
+class WaterFlowDataSource implements IDataSource {
+  private dataArray: number[] = [];
+  private listeners: DataChangeListener[] = [];
+
+  constructor() {
+    for (let i = 0; i <= 60; i++) {
+      this.dataArray.push(i);
     }
   }
+
+  // 获取索引对应的数据
+  public getData(index: number): number {
+    return this.dataArray[index];
+  }
+
+  // 通知控制器增加数据
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 获取数据总数
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  // 注册改变数据的控制器
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  // 注销改变数据的控制器
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 在数据尾部增加一个元素
+  public addLastItem(): void {
+    this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+
 @Reusable
 @Component
 struct ReusableFlowItem {
   @State item: number = 0;
- 
+
   // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
-  aboutToReuse(params) {
+  aboutToReuse(params: ESObject) {
     this.item = params.item;
+    console.log("=====aboutToReuse====FlowItem==复用了==" + this.item);
   }
- 
+
+  aboutToRecycle(): void {
+    console.log("=====aboutToRecycle====FlowItem==回收了==" + this.item);
+  }
+
   build() {
+    // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错
     Column() {
-      Text("N" + this.item).fontSize(12).height('16')
-      Image('res/waterFlowTest (' + this.item % 5 + ').jpg')
-        .objectFit(ImageFit.Fill)
-        .width('100%')
-        .layoutWeight(1)
+      Text("N" + this.item).fontSize(24).height('26').margin(10)
+      Image($r('app.media.app_icon'))
+        .objectFit(ImageFit.Cover)
+        .width(50)
+        .height(50)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State minSize: number = 50;
+  @State maxSize: number = 80;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+
+  // 计算flow item宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
+  }
+
+  // 保存flow item宽/高
+  getItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize());
+      this.itemHeightArray.push(this.getSize());
+    }
+  }
+
+  aboutToAppear() {
+    this.getItemSizeArray();
+  }
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Column({ space: 2 }) {
+        Button('back top')
+          .height('5%')
+          .onClick(() => { // 点击后回到顶部
+            this.scroller.scrollEdge(Edge.Top);
+          })
+        WaterFlow({ scroller: this.scroller }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              ReusableFlowItem({ item: item })
+            }.onAppear(() => {
+              if (item + 20 == this.dataSource.totalCount()) {
+                for (let i = 0; i < 50; i++) {
+                  this.dataSource.addLastItem();
+                }
+              }
+            })
+
+          })
+        }
+      }
+    }
+  }
+
+  @Builder
+  itemFoot() {
+    Column() {
+      Text(`Footer`)
+        .fontSize(10)
+        .backgroundColor(Color.Red)
+        .width(50)
+        .height(50)
+        .align(Alignment.Center)
+        .margin({ top: 2 })
     }
   }
 }
 ```
+
+### Swiper使用场景
+
+- Swiper滑动场景，条目中存在子组件的频繁创建和销毁，可以将条目中的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
+
+```ts
+@Entry
+@Component
+struct Index {
+  private dataSource = new MyDataSource<Question>();
+
+  aboutToAppear(): void {
+    for (let i = 0; i < 1000; i++) {
+      let title = i + 1 + "test_swiper";
+      let answers = ["test1", "test2", "test3",
+        "test4"];
+      // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错
+      this.dataSource.pushData(new Question(i.toString(), title, $r('app.media.app_icon'), answers));
+    }
+  }
+
+  build() {
+    Column({ space: 5 }) {
+      Swiper() {
+        LazyForEach(this.dataSource, (item: Question) => {
+          QuestionSwiperItem({ itemData: item })
+        }, (item: Question) => item.id)
+      }
+    }
+    .width('100%')
+    .margin({ top: 5 })
+  }
+}
+
+class Question {
+  id: string = '';
+  title: ResourceStr = '';
+  image: ResourceStr = '';
+  answers: Array<ResourceStr> = [];
+
+  constructor(id: string, title: ResourceStr, image: ResourceStr, answers: Array<ResourceStr>) {
+    this.id = id;
+    this.title = title;
+    this.image = image;
+    this.answers = answers;
+  }
+}
+
+@Reusable
+@Component
+struct QuestionSwiperItem {
+  @State itemData: Question | null = null;
+
+  aboutToReuse(params: Record<string, Object>): void {
+    this.itemData = params.itemData as Question;
+    console.info("===test===aboutToReuse====QuestionSwiperItem==");
+  }
+
+  build() {
+    Column() {
+      Text(this.itemData?.title)
+        .fontSize(18)
+        .fontColor($r('sys.color.ohos_id_color_primary'))
+        .alignSelf(ItemAlign.Start)
+        .margin({
+          top: 10,
+          bottom: 16
+        })
+      Image(this.itemData?.image)
+        .width('100%')
+        .borderRadius(12)
+        .objectFit(ImageFit.Contain)
+        .margin({
+          bottom: 16
+        })
+        .height(80)
+        .width(80)
+
+      Column({ space: 16 }) {
+        ForEach(this.itemData?.answers, (item: Resource) => {
+          Text(item)
+            .fontSize(16)
+            .fontColor($r('sys.color.ohos_id_color_primary'))
+        }, (item: ResourceStr) => JSON.stringify(item))
+      }
+      .width('100%')
+      .alignItems(HorizontalAlign.Start)
+    }
+    .width('100%')
+    .padding({
+      left: 16,
+      right: 16
+    })
+  }
+}
+
+class BasicDataSource<T> implements IDataSource {
+  private listeners: DataChangeListener[] = [];
+  private originDataArray: T[] = [];
+
+  public totalCount(): number {
+    return 0;
+  }
+
+  public getData(index: number): T {
+    return this.originDataArray[index];
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+}
+
+export class MyDataSource<T> extends BasicDataSource<T> {
+  private dataArray: T[] = [];
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): T {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: T): void {
+    this.dataArray.push(data);
+    this.notifyDataAdd(this.dataArray.length - 1);
+  }
+}
+```
+
+### ListItemGroup使用场景
+
+- 可以视作特殊List滑动场景，将ListItem需要销毁重建的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
+
+```ts
+@Entry
+@Component
+struct ListItemGroupAndReusable {
+  data: DataSrc2 = new DataSrc2();
+
+  @Builder
+  itemHead(text: string) {
+    Text(text)
+      .fontSize(20)
+      .backgroundColor(0xAABBCC)
+      .width('100%')
+      .padding(10)
+  }
+
+  aboutToAppear() {
+    for (let i = 0; i < 10000; i++) {
+      let data_1 = new DataSrc1();
+      for (let j = 0; j < 12; j++) {
+        data_1.Data.push(`测试条目数据: ${i} - ${j}`);
+      }
+      this.data.Data.push(data_1);
+    }
+  }
+
+  build() {
+    Stack() {
+      List() {
+        LazyForEach(this.data, (item: DataSrc1, index: number) => {
+          ListItemGroup({ header: this.itemHead(index.toString()) }) {
+            LazyForEach(item, (ii: string, index: number) => {
+              ListItem() {
+                Inner({ str: ii });
+              }
+            })
+          }
+          .width('100%')
+          .height('60vp')
+        })
+      }
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Reusable
+@Component
+struct Inner {
+  @State str: string = ''
+
+  aboutToReuse(param: ESObject) {
+    this.str = param.str;
+  }
+
+  build() {
+    Text(this.str)
+  }
+}
+
+class DataSrc1 implements IDataSource {
+  listeners: DataChangeListener[] = [];
+  Data: string[] = [];
+
+  public totalCount(): number {
+    return this.Data.length;
+  }
+
+  public getData(index: number): string {
+    return this.Data[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+
+class DataSrc2 implements IDataSource {
+  listeners: DataChangeListener[] = [];
+  Data: DataSrc1[] = [];
+
+  public totalCount(): number {
+    return this.Data.length;
+  }
+
+  public getData(index: number): DataSrc1 {
+    return this.Data[index];
+  }
+
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      this.listeners.push(listener);
+    }
+  }
+
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      this.listeners.splice(pos, 1);
+    }
+  }
+
+  // 通知LazyForEach组件需要重载所有子组件
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index);
+    })
+  }
+
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index);
+    })
+  }
+
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to);
+    })
+  }
+}
+```
+
 
 ### 多种条目类型使用场景
 
@@ -704,7 +1273,32 @@ struct ReusableFlowItem {
 
 ```ts
 class MyDataSource implements IDataSource {
-  ...
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | undefined;
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(listener: DataChangeListener): void {
+    this.listener = undefined;
+  }
 }
 
 @Entry
@@ -714,7 +1308,7 @@ struct Index {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i);
+      this.data.pushData(i+"");
     }
   }
 
@@ -764,12 +1358,37 @@ struct ReusableComponent {
 #### 组合型
 
 - 复用组件之间有不同，情况非常多，但是拥有共同的子组件;
-- 示例按照组合型的组件复用方式，将上述示例中的三种复用组件转变为Builder函数后，内部共同的子组件就处于同一个父组件MyComponent下;
+- 示例按照组合型的组件复用方式，将三种复用组件转变为Builder函数后，内部共同的子组件就处于同一个父组件MyComponent下;
 - 对这些子组件使用组件复用时，它们的缓存池也会在父组件上共享，节省组件创建时的消耗。
 
 ```ts
 class MyDataSource implements IDataSource {
-  ...
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | undefined;
+
+  public totalCount(): number {
+    return this.dataArray.length;
+  }
+
+  public getData(index: number): string {
+    return this.dataArray[index];
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data);
+  }
+
+  public reloadListener(): void {
+    this.listener?.onDataReloaded();
+  }
+
+  public registerDataChangeListener(listener: DataChangeListener): void {
+    this.listener = listener;
+  }
+
+  public unregisterDataChangeListener(listener: DataChangeListener): void {
+    this.listener = undefined;
+  }
 }
 
 @Entry
@@ -783,6 +1402,7 @@ struct MyComponent {
     }
   }
 
+// itemBuilderOne作为复用组件的写法未展示，以下为转为Builder之后的写法
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -792,6 +1412,7 @@ struct MyComponent {
     }
   }
 
+// itemBuilderTwo转为Builder之后的写法
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -801,6 +1422,7 @@ struct MyComponent {
     }
   }
 
+// itemBuilderThree转为Builder之后的写法
   @Builder
   itemBuilderThree(item: string) {
     Column() {
@@ -858,6 +1480,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string,index: number) => {
           GridItem() {
+            // 请开发者自行在src/main/resources/base/media路径下添加app.media.startIcon图片，否则运行时会因资源缺失而报错
             Image($r('app.media.startIcon'))
               .height(20)
           }

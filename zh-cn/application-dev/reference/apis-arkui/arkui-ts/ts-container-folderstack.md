@@ -1,6 +1,6 @@
 # FolderStack
 
-FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏
+FolderStack继承于Stack(层叠布局)控件，新增了折叠屏悬停能力，通过识别upperItems自动避让折叠屏折痕区后移到上半屏。
 
 >  **说明：**
 >
@@ -187,7 +187,7 @@ type OnFoldStatusChangeCallback = (event: OnFoldStatusChangeInfo) => void
 
 type WindowStatusType = WindowStatusType
 
-窗口模式枚举
+窗口模式枚举。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

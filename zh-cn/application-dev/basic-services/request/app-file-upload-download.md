@@ -95,7 +95,7 @@ let config: request.agent.Config = {
   mode: request.agent.Mode.FOREGROUND,
   overwrite: true,
   method: "POST",
-  header: {
+  headers: {
     'key1':'value1',
     'key2':'value2'
   },

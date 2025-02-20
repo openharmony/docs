@@ -9,7 +9,7 @@ The **drawing_text_line.h** file declares the capabilities for obtaining the cha
 
 **Library**: libnative_drawing.so
 
-**Since**: 14
+**Since**: 16
 
 **Related module**: [Drawing](_drawing.md)
 

@@ -172,7 +172,7 @@
    })
    ```
 
-4. 从系统剪贴板中读取这条text数据
+4. 从系统剪贴板中读取这条text数据。
 
    ```ts
    let GetPlainTextUnifiedData = (() => {
@@ -195,6 +195,7 @@
 5. 应用设置本应用剪贴板数据的可粘贴范围。
 
    ```ts
+   let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
    try {
        systemPasteboard.setAppShareOptions(pasteboard.ShareOption.INAPP);
        console.info('Set app share options success.');

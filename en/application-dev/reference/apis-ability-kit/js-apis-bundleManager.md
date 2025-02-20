@@ -47,7 +47,7 @@ Enumerates the types of ExtensionAbilities.
 | WORK_SCHEDULER   | 1   | [WorkSchedulerExtensionAbility](../apis-backgroundtasks-kit/js-apis-WorkSchedulerExtensionAbility.md): enables applications to execute non-real-time tasks when the system is idle.|
 | INPUT_METHOD     | 2   | [InputMethodExtensionAbility](../apis-ime-kit/js-apis-inputmethod-extension-ability.md): provides APIs for developing input method applications.|
 | SERVICE          | 3   | <!--Del-->[<!--DelEnd-->ServiceExtensionAbility<!--Del-->](js-apis-app-ability-serviceExtensionAbility-sys.md)<!--DelEnd-->: enables applications to run in the background and provide services.|
-| ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-inner-application-accessibilityExtensionContext.md)<!--RP1End-->: provides accessibility for access to and operations on the UI.|
+| ACCESSIBILITY    | 4   | <!--RP1-->[AccessibilityExtensionAbility](../apis-accessibility-kit/js-apis-application-accessibilityExtensionAbility.md)<!--RP1End-->: provides accessibility for access to and operations on the UI.|
 | DATA_SHARE       | 5   | <!--Del-->[<!--DelEnd-->DataShareExtensionAbility <!--Del-->](../apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md)<!--DelEnd-->: enables applications to read and write data.|
 | FILE_SHARE       | 6   | FileShareExtensionAbility: enables file sharing between applications. This ability is reserved and supported only by system applications.|
 | STATIC_SUBSCRIBER| 7   | <!--Del-->[<!--DelEnd-->StaticSubscriberExtensionAbility <!--Del-->](../apis-basic-services-kit/js-apis-application-staticSubscriberExtensionAbility-sys.md)<!--DelEnd-->: provides APIs for processing static events, such as the startup event.|
@@ -1086,6 +1086,8 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 
 Obtains the bundle information based on the given bundle name, bundle flags, and user ID. This API returns the result synchronously.
 
+No permission is required for obtaining the caller's own information.
+
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
@@ -1140,6 +1142,8 @@ try {
 getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 
 Obtains the bundle information based on the given bundle name and bundle flags. This API returns the result synchronously.
+
+No permission is required for obtaining the caller's own information.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 

@@ -2,7 +2,7 @@
 
 ## 背景
 
-在应用开发中，Swiper 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
+在应用开发中，[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
 
 - 如果该页面使用了@Component 装饰的自定义组件，那么自定义组件的 build 函数会被执行并创建内部的 UI 组件；
 
@@ -32,7 +32,7 @@
 
 ## 使用指导
 
-- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性中配置。
+- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#cachedcount8)属性中配置。
 
 Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
  ![loop=false](figures/swiper_loop_false.png)

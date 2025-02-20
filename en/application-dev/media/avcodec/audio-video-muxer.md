@@ -2,20 +2,7 @@
 
 You can call the native APIs provided by the AVMuxer module to mux audio and video streams, that is, to store encoded audio and video data to a file in a certain format.
 
-Currently, the following muxer capabilities are supported:
-
-| Muxing Format| Video Codec Type       | Audio Codec Type  | Cover Type      |
-| -------- | --------------------- | ---------------- | -------------- |
-| mp4      | AVC (H.264) <!--RP1--><!--RP1End-->    | AAC, MPEG (MP3)| jpeg, png, bmp|
-| m4a      | -                     | AAC              | jpeg, png, bmp|
-| mp3      | -                     | MPEG (MP3)     | -              |
-| amr      | -                     | AMR (AMR-NB and AMR-WB)| -             |
-| wav      | -                     | G.711Mu (pcm-mulaw)| -             |
-
-> **NOTE**
->
-> - When the container format is MP4 and the audio codec type is MPEG (MP3), the sampling rate must be greater than or equal to 16000 Hz. 
-> - When the container format is MP4 or M4A and the audio codec type is AAC, the number of audio channels ranges from 1 to 7.
+For details about the supported muxing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-muxing).
 
 <!--RP2--><!--RP2End-->
 
@@ -79,7 +66,18 @@ The following walks you through how to implement the entire process of audio and
    OH_AVMuxer_SetRotation(muxer, 0);
    ```
 
-4. Add an audio track.
+4. Add file-level data.
+   ```c++
+   OH_AVFormat *format = OH_AVFormat_Create(); // Use OH_AVFormat_Create to create a format.
+   OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // Set the creation time (UTC time in ISO 8601 format).
+   int ret = OH_AVMuxer_SetFormat(muxer, format); // Set format data to the muxer.
+   if (ret != AV_ERR_OK) {
+      // Failed to set the format because no valid key data to be written is found.
+   }
+   OH_AVFormat_Destroy(format); // Destroy the format.
+   ```
+
+5. Add an audio track.
 
    **Method 1: Use OH_AVFormat_Create to create the format.**
 
@@ -118,7 +116,7 @@ The following walks you through how to implement the entire process of audio and
    OH_AVFormat_Destroy (formatAudio); // Destroy the format.
    ```
 
-5. Add a video track.
+6. Add a video track.
 
    **Method 1: Use OH_AVFormat_Create to create the format.**
 
@@ -155,7 +153,7 @@ The following walks you through how to implement the entire process of audio and
    OH_AVFormat_Destroy(formatVideo); // Destroy the format.
    ```
 
-6. Add a cover track.
+7. Add a cover track.
 
    **Method 1: Use OH_AVFormat_Create to create the format.**
 
@@ -186,7 +184,7 @@ The following walks you through how to implement the entire process of audio and
    OH_AVFormat_Destroy(formatCover); // Destroy the format.
    ```
 
-7. Call **OH_AVMuxer_Start()** to start muxing.
+8. Call **OH_AVMuxer_Start()** to start muxing.
 
    ```c++
    // Call Start() to write the file header. After this API is called, you cannot set media parameters or add tracks.
@@ -195,7 +193,7 @@ The following walks you through how to implement the entire process of audio and
    }
    ```
 
-8. Call **OH_AVMuxer_WriteSampleBuffer()** to write data. The encapsulated data includes video, audio, and cover data.
+9. Call **OH_AVMuxer_WriteSampleBuffer()** to write data. The encapsulated data includes video, audio, and cover data.
 
    ```c++
    // Data can be written only after Start() is called.
@@ -220,7 +218,7 @@ The following walks you through how to implement the entire process of audio and
    }
    ```
 
-9. Call **OH_AVMuxer_Stop()** to stop muxing.
+10. Call **OH_AVMuxer_Stop()** to stop muxing.
 
    ```c++
    // Call Stop() to write the file trailer. After this API is called, you cannot write media data.
@@ -229,7 +227,7 @@ The following walks you through how to implement the entire process of audio and
    }
    ```
 
-10. Call **OH_AVMuxer_Destroy()** to release the instance. Do not repeatedly destroy the instance. Otherwise, the program may crash.
+11. Call **OH_AVMuxer_Destroy()** to release the instance. Do not repeatedly destroy the instance. Otherwise, the program may crash.
 
     ```c++
     if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {

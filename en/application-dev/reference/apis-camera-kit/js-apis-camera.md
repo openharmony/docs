@@ -65,13 +65,15 @@ Defines the camera device information.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name          | Type                              | Read-only| Optional| Description       |
-| -------------- | --------------------------------- | ---- | ---- |---------- |
-| cameraId       | string                            | Yes  | No  | Camera ID.|
-| cameraPosition | [CameraPosition](#cameraposition) | Yes  | No  | Camera position.   |
-| cameraType     | [CameraType](#cameratype)         | Yes  | No  | Camera type.   |
-| connectionType | [ConnectionType](#connectiontype) | Yes  | No  | Camera connection type.|
-| cameraOrientation<sup>12+</sup> | number | Yes  | No  | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
+| Name                             | Type                                 | Read-only| Optional| Description       |
+|---------------------------------|-------------------------------------| ---- |----|---------- |
+| cameraId                        | string                              | Yes  | No | Camera ID.|
+| cameraPosition                  | [CameraPosition](#cameraposition)   | Yes  | No | Camera position.   |
+| cameraType                      | [CameraType](#cameratype)           | Yes  | No | Camera type.   |
+| connectionType                  | [ConnectionType](#connectiontype)   | Yes  | No | Camera connection type.|
+| cameraOrientation<sup>12+</sup> | number                              | Yes  | No | Installation angle of the lens, which does not change as the screen rotates. The value ranges from 0° to 360°.|
+| hostDeviceName<sup>16+</sup>    | string                              | Yes  | No | Remote device name.|
+| hostDeviceType<sup>16+</sup>    | [HostDeviceType](#hostdevicetype16) | Yes  | No | Remote device type.|
 
 ## CameraPosition
 
@@ -83,7 +85,7 @@ Enumerates the camera positions.
 
 | Name                        | Value  | Description                                                             |
 | --------------------------- | ---- |-----------------------------------------------------------------|
-| CAMERA_POSITION_UNSPECIFIED | 0    | Unspecified position.                                                       |
+| CAMERA_POSITION_UNSPECIFIED | 0    | A camera that does not have a fixed orientation relative to the device screen.                                                       |
 | CAMERA_POSITION_BACK        | 1    | Rear camera.                                                          |
 | CAMERA_POSITION_FRONT       | 2    | Front camera.                                                          |
 | CAMERA_POSITION_FOLD_INNER<sup>(deprecated)</sup>  | 3    | Folded camera.<br>This API is supported since API version 11 and deprecated since API version 12.|
@@ -113,6 +115,18 @@ Enumerates the camera connection types.
 | CAMERA_CONNECTION_BUILT_IN   | 0    | Built-in camera.     |
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB.|
 | CAMERA_CONNECTION_REMOTE     | 2    | Remote camera.|
+
+## HostDeviceType<sup>16+</sup>
+
+Enumerates the remote camera types.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                         | Value      | Description     |
+| ---------------------------- | ----     |---------|
+| UNKNOWN_TYPE                 | 0        | Unknown type.|
+| PHONE                        | 0x0E     | Mobile phone.  |
+| TABLET                       | 0x11     | Tablet.  |
 
 ## CameraStatus
 
@@ -906,9 +920,10 @@ Creates a **Session** instance with a given scene mode. This API returns the res
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400201                |  Camera service fatal error.               |
+| ID        | Error Message                                                                                                                                          |
+| --------------- |------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3.Parameter verification failed. |  
+| 7400201                | Camera service fatal error.                                                                                                                    |
 
 **Example**
 
@@ -1362,11 +1377,12 @@ Opens this camera device. This API uses a promise to return the result.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400107                |  Can not use camera cause of conflict.               |
-| 7400108                |  Camera disabled cause of security reason.                                  |
-| 7400201                |  Camera service fatal error.                                  |
+| ID  | Error Message                                     |
+|---------|-------------------------------------------|
+| 7400102 | Operation not allowed.                    |
+| 7400107 | Can not use camera cause of conflict.     |
+| 7400108 | Camera disabled cause of security reason. |
+| 7400201 | Camera service fatal error.               |
 
 **Example**
 
@@ -2110,7 +2126,7 @@ getPreviewRotation(displayRotation: number): ImageRotation
 Obtains the preview rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
-- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -3328,7 +3344,7 @@ getPhotoRotation(deviceDegree: number): ImageRotation
 Obtains the photo rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
-- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -3357,7 +3373,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetPhotoRotation(photoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+function testGetPhotoRotation(photoOutput: camera.PhotoOutput, deviceDegree : number): camera.ImageRotation {
   let photoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     photoRotation = photoOutput.getPhotoRotation(deviceDegree);
@@ -3869,7 +3885,7 @@ getVideoRotation(deviceDegree: number): ImageRotation
 Obtains the video rotation degree.
 
 - Device' natural orientation: The default orientation of the device (phone) is in portrait mode, with the charging port facing downward.
-- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in portrait mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
+- Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural direction. The rear camera sensor of a phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural direction.
 - Screen orientation: The upper left corner of the image displayed on the screen is the first pixel, which is the coordinate origin. In the case of lock screen, the direction is the same as the device's natural orientation.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
@@ -3898,7 +3914,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function testGetVideoRotation(videoOutput: camera.PreviewOutput, deviceDegree : number): camera.ImageRotation {
+function testGetVideoRotation(videoOutput: camera.VideoOutput, deviceDegree : number): camera.ImageRotation {
   let videoRotation: camera.ImageRotation = camera.ImageRotation.ROTATION_0;
   try {
     videoRotation = videoOutput.getVideoRotation(deviceDegree);
@@ -7885,9 +7901,9 @@ Checks whether the device supports automatic camera switch.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400103         |  Session not config.                           |
+| ID        | Error Message                                             |
+| --------------- |---------------------------------------------------|
+| 7400103         | Session not config, only throw in session usage.  |
 
 **Example**
 
@@ -7936,11 +7952,12 @@ Enables or disables automatic camera switch. You can use [isAutoDeviceSwitchSupp
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| ID        | Error Message       |
-| --------------- | --------------- |
-| 7400102         |  The colorSpace does not match the format.     |
-| 7400103         |  Session not config.                           |
-| 7400201         |  Camera service fatal error.                   |
+| ID  | Error Message                                                                                                                                      |
+|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameters verification failed. |
+| 7400102  | Operation not allowed.                                                                                                                         |
+| 7400103  | Session not config.                                                                                                                            |
+| 7400201  | Camera service fatal error.                                                                                                                    |
 
 **Example**
 
@@ -8310,6 +8327,17 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 }
 ```
 
+## QualityPrioritization<sup>14+</sup>
+
+Enumerates the priority levels for video recording quality.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name         | Value | Description      |
+| ------------- | --- | ---------- |
+| HIGH_QUALITY  | 0   | Prioritizes high-quality video recording.  |
+| POWER_BALANCE | 1   | Prioritizes video recording quality while balancing power consumption.|
+
 ## VideoSession<sup>11+</sup>
 
 VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
@@ -8638,6 +8666,49 @@ function unregisterSmoothZoomInfo(videoSession: camera.VideoSession): void {
 }
 ```
 
+### setQualityPrioritization<sup>14+</sup>
+
+setQualityPrioritization(quality : QualityPrioritization) : void;
+
+Sets the priority level for video recording quality.
+
+> **NOTE**
+>
+> The default value is **HIGH_QUALITY**. Switching to **POWER_BALANCE** will compromise video recording quality to achieve lower power usage. The extent of power conservation achieved varies depending on the platform.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name | Type                                             | Mandatory| Description                                      |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------ |
+| quality | [QualityPrioritization](#qualityprioritization14) | Yes  | Priority level to set. The default value is **HIGH_QUALITY**.|
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
+
+| ID| Error Message                                                                                                                                       |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 7400103  | Session not config.                                                                                                                             |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setQualityPrioritization(videoSession: camera.VideoSession): void {
+  try {
+    videoSession.setQualityPrioritization(camera.QualityPrioritization.POWER_BALANCE);
+  } catch (error) {
+    // If the operation fails, error.code is returned and processed.
+    let err = error as BusinessError;
+    console.error(`The setQualityPrioritization call failed. error code: ${err.code}`);
+  }
+}
+```
+
 ## SecureSession<sup>12+</sup>
 
 SecureSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11)
@@ -8647,6 +8718,7 @@ Implements a secure session, which provides operations on the flash, exposure, f
 > **NOTE**
 >
 > You can call [createSession](#createsession11) with [SceneMode](#scenemode11) set to **SECURE_PHOTO** to create a session in secure mode. This class is designed for applications with high security requirements, such as facial recognition systems and banking services. It must be used together with the <!--RP1-->security TA<!--RP1End--> to support service scenarios where both standard preview streams and security streams are generated.<!--RP2-->
+>
 > The security TA can verify the signature of data delivered by the server, sign images, parse and assemble TLV logic, and read, create, and operate keys. It applies to image processing.<!--RP2End-->
 
 ### addSecureOutput<sup>12+</sup>

@@ -23,7 +23,7 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
    import { fileIo, fileUri } from '@kit.CoreFileKit'
    ```
 
-2. 配置[PickerProfile](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pickerprofile)
+2. 配置[PickerProfile](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pickerprofile)。
 
    > **说明：**
    >

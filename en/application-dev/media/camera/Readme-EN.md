@@ -18,6 +18,7 @@
   - [Deferred Photo Delivery (ArkTS)](camera-deferred-capture.md)
   - [Moving Photos (ArkTS)](camera-moving-photo.md)
   - [Basic Camera Animation (ArkTS)](camera-animation.md)
+  - [Using the Camera in the Worker Thread (ArkTS)](camera-worker.md)
   <!--Del-->
   - [Depth Data (for System Applications Only) (ArkTS)](camera-depth-data.md)
   <!--DelEnd-->
@@ -27,6 +28,7 @@
   - [Video Recording Sample (ArkTS)](camera-recording-case.md)
   - [Dual-Channel Preview (ArkTS)](camera-dual-channel-preview.md)
   - [Deferred Photo Delivery Sample (ArkTS)](camera-deferred-capture-case.md)
+  - [Sample for Camera Recovery from the Background (ArkTS)](camera-background-recovery.md)
   <!--Del-->
   - [Using Performance Improvement Features (for System Applications Only) (ArkTS)](camera-performance-improvement.md)
   - [High-Performance Photo Capture Sample (for System Applications Only) (ArkTS)](camera-deferred-photo-case.md)
@@ -40,10 +42,8 @@
   - [Photo Capture (C/C++)](native-camera-shooting.md)
   - [Deferred Photo Delivery (C/C++)](native-camera-deferred-capture.md)
   - [Video Recording (C/C++)](native-camera-recording.md)
-  - [Secondary Processing of Video Streams (C/C++)](native-camera-recording-imageReceiver.md)
   - [Camera Metadata (C/C++)](native-camera-metadata.md)
   - [Using the Flashlight (C/C++)](native-camera-torch-use.md)
 - Camera Best Practices (C/C++)
   - [Photo Capture Sample (C/C++)](native-camera-shooting-case.md)
   - [Video Recording Sample (C/C++)](native-camera-recording-case.md)
-  - [Sample of Secondary Processing of Video Streams (C/C++)](native-camera-recording-case-imageReceiver.md)

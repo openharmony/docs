@@ -30,5 +30,5 @@ The **native_audio_manager.h** file declares the functions related to an audio m
 
 | Name| Description| 
 | -------- | -------- |
-| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioManager](_o_h_audio.md#oh_getaudiomanager) ([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*\*audioManager) | Obtains an **OH_AudioManager** instance. | 
-| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioScene](_o_h_audio.md#oh_getaudioscene) ([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*manager, [OH_AudioScene](_o_h_audio.md#oh_audioscene) \*scene) | Obtains the audio scene. | 
+| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioManager](_o_h_audio.md#oh_getaudiomanager)([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*\*audioManager) | Obtains an **OH_AudioManager** instance. | 
+| [OH_AudioCommon_Result](_o_h_audio.md#oh_audiocommon_result) [OH_GetAudioScene](_o_h_audio.md#oh_getaudioscene)([OH_AudioManager](_o_h_audio.md#oh_audiomanager) \*manager, [OH_AudioScene](_o_h_audio.md#oh_audioscene) \*scene) | Obtains the audio scene. | 

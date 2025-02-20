@@ -646,6 +646,111 @@ usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatisti
 });
 ```
 
+## usageStatistics.queryAppStatsInfos<sup>15+</sup>
+
+queryAppStatsInfos(begin: number, end: number): Promise&lt;AppStatsMap&gt;
+
+通过指定起始和结束时间，查询应用使用时长的具体信息，统计的最小颗粒度是天，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间，以毫秒为单位。 |
+| end   | number | 是    | 结束时间，以毫秒为单位。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise对象。返回指定时间段内应用使用的具体信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryAppStatsInfos(0, 20000000000000).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryAppStatsInfos promise success.');
+  console.log('queryAppStatsInfos promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryAppStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryLastUseTime<sup>15+</sup>
+
+queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt;AppStatsMap&gt;
+
+通过指定bundleName和应用的index，查询应用使用具体信息，统计的最小颗粒度是天，使用Promise异步回调。
+
+**需要权限**：ohos.permission.BUNDLE_ACTIVE_INFO
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| appInfo | Record&lt;string, Array&lt;number&gt;&gt; | 是    | 参数为map结构，key是bundleName，value是查询应用的index(可以有多个，通过Array传入)。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise对象。返回指定bundleName和index应用使用的具体信息。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryLastUseTime promise success.');
+  console.log('queryLastUseTime promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryLastUseTime promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
 ## usageStatistics.queryBundleStatsInfoByInterval
 
 queryBundleStatsInfoByInterval(byInterval: IntervalType, begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleStatsInfo&gt;&gt;): void
@@ -1654,6 +1759,7 @@ FA卡片的使用信息属性集合。
 | fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。|
 | infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。 |
 | infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。 |
+| appIndex<sup>15+</sup>                 | number | 否    | 应用程序的索引。 |
 
 ## BundleEvents
 
@@ -1679,6 +1785,16 @@ FA卡片的使用信息属性集合。
 |名称                           | 描述                                       |
 | ------------------------------ | ---------------------------------------- |
 | Record<string, [BundleStatsInfo](#bundlestatsinfo)> | 不同应用的使用时长统计信息 |
+
+## AppStatsMap<sup>15+</sup>
+
+应用使用的具体信息(包含分身应用)。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+|名称                           | 描述                                       |
+| ------------------------------ | ---------------------------------------- |
+| Record<string, Array<[BundleStatsInfo](#bundlestatsinfo)>> | 不同应用的使用统计信息(包含分身应用)。 |
 
 ## DeviceEventStats
 

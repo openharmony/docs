@@ -15,18 +15,43 @@ ArkUI提供了一种轻量的UI元素复用机制\@Builder，其内部UI结构�
 
 ## 装饰器使用说明
 
+\@Builder装饰器有两种使用方式，分别是定义在自定义组件内部的私有自定义构建函数和定义在全局的全局自定义构建函数。
+
 ### 私有自定义构建函数
 
 定义的语法：
 
 ```ts
-@Builder MyBuilderFunction() {}
+@Entry
+@Component
+struct BuilderDemo {
+  @Builder
+  showTextBuilder() {
+    Text('Hello World')
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+  @Builder
+  showTextValueBuilder(param: string) {
+    Text(param)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }
+  build() {
+    Column() {
+      // 无参数
+      this.showTextBuilder()
+      // 有参数
+      this.showTextValueBuilder('Hello @Builder')
+    }
+  }
+}
 ```
 
 使用方法：
 
 ```ts
-this.MyBuilderFunction()
+this.showTextBuilder()
 ```
 
 - 允许在自定义组件内定义一个或多个@Builder方法，该方法被认为是该组件的私有、特殊类型的成员函数。
@@ -41,13 +66,27 @@ this.MyBuilderFunction()
 定义的语法：
 
 ```ts
-@Builder function MyGlobalBuilderFunction() { ... }
+@Builder
+function showTextBuilder() {
+  Text('Hello World')
+    .fontSize(30)
+    .fontWeight(FontWeight.Bold)
+}
+@Entry
+@Component
+struct BuilderDemo {
+  build() {
+    Column() {
+      showTextBuilder()
+    }
+  }
+}
 ```
 
 使用方法：
 
 ```ts
-MyGlobalBuilderFunction()
+showTextBuilder()
 ```
 
 - 如果不涉及组件状态变化，建议使用全局的自定义构建方法。
@@ -67,6 +106,27 @@ MyGlobalBuilderFunction()
 
 - 只有传入一个参数，且参数需要直接传入对象字面量才会按引用传递该参数，其余传递方式均为按值传递。
 
+### 按值传递参数
+
+调用\@Builder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会引起\@Builder方法内的UI刷新。所以当使用状态变量的时候，推荐使用[按引用传递](#按引用传递参数)。
+
+```ts
+@Builder function overBuilder(paramA1: string) {
+  Row() {
+    Text(`UseStateVarByValue: ${paramA1} `)
+  }
+}
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+  build() {
+    Column() {
+      overBuilder(this.label)
+    }
+  }
+}
+```
 
 ### 按引用传递参数
 
@@ -74,7 +134,7 @@ MyGlobalBuilderFunction()
 
 ```ts
 class Tmp {
-  paramA1: string = ''
+  paramA1: string = '';
 }
 
 @Builder function overBuilder(params: Tmp) {
@@ -100,256 +160,17 @@ struct Parent {
 }
 ```
 
-按引用传递参数时，如果在\@Builder方法内调用自定义组件，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
-
-```ts
-class Tmp {
-  paramA1: string = ''
-}
-
-@Builder function overBuilder($$: Tmp) {
-  Row() {
-    Column() {
-      Text(`overBuilder===${$$.paramA1}`)
-      HelloComponent({message: $$.paramA1})
-    }
-  }
-}
-
-@Component
-struct HelloComponent {
-  @Prop message: string;
-
-  build() {
-    Row() {
-      Text(`HelloComponent===${this.message}`)
-    }
-  }
-}
-
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
-  build() {
-    Column() {
-      // 在父组件中调用overBuilder组件时，
-      // 把this.label通过引用传递的方式传给overBuilder组件。
-      overBuilder({paramA1: this.label})
-      Button('Click me').onClick(() => {
-        // 单击Click me后，UI文本从Hello更改为ArkUI。
-        this.label = 'ArkUI';
-      })
-    }
-  }
-}
-```
-
-### 按值传递参数
-
-调用\@Builder装饰的函数默认按值传递。当传递的参数为状态变量时，状态变量的改变不会引起\@Builder方法内的UI刷新。所以当使用状态变量的时候，推荐使用[按引用传递](#按引用传递参数)。
-
-```ts
-@Builder function overBuilder(paramA1: string) {
-  Row() {
-    Text(`UseStateVarByValue: ${paramA1} `)
-  }
-}
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
-  build() {
-    Column() {
-      overBuilder(this.label)
-    }
-  }
-}
-```
-
-使用按值传递的方式，在@ComponentV2装饰器修饰的自定义组件里配合使用@ObservedV2和@Trace装饰器可以实现刷新UI功能。
-
-【正例】
-
-在@ComponentV2装饰中，只有使用@ObservedV2修饰的ParamTmp类和@Trace修饰的count属性才可以触发UI的刷新。
-
-```ts
-@ObservedV2
-class ParamTmp {
-  @Trace count : number = 0;
-}
-
-@Builder
-function renderText(param: ParamTmp) {
-  Column() {
-    Text(`param : ${param.count}`)
-      .fontSize(20)
-      .fontWeight(FontWeight.Bold)
-  }
-}
-
-@Builder
-function renderMap(paramMap: Map<string,number>) {
-  Text(`paramMap : ${paramMap.get('name')}`)
-    .fontSize(20)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Builder
-function renderSet(paramSet: Set<number>) {
-  Text(`paramSet : ${paramSet.size}`)
-    .fontSize(20)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Builder
-function renderNumberArr(paramNumArr: number[]) {
-  Text(`paramNumArr : ${paramNumArr[0]}`)
-    .fontSize(20)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Entry
-@ComponentV2
-struct PageBuilder {
-  @Local builderParams: ParamTmp = new ParamTmp();
-  @Local map_value: Map<string,number> = new Map();
-  @Local set_value: Set<number> = new Set([0]);
-  @Local numArr_value: number[] = [0];
-  private progressTimer: number = -1;
-
-  aboutToAppear(): void {
-    this.progressTimer = setInterval(() => {
-      if (this.builderParams.count < 100) {
-        this.builderParams.count += 5;
-        this.map_value.set('name', this.builderParams.count);
-        this.set_value.add(this.builderParams.count);
-        this.numArr_value[0] = this.builderParams.count;
-      } else {
-        clearInterval(this.progressTimer)
-      }
-    }, 500);
-  }
-
-  @Builder
-  localBuilder() {
-    Column() {
-      Text(`localBuilder : ${this.builderParams.count}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-    }
-  }
-
-  build() {
-    Column() {
-      this.localBuilder()
-      Text(`builderParams :${this.builderParams.count}`)
-        .fontSize(20)
-        .fontWeight(FontWeight.Bold)
-      renderText(this.builderParams)
-      renderText({ count: this.builderParams.count })
-      renderMap(this.map_value)
-      renderSet(this.set_value)
-      renderNumberArr(this.numArr_value)
-    }
-    .width('100%')
-    .height('100%')
-  }
-}
-```
-
-【反例】
-
-在@ComponentV2装饰的自定义组件中，使用简单数据类型不可以触发UI的刷新。
-
-```ts
-@ObservedV2
-class ParamTmp {
-  @Trace count : number = 0;
-}
-
-@Builder
-function renderNumber(paramNum: number) {
-  Text(`paramNum : ${paramNum}`)
-    .fontSize(30)
-    .fontWeight(FontWeight.Bold)
-}
-
-@Entry
-@ComponentV2
-struct PageBuilder {
-  @Local class_value: ParamTmp = new ParamTmp();
-  // 此处使用简单数据类型不支持刷新UI的能力。
-  @Local num_value: number = 0;
-  private progressTimer: number = -1;
-
-  aboutToAppear(): void {
-    this.progressTimer = setInterval(() => {
-      if (this.class_value.count < 100) {
-        this.class_value.count += 5;
-        this.num_value += 5;
-      } else {
-        clearInterval(this.progressTimer)
-      }
-    }, 500);
-  }
-
-  build() {
-    Column() {
-      renderNumber(this.num_value)
-    }
-    .width('100%')
-    .height('100%')
-    .padding(50)
-  }
-}
-```
-
 ## 限制条件
 
-1. \@Builder装饰的函数内部，不允许修改参数值，否则框架会抛出运行时错误。开发者可以在调用\@Builder的自定义组件里改变其参数。
+1. \@Builder装饰的函数内部，不允许修改参数值，否则框架会抛出运行时错误。开发者可以在调用\@Builder的自定义组件里改变其参数。请参考[在@Builder装饰的函数内部修改入参内容](#在builder装饰的函数内部修改入参内容)。
 
-```ts
-interface Temp {
-  paramA: string;
-}
+2. \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。请参考[按引用传递参数](#按引用传递参数)。
 
-@Builder function overBuilder($$: Temp) {
-  Row() {
-    Column() {
-      Button(`overBuilder === ${$$.paramA}`)
-        .onClick(() => {
-          // 错误写法，不允许在@Builder装饰的函数内部修改参数值
-          $$.paramA = 'Yes';
-      })
-    }
-  }
-}
+3. \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
-@Entry
-@Component
-struct Parent {
-  @State label: string = 'Hello';
+4. \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
-  build() {
-    Column() {
-      overBuilder({paramA: this.label})
-      Button('click me')
-        .onClick(() => {
-          this.label = 'ArkUI';
-        })
-    }
-  }
-}
-```
-
-2. \@Builder通过按引用传递的方式传入参数，才会触发动态渲染UI，并且参数只能是一个。
-
-3. \@Builder如果传入的参数是两个或两个以上，不会触发动态渲染UI。
-
-4. \@Builder传入的参数中同时包含按值传递和按引用传递两种方式，不会触发动态渲染UI。
-
-5. \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。
+5. \@Builder的参数必须按照对象字面量的形式，把所需要的属性一一传入，才会触发动态渲染UI。请参考[@Builder存在两个或者两个以上参数](#builder存在两个或者两个以上参数)。
 
 
 ## 使用场景
@@ -387,7 +208,7 @@ struct PrivateBuilder {
         this.builder()
         Button('点击改变builder_value内容')
           .onClick(() => {
-            this.builder_value ='builder_value被点击了'
+            this.builder_value ='builder_value被点击了';
           })
       }
     }
@@ -452,7 +273,7 @@ struct Parent {
 
 ### 修改装饰器修饰的变量触发UI刷新
 
-此种方式是使用了装饰器的特性，监听值的改变触发UI刷新，不通过\@Builder传递参数。
+此种场景@Builder只是用来展示Text组件，没有参与动态UI刷新的功能，Text组件中值的变化是使用了装饰器的特性，监听到值的改变触发的UI刷新，而不是通过\@Builder的能力触发的。
 
 ```ts
 class Tmp {
@@ -491,6 +312,8 @@ struct Parent {
 ```
 
 ### 使用全局和局部的@Builder传入customBuilder类型
+
+当某个参数类型为customBuilder的时候，可以把定义的\@Builder函数传入，因为customBuilder实际是一个Function(() => any)或者是void类型，而\@Builder实际也是一个Function类型。此场景中通过把\@Builder传入已实现特定的效果。
 
 ```ts
 @Builder
@@ -545,7 +368,7 @@ struct customBuilderDemo {
 
 ### 多层\@Builder方法嵌套使用
 
-在\@Builder方法内调用自定义组件或者其他\@Builder方法，ArkUI提供[$$](arkts-two-way-sync.md)作为按引用传递参数的范式。
+在\@Builder方法内调用自定义组件或者其他\@Builder方法，以实现多个\@Builder嵌套使用的场景，要想实现最里面的\@Builder动态UI刷新功能，必须要保证每层调用\@Builder的地方使用按引用传递的方式。这里的[\$$](./arkts-two-way-sync.md)也可以换成其他名称，[\$$](./arkts-two-way-sync.md)不是必须的参数形式。
 
 ```ts
 class Tmp {
@@ -642,7 +465,7 @@ struct Parent {
 
 ### \@Builder函数联合V2装饰器使用
 
-使用全局@Builder和局部@Builder在@ComponentV2修饰的自定义组件中调用，修改相关变量触发UI刷新。
+使用全局@Builder和局部@Builder在@ComponentV2修饰的自定义组件中调用，配合@ObservedV2和@Trace装饰器来监听具体值的变化，以达到触发UI刷新的功能。
 
 ```ts
 @ObservedV2
@@ -725,8 +548,8 @@ struct ParentPage {
         .backgroundColor('#000000').margin(10)
       Button("change info1&info2")
         .onClick(() => {
-          this.info1 = { name: "Cat", age: 18} // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
-          this.info2 = { name: "Cat", age: 18} // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
+          this.info1 = { name: "Cat", age: 18}; // Text1不会刷新，原因是没有装饰器修饰监听不到值的改变。
+          this.info2 = { name: "Cat", age: 18}; // Text2会刷新，原因是有装饰器修饰，可以监听到值的改变。
         })
     }
   }
@@ -850,6 +673,216 @@ struct Parent {
         this.objParam.str_value = 'Hello World';
         this.objParam.num_value = 1;
       })
+    }
+  }
+}
+```
+
+### 使用@ComponentV2装饰器触发动态刷新
+
+使用按值传递的方式，在@ComponentV2装饰器修饰的自定义组件里配合使用@ObservedV2和@Trace装饰器可以实现刷新UI功能。
+
+【反例】
+
+在@ComponentV2装饰的自定义组件中，使用简单数据类型不可以触发UI的刷新。
+
+```ts
+@ObservedV2
+class ParamTmp {
+  @Trace count : number = 0;
+}
+
+@Builder
+function renderNumber(paramNum: number) {
+  Text(`paramNum : ${paramNum}`)
+    .fontSize(30)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Entry
+@ComponentV2
+struct PageBuilder {
+  @Local class_value: ParamTmp = new ParamTmp();
+  // 此处使用简单数据类型不支持刷新UI的能力。
+  @Local num_value: number = 0;
+  private progressTimer: number = -1;
+
+  aboutToAppear(): void {
+    this.progressTimer = setInterval(() => {
+      if (this.class_value.count < 100) {
+        this.class_value.count += 5;
+        this.num_value += 5;
+      } else {
+        clearInterval(this.progressTimer);
+      }
+    }, 500);
+  }
+
+  build() {
+    Column() {
+      renderNumber(this.num_value)
+    }
+    .width('100%')
+    .height('100%')
+    .padding(50)
+  }
+}
+```
+
+【正例】
+
+在@ComponentV2装饰中，只有使用@ObservedV2修饰的ParamTmp类和@Trace修饰的count属性才可以触发UI的刷新。
+
+```ts
+@ObservedV2
+class ParamTmp {
+  @Trace count : number = 0;
+}
+
+@Builder
+function renderText(param: ParamTmp) {
+  Column() {
+    Text(`param : ${param.count}`)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+  }
+}
+
+@Builder
+function renderMap(paramMap: Map<string,number>) {
+  Text(`paramMap : ${paramMap.get('name')}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Builder
+function renderSet(paramSet: Set<number>) {
+  Text(`paramSet : ${paramSet.size}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Builder
+function renderNumberArr(paramNumArr: number[]) {
+  Text(`paramNumArr : ${paramNumArr[0]}`)
+    .fontSize(20)
+    .fontWeight(FontWeight.Bold)
+}
+
+@Entry
+@ComponentV2
+struct PageBuilder {
+  @Local builderParams: ParamTmp = new ParamTmp();
+  @Local map_value: Map<string,number> = new Map();
+  @Local set_value: Set<number> = new Set([0]);
+  @Local numArr_value: number[] = [0];
+  private progressTimer: number = -1;
+
+  aboutToAppear(): void {
+    this.progressTimer = setInterval(() => {
+      if (this.builderParams.count < 100) {
+        this.builderParams.count += 5;
+        this.map_value.set('name', this.builderParams.count);
+        this.set_value.add(this.builderParams.count);
+        this.numArr_value[0] = this.builderParams.count;
+      } else {
+        clearInterval(this.progressTimer);
+      }
+    }, 500);
+  }
+
+  @Builder
+  localBuilder() {
+    Column() {
+      Text(`localBuilder : ${this.builderParams.count}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+    }
+  }
+
+  build() {
+    Column() {
+      this.localBuilder()
+      Text(`builderParams :${this.builderParams.count}`)
+        .fontSize(20)
+        .fontWeight(FontWeight.Bold)
+      renderText(this.builderParams)
+      renderText({ count: this.builderParams.count })
+      renderMap(this.map_value)
+      renderSet(this.set_value)
+      renderNumberArr(this.numArr_value)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+### 在\@Builder装饰的函数内部修改入参内容
+
+【反例】
+
+```ts
+interface Temp {
+  paramA: string;
+}
+
+@Builder function overBuilder(param: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${param.paramA}`)
+        .onClick(() => {
+          // 错误写法，不允许在@Builder装饰的函数内部修改参数值
+          param.paramA = 'Yes';
+      })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+
+  build() {
+    Column() {
+      overBuilder({paramA: this.label})
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
+    }
+  }
+}
+```
+
+【正例】
+
+```ts
+interface Temp {
+  paramA: string;
+}
+
+@Builder function overBuilder(param: Temp) {
+  Row() {
+    Column() {
+      Button(`overBuilder === ${param.paramA}`)
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State label: string = 'Hello';
+
+  build() {
+    Column() {
+      overBuilder({paramA: this.label})
+      Button('click me')
+        .onClick(() => {
+          this.label = 'ArkUI';
+        })
     }
   }
 }

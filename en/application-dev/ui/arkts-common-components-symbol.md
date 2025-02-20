@@ -1,11 +1,11 @@
 # Symbol Glyph (SymbolGlyph/SymbolSpan)
 
-**SymbolGlyph** is a component designed for icon glyphs, making it easy to use sophisticated icons, including multi-colored icons. For details, see [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md).
+**SymbolGlyph** is a component designed for icon glyphs, making it easy to use sophisticated icons, including multi-colored and animated icons. You can add symbol glyphs in text through the use of the **SymbolSpan** component, a child of the **Text** component. For details, see [SymbolGlyph](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md) and [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md).
 
 
 ## Creating a Symbol Glyph
 
-Create a symbol glyph by referencing a **Resource** asset, which is instantiated as a **Resource** object using the **$r** notation.
+You create a symbol glyph by referencing a resource through $r. Currently, only the preset symbol resources are supported.
 
   ```ts
   SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
@@ -18,11 +18,11 @@ Create a symbol glyph by referencing a **Resource** asset, which is instantiated
 
 ## Adding to Text
 
-You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md) as a child component within the [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) component. You can add multiple **SymbolSpan** component into a **Text** component to show a sequence of icon glyphs.
+To embed a symbol glyph within a text string, use [SymbolSpan](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md) as a child of the [Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md) component. You can nest multiple **SymbolSpan** components to display a series of symbol glyphs. 
 
 - Create a **SymbolSpan** component.
 
-  Place the **SymbolSpan** component within a **Text** component. It will not display if used alone.
+  The **SymbolSpan** component works only when included in a **Text** component. It does not display any content when used alone.
 
 
   ```ts
@@ -35,7 +35,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
   ![symbol_trash](figures/symbolspan_trash.png)
 
 
-- Set the size of the **SymbolSpan** component using the **fontSize** attribute.
+- Set the size of the **SymbolSpan** component through [fontSize](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontsize).
 
 
   ```ts
@@ -73,7 +73,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
   ```
   ![symbolSpan_multi_fontSize](figures/symbolspan_multi_fontsize.png)
 
-- Set the boldness of the **SymbolSpan** component using the **fontWeight** attribute.
+- Set the weight of the **SymbolSpan** component through [fontWeight](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontweight).
 
   ```ts
   Row() {
@@ -107,7 +107,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
   ```
   ![symbolSpan_multi_fontWeight_trash](figures/symbol_multi_fontweight_trash.png)
 
-- Set the color of the **SymbolSpan** component using the **fontColor** attribute.
+- Set the color of the **SymbolSpan** component through [fontColor](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#fontcolor).
 
   ```ts
   Row() {
@@ -141,7 +141,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
   ```
   ![symbolSpan_multi_fontColor](figures/symbolspan_multi_fontcolor.PNG)
 
-- Set the rendering strategy of the **SymbolSpan** component using the **renderingStrategy** attribute.
+- Set the rendering strategy of the **SymbolSpan** component through [renderingStrategy](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#renderingstrategy).
 
   ```ts
   Row() {
@@ -166,7 +166,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
     }
 
     Column() {
-      Text ("Layered mode")
+      Text("Layered mode")
       Text() {
         SymbolSpan($r('sys.symbol.ohos_folder_badge_plus'))
           .fontSize(96)
@@ -178,7 +178,7 @@ You can display icon glyphs by using [SymbolSpan](../reference/apis-arkui/arkui-
   ```
   ![symbolSpan_multi_renderingStrategy](figures/symbolspan_multi_renderingStrategy.png)
 
-- Set the effect strategy of the **SymbolSpan** component using the **effectStrategy** attribute.
+- Set the effect strategy of the **SymbolSpan** component through [effectStrategy](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolSpan.md#effectstrategy).
 
   ```ts
   Row() {
@@ -256,7 +256,7 @@ For details about how **effectStrategy** works with **symbolEffect**, see [Symbo
 
 ## Adding Events
 
-You can add universal events, such as **onClick** and **onTouch**, to the **SymbolGlyph** component to handle user interactions.
+You can add universal events, such as [onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick) and [onTouch](../reference/apis-arkui/arkui-ts/ts-universal-events-touch.md#ontouch), to the **SymbolGlyph** component to handle user interactions.
 
 ```ts
 @State wifiColor: ResourceColor = Color.Black;
@@ -271,6 +271,7 @@ SymbolGlyph($r('sys.symbol.ohos_wifi'))
 
 ## Example
 
+This example shows how to implement a playlist with the use of **symbolEffect**, **fontSize**, and **fontColor**.
 
 ```ts
 // xxx.ets

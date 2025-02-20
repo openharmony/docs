@@ -129,7 +129,7 @@ struct VirtualScreen {
                 console.info('Succeeded in stopping mirror screens.');
               });
               // 销毁虚拟屏
-              screen.destroyVirtualScreen(screenVirtualScreen.id, (err: BusinessError) => {
+              screen.destroyVirtualScreen(mirrorScreenIds[0], (err: BusinessError) => {
                 const errCode: number = err.code;
                 if (errCode) {
                   console.error(`Failed to destroy the virtual screen. Code:${err.code},message is ${err.message}`);

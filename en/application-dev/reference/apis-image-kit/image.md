@@ -5,6 +5,14 @@
 
 The **Image** module enables access to image APIs.
 
+You can refer to the corresponding development guide and samples based on your development requirements.
+
+- [Using Image to Decode Images](../../media/image/image-decoding-native.md)
+- [Using Image to Receive Images](../../media/image/image-receiver-native.md)
+- [Using Image to Transform Images](../../media/image/image-transformation-native.md)
+- [Using PixelMap to Process PixelMap Data](../../media/image/image-pixelmap-operation-native.md)
+- [Using Image to Encode Images](../../media/image/image-encoding-native.md)
+
 **System capability**: SystemCapability.Multimedia.Image
 
 **Since**: 8
@@ -324,7 +332,7 @@ Defines the information about a PixelMap.
 ## Enum Description
 
 
-### anonymous enum [1/3]
+### Image Formats
 
 ```
 anonymous enum
@@ -342,7 +350,7 @@ Enumerates the image formats.
 | OHOS_IMAGE_FORMAT_JPEG | JPEG encoding format.| 
 
 
-### anonymous enum [2/3]
+### PixelMap Alpha Types
 
 ```
 anonymous enum
@@ -362,7 +370,7 @@ Enumerates the PixelMap alpha types.
 | OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL  | Unpremultiplied format.  | 
 
 
-### anonymous enum [3/3]
+### Error Codes Returned by Functions
 
 ```
 anonymous enum
@@ -390,7 +398,7 @@ anonymous enum
 
 **Description**
 
-Enumerates the image components.
+Enumerates the image color channel types.
 
 **Since**: 10
 
@@ -402,7 +410,7 @@ Enumerates the image components.
 | OHOS_IMAGE_COMPONENT_FORMAT_JPEG | JPEG format.| 
 
 
-### anonymous enum [2/3]
+### PixelMap Editing Types
 
 ```
 anonymous enum
@@ -420,7 +428,7 @@ Enumerates the PixelMap editing types.
 | OHOS_PIXEL_MAP_EDITABLE  | Editable.  | 
 
 
-### anonymous enum [3/3]
+### Pixel Formats
 
 ```
 anonymous enum
@@ -428,7 +436,7 @@ anonymous enum
 
 **Description**
 
-Enumerates the PixelMap formats.
+Enumerates the pixel formats.
 
 **Deprecated from**: 10
 
@@ -436,13 +444,11 @@ Enumerates the PixelMap formats.
 
 | Value| Description| 
 | -------- | -------- |
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_Y  | Luminance component.  | 
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_U  | Chrominance component - blue projection.  | 
-| OHOS_IMAGE_COMPONENT_FORMAT_YUV_V  | Chrominance component - red projection.  | 
-| OHOS_IMAGE_COMPONENT_FORMAT_JPEG  | JPEG format.  | 
+| OHOS_PIXEL_MAP_FORMAT_NONE  | Unknown format. | 
+| OHOS_PIXEL_MAP_FORMAT_RGBA_8888  | RGBA_8888 format.  | 
+| OHOS_PIXEL_MAP_FORMAT_RGB_565  | RGB_565 format.  | 
 
-
-### anonymous enum
+### PixelMap Scale Modes
 
 ```
 anonymous enum
@@ -597,10 +603,10 @@ Enumerates the antialiasing levels used for scaling PixelMaps.
 
 | Value| Description| 
 | -------- | -------- |
-| OH_PixelMap_AntiAliasing_NONE  | Nearest neighbor.  | 
+| OH_PixelMap_AntiAliasing_NONE  | Nearest neighbor interpolation.  | 
 | OH_PixelMap_AntiAliasing_LOW  | Bilinear interpolation.  | 
-| OH_PixelMap_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled.  | 
-| OH_PixelMap_AntiAliasing_HIGH  | Cubic convolution.  | 
+| OH_PixelMap_AntiAliasing_MEDIUM  | Bilinear interpolation with mipmap enabled. You are advised to use this value when zooming out an image.  | 
+| OH_PixelMap_AntiAliasing_HIGH  | Cubic interpolation.  | 
 
 
 ## Function Description
@@ -636,8 +642,11 @@ UnAccessPixels
 
 **Returns**
 
-Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful; returns an error code otherwise.
+For details, see [IRNdkErrCode](#irndkerrcode-1).
 
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if the operation fails.
 
 ### OH_GetImageInfo()
 
@@ -663,7 +672,11 @@ Obtains the information about a **PixelMap** object and stores the information t
 
 **Returns**
 
-Returns **0** if the information is obtained and stored successfully; returns an error code otherwise.
+For details, see [IRNdkErrCode](#irndkerrcode-1).
+
+Returns **OHOS_IMAGE_RESULT_SUCCESS** if the operation is successful.
+
+Returns **IMAGE_RESULT_BAD_PARAMETER** if the operation fails.
 
 **See**
 
@@ -1111,6 +1124,10 @@ int32_t OH_Image_Receiver_ReadLatestImage (const ImageReceiverNative * native, n
 
 Obtains the latest image through an [ImageReceiverNative](#imagereceivernative) object.
 
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) callback is triggered. When the [ImageNative](#imagenative) object created by the **Image** object returned by this function is no longer needed, call [OH_Image_Release](#oh_image_release) to release the object. New data can be received only after the release.
+
 **Since**: 10
 
 **Parameters**
@@ -1161,6 +1178,10 @@ int32_t OH_Image_Receiver_ReadNextImage (const ImageReceiverNative * native, nap
 **Description**
 
 Obtains the next image through an [ImageReceiverNative](#imagereceivernative) object.
+
+> **NOTE**
+>
+> This function can be called to receive data only after the [OH_Image_Receiver_On_Callback](#oh_image_receiver_on_callback) callback is triggered. When the [ImageNative](#imagenative) object created by the **Image** object returned by this function is no longer needed, call [OH_Image_Release](#oh_image_release) to release the object. New data can be received only after the release.
 
 **Since**: 10
 
@@ -1283,7 +1304,7 @@ int32_t OH_Image_Size (const ImageNative * native, struct OhosImageSize * size )
 
 Obtains [OhosImageSize](_ohos_image_size.md) of an **ImageNative** object.
 
-If the [ImageNative](image.md#imagenative) object stores the camera preview stream data (YUV image data), the width and height in [OhosImageSize](_ohos_image_size.md) obtained correspond to the width and height of the YUV image. If the [ImageNative](image.md#imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [OhosImageSize](_ohos_image_size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [ImageNative](image.md#imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera.
+If the [ImageNative](image.md#imagenative) object stores the camera preview stream data (YUV image data), the width and height in [OhosImageSize](_ohos_image_size.md) obtained correspond to the width and height of the YUV image. If the [ImageNative](image.md#imagenative) object stores the camera photo stream data (JPEG image data, which is already encoded), the width in [OhosImageSize](_ohos_image_size.md) obtained is the JPEG data size, and the height is 1. The type of data stored in the [ImageNative](image.md#imagenative) object depends on whether the application passes the surface ID in the receiver to a **previewOutput** or **captureOutput** object of the camera. For details about the best practices of camera preview and photo capture, see [Secondary Processing of Preview Streams (C/C++)](../../media/camera/native-camera-preview-imageReceiver.md) and [Photo Capture (C/C++)](../../media/camera/native-camera-shooting.md).
 
 **Since**: 10
 
@@ -1571,7 +1592,7 @@ int32_t OH_ImageSource_CreateFromData (napi_env env, uint8_t * data, size_t data
 
 **Description**
 
-Creates an **ImageSource** object at the JavaScript native layer based on the specified image source buffer resource (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The buffer data must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [OH_PixelMap_CreatePixelMap](./image__pixel__map__mdk_8h.md).
+Creates an **ImageSource** object at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The buffer data must be undecoded. Do not pass the pixel buffer data such as RBGA and YUV. If you want to create a PixelMap based on the pixel buffer data, call [OH_PixelMap_CreatePixelMap](./image__pixel__map__mdk_8h.md).
 
 **Since**: 11
 
@@ -1796,7 +1817,7 @@ int32_t OH_ImageSource_CreateIncrementalFromData (napi_env env, uint8_t * data, 
 
 **Description**
 
-Creates an **ImageSource** object of the incremental type at the JavaScript native layer based on the specified image source buffer resource (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The image data is updated through **OH_ImageSource_UpdateData**. 
+Creates an **ImageSource** object of the incremental type at the JavaScript native layer based on the specified image source buffer (defined by **data**) and [OhosImageSourceOps](_ohos_image_source_ops.md) struct. The image data is updated through **OH_ImageSource_UpdateData**. 
 
 **Since**: 11
 
@@ -2679,7 +2700,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 
 **Description**
 
-Creates a **PixelMap** object. Currently, only BGRA input streams are supported. The buffer passed in by this API does not support the stride.
+Creates a **PixelMap** object. Currently, only BGRA input streams are supported. The buffer passed in by this API does not support the stride. This function does not support the DMA memory.
 
 **Since**: 10
 
@@ -2814,6 +2835,10 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 
 Crops a **NativePixelMap** object.
 
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_Crop](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_crop) since API version 12.
+
 **Since**: 10
 
 **Parameters**
@@ -2882,6 +2907,10 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 **Description**
 
 Flips a **NativePixelMap** object.
+
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_Flip](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_flip) since API version 12.
 
 **Since**: 10
 
@@ -3024,6 +3053,10 @@ int32_t OH_PixelMap_GetImageInfo (const NativePixelMap * native, OhosPixelMapInf
 **Description**
 
 Obtains the image information of a **NativePixelMap** object.
+
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_GetImageInfo](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_getimageinfo) since API version 12.
 
 **Since**: 10
 
@@ -3193,6 +3226,10 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 
 Rotates a **NativePixelMap** object.
 
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_Rotate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_rotate) since API version 12.
+
 **Since**: 10
 
 **Parameters**
@@ -3258,6 +3295,10 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 **Description**
 
 Scales a **NativePixelMap** object.
+
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_Scale](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scale) since API version 12.
 
 **Since**: 10
 
@@ -3326,6 +3367,10 @@ int32_t OH_PixelMap_ScaleWithAntiAliasing (const NativePixelMap * native, float 
 **Description**
 
 Scales an image based on the specified antialiasing level, width, and height.
+
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_ScaleWithAntiAliasing](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_scalewithantialiasing) since API version 12.
 
 **Since**: 12
 
@@ -3482,6 +3527,10 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 **Description**
 
 Translates a **NativePixelMap** object.
+
+> **NOTE**
+>
+> You are advised to use the new function [OH_PixelmapNative_Translate](../../reference/apis-image-kit/_image___native_module.md#oh_pixelmapnative_translate) since API version 12.
 
 **Since**: 10
 

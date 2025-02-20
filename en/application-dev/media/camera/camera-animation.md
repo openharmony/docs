@@ -120,7 +120,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
       */
      public static async doSurfaceShot(surfaceId: string) {
        console.info(`doSurfaceShot surfaceId:${surfaceId}.`);
-       if ('' === surfaceId) {
+       if (surfaceId === '') {
          console.error('surface not ready!');
          return;
        }
@@ -136,7 +136,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
          let imageInfo: image.ImageInfo = await this.surfaceShot.getImageInfo();
          console.info('doSurfaceShot surfaceShot:' + JSON.stringify(imageInfo.size));
        } catch (err) {
-         console.error(JSON.stringify(err))
+         console.error(JSON.stringify(err));
        }
      }
    
@@ -217,7 +217,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
        // For candy bar phones, a 270° rotation compensation is applied to the content for a snapshot taken with the front camera.
        await shotPixel.rotate(270);
        // For candy bar phones, a 180° rotation compensation is applied to the component for a snapshot taken with the front camera.
-       this.shotImgRotation = { y: 0.5, angle: 180 };;
+       this.shotImgRotation = { y: 0.5, angle: 180 };
      }
      this.screenshotPixelMap = shotPixel;
      // Initialize animation parameters.
@@ -265,7 +265,7 @@ You can use preview stream snapshots to create a blur effect for mode switching 
 
 6. (Optional) Implement the blur-and-flip animation.
 
-   The mode switching animation is carried out in two phases: blur-and-flip and fade-out blur, where fade-out blur is the same as that in step 5.
+   The animation is carried out in two phases: blur-and-flip and fade-out blur, where fade-out blur is the same as that in step 5.
 
    The blur-and-flip animation is realized through two stages of component rotation—initially a 90° rotation outwards, and then a 90° rotation inwards—accompanied by additional effects such as blur, opacity changes, and scaling.
 

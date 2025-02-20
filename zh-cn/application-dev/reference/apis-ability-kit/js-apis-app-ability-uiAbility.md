@@ -25,9 +25,9 @@ import { UIAbility } from '@kit.AbilityKit';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | 上下文。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility启动时的参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility最后请求时的参数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| context | [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md) | 否 | 否 | 上下文。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| launchWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility启动时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| lastRequestWant | [Want](js-apis-app-ability-want.md) | 否 | 否 | UIAbility最后请求时的参数。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
 | callee | [Callee](#callee) | 否 | 否 | 调用Stub（桩）服务对象。|
 
 ## UIAbility.onCreate
@@ -36,7 +36,7 @@ onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例处于完全关闭状态下被创建完成后进入该生命周期回调，执行初始化业务逻辑操作。即UIAbility实例[冷启动](../../application-models/uiability-intra-device-interaction.md#目标uiability冷启动)时进入该生命周期回调。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -66,7 +66,7 @@ onWindowStageCreate(windowStage: window.WindowStage): void
 
 当WindowStage创建后调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -96,7 +96,7 @@ onWindowStageWillDestroy(windowStage: window.WindowStage): void
 
 当WindowStage即将销毁时调用。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -126,7 +126,7 @@ onWindowStageDestroy(): void
 
 当WindowStage销毁后调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -149,7 +149,7 @@ onWindowStageRestore(windowStage: window.WindowStage): void
 
 当迁移多实例ability时，恢复WindowStage后调用。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -179,7 +179,7 @@ onDestroy(): void | Promise&lt;void&gt;
 
 UIAbility生命周期回调，在销毁时回调，执行资源清理等操作。使用同步回调或Promise异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -220,7 +220,7 @@ onForeground(): void
 
 UIAbility生命周期回调，当应用从后台转到前台时触发。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -243,7 +243,7 @@ onBackground(): void
 
 UIAbility生命周期回调，当应用从前台转到后台时触发。同步接口，不支持异步回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -270,7 +270,7 @@ onContinue(wantParam: Record&lt;string, Object&gt;): AbilityConstant.OnContinueR
 > 
 > 从API version 12 开始，UIAbility.onContinue生命周期新增支持返回值为Promise\<[AbilityConstant.OnContinueResult](js-apis-app-ability-abilityConstant.md#oncontinueresult)\>形式。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -330,7 +330,7 @@ onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void
 
 UIAbility实例已经启动并在前台运行过，由于某些原因切换到后台，再次启动该UIAbility实例时会回调执行该方法。即UIAbility实例[热启动](../../application-models/uiability-intra-device-interaction.md#目标uiability热启动)时进入该生命周期回调。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -360,7 +360,7 @@ onDump(params: Array\<string>): Array\<string>
 
 转储客户端信息时调用，可用于转储非敏感信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -396,7 +396,7 @@ onSaveState(reason: AbilityConstant.StateType, wantParam: Record&lt;string, Obje
 
 该API配合[appRecovery](js-apis-app-ability-appRecovery.md)使用。在应用故障时，如果使能了自动保存状态，框架将回调onSaveState保存UIAbility状态。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -433,7 +433,7 @@ onShare(wantParam: Record&lt;string, Object&gt;): void
 
 在跨端分享场景下，在UIAbility中设置分享方设备要分享的数据。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -464,7 +464,7 @@ UIAbility生命周期回调，当系统预关闭开关打开后（配置系统�
 
 **需要权限**：ohos.permission.PREPARE_APP_TERMINATE
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -516,7 +516,7 @@ UIAbility生命周期回调，当UIAbility侧滑返回时触发，根据返回�
 - 当targetSdkVersion<12时，默认返回值为false，会销毁UIAbility。
 - 当targetSdkVersion>=12时，默认返回值为true，会将UIAbility移动到后台不销毁。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -547,7 +547,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
  **说明：**
 - 该生命周期回调不支持specified启动模式。
 - 通过startAbility()等方法拉起协同方应用时，需要在Want对象中设置协同标记[Flags](js-apis-ability-wantConstant.md#flags)为FLAG_ABILITY_ON_COLLABORATE。
-- 冷启动时，该回调需要在onForeground或onBackground前调用；热启动时，该回调需要在onNewWant前调用。
+- 冷启动时，该回调在[onForeground](#uiabilityonforeground)前或[onBackground](#uiabilityonbackground)后调用；热启动时，该回调在[onNewWant](#uiabilityonnewwant)前调用。
 
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
@@ -562,7 +562,7 @@ UIAbility生命周期回调，在多设备协同场景下，协同方应用在�
 
 | 名称     | 值   | 说明       |
 | -------- | ---- | ---------- |
-| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult) | 协同方应用是否接受协同。 |
+| [AbilityConstant.CollaborateResult](js-apis-app-ability-abilityConstant.md#collaborateresult16) | 协同方应用是否接受协同。 |
 
 **示例：**
 

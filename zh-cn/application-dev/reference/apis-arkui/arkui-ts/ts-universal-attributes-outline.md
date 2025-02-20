@@ -10,7 +10,7 @@
 
 ## outline
 
-outline(options: Optional\<OutlineOptions>)
+outline(value: OutlineOptions)
 
 统一外描边样式设置接口。
 
@@ -22,11 +22,31 @@ outline(options: Optional\<OutlineOptions>)
 
 **参数：**
 
+| 参数名 | 类型                                      | 必填 | 说明         |
+| ------ | ----------------------------------------- | ---- | ------------ |
+| value  | [OutlineOptions](#outlineoptions对象说明) | 是   | 外描边样式。 |
+
+## outline<sup>16+</sup>
+
+outline(options: Optional\<OutlineOptions>)
+
+统一外描边样式设置接口。与[outline](#outline)相比，options参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
 | 参数名 | 类型                                      | 必填 | 说明 |
 | ------ | ----------------------------------------- | ---- | ---- |
-| Optional\<options> | [OutlineOptions](#outlineoptions对象说明) | 是   |   外描边样式。   |
+| options | Optional\<[OutlineOptions](#outlineoptions对象说明)> | 是   |   外描边样式。<br/>当options的值为undefined时，恢复为无外边框效果。   |
 
-## OutlineStyle<sup>11+</sup>
+## OutlineStyle<sup>11+</sup>枚举说明
+
+外描边样式。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
 
@@ -34,7 +54,7 @@ outline(options: Optional\<OutlineOptions>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 描述                            |
+| 名称     | 说明                            |
 | ------ | ----------------------------- |
 | SOLID  | 显示为一条实线。                      |
 | DASHED | 显示为一系列短的方形虚线。                 |
@@ -42,7 +62,7 @@ outline(options: Optional\<OutlineOptions>)
 
 ## outlineStyle
 
-outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
+outlineStyle(value: OutlineStyle | EdgeOutlineStyles)
 
 设置元素的外描边样式。
 
@@ -56,11 +76,29 @@ outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                  |
 | ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
-| style  | Optional\<[OutlineStyle](#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)> | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
+| value  | [OutlineStyle](#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明) | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID |
+
+## outlineStyle<sup>16+</sup>
+
+outlineStyle(style: Optional\<OutlineStyle | EdgeOutlineStyles>)
+
+设置元素的外描边样式。与[outlineStyle](#outlinestyle)相比，style参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | Optional\<[OutlineStyle](#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)> | 是   | 设置元素的外描边样式。<br/>默认值：OutlineStyle.SOLID<br/>当style的值为undefined时，恢复为无外描边样式的效果。 |
 
 ## outlineWidth
 
-outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
+outlineWidth(value: Dimension | EdgeOutlineWidths)
 
 设置元素的外描边宽度。
 
@@ -72,13 +110,31 @@ outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
 
 **参数：**
 
+| 参数名 | 类型                                                         | 必填 | 说明                                                  |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明) | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0。 |
+
+## outlineWidth<sup>16+</sup>
+
+outlineWidth(width: Optional\<Dimension | EdgeOutlineWidths>)
+
+设置元素的外描边宽度。与[outlineWidth](#outlinewidth)相比，width参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| width  | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)> | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0，外描边效果width为必设项。 |
+| width  | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)> | 是   | 设置元素的外描边宽度，不支持百分比。 <br/>默认值：0。<br/>当width的值为undefined时，恢复为无外描边宽度的效果。 |
 
 ## outlineColor
 
-outlineColor(color: Optional\<ResourceColor | EdgeColors>)
+outlineColor(value: ResourceColor | EdgeColors)
 
 设置元素的外描边颜色。
 
@@ -92,11 +148,29 @@ outlineColor(color: Optional\<ResourceColor | EdgeColors>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                             |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
-| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明) | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。 |
+
+## outlineColor<sup>16+</sup>
+
+outlineColor(color: Optional\<ResourceColor | EdgeColors>)
+
+设置元素的外描边颜色。与[outlineColor](#outlinecolor)相比，color参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| color  | Optional\<[ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)> | 是   | 设置元素的外描边颜色。<br/>默认值：Color.Black。<br/>当color的值为undefined时，恢复为描边颜色为Color.Black的效果。 |
 
 ## outlineRadius
 
-outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
+outlineRadius(value: Dimension | OutlineRadiuses)
 
 设置元素的外描边圆角半径。
 
@@ -110,7 +184,25 @@ outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| radius | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明)> | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
+| value  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明) | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
+
+## outlineRadius<sup>16+</sup>
+
+outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
+
+设置元素的外描边圆角半径。与[outlineRadius](#outlineradius)相比，radius参数新增了对undefined类型的支持。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| radius | Optional\<[Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明)> | 是   | 设置元素的外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。<br/>当radius的值为undefined时，恢复为外描边圆角半径为0的效果。 |
 
 ## OutlineOptions对象说明
 
@@ -123,7 +215,7 @@ outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
 | width  | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[EdgeOutlineWidths](#edgeoutlinewidths对象说明)| 否| 设置外描边宽度，不支持百分比。<br/>默认值：0，外描边效果width为必设项，否则不显示外描边。 |
 | color  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[EdgeColors](#edgecolors对象说明)&nbsp;\|&nbsp;[LocalizedEdgeColors](#localizededgecolors对象说明12)<sup>12+</sup> |否 | 设置外描边颜色。<br/>默认值：Color.Black。                   |
 | radius | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;[OutlineRadiuses](#outlineradiuses对象说明)| 否| 设置外描边圆角半径，不支持百分比。<br/>默认值：0。<br/>最大生效值：组件width/2 + outlineWidth或组件height/2 + outlineWidth。 |
-| style  | [OutlineStyle](#outlinestyle11)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)|否| 设置外描边样式。<br/>默认值：OutlineStyle.SOLID。            |
+| style  | [OutlineStyle](#outlinestyle11枚举说明)&nbsp;\|&nbsp;[EdgeOutlineStyles](#edgeoutlinestyles对象说明)|否| 设置外描边样式。<br/>默认值：OutlineStyle.SOLID。            |
 
 ## EdgeOutlineWidths对象说明
 
@@ -197,10 +289,10 @@ outlineRadius(radius: Optional\<Dimension | OutlineRadiuses>)
 
 | 名称     | 参数类型                                     | 必填   | 描述      |
 | ------ | ---------------------------------------- | ---- | ------- |
-| left   | [OutlineStyle](#outlinestyle11) | 否    | 左侧外描边样式。 |
-| right  | [OutlineStyle](#outlinestyle11) | 否    | 右侧外描边样式。 |
-| top    | [OutlineStyle](#outlinestyle11) | 否    | 上侧外描边样式。 |
-| bottom | [OutlineStyle](#outlinestyle11) | 否    | 下侧外描边样式。 |
+| left   | [OutlineStyle](#outlinestyle11枚举说明) | 否    | 左侧外描边样式。 |
+| right  | [OutlineStyle](#outlinestyle11枚举说明) | 否    | 右侧外描边样式。 |
+| top    | [OutlineStyle](#outlinestyle11枚举说明) | 否    | 上侧外描边样式。 |
+| bottom | [OutlineStyle](#outlinestyle11枚举说明) | 否    | 下侧外描边样式。 |
 
 ## 示例
 

@@ -57,8 +57,11 @@ Shows an alert dialog box.
 | borderStyle<sup>12+</sup>         | [BorderStyle](ts-appendix-enums.md#borderstyle) \| [EdgeStyles](ts-types.md#edgestyles9) | No  | Border style of the dialog box.<br>Default value: **BorderStyle.Solid**<br>**borderStyle** must be used with **borderWidth** in pairs.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | shadow<sup>12+</sup>              | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) \| [ShadowStyle](ts-universal-attributes-image-effect.md#shadowstyle10) | No  | Shadow of the dialog box.<br> Default value on 2-in-1 devices: **ShadowStyle.OUTER_FLOATING_MD** when the dialog box is focused and **ShadowStyle.OUTER_FLOATING_SM** otherwise<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | textStyle<sup>12+</sup>              | [TextStyle](#textstyle12) | No  | Text style of the message in the dialog box.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| enableHoverMode<sup>13+</sup>              | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.|
-| hoverModeArea<sup>13+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype13) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**|
+| enableHoverMode<sup>14+</sup>     | boolean | No  | Whether to enable the hover state.<br>Default value: **false**, meaning not to enable the hover state.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| hoverModeArea<sup>14+</sup>       | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | No  | Display area of the dialog box in the hover state.<br>Default value: **HoverModeAreaType.BOTTOM_SCREEN**<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| levelMode<sup>15+</sup>       | [LevelMode](../js-apis-promptAction.md#levelmode15) | No  | Display level of the dialog box.<br>**NOTE**<br>- Default value: **LevelMode.OVERLAY.**<br>- This parameter takes effect only when **showInSubWindow** is set to **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| levelUniqueId<sup>15+</sup>       | number | No  | [Unique ID](../js-apis-arkui-frameNode.md#getuniqueid12) of the node under the display level for the page-level dialog box.<br>**NOTE**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
+| immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15) | No  | Overlay effect for the page-level dialog box.<br>**NOTE**<br>- Default value: **ImmersiveMode.DEFAULT**<br>- This parameter takes effect only when **levelMode** is set to **LevelMode.EMBEDDED**.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## AlertDialogParamWithConfirm
 
@@ -70,7 +73,7 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 | Name      | Type    | Mandatory    | Description        |
 | ---------- | ---------------- | ---------- | ------------------------------- |
-| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13) | No  | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
+| confirm    | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14) | No  | Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
 
 Priorities of the **confirm** parameters: **fontColor** and **backgroundColor** > **style** > **defaultFocus**
 
@@ -100,8 +103,8 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 | Name            | Type               | Mandatory    | Description                    |
 | --------------- | ---------------------- | ------------ | --------------------- |
-| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13) | Yes| Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
-| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13) | Yes| Information about the confirm button.|
+| primaryButton   | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14) | Yes| Information about the confirm button. When the dialog box has focus and focus has not been shifted using the **Tab** key, the button responds to the **Enter** key by default, and multiple dialog boxes can gain focus consecutively to respond automatically. The default response to the **Enter** key does not work when **defaultFocus** is set to **true**.|
+| secondaryButton | [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14) | Yes| Information about the confirm button.|
 
 ## AlertDialogParamWithOptions<sup>10+</sup>
 
@@ -118,7 +121,7 @@ Inherits [AlertDialogParam](#alertdialogparam).
 
 ## AlertDialogButtonOptions<sup>10+</sup>
 
-Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13).
+Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions14).
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,9 +129,9 @@ Inherits [AlertDialogButtonBaseOptions](#alertdialogbuttonbaseoptions13).
 | --------------------- | ------- | ---- | ------------------------------------------------------------ |
 | primary<sup>12+</sup> | boolean | No  | Whether the button responds to the **Enter** key by default when the dialog box has focus and the **Tab** key is not pressed for sequential focus navigation. If there are multiple buttons, set this parameter to **true** for only one button. Otherwise, no button will respond. Multiple dialog boxes can automatically gain focus and respond to user interactions in a sequential manner. This parameter does not take effect when **defaultFocus** is set to **true**.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
-## AlertDialogButtonBaseOptions<sup>13+</sup>
+## AlertDialogButtonBaseOptions<sup>14+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 13.
+**Atomic service API**: This API can be used in atomic services since API version 14.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -225,13 +228,13 @@ Provides information about the action to dismiss the dialog box.
 
 ## Example
 
-### Example 1
+### Example 1: Displaying Dialog Boxes with Different Numbers of Buttons
 
 > **NOTE**
 > 
 > To avoid confusion with **AlertDialog** instances, it is recommended that you obtain a **UIContext** instance using the [getUIContext](../js-apis-arkui-UIContext.md#uicontext) API, and then use the [showAlertDialog](../js-apis-arkui-UIContext.md#showalertdialog) API to invoke the instance's **AlertDialog.show()** method.
 
-This example shows three alert dialog boxes, with one, two, and three buttons, respectively.
+This example demonstrates how to display dialog boxes with one, two, and three buttons.
 
 ```ts
 // xxx.ets
@@ -376,9 +379,9 @@ struct AlertDialogExample {
 
 ![en-us_image_alert](figures/en-us_image_alert.gif)
 
-### Example 2
+### Example 2: Opening a Dialog Box Outside the Main Window
 
-This example shows an alert dialog box that can be displayed outside the main window.
+This example demonstrates how to configure a dialog box to display outside the main window by setting **showInSubWindow** to **true**.
 
 > **NOTE**
 > 
@@ -451,8 +454,8 @@ struct AlertDialogExample {
 
 ![en-us_image_alert_showinsubwindow](figures/en-us_image_alert_showinsubwindow.jpg)
 
-### Example 3
-This example sets a 3s entrance animation and a 100 ms exit animation for the alert dialog.
+### Example 3: Setting the Dialog Box Animation
+This example illustrates how to use the **transition** API to create custom animation effects for the dialog box's appearance and disappearance.
 
 > **NOTE**
 > 
@@ -500,7 +503,7 @@ struct AlertDialogExample {
 
 ![en-us_image_alert_animation](figures/en-us_image_alert_animation.gif)
 
-### Example 4
+### Example 4: Setting the Dialog Box Style
 This example demonstrates how to set styles of an alert dialog box, including the width, height, background color, and shadow.
 
 > **NOTE**
@@ -564,7 +567,7 @@ struct AlertDialogExample {
 
 ![en-us_image_alert_style](figures/en-us_image_alert_style.gif)
 
-### Example 5
+### Example 5: Configuring a Dialog Box in the Hover State
 
 This example demonstrates how to set the layout area of a dialog box in hover mode on a foldable device.
 
@@ -614,3 +617,4 @@ struct AlertDialogExample {
 ```
 
 ![en-us_image_alert](figures/en-us_image_alert_hovermode.gif)
+<!--no_check-->

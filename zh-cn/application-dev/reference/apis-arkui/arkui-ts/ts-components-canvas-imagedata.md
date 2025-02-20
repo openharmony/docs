@@ -44,7 +44,7 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
 >
 >  可使用[px2vp](ts-pixel-units.md#像素单位转换)接口进行单位转换。
 
-**示例：**
+## 示例
 
 使用getImageData接口获得一个ImageData对象。
 
@@ -55,7 +55,7 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
   struct Translate {
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private img:ImageBitmap = new ImageBitmap("common/images/1234.png")
+    private img: ImageBitmap = new ImageBitmap("common/images/1234.png")
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -63,10 +63,10 @@ constructor(width: number, height: number, data?: Uint8ClampedArray, unit?: Leng
           .width('100%')
           .height('100%')
           .backgroundColor('#ffff00')
-          .onReady(() =>{
-            this.context.drawImage(this.img,0,0,130,130)
-            let imagedata = this.context.getImageData(50,50,130,130)
-            this.context.putImageData(imagedata,150,150)
+          .onReady(() => {
+            this.context.drawImage(this.img, 0, 0, 130, 130)
+            let imagedata = this.context.getImageData(50, 50, 130, 130)
+            this.context.putImageData(imagedata, 150, 150)
           })
       }
       .width('100%')

@@ -273,7 +273,8 @@ import { zlib, BusinessError } from '@kit.BasicServicesKit';
 let inFile = '/xx/xxx.zip';
 let outFileDir = '/xxx';
 let options: zlib.Options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
+  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
+  parallel: zlib.ParallelStrategy.PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION
 };
 
 try {
@@ -2400,7 +2401,9 @@ inflateBackInit(strm: ZStream, windowBits: number, window: ArrayBuffer): Promise
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-**示例：**参考[inflateBack](#inflateback12)
+**示例：**
+
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBackEnd<sup>12+</sup>
 
@@ -2433,7 +2436,9 @@ inflateBackInit()函数分配的所有内存都被释放，使用Promise异步�
 | 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
-**示例：**参考[inflateBack](#inflateback12)
+**示例：**
+
+参考[inflateBack](#inflateback12)中的示例代码。
 
 ### inflateBack<sup>12+</sup>
 
@@ -2455,32 +2460,6 @@ inflateBack(strm: ZStream, backIn: InflateBackInputCallback, inDesc: object, bac
 | backOut | InflateBackOutputCallback | 是   | 将解压缩的数据写入目标输出。                                 |
 | outDesc | object                    | 是   | 通用对象。                                                   |
 
-### InflateBackInputCallback
-
-InflateBackInputCallback = (inDesc: object) => ArrayBuffer
-
-用于输入数据的回调函数。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-| 名称   | 类型   | 必填 | 说明             |
-| ------ | ------ | ---- | ---------------- |
-| inDesc | object | 是   | 用户定义数据对象 |
-
-### InflateBackOutputCallback
-
-InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
-
-用于输出数据的回调函数。
-
-**系统能力：** SystemCapability.BundleManager.Zlib
-
-| 名称    | 类型        | 必填 | 说明                   |
-| ------- | ----------- | ---- | ---------------------- |
-| outDesc | object      | 是   | 用户定义数据对象       |
-| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
-| length  | number      | 是   | 写入输出缓冲区的长度。 |
-
 **返回值：**
 
 | 类型                                           | 说明                        |
@@ -2493,7 +2472,7 @@ InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) 
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified;<br />2. Incorrect parameter types;<br />3. Parameter verification failed. |
+| 401      | The parameter check failed. Possible causes: <br />1. Mandatory parameters are left unspecified. <br />2. Incorrect parameter types. <br />3. Parameter verification failed. |
 | 17800004 | ZStream error.                                               |
 
 **示例：**
@@ -2632,6 +2611,52 @@ async function demo() {
   inflateBackTest();
 }
 ```
+
+### InflateBackInputCallback<sup>12+</sup>
+
+type InflateBackInputCallback = (inDesc: object) => ArrayBuffer
+
+用于输入数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明               |
+| ------ | ------ | ---- | ------------------ |
+| inDesc | object | 是   | 用户定义数据对象。 |
+
+**返回值：**
+
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| ArrayBuffer | 从输入数据源成功读取的内容缓冲区。 |
+
+### InflateBackOutputCallback<sup>12+</sup>
+
+type InflateBackOutputCallback = (outDesc: object, buf: ArrayBuffer, length: number) => number
+
+用于输出数据的回调函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+**参数：**
+
+| 参数名  | 类型        | 必填 | 说明                   |
+| ------- | ----------- | ---- | ---------------------- |
+| outDesc | object      | 是   | 用户定义数据对象。     |
+| buf     | ArrayBuffer | 是   | 用于存储要写入的数据。 |
+| length  | number      | 是   | 写入输出缓冲区的长度。 |
+
+**返回值：**
+
+| 类型                                           | 说明                        |
+| ---------------------------------------------- | --------------------------- |
+| number | 输出缓冲区的字节数。 |
 
 ### inflate<sup>12+</sup>
 
@@ -3703,15 +3728,14 @@ async function demo() {
 
 ## Options
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.BundleManager.Zlib
 
 | 名称     | 类型             | 可读 | 可写 | 说明                                                       |
 | -------- | ---------------- | ---- | ---------------------------------------------------------- | ---- |
-| level    | CompressLevel     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。       |
-| memLevel | MemLevel         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。                 |
-| strategy | CompressStrategy | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。 |
+| level    | [CompressLevel](#compresslevel)     | 是   | 否  | 参考[CompressLevel枚举定义](#compresslevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| memLevel | [MemLevel](#memlevel)         | 是   | 否  | 参考[MemLevel枚举定义](#memlevel)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| strategy | [CompressStrategy](#compressstrategy) | 是   | 否  | 参考[CompressStrategy枚举定义](#compressstrategy)。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。        |
+| parallel<sup>16+</sup> | [ParallelStrategy](#parallelstrategy16) | 是   | 否  | 参考[ParallelStrategy枚举定义](#parallelstrategy16)。<br>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。        |
 
 ## CompressLevel
 
@@ -3751,6 +3775,17 @@ async function demo() {
 | COMPRESS_STRATEGY_HUFFMAN_ONLY     | 2    | 霍夫曼编码格式压缩策略。   |
 | COMPRESS_STRATEGY_RLE              | 3    | 游标编码压缩策略。         |
 | COMPRESS_STRATEGY_FIXED            | 4    | 固定的压缩策略。           |
+
+## ParallelStrategy<sup>16+</sup>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.BundleManager.Zlib
+
+| 名称                                     | 值   | 说明                      |
+| ---------------------------------------- | ---- | ------------------------ |
+| PARALLEL_STRATEGY_SEQUENTIAL             | 0    | 默认值，串行压缩/解压策略。|
+| PARALLEL_STRATEGY_PARALLEL_DECOMPRESSION | 1    | 并行解压策略。            |
 
 ## ErrorCode
 
@@ -5521,7 +5556,7 @@ gzprintf(format: string, ...args: Array&lt;string | number&gt;): Promise&lt;numb
 | 参数名 | 类型                          | 必填 | 说明                   |
 | ------ | ----------------------------- | ---- | ---------------------- |
 | format | string                        | 是   | 格式化描述符和纯文本。 |
-| args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
+| ...args   | Array&lt;string \| number&gt; | 否   | 可变参数列表。         |
 
 **返回值：**
 

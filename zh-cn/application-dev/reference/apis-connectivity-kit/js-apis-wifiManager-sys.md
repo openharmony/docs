@@ -11,42 +11,6 @@
 import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
-## wifiManager.enableWifi<sup>9+</sup>
-
-enableWifi(): void
-
-使能WLAN，异步接口，需要通过注册"wifiStateChange"事件的回调来监听是否打开成功。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION  仅系统应用可用。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          | 
-| 2501000  | Operation failed.|
-| 2501003  | Operation failed because the service is being closed. |
-
-**示例：**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		wifiManager.enableWifi();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
 ## wifiManager.disableWifi<sup>9+</sup>
 
 disableWifi(): void
@@ -237,64 +201,6 @@ getScanAlwaysAllowed(): boolean
 	}
 ```
 
-## wifiManager.addDeviceConfig<sup>9+</sup>
-
-addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
-
-添加网络配置，使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | Promise&lt;number&gt; | Promise对象。返回添加的网络配置ID，如果值为-1表示添加失败。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**示例：**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let config:wifiManager.WifiDeviceConfig = {
-			ssid : "****",
-			preSharedKey : "****",
-			securityType : 0
-		}
-		wifiManager.addDeviceConfig(config).then(result => {
-			console.info("result:" + JSON.stringify(result));
-		}).catch((err:number) => {
-			console.error("failed:" + JSON.stringify(err));
-		});
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
 ## WifiDeviceConfig<sup>9+</sup>
 
 WLAN配置信息。
@@ -305,14 +211,14 @@ WLAN配置信息。
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
 | creatorUid | number | 是 | 否 | 创建用户的ID。 <br /> **系统接口：** 此接口为系统接口。 |
-| disableReason | number | 是 | 否 | 禁用原因。 <br /> **系统接口：** 此接口为系统接口。 |
+| disableReason | number | 是 | 否 | 禁用原因： <br /> -1 - 未知原因，0 - 未禁用，1 - 关联拒绝，2 - 认证失败 <br /> 3 - DHCP失败，4 - 暂时无互联网连接 <br /> 5 - 认证无凭据，6 - 永久无互联网连接 <br /> 7 - 由WIFI管理器禁用，8 - 由于密码错误禁用 <br /> 9 - 认证无订阅，10 - 私有EAP认证错误 <br /> 11 - 未找到网络，12 - 连续失败 <br /> 13 - 由系统禁用，14 - EAP-AKA认证失败 <br /> 15 - 解除关联原因，16 - 禁用网络选择最大值<br /> **系统接口：** 此接口为系统接口。 |
 | netId | number | 是 | 否 | 分配的网络ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | randomMacType | number | 是 | 否 | MAC地址类型。0 - 随机MAC地址，1 - 设备MAC地址 <br /> **系统接口：** 此接口为系统接口。 |
 | randomMacAddr | string | 是 | 否 | MAC地址。<br /> **系统接口：** 此接口为系统接口。 |
 | ipType | [IpType](#iptype9) | 是 | 否 | IP地址类型。 <br /> **系统接口：** 此接口为系统接口。 |
 | staticIp | [IpConfig](#ipconfig9) | 是 | 否 | 静态IP配置信息。 <br /> **系统接口：** 此接口为系统接口。 |
 | proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | 是 | 否 | 代理配置。  <br /> **系统接口：** 此接口为系统接口。|
-| configStatus<sup>12+</sup> | number | 是 | 否 | 返回当前网络是否允许参与选网。  <br /> **系统接口：** 此接口为系统接口。|
+| configStatus<sup>12+</sup> | number | 是 | 否 | 返回当前网络是否允许参与选网。 <br />  1 - 允许参与选网，2 - 禁止参与 <br /> 3 - 永久禁止参与，4 - 未知 <br /> **系统接口：** 此接口为系统接口。|
 
 ## IpType<sup>9+</sup>
 
@@ -377,102 +283,6 @@ Wifi 代理配置。
 | METHOD_AUTO  | 1 | 使用自动配置的代理。 |
 | METHOD_MANUAL  | 2 | 使用手动配置的代理。 |
 
-## wifiManager.addDeviceConfig<sup>9+</sup>
-
-addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
-
-添加网络配置，使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.SET_WIFI_CONFIG
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | 是 | WLAN配置信息。如果bssidType未指定值，则bssidType默认为随机设备地址类型。 |
-| callback | AsyncCallback&lt;number&gt; | 是 | 回调函数。当操作成功时，err为0，data为添加的网络配置ID，如果data值为-1，表示添加失败。当error为非0，表示处理出现错误。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**示例：**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let config:wifiManager.WifiDeviceConfig = {
-			ssid : "****",
-			preSharedKey : "****",
-			securityType : 0
-		}
-		wifiManager.addDeviceConfig(config,(error,result) => {
-			console.info("result:" + JSON.stringify(result));
-		});	
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-
-## wifiManager.connectToNetwork<sup>9+</sup>
-
-connectToNetwork(networkId: number): void
-
-连接到指定网络（如果当前已经连接到热点，请先使用disconnect（）接口断开连接）。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | networkId | number | 是 | 待连接的网络配置ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled.|
-
-**示例：**
-
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let networkId = 0;
-		wifiManager.connectToNetwork(networkId);
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}	
-```
-
 ## wifiManager.connectToDevice<sup>9+</sup>
 
 connectToDevice(config: WifiDeviceConfig): void
@@ -521,43 +331,6 @@ connectToDevice(config: WifiDeviceConfig): void
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
-
-## wifiManager.disconnect<sup>9+</sup>
-
-disconnect(): void
-
-断开连接的网络。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
-
-**系统能力：**
-  SystemCapability.Communication.WiFi.STA
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**示例：**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		wifiManager.disconnect();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
 
 ## WifiLinkedInfo<sup>9+</sup>
 
@@ -715,7 +488,7 @@ getWifiDetailState(): WifiDetailState
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | WifiDetailState | Wifi枚举状态。 |
+  | [WifiDetailState](#wifidetailstate12) | Wifi枚举状态。 |
 
 **错误码：**
 
@@ -825,51 +598,6 @@ reconnect(): void
 
 	try {
 		wifiManager.reconnect();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-## wifiManager.getDeviceConfigs<sup>9+</sup>
-
-getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt;
-
-获取网络配置。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：**
-
-API 9：ohos.permission.GET_WIFI_INFO、ohos.permission.LOCATION、ohos.permission.APPROXIMATELY_LOCATION 和 ohos.permission.GET_WIFI_CONFIG
-
-API 10起：ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**返回值：**
-
-  | **类型** | **说明** |
-  | -------- | -------- |
-  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | 网络配置信息的数组。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-
-**示例：**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let configs = wifiManager.getDeviceConfigs();
-		console.info("configs:" + JSON.stringify(configs));
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1002,49 +730,6 @@ removeAllNetwork(): void
 
 	try {
 		wifiManager.removeAllNetwork();		
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-## wifiManager.removeDevice<sup>9+</sup>
-
-removeDevice(id: number): void
-
-移除指定的网络配置。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.SET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_CONNECTION，仅系统应用可用。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-**参数：**
-
-  | **参数名** | **类型** | **必填** | **说明** |
-  | -------- | -------- | -------- | -------- |
-  | id | number | 是 | 网络配置ID。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
-
-| **错误码ID** | **错误信息** |
-| -------- | -------- |
-| 201 | Permission denied.                 |
-| 202 | System API is not allowed called by Non-system application. |
-| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801 | Capability not supported.          |
-| 2501000  | Operation failed.|
-| 2501001  | Wi-Fi STA disabled. |
-
-**示例：**
-```ts
-	import { wifiManager } from '@kit.ConnectivityKit';
-
-	try {
-		let id = 0;
-		wifiManager.removeDevice(id);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1376,15 +1061,15 @@ isHotspotDualBandSupported(): boolean
 	}
 ```
 
-## wifiManager.isHotspotActive<sup>9+</sup>
+## wifiManager.isOpenSoftApAllowed<sup>16+</sup>
 
-isHotspotActive(): boolean
+isOpenSoftApAllowed(): boolean
 
-热点是否已使能。
+热点是否支持双频。
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.GET_WIFI_INFO
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.MANAGE_WIFI_HOTSPOT，仅系统应用可用。
 
 **系统能力：** SystemCapability.Communication.WiFi.AP.Core
 
@@ -1392,7 +1077,7 @@ isHotspotActive(): boolean
 
   | **类型** | **说明** |
   | -------- | -------- |
-  | boolean | true:已使能，&nbsp;false:未使能.|
+  | boolean | true:允许，&nbsp;false:不允许.|
 
 **错误码：**
 
@@ -1410,8 +1095,8 @@ isHotspotActive(): boolean
 	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let ret = wifiManager.isHotspotActive();
-		console.info("result:" + ret);		
+		let ret = wifiManager.isOpenSoftApAllowed();
+		console.info("result:" + ret);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}

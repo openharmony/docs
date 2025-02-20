@@ -1,11 +1,11 @@
-# 管理群组关键资产
+# 管理群组关键资产(ArkTS)
 
 以下为管理群组关键资产使用示例，请先查看开发指导：
 
-  - [新增关键资产(ArkTS)](asset-js-add.md)
-  - [删除关键资产(ArkTS)](asset-js-remove.md)
-  - [更新关键资产(ArkTS)](asset-js-update.md)
-  - [查询关键资产(ArkTS)](asset-js-query.md)
+- [新增关键资产(ArkTS)](asset-js-add.md)
+- [删除关键资产(ArkTS)](asset-js-remove.md)
+- [更新关键资产(ArkTS)](asset-js-update.md)
+- [查询关键资产(ArkTS)](asset-js-query.md)
 
 ## 前置条件
 

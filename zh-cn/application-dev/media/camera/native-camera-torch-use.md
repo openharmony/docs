@@ -83,21 +83,17 @@
 
 在相机应用开发过程中，可以随时监听手电筒状态，包括手电筒打开、手电筒关闭、手电筒不可用、手电筒恢复可用。手电筒状态发生变化，可通过回调函数获取手电筒模式的变化。
 
-   通过注册cameratorchStatusChange事件，通过回调返回监听结果，callback返回Camera_TorchStatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_TorchStatusInfo](../../reference/apis-camera-kit/_camera___torch_status_info.md)。
+   通过注册torchStatus事件，通过回调返回监听结果，callback返回Camera_TorchStatusInfo参数，参数的具体内容可参考相机管理器回调接口实例[Camera_TorchStatusInfo](../../reference/apis-camera-kit/_camera___torch_status_info.md)。
 
    ```c++
-   ret = OH_CameraManager_RegisterTorchStatusCallback(cameraManager, GetTorchStatusCb);
+   ret = OH_CameraManager_RegisterTorchStatusCallback(cameraManager, GetTorchStatusCallback);
    if (ret != CAMERA_OK) {
       OH_LOG_ERROR(LOG_APP, "OH_CameraManager_RegisterTorchStatusCallback failed.");
    }
    ```
    ```c++
-   void OnTorchStatusChange(Camera_Manager *cameraManager, Camera_TorchStatusInfo* torchStatus)
+   void GetTorchStatusCallback(Camera_Manager *cameraManager, Camera_TorchStatusInfo* torchStatus)
    {
-      OH_LOG_INFO(LOG_APP, "OH_CameraManager_RegisterTorchStatusCallback is called.");
-   }
-   void GetTorchStatusCb(Camera_Manager *cameraManager, Camera_TorchStatusInfo* torchStatus)
-   {
-      OH_LOG_INFO(LOG_APP, "GetTorchStatusCb is called.");
+      OH_LOG_INFO(LOG_APP, "OH_CameraManager_GetTorchStatusCallback is called.");
    }
    ```

@@ -1,6 +1,6 @@
 # Path
 
-The **Path** component is used to define a closed shape.
+The **Path** component is used to draw a custom closed shape based on a specified drawing path.
 
 > **NOTE**
 >
@@ -13,7 +13,7 @@ Not supported
 
 ## APIs
 
-Path(value?: { width?: number | string; height?: number | string; commands?: string })
+Path(options?: PathOptions)
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -25,7 +25,22 @@ Path(value?: { width?: number | string; height?: number | string; commands?: str
 
 | Name                                            | Type        | Mandatory| Description                  |
 | ------ | ---------------- | ---- | ------------------------------------------------------------ |
-| value  | { width?: number \| string; height?: number \| string; [commands](ts-drawing-components-path.md#commands)?: string } | No  | **width**: width of the rectangle where the path is located.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>**height**: height of the rectangle where the path is located.<br>If the value is invalid or the default value is used, the height required for the content is used.<br> **commands**: command string for drawing the path. Default value: **''**<br>An invalid value is handled as the default value.|
+| options  | [PathOptions](ts-drawing-components-path.md#pathoptions14) | No  | Options for path drawing.|
+
+## PathOptions<sup>14+</sup>
+Describes the options for path drawing.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 14.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| width | string \| number | No| Width of the rectangle where the path is located.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>Default unit: vp|
+| height | string \| number | No| Height of the rectangle where the path is located.<br>If the value is invalid or the default value is used, the width required for the content is used.<br>Default unit: vp|
+| [commands](ts-drawing-components-path.md#commands) | string  | No| Command string for drawing the path.<br>If the value is invalid or the default value is used, the width required for the content is used. Default value: **''**<br>An invalid value is handled as the default value.|
 
 ## Attributes
 
@@ -47,13 +62,13 @@ Sets the command string for path drawing. The unit is px. For details about how 
 
 | Name| Type  | Mandatory| Description                         |
 | ------ | ------ | ---- | ----------------------------- |
-| value  | string | Yes  | Path for drawing a line.<br>Default value: **''**|
+| value  | string | Yes  | Path for drawing a line.<br>Default value: **''**<br>Default unit: px|
 
 ### fill
 
 fill(value: ResourceColor)
 
-Sets the color of the fill area. An invalid value is handled as the default value.
+Sets the color of the fill area. An invalid value is handled as the default value. If this attribute and the universal attribute **foregroundColor** are both set, whichever is set later takes effect.
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -119,7 +134,7 @@ Sets the stroke dashes. Line segments may overlap when they intersect. An invali
 
 | Name| Type            | Mandatory| Description                     |
 | ------ | ---------------- | ---- | ------------------------- |
-| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**|
+| value  | Array&lt;any&gt; | Yes  | Stroke dashes.<br>Default value: **[]**<br>Default unit: vp|
 
 ### strokeDashOffset
 
@@ -137,7 +152,7 @@ Sets the line dash offset. An invalid value is handled as the default value.
 
 | Name| Type                      | Mandatory| Description                                |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number \| string | Yes  | Line dash offset.<br>Default value: **0**|
+| value  | number \| string | Yes  | Line dash offset.<br>Default value: **0**<br>Default unit: vp|
 
 ### strokeLineCap
 
@@ -229,7 +244,7 @@ Sets the stroke width. If of the string type, this attribute cannot be set in pe
 
 | Name| Type                        | Mandatory| Description                    |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**|
+| value  | [Length](ts-types.md#length) | Yes  | Stroke width.<br>Default value: **1**<br>Default unit: vp|
 
 ### antiAlias
 
@@ -269,6 +284,8 @@ The supported commands are as follows:
 For example, **commands('M0 20 L50 50 L50 100 Z')** defines a triangle that starts from position (0, 20), by drawing a line from point (0, 20) to point (50, 50), then a line from point (50, 50) to point (50, 100), and finally a line from point (50, 100) to point (0, 20).
 
 ## Example
+
+This example demonstrates how to use **commands**, **fillOpacity**, and **stroke** to draw a closed shape with the specified path, opacity, and stroke color.
 
 ```ts
 // xxx.ets

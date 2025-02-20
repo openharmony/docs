@@ -52,7 +52,7 @@ Matrix2D(unit?: LengthMetricsUnit)
 struct Parameter {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -60,8 +60,8 @@ struct Parameter {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(100,20,50,50)
+        .onReady(() => {
+          this.context.fillRect(100, 20, 50, 50)
           this.matrix.scaleX = 1
           this.matrix.scaleY = 1
           this.matrix.rotateX = -0.5
@@ -69,7 +69,7 @@ struct Parameter {
           this.matrix.translateX = 10
           this.matrix.translateY = 10
           this.context.setTransform(this.matrix)
-          this.context.fillRect(100,20,50,50)
+          this.context.fillRect(100, 20, 50, 50)
         })
     }
     .width('100%')
@@ -110,7 +110,7 @@ identity(): Matrix2D
 struct Identity {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -118,11 +118,11 @@ struct Identity {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(100,20,50,50)
+        .onReady(() => {
+          this.context.fillRect(100, 20, 50, 50)
           this.matrix = this.matrix.identity()
           this.context.setTransform(this.matrix)
-          this.context.fillRect(100,100,50,50)
+          this.context.fillRect(100, 100, 50, 50)
         })
     }
     .width('100%')
@@ -161,7 +161,7 @@ invert(): Matrix2D
 struct Invert {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -169,8 +169,8 @@ struct Invert {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(100,110,50,50)
+        .onReady(() => {
+          this.context.fillRect(100, 110, 50, 50)
           this.matrix.scaleX = 1
           this.matrix.scaleY = 1
           this.matrix.rotateX = -0.5
@@ -179,7 +179,7 @@ struct Invert {
           this.matrix.translateY = 10
           this.matrix.invert()
           this.context.setTransform(this.matrix)
-          this.context.fillRect(100,110,50,50)
+          this.context.fillRect(100, 110, 50, 50)
         })
     }
     .width('100%')
@@ -199,7 +199,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。该接口为空接口。
 
-该接口从API version 10开始废弃，且无实际绘制效果。
+该接口从API version 10开始废弃，且无实际绘制效果，故不提供示例。
 
 **参数：**
 
@@ -212,57 +212,6 @@ multiply(other?: Matrix2D): Matrix2D
 | 类型                  | 说明           |
 | --------------------- | -------------- |
 | [Matrix2D](#matrix2d) | 相乘结果矩阵。 |
-
-**示例：**
-
-```ts
-// xxx.ets
-@Entry
-@Component
-struct Multiply {
-  @State message: string = 'Matrix2D Multiply'
-
-  printMatrix(title: string, matrix: Matrix2D) {
-    console.log(title)
-    console.log("Matrix [scaleX = " + matrix.scaleX + ", scaleY = " + matrix.scaleY +
-                ", rotateX = " + matrix.rotateX + ", rotateY = " + matrix.rotateY +
-                ", translateX = " + matrix.translateX + ", translateY = " + matrix.translateY + "]")
-  }
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold)
-        Button("matrix multiply")
-          .onClick(() => {
-            let matrix : Matrix2D = new Matrix2D()
-            matrix.scaleX = 1
-            matrix.scaleY = 1
-            matrix.rotateX = 0
-            matrix.rotateY = 0
-            matrix.translateX = 0
-            matrix.translateY = 0
-            let other: Matrix2D = new Matrix2D()
-            other.scaleX = 2
-            other.scaleY = 2
-            other.rotateX = 0
-            other.rotateY = 0
-            other.translateX = 10
-            other.translateY = 10
-            other.multiply(other)
-            this.printMatrix(this.message, matrix)
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
-
-![matrix-multiply.png](figures/matrix-multiply.png)
-
 
 ### rotate<sup>(deprecated) </sup>
 
@@ -296,7 +245,7 @@ rotate(rx?: number, ry?: number): Matrix2D
 struct Rotate {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -304,8 +253,8 @@ struct Rotate {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(50,110,50,50)
+        .onReady(() => {
+          this.context.fillRect(50, 110, 50, 50)
           this.matrix.scaleX = 1
           this.matrix.scaleY = 1
           this.matrix.rotateX = -0.5
@@ -314,7 +263,7 @@ struct Rotate {
           this.matrix.translateY = 10
           this.matrix.rotate(5, 5)
           this.context.setTransform(this.matrix)
-          this.context.fillRect(50,110,50,50)
+          this.context.fillRect(50, 110, 50, 50)
         })
     }
     .width('100%')
@@ -361,7 +310,7 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 struct Rotate {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -369,8 +318,8 @@ struct Rotate {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(60,80,50,50)
+        .onReady(() => {
+          this.context.fillRect(60, 80, 50, 50)
           this.matrix.scaleX = 1
           this.matrix.scaleY = 1
           this.matrix.rotateX = -0.5
@@ -379,7 +328,7 @@ struct Rotate {
           this.matrix.translateY = 10
           this.matrix.rotate(-60 * Math.PI / 180, 5, 5)
           this.context.setTransform(this.matrix)
-          this.context.fillRect(60,80,50,50)
+          this.context.fillRect(60, 80, 50, 50)
         })
     }
     .width('100%')
@@ -425,7 +374,7 @@ translate(tx?: number, ty?: number): Matrix2D
 struct Translate {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -433,8 +382,8 @@ struct Translate {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(40,20,50,50)
+        .onReady(() => {
+          this.context.fillRect(40, 20, 50, 50)
           this.matrix.scaleX = 1
           this.matrix.scaleY = 1
           this.matrix.rotateX = 0
@@ -443,7 +392,7 @@ struct Translate {
           this.matrix.translateY = 0
           this.matrix.translate(100, 100)
           this.context.setTransform(this.matrix)
-          this.context.fillRect(40,20,50,50)
+          this.context.fillRect(40, 20, 50, 50)
         })
     }
     .width('100%')
@@ -489,7 +438,7 @@ scale(sx?: number, sy?: number): Matrix2D
 struct Scale {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix : Matrix2D = new Matrix2D()
+  private matrix: Matrix2D = new Matrix2D()
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -497,8 +446,8 @@ struct Scale {
         .width('240vp')
         .height('180vp')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          this.context.fillRect(120,70,50,50)
+        .onReady(() => {
+          this.context.fillRect(120, 70, 50, 50)
           this.matrix.scaleX = 1
           this.matrix.scaleY = 1
           this.matrix.rotateX = -0.5
@@ -507,7 +456,7 @@ struct Scale {
           this.matrix.translateY = 10
           this.matrix.scale(0.5, 0.5)
           this.context.setTransform(this.matrix)
-          this.context.fillRect(120,70,50,50)
+          this.context.fillRect(120, 70, 50, 50)
         })
     }
     .width('100%')

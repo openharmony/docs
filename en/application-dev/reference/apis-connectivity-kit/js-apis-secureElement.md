@@ -104,7 +104,7 @@ The **SEService** object is available only when [isConnected](#seserviceisconnec
 
 | **Type** | **Description**  |
 | :-------- | :--------- |
-| Promise\<[SEService](#seservice)> | Primose used to return the **SEService** instance created.|
+| Promise\<[SEService](#seservice)> | Promise used to return the **SEService** instance created.|
 
 **Error codes**
 
@@ -134,6 +134,104 @@ function secureElementDemo() {
     }).catch((error : BusinessError)=> {
         hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
     });
+}
+```
+
+## omapi.on<sup>16+</sup>
+
+on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
+
+Enables listening for service status change events.
+
+Call this API to register a callback after you use [omapi.newSEService](#omapinewseservice) or [omapi.createService](#omapicreateservice12) to create a service.
+
+**System capability**: SystemCapability.Communication.SecureElement
+
+**Parameters**
+
+| **Name**| **Type**                                            | **Mandatory**| **Description**            |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | Yes     | Event type. It has a fixed value of **serviceState**.     |
+| callback   | Callback<[ServiceState](#servicestate)> | Yes     | Callback used to return the SE service state.|
+
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | Invalid parameter.        |
+| 801  | Capability not supported. |
+
+**Example**
+
+See the sample code in [off](#omapioff16).
+
+## omapi.off<sup>16+</sup>
+
+off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
+
+Disables listening for service status change events.
+
+**System capability**: SystemCapability.Communication.SecureElement
+
+**Parameters**
+
+| **Name**| **Type**                                            | **Mandatory**| **Description**            |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | Yes     | Event type. It has a fixed value of **serviceState**.     |
+| callback   | Callback<[ServiceState](#servicestate)> | No     | Callback used to return the SE service state.|
+
+**Error codes**
+
+For details about error codes, see [SE Error Codes](errorcode-se.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | Invalid parameter.        |
+| 801  | Capability not supported. |
+
+**Example**
+
+```js
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService: omapi.SEService;
+function seStateOnCb(data: omapi.ServiceState) {
+    console.log("omapi.on ServiceState: ", data);
+}
+
+function seStateOffCb(data: omapi.ServiceState) {
+    console.log("omapi.off ServiceState: ", data);
+}
+
+function secureElementDemo() {
+    try{
+        omapi.createService().then((data) => {
+            seService = data;
+            if (seService == undefined || !seService.isConnected()) {
+                hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+                return;
+            }
+            hilog.info(0x0000, 'testTag', 'seservice state connected');
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+        });
+        omapi.on('stateChanged', seStateOnCb);
+    } catch (error) {
+        if (error as BusinessError) {
+            console.error(`omapi on error catch Code: ${(error as BusinessError).code}, ` + `message: ${(error as BusinessError).message}`);
+        }
+    }
+    try{
+        omapi.off('stateChanged', seStateOffCb);
+    } catch (error) {
+        if (error as BusinessError) {
+            console.error(`omapi off error catch Code: ${(error as BusinessError).code}, ` + `message: ${(error as BusinessError).message}`);
+        }
+    }
 }
 ```
 
@@ -320,7 +418,7 @@ A **Reader** instance indicates the SEs supported by a device. If eSE and SIM ar
 
 getName(): string
 
-Obtains the name of this reader. The name is **SIM[*Slot*]** for a SIM reader and **eSE** for an eSE.
+Obtains the name of this reader. The name is **SIM** for a SIM reader and **eSE** for an eSE.
 
 **System capability**: SystemCapability.Communication.SecureElement
 
@@ -1452,7 +1550,7 @@ let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change the raw data as required.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
 try {
     seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
@@ -1502,7 +1600,7 @@ let seChannel : omapi.Channel;
 
 // Initialize seChannel before using it.
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // Change the raw data as required.
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
 try {
     seChannel.transmit(cmdData, (error, response) => {
     if (error) {

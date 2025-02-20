@@ -112,7 +112,6 @@ For details about the APIs, see [PhotoEditorExtensionAbility](../reference/apis-
             return null;
           }
           this.originalImage = pixmap;
-          fileIo.closeSync(file);
           return pixmap;
         } catch(e) {
           hilog.info(0x0000, TAG, `ReadImage failed:${e}`);
@@ -235,7 +234,6 @@ On the UIAbility or UIExtensionAbility page, you can use **startAbilityByType** 
       let timeStamp = Date.now();
       // Copy the image to the application sandbox path.
       fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
-      fileIo.closeSync(file);
 
       this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
       this.originalImage = fileUri.getUriFromPath(this.filePath);
@@ -320,7 +318,6 @@ struct Index {
         return null;
       }
       this.editedImage = pixmap;
-      fileIo.closeSync(file);
       return pixmap;
     } catch(e) {
       hilog.info(0x0000, TAG, `readImage failed:${e}`);
@@ -369,7 +366,6 @@ struct Index {
               let timeStamp = Date.now();
               // Copy the image to the application sandbox path.
               fileIo.copyFileSync(file.fd, context.filesDir + `/original-${timeStamp}.jpg`);
-              fileIo.closeSync(file);
 
               this.filePath = context.filesDir + `/original-${timeStamp}.jpg`;
               this.originalImage = fileUri.getUriFromPath(this.filePath);

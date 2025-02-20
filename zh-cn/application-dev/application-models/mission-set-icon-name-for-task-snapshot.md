@@ -64,7 +64,7 @@ const DOMAIN_NUMBER: number = 0xFF00;
 let context: common.UIAbilityContext = this.context; // UIAbilityContext
 // 设置任务快照的名称
 context.setMissionLabel('test').then(() => {
-  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in seting mission label.');
+  hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in setting mission label.');
 }).catch((err: BusinessError) => {
   hilog.error(DOMAIN_NUMBER, TAG, `Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });

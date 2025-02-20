@@ -67,6 +67,11 @@ rawheap_translator <rawheap_file> [heapsnapshot_file]
 | -------- | ----------------- | ---------------------------------- |
 | \<rawheap_file\> | 必选参数，OOM时生成的rawheap文件路径：<br>/data/log/reliability/resource_leak/memory_leak | 解析指定目录(如：D:\temp\rawheap)下的rawheap文件：<br>rawheap_translator D:\temp\rawheap\xxx.rawheap<br>解析当前目录下的rawheap文件：<br>rawheap_translator xxx.rawheap |
 | [heapsnapshot_file] | 可选参数，指定生成的文件名称和路径，后缀名必须是heapsnapshot；<br>不指定则默认为当前路径，生成的文件名如：hprof_2024-11-19-21-13-20.heapsnapshot | 解析当前目录下的rawheap文件，并在指定路径(如：D:\temp)下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap D:\temp\xxx.heapsnapshot<br>解析当前目录下的rawheap文件，并在当前路径下生成的heapsnapshot:<br>rawheap_translator xxx.rawheap xxx.heapsnapshot |
+> **注意：**
+>
+> [heapsnapshot_file] 需要指向具有读写权限的路径，如果未指定参数，需要保证当前执行cmd命令时所在目录具有读写权限。<br>
+> 以windows为例:
+> D:\> ...\rawheap_translator.exe ...\example.rawheap 命令中，需要保证“D:\”路径具有读写权限。
 
 ## 解析命令示例
 
@@ -178,6 +183,27 @@ rawheap_translator <rawheap_file> [heapsnapshot_file]
 [INFO] HeapSnapshotJSONSerializer::Serialize exit
 [INFO] Main: translate success! file save to myapplication-7979-7979.heapsnapshot
 ```
+
+## 文件参考规格
+
+rawheap文件大小、生成耗时，与当前ArkTS堆内存大小、存活对象数量强正相关（如下表所示），因此OOM场景下当ArkTS堆内存占用较大、存活对象数量较多时，生成的rawheap文件耗时会较长，文件也会较大。开发者可订阅[资源泄漏事件](../dfx/hiappevent-watcher-resourceleak-events.md)，自定义事件处理逻辑。
+
+为了方便开发者判断上报rawheap文件到服务器所带来的性能和流量开销，下表还给出了当前rawheap文件被压缩后的文件大小，一般压缩比是10:1，不同压缩工具略有差异，仅供开发者参考。
+
+| ArkTS堆内存（MB） | 存活对象数量（个） | 生成耗时（s） | rawheap文件（MB） | 压缩后文件（MB） |
+| :---------: | :--------------: | :-----------: | :----------: | :----------: |
+| 11.00 | 99812 |  0.08 | 7.00 | 0.77 |
+| 25.30 | 250059 |  0.17 | 19.00 | 1.90 |
+| 50.40 | 496134 |  0.29 | 38.00 | 3.55 |
+| 72.00 | 759037 |  0.49 | 54.00 | 4.77 |
+| 104.00 | 47232 |  0.14 | 102.00 | 8.25 |
+| 130.00 | 1308804 |  0.92 | 100.00 | 10.40 |
+| 152.00 | 1493272 |  1.12 | 117.00 | 11.50 |
+| 187.00 | 1838800 |  1.50 | 144.00 | 13.00 |
+| 354.00 | 50704 |  0.31 | 352.00 | 27.25 |
+| 643.00 | 7772538 |  2.63 | 444.00 | 51.00 |
+| 750.00 | 6163456 |  3.64 | 605.00 | 59.55 |
+
 
 ## 常见问题
 ### 工具版本过低

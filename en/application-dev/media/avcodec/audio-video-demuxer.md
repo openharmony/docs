@@ -4,27 +4,7 @@ You can call the native APIs provided by the AVDemuxer module to demux media dat
 
 Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
-The following demuxing formats are supported:
-
-| Media Format | Muxing Format                     | Stream Format                     |
-| -------- | :----------------------------| :----------------------------|
-| Audio/Video    | mp4                        |<!--RP1-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3); subtitle stream: WEBVTT<!--RP1End-->|
-| Audio/Video    | fmp4                       |<!--RP2-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP2End-->|
-| Audio/Video    | mkv                        |<!--RP3-->Video stream: AVC (H.264); audio stream: AAC, MPEG (MP3), and OPUS<!--RP3End-->|
-| Audio/Video    | mpeg-ts                    |<!--RP4-->Video stream: AVC (H.264); audio stream: AAC and MPEG (MP3)<!--RP4End-->|
-| Audio/Video    | flv                        |<!--RP5-->Video stream: AVC (H.264); audio stream: AAC<!--RP5End-->|
-| Audio      | m4a                        |<!--RP6-->Audio stream: AAC<!--RP6End-->|
-| Audio      | aac                        |Audio stream: AAC|
-| Audio      | mp3                        |Audio stream: MPEG (MP3)|
-| Audio      | ogg                        |Audio stream: OGG|
-| Audio      | flac                       |Audio stream: FLAC|
-| Audio      | wav                        |Audio stream: PCM and PCM-MULAW|
-| Audio      | amr                        |Audio stream: AMR (AMR-NB and AMR-WB)|
-| Audio      | ape                        |Audio stream: APE|
-| External subtitle  | srt                        |Subtitle stream: SRT|
-| External subtitle  | webvtt                     |Subtitle stream: WEBVTT|
-
-The DRM demuxing capability supports the following formats: <!--RP7-->mp4 (H.264 and AAC) and mpeg-ts (H.264 and AAC)<!--RP7End-->.
+For details about the supported demuxing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-demuxing).
 
 **Usage Scenario**
 
@@ -80,7 +60,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
 2. Create a resource object.
 
-   When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#app-sandbox-directory.md#mapping-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
+   When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
 
    ```c++
    // Create the FD. You must have the read permission on the file handle when opening the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
@@ -174,20 +154,10 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       return;
    }
    ```
-4. (Optional) Register a [callback to obtain the media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
+4. (Optional) Register a [callback to obtain the media key system information](../../reference/apis-avcodec-kit/_a_v_demuxer.md#demuxer_mediakeysysteminfocallback). If the stream is not a DRM stream or the [media key system information](../../reference/apis-drm-kit/_drm.md#drm_mediakeysysteminfo) has been obtained, you can skip this step.
 
-   Add the header file.
-   ```c++
-   #include <multimedia/drm_framework/native_drm_common.h>
-   ```
-   Link the dynamic library in the cmake script.
+   In the API for setting DRM information listeners, the callback function can return a demuxer instance. It is suitable for the scenario where multiple demuxer instances are used.
 
-   ``` cmake
-   target_link_libraries(sample PUBLIC libnative_drm.so)
-   ```
-   There are two types of APIs for setting DRM information listeners. The callback function shown in example 1 can return a demuxer instance and therefore is recommended in the scenario where multiple demuxer instances are used. The callback function shown in example 2 does not return a demuxer instance and is applicable to the scenario where a single demuxer instance is used.
-
-   Example 1:
    ```c++
    // Implement the OnDrmInfoChangedWithObj callback.
    static void OnDrmInfoChangedWithObj(OH_AVDemuxer *demuxer, DRM_MediaKeySystemInfo *drmInfo)
@@ -197,22 +167,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 
    Demuxer_MediaKeySystemInfoCallback callback = &OnDrmInfoChangedWithObj;
    Drm_ErrCode ret = OH_AVDemuxer_SetDemuxerMediaKeySystemInfoCallback(demuxer, callback);
-
    ```
-
-   Example 2:
-   ```c++
-   // Implement the OnDrmInfoChanged callback.
-   static void OnDrmInfoChanged(DRM_MediaKeySystemInfo *drmInfo)
-   {
-      // Parse the media key system information, including the quantity, DRM type, and corresponding PSSH.
-   }
-
-   DRM_MediaKeySystemInfoCallback callback = &OnDrmInfoChanged;
-   Drm_ErrCode ret = OH_AVDemuxer_SetMediaKeySystemInfoCallback(demuxer, callback);
-   ```
-
    After the callback is invoked, you can call the API to proactively obtain the media key system information (UUID and corresponding PSSH).
+
    ```c++
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
@@ -314,7 +271,8 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_DISCARD  | Frames that can be discarded.|
 
    ```c++
-   // Create a buffer to store the data obtained after demuxing.
+   // Create a buffer based on the specified size to store the data obtained after demuxing.
+   // It is recommended that the buffer size be greater than the size of the stream to be obtained. In the example, the buffer size is set to the size of a single frame.
    OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
    if (buffer == nullptr) {
       printf("build buffer failed");

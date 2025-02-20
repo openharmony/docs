@@ -52,8 +52,9 @@ Sets the border image of the component.
 
 ## Example
 
-### Example 1
+### Example 1: Setting a Gradient Border
 
+This example demonstrates how to set a gradient border for a component using the **borderImage** API.
 
 ```ts
 // xxx.ets
@@ -85,7 +86,9 @@ struct Index {
 
 ![en-us_image_borderImageGradient](figures/borderImageGradient.png)
 
-### Example 2
+### Example 2: Dynamically Adjusting Property Values
+
+This example demonstrates how to dynamically adjust the properties of the **borderImage** API using the **slider** component.
 
 ```ts
 // xxx.ets
@@ -183,12 +186,12 @@ struct BorderImage {
 
 ![borderImage](figures/borderImage.gif)
 
-### Example 3
+### Example 3: Using LocalizedEdgeWidths Type Values
+
+This example demonstrates how to use the [LocalizedEdgeWidths](ts-types.md#localizededgewidths12) type for the **slice**, **width**, and **outset** properties in the **borderImage** API.
 
 ```ts
 // xxx.ets
-// The slice, width, and outset attributes of borderImage use the LocalizedEdgeWidths type.
-
 import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry

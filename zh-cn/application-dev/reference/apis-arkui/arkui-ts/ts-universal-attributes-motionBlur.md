@@ -6,10 +6,9 @@
 >
 >  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
-
 ## motionBlur
 
-motionBlur(motionBlur: Optional\<MotionBlurOptions>)
+motionBlur(value: MotionBlurOptions)
 
 在当前组件由缩放大小或位移变化引起的运动过程中，增加动态模糊效果。
 
@@ -29,9 +28,35 @@ motionBlur(motionBlur: Optional\<MotionBlurOptions>)
 
 **参数：** 
 
-| 参数名                | 类型                                            | 必填 | 说明               |
-| --------------------- | ----------------------------------------------- | ---- | ------------------ |
-| Optional\<motionBlur> | [MotionBlurOptions](#motionbluroptions对象说明) | 是   | 定义运动模糊参数。 |
+| 参数名 | 类型                                            | 必填 | 说明               |
+| ------ | ----------------------------------------------- | ---- | ------------------ |
+| value  | [MotionBlurOptions](#motionbluroptions对象说明) | 是   | 定义运动模糊参数。 |
+
+## motionBlur<sup>16+</sup>
+
+motionBlur(motionBlur: Optional\<MotionBlurOptions>)
+
+在当前组件由缩放大小或位移变化引起的运动过程中，增加动态模糊效果。与[motionBlur](#motionblur)相比，motionBlur参数新增了对undefined类型的支持。
+
+1、不建议在组件内转场、共享元素转场、组件内隐式元素转场、粒子动画场景下使用该属性，否则会有非预期效果。
+
+2、该属性需要在开始状态将motionBlur的参数radius设置为0，否则冷启动时会有非预期效果。
+
+3、该属性需要与动画的AnimateParam的onFinish参数配合使用,需要在运动模糊动画结束后将motionBlur的参数radius置为0，否则会有非预期效果。
+
+4、在使用该属性过程中，不要在使用过程中频繁更改同一个组件的模糊半径，否则会有非预期效果。比如示例中的动画，频繁点击会出现模糊效果偶尔失效的情况。
+
+5、运动模糊锚点坐标需要与动画缩放的锚点保持一致，否则会有非预期效果。
+
+6、模糊半径建议设置1以内，否则会有非预期效果。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：** 
+
+|            |                                                            |      |                                                              |
+| ---------- | ---------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| motionBlur | Optional\<[MotionBlurOptions](#motionbluroptions对象说明)> | 是   | 定义运动模糊参数。<br/>当motionBlur的值为undefined时，维持之前取值。 |
 
 ## MotionBlurOptions对象说明
 

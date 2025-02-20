@@ -1,7 +1,7 @@
 # \@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化
 
 
-上文所述的装饰器仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
+上文所述的装饰器（包括[\@State](./arkts-state.md)、[\@Prop](./arkts-prop.md)、[\@Link](./arkts-link.md)、[\@Provide和\@Consume](./arkts-provide-and-consume.md)装饰器）仅能观察到第一层的变化，但是在实际应用开发中，应用会根据开发需要，封装自己的数据模型。对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。这就引出了\@Observed/\@ObjectLink装饰器。
 
 \@Observed/\@ObjectLink配套使用是用于嵌套场景的观察，主要是为了弥补装饰器仅能观察一层的能力限制，开发者最好对装饰器的基本观察能力有一定的了解，再来对比阅读该文档。建议提前阅读：[\@State](./arkts-state.md)的基本用法。
 
@@ -15,7 +15,7 @@
 
 \@ObjectLink和\@Observed类装饰器用于在涉及嵌套对象或数组的场景中进行双向数据同步：
 
-- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化；
+- 使用new创建被\@Observed装饰的类，可以被观察到属性的变化。
 
 - 子组件中\@ObjectLink装饰器装饰的状态变量用于接收\@Observed装饰的类的实例，和父组件中对应的状态变量建立双向数据绑定。这个实例可以是数组中的被\@Observed装饰的项，或者是class object中的属性，这个属性同样也需要被\@Observed装饰。
 
@@ -26,12 +26,12 @@
 
 | \@Observed类装饰器 | 说明                                |
 | -------------- | --------------------------------- |
-| 装饰器参数          | 无                                 |
+| 装饰器参数          | 无。                                 |
 | 类装饰器           | 装饰class。需要放在class的定义前，使用new创建类对象。 |
 
 | \@ObjectLink变量装饰器 | 说明                                       |
 | ----------------- | ---------------------------------------- |
-| 装饰器参数             | 无                                        |
+| 装饰器参数             | 无。                                       |
 | 允许装饰的变量类型         | 必须为被\@Observed装饰的class实例，必须指定类型。<br/>\@ObjectLink不支持简单类型，如果开发者需要使用简单类型，可以使用[\@Prop](arkts-prop.md)。<br/>支持继承Date、[Array](#二维数组)的class实例，API11及以上支持继承[Map](#继承map类)、[Set](#继承set类)的class实例。示例见[观察变化](#观察变化)。<br/>API11及以上支持\@Observed装饰类和undefined或null组成的联合类型，比如ClassA \| ClassB, ClassA \| undefined 或者 ClassA \| null, 示例见[@ObjectLink支持联合类型](#objectlink支持联合类型)。<br/>\@ObjectLink的属性是可以改变的，但是变量的分配是不允许的，也就是说这个装饰器装饰变量是只读的，不能被改变。 |
 | 被装饰变量的初始值         | 不允许。                                     |
 
@@ -49,7 +49,7 @@ this.objLink= ...
 >
 > \@ObjectLink装饰的变量不能被赋值，如果要使用赋值操作，请使用[@Prop](arkts-prop.md)。
 >
-> - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖；
+> - \@Prop装饰的变量和数据源的关系是是单向同步，\@Prop装饰的变量在本地拷贝了数据源，所以它允许本地更改，如果父组件中的数据源有更新，\@Prop装饰的变量本地的修改将被覆盖。
 >
 > - \@ObjectLink装饰的变量和数据源的关系是双向同步，\@ObjectLink装饰的变量相当于指向数据源的指针。禁止对\@ObjectLink装饰的变量赋值，如果一旦发生\@ObjectLink装饰的变量的赋值，则同步链将被打断。因为\@ObjectLink装饰的变量通过数据源（Object）引用来初始化。对于实现双向数据同步的@ObjectLink，赋值相当于更新父组件中的数组项或者class的属性，TypeScript/JavaScript不能实现，会发生运行时报错。
 
@@ -102,14 +102,14 @@ class Parent {
 
 
 ```ts
-@ObjectLink parent: Parent
+@ObjectLink parent: Parent;
 
 // 赋值变化可以被观察到
-this.parent.child = new Child(5)
-this.parent.count = 5
+this.parent.child = new Child(5);
+this.parent.count = 5;
 
 // Child没有被@Observed装饰，其属性的变化观察不到
-this.parent.child.num = 5
+this.parent.child.num = 5;
 ```
 
 \@ObjectLink：\@ObjectLink只能接收被\@Observed装饰class的实例，推荐设计单独的自定义组件来渲染每一个数组或对象。此时，对象数组或嵌套对象（属性是对象的对象称为嵌套对象）需要两个自定义组件，一个自定义组件呈现外部数组/对象，另一个自定义组件呈现嵌套在数组/对象内的类对象。可以观察到：
@@ -124,7 +124,7 @@ this.parent.child.num = 5
 @Observed
 class DateClass extends Date {
   constructor(args: number | string) {
-    super(args)
+    super(args);
   }
 }
 
@@ -187,8 +187,10 @@ struct Parent {
 ### 框架行为
 
 1. 初始渲染：
-   1. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
-   2. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
+
+   a. \@Observed装饰的class的实例会被不透明的代理对象包装，代理了class上的属性的setter和getter方法。
+
+   b. 子组件中\@ObjectLink装饰的从父组件初始化，接收被\@Observed装饰的class的实例，\@ObjectLink的包装类会将自己注册给\@Observed class。
 
 2. 属性更新：当\@Observed装饰的class属性改变时，会执行到代理的setter和getter，然后遍历依赖它的\@ObjectLink包装类，通知数据更新。
 
@@ -201,139 +203,140 @@ struct Parent {
 
 3. \@ObjectLink装饰的变量类型需要为显式的被@Observed装饰的类，如果未指定类型，或其不是\@Observed装饰的class，编译期会报错。
 
-```ts
-@Observed
-class Info {
-  count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-  constructor(count: number) {
-    this.count = count;
+    constructor(count: number) {
+      this.count = count;
+    }
   }
-}
 
-class Test {
-  msg: number;
+  class Test {
+    msg: number;
 
-  constructor(msg: number) {
-    this.msg = msg;
+    constructor(msg: number) {
+      this.msg = msg;
+    }
   }
-}
 
-// 错误写法，编译报错
-@ObjectLink count;
-@ObjectLink test: Test;
+  // 错误写法，count未指定类型，编译报错
+  @ObjectLink count;
+  // 错误写法，Test未被@Observed装饰，编译报错
+  @ObjectLink test: Test;
 
-// 正确写法
-@ObjectLink count: Info;
-```
+  // 正确写法
+  @ObjectLink count: Info;
+  ```
 
 4. \@ObjectLink装饰的变量不能本地初始化，仅能通过构造参数从父组件传入初始值，否则编译期会报错。
 
-```ts
-@Observed
-class Info {
-  count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-  constructor(count: number) {
-    this.count = count;
+    constructor(count: number) {
+      this.count = count;
+    }
   }
-}
 
-// 错误写法，编译报错
-@ObjectLink count: Info = new Info(10);
+  // 错误写法，编译报错
+  @ObjectLink count: Info = new Info(10);
 
-// 正确写法
-@ObjectLink count: Info;
-```
+  // 正确写法
+  @ObjectLink count: Info;
+  ```
 
 5. \@ObjectLink装饰的变量是只读的，不能被赋值，否则会有运行时报错提示Cannot set property when setter is undefined。如果需要对\@ObjectLink装饰的变量进行整体替换，可以在父组件对其进行整体替换。
 
-【反例】
+  【反例】
 
-```ts
-@Observed
-class Info {
-  count: number;
+  ```ts
+  @Observed
+  class Info {
+    count: number;
 
-  constructor(count: number) {
-    this.count = count;
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink num: Info;
-
-  build() {
-    Column() {
-      Text(`num的值: ${this.num.count}`)
-        .onClick(() => {
-          // 错误写法，@ObjectLink装饰的变量不能被赋值
-          this.num = new Info(10);
-        })
+    constructor(count: number) {
+      this.count = count;
     }
   }
-}
 
-@Entry
-@Component
-struct Parent {
-  @State num: Info = new Info(10);
+  @Component
+  struct Child {
+    @ObjectLink num: Info;
 
-  build() {
-    Column() {
-      Text(`count的值: ${this.num.count}`)
-      Child({num: this.num})
+    build() {
+      Column() {
+        Text(`num的值: ${this.num.count}`)
+          .onClick(() => {
+            // 错误写法，@ObjectLink装饰的变量不能被赋值
+            this.num = new Info(10);
+          })
+      }
     }
   }
-}
-```
 
-【正例】
+  @Entry
+  @Component
+  struct Parent {
+    @State num: Info = new Info(10);
 
-```ts
-@Observed
-class Info {
-  count: number;
-
-  constructor(count: number) {
-    this.count = count;
-  }
-}
-
-@Component
-struct Child {
-  @ObjectLink num: Info;
-
-  build() {
-    Column() {
-      Text(`num的值: ${this.num.count}`)
-        .onClick(() => {
-          // 正确写法，可以更改@ObjectLink装饰变量的成员属性
-          this.num.count = 20;
-        })
+    build() {
+      Column() {
+        Text(`count的值: ${this.num.count}`)
+        Child({num: this.num})
+      }
     }
   }
-}
+  ```
 
-@Entry
-@Component
-struct Parent {
-  @State num: Info = new Info(10);
+  【正例】
 
-  build() {
-    Column() {
-      Text(`count的值: ${this.num.count}`)
-      Button('click')
-        .onClick(() => {
-          // 可以在父组件做整体替换
-          this.num = new Info(30);
-        })
-      Child({num: this.num})
+  ```ts
+  @Observed
+  class Info {
+    count: number;
+
+    constructor(count: number) {
+      this.count = count;
     }
   }
-}
-```
+
+  @Component
+  struct Child {
+    @ObjectLink num: Info;
+
+    build() {
+      Column() {
+        Text(`num的值: ${this.num.count}`)
+          .onClick(() => {
+            // 正确写法，可以更改@ObjectLink装饰变量的成员属性
+            this.num.count = 20;
+          })
+      }
+    }
+  }
+
+  @Entry
+  @Component
+  struct Parent {
+    @State num: Info = new Info(10);
+
+    build() {
+      Column() {
+        Text(`count的值: ${this.num.count}`)
+        Button('click')
+          .onClick(() => {
+            // 可以在父组件做整体替换
+            this.num = new Info(30);
+          })
+        Child({num: this.num})
+      }
+    }
+  }
+  ```
 
 
 ## 使用场景
@@ -438,7 +441,7 @@ struct Father {
           .margin(10)
           .onClick(() => {
             this.bookName.size += 1;
-            console.log('this.bookName.size:' + this.bookName.size)
+            console.log('this.bookName.size:' + this.bookName.size);
           })
       }
       .width(320)
@@ -463,8 +466,8 @@ struct GrandFather {
         .backgroundColor('#ff17a98d')
         .margin(10)
         .onClick(() => {
-          this.child.bookName.size += 10
-          console.log('this.child.bookName.size:' + this.child.bookName.size)
+          this.child.bookName.size += 10;
+          console.log('this.child.bookName.size:' + this.child.bookName.size);
         })
       Button(`GrandFather: this.user.bag = new Bag(10)`)
         .width(320)
@@ -571,16 +574,16 @@ struct Parent {
         .width(320)
         .margin(10)
         .onClick(() => {
-          this.arrA.push(new Info(0))
+          this.arrA.push(new Info(0));
         })
       Button(`ViewParent: shift`)
         .width(320)
         .margin(10)
         .onClick(() => {
           if (this.arrA.length > 0) {
-            this.arrA.shift()
+            this.arrA.shift();
           } else {
-            console.log("length <= 0")
+            console.log("length <= 0");
           }
         })
       Button(`ViewParent: item property in middle`)
@@ -620,36 +623,36 @@ struct Parent {
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 ```
 
-使用new StringArray()来构造StringArray的实例，new运算符使得\@Observed生效，\@Observed观察到StringArray的属性变化。
+声明一个继承自Array的类ObservedArray\<T\>并使用new操作符创建ObservedArray\<string\>的实例。通过new操作符创建的ObservedArray的实例可以观察到属性变化。
 
-声明一个从Array扩展的类class StringArray extends Array&lt;string&gt; {}，并创建StringArray的实例。\@Observed装饰的类需要使用new运算符来构建class实例。
-
+在下面的示例中，展示了如何利用\@Observed观察二维数组的变化。
 
 ```ts
 @Observed
-class StringArray extends Array<string> {
+class ObservedArray<T> extends Array<T> {
+  constructor(args: T[]) {
+    super(...args);
+  }
 }
 
 @Component
-struct ItemPage {
-  @ObjectLink itemArr: StringArray;
+struct Item {
+  @ObjectLink itemArr: ObservedArray<string>;
 
   build() {
     Row() {
-      Text('ItemPage')
-        .width(100).height(100)
-
-      ForEach(this.itemArr,
-        (item: string | Resource) => {
-          Text(item)
-            .width(100).height(100)
-        },
-        (item: string) => item
-      )
+      ForEach(this.itemArr, (item: string, index: number) => {
+        Text(`${index}: ${item}`)
+          .width(100)
+          .height(100)
+      }, (item: string) => item)
     }
   }
 }
@@ -657,39 +660,38 @@ struct ItemPage {
 @Entry
 @Component
 struct IndexPage {
-  @State arr: Array<StringArray> = [new StringArray(), new StringArray(), new StringArray()];
+  @State arr: Array<ObservedArray<string>> = [new ObservedArray<string>(['apple']), new ObservedArray<string>(['banana']), new ObservedArray<string>(['orange'])];
 
   build() {
     Column() {
-      ItemPage({ itemArr: this.arr[0] })
-      ItemPage({ itemArr: this.arr[1] })
-      ItemPage({ itemArr: this.arr[2] })
-      Divider()
-
-
-      ForEach(this.arr,
-        (itemArr: StringArray) => {
-          ItemPage({ itemArr: itemArr })
-        },
-        (itemArr: StringArray) => itemArr[0]
-      )
+      ForEach(this.arr, (itemArr: ObservedArray<string>) => {
+        Item({ itemArr: itemArr })
+      })
 
       Divider()
 
-      Button('update')
+      Button('push two-dimensional array item')
+        .margin(10)
         .onClick(() => {
-          console.error('Update all items in arr');
-          if ((this.arr[0] as StringArray)[0] !== undefined) {
-            // 正常情况下需要有一个真实的ID来与ForEach一起使用，但此处没有
-            // 因此需要确保推送的字符串是唯一的。
-            this.arr[0].push(`${this.arr[0].slice(-1).pop()}${this.arr[0].slice(-1).pop()}`);
-            this.arr[1].push(`${this.arr[1].slice(-1).pop()}${this.arr[1].slice(-1).pop()}`);
-            this.arr[2].push(`${this.arr[2].slice(-1).pop()}${this.arr[2].slice(-1).pop()}`);
-          } else {
-            this.arr[0].push('Hello');
-            this.arr[1].push('World');
-            this.arr[2].push('!');
-          }
+          this.arr[0].push('strawberry');
+        })
+
+      Button('push array item')
+        .margin(10)
+        .onClick(() => {
+          this.arr.push(new ObservedArray<string>(['pear']));
+        })
+
+      Button('change two-dimensional array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0][0] = 'APPLE';
+        })
+
+      Button('change array first item')
+        .margin(10)
+        .onClick(() => {
+          this.arr[0] = new ObservedArray<string>(['watermelon']);
         })
     }
   }
@@ -749,7 +751,7 @@ struct MapSampleNested {
 
 @Component
 struct MapSampleNestedChild {
-  @ObjectLink myMap: MyMap<number, string>
+  @ObjectLink myMap: MyMap<number, string>;
 
   build() {
     Row() {
@@ -764,25 +766,25 @@ struct MapSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(4, "d")
+            this.myMap.set(4, "d");
           })
         Button('clear')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.clear()
+            this.myMap.clear();
           })
         Button('replace the first one')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.set(0, "aa")
+            this.myMap.set(0, "aa");
           })
         Button('delete the first one')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.myMap.delete(0)
+            this.myMap.delete(0);
           })
       }
       .width('100%')
@@ -845,7 +847,7 @@ struct SetSampleNested {
 
 @Component
 struct SetSampleNestedChild {
-  @ObjectLink mySet: MySet<number>
+  @ObjectLink mySet: MySet<number>;
 
   build() {
     Row() {
@@ -858,19 +860,19 @@ struct SetSampleNestedChild {
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.mySet.add(5)
+            this.mySet.add(5);
           })
         Button('clear')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.mySet.clear()
+            this.mySet.clear();
           })
         Button('delete the first one')
           .width(200)
           .margin(10)
           .onClick(() => {
-            this.mySet.delete(0)
+            this.mySet.delete(0);
           })
       }
       .width('100%')
@@ -908,40 +910,44 @@ class Data {
 @Entry
 @Component
 struct Parent {
-  @State count: Source | Data | undefined = new Source(10)
+  @State count: Source | Data | undefined = new Source(10);
 
   build() {
     Column() {
       Child({ count: this.count })
 
       Button('change count property')
+        .margin(10)
         .onClick(() => {
           // 判断count的类型，做属性的更新
           if (this.count instanceof Source) {
-            this.count.source += 1
+            this.count.source += 1;
           } else if (this.count instanceof Data) {
-            this.count.data += 1
+            this.count.data += 1;
           } else {
-            console.info('count is undefined, cannot change property')
+            console.info('count is undefined, cannot change property');
           }
         })
 
       Button('change count to Source')
+        .margin(10)
         .onClick(() => {
           // 赋值为Source的实例
-          this.count = new Source(100)
+          this.count = new Source(100);
         })
 
       Button('change count to Data')
+        .margin(10)
         .onClick(() => {
           // 赋值为Data的实例
-          this.count = new Data(100)
+          this.count = new Data(100);
         })
 
       Button('change count to undefined')
+        .margin(10)
         .onClick(() => {
           // 赋值为undefined
-          this.count = undefined
+          this.count = undefined;
         })
     }.width('100%')
   }
@@ -949,13 +955,14 @@ struct Parent {
 
 @Component
 struct Child {
-  @ObjectLink count: Source | Data | undefined
+  @ObjectLink count: Source | Data | undefined;
 
   build() {
     Column() {
       Text(`count is instanceof ${this.count instanceof Source ? 'Source' :
         this.count instanceof Data ? 'Data' : 'undefined'}`)
         .fontSize(30)
+        .margin(10)
 
       Text(`count's property is  ${this.count instanceof Source ? this.count.source : this.count?.data}`).fontSize(15)
 

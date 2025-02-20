@@ -11,7 +11,6 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 
 1. 在entry模块的module.json5文件中配置[querySchemes](../quick-start/module-configuration-file.md)属性，声明想要查询的URL scheme。
 
-    **配置示例**
     ```json
     {
       "module": {
@@ -26,7 +25,6 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 2. 导入ohos.bundle.bundleManager模块。 
 3. 调用canOpenLink接口。
 
-    **示例**
     ```ts
     import { bundleManager } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -44,7 +42,6 @@ canOpenLink是[bundleManager](../reference/apis-ability-kit/js-apis-bundleManage
 ### 目标方操作步骤
 在module.json5文件中配置[uris](../quick-start/module-configuration-file.md#skills标签)属性。
 
-**配置示例**
 ```json
 {
   "module": {

@@ -467,6 +467,93 @@ struct Parent {
 }
 ```
 
+In V1, the child component can modify the variables of \@Prop. These variables are updated only locally and are not synchronized to the parent component. When the data source of the parent component is updated, the child component is notified of the update and its local values of \@Prop are overwritten.
+
+V1:
+- If **localValue** of the child component **Child** is changed, the change is not synchronized to the parent component **Parent**.
+- When the parent component updates the value, **Child** is notified of the update and its local values of **localValue** are overwritten.
+
+```ts
+@Component
+struct Child {
+  @Prop localValue: number = 0;
+
+  build() {
+    Column() {
+      Text(`${this.localValue}`).fontSize(25)
+      Button('Child +100')
+        .onClick(() => {
+          // The change of localValue is not synchronized to Parent.
+          this.localValue += 100;
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct Parent {
+  @State value: number = 10;
+  build() {
+    Column() {
+      Button('Parent +1')
+        .onClick(() => {
+          // Change the value and notify Child of the update.
+          this.value += 1;
+        })
+      Child({ localValue: this.value })
+    }
+  }
+}
+```
+In V2, \@Param cannot be written locally. When used together with \@Once, it is synchronized only once. To make the child component writable locally and ensure that the parent component can notify the child component of the update, you can use \@Monitor.
+
+V2:
+- When **Parent** is updated, it notifies the child component of the value update and calls back the **onValueChange** callback decorated by \@Monitor. This callback assigns the updated value to **localValue**.
+- If the value of **localValue** is changed, the change is not synchronized to **Parent**.
+- If value is changed again in **Parent**, the child component is notified of the change and its **localValue** is overwritten.
+
+```ts
+@ComponentV2
+struct Child {
+  @Local localValue: number = 0;
+  @Param value: number = 0;
+  @Monitor('value')
+  onValueChange(mon: IMonitor) {
+    console.info(`value has been changed from ${mon.value()?.before} to ${mon.value()?.now}`);
+    // When the value of the Parent changes, Child is notified of the value update and the Monitor function is called back to overwrite the updated value to the local value.
+    this.localValue = this.value;
+  }
+
+  build() {
+    Column() {
+      Text(`${this.localValue}`).fontSize(25)
+      Button('Child +100')
+        .onClick(() => {
+          // The change of localValue is not synchronized to Parent.
+          this.localValue += 100;
+        })
+    }
+  }
+}
+
+@Entry
+@ComponentV2
+struct Parent {
+  @Local value: number = 10;
+  build() {
+    Column() {
+      Button('Parent +1')
+        .onClick(() => {
+          // Change the value and notify Child of the update.
+          this.value += 1;
+        })
+      Child({ value: this.value })
+    }
+  }
+}
+```
+
 ### @ObjectLink/@Observed/@Track -> @ObservedV2/@Trace
 #### Migration Rules
 In V1, the @Observed and @ObjectLink decorators are used to observe the changes of class objects and their nested properties. However, V1 can only directly observe the top-level object properties. The properties of nested objects must be observed through custom components and @ObjectLink. In addition, V1 provides the @Track decorator to implement precise control over property level changes.
@@ -1096,24 +1183,29 @@ export default class EntryAbility extends UIAbility {
   }
 }
 ```
+The following examples show that \@LocalStorageLink is used to synchronize local changes to **LocalStorage**.
 
 ```
 // Page1.ets
-import { router } from '@kit.ArkUI';
-
 // Use the getShared API to obtain the LocalStorage instance shared by stage.
 @Entry(LocalStorage.getShared())
 @Component
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
+  pageStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.count}`)
-        .fontSize(50)
-      Button('push to Page2')
-        .onClick(() => {
-          router.pushUrl({url: 'pages/Page2'});
-        })
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
     }
   }
 }
@@ -1121,17 +1213,45 @@ struct Page1 {
 
 ```
 // Page2.ets
-// Use the getShared API to obtain the LocalStorage instance shared by stage.
-@Entry(LocalStorage.getShared())
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+// The Page2 component obtains the LocalStorage instance of the parent component Page1.
 @Component
 struct Page2 {
   @LocalStorageLink('count') count: number = 0;
+  pathStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.count}`)
-        .fontSize(50)
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+      }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
   }
+}
+```
+When using **Navigation**, you need to add the **route_map.json** file to the **src/main/resources/base/profile** directory, replace the value of **pageSourceFile** with the path of **Page2**, and add **"routerMap": "$profile: route_map"** to the **module.json5** file.
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
 }
 ```
 V2:
@@ -1155,21 +1275,26 @@ export class MyStorage {
 
 ```
 // Page1.ets
-import { router } from '@kit.ArkUI';
 import { MyStorage } from './storage';
 
 @Entry
 @ComponentV2
 struct Page1 {
   storage: MyStorage = MyStorage.instance();
+  pageStack: NavPathStack = new NavPathStack();
   build() {
-    Column() {
-      Text(`${this.storage.count}`)
-        .fontSize(50)
-      Button('push to Page2')
-        .onClick(() => {
-          router.pushUrl({url: 'pages/Page2'});
-        })
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.storage.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.storage.count++;
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
     }
   }
 }
@@ -1179,16 +1304,197 @@ struct Page1 {
 // Page2.ets
 import { MyStorage } from './storage';
 
-@Entry
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
 @ComponentV2
 struct Page2 {
   storage: MyStorage = MyStorage.instance();
-    build() {
+  pathStack: NavPathStack = new NavPathStack();
+  build() {
+    NavDestination() {
       Column() {
         Text(`${this.storage.count}`)
           .fontSize(50)
+          .onClick(() => {
+            this.storage.count++;
+          })
       }
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+When using **Navigation**, you need to add the **route_map.json** file to the **src/main/resources/base/profile** directory, replace the value of **pageSourceFile** with the path of **Page2**, and add **"routerMap": "$profile: route_map"** to the **module.json5** file.
+```json
+{
+  "routerMap": [
+    {
+      "name": "Page2",
+      "pageSourceFile": "src/main/ets/pages/Page2.ets",
+      "buildFunction": "Page2Builder",
+      "data": {
+        "description" : "LocalStorage example"
+      }
+    }
+  ]
+}
+```
+
+If you do not want to synchronize the local change back to **LocalStorage**, see the following example:
+- Change the value of **count** in **Page1**. Because **count** is decorated by \@LocalStorageProp, the change takes effect only locally and is not synchronized to **LocalStorage**.
+- Click **push to Page2** to redirect to **Page2**. Changing the value of **count** in **Page1** does not synchronize to **LocalStorage**. Therefore, the **Text** component still displays its original value **47** in **Page2**.
+- Click **change Storage Count**, call **setOrCreate** of **LocalStorage**, change the value of **count**, and notify all variables bound to the **key**.
+
+```ts
+// Page1.ets
+export let storage: LocalStorage = new LocalStorage();
+storage.setOrCreate('count', 47);
+
+@Entry(storage)
+@Component
+struct Page1 {
+  @LocalStorageProp('count') count: number = 0;
+  pageStack: NavPathStack = new NavPathStack();
+  build() {
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            storage.setOrCreate('count', storage.get<number>('count') as number + 100);
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
+    }
+  }
+}
+```
+
+```ts
+// Page2.ets
+import { storage } from './Page1'
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+// The Page2 component obtains the LocalStorage instance of the parent component Page1.
+@Component
+struct Page2 {
+  @LocalStorageProp('count') count: number = 0;
+  pathStack: NavPathStack = new NavPathStack();
+  build() {
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            storage.setOrCreate('count', storage.get<number>('count') as number + 100);
+          })
+      }
+    }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
+}
+```
+In V2, you can use \@Local and \@Monitor to achieve similar effects.
+- The **count** variable decorated by \@Local is the local value of the component, whose change is not synchronized back to **storage**.
+- \@Monitor listens for the change of **storage.count**. When **storage.count** changes, the value of \@Local is changed in the callback function of \@Monitor.
+
+```ts
+// Page1.ets
+import { MyStorage } from './storage';
+
+@Entry
+@ComponentV2
+struct Page1 {
+  storage: MyStorage = MyStorage.instance();
+  pageStack: NavPathStack = new NavPathStack();
+  @Local count: number = this.storage.count;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Page1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+  build() {
+    Navigation(this.pageStack) {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            this.storage.count += 100;
+          })
+        Button('push to Page2')
+          .onClick(() => {
+            this.pageStack.pushPathByName('Page2', null);
+          })
+      }
+    }
+  }
+}
+```
+
+```ts
+// Page2.ets
+import { MyStorage } from './storage';
+
+@Builder
+export function Page2Builder() {
+  Page2()
+}
+
+@ComponentV2
+struct Page2 {
+  storage: MyStorage = MyStorage.instance();
+  pathStack: NavPathStack = new NavPathStack();
+  @Local count: number = this.storage.count;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Page2 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+  build() {
+    NavDestination() {
+      Column() {
+        Text(`${this.count}`)
+          .fontSize(50)
+          .onClick(() => {
+            this.count++;
+          })
+        Button('change Storage Count')
+          .onClick(() => {
+            this.storage.count += 100;
+          })
+      }
+    }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
+  }
 }
 ```
 
@@ -1198,7 +1504,7 @@ To adapt to the scenario where **Navigation** is used, **LocalStorage** supports
 In this scenario, you can use multiple global \@ObservedV2 or \@Trace instances instead.
 
 V1:
-```
+```ts
 let localStorageA: LocalStorage = new LocalStorage();
 localStorageA.setOrCreate('PropA', 'PropA');
 
@@ -1347,7 +1653,7 @@ struct NavigationContentMsgStack {
 V2:
 
 Declare the \@ObservedV2 decorated class to replace **LocalStorage**. The key of **LocalStorage** can be replaced with the \@Trace decorated attribute.
-```
+```ts
 // storage.ets
 @ObservedV2
 export class MyStorageA {
@@ -1378,7 +1684,7 @@ export class MyStorageC extends MyStorageA {
 
 Create the **MyStorageA**, **MyStorageB**, and **MyStorageC** instances in the **pageOneStack**, **pageTwoStack**, and **pageThreeStack** components, and pass the instances to the child component **NavigationContentMsgStack** through \@Param. In this way, the **LocalStorage** instance can be shared in the child component tree.
 
-```
+```ts
 // Index.ets
 import { MyStorageA, MyStorageB, MyStorageC } from './storage';
 
@@ -1529,9 +1835,10 @@ struct NavigationContentMsgStack {
 
 ### AppStorage->AppStorageV2
 In the previous section, the global @ObserveV2 or @Trace reconstruction is not suitable for cross-ability data sharing. In this case, **AppStorageV2** can be used.
+
 V1:
 **AppStorage** is bound to an application process and can share data across abilities.
-Example:
+In the following example, \@StorageLink is used to synchronize local changes to **AppStorage**.
 
 ```
 // EntryAbility Index.ets
@@ -1550,7 +1857,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -1577,7 +1884,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -1613,7 +1920,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -1647,7 +1954,7 @@ struct Index1 {
           })
         Button('Jump to EntryAbility').onClick(() => {
           let wantInfo: Want = {
-            bundleName: 'com.example.myapplication',
+            bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
             abilityName: 'EntryAbility'
           };
           this.context.startAbility(wantInfo);
@@ -1656,12 +1963,171 @@ struct Index1 {
     }
 }
 ```
+
+If you do not want to synchronize local changes to **AppStorage** but the changes of **AppStorage** can be notified to components using \@StorageProp, you can refer to the following examples.
+
+V1:
+
+```ts
+// EntryAbility Index.ets
+import { common, Want } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index {
+  @StorageProp('count') count: number = 0;
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility count: ${this.count}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          AppStorage.setOrCreate('count', AppStorage.get<number>('count') as number + 100);
+        })
+      Button('Jump to EntryAbility1').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
+          abilityName: 'EntryAbility1'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+```ts
+// EntryAbility1 Index1.ets
+import { common, Want } from '@kit.AbilityKit';
+@Entry
+@Component
+struct Index1 {
+  @StorageProp('count') count: number = 0;
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(50)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          AppStorage.setOrCreate('count', AppStorage.get<number>('count') as number + 100);
+        })
+      Button('Jump to EntryAbility').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
+          abilityName: 'EntryAbility'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+V2:
+The following examples show that you can use \@Monitor and \@Local to achieve similar effects.
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+export class MyStorage {
+  @Trace count: number = 0;
+}
+
+@Entry
+@ComponentV2
+struct Index {
+  @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  @Local count: number = this.storage.count;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          this.storage.count += 100;
+        })
+      Button('Jump to EntryAbility1').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
+          abilityName: 'EntryAbility1'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
+```ts
+import { common, Want } from '@kit.AbilityKit';
+import { AppStorageV2 } from '@kit.ArkUI';
+
+@ObservedV2
+export class MyStorage {
+  @Trace count: number = 0;
+}
+
+@Entry
+@ComponentV2
+struct Index1 {
+  @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
+  @Local count: number = this.storage.count;
+  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+
+  @Monitor('storage.count')
+  onCountChange(mon: IMonitor) {
+    console.log(`Index1 ${mon.value()?.before} to ${mon.value()?.now}`);
+    this.count = this.storage.count;
+  }
+
+  build() {
+    Column() {
+      Text(`EntryAbility1 count: ${this.count}`)
+        .fontSize(25)
+        .onClick(() => {
+          this.count++;
+        })
+      Button('change Storage Count')
+        .onClick(() => {
+          this.storage.count += 100;
+        })
+      Button('Jump to EntryAbility').onClick(() => {
+        let wantInfo: Want = {
+          bundleName: 'com.example.myapplication', // Replace it with the bundle name in AppScope/app.json5.
+          abilityName: 'EntryAbility'
+        };
+        this.context.startAbility(wantInfo);
+      })
+    }
+  }
+}
+```
+
 ### Environment -> Ability APIs
 In V1, you can obtain environment variables through **Environment**. However, the result obtained by **Environment** cannot be directly used. You need to use **Environment** together with **AppStorage** to obtain the value of the corresponding environment variable.
 After migration to V2, you can directly obtain the system environment variables through the [config](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#properties) property of **UIAbilityContext** without using **Environment**.
 V1:
 The following uses **languageCode** as an example.
-```
+```ts
 // Save the device language code to AppStorage.
 Environment.envProp('languageCode', 'en');
 
@@ -1746,28 +2212,49 @@ In V1, **PersistentStorage** provides the capability of persisting UI data. In V
 
 For PersistenceV2:
 - The change of the \@Trace decorated property of the \@ObservedV2 object associated with PersistenceV2 triggers the automatic persistency of the entire associated object.
-- You can also call the [PersistenceV2.save](./arkts-new-persistencev2.md#save-persisting-stored-data-manually) and [PersistenceV2.connect](./arkts-new-persistencev2.md#connect-creating-or-obtaining-stored-data) APIs to manually trigger persistent writing and reading.
+- You can also call the [PersistenceV2.save](./arkts-new-persistencev2.md#save-persisting-stored-data-manually) and [PersistenceV2.globalConnect](./arkts-new-persistencev2.md#globalconnect-creating-or-obtaining-stored-data) APIs to manually trigger persistent writing and reading.
 
 V1:
 
-```
-PersistentStorage.persistProp('aProp', 47);
+```ts
+class data {
+  name: string = 'ZhangSan';
+  id: number = 0;
+}
+
+PersistentStorage.persistProp('numProp', 47);
+PersistentStorage.persistProp('dataProp', new data());
 
 @Entry
 @Component
 struct Index {
-  @StorageLink('aProp') aProp: number = 48;
+  @StorageLink('numProp') numProp: number = 48;
+  @StorageLink('dataProp') dataProp: data = new data();
 
   build() {
-    Row() {
-      Column() {
-        // The current result is saved when the application exits. After the restart, the last saved result is displayed.
-        Text(`${this.aProp}`)
-          .onClick(() => {
-            this.aProp += 1;
-          })
-      }
+    Column() {
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`numProp: ${this.numProp}`)
+        .onClick(() => {
+          this.numProp += 1;
+        })
+        .fontSize(30)
+
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.name: ${this.dataProp.name}`)
+        .onClick(() => {
+          this.dataProp.name += 'a';
+        })
+        .fontSize(30)
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.id: ${this.dataProp.id}`)
+        .onClick(() => {
+          this.dataProp.id += 1;
+        })
+        .fontSize(30)
+
     }
+    .width('100%')
   }
 }
 ```
@@ -1775,58 +2262,102 @@ struct Index {
 V2:
 
 The following case shows:
-- Benchmarking against the **PersistentStorage** capability of V1: The change of **aProp** automatically triggers **PersistenceV2**.
-- Enhancing the capability compared with the **PersistentStorage** of V1: The **bProp** is not a state variable and its changes cannot be observed or listened for. However, you can still call the [PersistenceV2.save](./arkts-new-persistencev2.md#save-persisting-stored-data-manually) API for persistency.
-    - Click **aProp** and the UI is re-rendered.
-    - Click **bProp** but the UI is not re-rendered.
-    - Click **save storage** to flush the **PersistentStorage** link data to disks.
-    - Exit and restart the application. The values of **aProp** and **bProp** displayed in the **Text** component are the values changed last time.
-```
-import { PersistenceV2 } from '@kit.ArkUI';
-// Data center.
-@ObservedV2
-class Storage {
-  @Trace aProp: number = 0;
-  bProp: number = 10;
-}
+- The persistent data of **PersistentStorage** is migrated to PersistenceV2. In V2, the data marked by @Trace can be automatically persisted. For non-@Trace data, you need to manually call the **save** API to persist the data.
+- In the following example, the **move** function and the components to display are placed in the same ETS. You can define your own **move()** and place it in a proper position for unified migration.
+```ts
+// Migrate to GlobalConnect.
+import { PersistenceV2, Type } from '@kit.ArkUI';
 
 // Callback used to receive serialization failure.
 PersistenceV2.notifyOnError((key: string, reason: string, msg: string) => {
   console.error(`error key: ${key}, reason: ${reason}, message: ${msg}`);
 });
 
+class Data {
+  name: string = 'ZhangSan';
+  id: number = 0;
+}
+
+@ObservedV2
+class V2Data {
+  @Trace name: string = '';
+  @Trace Id: number = 1;
+}
+
+@ObservedV2
+export class Sample {
+  // Complex objects need to be decorated by @Type to ensure successful serialization.
+  @Type(V2Data)
+  @Trace num: number = 1;
+  @Trace V2: V2Data = new V2Data();
+}
+
+// Auxiliary data used to determine whether data migration is complete
+@ObservedV2
+class StorageState {
+  @Trace isCompleteMoving: boolean = false;
+}
+
+function move() {
+  let movingState = PersistenceV2.globalConnect({type: StorageState, defaultCreator: () => new StorageState()})!;
+  if (!movingState.isCompleteMoving) {
+    PersistentStorage.persistProp('numProp', 47);
+    PersistentStorage.persistProp('dataProp', new Data());
+    let num = AppStorage.get<number>('numProp')!;
+    let V1Data = AppStorage.get<Data>('dataProp')!;
+    PersistentStorage.deleteProp('numProp');
+    PersistentStorage.deleteProp('dataProp');
+
+    // Create the corresponding data in V2.
+    let migrate = PersistenceV2.globalConnect({type: Sample, key: 'connect2', defaultCreator: () => new Sample()})!;  // You can use the default constructor.
+    // For assigned value decorated by @Trace, it is automatically saved. For non-@Trace objects, you can also call save() to save the data, for example, PersistenceV2.save('connect2').
+    migrate.num = num;
+    migrate.V2.name = V1Data.name;
+    migrate.V2.Id = V1Data.id;
+
+    // Set the migration flag to true.
+    movingState.isCompleteMoving = true;
+  }
+}
+
+move();
+
 @Entry
 @ComponentV2
 struct Page1 {
-  // Create a KV pair whose key is Sample in PersistenceV2 (if the key exists, the data in PersistenceV2 is returned) and associate it with prop.
-  @Local storage: Storage = PersistenceV2.connect(Storage, () => new Storage())!;
+  @Local refresh: number = 0;
+  // Use key:connect2 to store data.
+  @Local p: Sample = PersistenceV2.globalConnect({type: Sample, key:'connect2', defaultCreator:() => new Sample()})!;
 
   build() {
-    Column() {
-      Text(`@Trace aProp: ${this.storage.aProp}`)
+    Column({space: 5}) {
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`numProp: ${this.p.num}`)
+        .onClick(() => {
+          this.p.num += 1;
+        })
         .fontSize(30)
-        .onClick(() => {
-          this.storage.aProp++;
-        })
 
-      Text(`bProp:: ${this.storage.bProp}`)
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.name: ${this.p.V2.name}`)
+        .onClick(() => {
+          this.p.V2.name += 'a';
+        })
         .fontSize(30)
+      // The current result is saved when the application exits. After the restart, the last saved result is displayed.
+      Text(`dataProp.id: ${this.p.V2.Id}`)
         .onClick(() => {
-          // The page is not re-rendered, but the value of bProp is changed.
-          this.storage.bProp++;
+          this.p.V2.Id += 1;
         })
-
-      Button('save storage')
-        .onClick(() => {
-          // Different from V1, PersistenceV2 does not depend on the capability of observing state variables. You can perform persistence proactively.
-          PersistenceV2.save(Storage);
-        })
+        .fontSize(30)
     }
+    .width('100%')
   }
 }
 ```
 
 ## Existing Application Migration
+
 For large-scale applications that have been developed using V1, it is unlikely to migrate them from V1 to V2 at a time. Instead, they are migrated in batches and by component. As a result, V1 and V2 have to be used together.
 
 In this case, the parent components are of V1, and the migrated child component are of V2. Take the following components as an example:
@@ -2003,6 +2534,8 @@ You can use [WaterFlowSections](../reference/apis-arkui/arkui-ts/ts-container-wa
 
 Note that the length of **arr** must be the same as the total length of **itemsCount** of all **SectionOptions** in **WaterFlowSections**. Otherwise, **WaterFlow** cannot process the array and the UI cannot be re-rendered.
 
+The following two examples shows buttons **push option**, **splice option**, and **update option** are clicked in sequence.
+
 V1:
 
 In V1, you can use [\@State](./arkts-state.md) to observe the API invoking.
@@ -2065,7 +2598,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
@@ -2149,7 +2682,7 @@ struct WaterFlowSample {
           crossCount: 2,
         };
         this.sections.update(1, section);
-        this.arr = new Array(15).fill(1);
+        this.arr = new Array(16).fill(1);
       })
 
       WaterFlow({ scroller: this.scroller, sections: this.sections }) {
@@ -2291,6 +2824,7 @@ struct MyImage1 {
   @Link modifier: CommonModifier;
 
   build() {
+    // 'app.media.app_icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
     Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }
@@ -2356,6 +2890,7 @@ struct MyImage1 {
   @Param @Require modifier: CommonModifier;
 
   build() {
+    // 'app.media.app_icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
     Image($r('app.media.app_icon'))
       .attributeModifier(this.modifier as MyModifier)
   }

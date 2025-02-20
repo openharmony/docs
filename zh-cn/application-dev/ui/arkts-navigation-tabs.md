@@ -7,6 +7,7 @@
 ## 基本布局
 
   Tabs组件的页面组成包含两个部分，分别是TabContent和TabBar。TabContent是内容页，TabBar是导航页签栏，页面结构如下图所示，根据不同的导航类型，布局会有区别，可以分为底部导航、顶部导航、侧边导航，其导航栏分别位于底部、顶部和侧边。
+
   **图1** Tabs组件布局示意图  
 
 ![tabs-layout](figures/tabs-layout.png)
@@ -80,7 +81,7 @@ Tabs() {
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent的内容：首页、发现、推荐、我的
-  ...
+  // ...
 }
 ```
 
@@ -97,7 +98,7 @@ Tabs({ barPosition: BarPosition.End }) {
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent的内容:关注、视频、游戏、数码、科技、体育、影视
-  ...
+  // ...
 }
 ```
 
@@ -119,7 +120,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent的内容:首页、发现、推荐、我的
-  ...
+  // ...
 }
 .vertical(true)
 .barWidth(100)
@@ -137,6 +138,7 @@ Tabs({ barPosition: BarPosition.Start }) {
 ## 限制导航栏的滑动切换
 
   默认情况下，导航栏都支持滑动切换，在一些内容信息量需要进行多级分类的页面，如支持底部导航+顶部导航组合的情况下，底部导航栏的滑动效果与顶部导航出现冲突，此时需要限制底部导航的滑动，避免引起不好的用户体验。
+  
   **图6** 限制底部导航栏滑动  
 
 ![限制导航](figures/限制导航.gif)
@@ -150,7 +152,7 @@ Tabs({ barPosition: BarPosition.End }) {
     Column(){
       Tabs(){
         // 顶部导航栏内容
-        ...
+        // ...
       }
     }
     .backgroundColor('#ff08a8f1')
@@ -159,7 +161,7 @@ Tabs({ barPosition: BarPosition.End }) {
   .tabBar('首页')
 
   // 其他TabContent内容：发现、推荐、我的
-  ...
+  // ...
 }
 .scrollable(false)
 ```
@@ -180,7 +182,7 @@ Tabs的barMode属性用于控制导航栏是否可以滚动，默认值为BarMod
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
   // TabContent的内容：首页、发现、推荐、我的
-  ...
+  // ...
 }
 .barMode(BarMode.Fixed)
 ```
@@ -201,7 +203,7 @@ Tabs({ barPosition: BarPosition.End }) {
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
   // TabContent的内容：关注、视频、游戏、数码、科技、体育、影视、人文、艺术、自然、军事
-  ...
+  // ...
 }
 .barMode(BarMode.Scrollable)
 ```
@@ -223,6 +225,8 @@ Tabs({ barPosition: BarPosition.Start }) {
 设置自定义导航栏需要使用tabBar的参数，以其支持的CustomBuilder的方式传入自定义的函数组件样式。例如这里声明tabBuilder的自定义函数组件，传入参数包括页签文字title，对应位置index，以及选中状态和未选中状态的图片资源。通过当前活跃的currentIndex和页签对应的targetIndex匹配与否，决定UI显示的样式。
 
 ```ts
+@State currentIndex: number = 0;
+
 @Builder tabBuilder(title: string, targetIndex: number, selectedImg: Resource, normalImg: Resource) {
   Column() {
     Image(this.currentIndex === targetIndex ? selectedImg : normalImg)
@@ -261,18 +265,17 @@ TabContent() {
 
 ![内容页和页签不联动](figures/tabcontent_tabbar_not_sync.gif)
 
-此时需要使用Tabs提供的onChange事件方法，监听索引index的变化，并将当前活跃的index值传递给currentIndex，实现页签的切换。
+此时需要使用Tabs提供的onSelected事件方法，监听索引index的变化，并将选中元素的index值传递给selectIndex，实现页签的切换。
 
 ```ts
 @Entry
 @Component
 struct TabsExample1 {
-  @State currentIndex: number = 2
-
+  @State selectIndex: number = 0
   @Builder tabBuilder(title: string, targetIndex: number) {
     Column() {
       Text(title)
-        .fontColor(this.currentIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+        .fontColor(this.selectIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }
   }
 
@@ -280,25 +283,29 @@ struct TabsExample1 {
     Column() {
       Tabs({ barPosition: BarPosition.End }) {
         TabContent() {
-          ...
+          Text("首页内容").width('100%').height('100%').backgroundColor('rgb(213,213,213)')
+            .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
         }.tabBar(this.tabBuilder('首页', 0))
 
         TabContent() {
-          ...
+          Text("发现内容").width('100%').height('100%').backgroundColor('rgb(112,112,112)')
+            .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
         }.tabBar(this.tabBuilder('发现', 1))
 
         TabContent() {
-          ...
+          Text("推荐内容").width('100%').height('100%').backgroundColor('rgb(39,135,217)')
+            .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
         }.tabBar(this.tabBuilder('推荐', 2))
 
         TabContent() {
-          ...
+          Text("我的内容").width('100%').height('100%').backgroundColor('rgb(0,74,175)')
+            .fontSize(40).fontColor(Color.Black).textAlign(TextAlign.Center)
         }.tabBar(this.tabBuilder('我的', 3))
       }
       .animationDuration(0)
       .backgroundColor('#F1F3F5')
-      .onChange((index: number) => {
-        this.currentIndex = index
+      .onSelected((index: number) => {
+        this.selectIndex = index
       })
     }.width('100%')
   }
@@ -311,14 +318,31 @@ struct TabsExample1 {
 若希望不滑动内容页和点击页签也能实现内容页和页签的切换，可以将currentIndex传给Tabs的index参数，通过改变currentIndex来实现跳转至指定索引值对应的TabContent内容。也可以使用TabsController，TabsController是Tabs组件的控制器，用于控制Tabs组件进行内容页切换。通过TabsController的changeIndex方法来实现跳转至指定索引值对应的TabContent内容。
 ```ts
 @State currentIndex: number = 2
+@State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
 private controller: TabsController = new TabsController()
 
 Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.controller }) {
-  ...
+  // ...
 }
 .height(600)
+.animationMode(this.currentAnimationMode)
 .onChange((index: number) => {
    this.currentIndex = index
+})
+
+Button('动态修改AnimationMode').width('50%').margin({ top: 1 }).height(25)
+  .onClick(()=>{
+    if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+      this.currentAnimationMode = AnimationMode.NO_ANIMATION
+    } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+    } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+      this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+    }
 })
 
 Button('动态修改index').width('50%').margin({ top: 20 })
@@ -340,13 +364,15 @@ Button('changeIndex').width('50%').margin({ top: 20 })
 开发者可以通过Tabs组件的onContentWillChange接口，设置自定义拦截回调函数。拦截回调函数在下一个页面即将展示时被调用，如果回调返回true，新页面可以展示；如果回调返回false，新页面不会展示，仍显示原来页面。
   
 ```ts
-Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {...}
-.onContentWillChange((currentIndex, comingIndex) => {
-  if (comingIndex == 2) {
-    return false
+Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+  // ...
   }
-  return true
-})
+  .onContentWillChange((currentIndex, comingIndex) => {
+    if (comingIndex == 2) {
+      return false
+    }
+    return true
+  })
 ```
   **图13** 支持开发者自定义页面切换拦截事件 
 

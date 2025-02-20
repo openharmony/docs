@@ -59,7 +59,7 @@ Button(label: ResourceStr, options?: ButtonOptions)
 
 | 名称                      | 类型                                          | 必填 | 说明                                                       |
 | ------------------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 14开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 13及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| type                      | [ButtonType](#buttontype枚举说明)             | 否   | 描述按钮显示样式。<br/>默认值：ButtonType.ROUNDED_RECTANGLE。从API version 16开始，ButtonType的默认值修改为ButtonType.ROUNDED_RECTANGLE。API version 15及之前的版本，ButtonType的默认值为ButtonType.Capsule。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | stateEffect               | boolean                                       | 否   | 按钮按下时是否开启按压态显示效果，当设置为false时，按压效果关闭。<br/>默认值：true<br/>**说明：** <br/>当开启按压态显示效果，开发者设置状态样式时，会基于状态样式设置完成后的背景色再进行颜色叠加。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | buttonStyle<sup>11+</sup> | [ButtonStyleMode](#buttonstylemode11枚举说明) | 否   | 描述按钮的样式和重要程度。<br/>默认值：ButtonStyleMode.EMPHASIZED <br/>**说明：**  <br/>按钮重要程度：强调按钮>普通按钮>文字按钮。<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | controlSize<sup>11+</sup> | [ControlSize](#controlsize11枚举说明)         | 否   | 描述按钮的尺寸。<br/>默认值：ControlSize.NORMAL<br/>**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -285,20 +285,48 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------ |
 | modifier  | [ContentModifier\<ButtonConfiguration>](#buttonconfiguration12对象说明) | 是   | 在Button组件上，定制内容区的方法。<br/>modifier: 内容修改器，开发者需要自定义class实现ContentModifier接口。 |
 
+### minFontScale<sup>16+</sup>
+
+minFontScale(scale: number | Resource)
+
+设置文本最小的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最小的字体缩放倍数。<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置的值小于0时，按值为0处理，设置的值大于1，按值为1处理，异常值默认不生效。<br/>倍数设置为0时不显示内容。 |
+
+### maxFontScale<sup>16+</sup>
+
+maxFontScale(scale: number | Resource)
+
+设置文本最大的字体缩放倍数。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                          | 必填 | 说明                                          |
+| ------ | --------------------------------------------- | ---- | --------------------------------------------- |
+| scale  | number \| [Resource](ts-types.md#resource) | 是   | 文本最大的字体缩放倍数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按值为1处理，异常值默认不生效。<br/>未设置最大缩放倍数时，圆形按钮最大缩放倍数为1倍。 |
+
 ## ButtonType枚举说明
-
-**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称      | 说明               |
 | ------- | ------------------ |
-| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
-| Circle  | 圆形按钮。              |
-| Normal  | 普通按钮（默认不带圆角）。      |
-| ROUNDED_RECTANGLE<sup>14+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。 |
+| Capsule | 胶囊型按钮（圆角默认为高度的一半）。**<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| Circle  | 圆形按钮。**<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
+| Normal  | 普通按钮（默认不带圆角）。 **<br>卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。     |
+| ROUNDED_RECTANGLE<sup>15+</sup> | 圆角矩形按钮（默认值：controlSize为NORMAL，圆角大小20vp，controlSize为SMALL，圆角大小14vp）。**<br>卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。**<br>原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 >  **说明：**
 >  - 按钮圆角通过[通用属性borderRadius](ts-universal-attributes-border.md#borderradius)设置。
@@ -331,11 +359,11 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| EMPHASIZED | 强调按钮（用于强调当前操作）。 |
-| NORMAL  | 普通按钮（一般界面操作）。              |
-| TEXTUAL  | 文本按钮（纯文本，无背景颜色）。      |
+| 名称      | 值 | 说明               |
+| ------- | -- |------------------ |
+| NORMAL  | 0 |普通按钮（一般界面操作）。              |
+| EMPHASIZED | 1 |强调按钮（用于强调当前操作）。 |
+| TEXTUAL  | 2 |文本按钮（纯文本，无背景颜色）。      |
 
 ## ControlSize<sup>11+</sup>枚举说明
 
@@ -345,10 +373,10 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| SMALL | 小尺寸按钮。 |
-| NORMAL  | 正常尺寸按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| SMALL | "small" |小尺寸按钮。 |
+| NORMAL  | "normal" |正常尺寸按钮。              |
 
 ## ButtonRole<sup>12+</sup>枚举说明
 
@@ -358,10 +386,10 @@ contentModifier(modifier: ContentModifier\<ButtonConfiguration>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 说明               |
-| ------- | ------------------ |
-| NORMAL | 正常按钮。 |
-| ERROR  | 警示按钮。              |
+| 名称      | 值 |说明               |
+| ------- | -- |------------------ |
+| NORMAL | 0 |正常按钮。 |
+| ERROR  | 1 |警示按钮。              |
 
 ## ButtonConfiguration<sup>12+</sup>对象说明
 

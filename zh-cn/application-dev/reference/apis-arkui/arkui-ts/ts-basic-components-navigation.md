@@ -65,7 +65,7 @@ title(value: ResourceStr | CustomBuilder | NavigationCommonTitle | NavigationCus
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后...截断。如果设置副标题，先缩小最后...截断。 |
+| value   | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup>&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8)&nbsp;\|&nbsp;[NavigationCommonTitle](#navigationcommontitle9)<sup>9+</sup>&nbsp;\|&nbsp;[NavigationCustomTitle](#navigationcustomtitle9)<sup>9+</sup> | 是   | 页面标题，使用NavigationCustomTitle类型设置height高度时，[titleMode](#titlemode)属性不会生效。字符串超长时，如果不设置副标题，先缩小再换行（2行）最后截断。如果设置副标题，先缩小最后截断。 |
 | options | [NavigationTitleOptions](#navigationtitleoptions11)<sup>11+</sup> | 否   | 标题栏选项。                                                   |
 
 ### subTitle<sup>(deprecated)</sup>
@@ -125,7 +125,7 @@ titleMode(value: NavigationTitleMode)
 
 toolBar(value: object | CustomBuilder)
 
-设置工具栏内容。不设置时不显示工具栏。items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后...截断。
+设置工具栏内容。不设置时不显示工具栏。items均分底部工具栏，在每个均分内容区布局文本和图标，文本超长时，逐级缩小，缩小之后换行，最后截断。
 
 从API version 10开始，该接口不再维护，推荐使用[toolbarConfiguration](#toolbarconfiguration10)代替。
 
@@ -164,7 +164,7 @@ toolbarConfiguration(value: Array&lt;ToolbarItem&gt; | CustomBuilder, options?: 
 
 | 参数名  | 类型                                                         | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏时，如果为[Split](#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| value   | &nbsp;Array&lt;[ToolbarItem](#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容，使用Array&lt;[ToolbarItem](#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后截断。<br/>竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。横屏时，如果为[Split](#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | options | [NavigationToolbarOptions](#navigationtoolbaroptions11)<sup>11+</sup> | 否   | 工具栏选项。                                                 |
 
 ### hideToolBar
@@ -454,15 +454,13 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 配置Navigation是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该Navigation，并恢复至异常退出时的页面栈。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | 否   | Navigation是否可恢复，默认为不可恢复。<br/>默认值:false<br/>true:页面栈可恢复。<br/>false:页面栈不可恢复。|
+| recoverable  | Optional&lt;boolean&gt; | 是   | Navigation是否可恢复，默认为不可恢复。<br/>默认值:false<br/>true:页面栈可恢复。<br/>false:页面栈不可恢复。|
 
 >  **使用说明：**
 >
@@ -484,7 +482,7 @@ enableDragBar(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enableDragBar  | Optional&lt;boolean&gt; | 否   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
+| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启拖拽条，默认为无拖拽条样式。<br/>默认值:false<br/>true:有拖拽条样式。<br/>false:无拖拽条样式。|
 
 ### enableModeChangeAnimation<sup>15+</sup>
 
@@ -500,7 +498,23 @@ enableModeChangeAnimation(isEnabled: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| enableModeChangeAnimation  | Optional&lt;boolean&gt; | 否   | 是否开启单双栏切换动效。<br/>默认值:true<br/>true:开启单双栏切换动效。<br/>false:关闭单双栏切换动效。|
+| isEnabled  | Optional&lt;boolean&gt; | 是   | 是否开启单双栏切换动效。<br/>默认值:true<br/>true:开启单双栏切换动效。<br/>false:关闭单双栏切换动效。|
+
+### enableToolBarAdaptation<sup>16+</sup>
+
+enableToolBarAdaptation(enable: Optional&lt;boolean&gt;)
+
+设置是否启用Navigation的工具栏自适应能力。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型         | 必填 | 说明               |
+| ------ | -------------- | ---- | ------------------ |
+| enable  | Optional&lt;boolean&gt; | 是   |是否启用Navigation的工具栏自适应能力。默认值：true。 |
 
 ## 事件
 
@@ -586,6 +600,14 @@ Navigation路由栈，允许被继承<sup>12+</sup>。开发者可以在派生�
 > 例如：在Page1页面先pop再push一个Page1，系统会认为操作前和操作后的结果一致而不进行任何操作，如果需要强行push一个Page1实例，可以使用NEW_INSTANCE模式。
 >
 > 2.不建议开发者通过监听生命周期的方式管理自己的页面栈。
+
+### constructor
+
+constructor()
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### pushPath<sup>10+</sup>
 
@@ -1581,15 +1603,13 @@ Navigation首页名字。
 
 标题栏或工具栏的布局样式。NavDestination的工具栏不支持设置该属性。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称    | 说明 |
 |---------|------|
-|STANDARD | 指定该模式的标题栏或工具栏与内容区采用上下布局。|
-|STACK | 指定该模式的标题栏或工具栏与内容区采用层叠布局，标题栏或工具栏布局在内容区上层。|
-|SAFE_AREA_PADDING<sup>14+</sup> | 将指定该模式的标题栏或工具栏设置为[组件级安全区](./ts-universal-attributes-size.md#safeareapadding14)。|
+|STANDARD | 指定该模式的标题栏或工具栏与内容区采用上下布局。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+|STACK | 指定该模式的标题栏或工具栏与内容区采用层叠布局，标题栏或工具栏布局在内容区上层。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+|SAFE_AREA_PADDING<sup>14+</sup> | 将指定该模式的标题栏或工具栏设置为[组件级安全区](./ts-universal-attributes-size.md#safeareapadding14)。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 ## NavigationTitleOptions<sup>11+</sup>
 
@@ -1608,15 +1628,14 @@ Navigation首页名字。
 
 ## NavigationToolbarOptions<sup>11+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型            | 必填   | 说明              |
 | ------ | ------------- | ---- | --------------- |
-| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。 |
-| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 |
-| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。 |
+| backgroundColor | [ResourceColor](ts-types.md#resourcecolor)  | 否    | 工具栏背景颜色，不设置时为系统默认颜色。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| hideItemValue<sup>16+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。 |
 
 ## LaunchMode<sup>12+</sup>枚举说明
 
@@ -1650,7 +1669,7 @@ type SystemBarStyle = SystemBarStyle
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型     | 说明               |
 | -------- | ------------------ |
@@ -1775,7 +1794,6 @@ struct NavigationExample {
 
 ```ts
 // Index.ets
-
 @Entry
 @Component
 struct NavigationExample {
@@ -2517,7 +2535,6 @@ export class CustomTransition {
 
 ```ts
 // Index.ets
-
 @Entry
 @Component
 struct NavigationExample {
@@ -2697,7 +2714,6 @@ export struct PageOne {
 ```
 ```ts
 // PageTwo.ets
-
 class resultClass {
   constructor(count: number) {
     this.count = count;
@@ -2999,13 +3015,13 @@ struct NavigationExample1 {
 ```
 ```ts
 // PageOne.ets
-  @Builder
-  export function PageOneBuilder(name: string) {
-    NavDestination() {
-      Text("this is " + name)
-    }
-    .title(name)
+@Builder
+export function PageOneBuilder(name: string) {
+  NavDestination() {
+    Text("this is " + name)
   }
+  .title(name)
+}
 ```
 ```json
 // 工程配置文件module.json5中配置 {"routerMap": "$profile:route_map"}

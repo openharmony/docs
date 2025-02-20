@@ -14,12 +14,13 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
 
 **Table 1** Description of [want](../reference/apis-ability-kit/js-apis-app-ability-want.md) in startAbility
 
-| Parameter| Type  | Mandatory| Description                 |
+| Parameter| Type  | Mandatory| Description                                                                                                                                                                                  |
 |----------|--------|----------|----------|
-| uri      | string | Yes      | URI of the file to open. This parameter is used together with **type**.<br>The URI format is file:\/\/bundleName\/path.<br>- **file**: indicates a file URI.<br>- **bundleName**: specifies the owner of the file.<br>- **path**: specifies the application sandbox path of the file. |
-| type     | string | No      | Type of the file to open. [UTD](../database/uniform-data-type-descriptors.md) is recommended, for example, **'general.plain-text'** and **'general.image'**. The [MIME type](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com) is also supported, for example, **'text/xml'** and **'image/*'**.<br/>**NOTE**<br/>1. The **type** field is optional. If it is not passed, the system attempts to match the file type based on the URI suffix. If it is passed, ensure that it is the same as the file type specified in the URI. Otherwise, no proper application can be matched. For details about the mappings between file name extensions and file types, see [Prebuilt UTDs](../database/uniform-data-type-list.md).<br/>2. **\*/\*** is not supported. |
-| parameters | Record<string, Object>       | No        | Custom parameters that are defined by the system and assigned values by developers as required. For details, see Table 2.|
-| flags | number | No| Processing mode. For details, see Table 3.|
+| uri      | string | Yes      | URI of the file to open. This parameter is used together with **type**.<br>The URI format is file:\/\/bundleName\/path.<br>- **file**: indicates a file URI.<br>- **bundleName**: specifies the owner of the file.<br>- **path**: specifies the application sandbox path of the file.|
+| type     | string | No      | Type of the file to open. [UTD](../database/uniform-data-type-descriptors.md) is recommended, for example, **'general.plain-text'** and **'general.image'**. The [MIME type](https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com) is also supported, for example, **'text/xml'** and **'image/*'**.<br>**NOTE**<br>1. The **type** field is optional. If it is not passed, the system attempts to match the file type based on the URI suffix. If it is passed, ensure that it is the same as the file type specified in the URI. Otherwise, no proper application can be matched. For details about the mappings between file name extensions and file types, see [Prebuilt UTDs](../database/uniform-data-type-list.md).<br>2. **\*/\*** is not supported.
+| parameters | Record<string, Object>       | No        | Custom parameters that are defined by the system and assigned values by developers as required. For details, see Table 2.                                                                                                                                                                                      |
+| flags | number | No| Processing mode. For details, see Table 3.                                                                                                                                                                                      |
+
 
 **Table 2** Description of [parameters](../reference/apis-ability-kit/js-apis-app-ability-wantConstant.md#params)
 
@@ -48,6 +49,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     import { fileUri } from '@kit.CoreFileKit';
     import { UIAbility, Want, common, wantConstant } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
+    import { window } from '@kit.ArkUI';
     ```
 
 2. Obtain the [application file paths](application-context-stage.md#obtaining-application-file-paths).
@@ -91,7 +93,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```
 
 4. Call the API to start the target application.
-   
+    
     ```ts
     // xxx.ets
     export default class EntryAbility extends UIAbility {
@@ -165,7 +167,7 @@ You can call [startAbility](../reference/apis-ability-kit/js-apis-inner-applicat
     ```ts
     // xxx.ets
     import fs from '@ohos.file.fs';
-    import { Want } from '@kit.AbilityKit';
+    import { Want, AbilityConstant } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     export default class EntryAbility extends UIAbility {

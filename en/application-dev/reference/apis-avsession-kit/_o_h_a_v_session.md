@@ -5,6 +5,8 @@
 
 The OHAVSession module defines the C APIs of the playback control module.
 
+You can use OHAVSession to access AVSession as a provider. For details about the development guide and samples, see [AVSession Provider](../../media/avsession/using-ohavsession-developer.md).
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Since**: 13

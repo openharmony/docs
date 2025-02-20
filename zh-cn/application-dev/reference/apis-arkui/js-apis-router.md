@@ -64,18 +64,18 @@ pushUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -84,7 +84,7 @@ class routerParams {
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   })
 } catch (err) {
   console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -126,18 +126,18 @@ pushUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -145,7 +145,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -169,7 +169,7 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -197,18 +197,18 @@ pushUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -217,7 +217,7 @@ class routerParams {
 try {
   router.pushUrl({
     url: 'pages/routerpage2',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   }, router.RouterMode.Standard)
 } catch (err) {
   console.error(`pushUrl failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -239,7 +239,7 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -260,18 +260,18 @@ pushUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;voi
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -279,7 +279,7 @@ class routerParams {
 
 router.pushUrl({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
@@ -330,9 +330,9 @@ replaceUrl(options: RouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -381,9 +381,9 @@ replaceUrl(options: RouterOptions, callback: AsyncCallback&lt;void&gt;): void
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -415,7 +415,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -475,7 +475,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [RouterOptions](#routeroptions) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -495,9 +495,9 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -512,7 +512,6 @@ router.replaceUrl({
   }
   console.info('replaceUrl success');
 });
-
 ```
 
 ## router.pushNamedRoute<sup>10+</sup>
@@ -557,18 +556,18 @@ pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -577,7 +576,7 @@ class routerParams {
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   })
 } catch (err) {
   console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -621,18 +620,18 @@ pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;)
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -640,7 +639,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -664,7 +663,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 **返回值：**
 
@@ -692,18 +691,18 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&g
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -712,7 +711,7 @@ class routerParams {
 try {
   router.pushNamedRoute({
     name: 'myPage',
-    params: new routerParams('message' ,[123,456,789])
+    params: new routerParams('message', [123, 456, 789])
   }, router.RouterMode.Standard)
 } catch (err) {
   console.error(`pushNamedRoute failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
@@ -734,7 +733,7 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -755,18 +754,18 @@ pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCal
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -774,7 +773,7 @@ class routerParams {
 
 router.pushNamedRoute({
   name: 'myPage',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 }, router.RouterMode.Standard, (err) => {
   if (err) {
     console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
@@ -825,9 +824,9 @@ replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -876,9 +875,9 @@ replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&g
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -910,7 +909,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 
 
 **返回值：**
@@ -938,9 +937,9 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;voi
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -970,7 +969,7 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
 | options | [NamedRouterOptions](#namedrouteroptions10) | 是    | 替换页面描述信息。  |
-| mode    | [RouterMode](#routermode9枚举说明)      | 是    | 跳转页面使用的模式。 |
+| mode    | [RouterMode](#routermode9)      | 是    | 跳转页面使用的模式。 |
 | callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
 
 **错误码：**
@@ -990,9 +989,9 @@ replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: Async
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }
@@ -1007,7 +1006,6 @@ router.replaceNamedRoute({
   }
   console.info('replaceNamedRoute success');
 });
-
 ```
 
 ## router.back
@@ -1029,7 +1027,7 @@ back(options?: RouterOptions ): void
 **示例：**
 
 ```ts
-router.back({url:'pages/detail'});    
+router.back({ url: 'pages/detail' });
 ```
 
 ## router.back<sup>12+</sup>
@@ -1046,16 +1044,16 @@ back(index: number, params?: Object): void;
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index | number | 是    | 跳转目标页面的索引值。  |
+| index | number | 是    | 跳转目标页面的索引值。 从栈底到栈顶，index从1开始递增。 |
 | params    | Object      | 否    | 页面返回时携带的参数。 |
 
 **示例：**
 
 ```ts
-router.back(1);    
+router.back(1);
 ```
 ```ts
-router.back(1, {info: '来自Home页'}); //携带参数返回
+router.back(1, { info: '来自Home页' }); //携带参数返回
 ```
 
 ## router.clear
@@ -1071,7 +1069,7 @@ clear(): void
 **示例：**
 
 ```ts
-router.clear();    
+router.clear();
 ```
 
 ## router.getLength
@@ -1093,8 +1091,8 @@ getLength(): string
 **示例：**
 
 ```ts
-let size = router.getLength();        
-console.log('pages stack size = ' + size);    
+let size = router.getLength();
+console.log('pages stack size = ' + size);
 ```
 
 ## router.getState
@@ -1136,7 +1134,7 @@ getStateByIndex(index: number): RouterState | undefined
 
 | 参数名     | 类型                              | 必填   | 说明         |
 | ------- | ------------------------------- | ---- | ---------- |
-| index    | number | 是   | 表示要获取的页面索引。  |
+| index    | number | 是   | 表示要获取的页面索引。从栈底到栈顶，index从1开始递增。 |
 
 **返回值：**
 
@@ -1147,7 +1145,7 @@ getStateByIndex(index: number): RouterState | undefined
 **示例：** 
 
 ```ts
-let options:router.RouterState | undefined = router.getStateByIndex(1);
+let options: router.RouterState | undefined = router.getStateByIndex(1);
 if (options != undefined) {
   console.log('index = ' + options.index);
   console.log('name = ' + options.name);
@@ -1180,7 +1178,7 @@ getStateByUrl(url: string): Array&lt;RouterState&gt;
 **示例：** 
 
 ```ts
-let options:Array<router.RouterState> = router.getStateByUrl('pages/index');
+let options: Array<router.RouterState> = router.getStateByUrl('pages/index');
 for (let i: number = 0; i < options.length; i++) {
   console.log('index = ' + options[i].index);
   console.log('name = ' + options[i].name);
@@ -1236,7 +1234,7 @@ try {
   router.showAlertBeforeBackPage({
     message: 'Message Info'
   });
-} catch(err) {
+} catch (err) {
   console.error(`showAlertBeforeBackPage failed, code is ${(err as BusinessError).code}, message is ${(err as BusinessError).message}`);
 }
 ```
@@ -1265,7 +1263,7 @@ hideAlertBeforeBackPage(): void
 **示例：**
 
 ```ts
-router.hideAlertBeforeBackPage();    
+router.hideAlertBeforeBackPage();
 ```
 
 ##  router.getParams
@@ -1294,20 +1292,18 @@ router.getParams();
 
 路由跳转选项。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
+| url    | string | 是   | 表示目标页面的url，可以用以下两种格式：<br/>-&nbsp;页面绝对路径，由配置文件中pages列表提供，例如：<br/>&nbsp;&nbsp;-&nbsp;pages/index/index<br/>&nbsp;&nbsp;-&nbsp;pages/detail/detail<br/>-&nbsp;特殊值，如果url的值是"/"，则跳转到首页，首页默认为页面跳转配置项src数组的第一个数据项。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据，切换到其他页面时，当前接收的数据失效。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。<br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
 
   > **说明：**
   > 页面路由栈支持的最大Page数量为32。
 
-## RouterMode<sup>9+</sup>枚举说明
+## RouterMode<sup>9+</sup>
 
 路由跳转模式。
 
@@ -1324,15 +1320,11 @@ router.getParams();
 
 命名路由跳转选项。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| name   | string | 是   | 表示目标命名路由页面的name。                                 |
-| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 <br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。 |
-| recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 |
+| name   | string | 是   | 表示目标命名路由页面的name。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 <br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Full |
+| params | Object | 否   | 表示路由跳转时要同时传递到目标页面的数据。跳转到目标页面后，使用router.getParams()获取传递的参数，此外，在类web范式中，参数也可以在页面中直接使用，如this.keyValue(keyValue为跳转时params参数中的key值)，如果目标页面中已有该字段，则其值会被传入的字段值覆盖。 <br/>**说明：** <br/>params参数不能传递方法和系统接口返回的对象（例如，媒体接口定义和返回的PixelMap对象）。建议开发者提取系统接口返回的对象中需要被传递的基础类型属性，自行构造object类型对象进行传递。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Full  |
+| recoverable<sup>14+</sup> | boolean | 否   | 表示对应的页面是否可恢复，默认为true，表示可恢复。<br/>**说明：** <br/> 当应用退到后台，并且在未来的某个时间点，由于系统资源限制等原因被系统杀死，如果某个页面被设置成可恢复，那么该应用再次被拉到前台后系统可以恢复出页面，详细说明请参考[UIAbility备份恢复](../../application-models/ability-recover-guideline.md)。 <br/>**系统能力：** SystemCapability.ArkUI.ArkUI.Lite |
 
 ## 完整示例
 
@@ -1379,18 +1371,18 @@ import { BusinessError } from '@kit.BasicServicesKit'
 
 // 定义传递参数的类
 class innerParams {
-  array:number[]
+  array: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.array = tuple
   }
 }
 
 class routerParams {
-  text:string
-  data:innerParams
+  text: string
+  data: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.text = str
     this.data = new innerParams(tuple)
   }
@@ -1400,9 +1392,9 @@ class routerParams {
 @Component
 struct Index {
   async routePage() {
-    let options:router.RouterOptions = {
+    let options: router.RouterOptions = {
       url: 'pages/second',
-      params: new routerParams('这是第一页的值' ,[12, 45, 78])
+      params: new routerParams('这是第一页的值', [12, 45, 78])
     }
     try {
       // 建议使用this.getUIContext().getRouter().pushUrl()
@@ -1439,18 +1431,18 @@ struct Index {
 import { router } from '@kit.ArkUI';
 
 class innerParams {
-  array:number[]
+  array: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.array = tuple
   }
 }
 
 class routerParams {
-  text:string
-  data:innerParams
+  text: string
+  data: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.text = str
     this.data = new innerParams(tuple)
   }
@@ -1508,18 +1500,18 @@ push(options: RouterOptions): void
 
 ```ts
 class innerParams {
-  data3:number[]
+  data3: number[]
 
-  constructor(tuple:number[]) {
+  constructor(tuple: number[]) {
     this.data3 = tuple
   }
 }
 
 class routerParams {
-  data1:string
-  data2:innerParams
+  data1: string
+  data2: innerParams
 
-  constructor(str:string, tuple:number[]) {
+  constructor(str: string, tuple: number[]) {
     this.data1 = str
     this.data2 = new innerParams(tuple)
   }
@@ -1527,7 +1519,7 @@ class routerParams {
 
 router.push({
   url: 'pages/routerpage2',
-  params: new routerParams('message' ,[123,456,789])
+  params: new routerParams('message', [123, 456, 789])
 });
 ```
 
@@ -1551,9 +1543,9 @@ replace(options: RouterOptions): void
 
 ```ts
 class routerParams {
-  data1:string
+  data1: string
 
-  constructor(str:string) {
+  constructor(str: string) {
     this.data1 = str
   }
 }

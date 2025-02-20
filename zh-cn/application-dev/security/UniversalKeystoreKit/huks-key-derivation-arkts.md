@@ -364,7 +364,6 @@ import { huks } from '@kit.UniversalKeystoreKit';
  * 确定密钥别名和封装密钥属性参数集
  */
 let srcKeyAlias = "pbkdf2_Key";
-let password = "myPassword";
 let salt = "mySalt";
 let iterationCount = 10000;
 let derivedKeySize = 32;
@@ -665,7 +664,6 @@ async function testDerive() {
   await publicGenKeyFunc(srcKeyAlias, huksOptions);
   /* 进行派生操作 */
   await publicInitFunc(srcKeyAlias, initOptions);
-  initOptions.inData = StringToUint8Array(password);
   await publicUpdateFunc(handle, initOptions);
   await publicFinishFunc(handle, finishOptions);
   await publicDeleteKeyFunc(srcKeyAlias, huksOptions);

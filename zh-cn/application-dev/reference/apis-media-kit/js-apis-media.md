@@ -125,8 +125,7 @@ createAVRecorder(callback: AsyncCallback\<AVRecorder>): void
 
 > **说明：**
 >
-> - 可创建的音视频录制实例不能超过2个。
-> - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
+> 应用可创建多个音视频录制实例，但由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
@@ -168,8 +167,7 @@ createAVRecorder(): Promise\<AVRecorder>
 
 > **说明：**
 >
-> - 可创建的音视频录制实例不能超过2个。
-> - 由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
+> 应用可创建多个音视频录制实例，但由于设备共用音频通路，一个设备仅能有一个实例进行音频录制。创建第二个实例录制音频时，将会因为音频通路冲突导致创建失败。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -470,7 +468,7 @@ type SoundPool = _SoundPool
 
 | 类型     | 说明                       |
 | -------- | ------------------------------ |
-| [SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
+| [_SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | 音频池，提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能。 |
 
 ## PlayParameters<sup>10+</sup>
 
@@ -482,7 +480,7 @@ type PlayParameters = _PlayParameters
 
 | 类型     | 说明                       |
 | -------- | ------------------------------ |
-| [PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
+| [_PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | 表示音频池播放参数设置。 |
 
 ## AVErrorCode<sup>9+</sup>
 
@@ -505,17 +503,17 @@ type PlayParameters = _PlayParameters
 | AVERR_SERVICE_DIED                    | 5400105 | 表示服务进程死亡。                   |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | 表示不支持当前媒体资源的格式。       |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | 表示音频焦点被抢占                   |
-| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | 表示解析或链接服务端地址错误。        |
-| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | 表示网络连接超时。        |
-| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | 表示网络异常导致的数据或链路异常。        |
-| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | 表示网络被禁用。        |
-| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | 表示无访问权限。        |
-| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | 表示客户端请求参数错误或超出处理能力。        |
-| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | 表示无可用网络资源。        |
-| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | 表示服务端校验客户端证书失败。        |
-| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | 表示SSL连接失败。        |
-| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。        |
-| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。        |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | 表示解析或链接服务端地址错误。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | 表示网络连接超时。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | 表示网络异常导致的数据或链路异常。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | 表示网络被禁用。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | 表示无访问权限。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | 表示客户端请求参数错误或超出处理能力。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | 表示无可用网络资源。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | 表示服务端校验客户端证书失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | 表示SSL连接失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | 表示客户端校验服务端证书失败。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | 表示网络协议的原因导致请求不受支持。 <br> **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。        |
 
 ## MediaType<sup>8+</sup>
 
@@ -548,6 +546,8 @@ Codec MIME类型枚举。
 | AUDIO_FLAC   | 'audio/flac'          | 表示音频/flac类型。      |
 | AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | 表示音频/mpeg类型。      |
 | AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | 表示音频/G711-mulaw类型。 |
+| AUDIO_AMR_NB<sup>16+</sup>   | 'audio/3gpp'     | 表示音频/amr-nb类型。 |
+| AUDIO_AMR_WB<sup>16+</sup>   | 'audio/amr-wb'     | 表示音频/amr-wb类型。 |
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -760,17 +760,17 @@ on(type: 'error', callback: ErrorCallback): void
 | 5400104  | Time out              |
 | 5400105  | Service died.         |
 | 5400106  | Unsupported format.     |
-| 5411001  | Can not find host.    |
-| 5411002  | Connection time out.  |
-| 5411003  | NetWork abnormal.     |
-| 5411004  | NetWork unavailable.  |
-| 5411005  | No permission.        |
-| 5411006  | Network access denied.  |
-| 5411007  | Cannot find available network resources. |
-| 5411008  | SSL client cert needed.    |
-| 5411009  | SSL connection failed.     |
-| 5411010  | SSL server cert needed.    |
-| 5411011  | Unsupportted request.      |
+| 5411001  | IO can not find host.    |
+| 5411002  | IO connection timeout.  |
+| 5411003  | IO network abnormal.     |
+| 5411004  | IO network unavailable.  |
+| 5411005  | IO no permission.        |
+| 5411006  | IO request denied.  |
+| 5411007  | IO resource not found. |
+| 5411008  | IO SSL client cert needed.    |
+| 5411009  | IO SSL connect fail.     |
+| 5411010  | IO SSL server cert untrusted.    |
+| 5411011  | IO unsupported request.      |
 
 **示例：**
 
@@ -840,6 +840,7 @@ setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let player = await media.createAVPlayer();
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
@@ -881,6 +882,7 @@ setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 
@@ -1533,6 +1535,44 @@ media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
 });
 ```
 
+### getPlaybackPosition<sup>16+</sup>
+
+getPlaybackPosition(): number
+
+获取当前播放位置，可以在prepared/playing/paused/completed状态调用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型                                                   | 说明                                              |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| number | 返回当前播放位置的时间，单位：毫秒（ms）。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.prepare().then(() => {
+  console.info('Succeeded in preparing')
+  let playbackPosition: number = avPlayer.getPlaybackPosition()
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+}, (err: BusinessError) => {
+  console.error('Failed to prepare,error message is :' + err.message)
+})
+```
+
 ### selectTrack<sup>12+</sup>
 
 selectTrack(index: number, mode?: SwitchMode): Promise\<void>
@@ -1567,6 +1607,7 @@ selectTrack(index: number, mode?: SwitchMode): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1622,6 +1663,7 @@ deselectTrack(index: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2532,6 +2574,7 @@ addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit'
 
@@ -2572,6 +2615,7 @@ addSubtitleFromUrl(url: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
 
@@ -2782,6 +2826,67 @@ off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
 avPlayer.off('amplitudeUpdate')
 ```
 
+### on('seiMessageReceived')<sup>16+</sup>
+
+on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMessageHandle): void
+
+订阅获取SEI信息事件，仅适用于HTTP-FLV直播，视频流中包含SEI信息时上报。需在prepare之前订阅，当用户重复订阅时，以最后一次订阅的回调接口为准。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | 是 | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
+| payloadTypes | Array\<number> | 是 | SEI信息的订阅负载类型数组。当前仅支持负载类型为5，即payloadType = 5。|
+| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 是 | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+
+**示例：**
+
+```ts
+this.avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+{
+  console.info('seiMessageReceived playbackPosition ' + playbackPosition)
+
+  for (let key = 0; key < messages.length; key++) {
+    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
+    let ab = messages[key].payload.slice(16, messages[key].payload.byteLength)
+    let result: Uint8Array = new Uint8Array(ab)
+    let retStr: string = textDecoder.decodeToString(result)
+    console.info('seiMessageReceived messages payload ' + retStr)
+  }
+});
+```
+
+### off('seiMessageReceived')<sup>16+</sup>
+
+off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiMessageHandle): void
+
+取消订阅获取SEI信息事件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为：'seiMessageReceived'。 |
+| payloadTypes | Array\<number> | 否   | SEI信息的订阅负载类型。 |
+| callback | [OnSeiMessageHandle](#onseimessagehandle16) | 否   | 用于监听SEI信息事件的回调函数，接收订阅的负载类型。 |
+
+**示例：**
+
+```ts
+avPlayer.off('seiMessageReceived')
+```
+
 ## AVPlayerState<sup>9+</sup>
 
 type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
@@ -2794,8 +2899,8 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 
 |              类型               | 说明                                                         |
 | :-----------------------------: | :----------------------------------------------------------- |
-|              'idle'               | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入Idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
-|           'initialized'           | 资源初始化，在Idle 状态设置 url<sup>9+</sup> 或 fdSrc<sup>9+</sup>属性，AVPlayer会进入initialized状态，此时可以配置窗口、音频等静态属性。 |
+|              'idle'               | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
+|           'initialized'           | 资源初始化，在idle 状态设置 url<sup>9+</sup> 或 fdSrc<sup>9+</sup>属性，AVPlayer会进入initialized状态，此时可以配置窗口、音频等静态属性。 |
 |            'prepared'             | 已准备状态，在initialized状态调用[prepare()](#prepare9)方法，AVPlayer会进入prepared状态，此时播放引擎的资源已准备就绪。 |
 |             'playing'             | 正在播放状态，在prepared/paused/completed状态调用[play()](#play9)方法，AVPlayer会进入playing状态。 |
 |             'paused'              | 暂停状态，在playing状态调用pause方法，AVPlayer会进入paused状态。 |
@@ -2904,6 +3009,32 @@ type OnVideoSizeChangeHandler = (width: number, height: number) => void
 | text | string | 否  | 字幕文本信息。 |
 | startTime | number | 否  | 显示当前字幕文本的开始时间（单位：毫秒）。 |
 | duration | number | 否 | 显示当前字幕文本的持续时间（单位：毫秒）。 |
+
+## SeiMessage<sup>16+</sup>
+
+SEI信息内容，描述SEI信息的负载类型和数据。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型   | 只读 | 可选  | 说明                                                         |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| payloadType | number | 否  | 否  | SEI信息的负载类型。 |
+| payload | ArrayBuffer | 否  | 否  | SEI信息的负载数据。 |
+
+## OnSeiMessageHandle<sup>16+</sup>
+
+获取SEI信息，使用场景：订阅SEI信息事件，回调返回SEI详细信息。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| messages | Array\<[SeiMessage](#seimessage16)> | 是  | SEI信息。 |
+| playbackPosition | number | 否  | 获取当前播放位置（单位：毫秒）。 |
 
 ## SeekMode<sup>8+</sup>
 
@@ -4339,7 +4470,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **错误码：**
 
@@ -4350,6 +4481,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 
 **示例：**
 
+<!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { common } from '@kit.AbilityKit'
@@ -4395,6 +4527,7 @@ off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsse
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **示例：**
 
@@ -4455,20 +4588,32 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | rotation<sup>(deprecated)</sup>        | number                                   | 否   | 录制的视频旋转角度，mp4格式支持0，90，180，270，默认值为0。<br>从API version 6开始支持，从API version 12开始废弃。建议使用[AVMetadata](#avmetadata11).videoOrientation替代。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).videoOrientation。     |
 | location<sup>(deprecated)</sup>        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。<br>从API version 6开始支持，从API version 12开始废弃。建议使用 [AVMetadata](#avmetadata11).location。如果同时设置两个值，将会采用[AVMetadata](#avmetadata11).location。 |
 | metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | 否   | 设置元数据信息。详情见 [AVMetadata](#avmetadata11)。                  |
+| maxDuration<sup>16+</sup>        | number             | 否   | 设置录制的最大时长，单位为秒，有效值取值范围[1 , 2^31-1]，无效输入会重置为最大值。录制到达设定时长后，录制会自动停止，并通过stateChange回调录制状态，[AVRecorderState](#avrecorderstate9) = 'stopped'，[StateChangeReason](#statechangereason9) = BACKGROUND。|
 
 ## AVRecorderProfile<sup>9+</sup>
 
 音视频录制的配置文件。
 
+> **说明：**
+> 此处提供音频参数配置的对照表，每项的具体释义，可查看下述字段解释。
+>
+> |编码格式|封装格式|采样率|比特率|声道数|
+> |----|----|----|----|----|
+> |AUDIO_AAC|MP4,M4A|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]|[32000-500000]|[1-8]|
+> |AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- 采样率使用16000以下时，对应比特率范围为[8000 - 64000]。<br>- 采样率使用16000~32000时对应的比特率范围为[8000 - 160000]。<br>- 采样率使用32000以上时对应的比特率范围为[32000 - 320000]。|[1-2]|
+> |AUDIO_G711MU|WAV|[8000]|[64000]|[1]|
+> |AUDIO_AMR_NB<sup>16+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
+> |AUDIO_AMR_WB<sup>16+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
+
 **系统能力：** SystemCapability.Multimedia.Media.AVRecorder
 
 | 名称             | 类型                                         | 必填 | 说明                                                         |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- G711-mulaw编码格式支持比特率范围[64000 - 64000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
-| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
-| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
+| audioBitrate     | number                                       | 否   | 音频编码比特率，选择音频录制时必填。<br>支持范围：<br>- AAC编码格式支持比特率范围[32000 - 500000]。<br>- G711-mulaw编码格式支持比特率范围[64000 - 64000]。<br>- MP3编码格式支持范围[8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000]。<br>当使用MP3编码格式时，采样率和比特率的映射关系： <br>- 采样率使用16K以下时，对应比特率范围为[8kbps - 64kbps]。<br>- 采样率使用16K~32K时对应的比特率范围为[8kbps - 160kbps]。<br>- 采样率使用32K以上时对应的比特率范围为[32kbps - 320kbps]。<br>- AMR_NB编码格式支持比特率范围[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]。<br>- AMR_WB编码格式支持比特率范围[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| audioChannels    | number                                       | 否   | 音频采集声道数，选择音频录制时必填。<br>- AAC编码格式支持范围[1 - 8]。<br>- G711-mulaw编码格式支持范围[1 - 1]。<br>- MP3编码格式支持范围[1 - 2]。<br>- AMR-NB、AMR-WB编码格式支持范围[1]。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。       |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 音频编码格式，选择音频录制时必填。当前支持AUDIO_AAC，AUDIO_MP3，AUDIO_G711MU, AUDIO_AMR_NB, AUDIO_AMR_WB。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。     |
+| audioSampleRate  | number                                       | 否   | 音频采样率，选择音频录制时必填。<br>支持范围：<br>- AAC编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]。<br>- G711-mulaw编码支持采样率范围[8000 - 8000]。<br>- MP3编码支持采样率范围[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]。<br>- AMR_NB编码支持采样率范围[8000]。<br>- AMR_WB编码支持采样率范围[16000]。<br>可变比特率模式，码率仅作参考。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
+| fileFormat       | [ContainerFormatType](#containerformattype8) | 是   | 文件的容器格式，必要参数。当前支持MP4、M4A、MP3、WAV、AMR封装格式，不支持在MP4封装格式下使用AUDIO_MP3编码格式。<br>**原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。|
 | videoBitrate     | number                                       | 否   | 视频编码比特率，选择视频录制时必填，支持范围[10000 - 100000000]。  |
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
@@ -4515,6 +4660,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | CFT_MPEG_4A | 'm4a' | 音频的容器格式，M4A。<br> **原子化服务API：** 从API version 12 开始，该接口支持在原子化服务中使用。 |
 | CFT_MP3<sup>12+</sup>  | 'mp3' | 音频的容器格式，MP3。 |
 | CFT_WAV<sup>12+</sup>  | 'wav' | 音频的容器格式，WAV。 |
+| CFT_AMR<sup>16+</sup>  | 'amr' | 音频的容器格式，AMR。 |
 
 ## Location
 
@@ -7569,6 +7715,7 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx
 
 **示例2：**
 
+<!--code_no_check-->
 ```ts
 import { common } from '@kit.AbilityKit';
 import { resourceManager } from '@kit.LocalizationKit';
@@ -7689,6 +7836,7 @@ setMimeType(mimeType: AVMimeTypes): void
 | audioChannelCount | number                                                       | 否   | 录屏的音频通道数，内录的系统音和外录的麦克风都是用此通道数，默认2声道，仅支持设置1或2声道。 |
 | audioBitrate      | number                                                       | 否   | 录屏的音频比特率，内录的系统音和外录的麦克风都是用此比特率，默认96000。 |
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
+| displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 

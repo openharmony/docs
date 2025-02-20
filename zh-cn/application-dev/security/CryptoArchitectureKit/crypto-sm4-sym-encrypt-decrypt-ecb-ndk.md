@@ -5,7 +5,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 **加密**
@@ -49,7 +49,7 @@
 
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
-#include "CryptoArchitectureKit/crypto/crypto_sym_cipher.h"
+#include "CryptoArchitectureKit/crypto_sym_cipher.h"
 #include <string.h>
 
 static OH_Crypto_ErrCode doTestSm4Ecb() {

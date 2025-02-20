@@ -37,14 +37,14 @@ import { distributedKVStore } from '@kit.ArkData';
 
 **系统能力：** SystemCapability.DistributedDataManager.KVStore.Core
 
-| 名称                  | 值      | 说明                                    |
-| --------------------- | ------- | --------------------------------------- |
-| MAX_KEY_LENGTH        | 1024    | 数据库中Key允许的最大长度，单位字节。   |
-| MAX_VALUE_LENGTH      | 4194303 | 数据库中Value允许的最大长度，单位字节。 |
-| MAX_KEY_LENGTH_DEVICE | 896     | 设备协同数据库中Key允许的最大长度，单位字节。 |
-| MAX_STORE_ID_LENGTH   | 128     | 数据库标识符允许的最大长度，单位字节。  |
-| MAX_QUERY_LENGTH      | 512000  | 最大查询长度，单位字节。                |
-| MAX_BATCH_SIZE        | 128     | 最大批处理操作数量。                    |
+| 名称                  | 类型   | 只读 | 可选 | 说明                                                       |
+| --------------------- | ------ | ---- | ---- | ---------------------------------------------------------- |
+| MAX_KEY_LENGTH        | number | 是   | 否   | 值为1024，表示数据库中Key允许的最大长度，单位字节。        |
+| MAX_VALUE_LENGTH      | number | 是   | 否   | 值为4194303，表示数据库中Value允许的最大长度，单位字节。   |
+| MAX_KEY_LENGTH_DEVICE | number | 是   | 否   | 值为896，表示设备协同数据库中Key允许的最大长度，单位字节。 |
+| MAX_STORE_ID_LENGTH   | number | 是   | 否   | 值为128，表示数据库标识符允许的最大长度，单位字节。        |
+| MAX_QUERY_LENGTH      | number | 是   | 否   | 值为512000，表示最大查询长度，单位字节。                   |
+| MAX_BATCH_SIZE        | number | 是   | 否   | 值为128，表示最大批处理操作数量。                          |
 
 ## ValueType
 

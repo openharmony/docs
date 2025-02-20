@@ -506,6 +506,257 @@ let hyperlinkRecord = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor
 let hyperlinkValue = hyperlinkRecord.getValue();
 ```
 
+### addEntry<sup>15+</sup>
+
+addEntry(type: string, value: ValueType): void
+
+在当前数据记录中添加一条指定数据类型和内容的数据。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                                      |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| type | string | 是   | 要创建的数据类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。 |
+| value | [ValueType](#valuetype12) | 是   | 要创建的数据的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+```
+
+### getEntry<sup>15+</sup>
+
+getEntry(type: string): ValueType
+
+通过数据类型获取当前数据记录中的数据内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名 | 类型                            | 必填 | 说明                                      |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| type | string | 是   | 要获取数据的类型，见[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)。 |
+
+**返回值：**
+
+| 类型   | 说明                                                   |
+| ------ |------------------------------------------------------|
+| [ValueType](#valuetype12) | 当前数据记录对应的值。 |
+
+| **错误码ID** | **错误信息**                                |
+| ------------ | ------------------------------------------- |
+| 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types.  |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let fileUriRead : uniformDataStruct.FileUri = unifiedDataRecord.getEntry(uniformTypeDescriptor.UniformDataType.FILE_URI) as uniformDataStruct.FileUri
+  if (fileUriRead != undefined) {
+    console.info(`oriUri: ${fileUriRead.oriUri}`);
+  }
+}
+```
+
+### getEntries<sup>15+</sup>
+
+getEntries(): Record<string, ValueType>
+
+获取当前数据记录中所有数据的类型和内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**返回值：**
+
+| 类型   | 说明                                                   |
+| ------ |------------------------------------------------------|
+| Record<string, [ValueType](#valuetype12)> | 当前数据记录对应的类型和内容。 |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let entries : Record<string, unifiedDataChannel.ValueType> = unifiedDataRecord.getEntries();
+  let formRead : uniformDataStruct.Form = entries[uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM] as uniformDataStruct.Form
+  if (formRead != undefined) {
+    console.info(`formName: ${formRead.formName}`);
+  }
+}
+```
+
+### getTypes<sup>15+</sup>
+
+getTypes(): Array\<string\>
+
+获取当前数据记录中数据的所有类型集合。可通过UnifiedRecord数据记录对象调用本接口，能查询出此记录中数据的所有类型集合。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
+
+**返回值：**
+
+| 类型                                     | 说明                      |
+| ---------------------------------------- |-------------------------|
+| Array\<string\> | [UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)类型的数组，表示当前记录的数据类型集合。 |
+
+**示例：**
+
+```ts
+import { uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
+
+let fileUriDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let fileUri : uniformDataStruct.FileUri = {
+  uniformDataType : 'general.file-uri',
+  oriUri : 'file://data/image/1.png',
+  fileType : 'general.image',
+  details : fileUriDetails,
+}
+let formDetails : Record<string, string> = {
+  'attr1': 'value1',
+  'attr2': 'value2',
+}
+let form : uniformDataStruct.Form = {
+  uniformDataType : 'openharmony.form',
+  formId : 1,
+  formName : 'form',
+  bundleName : 'com.xx.app',
+  abilityName : 'ability',
+  module : 'module',
+  details : formDetails,
+}
+
+let unifiedData = new unifiedDataChannel.UnifiedData();
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM, form);
+record.addEntry(uniformTypeDescriptor.UniformDataType.FILE_URI, fileUri);
+unifiedData.addRecord(record);
+
+let records = unifiedData.getRecords();
+for (let i = 0; i < records.length; i++) {
+  let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
+  let types : Array<string> = unifiedDataRecord.getTypes();
+  if (types.includes(uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM)) {
+    console.info(`types include: ${uniformTypeDescriptor.UniformDataType.OPENHARMONY_FORM}`);
+  }
+}
+```
+
 ## Text
 
 文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据，如[PlainText](#plaintext)、[Hyperlink](#hyperlink)、[HTML](#html)等具体子类。
@@ -877,19 +1128,108 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 
 ## Options
 
+type Options = { intention?: Intention; key?: string; }
+
 UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。无默认值，当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
+| 名称      | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| intention | [Intention](#intention) | 否   | 表示数据操作相关的数据通路类型。                             |
+| key       | string                  | 否   | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
 
-| 名称       | 类型                    | 只读 | 可选 | 说明                                                                                                                                                                                                                                |
-|-----------|-------------------------|----|----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| intention | [Intention](#intention) | 否  | 是  | 表示数据操作相关的数据通路类型。                                                                                                                                                                                                                  |
-| key       | string                  | 否  | 是  | UDMF中数据对象的唯一标识符，可通过[insertData](#unifieddatachannelinsertdata)接口的返回值获取。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
+## FileConflictOptions<sup>15+</sup>
 
+表示文件拷贝冲突时的可选策略的枚举。
 
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称      | 值   | 说明             |
+| --------- | ---- |----------------|
+| OVERWRITE | 0    | 目标路径存在同文件名时覆盖。 |
+| SKIP      | 1    | 目标路径存在同文件名时跳过。 |
+
+## ProgressIndicator<sup>15+</sup>
+
+表示进度条指示选项的枚举，可选择是否采用系统默认进度显示。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称    | 值   | 说明                                 |
+| ------- | ---- |------------------------------------|
+| NONE    | 0    | 不采用系统默认进度显示。                       |
+| DEFAULT | 1    | 采用系统默认进度显示，500ms内获取数据完成将不会拉起默认进度条。 |
+
+## ListenerStatus<sup>15+</sup>
+
+表示从UDMF获取数据时的状态码的枚举。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称    | 值   | 说明                                           |
+| ------- |-----|----------------------------------------------|
+| FINISHED | 0   | 表示已完成。                                       |
+| PROCESSING | 1   | 表示正在处理中。                                     |
+| CANCELED | 2   | 表明本次处理已被取消。                                  |
+| INNER_ERROR  | 200 | 表明发生了内部错误。                                   |
+| INVALID_PARAMETERS | 201 | 表示 [GetDataParams](#getdataparams15) 包含无效参数。 |
+| DATA_NOT_FOUND | 202 | 表示没有获取到数据。                                   |
+| SYNC_FAILED | 203 | 表示同步过程中出现错误。                                 |
+| COPY_FILE_FAILED | 204 | 表示文件拷贝过程中出现错误。                               |
+
+## ProgressInfo<sup>15+</sup>
+
+定义进度上报的数据。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称     | 类型                                  | 可读 | 可写 | 说明                                                             |
+| -------- |-------------------------------------| ---- | ---- |----------------------------------------------------------------|
+| progress | number                              | 是   | 否   | 系统上报拖拽任务进度百分比。取值范围为[-1-100]的整数，其中-1时代表本次获取数据失败，100时表示本次获取数据完成。 |
+| status | [ListenerStatus](#listenerstatus15) | 是   | 否   | 系统上报拖拽任务的状态码。                                                  |
+
+## DataProgressListener<sup>15+</sup>
+
+type DataProgressListener = (progressInfo: ProgressInfo, data: UnifiedData | null) => void
+
+定义获取进度信息和数据的监听回调函数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                            | 必填    | 说明           |
+|----------|-------------------------------|-------|--------------|
+| progress | [ProgressInfo](#progressinfo15) | 是     | 定义进度上报的进度信息。 |
+| data     | [UnifiedData](#unifieddata)  \| null  |  是    | 进度达到100时获取的数据，进度未到100时返回null。 |
+
+## GetDataParams<sup>15+</sup>
+
+表示从UDMF获取数据时的参数，包含目标路径、文件冲突选项、进度条类型等。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称                   | 类型                                              | 必填 | 说明                                                                                                                                                 |
+|----------------------|-------------------------------------------------| ---- |----------------------------------------------------------------------------------------------------------------------------------------------------|
+| progressIndicator    | [ProgressIndicator](#progressindicator15)       | 是 | 定义进度条指示选项，可选择是否采用系统默认进度显示。                                                                                                                         |
+| dataProgressListener | [DataProgressListener](#dataprogresslistener15) | 是 | 表示获取统一数据时的进度和数据监听器。                                                                                                                                |
+| destUri              | string                                          | 否 | 拷贝文件的目标路径。若不支持文件处理，则不需要设置此参数,默认为空；若支持文件处理，须设置一个已经存在的目录。若应用涉及复杂文件处理策略或需要区分文件多路径存储，建议不设置此参数，由应用自行完成文件copy处理。 不填写时获取到到的uri为源端路径URI，填写后获取到的uri为目标路径uri |
+| fileConflictOptions  | [FileConflictOptions](#fileconflictoptions15)   | 否   | 定义文件拷贝冲突时的选项，默认为OVERWRITE。                                                                                                                         |
 
 ## unifiedDataChannel.insertData
 

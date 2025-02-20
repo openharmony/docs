@@ -18,7 +18,7 @@ import { buffer } from '@kit.ArkTS';
 
 表示支持的编码格式类型。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -32,7 +32,7 @@ import { buffer } from '@kit.ArkTS';
 | 'ucs-2' | utf16le的别名。 |
 | 'base64' | 表示base64格式。 |
 | 'base64url' | 表示base64url格式。 |
-| 'latin1' | iso-8859-1的别名, 向下兼容ascii格式。 |
+| 'latin1' | iso-8859-1的别名，向下兼容ascii格式。 |
 | 'binary' | 表示二进制格式。 |
 | 'hex' | 表示十六进制格式。 |
 
@@ -42,7 +42,7 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 
 创建一定字节长度的Buffer对象，并初始化。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -51,8 +51,8 @@ alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding):
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | size | number | 是 | 指定的Buffer对象长度，单位：字节。 |
-| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 填充至新缓存区的值，默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。 默认值: 'utf8'。 |
+| fill | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;number | 否 | 填充至新缓存区的值，默认值：0。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式（当`fill`为string时，才有意义）。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -85,7 +85,7 @@ allocUninitializedFromPool(size: number): Buffer
 创建指定大小未被初始化的Buffer对象。内存从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -125,7 +125,7 @@ allocUninitialized(size: number): Buffer
 创建指定大小未被初始化的Buffer实例。内存不从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -164,7 +164,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 
 根据不同的编码方法，返回指定字符串的字节数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -173,7 +173,7 @@ byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | Share
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;TypedArray&nbsp;\|&nbsp;DataView&nbsp;\|&nbsp;ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 指定字符串。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -205,7 +205,7 @@ compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
 返回两个数组的比较结果，通常用于对Buffer对象数组进行排序。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -251,7 +251,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -295,7 +295,7 @@ from(array: number[]): Buffer;
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -333,7 +333,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 创建指定长度的与`arrayBuffer`共享内存的Buffer对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -342,7 +342,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | arrayBuffer | ArrayBuffer&nbsp;\|&nbsp;SharedArrayBuffer | 是 | 实例对象。 |
-| byteOffset | number | 否 | 字节偏移量，默认值: 0。 |
+| byteOffset | number | 否 | 字节偏移量，默认值：0。 |
 | length | number | 否 | 字节长度， 默认值: (arrayBuffer.byteLength - byteOffset)。 |
 
 **返回值：**
@@ -376,7 +376,7 @@ from(buffer: Buffer | Uint8Array): Buffer
 当入参为Buffer对象时，创建并复制入参Buffer对象数据到新的Buffer对象并返回。</br>
 当入参为Uint8Array对象时，创建的Buffer对象持有Uint8Array对象的内存并返回，保持数据的内存关联。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -423,7 +423,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 
 根据指定的`object`类型数据，创建新的Buffer对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -433,7 +433,7 @@ from(object: Object, offsetOrEncoding: number | string, length: number): Buffer
 | -------- | -------- | -------- | -------- |
 | object | Object | 是 | 支持Symbol.toPrimitive或valueOf()的对象。 |
 | offsetOrEncoding | number&nbsp;\|&nbsp;string | 是 | 字节偏移量或编码格式。 |
-| length | number | 是 | 字节长度(此入参仅在object的valueOf()返回值为ArrayBuffer时生效，取值范围：0 <= length <= ArrayBuffer.byteLength, 超出范围时报错: 10200001)。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
+| length | number | 是 | 字节长度（此入参仅在object的valueOf()返回值为ArrayBuffer时生效，取值范围：0 <= length <= ArrayBuffer.byteLength, 超出范围时报错: 10200001）。其他情况下可填任意number类型值，该参数不会对结果产生影响。 |
 
 **返回值：**
 
@@ -463,7 +463,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 
 根据指定编码格式的字符串，创建新的Buffer对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -472,7 +472,7 @@ from(string: String, encoding?: BufferEncoding): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | string | String | 是 | 字符串。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。 默认值: 'utf8'。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -509,7 +509,7 @@ isBuffer(obj: Object): boolean
 
 判断`obj`是否为Buffer。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -553,7 +553,7 @@ isEncoding(encoding: string): boolean
 
 判断`encoding`是否为支持的编码格式。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -592,7 +592,7 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -632,7 +632,7 @@ console.info("newBuf = " + newBuf.toString('ascii'));
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -669,7 +669,7 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 
 当前Buffer对象与目标Buffer对象进行比较，并返回Buffer在排序中的顺序结果。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -678,10 +678,10 @@ compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, s
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要比较的实例对象。 |
-| targetStart | number | 否 | `target`实例中开始的偏移量。 默认值: 0。 |
-| targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。 默认值: 目标对象的字节长度。 |
-| sourceStart | number | 否 | `this`实例中开始的偏移量。 默认值: 0。 |
-| sourceEnd | number | 否 | `this`实例中结束的偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
+| targetStart | number | 否 | `target`实例中开始的偏移量。默认值：0。 |
+| targetEnd | number | 否 | `target`实例中结束的偏移量（不包含结束位置）。默认值：目标对象的字节长度。 |
+| sourceStart | number | 否 | `this`实例中开始的偏移量。默认值：0。 |
+| sourceEnd | number | 否 | `this`实例中结束的偏移量（不包含结束位置）。默认值：当前对象的字节长度。 |
 
 **返回值：**
 
@@ -720,7 +720,7 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 
 将`this`实例中指定位置的数据复制到`target`的指定位置上，并返回复制的字节总长度。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -729,9 +729,9 @@ copy(target: Buffer| Uint8Array, targetStart?: number, sourceStart?: number, sou
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | target | Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要复制到的Buffer或Uint8Array实例。 |
-| targetStart | number | 否 | `target`实例中开始写入的偏移量。 默认值: 0。 |
-| sourceStart | number | 否 | `this`实例中开始复制的偏移量。 默认值: 0。 |
-| sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
+| targetStart | number | 否 | `target`实例中开始写入的偏移量。默认值：0。 |
+| sourceStart | number | 否 | `this`实例中开始复制的偏移量。默认值: 0。 |
+| sourceEnd | number | 否 | `this`实例中结束复制的偏移量（不包含结束位置）。默认值：当前对象的字节长度。 |
 
 **返回值：**
 
@@ -771,7 +771,7 @@ entries(): IterableIterator&lt;[number,&nbsp;number]&gt;
 
 返回一个包含key和value的迭代器。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -809,7 +809,7 @@ equals(otherBuffer: Uint8Array | Buffer): boolean
 
 比较`this`实例和otherBuffer实例是否相等。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -854,7 +854,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 用`value`填充当前对象指定位置的数据，默认为循环填充，并返回填充后的Buffer对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -863,9 +863,9 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array&nbsp;\|&nbsp;number | 是 | 用于填充的值。 |
-| offset | number | 否 | 起始偏移量。 默认值: 0。 |
-| end | number | 否 | 结束偏移量（不包含结束位置）。 默认值: 当前对象的字节长度。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。 默认值: 'utf8'。 |
+| offset | number | 否 | 起始偏移量。默认值：0。 |
+| end | number | 否 | 结束偏移量（不包含结束位置）。 默认值：当前对象的字节长度。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式（`value`为string才有意义）。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -899,7 +899,7 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 
 检查Buffer对象是否包含`value`值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -908,8 +908,8 @@ includes(value: string | number | Buffer | Uint8Array, byteOffset?: number, enco
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
+| byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：0。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -943,7 +943,7 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 
 查找当前对象中第一次出现`value`的索引，如果不包含`value`，则为-1。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -952,8 +952,8 @@ indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encod
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要查找的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: 0。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
+| byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：0。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -987,7 +987,7 @@ keys(): IterableIterator&lt;number&gt;
 
 返回一个包含key值的迭代器。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1023,7 +1023,7 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 
 返回`this`实例中最后一次出现`value`的索引，如果对象不包含，则为-1。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1032,8 +1032,8 @@ lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, e
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;Buffer&nbsp;\|&nbsp;Uint8Array | 是 | 要搜索的内容。 |
-| byteOffset | number | 否 | 字节偏移量。 如果为负数，则从末尾开始计算偏移量。 默认值: Buffer.length。 |
-| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。 默认值: 'utf8'。 |
+| byteOffset | number | 否 | 字节偏移量。如果为负数，则从末尾开始计算偏移量。默认值：Buffer.length。 |
+| encoding | [BufferEncoding](#bufferencoding) | 否 | 字符编码格式。默认值：'utf8'。 |
 
 **返回值：**
 
@@ -1068,7 +1068,7 @@ readBigInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的大端序64位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1076,7 +1076,7 @@ readBigInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。默认值: 0。取值范围：0 <= offset <= Buffer.length - 8 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8 |
 
 **返回值：**
 
@@ -1115,7 +1115,7 @@ readBigInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取有符号的小端序64位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1123,7 +1123,7 @@ readBigInt64LE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1162,7 +1162,7 @@ readBigUInt64BE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的大端序64位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1170,7 +1170,7 @@ readBigUInt64BE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1208,7 +1208,7 @@ readBigUInt64LE(offset?: number): bigint
 
 从指定的`offset`处读取无符号的小端序64位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1216,7 +1216,7 @@ readBigUInt64LE(offset?: number): bigint
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1255,7 +1255,7 @@ readDoubleBE(offset?: number): number
 
 从指定`offset`处读取64位大端序双精度值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1263,7 +1263,7 @@ readDoubleBE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1300,7 +1300,7 @@ readDoubleLE(offset?: number): number
 
 从指定`offset`处读取64位小端序双精度值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1308,7 +1308,7 @@ readDoubleLE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 8，默认值：0。 |
 
 **返回值：**
 
@@ -1345,7 +1345,7 @@ readFloatBE(offset?: number): number
 
 从指定`offset`处读取32位大端序浮点数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1353,7 +1353,7 @@ readFloatBE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1390,7 +1390,7 @@ readFloatLE(offset?: number): number
 
 从指定`offset`处读取32位小端序浮点数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1398,7 +1398,7 @@ readFloatLE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1435,7 +1435,7 @@ readInt8(offset?: number): number
 
 从指定的`offset`处读取有符号的8位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1443,7 +1443,7 @@ readInt8(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值：0。 |
 
 **返回值：**
 
@@ -1482,7 +1482,7 @@ readInt16BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序16位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1490,7 +1490,7 @@ readInt16BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 **返回值：**
 
@@ -1527,7 +1527,7 @@ readInt16LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序16位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1535,7 +1535,7 @@ readInt16LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 **返回值：**
 
@@ -1572,7 +1572,7 @@ readInt32BE(offset?: number): number
 
 从指定的`offset`处读取有符号的大端序32位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1580,7 +1580,7 @@ readInt32BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1617,7 +1617,7 @@ readInt32LE(offset?: number): number
 
 从指定的`offset`处读取有符号的小端序32位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1625,7 +1625,7 @@ readInt32LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 **返回值：**
 
@@ -1662,7 +1662,7 @@ readIntBE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取byteLength个字节，并将结果解释为支持最高48位精度的大端序、二进制补码有符号值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1670,7 +1670,7 @@ readIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
@@ -1711,7 +1711,7 @@ readIntLE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的小端序、二进制补码有符号值。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1719,7 +1719,7 @@ readIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。|
 
 
@@ -1758,7 +1758,7 @@ readUInt8(offset?: number): number
 
 从`offset`处读取8位无符号整型数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1766,7 +1766,7 @@ readUInt8(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 1，默认值：0。 |
 
 
 **返回值：**
@@ -1808,13 +1808,13 @@ readUInt16BE(offset?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 
 **返回值：**
@@ -1854,7 +1854,7 @@ readUInt16LE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的小端序16位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1862,7 +1862,7 @@ readUInt16LE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 2，默认值：0。 |
 
 
 **返回值：**
@@ -1902,7 +1902,7 @@ readUInt32BE(offset?: number): number
 
 从指定的`offset`处的buf读取无符号的大端序32位整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1910,7 +1910,7 @@ readUInt32BE(offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 
 **返回值：**
@@ -1950,13 +1950,13 @@ readUInt32LE(offset?: number): number
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值: 0。 |
+| offset | number | 否 | 偏移量。取值范围：0 <= offset <= Buffer.length - 4，默认值：0。 |
 
 
 **返回值：**
@@ -1994,7 +1994,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的无符号大端序整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2002,7 +2002,7 @@ readUIntBE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 要读取的字节数。读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
@@ -2041,7 +2041,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的无符号小端序整数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2049,7 +2049,7 @@ readUIntLE(offset: number, byteLength: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值: 0。 |
+| offset | number | 是 | 偏移量。取值范围：0 <= offset <= Buffer.length - byteLength，默认值：0。 |
 | byteLength | number | 是 | 读取的字节数。取值范围：1 <= byteLength <= 6。 |
 
 
@@ -2090,20 +2090,20 @@ subarray(start?: number, end?: number): Buffer
 
 **系统能力：** SystemCapability.Utils.Lang
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| start | number | 否 | 截取开始位置。 默认值: 0。 |
-| end | number | 否 |  截取结束位置（不包含结束位置）。 默认值: 当前对象的字节长度。 |
+| start | number | 否 | 截取开始位置。默认值：0。 |
+| end | number | 否 |  截取结束位置（不包含结束位置）。默认值：当前对象的字节长度。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。当 start < 0 或 end < 0 时返回一个空Buffer。 |
+| Buffer | 返回新的Buffer对象。当start < 0或end < 0时返回一个空Buffer。 |
 
 **示例：**
 
@@ -2126,7 +2126,7 @@ swap16(): Buffer
 
 将当前对象解释为无符号的16位整数数组，并交换字节顺序。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2164,7 +2164,7 @@ swap32(): Buffer
 
 将当前对象解释为无符号的32位整数数组，并交换字节顺序。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2202,7 +2202,7 @@ swap64(): Buffer
 
 将当前对象解释为无符号的64位整数数组，并交换字节顺序。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2240,7 +2240,7 @@ toJSON(): Object
 
 将Buffer转为JSON并返回。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2268,7 +2268,7 @@ toString(encoding?: string, start?: number, end?: number): string
 
 将当前对象中指定位置数据转成指定编码格式字符串并返回。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2276,15 +2276,15 @@ toString(encoding?: string, start?: number, end?: number): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 字符编码格式。 默认值: 'utf8'。 |
-| start  | number | 否 |  开始位置。 默认值: 0。 |
-| end  | number | 否 |  结束位置。 默认值: Buffer.length。 |
+| encoding | string | 否 | 字符编码格式。默认值：'utf8'。 |
+| start  | number | 否 |  开始位置。默认值：0。 |
+| end  | number | 否 |  结束位置。默认值：Buffer.length。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 字符串。 当start >= Buffer.length 或 start > end 时返回空字符串。 |
+| string | 字符串。当start >= Buffer.length或start > end时返回空字符串。 |
 
 **错误码：**
 
@@ -2313,7 +2313,7 @@ values(): IterableIterator&lt;number&gt;
 
 返回一个包含value的迭代器。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2351,7 +2351,7 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 
 从Buffer对象的offset偏移写入指定编码的字符串str，写入的字节长度为length。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2360,9 +2360,9 @@ write(str: string, offset?: number, length?: number, encoding?: string): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | str | string | 是 | 要写入Buffer的字符串。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
-| length | number | 否 | 最大字节长度。 默认值: (Buffer.length - offset)。|
-| encoding | string | 否 | 字符编码。 默认值: 'utf8'。 |
+| offset | number | 否 | 偏移量。默认值：0。 |
+| length | number | 否 | 最大字节长度。默认值：(Buffer.length - offset)。|
+| encoding | string | 否 | 字符编码。默认值：'utf8'。 |
 
 
 **返回值：**
@@ -2402,7 +2402,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入有符号的大端序64位BigInt型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2411,7 +2411,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2446,7 +2446,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入有符号的小端序64位BigInt型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2455,7 +2455,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2488,7 +2488,7 @@ console.info("result = " + result);
 
 writeBigUInt64BE(value: bigint, offset?: number): number
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 从Buffer对象的offset偏移写入无符号的大端序64位BigUInt型数据value。
 
@@ -2499,7 +2499,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2534,7 +2534,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 
 从Buffer对象的offset偏移写入无符号的小端序64位BigUInt型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2543,7 +2543,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | bigint | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2578,7 +2578,7 @@ writeDoubleBE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的64位双浮点型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2587,7 +2587,7 @@ writeDoubleBE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2622,7 +2622,7 @@ writeDoubleLE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的64位双浮点型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2631,7 +2631,7 @@ writeDoubleLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 8。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 8。 |
 
 
 **返回值：**
@@ -2666,7 +2666,7 @@ writeFloatBE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位浮点型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2675,7 +2675,7 @@ writeFloatBE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2711,7 +2711,7 @@ writeFloatLE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位浮点型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2720,7 +2720,7 @@ writeFloatLE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2755,7 +2755,7 @@ writeInt8(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入8位有符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2764,7 +2764,7 @@ writeInt8(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 1。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 1。 |
 
 
 **返回值：**
@@ -2803,7 +2803,7 @@ writeInt16BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的16位有符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2812,7 +2812,7 @@ writeInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2848,7 +2848,7 @@ writeInt16LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的16位有符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2857,7 +2857,7 @@ writeInt16LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -2892,7 +2892,7 @@ writeInt32BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位有符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2901,7 +2901,7 @@ writeInt32BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2937,7 +2937,7 @@ writeInt32LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位有符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2946,7 +2946,7 @@ writeInt32LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -2981,7 +2981,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入大端序的有符号value数据，value字节长度为byteLength。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2990,7 +2990,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3027,7 +3027,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入小端序的有符号value数据，value字节长度为byteLength。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3036,7 +3036,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3072,7 +3072,7 @@ writeUInt8(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入8位无符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3081,7 +3081,7 @@ writeUInt8(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 1。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 1。 |
 
 
 **返回值：**
@@ -3125,7 +3125,7 @@ writeUInt16BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的16位无符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3134,7 +3134,7 @@ writeUInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值为0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值为0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -3172,7 +3172,7 @@ writeUInt16LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的16位无符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3181,7 +3181,7 @@ writeUInt16LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 2。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 2。 |
 
 
 **返回值：**
@@ -3219,7 +3219,7 @@ writeUInt32BE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入大端序的32位无符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3228,7 +3228,7 @@ writeUInt32BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -3263,7 +3263,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 从Buffer对象的offset偏移写入小端序的32位无符号整型数据value。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3272,7 +3272,7 @@ writeUInt32LE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer对象的数字。 |
-| offset | number | 否 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - 4。 |
+| offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
 **返回值：**
@@ -3307,7 +3307,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入大端序的无符号value数据，value字节长度为byteLength。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3316,7 +3316,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3352,7 +3352,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 
 从Buffer对象的offset偏移写入小端序的无符号value数据，value字节长度为byteLength。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3361,7 +3361,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 是 | 偏移量。 默认值: 0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
+| offset | number | 是 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - byteLength。 |
 | byteLength | number | 是 | 要写入的字节数。 |
 
 
@@ -3395,7 +3395,7 @@ console.info("result = " + result);
 
 ### 属性
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3410,7 +3410,7 @@ constructor(sources: string[] | ArrayBuffer[] | TypedArray[] | DataView[] | Blob
 
 Blob的构造函数。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3449,7 +3449,7 @@ arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
 将Blob中的数据放入到ArrayBuffer中，并返回一个Promise。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3476,7 +3476,7 @@ slice(start?: number, end?: number, type?: string): Blob
 
 创建并返回一个复制原Blob对象中指定数据长度的Blob新对象。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3508,7 +3508,7 @@ text(): Promise&lt;string&gt;
 
 使用UTF8进行解码并返回一个文本。使用Promise异步回调。
 
-**原子化服务API**：从API version 11 开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 

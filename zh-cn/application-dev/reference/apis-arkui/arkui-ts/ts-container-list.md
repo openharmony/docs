@@ -50,7 +50,7 @@
 
 ## 接口
 
-List(value?: [ListOptions](#listoptions14对象说明))
+List(value?: [ListOptions](#listoptions16对象说明))
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -62,22 +62,22 @@ List(value?: [ListOptions](#listoptions14对象说明))
 
 | 参数名  | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| value    | [ListOptions](#listoptions14对象说明)  | 否   | 设置List组件参数。 |
+| value    | [ListOptions](#listoptions16对象说明)  | 否   | 设置List组件参数。 |
 
-## ListOptions<sup>14+</sup>对象说明
+## ListOptions<sup>16+</sup>对象说明
 
 用于设置List组件参数。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称       | 类型                                    | 必填 | 说明                                                     |
 | ------------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
-| initialIndex | number                                      | 否   | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| initialIndex | number | 否 | 设置当前List初次加载时显示区域起始位置的item索引值。<br/>默认值：0<br/>**说明：** <br/>设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值显示。 |
+| space        | number&nbsp;\|&nbsp;string                  | 否   | 子组件主轴方向的间隔。<br/>默认值：0<br/>参数类型为number时单位为vp。<br/>**说明：** <br/>设置为负数或者大于等于List内容区长度时，按默认值显示。<br/>space参数值小于List分割线宽度时，子组件主轴方向的间隔取分割线宽度。 |
 | scroller     | [Scroller](ts-container-scroll.md#scroller) | 否   | 可滚动组件的控制器。用于与可滚动组件进行绑定。<br/>**说明：** <br/>不允许和其他滚动类组件绑定同一个滚动控制对象。 |
 
 ## 属性
@@ -104,7 +104,7 @@ listDirection(value: Axis)
 
 ### divider
 
-divider(value: [ListDividerOptions](#listdivideroptions14对象说明) | null)
+divider(value: [ListDividerOptions](#listdivideroptions16对象说明) | null)
 
 设置ListItem分割线样式，默认无分割线。
 
@@ -128,7 +128,7 @@ ListItem设置[多态样式](ts-universal-attributes-polymorphic-style.md)时，
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ListDividerOptions](#listdivideroptions14对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
+| value  | [ListDividerOptions](#listdivideroptions16对象说明) \|&nbsp;null | 是   | ListItem分割线样式。<br/>默认值：null |
 
 ### scrollBar
 
@@ -166,9 +166,9 @@ List下嵌套使用LazyForEach，并且LazyForEach下嵌套使用ListItemGroup�
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                                               |
-| ------ | ------ | ---- | -------------------------------------------------- |
-| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：1<br/>取值范围：[0, +∞) |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | ListItem/ListItemGroup的预加载数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。<br/>取值范围：[0, +∞) |
 
 ### cachedCount<sup>14+</sup>
 
@@ -188,7 +188,7 @@ List设置cachedCount后，显示区域外上下各会预加载并布局cachedCo
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：1 <br/>取值范围：[0, +∞)|
+| count  | number | 是   | 预加载的ListItem的数量。<br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 <br/>取值范围：[0, +∞) |
 | show  | boolean | 是   | 被预加载的ListItem是否需要显示。 <br/> 默认值：false |
 
 ### editMode<sup>(deprecated)</sup>
@@ -478,6 +478,22 @@ maintainVisibleContentPosition(enabled: boolean)
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
+### stackFromEnd<sup>16+</sup>
+
+stackFromEnd(enabled: boolean)
+
+设置List组件从末尾开始布局。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置List组件是否从末尾开始布局。<br/>默认值：false，List从顶部开始布局。 true：List组件从末尾开始布局。|
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -536,13 +552,13 @@ maintainVisibleContentPosition(enabled: boolean)
 | ------- | -------- | ---- | ---------------------- |
 | onFinish | ()=>void | 否   | 在收起动画完成后触发。 |
 
-## ListDividerOptions<sup>14+</sup>对象说明
+## ListDividerOptions<sup>16+</sup>对象说明
 
 用于设置List或ListItemGroup组件的分割线样式。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -852,7 +868,7 @@ List的边缘效果为弹簧效果时，在List划动到边缘继续划动和松
 | Fling  |  2  | 惯性滚动状态。动画控制的滚动都会触发。包括快速划动松手后的惯性滚动， <br/>划动到边缘回弹的滚动，快速拖动内置滚动条松手后的惯性滚动， <br/>使用滚动控制器提供的带动画的方法控制的滚动。 |
 
 
-## ListScroller<sup>11+</sup>对象说明
+## ListScroller<sup>11+</sup>
 
 List组件的滚动控制器，通过它控制List组件的滚动，仅支持一对一绑定到List组件。
 
@@ -942,7 +958,7 @@ getVisibleListContentInfo(x:number, y: number): VisibleListContentInfo
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100004   | Controller not bound to component.                               |
+| 100004   |The controller not bound to component.|
 ### scrollToItemInGroup<sup>11+</sup>
 
 scrollToItemInGroup(index: number, indexInGroup: number, smooth?: boolean, align?: ScrollAlign): void

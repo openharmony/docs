@@ -216,7 +216,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
           }
         }
       }
-       Button ("Get Online Image")
+       Button("Get Online Image")
          .onClick(() => {
            let sethtp = new htp()
            sethtp.set()
@@ -234,7 +234,7 @@ A pixel map is a pixel image obtained after image decoding. For details, see [In
           }
         }
        }
-       Button ("Get Online Image")
+       Button("Get Online Image")
          .onClick(() => {
            let sethtp = new htp()
            sethtp.set()

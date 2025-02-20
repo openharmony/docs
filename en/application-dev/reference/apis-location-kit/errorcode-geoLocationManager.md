@@ -24,7 +24,7 @@ This error code is reported if the location service is unavailable and relevant 
 
 **Procedure**
 
-Stop calling the API.
+Add a retry mechanism.
 
 ## 3301100 Positioning Failed Due to Location Service Switch Turning-off
 
@@ -136,7 +136,7 @@ The correct area information is not found.
 
 **Procedure**
 
-Stop calling the API for querying the country code.
+Add a retry mechanism.
 
 ## 3301600 Geofence Operation Failed
 
@@ -156,7 +156,9 @@ This error code is reported if a geofence operation, for example, adding, deleti
 
 **Procedure**
 
-Stop calling the geofence operation API.
+- Add the SysCap verification mechanism.
+
+- Add a retry mechanism.
 
 ## 3301601 Failed to Add a Geofence Due to a Limit on the Maximum Number
 
@@ -170,7 +172,7 @@ This error code is reported if the attempt to add a geofence fails because the n
 
 **Possible Cause**
 
-The number of geofences has reached the maximum.
+The number of geofences has reached the maximum (that is, 1,000).
 
 **Procedure**
 
@@ -214,7 +216,7 @@ This error code is reported if no response is received for an asynchronous reque
 
 **Procedure**
 
-Stop calling relevant APIs.
+Add a retry mechanism.
 
 ## 3301800 Failed to Start Wi-Fi or Bluetooth Scanning
 

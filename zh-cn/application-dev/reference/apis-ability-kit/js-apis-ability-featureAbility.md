@@ -907,3 +907,45 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | TYPE_UPDATE | 2    | 修改类型。 |
 | TYPE_DELETE | 3    | 删除类型。 |
 | TYPE_ASSERT | 4    | 声明类型。 |
+
+## Context<sup>9+</sup>
+
+type Context = _Context
+
+Context模块。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_Context](js-apis-inner-app-context.md) | Context模块。 |
+
+## AppVersionInfo<sup>9+</sup>
+
+type AppVersionInfo = _AppVersionInfo
+
+应用版本信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_AppVersionInfo](js-apis-inner-app-appVersionInfo.md) | 应用版本信息。 |
+
+## ProcessInfo<sup>9+</sup>
+
+type ProcessInfo = _ProcessInfo
+
+进程信息。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束**：此接口仅可在FA模型下使用。
+
+| 类型 | 说明 |
+| --- | --- |
+| [_ProcessInfo](js-apis-inner-app-processInfo.md) | 进程信息。 |

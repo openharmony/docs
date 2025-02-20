@@ -25,9 +25,14 @@
 
 ![加密导入密钥开发顺序图](figures/加密导入密钥开发顺序图.png)
 
-根据开发流程，在导入加密密钥过程中，需要依次调用HUKS的生成密钥、导出公钥、导入加密密钥、删除密钥接口。
+根据开发流程，在导入加密密钥过程中，需要依次调用HUKS的能力包括：  
+* 生成非对称密钥对并导出公钥，用于设备间密钥协商  
+* 生成对称密钥，用于加密待导入密钥
+* 使用对称密钥加密待导入密钥，形成密钥密文
+* 导入加密密钥
+* 删除密钥
 
-导出密钥接口返回的[公钥明文材料](huks-concepts.md#公钥材料格式)是按照**X.509**格式封装，导入加密密钥接口中的密钥材料需满足**Length<sub>Data</sub>-Data**的格式封装。
+导出密钥接口返回的[公钥明文材料是按照**X.509**格式封装](huks-concepts.md#公钥材料格式)，导入加密密钥接口中的密钥材料需满足**Length<sub>Data</sub>-Data**的格式封装，形如：[(Length<sub>part1</sub>Data<sub>part1</sub>)……(Length<sub>partn</sub>Data<sub>partn</sub>)]。
 
 > **说明：**
 > 1. 加密导入密钥时，协商算法支持ECDH和X25519，协商后的Shared_Key使用AES-GCM算法加密Caller_Kek。对应算法套件定义见[HuksUnwrapSuite](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksunwrapsuite9)。
@@ -106,7 +111,7 @@
 HUKS支持导入密钥类型众多，各种不同类型对应的密钥格式不尽相同。下表归纳了HUKS导入密钥所支持的密钥类型及对应的密钥材料格式。
 | 密钥类型 | 算法 | 导入格式 |
 | -------- | -------- | -------- |
-| 对称密钥 | - | 原始数据 |
+| 对称密钥 | - | 密钥字节数据 |
 | 非对称密钥-密钥对| - | [密钥对材料格式](huks-concepts.md#密钥对材料格式) |
-| 非对称密钥-公钥 | ED25519、X25519 | 原始数据。参考[X25519密钥公钥导入](huks-import-key-in-plaintext-arkts.md#导入X25519密钥公钥)|
+| 非对称密钥-公钥 | ED25519、X25519 | 参考[X25519密钥公钥导入](huks-import-key-in-plaintext-arkts.md#导入X25519密钥公钥)|
 | 非对称密钥-公钥 | RSA、ECC、ECDH、DSA、DH、SM2 | X.509规范的DER格式 |

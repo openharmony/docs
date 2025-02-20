@@ -52,10 +52,10 @@
 | typedef struct [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix)  [OH_Drawing_Matrix](_drawing.md#oh_drawing_matrix) | 定义一个矩阵，用于描述坐标变换。 | 
 | typedef struct [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect)  [OH_Drawing_ShaderEffect](_drawing.md#oh_drawing_shadereffect) | 定义一个着色器，用于描述绘制内容的源颜色。 | 
 | typedef struct [OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer) [OH_Drawing_ShadowLayer](_drawing.md#oh_drawing_shadowlayer) | 定义一个阴影层，用于描述绘制内容的阴影层。 | 
-| typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)  [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，模板滤波器和图像滤波器。 | 
-| typedef struct [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter)  [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) | 定义模板滤波器，用于在绘制模板前对其进行转换。 | 
+| typedef struct [OH_Drawing_Filter](_drawing.md#oh_drawing_filter)  [OH_Drawing_Filter](_drawing.md#oh_drawing_filter) | 定义一个滤波器，用于存储颜色滤波器，蒙版滤波器和图像滤波器。 | 
+| typedef struct [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter)  [OH_Drawing_MaskFilter](_drawing.md#oh_drawing_maskfilter) | 定义蒙版滤波器。 | 
 | typedef struct [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter)  [OH_Drawing_ColorFilter](_drawing.md#oh_drawing_colorfilter) | 定义颜色滤波器，传入一个颜色并返回一个新的颜色。 | 
-| typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定<br/>义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
+| typedef struct [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter)  [OH_Drawing_ImageFilter](_drawing.md#oh_drawing_imagefilter) | 定义图像滤波器, 用于对构成图像像素的所有颜色位进行操作。 | 
 | typedef struct [OH_Drawing_Font](_drawing.md#oh_drawing_font)  [OH_Drawing_Font](_drawing.md#oh_drawing_font) | 用于描述字体。 | 
 | typedef struct [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream)  [OH_Drawing_MemoryStream](_drawing.md#oh_drawing_memorystream) | 用于描述内存流。 | 
 | typedef struct [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) [OH_Drawing_FontArguments](_drawing.md#oh_drawing_fontarguments) | 用于描述字型参数。 | 
@@ -68,7 +68,7 @@
 | typedef struct [OH_Drawing_Surface](_drawing.md#oh_drawing_surface)  [OH_Drawing_Surface](_drawing.md#oh_drawing_surface) | 定义surface，用于管理画布绘制的内容。 | 
 | typedef enum [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat)  [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) | 用于描述位图像素的存储格式。 | 
 | typedef enum [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat)  [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) | 用于描述位图像素的透明度分量。 | 
-| typedef enum [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)  [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) | 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。 | 
+| typedef enum [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode)  [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) | 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在红、绿、蓝3个颜色通道上是相同的（透明度有另外的处理规则）。 | 
 | typedef struct [OH_Drawing_Image_Info](_o_h___drawing___image___info.md)  [OH_Drawing_Image_Info](_drawing.md#oh_drawing_image_info) | 定义图片信息结构体。 | 
 | typedef struct [OH_Drawing_RectStyle_Info](_o_h___drawing___rect_style___info.md)  [OH_Drawing_RectStyle_Info](_drawing.md#oh_drawing_rectstyle_info) | 定义矩形框样式结构体。 | 
 | typedef enum [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding)  [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) | 文本编码类型枚举。 | 
@@ -83,5 +83,5 @@
 | -------- | -------- |
 | [OH_Drawing_ColorFormat](_drawing.md#oh_drawing_colorformat) {<br/>COLOR_FORMAT_UNKNOWN, COLOR_FORMAT_ALPHA_8, COLOR_FORMAT_RGB_565, COLOR_FORMAT_ARGB_4444,<br/>COLOR_FORMAT_RGBA_8888, COLOR_FORMAT_BGRA_8888<br/>} | 用于描述位图像素的存储格式。 | 
 | [OH_Drawing_AlphaFormat](_drawing.md#oh_drawing_alphaformat) { ALPHA_FORMAT_UNKNOWN, ALPHA_FORMAT_OPAQUE, ALPHA_FORMAT_PREMUL, ALPHA_FORMAT_UNPREMUL } | 用于描述位图像素的透明度分量。 | 
-| [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) {<br/>BLEND_MODE_CLEAR, BLEND_MODE_SRC, BLEND_MODE_DST, BLEND_MODE_SRC_OVER,<br/>BLEND_MODE_DST_OVER, BLEND_MODE_SRC_IN, BLEND_MODE_DST_IN, BLEND_MODE_SRC_OUT,<br/>BLEND_MODE_DST_OUT, BLEND_MODE_SRC_ATOP, BLEND_MODE_DST_ATOP, BLEND_MODE_XOR,<br/>BLEND_MODE_PLUS, BLEND_MODE_MODULATE, BLEND_MODE_SCREEN, BLEND_MODE_OVERLAY,<br/>BLEND_MODE_DARKEN, BLEND_MODE_LIGHTEN, BLEND_MODE_COLOR_DODGE, BLEND_MODE_COLOR_BURN,<br/>BLEND_MODE_HARD_LIGHT, BLEND_MODE_SOFT_LIGHT, BLEND_MODE_DIFFERENCE, BLEND_MODE_EXCLUSION,<br/>BLEND_MODE_MULTIPLY, BLEND_MODE_HUE, BLEND_MODE_SATURATION, BLEND_MODE_COLOR,<br/>BLEND_MODE_LUMINOSITY<br/>} | 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在4个颜色通道（红、绿、蓝、透明度）上是相同的。 对于这些，我们使用透明度通道作为示例，而不是单独命名每个通道。 | 
+| [OH_Drawing_BlendMode](_drawing.md#oh_drawing_blendmode) {<br/>BLEND_MODE_CLEAR, BLEND_MODE_SRC, BLEND_MODE_DST, BLEND_MODE_SRC_OVER,<br/>BLEND_MODE_DST_OVER, BLEND_MODE_SRC_IN, BLEND_MODE_DST_IN, BLEND_MODE_SRC_OUT,<br/>BLEND_MODE_DST_OUT, BLEND_MODE_SRC_ATOP, BLEND_MODE_DST_ATOP, BLEND_MODE_XOR,<br/>BLEND_MODE_PLUS, BLEND_MODE_MODULATE, BLEND_MODE_SCREEN, BLEND_MODE_OVERLAY,<br/>BLEND_MODE_DARKEN, BLEND_MODE_LIGHTEN, BLEND_MODE_COLOR_DODGE, BLEND_MODE_COLOR_BURN,<br/>BLEND_MODE_HARD_LIGHT, BLEND_MODE_SOFT_LIGHT, BLEND_MODE_DIFFERENCE, BLEND_MODE_EXCLUSION,<br/>BLEND_MODE_MULTIPLY, BLEND_MODE_HUE, BLEND_MODE_SATURATION, BLEND_MODE_COLOR,<br/>BLEND_MODE_LUMINOSITY<br/>} | 混合模式枚举。混合模式的操作会为两种颜色（源色、目标色）生成一种新的颜色。 这些操作在红、绿、蓝3个颜色通道上是相同的（透明度有另外的处理规则）。 | 
 | [OH_Drawing_TextEncoding](_drawing.md#oh_drawing_textencoding) { TEXT_ENCODING_UTF8, TEXT_ENCODING_UTF16, TEXT_ENCODING_UTF32, TEXT_ENCODING_GLYPH_ID } | 文本编码类型枚举。 | 

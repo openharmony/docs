@@ -32,8 +32,8 @@ The **image_pixel_map_napi.h** file declares the APIs used to lock, access, and 
 
 | Name| Description| 
 | -------- | -------- |
-| { [OHOS_IMAGE_RESULT_SUCCESS](image.md#anonymous-enum-33) = 0,<br>[OHOS_IMAGE_RESULT_BAD_PARAMETER](image.md#anonymous-enum-33) = -1 } | Enumerates the error codes returned by the functions.| 
-| { [OHOS_PIXEL_MAP_FORMAT_NONE](image.md#anonymous-enum-33-1) = 0,<br>[OHOS_PIXEL_MAP_FORMAT_RGBA_8888](image.md#anonymous-enum-33-1) = 3,<br>[OHOS_PIXEL_MAP_FORMAT_RGB_565](image.md#anonymous-enum-33-1) = 2 } | Enumerates the PixelMap formats.| 
+| { [OHOS_IMAGE_RESULT_SUCCESS](image.md#error-codes-returned-by-functions) = 0,<br>[OHOS_IMAGE_RESULT_BAD_PARAMETER](image.md#error-codes-returned-by-functions) = -1 } | Enumerates the error codes returned by the functions.| 
+| { [OHOS_PIXEL_MAP_FORMAT_NONE](image.md#pixel-formats) = 0,<br>[OHOS_PIXEL_MAP_FORMAT_RGBA_8888](image.md#pixel-formats) = 3,<br>[OHOS_PIXEL_MAP_FORMAT_RGB_565](image.md#pixel-formats) = 2 } | Enumerates the PixelMap formats.| 
 | { [OHOS_PIXEL_MAP_SCALE_MODE_FIT_TARGET_SIZE](image.md#anonymous-enum) = 0,<br>[OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP](image.md#anonymous-enum) = 1 } | Enumerates the PixelMap scale modes.| 
 
 

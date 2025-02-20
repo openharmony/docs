@@ -14,7 +14,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 
     | 参数名               | 类型                   | 必填 | 说明                                                 |
     | -------------------- | ---------------------- | ---- | ---------------------------------------------------- |
-    | sceneType            | number                 | 否   | 意图，默认为1，路线规划场景填1或不填                   |
+    | sceneType            | number                 | 否   | 意图场景，表明本次请求对应的操作意图。默认为1，路线规划场景填1或不填                   |
     | originName           | string                 | 否   | 起点名称                                             |
     | originLatitude       | number                 | 否   | 起点纬度                                             |
     | originLongitude      | number                 | 否   | 起点经度                                             |
@@ -29,7 +29,7 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 
     | 参数名               | 类型                   | 必填 | 说明              |
     | -------------------- | ---------------------- | ---- | ----------------- |
-    | sceneType            | number                 | 是   | 意图，导航场景填2 |
+    | sceneType            | number                 | 是   | 意图场景，表明本次请求对应的操作意图。导航场景填2 |
     | destinationName      | string                 | 否   | 终点名称          |
     | destinationLatitude  | number                 | 是   | 终点纬度          |
     | destinationLongitude | number                 | 是   | 终点经度          |
@@ -39,13 +39,13 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 
     | 参数名          | 类型   | 必填 | 说明                  |
     | --------------- | ------ | ---- | --------------------- |
-    | sceneType       | number | 是   | 意图，位置搜索场景填3 |
+    | sceneType       | number | 是   | 意图场景，表明本次请求对应的操作意图。位置搜索场景填3 |
     | destinationName | string | 是   | 地点名称              |
 
 
 ## 拉起方开发步骤
 
-1. 导入ohos.app.ability.common模块。 
+1. 导入相关模块。 
     ```ts
     import { common } from '@kit.AbilityKit';
     ```
@@ -142,12 +142,12 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 2. 解析参数并做对应处理。
 
     ```ts
-    UIAbility::onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
+    UIAbility.onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void
     ```
 
-    在参数**want.uri**中会携带目标方配置的linkFeature对应的uri;
+    在参数**want.uri**中会携带目标方配置的linkFeature对应的uri。
 
-    在参数**want.parameters**中会携带Caller方传入的参数，不同场景参数如下所示
+    在参数**want.parameters**中会携带Caller方传入的参数，不同场景参数如下所示。
 
     - 路线规划场景
     

@@ -34,8 +34,7 @@ Sets how the component behaves during hit testing.
 
 ## Example
 
-Set **hitTestBehavior** to **HitTestMode.Transparent** for the **Text** component, which means that the inner-layer **Stack** component is also considered during hit testing. Therefore, both the **Text** and **Stack** components respond to the **onTouch** event. 
-Set **hitTestBehavior** to **HitTestMode.Block** for the inner-layer **Stack** component, which means that its child nodes and sibling node **Button** are blocked from hit testing. Therefore, neither the inner-layer or out-layer **Button** components respond to the **onTouch** event.
+This example demonstrates the touch effects of **Block** and **Transparent** hit test modes by setting different **HitTestMode** values.
 
 ```ts
 // xxx.ets

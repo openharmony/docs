@@ -22,9 +22,9 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -36,7 +36,7 @@ import { insightIntentDriver } from '@kit.AbilityKit';
 | executeMode | [insightIntent.ExecuteMode](js-apis-app-ability-insightIntent.md#executemode) | 是 | 意图调用执行模式。 |
 | displayId<sup>12+</sup> | number | 否 | 意图调用时指定的物理屏幕id，该参数应为整数，仅在executeMode为UI_ABILITY_FOREGROUND时生效。 |
 | uris<sup>16+</sup> | Array&lt;string&gt; | 否 | 意图调用时，意图调用方给意图执行方授权的URI列表。 |
-| flags<sup>16+</sup> | number | 否 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION 、 FLAG_AUTH_WRITE_URI_PERMISSION。 |
+| flags<sup>16+</sup> | number | 否 | 意图调用时，意图调用方给意图执行方授权的uris的[flags](js-apis-app-ability-wantConstant.md#flags)。 <br/>**说明：**<br/>该参数仅支持FLAG_AUTH_READ_URI_PERMISSION、FLAG_AUTH_WRITE_URI_PERMISSION、FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION。|
 
 ## insightIntentDriver.execute
 
@@ -48,9 +48,9 @@ execute(param: ExecuteParam, callback: AsyncCallback<insightIntent.ExecuteResult
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -129,9 +129,9 @@ execute(param: ExecuteParam): Promise<insightIntent.ExecuteResult>
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.EXECUTE_INSIGHT_INTENT
+**需要权限**：ohos.permission.EXECUTE_INSIGHT_INTENT
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

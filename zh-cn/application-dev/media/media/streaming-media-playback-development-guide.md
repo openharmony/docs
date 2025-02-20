@@ -4,6 +4,7 @@
 当前指导仅介绍如何实现流媒体播放功能，本地音视频播放等其他场景，请参考[视频播放](using-avplayer-for-playback.md)。
 
 ## 流媒体支持的格式
+
 | 流媒体协议类型 | 典型链接 | 网络点播 | 网络直播 |内容保护 |
 | -------- | -------- | -------- | -------- | -------- |
 | HLS | `https://xxxx/index.m3u8` | 支持 | 支持 | 支持，详见[DRM Kit](../drm/drm-overview.md)。 |
@@ -41,13 +42,17 @@
    > - 需要使用支持的播放格式与协议。
    > 
 
-4. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置音量。
+4. 设置窗口：获取并设置属性SurfaceID，用于设置显示画面。
 
-5. 音频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
+   应用需要从XComponent组件获取surfaceID，获取方式请参考[XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)。
 
-6. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+5. 准备播放：调用prepare()，AVPlayer进入prepared状态，此时可以获取duration，设置缩放模式、音量等。
 
-7. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
+6. 视频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
+
+7. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+
+8. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
 ## 注意事项
 
@@ -66,30 +71,33 @@ avPlayer.on('bufferingUpdate', (infoType : media.BufferingInfoType, value : numb
 ```
 
 ### HLS切换码率
+
 当前流媒体HLS协议流支持多码率播放，默认情况下，播放器会根据网络下载速度选择合适的码率。
 
 1. 通过[on('availableBitrates')](../../reference/apis-media-kit/js-apis-media.md#onavailablebitrates9)监听当前HLS协议流可用的码率，若监听的码率列表长度为0，则不支持设置指定码率。
-```ts
-// 创建avPlayer实例对象
-let avPlayer: media.AVPlayer = await media.createAVPlayer();
-// 监听当前HLS协议流可用的码率
-avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-  consle.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
-})
-```
+
+    ```ts
+    // 创建avPlayer实例对象
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    // 监听当前HLS协议流可用的码率
+    avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
+      console.info('availableBitrates called, and availableBitrates length is: ' + bitrates.length);
+    })
+    ```
 
 2. 通过[setBitrate](../../reference/apis-media-kit/js-apis-media.md#setbitrate9)接口设置播放码率，若用户设置的码率不在可用码率中，播放器将从可用码率中选择最小且最接近的码率。该接口只能在prepared/playing/paused/completed状态下调用，可通过监听[bitrateDone](../../reference/apis-media-kit/js-apis-media.md#onbitratedone9)事件确认是否生效。
-```ts
-// 创建avPlayer实例对象
-let avPlayer: media.AVPlayer = await media.createAVPlayer();
-// 监听码率设置是否生效
-avPlayer.on('bitrateDone', (bitrate: number) => {
-  consle.info('bitrateDone called, and bitrate value is: ' + bitrate);
-})
-// 设置播放码率
-let bitrate: number = 96000;
-avPlayer.setBitrate(bitrate);
-```
+
+    ```ts
+    // 创建avPlayer实例对象
+    let avPlayer: media.AVPlayer = await media.createAVPlayer();
+    // 监听码率设置是否生效
+    avPlayer.on('bitrateDone', (bitrate: number) => {
+      console.info('bitrateDone called, and bitrate value is: ' + bitrate);
+    })
+    // 设置播放码率
+    let bitrate: number = 96000;
+    avPlayer.setBitrate(bitrate);
+    ```
 
 ### DASH设置视频起播策略
 
@@ -107,11 +115,11 @@ avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格式等参数各不相同的音频、视频和字幕资源。默认情况下，AVPlayer会依据网络状况自动切换不同码率的视频轨道。开发者可根据实际需求，自主选择指定的音视频轨道进行播放，此时自适应码率切换策略会失效。
 
-1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md)。
+1. 设置selectTrack生效的监听事件[trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12)。
 
     ```ts
     avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
-      console.info(`trackChange info, index: ${error}, isSelect: ${isSelect}`);
+      console.info(`trackChange info, index: ${index}, isSelect: ${isSelect}`);
     })
     ```
 
@@ -150,8 +158,7 @@ DASH流媒体资源一般包含多路分辨率、码率、采样率、编码格�
 
 使用avPlayer播放流媒体过程中断网：流媒体模块会根据返回的错误码、服务器请求失败的响应时间、请求次数等因素综合处理。若错误码类型属于不进行请求重试的类型，会向应用上报对应的错误码。若错误码类型需要进行请求重试，会在30s内进行至多10次的请求重试。若请求重试次数超过10次，或重试总时长超过30秒，会上向应用上报对应的错误码。若请求重试成功，则继续播放。
 
-
-## 完整实例
+## 完整示例
 
 参考以下示例，完整地播放一个流媒体视频。
 
@@ -163,11 +170,21 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class AVPlayerDemo {
   private count: number = 0;
+  private surfaceID: string = ''; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法
   private isSeek: boolean = true; // 用于区分模式是否支持seek操作
   public audioTrackList: number[] = [];
   public videoTrackList: number[] = [];
+
+  constructor(surfaceID: string) {
+    this.surfaceID = surfaceID;
+  }
+
   // 注册avplayer回调函数
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
+    // startRenderFrame首帧渲染回调函数
+    avPlayer.on('startRenderFrame', () => {
+      console.info(`AVPlayer start render frame`);
+    });
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
       console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
@@ -189,10 +206,7 @@ export class AVPlayerDemo {
           break;
         case 'initialized': // avplayer 设置播放源后触发该状态上报
           console.info('AVPlayer state initialized called.');
-          this.avPlayer.audioRendererInfo = {
-            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-            rendererFlags: 0
-          }
+          avPlayer.surfaceId = this.surfaceID; // 设置显示画面，当播放的资源为纯音频时无需设置
           avPlayer.prepare();
           break;
         case 'prepared': // prepare调用成功后上报该状态机

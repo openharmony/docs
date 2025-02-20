@@ -167,3 +167,37 @@ struct MiterLimit {
   }
 }
 ```
+
+## cl.arkui.5 半模态在2in1设备的阴影参数变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+ux规格变更
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+| 变更前                                                                                                                     | 变更后                                                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 半模态在2in1设备的获焦态阴影参数和失焦态阴影参数都为[OUTER_FLOATING_MD](../../../application-dev/reference//apis-arkui//arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)。<br>![gauge_before](figures/sheet_focus.png)| 半模态在2in1设备的获焦态阴影参数为OUTER_FLOATING_MD，失焦态阴影参数为[OUTER_FLOATING_SM](../../../application-dev/reference//apis-arkui//arkui-ts/ts-universal-attributes-image-effect.md#shadowstyle10枚举说明)。<br>![gauge_after](figures/sheet_unfocus.png) |
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.60开始。
+
+**变更的接口/组件**
+
+bindSheet。
+
+**适配指导**
+
+默认效果变更，无需适配。

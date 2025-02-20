@@ -2,8 +2,10 @@
 
 
 To stretch keys into longer keys or to obtain keys in the required format, you can use the HUKS APIs to derive one or more secrete keys from a key (base key) by using a pseudorandom function.
-> **NOTE**<br>
-> The mini-system devices do not support key derivation.
+> **NOTE** 
+>
+> * In HUKS, only the keys managed by HUKS can be used for key derivation.  
+> * The mini-system devices do not support key derivation.
 
 ## Supported Algorithms
 
@@ -15,6 +17,8 @@ The key management service specifications include mandatory specifications and o
 <!--DelEnd-->
 
 A derived key is the key session result obtained using the Init-Update-Finish mechanism. It can be managed by HUKS (the key is always in a [TEE](huks-concepts.md)) or independently managed by the service based on service requirements.
+> **NOTE**<br>
+> PBKDF2 and HKDF support only the keys that are managed within HUKS. They do not support the keys outside HUKS, such as the user passwords. For details about the keys managed in HUKS, see [Key Import Overview and Algorithm Specifications](huks-key-import-overview.md).
 
 | Algorithm/MD| Algorithm/Length of the Base Key| Available Algorithm/Length of the Derived Key| API Version| <!--DelCol5-->Mandatory|
 | -------- | -------- | -------- | -------- | -------- |

@@ -1,8 +1,16 @@
 # Introduction to Media Kit
 
-Media Kit provides the [AVPlayer](#avplayer), [SoundPool](#soundpool), [AVRecorder](#avrecorder), [AVScreenCapture](#avscreencapture), [AVMetadataExtractor](#avmetadataextractor), and [AVImageGenerator](#avimagegenerator) classes for playing and recording audio/video, and obtaining audio/video metadata and video thumbnails.
+Media Kit is used to develop audio and video playback or recording features. The Media Kit development guide provides comprehensive instructions on how to develop various audio and video modules, assisting you in utilizing the system's audio and video APIs to achieve desired functionalities. For example, you can use the SoundPool to implement simple prompt tones so that a drip sound is played upon the receipt of a new message; you can use the AVPlayer to develop a music player, which can loop a piece of music.
 
-From this guide, you will learn how to use the APIs provided by Media Kit to develop a wealth of audio and video playback or recording scenarios. For example, you can use the SoundPool to implement simple prompt tones so that a drip sound is played upon the receipt of a new message; you can use the AVPlayer to develop a music player, which can loop a piece of music.
+Media Kit provides the following modules:
+
+- [AVPlayer](#avplayer): plays audio and video clips.
+- [SoundPool](#soundpool): plays short sounds.
+- [AVRecorder](#avrecorder): records audio and video clips.
+- [AVScreenCapture](#avscreencapture): captures the screen.
+- [AVMetadataExtractor](#avmetadataextractor): obtains audio and video metadata.
+- [AVImageGenerator](#avimagegenerator): obtains video thumbnails.
+- [AVTranscoder](#avtranscoder): video transcoding.
 
 ## Highlights
 
@@ -42,15 +50,13 @@ The AVPlayer provides the integrated playback capability. This means that your a
 
 ### Audio Playback
 
-The figure below shows the interaction when the AVPlayer class is used to develop a music application.
-
-**Figure 1** Interaction with external modules for audio playback 
+The figure below shows the interaction between the AVPlayer and external modules when it is used to develop a music application.
 
 ![Audio Playback Interaction Diagram](figures/audio-playback-interaction-diagram.png)
 
 When a music application calls the AVPlayer APIs at the JS interface layer to implement audio playback, the player framework at the framework layer parses the media asset into audio data streams (in PCM format). The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI for rendering. A complete audio playback process requires the cooperation of the application, player framework, audio framework, and audio HDI.
 
-In Figure 1, the numbers indicate the process where data is transferred to external modules.
+In this figure, the numbers indicate the process where data is transferred to external modules.
 
 1. The application transfers the media asset to the AVPlayer instance.
 
@@ -58,17 +64,15 @@ In Figure 1, the numbers indicate the process where data is transferred to exter
 
 ### Video Playback
 
-The figure below shows the interaction when the AVPlayer class is used to develop a video application.
-
-**Figure 2** Interaction with external modules for video playback 
+The figure below shows the interaction between the AVPlayer and external modules when it is used to develop a video playback application.
 
 ![Video playback interaction diagram](figures/video-playback-interaction-diagram.png)
 
-When a video application calls the AVPlayer APIs at the JS interface layer to implement audio and video playback, the player framework at the framework layer parses the media asset into separate audio data streams and video data streams. The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI at the hardware interface layer to implement audio playback. The video data streams are then decoded by hardware (recommended) or software and output to the graphic framework. The graphic framework outputs the video data streams to the display HDI at the hardware interface layer to implement graphics rendering.
+When a video playback application calls the AVPlayer APIs at the JS interface layer to implement audio and video playback, the player framework at the framework layer parses the media asset into separate audio data streams and video data streams. The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI at the hardware interface layer to implement audio playback. The video data streams are then decoded by hardware (recommended) or software and output to the graphic framework. The graphic framework outputs the video data streams to the display HDI at the hardware interface layer to implement graphics rendering.
 
 A complete video playback process requires the cooperation of the application, XComponent, player framework, graphic framework, audio framework, display HDI, and audio HDI.
 
-In Figure 2, the numbers indicate the process where data is transferred to external modules.
+In this figure, the numbers indicate the process where data is transferred to external modules.
 
 1. The application obtains a window surface ID from the XComponent. For details about how to obtain the window surface ID, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
@@ -82,7 +86,7 @@ In Figure 2, the numbers indicate the process where data is transferred to exter
 
 ### Supported Formats and Protocols
 
-Audio and video containers and codecs are domains specific to content creators. You are advised to use the mainstream playback formats, rather than custom ones to avoid playback failures, frame freezing, and artifacts. The system will not be affected by incompatibility issues. If such an issue occurs, you can exit playback.
+Audio and video containers and codecs are domains specific to content creators. You are advised to use the mainstream playback formats, rather than custom ones to avoid playback failures, stutters, and artifacts. The system will not be affected by incompatibility issues. If such an issue occurs, you can exit playback.
 
 The table below lists the supported protocols.
 
@@ -140,17 +144,13 @@ The SoundPool transcodes audio assets (such as MP3, M4A, and WAV) into audio ana
 
 The SoundPool provides the capability of playing short sounds. This means that your application only needs to provide audio asset sources to implement sound playback. It does not need to parse or decode data.
 
-### Audio Playback
-
-The figure below shows the interaction when the SoundPool class is used to develop an audio application.
-
-**Figure 3** Interaction with external modules for sound playback 
+The figure below shows the interaction between the SoundPool and external modules when it is used to develop an audio playback application.
 
 ![SoundPool Interaction Diagram](figures/soundpool-interaction-diagram.png)
 
-When an audio application calls the SoundPool APIs at the JS interface layer to implement sound playback, the player framework at the framework layer parses the media asset into audio data streams (in PCM format). The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI for rendering. A complete audio playback process requires the cooperation of the application, player framework, audio framework, and audio HDI.
+When an audio playback application calls the SoundPool APIs at the JS interface layer to implement sound playback, the player framework at the framework layer parses the media asset into audio data streams (in PCM format). The audio data streams are then decoded by software and output to the audio framework. The audio framework outputs the audio data streams to the audio HDI for rendering. A complete audio playback process requires the cooperation of the application, player framework, audio framework, and audio HDI.
 
-In Figure 3, the numbers indicate the process where data is transferred to external modules.
+In this figure, the numbers indicate the process where data is transferred to external modules.
 
 1. The application transfers the media asset to the SoundPool instance.
 
@@ -158,7 +158,7 @@ In Figure 3, the numbers indicate the process where data is transferred to exter
 
 ### Supported Formats and Protocols
 
-Audio containers and codecs are domains specific to content creators. You are advised to use the mainstream playback formats, rather than custom ones to avoid playback failures and frame freezing. The system will not be affected by incompatibility issues. If such an issue occurs, you can exit playback.
+Audio containers and codecs are domains specific to content creators. You are advised to use the mainstream playback formats, rather than custom ones to avoid playback failures and stutters. The system will not be affected by incompatibility issues. If such an issue occurs, you can exit playback.
 
 The table below lists the supported protocols.
 
@@ -180,7 +180,7 @@ The table below lists the supported audio playback formats.
 
 The AVRecorder captures audio signals, receives video signals, encodes the audio and video signals, and saves them to files. With the AVRecorder, you can easily implement audio and video recording, including starting, pausing, resuming, and stopping recording, and releasing resources. You can also specify parameters such as the encoding format, container format, and file path for recording.
 
-**Figure 4** Interaction with external modules for video recording 
+The following figure shows the interaction between the AVRecorder and external modules when it is used to develop a video recording application.
 
 ![Video recording interaction diagram](figures/video-recording-interaction-diagram.png)
 
@@ -190,7 +190,7 @@ The AVRecorder captures audio signals, receives video signals, encodes the audio
 
 With the AVRecorder, you can implement pure audio recording, pure video recording, and audio and video recording.
 
-In Figure 4, the numbers indicate the process where data is transferred to external modules.
+In this figure, the numbers indicate the process where data is transferred to external modules.
 
 1. The application obtains a surface ID from the player framework through the AVRecorder instance.
 
@@ -237,16 +237,18 @@ The table below lists the supported output file formats.
 | wav | Audio container format WAV.| 
 
 ## AVScreenCapture
+
 The AVScreenCapture captures audio and video signals and saves screen data to files by means of encoding, helping you easily implement screen capture. It consists of two sets of APIs: one for storing screen recordings and the other for obtaining streams during screen capture. It allows the caller to specify parameters such as the encoding format, container format, and file path for screen capture.
 
-**Figure 5** Interaction with external modules for screen capture 
+The following figure shows the interaction between the AVScreenCapture and external modules when it is used to develop a screen capture application.
 
 ![AvScreenCapture interaction diagram](figures/avscreencapture-interaction-diagram.png)
 
-- Audio recording: When an application calls the AVScreenCapture APIs at the JS or native interface layer to implement audio recording, the player framework at the framework layer invokes the audio framework to capture audio data through the audio HDI. The audio data is then encoded by software and saved into a file.
-- Screen capture: When an app calls the AVScreenCapture APIs at the JS or native API layer to implement screen capture, the player framework at the framework layer invokes the graphic framework to capture screen data. The screen data is then encoded by software and saved into a file.
+- Audio capture: When an application calls the AVScreenCapture APIs at the JS or native interface layer to implement audio capture, the player framework at the framework layer invokes the audio framework to capture audio data through the audio HDI. The audio data is then encoded by software and saved into a file.
+- Screen capture: When an application calls the AVScreenCapture APIs at the JS or native interface layer to implement screen capture, the player framework at the framework layer invokes the graphic framework to capture screen data. The screen data is then encoded by software and saved into a file.
 
 ### Supported Formats
+
 The table below lists the supported audio sources.
 
 | Type| Description| 
@@ -280,15 +282,51 @@ The table below lists the supported output file formats.
 | m4a | Audio container format M4A.| 
 
 ## AVMetadataExtractor
+
 The AVMetadataExtractor is used to obtain audio and video metadata. With the AVMetadataExtractor, you can extract rich metadata information from original media assets. For example, for an audio asset, you can obtain its details, such as the title, artist, album name, and duration. The process of obtaining the metadata of a video asset is similar. The only difference is that the process of obtaining the album cover is not required for a video asset, because no album cover is available in the video asset.
 
 The full process of obtaining the metadata of an audio asset includes creating an AVMetadataExtractor instance, setting resources, obtaining the metadata, obtaining the album cover (optional), and releasing the instance.
 
 ### Supported Formats
+
 For details about the supported audio and video sources, see [Demuxing Media Data](../avcodec/audio-video-demuxer.md).
 
 ## AVImageGenerator
+
 The AVImageGenerator is used to obtain video thumbnails. With the AVImageGenerator, you can obtain video frames at a specified time from original media assets.
 
 ### Supported Formats
+
 For details about the supported video sources, see [Video Decoding](../avcodec/video-decoding.md).
+
+## AVTranscoder
+
+The AVTranscoder is used to convert a compressed video file into a video in another format based on specified parameters.
+
+### Supported Formats
+
+The AVTranscoder provides the following services:
+
+The encoding parameters (format and bit rate) and container format of the source video file can be modified. The audio and video encoding and container formats of the source video are compatible with the AVCodec for decoding and demuxing purposes, whereas those of the target video are compatible with the AVCodec for encoding and muxing purposes.
+
+- The following source video formats are supported:
+  - [Demuxing formats](../avcodec/audio-video-demuxer.md)
+  - [Audio decoding formats](../avcodec/audio-decoding.md)
+  - [Video decoding formats](../avcodec/video-decoding.md)
+    <!--Del-->
+    > **NOTE**
+    > 
+    > Currently, H.265 is not supported.
+    <!--DelEnd-->
+- The following target video formats are supported:
+  - [Container formats](../avcodec/audio-video-muxer.md)
+  - [Audio encoding formats](../avcodec/audio-encoding.md)
+  - [Video encoding formats](../avcodec/video-encoding.md)
+    <!--Del-->
+    > **NOTE**
+    > 
+    > Currently, H.265 is not supported.
+   
+    <!--DelEnd-->
+
+<!--RP1--><!--RP1End-->

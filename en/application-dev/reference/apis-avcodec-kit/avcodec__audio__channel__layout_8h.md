@@ -9,6 +9,8 @@ The **avcodec_audio_channel_layout.h** file declares the enums used for audio co
 
 **Since**: 9
 
+**Deprecated from**: 11
+
 **Related module**: [CodecBase](_codec_base.md)
 
 

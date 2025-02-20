@@ -1239,7 +1239,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [
@@ -1259,7 +1259,7 @@ V2:
 - 声明被\@Trace的属性作为页面间共享的可观察的数据。
 
 ```
-// storage.ets
+// Storage.ets
 @ObservedV2
 export class MyStorage {
   static singleton_: MyStorage;
@@ -1329,7 +1329,7 @@ struct Page2 {
   }
 }
 ```
-使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径。
+使用Navigation时，需要添加配置系统路由表文件src/main/resources/base/profile/route_map.json，并替换pageSourceFile为Page2页面的路径，并且在module.json5中添加："routerMap": "$profile:route_map"。
 ```json
 {
   "routerMap": [
@@ -1654,7 +1654,7 @@ V2：
 
 声明\@ObservedV2装饰的class代替LocalStorage。其中LocalStorage的key可以用\@Trace装饰的属性代替。
 ```ts
-// storage.ets
+// Storage.ets
 @ObservedV2
 export class MyStorageA {
   @Trace propA: string = 'Hello';
@@ -1857,7 +1857,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -1884,7 +1884,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -1920,7 +1920,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -1954,7 +1954,7 @@ struct Index1 {
           })
         Button('Jump to EntryAbility').onClick(() => {
           let wantInfo: Want = {
-            bundleName: 'com.example.myapplication',
+            bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
             abilityName: 'EntryAbility'
           };
           this.context.startAbility(wantInfo);
@@ -1989,7 +1989,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -2020,7 +2020,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -2067,7 +2067,7 @@ struct Index {
         })
       Button('Jump to EntryAbility1').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility1'
         };
         this.context.startAbility(wantInfo);
@@ -2112,7 +2112,7 @@ struct Index1 {
         })
       Button('Jump to EntryAbility').onClick(() => {
         let wantInfo: Want = {
-          bundleName: 'com.example.myapplication',
+          bundleName: 'com.example.myapplication', // 替换成AppScope/app.json5里的bundleName
           abilityName: 'EntryAbility'
         };
         this.context.startAbility(wantInfo);
@@ -2304,7 +2304,7 @@ function move() {
     PersistentStorage.persistProp('numProp', 47);
     PersistentStorage.persistProp('dataProp', new Data());
     let num = AppStorage.get<number>('numProp')!;
-    let V1Data =AppStorage.get<Data>('dataProp')!;
+    let V1Data = AppStorage.get<Data>('dataProp')!;
     PersistentStorage.deleteProp('numProp');
     PersistentStorage.deleteProp('dataProp');
 

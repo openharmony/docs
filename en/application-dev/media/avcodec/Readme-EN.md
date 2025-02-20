@@ -1,6 +1,7 @@
 # AVCodec Kit
 
 - [Introduction to AVCodec Kit](avcodec-kit-intro.md)
+- [AVCodec Supported Formats](avcodec-support-formats.md)
 - Audio and Video Codecs
   - [Obtaining Supported Codecs](obtain-supported-codecs.md)
   - [Audio Encoding](audio-encoding.md)

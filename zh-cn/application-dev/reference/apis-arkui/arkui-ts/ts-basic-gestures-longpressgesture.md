@@ -26,6 +26,7 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | fingers | number | 否 | 触发长按的最少手指数，最小为1指，&nbsp;最大取值为10指。<br/>默认值：1 <br/> **说明：** <br/>手指按下后若发生超过15px的移动，则判定当前长按手势识别失败。|
 | repeat | boolean | 否 | 是否连续触发事件回调。<br/>默认值：false |
 | duration | number | 否 | 触发长按的最短时间，单位为毫秒（ms）。<br/>默认值：500 <br/>**说明：** <br/>设置小于等于0时，按照默认值500处理。|
+| isFingerCountLimited<sup>15+</sup> | boolean | 否 | 是否检查触摸屏幕的手指数量。若触摸屏幕的手指的数量不等于设置的触发长按的最少手指数（即上述fingers参数），手势识别将失败。<br>对于已成功识别的手势，后续触摸屏幕的手指数变化，将不触发repeat事件（若触摸屏幕的手指数恢复到设置的触发长按的最少手指数时，可以触发[onAction](ts-basic-gestures-longpressgesture.md#事件)事件），但可以触发[onActionEnd](ts-basic-gestures-longpressgesture.md#事件)事件。<br>默认值：false。|
 
 
 ## 事件
@@ -34,7 +35,8 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 | -------- | -------- |
 | onAction(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | onActionEnd(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，最后一根手指抬起后触发回调。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void) | LongPress手势识别成功，接收到触摸取消事件触发回调。不返回手势事件信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| onActionCancel(event:(event:&nbsp;[GestureEvent](ts-gesture-settings.md#gestureevent对象说明))&nbsp;=&gt;&nbsp;void)<sup>16+</sup> | LongPress手势识别成功，接收到触摸取消事件触发回调。返回手势事件信息。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## 属性
 

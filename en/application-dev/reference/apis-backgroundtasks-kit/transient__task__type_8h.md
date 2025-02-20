@@ -28,8 +28,8 @@ The **transient_task_type.h** file declares the error codes and structs of a tra
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [TransientTask_ErrorCode](_transient_task.md#transienttask_errorcode)[TransientTask_ErrorCode](_transient_task.md#transienttask_errorcode) | Defines an enum for the error codes available for a transient task.| 
-| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)[TransientTask_DelaySuspendInfo](_transient_task.md#transienttask_delaysuspendinfo) | Defines a struct for the returned information about a transient task.| 
+| typedef enum [TransientTask_ErrorCode](_transient_task.md#transienttask_errorcode) [TransientTask_ErrorCode](_transient_task.md#transienttask_errorcode) | Defines an enum for the error codes available for a transient task.| 
+| typedef struct [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md) [TransientTask_DelaySuspendInfo](_transient_task.md#transienttask_delaysuspendinfo) | Defines a struct for the returned information about a transient task.| 
 | typedef void(\* [TransientTask_Callback](_transient_task.md#transienttask_callback)) (void) | Defines a callback for transient task timeout.| 
 
 

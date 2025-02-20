@@ -57,6 +57,7 @@
     - [drawing_text_declaration.h](drawing__text__declaration_8h.md)
     - [drawing_text_font_descriptor.h](drawing__text__font__descriptor_8h.md)
     - [drawing_text_line.h](drawing__text__line_8h.md)
+    - [drawing_text_lineTypography.h](drawing__text__line_typography_8h.md)
     - [drawing_text_run.h](drawing__text__run_8h.md)
     - [drawing_text_typography.h](drawing__text__typography_8h.md)
     - [drawing_typeface.h](drawing__typeface_8h.md)

@@ -470,7 +470,7 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                 | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | contact  | [Contact](#contact)                     | 是   | 联系人信息。id必填。                                         |
-| attrs    | [ContactAttributes](#contactattributes) | 否   | 联系人的属性列表。                                           |
+| attrs    | [ContactAttributes](#contactattributes) | 是   | 联系人的属性列表。                                           |
 | callback | AsyncCallback&lt;void&gt;               | 是   | 回调函数。成功返回更新的联系人id；失败返回失败的错误码。     |
 
 **错误码：**
@@ -1499,7 +1499,7 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 | -------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context                                  | 是   | 应用上下文Context，Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-application-context.md)。 |
 | key      | string                                   | 是   | 联系人的key值，一个联系人对应一个key。                       |
-| holder   | [Holder](#holder)                        | 否   | 创建联系人的应用信息。                                       |
+| holder   | [Holder](#holder)                        | 是   | 创建联系人的应用信息。                                       |
 | callback | AsyncCallback&lt;[Contact](#contact)&gt; | 是   | 回调函数。成功返回查询的联系人对象；失败返回失败的错误码。   |
 
 **错误码：**
@@ -3937,11 +3937,11 @@ email.email = "xxx@email.com";
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Applications.ContactsData。
 
-| 名称        | 类型   | 可读 | 可写 | 必填 | 说明         |
-| ----------- | ------ | ---- | ---- | ---- | ------------ |
-| bundleName  | string | 是   | 否   | 是   | Bundle名称，值为com.ohos.contacts。 |
-| displayName | string | 是   | 否   | 否   | 应用名称。   |
-| holderId    | number | 是   | 是   | 否   | 应用ID。     |
+| 名称        | 类型   | 可读 | 可写 | 说明         |
+| ----------- | ------ | ---- | ---- | ------------ |
+| bundleName  | string | 是   | 否   | Bundle名称，值为com.ohos.contacts。 |
+| displayName | string | 是   | 否   | 应用名称。   |
+| holderId    | number | 是   | 是   | 应用ID。     |
 
 
 **对象创建示例：**

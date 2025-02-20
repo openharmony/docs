@@ -56,7 +56,7 @@ TransitionEffect以函数的形式指定转场效果。提供了以下接口：
 | 静态成员名称 | 参数描述 |
 | -------- | -------- |
 | IDENTITY | 禁用转场效果。 |
-| OPACITY | 指定透明度为0的转场效果。即相当于TransitionEffect.opacity(0) |
+| OPACITY | 为组件添加透明度转场效果，出现时透明度从0到1、消失时透明度从1到0，相当于TransitionEffect.opacity(0)。 |
 | SLIDE | 相当于TransitionEffect.asymmetric(TransitionEffect.move(TransitionEdge.START), TransitionEffect.move(TransitionEdge.END))。从START边滑入，END边滑出。即在LTR模式下，从左侧滑入，右侧滑出；在RTL模式下，从右侧滑入，左侧滑出。 |
 | SLIDE_SWITCH | 指定出现时从右先缩小再放大侧滑入、消失时从左侧先缩小再放大滑出的转场效果。自带动画参数，也可覆盖动画参数，自带的动画参数时长600ms，指定动画曲线cubicBezierCurve(0.24, 0.0, 0.50, 1.0)，最小缩放比例为0.8。|
 
@@ -239,9 +239,14 @@ struct TransitionEffectExample3 {
             Image($r('app.media.testImg')).width(150).height(150).id("image1")
               .transition(TransitionEffect.OPACITY.animation({ duration: 1000 }))
           }
-          Image($r('app.media.testImg')).width(150).height(150).margin({top: 50}).id("image2")
-            .transition(TransitionEffect.scale({x: 0, y: 0}).animation({ duration: 1000 }))
-          Text("view").margin({top: 50})
+
+          Image($r('app.media.testImg'))
+            .width(150)
+            .height(150)
+            .margin({ top: 50 })
+            .id("image2")
+            .transition(TransitionEffect.scale({ x: 0, y: 0 }).animation({ duration: 1000 }))
+          Text("view").margin({ top: 50 })
         }
         .id("column1")
         .transition(TransitionEffect.opacity(0.99).animation({ duration: 1000 }),

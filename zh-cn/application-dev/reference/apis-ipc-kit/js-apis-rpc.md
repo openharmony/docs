@@ -83,6 +83,9 @@ import { rpc } from '@kit.IPCKit';
 
   let data = rpc.MessageSequence.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // 当MessageSequence对象不再使用，由业务主动调用reclaim方法去释放资源。
+  data.reclaim();
   ```
 
 ### reclaim
@@ -3426,11 +3429,16 @@ getRawDataCapacity(): number
 
 ### writeRawData<sup>(deprecated)</sup>
 
->从API version 11 开始废弃，建议使用[writeRawDataBuffer](#writerawdatabuffer11)替代。
-
 writeRawData(rawData: number[], size: number): void
 
 将原始数据写入MessageSequence对象。
+
+> **说明：**
+>
+> 从API version 11 开始废弃，建议使用[writeRawDataBuffer](#writerawdatabuffer11)替代。
+>
+> 该接口是一次性接口，不允许在一次parcel通信中多次调用该接口。
+> 该接口在传输数据时，当数据量较大时（超过32KB），会使用共享内存传输数据，此时需注意selinux配置。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3438,7 +3446,7 @@ writeRawData(rawData: number[], size: number): void
 
   | 参数名  | 类型     | 必填 | 说明                               |
   | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | number[] | 是   | 要写入的原始数据。                 |
+  | rawData | number[] | 是   | 要写入的原始数据，大小不能超过128MB。 |
   | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
 
 **错误码：**
@@ -3473,14 +3481,19 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 将原始数据写入MessageSequence对象。
 
+> **说明：**
+>
+> 该接口是一次性接口，不允许在一次parcel通信中多次调用该接口。
+> 该接口在传输数据时，当数据量较大时（超过32KB），会使用共享内存传输数据，此时需注意selinux配置。
+
 **系统能力**：SystemCapability.Communication.IPC.Core
 
 **参数：**
 
-  | 参数名  | 类型     | 必填 | 说明                               |
-  | ------- | -------- | ---- | ---------------------------------- |
-  | rawData | ArrayBuffer | 是   | 要写入的原始数据。                 |
-  | size    | number   | 是   | 发送的原始数据大小，以字节为单位。 |
+  | 参数名  | 类型        | 必填 | 说明                                 |
+  | ------- | ----------- | ---- | ------------------------------------ |
+  | rawData | ArrayBuffer | 是   | 要写入的原始数据，大小不能超过128MB。 |
+  | size    | number      | 是   | 发送的原始数据大小，以字节为单位。    |
 
 **错误码：**
 
@@ -3515,11 +3528,14 @@ writeRawDataBuffer(rawData: ArrayBuffer, size: number): void
 
 ### readRawData<sup>(deprecated)</sup>
 
->从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
-
 readRawData(size: number): number[]
 
 从MessageSequence读取原始数据。
+
+> **说明：**
+>
+> 从API version 11 开始废弃，建议使用[readRawDataBuffer](#readrawdatabuffer11)替代。
+
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -3741,9 +3757,11 @@ readArrayBuffer(typeCode: TypeCode): ArrayBuffer
 
 ## MessageParcel<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[MessageSequence](#messagesequence9)替代。
-
 在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。数据格式包括：基础类型及数组、IPC对象、接口描述符和自定义序列化对象。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[MessageSequence](#messagesequence9)替代。
 
 ### create
 
@@ -3766,6 +3784,9 @@ static create(): MessageParcel
 
   let data = rpc.MessageParcel.create();
   hilog.info(0x0000, 'testTag', 'RpcClient: data is ' + data);
+
+  // 当MessageParcel对象不再使用，由业务主动调用reclaim方法去释放资源。
+  data.reclaim();
   ```
 
 ### reclaim
@@ -6333,9 +6354,11 @@ unmarshalling(dataIn: MessageSequence): boolean
 
 ## Sequenceable<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[Parcelable](#parcelable9)替代。
-
 在进程间通信（IPC）期间，将类的对象写入MessageParcel并从MessageParcel中恢复它们。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[Parcelable](#parcelable9)替代。
 
 ### marshalling
 
@@ -6561,9 +6584,11 @@ onRemoteDied(): void
 
 ## SendRequestResult<sup>(deprecated)</sup>
 
->从API version 8 开始支持，API version 9 开始废弃，建议使用[RequestResult](#requestresult9)替代。
-
 发送请求的响应结果。
+
+> **说明：**
+>
+> 从API version 8 开始支持，API version 9 开始废弃，建议使用[RequestResult](#requestresult9)替代。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
@@ -6608,11 +6633,13 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9)替代。
-
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询接口描述符的字符串。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6630,11 +6657,13 @@ queryLocalInterface(descriptor: string): IRemoteBroker
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6686,11 +6715,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6737,11 +6768,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-1)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6781,11 +6814,13 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9)替代。
-
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调。如果与RemoteProxy对象匹配的远程对象进程死亡，则调用此方法。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6828,11 +6863,13 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)替代。
-
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6873,11 +6910,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9)替代。
-
 getInterfaceDescriptor(): string
 
 获取对象的接口描述符，接口描述符为字符串。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -6905,23 +6944,28 @@ isObjectDead(): boolean
 
 实现IRemoteObject代理对象。
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-| 名称                  | 值                      | 说明                              |
-| --------------------- | ----------------------- | --------------------------------- |
-| PING_TRANSACTION      | 1599098439 (0x5f504e47) | 内部指令码，用于测试IPC服务正常。 |
-| DUMP_TRANSACTION      | 1598311760 (0x5f444d50) | 内部指令码，获取Binder内部状态。  |
-| INTERFACE_TRANSACTION | 1598968902 (0x5f4e5446) | 内部指令码，获取对端接口描述符。  |
-| MIN_TRANSACTION_ID    | 1 (0x00000001)          | 最小有效指令码。                  |
-| MAX_TRANSACTION_ID    | 16777215 (0x00FFFFFF)   | 最大有效指令码。                  |
+  | 名称                  | 类型   | 可读  | 可写 | 说明                                     |
+  | --------------------- | -------| ------|------|------------------------------------------ |
+  | PING_TRANSACTION      | number | 是    | 否   | 内部指令码，用于测试IPC服务是否正常。     |
+  | DUMP_TRANSACTION      | number | 是    | 否   | 内部指令码，获取IPC服务相关的状态信息。   |
+  | INTERFACE_TRANSACTION | number | 是    | 否   | 内部指令码，获取对端接口描述符。          |
+  | MIN_TRANSACTION_ID    | number | 是    | 否   | 最小有效指令码。                          |
+  | MAX_TRANSACTION_ID    | number | 是    | 否   | 最大有效指令码。                          |
+
 
 ### sendRequest<sup>(deprecated)</sup>
-
->从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7101,11 +7145,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7293,11 +7339,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-3)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-3)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7458,11 +7506,13 @@ getLocalInterface(interface: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-1)替代。
-
 queryLocalInterface(interface: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的本地接口对象。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7608,11 +7658,13 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### addDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
-
 addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注册用于接收远程对象死亡通知的回调，增加proxy对象上的死亡通知。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[registerDeathRecipient](#registerdeathrecipient9-1)类替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7765,11 +7817,13 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)替代。
-
 removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
 
 注销用于接收远程对象死亡通知的回调。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[unregisterDeathRecipient](#unregisterdeathrecipient9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -7915,11 +7969,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-1)替代。
-
 getInterfaceDescriptor(): string
 
 查询当前代理对象接口的描述符。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8039,14 +8095,16 @@ isObjectDead(): boolean
 
 公共消息选项，使用指定的标志类型，构造指定的MessageOption对象。
 
+### 属性
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-  | 名称          | 值        | 说明                                                        |
-  | ------------- | --------- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0 (0x00)  | 同步调用标识。                                              |
-  | TF_ASYNC      | 1 (0x01)  | 异步调用标识。                                              |
-  | TF_ACCEPT_FDS | 16 (0x10) | 指示sendMessageRequest<sup>9+</sup>接口可以返回文件描述符。 |
-  | TF_WAIT_TIME  | 8 (0x8)   | RPC等待时间(单位/秒)，不用于IPC的情况。                                     |
+  | 名称          | 类型   | 可读  | 可写  | 说明                                                                      |
+  | ------------- | ------ | ----- | ----- | ------------------------------------------------------------------------ |
+  | TF_SYNC       | number | 是    | 否    | 同步调用标识。                                                            |
+  | TF_ASYNC      | number | 是    | 否    | 异步调用标识。                                                            |
+  | TF_ACCEPT_FDS | number | 是    | 否    | 指示sendMessageRequest<sup>9+</sup>接口可以传递文件描述符。               |
+  | TF_WAIT_TIME  | number | 是    | 是    | RPC等待时间(单位/秒)，IPC场景下无效。默认等待为8秒（不建议修改等待时间）。 |
 
 ### constructor<sup>9+</sup>
 
@@ -8504,11 +8562,13 @@ static flushCmdBuffer(object: IRemoteObject): void
 
 ### flushCommands<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[flushCmdBuffer](#flushcmdbuffer9)替代。
-
 static flushCommands(object: IRemoteObject): number
 
 静态方法，将所有挂起的命令从指定的RemoteProxy刷新到相应的RemoteObject。建议在任何时间执行敏感操作之前调用此方法。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[flushCmdBuffer](#flushcmdbuffer9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8620,11 +8680,13 @@ static restoreCallingIdentity(identity: string): void
 
 ### setCallingIdentity<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[restoreCallingIdentity](#restorecallingidentity9)替代。
-
 static setCallingIdentity(identity: string): boolean
 
 静态方法，将UID和PID恢复为远程用户的UID和PID。它通常在使用resetCallingIdentity后调用，需要resetCallingIdentity返回的远程用户的UID和PID。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[restoreCallingIdentity](#restorecallingidentity9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8676,11 +8738,13 @@ RemoteObject构造函数。
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8812,11 +8876,13 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
 ### sendRequest<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
-
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): Promise&lt;SendRequestResult&gt;
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则期约立即兑现，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则期约将在sendRequest返回时兑现，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-4)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -8947,13 +9013,15 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   testRemoteObject.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   ```
 
-### sendRequest<sup>(deprecated)</sup>
-
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-5)替代。
+### sendRequest<sup>(deprecated)</sup> 
 
 sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption, callback: AsyncCallback&lt;SendRequestResult&gt;): void
 
 以同步或异步方式向对端进程发送MessageParcel消息。如果为选项设置了异步模式，则立即收到回调，reply报文里没有内容，具体回复需要在业务侧的回调中获取。如果为选项设置了同步模式，则将在sendRequest返回时收到回调，回复内容在reply报文里。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[sendMessageRequest](#sendmessagerequest9-5)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9159,11 +9227,13 @@ sendMessageRequest请求的响应处理函数，服务端在该函数里同步�
 
 ### onRemoteRequest<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)替代。
-
 onRemoteRequest(code: number, data: MessageParcel, reply: MessageParcel, options: MessageOption): boolean
 
 sendRequest请求的响应处理函数，服务端在该函数里处理请求，回复结果。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[onRemoteMessageRequest](#onremotemessagerequest9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9341,11 +9411,13 @@ getLocalInterface(descriptor: string): IRemoteBroker
 
 ### queryLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-2)替代。
-
 queryLocalInterface(descriptor: string): IRemoteBroker
 
 查询并获取当前接口描述符对应的远端对象是否已经存在。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getLocalInterface](#getlocalinterface9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9453,11 +9525,13 @@ getDescriptor(): string
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-2)替代。
-
 getInterfaceDescriptor(): string
 
 查询接口描述符。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[getDescriptor](#getdescriptor9-2)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9559,11 +9633,13 @@ modifyLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 ### attachLocalInterface<sup>(deprecated)</sup>
 
->从API version 9 开始废弃，建议使用[modifyLocalInterface](#modifylocalinterface9)替代。
-
 attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 
 此接口用于把接口描述符和IRemoteBroker对象绑定。
+
+> **说明：**
+>
+> 从API version 9 开始废弃，建议使用[modifyLocalInterface](#modifylocalinterface9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9608,17 +9684,18 @@ attachLocalInterface(localInterface: IRemoteBroker, descriptor: string): void
 ## Ashmem<sup>8+</sup>
 
 提供与匿名共享内存对象相关的方法，包括创建、关闭、映射和取消映射Ashmem、从Ashmem读取数据和写入数据、获取Ashmem大小、设置Ashmem保护。
+共享内存只适用与本设备内跨进程通信。
+
+### 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Communication.IPC.Core。
 
-映射内存保护类型：
-
-  | 名称       | 值  | 说明               |
-  | ---------- | --- | ------------------ |
-  | PROT_EXEC  | 4   | 映射的内存可执行。   |
-  | PROT_NONE  | 0   | 映射的内存不可访问。 |
-  | PROT_READ  | 1   | 映射的内存可读。     |
-  | PROT_WRITE | 2   | 映射的内存可写。     |
+  | 名称       | 类型   | 可读  | 可写  | 说明                                     |
+  | ---------- | ------ | ----- | ----- |----------------------------------------- |
+  | PROT_EXEC  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可执行。  |
+  | PROT_NONE  | number | 是    | 否    | 映射内存保护类型，代表映射的内存不可访问。|
+  | PROT_READ  | number | 是    | 否    | 映射内存保护类型，代表映射的内存可读。    |
+  | PROT_WRITE | number | 是    | 否    | 映射内存保护类型，代表映射的内存可写。    |
 
 ### create<sup>9+</sup>
 
@@ -9669,11 +9746,13 @@ static create(name: string, size: number): Ashmem
 
 ### createAshmem<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9)替代。
-
 static createAshmem(name: string, size: number): Ashmem
 
 静态方法，根据指定的名称和大小创建Ashmem对象。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9748,11 +9827,13 @@ static create(ashmem: Ashmem): Ashmem
 
 ### createAshmemFromExisting<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9-1)替代。
-
 static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 
 静态方法，通过复制现有Ashmem对象的文件描述符(fd)来创建Ashmem对象。两个Ashmem对象指向同一个共享内存区域。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[create](#create9-1)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9784,6 +9865,10 @@ static createAshmemFromExisting(ashmem: Ashmem): Ashmem
 closeAshmem(): void
 
 关闭这个Ashmem。
+
+> **说明：**
+>
+> 关闭Ashmem对象前需要先解除地址映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9874,11 +9959,13 @@ mapTypedAshmem(mapType: number): void
 
 ### mapAshmem<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapTypedAshmem](#maptypedashmem9)替代。
-
 mapAshmem(mapType: number): boolean
 
 在此进程的虚拟地址空间上创建共享文件映射，映射区域大小由此Ashmem对象指定。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapTypedAshmem](#maptypedashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9938,11 +10025,13 @@ mapReadWriteAshmem(): void
 
 ### mapReadAndWriteAshmem<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)替代。
-
 mapReadAndWriteAshmem(): boolean
 
 在此进程虚拟地址空间上创建可读写的共享文件映射。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadWriteAshmem](#mapreadwriteashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -9996,11 +10085,13 @@ mapReadonlyAshmem(): void
 
 ### mapReadOnlyAshmem<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)替代。
-
 mapReadOnlyAshmem(): boolean
 
 在此进程虚拟地址空间上创建只读的共享文件映射。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[mapReadonlyAshmem](#mapreadonlyashmem9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10051,7 +10142,7 @@ setProtectionType(protectionType: number): void
 
   let ashmem = rpc.Ashmem.create("ashmem", 1024*1024);
   try {
-    ashmem.setProtection(ashmem.PROT_READ);
+    ashmem.setProtectionType(ashmem.PROT_READ);
   } catch (error) {
     let e: BusinessError = error as BusinessError;
     hilog.error(0x0000, 'testTag', 'Rpc set protection type fail, errorCode ' + e.code);
@@ -10061,11 +10152,13 @@ setProtectionType(protectionType: number): void
 
 ### setProtection<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[setProtectionType](#setprotectiontype9)替代。
-
 setProtection(protectionType: number): boolean
 
 设置映射内存区域的保护等级。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[setProtectionType](#setprotectiontype9)替代。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10096,6 +10189,10 @@ setProtection(protectionType: number): boolean
 writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10141,11 +10238,15 @@ writeDataToAshmem(buf: ArrayBuffer, size: number, offset: number): void
 
 ### writeAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始支持，从API version 11 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
-
 writeAshmem(buf: number[], size: number, offset: number): void
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 从API version 9 开始支持，从API version 11 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10186,11 +10287,15 @@ writeAshmem(buf: number[], size: number, offset: number): void
 
 ### writeToAshmem<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
-
 writeToAshmem(buf: number[], size: number, offset: number): boolean
 
 将数据写入此Ashmem对象关联的共享文件。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[writeDataToAshmem](#writedatatoashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10226,6 +10331,10 @@ writeToAshmem(buf: number[], size: number, offset: number): boolean
 readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10285,11 +10394,16 @@ readDataFromAshmem(size: number, offset: number): ArrayBuffer
 
 ### readAshmem<sup>(deprecated)</sup>
 
->从API version 9 开始支持，从API version 11 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
-
 readAshmem(size: number, offset: number): number[]
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 从API version 9 开始支持，从API version 11 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
+
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 
@@ -10337,11 +10451,15 @@ readAshmem(size: number, offset: number): number[]
 
 ### readFromAshmem<sup>(deprecated)</sup>
 
->从API version 8 开始支持，从API version 9 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
-
 readFromAshmem(size: number, offset: number): number[]
 
 从此Ashmem对象关联的共享文件中读取数据。
+
+> **说明：**
+>
+> 从API version 8 开始支持，从API version 9 开始废弃，建议使用[readDataFromAshmem](#readdatafromashmem11)替代。
+> 
+> 对Ashmem对象进行写操作时，需要先调用[mapReadWriteAshmem](#mapreadwriteashmem9)进行映射。
 
 **系统能力**：SystemCapability.Communication.IPC.Core
 

@@ -36,12 +36,12 @@ toybox的执行方式有两种：
 | --long | NA | 显示支持的所有命令的路径。 |
 | --version | NA | 显示版本号。|
 | NA | NA | 显示所有[command]支持的命令。 |
-| [command] | [arguments] | 执行具体的命令。大部分命令也支持--help和--version参数 |
+| [command] | [arguments] | 执行具体的命令。大部分命令也支持--help和--version参数。 |
 
 格式：help [-ah] [command]
 | 参数 | 说明 |
 | :- | :- |
-| command | 显示command的帮助。[command] 可被替换为toybox支持的任意命令 |
+| command | 显示command的帮助。[command] 可被替换为toybox支持的任意命令。 |
 
 | 选项 | 说明 |
 | :- | :- |
@@ -217,14 +217,14 @@ toybox的执行方式有两种：
 | basename  | 返回删除后缀的路径名的非目录部分。<br />usage: basename [-a] [-s SUFFIX] NAME... \| NAME [SUFFIX] |
 | bunzip2   | 解压bz格式的文件。<br />usage: bunzip2 [-cftkv] [FILE...] |
 | bzcat     | 解压列举的文件到标准输出。<br />usage: bzcat [FILE...] |
-| cat       | 复制（连接）文件到标准输出设备。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备<br />usage: cat [-etuv] [FILE...] |
+| cat       | 复制（连接）文件到标准输出设备。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备。<br />usage: cat [-etuv] [FILE...] |
 | chattr    | 修改Linux ext2文件系统的文件属性。<br />usage: chattr [-R] [-+=AacDdijsStTu] [-v version] [File...] |
 | chcon     | 修改文件的SELinux安全上下文。<br />usage: chcon [-hRv] CONTEXT FILE... |
 | chgrp/chown | 修改文件的组。<br />usage: chgrp/chown [-RHLP] [-fvh] group file... |
 | chmod     | 更改列出的文件的模式（使用-R递归）。<br />usage: chmod [-R] MODE FILE... |
-| cksum     | 对于每个文件，输出crc32的校验和、长度和文件名。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备<br />usage: cksum [-IPLN] [file...] |
+| cksum     | 对于每个文件，输出crc32的校验和、长度和文件名。如果未列出任何文件，则从标准输入设备复制。“-”代表标准输入设备。<br />usage: cksum [-IPLN] [file...] |
 | cmp       | 比较文件的内容（如果只给出一个，则与标准输入设备进行比较），可选在开始时跳过字节。<br />usage: cmp [-l] [-s] FILE1 [FILE2 [SKIP1 [SKIP2]]] |
-| comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行；仅在FILE2中的行；在两个文件中都有的行。“-”代表标准输入设备<br />usage: comm [-123] FILE1 FILE2  |
+| comm      | 读取FILE1和FILE2（这两个文件应该是有序的），并生成三个文本列作为输出：仅在FILE1中的行；仅在FILE2中的行；在两个文件中都有的行。“-”代表标准输入设备。<br />usage: comm [-123] FILE1 FILE2  |
 | count     | 将标准输入设备复制到标准输出设备，将简单的进度指示器显示到标准错误输出stderr。<br />usage: count |
 | cp        | 将文件从SOURCE复制到DEST。如果有多个源，DEST必须是一个目录。<br />usage: cp [-adfHiLlnPpRrsTv] [--preserve=motcxa] [-t TARGET] SOURCE... [DEST] |
 | cpio      | 从“newc”格式的cpio档案中中读写文件。<br />usage: cpio -{o\|t\|i\|p DEST} [-v] [--verbose] [-F FILE] [--no-preserve-owner]<br />&emsp;[ignored: -mdu -H newc] |
@@ -261,7 +261,7 @@ toybox的执行方式有两种：
 | mktemp    | 安全地创建一个新文件“DIR/TEMPLATE”并打印其名称。<br />usage: mktemp [-dqu] [-p DIR] [TEMPLATE] |
 | mknod     | 创建一个特殊的文件(b为块设备，c或u为字符设备，p为命名管道)。<br />usage: mknod [-m MODE] NAME TYPE [MAJOR MINOR] |
 | more      | 查看文件，一次一页。<br />usage: more [FILE...] |
-| mv        | 移动或重命名文件。<br />usage: mv [-fivn] SOURCE... DEST |
+| mv        | 移动或重命名文件。<br />usage: mv [-finTv] [-t TARGET] SOURCE... [DEST] |
 | nl        | 给输入的文件添加行号。<br />usage: nl [-E] [-l #] [-b MODE] [-n STYLE] [-s SEPARATOR] [-v #] [-w WIDTH] [FILE...] |
 | od        | 以八进制/十六进制格式转储数据。<br />usage: od [-bcdosxv] [-j #] [-N #] [-w #] [-A doxn] [-t acdfoux[#]] |
 | paste     | 从每个输入文件中合并相应的行。<br />usage: paste [-s] [-d DELIMITERS] [FILE...] |

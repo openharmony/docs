@@ -13,7 +13,6 @@ To ensure that the encoding and decoding behavior meets your expectations, first
    target_link_libraries(sample PUBLIC libnative_media_venc.so)
    target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    ```
-
    > **NOTE**
    >
    > The word **sample** in the preceding code snippet is only an example. Use the actual project directory name.
@@ -311,9 +310,9 @@ OH_AVFormat_Destroy(format);
 
 ### Checking the Codec Profile and Level Supported
 
-The codec standard provides lots of encoding tools to deal with various encoding scenarios. However, not all tools are required in a specific scenario. Therefore, the standard uses the codec profile to specify the enabled status of these encoding tools. For example, for H.264, there are baseline, main, and high profiles. For details, see **OH_AVCProfile**.
+The codec standard provides lots of encoding tools to deal with various encoding scenarios. However, not all tools are required in a specific scenario. Therefore, the standard uses the codec profile to specify the enabled status of these encoding tools. For example, for H.264, there are baseline, main, and high profiles. For details, see [OH_AVCProfile](../../reference/apis-avcodec-kit/_codec_base.md#oh_avcprofile-1).
 
-A codec level is a division of the processing capability and storage space required by a codec. For example, for H.264, there are 20 levels ranging from 1 to 6.2. For details, see **OH_AVCLevel**.
+A codec level is a division of the processing capability and storage space required by a codec. For example, for H.264, there are 20 levels ranging from 1 to 6.2. For details, see [OH_AVCLevel](../../reference/apis-avcodec-kit/_codec_base.md#oh_avclevel-1).
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -353,13 +352,13 @@ OH_AVCLevel maxLevel = static_cast<OH_AVCLevel>(levels[levelNum -1]);
 // 3. (Optional) Use different service logic based on the maximum level supported.
 switch (maxLevel) {
    case AVC_LEVEL_31:
-      // ...
+      // Level 3.1-3.2, with the maximum width and height of 1280 x 720.
       break;
    case AVC_LEVEL_51:
-      // ...
+      // Level 4.0 or higher, with the maximum width and height of 1920 x 1080.
       break;
    default:
-      // ...
+      // An error is reported and no encoding is performed.
 }
 // 4. Set the profile parameters.
 OH_AVCodec *videoEnc = OH_VideoEncoder_CreateByMime(OH_AVCODEC_MIMETYPE_VIDEO_AVC);
@@ -546,7 +545,7 @@ OH_AVFormat_Destroy(format);
 
 ### Setting the Correct Video Pixel Format
 
-The video pixel format determines the pixel arrangement mode of an input image for encoding or an output image of decoding. For details, see **OH_AVPixelFormat**.
+The video pixel format determines the pixel layout of an image that is encoded as input or decoded as output. For details, see [OH_AVPixelFormat](../../reference/apis-avcodec-kit/_core.md#oh_avpixelformat-1).
 
 | API    | Description                        |
 | -------- | ---------------------------- |
@@ -579,7 +578,7 @@ if (!isMatched) {
 
 ### Checking Whether a Codec Feature Is Supported and Obtaining Its Properties
 
-A codec feature refers to an optional feature used only in specific encoding and decoding scenarios. For details, see **OH_AVCapabilityFeature**.
+A codec feature refers to an optional feature used only in specific encoding and decoding scenarios. For details, see [OH_AVCapabilityFeature](../../reference/apis-avcodec-kit/_a_v_capability.md#oh_avcapabilityfeature-1).
 
 | API    | Description                        |
 | -------- | ---------------------------- |

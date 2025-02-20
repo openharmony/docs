@@ -168,7 +168,7 @@ libnative_window.so
     }
     ```
 
-5. Flush the **OHNativeWindowBuffer** to the graphics queue.
+6. Flush the **OHNativeWindowBuffer** to the graphics queue.
 
    Note that **acquireFenceFd** of **OH_NativeWindow_NativeWindowFlushBuffer** cannot be the same as **releaseFenceFd** obtained by **OH_NativeWindow_NativeWindowRequestBuffer**. **acquireFenceFd** is the file handle passed in by the producer, and the default value **-1** can be passed. Based on **acquireFenceFd**, the consumer, after obtaining the buffer, determines when to render and display the buffered content.
     ```c++
@@ -178,7 +178,7 @@ libnative_window.so
     // Flush the buffer to the consumer through OH_NativeWindow_NativeWindowFlushBuffer, for example, by displaying it on the screen.
     OH_NativeWindow_NativeWindowFlushBuffer(nativeWindow, buffer, acquireFenceFd, region);
     ```
-6. Unmap memory.
+7. Unmap memory.
     ```c++
     // Unmap the memory when the memory is no longer required.
     int result = munmap(mappedAddr, bufferHandle->size);

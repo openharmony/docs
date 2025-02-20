@@ -24,14 +24,14 @@ Polyline(options?: PolylineOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PolylineOptions](ts-drawing-components-polyline.md#polylineoptions14对象说明) | 否 | Polyline绘制区域。|
+| options | [PolylineOptions](ts-drawing-components-polyline.md#polylineoptions16对象说明) | 否 | Polyline绘制区域。|
 
-## PolylineOptions<sup>14+</sup>对象说明
+## PolylineOptions<sup>16+</sup>对象说明
 用于描述Polyline绘制区域。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -297,9 +297,9 @@ struct PolylineExample {
         .stroke(Color.Red)
         .strokeWidth(8)
         .points([[20, 0], [0, 100], [100, 90]])
-          // 设置折线拐角处为圆弧
+        // 设置折线拐角处为圆弧
         .strokeLineJoin(LineJoinStyle.Round)
-          // 设置折线两端为半圆
+        // 设置折线两端为半圆
         .strokeLineCap(LineCapStyle.Round)
     }.width('100%')
   }

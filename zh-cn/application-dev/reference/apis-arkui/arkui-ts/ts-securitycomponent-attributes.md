@@ -13,7 +13,7 @@
 
 iconSize(value: Dimension): T
 
-设置安全控件上图标的尺寸。
+设置安全控件图标的尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -35,7 +35,7 @@ iconSize(value: Dimension): T
 
 layoutDirection(value: SecurityComponentLayoutDirection): T
 
-设置安全控件上图标和文字分布的方向。
+设置安全控件图标和文字分布的方向。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -123,7 +123,7 @@ offset(value: Position | Edges | LocalizedEdges): T
 
 fontSize(value: Dimension): T
 
-设置安全控件上文字的尺寸。
+设置安全控件文字的尺寸。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ fontSize(value: Dimension): T
 
 fontStyle(value: FontStyle): T
 
-设置安全控件上文字的样式。
+设置安全控件文字的样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -167,7 +167,7 @@ fontStyle(value: FontStyle): T
 
 fontWeight(value: number | FontWeight | string): T
 
-设置安全控件上文字粗细。
+设置安全控件文字粗细。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -189,7 +189,7 @@ fontWeight(value: number | FontWeight | string): T
 
 fontFamily(value: string | Resource): T
 
-设置安全控件上文字的字体。
+设置安全控件文字的字体。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -211,7 +211,7 @@ fontFamily(value: string | Resource): T
 
 fontColor(value: ResourceColor): T
 
-设置安全控件上文字的颜色。
+设置安全控件文字的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -233,7 +233,7 @@ fontColor(value: ResourceColor): T
 
 iconColor(value: ResourceColor): T
 
-设置安全控件上图标的颜色。
+设置安全控件图标的颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -361,13 +361,13 @@ borderRadius(value: Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## borderRadius<sup>16+</sup>
+## borderRadius<sup>15+</sup>
 
 borderRadius(radius: Dimension | BorderRadiuses): T
 
 设置安全控件的边框圆角半径，支持分别设置四个圆角。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -405,13 +405,13 @@ padding(value: Padding | Dimension): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## align<sup>16+</sup>
+## align<sup>15+</sup>
 
 align(alignType: Alignment): T
 
 设置安全控件图标文本的对齐方式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -537,13 +537,13 @@ constraintSize(value: ConstraintSizeOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: AlignRuleOption): T
 
 指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -559,13 +559,13 @@ alignRules(alignRule: AlignRuleOption): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## alignRules<sup>16+</sup>
+## alignRules<sup>15+</sup>
 
 alignRules(alignRule: LocalizedAlignRuleOptions): T
 
-指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代上述[alignRules](#alignrules16)的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
+指定设置在相对容器中子组件的对齐规则，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。该方法水平方向上以start和end分别替代上述[alignRules](#alignrules15)的left和right，以便在RTL模式下能镜像显示，建议使用该方法指定设置在相对容器中子组件的对齐规则。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -581,13 +581,13 @@ alignRules(alignRule: LocalizedAlignRuleOptions): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## id<sup>16+</sup>
+## id<sup>15+</sup>
 
 id(description: string): T
 
 组件的唯一标识，唯一性由使用者保证。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -603,13 +603,13 @@ id(description: string): T
 | -------- | -------- |
 | T | 返回安全控件的属性。 |
 
-## chainMode<sup>16+</sup>
+## chainMode<sup>15+</sup>
 
 chainMode(direction: Axis, style: ChainStyle): T
 
 指定以该组件为链头所构成的链的参数，仅当父容器为[RelativeContainer](ts-container-relativecontainer.md)时生效。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -734,7 +734,7 @@ maxLines(line: number): T
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| value  | number | 是   | 文本的最大行数。 |
+| value  | number | 是   | 文本的最大行数。<br/>取值范围：[1, +∞)<br/>**说明：** <br/>设置的值小于1时，按默认值100000处理。 |
 
 **返回值：**
 
@@ -755,6 +755,8 @@ heightAdaptivePolicy(policy: TextHeightAdaptivePolicy): T
 当设置为TextHeightAdaptivePolicy.MIN_FONT_SIZE_FIRST时，优先使用[minFontSize](#minfontsize16)属性来调整文本高度。如果使用minFontSize属性可以将文本布局在一行中，则尝试在minFontSize和[maxFontSize](#maxfontsize16)的范围内增大字体并使用最大可能的字体大小；如果使用minFontSize属性无法将文本布局在一行中，则尝试使用[maxLines](#maxlines16)属性进行布局，如果此时仍不能完整显示文本信息，安全控件会自适应调整高度以使得文本完整显示。
 
 当设置为TextHeightAdaptivePolicy.LAYOUT_CONSTRAINT_FIRST时，优先使用布局约束来调整文本高度。如果布局大小超过布局约束，则尝试在[minFontSize](#minfontsize16)和[maxFontSize](#maxfontsize16)的范围内缩小字体以满足布局约束。如果将字体大小缩小到minFontSize后，布局大小仍然超过布局约束，则删除超过布局约束的行；如果设置了[maxLines](#maxlines16)属性，布局后行数不超过maxlines值（可能存在横向截断）；如果未设置maxlines属性值，布局后的行数不限制。
+
+当布局无需调整即可完整显示文本时，控件文本不涉及自适应调节。
 
 安全控件文字未完全显示时，点击不授权。
 
@@ -809,6 +811,29 @@ enabled(respond: boolean): T
 | HORIZONTAL | 0 | 安全控件上图标和文字分布的方向为水平排列。 |
 | VERTICAL | 1 | 安全控件上图标和文字分布的方向为垂直排列。 |
 
+## ButtonType枚举说明
+
+按钮类型。
+
+不同的按钮类型将影响属性[borderRadius（边框圆角半径）](ts-securitycomponent-attributes.md#borderradius)的设置效果。影响如下：
+
+- 当按钮类型为Capsule时，borderRadius设置不生效，按钮圆角半径始终为宽、高中较小值的一半。
+- 当按钮类型为Circle时：
+  - 若同时设置了宽和高，则borderRadius不生效，且按钮半径为宽高中较小值的一半；
+  - 若只设置宽、高中的一个，则borderRadius不生效，且按钮半径为所设宽或所设高值的一半；
+  - 若不设置宽高或者borderRadius的值为负，borderRadius不生效，按钮半径根据具体布局确定。
+- 在不设置borderRadius时，圆角矩形按钮的圆角半径大小保持默认值20vp不变，不随按钮高度变化而变化。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称      | 说明               |
+| ------- | ------------------ |
+| Capsule | 胶囊型按钮（圆角默认为高度的一半）。 |
+| Circle  | 圆形按钮。              |
+| Normal  | 普通按钮（默认不带圆角）。      |
+| ROUNDED_RECTANGLE<sup>16+</sup> | 圆角矩形按钮（默认值：圆角半径大小20vp）。 |
 
 ## 示例
 
@@ -825,7 +850,7 @@ enabled(respond: boolean): T
 struct Index {
   build() {
     Row() {
-      Column({space:5}) {
+      Column({ space: 5 }) {
         // 生成一个保存按钮，并设置它的SecurityComponent属性
         SaveButton()
           .fontSize(35)
@@ -846,8 +871,8 @@ struct Index {
           .size({width:200, height:100})
           .align(Alignment.Start)
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
-          .size({width:150, height:80})
-          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35})
+          .size({ width: 150, height: 80 })
+          .borderRadius({ topLeft: 20, topRight: 25, bottomRight: 30, bottomLeft: 35 })
         SaveButton().constraintSize({maxWidth:60})
       }.width('100%')
     }.height('100%')
@@ -868,7 +893,7 @@ struct Index {
   build() {
     Row() {
       RelativeContainer() {
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100).height(100)
           .backgroundColor("#A3CF62")
           .alignRules({
@@ -877,7 +902,7 @@ struct Index {
           })
           .id("row1")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .width(100).height(100)
           .backgroundColor("#00AE9D")
           .alignRules({
@@ -886,7 +911,7 @@ struct Index {
           })
           .id("row2")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .height(100)
           .backgroundColor("#0A59F7")
           .alignRules({
@@ -896,7 +921,7 @@ struct Index {
           })
           .id("row3")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#2CA9E0")
           .alignRules({
             top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -906,7 +931,7 @@ struct Index {
           })
           .id("row4")
 
-        SaveButton({icon:SaveIconStyle.FULL_FILLED, text:0, buttonType:ButtonType.Normal})
+        SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: ButtonType.Normal })
           .backgroundColor("#30C9F7")
           .alignRules({
             top: {anchor: "row3", align: VerticalAlign.Bottom},
@@ -917,8 +942,8 @@ struct Index {
           .id("row5")
       }
       .width(300).height(300)
-      .margin({left: 50})
-      .border({width:2, color: "#6699FF"})
+      .margin({ left: 50 })
+      .border({ width:2, color: "#6699FF" })
     }
     .height('100%')
   }

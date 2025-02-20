@@ -116,6 +116,7 @@
       - [processInfo](js-apis-inner-app-processInfo.md)
     - application
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
+      - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
       - [abilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md)
       - [AbilityStartCallback](js-apis-inner-application-abilityStartCallback.md)
@@ -129,6 +130,7 @@
       - [ErrorObserver](js-apis-inner-application-errorObserver.md)
       - [EventHub](js-apis-inner-application-eventHub.md)
       - [ExtensionContext](js-apis-inner-application-extensionContext.md)
+      - [GlobalObserver](js-apis-inner-application-GlobalObserver.md)
       - [LoopObserver](js-apis-inner-application-loopObserver.md)
       - [ProcessInformation](js-apis-inner-application-processInformation.md)
       - [ProcessRunningInfo](js-apis-inner-application-processRunningInfo.md)
@@ -143,7 +145,6 @@
       - [AbilityFirstFrameStateData (System API)](js-apis-inner-application-abilityFirstFrameStateData-sys.md)
       - [AbilityFirstFrameStateObserver (System API)](js-apis-inner-application-abilityFirstFrameStateObserver-sys.md)
       - [AbilityForegroundStateObserver (System API)](js-apis-inner-application-abilityForegroundStateObserver-sys.md)
-      - [AbilityRunningInfo (System API)](js-apis-inner-application-abilityRunningInfo-sys.md)
       - [AppForegroundStateObserver (System API)](js-apis-inner-application-appForegroundStateObserver-sys.md)
       - [ApplicationContext (System API)](js-apis-inner-application-applicationContext-sys.md)
       - [AutoFillPopupConfig (System API)](js-apis-inner-application-autoFillPopupConfig-sys.md)

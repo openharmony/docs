@@ -47,7 +47,7 @@
    import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
-2. 申请短时任务并实现回调。
+2. 申请短时任务并实现回调。此处回调在短时任务即将结束时触发，与应用的业务功能不耦合，短时任务申请成功后，正常执行应用本身的任务。
    
    ```ts
    let id: number;         // 申请短时任务ID
@@ -64,6 +64,8 @@
      id = delayInfo.requestId;
      delayTime = delayInfo.actualDelayTime;
    }
+
+   // 执行应用本身业务
    ```
 
 3. 获取短时任务剩余时间。查询本次短时任务的剩余时间，用以判断是否继续运行其他业务，例如应用有两个小任务，在执行完第一个小任务后，可以判断本次短时任务是否还有剩余时间来决定是否执行第二个小任务。

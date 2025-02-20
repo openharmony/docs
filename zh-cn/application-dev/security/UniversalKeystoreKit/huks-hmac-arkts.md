@@ -1,7 +1,7 @@
 # HMAC(ArkTS)
 
 
-HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code），是一种基于Hash函数和密钥进行消息认证的方法。
+HMAC是密钥相关的哈希运算消息认证码（Hash-based Message Authentication Code）。具体的场景介绍及支持的算法规格，请参考[HMAC介绍与算法规格](huks-hmac-overview.md)。
 
 
 

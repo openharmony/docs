@@ -1,6 +1,6 @@
 # Using Image_NativeModule to Receive Images
 
-You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
+You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances. For details about the sample code of camera preview implemented with the use of the camera API, see [Secondary Processing of Preview Streams (C/C++)](../camera/native-camera-preview-imageReceiver.md).
 
 ## How to Develop
 
@@ -35,8 +35,31 @@ Implement the C native APIs in **hello.cpp**. Refer to the sample code below.
 
 static void OnCallback(OH_ImageReceiverNative *receiver)
 {
+    // Callback for processing the received image data.
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer avaliable.");
+
+    // Read the next image object of OH_ImageReceiverNative.
+    OH_ImageNative* image = nullptr;
+    errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image); 
+    // You can also call OH_ImageReceiverNative_ReadLatestImage to obtain image data.
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver next image failed, errCode: %{public}d.", errCode);
+        OH_ImageReceiverOptions_Release(options);
+        OH_ImageReceiverNative_Release(receiver);
+        return;
+    }
+
+    // The application processes the image data.
+    // ...
+
+    // Release the OH_ImageNative instance.
+    errCode = OH_ImageNative_Release(image);
+    if (errCode != IMAGE_SUCCESS) {
+        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
+    }
 }
+
+static OH_ImageReceiverNative* receiver = nullptr;
 
 static void ImageReceiverNativeCTest()
 {
@@ -101,7 +124,6 @@ static void ImageReceiverNativeCTest()
     }
 
     // Create an OH_ImageReceiverNative instance.
-    OH_ImageReceiverNative* receiver = nullptr;
     errCode = OH_ImageReceiverNative_Create(options, &receiver);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest create image receiver failed, errCode: %{public}d.", errCode);
@@ -150,43 +172,16 @@ static void ImageReceiverNativeCTest()
     }
     OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest get image receiver capacity: %{public}d.", capacity);
 
-    // Read the next image object of OH_ImageReceiverNative.
-    OH_ImageNative* image = nullptr;
-    errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver next image failed, errCode: %{public}d.", errCode);
-        OH_ImageReceiverOptions_Release(options);
-        OH_ImageReceiverNative_Release(receiver);
-        return;
-    }
-
-    // Release the OH_ImageNative instance.
-    errCode = OH_ImageNative_Release(image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
-    }
-
-    // Read the latest image object of OH_ImageReceiverNative.
-    errCode = OH_ImageReceiverNative_ReadLatestImage(receiver, &image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest get image receiver latest image failed, errCode: %{public}d.", errCode);
-        OH_ImageReceiverOptions_Release(options);
-        OH_ImageReceiverNative_Release(receiver);
-        return;
-    }
-
-    // Release the OH_ImageNative instance.
-    errCode = OH_ImageNative_Release(image);
-    if (errCode != IMAGE_SUCCESS) {
-        OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image native failed, errCode: %{public}d.", errCode);
-    }
-
     // Release the OH_ImageReceiverOptions instance.
     errCode = OH_ImageReceiverOptions_Release(options);
     if (errCode != IMAGE_SUCCESS) {
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver options failed, errCode: %{public}d.", errCode);
     }
+}
 
+// Release ImageReceiverNative resources at a proper time.
+static void ImaggReceiverRelease()
+{
     // Unregister the callback event registered by calling OH_ImageReceiverNative_On.
     errCode = OH_ImageReceiverNative_Off(receiver);
     if (errCode != IMAGE_SUCCESS) {
@@ -199,4 +194,5 @@ static void ImageReceiverNativeCTest()
         OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest release image receiver failed, errCode: %{public}d.", errCode);
     }
 }
+
 ```

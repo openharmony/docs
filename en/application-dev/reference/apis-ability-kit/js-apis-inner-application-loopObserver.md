@@ -1,6 +1,6 @@
 # LoopObserver
 
-The LoopObserver module defines an observer to listen for event processing timeout. It can be used as an input parameter in [ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageronerror) to listen for the event processing time of the current application's main thread.
+The LoopObserver module defines an observer to listen for event processing timeout. It can be used as an input parameter in [ErrorManager.on](./js-apis-app-ability-errorManager.md#errormanageronloopobserver12) to listen for the event processing timeout of the current application's main thread.
 
 > **NOTE**
 > 

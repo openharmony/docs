@@ -37,13 +37,13 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: SnapshotOptio
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id       | string                              | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是    | 截图返回结果的回调。                               |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
@@ -110,7 +110,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options<sup>12+</sup>       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -121,7 +121,7 @@ get(id: string, options?: SnapshotOptions): Promise<image.PixelMap>
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -199,7 +199,7 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -306,7 +306,7 @@ createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boo
 | Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
 
 **错误码：** 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                                     |
 | ------ | ---------------------------------------- |
@@ -395,7 +395,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options       | [SnapshotOptions](#snapshotoptions12)                              | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -406,7 +406,7 @@ getSync(id: string, options?: SnapshotOptions): image.PixelMap
 
 **错误码：** 
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息                |
 | ------ | ------------------- |
@@ -464,4 +464,35 @@ struct SnapshotExample {
 | 名称           | 类型             | 必填           | 说明                         |
 | ---------------|------------     | -----------------------------| -----------------------------|
 | scale           | number | 否 | 指定截图时图形侧绘制pixelmap的缩放比例，比例过大时截图时间会变长，或者截图可能会失败。 <br/> 默认值：1 <br/>**说明：** <br/>请不要截取过大尺寸的图片，截图不建议超过屏幕尺寸的大小。当要截取的图片目标长宽超过底层限制时，截图会返回失败，不同设备的底层限制不同。    |
-| waitUntilRenderFinished    | boolean | 否 | 指定是否强制等待系统执行截图指令前所有绘制指令都执行完成之后再截图。该选项可尽可能确保截图内容是最新的状态，应尽量开启，要注意的是，开启后接口可能需要更长的时间返回，具体的时间依赖页面当时时刻需要重绘区域的多少。<br/> 默认值：false         |
+| waitUntilRenderFinished    | boolean | 否 | 设置是否强制系统在截图前等待所有绘制指令执行完毕。该选项可尽可能确保截图内容是最新的状态，应尽量开启。需要注意的是，开启后接口可能需要更长的时间返回，具体的时间依赖页面当时时刻需要重绘区域的大小。<br>默认值：false         |
+| region<sup>16+</sup> | [SnapshotRegion](#snapshotregion16)\|[LocalizedSnapshotRegion ](#localizedsnapshotregion16) | 否 | 指定截图的矩形区域范围，默认为整个组件。<br />如果参数类型为LocalizedSnapshotRegion，则根据布局方向确定是否对矩形区域水平翻转。若布局方向为RTL，则把指定的截图区域做左右翻转处理以适应RTL布局方向。 |
+
+## SnapshotRegion<sup>16+</sup>
+
+定义组件截图的矩形区域。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+| 名称   | 类型   | 必填 | 说明                                    |
+| ------ | ------ | ---- | --------------------------------------- |
+| left   | number | 是   | 截图区域矩形左上角的x轴坐标，单位为px。 |
+| top    | number | 是   | 截图区域矩形左上角的y轴坐标，单位为px。 |
+| right  | number | 是   | 截图区域矩形右下角的x轴坐标，单位为px。 |
+| bottom | number | 是   | 截图区域矩形右下角的y轴坐标，单位为px。 |
+
+## LocalizedSnapshotRegion<sup>16+</sup>
+
+定义组件截图的矩形区域，start和end的值在布局方向为LTR时指定为left和right，在布局方向为RTL时指定为right和left。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+| 名称   | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| start  | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的x轴坐标，布局方向为RTL时表示截图区域矩形右下角的x轴坐标，单位为px。 |
+| top    | number | 是   | 布局方向为LTR时表示截图区域矩形左上角的y轴坐标，布局方向为RTL时表示截图区域矩形右下角的y轴坐标，单位为px。 |
+| end    | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的x轴坐标，布局方向为RTL时表示截图区域矩形左下角的x轴坐标，单位为px。 |
+| bottom | number | 是   | 布局方向为LTR时表示截图区域矩形右上角的y轴坐标，布局方向为RTL时表示截图区域矩形左下角的y轴坐标，单位为px。 |

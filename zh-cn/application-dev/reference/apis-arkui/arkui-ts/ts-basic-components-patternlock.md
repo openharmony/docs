@@ -63,7 +63,7 @@ circleRadius(value: Length)
 ### backgroundColor
 backgroundColor(value: ResourceColor)
 
-设置背景颜色
+设置背景颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -151,7 +151,7 @@ pathStrokeWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                          |
 | ------ | -------------------------- | ---- | ----------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp |
+| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp<br/>取值范围：[0, sideLength/3]，超过最大值按最大值处理。 |
 
 ### autoReset
 
@@ -197,15 +197,15 @@ activateCircleStyle(options: Optional\<CircleStyleOptions\>)
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 背景圆环颜色。 <br/>默认值：与pathColor值相同 |
 | radius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否 | 背景圆环的半径。<br/>默认值：circleRadius的11/6 |
 | enableWaveEffect | boolean | 否 | 波浪效果开关。<br/>默认值：true |
-| enableForeground<sup>14+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：true |
+| enableForeground<sup>15+</sup> | boolean | 否 | 背景圆环是否在前景显示。<br/>默认值：false，背景圆环不在前景显示。 |
 
-### skipUnselectedPoint<sup>14+</sup>
+### skipUnselectedPoint<sup>15+</sup>
 
 skipUnselectedPoint(skipped: boolean)
 
 设置未选中的宫格圆点在密码路径经过时是否自动选中。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -213,7 +213,7 @@ skipUnselectedPoint(skipped: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| skipped  | boolean | 是   | 未选中的宫格圆点在密码路径经过时是否自动选中。默认值：false|
+| skipped  | boolean | 是   | 未选中的宫格圆点在密码路径经过时是否自动选中。默认值：false，自动选中密码路径经过的宫格圆点。|
 
 ## 事件
 
@@ -237,7 +237,7 @@ onPatternComplete(callback: (input: Array\<number\>) => void)
 
 ### onDotConnect<sup>11+</sup>
 
-onDotConnect(callback: [CallBack](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
+onDotConnect(callback: [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<number\>)
 
 密码输入选中宫格圆点时触发该回调。
 
@@ -304,7 +304,44 @@ setChallengeResult(result: PatternLockChallengeResult): void
 
 ##  示例
 
-该示例展示了PatternLock组件的基本使用方法。通过sideLength设置九宫格的大小、circleRadius等属性设置宫格圆点样式、onPatternComplete属性设置密码输入时的回调。 
+### 示例1（创建图案密码锁）
+
+该示例展示了PatternLock组件的基本使用方法。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PatternLockExample {
+  @State passwords: Number[] = []
+  @State message: string = 'please input password!'
+  private patternLockController: PatternLockController = new PatternLockController()
+
+  build() {
+    Column() {
+      Text(this.message).textAlign(TextAlign.Center).margin(20).fontSize(20)
+      PatternLock(this.patternLockController)
+        .sideLength(200)
+        .circleRadius(9)
+        .pathStrokeWidth(5)
+        .activeColor('#707070')
+        .selectedColor('#707070')
+        .pathColor('#707070')
+        .backgroundColor('#F5F5F5')
+        .autoReset(true)
+        .onDotConnect((index: number) => {
+          console.log("onDotConnect index: " + index)
+        })
+    }.width('100%').height('100%')
+  }
+}
+```
+
+![patternlock](figures/patternlock1.gif)
+
+### 示例2（判断密码是否正确）
+
+该示例通过sideLength设置九宫格的大小、circleRadius等属性设置宫格圆点样式、onPatternComplete属性设置密码输入时的回调。 
 
 当用户密码输入完成后，按输入的密码不同，给予不同的回应：输入的密码长度小于5时，提示重新输入；第一次输入完成后，提示第二次输入密码；第二次输入完成后，判断两次输入的密码是否相同，相同则提示密码设置成功，否则提示重新输入。 
 
@@ -327,14 +364,14 @@ struct PatternLockExample {
       PatternLock(this.patternLockController)
         .sideLength(200)
         .circleRadius(9)
-        .pathStrokeWidth(18)
-        .activeColor('#B0C4DE')
-        .selectedColor('#228B22')
-        .pathColor('#90EE90')
+        .pathStrokeWidth(5)
+        .activeColor('#707070')
+        .selectedColor('#707070')
+        .pathColor('#707070')
         .backgroundColor('#F5F5F5')
         .autoReset(true)
         .activateCircleStyle({
-          color: '#90EE90',
+          color: '#707070',
           radius: { value: 16, unit: LengthUnit.VP },
           enableWaveEffect: true
         })

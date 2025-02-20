@@ -7,7 +7,7 @@
 
 ## ApplicationInfo
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力**: SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                       | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -39,14 +39,14 @@
 | nativeLibraryPath<sup>12+</sup> | string                                                                     | 是   | 否   | 应用程序的本地库文件路径。                                                  |
 | multiAppMode<sup>12+</sup> | [MultiAppMode](#multiappmode12) | 是   | 否   | 应用多开模式。|
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
-| installSource<sup>12+</sup>    | string    | 是   | 否   | 应用程序的安装来源。pre-installed表示应用为预置应用，格式为包名表示应用由包名对应的应用安装，unknown表示应用安装来源未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| installSource<sup>12+</sup>    | string    | 是   | 否   | 应用程序的安装来源，支持的取值如下：<br/> - pre-installed表示应用为第一次开机时安装的预置应用。<br/> - ota表示应用为系统升级时新增的预置应用。<br/> - recovery表示卸载后再恢复的预置应用。<br/> - 安装来源的格式为包名表示应用由此包名对应的应用安装。<br/> - unknown表示应用安装来源未知。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | releaseType<sup>12+</sup>    | string    | 是   | 否   | 标识应用打包时使用的SDK的发布类型。当前SDK的发布类型可能为Canary、Beta、Release，其中Canary和Beta可能通过序号进一步细分，例如Canary1、Canary2、Beta1、Beta2等。开发者可通过对比应用打包依赖的SDK发布类型和OS的发布类型（[deviceInfo.distributionOSReleaseType](../apis-basic-services-kit/js-apis-device-info.md)）来判断兼容性。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | cloudFileSyncEnabled<sup>12+</sup>    | boolean    | 是   | 否   | 标识当前应用是否启用端云文件同步能力。true表示当前应用启用端云文件同步能力，false表示当前应用不启用端云文件同步能力。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## MultiAppMode<sup>12+</sup>
 表示应用多开模式。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
  **参数：**
 
@@ -61,7 +61,7 @@
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |

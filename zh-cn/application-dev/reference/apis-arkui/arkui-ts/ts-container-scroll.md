@@ -169,7 +169,7 @@ nestedScroll(value: NestedScrollOptions)
 
 friction(value: number | Resource)
 
-设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理
+设置摩擦系数，手动划动滚动区域时生效，只对惯性滚动过程有影响，对惯性滚动过程中的链式效果有间接影响。设置为小于等于0的值时，按默认值处理。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -233,13 +233,16 @@ initialOffset(value: OffsetOptions)
 | 名称       | 类型    | 必填   | 说明       |
 | ---------- | --------------------|-------------------- | -------- |
 | snapAlign  | [ScrollSnapAlign](ts-container-list.md#scrollsnapalign10枚举说明)   | 是 | 设置Scroll组件限位滚动时的对齐方式。<br/>**说明：** <br/>1.该属性默认值为ScrollSnapAlign.NONE。 |
-| snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的限位点，限位点即为Scroll组件能滑动停靠的偏移量。<br/>**说明：** <br/>1.当属性为Dimension时，表示每页的大小，系统会按照该大小来自动计算每个限位点的位置：如当Dimension为500时，实际的限位点即为[0,500,1000,1500,...]。<br/>2.当属性为Array\<Dimension\>时，每个Dimension代表限位点的位置。每个Dimension的范围为[0,可滑动距离]，0和可滑动距离的底部自动成为限位点。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
-| enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在开头和第一个限位点间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
-| enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在最后一个限位点和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| snapPagination | [Dimension](ts-types.md#dimension10)&nbsp;\|&nbsp;Array\<Dimension\> | 否 | 设置Scroll组件限位滚动时的分页点。<br/>**说明：** <br/>1.当属性为Dimension时，Dimension表示每页的大小，系统按照该大小进行分页。<br/>2.当属性为Array\<Dimension\>时，每个Dimension表示分页点，系统按照分页点进行分页。每个Dimension的范围为[0,可滑动距离]。<br/>3.当该属性不填或者Dimension为小于等于0的输入时，按异常值，无限位滚动处理。当该属性值为Array\<Dimension\>数组时，数组中的数值必须为单调递增。<br/>4.当输入为百分比时，实际的大小为Scroll组件的视口与百分比数值之积。 |
+| enableSnapToStart | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在开头和第一页间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
+| enableSnapToEnd | boolean   | 否 | 在Scroll组件限位滚动模式下，该属性设置为false后，允许Scroll在最后一页和末尾间自由滑动。<br/>**说明：** <br/>1.该属性值默认为true。<br/>2.该属性仅当snapPagination属性为Array\<Dimension\>时生效，不支持Dimension。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+>  **说明：**
+>
+>  不支持滚动组件通用事件中的[onWillScroll](ts-container-scrollable-common.md#onwillscroll12)、[onDidScroll](ts-container-scrollable-common.md#ondidscroll12)事件。
 
 ### onScrollFrameBegin<sup>9+</sup>
 
@@ -263,7 +266,7 @@ onScrollFrameBegin(event: OnScrollFrameBeginCallback)
 
 | 参数名 | 类型                              | 必填 | 说明               |
 | ------ | --------------------------------- | ---- | ------------------ |
-| event   | [OnScrollFrameBeginCallback](#onscrollframebegincallback14) | 是   | 每帧滚动开始回调函数。 |
+| event   | [OnScrollFrameBeginCallback](#onscrollframebegincallback16) | 是   | 每帧滚动开始回调函数。 |
 
 ### onScroll<sup>(deprecated)</sup>
 
@@ -362,7 +365,7 @@ onScrollEdge(event: OnScrollEdgeCallback)
 
 | 参数名 | 类型                              | 必填 | 说明               |
 | ------ | --------------------------------- | ---- | ------------------ |
-| event   | [OnScrollEdgeCallback](#onscrolledgecallback14) | 是   | 滚动到的边缘位置。 |
+| event   | [OnScrollEdgeCallback](#onscrolledgecallback16) | 是   | 滚动到的边缘位置。 |
 
 ### onScrollEnd<sup>(deprecated) </sup>
 
@@ -461,13 +464,13 @@ Scroll滚动前触发的回调。
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | void \| [OffsetResult](#offsetresult11) |  返回OffsetResult时按照开发者指定的偏移量滚动；不返回时按回调参数(xOffset，yOffset)滚动。 |
 
-## OnScrollEdgeCallback<sup>14+</sup>
+## OnScrollEdgeCallback<sup>16+</sup>
 
 type OnScrollEdgeCallback = (side: Edge) => void
 
 滚动到边缘时触发的回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -475,13 +478,13 @@ type OnScrollEdgeCallback = (side: Edge) => void
 | ------- | ----- | ---- | ------ |
 | side    | [Edge](ts-appendix-enums.md#edge)  | 是   | 滚动到的边缘位置。 |
 
-## OnScrollFrameBeginCallback<sup>14+</sup>
+## OnScrollFrameBeginCallback<sup>16+</sup>
 
 type OnScrollFrameBeginCallback = (offset: number, scrollState: ScrollState) => OnScrollFrameBeginHandlerResult;
 
 Scroll每帧滚动前触发的回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -496,11 +499,11 @@ Scroll每帧滚动前触发的回调。
 
 | 类型                     | 说明                 |
 | ------------------------ | -------------------- |
-| [OnScrollFrameBeginHandlerResult](#onscrollframebeginhandlerresult14对象说明) | 返回实际滑动量。 |
+| [OnScrollFrameBeginHandlerResult](#onscrollframebeginhandlerresult16对象说明) | 返回实际滑动量。 |
 
-## OnScrollFrameBeginHandlerResult<sup>14+</sup>对象说明
+## OnScrollFrameBeginHandlerResult<sup>16+</sup>对象说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -537,7 +540,7 @@ Scroller的构造函数。
 
 ### scrollTo
 
-scrollTo(value: [ScrollOptions](#scrolloptions14对象说明))
+scrollTo(options: [ScrollOptions](#scrolloptions16对象说明))
 
 
 滑动到指定位置。
@@ -550,12 +553,11 @@ scrollTo(value: [ScrollOptions](#scrolloptions14对象说明))
 
 | 参数名   | 类型 | 必填   | 说明      |
 | ----- | ---- | ---- | --------- |
-| value | [ScrollOptions](#scrolloptions14对象说明) | 是    | 滑动到指定位置的参数。 
+| options | [ScrollOptions](#scrolloptions16对象说明) | 是    | 滑动到指定位置的参数。 
 
 ### scrollEdge
 
 scrollEdge(value: Edge, options?: ScrollEdgeOptions)
-
 
 滚动到容器边缘，不区分滚动轴方向，Edge.Top和Edge.Start表现相同，Edge.Bottom和Edge.End表现相同。
 Scroll组件默认有动画，Grid、List、WaterFlow组件默认无动画。
@@ -784,7 +786,7 @@ getItemIndex(x: number, y: number): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
-| 100004   | Controller not bound to component.                               |
+| 100004   |The controller not bound to component.                              |
 
 ## OffsetResult<sup>11+</sup>
 
@@ -864,9 +866,9 @@ getItemIndex(x: number, y: number): number
 | --------- | -------- | ---- | ------------------------------------------------------------ |
 | velocity      | number  | 否   | 设置滚动到容器边缘的固定速度。如果设置小于等于0的值，参数不生效。<br/>默认值：0<br/>  单位： vp/s          |
 
-## ScrollOptions<sup>14+</sup>对象说明
+## ScrollOptions<sup>16+</sup>对象说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1238,7 +1240,7 @@ struct Index {
 ![NestedScrollSnap](figures/NestedScrollSnap.gif)
 
 ### 示例6（获取子组件索引）
-该示例展示了如何获得List组件的子组件索引
+该示例展示了如何获得List组件的子组件索引。
 
 ```ts
 // xxx.ets
@@ -1308,7 +1310,7 @@ struct ListExample {
 ![ScrollEdgeAtVelocity](figures/getItemIndex_list.gif)
 
 ### 示例7（设置边缘渐隐）
-该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度
+该示例实现了Scroll组件开启边缘渐隐效果并设置边缘渐隐长度。
 
 ```ts
 // xxx.ets
@@ -1346,7 +1348,7 @@ struct ScrollExample {
 
 ![fadingEdge_scroll](figures/fadingEdge_scroll.gif)
 
-### 示例9（单边边缘效果）
+### 示例8（单边边缘效果）
 
 该示例通过edgeEffect接口，实现了Scroll组件设置单边边缘效果。
 

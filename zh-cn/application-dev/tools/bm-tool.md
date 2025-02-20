@@ -48,7 +48,7 @@ bm install [-h] [-p filePath] [-r] [-w waitingTime] [-s hspDirPath]
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -p | 必选参数，指定路径和多个HAP同时安装。 |
+| -p | 必选参数，指定HAP路径，多HAP应用可指定多HAP所在文件夹路径。 |
 | -r | 可选参数，覆盖安装一个HAP。默认值为覆盖安装。 |
 | -s | 根据场景判断，安装应用间HSP时为必选参数，其他场景为可选参数。安装应用间共享库， 每个路径目录下只能存在一个同包名的HSP。 |
 | -w | 可选参数，安装HAP时指定bm工具等待时间，最小的等待时长为5s，最大的等待时长为600s,&nbsp;默认缺省为5s。 |
@@ -157,7 +157,7 @@ bm clean [-h] [-c] [-n bundleName] [-d] [-i appIndex]
 bm clean -c -n com.ohos.app
 # 清理该应用下的用户数据
 bm clean -d -n com.ohos.app
-// 执行结果
+# 执行结果
 clean bundle data files successfully.
 ```
 
@@ -183,7 +183,7 @@ bm enable [-h] [-n bundleName] [-a abilityName]
 ```bash
 # 使能该应用
 bm enable -n com.ohos.app -a com.ohos.app.EntryAbility
-// 执行结果
+# 执行结果
 enable bundle successfully.
 ```
 
@@ -209,7 +209,7 @@ bm disable [-h] [-n bundleName] [-a abilityName]
 ```bash
 # 禁用该应用
 bm disable -n com.ohos.app -a com.ohos.app.EntryAbility
-// 执行结果
+# 执行结果
 disable bundle successfully.
 ```
 <!--DelEnd-->
@@ -234,7 +234,7 @@ bm get [-h] [-u]
 ```bash
 # 获取设备的udid
 bm get -u
-// 执行结果
+# 执行结果
 udid of current device is :
 23CADE0C
 ```
@@ -243,7 +243,7 @@ udid of current device is :
 ## 快速修复命令（quickfix）
 
 ```bash
-bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b bundleName]
+bm quickfix [-h] [-a -f filePath [-t targetPath] [-d] [-o]] [-q -b bundleName] [-r -b bundleName]
 ```
 
 注：hqf文件制作方式可参考[HQF打包指令](packing-tool.md#hqf打包指令)。
@@ -257,6 +257,7 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 | -r&nbsp;-b | -r为可选参数，指定-r后，-b为必选参数。根据包名卸载未使能的补丁。|
 | -t | 可选参数，快速修复应用到指定目标路径。|
 | -d | 可选参数，应用快速修复调试模式。|
+| -o | 可选参数，应用快速修复覆盖模式，该模式下so将被解压覆盖到应用的so目录中。|
 
 
 
@@ -265,24 +266,25 @@ bm quickfix [-h] [-a -f filePath [-t targetPath] [-d]] [-q -b bundleName] [-r -b
 ```bash
 # 根据包名查询补丁包信息
 bm quickfix -q -b com.ohos.app
-// 执行结果
-// Information as follows:
-// ApplicationQuickFixInfo:
-//  bundle name: com.ohos.app
-//  bundle version code: xxx
-//  bundle version name: xxx
-//  patch version code: x
-//  patch version name:
-//  cpu abi:
-//  native library path:
-//  type:
+# 执行结果
+# Information as follows:
+# ApplicationQuickFixInfo:
+#  bundle name: com.ohos.app
+#  bundle version code: xxx
+#  bundle version name: xxx
+#  patch version code: x
+#  patch version name:
+#  cpu abi:
+#  native library path:
+#  type:
+
 # 快速修复补丁安装
 bm quickfix -a -f /data/app/
-// 执行结果
+# 执行结果
 apply quickfix succeed.
 # 快速修复补丁卸载
 bm quickfix -r -b com.ohos.app
-// 执行结果
+# 执行结果
 delete quick fix successfully
 ```
 
@@ -297,9 +299,9 @@ bm dump-shared [-h] [-a] [-n bundleName] [-m moduleName]
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -a | 可选参数，查询系统中已安装所有共享库。|
-| -n | 可选参数，查询指定共享库包名的详细信息。|
-| -m | 可选参数，查询指定共享库包名和模块名的详细信息。|
+| -a | 可选参数，查询系统中所有已安装的共享库。|
+| -n | 可选参数，查询指定包名的共享库详细信息。|
+| -m | 可选参数，查询指定包名和模块名的共享库详细信息。|
 
 
 示例：
@@ -315,32 +317,30 @@ bm dump-dependencies -n com.ohos.app -m entry
 
 ## 共享库依赖关系查询命令（dump-dependencies）
 
-显示指定应用和指定模块依赖的共享库信息。
 ```bash
 bm dump-dependencies [-h] [-n bundleName] [-m moduleName]
 ```
 
-  **共享库依赖关系查询命令参数列表**
+**共享库依赖关系查询命令参数列表**
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -n | 必选参数，查询指定共享库包名的详细信息。|
+| -n | 必选参数，查询指定应用依赖的共享库信息。|
 | -m | 可选参数，查询指定应用指定模块依赖的共享库信息。|
 
 示例：
 ```Bash
-# 显示指定应用指定模块依赖的共享库信息
+# 查询指定应用指定模块依赖的共享库信息
 bm dump-dependencies -n com.ohos.app -m entry
 ```
 
 
 ## 应用执行编译AOT命令（compile）
 
-应用执行编译AOT命令。
 ```bash
 bm compile [-h] [-m mode] [-r bundleName]
 ```
-  **compile命令参数列表**
+**compile命令参数列表**
 
 | 参数 | 参数说明 |
 | -------- | -------- |
@@ -381,18 +381,16 @@ bm copy-ap -n com.example.myapplication
 
 ## 查询overlay应用信息命令（dump-overlay）
 
-打印overlay应用的overlayModuleInfo。
 ```bash
-bm dump-overlay [-h] [-b bundleName] [-m moduleName] [-t targetModuleName]
+bm dump-overlay [-h] [-b bundleName] [-m moduleName]
 ```
 
 **dump-overlay命令参数列表**
 | 参数 | 参数说明 |
 | -------- | -------- |
 | -h | 帮助信息。 |
-| -b | 必选参数，获取指定应用的所有OverlayModuleInfo信息。|
-| -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayModuleInfo信息。|
-| -t | 可选参数，根据指定的包名和目标module名查询OverlayModuleInfo信息。|
+| -b | 必选参数，获取指定Overlay应用的所有OverlayModuleInfo信息。|
+| -m | 可选参数，默认当前Overlay应用主模块名。根据指定Overlay应用的包名和module名查询OverlayModuleInfo信息。|
 
 示例：
 
@@ -420,7 +418,7 @@ bm dump-target-overlay [-h] [-b bundleName] [-m moduleName]
 | -------- | -------- |
 | -h | 帮助信息。 |
 | -b | 必选参数，获取指定应用的所有OverlayBundleInfo信息。|
-| -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayBundleInfo信息。|
+| -m | 可选参数，默认当前应用主模块名。根据指定的包名和module名查询OverlayModuleInfo信息。|
 
 示例：
 
@@ -468,10 +466,16 @@ Error: install parse native so failed.
 
 设备支持的Abi类型与C++工程中配置的Abi类型不匹配。
 
+> **说明：**
+>
+> - 如果工程有依赖HSP或者HAR模块，请确保所有包含C++代码的模块配置的Abi类型包含设备支持的Abi类型。
+> - 如果工程依赖的三方库包含so文件，请确保oh_modules/三方库/libs目录包含有设备支持的Abi目录，如libs/arm64-v8a、/libs/x86_64。
+<!--RP1--><!--RP1End-->
+
 **处理步骤**
 
 1. 将设备与DevEco Studio进行连接。
-2. 打开命令行工具，并进入SDK安装目录下的toolchains\{版本号}目录下。
+2. 打开命令行工具，并进入SDK安装目录下的toolchains目录下。
     ```
     若不清楚OpenHarmony SDK安装目录，可单击File > Settings > SDK界面查看安装路径。
     ```
@@ -613,7 +617,7 @@ Error: install parse profile missing prop.
     hilog -w start
     ```
 
-    落盘位置：/data/log/hilog
+    落盘位置：/data/log/hilog。
 
     打开日志查看“profile prop %{public}s is mission”。如“profile prop icon is mission”表示“icon”字段缺失。
 
@@ -666,6 +670,7 @@ Error: signature verification failed due to not trusted app source.
 		//UDID获取命令
 		hdc shell bm get -u
 		```
+  3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 
@@ -789,13 +794,13 @@ Error: install parse unexpected.
 
 **错误描述**
 
-应用推送到设备安装时，报错包管理打开hap文件失败。
+应用推送到设备安装时，报错包管理打开HAP文件失败。
 
 **可能原因**
 
 * 场景一：设备system分区存储空间已满，导致hdc file send文件后，因存储空间不足导致设备中文件损坏。
 
-* 场景二：推送hap包到设备过程hap包损坏。
+* 场景二：推送HAP包到设备过程HAP包损坏。
 
 **处理步骤**
 
@@ -804,7 +809,7 @@ Error: install parse unexpected.
   hdc shell df -h /system
   ```
 
-* 场景二：查看本地hap与推送到设备上hap的md5值，若不一致则表示推送过程hap损毁，请尝试重传。
+* 场景二：查看本地HAP与推送到设备上HAP的md5值，若不一致则表示推送过程HAP损毁，请尝试重传。
 
 
 ### 9568316 数据代理中APL权限字段描述权限低
@@ -897,8 +902,8 @@ singleton权限应用安装未指定UserID 0。
 **处理步骤**
 
 1. 应用是singleton权限，安装时指定UserID 0。
-	```
-	//指定userId安装命令
+	```bash
+	# 指定userId安装命令
 	hdc install -p hap名.hap -u 0
 	```
 
@@ -957,11 +962,11 @@ Error: isolationMode does not match the system.
 **处理步骤**
 
 1. 按照设备的隔离模式配置HAP配置文件isolationMode属性。
-	```
-	//查询设备persist.bms.supportIsolationMode值，若返回errNum is:106说明没配置
+	```bash
+	# 查询设备persist.bms.supportIsolationMode值，若返回errNum is:106说明没配置
 	hdc shell
 	param get persist.bms.supportIsolationMode
-	//配置设备persist.bms.supportIsolationMode值
+	# 配置设备persist.bms.supportIsolationMode值
 	hdc shell
 	param set persist.bms.supportIsolationMode [true|false]
 	```
@@ -983,8 +988,8 @@ uri不满足格式规范。
 **处理步骤**
 
 1. 确认uri满足格式规范。
-	```
-	//uri格式规范
+	```bash
+	# uri格式规范
 	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
 	```
 
@@ -1019,18 +1024,23 @@ Error: bundle manager service is died.
 
 **可能原因**
 
-系统出现未知的异常，导致系统服务重启。
+系统出现未知的异常，导致包管理服务已停止或者异常退出。
 
 **处理步骤**
 
-1.查询设备/data/log/faultlog/faultlogger/目录下是否存在crash文件。
+1. 重启手机后再次尝试安装应用。
 
-2.crash文件中是否包含foundation字样的文件。
-
-3.请多次重试安装，如果还是报同样的错误，观察是否会多出包含foundation字样的crash文件生成。
-
-4.若多次重试都无法解决，请导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-
+2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
+```
+hdc shell
+cd /data/log/faultlog/faultlogger/
+ls -ls
+```
+3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+```
+hdc file recv /data/log/faultlog/faultlogger/
+hdc file recv /data/log/hilog/
+```
 
 ### 9568393 验证代码签名失败
 **错误信息**
@@ -1049,24 +1059,7 @@ Error: verify code signature failed.
 
 1. 安装最新版本DevEco Studio，重新签名。
 
-
-### 9568257 验证pkcs7文件失败
-**错误信息**
-
-Error: fail to verify pkcs7 file.
-
-**错误描述**
-
-验证pkcs7文件失败。
-
-**可能原因**
-
-应用当前使用的签名不符合HarmonyOS应用签名要求，通常是由于当前使用的是OpenHarmony应用的签名，应该替换为HarmonyOS应用的签名。
-
-**处理步骤**
-
-1. 在为应用/服务签名时勾选“Support HarmonyOS”,完成HarmonyOS应用签名后再次启动调试或运行应用。
-![示例图](figures/zh-cn_image_9868257_1.png)
+<!--RP3--><!--RP3End-->
 
 ### 9568401 调试包仅支持运行在开发者模式设备
 **错误信息**
@@ -1104,6 +1097,22 @@ Error: uninstall missing installed bundle.
 
 1. 确认要卸载的应用是否已经安装。
 
+### 9568388 企业设备管理不允许卸载该应用
+**错误信息**
+
+Error: Failed to uninstall the HAP because the uninstall is forbidden by enterprise device management.
+
+**错误描述**
+
+企业设备管理不允许卸载该应用。
+
+**可能原因**
+
+应用被设置为不允许被卸载。
+
+**处理步骤**
+
+1. 由设置方取消该应用的卸载管控。
 
 ### 9568284 安装版本不匹配
 **错误信息**
@@ -1130,7 +1139,7 @@ Error: install version not compatible.
 ### 9568287 安装包entry模块数量不合规
 **错误信息**
 
-Error: install invalid number of entry hap.
+Error: install invalid number of entry HAP.
 
 **错误描述**
 
@@ -1223,6 +1232,40 @@ Error: installd set selinux label failed.
 
     ![示例图](figures/zh-cn_image_9568359_2.png)
 
+### 9568398 非企业设备禁止安装企业应用
+**错误信息**
+
+Error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
+
+**错误描述**
+
+非企业设备禁止安装分发类型为enterprise_mdm或enterprise_normal的应用。
+
+**可能原因**
+
+设备类型不是企业设备。
+
+**处理步骤**
+
+1. 使用企业设备安装企业应用。
+
+### 9568402 禁止安装分发类型为app_gallery的release应用
+**错误信息**
+
+Error: Release bundle can not be installed.
+
+**错误描述**
+
+禁止通过bm命令安装分发类型为app_gallery并且签名证书类型为release的应用。
+
+**可能原因**
+
+安装应用的分发类型为app_gallery并且签名证书类型为release。
+
+**处理步骤**
+
+1. 使用非app_gallery分发类型的证书对应用重新签名。
+2. 使用debug类型证书对应用重新签名。
 
 ### 9568403 安装加密校验失败
 **错误信息**
@@ -1241,6 +1284,110 @@ Error: check encryption failed.
 
 1. 安装新版本镜像。
 2. 删除HAP工程中lib目录内非so文件，重新签名打包。
+
+### 9568407 安装失败，native软件包安装失败
+**错误信息**
+
+Error: Failed to install the HAP because installing the native package failed.
+
+**错误描述**
+
+安装HAP时，native软件包安装失败。
+
+**可能原因**
+
+HAP包中需要安装的native软件包损坏。
+
+**处理步骤**
+
+1. 检查HAP包中的native软件包，替换正确的native软件包并重新签名打包。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+
+### 9568408 卸载应用失败，native软件包卸载失败
+**错误信息**
+
+Error: Failed to uninstall the HAP because uninstalling the native package failed.
+
+**错误描述**
+
+卸载应用时，native软件包卸载失败。
+
+**可能原因**
+
+应用对应的需要卸载的native软件包被占用。
+
+**处理步骤**
+
+1. 检查是否存在进程占用相应的native软件包，若存在则结束进程后重新卸载。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+
+### 9568409 安装失败，native软件包提取失败
+**错误信息**
+
+Error: Failed to install the HAP because the extract of the native package failed.
+
+**错误描述**
+
+安装HAP时，提取native软件包失败。
+
+**可能原因**
+
+HAP包中native软件包目录下不存在module.json5中配置的native软件包。
+
+**处理步骤**
+
+1. 检查HAP包中的native软件包目录，重新打入需要安装的native软件包并完成签名或删除module.json5中缺失的native软件包配置信息。参考[Native软件包开发指南](https://gitee.com/openharmony/startup_appspawn/blob/master/service/hnp/README_zh.md)。
+
+### 9568410 安装失败，设备受管控
+**错误信息**
+
+Error: Failed to install the HAP because the device has been controlled.
+
+**错误描述**
+
+因为设备受管控导致HAP安装失败。
+
+**可能原因**
+
+设备通过非法渠道激活等原因。
+
+**处理步骤**
+
+1. 确认设备是否是非法渠道获取的。
+2. 走正常设备激活流程。
+
+### 9568415 禁止安装签名证书为debug或者配置文件debug为true的加密应用
+**错误信息**
+
+Error: Debug encrypted bundle is not allowed to install.
+
+**错误描述**
+
+禁止安装签名证书为debug类型或者配置文件debug属性值为true的加密应用。
+
+**可能原因**
+
+1. 安装了签名证书为debug类型的加密应用。
+2. 安装了配置文件中debug属性值为true的加密应用。
+
+**处理步骤**
+
+1. 不支持安装签名证书为debug类型或者配置文件debug属性值为true的加密应用，可以修改为非加密应用进行安装调试。
+
+### 9568416 加密应用不允许安装
+**错误信息**
+
+Error: Encrypted bundle can not be installed.
+
+**错误描述**
+
+加密应用不允许通过bm命令安装。
+
+**可能原因**
+
+安装的应用为加密应用。
+
+**处理步骤**
+
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section18815157237)或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-signing-V13#section297715173233)重新签名后安装调试。
 
 ### 9568417 签名校验失败
 **错误信息**
@@ -1275,3 +1422,33 @@ Error: Failed to uninstall the app because the app is locked.
 **处理步骤**
 
 1. 检查应用是否设置了卸载处置规则，由设置方取消卸载处置规则。
+
+### 9568420 禁止通过bm安装release的预装应用
+**错误信息**
+
+os_integration bundle is not allowed to install for shell.
+
+**错误描述**
+
+禁止通过bm安装release的预装应用
+
+**可能原因**
+
+通过bm安装release的预装应用
+
+**处理步骤**
+
+1. 检查应用是否是release的预装应用。
+
+### 9568278 安装包的版本号不一致
+**错误信息**
+
+error: install version code not same.
+
+**可能原因**
+1. 设备上安装的应用和安装报错的应用包版本号（versionCode）不一致。
+2. 安装多个包中存在版本号（versionCode）不一致。
+
+**处理步骤**
+1. 调整安装包的版本和设备中已存在的应用包的版本号（versionCode）一致，或者卸载设备中的应用，再去安装新的应用包。
+2. 调整安装的多个包的版本号（versionCode），所有的包都需要保持版本号（versionCode）一致。

@@ -1,6 +1,6 @@
 # Using AVImageGenerator to Extract Video Images at a Specified Time (ArkTS)
 
-You can use AVImageGenerator to obtain the thumbnail of a video at the specified time from the raw media asset.
+You can use the [AVImageGenerator](media-kit-intro.md#avimagegenerator) to obtain the thumbnail of a video at the specified time from the raw media asset.
 
 The full process of obtaining the video thumbnail includes creating an AVImageGenerator instance, setting resources, obtaining the thumbnail, and releasing the instance.
 
@@ -32,11 +32,11 @@ Refer to the sample code below to set the file descriptor and obtain the thumbna
 import { media } from '@kit.MediaKit';
 import { image } from '@kit.ImageKit';
 
-const TAG = 'MetadataDemo'
+const TAG = 'MetadataDemo';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   // Declare a pixelMap object, which is used for image display.
   @State pixelMap: image.PixelMap | undefined = undefined;
@@ -59,7 +59,7 @@ struct Index {
         .height('5%')
         .onClick(() => {
           // Set fdSrc and obtain the video thumbnail.
-          this.testFetchFrameByTime()
+          this.testFetchFrameByTime();
         })
         Image(this.pixelMap).width(300).height(300)
           .margin({
@@ -75,24 +75,24 @@ struct Index {
   // it obtains the thumbnail of the video at the specified time, and displays the thumbnail on the screen through the Image component.
   async testFetchFrameByTime() {
     // Create an AVImageGenerator instance.
-    let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator()
+    let avImageGenerator: media.AVImageGenerator = await media.createAVImageGenerator();
     // Set the fdSrc attribute.
     avImageGenerator.fdSrc = await getContext(this).resourceManager.getRawFd('demo.mp4');
 
     // Initialize input parameters.
-    let timeUs = 0
-    let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC
+    let timeUs = 0;
+    let queryOption = media.AVImageQueryOptions.AV_IMAGE_QUERY_NEXT_SYNC;
     let param: media.PixelMapParams = {
       width : 300,
       height : 300
-    }
+    };
 
     // Obtain the thumbnail (promise mode).
-    this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param)
+    this.pixelMap = await avImageGenerator.fetchFrameByTime(timeUs, queryOption, param);
 
     // Release the instance (promise mode).
-    avImageGenerator.release()
-    console.info(TAG, `release success.`)
+    avImageGenerator.release();
+    console.info(TAG, `release success.`);
   }
 }
 ```

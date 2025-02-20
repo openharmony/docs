@@ -21,7 +21,7 @@ Not supported
 
 ## SelectionMenu
 
-SelectionMenu(options: SelectionMenuOptions)
+SelectionMenu(options: SelectionMenuOptions): void
 
 Defines a custom context menu on selection. When the input parameter is empty, the sizes of the menu and its content area are 0, making the menu invisible. In this case, for example, if a right-click context menu is bound to the **RichEditor** component, it will not be displayed when the component is right-clicked.
 
@@ -99,12 +99,14 @@ Provides the information about the selected content.
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are not supported. The default width is 256 vp, and the height is adaptive.
+The [universal attributes](ts-universal-attributes-size.md) are not supported. The default width is 224 vp, and the height is adaptive.
 
 ## Events
 The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
+
+This example demonstrates the effects of a custom context menu on selection bound to text with different triggering modes.
 
 ```ts
 import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'

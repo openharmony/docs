@@ -53,7 +53,7 @@ Remove a gesture from a component that has been bound with a specific tag throug
 
 | Name| Type  | Mandatory| Description                      |
 | ------ | ------ | ---- | -------------------------- |
-| tag  |  string | Yes  | Gesture processor flag.|
+| tag  |  string | Yes  | Gesture handler flag.|
 
 ### clearGestures
 
@@ -80,6 +80,22 @@ Sets the tag for the gesture handler.
 | Name| Type| Mandatory|Description                                       |
 | ----  | ------  | ------|---------------------------------- |
 | tag   | string  | Yes|Tag of the gesture handler.|
+
+### allowedTypes<sup>14+</sup>
+
+allowedTypes(types: Array\<SourceTool>): T
+
+Sets the event input sources supported by the gesture handler.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name| Type| Mandatory|Description                                       |
+| ----  | ------  | ------|---------------------------------- |
+| types   | Array\<[SourceTool](ts-gesture-settings.md#sourcetool9)>  | Yes|Event input sources supported by the gesture handler.|
 
 ## TapGestureHandler
 
@@ -231,7 +247,7 @@ Provides the parameters of the long press gesture handler.
 | ------------ | -------------------------------------- | ---- | -------------------- |
 | fingers | number | No| Minimum number of fingers to trigger a long press gesture. The value ranges from 1 to 10.<br>Default value: **1**<br> **NOTE**<br>If a finger moves more than 15 px after being pressed, the gesture recognition fails.|
 | repeat | boolean | No| Whether to continuously trigger the event callback.<br>Default value: **false**|
-| duration | number | No| Minimum hold-down time, in ms.<br>Default value: **500**<br>**NOTE**<br>If the value is less than or equal to 0, the default value <b>500</b> is used.|
+| duration | number | No| Minimum hold-down time, in ms.<br>Default value: **500**<br>**NOTE**<br>If the value is less than or equal to 0, the default value **500** is used.|
 
 ## PanGestureHandler
 

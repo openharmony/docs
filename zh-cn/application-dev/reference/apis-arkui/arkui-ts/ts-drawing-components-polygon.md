@@ -26,14 +26,14 @@ Polygon(options?: PolygonOptions)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions14对象说明) | 否 | Polygon绘制区域。 |
+| options | [PolygonOptions](ts-drawing-components-polygon.md#polygonoptions16对象说明) | 否 | Polygon绘制区域。 |
 
-## PolygonOptions<sup>14+</sup>对象说明
+## PolygonOptions<sup>16+</sup>对象说明
 用于描述Polygon绘制区域。
 
-**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -291,13 +291,17 @@ struct PolygonExample {
         .points([[0, 0], [50, 100], [100, 0]])
         .fill(Color.Green)
       // 在 100 * 100 的矩形框中绘制一个四边形，起点(0, 0)，经过(0, 100)和(100, 100)，终点(100, 0)
-      Polygon().width(100).height(100)
+      Polygon()
+        .width(100)
+        .height(100)
         .points([[0, 0], [0, 100], [100, 100], [100, 0]])
         .fillOpacity(0)
         .strokeWidth(5)
         .stroke(Color.Blue)
       // 在 100 * 100 的矩形框中绘制一个五边形，起点(50, 0)，依次经过(0, 50)、(20, 100)和(80, 100)，终点(100, 50)
-      Polygon().width(100).height(100)
+      Polygon()
+        .width(100)
+        .height(100)
         .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])
         .fill(Color.Red)
         .fillOpacity(0.6)

@@ -53,7 +53,7 @@ Button通过调用接口来创建，接口调用有以下两种形式：
 Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮（Circle）和普通按钮（Normal），通过type进行设置。
 
 
-- 胶囊按钮（默认类型）
+- 胶囊按钮（默认类型）。
 
   此类型按钮的圆角自动设置为高度的一半，不支持通过borderRadius属性重新设置圆角。
 
@@ -67,7 +67,7 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
   ![zh-cn_image_0000001511421208](figures/zh-cn_image_0000001511421208.png)
 
 
-- 圆形按钮
+- 圆形按钮。
 
   此类型按钮为圆形，不支持通过borderRadius属性重新设置圆角。
 
@@ -80,7 +80,7 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001511740428](figures/zh-cn_image_0000001511740428.png)
 
-- 普通按钮
+- 普通按钮。
 
   此类型的按钮默认圆角为0，支持通过borderRadius属性重新设置圆角。
 
@@ -94,6 +94,17 @@ Button有三种可选类型，分别为胶囊类型（Capsule）、圆形按钮�
 
   ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001563060641.png)
 
+- 圆角矩形按钮
+  当[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为NORMAL时，默认圆角大小为20vp，[controlSize](../reference/apis-arkui/arkui-ts/ts-basic-components-button.md#controlsize11)为SMALL时，圆角大小为14vp，支持通过borderRadius属性重新设置圆角。
+
+  ```ts
+  Button('Disable', { type: ButtonType.ROUNDED_RECTANGLE, stateEffect: true }) 
+    .backgroundColor(0x317aff) 
+    .width(90)
+    .height(40)
+  ```
+
+  ![zh-cn_image_0000001563060641](figures/zh-cn_image_0000001511421208.png)
 
 ## 自定义样式
 
@@ -284,7 +295,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   }
   ```
 
-  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562700393.png)
+  ![zh-cn_image_0000001562700393](figures/zh-cn_image_0000001562940814.gif)
 
 
 - 用于提交表单。
@@ -311,7 +322,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
   ![zh-cn_image_0000001562940473](figures/zh-cn_image_0000001562940473.png)
 
-- 悬浮按钮
+- 悬浮按钮。
 
   在可以滑动的界面，滑动时按钮始终保持悬浮状态。
 

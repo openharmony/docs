@@ -1,6 +1,6 @@
 # Using AVRecorder to Record Audio (ArkTS)
 
-You will learn how to use the AVRecorder to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
+In this topic, you will learn how to use the [AVRecorder](media-kit-intro.md#avrecorder) to develop audio recording functionalities including starting, pausing, resuming, and stopping recording.
 
 During application development, you can use the **state** attribute of the AVRecorder to obtain the AVRecorder state or call **on('stateChange')** to listen for state changes. Your code must meet the state machine requirements. For example, **pause()** is called only when the AVRecorder is in the **started** state, and **resume()** is called only when it is in the **paused** state.
 
@@ -9,6 +9,16 @@ During application development, you can use the **state** attribute of the AVRec
 ![Recording state change](figures/recording-status-change.png)
 
 For details about the state, see [AVRecorderState](../../reference/apis-media-kit/js-apis-media.md#avrecorderstate9).
+
+## Requesting Permissions
+
+Before your development, configure the following permissions for your application.
+- To use the microphone, request the ohos.permission.MICROPHONE permission. For details about how to request user authorization, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
+- To read and save audio files, preferentially use [AudioViewPicker](../../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker).
+
+> **NOTE**
+>
+> When the application needs to clone, back up, or synchronize audio files in users' public directory, request the ohos.permission.READ_AUDIO and ohos.permission.WRITE_AUDIO permissions for reading and writing audio files. For details, see <!--RP1-->[Requesting Restricted Permissions](../../security/AccessToken/declare-permissions-in-acl.md)<!--RP1End-->.
 
 
 ## How to Develop
@@ -59,12 +69,11 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    > **NOTE**
    > Pay attention to the following when configuring parameters:
    >
-   > - In pure audio recording scenarios, set only audio-related parameters in **avConfig** of **prepare()**.
-   >   If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
-   > 
+   > - Before parameter configuration, ensure that you have gained the required permissions. For details, see [Requesting Permissions](#requesting-permissions).
+   >
+   > - In pure audio recording scenarios, set only audio-related parameters in **avConfig** of **prepare()**. If video-related parameters are configured, an error will be reported in subsequent steps. If video recording is required, follow the instructions provided in [Video Recording Development](video-recording.md).
    > - The [recording formats](media-kit-intro.md#supported-formats) in use must be those supported by the system.
-   > 
-   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
+   > - The recording output URL (URL in **avConfig** in the sample code) must be in the format of fd://xx (where xx indicates a file descriptor). You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -76,12 +85,19 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format. Currently, ACC, MP3, and G711MU are supported.
      audioSampleRate: 48000, // Audio sampling rate.
      fileFormat: media.ContainerFormatType.CFT_MPEG_4A, // Container format. Currently, MP4, M4A, MP3, and WAV are supported.
-   }
+   };
+   
+   const context: Context = getContext(this); // Refer to Application File Access and Management.
+   let filePath: string = context.filesDir + '/example.mp3';
+   let audioFile: fs.File = fs.openSync(filePath, OpenMode.READ_WRITE | OpenMode.CREATE);
+   let fileFd = this.audioFile.fd; // Obtain the file FD.
+    
    let avConfig: media.AVRecorderConfig = {
      audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC, // Audio input source. In this example, the microphone is used.
      profile: avProfile,
-     url: 'fd://35', // Obtain the file descriptor of the created audio file by referring to the sample code in Application File Access and Management.
-   }
+     url: 'fd://' + fileFd.toString(), // Obtain the file descriptor of the created audio file by referring to the sample code in Application File Access and Management.
+   };
+    
    avRecorder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
    }, (err: BusinessError) => {
@@ -153,6 +169,17 @@ export class AudioRecorderDemo {
     profile: this.avProfile,
     url: 'fd://35', // Create, read, and write a file by referring to the sample code in Application File Access and Management.
   };
+  private uriPath: string = '';
+  private filePath: string = '';
+  
+  // Create a file and set avConfig.url.
+  async createAndSetFd(): Promise<void> {
+      const context: Context = getContext(this);
+      const path: string = context.filesDir + '/example.mp3'; // File sandbox path. The file name extension must match the container format.
+      const audioFile: fs.File = fs.openSync(path, OpenMode.READ_WRITE | OpenMode.CREATE);
+      this.avConfig.url = 'fd://' + audioFile.fd; // Update the URL.
+      this.filePath = path;
+  }
 
   // Set AVRecorder callback functions.
   setAudioRecorderCallback() {

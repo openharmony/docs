@@ -32,7 +32,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -40,7 +40,7 @@ queryBundleStateInfos(begin: number, end: number, callback: AsyncCallback&lt;Bun
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
 | end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
-| callback | AsyncCallback&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics.md#bundleactiveinforesponse)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+| callback | AsyncCallback&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics-sys.md#bundleactiveinforesponse)&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **示例**：
 
@@ -68,7 +68,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -81,7 +81,7 @@ queryBundleStateInfos(begin: number, end: number): Promise&lt;BundleActiveInfoRe
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics.md#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
+| Promise&lt;[BundleActiveInfoResponse](js-apis-deviceUsageStatistics-sys.md#bundleactiveinforesponse)&gt; | 指定的Promise回调方法。返回指定起始和结束时间内应用使用时长统计信息。 |
 
 **示例**：
 
@@ -106,16 +106,16 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明                                       |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| byInterval | [IntervalType](js-apis-deviceUsageStatistics.md#intervaltype)            | 是    | 查询类型。                                    |
+| byInterval | [IntervalType](js-apis-deviceUsageStatistics-sys.md#intervaltype)            | 是    | 查询类型。                                    |
 | begin      | number                                   | 是    | 起始时间，单位毫秒。                                    |
 | end        | number                                   | 是    | 结束时间，单位毫秒。                                    |
-| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics.md#bundlestateinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| callback   | AsyncCallback&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfo)&gt;&gt; | 是    | 指定的callback回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -145,13 +145,13 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
 | 参数名        | 类型                            | 必填   | 说明    |
 | ---------- | ----------------------------- | ---- | ----- |
-| byInterval | [IntervalType](js-apis-deviceUsageStatistics.md#intervaltype) | 是    | 查询类型。 |
+| byInterval | [IntervalType](js-apis-deviceUsageStatistics-sys.md#intervaltype) | 是    | 查询类型。 |
 | begin      | number                        | 是    | 起始时间，单位毫秒。 |
 | end        | number                        | 是    | 结束时间，单位毫秒。 |
 
@@ -159,7 +159,7 @@ queryBundleStateInfoByInterval(byInterval: IntervalType, begin: number, end: num
 
 | 类型                                       | 说明                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics.md#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
+| Promise&lt;Array&lt;[BundleStateInfo](js-apis-deviceUsageStatistics-sys.md#bundlestateinfo)&gt;&gt; | 指定的Promise回调方法。返回指定时间段间隔（天、周、月、年）查询应用使用时长统计信息。 |
 
 **示例**：
 
@@ -187,7 +187,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -195,7 +195,7 @@ queryBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;A
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
 | end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
-| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics.md#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestate)&gt;&gt; | 是    | 指定的callback回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -225,7 +225,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 **系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
 
-**系统API**：此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口。
 
 **参数**：
 
@@ -238,7 +238,7 @@ queryBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleA
 
 | 类型                                       | 说明                                     |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics.md#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
+| Promise&lt;Array&lt;[BundleActiveState](js-apis-deviceUsageStatistics-sys.md#bundleactivestate)&gt;&gt; | 指定的Promise回调方法。返回指定起始和结束时间查询所有应用的事件集合。 |
 
 **示例**：
 
@@ -255,3 +255,210 @@ bundleState.queryBundleActiveStates(0, 20000000000000).then((res: Array<bundleSt
   console.error('BUNDLE_ACTIVE queryBundleActiveStates promise failed, because: ' + err.code);
 });
 ```
+
+## bundleState.queryAppUsagePriorityGroup
+
+queryAppUsagePriorityGroup(): Promise&lt;number&gt;
+
+查询当前应用的优先级分组。使用Promise异步回调。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**返回值**：
+
+| 类型              | 说明                          |
+| --------------- | --------------------------- |
+| Promise&lt;number&gt; | Promise回调方法。返回查询的应用分组结果。 |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryAppUsagePriorityGroup().then((res: number) => {
+  console.log('BUNDLE_ACTIVE QueryPackageGroup promise succeeded. result: ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.error('BUNDLE_ACTIVE QueryPackageGroup promise failed. because: ' + err.code);
+});
+```
+
+## bundleState.queryAppUsagePriorityGroup
+
+queryAppUsagePriorityGroup(callback: AsyncCallback&lt;number&gt;): void
+
+查询当前应用的优先级分组。使用callback异步回调。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名      | 类型                    | 必填   | 说明                         |
+| -------- | --------------------- | ---- | -------------------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | CallBack回调方法。返回查询的应用分组。 |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryAppUsagePriorityGroup((err: BusinessError, res: number) => {
+  if(err) {
+    console.error('BUNDLE_ACTIVE QueryPackageGroup callback failed. because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE QueryPackageGroup callback succeeded. result: ' + JSON.stringify(res));
+  }
+});
+```
+
+## bundleState.queryCurrentBundleActiveStates
+
+queryCurrentBundleActiveStates(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;BundleActiveState&gt;&gt;): void
+
+通过指定起始和结束时间查询当前应用的事件集合，使用Callback异步回调。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名      | 类型                                       | 必填   | 说明                                      |
+| -------- | ---------------------------------------- | ---- | --------------------------------------- |
+| begin    | number                                   | 是    | 起始时间，单位毫秒。                                   |
+| end      | number                                   | 是    | 结束时间，单位毫秒。                                   |
+| callback | AsyncCallback&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | 是    | callback回调方法。返回当前应用在指定起始和结束时间内的事件集合。 |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryCurrentBundleActiveStates(0, 20000000000000, (err: BusinessError, res: Array<bundleState.BundleActiveState>) => {
+  if (err) {
+    console.error('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback failed, because: ' + err.code);
+  } else {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback number : ' + (i + 1));
+      console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates callback result ' + JSON.stringify(res[i]));
+    }
+  }
+});
+```
+
+## bundleState.queryCurrentBundleActiveStates
+
+queryCurrentBundleActiveStates(begin: number, end: number): Promise&lt;Array&lt;BundleActiveState&gt;&gt;
+
+通过指定起始和结束时间查询当前应用的事件集合，使用Promise异步回调。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**系统API**：此接口为系统接口。
+
+**参数**：
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| begin | number | 是    | 起始时间，单位毫秒。 |
+| end   | number | 是    | 结束时间，单位毫秒。 |
+
+**返回值**：
+
+| 类型                                       | 说明                                     |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;Array&lt;[BundleActiveState](#bundleactivestate)&gt;&gt; | Promise回调方法。返回指定起始和结束时间查询当前应用的事件集合。 |
+
+**示例**：
+
+```ts
+import { BusinessError } from '@ohos.base';
+
+bundleState.queryCurrentBundleActiveStates(0, 20000000000000).then((res: Array<bundleState.BundleActiveState>) => {
+  console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise number : ' + (i + 1));
+    console.log('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise result ' + JSON.stringify(res[i]));
+  }
+}).catch((err: BusinessError) => {
+  console.error('BUNDLE_ACTIVE queryCurrentBundleActiveStates promise failed, because: ' + err.code);
+});
+```
+
+## BundleStateInfo
+
+提供应用使用时长的具体信息。
+
+### 属性
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 名称                      | 类型     | 必填   | 说明                                       |
+| ------------------------ | ------ | ---- | ---------------------------------------- |
+| bundleName               | string | 否    | 应用包名。                                    |
+| abilityPrevAccessTime    | number | 否    | 应用最后一次使用的时间。                             |
+| abilityInFgTotalTime     | number | 否    | 应用在前台使用的总时间。                             |
+| id                       | number | 是    | 用户id。|
+| abilityPrevSeenTime      | number | 否    | 应用最后一次在前台可见的时间。|
+| abilitySeenTotalTime     | number | 否    | 应用在前台可见的总时间。|
+| fgAbilityAccessTotalTime | number | 否    | 应用访问前台的总时间。|
+| fgAbilityPrevAccessTime  | number | 否    | 应用最后一次访问前台的时间。|
+| infosBeginTime           | number | 否    | BundleActiveInfo对象中第一条应用使用统计的记录时间。|
+| infosEndTime             | number | 否    | BundleActiveInfo对象中最后一条应用使用统计的记录时间。|
+
+### merge<sup>(deprecated)</sup>
+
+merge(toMerge: BundleStateInfo): void
+
+合并相同包名的应用使用信息。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| toMerge | [BundleStateInfo](#bundlestateinfo) | 是 | 相同包名的应用使用统计信息。|
+
+## BundleActiveState
+
+提供应用事件的具体信息。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 名称                   | 类型     | 必填   | 说明                                       |
+| --------------------- | ------ | ---- | ---------------------------------------- |
+| bundleName            | string | 否    | 应用包名。                                    |
+| stateType             | number | 否    | 应用事件类型。                                  |
+| stateOccurredTime     | number | 否    | 应用事件发生的时间戳。                              |
+| appUsagePriorityGroup | number | 否    | 应用程序的使用优先级组。|
+| indexOfLink           | string | 否    | 快捷方式id。|
+| nameOfClass           | string | 否    | 类名。|
+
+## BundleActiveInfoResponse
+
+提供应用使用时长的具体信息。
+
+**系统能力**：SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 参数名                            | 类型                                       | 必填   | 说明             |
+| ------------------------------ | ---------------------------------------- | ---- | -------------- |
+| [key: string]: BundleStateInfo | [key: string]: [BundleStateInfo](#bundlestateinfo) | 是    | 不同应用的使用时长统计信息。 |
+
+## IntervalType
+
+提供应用使用时长的查询类型。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.ResourceSchedule.UsageStatistics.App
+
+| 名称           | 值  | 说明                                       |
+| ------------ | ---- | ---------------------------------------- |
+| BY_OPTIMIZED | 0    | 表示系统自行判断最合适的查询类型（天、周、月、年）去查询指定时间段间隔的应用使用时长信息。 |
+| BY_DAILY     | 1    | 表示系统按照天去查询指定时间段间隔的应用使用时长信息。              |
+| BY_WEEKLY    | 2    | 表示系统按照周去查询指定时间段间隔的应用使用时长信息。              |
+| BY_MONTHLY   | 3    | 表示系统按照月去查询指定时间段间隔的应用使用时长信息。              |
+| BY_ANNUALLY  | 4    | 表示系统按照年去查询指定时间段间隔的应用使用时长信息。              |

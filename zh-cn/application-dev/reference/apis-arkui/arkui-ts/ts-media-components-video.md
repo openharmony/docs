@@ -46,6 +46,7 @@ Video(value: VideoOptions)
 | previewUri          | string&nbsp;\| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md)  | 否   | 视频未播放时的预览图片路径，默认不显示图片。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 | controller          | [VideoController](#videocontroller)                          | 否   | 设置视频控制器，可以控制视频的播放状态。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 | imageAIOptions<sup>12+</sup>  | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否   | 设置图像AI分析选项，可配置分析类型或绑定一个分析控制器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| posterOptions<sup>16+</sup>  | [PosterOptions](#posteroptions16对象说明) | 否   | 设置视频播放的首帧送显选项，可以控制视频是否支持首帧送显。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 
 ## PlaybackSpeed<sup>8+</sup>枚举说明
 
@@ -182,7 +183,7 @@ analyzerConfig(config: ImageAnalyzerConfig)
 | -------- | -------- | -------- | -------- |
 | config | [ImageAnalyzerConfig](ts-image-common.md#imageanalyzerconfig) | 是 | 设置AI分析识别类型 |
 
-### enableShortcutKey<sup>16+</sup>
+### enableShortcutKey<sup>15+</sup>
 
 enableShortcutKey(enabled: boolean)
 
@@ -190,7 +191,7 @@ enableShortcutKey(enabled: boolean)
 
 目前支持在组件获焦后响应空格键播放/暂停、上下方向键调整视频音量、左右方向键快进/快退。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -252,7 +253,7 @@ onFinish(event:&nbsp;VoidCallback)
 
 ### onError
 
-onError(event:()&nbsp;=&gt;&nbsp;void)
+onError(event: () => void)
 
 播放失败时触发该事件。
 
@@ -284,7 +285,7 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 | 参数名   | 类型   | 必填 | 说明                       |
 | -------- | ------ | ---- | -------------------------- |
-| callback | Callback\<[PreparedInfo](#preparedinfo14对象说明)> | 是   | 当前视频的时长。 |
+| callback | Callback\<[PreparedInfo](#preparedinfo16对象说明)> | 是   | 当前视频的时长。 |
 
 ### onSeeking
 
@@ -300,7 +301,7 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onSeeked
 
@@ -316,7 +317,7 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onUpdate
 
@@ -332,7 +333,7 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 | 参数名 | 类型   | 必填 | 说明                           |
 | ------ | ------ | ---- | ------------------------------ |
-| callback   | Callback\<[PlaybackInfo](#playbackinfo14对象说明)> | 是   | 当前视频播放的进度。 |
+| callback   | Callback\<[PlaybackInfo](#playbackinfo16对象说明)> | 是   | 当前视频播放的进度。 |
 
 ### onFullscreenChange
 
@@ -348,13 +349,13 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
 | 参数名     | 类型    | 必填 | 说明                                                  |
 | ---------- | ------- | ---- | ----------------------------------------------------- |
-| callback | Callback\<[FullscreenInfo](#fullscreeninfo14对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
+| callback | Callback\<[FullscreenInfo](#fullscreeninfo16对象说明)> | 是   | 当前视频是否进入全屏播放状态。 |
 
-### FullscreenInfo<sup>14+</sup>对象说明
+### FullscreenInfo<sup>16+</sup>对象说明
 
 用于描述当前视频是否进入全屏播放状态。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -362,11 +363,11 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ---------------------------- |
 | fullscreen  | boolean | 是   | 当前视频是否进入全屏播放状态。<br/>默认值：false  |
 
-### PreparedInfo<sup>14+</sup>对象说明
+### PreparedInfo<sup>16+</sup>对象说明
 
 用于描述当前视频的时长。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -374,17 +375,29 @@ onFullscreenChange(callback: Callback\<FullscreenInfo>)
 | ----------- | ------- | ---- | ---------------------------- |
 | duration    | number  | 是   | 当前视频的时长。<br/>单位：秒。<br/>取值范围：[0,+∞)         |
 
-### PlaybackInfo<sup>14+</sup>对象说明
+### PlaybackInfo<sup>16+</sup>对象说明
 
 用于描述当前视频播放的进度。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名       | 类型    | 必填 | 说明                         |
 | ----------- | ------- | ---- | ---------------------------- |
 | time        | number  | 是   | 当前视频播放的进度。<br/>单位：秒。<br/>取值范围：[0,+∞)      |
+
+### PosterOptions<sup>16+</sup>对象说明
+
+用于描述当前视频是否配置首帧送显。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名       | 类型    | 必填 | 说明                         |
+| ----------- | ------- | ---- | ---------------------------- |
+| showFirstFrame   | boolean  | 否   | 当前视频是否配置首帧送显。<br/>默认值：false      |
 
 ## VideoController
 
@@ -526,7 +539,7 @@ setCurrentTime(value: number, seekMode: SeekMode)
 
 ### 示例1（视频播放基础用法）
 
-基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）以及一些状态回调方法。
+基础用法，包括控制栏、预览图、自动播放、播放速度、响应快捷键、控制器（开始播放、暂停播放、停止播放、重置avPlayer、跳转等）、首帧送显以及一些状态回调方法。
 
 ```ts
 // xxx.ets
@@ -539,6 +552,7 @@ struct VideoCreateComponent {
   @State isAutoPlay: boolean = false
   @State showControls: boolean = true
   @State isShortcutKeyEnabled: boolean = false
+  @State showFirstFrame: boolean = false
   controller: VideoController = new VideoController()
 
   build() {
@@ -547,7 +561,8 @@ struct VideoCreateComponent {
         src: this.videoSrc,
         previewUri: this.previewUri,
         currentProgressRate: this.curRate,
-        controller: this.controller
+        controller: this.controller,
+        posterOptions: { showFirstFrame: this.showFirstFrame }
       })
         .width('100%')
         .height(600)
@@ -587,6 +602,11 @@ struct VideoCreateComponent {
         .onUpdate((e?: TimeObject) => {
           if (e != undefined) {
             console.info('onUpdate is ' + e.time)
+          }
+        })
+        .onFullscreenChange((e?: FullscreenObject) => {
+          if (e != undefined) {
+            console.info('onFullscreenChange is ' + e.fullscreen)
           }
         })
 
@@ -641,6 +661,10 @@ interface DurationObject {
 
 interface TimeObject {
   time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
 }
 ```
 
@@ -697,6 +721,46 @@ struct ImageAnalyzerExample {
             this.aiController.getImageAnalyzerSupportTypes()
         }).margin(5)
       }
+    }
+  }
+}
+```
+
+### 示例3（播放拖入的视频）
+
+以下示例展示了如何使Video组件能够播放拖入的视频。
+
+```ts
+// xxx.ets
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+
+@Entry
+@Component
+struct Index {
+  @State videoSrc: Resource | string = $rawfile('video1.mp4');
+  private controller: VideoController = new VideoController();
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        controller: this.controller
+      })
+        .width('100%')
+        .height(600)
+        .onPrepared(() => {
+          // 在onPrepared回调中执行controller的start方法，确保视频源更换后直接开始播放。
+          this.controller.start();
+        })
+        .onDrop((e: DragEvent) => {
+          // 外部视频拖入应用Video组件范围，松手后触发通过onDrop注册的回调。
+          // 在DragEvent中会包含拖入的视频源信息，取出后赋值给状态变量videoSrc即可改变Video的视频源。
+          let record = e.getData().getRecords()[0];
+          if (record.getType() == uniformTypeDescriptor.UniformDataType.VIDEO) {
+            let videoInfo = record as unifiedDataChannel.Video;
+            this.videoSrc = videoInfo.videoUri;
+          }
+        })
     }
   }
 }

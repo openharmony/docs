@@ -8,7 +8,7 @@
 
 ## renderFit
 
-renderFit(fitMode: Optional\<RenderFit>)
+renderFit(fitMode: RenderFit)
 
 设置宽高动画过程中的组件内容填充方式。
 
@@ -18,9 +18,25 @@ renderFit(fitMode: Optional\<RenderFit>)
 
 **参数：** 
 
+| 参数名  | 类型                            | 必填 | 说明                                                         |
+| ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| fitMode | [RenderFit](#renderfit枚举说明) | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
+
+## renderFit<sup>16+</sup>
+
+renderFit(fitMode: Optional\<RenderFit>)
+
+设置宽高动画过程中的组件内容填充方式。与[renderFit](#renderfit)相比，fitMode参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
 | 参数名  | 类型                                       | 必填 | 说明                                                         |
 | ------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| fitMode | Optional\<[RenderFit](#renderfit枚举说明)> | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当不设置renderFit属性时，取默认值RenderFit.TOP_LEFT。 |
+| fitMode | Optional\<[RenderFit](#renderfit枚举说明)> | 是   | 设置宽高动画过程中的组件内容填充方式。<br/>当fitMode的值为undefined时，取默认值。恢复为内容填充方式为RenderFit.TOP_LEFT的效果。 |
 
 >  **说明：**
 >
@@ -70,6 +86,7 @@ struct RenderFitExample {
   @State width1: number = 100;
   @State height1: number = 30;
   flag: boolean = true;
+
   build() {
     Column() {
       Text("Hello")
@@ -77,7 +94,7 @@ struct RenderFitExample {
         .height(this.height1)
         .borderWidth(1)
         .textAlign(TextAlign.Start)
-        .renderFit(RenderFit.LEFT) // 设置LEFT的renderFit，动画过程中，动画的终态内容与组件保持左对齐
+        .renderFit(RenderFit.LEFT)// 设置LEFT的renderFit，动画过程中，动画的终态内容与组件保持左对齐
         .margin(20)
 
       Text("Hello")
@@ -85,7 +102,7 @@ struct RenderFitExample {
         .height(this.height1)
         .textAlign(TextAlign.Center)
         .borderWidth(1)
-        .renderFit(RenderFit.CENTER) // 设置CENTER的renderFit，动画过程中，动画的终态内容与组件保持中心对齐
+        .renderFit(RenderFit.CENTER)// 设置CENTER的renderFit，动画过程中，动画的终态内容与组件保持中心对齐
         .margin(20)
 
       Button("animate")

@@ -13,7 +13,9 @@
    - 密钥属性集同样与密钥生成中指定的密钥属性一致，须包含[HuksKeyAlg](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeyalg)、[HuksKeySize](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeysize)、[HuksKeyPurpose](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukskeypurpose)属性。
    - 密钥材料须符合[HUKS密钥材料格式](huks-concepts.md#密钥材料格式)，并以Uint8Array形式赋值给[HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)的inData字段。
 
-3. 调用[huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。
+3. 调用[huks.importKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksimportkeyitem9)，传入密钥别名和密钥属性集，即可导入密钥。  
+
+    HuksParam和HuksOptions的含义参考：[HuksParam](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksparam) 和 [HuksOptions](../../reference/apis-universal-keystore-kit/js-apis-huks.md#huksoptions)
 
 ### 导入AES256密钥
 ```ts
@@ -27,8 +29,8 @@ let plainTextSize32 = new Uint8Array([
 ]);
 /* 1.确定密钥别名 */
 let keyAlias = 'AES256Alias_sample';
-/* 2.封装密钥属性集和密钥材料 */
 
+/* 2.封装密钥属性集和密钥材料 */
 let properties: Array<huks.HuksParam> = [
   {
     tag: huks.HuksTag.HUKS_TAG_ALGORITHM,

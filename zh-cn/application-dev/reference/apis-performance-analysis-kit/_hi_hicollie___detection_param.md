@@ -3,7 +3,7 @@
 
 ## 概述
 
-用于设置应用业务线程卡顿的相关参数。扩展参数以供后续开发使用。
+用于检测业务线程卡顿的参数。 请注意，这些参数对API 12无效，仅用于扩展。
 
 **起始版本：** 12
 
@@ -24,6 +24,15 @@
 ## 结构体成员变量说明
 
 
+### reserved
+
+```
+int HiCollie_DetectionParam::reserved
+```
+**描述**
+扩展参数以供后续开发。
+
+
 ### sampleStackTriggerTime
 
 ```
@@ -31,12 +40,3 @@ int HiCollie_DetectionParam::sampleStackTriggerTime
 ```
 **描述**
 扩展参数以供后续开发。
-
-
-### reserved
-
-```
-int HiCollie_DetectionParam::reserved
-```
-**描述**
-扩展参数以供后续开发使用。

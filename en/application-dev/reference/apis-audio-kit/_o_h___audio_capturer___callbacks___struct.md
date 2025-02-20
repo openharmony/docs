@@ -82,13 +82,15 @@ int32_t (*OH_AudioCapturer_Callbacks_Struct::OH_AudioCapturer_OnReadData)(OH_Aud
 
 Defines a function pointer to the callback function used to read audio data.
 
+The callback function is used only to read audio data. Do not call AudioCapturer APIs in it.
+
 **Parameters**
 
 | Name| Description| 
 | -------- | -------- |
 | capturer | Pointer to an audio capturer instance, which is created by calling [OH_AudioStreamBuilder_GenerateCapturer](_o_h_audio.md#oh_audiostreambuilder_generatecapturer).|
 | userData | Pointer to the data storage area customized by the application.|
-| buffer | Pointer to the playback data storage area, which is used by the application to fill in playback data.|
+| buffer | Pointer to the captured data storage area, which is used by the application to fill in captured data.|
 | length | Length of the buffer.|
 
 

@@ -64,9 +64,9 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 
 5. （可选）设置音频打断模式：调用[OH_AVPlayer_SetAudioInterruptMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiointerruptmode)，设置AVPlayer音频流打断模式。
 
-6. 设置播放画面窗口：调用[OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setvideosurface)设置播放画面窗口。此函数必须在SetSource之后，Prepare之前调用。
+6. 设置播放画面窗口：调用[OH_AVPlayer_SetVideoSurface()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setvideosurface)设置播放画面窗口。此函数必须在SetSource之后，Prepare之前调用。
 
-7. 准备播放：调用[OH_AVPlayer_SetVideoSurface()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare)，AVPlayer进入[AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，此时可以获取时长，设置音量。
+7. 准备播放：调用[OH_AVPlayer_Prepare()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_prepare)，AVPlayer进入[AV_PREPARED](../../reference/apis-media-kit/_a_v_player.md#avplayerstate-1)状态，此时可以获取时长，设置音量。
 
 8. （可选）设置音频音效模式：调用[OH_AVPlayer_SetAudioEffectMode()](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudioeffectmode)，设置AVPlayer音频音效模式。
 
@@ -81,6 +81,7 @@ target_link_libraries(sample PUBLIC libhilog_ndk.z.so)
 ```c++
 #include "napi/native_api.h"
 
+#include <ace/xcomponent/native_interface_xcomponent.h>
 #include <multimedia/player_framework/avplayer.h>
 #include <multimedia/player_framework/avplayer_base.h>
 #include <multimedia/player_framework/native_averrors.h>
@@ -125,7 +126,7 @@ typedef struct DemoNdkPlayer {
 OHNativeWindow *DemoNdkPlayer::nativeWindow = nullptr;
 
 void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
-    int32_t ret = -1;
+    OH_AVErrCode ret;
     switch (state) {
         case AV_IDLE: // 成功调用reset接口后触发该状态机上报
 //            ret = OH_AVPlayer_SetURLSource(player, url); // 设置url
@@ -181,7 +182,7 @@ void HandleStateChange(OH_AVPlayer *player, AVPlayerState state) {
 }
 
 void OHAVPlayerOnInfoCallback(OH_AVPlayer *player, AVPlayerOnInfoType type, OH_AVFormat *infoBody, void *userData) {
-    int32_t ret;
+    OH_AVErrCode ret;
     int32_t value = -1;
 
     DemoNdkPlayer *demoNdkPlayer = reinterpret_cast<DemoNdkPlayer *>(userData);
@@ -315,6 +316,7 @@ void OHAVPlayerOnErrorCallback(OH_AVPlayer *player, int32_t errorCode, const cha
 // ets文件调用播放方法时，传入文件路径 testNapi.play("/data/test/test.mp4")
 static napi_value Play(napi_env env, napi_callback_info info)
 {
+    OH_AVErrCode ret;
     size_t argc = 1;
     napi_value args[1] = {nullptr};
     
@@ -357,6 +359,7 @@ static napi_value Play(napi_env env, napi_callback_info info)
 
     // 通过新接口设置信息监听回调函数和错误监听回调函数，不用再调用OH_AVPlayer_SetPlayerCallback。
     // 业务播放实例不再使用后，再释放对象。
+    OH_AVPlayer *player = OH_AVPlayer_Create();
     DemoNdkPlayer *demoNdkPlayer = new DemoNdkPlayer({
         .player = player,
         .url = url,
@@ -408,26 +411,39 @@ void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
     // ...
 }
 
+void Export(napi_env env, napi_value exports) {
+    if ((env == nullptr) || (exports == nullptr)) {
+        LOG("Export: env or exports is null");
+        return;
+    }
+    napi_value exportInstance = nullptr;
+    if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
+        LOG("Export: napi_get_named_property fail");
+        return;
+    }
+    OH_NativeXComponent *nativeXComponent = nullptr;
+    if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent)) != napi_ok) {
+        LOG("Export: napi_unwrap fail");
+        return;
+    }
+    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
+    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
+    if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
+        LOG("OH_NativeXComponent_GetXComponentId fail");
+        return;
+    }
+    LOG("call Export surfaceID=%s", idStr);
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        { "play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
+        { "Play", nullptr, Play, nullptr, nullptr, nullptr, napi_default, nullptr }
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
 
-    // 获取 NativeXComponent
-    napi_value exportInstance = nullptr;
-    napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance)
-    OH_NativeXComponent *nativeXComponent = nullptr;
-    napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&nativeXComponent));
-
-    // 将 OH_NativeXComponent_Callback 注册给 NativeXComponent
-    OH_NativeXComponent_Callback callback_;
-    callback_.OnSurfaceCreated = OnSurfaceCreatedCB;
-    callback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
-    OH_NativeXComponent_RegisterCallback(nativeXComponent, &callback_);
-
+    Export(env, exports);
     return exports;
 }
 EXTERN_C_END

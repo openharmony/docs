@@ -39,6 +39,7 @@ TextPicker(options?: TextPickerOptions)
 | range | string[]&nbsp;\|&nbsp;string[] []<sup>10+</sup> \| [Resource](ts-types.md#resource类型)&nbsp;\|<br/>[TextPickerRangeContent](#textpickerrangecontent10对象说明)[]<sup>10+</sup>&nbsp;\|&nbsp;[TextCascadePickerRangeContent](#textcascadepickerrangecontent10对象说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。<br/>**说明**：单列数据选择器使用string[]，Resource，TextPickerRangeContent[]类型。<br/>多列数据选择器使用string[][]类型。 <br/>多列联动数据选择器使用TextCascadePickerRangeContent[]类型。<br/>Resource类型只支持[strarray.json](../../../quick-start/resource-categories-and-access.md#资源组目录)。<br>range的类型及列数不可以动态修改。|
 | selected | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 <br/>**说明**：单列数据选择器使用number类型。<br/>多列、多列联动数据选择器使用number[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
 | value | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 <br/>单列数据选择器使用string类型。<br/>多列、多列联动数据选择器使用string[]类型。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。|
+| columnWidths<sup>16+</sup> | LengthMetrics[] | 否 | 设置每一个选择项列宽。<br/>默认值：每一个选择项列宽相等<br/>**说明**：如果文本长度大于列宽时，本文被截断。 |
 
 ## TextPickerRangeContent<sup>10+</sup>对象说明
 
@@ -80,7 +81,7 @@ TextPicker(options?: TextPickerOptions)
 
 ### defaultPickerItemHeight
 
-defaultPickerItemHeight(value: Optional\<number | string>)
+defaultPickerItemHeight(value: number | string)
 
 设置Picker各选择项的高度。
 
@@ -88,15 +89,31 @@ defaultPickerItemHeight(value: Optional\<number | string>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                       | 必填 | 说明                   |
+| ------ | -------------------------- | ---- | ---------------------- |
+| value  | number&nbsp;\|&nbsp;string | 是   | Picker各选择项的高度。 |
+
+### defaultPickerItemHeight<sup>16+</sup>
+
+defaultPickerItemHeight(height: Optional\<number | string>)
+
+设置Picker各选择项的高度。与[defaultPickerItemHeight](#defaultpickeritemheight)相比，height参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                       | 必填 | 说明                   |
 | ------ | -------------------------- | ---- | ---------------------- |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。 |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;string> | 是   | Picker各选择项的高度。<br/>当height的值为undefined时，维持上次取值。 |
 
 ### disappearTextStyle<sup>10+</sup>
 
-disappearTextStyle(value: Optional\<PickerTextStyle>)
+disappearTextStyle(value: PickerTextStyle)
 
 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。
 
@@ -104,15 +121,31 @@ disappearTextStyle(value: Optional\<PickerTextStyle>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### disappearTextStyle<sup>16+</sup>
+
+disappearTextStyle(style: Optional\<PickerTextStyle>)
+
+设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### textStyle<sup>10+</sup>
 
-textStyle(value: Optional\<PickerTextStyle>)
+textStyle(value: PickerTextStyle)
 
 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。
 
@@ -120,15 +153,31 @@ textStyle(value: Optional\<PickerTextStyle>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
+### textStyle<sup>16+</sup>
+
+textStyle(style: Optional\<PickerTextStyle>)
+
+设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
 ### selectedTextStyle<sup>10+</sup>
 
-selectedTextStyle(value: Optional\<PickerTextStyle>)
+selectedTextStyle(value: PickerTextStyle)
 
 设置选中项的文本颜色、字号、字体粗细。
 
@@ -136,15 +185,31 @@ selectedTextStyle(value: Optional\<PickerTextStyle>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| value  | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+
+### selectedTextStyle<sup>16+</sup>
+
+selectedTextStyle(style: Optional\<PickerTextStyle>)
+
+设置选中项的文本颜色、字号、字体粗细。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 
 ### selectedIndex<sup>10+</sup>
 
-selectedIndex(value: Optional\<number | number[]>)
+selectedIndex(value: number | number[])
 
 设置默认选中项在数组中的索引值，优先级高于options中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。
 
@@ -152,15 +217,31 @@ selectedIndex(value: Optional\<number | number[]>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
+**参数：** 
 
 | 参数名 | 类型                         | 必填 | 说明                         |
 | ------ | ---------------------------- | ---- | ---------------------------- |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值。<br/>默认值：0 <br/> |
+| value  | number&nbsp;\|&nbsp;number[] | 是   | 默认选中项在数组中的索引值。<br/>默认值：0 <br/> |
+
+### selectedIndex<sup>16+</sup>
+
+selectedIndex(index: Optional\<number | number[]>)
+
+设置默认选中项在数组中的索引值，优先级高于options中的选中值。单列数据选择器使用number类型。多列、多列联动数据选择器使用number[]类型。与[selectedIndex](#selectedindex10)相比，index参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| index  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number&nbsp;\|&nbsp;number[]> | 是   | 默认选中项在数组中的索引值。<br/>当index的值为undefined时，默认值：0 <br/> |
 
 ### canLoop<sup>10+</sup>
 
-canLoop(value: Optional\<boolean>)
+canLoop(value: boolean)
 
 设置是否可循环滚动。
 
@@ -168,15 +249,31 @@ canLoop(value: Optional\<boolean>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| value  | boolean | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>默认值：true |
+
+### canLoop<sup>16+</sup>
+
+canLoop(isLoop: Optional\<boolean>)
+
+设置是否可循环滚动。与[canLoop](#canloop10)<sup>10+</sup>相比，isLoop参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>默认值：true |
+| isLoop  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否可循环滚动。<br/>true：可循环，false：不可循环。<br/>当isLoop的值为undefined时，默认值：true |
 
 ### divider<sup>12+</sup>
 
-divider(value: Optional\<DividerOptions | null>)
+divider(value: DividerOptions | null)
 
 设置分割线样式，不设置该属性则按“默认值”展示分割线。
 
@@ -189,11 +286,28 @@ startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0�
 **参数：**
 | 参数名 | 类型    | 必填 | 说明                                                                  |
 | ------ | ------- | ---- | --------------------------------------------------------------------- |
-| value | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12对象说明) \| null> | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
+| value | [DividerOptions](#divideroptions12对象说明) \| null | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
+
+### divider<sup>16+</sup>
+
+divider(textDivider: Optional\<DividerOptions | null>)
+
+设置分割线样式，不设置该属性则按“默认值”展示分割线。与[divider](#divider12)<sup>12+</sup>相比，textDivider参数新增了对undefined类型的支持。
+
+startMargin + endMargin 超过组件宽度后startMargin和endMargin会被置0。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型    | 必填 | 说明                                                                  |
+| ------ | ------- | ---- | --------------------------------------------------------------------- |
+| textDivider | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[DividerOptions](#divideroptions12对象说明) \| null> | 是   | 1.设置DividerOptions，则按设置的样式显示分割线。<br/>当textDivider的值为undefined时，默认值：<br/>{<br/>strokeWidth: '2px', <br/>startMargin: 0, <br/>endMargin: 0, <br/>color: '#33000000'<br/>}<br/>2.设置为null不显示分割线。 |
 
 ### gradientHeight<sup>12+</sup>
 
-gradientHeight(value: Optional\<Dimension>)
+gradientHeight(value: Dimension)
 
 设置渐隐效果高度，不设置该属性则显示默认渐隐效果。
 
@@ -205,7 +319,27 @@ gradientHeight(value: Optional\<Dimension>)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
+| value  | [Dimension](ts-types.md#dimension10) | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。|
+
+### gradientHeight<sup>16+</sup>
+
+gradientHeight(height: Optional\<Dimension>)
+
+设置渐隐效果高度，不设置该属性则显示默认渐隐效果。与[gradientHeight](#gradientheight12)<sup>12+</sup>相比，height参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| height  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Dimension](ts-types.md#dimension10)> | 是   | 内容区上下边缘的渐隐高度（支持百分比，100%为TextPicker高度的一半即最大值），设置为0时不显示渐隐效果，负数等非法值显示默认渐隐效果。默认值为36vp。<br/>当height的值为undefined时，默认值为36vp。 |
+
+> **说明：**
+>
+> 该组件不建议开发者在动效过程中修改属性数据。
 
 ### disableTextStyleAnimation<sup>15+</sup>
 
@@ -243,13 +377,56 @@ defaultTextStyle(style: TextPickerTextStyle)
 >
 > 该组件不建议开发者在动效过程中修改属性数据。
 
+### enableHapticFeedback<sup>16+</sup>
+
+enableHapticFeedback(enable: Optional\<boolean>)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  ```json
+>  "requestPermissions": [
+>  {
+>   "name": "ohos.permission.VIBRATE",
+>  }
+>  ]
+>  ``
+>  ```
+
+### digitalCrownSensitivity<sup>16+</sup>
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠灵敏度。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity16)> | 是    | 表冠灵敏度。                     |
+
+>  **说明：**
+>
+>  用于穿戴设备圆形屏幕使用。
+
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
 ### onChange
 
-onChange(callback: Optional\<OnTextPickerChangeCallback>)
+onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
 
 滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
@@ -257,21 +434,36 @@ onChange(callback: Optional\<OnTextPickerChangeCallback>)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
+### onChange<sup>16+</sup>
+
+onChange(callback: Optional\<OnTextPickerChangeCallback>)
+
+滑动TextPicker文本内容后，选项归位至选中项位置时，触发该回调。与[onChange](#onchange)相比，callback参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名   | 类型                       | 必填 | 说明                                       |
-| -------- | -------------------------- | ---- | ------------------------------------------ |
-| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。 |
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[OnTextPickerChangeCallback](#ontextpickerchangecallback16)> | 是   | 滑动选中TextPicker文本内容后，触发的回调。<br/>当callback的值为undefined时，不使用回调函数。 |
 
 ### onScrollStop<sup>14+</sup>
 
-onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[])&nbsp;=&gt;&nbsp;void)
+onScrollStop(callback: TextPickerScrollStopCallback)
 
 文本选择器的选项列滑动停止时触发该事件。
 
 手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
-
-当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -281,8 +473,45 @@ onScrollStop(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[],&nbsp;inde
 
 | 参数名 | 类型                                       | 必填 | 说明                                              |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
-| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
-| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | 是   | 文本选择器的选项列滑动停止时触发该事件。 |
+
+### onScrollStop<sup>16+</sup>
+
+onScrollStop(callback: Optional\<TextPickerScrollStopCallback>)
+
+文本选择器的选项列滑动停止时触发该事件。与[onScrollStop](#onscrollstop14)<sup>14+</sup>相比，callback参数新增了对undefined类型的支持。
+
+手指拖动选项列触发的滑动，手指离开屏幕且滑动停止时会触发该事件。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| callback | [TextPickerScrollStopCallback](#textpickerscrollstopcallback14) | 是   | 文本选择器的选项列滑动停止时触发该事件。<br/>当callback的值为undefined时，不使用回调函数。 |
+
+### onEnterSelectedArea<sup>16+</sup>
+
+onEnterSelectedArea(callback: TextPickerEnterSelectedAreaCallback)
+
+滑动TextPicker过程中，选项进入分割线区域内，触发该回调。
+
+与onChange事件的差别在于，该事件的触发时机早于onChange事件，当当前滑动列滑动距离超过选中项高度的一半时，选项此时已经进入分割线区域内，会触发该事件。
+
+当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名   | 类型                       | 必填 | 说明                                       |
+| -------- | -------------------------- | ---- | ------------------------------------------ |
+| callback | [TextPickerEnterSelectedAreaCallback](#textpickerenterselectedareacallback16) | 是   | 滑动TextPicker过程中，选项进入分割线区域时触发的回调。 |
 
 ### onAccept<sup>(deprecated) </sup>
 
@@ -329,7 +558,7 @@ onCancel(callback: () => void)
 
 type OnTextPickerChangeCallback = (value: string | string[], index: number | number[]) => void
 
-滑动选中TextPicker文本内容后，触发该回调。
+滑动选中TextPicker文本内容后，触发该回调。当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
 
 **卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
 
@@ -344,14 +573,57 @@ type OnTextPickerChangeCallback = (value: string | string[], index: number | num
 | value  | string&nbsp;\|&nbsp;string[]<sup>10+</sup> | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
 | index  | number&nbsp;\|&nbsp;number[]<sup>10+</sup> | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
 
+## TextPickerScrollStopCallback<sup>14+</sup>
+
+type TextPickerScrollStopCallback = (value: string | string[], index: number | number[]) => void
+
+文本选择器的选项列滑动停止时触发该事件。
+
+当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。
+
+**卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
+## TextPickerEnterSelectedAreaCallback<sup>16+</sup>
+
+type TextPickerEnterSelectedAreaCallback = (value: string | string[], index: number | number[]) => void
+
+滑动过程中选项进入分割线区域内，触发该回调。
+
+在多列联动场景中，不建议使用该回调，由于该回调标识的是滑动过程中选项进入分割线区域内的节点，而跟随变化的选项并不涉及滑动，因此，回调的返回值中，仅当前滑动列的值会正常变化，其余未滑动列的值保持不变。
+
+**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                       | 必填 | 说明                                              |
+| ------ | ------------------------------------------ | ---- | ------------------------------------------------- |
+| value  | string&nbsp;\|&nbsp;string[] | 是   | 当前选中项的文本。多列的情况，value为数组类型。   |
+| index  | number&nbsp;\|&nbsp;number[] | 是   | 当前选中项的索引值。多列的情况，index为数组类型。 |
+
 ## 示例
 
 ### 示例1（设置选择器列数）
 
-该示例通过配置range实现单列或多列文本选择器。
+该示例通过配置range实现单列或多列文本选择器，通过配置columnWidths设置每一列宽度。
 
 ```ts
 // xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
 class bottom {
   bottom:number = 50
 }
@@ -381,39 +653,62 @@ struct TextPickerExample {
         { text: '牡丹江市', children: [{ text: '东安区' }, { text: '西安区' }, { text: '爱民区' }] }]
     }
   ]
+  private singleColumnWidths: LengthMetrics[] = [
+    LengthMetrics.percent(50)
+  ]
 
+  private multipleColumnWidths: LengthMetrics[] = [
+    LengthMetrics.vp(100),
+    LengthMetrics.vp(200),
+    LengthMetrics.vp(100)
+  ]
+
+  private cascadeColumnWidths: LengthMetrics[] = [
+    LengthMetrics.percent(20),
+    LengthMetrics.percent(30),
+    LengthMetrics.percent(50)
+  ]
   build() {
     Column() {
 
-      TextPicker({ range: this.apfruits, selected: this.select })
+      TextPicker({ range: this.apfruits, selected: this.select, columnWidths: this.singleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('Picker item changed, value: ' + value + ', index: ' + index)
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('Picker scroll stopped, value: ' + value + ', index: ' + index)
         }).margin(bott)
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('Picker item enter selected area, value: ' + value + ', index: ' + index)
+        })
 
-      TextPicker({ range: this.multi })
+      TextPicker({ range: this.multi, columnWidths: this.multipleColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         }).margin(bott)
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
 
-      TextPicker({ range: this.cascade })
+      TextPicker({ range: this.cascade, columnWidths: this.cascadeColumnWidths })
         .onChange((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onChange ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
         .onScrollStop((value: string | string[], index: number | number[]) => {
           console.info('TextPicker 多列联动:onScrollStop ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
         })
+        .onEnterSelectedArea((value: string | string[], index: number | number[]) => {
+          console.info('TextPicker 多列联动:onEnterSelectedArea ' + JSON.stringify(value) + ', ' + 'index: ' + JSON.stringify(index))
+        })
     }
   }
 }
 ```
 
-![textpicker](figures/textpicker.gif)
+![textpicker](figures/textpicker.png)
 
 ### 示例2（设置文本样式）
 

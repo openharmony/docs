@@ -26,7 +26,7 @@ Service management is implemented by using the init process to parse the service
    | uid           | Mandatory| Small and standard systems| User ID (UID) of the current service process.| Type: int or string.|
    | gid           | Mandatory| Small and standard systems| Group ID (GID) of the current service process.| Type: int, int[], string, or string array.|
    | once          | Optional| Small and standard systems| Whether the current service process is a one-off process.| **1**: The current service process is a one-off process. If the process exits, the init process does not restart it.<br>**0**: The current service process is not a one-off process. If the process exits, the init process restarts it upon receiving the SIGCHLD signal.|
-   | importance    | Optional| Small and standard systems| <br>Standard system: service priority<br>Small system: service importance| <br>Standard system: The service priority ranges from **-20** to **19**. A smaller value indicates a higher priority. A value beyond the range is invalid.<br>Small system: The value **0** indicates an unimportant process and a value greater than **0** indicates an important process.|
+   | importance    | Optional| Small and standard systems| Standard system: service priority<br>Small system: service importance or service priority| Standard system: The value of service priority ranges from **-20** to **19**. A smaller value indicates a higher priority. A value beyond the range is invalid.<br>Small system: The value of service importance can be **0** or a non-zero number. The value **0** indicates a non-important service, which does not require a system restart. A non-zero number indicates an important service, which requires a system restart. To switch to the service priority configuration, set the **init_feature_enable_lite_process_priority** macro to **true**. The service priority configuration is the same as that for the standard system.|
    | caps          | Optional| Small and standard systems| Capabilities required by the current service. They are evaluated based on the capabilities supported by the security subsystem and configured in accordance with the principle of least permission.| Type: number or string array. If you set the value to a number, use the standard Linux capability. If you set the value to a string array, use the standard macro name.|
    | critical      | Optional| Small and standard systems| Suppression mechanism for services. If the number of times a service is restarted exceeds the value N within the specified period T, the system will be restarted.| <br> Type: int[], for example, "critical": [M, N, T].<br>- **M**: enable flag (**0**: disable; **1**: enable).<br>- **N**: number of times the service is started.<br>- **T**: period of time, in seconds.<br> By default, **N** is **4** and **T** is **240**.|
    | cpucore      | Optional| Standard system| Number of CPU cores bound to the service.| Type: int array, for example, **"cpucore": [N1, N2, ...]**. **N1** and **N2** indicate the indices of the CPU cores to be bound. For a single-core device, **cpucore** is **0**.|
@@ -34,7 +34,7 @@ Service management is implemented by using the init process to parse the service
    | apl          | Optional| Standard system| Ability privilege level.| Type: string, for example, **"apl": "system_core"**.<br> The value can be **system_core** (default), **normal**, or **system_basic**.|
    | start-mode   | Optional| Standard system| Service startup mode.| Type: string, for example, **start-mode: condition**.<br>The value can be **boot**, **normal**, or **condition**. For details, see init Service Startup Control.|
    | ondemand     | Optional| Small and standard systems| Whether on-demand startup is enabled.| Type: bool, for example, **ondemand: true**. For small systems, this feature is available only on the Linux kernel.<br>For details, see [init Service On-Demand Startup](#section56901555920).|
-   | disable | Optional| Small and standard systems| Reserved.| None.|
+   | disabled | Optional| Small and standard systems| Reserved.| None.|
    | sandbox | Optional| Standard system| Whether the sandbox function is enabled.| **1** (default): Enable the sandbox function.<br>**0**: Disable the sandbox function.|
    | socket | Optional| Standard system| Socket attribute configuration.| This field is required for services that uses a socket connection.|
    | env | Optional| Standard system| Environment variable configuration.| Type: key-value pair array.<br>Multiple environment variables can be configured. For example:<br>"env" : [{<br> "name" : "SERVICE_NALE", <br>"value" : "ueventd"},{<br> "name" : "TEST",<br> "value" : "test_value" <br>}]|
@@ -80,9 +80,9 @@ Service management is implemented by using the init process to parse the service
         }
     },
     ```
-  
+
   With the parallel startup and command execution capabilities, processes can be started concurrently.
-  
+
   - init service on-demand startup<a name="section56901555920">
 
     If on-demand startup is enabled, the init process starts a service only when it is required. The **ondemand** attribute is used to determine whether to enable on-demand startup for a service.
@@ -98,7 +98,7 @@ Service management is implemented by using the init process to parse the service
   - SA process on-demand startup
 
       For details, see [samgr Usage](https://gitee.com/openharmony/systemabilitymgr_samgr/blob/master/README.md).
-      
+
   - Socket process on-demand startup
       1. The init process creates a socket for socket processes in the pre-fork phase and listens to read/write events on this socket.
       2. If a read/write event is received over the socket, the init process starts the native service corresponding to the socket process, cancels event listening on the socket, and transfers the socket to the corresponding native service for management.
@@ -131,7 +131,7 @@ Service management is implemented by using the init process to parse the service
           "secon" : "u:r:distributedsche:s0" // SELinux tag for service processes. In this example, the SELinux tag is u:r:distributedsche:s0.
       }
       ```
-  
+
   - Scheduled startup
 
     Scheduled startup means to start a service at the specified time. If the service has been started, it will not be started again. For details about the command, see [Description of begetctl Commands](subsys-boot-init-plugin.md).

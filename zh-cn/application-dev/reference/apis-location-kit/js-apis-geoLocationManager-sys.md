@@ -915,3 +915,191 @@ getLocationIconStatus(): LocationIconStatus
       console.error("errCode:" + err.code + ", message:"  + err.message);
   }
   ```
+
+
+## geoLocationManager.enableLocationByUserId<sup>16+</sup>
+
+enableLocationByUserId(userId: number): Promise&lt;void&gt;
+
+打开指定系统账号的定位开关，使用Promise异步回调。
+
+**系统API**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | userId | number | 是 | 系统账号ID，获取系统账号ID可参考[查询所有已创建的系统账号](../../basic-services/account/manage-os-account.md#查询所有已创建的系统账号)|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.enableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  try {
+      // 打开指定系统账号的位置开关，如：处于ID为101的账号下，可以打开ID为100的账号的位置开关
+      let userId:number = 100;
+      geoLocationManager.enableLocationByUserId(userId).then(() => {
+          console.info('promise, enableLocationByUserId succeed');
+      })
+      .catch((error:BusinessError) => {
+          console.error('promise, enableLocationByUserId: error=' + JSON.stringify(error));
+      });
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.disableLocationByUserId<sup>16+</sup>
+
+disableLocationByUserId(userId: number): void
+
+关闭指定系统账号的定位开关。
+
+**系统API**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_SECURE_SETTINGS 和 ohos.permission.CONTROL_LOCATION_SWITCH
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | userId | number | 是 | 系统账号ID，获取系统账号ID可参考[查询所有已创建的系统账号](../../basic-services/account/manage-os-account.md#查询所有已创建的系统账号)|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      // 关闭指定系统账号的位置开关，如：处于ID为101的账号下，可以关闭ID为100的账号的位置开关
+      let userId:number = 100;
+      geoLocationManager.disableLocationByUserId(userId);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.isLocationEnabledByUserId<sup>16+</sup>
+
+isLocationEnabledByUserId(userId: number): boolean
+
+判断指定系统账号的位置开关是否开启。
+
+**系统API**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | userId | number | 是 | 系统账号ID，获取系统账号ID可参考 [查询所有已创建的系统账号](../../basic-services/account/manage-os-account.md#查询所有已创建的系统账号)|
+
+**返回值**：
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | boolean | true：位置信息开关已开启<br/>false：位置信息开关已关闭 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.isLocationEnabled} due to limited device capabilities.          |
+|3301000 | The location service is unavailable. |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      // 查询指定系统账号的位置开关状态，如：处于ID为101的账号下，可以查询ID为100的账号的位置开关状态
+      let userId:number = 100;
+      let locationEnabled = geoLocationManager.isLocationEnabledByUserId(userId);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```
+
+
+## geoLocationManager.setLocationSwitchIgnored<sup>16+</sup>
+
+setLocationSwitchIgnored(isIgnored: boolean): void
+
+设置应用获取位置信息是否受位置开关控制。
+
+设置为true后，允许应用在位置开关关闭的场景获取到位置信息，有效时间为从调用接口成功开始的两分钟。
+
+**系统API**：此接口为系统接口。
+
+**需要权限**：ohos.permission.LOCATION_SWITCH_IGNORED
+
+**系统能力**：SystemCapability.Location.Location.Core
+
+**参数**：
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | isIgnored | boolean | 是 | true：需要在位置开关关闭的场景下获取位置信息。有效时间为从调用接口成功开始的两分钟。<br/>false：不需要在位置开关关闭的场景下获取位置信息。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[位置服务子系统错误码](errorcode-geoLocationManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+|201 | Permission verification failed. The application does not have the permission required to call the API.                 |
+|202 | Permission verification failed. A non-system application calls a system API. |
+|801 | Capability not supported. Failed to call ${geoLocationManager.disableLocationByUserId} due to limited device capabilities.          |
+|3301000 | The location service is unavailable.                                            |
+
+**示例**
+
+  ```ts
+  import { geoLocationManager } from '@kit.LocationKit';
+  try {
+      let isIgnored:boolean = true;
+      geoLocationManager.setLocationSwitchIgnored(isIgnored);
+  } catch (err) {
+      console.error("errCode:" + err.code + ", message:"  + err.message);
+  }
+  ```

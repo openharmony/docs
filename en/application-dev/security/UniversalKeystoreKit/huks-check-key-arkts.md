@@ -8,7 +8,7 @@ Check whether a key exists.
 
 1. Set the key alias (**keyAlias**), which cannot exceed 128 bytes.
 
-2. Initialize the key property set to specify the properties of the key to check, for example, check all keys or a single key. To check a single key, leave **properties** empty.
+2. Initialize the key property set. You can specify [HuksTag](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukstag) of the key to check. To check a single key, leave this parameter empty.
 
 3. Use [hasKeyItem](../../reference/apis-universal-keystore-kit/js-apis-huks.md#hukshaskeyitem11) to check whether the key exists.
 

@@ -7,7 +7,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
 ## HapModuleInfo
 
-**系统能力**: SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                 |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
@@ -39,7 +39,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
@@ -51,7 +51,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称        | 类型   | 只读 | 可选 | 说明                   |
 | ----------- | ------ | ---- | ---- | ---------------------- |
@@ -65,7 +65,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称           | 类型   | 只读 | 可选 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |
@@ -81,7 +81,7 @@ HAP信息，三方应用可以通过[getBundleInfoForSelf](js-apis-bundleManager
 
  **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称          | 类型    | 只读 | 可选 | 说明                   |
 | ------------- | ------ | ---- | ---- | ---------------------- |

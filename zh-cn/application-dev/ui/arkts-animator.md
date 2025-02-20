@@ -29,22 +29,22 @@
 
    ```ts
    // 创建动画的初始参数
-   let options: AnimatorOptions = {                        
-      duration: 1500,                               
-      easing: "friction",                        
-      delay: 0,                           
-      fill: "forwards",                                  
-      direction: "normal",                                  
-      iterations: 2,                                        
-      // 动画onFrame 插值首帧值                                    
-      begin: 200.0,                                         
-      // 动画onFrame 插值尾帧值                                    
-      end: 400.0                                            
-   }; 
+   let options: AnimatorOptions = {
+     duration: 1500,
+     easing: "friction",
+     delay: 0,
+     fill: "forwards",
+     direction: "normal",
+     iterations: 2,
+     // 动画onFrame 插值首帧值                                    
+     begin: 200.0,
+     // 动画onFrame 插值尾帧值                                    
+     end: 400.0
+   };
    let result: AnimatorResult = this.getUIContext().createAnimator(options);
-      // 设置接收到帧时回调，动画播放过程中每帧会调用onFrame回调
-       result.onFrame = (value: number) => {
-       console.log("current value is :" + value);
+   // 设置接收到帧时回调，动画播放过程中每帧会调用onFrame回调
+   result.onFrame = (value: number) => {
+     console.log("current value is :" + value);
    }
    ```
 

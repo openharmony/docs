@@ -264,6 +264,8 @@ The following example shows how to create and apply a paragraph style. The style
   titleParagraphStyleAttr: ParagraphStyle = new ParagraphStyle({ textAlign: TextAlign.Center });
   // Create a paragraph style for a 15 vp first-line text indent.
   paragraphStyleAttr1: ParagraphStyle = new ParagraphStyle({ textIndent: LengthMetrics.vp(15) });
+  // Line height style object
+  lineHeightStyle1: LineHeightStyle= new LineHeightStyle(new LengthMetrics(24));
   // Create a paragraph style object paragraphStyledString1.
   paragraphStyledString1: MutableStyledString = new MutableStyledString("Paragraph Title\nFirst paragraph starts 0123456789 First paragraph ends.", [
     {
@@ -312,7 +314,7 @@ The following example shows how to create and apply a paragraph style. The style
     styledKey: StyledStringKey.PARAGRAPH_STYLE,
     styledValue: this.paragraphStyleAttr3
   })
-  this.controller.setStyledString(this.mutableStyledString3)
+  this.controller.setStyledString(this.paragraphStyledString1)
   ```
 
 ## Using Images

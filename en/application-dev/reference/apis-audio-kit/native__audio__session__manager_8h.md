@@ -36,7 +36,7 @@ You can call the functions to create an audio session manager, activates or deac
 | typedef struct [OH_AudioSessionManager](_o_h_audio.md#oh_audiosessionmanager) [OH_AudioSessionManager](_o_h_audio.md#oh_audiosessionmanager) | Defines a struct for the audio session manager. | 
 | typedef struct [OH_AudioSession_Strategy](_o_h___audio_session___strategy.md) [OH_AudioSession_Strategy](_o_h_audio.md#oh_audiosession_strategy) | Defines a struct for the audio session strategy. | 
 | typedef struct [OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) [OH_AudioSession_DeactivatedEvent](_o_h_audio.md#oh_audiosession_deactivatedevent) | Defines a struct for the event indicating that an audio session is deactivated. | 
-| typedef int32_t(\* [OH_AudioSession_DeactivatedCallback](_o_h_audio.md#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | Defines a function pointer to the callback function used to listen for audio session deactivation events. | 
+| typedef int32_t (\*[OH_AudioSession_DeactivatedCallback](_o_h_audio.md#oh_audiosession_deactivatedcallback))([OH_AudioSession_DeactivatedEvent](_o_h___audio_session___deactivated_event.md) event) | Defines a function pointer to the callback function used to listen for audio session deactivation events. | 
 
 
 ### Enums

@@ -1078,11 +1078,11 @@ struct TabsDivider1 {
             this.startMargin -= 2
           }
         })
-      Button ('Increase Bottom Margin').width ('100%').margin ({ bottom:'12vp'})
+      Button('Increase Bottom Margin').width('100%').margin({ bottom:'12vp'})
         .onClick(() => {
           this.endMargin += 2
         })
-      Button ('Decrease Bottom Margin').width ('100%').margin ({ bottom:'12vp' })
+      Button('Decrease Bottom Margin').width('100%').margin({ bottom:'12vp' })
         .onClick(() => {
           if (this.endMargin > 2) {
             this.endMargin -= 2

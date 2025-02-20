@@ -88,7 +88,7 @@ type Action = 'accessibilityFocus' | 'clearAccessibilityFocus' | 'focus' | 'clea
 | 'copy'                    | 表示复制操作。   |
 | 'paste'                   | 表示粘贴操作。   |
 | 'select'                  | 表示选择操作。   |
-| 'setCursorPosition'                 | 表示设置文本操作，需配置参数setText。 |
+| 'setText'                 | 表示设置文本操作，需配置参数setText。 |
 | 'delete'                  | 表示删除操作。当前版本暂不支持。   |
 | 'setSelection'            | 表示选择操作，需配置参数selectTextBegin、selectTextEnd、selectTextInForWard。   |
 | 'common'            | 表示没有特定操作，用于主动聚焦、主动播报等场景。   |
@@ -362,6 +362,7 @@ captionsManager.off('styleChange', (data: accessibility.CaptionsStyle) => {
 | itemCount        | number                                | 否   | 条目总数。        |
 | elementId<sup>12+</sup>        | number                                | 否   | 组件elementId。        |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | 否   | 主动播报的内容。        |
+| textResourceAnnouncedForAccessibility<sup>16+</sup>        | Resource      | 否   | 主动播报的内容支持传入Resource类型，Resource类型只支持传入string。  |
 | customId<sup>12+</sup>        | string                                | 否   | 主动聚焦的组件ID。        |
 
 ### constructor
@@ -419,7 +420,8 @@ constructor(type: EventType, bundleName: string, triggerAction: Action)
 type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
 'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
-'announceForAccessibility'
+'announceForAccessibility' | 'requestFocusForAccessibilityNotInterrupt' |
+'announceForAccessibilityNotInterrupt' | 'scrolling'
 
 无障碍事件类型。
 
@@ -440,7 +442,9 @@ type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 | 'scroll'                  | 表示滚动视图的事件。    |
 | 'requestFocusForAccessibility'     | 表示主动聚焦的事件。 |
 | 'announceForAccessibility'         | 表示主动播报的事件。 |
-
+| 'requestFocusForAccessibilityNotInterrupt'     | 表示主动聚焦不打断的事件。<br>此事件从API version 16开始支持。 |
+| 'announceForAccessibilityNotInterrupt'         | 表示主动播报不打断的事件。<br>此事件从API version 16开始支持。 |
+| 'scrolling'                  | 表示滚动视图中有item被滚出屏幕的事件。<br>此事件从API version 16开始支持。 |
 
 ## TextMoveUnit
 
@@ -1315,6 +1319,28 @@ let eventInfo: accessibility.EventInfo = ({
   bundleName: 'com.example.MyApplication',
   triggerAction: 'common',
   customId: 'click' // 对应待聚焦组件id属性值
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**主动播报支持Resource示例<sup>16+</sup>：**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'announceForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {

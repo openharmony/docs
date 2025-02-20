@@ -5,13 +5,13 @@ SymbolGlyph是图标小符号组件，便于使用精美的图标，如渲染多
 
 ## 创建图标
 
-SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置的Symbol资源名。
+SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置的Symbol资源名。<!--RP1--><!--RP1End-->
 
   ```ts
   SymbolGlyph($r('sys.symbol.ohos_folder_badge_plus'))
-      .fontSize(96)
-      .renderingStrategy(SymbolRenderingStrategy.SINGLE)
-      .fontColor([Color.Black, Color.Green, Color.White])
+    .fontSize(96)
+    .renderingStrategy(SymbolRenderingStrategy.SINGLE)
+    .fontColor([Color.Black, Color.Green, Color.White])
   ```
   ![symbol_folder_badge_plus](figures/symbol_ohos_folder_badge_plus.png)
 
@@ -81,8 +81,8 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
       Text("Light")
       Text() {
         SymbolSpan($r('sys.symbol.ohos_trash'))
-        .fontWeight(FontWeight.Lighter)
-        .fontSize(96)
+          .fontWeight(FontWeight.Lighter)
+          .fontSize(96)
       }
     }
 
@@ -261,11 +261,11 @@ SymbolGlyph组件可以添加通用事件，例如绑定[onClick](../reference/a
 ```ts
 @State wifiColor: ResourceColor = Color.Black;
 SymbolGlyph($r('sys.symbol.ohos_wifi'))
-.fontSize(96)
-.fontColor([this.wifiColor])
-.onClick(()=>{
-  this.wifiColor = Color.Gray
-})
+  .fontSize(96)
+  .fontColor([this.wifiColor])
+  .onClick(() => {
+    this.wifiColor = Color.Gray;
+  })
 ```
 ![symbolGlyph_onClick](figures/symbolGlyph_onClick.gif)
 
@@ -279,23 +279,25 @@ SymbolGlyph($r('sys.symbol.ohos_wifi'))
 @Component
 struct Index {
   @State triggerValueReplace: number = 0;
-  @State symbolSources: Resource[] = [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')]
+  @State symbolSources: Resource[] =
+    [$r('sys.symbol.repeat'), $r('sys.symbol.repeat_1'), $r('sys.symbol.arrow_left_arrow_right')];
   @State symbolSourcesIndex: number = 0;
-  @State symbolText: string[] = ['顺序播放', '单曲循环', '随机播放']
+  @State symbolText: string[] = ['顺序播放', '单曲循环', '随机播放'];
   @State symbolTextIndex: number = 0;
-  @State fontColorValue:ResourceColor = Color.Grey;
-  @State fontColorValue1:ResourceColor = '#E8E8E8';
+  @State fontColorValue: ResourceColor = Color.Grey;
+  @State fontColorValue1: ResourceColor = '#E8E8E8';
 
   build() {
-    Column( { space: 10 }) {
+    Column({ space: 10 }) {
       Row() {
-        Text(){
+        Text() {
           Span('当前播放列表')
             .fontSize(20)
             .fontWeight(FontWeight.Bolder)
           Span('（101）')
         }
       }
+
       Row() {
         Row({ space: 5 }) {
           SymbolGlyph(this.symbolSources[this.symbolSourcesIndex])
@@ -305,7 +307,7 @@ struct Index {
           Text(this.symbolText[this.symbolTextIndex])
             .fontColor(this.fontColorValue)
         }
-        .onClick(()=>{
+        .onClick(() => {
           this.symbolTextIndex++;
           this.symbolSourcesIndex++;
           this.triggerValueReplace++;
@@ -320,17 +322,19 @@ struct Index {
         .width('75%')
 
         Row({ space: 5 }) {
-          Text(){
+          Text() {
             SymbolSpan($r('sys.symbol.arrow_down_circle_badge_vip_circle_filled'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
           }
-          Text(){
+
+          Text() {
             SymbolSpan($r('sys.symbol.heart_badge_plus'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
           }
-          Text(){
+
+          Text() {
             SymbolSpan($r('sys.symbol.ohos_trash'))
               .fontColor([this.fontColorValue])
               .fontSize(20)
@@ -338,12 +342,14 @@ struct Index {
         }
         .width('25%')
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲一")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -352,12 +358,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲二")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -366,12 +374,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲三")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -380,12 +390,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲四")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -394,12 +406,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲五")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -408,12 +422,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲六")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -422,12 +438,14 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Row(){
-        Row(){
+      Row() {
+        Row() {
           Text("歌曲七")
         }.width('82%')
-        Row({ space: 5}) {
+
+        Row({ space: 5 }) {
           SymbolGlyph($r('sys.symbol.play_arrow_triangle_2_circlepath'))
             .fontColor([this.fontColorValue])
             .fontSize(20)
@@ -436,8 +454,9 @@ struct Index {
             .fontSize(20)
         }
       }
+
       Divider().width(5).color(this.fontColorValue1).width('98%')
-      Column(){
+      Column() {
         Text("关闭")
       }
       .alignItems(HorizontalAlign.Center)
@@ -447,8 +466,8 @@ struct Index {
     .width('100%')
     .height(400)
     .padding({
-      left:10,
-      top:10
+      left: 10,
+      top: 10
     })
   }
 }

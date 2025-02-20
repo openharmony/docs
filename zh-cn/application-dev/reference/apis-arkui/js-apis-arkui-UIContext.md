@@ -189,6 +189,56 @@ getOverlayManager(): OverlayManager
 uiContext.getOverlayManager();
 ```
 
+### setOverlayManagerOptions<sup>15+</sup>
+
+setOverlayManagerOptions(options: OverlayManagerOptions): boolean
+
+设置[OverlayManager](#overlaymanager12)参数。用于在使用OverlayManager能力之前先初始化overlayManager的参数，包括是否需要渲染overlay根节点等属性。该方法需要在执行getOverlayManager方法之前执行生效，且该方法只生效一次。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                       | 必填   | 说明                                    |
+| ----- | ---------------------------------------- | ---- | ------------------------------------- |
+| options | [OverlayManagerOptions](#overlaymanageroptions15) | 否    | OverlayManager参数。|
+
+**返回值：** 
+
+| 类型    | 说明           |
+| ------- | -------------- |
+| boolean | 是否设置成功。 |
+
+**示例：**
+
+```ts
+uiContext.setOverlayManagerOptions({ renderRootOverlay: true });
+```
+
+### getOverlayManagerOptions<sup>15+</sup>
+
+getOverlayManagerOptions(): OverlayManagerOptions
+
+用于获取当前[OverlayManager](#overlaymanager12)参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：**: SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                           | 说明                 |
+| ----------------------------- | ------------------- |
+| [OverlayManagerOptions](#overlaymanageroptions15) | 返回当前OverlayManagerOptions。 |
+
+**示例：**
+
+```ts
+uiContext.getOverlayManagerOptions();
+```
+
 ### animateTo
 
 animateTo(value: AnimateParam, event: () => void): void
@@ -386,7 +436,7 @@ getHostContext(): Context | undefined
 
 | 类型 | 说明                             |
 | ------ | ------------------------------- |
-| [Context](../../application-models/application-context-stage.md#应用上下文context)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
+| [Context](#context12)&nbsp;\|&nbsp;undefined | 返回当前组件所在Ability的Context，Context的具体类型为当前Ability关联的Context对象。例如：在UIAbility窗口中的页面调用该接口，返回类型为UIAbilityContext。在ExtensionAbility窗口中的页面调用该接口，返回类型为ExtensionContext。ability上下文不存在时返回undefined。 |
 
 **示例：**
 
@@ -1633,7 +1683,7 @@ struct Index {
 
 postFrameCallback(frameCallback: FrameCallback): void
 
-注册一个在下一帧进行渲染时执行的回调。
+注册一个回调，仅在下一帧渲染时调用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1740,7 +1790,7 @@ requireDynamicSyncScene(id: string): Array&lt;DynamicSyncScene&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
-| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)
+| id | string | 是    | 节点对应的[组件标识](arkui-ts/ts-universal-attributes-component-id.md)。|
 
 **返回值：** 
 
@@ -2188,7 +2238,7 @@ uiContext.getMaxFontScale()
 
 bindTabsToScrollable(tabsController: TabsController, scroller: Scroller): void;
 
-绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
+绑定Tabs组件和可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑消失。一个TabsController可与多个Scroller绑定，一个Scroller也可与多个TabsController绑定。
 
 >  **说明：**
 >
@@ -2329,7 +2379,7 @@ unbindTabsFromScrollable(tabsController: TabsController, scroller: Scroller): vo
 
 bindTabsToNestedScrollable(tabsController: TabsController, parentScroller: Scroller, childScroller: Scroller): void;
 
-绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
+绑定Tabs组件和嵌套的可滚动容器组件（支持[List](./arkui-ts/ts-container-list.md)、[Scroll](./arkui-ts/ts-container-scroll.md)、[Grid](./arkui-ts/ts-container-grid.md)、[WaterFlow](./arkui-ts/ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的Tabs组件的TabBar的显示和隐藏动效，上滑隐藏，下滑消失。一个TabsController可与多个嵌套的Scroller绑定，嵌套的Scroller也可与多个TabsController绑定。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 
@@ -2403,6 +2453,107 @@ struct Index {
     .height('100%')
     .width('100%')
   }
+}
+```
+
+### getTextMenuController<sup>16+</sup>
+
+getTextMenuController(): TextMenuController
+
+获取[TextMenuController](#textmenucontroller16)对象，可通过该对象控制文本选择菜单。
+
+**原子化服务API:** 从API Version 16 开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+|类型|说明|
+|----|----|
+|[TextMenuController](#textmenucontroller16)| 获取TextMenuController对象。|
+
+**示例：**
+
+参考[TextMenuController](#textmenucontroller16)接口示例。
+
+### notifyDragStartRequest<sup>16+</sup>
+
+notifyDragStartRequest(requestStatus: draController.DragStartRequestStatus): void
+
+控制应用是否可以发起拖拽。
+
+**原子化服务API**: 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力**: SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型   | 必填| 说明                                                        |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| requestStatus  | [draController.DragStartRequestStatus](js-apis-arkui-dragController.md#dragstartrequeststatus16)    | 是  |定义应用是否可以发起拖拽。|
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct NormalEts {
+  @State finished: boolean = false
+  @State timeout1: number = 1
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State unifiedData1: unifiedDataChannel.UnifiedData | undefined = undefined
+  @State previewData: DragItemInfo | undefined = undefined
+
+  loadData() {
+    let timeout = setTimeout(() => {
+      this.getUIContext().getComponentSnapshot().get("image1", (error: Error, pixmap: image.PixelMap) => {
+        this.pixmap = pixmap
+        this.previewData = {
+          pixelMap: this.pixmap
+        }
+      })
+
+      let data: unifiedDataChannel.Image = new unifiedDataChannel.Image();
+      data.imageUri = "app.media.startIcon";
+      let unifiedData = new unifiedDataChannel.UnifiedData(data);
+      this.unifiedData1 = unifiedData
+
+      this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.READY)
+    }, 4000);
+    this.timeout1 = timeout
+  }
+
+
+    build() {
+      Column({space: 20}) {
+        Image($r("app.media.startIcon"))
+          .width(300)
+          .height(200)
+          .id("image1")
+          .draggable(true)
+          .dragPreview(this.previewData)
+          .onPreDrag((status: PreDragStatus) => {
+            if (status == PreDragStatus.PREPARING_FOR_DRAG_DETECTION) {
+              this.loadData()
+            } else {
+              clearTimeout(this.timeout1);
+            }
+          })
+          .onDragStart((event: DragEvent) => {
+            if (this.finished == false) {
+              this.getUIContext().getDragController().notifyDragStartRequest(dragController.DragStartRequestStatus.WAITING)
+            } else {
+              event.setData(this.unifiedData1);
+            }
+          })
+          .onDragEnd(()=>{
+            this.finished = false
+          })
+      }
+      .height(400)
+      .backgroundColor(Color.Pink)
+    }
 }
 ```
 
@@ -2500,6 +2651,22 @@ if(font){
   font.getFontByName('Sans Italic')
 }
 ```
+
+## Context<sup>12+</sup>
+
+type Context = common.Context
+
+当前组件所在Ability的上下文。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+| 类型 |说明   |
+| ------ | ------------------- |
+| [common.Context](../apis-ability-kit/js-apis-app-ability-common.md#context) |Context的具体类型为当前Ability关联的Context对象。|
 
 ## ComponentUtils
 
@@ -3361,7 +3528,7 @@ off(type: 'navDestinationSwitch', observerOptions: observer.NavDestinationSwitch
 
 on(type: 'willClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3390,7 +3557,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3419,7 +3586,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: GestureEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3448,7 +3615,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: GestureEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3477,7 +3644,7 @@ observer.off('didClick', callback);
 
 on(type: 'willClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3506,7 +3673,7 @@ observer.on('willClick', callback);
 
 off(type: 'willClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3535,7 +3702,7 @@ observer.off('willClick', callback);
 
 on(type: 'didClick', callback: ClickEventListenerCallback): void
 
-监听点击事件指令下发情况。
+监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3564,7 +3731,7 @@ observer.on('didClick', callback);
 
 off(type: 'didClick', callback?: ClickEventListenerCallback): void
 
-取消监听点击事件指令下发情况。
+取消监听点击事件指令下发情况。暂不支持屏幕朗读触控模式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3876,24 +4043,45 @@ pushUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+        url: 'pages/routerpage2',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -3928,27 +4116,48 @@ pushUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): voi
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-router.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'pages/routerpage2',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushUrl success');
-})
+}
 ```
 
 ### pushUrl
@@ -3988,28 +4197,52 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;void
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.pushUrl({
-    url: 'pages/routerpage2',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+        url: 'pages/routerpage2',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4045,31 +4278,55 @@ pushUrl(options: router.RouterOptions, mode: router.RouterMode, callback: AsyncC
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.pushUrl({
-  url: 'pages/routerpage2',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushUrl({
+      url: 'pages/routerpage2',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, rtm.Standard, (err) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushUrl success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, rtm.Standard, (err) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushUrl failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushUrl success');
-})
+}
 ```
 
 ### replaceUrl
@@ -4107,21 +4364,42 @@ replaceUrl(options: router.RouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+        url: 'pages/detail',
+        params: {
+          data1: 'message'
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4155,24 +4433,45 @@ replaceUrl(options: router.RouterOptions, callback: AsyncCallback&lt;void&gt;): 
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-router.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+      url: 'pages/detail',
+      params: {
+        data1: 'message'
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceUrl success');
+    })
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceUrl success');
-})
+}
 ```
 
 ### replaceUrl
@@ -4211,25 +4510,49 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode): Promise&lt;v
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { router } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.replaceUrl({
-    url: 'pages/detail',
-    params: {
-      data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+        url: 'pages/detail',
+        params: {
+          data1: 'message'
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4264,28 +4587,52 @@ replaceUrl(options: router.RouterOptions, mode: router.RouterMode, callback: Asy
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.replaceUrl({
-  url: 'pages/detail',
-  params: {
-    data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceUrl({
+      url: 'pages/detail',
+      params: {
+        data1: 'message'
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceUrl success');
+    });
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceUrl failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceUrl success');
-});
+}
 ```
 
 ### pushNamedRoute
@@ -4324,24 +4671,45 @@ pushNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit'
 
-let router:Router = uiContext.getRouter();
-try {
-  router.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4376,27 +4744,48 @@ pushNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt;vo
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-router.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushNamedRoute success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushNamedRoute success');
-})
+}
 ```
 ### pushNamedRoute
 
@@ -4435,28 +4824,51 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): Pro
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
 class RouterTmp{
   Standard:router.RouterMode = router.RouterMode.Standard
 }
 let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.pushNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message',
-      data2: {
-        data3: [123, 456, 789]
-      }
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message',
+          data2: {
+            data3: [123, 456, 789]
+          }
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4492,31 +4904,55 @@ pushNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, call
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.pushNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message',
-    data2: {
-      data3: [123, 456, 789]
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().pushNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message',
+        data2: {
+          data3: [123, 456, 789]
+        }
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('pushNamedRoute success');
+    })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
+    .width('100%')
+    .height('100%')
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`pushNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
-  }
-  console.info('pushNamedRoute success');
-})
+}
 ```
 
 ### replaceNamedRoute
@@ -4554,21 +4990,42 @@ replaceNamedRoute(options: router.NamedRouterOptions): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-try {
-  router.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message'
+        }
+      })
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  })
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4602,24 +5059,45 @@ replaceNamedRoute(options: router.NamedRouterOptions, callback: AsyncCallback&lt
 **示例：**
 
 ```ts
-import { Router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let router:Router = uiContext.getRouter();
-router.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message'
+      }
+    }, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceNamedRoute success');
+    })
   }
-}, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceNamedRoute success');
-})
+}
 ```
 
 ### replaceNamedRoute
@@ -4659,25 +5137,49 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode): 
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-try {
-  routerF.replaceNamedRoute({
-    name: 'myPage',
-    params: {
-      data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+        name: 'myPage',
+        params: {
+          data1: 'message'
+        }
+      }, rtm.Standard)
+      .then(() => {
+        console.info('succeeded')
+      })
+      .catch((error: BusinessError) => {
+        console.error(`pushUrl failed, code is ${error.code}, message is ${error.message}`);
+      })
+  }
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
     }
-  }, rtm.Standard)
-} catch (err) {
-  let message = (err as BusinessError).message;
-  let code = (err as BusinessError).code;
-  console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -4712,28 +5214,52 @@ replaceNamedRoute(options: router.NamedRouterOptions, mode: router.RouterMode, c
 **示例：**
 
 ```ts
-import { Router, router } from '@kit.ArkUI';
+import { router } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let routerF:Router = uiContext.getRouter();
-class RouterTmp{
-  Standard:router.RouterMode = router.RouterMode.Standard
+class RouterTmp {
+  Standard: router.RouterMode = router.RouterMode.Standard
 }
-let rtm:RouterTmp = new RouterTmp()
-routerF.replaceNamedRoute({
-  name: 'myPage',
-  params: {
-    data1: 'message'
+
+let rtm: RouterTmp = new RouterTmp()
+
+@Entry
+@Component
+struct Index {
+  async routePage() {
+    this.getUIContext().getRouter().replaceNamedRoute({
+      name: 'myPage',
+      params: {
+        data1: 'message'
+      }
+    }, rtm.Standard, (err: Error) => {
+      if (err) {
+        let message = (err as BusinessError).message;
+        let code = (err as BusinessError).code;
+        console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
+        return;
+      }
+      console.info('replaceNamedRoute success');
+    })
   }
-}, rtm.Standard, (err: Error) => {
-  if (err) {
-    let message = (err as BusinessError).message;
-    let code = (err as BusinessError).code;
-    console.error(`replaceNamedRoute failed, code is ${code}, message is ${message}`);
-    return;
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Button() {
+        Text('next page')
+          .fontSize(25)
+          .fontWeight(FontWeight.Bold)
+      }.type(ButtonType.Capsule)
+      .margin({ top: 20 })
+      .backgroundColor('#ccc')
+      .onClick(() => {
+        this.routePage()
+      })
+    }
+    .width('100%')
+    .height('100%')
   }
-  console.info('replaceNamedRoute success');
-});
+}
 ```
 
 ### back
@@ -5041,6 +5567,21 @@ type CustomBuilderWithId = (id: number)&nbsp;=&gt;&nbsp;void
 | -------- | -------- | -------- | -------- |
 | id | number | 是 | 组件ID |
 
+## TargetInfo<sup>16+</sup>
+
+指定组件绑定的目标节点。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| id | string&nbsp;\|&nbsp;number | 是 | 指定popup或menu绑定的目标节点。<br/>**说明：** <br/>1. 当id是number时，对应组件实例的UniquelD，此id由系统保证唯一性。<br/>2. 当id是string时，对应[通用属性id](arkui-ts/ts-universal-attributes-component-id.md#id)所指定的组件，此id的唯一性需由开发者确保，但实际可能会有多个。 |
+| componentId | number | 否 | 目标节点所在的自定义组件的UniquelD。当上述id指定为string类型时，可通过此属性圈定范围。方便开发者在一定范围内保证id: string的唯一性。 |
+
 ## PromptAction
 
 以下API需先使用UIContext中的[getPromptAction()](#getpromptaction)方法获取到PromptAction对象，再通过该对象调用对应方法。
@@ -5123,28 +5664,27 @@ openToast(options: ShowToastOptions): Promise&lt;number&gt;
 ```ts
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 @Entry
 @Component
 struct toastExample {
   @State toastId: number = 0;
   promptAction: PromptAction = this.getUIContext().getPromptAction()
+
   build() {
     Column() {
       Button('Open Toast')
         .height(100)
         .onClick(() => {
-          try {
-            this.promptAction.openToast({
-              message: 'Toast Massage',
-              duration: 10000,
-            }).then((toastId: number) => {
-              this.toastId = toastId;
-            });
-          } catch (error) {
-            let message = (error as BusinessError).message;
-            let code = (error as BusinessError).code;
-            console.error(`OpenToast error code is ${code}, message is ${message}`);
-          };
+          this.promptAction.openToast({
+            message: 'Toast Massage',
+            duration: 10000,
+          }).then((toastId: number) => {
+            this.toastId = toastId;
+          })
+            .catch((error: BusinessError) => {
+              console.error(`openToast error code is ${error.code}, message is ${error.message}`)
+            })
         })
       Blank().height(50);
       Button('Close Toast')
@@ -5222,10 +5762,6 @@ showDialog(options: promptAction.ShowDialogOptions, callback: AsyncCallback&lt;p
 import { PromptAction } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-class ButtonsModel {
-  text: string = ""
-  color: string = ""
-}
 let promptAction: PromptAction = uiContext.getPromptAction();
 try {
   promptAction.showDialog({
@@ -5235,11 +5771,11 @@ try {
       {
         text: 'button1',
         color: '#000000'
-      } as ButtonsModel,
+      },
       {
         text: 'button2',
         color: '#000000'
-      } as ButtonsModel
+      }
     ]
   }, (err, data) => {
     if (err) {
@@ -5290,35 +5826,28 @@ showDialog(options: promptAction.ShowDialogOptions): Promise&lt;promptAction.Sho
 
 ```ts
 import { PromptAction } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showDialog({
-    title: 'Title Info',
-    message: 'Message Info',
-    buttons: [
-      {
-        text: 'button1',
-        color: '#000000'
-      },
-      {
-        text: 'button2',
-        color: '#000000'
-      }
-    ],
+promptAction.showDialog({
+  title: 'Title Info',
+  message: 'Message Info',
+  buttons: [
+    {
+      text: 'button1',
+      color: '#000000'
+    },
+    {
+      text: 'button2',
+      color: '#000000'
+    }
+  ],
+})
+  .then(data => {
+    console.info('showDialog success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showDialog success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.error('showDialog error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showDialog args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.error('showDialog error: ' + err);
+  })
 ```
 
 ### showActionMenu<sup>11+</sup>
@@ -5469,35 +5998,28 @@ showActionMenu(options: promptAction.ActionMenuOptions): Promise&lt;promptAction
 **示例：**
 
 ```ts
-import { PromptAction,promptAction  } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { PromptAction } from '@kit.ArkUI';
 
 let promptAction: PromptAction = uiContext.getPromptAction();
-try {
-  promptAction.showActionMenu({
-    title: 'showActionMenu Title Info',
-    buttons: [
-      {
-        text: 'item1',
-        color: '#666666'
-      },
-      {
-        text: 'item2',
-        color: '#000000'
-      },
-    ]
+promptAction.showActionMenu({
+  title: 'showActionMenu Title Info',
+  buttons: [
+    {
+      text: 'item1',
+      color: '#666666'
+    },
+    {
+      text: 'item2',
+      color: '#000000'
+    },
+  ]
+})
+  .then(data => {
+    console.info('showActionMenu success, click button: ' + data.index);
   })
-    .then(data => {
-      console.info('showActionMenu success, click button: ' + data.index);
-    })
-    .catch((err:Error) => {
-      console.error('showActionMenu error: ' + err);
-    })
-} catch (error) {
-  let message = (error as BusinessError).message;
-  let code = (error as BusinessError).code;
-  console.error(`showActionMenu args error code is ${code}, message is ${message}`);
-};
+  .catch((err: Error) => {
+    console.error('showActionMenu error: ' + err);
+  })
 ```
 
 ### openCustomDialog<sup>12+</sup>
@@ -5541,6 +6063,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5552,7 +6075,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5565,18 +6088,18 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+          })
       }
       .width('100%')
       .height('100%')
@@ -5633,6 +6156,7 @@ import { ComponentContent, promptAction } from '@kit.ArkUI';
 class Params {
   text: string = ""
   dialogController: promptAction.DialogController = new promptAction.DialogController();
+
   constructor(text: string, dialogController: promptAction.DialogController) {
     this.text = text;
     this.dialogController = dialogController;
@@ -5645,7 +6169,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
     Button('点我关闭弹窗：通过外部传递的DialogController')
       .onClick(() => {
         if (params.dialogController != undefined) {
@@ -5670,13 +6194,13 @@ struct Index {
             let promptAction = uiContext.getPromptAction();
             let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText),
               new Params(this.message, this.dialogController));
-            try {
-              promptAction.openCustomDialogWithController(contentNode, this.dialogController);
-            } catch (error) {
-              let message = (error as BusinessError).message;
-              let code = (error as BusinessError).code;
-              console.error(`OpenCustomDialogWithController args error code is ${code}, message is ${message}`);
-            };
+            promptAction.openCustomDialogWithController(contentNode, this.dialogController)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialogWithController args error code is ${error.code}, message is ${error.message}`);
+              })
           })
       }
       .width('100%')
@@ -5727,6 +6251,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5738,7 +6263,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5751,28 +6276,27 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
-
-                setTimeout(() => {
-                  try {
-                    promptAction.closeCustomDialog(contentNode);
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`closeCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);     //2秒后自动关闭
-            })
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+              })
+            setTimeout(() => {
+              promptAction.closeCustomDialog(contentNode)
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`OpenCustomDialog args error code is ${error.code}, message is ${error.message}`);
+                })
+            }, 2000); //2秒后自动关闭
+          })
       }
       .width('100%')
       .height('100%')
@@ -5823,6 +6347,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
   text: string = ""
+
   constructor(text: string) {
     this.text = text;
   }
@@ -5834,7 +6359,7 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
@@ -5847,28 +6372,28 @@ struct Index {
     Row() {
       Column() {
         Button("click me")
-            .onClick(() => {
-                let uiContext = this.getUIContext();
-                let promptAction = uiContext.getPromptAction();
-                let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
-                try {
-                  promptAction.openCustomDialog(contentNode);
-                } catch (error) {
-                  let message = (error as BusinessError).message;
-                  let code = (error as BusinessError).code;
-                  console.error(`OpenCustomDialog args error code is ${code}, message is ${message}`);
-                };
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let promptAction = uiContext.getPromptAction();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message))
+            promptAction.openCustomDialog(contentNode)
+              .then(() => {
+                console.info('succeeded')
+              })
+              .catch((error: BusinessError) => {
+                console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+              })
 
-                setTimeout(() => {
-                  try {
-                    promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd });
-                  } catch (error) {
-                    let message = (error as BusinessError).message;
-                    let code = (error as BusinessError).code;
-                    console.error(`updateCustomDialog args error code is ${code}, message is ${message}`);
-                  };
-                }, 2000);   //2秒后自动更新弹窗位置
-            })
+            setTimeout(() => {
+              promptAction.updateCustomDialog(contentNode, { alignment: DialogAlignment.CenterEnd })
+                .then(() => {
+                  console.info('succeeded')
+                })
+                .catch((error: BusinessError) => {
+                  console.error(`updateCustomDialog args error code is ${error.code}, message is ${error.message}`)
+                })
+            }, 2000); //2秒后自动更新弹窗位置
+          })
       }
       .width('100%')
       .height('100%')
@@ -6107,6 +6632,372 @@ struct Index {
 }
 ```
 
+### getTopOrder<sup>16+</sup>
+
+getTopOrder(): LevelOrder
+
+返回最顶层显示的弹窗的顺序。
+
+获取最顶层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+
+**示例：**
+
+该示例通过调用getTopOrder接口，展示了获取最顶层显示的弹窗的顺序的功能。
+
+```ts
+import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column({ space: 20 }) {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '弹窗'
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private contentNode: ComponentContent<Object> =
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+
+  private baseDialogOptions: promptAction.BaseDialogOptions = {
+    showInSubWindow: false,
+    levelOrder: LevelOrder.clamp(30.1),
+  }
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('openCustomDialog弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
+              .catch((err: BusinessError) => {
+                console.error("openCustomDialog error: " + err.code + " " + err.message)
+              })
+              .then(() => {
+                let topOrder: LevelOrder = this.promptAction.getTopOrder();
+                if (topOrder !== undefined) {
+                  console.error('topOrder: ' + topOrder.getOrder());
+                }
+              })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+### getBottomOrder<sup>16+</sup>
+
+getBottomOrder(): LevelOrder
+
+返回最底层显示的弹窗的顺序。
+
+获取最底层显示的弹窗的顺序，可以在下一个弹窗时指定期望的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明                                    |
+| ------------------- | --------------------------------------- |
+| [LevelOrder](js-apis-promptAction.md#levelorder16) | 返回弹窗层级信息。 |
+
+**示例：**
+
+该示例通过调用getBottomOrder接口，展示了获取最底层显示的弹窗的顺序的功能。
+
+```ts
+import { ComponentContent, PromptAction, LevelOrder, promptAction, UIContext } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+class Params {
+  text: string = ""
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column({ space: 20 }) {
+    Text(params.text)
+      .fontSize(50)
+      .fontWeight(FontWeight.Bold)
+      .margin({ bottom: 36 })
+  }.backgroundColor('#FFF0F0F0')
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '弹窗'
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private contentNode: ComponentContent<Object> =
+    new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message))
+
+  private baseDialogOptions: promptAction.BaseDialogOptions = {
+    showInSubWindow: false,
+    levelOrder: LevelOrder.clamp(30.1),
+  }
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('openCustomDialog弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            this.promptAction.openCustomDialog(this.contentNode, this.baseDialogOptions)
+              .catch((err: BusinessError) => {
+                console.error("openCustomDialog error: " + err.code + " " + err.message)
+              })
+              .then(() => {
+                let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
+                if (bottomOrder !== undefined) {
+                  console.error('bottomOrder: ' + bottomOrder.getOrder());
+                }
+              })
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
+### openPopup<sup>16+</sup>
+
+openPopup\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: PopupCommonOptions): Promise&lt;void&gt;
+
+创建并弹出以content作为内容的popup弹窗，使用Promise异步回调。
+
+> **说明：**
+>
+> 1. 使用该接口时，若未传入有效的target，则无法弹出popup弹窗。
+>
+> 2. 由于[updatePopup](#updatepopup16)和[closePopup](#closepopup16)依赖content去更新或者关闭指定的popup弹窗，开发者需自行维护传入的content。
+>
+> 3. 如果在wrapBuilder中包含其他组件（例如：[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)、[Chip](arkui-ts/ohos-arkui-advanced-Chip.md#chip)组件），则ComponentContent应采用带有四个参数的构造函数[constructor](./js-apis-arkui-ComponentContent.md#constructor-2)，其中options参数应传递{ nestingBuilderSupported: true }。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
+| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 否 | popup弹窗样式。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103302 | The ComponentContent already exists. |
+| 103304 | The targetId does not exist. |
+| 103305 | The node of targetId is not in the component tree. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+interface PopupParam {
+  updateFunc?: () => void
+  closeFunc?: () => void
+}
+
+export function showPopup(context: UIContext, uniqueId: number, contentNode: ComponentContent<PopupParam>,
+  popupParam: PopupParam) {
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let targetId = frameNode?.getFirstChild()?.getUniqueId();
+  promptAction.openPopup(contentNode, { id: targetId }, {
+    radius: 16,
+    enableArrow: true
+  })
+    .then(() => {
+      console.info('openPopup success');
+    })
+    .catch((err: BusinessError) => {
+      console.info('openPopup error: ' + err.code + ' ' + err.message);
+    })
+  popupParam.updateFunc = () => {
+    promptAction.updatePopup(contentNode, {
+      enableArrow: false
+    }, true)
+      .then(() => {
+        console.info('updatePopup success');
+      })
+      .catch((err: BusinessError) => {
+        console.info('updatePopup error: ' + err.code + ' ' + err.message);
+      })
+  }
+  popupParam.closeFunc = () => {
+    promptAction.closePopup(contentNode)
+      .then(() => {
+        console.info('closePopup success');
+      })
+      .catch((err: BusinessError) => {
+        console.info('closePopup error: ' + err.code + ' ' + err.message);
+      })
+  }
+}
+
+@Builder
+function buildText(param?: PopupParam) {
+  Column() {
+    Text('popup')
+    Button('Update Popup')
+      .fontSize(20)
+      .onClick(() => {
+        param?.updateFunc?.();
+      })
+    Button('Close Popup')
+      .fontSize(20)
+      .onClick(() => {
+        param?.closeFunc?.();
+      })
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column() {
+      Button('Open Popup')
+        .fontSize(20)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const popupParam: PopupParam = {};
+          const contentNode = new ComponentContent(context, wrapBuilder(buildText), popupParam);
+          showPopup(context, this.getUniqueId(), contentNode, popupParam)
+        })
+    }
+  }
+}
+```
+
+### updatePopup<sup>16+</sup>
+
+updatePopup\<T extends Object>(content: ComponentContent\<T>, options: PopupCommonOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
+
+更新content对应的popup弹窗的样式，使用Promise异步回调。
+
+> **说明：**
+>
+> 不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
+| options | [PopupCommonOptions](arkui-ts/ts-universal-attributes-popup.md#popupcommonoptions16类型说明) | 是 | popup弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、focusable、onStateChange、onWillDismiss、transition。 |
+| partialUpdate | boolean | 否 | popup弹窗更新方式, 默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+请参考[openPopup](#openpopup16)示例。
+
+### closePopup<sup>16+</sup>
+
+closePopup\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
+
+关闭content对应的popup弹窗，使用Promise异步回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | popup弹窗中显示的组件内容。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    异常返回Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | the ComponentContent is incorrect. |
+| 103303 | the ComponentContent cannot be found. |
+
+**示例：**
+
+请参考[openPopup](#openpopup16)示例。
+
 ## DragController<sup>11+</sup>
 以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
 
@@ -6184,6 +7075,292 @@ struct DragControllerPage {
               })
             }
           }
+        })
+    }
+  }
+}
+```
+
+### openMenu<sup>16+</sup>
+
+openMenu\<T extends Object>(content: ComponentContent\<T>, target: TargetInfo, options?: MenuOptions): Promise&lt;void&gt;
+
+创建并弹出以content作为内容的menu弹窗。通过该接口弹出的menu弹窗，其内容样式完全按照content中设置的样式显示。使用Promise异步回调。
+
+> **说明：**
+>
+> 1. 使用该接口时，若未传入有效的target，则无法弹出menu弹窗。
+>
+> 2. 由于[updateMenu](#updatemenu16)和[closeMenu](#closemenu16)依赖content去更新或者关闭指定的menu弹窗，开发者需自行维护传入的content。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
+| target | [TargetInfo](#targetinfo16) | 是 | 需要绑定组件的信息。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 否 | menu弹窗样式。<br/>**说明：**<br/>title属性不生效。<br/>preview参数仅支持设置MenuPreviewMode类型。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103302 | The ComponentContent already exists. |
+| 103304 | The targetId does not exist. |
+| 103305 | The node of targetId is not in the component tree. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+### updateMenu<sup>16+</sup>
+
+updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOptions, partialUpdate?: boolean ): Promise&lt;void&gt;
+
+更新content对应的menu弹窗的样式。使用Promise异步回调。
+
+> **说明：**
+>
+> 不支持更新preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
+>
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+
+  setTimeout(() => {
+    promptAction.updateMenu(contentNode, {
+      enableArrow: false,
+    });
+  }, 2000)
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
+        })
+    }
+  }
+}
+```
+
+### closeMenu<sup>16+</sup>
+
+closeMenu\<T extends Object>(content: ComponentContent\<T>): Promise&lt;void&gt;
+
+关闭content对应的menu弹窗。使用Promise异步回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明      |
+| ------- | ---------------------------------------- | ---- | ------- |
+| content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
+
+**返回值：**
+
+| 类型                                       | 说明      |
+| ---------------------------------------- | ------- |
+|   Promise&lt;void&gt;           |    无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.promptAction(弹窗)](errorcode-promptAction.md)错误码。
+
+| 错误码ID  | 错误信息                               |
+| ------ | ---------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 103301 | The ComponentContent is incorrect. |
+| 103303 | The ComponentContent cannot be found. |
+
+**示例：**
+
+```ts
+import { ComponentContent, FrameNode } from '@kit.ArkUI';
+
+export function doSomething(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+  showMenu(context, uniqueId, contentNode);
+}
+
+@Builder
+
+function MyMenu() {
+  Column() {
+    Menu(){
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项1" })
+      MenuItem({ startIcon: $r("app.media.startIcon"), content: "菜单选项2" })
+    }
+  }
+  .width('80%')
+  .padding('20lpx')
+}
+
+export function showMenu(context: UIContext, uniqueId: number, contentNode: ComponentContent<Object>) {
+
+  const promptAction = context.getPromptAction();
+  let frameNode: FrameNode | null = context.getFrameNodeByUniqueId(uniqueId);
+  let frameNodeTarget = frameNode?.getFirstChild();
+  frameNodeTarget = frameNodeTarget?.getChild(0);
+  let targetId = frameNodeTarget?.getUniqueId();
+
+  promptAction.openMenu(contentNode, {id: targetId},{
+    enableArrow: true,
+  });
+
+  setTimeout(() => {
+    promptAction.closeMenu(contentNode);
+  }, 2000)
+}
+
+@Entry
+@Component
+struct Index {
+  build() {
+    Column(){
+      Button('OpenMenu', { type: ButtonType.Normal, stateEffect: true })
+        .borderRadius('16lpx')
+        .width('80%')
+        .margin(10)
+        .onClick(() => {
+          let context = this.getUIContext()
+          const contentNode = new ComponentContent(context, wrapBuilder(MyMenu));
+          doSomething(context, this.getUniqueId(), contentNode)
         })
     }
   }
@@ -6537,6 +7714,22 @@ import { window, UIContext } from '@kit.ArkUI';
 }
 ```
 
+### cancelDataLoading<sup>16+</sup>
+
+cancelDataLoading(key: string): void
+
+当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** : SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| key | string | 是   | 拖拽数据的标识，用于区分每次拖拽。key可通过startDataLoading接口获取。 |
+
 ## OverlayManager<sup>12+</sup>
 
 以下API需先使用UIContext中的[getOverlayManager()](#getoverlaymanager12)方法获取到OverlayManager对象，再通过该对象调用对应方法。
@@ -6663,6 +7856,106 @@ struct OverlayExample {
 }
 ```
 
+### addComponentContentWithOrder<sup>16+</sup>
+
+addComponentContentWithOrder(content: ComponentContent, levelOrder?: LevelOrder): void
+
+指定显示顺序创建浮层节点。
+
+支持在浮层节点创建时指定显示的顺序。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                       | 必填   | 说明          |
+| ------- | ---------------------------------------- | ---- | ----------- |
+| content | [ComponentContent](js-apis-arkui-ComponentContent.md) | 是    | 在OverlayManager上新增指定节点上添加此content。 <br>**说明：** <br/> 新增的节点默认处于页面居中位置，按层级堆叠。|
+| levelOrder | [LevelOrder](js-apis-promptAction.md#levelorder16) | 否    | 新增浮层节点的显示顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0)。|
+
+**示例：**
+
+该示例通过调用addComponentContentWithOrder接口，展示了指定显示顺序创建浮层节点的功能。
+
+```ts
+import { ComponentContent, PromptAction, LevelOrder, UIContext, OverlayManager } from '@kit.ArkUI';
+
+class Params {
+  text: string = ""
+  offset: Position
+  constructor(text: string, offset: Position) {
+    this.text = text
+    this.offset = offset
+  }
+}
+@Builder
+function builderText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(30)
+      .fontWeight(FontWeight.Bold)
+  }.offset(params.offset)
+}
+
+@Entry
+@Component
+struct Index {
+  @State message: string = '弹窗'
+  private ctx: UIContext = this.getUIContext()
+  private promptAction: PromptAction = this.ctx.getPromptAction()
+  private overlayNode: OverlayManager = this.ctx.getOverlayManager()
+  @StorageLink('contentArray') contentArray: ComponentContent<Params>[] = []
+  @StorageLink('componentContentIndex') componentContentIndex: number = 0
+  @StorageLink('arrayIndex') arrayIndex: number = 0
+  @StorageLink("componentOffset") componentOffset: Position = {x: 0, y: 80}
+
+  build() {
+    Row() {
+      Column({ space: 10 }) {
+        Button('OverlayManager下面弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            let componentContent = new ComponentContent(
+              this.ctx, wrapBuilder<[Params]>(builderText),
+              new Params(this.message + (this.contentArray.length), this.componentOffset)
+            )
+            this.contentArray.push(componentContent)
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.1))
+            let topOrder: LevelOrder = this.promptAction.getTopOrder();
+            if (topOrder !== undefined) {
+              console.error('topOrder: ' + topOrder.getOrder());
+            }
+            let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
+            if (bottomOrder !== undefined) {
+              console.error('bottomOrder: ' + bottomOrder.getOrder());
+            }
+          })
+        Button('OverlayManager上面弹窗')
+          .fontSize(20)
+          .onClick(() => {
+            let componentContent = new ComponentContent(
+              this.ctx, wrapBuilder<[Params]>(builderText),
+              new Params(this.message + (this.contentArray.length), this.componentOffset)
+            )
+            this.contentArray.push(componentContent)
+            this.overlayNode.addComponentContentWithOrder(componentContent, LevelOrder.clamp(100.2))
+            let topOrder: LevelOrder = this.promptAction.getTopOrder();
+            if (topOrder !== undefined) {
+              console.error('topOrder: ' + topOrder.getOrder());
+            }
+            let bottomOrder: LevelOrder = this.promptAction.getBottomOrder();
+            if (bottomOrder !== undefined) {
+              console.error('bottomOrder: ' + bottomOrder.getOrder());
+            }
+          })
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+
 ### removeComponentContent<sup>12+</sup>
 
 removeComponentContent(content: ComponentContent): void
@@ -6750,6 +8043,18 @@ hideAllComponentContents(): void
 **示例：**
 
 请参考[addComponentContent示例](#addcomponentcontent12)
+
+## OverlayManagerOptions<sup>15+</sup>
+
+初始化[OverlayManager](#overlaymanager12)时所用参数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称             | 类型                | 必填     | 说明                     |
+| --------------- | ---------------------- | ------------ | --------------------- |
+| renderRootOverlay   | boolean | 否 | 是否渲染overlay根节点，默认值为true。 |
 
 ## AtomicServiceBar<sup>11+</sup>
 
@@ -6963,6 +8268,51 @@ onWindowStageCreate(windowStage: window.WindowStage) {
   });
 }
 ```
+
+### getBarRect<sup>15+</sup>
+
+getBarRect(): Frame
+
+获取原子化服务menuBar相对窗口的布局信息。
+> **说明：**
+>
+> 布局信息包含了原子化服务menuBar的左右margin。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型                | 说明            |
+| ----------------- | ------------- |
+| [Frame](./js-apis-arkui-graphics.md#frame) | 原子化服务menuBar的大小和位置。 |
+
+**示例：**
+
+```ts
+import { AtomicServiceBar } from '@kit.ArkUI';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+@Entry
+@Component
+struct Index {
+  build() {
+    Button("getBarRect")
+      .onClick(() => {
+        let uiContext: UIContext = this.getUIContext();
+        let currentBar: Nullable<AtomicServiceBar> = uiContext.getAtomicServiceBar();
+        if (currentBar != undefined) {
+          let rect = currentBar.getBarRect();
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar Successfully. x:' +
+            rect.x + ' y:' + rect.y + ' width:' + rect.width + ' height:' + rect.height);
+        } else {
+          hilog.info(0x0000, 'testTag', 'Get AtomServiceBar failed.');
+        }
+      })
+  }
+}
+```
+
 ## KeyboardAvoidMode<sup>11+</sup>
 
 配置键盘避让时页面的避让模式。
@@ -6975,6 +8325,7 @@ onWindowStageCreate(windowStage: window.WindowStage) {
 | RESIZE | 1    | 压缩模式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | OFFSET_WITH_CARET<sup>14+</sup>  | 2 | 上抬模式，输入框光标位置发生变化时候也会触发避让。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 | RESIZE_WITH_CARET<sup>14+</sup>  | 3 | 压缩模式，输入框光标位置发生变化时候也会触发避让。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| NONE<sup>14+</sup>  | 4 | 不避让键盘。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
 
 
 ## FocusController<sup>12+</sup>
@@ -7121,7 +8472,7 @@ struct RequestExample {
 
 ### activate<sup>14+</sup>
 
-activate(isActive: boolean, atuoInactive?: boolean): void
+activate(isActive: boolean, autoInactive?: boolean): void
 
 设置当前界面的[焦点激活态](../../ui/arkts-common-events-focus-event.md)。
 
@@ -7185,7 +8536,7 @@ setAutoFocusTransfer(isAutoFocusTransfer: boolean): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------- | ------- | ------- | ------- |
-| setAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
+| isAutoFocusTransfer | boolean| 是 | 设置页面切换时，新的页面是否需要主动获取焦点，例如[Router](js-apis-router.md#routerpushurl9)、[Navigation](arkui-ts/ts-basic-components-navigation.md#navigation)、[Menu](arkui-ts/ts-basic-components-menu.md#menu)、[Dialog](arkui-ts/ohos-arkui-advanced-Dialog.md)、[Popup](arkui-ts/ohos-arkui-advanced-Popup.md#popup)等。默认值为true。 |
 
 ```ts
 @CustomDialog
@@ -7202,6 +8553,7 @@ struct CustomDialogExample {
       Button('点我关闭弹窗')
         .onClick(() => {
           if (this.controller != undefined) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(true)
             this.controller.close()
           }
         })
@@ -7225,27 +8577,27 @@ struct CustomDialogUser {
       Button('click me')
         .onClick(() => {
           if (this.dialogController != null) {
+            this.getUIContext().getFocusController().setAutoFocusTransfer(false)
             this.dialogController.open()
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
-    .onFocus(()=>{this.getUIContext().getFocusController().setAutoFocusTransfer(false)})
   }
 }
 ```
 ## PointerStyle<sup>12+</sup>
 
-type PointerStyle = PointerStyle
+type PointerStyle = pointer.PointerStyle
 
 光标样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+**系统能力：** SystemCapability.MultimodalInput.Input.Pointer
 
 |类型|说明|
 | -- | -- |
-|[PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
+|[pointer.PointerStyle](../apis-input-kit/js-apis-pointer.md#pointerstyle) |光标样式。|
 
 ## CursorController<sup>12+</sup>
 以下API需先使用UIContext中的[getCursorController()](js-apis-arkui-UIContext.md#getcursorcontroller12)方法获取CursorController实例，再通过此实例调用对应方法。
@@ -7526,7 +8878,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
@@ -7592,7 +8944,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -7850,7 +9202,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -7899,6 +9251,306 @@ struct SnapshotExample {
     .width('100%')
     .height('100%')
     .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getWithUniqueId<sup>15+</sup>
+
+getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。通过Promise返回结果。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                                                         | 说明             |
+| ------------------------------------------------------------ | ---------------- |
+| Promise&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | Invalid ID.                                                  |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public node: FrameNode | null = null;
+
+  public imageNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute.width('100%').height('100%')
+
+    let image = typeNode.createNode(uiContext, 'Image');
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    this.imageNode = image;
+
+    this.node.appendChild(image);
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SnapshotExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        NodeContainer(this.myNodeController).width(200).height(200).margin(5)
+      }
+      Button("UniqueId get snapshot")
+        .onClick(() => {
+          try {
+            this.getUIContext()
+              .getComponentSnapshot()
+              .getWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+              .then((pixmap: image.PixelMap) => {
+                this.pixmap = pixmap
+              })
+              .catch((err: Error) => {
+                console.log("error: " + err)
+              })
+          } catch (error) {
+            console.error("UniqueId get snapshot Error: " + JSON.stringify(error))
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### getSyncWithUniqueId<sup>15+</sup>
+
+getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): image.PixelMap
+
+获取已加载的组件的截图，传入组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)，找到对应组件进行截图。同步等待截图完成返回[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)。
+
+> **说明：**
+>
+> 截图会获取最近一帧的绘制内容。如果在组件触发更新的同时调用截图，更新的渲染内容不会被截取到，截图会返回上一帧的绘制内容。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。 |
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
+
+**返回值：**
+
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
+| image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 截图返回的结果。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed.   |
+| 100001 | Invalid ID. |
+| 160002 | Timeout. |
+
+**示例：**
+
+```ts
+import { NodeController, FrameNode, typeNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { UIContext } from '@kit.ArkUI';
+
+class MyNodeController extends NodeController {
+  public node: FrameNode | null = null;
+
+  public imageNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute.width('100%').height('100%')
+
+    let image = typeNode.createNode(uiContext, 'Image');
+    image.initialize($r('app.media.img')).width('100%').height('100%').autoResize(true)
+    this.imageNode = image;
+
+    this.node.appendChild(image);
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SnapshotExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  @State pixmap: image.PixelMap | undefined = undefined
+
+  build() {
+    Column() {
+      Row() {
+        Image(this.pixmap).width(200).height(200).border({ color: Color.Black, width: 2 }).margin(5)
+        NodeContainer(this.myNodeController).width(200).height(200).margin(5)
+      }
+      Button("UniqueId getSync snapshot")
+        .onClick(() => {
+          try {
+            this.pixmap = this.getUIContext()
+              .getComponentSnapshot()
+              .getSyncWithUniqueId(this.myNodeController.imageNode?.getUniqueId(), {scale: 2, waitUntilRenderFinished: true})
+          } catch (error) {
+            console.error("UniqueId getSync snapshot Error: " + JSON.stringify(error))
+          }
+        }).margin(10)
+    }
+    .width('100%')
+    .height('100%')
+    .alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+### createFromComponent<sup>16+</sup>
+
+createFromComponent\<T extends Object>(content: ComponentContent\<T>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
+
+将传入的content对象进行截图，并通过Promise返回结果。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| content  | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md)         | 是   | 当前UIContext显示的组件内容。      |
+| delay   | number | 否    | 指定触发截图指令的延迟时间。当布局中使用了图片组件时，需要指定延迟时间，以便系统解码图片资源。资源越大，解码需要的时间越长，建议尽量使用不需要解码的PixelMap资源。<br/> 当使用PixelMap资源或对Image组件设置syncload为true时，可以配置delay为0，强制不等待触发截图。该延迟时间并非指接口从调用到返回的时间，由于系统需要对传入的builder进行临时离屏构建，因此返回的时间通常要比该延迟时间长。<br/>**说明：** 截图接口传入的builder中，不应使用状态变量控制子组件的构建，如果必须要使用，在调用截图接口时，也不应再有变化，以避免出现截图不符合预期的情况。<br/> 取值范围：[0,+∞) ，小于0时按默认值处理。<br/>默认值：300 <br/> 单位：毫秒|
+| checkImageStatus  | boolean | 否    | 指定是否允许在截图之前，校验图片解码状态。如果为true，则会在截图之前检查所有Image组件是否已经解码完成，如果没有完成检查，则会放弃截图并返回异常。<br/>默认值：false|
+| options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12) | 否    | 截图相关的自定义参数。可以指定截图时图形侧绘制pixelmap的缩放比例与是否强制等待系统执行截图指令前所有绘制指令都执行完成之后再截图。 |
+
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码和[截图错误码](errorcode-snapshot.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameters types; 3. Parameter verification failed. |
+| 100001   | The builder is not a valid build function.                   |
+| 160001   | An image component in builder is not ready for taking a snapshot. The check for the ready state is required when the checkImageStatus option is enabled. |
+
+**示例：** 
+
+```ts
+import { image } from '@kit.ImageKit';
+import { ComponentContent } from '@kit.ArkUI';
+
+class Params {
+  text: string | undefined | null  = "";
+
+  constructor(text: string | undefined | null ) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  ReusableChildComponent({ text: params.text });
+}
+
+@Component
+struct ReusableChildComponent {
+  @Prop text: string | undefined | null  = "";
+
+  aboutToReuse(params: Record<string, object>) {
+    console.log("ReusableChildComponent Reusable " + JSON.stringify(params));
+  }
+
+  aboutToRecycle(): void {
+    console.log("ReusableChildComponent aboutToRecycle " + this.text);
+  }
+
+  build() {
+    Column() {
+      Text(this.text)
+        .fontSize(90)
+        .fontWeight(FontWeight.Bold)
+        .margin({ bottom: 36 })
+        .width('100%')
+        .height('100%')
+    }.backgroundColor('#FFF0F0F0')
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State pixmap: image.PixelMap | undefined = undefined
+  @State message: string | undefined | null = "hello"
+  uiContext: UIContext = this.getUIContext();
+
+  build() {
+    Row() {
+      Column() {
+        Button("点击生成组件截图")
+          .onClick(() => {
+            let uiContext = this.getUIContext();
+            let contentNode = new ComponentContent(uiContext, wrapBuilder(buildText), new Params(this.message));
+            this.uiContext.getComponentSnapshot()
+              .createFromComponent(contentNode
+                , 320, true, {scale : 2, waitUntilRenderFinished : true})
+              .then((pixmap: image.PixelMap) => {
+                this.pixmap = pixmap
+              })
+              .catch((err: Error) => {
+                console.error("error: " + err)
+              })
+          })
+        Image(this.pixmap)
+          .margin(10)
+          .height(200)
+          .width(200)
+          .border({ color: Color.Black, width: 2 })
+      }.width('100%').margin({ left: 10, top: 5, bottom: 5 }).height(300)
+    }
+    .width('100%')
+    .height('100%')
   }
 }
 ```
@@ -8277,6 +9929,120 @@ struct MarqueeExample {
         .fontSize(30)
     }
     .width('100%')
+    .height('100%')
+  }
+}
+```
+## dispatchKeyEvent<sup>16+</sup>
+
+按键事件应分发给指定的组件。为了确保行为的可预测性，目标组件必须位于分发组件的子树中。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                          | 必填 | 说明               |
+| ------ | ----------------------------- | ---- | ------------------ |
+| node  | number \| string | 是   | 组件的id或者节点UniqueID。 |
+| event  |[KeyEvent](./arkui-ts/ts-universal-events-key.md#keyevent对象说明) | 是   | KeyEvent对象。 |
+
+**示例：**
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('Button1').id('Button1').onKeyEvent((event) => {
+          console.log("Button1");
+          return true
+        })
+        Button('Button2').id('Button2').onKeyEvent((event) => {
+          console.log("Button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Button1');
+        return context.dispatchKeyEvent('Button1', event);
+      })
+
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
+  }
+}
+```
+
+## TextMenuController<sup>16+</sup>
+以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
+
+### setMenuOptions<sup>16+</sup>
+
+setMenuOptions(options: TextMenuOptions): void
+
+设置菜单选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| options | [TextMenuOptions](../apis-arkui/arkui-ts/ts-text-common.md#textmenuoptions16对象说明)| 是    | 设置菜单选项。<br />默认值:{showMode: TextMenuShowMode.DEFAULT} |
+
+**示例：**
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 设置在对应的UIContext下优先使用独立窗口显示文本选择菜单
+    this.getUIContext()
+      .getTextMenuController()
+      .setMenuOptions(
+        {
+          showMode: TextMenuShowMode.PREFER_WINDOW
+        }
+      )
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+
+        Text("这是一个Text，长按弹出文本选择菜单")
+          .height(60)
+          .copyOption(CopyOptions.InApp)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+      }.width('100%')
+    }
     .height('100%')
   }
 }

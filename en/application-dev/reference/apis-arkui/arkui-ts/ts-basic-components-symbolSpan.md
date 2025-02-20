@@ -156,6 +156,8 @@ The [universal events](ts-universal-events-click.md) are not supported.
 
 ## Example
 
+This example demonstrates different rendering and effect strategies using **renderingStrategy** and **effectStrategy**.
+
 ```ts
 // xxx.ets
 @Entry

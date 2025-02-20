@@ -178,7 +178,7 @@ getNfcA(tagInfo: [TagInfo](#taginfo)): [NfcATag](js-apis-nfctech.md#nfcatag)
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNfcBTag<sup>(deprecated)</sup>
 
@@ -234,7 +234,7 @@ getNfcB(tagInfo: [TagInfo](#taginfo)): [NfcBTag](js-apis-nfctech.md#nfcbtag)
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNfcFTag<sup>(deprecated)</sup>
 
@@ -290,7 +290,7 @@ getNfcF(tagInfo: [TagInfo](#taginfo)): [NfcFTag](js-apis-nfctech.md#nfcftag)
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNfcVTag<sup>(deprecated)</sup>
 
@@ -346,7 +346,7 @@ getNfcV(tagInfo: [TagInfo](#taginfo)): [NfcVTag](js-apis-nfctech.md#nfcvtag)
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getIsoDep<sup>9+</sup>
 
@@ -378,7 +378,7 @@ getIsoDep(tagInfo: [TagInfo](#taginfo)): [IsoDepTag](js-apis-nfctech.md#isoDepTa
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNdef<sup>9+</sup>
 
@@ -410,7 +410,7 @@ getNdef(tagInfo: [TagInfo](#taginfo)): [NdefTag](js-apis-nfctech.md#ndeftag9)
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getMifareClassic<sup>9+</sup>
 
@@ -442,7 +442,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
 
@@ -473,7 +473,7 @@ getMifareUltralight(tagInfo: [TagInfo](#taginfo)): [MifareUltralightTag](js-apis
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
 
@@ -504,7 +504,7 @@ getNdefFormatable(tagInfo: [TagInfo](#taginfo)): [NdefFormatableTag](js-apis-nfc
 | -------- | ----------------------------------------- |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201  | Tag running state is abnormal in service. |
+| 3100201  | The tag running state is abnormal in the service. |
 
 ## tag.getBarcodeTag<sup>16+</sup>
 
@@ -538,7 +538,7 @@ getBarcodeTag(taginfo: [TagInfo](#taginfo)): [BartcodeTag](js-apis-nfctech.md#ba
 | 201  | Permission denied. |
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
-| 3100201 | Tag running state is abnormal in service. |
+| 3100201 | The tag running state is abnormal in the service. |
 
 
 ## tag.getTagInfo<sup>9+</sup>
@@ -765,7 +765,7 @@ off(type: 'readerMode', elementName: [ElementName](../apis-ability-kit/js-apis-b
 | 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
 | 801  | Capability not supported. |
 | 3100201 | The tag running state is abnormal in the service. |
-| 3100203  | The off() can be called only when the on() has been called. |
+| 3100203  | The off() API can be called only when the on() has been called. |
 
 **示例：**
 
@@ -830,7 +830,7 @@ export default class MainAbility extends UIAbility {
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
-makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
+makeUriRecord(uri: string): NdefRecord
 
 根据输入的URI，构建NDEF标签的Record数据对象。
 
@@ -879,7 +879,7 @@ try {
 
 ## tag.ndef.makeTextRecord<sup>9+</sup>
 
-makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
+makeTextRecord(text: string, locale: string): NdefRecord
 
 根据输入的文本数据和编码类型，构建NDEF标签的Record。
 
@@ -928,10 +928,58 @@ try {
 }
 ```
 
+## tag.ndef.makeApplicationRecord<sup>16+</sup>
+
+makeApplicationRecord(bundleName: string): NdefRecord
+
+根据OpenHarmony应用的bundlename，构建NDEF标签的Record。
+
+**系统能力：** SystemCapability.Communication.NFC.Tag
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| bundleName   | string | 是   | 要创建标签的应用包名。 |
+
+**返回值：**
+
+| **类型**                   | **说明**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
+| [NdefRecord](#ndefrecord9) | NDEF标签的Record，详见NDEF技术规范《NFCForum-TS-NDEF_1.0》。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+
+**示例：**
+
+```js
+import { tag } from '@kit.ConnectivityKit';
+
+try {
+    let bundleName: string = 'com.demo.test';
+    let ndefRecord : tag.NdefRecord = tag.ndef.makeApplicationRecord(bundleName);
+    if (ndefRecord != undefined) {
+        console.log("ndefMessage makeApplicationRecord rtdType: " + ndefRecord.rtdType);
+        console.log("ndefMessage makeApplicationRecord payload: " + ndefRecord.payload);
+    } else {
+        console.log("ndefMessage makeApplicationRecord ndefRecord: " + ndefRecord);
+    }
+} catch (businessError) {
+    console.error("ndefMessage makeApplicationRecord catch businessError: " + businessError);
+}
+```
 
 ## tag.ndef.makeMimeRecord<sup>9+</sup>
 
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
+makeMimeRecord(mimeType: string, mimeData: number[]): NdefRecord
 
 根据输入的MIME数据和类型，构建NDEF标签的Record。
 
@@ -981,7 +1029,7 @@ try {
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
 
-makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9)
+makeExternalRecord(domainName: string, type: string, externalData: number[]): NdefRecord
 
 根据应用程序特定的外部数据，构建NDEF标签的Record。
 
@@ -1299,145 +1347,157 @@ MIFARE Ultralight标签类型的定义。
 | TYPE_ULTRALIGHT   | 1      | MIFARE Ultralight类型。   |
 | TYPE_ULTRALIGHT_C | 2      | MIFARE UltralightC 类型。 |
 
-## NfcATag
+## NfcATag<sup>7+</sup>
 
 type NfcATag = _NfcATag
 
 获取NfcATag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NfcATag](./js-apis-nfctech.md#nfcatag) | NfcATag 提供 NFC-A(ISO 14443-3A)技术的属性和I/O操作的访问。 |
 
-## NfcBTag
+## NfcBTag<sup>7+</sup>
 
 type NfcBTag = _NfcBTag
 
 获取NfcBTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NfcBTag](./js-apis-nfctech.md#nfcbtag) | NfcBTag 提供 NFC-B(ISO 14443-3B)技术的属性和I/O操作的访问。 |
 
-## NfcFTag
+## NfcFTag<sup>7+</sup>
 
 type NfcFTag = _NfcFTag
 
 获取NfcFTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NfcFTag](./js-apis-nfctech.md#nfcftag) | NfcFTag 提供对 NFC-F(JIS 6319-4)技术的属性和I/O操作的访问。 |
 
-## NfcVTag
+## NfcVTag<sup>7+</sup>
 
 type NfcVTag = _NfcVTag
 
 获取NfcVTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| [_NfcATag](./js-apis-nfctech.md#nfcvtag) | NfcVTag 提供对 NFC-V(ISO 15693)技术的属性和I/O操作的访问。 |
+| [_NfcVTag](./js-apis-nfctech.md#nfcvtag) | NfcVTag 提供对 NFC-V(ISO 15693)技术的属性和I/O操作的访问。 |
 
-## IsoDepTag
+## IsoDepTag<sup>9+</sup>
 
 type IsoDepTag = _IsoDepTag
 
 获取IsoDepTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_IsoDepTag](./js-apis-nfctech.md#isodeptag9) | IsoDepTag 提供 ISO-DEP(ISO 14443-4)技术的属性和I/O操作的访问。 |
 
-## NdefTag
+## NdefTag<sup>9+</sup>
 
 type NdefTag = _NdefTag
 
 获取NdefTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefTag](./js-apis-nfctech.md#ndeftag9) | 提供对已格式化为NDEF的NFC标签的数据和操作的访问。 |
 
-## MifareClassicTag
+## MifareClassicTag<sup>9+</sup>
 
 type MifareClassicTag = _MifareClassicTag
 
 获取MifareClassicTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_MifareClassicTag](./js-apis-nfctech.md#mifareclassictag9) | MifareClassicTag提供对MIFARE Classic属性和I/O操作的访问。 |
 
-## MifareUltralightTag
+## MifareUltralightTag<sup>9+</sup>
 
 type MifareUltralightTag = _MifareUltralightTag;
 
 获取MifareUltralightTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_MifareUltralightTag](./js-apis-nfctech.md#mifareultralighttag9) | MifareUltralightTag 提供对MIFARE Ultralight属性和I/O操作的访问。 |
 
-## NdefFormatableTag
+## NdefFormatableTag<sup>9+</sup>
 
 type NdefFormatableTag = _NdefFormatableTag
 
 获取NdefFormatableTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefFormatableTag](./js-apis-nfctech.md#ndefformatabletag9) | NdefFormatableTag为NDEF Formattable的标签提供格式化操作。 |
 
-## BarcodeTag
+## BarcodeTag<sup>16+</sup>
 
 type BarcodeTag = _BarcodeTag
 
 获取BarcodeTag。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_BarcodeTag](./js-apis-nfctech.md#barcodetag16) | 提供对条形码标签的属性和I/O操作的访问。 |
 
-## NdefMessage
+## NdefMessage<sup>9+</sup>
 
 type NdefMessage = _NdefMessage
 
 获取NdefMessage。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
 | [_NdefMessage](./js-apis-nfctech.md#ndefmessage9) | 获取NDEF消息中的所有记录。 |
 
-## TagSession
+## TagSession<sup>7+</sup>
 
 type TagSession = _TagSession
 
 获取TagSession。
 
 **系统能力**：SystemCapability.Communication.NFC.Tag
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |

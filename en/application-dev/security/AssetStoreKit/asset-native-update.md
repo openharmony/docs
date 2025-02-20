@@ -33,6 +33,7 @@ The following table describes the attributes for updating an asset.
   | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> | Type: uint8[]<br>Length: 1-2048 bytes| No| Local attribute information about the asset. The value is assigned by the service without integrity protection and will not be synced.|
   | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | Type: bool| No| Whether to update the customized asset attribute information that is encrypted. By default, the unencrypted, customized asset attribute information is updated.|
+  | ASSET_TAG_GROUP_ID<sup>16+</sup> | Type: Uint8[]<br>Length: 7-127 bytes| No| Group to which the asset to be updated belongs. By default, this parameter is not specified.|
 
 - Attributes in **attributesToUpdate**:
 
@@ -51,6 +52,8 @@ The following table describes the attributes for updating an asset.
 ## Example
 
 Update asset **demo_alias** as follows: change the asset plaintext to **demo_pwd_new** and additional attribute to **demo_label_new**.
+
+For details about how to update an asset in a group, see [Updating an asset in a Group](asset-native-group-access-control.md#updating-an-asset-in-a-group).
 
 1. Add the dynamic library in the CMake script.
    ```txt

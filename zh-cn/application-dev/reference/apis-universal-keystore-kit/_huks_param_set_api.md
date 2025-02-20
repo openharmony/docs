@@ -24,9 +24,9 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_InitParamSet](#oh_huks_initparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 初始化参数集。  | 
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AddParams](#oh_huks_addparams) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](_o_h___huks___param.md) \*params, uint32_t paramCnt) | 添加参数到参数集里面。  | 
-| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_BuildParamSet](#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 构造正式的参数集。  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_InitParamSet](#oh_huks_initparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 初始化参数集。给paramSet预分配内存。  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AddParams](#oh_huks_addparams) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Param](_o_h___huks___param.md) \*params, uint32_t paramCnt) | 添加参数到参数集里面。需要先调用OH_Huks_InitParamSet对paramSet进行初始化  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_BuildParamSet](#oh_huks_buildparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 构造正式的参数集。往paramSet中添加完参数之后，需要调用OH_Huks_BuildParamSet整合参数集。  | 
 | void [OH_Huks_FreeParamSet](#oh_huks_freeparamset) (struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 销毁参数集。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_CopyParamSet](#oh_huks_copyparamset) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*fromParamSet, uint32_t fromParamSetSize, struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*\*paramSet) | 复制参数集（深拷贝）。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_GetParam](#oh_huks_getparam) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, uint32_t tag, struct [OH_Huks_Param](_o_h___huks___param.md) \*\*param) | 从参数集中获取参数。  | 
@@ -60,7 +60,7 @@ struct OH_Huks_Result OH_Huks_AddParams (struct OH_Huks_ParamSet * paramSet, con
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示添加成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示添加成功，其他时为错误。
 
 
 ### OH_Huks_BuildParamSet()
@@ -81,7 +81,7 @@ struct OH_Huks_Result OH_Huks_BuildParamSet (struct OH_Huks_ParamSet ** paramSet
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示构建成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示构建成功，其他时为错误。
 
 
 ### OH_Huks_CheckParamMatch()
@@ -103,7 +103,7 @@ struct OH_Huks_Result OH_Huks_CheckParamMatch (const struct OH_Huks_Param * base
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示相同，其他时为不同或者错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示相同，其他时为不同或者错误。
 
 
 ### OH_Huks_CopyParamSet()
@@ -126,7 +126,7 @@ struct OH_Huks_Result OH_Huks_CopyParamSet (const struct OH_Huks_ParamSet * from
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示复制成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示复制成功，其他时为错误。
 
 
 ### OH_Huks_FreeKeyAliasSet()
@@ -182,7 +182,7 @@ struct OH_Huks_Result OH_Huks_FreshParamSet (struct OH_Huks_ParamSet * paramSet,
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示成功，其他时为错误。
 
 
 ### OH_Huks_GetParam()
@@ -205,7 +205,7 @@ struct OH_Huks_Result OH_Huks_GetParam (const struct OH_Huks_ParamSet * paramSet
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示获取成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示获取成功，其他时为错误。
 
 
 ### OH_Huks_InitParamSet()
@@ -226,7 +226,7 @@ struct OH_Huks_Result OH_Huks_InitParamSet (struct OH_Huks_ParamSet ** paramSet)
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示初始化成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示初始化成功，其他时为错误。
 
 
 ### OH_Huks_IsParamSetTagValid()
@@ -247,7 +247,7 @@ struct OH_Huks_Result OH_Huks_IsParamSetTagValid (const struct OH_Huks_ParamSet 
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示有效，其他时为无效或重复的。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示有效，其他时为无效或重复的。
 
 
 ### OH_Huks_IsParamSetValid()
@@ -269,4 +269,4 @@ struct OH_Huks_Result OH_Huks_IsParamSetValid (const struct OH_Huks_ParamSet * p
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示有效，其他时为无效或者错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时表示有效，其他时为无效或者错误。

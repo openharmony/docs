@@ -100,7 +100,7 @@ toolbarConfiguration(toolbarParam: Array&lt;ToolbarItem&gt; | CustomBuilder, opt
 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ------------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| toolbarParam | &nbsp;Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。<br/>使用Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>-工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>-文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，工具栏最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后...截断。<br/>-竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标中，点击更多图标，可以展示剩余内容。横屏时，如果为[Split](ts-basic-components-navigation.md#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](ts-basic-components-navigation.md#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
+| toolbarParam | &nbsp;Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt; &nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 工具栏内容。<br/>使用Array&lt;[ToolbarItem](ts-basic-components-navigation.md#toolbaritem10)&gt;写法设置的工具栏有如下特性：<br/>-工具栏所有选项均分底部工具栏，在每个均分内容区布局文本和图标。<br/>-文本超长时，若工具栏选项个数小于5个，优先拓展选项的宽度，工具栏最大宽度与屏幕等宽，其次逐级缩小，缩小之后换行，最后截断。<br/>-竖屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标中，点击更多图标，可以展示剩余内容。横屏时，如果为[Split](ts-basic-components-navigation.md#navigationmode9枚举说明)模式，仍按照竖屏规则显示，如果为[Stack](ts-basic-components-navigation.md#navigationmode9枚举说明)模式需配合menus属性的Array&lt;[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;使用，底部工具栏会自动隐藏，同时底部工具栏所有选项移动至页面右上角菜单。<br/>使用[CustomBuilder](ts-types.md#custombuilder8)写法为用户自定义工具栏选项，除均分底部工具栏外不具备以上功能。 |
 | options      | [NavigationToolbarOptions](ts-basic-components-navigation.md#navigationtoolbaroptions11) | 否   | 工具栏选项。                                                 |
 
 > **说明：**
@@ -248,15 +248,13 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 
 配置NavDestination是否可恢复。如配置为可恢复，当应用进程异常退出并重新冷启动时，可自动创建该NavDestination。该功能需NavDestination对应的Navigation也配置了可恢复属性。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型         | 必填 | 说明               |
 | ------ | -------------- | ---- | ------------------ |
-| recoverable  | Optional&lt;boolean&gt; | 否   | NavDestination是否可恢复，默认为可恢复 |
+| recoverable  | Optional&lt;boolean&gt; | 是   | NavDestination是否可恢复，默认为不可恢复。<br/>默认值:false<br/>true:页面栈可恢复。<br/>false:页面栈不可恢复。 |
 
 >  **使用说明：**
 >
@@ -265,7 +263,7 @@ recoverable(recoverable: Optional&lt;boolean&gt;)
 ### bindToScrollable<sup>14+</sup>
 bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 
-绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动可滚动容器组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个可滚动容器组件绑定，一个可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
 > **说明：**
 >
@@ -283,9 +281,9 @@ bindToScrollable(scrollers: Array&lt;Scroller&gt;)
 | scrollers | Array<[Scroller](./ts-container-scroll.md#scroller)> | 是   | 可滚动容器组件的控制器。 |
 
 ### bindToNestedScrollable<sup>14+</sup>
-bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
+bindToNestedScrollable(scrollInfos: Array&lt;NestedScrollInfo&gt;)
 
-绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
+绑定NavDestination组件和嵌套的可滚动容器组件（支持[List](./ts-container-list.md)、[Scroll](./ts-container-scroll.md)、[Grid](./ts-container-grid.md)、[WaterFlow](./ts-container-waterflow.md)），当滑动父组件或子组件时，会触发所有与其绑定的NavDestination组件的标题栏和工具栏的显示和隐藏动效，上滑隐藏，下滑显示。一个NavDestination可与多个嵌套的可滚动容器组件绑定，嵌套的可滚动容器组件也可与多个NavDestination绑定。使用示例参见[示例1](#示例1)。
 
 > **说明：**
 >
@@ -302,6 +300,42 @@ bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | scrollInfos | Array<[NestedScrollInfo](#nestedscrollinfo14)> | 是   | 嵌套的可滚动容器组件的控制器。 |
 
+### hideBackButton<sup>16+</sup>
+
+hideBackButton(hide: Optional&lt;boolean&gt;)
+
+设置是否隐藏标题栏中的返回键。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| hide  | Optional&lt;boolean&gt; | 是   | 是否隐藏标题栏中的返回键。 <br/>默认值：false<br/>true: 隐藏返回键。<br/>false: 显示返回键。 |
+
+### customTransition<sup>15+</sup>
+
+customTransition(delegate: NavDestinationTransitionDelegate)
+
+设置NavDestination自定义转场动画。
+
+> **说明：**
+>
+> 该属性与[systemTransition](#systemtransition14)同时设置时，后设置的属性生效。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | 是   | NavDestination自定义动画的代理函数。 |
+
 ## NavDestinationMode枚举说明 <sup>11+</sup>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
@@ -315,16 +349,18 @@ bindToNestedScrollable(scrollers: Array&lt;NestedScrollInfo&gt;)
 
 ## NavigationSystemTransitionType<sup>14+</sup>枚举说明
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 值   | 说明 |
 | ----  | ---   | ----- |
-| DEFAULT  | 0 | 默认系统转场动画。|
-| NONE| 1 | 无系统转场动画。|
-| TITLE | 2 | 标题栏系统转场动画。|
-| CONTENT | 3 | 内容区系统转场动画。|
+| DEFAULT | 0 | 默认系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| NONE| 1 | 无系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| TITLE | 2 | 标题栏系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| CONTENT | 3 | 内容区系统转场动画。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。|
+| FADE<sup>15+</sup> | 4 | 渐变类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| EXPLODE<sup>15+</sup> | 5 | 中心缩放类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| SLIDE_RIGHT<sup>15+</sup> | 6 | 右侧平移类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| SLIDE_BOTTOM<sup>15+</sup> | 7 | 底部平移类型的系统转场动画。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 **说明：**
 >
@@ -422,6 +458,51 @@ onReady(callback:&nbsp;[Callback](../../apis-basic-services-kit/js-apis-base.md#
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+### onResult<sup>15+</sup>
+
+onResult(callback:&nbsp;Optional\<Callback\<ESObject\>\>)
+
+NavDestination返回时触发该回调。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<ESObject\>\>| 是 | 页面返回回调， 入参为pop接口传入的result参数。如果不传该参数，入参为undefined。|
+
+### onActive<sup>16+</sup>
+
+onActive(callback:&nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
+
+NavDestination处于激活态（处于栈顶可操作，且上层无特殊组件遮挡）时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason16)\>\>| 是 | NavDestination由非激活态变为激活态的原因。|
+
+### onInactive<sup>16+</sup>
+
+onInactive(callback: &nbsp;Optional\<Callback\<NavDestinationActiveReason\>\>)
+
+NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶时上层有特殊组件遮挡）时，触发该回调。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 参数名 | 类型 | 必填 | 说明 |
+| ------ | ------ | ---- | ---------------- |
+|callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason16)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
+
 ## NavDestinationCommonTitle
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -494,9 +575,64 @@ getConfigInRouteMap(): RouteMapConfig |undefined
 | parent | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器。 |
 | child | [Scroller](./ts-container-scroll.md#scroller) | 是 | 可滚动容器组件的控制器，child对应的组件需要是parent对应组件的子组件，且组件间存在嵌套滚动关系。|
 
+### NavDestinationActiveReason<sup>16+</sup>
+
+NavDestination激活态或者非激活态变化的原因。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 说明                                     |
+| ---- | ---------------------------------------- |
+| TRANSITION | 通过页面跳转的方式使NavDestination激活态发生变化。                       |
+| CONTENT_COVER | 通过全模态的开启和关闭使NavDestination激活态发生变化。  |
+| SHEET | 通过半模态的开启或关闭使NavDestination激活态发生变化。 |
+| DIALOG | 通过自定义Dialog开启或关闭使NavDestination激活态发生变化。 |
+| APP_STATE_CHANGE | 通过前后台切换使NavDestination激活态发生变化。 |
+
+## NavDestinationTransition<sup>15+</sup>
+
+NavDestination自定义动画接口。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   |必填 | 说明 |
+| ----  | ---   | ---- |----- |
+| onTransitionEnd | Callback\<void> | 否 | 转场动画结束时的回调函数。 |
+| duration | number | 否 | 转场动画的持续时间，默认值为1000（毫秒）。 |
+| curve | [Curve](ts-appendix-enums.md#curve) | 否 | 动画的曲线类型，默认值为[Curve.EaseInOut](ts-appendix-enums.md#curve)。 |
+| delay | number | 否 | 转场动画的延迟。默认值为0。 |
+| event | Callback\<void> | 是 | 指定转场动效的闭包函数，系统会根据闭包中对组件UI状态的修改，生成对应的过渡动画。参见[animateTo](../js-apis-arkui-UIContext.md#animateto)中的event。 |
+
+## NavDestinationTransitionDelegate<sup>15+</sup>
+
+type NavDestinationTransitionDelegate = (operation: NavigationOperation, isEnter: boolean) => Array\<NavDestinationTransition> | undefined
+
+NavDestination自定义转场动画的代理函数。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型     | 必填 | 说明                    |
+|------|--------|----|-----------------------|
+| operation | [NavigationOperation](ts-basic-components-navigation.md#navigationoperation11枚举说明) | 是  | 当前页面转场的操作类型。 |
+| isEnter | boolean | 是  | 当前页面是否为入场页面。 |
+
+**返回值：**
+
+| 类型      | 说明        |
+|---------|-----------|
+| Array<[NavDestinationTransition](#navdestinationtransition15)> \| undefined | NavDestination页面的自定义动画集合。如果返回undefined则做系统默认动画。 |
+
 ## 示例
 
-### 示例1
+### 示例1（标题栏工具栏与可滚动类组件联动）
 
 以下示例主要演示NavDestination绑定可滚动容器组件来实现滚动内容时触发标题栏和工具栏显示隐藏的效果。
 
@@ -519,7 +655,7 @@ struct MyPageOne {
     NavDestination() {
       Scroll(this.scrollScroller) {
         Column() {
-          List({space: 0, initialIndex: 0, scroller: this.listScroller}) {
+          List({ space: 0, initialIndex: 0, scroller: this.listScroller }) {
             ForEach(this.arr, (item: number, index: number) => {
               ListItem() {
                 Text('' + item)
@@ -527,13 +663,14 @@ struct MyPageOne {
                   .fontSize(16)
                   .textAlign(TextAlign.Center)
                   .width('90%')
-                  .margin({left: '5%'})
+                  .margin({ left: '5%' })
                   .borderRadius(10)
                   .backgroundColor(Color.Gray)
               }
             }, (item: string) => item);
           }.width('100%').height('80%').scrollBar(BarState.Off)
-          .nestedScroll({scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST})
+          .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.SELF_FIRST })
+
           ForEach(this.arr, (item: number, index: number) => {
             ListItem() {
               Text('' + item)
@@ -541,7 +678,7 @@ struct MyPageOne {
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
                 .width('90%')
-                .margin({top: '5%'})
+                .margin({ top: '5%' })
                 .borderRadius(10)
                 .backgroundColor(Color.Pink)
             }
@@ -553,15 +690,15 @@ struct MyPageOne {
       .scrollable(ScrollDirection.Vertical)
       .edgeEffect(EdgeEffect.Spring)
     }
-    .title('PageOne', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .title('PageOne', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
-    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    ], { backgroundColor: Color.Orange, barStyle: BarStyle.STACK })
     // 绑定有父子关系的可滚动容器组件
-    .bindToNestedScrollable([{parent: this.scrollScroller, child: this.listScroller}])
+    .bindToNestedScrollable([{ parent: this.scrollScroller, child: this.listScroller }])
   }
 }
 
@@ -578,7 +715,7 @@ struct MyPageTwo {
 
   build() {
     NavDestination() {
-      List({scroller: this.listScroller}) {
+      List({ scroller: this.listScroller }) {
         ForEach(this.arr, (item: number, index: number) => {
           ListItem() {
             Text('' + item)
@@ -586,20 +723,20 @@ struct MyPageTwo {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .width('90%')
-              .margin({left: '5%'})
+              .margin({ left: '5%' })
               .borderRadius(10)
               .backgroundColor(Color.Gray)
           }
         }, (item: string) => item);
       }.width('100%')
     }
-    .title('PageTwo', {backgroundColor: Color.Yellow, barStyle: BarStyle.STACK})
+    .title('PageTwo', { backgroundColor: Color.Yellow, barStyle: BarStyle.STACK })
     .toolbarConfiguration([
       {
         value: 'item1',
         symbolIcon: new SymbolGlyphModifier($r('sys.symbol.phone_badge_star'))
       }
-    ], {backgroundColor: Color.Orange, barStyle: BarStyle.STACK})
+    ], { backgroundColor: Color.Orange, barStyle: BarStyle.STACK })
     // 绑定可滚动容器组件
     .bindToScrollable([this.listScroller])
   }
@@ -623,19 +760,402 @@ struct Index {
     Navigation(this.stack) {
       Column() {
         Button('push PageOne').onClick(() => {
-          this.stack.pushPath({name: 'myPageOne'})
+          this.stack.pushPath({ name: 'myPageOne' })
         })
         Button('push PageTwo').onClick(() => {
-          this.stack.pushPath({name: 'myPageTwo'})
+          this.stack.pushPath({ name: 'myPageTwo' })
         })
       }.height('40%').justifyContent(FlexAlign.SpaceAround)
     }.width('100%')
     .height('100%')
-    .title({main: 'MainTitle', sub: 'subTitle'})
+    .title({ main: 'MainTitle', sub: 'subTitle' })
     .navDestination(this.MyPageMap)
   }
 }
 ```
 ![navdestination_bind_scrollable](figures/navdestination_bind_scrollable.gif)
+
+### 示例2（设置NavDestination自定义转场）
+
+以下示例主要演示NavDestination设置自定义转场动画属性[customTransition](#customtransition15)的效果。
+
+```ts
+@Entry
+@Component
+struct NavDestinationCustomTransition {
+  stack: NavPathStack = new NavPathStack()
+
+  @Builder
+  pageMap(name: string) {
+    if (name) {
+      NavDest()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.stack.pushPath({name: 'dest0'})
+  }
+
+  build() {
+    Navigation(this.stack) {
+      // empty
+    }
+    .navDestination(this.pageMap)
+    .hideNavBar(true)
+    .title('Main Page')
+    .titleMode(NavigationTitleMode.Mini)
+  }
+}
+
+declare type voidFunc = () => void;
+
+@Component
+struct NavDest {
+  @State name: string = 'NA'
+  @State destWidth: string = '100%'
+  stack: NavPathStack = new NavPathStack()
+  @State y: string = '0';
+
+  build() {
+    NavDestination() {
+      Column() {
+        Button('push next page', { stateEffect: true, type: ButtonType.Capsule })
+          .width('80%')
+          .height(40)
+          .margin(20)
+          .onClick(() => {
+            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" })
+          })
+      }
+      .size({ width: '100%', height: '100%' })
+    }
+    .title(this.name)
+    .translate({ y: this.y })
+    .onReady((context) => {
+      this.name = context.pathInfo.name;
+      this.stack = context.pathStack;
+    })
+    .backgroundColor(this.name == 'PageOne' ? '#F1F3F5' : '#ff11dee5')
+    .customTransition(
+      (op: NavigationOperation, isEnter: boolean)
+        : Array<NavDestinationTransition> | undefined => {
+        console.log('[NavDestinationTransition]', 'reached delegate in frontend, op: ' + op + ', isEnter: ' + isEnter);
+
+        let transitionOneEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOne, empty now!'); }
+        let transitionOneFinishEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionOneFinish, empty now!'); }
+        let transitionOneDuration: number = 500;
+        if (op === NavigationOperation.PUSH) {
+          if (isEnter) {
+            // ENTER_PUSH
+            this.y = '100%';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, push & isEnter');
+              this.y = '0';
+            }
+          } else {
+            // EXIT_PUSH
+            this.y = '0';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
+              this.y = '0';
+            }
+            transitionOneDuration = 450
+          }
+        } else if (op === NavigationOperation.POP) {
+          if (isEnter) {
+            // ENTER_POP
+            this.y = '0';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, pop & isEnter');
+              this.y = '0';
+            }
+          } else {
+            // EXIT_POP
+            this.y = '0';
+            transitionOneEvent = () => {
+              console.log('[NavDestinationTransition]', 'transitionOne, pop & !isEnter');
+              this.y = '100%';
+            }
+          }
+        } else {
+          console.log('[NavDestinationTransition]', '----- NOT-IMPL BRANCH of NAV-DESTINATION CUSTOM TRANSITION -----');
+        }
+
+        let transitionOne: NavDestinationTransition = {
+          duration: transitionOneDuration,
+          delay: 0,
+          curve: Curve.Friction,
+          event: transitionOneEvent,
+          onTransitionEnd: transitionOneFinishEvent
+        };
+
+        let transitionTwoEvent: voidFunc = () => { console.log('[NavDestinationTransition]', 'reached transitionTwo, empty now!'); }
+        let transitionTwo: NavDestinationTransition = {
+          duration: 1000,
+          delay: 0,
+          curve: Curve.EaseInOut,
+          event: transitionTwoEvent,
+          onTransitionEnd: () => { console.log('[NavDestinationTransition]', 'reached Two\'s finish'); }
+        };
+
+        return [
+          transitionOne,
+          transitionTwo,
+        ];
+      })
+  }
+}
+```
+![navdestination_custom_transition](figures/navdestination_custom_transition.gif)
+
+### 示例3（设置指定的NavDestination系统转场）
+
+以下示例主要演示NavDestination设置系统转场动画[systemTransition](#systemtransition14)为Fade、Explode、SlideBottom与SlideRight时的转场效果。
+
+```ts
+@Entry
+@Component
+struct NavDestinationSystemTransition {
+  @Provide stack: NavPathStack = new NavPathStack()
+  @Provide homePageTransitionType: NavigationSystemTransitionType = NavigationSystemTransitionType.DEFAULT;
+
+  @Builder
+  pageMap(name: string) {
+    if (name === 'Fade') {
+      Fade()
+    } else if (name === 'Explode') {
+      Explode()
+    } else if (name === 'SlideRight') {
+      SlideRight()
+    } else if (name === 'SlideBottom') {
+      SlideBottom()
+    } else {
+      Dest()
+    }
+  }
+
+  aboutToAppear(): void {
+    this.stack.pushPath({name: 'Dest'})
+  }
+
+  build() {
+    Navigation(this.stack) {
+      // empty
+    }
+    .navDestination(this.pageMap)
+    .hideNavBar(true)
+  }
+}
+
+@Component
+struct Dest {
+  @Consume stack: NavPathStack;
+  @Consume homePageTransitionType: NavigationSystemTransitionType;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      HomeBody()
+    }
+    .title('Navigation System Animation')
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(this.homePageTransitionType)
+  }
+}
+
+@Component
+struct Fade {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.FADE)
+  }
+}
+
+@Component
+struct Explode {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.EXPLODE)
+  }
+}
+
+@Component
+struct SlideRight {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.SLIDE_RIGHT)
+  }
+}
+
+@Component
+struct SlideBottom {
+  @Consume stack: NavPathStack;
+  @State name: string = 'NA';
+
+  build() {
+    NavDestination() {
+      DestBody({
+        name: this.name
+      })
+    }
+    .title(this.name)
+    .onReady((context) => {
+      this.name = context.pathInfo.name
+    })
+    .systemTransition(NavigationSystemTransitionType.SLIDE_BOTTOM)
+  }
+}
+
+@Component
+struct DestBody {
+  name: string = 'NA'
+
+  columnTextSize: number = 22
+  columnTextFontWeight: FontWeight = FontWeight.Bolder
+  columnWidth: string = '65%'
+  columnPadding: number = 22
+  columnMargin: number = 10
+  columnBorderRadius: number = 10
+
+  build() {
+    Column() {
+      Column()
+        .width('85')
+        .height(50)
+        .backgroundColor(Color.White)
+      Column() {
+        Text(this.name)
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(ShadowStyle.OUTER_DEFAULT_LG)
+    }
+  }
+}
+
+@Component
+struct HomeBody {
+  @Consume stack: NavPathStack;
+  @Consume homePageTransitionType: NavigationSystemTransitionType;
+
+  columnTextSize: number = 22
+  columnTextFontWeight: FontWeight = FontWeight.Bolder
+  columnWidth: string = '85%'
+  columnPadding: number = 22
+  columnMargin: number = 10
+  columnBorderRadius: number = 10
+  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD
+
+  build() {
+    Column() {
+      Search({ value: 'Search' })
+        .width(this.columnWidth)
+
+      Column() {
+        Text('fade')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.FADE
+        this.stack.pushPath({name: 'Fade'})
+      })
+
+      Column() {
+        Text('explode')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE
+        this.stack.pushPath({name: 'Explode'})
+      })
+
+      Column() {
+        Text('slide right')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT
+        this.stack.pushPath({name: 'SlideRight'})
+      })
+
+      Column() {
+        Text('slide bottom')
+          .fontSize(this.columnTextSize)
+          .fontWeight(this.columnTextFontWeight)
+      }
+      .width(this.columnWidth)
+      .padding(this.columnPadding)
+      .margin(this.columnMargin)
+      .borderRadius(this.columnBorderRadius)
+      .shadow(this.columnShadow)
+      .onClick(() => {
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM
+        this.stack.pushPath({name: 'SlideBottom'})
+      })
+    }
+  }
+}
+```
+![navdestination_fade](figures/navdestination_fade_transition.gif)
+![navdestination_explode](figures/navdestination_explode_transition.gif)
+![navdestination_slide_bottom](figures/navdestination_slide_bottom_transition.gif)
+![navdestination_slide_right](figures/navdestination_slide_right_transition.gif)
 
 NavDestination其他用法可参考[Navigation示例](ts-basic-components-navigation.md#示例1)。

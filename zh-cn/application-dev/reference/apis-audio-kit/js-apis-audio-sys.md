@@ -404,7 +404,7 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | 语音唤醒音频流录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**需要权限：** ohos.permission.MANAGE_INTELLIGENT_VOICE <br/> 此接口为系统接口|
 | SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | 通话录音的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/>**需要权限：** ohos.permission.RECORD_VOICE_CALL <br/> 此接口为系统接口|
-| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>15+</sup>   | 14     | 语音转写音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/> 此接口为系统接口|
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>15+</sup>   | 12     | 语音转写音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core<br/> 此接口为系统接口|
 
 ## VolumeAdjustType<sup>10+</sup>
 

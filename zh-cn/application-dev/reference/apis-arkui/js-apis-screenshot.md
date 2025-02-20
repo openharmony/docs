@@ -50,7 +50,7 @@ import { screenshot } from '@kit.ArkUI';
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | -------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | pickRect             | [Rect](#rect) | 是   | 表示截取图像的区域。                       |
-| pixelMap             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 表示截取的图像PixelMap对象 |
+| pixelMap             | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 表示截取的图像PixelMap对象。 |
 
 ## screenshot.pick
 
@@ -126,7 +126,7 @@ capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------- |
-| 201     | Permission verification failed.|
+| 201     | Permission verification failed. The application does not have the permission required to call the API.|
 | 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 801 | Capability not supported on this device.|
 | 1400003 | This display manager service works abnormally.|

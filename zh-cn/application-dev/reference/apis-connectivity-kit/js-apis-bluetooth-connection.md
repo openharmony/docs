@@ -15,6 +15,71 @@ import { connection } from '@kit.ConnectivityKit';
 ```
 
 
+## ProfileConnectionState
+
+type ProfileConnectionState = constant.ProfileConnectionState
+
+蓝牙设备的profile连接状态。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
+
+
+## ProfileId
+
+type ProfileId = constant.ProfileId
+
+蓝牙profile枚举。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | 蓝牙profile枚举。 |
+
+
+## ProfileUuids<sup>12+</sup>
+
+type ProfileUuids = constant.ProfileUuids
+
+表示Profile的UUID。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | 表示Profile的UUID。 |
+
+
+## MajorClass
+
+type MajorClass = constant.MajorClass
+
+蓝牙设备主要类别。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.MajorClass](js-apis-bluetooth-constant.md#majorclass) | 蓝牙设备主要类别。 |
+
+
+## MajorMinorClass
+
+type MajorMinorClass = constant.MajorMinorClass
+
+主要次要蓝牙设备类别。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 类型                  | 说明                  |
+| ------------------- | ------------------- |
+| [constant.MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 主要次要蓝牙设备类别。 |
+
+
 ## connection.pairDevice
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
@@ -25,7 +90,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -51,7 +116,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.pairDevice('11:22:33:44:55:66', (err: BusinessError) => {
         console.info('pairDevice, device name err:' + JSON.stringify(err));
@@ -73,7 +138,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -104,7 +169,7 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.pairDevice('11:22:33:44:55:66').then(() => {
         console.info('pairDevice');
@@ -128,7 +193,7 @@ getRemoteDeviceName(deviceId: string): string
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -171,11 +236,9 @@ try {
 
 getRemoteDeviceClass(deviceId: string): DeviceClass
 
-获取对端蓝牙设备的类别。
+获取对端蓝牙设备的类别。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -195,7 +258,6 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
 |2900001 | Service stopped.                         |
@@ -222,7 +284,7 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -267,7 +329,7 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -318,7 +380,7 @@ getLocalName(): string
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -359,13 +421,13 @@ getPairedDevices(): Array&lt;string&gt;
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。基于信息安全考虑，此处获取的设备地址为随机MAC地址。配对成功后，该地址不会变更；已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
+| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。<br>- 基于信息安全考虑，此处获取的设备地址为随机MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
 
 **错误码**：
 
@@ -401,7 +463,7 @@ getPairState(deviceId: string): BondState
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -445,11 +507,13 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-获取蓝牙Profile的连接状态，其中ProfileId为可选参数。如果携带ProfileId，则返回的是当前Profile的连接状态。如果未携带ProfileId，任一Profile已连接则返回[STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)，否则返回[STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。
+获取蓝牙Profile的连接状态，其中ProfileId为可选参数。
+- 如果携带ProfileId，则返回的是当前Profile的连接状态。
+- 如果未携带ProfileId，任一Profile已连接则返回[STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)，否则返回[STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -496,9 +560,9 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 设置设备配对请求确认。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH(该权限仅系统应用可申请)
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -524,8 +588,8 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认
-function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数
+// 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认。
+function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数。
     console.info('pin required  = '+ JSON.stringify(data));
     connection.setDevicePairingConfirmation(data.deviceId, true);
 }
@@ -545,7 +609,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -572,7 +636,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345', (err: BusinessError) => {
         console.info('setDevicePinCode,device name err:' + JSON.stringify(err));
@@ -591,7 +655,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -623,7 +687,7 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setDevicePinCode('11:22:33:44:55:66', '12345').then(() => {
         console.info('setDevicePinCode');
@@ -648,7 +712,7 @@ setLocalName(name: string): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -689,14 +753,14 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
 | 参数名      | 类型                    | 必填   | 说明                           |
 | -------- | --------------------- | ---- | ---------------------------- |
-| mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。当扫描模式为SCAN_MODE_GENERAL_DISCOVERABLE时，如果超出duration持续时间（不为0），扫描模式会重新设置为SCAN_MODE_CONNECTABLE。               |
-| duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒；设置为0则持续可发现。 |
+| mode     | [ScanMode](#scanmode) | 是    | 蓝牙扫描模式。当扫描模式为SCAN_MODE_GENERAL_DISCOVERABLE时，超出duration持续时间(不为0)，扫描模式会重新设置为SCAN_MODE_CONNECTABLE。               |
+| duration | number                | 是    | 设备可被发现的持续时间，单位为毫秒。设置为0则持续可发现。 |
 
 **错误码**：
 
@@ -732,7 +796,7 @@ getBluetoothScanMode(): ScanMode
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -774,7 +838,7 @@ startBluetoothDiscovery(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
@@ -814,7 +878,7 @@ stopBluetoothDiscovery(): void
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **错误码**：
 
@@ -848,7 +912,7 @@ isBluetoothDiscovering(): boolean
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -890,7 +954,7 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -920,7 +984,7 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setRemoteDeviceName('11:22:33:44:55:66', 'RemoteDeviceName').then(() => {
         console.info('setRemoteDeviceName success');
@@ -942,7 +1006,7 @@ getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -990,7 +1054,7 @@ on(type: 'batteryChange', callback: Callback&lt;BatteryInfo&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1031,7 +1095,7 @@ off(type: 'batteryChange', callback?: Callback&lt;BatteryInfo&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1075,7 +1139,7 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1099,7 +1163,7 @@ on(type: 'bluetoothDeviceFind', callback: Callback&lt;Array&lt;string&gt;&gt;): 
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合
+function onReceiveEvent(data: Array<string>) { // data为蓝牙设备地址集合。
     console.info('bluetooth device find = '+ JSON.stringify(data));
 }
 try {
@@ -1120,7 +1184,7 @@ off(type: 'bluetoothDeviceFind', callback?: Callback&lt;Array&lt;string&gt;&gt;)
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1163,7 +1227,7 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1187,7 +1251,7 @@ on(type: 'bondStateChange', callback: Callback&lt;BondStateParam&gt;): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态
+function onReceiveEvent(data: connection.BondStateParam) { // data为回调函数入参，表示配对的状态。
     console.info('pair state = '+ JSON.stringify(data));
 }
 try {
@@ -1206,7 +1270,7 @@ off(type: 'bondStateChange', callback?: Callback&lt;BondStateParam&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1250,7 +1314,7 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1274,7 +1338,7 @@ on(type: 'pinRequired', callback: Callback&lt;PinRequiredParam&gt;): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-function onReceiveEvent(data: connection.PinRequiredParam) { // data为配对请求参数
+function onReceiveEvent(data: connection.PinRequiredParam) { // data为配对请求参数。
     console.info('pin required = '+ JSON.stringify(data));
 }
 try {
@@ -1293,7 +1357,7 @@ off(type: 'pinRequired', callback?: Callback&lt;PinRequiredParam&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -1329,11 +1393,97 @@ try {
 ```
 
 
+## connection.on('discoveryResult')<sup>16+</sup>
+
+on(type: 'discoveryResult', callback: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+订阅蓝牙设备发现上报事件。使用Callback异步回调。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                     |
+| -------- | ----------------------------------- | ---- | -------------------------------------- |
+| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。 |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。    |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合。
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
+## connection.off('discoveryResult')<sup>16+</sup>
+
+off(type: 'discoveryResult', callback?: Callback&lt;Array&lt;DiscoveryResult&gt;&gt;): void
+
+取消订阅蓝牙设备发现上报事件。
+
+**需要权限**：ohos.permission.ACCESS_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| type     | string                              | 是    | 填写"discoveryResult"字符串，表示蓝牙设备发现事件。   |
+| callback | Callback&lt;Array&lt;[DiscoveryResult](#discoveryresult16)&gt;&gt; | 否    | 表示取消订阅蓝牙设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+let onReceiveEvent: (data: Array<connection.DiscoveryResult>) => void = (data: Array<connection.DiscoveryResult>) => { // data为蓝牙设备扫描结果集合。
+    console.info('bluetooth device find = '+ JSON.stringify(data));
+}
+try {
+    connection.on('discoveryResult', onReceiveEvent);
+    connection.off('discoveryResult', onReceiveEvent);
+} catch (err) {
+    console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
+}
+```
+
+
 ## BondStateParam
 
 描述配对状态参数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
@@ -1346,7 +1496,7 @@ try {
 
 描述配对请求参数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
@@ -1359,7 +1509,7 @@ try {
 
 描述蓝牙设备的类别。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称              | 类型                                | 可读   | 可写   | 说明               |
 | --------------- | ----------------------------------- | ---- | ---- | ---------------- |
@@ -1372,7 +1522,7 @@ try {
 
 描述电量信息的内容。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
@@ -1389,7 +1539,7 @@ try {
 
 枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
@@ -1401,7 +1551,7 @@ try {
 
 枚举，扫描模式。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                       | 值  | 说明              |
 | ---------------------------------------- | ---- | --------------- |
@@ -1419,7 +1569,7 @@ try {
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
@@ -1432,22 +1582,22 @@ try {
 
 枚举，配对失败原因。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
 | USER_REMOVED        | 0    | 用户主动移除设备。|
 | REMOTE_DEVICE_DOWN  | 1    | 远端设备关闭。|
 | AUTH_FAILURE        | 2    | PIN码错误。|
-| AUTH_REJECTED       | 3    | 远端设备鉴权拒绝。|
-| INTERNAL_ERROR      | 4    | 内部错误。|
+| AUTH_REJECTED       | 3    | 远端设备鉴权拒绝。 |
+| INTERNAL_ERROR      | 4    | 内部错误。 |
 
 
 ## DeviceChargeState<sup>12+</sup>
 
 枚举，表示充电状态。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                 | 值  | 说明     |
 | ------------------ | ---- | ------ |
@@ -1455,3 +1605,16 @@ try {
 | DEVICE_NORMAL_CHARGE_IN_CHARGING       | 1    | 正在充电，不支持超级充电。|
 | DEVICE_SUPER_CHARGE_NOT_CHARGED        | 2    | 未充电，支持超级充电。|
 | DEVICE_SUPER_CHARGE_IN_CHARGING       | 3    | 正在充电，支持超级充电。|
+
+## DiscoveryResult<sup>16+</sup>
+
+描述扫描设备状态参数。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称       | 类型   | 可读   | 可写   | 说明          |
+| -------- | ------ | ---- | ---- | ----------- |
+| deviceId    | string      | 是    | 否    | 表示扫描到的设备ID。|
+| rssi     | number      | 是    | 否    | 表示扫描到的设备的信号强度。|
+| deviceName     | string      | 是    | 否    | 表示扫描到的设备的设备名称。|
+| deviceClass     | DeviceClass      | 是    | 否    | 表示扫描到的设备的设备类别。|

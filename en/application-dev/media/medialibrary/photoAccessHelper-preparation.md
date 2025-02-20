@@ -40,4 +40,4 @@ The required permissions must be authorized by the user. After adding the permis
 
 > **NOTE**
 >
-> Even if the user has granted the permission, the permission will still be checked before an API protected by the permission is called. The permission-granted status should not be persisted, because the user can revoke the permission through the system application **Settings**.
+> Even if the user has granted the permission, the permission will still be checked before an API protected by the permission is called. The permission granted status should not be persisted, because the user can revoke the permission through the system application **Settings**.

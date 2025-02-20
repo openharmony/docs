@@ -17,7 +17,7 @@ Defines the enums, structs, and error codes used in the asset store service.
 
 | Name| Description|
 | -------- | -------- |
-| [asset_type.h](asset__type_8h.md) | Defines the enums, structs, and error codes used in the asset store service. |
+| [asset_type.h](asset__type_8h.md) | Defines the enums, structs, and error codes used in the asset store service.|
 
 
 ### Structs
@@ -43,7 +43,7 @@ Defines the enums, structs, and error codes used in the asset store service.
 | Name| Description|
 | -------- | -------- |
 | [Asset_TagType](#asset_tagtype) {<br>ASSET_TYPE_BOOL = 0x1 &lt;&lt; 28,<br>ASSET_TYPE_NUMBER = 0x2 &lt;&lt; 28,<br>ASSET_TYPE_BYTES = 0x3 &lt;&lt; 28 } | Enumerates the types of the keys of asset attributes.|
-| [Asset_Tag](#asset_tag) {<br>ASSET_TAG_SECRET = ASSET_TYPE_BYTES \| 0x01,<br>ASSET_TAG_ALIAS = ASSET_TYPE_BYTES \| 0x02,<br>ASSET_TAG_ACCESSIBILITY = ASSET_TYPE_NUMBER \| 0x03,<br>ASSET_TAG_REQUIRE_PASSWORD_SET = ASSET_TYPE_BOOL \| 0x04,<br>ASSET_TAG_AUTH_TYPE = ASSET_TYPE_NUMBER \| 0x05,<br>ASSET_TAG_AUTH_VALIDITY_PERIOD = ASSET_TYPE_NUMBER \| 0x06,<br>ASSET_TAG_AUTH_CHALLENGE = ASSET_TYPE_BYTES \| 0x07,<br>ASSET_TAG_AUTH_TOKEN = ASSET_TYPE_BYTES \| 0x08,<br>ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER \| 0x10,<br>ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL \| 0x11,<br>ASSET_TAG_DATA_LABEL_CRITICAL_1 = ASSET_TYPE_BYTES \| 0x20,<br>ASSET_TAG_DATA_LABEL_CRITICAL_2 = ASSET_TYPE_BYTES \| 0x21,<br>ASSET_TAG_DATA_LABEL_CRITICAL_3 = ASSET_TYPE_BYTES \| 0x22,<br>ASSET_TAG_DATA_LABEL_CRITICAL_4 = ASSET_TYPE_BYTES \| 0x23,<br>ASSET_TAG_DATA_LABEL_NORMAL_1 = ASSET_TYPE_BYTES \| 0x30,<br>ASSET_TAG_DATA_LABEL_NORMAL_2 = ASSET_TYPE_BYTES \| 0x31,<br>ASSET_TAG_DATA_LABEL_NORMAL_3 = ASSET_TYPE_BYTES \| 0x32,<br>ASSET_TAG_DATA_LABEL_NORMAL_4 = ASSET_TYPE_BYTES \| 0x33,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x34,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x35,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x36,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x37,<br>ASSET_TAG_RETURN_TYPE = ASSET_TYPE_NUMBER \| 0x40,<br>ASSET_TAG_RETURN_LIMIT = ASSET_TYPE_NUMBER \| 0x41,<br>ASSET_TAG_RETURN_OFFSET = ASSET_TYPE_NUMBER \| 0x42,<br>ASSET_TAG_RETURN_ORDERED_BY = ASSET_TYPE_NUMBER \| 0x43,<br>ASSET_TAG_CONFLICT_RESOLUTION = ASSET_TYPE_NUMBER \| 0x44,<br>ASSET_TAG_UPDATE_TIME<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x45,<br>ASSET_TAG_OPERATION_TYPE<sup>12+</sup> = ASSET_TYPE_NUMBER \| 0x46,<br>ASSET_TAG_REQUIRE_ATTR_ENCRYPTED = ASSET_TYPE_BOOL \| 0x47,<br>} | Enumerates the keys of asset attributes.|
+| [Asset_Tag](#asset_tag) {<br>ASSET_TAG_SECRET = ASSET_TYPE_BYTES \| 0x01,<br>ASSET_TAG_ALIAS = ASSET_TYPE_BYTES \| 0x02,<br>ASSET_TAG_ACCESSIBILITY = ASSET_TYPE_NUMBER \| 0x03,<br>ASSET_TAG_REQUIRE_PASSWORD_SET = ASSET_TYPE_BOOL \| 0x04,<br>ASSET_TAG_AUTH_TYPE = ASSET_TYPE_NUMBER \| 0x05,<br>ASSET_TAG_AUTH_VALIDITY_PERIOD = ASSET_TYPE_NUMBER \| 0x06,<br>ASSET_TAG_AUTH_CHALLENGE = ASSET_TYPE_BYTES \| 0x07,<br>ASSET_TAG_AUTH_TOKEN = ASSET_TYPE_BYTES \| 0x08,<br>ASSET_TAG_SYNC_TYPE = ASSET_TYPE_NUMBER \| 0x10,<br>ASSET_TAG_IS_PERSISTENT = ASSET_TYPE_BOOL \| 0x11,<br>ASSET_TAG_DATA_LABEL_CRITICAL_1 = ASSET_TYPE_BYTES \| 0x20,<br>ASSET_TAG_DATA_LABEL_CRITICAL_2 = ASSET_TYPE_BYTES \| 0x21,<br>ASSET_TAG_DATA_LABEL_CRITICAL_3 = ASSET_TYPE_BYTES \| 0x22,<br>ASSET_TAG_DATA_LABEL_CRITICAL_4 = ASSET_TYPE_BYTES \| 0x23,<br>ASSET_TAG_DATA_LABEL_NORMAL_1 = ASSET_TYPE_BYTES \| 0x30,<br>ASSET_TAG_DATA_LABEL_NORMAL_2 = ASSET_TYPE_BYTES \| 0x31,<br>ASSET_TAG_DATA_LABEL_NORMAL_3 = ASSET_TYPE_BYTES \| 0x32,<br>ASSET_TAG_DATA_LABEL_NORMAL_4 = ASSET_TYPE_BYTES \| 0x33,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_1<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x34,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_2<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x35,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_3<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x36,<br>ASSET_TAG_DATA_LABEL_NORMAL_LOCAL_4<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x37,<br>ASSET_TAG_RETURN_TYPE = ASSET_TYPE_NUMBER \| 0x40,<br>ASSET_TAG_RETURN_LIMIT = ASSET_TYPE_NUMBER \| 0x41,<br>ASSET_TAG_RETURN_OFFSET = ASSET_TYPE_NUMBER \| 0x42,<br>ASSET_TAG_RETURN_ORDERED_BY = ASSET_TYPE_NUMBER \| 0x43,<br>ASSET_TAG_CONFLICT_RESOLUTION = ASSET_TYPE_NUMBER \| 0x44,<br>ASSET_TAG_UPDATE_TIME<sup>12+</sup> = ASSET_TYPE_BYTES \| 0x45,<br>ASSET_TAG_OPERATION_TYPE<sup>12+</sup> = ASSET_TYPE_NUMBER \| 0x46,<br>ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> = ASSET_TYPE_BOOL \| 0x47,<br>ASSET_TAG_GROUP_ID<sup>16+</sup> = ASSET_TYPE_BYTES \| 0x48,<br>} | Enumerates the keys of asset attributes.|
 | [Asset_ResultCode](#asset_resultcode) {<br>ASSET_SUCCESS = 0,<br>ASSET_PERMISSION_DENIED = 201,<br>ASSET_INVALID_ARGUMENT = 401,<br>ASSET_SERVICE_UNAVAILABLE = 24000001,<br>ASSET_NOT_FOUND = 24000002,<br>ASSET_DUPLICATED = 24000003,<br>ASSET_ACCESS_DENIED = 24000004,<br>ASSET_STATUS_MISMATCH = 24000005,<br>ASSET_OUT_OF_MEMORY = 24000006,<br>ASSET_DATA_CORRUPTED = 24000007,<br>ASSET_DATABASE_ERROR = 24000008,<br>ASSET_CRYPTO_ERROR = 24000009,<br>ASSET_IPC_ERROR = 24000010,<br>ASSET_BMS_ERROR = 24000011,<br>ASSET_ACCOUNT_ERROR = 24000012,<br>ASSET_ACCESS_TOKEN_ERROR = 24000013,<br>ASSET_FILE_OPERATION_ERROR = 24000014,<br>ASSET_GET_SYSTEM_TIME_ERROR = 24000015,<br>ASSET_LIMIT_EXCEEDED = 24000016,<br>ASSET_UNSUPPORTED = 24000017<br>} | Enumerates the result codes returned by ASSET functions.|
 | [Asset_Accessibility](#asset_accessibility) {<br>ASSET_ACCESSIBILITY_DEVICE_POWERED_ON = 0,<br>ASSET_ACCESSIBILITY_DEVICE_FIRST_UNLOCKED = 1,<br>ASSET_ACCESSIBILITY_DEVICE_UNLOCKED = 2<br>} | Enumerates the types of access control based on the lock screen status.|
 | [Asset_AuthType](#asset_authtype) { ASSET_AUTH_TYPE_NONE = 0x00,<br>ASSET_AUTH_TYPE_ANY = 0xFF } | Enumerates the user authentication types supported by assets.|
@@ -245,6 +245,7 @@ Enumerates the keys of asset attributes.
 | ASSET_TAG_UPDATE_TIME | Asset update time, in timestamp format. The value is of the bytes type.<br>**Since**: 12|
 | ASSET_TAG_OPERATION_TYPE | Additional operation type. The value is of the uint32_t type.<br>**Since**: 12|
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED | Whether to encrypt the additional information customized by the service. The value is of the Boolean type.<br>**Since**: 14|
+| ASSET_TAG_GROUP_ID | Group to which the asset belongs. The value is of the bytes type.<br>**Since**: 16|
 
 
 ### Asset_TagType
@@ -261,9 +262,9 @@ Enumerates the types of the keys of asset attributes.
 
 | Value| Description|
 | -------- | -------- |
-| ASSET_TYPE_BOOL | Boolean. |
-| ASSET_TYPE_NUMBER | uint32_t. |
-| ASSET_TYPE_BYTES | Bytes. |
+| ASSET_TYPE_BOOL | Boolean.|
+| ASSET_TYPE_NUMBER | uint32_t.|
+| ASSET_TYPE_BYTES | Bytes.|
 
 
 ### Asset_OperationType

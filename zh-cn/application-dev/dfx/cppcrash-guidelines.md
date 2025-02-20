@@ -450,7 +450,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 **日志格式 - 打印系统框架业务自定义信息**
 
-（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 15开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_memssage接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
+（目前支持ARM64架构）当进程发生崩溃后，支持打印出系统框架业务自定义的维测信息，帮助开发者定位问题，目前支持字符串类型、内存类型、回调类型、回栈类型信息打印。从API 16开始LastFatalMessage字段仅承载进程崩溃前使用hilog打印的最后一条fatal级别日志或使用libc的set_fatal_memssage接口设置的最后一条消息，回调类型信息和回栈类型信息从LastFatalMessage字段分别调整到ExtraCrashInfo(Callback)字段和ExtraCrashInfo(Unwindstack)字段。以下是DevEco Studio归档在FaultLog包含四种不同类型系统框架业务自定义信息的进程崩溃日志中核心内容。
 
 1. 字符串类型信息
 
@@ -497,7 +497,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 3. 回调类型信息
 
-    从API 15开始从LastFatalMessage字段调整到ExtraCrashInfo(Callback)字段
+    从API 16开始从LastFatalMessage字段调整到ExtraCrashInfo(Callback)字段
 
     ```text
     ...
@@ -508,7 +508,7 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 
 4. 回栈类型信息
 
-    从API 15开始从LastFatalMessage字段调整到ExtraCrashInfo(Unwindstack)字段
+    从API 16开始从LastFatalMessage字段调整到ExtraCrashInfo(Unwindstack)字段
 
     ```text
     ...
@@ -605,11 +605,159 @@ hstack是DevEco Studio为开发人员提供的用于将release应用混淆后的
 
 一般而言，如果是比较明确的问题，反编译定位到代码行就能够定位；较少数的情况，比如定位到某一行里面调用的方法有多个参数，参数又涉及到结构体等，就需要借助反汇编来进一步分析。
 
+参考案例
+
+CPPCRASH日志头部信息如下：
+
 ```text
-objdump -S xxx.so > xxx.txt
-objdump -d xxxx                    对 xxxx 文件反汇编
-objdump -S -l xxxx                 对 xxxx 文件反汇编，同时将指令对应的源码行显示出来
+Process name:com.ohos.medialibrary.medialibrarydata
+
+Process life time:13402s
+
+Reason:SIGSEGV(SEGV_MAPERR)@0x0000005b3b46c000
+
+Fault thread info:
+
+Tid:48552, Name:UpradeTask
+
+#00 pc 00000000000a87e4 /system/lib/ld-musl-aarch64.so.1(memcpy+356)(3c3e7fb27680dc2ee99aa08dd0f81e85)
+
+...
 ```
+
+分析步骤：
+
+1. 根据pc寄存器地址找到对应的汇编指令，根据汇编指令找到当前操作
+
+    在CPPCRASH日志文件中找到栈顶的PC地址，并反汇编对应的ELF(使用unstrip的so，llvm-objdump -d -l xxx.so)。
+
+    例如参考案例在执行00000000000a87e4地址对应的指令时发生data_abort，反编译对应buildId(3c3e7fb27680dc2ee99aa08dd0f81e85)的libc.so,
+
+    反汇编查看a87e4偏移地址显示的信息:
+
+    ```text
+    xxx/../../third_party/optimized-routines/string/aarch64/memcpy.S:175
+
+    a87e4：a94371aa         ldp x10, x11, [x1, #48]
+    ```
+
+    根据反汇编显示的源码文件位置175行，查看对应memcpy.S源文件代码:
+
+    ```text
+    L(loop64):
+
+    line 170   stp A_l, A_h, [dst, 16]
+
+    line 171   ldp A_l, A_h, [src, 16]
+
+    line 172   stp B_l, B_h, [dst, 32]
+
+    line 173   ldp B_l, B_h, [src, 32]
+
+    line 174   stp C_l, C_h, [dst, 48]
+
+    line 175   ldp C_l, C_h, [src, 48]      ---->  崩溃处指令
+
+    line 176   stp D_l, D_h, [dst, 64]
+
+    line 177   ldp D_l, D_h, [src, 64]
+
+    line 178   subs count, count, 64
+
+    line 179   b.hi L(loop64)
+    ```
+
+2. 根据寄存器值，结合上下文推测当前操作的代码对象
+
+    通常x0寄存器为函数的第一个参数，x1为第二个参数，x2为第三个，依次类推；如果为类的方法，x0为对象的地址指针，其后x1、x2、x3为依次类推，注意函数参数超过5个会压入堆栈中。
+
+    栈顶函数void* memcpy(void* restrict dest, void* restrict src, size_t n)的调用参数，x0为目的地址dest, x1为源地址，x2为拷贝字节数；
+
+    在CPPCRASH日志文件中找到对应的三个寄存器值，结合错误访问地址0x0000005b3b46c000，判断出问题的参数为x1对应的src源地址参数:
+
+    ```text
+    Register:
+
+    x0:000005b50c3e3c4 x1:000005b3b46bfcc x2:0000000000007e88 x3:000005b50c42380
+
+    ...
+    ```
+
+3. 判断代码对象的故障类型
+
+    通过CPPCRASH日志中Memory near registers查看寄存器附近内存地址值:
+
+    ```text
+    x1(/data/medialibrary/database/kvdb/3ddb6fb8b2fcb38d2f431e86bfb806dab771637860d6e86bb9430fa15df04248/single_ver/main/gen_natural_st):
+
+        0000005b21bb1fb8 8067d0f2e727f00a
+
+        0000005b21bb1fc0 1b10e1e9a1079f7a
+
+        0000005b21bb1fc8 83906d9c18cdb9c1
+
+        0000005b21bb1fd0 627dd75ab9335eb0
+
+        0000005b21bb1fd8 aabe2bb1b00f2c03
+
+        0000005b21bb1fe0 f981e4acb716cbc1
+
+        0000005b21bb1fe8 806b3d5730d281ee
+
+        0000005b21bb1ff0 3e99fedbc0a9b5e9
+
+        0000005b21bb1ff8 a91ab9d327969682
+
+        0000005b21bb2000 ffffffffffffffff       -----> 读取越界
+
+        0000005b21bb2008 ffffffffffffffff
+
+        0000005b21bb2010 ffffffffffffffff
+
+        0000005b21bb2018 ffffffffffffffff
+
+        0000005b21bb2020 ffffffffffffffff
+
+        0000005b21bb2028 ffffffffffffffff
+
+        0000005b21bb2030 ffffffffffffffff
+    ```
+
+    由上判断是一个读取越界的问题，出问题的参数为memcpy的buf和bufSize，
+
+    此时只需要分析代码中调用memcpy时传入的参数逻辑即可。
+
+4. 持续跟踪出问题对象的参数来源，结合代码与流水日志排查问题
+
+    排查方向一：排查参数对象的有效性、范围是否合法，例如buf的实际大小是否与传入的bufSize一致；
+
+    排查方向二：参数对象的生命周期是否合法，例如buf是否已被释放，是否存在多线程操作被踩内存；
+
+    排查方向三：通过参数对象访问函数的上下文，排查参数的不合理操作逻辑，例如跟踪buf和bufsize的操作逻辑，增加调试信息，锁定不合理操作逻辑。
+
+    代码片段：
+
+    ```text
+    static StatusInter xxxFunc(..., const uint8_t *buf, uint32_t bufSize)
+
+    ...
+
+    uint32_t srcSize = bufSize;
+
+    uint32_t srcOffset = cache->appendOffset - bufSize;
+
+    errno_t ret = memcpy_s(cache->buffer + srcOffset, srcSize, buf, bufSize); 
+
+    if (ret != EOK) {
+
+        return MEMORY_OPERATE_FAILED_INTER;
+
+    }
+
+    ...
+    ```
+
+    通过持续追踪buf和bufSize的来源，最终来确定buf与bufSize在连续拷贝后不匹配，bufSize最终大于实际buf大小导致越界读取。
 
 ### CppCrash 常见问题分类与原因
 

@@ -3407,6 +3407,9 @@ gattClient.getRssiValue().then((data : number) => {
 | deviceId           | string | 是    | 否    | 表示发送特征值写请求的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | transId            | number | 是    | 否    | 表示写请求的传输ID，server端回复响应时需填写相同的传输ID。       |
 | offset             | number | 是    | 否    | 表示写特征值数据的起始位置。例如：k表示从第k个字节开始写，server端回复响应时需填写相同的offset。 |
+| isPrep             | boolean | 是    | 否    | 表示写请求是否立即执行。true表示立即执行。 |
+| needRsp            | boolean | 是    | 否    | 表示是否要给client端回复响应。true表示需要回复。 |
+| value              | ArrayBuffer | 是    | 否    | 表示写入的描述符二进制数据。 |
 | characteristicUuid | string | 是    | 否    | 特定特征（characteristic）的UUID，例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | serviceUuid        | string | 是    | 否    | 特定服务（service）的UUID，例如：00001888-0000-1000-8000-00805f9b34fb。 |
 

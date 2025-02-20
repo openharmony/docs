@@ -342,7 +342,7 @@ struct Second {
             // this.proxy.off("asyncReceiverRegister");
           })
 
-        Button ("Send to UIExtensionAbility").onClick(() => {
+        Button("Send to UIExtensionAbility").onClick(() => {
           if (this.proxy != undefined) {
             this.proxy.send({data: "Hello 1"})
 

@@ -1,8 +1,8 @@
 # ForEach: Rendering Repeated Content
 
-For details about API parameters, see [ForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) APIs.
-
 **ForEach** enables rendering of repeated content based on array type data. It must be used in a container component, and the component it returns must be one allowed inside the container component. For example, for rendering of list items, **ForEach** must be used in the [List](../reference/apis-arkui/arkui-ts/ts-container-list.md) component.
+
+For details about API parameters, see [ForEach](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md) APIs.
 
 > **NOTE**
 >
@@ -307,6 +307,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -407,6 +408,7 @@ struct ArticleCard {
 
   build() {
     Row() {
+      // 'app.media.icon' is only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
       Image($r('app.media.icon'))
         .width(80)
         .height(80)
@@ -422,6 +424,7 @@ struct ArticleCard {
           .margin({ bottom: 8 })
 
         Row() {
+          // 'app.media.iconLiked' and 'app.media.iconUnLiked' are only an example. Replace it with the actual one in use. Otherwise, the imageSource instance fails to be created, and subsequent operations cannot be performed.
           Image(this.article.isLiked ? $r('app.media.iconLiked') : $r('app.media.iconUnLiked'))
             .width(24)
             .height(24)
@@ -515,7 +518,7 @@ Correct use of **ForEach** requires a clear understanding of the key generation 
 
 ### Rendering Result Not as Expected
 
-In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is set to use the string-type **index** property of the data source as the key generation rule. When **Insert an Item after the First Item** in the parent component **Parent** is clicked, an unexpected result is displayed.
+In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is set to use the string-type **index** property of the data source as the key generation rule. When **Insert Item After First Item** in the parent component **Parent** is clicked, an unexpected result is displayed.
 
 ```ts
 @Entry
@@ -526,7 +529,7 @@ struct Parent {
   build() {
     Column() {
       Button() {
-        Text('Insert an Item after the First Item').fontSize(30)
+        Text('Insert Item After First Item').fontSize(30)
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
@@ -554,7 +557,7 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen and the screen after **Insert an Item after the First Item** is clicked.
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
 **Figure 9** Rendering result not as expected  
 ![ForEach-UnexpectedRenderingResult](figures/ForEach-UnexpectedRenderingResult.gif)
@@ -569,7 +572,7 @@ In the preceding example, the final key generation rule includes **index**. Whil
 
 ### Deteriorated Rendering Performance
 
-In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rules](#key-generation-rules), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert an Item after the First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
+In this example, the **KeyGenerator** function – the third parameter of **ForEach** – is left empty. According to the description in [Key Generation Rules](#key-generation-rules), the default key generation rule of the ArkUI framework is used. That is, the final key is the string **index + '__' + JSON.stringify(item)**. After **Insert Item After First Item** is clicked, **ForEach** recreates components for the second array item and all items after it.
 
 ```ts
 @Entry
@@ -580,7 +583,7 @@ struct Parent {
   build() {
     Column() {
       Button() {
-        Text('Insert an Item after the First Item').fontSize(30)
+        Text('Insert Item After First Item').fontSize(30)
       }
       .onClick(() => {
         this.simpleList.splice(1, 0, 'new item');
@@ -613,12 +616,12 @@ struct ChildItem {
 }
 ```
 
-The following figure shows the initial screen and the screen after **Insert an Item after the First Item** is clicked.
+The following figure shows the initial screen and the screen after **Insert Item After First Item** is clicked.
 
 **Figure 10** Deteriorated rendering performance 
 ![ForEach-RenderPerformanceDecrease](figures/ForEach-RenderPerformanceDecrease.gif)
 
-After **Insert an Item after the First Item** is clicked, DevEco Studio displays logs as shown in the figure below.
+After **Insert Item After First Item** is clicked, DevEco Studio displays logs as shown in the figure below.
 
 **Figure 11** Logs indicating deteriorated rendering performance 
 ![ForEach-RenderPerformanceDecreaseLogs](figures/ForEach-RenderPerformanceDecreaseLogs.png)
@@ -629,4 +632,11 @@ After a new item is inserted, **ForEach** creates the corresponding child items 
 2. After a new item is inserted, the data source **simpleList** changes to ['one','new item', 'two', 'three']. The ArkUI framework detects changes in the length of the @State decorated data source and triggers **ForEach** for re-rendering.
 3. **ForEach** traverses items in the new data source. When it reaches array item **one**, it generates key **0__one** for the item, and because the same key already exists, no new component is created. When **ForEach** reaches array item **new item**, it generates key **1__new item** for the item, and because no same key exists, a new component **new item** is created. When **ForEach** reaches array item **two**, it generates key **2__two** for the item, and because no same key exists, a new component **two** is created. When **ForEach** reaches array item **three**, it generates key **3__three** for the item, and because no same key exists, a new component **three** is created.
 
-Although the rendering result in this example is as expected, each time a new array item is inserted, **ForEach** recreates components for all array items following that array item. Because components are not reused, the performance experience can be poor when the data source contains a large volume of data or the component structure is complex. To sum up, whenever possible, do not leave the third parameter (the **KeyGenerator** function) of **ForEach** empty, or include **index** in the key generation rule.
+Although the rendering result in this example is as expected, each time a new array item is inserted, **ForEach** recreates components for all array items following that array item. Because components are not reused, the performance experience can be poor when the data source contains a large volume of data or the component structure is complex. To sum up, whenever possible, do not leave the third parameter (the **KeyGenerator** function) of **ForEach** empty, or include **index** in the key generation rule. 
+The following format of **ForEach** is used to correctly render and ensure efficiency:
+```ts
+ForEach(this.simpleList, (item: string) => {
+  ChildItem({ item: item })
+}, (item: string) => item)  // Ensure that the key is unique.
+```
+The third parameter **KeyGenerator** is provided. In the preceding example, different keys are generated for different data items of the data source, and the same key is generated for the same data item each time.

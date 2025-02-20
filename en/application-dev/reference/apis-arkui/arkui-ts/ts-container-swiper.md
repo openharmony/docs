@@ -1717,7 +1717,7 @@ struct SwiperCustomAnimationExample {
             this.translateList[proxy.index] = 0.0
             this.zIndexList[proxy.index] = 0
           } else {
-            // When a page in the same group is swiped right but is still within the viewport, the attribute values of the left and right pages in the same group are changed frame by frame based on the position. The changes implement the custom switching animation in which the two pages move close to the middle of the <Swiper> and are transparently scaled in or out.
+            // When a page in the same group is swiped right but is still within the viewport, the attribute values of the left and right pages in the same group are changed frame by frame based on the position. The changes implement the custom switching animation in which the two pages move close to the middle of the Swiper and are transparently scaled in or out.
             if (proxy.index % this.DISPLAY_COUNT === 0) {
               this.opacityList[proxy.index] = 1 - proxy.position / this.DISPLAY_COUNT
               this.scaleList[proxy.index] = this.MIN_SCALE + (1 - this.MIN_SCALE) * (1 - proxy.position / this.DISPLAY_COUNT)
@@ -1732,7 +1732,7 @@ struct SwiperCustomAnimationExample {
         }
       })
       .onContentDidScroll((selectedIndex: number, index: number, position: number, mainAxisLength: number) => {
-        // Called when content in the <Swiper> component scrolls. In this callback, you can customize the navigation point indicator switching animation.
+        // Called when content in the Swiper component scrolls. In this callback, you can customize the navigation point indicator switching animation.
         console.info("onContentDidScroll selectedIndex: " + selectedIndex + ", index: " + index + ", position: " + position + ", mainAxisLength: " + mainAxisLength)
       })
     }.width('100%')

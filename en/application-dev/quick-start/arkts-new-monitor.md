@@ -2,6 +2,9 @@
 
 You can use \@Monitor, a method decorator in state management V2, to enhance the capability of the state management framework to listen for the state variable changes
 
+
+\@Monitor provides the capability of listening for state variables of V2. Before reading this topic, you are advised to read [\@ComponentV2](./arkts-new-componentV2.md), [\@ObservedV2 and \@Trace](./arkts-new-observedV2-and-trace.md), and [\@Local](./arkts-new-local.md).
+
 >**NOTE**
 >
 >The \@Monitor decorator is supported since API version 12.

@@ -215,7 +215,7 @@ type GetItemMainSizeByIndex = (index: number) => number
 | 名称 | 值 | 说明 |
 | ------ | ------ | -------------------- |
 | ALWAYS_TOP_DOWN | 0 | 默认的从上到下的布局模式。视窗内的FlowItem依赖视窗上方所有FlowItem的布局信息。因此跳转或切换列数时，需要计算出上方所有的FlowItem的布局信息。 |
-| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。有频繁切换列数的场景的应用建议使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 3. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 4. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，移动窗口模式对总偏移量进行估算。 |
+| SLIDING_WINDOW | 1 | 移动窗口式的布局模式。只考虑视窗内的布局信息，对视窗上方的FlowItem没有依赖关系，因此向后跳转或切换列数时只需要布局视窗内的FlowItem。建议优先使用该模式。 <br/>**说明：** <br/>1. 无动画跳转到较远的位置时，会以目标位置为基准，向前或向后布局FlowItem。这之后如果滑回跳转前的位置，内容的布局效果可能和之前不一致。 这个效果会导致跳转后回滑到顶部时，顶部节点可能不对齐。所以该布局模式下会在滑动到顶部后自动调整布局，保证顶部对齐。在有多个分组的情况下，会在滑动结束时调整在视窗内的分组。<br/> 2. [scroller](#waterflowoptions对象说明)的[currentOffset](ts-container-scroll.md#currentoffset)接口返回的总偏移量在触发跳转或数据更新后不准确，在回滑到顶部时会重新校准。 <br/> 3. 如果在同一帧内调用跳转（如无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)、[scrollEdge](ts-container-scroll.md#scrolledge)）和输入偏移量（如滑动手势或滚动动画），两者都会生效。 <br/> 4. 调用无动画的[scrollToIndex](ts-container-scroll.md#scrolltoindex)进行跳转，如果跳转到较远位置（超过视窗内的FlowItem数量的位置）时，移动窗口模式对总偏移量进行估算。 |
 
 
 ## 属性
@@ -392,7 +392,7 @@ friction(value: number | Resource)
 
 cachedCount(value: number)
 
-设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按默认值显示。
+设置预加载的FlowItem的数量，只在LazyForEach中生效。设置该属性后会缓存cachedCount个FlowItem。[LazyForEach](../../../quick-start/arkts-rendering-control-lazyforeach.md)超出显示和缓存范围的FlowItem会被释放。设置为小于0的值时，按1处理。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -400,13 +400,13 @@ cachedCount(value: number)
 
 **参数：** 
 
-| 参数名 | 类型   | 必填 | 说明                                     |
-| ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| value  | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 |
 
 ### cachedCount<sup>14+</sup>
 
-cachedCount(value: number, show: boolean)
+cachedCount(count: number, show: boolean)
 
 设置预加载的FlowItem数量，并配置是否显示预加载节点。
 
@@ -422,7 +422,7 @@ cachedCount(value: number, show: boolean)
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| value  | number | 是   | 预加载的FlowItem的数量。 <br/> 默认值：1 |
+| count | number | 是   | 预加载的FlowItem的数量。 <br/>默认值：根据屏幕内显示的节点个数设置，最大值为16。 |
 | show  | boolean | 是   | 被预加载的FlowItem是否需要显示。 <br/> 默认值：false |
 
 ## 事件
@@ -1181,6 +1181,7 @@ struct WaterFlowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .height('90%')
+      .scrollBar(BarState.On)
       .fadingEdge(true,{fadingEdgeLength:LengthMetrics.vp(80)})
 
     }
@@ -1196,7 +1197,8 @@ struct WaterFlowDemo {
 
 ```ts
 //index.ets
-import { WaterFlowDataSource } from '../data/WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
 @Entry
 @Component
 struct WaterFlowDemo {
@@ -1228,7 +1230,7 @@ struct WaterFlowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ scroller:this.scroller }) {
+      WaterFlow({ scroller: this.scroller }) {
         LazyForEach(this.dataSource, (item: number) => {
           FlowItem() {
             Column() {
@@ -1244,11 +1246,104 @@ struct WaterFlowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .height('90%')
-      .edgeEffect(EdgeEffect.Spring,{alwaysEnabled:true,effectEdge:EffectEdge.START})
+      .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true, effectEdge: EffectEdge.START })
 
     }
   }
 }
 ```
 
-![edgeEffect_waterFlow](figures/edgeEffect_waterFlow.gif)
+![edgeEffect_waterFlow](figures/edgeEffect_waterflow.gif)
+
+### 示例7（WaterFlow组件设置和改变尾部组件）
+
+该示例通过footerContent接口，实现了WaterFlow组件设置尾部组件。通过ComponentContent的update函数更新尾部组件。
+
+```ts
+// Index.ets
+import { ComponentContent, UIContext } from "@kit.ArkUI"
+import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+class Params {
+  text: string = ""
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
+@Builder
+function buildText(params: Params) {
+  Column() {
+    Text(params.text)
+      .fontSize(20)
+      .fontWeight(FontWeight.Bold)
+      .margin(20)
+  }
+}
+
+@Entry
+@Component
+struct Index {
+  @State message1: string = "已经到底了"
+  @State message2: string = "加载更多"
+  @State colors: number[] = [0xD5D5D5, 0x7F7F7F, 0xF7F7F7]
+  @State minSize: number = 80
+  @State maxSize: number = 180
+  context: UIContext = this.getUIContext()
+  footerContent: ComponentContent<Params> = new ComponentContent<Params>(this.context, wrapBuilder<[Params]>(buildText), new Params(this.message1));
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource()
+  private itemWidthArray: number[] = []
+  private itemHeightArray: number[] = []
+
+  // 计算FlowItem宽/高
+  getSize() {
+    let ret = Math.floor(Math.random() * this.maxSize)
+    return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  // 设置FlowItem宽/高数组
+  setItemSizeArray() {
+    for (let i = 0; i < 100; i++) {
+      this.itemWidthArray.push(this.getSize())
+      this.itemHeightArray.push(this.getSize())
+    }
+  }
+
+  aboutToAppear() {
+    this.setItemSizeArray()
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("更新footer").width('90%').margin(20)
+          .onClick((event?: ClickEvent) => {
+            this.footerContent.update(new Params(this.message2))
+          })
+        WaterFlow({ footerContent: this.footerContent }) {
+          LazyForEach(this.dataSource, (item: number) => {
+            FlowItem() {
+              Column() {
+                Text("N" + item).fontSize(12).height('16')
+              }
+              .width('100%')
+              .height(this.itemHeightArray[item % 100])
+              .backgroundColor(this.colors[item % 3])
+              .justifyContent(FlexAlign.Center)
+              .alignItems(HorizontalAlign.Center)
+            }
+          }, (item: string) => item)
+        }
+        .columnsTemplate('1fr')
+        .height("90%")
+      }
+      .width('100%')
+      .height('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![waterFlow_footerContent](figures/waterFlow_footerContent.gif)

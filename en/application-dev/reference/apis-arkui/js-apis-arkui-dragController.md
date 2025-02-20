@@ -271,8 +271,8 @@ Defines the attributes required for initiating a drag action and information car
 | pointerId   | number                                                 | Yes  | ID of the touch point on the screen when dragging is started.        |
 | data        | [unifiedDataChannel.UnifiedData](../apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddata) | No  | Data carried in the dragging process.              |
 | extraParams | string                                                 | No  | Additional information about the drag action. Not supported currently.|
-| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered.|
-| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Custom configuration of the drag preview.|
+| touchPoint<sup>11+</sup>    | [TouchPoint](arkui-ts/ts-types.md#touchpoint11)  | No  | Coordinates of the touch point. If this parameter is not set, the touch point is centered horizontally and shifted downward by 20% from the top.|
+| previewOptions<sup>11+</sup>| [DragPreviewOptions](arkui-ts/ts-universal-attributes-drag-drop.md#dragpreviewoptions11)                                | No  | Processing mode of the drag preview and the display of the number badge during dragging.|
 
 ## dragController.createDragAction<sup>11+</sup>
 
@@ -506,25 +506,28 @@ struct DragControllerPage {
     Column() {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
-          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new unifiedDataChannel.Text()
-          let unifiedData = new unifiedDataChannel.UnifiedData(text)
-          let dragInfo: dragController.DragInfo = {
-            pointerId: 0,
-            data: unifiedData,
-            extraParams: ''
-          }
-          try{
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
-            if(!dragAction){
-              console.info("listener dragAction is null");
-              return
+          if (event && event.type == TouchType.Down) {
+            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+            customBuilders.push(()=>{});
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
             }
-            dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
-            })
-          }catch(err) {
-            console.info("create dragAction Error:" + err.message);
+            try{
+              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
+              if(!dragAction){
+                console.info("listener dragAction is null");
+                return
+              }
+              dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              })
+            }catch(err) {
+              console.info("create dragAction Error:" + err.message);
+            }
           }
         })
     }
@@ -546,7 +549,7 @@ Unsubscribes from drag state changes.
 | Name    | Type | Mandatory   | Description            |
 | ------ | ------ | ------- | ---------------- |
 |  type  | string | Yes     | Event type. The value is fixed at **'statusChange'**, which indicates the drag state change event.|
-|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | No     | Callback used to return a [DragAndDropInfo](#draganddropinfo11) instance. If this parameter is not set, this API unsubscribes from all callbacks corresponding to **type**.|
+|  callback  | Callback&lt;[DragAndDropInfo](#draganddropinfo11)&gt; | No     | Callback to unregister. If this parameter is not specified, this API unregisters all callbacks for the specified event.|
 
 **Example**
 
@@ -565,25 +568,28 @@ struct DragControllerPage {
     Column() {
       Button('touch to execute drag')
         .onTouch((event?:TouchEvent) => {
-          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new unifiedDataChannel.Text()
-          let unifiedData = new unifiedDataChannel.UnifiedData(text)
-          let dragInfo: dragController.DragInfo = {
-            pointerId: 0,
-            data: unifiedData,
-            extraParams: ''
-          }
-          try{
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
-            if(!dragAction){
-              console.info("listener dragAction is null");
-              return
+          if (event && event.type == TouchType.Down) {
+            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+            customBuilders.push(()=>{});
+            let text = new unifiedDataChannel.Text()
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
             }
-            dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-              console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
-            })
-          }catch(err) {
-            console.info("create dragAction Error:" + err.message);
+            try{
+              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
+              if(!dragAction){
+                console.info("listener dragAction is null");
+                return
+              }
+              dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
+                console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+              })
+            }catch(err) {
+              console.info("create dragAction Error:" + err.message);
+            }
           }
         })
     }
@@ -602,7 +608,7 @@ Provides the data reported when the state changes during dragging.
 | Name         | Type                                                  | Mandatory| Description                                    |
 | -----------   | ------------------------------------------------------ | ---- | ---------------------------------------- |
 | status       | [DragStatus](#dragstatus11)                                                 | Yes  | Current dragging state (started or ended).        |
-| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event corresponding to the current state.              |
+| event        | [DragEvent](arkui-ts/ts-universal-events-drag-drop.md#dragevent) | Yes  | Drag event corresponding to the current state. The drag event initiated by **dragController** only supports the APIs for obtaining the result and behavior, and is used exclusively for the dragging end state.|
 | extraParams| string                                                 | No  | Additional information about the drag action. Not supported currently.|
 
 ## DragStatus<sup>11+</sup>
@@ -795,7 +801,7 @@ struct DragControllerPage {
 
   build() {
     Column() {
-      Button ('Drag Here')
+      Button('Drag Here')
         .margin(10)
         .onDragEnter(() => {
         try {
@@ -818,7 +824,7 @@ struct DragControllerPage {
         .onDrop(() => {
           promptAction.showToast({duration: 100, message: 'Drag Success', bottom: 400})
         })
-      Button ('Drag').onTouch ((event?:TouchEvent) => {
+      Button('Drag').onTouch((event?:TouchEvent) => {
         if(event){
           if (event.type == TouchType.Down) {
             let text = new unifiedDataChannel.Text()

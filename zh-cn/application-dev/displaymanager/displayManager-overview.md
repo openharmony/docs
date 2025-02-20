@@ -8,9 +8,9 @@
 - 可监听屏幕发生的各种事件变化，包括屏幕旋转变化、屏幕分辨率变化、屏幕刷新率变化、折叠状态变化等。
 - 提供虚拟屏的创建和使用，此部分能力仅对系统应用开放。
 
-针对屏幕属性相关信息的查询和监听，可见[使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](native-display-manager.md)和[使用Display实现屏幕属性查询及状态监听 (ArkTS)](screenProperty-guideline.md)，虚拟屏的相关使用具体可见[虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](virtualScreen-guideline.md)。
+针对屏幕属性相关信息的查询和监听，可见[使用OH_DisplayManager实现屏幕基础信息查询和状态监听 (C/C++)](native-display-manager.md)和[使用Display实现屏幕属性查询及状态监听 (ArkTS)](screenProperty-guideline.md)<!--Del-->，虚拟屏的相关使用具体可见[虚拟屏的创建和使用 (ArkTS) (仅对系统应用开放)](virtualScreen-guideline.md)<!--DelEnd-->。
 
 ## 约束和限制
 
-- 需要在支持SystemCapability.Window.SessionManager能力的系统上使用Display和Screen接口，更详细的系统能力请参考[系统能力SystemCapability使用指南](../reference/syscap.md)。
+- 需要在支持SystemCapability.Window.SessionManager能力的系统上使用Display和Screen接口，<!--RP1-->更详细的系统能力请参考[系统能力SystemCapability使用指南](../reference/syscap.md)。<!--RP1End-->
 - 在多屏实现中，Screen接口仅支持系统应用使用，且部分接口需要申请ohos.permission.CAPTURE_SCREEN权限。

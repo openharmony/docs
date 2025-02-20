@@ -12,7 +12,7 @@
 target_link_libraries(sample PUBLIC libmedia_asset_manager.so)
 ```
 
-开发者通过引入[media_asset_manager.h](../../reference/apis-media-library-kit/media__asset__manager__capi_8h.md)和[media_asset_base_capi.h](../../reference/apis-media-library-kit/media__asset__base__capi_8h.md)头文件，使用MediaAssetManager相关API。
+开发者通过引入[media_asset_manager_capi.h](../../reference/apis-media-library-kit/media__asset__manager__capi_8h.md)和[media_asset_base_capi.h](../../reference/apis-media-library-kit/media__asset__base__capi_8h.md)头文件，使用MediaAssetManager相关API。
 详细的API说明请参考[MediaAssetManager API](../../reference/apis-media-library-kit/_media_asset_manager.md)。
 
 > **说明：**
@@ -75,7 +75,7 @@ int main()
 
             // 调用CancelRequest接口，用来取消尚在处理中的请求
             // 注：OH_MediaAssetManager_CancelRequest不是必须流程，开发者可根据实际情况选择是否调用该接口来取消尚未回调返回的资源请求
-            bool ret = OH_MediaAssetManager_CancelRequest(manager, requestId);
+            bool ret = OH_MediaAssetManager_CancelRequest(manager, requestIdStruct);
         }
     }
     return 0;

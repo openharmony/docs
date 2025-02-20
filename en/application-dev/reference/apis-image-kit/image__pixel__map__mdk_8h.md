@@ -37,8 +37,8 @@ The **image_pixel_map_mdk.h** file declares the APIs used to lock, access, and u
 
 | Name| Description| 
 | -------- | -------- |
-| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#anonymous-enum-23) = 0,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#anonymous-enum-23) = 1,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#anonymous-enum-23) = 2,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL](image.md#anonymous-enum-23) = 3 } | Enumerates the PixelMap alpha types.| 
-| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#anonymous-enum-23-1) = 0,<br>[OHOS_PIXEL_MAP_EDITABLE](image.md#anonymous-enum-23-1) = 1 } | Enumerates the PixelMap editing types.| 
+| { [OHOS_PIXEL_MAP_ALPHA_TYPE_UNKNOWN](image.md#pixelmap-alpha-types) = 0,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_OPAQUE](image.md#pixelmap-alpha-types) = 1,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_PREMUL](image.md#pixelmap-alpha-types) = 2,<br>[OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL] (image.md#pixelmap-alpha-types) = 3 }| Enumerates the PixelMap alpha types.| 
+| { [OHOS_PIXEL_MAP_READ_ONLY](image.md#pixelmap-editing-types) = 0,<br>[OHOS_PIXEL_MAP_EDITABLE](image.md#pixelmap-editing-types) = 1 }| Enumerates the PixelMap editing types.| 
 | [OH_PixelMap_AntiAliasingLevel](image.md#oh_pixelmap_antialiasinglevel) { <br>OH_PixelMap_AntiAliasing_NONE = 0, <br>OH_PixelMap_AntiAliasing_LOW = 1, <br>OH_PixelMap_AntiAliasing_MEDIUM = 2, <br>OH_PixelMap_AntiAliasing_HIGH = 3 <br>} | Enumerates the antialiasing levels used for scaling a PixelMap. | 
 
 

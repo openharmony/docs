@@ -39,7 +39,7 @@ The **AbilityInfo** module defines the ability information. A third-party applic
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | Yes  | No  | Whether the ability can hide icons in the dock area.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
 | appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|
-| orientationId<sup>14+</sup>    | number      | Yes  | No  | Resource ID of the ability display mode. If **orientationId** is not set to **0**, the current display mode is customized, and **orientationId** must be used to obtain the corresponding resource from the resource manager module.|
+| orientationId<sup>14+</sup>    | number      | Yes  | No  | Resource ID of the ability display mode. If **orientationId** is not set to **0**, the current display mode is customized, and **orientationId** must be used to obtain the corresponding resource from the resource manager module.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## WindowSize
 

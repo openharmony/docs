@@ -22,7 +22,7 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -73,7 +73,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -81,29 +81,33 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
   //getWant回调
   let getWantCallback = (err: BusinessError, data: Want) => {
     if(err) {
-      console.error(`getWant failed! ${err.code} ${err.message}`);
+      console.error(`getWant failed, code: ${err.code}, messgae: ${err.message}.`);
     } else {
-      console.info(`getWant ok! ${JSON.stringify(data)}`);
+      console.info(`getWant success, data: ${JSON.stringify(data)}.`);
     }
   }
   try {
     wantAgent.getWant(wantAgentData, getWantCallback);
   } catch(err) {
-    console.error(`getWant failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`getWant failed, code: ${code}, message: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-  console.error(`getWantAgent failed! ${err.code} ${err.message}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, code: ${code}, message: ${msg}.`);
 }
 ```
 
@@ -117,7 +121,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -175,7 +179,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
@@ -183,27 +187,116 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
   if (err) {
-    console.info(`getWantAgent failed, code: ${JSON.stringify(err.code)}, message: ${JSON.stringify(err.message)}`);
+    console.info(`getWantAgent failed, code: ${err.code}, message: ${err.message}`);
   } else {
     wantAgentData = data;
   }
   try {
-    wantAgent.getUid(wantAgentData).then((data)=>{
-      console.info(`getUid ok! ${JSON.stringify(data)}`);
+    wantAgent.getWant(wantAgentData).then((data)=>{
+      console.info(`getWant success, data: ${JSON.stringify(data)}`);
     }).catch((err: BusinessError)=>{
-      console.error(`getUid failed! ${err.code} ${err.message}`);
+      console.error(`getWant failed, code: ${err.code}, messgae: ${err.message}.`);
     });
   } catch(err){
-    console.error(`getUid failed! ${err.code} ${err.message}`);
+    let code = (err as BusinessError).code;
+    let msg = (err as BusinessError).message;
+    console.error(`getWant failed, code: ${code}, messgae: ${msg}.`);
   }
 }
 
 try {
   wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-  console.error(`getWantAgent failed! ${err.code} ${err.message}}`);
+  let code = (err as BusinessError).code;
+  let msg = (err as BusinessError).message;
+  console.error(`getWantAgent failed, code: ${code}, messgae: ${msg}.`);
 }
 ```
+
+## WantAgent.setWantAgentMultithreading<sup>16+</sup>
+
+setWantAgentMultithreading(isMultithreadingSupported: boolean) : void
+
+开启或者关闭WantAgent多线程传递功能。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名     | 类型                  | 必填 | 说明                            |
+| ---------- | --------------------- | ---- | ------------------------------- |
+| isMultithreadingSupported    | boolean    | 是   |表示是否开启多线程传递功能。true表示开启，false表示关闭。   |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 202       | Not system app. Interface caller is not a system app. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例**：
+
+```ts
+import { wantAgent, WantAgent as _WantAgent, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+
+// 定义wantAgent对象
+let wantAgentData: _WantAgent;
+// 定义WantAgentInfo对象
+let wantAgentInfo: wantAgent.WantAgentInfo = {
+  wants: [
+    {
+      deviceId: 'deviceId',
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility',
+      action: 'action1',
+      entities: ['entity1'],
+      type: 'MIMETYPE',
+      uri: 'key={true,true,false}',
+      parameters:
+      {
+        mykey0: 2222,
+        mykey1: [1, 2, 3],
+        mykey2: '[1, 2, 3]',
+        mykey3: 'ssssssssssssssssssssssssss',
+        mykey4: [false, true, false],
+        mykey5: ['qqqqq', 'wwwwww', 'aaaaaaaaaaaaaaaaa'],
+        mykey6: true,
+      }
+    } as Want
+  ],
+  operationType: wantAgent.OperationType.START_ABILITIES,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+};
+
+// 定义getWantAgent回调
+function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
+  if (err) {
+    console.info(`Failed to call getWantAgentCallback. Code is ${err.code}. Message is ${err.message}.`);
+  } else {
+    wantAgentData = data;
+  }
+
+  try {
+    wantAgent.setWantAgentMultithreading(true);
+  } catch (err) {
+    console.error(`Failed to set wantAgentMultithreading. Code is ${err.code}. Message is ${err.message}.`);
+  }
+}
+
+try {
+  wantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
+} catch (err) {
+  console.error(`Failed to get wantAgent. Code is ${err.code}. Message is ${err.message}.`);
+}
+```
+
 ## OperationType
 
 表示操作WantAgent类型的枚举。
@@ -212,4 +305,4 @@ try {
 
 | 名称                      | 值 | 说明                                            |
 |-------------------------|---|-----------------------------------------------|
-| START_SERVICE_EXTENSION<sup>12+</sup> | 6 | 开启一个ServiceExtension。<br/>**系统接口：** 该接口为系统接口。 |
+| START_SERVICE_EXTENSION<sup>12+</sup> | 6 | 开启一个ServiceExtension。<br/>**系统接口**：该接口为系统接口。 |

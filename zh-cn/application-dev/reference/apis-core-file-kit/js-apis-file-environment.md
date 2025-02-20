@@ -16,7 +16,7 @@ import { Environment } from '@kit.CoreFileKit';
 
 getUserDownloadDir(): string
 
-获取当前用户预授权下载目录的沙箱路径。
+获取当前用户预授权下载目录的沙箱路径。当前仅支持2in1设备使用。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -53,7 +53,7 @@ function getUserDownloadDirExample() {
 
 getUserDesktopDir(): string
 
-获取当前用户预授权桌面目录的沙箱路径。
+获取当前用户预授权桌面目录的沙箱路径。当前仅支持2in1设备使用。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 
@@ -90,7 +90,7 @@ function getUserDesktopDirExample() {
 
 getUserDocumentDir(): string
 
-获取当前用户预授权文档目录的沙箱路径。
+获取当前用户预授权文档目录的沙箱路径。当前仅支持2in1设备使用。
 
 **系统能力**：SystemCapability.FileManagement.File.Environment.FolderObtain
 

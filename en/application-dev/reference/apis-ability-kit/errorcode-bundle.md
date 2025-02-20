@@ -897,7 +897,7 @@ The application has applied for an incorrect permission, causing the installatio
 **Solution**
 
 1. Check whether the application has applied for the <!--Del-->[<!--DelEnd-->MDM permission<!--Del-->](../../security/AccessToken/permissions-for-mdm-apps.md)<!--DelEnd-->, which is available only for MDM applications.
-2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/permissions-for-all.md).
+2. Check whether the requested permission is open. For details, see [Permission List](../../security/AccessToken/app-permissions.md).
 
 ## 17700055 Invalid Link
 
@@ -1027,6 +1027,24 @@ When an API related to the app clone feature is called, the specified **appIndex
 2. Check whether the application has a clone of the specified index.
 3. Check whether **createAppClone** is called with an existing index.
 
+## 17700062 Failed to Uninstall an Application Configured with an Uninstallation Disposed Rule
+
+**Error Message**
+
+Failed to uninstall the app because the app has uninstall rule.
+
+**Description**
+
+The application cannot be directly uninstalled because it is configured with an uninstallation disposed rule.
+
+**Possible Causes**
+
+The application to uninstall is configured with an uninstallation disposed rule.
+
+**Solution**
+
+Check whether the application is configured with an uninstallation disposed rule. The entity that set the rule is responsible for handling.
+
 ## 17700065 Ability Specified by want in the ShortcutInfo Struct Cannot Be Started
 
 **Error Message**
@@ -1131,8 +1149,6 @@ It is not allowed to install enterprise applications through a specific installa
 
 Due to policy control, enterprise applications cannot be installed through the specific API.
 
-**Solution**
-
 ## 17700072 Launch Want Does Not Exist
 
 **Error Message**
@@ -1168,6 +1184,42 @@ The installation fails because an application with the same bundle name but diff
 **Solution**
 1. Uninstall the application with the same bundle name.
 2. Install the application that has been uninstalled with data retained, and then uninstall the application without data retained.
+
+## 17700074 Invalid appIdentifier
+
+**Error Message**
+
+The specified appIdentifier is invalid.
+
+**Description**
+
+When an API of the appControl module is called, the appIdentifier passed in is invalid.
+
+**Possible Causes**
+
+**appIdentifier** is an empty string.
+
+**Solution**
+
+Check whether **appIdentifier** is an empty string.
+
+## 17700075 Bundle Name Specified in want Is Inconsistent with That of the Caller
+
+**Error Message**
+
+The specified bundleName of want is not the same with caller. 
+
+**Description**
+
+When setting an uninstallation disposed rule, the bundle name specified in **want** is different from that of the caller.
+
+**Possible Causes**
+
+When setting an uninstallation disposed rule, the bundle name specified in **want** is different from that of the caller.
+
+**Solution**
+
+Change the value of **bundleName** in **want** to be the same as that of the caller.
 
 ## 17700201 .abc File Verification Failure
 
