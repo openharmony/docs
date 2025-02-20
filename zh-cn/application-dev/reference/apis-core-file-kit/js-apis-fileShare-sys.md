@@ -254,10 +254,9 @@ checkPathPermission(tokenID: number, policies: Array&lt;PathPolicyInfo&gt;, poli
           console.info('check permission result is', x);
         }
       })
-      this.message = "checkPathPermission finish";
+      console.info("checkPathPermission finish");
     }
     catch (error) {
-      this.message = error.message;
       console.info(error.code + 'checkPathPermission error' + error.message);
     }
   }
