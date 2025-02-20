@@ -330,24 +330,29 @@ struct Index {
 | backgroundFilter         | 不支持   | is not callable         | -                                         |
 | bindContentCover         | 不支持   | Method not implemented. | 不支持入参为CustomBuilder。               |
 | bindContextMenu          | 不支持   | Method not implemented. | 不支持入参为CustomBuilder。               |
-| bindMenu                 | 不支持   | -                       | 不支持入参为CustomBuilder。               |
+| bindMenu                 | 不支持   | Method not implemented. | 不支持入参为CustomBuilder。               |
 | bindPopup                | 不支持   | Method not implemented. | 不支持入参为CustomBuilder。               |
 | bindSheet                | 不支持   | Method not implemented. | 不支持入参为CustomBuilder。               |
+| chainWeight              | 不支持   | is not callable         | -                                         |
 | compositingFilter        | 不支持   | is not callable         | -                                         |
 | drawModifier             | 不支持   | is not callable         | 不支持modifier相关的属性。                |
 | foregroundFilter         | 不支持   | is not callable         | -                                         |
 | freeze                   | 不支持   | is not callable         | -                                         |
 | gesture                  | 不支持   | Method not implemented. | 不支持gesture相关的属性。                 |
 | gestureModifier          | 不支持   | is not callable         | 不支持modifier相关的属性。                |
+| onAccessibilityHover     | 不支持   | is not callable         | -                                         |
 | onChildTouchTest         | 不支持   | is not callable         | -                                         |
-| onDragStart              | 不支持   | Method not implemented. | 不支持返回值为CustomBuilder。             |
+| onKeyEventDispatch       | 不支持   | is not callable         | -                                         |
 | onPreDrag                | 不支持   | Method not implemented. | -                                         |
 | onTouchIntercept         | 不支持   | is not callable         | -                                         |
 | onVisibleAreaChange      | 不支持   | Method not implemented. | -                                         |
 | parallelGesture          | 不支持   | Method not implemented. | 不支持gesture相关的属性。                 |
 | priorityGesture          | 不支持   | Method not implemented. | 不支持gesture相关的属性。                 |
 | reuseId                  | 不支持   | Method not implemented. | -                                         |
+| safeAreaPadding          | 不支持   | is not callable         | -                                         |
 | stateStyles              | 不支持   | Method not implemented. | 不支持stateStyles相关的属性。             |
 | useSizeType              | 不支持   | Method not implemented. | 不支持已废弃属性。                        |
 | visualEffect             | 不支持   | is not callable         | -                                         |
-| dragPreview              | 部分支持 | Method not implemented. | 不支持入参为CustomBuilder。               |
+| accessibilityDescription | 部分支持 | -                       | 不支持入参为Resource。                    |
+| accessibilityText        | 部分支持 | -                       | 不支持入参为Resource。                    |
+| dragPreview              | 部分支持 | Method not implemented. | 仅支持入参为string。                      |
