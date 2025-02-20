@@ -1150,7 +1150,7 @@ typedef ArkUI_TouchRecognizer* ArkUI_TouchRecognizerHandle
 
 提供触摸识别器句柄类型对象定义。
 
-**起始版本：** 16
+**起始版本：** 15
 
 
 ### ArkUI_TouchRecognizerHandleArray
@@ -1162,7 +1162,7 @@ typedef ArkUI_TouchRecognizerHandle* ArkUI_TouchRecognizerHandleArray
 
 提供触摸识别器句柄类型数组对象定义。
 
-**起始版本：** 16
+**起始版本：** 15
 
 ### ArkUI_GuidelineOption
 
@@ -9268,7 +9268,7 @@ int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInt
 
 使用该方法可返回与该手势相关的所有触摸识别器。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -9292,7 +9292,7 @@ ArkUI_NodeHandle OH_ArkUI_TouchRecognizer_GetNodeHandle(const ArkUI_TouchRecogni
 
 使用该方法可返回与触摸识别器绑定的组件句柄。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -9314,7 +9314,7 @@ int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recogni
 
 使用该方法向对应触摸识别器分发Cancel事件拦截后续触摸事件。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
