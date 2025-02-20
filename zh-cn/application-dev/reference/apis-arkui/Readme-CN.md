@@ -198,6 +198,7 @@
     - [List (系统接口)](arkui-ts/ts-container-list-sys.md)
     <!--DelEnd-->
   - 导航与切换<!--navigation-and-switching-->
+    - [Indicator](arkui-ts/ts-swiper-components-indicator.md)
     - [Navigation](arkui-ts/ts-basic-components-navigation.md)
     - [NavDestination](arkui-ts/ts-basic-components-navdestination.md)
     - [MultiNavigation](arkui-ts/ohos-arkui-advanced-MultiNavigation.md)
