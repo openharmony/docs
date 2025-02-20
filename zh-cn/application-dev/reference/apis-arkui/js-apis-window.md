@@ -6450,10 +6450,9 @@ getWindowDecorVisible(): boolean
 
 查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
-<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> <br>
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> 
 
-
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
