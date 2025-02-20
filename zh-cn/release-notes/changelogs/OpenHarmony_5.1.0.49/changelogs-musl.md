@@ -21,7 +21,7 @@ iconv新增//IGNORE 和 //TRANSLIT 功能，补充支持正常编码转 gb18030�
 
 变更后：
 
-    1、iconv_open(const char *__tocode, const char *__fromcode) 接口入参支持拓展//IGNORE 和 //TRANSLIT，入参 tocode 支持gb18030、gbk、gb2312、big5，使用这类入参结果会正常返回结构体指针。
+    1、iconv_open(const char *__tocode, const char *__fromcode) 接口入参支持拓展//IGNORE 和 //TRANSLIT，仅入参 tocode 拓展支持gb18030、gbk、gb2312、big5这几种新的编码格式，使用这类入参结果会正常返回结构体指针。
 
     2、由于切换成icu的实现方式，异常判断逻辑也存在变更，iconv接口现在存在不会对入参进行校验的情况，只会在转换过程中遇到非法字符才会根据//IGNORE 和 //TRANSLIT 的开启状态返回相应的结果。
     
