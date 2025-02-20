@@ -450,6 +450,7 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_GestureEvent_GetNode](#oh_arkui_gestureevent_getnode) (const ArkUI_GestureEvent \*event) | 获取被绑定手势的ARKUI组件。  | 
 | int32_t [OH_ArkUI_GetResponseRecognizersFromInterruptInfo](#oh_arkui_getresponserecognizersfrominterruptinfo) (const ArkUI_GestureInterruptInfo \*event, [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) \*responseChain, int32_t \*count) | 获取手势响应链的信息。  | 
 | int32_t [OH_ArkUI_SetGestureRecognizerEnabled](#oh_arkui_setgesturerecognizerenabled) (ArkUI_GestureRecognizer \*recognizer, bool enabled) | 设置手势识别器的使能状态。  | 
+| int32_t(\* [OH_ArkUI_SetGestureRecognizerLimitFingerCount](#oh_arkui_setgesturerecognizerlimitfingercount) )(ArkUI_GestureRecognizer \*recognizer, bool limitFingerCount) | 设置是否检查触摸屏幕的手指数量。  | 
 | bool [OH_ArkUI_GetGestureRecognizerEnabled](#oh_arkui_getgesturerecognizerenabled) (ArkUI_GestureRecognizer \*recognizer) | 获取手势识别器的使能状态。  | 
 | int32_t [OH_ArkUI_GetGestureRecognizerState](#oh_arkui_getgesturerecognizerstate) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureRecognizerState](#arkui_gesturerecognizerstate) \*state) | 获取手势识别器的状态。  | 
 | int32_t [OH_ArkUI_GetGestureEventTargetInfo](#oh_arkui_getgestureeventtargetinfo) (ArkUI_GestureRecognizer \*recognizer, [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) \*\*info) | 获取手势事件目标信息。  | 
@@ -9701,6 +9702,27 @@ int32_t OH_ArkUI_GetResponseRecognizersFromInterruptInfo (const ArkUI_GestureInt
 | event | 手势打断回调事件。  | 
 | responseChain | 响应链组件上的手势识别器。  | 
 | count | 响应链组件上的手势识别器的数量。  | 
+
+**返回：**
+
+0 - 成功。 401 - 参数错误。
+
+
+### OH_ArkUI_SetGestureRecognizerLimitFingerCount
+
+```
+int32_t OH_ArkUI_SetGestureRecognizerLimitFingerCount (ArkUI_GestureRecognizer * recognizer, bool limitFingerCount )
+```
+**描述：**
+
+设置是否检查触摸屏幕的手指数量。
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 手势识别器指针。  | 
+| limitFingerCount | 是否检查触摸屏幕的手指数量。  | 
 
 **返回：**
 
