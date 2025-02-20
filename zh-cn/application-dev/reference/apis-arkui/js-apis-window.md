@@ -6452,7 +6452,7 @@ getWindowDecorVisible(): boolean
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
-<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -6479,7 +6479,7 @@ windowClass.setUIContent('pages/WindowPage').then(() => {
   try {
     isVisible = windowClass?.getWindowDecorVisible();
   } catch (exception) {
-    console.error(`Failed to set the window title move enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+    console.error(`Failed to get the window decor visibility. Cause code: ${exception.code}, message: ${exception.message}`);
   }
 })
 ```
