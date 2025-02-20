@@ -9,8 +9,10 @@
 **变更原因**
 
 iconv新增//IGNORE 和 //TRANSLIT 功能，补充支持正常编码转 gb18030、gbk、gb2312、big5的编码能力。
+
 例如：
     iconv_t cd = iconv_open("UTF-8//IGNORE", "gbk//TRANSLIT");
+
 **变更影响**
 
 此变更涉及应用适配。
