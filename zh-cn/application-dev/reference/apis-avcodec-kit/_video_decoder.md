@@ -575,8 +575,8 @@ OH_AVErrCode OH_VideoDecoder_SetDecryptionConfig (OH_AVCodec *codec, MediaKeySes
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| codec | 指向视频解码实例的指针。  | 
-| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅**MediaKeySession**。  | 
+| codec | 指向视频解码实例的指针。  |
+| mediaKeySession | 指向带有解密功能的DRM会话实例的指针，请参阅[MediaKeySession](../../reference/apis-drm-kit/native__mediakeysession_8h.md)。  | 
 | secureVideoPath | 安全视频通路。指定安全视频通路为true，非安全视频通路为false。在[Surface模式](../../media/avcodec/video-decoding.md#surface模式)下，既支持安全视频通路，也支持非安全视频通路。在[Buffer模式](../../media/avcodec/video-decoding.md#buffer模式)下，仅支持非安全视频通路。  |
 
 **返回：**
