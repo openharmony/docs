@@ -8978,7 +8978,7 @@ void OH_ArkUI_FocusActivate(ArkUI_ContextHandle uiContext, bool isActive, bool i
 
 设置当前界面的焦点激活态，获焦节点显示焦点框。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -8996,7 +8996,7 @@ void OH_ArkUI_FocusClear(ArkUI_ContextHandle uiContext);
 
 将当前焦点清除到根容器节点。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -9012,7 +9012,7 @@ ArkUI_ErrorCode OH_ArkUI_FocusRequest(ArkUI_NodeHandle node);
 
 请求焦点。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -9028,7 +9028,7 @@ void OH_ArkUI_FocusSetAutoTransfer(ArkUI_ContextHandle uiContext, bool autoTrans
 
  设置页面切换时，焦点转移行为。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
