@@ -1521,7 +1521,7 @@ typedef struct OH_UdmfGetDataParams OH_UdmfGetDataParams
 
 从UDMF获取数据时的参数。
 
-**起始版本：** 16
+**起始版本：** 15
 
 ### ArkUI_VisibleAreaEventOptions
 
@@ -15470,7 +15470,7 @@ int32_t OH_ArkUI_DragEvent_StartDataLoading (ArkUI_DragEvent* event, OH_UdmfGetD
 
 异步获取拖拽数据。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -15496,7 +15496,7 @@ int32_t OH_ArkUI_CancelDataLoading (ArkUI_ContextHandle uiContext, const char* k
 
 取消异步获取拖拽数据。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -15520,7 +15520,7 @@ int32_t OH_ArkUI_DisableDropDataPrefetchOnNode (ArkUI_NodeHandle node, bool disa
 
 异步获取拖拽数据。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
