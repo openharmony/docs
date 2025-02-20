@@ -80,7 +80,7 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 
 可能的故障原因：
 1. dataSource为nullptr；
-2. dataSource-&gt;size == 0；
+2. dataSource-&gt，size == 0；
 3. 设置数据源失败；
 4. 内存不足；
 5. 解码器引擎为nullptr。 
@@ -110,7 +110,7 @@ OH_AVSource* OH_AVSource_CreateWithFD (int32_t fd, int64_t offset, int64_t size)
 
 **返回：**
 
-执行成功返回一个指向OH_AVSource实例的指针, 否则返回NULL。
+执行成功返回一个指向OH_AVSource实例的指针，否则返回NULL。
 
 可能的故障原因：
 
@@ -141,7 +141,7 @@ OH_AVSource* OH_AVSource_CreateWithURI (char *uri)
 
 **返回：**
 
-执行成功返回一个指向OH_AVSource实例的指针, 否则返回NULL。
+执行成功返回一个指向OH_AVSource实例的指针，否则返回NULL。
 
 可能的故障原因：
 
@@ -235,5 +235,5 @@ OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource *source, uint32_t trackInde
 可能的故障原因：
 
 1. source指针无效，空指针或非OH_AVSource实例；
-2. 轨道的索引超出范围;
+2. 轨道的索引超出范围；
 3. source没有初始化。
