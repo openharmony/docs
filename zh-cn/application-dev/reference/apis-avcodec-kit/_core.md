@@ -65,7 +65,7 @@ Core模块提供用于媒体框架的基础骨干能力，包含内存、错误�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者主动调用接口释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
+| [OH_AVBuffer](#oh_avbuffer) \* [OH_AVBuffer_Create](#oh_avbuffer_create) (int32_t capacity) | 创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要开发者主动调用接口释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_Destroy](#oh_avbuffer_destroy) ([OH_AVBuffer](#oh_avbuffer) \*buffer) | 释放OH_AVBuffer实例指针的资源。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_GetBufferAttr](#oh_avbuffer_getbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 获取数据缓冲区的pts、size、offset、flags高频属性参数。 | 
 | [OH_AVErrCode](#oh_averrcode) [OH_AVBuffer_SetBufferAttr](#oh_avbuffer_setbufferattr) ([OH_AVBuffer](#oh_avbuffer) \*buffer, const [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) \*attr) | 设置数据缓冲区的pts、size、offset、flags高频属性参数。 | 
@@ -128,7 +128,7 @@ typedef enum OH_AudioChannelLayout OH_AudioChannelLayout
 
 音频声道布局。
 
-用int64整数来表示在录制或播放时扬声器的外观和顺序。
+用int64_t整数来表示在录制或播放时扬声器的外观和顺序。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -301,7 +301,7 @@ enum OH_AudioChannelLayout
 
 音频声道布局。
 
-用int64整数来表示在录制或播放时扬声器的外观和顺序。
+用int64_t整数来表示在录制或播放时扬声器的外观和顺序。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -502,7 +502,7 @@ OH_AVBuffer* OH_AVBuffer_Create (int32_t capacity)
 
 **描述**
 
-创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要调用者主动调用接口释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。
+创建OH_AVBuffer实例。 需要注意的是，返回值指向的创建OH_AVBuffer的实例需要开发者主动调用接口释放，请参阅[OH_AVBuffer_Destroy](#oh_avbuffer_destroy)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -677,7 +677,7 @@ OH_NativeBuffer* OH_AVBuffer_GetNativeBuffer (OH_AVBuffer *buffer)
 
 **描述**
 
-获取OH_NativeBuffer实例的指针。 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要调用者主动调用接口释放，请参阅[OH_NativeBuffer_Unreference](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_unreference)。
+获取OH_NativeBuffer实例的指针。 需要注意的是，返回值指向的创建OH_NativeBuffer的实例需要开发者主动调用接口释放，请参阅[OH_NativeBuffer_Unreference](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_unreference)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -708,7 +708,7 @@ OH_AVFormat* OH_AVBuffer_GetParameter (OH_AVBuffer *buffer)
 
 **描述**
 
-获取除基础属性外的其他参数，信息在OH_AVFormat中承载。 需要注意的是，返回值指向的创建OH_AVFormat的实例需要调用者主动释放，请参阅[OH_AVFormat_Destroy](#oh_avformat_destroy)。
+获取除基础属性外的其他参数，信息在OH_AVFormat中承载。 需要注意的是，返回值指向的创建OH_AVFormat的实例需要开发者主动释放，请参阅[OH_AVFormat_Destroy](#oh_avformat_destroy)。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -977,7 +977,7 @@ bool OH_AVFormat_GetBuffer (struct OH_AVFormat *format, const char *key, uint8_t
 | -------- | -------- |
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 要读取数据的键。 | 
-| addr | 生命周期与format相同，与format一同销毁。 如果调用者需要长时间保持它，必须进行内存拷贝。 | 
+| addr | 生命周期与format相同，与format一同销毁。 如果开发者需要长时间保持它，必须进行内存拷贝。 | 
 | size | 读到数据的长度。 | 
 
 **返回：**
@@ -1154,7 +1154,7 @@ bool OH_AVFormat_GetStringValue (struct OH_AVFormat *format, const char *key, co
 | -------- | -------- |
 | format | 指向OH_AVFormat实例的指针。 | 
 | key | 读取数据的键。 | 
-| out | 读取string指针，out数据的生命周期与format内string对应，out最大输出字符串长度为256字节。 如果调用者需要长时间保持它，必须进行拷贝内存。 | 
+| out | 读取string指针，out数据的生命周期与format内string对应，out最大输出字符串长度为256字节。 如果开发者需要长时间保持它，必须进行拷贝内存。 | 
 
 **返回：**
 
