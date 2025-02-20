@@ -169,7 +169,6 @@ enableHapticFeedback(enable: boolean)
 >   "name": "ohos.permission.VIBRATE",
 >  }
 >  ]
->  ``
 >  ```
 
 ## 事件
