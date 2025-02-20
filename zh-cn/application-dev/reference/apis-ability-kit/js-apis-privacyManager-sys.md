@@ -734,10 +734,10 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称           | 类型                    | 可读 | 可写 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识    |
-| permissionName | Permissions            | 是   | 否   | 权限使用状态发生变化的权限名 |
-| deviceId       | string                 | 是   | 否   | 设备号                 |
-| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型        |
+| tokenId        | number                 | 是   | 否   | 被订阅的应用身份标识。    |
+| permissionName | Permissions            | 是   | 否   | 权限使用状态发生变化的权限名。 |
+| deviceId       | string                 | 是   | 否   | 设备号。                 |
+| activeStatus   | [PermissionActiveStatus](#permissionactivestatus) | 是   | 否   | 权限使用状态变化类型。        |
 
 ## PermissionUsedType<sup>12+</sup>
 
@@ -759,8 +759,8 @@ privacyManager.getPermissionUsedTypeInfos(tokenId, permissionName).then(() => {
 
 | 名称           | 类型                    | 可读 | 可写 | 说明                   |
 | -------------- | ---------------------- | ---- | ---- | --------------------- |
-| tokenId        | number                 | 是   | 否   | 访问敏感权限的应用身份标识 |
-| permissionName | Permissions            | 是   | 否   | 被访问的敏感权限名称 |
+| tokenId        | number                 | 是   | 否   | 访问敏感权限的应用身份标识。 |
+| permissionName | Permissions            | 是   | 否   | 被访问的敏感权限名称。 |
 | usedType | [PermissionUsedType](#permissionusedtype12) | 是 | 否    | 敏感权限使用类型。 |
 
 ## AddPermissionUsedRecordOptions<sup>12+</sup>
