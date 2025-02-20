@@ -100,6 +100,8 @@
 | typedef uint32_t [ArkUI_GestureDirectionMask](#arkui_gesturedirectionmask) | 定义滑动手势方向集合。  | 
 | typedef ArkUI_GestureRecognizer \* [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) | 提供手势识别器句柄类型对象定义。  | 
 | typedef [ArkUI_GestureRecognizerHandle](#arkui_gesturerecognizerhandle) \* [ArkUI_GestureRecognizerHandleArray](#arkui_gesturerecognizerhandlearray) | 提供手势识别器句柄类型数组对象定义。  | 
+| typedef ArkUI_TouchRecognizer  \* [ArkUI_TouchRecognizerHandle](#arkui_touchrecognizerhandle) | 提供触摸识别器句柄类型对象定义。  | 
+| typedef [ArkUI_TouchRecognizerHandle](#arkui_touchrecognizerhandle) \* [ArkUI_TouchRecognizerHandleArray](#arkui_touchrecognizerhandlearray) | 提供触摸识别器句柄类型数组对象定义。  | 
 | typedef struct [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) [ArkUI_GestureEventTargetInfo](#arkui_gestureeventtargetinfo) | 提供手势事件目标信息类型对象定义。  | 
 | typedef struct [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) [ArkUI_ParallelInnerGestureEvent](#arkui_parallelinnergestureevent) | 提供并行内部手势事件类型对象定义。  | 
 | typedef void(\* [ArkUI_GestureRecognizerDestructNotifyCallback](#arkui_gesturerecognizerdestructnotifycallback)) (ArkUI_GestureRecognizer \*recognizer, void \*userData) | 定义手势识别器析构通知事件的回调函数类型。  | 
@@ -427,6 +429,9 @@ ARKUI_ERROR_CODE_FOCUS_NON_FOCUSABLE_ANCESTOR = 150002,ARKUI_ERROR_CODE_FOCUS_NO
 | ArkUI_GestureRecognizer \* [OH_ArkUI_GestureInterruptInfo_GetRecognizer](#oh_arkui_gestureinterruptinfo_getrecognizer) (const ArkUI_GestureInterruptInfo \*event) | 返回被打断的手势指针。  | 
 | ArkUI_GestureEvent \* [OH_ArkUI_GestureInterruptInfo_GetGestureEvent](#oh_arkui_gestureinterruptinfo_getgestureevent) (const ArkUI_GestureInterruptInfo \*event) | 返回打断的手势事件数据。  | 
 | int32_t [OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType](#oh_arkui_gestureinterruptinfo_getsystemrecognizertype) (const ArkUI_GestureInterruptInfo \*event) | 当要触发的是系统内部手势时，使用该方法可返回该系统内部手势的类型。  | 
+| int32_t [OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers](#oh_arkui_gestureinterruptinfo_gettouchrecognizers) (const ArkUI_GestureInterruptInfo \*info, ArkUI_TouchRecognizerHandleArray\* recognizers, int32_t\* size) | 使用该方法可返回与该手势相关的所有触摸识别器。  |
+| int32_t [OH_ArkUI_TouchRecognizer_GetNodeHandle](#oh_arkui_touchrecognizer_getnodehandle) (const ArkUI_TouchRecognizerHandle recognizer) | 使用该方法可返回与触摸识别器绑定的组件句柄。  |
+| int32_t [OH_ArkUI_TouchRecognizer_CancelTouch](#oh_arkui_touchrecognizer_canceltouch) (ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo\* info) | 使用该方法向对应触摸识别器分发Cancel事件拦截后续触摸事件。  |
 | [ArkUI_GestureEventActionType](#arkui_gestureeventactiontype) [OH_ArkUI_GestureEvent_GetActionType](#oh_arkui_gestureevent_getactiontype) (const ArkUI_GestureEvent \*event) | 返回手势事件类型。  | 
 | [ArkUI_NodeHandle](#arkui_nodehandle) [OH_ArkUI_GestureEvent_GetResponseNode](#oh_arkui_gestureevent_getresponsenode) (ArkUI_GestureEvent \*event) | 返回响应手势的节点。  | 
 | const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \* [OH_ArkUI_GestureEvent_GetRawInputEvent](#oh_arkui_gestureevent_getrawinputevent) (const ArkUI_GestureEvent \*event) | 返回手势输入。  | 
@@ -1123,6 +1128,29 @@ typedef ArkUI_GestureRecognizerHandle* ArkUI_GestureRecognizerHandleArray
 
 **起始版本：** 12
 
+
+### ArkUI_TouchRecognizerHandle
+
+```
+typedef ArkUI_TouchRecognizer* ArkUI_TouchRecognizerHandle
+```
+**描述：**
+
+提供触摸识别器句柄类型对象定义。
+
+**起始版本：** 15
+
+
+### ArkUI_TouchRecognizerHandleArray
+
+```
+typedef ArkUI_TouchRecognizerHandle* ArkUI_TouchRecognizerHandleArray
+```
+**描述：**
+
+提供触摸识别器句柄类型数组对象定义。
+
+**起始版本：** 15
 
 ### ArkUI_GuidelineOption
 
@@ -9107,6 +9135,76 @@ int32_t OH_ArkUI_GestureInterruptInfo_GetSystemRecognizerType (const ArkUI_Gestu
 **返回：**
 
 要触发的内部手势对应的手势类型，如果当前触发的手势不是系统内部手势，则返回 -1。
+
+
+### OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers()
+
+```
+int32_t OH_ArkUI_GestureInterruptInfo_GetTouchRecognizers(const ArkUI_GestureInterruptInfo* info,
+    ArkUI_TouchRecognizerHandleArray* recognizers, int32_t* size)
+```
+**描述：**
+
+使用该方法可返回与该手势相关的所有触摸识别器。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| info | 打断回调事件。  | 
+| recognizers | 指向触摸识别器数组的指针。  | 
+| size | 触摸识别器数组的大小。  | 
+
+**返回：**
+
+0 - 成功。 401 - 参数错误。
+
+
+### OH_ArkUI_TouchRecognizer_GetNodeHandle()
+
+```
+ArkUI_NodeHandle OH_ArkUI_TouchRecognizer_GetNodeHandle(const ArkUI_TouchRecognizerHandle recognizer)
+```
+**描述：**
+
+使用该方法可返回与触摸识别器绑定的组件句柄。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 触摸识别器。  | 
+
+**返回：**
+
+与触摸识别器绑定的组件句柄。
+
+
+### OH_ArkUI_TouchRecognizer_CancelTouch()
+
+```
+int32_t OH_ArkUI_TouchRecognizer_CancelTouch(ArkUI_TouchRecognizerHandle recognizer, ArkUI_GestureInterruptInfo* info)
+```
+**描述：**
+
+使用该方法向对应触摸识别器分发Cancel事件拦截后续触摸事件。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| recognizer | 触摸识别器。  | 
+| info | 打断回调事件。  | 
+
+**返回：**
+
+0 - 成功。 401 - 参数错误。
 
 
 ### OH_ArkUI_GetContextByNode()
