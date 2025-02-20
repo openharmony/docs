@@ -327,7 +327,7 @@ OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index
 **描述**
 将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
 
-详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-14或Buffer模式步骤-10”。
+详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-13或Buffer模式步骤-10”。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -352,7 +352,7 @@ AV_ERR_INVALID_VAL：
 
     1. 输入的codec指针为非编码器实例，或者为空指针；
     2. 输入format参数不支持；
-    3. index非法或者连续给同一个index，该错误不影响后续编码流程
+    3. index非法或者连续给同一个index，该错误不影响后续编码流程。
 
 AV_ERR_UNKNOWN：未知错误。
 
@@ -428,7 +428,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** wi
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
-| window | 指向OHNativeWindow实例的指针, 请参阅[OHNativeWindow](_codec_base.md#ohnativewindow)。 应用负责管理window的生命周期，结束时调用OH_NativeWindow_DestroyNativeWindow释放。  | 
+| window | 指向OHNativeWindow实例的指针，请参阅[OHNativeWindow](_codec_base.md#ohnativewindow)。 应用负责管理window的生命周期，结束时调用OH_NativeWindow_DestroyNativeWindow释放。  | 
 
 **返回：**
 
@@ -664,7 +664,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback (OH_AVCodec *codec, OH_Vi
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
-| onInputParameter | 输入参数回调指针, 请参阅[OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)。  | 
+| onInputParameter | 输入参数回调指针，请参阅[OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)。  | 
 | userData | 开发者执行回调所依赖的数据。  |
 
 **返回：**
