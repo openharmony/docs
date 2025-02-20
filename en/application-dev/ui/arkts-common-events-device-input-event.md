@@ -1,19 +1,19 @@
 # Keyboard and Mouse Event
 
 
-Keyboard and mouse events refer to the input events of the peripheral keyboard and mouse.
+Keyboard and mouse events refer to the input events of external keyboards and mouse devices.
 
 
 ## Mouse Event
 
-The supported mouse events include the events triggered by the peripheral mouse and touchpad.
+The supported mouse events include the events triggered by external mouse devices and touchpads.
 
 Mouse events can trigger the following callbacks.
 
 | Name                                      | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
 | onHover(event: (isHover: boolean) =&gt; void) | Triggered when the mouse pointer enters or leaves the component.<br>**isHover**: whether the mouse pointer hovers over the component. The value **true** means that the mouse pointer enters the component, and the value **false** means that the mouse pointer leaves the component.|
-| onMouse(event: (event?: MouseEvent) =&gt; void) | Triggered when the component is clicked by a mouse button or the mouse pointer moves on the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
+| onMouse(event: (event?: MouseEvent) =&gt; void) | Triggered when the component is clicked by a mouse button or the mouse pointer moves over the component. The **event** parameter indicates the timestamp, mouse button, action, coordinates of the clicked point on the entire screen, and coordinates of the clicked point relative to the component when the event is triggered.|
 
 When the component is bound to the **onHover** callback, you can use the [hoverEffect](../reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md#hovereffect) attribute to set the hover effect of the component in hover state.
 
@@ -24,17 +24,17 @@ When the component is bound to the **onHover** callback, you can use the [hoverE
 ![en-us_image_0000001511900504](figures/en-us_image_0000001511900504.png)
 
 
-When ArkUI receives the mouse event, it checks whether the mouse event concerns pressing, lifting, or moving of the left mouse button, and then responds accordingly.
+After a mouse event is passed to ArkUI, it is processed as follows:
 
 
-- Yes: The mouse event is first converted into a touch event in the same position, and a collision test, gesture judgment, and callback response of the touch event are performed. The collision test and callback response of the mouse event are then performed.
+- If the event is a left-click (pressing, releasing, or moving): The mouse event is first converted into a touch event in the same position. Then the touch event undergoes hit testing, gesture recognition, and callback responses. Finally the mouse event undergoes its own hit testing and callback responses.
 
-- No: Only the collision test and callback response of the mouse event are performed.
+- If the event is not a left-click: The event is only used for mouse-specific hit testing and callback responses.
 
 
 >**NOTE**
 >
->All touch events and gesture events that can be responded to by a single finger may be triggered and responded to by using the left mouse button. For example, to implement page redirection invoked by clicking a button with support for finger touches and left-clicks, you just need to bind one click event (**onClick**). If you want to implement different effects for the finger touch and the left-click, you can use the **source** parameter in the **onClick** callback to determine whether the current event is triggered by a finger or a mouse.
+>All single-finger touch events and gesture events may be triggered and responded to using the left-click. For example, to implement page redirection invoked by clicking a button with support for finger touches and left-clicks, you just need to bind an **onClick** event. If you want to implement different effects for the finger touch and the left-click, you can use the **source** parameter in the **onClick** callback to determine whether the current event is triggered by a finger or a mouse device.
 
 
 ### onHover
@@ -53,7 +53,7 @@ If this API is bound to a component, it is triggered when the mouse pointer ente
 
 >**NOTE**
 >
->Event bubbling is an event propagation in the document object model (DOM) when an event is first handled by an element and then bubbles up to its parent element.
+>Event bubbling is an event propagation in the document object model (DOM) when an event is first handled by an element and then passed to its parent element for further processing.
 
 
 
@@ -71,7 +71,7 @@ struct MouseExample {
       Button(this.hoverText)
         .width(200).height(100)
         .backgroundColor(this.Color)
-        .onHover((isHover?: boolean) => { // Use the onHover API to listen for whether the mouse cursor is hovered over the button.
+        .onHover((isHover?: boolean) => { // Listen for whether the mouse cursor is hovered over the button.
           if (isHover) {
             this.hoverText = 'Hovered!';
             this.Color = Color.Green;
@@ -87,13 +87,13 @@ struct MouseExample {
 ```
 
 
-In this example, a **Button** component is created, with the initial background color of gray and the content of **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
+In this example, a **Button** component is created, with an initial gray background color and the content **Not Hover**. The component is bound to the **onHover** callback. In the callback, **this.isHovered** is set to the callback parameter **isHover**.
 
 
-When the mouse pointer moves from outside the button to inside the button, the callback is invoked, the value of **isHover** changes to **true**, the value of **isHovered** changes to **true**, the background color of the component changes to **Color.Green**, and the content changes to **Hovered!**.
+When the mouse pointer moves from outside the **Button** component to inside, the callback is invoked, setting the value of **isHover** to **true**. As a result, the background color of the component changes to **Color.Green**, and the content is updated to **Hovered!**.
 
 
-When the mouse pointer moves from inside the button to outside the button, the callback is invoked, the value of **isHover** changes to **false**, and the component restores to its initial style.
+When the mouse pointer moves from inside the **Button** component to outside, the callback is invoked again, setting the value of **isHover** to **false**. The component then reverts to its initial style.
 
 
 ![onHover](figures/onHover.gif)
@@ -107,10 +107,10 @@ onMouse(event: (event?: MouseEvent) => void)
 ```
 
 
-Triggered when a mouse event occurs. It is triggered each time a mouse pointer action (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for customized mouse behavior logic processing.
+Triggered when a mouse event occurs. It is triggered each time a mouse pointer action (**MouseAction**) is detected in the component. The parameter is a [MouseEvent](../reference/apis-arkui/arkui-ts/ts-universal-mouse-key.md#mouseevent) object, which indicates the mouse event that triggers the callback. This event supports custom bubbling settings. By default, event bubbling occurs between parent and child components. It is commonly used for custom mouse behavior logic.
 
 
-You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8)), action ([MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** is used to set whether the current event blocks bubbling.
+You can use the **MouseEvent** object in the callback to obtain information about the triggered event, including the coordinates (**displayX**, **displayY**, **windowX**, **windowY**, **x**, and **y**), button ([MouseButton](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mousebutton8)), action ([MouseAction](../reference/apis-arkui/arkui-ts/ts-appendix-enums.md#mouseaction8)), timestamp (**timestamp**), display area of the object that triggers the event ([EventTarget](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#eventtarget8)), and event source ([SourceType](../reference/apis-arkui/arkui-ts/ts-gesture-settings.md#sourcetype)). The **stopPropagation** callback of **MouseEvent** can be used to prevent the event from bubbling up.
 
 
 >**NOTE**
@@ -178,13 +178,13 @@ struct MouseExample {
 ```
 
 
-Bind the **onMouse** API to the button based on the **onHover** example. In the callback, the values of the callback parameters, such as **button** and **action**, are displayed. The same settings are performed on the outer **Column** container. The entire process can be divided into the following two actions:
+Bind the **onMouse** API to the **Button** component based on the **onHover** example, and display the values of the callback parameters, such as **button** and **action**. Apply the same settings to the outer **Column** container. The entire process can be divided into the following two actions:
 
 
-1. Moving the mouse pointer: When the mouse pointer is moved from outside the button to inside the button, only the **onMouse** callback of the **Column** is triggered. When the mouse pointer is moved to the button, as the **onMouse** event bubbles up by default, both the **onMouse** callbacks of the **Column** and **Button** components are invoked. In this process, the mouse pointer moves, but no mouse button is clicked. Therefore, in the displayed information, the value of **button** is 0 (enumerated value of **MouseButton.None**) and the value of **action** is **3** (enumerated value of **MouseAction.Move**).
+1. Moving the mouse pointer: When the mouse pointer moves from outside the **Button** component to inside, only the **onMouse** callback of the **Column** component is triggered. When the mouse pointer enters the button, as the **onMouse** event bubbles up by default, both the **onMouse** callbacks of the **Column** and **Button** components are invoked. Because no mouse button is clicked during this process, the displayed information shows **button** as **0** (enumerated value of **MouseButton.None**) and **action** as **3** (enumerated value of **MouseAction.Move**).
 
-2. Clicking the mouse button: After the mouse pointer enters the **Button** component, the **Button** component is clicked twice, namely, left-click and right-click.
-   Left-clicked: button = 1 (enumerated value of **MouseButton.Left**); action = 1 (enumerated value of **MouseAction.Press**); action = 2 (enumerated value of **MouseAction.Release**).
+2. Clicking the mouse button: After the mouse pointer enters the **Button** component, clicking the component twice (left-click and right-click) produces the following results:
+   Left-click: button = 1 (enumerated value of **MouseButton.Left**); action = 1 (enumerated value of **MouseAction.Press**); action = 2 (enumerated value of **MouseAction.Release**).
 
    Right-click: button = 2 (enumerated value of **MouseButton.Right**); action = 1 (enumerated value of **MouseAction.Press**); action = 2 (enumerated value of **MouseAction.Release**)
 
@@ -332,7 +332,9 @@ The key event process for the **Web** component differs from the aforementioned 
 
 ```ts
 onKeyEvent(event: (event: KeyEvent) => void): T
+onKeyEvent(event: Callback<KeyEvent, boolean>): T
 onKeyPreIme(event: Callback<KeyEvent, boolean>): T
+onKeyEventDispatch(event: Callback<KeyEvent, boolean>): T
 ```
 
 
@@ -476,7 +478,7 @@ struct KeyEventExample {
 
 ![en-us_image_0000001511900508](figures/en-us_image_0000001511900508.gif)
 
-Use **OnKeyPreIme** to block the left arrow key input in the text box.
+This example shows how to use **OnKeyPreIme** to block the left arrow key input in the text box.
 ```ts
 import { KeyCode } from '@kit.InputKit';
 
@@ -503,6 +505,48 @@ struct PreImeEventExample {
           return false;
         })
     }
+  }
+}
+```
+
+This example demonstrates how to use **onKeyEventDispatch** to distribute key events to child components, which handle the events using **onKeyEvent**.
+
+```ts
+@Entry
+@Component
+struct Index {
+  build() {
+    Row() {
+      Row() {
+        Button('button1').id('button1').onKeyEvent((event) => {
+          console.log("button1");
+          return true
+        })
+        Button('button1').id('button2').onKeyEvent((event) => {
+          console.log("button2");
+          return true
+        })
+      }
+      .width('100%')
+      .height('100%')
+      .id('Row1')
+      .onKeyEventDispatch((event) => {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('button1');
+        return context.dispatchKeyEvent('button1', event);
+      })
+
+    }
+    .height('100%')
+    .width('100%')
+    .onKeyEventDispatch((event) => {
+      if (event.type == KeyType.Down) {
+        let context = this.getUIContext();
+        context.getFocusController().requestFocus('Row1');
+        return context.dispatchKeyEvent('Row1', event);
+      }
+      return true;
+    })
   }
 }
 ```
