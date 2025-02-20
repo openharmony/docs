@@ -8,21 +8,22 @@
 
 **变更原因**
 
-iconv新增//IGNORE 和 //TRANSLIT 功能，补充支持正常编码转 gb18030,gbk,gb2312,big5编码能力
-
+iconv新增//IGNORE 和 //TRANSLIT 功能，补充支持正常编码转 gb18030、gbk、gb2312、big5的编码能力。
+例如：
+    iconv_t cd = iconv_open("UTF-8//IGNORE", "gbk//TRANSLIT");
 **变更影响**
 
 此变更涉及应用适配。
 
-变更前：iconv_open 接口入参不支持//IGNORE 和 //TRANSLIT,和入参 tocode 不支持gb18030,gbk,gb2312,big5，使用这类入参结果会返回-1。
+变更前：iconv_open(const char *__tocode, const char *__fromcode) 接口入参不支持//IGNORE 和 //TRANSLIT,和入参 tocode 不支持gb18030、gbk、gb2312、big5，使用这类入参结果会返回-1。
 
 变更后：
 
-    1、iconv_open 接口入参支持//IGNORE 和 //TRANSLIT,和入参 tocode 支持gb18030,gbk,gb2312,big5，使用这类入参结果会正常返回结构体指针。
+    1、iconv_open(const char *__tocode, const char *__fromcode) 接口入参支持//IGNORE 和 //TRANSLIT,和入参 tocode 支持gb18030、gbk、gb2312、big5，使用这类入参结果会正常返回结构体指针。
 
-    2、由于切换成icu的实现方式，异常判断逻辑也存在变更，iconv接口存在现在不会对入参进行校验，只会在转换过程中遇到非法字符才会根据//IGNORE 和 //TRANSLIT 的开启状态返回相应的结果。
+    2、由于切换成icu的实现方式，异常判断逻辑也存在变更，iconv接口现在存在不会对入参进行校验的情况，只会在转换过程中遇到非法字符才会根据//IGNORE 和 //TRANSLIT 的开启状态返回相应的结果。
     
-    3、iconv_open返回值结构体指针，内部使用的结构体结构改变，大小变大。
+    3、iconv_open 函数返回的结构体指针所指向的内部结构体，其结构发生了变更，结构体的大小也随之增大。
 
 **变更发生版本**
 
