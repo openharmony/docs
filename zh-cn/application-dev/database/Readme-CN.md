@@ -11,6 +11,8 @@
   - [通过用户首选项实现数据持久化](data-persistence-by-preferences.md)
   - [通过键值型数据库实现数据持久化](data-persistence-by-kv-store.md)
   - [通过关系型数据库实现数据持久化](data-persistence-by-rdb-store.md)
+  - [通过向量数据库实现数据持久化 (ArkTS)](data-persistence-by-vector-store.md)
+  - [通过向量数据库实现数据持久化 (C/C++)](native-vector-store-guidelines.md)
 - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
   - [同应用跨设备数据同步概述](sync-app-data-across-devices-overview.md)
   - [键值型数据库跨设备数据同步](data-sync-of-kv-store.md)
