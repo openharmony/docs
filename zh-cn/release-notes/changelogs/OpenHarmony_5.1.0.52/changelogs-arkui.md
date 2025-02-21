@@ -151,3 +151,64 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 **适配指导**
 
 默认行为变更，无需适配。
+
+## cl.arkui.5 MenuItem高度设置百分比情况下文本垂直对齐方式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX规范变更。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+- 变更前：MenuItem高度设置百分比，菜单项文本垂直方向顶部对齐。
+  
+- 变更后：MenuItem高度设置百分比，菜单项文本垂直方向居中对齐。
+
+```ts
+@Entry
+@Component
+struct MenuItemHeightPercent {
+  build() {
+    Row() {
+      Column() {
+        Button("click to show menu")
+          .bindMenu(this.MyMenu)
+      }.width('100%')
+    }.height('100%')
+  }
+
+  @Builder
+  MyMenu() {
+    Menu() {
+      MenuItem({ content: "菜单选项" })
+        .height('100%')
+    }
+  }
+}
+```
+
+| 变更前 | 变更后 |
+|---------|---------|
+|  ![变更前](figures/MenuItemHeightPercent_before.jpeg)       |  ![变更后](figures/MenuItemHeightPercent_after.jpeg)       |
+
+**起始API Level**
+
+7
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.52开始。
+
+**变更的接口/组件**
+
+MenuItem组件
+
+**适配指导**
+
+MenuItem文本垂直布局位置调整，应用无需适配。
