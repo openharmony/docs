@@ -2,7 +2,7 @@
 
 ## Introduction
 
-File descriptor sanitizer (fdsan) is a tool used to detect mishandling of file descriptor ownership, which includes double-close and use-after-close. The file descriptor can indicate a file, directory, network socket, I/O device, and the like in an operating system. When a file or a socket is opened in an application, a file descriptor is generated. If a file descriptor is repeatedly closed after being used or is used after being closed, security risks such as memory leaks and file handle leaks will be caused. This type of problems is difficult to locate. That is why fdsan comes in handy.
+File descriptor sanitizer (fdsan) is a tool used to detect mishandling of file descriptor ownership, which includes double-close and use-after-close. The file descriptor can indicate a file, directory, network socket, I/O device, and the like in an operating system. When a file or a socket is opened in an application, a file descriptor is generated. If a file descriptor is repeatedly closed after being used or is used after being closed, security risks such as memory leaks and file handle leaks will be caused. This type of problems is difficult to locate and fix. That is why fdsan comes in handy.
 
 ## Working Principle
 
@@ -11,7 +11,6 @@ fdsan provides functions to associate a file descriptor with an owner and enforc
 A tag is of 64 bits, consisting of the following:
 
 - **type**: an 8-bit string indicating how a file descriptor is encapsulated for management. For example, **FDSAN_OWNER_TYPE_FILE** indicates that the file descriptor is managed as a handle to a file. The value of **type** is defined in **fdsan_owner_type**.
-
 - **value**: a 56-bit string uniquely identifying a tag.
 
  **Figure** Tag
@@ -212,19 +211,27 @@ The fdsan tool can detect such problems in two ways: using standard library APIs
 
 The **fopen**, **fdopen**, **opendir**, and **fdopendir** APIs in libc have integrated fdsan. Using these APIs instead of **open** can help detect file descriptor mishandling problems. Use **fopen** instead of **open** in the following code:
 
-```cpp
+```c
+#include <stdio.h>
+#include <errno.h>
+#define TEMP_FILE "/data/local/tmp/test.txt"
+
 void good_write()
 {
-    sleep(1);
     // fopen is protected by fdsan. Use fopen to replace open. 
-    // int fd = open(DEV_NULL_FILE, O_RDONLY);
-    FILE *f = fopen(DEV_NULL_FILE, O_RDONLY);
-    sleep(3);
-    ssize_t ret = write(fileno(f), "fdsan test\n", 11);
-    if (ret == -1) {
-        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+    // int fd = open(TEMP_FILE, O_RDONLY);
+    FILE *f = fopen(TEMP_FILE, "w+");
+    if (f == NULL) {
+        printf("fopen failed errno=%d\n", errno);
+        return;
     }
-    close(fileno(f));
+    // ssize_t ret = write(fd, "fdsan test\n", 11);
+    int ret = fprintf(f, "fdsan test %d\n", 11);
+    if (ret < 0) {
+        printf("fprintf failed errno=%d\n", errno);
+    }
+    // close(fd);
+    fclose(f);
 }
 ```
 
@@ -318,6 +325,13 @@ You can also implement APIs with fdsan by using **fdsan_exchange_owner_tag** and
 Example:
 
 ```cpp
+#include <errno.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#include <utility>
+
 struct fdsan_fd {
     fdsan_fd() = default;
 
@@ -401,17 +415,21 @@ In this example, **fdsan_exchange_owner_tag** is used to bind a file descriptor 
 You can use the implemented API in the following code to detect and prevent file descriptor mishandling problems:
 
 ```cpp
+#define TEMP_FILE "/data/local/tmp/test.txt"
+
 void good_write()
 {
-    sleep(1);
     // int fd = open(DEV_NULL_FILE, O_RDONLY);
-    fdsan_fd fd(open(DEV_NULL_FILE, O_RDONLY));
-    sleep(3);
+    fdsan_fd fd(open(TEMP_FILE, O_CREAT | O_RDWR));
+    if (fd.get() == -1) {
+        printf("fopen failed errno=%d\n", errno);
+        return;
+    }
     ssize_t ret = write(fd.get(), "fdsan test\n", 11);
     if (ret == -1) {
-        OH_LOG_ERROR(LOG_APP, "good write but failed?!");
+        printf("write failed errno=%d\n", errno);
     }
-    close(fd.get());
+    fd.reset();
 }
 ```
 
