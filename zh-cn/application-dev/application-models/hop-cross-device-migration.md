@@ -417,7 +417,7 @@ export default class MigrationAbility extends UIAbility {
    ```
 配置快速拉起功能后，用户触发迁移，等待迁移数据返回的过程中，并行拉起应用，减小用户等待迁移启动时间。同时需注意，应用在迁移的提前启动时，首次触发迁移会收到`launchReason`为提前拉起 (PREPARE_CONTINUATION)的[onCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityoncreate)/[onNewWant()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)请求。应用可以通过此`launchReason`，解决跳转、时序等问题，也可以在迁移快速启动时，增加loading界面。
 
-在快速拉起时增加了loading界面的应用，可以注册 **[事件通知](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron)** 获取快速拉起的结果。根据快速拉起结果，应用可以进行相应操作，例如快速拉起成功时退出loading界面进入接续页面。
+从API version 16开始，在快速拉起时含loading界面的应用，支持通过[注册快速拉起结果通知回调](../reference/apis-ability-kit/js-apis-app-ability-continueManager.md#continuemanageron)获取快速拉起的结果。根据快速拉起结果，应用可以进行相应操作，例如快速拉起成功时退出loading界面进入接续页面。
 
 快速拉起流程如下图所示。
 
