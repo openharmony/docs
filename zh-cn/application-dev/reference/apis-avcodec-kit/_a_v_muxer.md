@@ -35,6 +35,7 @@ AVMuxer模块提供用于音视频封装功能的接口。
 | -------- | -------- |
 | [OH_AVMuxer](#oh_avmuxer) \* [OH_AVMuxer_Create](#oh_avmuxer_create) (int32_t fd, [OH_AVOutputFormat](_codec_base.md#oh_avoutputformat) format) | 通过文件描述符fd和封装格式创建OH_AVMuxer实例。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetRotation](#oh_avmuxer_setrotation) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t rotation) | 设置视频的旋转角度（顺时针，且旋转角度必须为0、90、180或270）。  | 
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_SetFormat](#oh_avmuxer_setformat) ([OH_AVMuxer](#oh_avmuxer) \*muxer, [OH_AVFormat](_core.md#oh_avformat) \*format) | 设置format数据到封装器。 | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_AddTrack](#oh_avmuxer_addtrack) ([OH_AVMuxer](#oh_avmuxer) \*muxer, int32_t \*trackIndex, [OH_AVFormat](_core.md#oh_avformat) \*trackFormat) | 向封装器添加音视频轨。| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_Start](#oh_avmuxer_start) ([OH_AVMuxer](#oh_avmuxer) \*muxer) | 开始封装。| 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVMuxer_WriteSample](#oh_avmuxer_writesample) ([OH_AVMuxer](#oh_avmuxer) \*muxer, uint32_t trackIndex, [OH_AVMemory](_core.md#oh_avmemory) \*sample, [OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md) info) | 将sample写入封装器（API11已废弃）。 | 
@@ -162,6 +163,32 @@ OH_AVErrCode OH_AVMuxer_SetRotation (OH_AVMuxer *muxer, int32_t rotation)
 执行成功返回AV_ERR_OK，否则返回具体错误码，参考[OH_AVErrCode](_core.md#oh_averrcode)。
 
 AV_ERR_INVALID_VAL，muxer为空指针，或rotation无效。AV_ERR_OPERATE_NOT_PERMIT，不允许调用该接口，请检查接口调用顺序。
+
+
+### OH_AVMuxer_SetFormat()
+
+```
+OH_AVErrCode OH_AVMuxer_SetFormat(OH_AVMuxer *muxer, OH_AVFormat *format)
+```
+**描述**
+设置format数据到封装器。当前只支持设置创建时间OH_MD_KEY_CREATION_TIME。若创建时间未写入成功，请排查OH_MD_KEY_CREATION_TIME字符串设置是否符合ISO 8601标准的时间格式且为UTC时间。
+
+**系统能力：** SystemCapability.Multimedia.Media.Muxer
+
+**起始版本：** 14
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| muxer | 指向OH_AVMuxer实例的指针。  | 
+| format | 指向OH_AVFormat实例的指针。文件级元数据集。  | 
+
+**返回：**
+
+AV_ERR_OK，设置format参数正确。
+
+AV_ERR_INVALID_VAL，muxer为空指针，或format无效。AV_ERR_OPERATE_NOT_PERMIT，不允许调用接口，它在无效状态下被调用。
 
 
 ### OH_AVMuxer_Start()
