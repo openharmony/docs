@@ -398,8 +398,11 @@ export default class MigrationAbility extends UIAbility {
    }
 ```
 
-### 支持同应用不同BundleName跨端迁移
-相同应用在不同设备类型下可能使用了不同的BundleName，该场景下的应用跨端迁移，可以在module.json5文件的abilities标签中continueBundleName字段添加对端应用的BundleName。同时，可迁移应用的两个Ability的continueType字段必须保持一致，应用签名必须保持一致，示例如下：
+### 支持同应用不同BundleName的Ability跨端迁移
+相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
+
+- 这里是列表文本continueBundleName字段：分别添加对端应用的BundleName。
+- continueType字段：必须保持一致。
 
    > **说明：**
    >
@@ -407,7 +410,7 @@ export default class MigrationAbility extends UIAbility {
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
     
 示例如下：
-   > 不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为：com.demo.example2。
+   不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
   
 ```JSON
 // 在设备A的应用配置文件中，continueBundleName字段配置包含设备B上应用的BundleName。
