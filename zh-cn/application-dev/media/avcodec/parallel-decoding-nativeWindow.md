@@ -37,14 +37,14 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 1. 创建OH_NativeImage实例。
    
     ```c++
-    // 创建NativeImage实例，作为surface的消费者
+    // 创建NativeImage实例，作为surface的消费者。
     OH_NativeImage* image = OH_ConsumerSurface_Create();
     ```
    
 2. 获取对应的数据生产者端NativeWindow。
 
     ```c++
-    // 获取生产者NativeWindow
+    // 获取生产者NativeWindow。
     OHNativeWindow* nativeImageWindow = OH_NativeImage_AcquireNativeWindow(image);
     ```
 
@@ -56,7 +56,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     int32_t height = 600;
     int32_t ret = OH_NativeWindow_NativeWindowHandleOpt(nativeImageWindow, code, width, height);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -68,28 +68,28 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     - onFrameAvailable 有buffer可获取触发时的回调函数。
 
     ```c++
-    // onFrameAvailable实现
+    // onFrameAvailable实现。
     static void onFrameAvailable()
     {
       OHNativeWindowBuffer *buffer = nullptr;
       int fenceFd;
-      // 通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer
+      // 通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer。
       OH_NativeImage_AcquireNativeWindowBuffer(image, &buffer, &fenceFd);
-      // 通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中
+      // 通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中。
       OH_NativeImage_ReleaseNativeWindowBuffer(image, &buffer, &fenceFd);
     }
     
     static void context()
     {
-      // 开发者自定义的上下文信息
+      // 开发者自定义的上下文信息。
     }
 
-    // 设置回调监听者
+    // 设置回调监听者。
     OH_OnFrameAvailableListener listener = {&onFrameAvailable, &context};
-    // 设置帧可用回调
+    // 设置帧可用回调。
     ret = OH_NativeImage_SetOnFrameAvailableListener(image, listener);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -113,7 +113,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ret = OH_VideoDecoder_SetSurface(videoDec, nativeImageWindow);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -134,7 +134,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
     ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);
     if (ret != AV_ERR_OK) {
-        // 异常处理
+        // 异常处理。
     }
     ```
 
@@ -142,6 +142,6 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
    
    在调用OH_VideoDecoder_Destroy接口后，调用OH_NativeImage_Destroy接口销毁OH_NativeImage实例。
    ```c++
-   // 销毁OH_NativeImage实例
+   // 销毁OH_NativeImage实例。
    OH_NativeImage_Destroy(&image);
    ```
