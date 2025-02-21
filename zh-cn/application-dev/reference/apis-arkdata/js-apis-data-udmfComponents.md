@@ -62,8 +62,8 @@ import { FormType, ContentFormCard, uniformDataStruct } from '@kit.ArkData';
 @Entry
 @Component
 struct Normal {
-  @State contentFormData: uniformDataStruct.ContentForm | undefined = undefined ;
-  @State formWidth: number = 220;
+  @State contentForms: uniformDataStruct.ContentForm[] = [];
+  @State formWidth: number = 200;
   @State formType: FormType = FormType.TYPE_BIG;
 
   aboutToAppear(): void {
@@ -74,17 +74,16 @@ struct Normal {
     let context = getContext(this) as common.UIAbilityContext;
     try {
       let appIcon = await context.resourceManager.getMediaContent($r('app.media.startIcon').id);
-      let thumb1 = await context.resourceManager.getMediaContent($r('app.media.thumb1').id);
       let thumb2 = await context.resourceManager.getMediaContent($r('app.media.thumb2').id);
-      this.contentForms = {
+      this.contentForms.push({
         uniformDataType: 'general.content-form',
-        title: 'ContentFormCard',
+        title: '为什么微博微博微博微博微博',
         thumbData: thumb2,
-        description: 'ContentFormCardDesciption',
-        appName: 'AppName',
-        linkUri: 'linkUri',
+        description: '是不是很多人好奇，是不是很多人好奇是不是很多人好奇',
+        appName: '今日头条',
+        linkUri: 'https://appgallery.huawei.com/app/detail?id=com.huawei.hmos.wallet',
         appIcon: appIcon
-      };
+      })
     } catch (err) {
       console.info(`failed getMediaContent.`);
     }
@@ -93,58 +92,47 @@ struct Normal {
 
   build() {
     Column({ space: 10 }) {
-      Scroll() {
-        Column({ space: 5 }) {
-          if (this.contentFormData) {
-            Text(`标准卡片，formWidth：${this.formWidth}, this.formType: ${this.formType}`)
-            ContentFormCard({
-              contentFormData: this.contentFormData,
-              formType: this.formType,
-              formWidth: this.formWidth
-            })
-            Button('卡片类型动态变化')
-              .width('70%')
-              .height(50)
-              .onClick(() => {
-                switch (this.formType) {
-                  case FormType.TYPE_BIG:
-                    this.formType = FormType.TYPE_MID;
-                    this.formWidth = 200;
-                    break;
-                  case FormType.TYPE_MID:
-                    this.formType = FormType.TYPE_SMALL;
-                    this.formWidth = 100;
-                    break;
-                  case FormType.TYPE_SMALL:
-                    this.formType = FormType.TYPE_BIG;
-                    this.formWidth = 200;
-                    break;
-                  default:
-                    break;
-                }
-              })
-            Button('每次宽度加1')
-              .width('70%')
-              .height(50)
-              .onClick(() => {
-                this.formWidth++;
-              })
-            Button('每次宽度减1')
-              .width('70%')
-              .height(50)
-              .onClick(() => {
-                this.formWidth--;
-              })
-          }
-        }
-        .width('100%')
-        .alignItems(HorizontalAlign.Start)
+      if (this.contentForms.length > 0) {
+        Text(`标准卡片，formWidth：${this.formWidth}, this.formType: ${this.formType}`)
+        ContentFormCard({
+          contentFormData: this.contentForms[0],
+          formType: this.formType,
+          formWidth: this.formWidth
+        })
+        Button('卡片类型动态变化')
+          .width('70%')
+          .height(50)
+          .onClick(() => {
+            switch (this.formType) {
+              case FormType.TYPE_BIG:
+                this.formType = FormType.TYPE_MID;
+                this.formWidth = 200;
+                break;
+              case FormType.TYPE_MID:
+                this.formType = FormType.TYPE_SMALL;
+                this.formWidth = 137;
+                break;
+              case FormType.TYPE_SMALL:
+                this.formType = FormType.TYPE_BIG;
+                this.formWidth = 200;
+                break;
+              default:
+                break;
+            }
+          })
+        Button('每次宽度加1')
+          .width('70%')
+          .height(50)
+          .onClick(() => {
+            this.formWidth++;
+          })
+        Button('每次宽度减1')
+          .width('70%')
+          .height(50)
+          .onClick(() => {
+            this.formWidth--;
+          })
       }
-      .width('100%')
-      .layoutWeight(1)
-      .padding({ top: 20, bottom: 20, left: 10 })
-      .backgroundColor('#FFFFFF')
-      .align(Alignment.Top)
     }
     .width('100%')
     .height('100%')
