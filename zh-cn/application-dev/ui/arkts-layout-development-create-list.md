@@ -1091,6 +1091,50 @@ List() {
     }
     ```
 
+## 切换布局方向
+
+部分业务场景需要列表底部插入数据时，自动向上滚动，把新插入的节点展示出来。例如，直播评论、即时聊天等应用场景。而List组件正常布局时, 在内容下方增加节点，内容是保持不变的。此时，可以通过切换布局方向来实现所需效果。
+
+  **图20** 实时消息滚动显示
+
+![zh-cn_image_0000001949866105](figures/zh-cn_image_0000001949866105.gif)
+
+1. 定义列表项数据结构。
+
+    ```ts
+    interface Message {
+      id: number
+      content: string
+      sender: string
+    }
+    ```
+
+2. 构造列表结构，同时把stackFromEnd接口值设置为true，即可实现list列表在底部插入数据时，内容向上滚动。
+
+    ```ts
+    @State messages: Message[] = [
+        { id: 1, content: '欢迎来到直播间！', sender: '系统' },
+        { id: 2, content: '大家好啊~', sender: '主播' }
+    ]
+    build() {
+      Column() {
+        List({ space: 10 }) {
+          ForEach(this.messages, (item: Message) => {
+            ListItem() {
+              this.MessageItem(item)
+            }
+          }, (item: Message) => item.id.toString())
+        }
+        .stackFromEnd(true)
+        .layoutWeight(1)
+        .alignListItem(ListItemAlign.Center)
+        // ...
+      }
+      .width('100%')
+      .height('100%')
+    }
+    ```
+
 ## 相关实例
 
 如需详细了解ArkUI中列表的创建与使用，请参考以下示例：
