@@ -1,6 +1,6 @@
 # 驱动子系统扩展外设管理模块Changelog
 
-## cl.usbddk.1 SendPipeRequest和SendPipeRequestWithAshmem接口行为变更
+## cl.usbddk.1 SendPipeRequest和SendPipeRequestWithAshmem接口行为变更，传入错误参数时，返回值由USB_DDK_SUCCESS = 0变更为USB_DDK_INVALID_PARAMETER = 401
 
 **访问级别**
 
