@@ -69,7 +69,7 @@ export default class MigrationAbility extends UIAbility {
 
 off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-注销回调函数，不再获取快速拉起结果的通知。使用callback异步回调。
+注销回调函数，不再获取快速拉起结果。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
@@ -120,7 +120,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## ContinueResultInfo
 
-应用跨端迁移快速拉起的结果。
+注册或注销回调函数返回的速拉起的结果。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
@@ -131,7 +131,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## ContinueStateCode
 
-应用跨端迁移快速拉起的结果状态码的枚举值。
+快速拉起的结果状态码的枚举值。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
