@@ -24,7 +24,7 @@ OpenHarmony支持可变帧率能力，开发者通过使用可变帧率接口，
 
 ![可变帧率原理图](./figures/displaysync-architecture.jpg)
 
-如上图所示，应用层的多种UI（UI、Animator、自绘制XComponent及自绘制UI）可以通过相对应的可变帧率接口（DisplaySync、Native_XComponent及DisplaySoloist）接入到控帧系统。控帧系统采用C/S(Client/Server)即客户端/服务端架构，客户端收集UI设置的期望绘制帧率，参与到框架层的整机刷新率决策；服务端根据决策出的刷新率结果进行绘制帧率分发，逐级传递到应用层的各类UI。同时，硬件层也会根据整机刷新率的决策结果，完成硬件器件的刷新率切换。
+如上图所示，应用层的多种UI（Arkui、Animator、XComponent自绘制及非UI线程）可以通过相对应的可变帧率接口（addFRCSceneInfo、displaySync、OH_NativeXComponent_SetExpectedFrameRateRange及DisplaySoloist）接入到控帧系统。控帧系统采用C/S(Client/Server)即客户端/服务端架构，客户端收集UI设置的期望绘制帧率，参与到框架层的整机刷新率决策；服务端根据决策出的刷新率结果进行绘制帧率分发，逐级传递到应用层的各类UI。同时，硬件层也会根据整机刷新率的决策结果，完成硬件器件的刷新率切换。
 
 ## 约束与限制
 
