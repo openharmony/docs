@@ -16,9 +16,9 @@
 
 此变更不涉及应用适配。
 
-变更前：API 16以下版本，创建的SoundPool对象底层为单实例模式，一个应用进程只能够创建1个SoundPool实例。
+变更前：API 16以下版本(build-profile.json5文件中targetSdkVersion配置为5.1.0(16)以下)，创建的SoundPool对象底层为单实例模式，一个应用进程只能够创建1个SoundPool实例。
 
-变更后：API 16及API 16以上版本，创建的SoundPool对象底层为多实例模式，一个应用进程最多能够创建128个SoundPool实例。
+变更后：API 16及API 16以上版本(build-profile.json5文件中targetSdkVersion配置为5.1.0(16)及以上)，创建的SoundPool对象底层为多实例模式，一个应用进程最多能够创建128个SoundPool实例。
 
 **起始API Level**
 
