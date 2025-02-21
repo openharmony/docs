@@ -1552,7 +1552,7 @@ async function example() {
 ```
 ### getKeyFrameThumbnail<sup>14+</sup>
 
-getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>;
+getKeyFrameThumbnail(beginFrameTimeMs: number, type: ThumbnailType): Promise<image.PixelMap>
 
 获取视频中关键视频帧位置的指定类型缩略图，使用promise方式返回异步结果。
 
