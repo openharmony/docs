@@ -2192,7 +2192,7 @@ clip(fillRule?: CanvasFillRule): void
 
 clip(path: Path2D, fillRule?: CanvasFillRule): void
 
-设置当前路径为剪切路径
+设置当前路径为剪切路径。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3695,7 +3695,7 @@ off(type: 'onAttach', callback?: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调 |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件发生绑定的回调。 |
 | callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件发生绑定后触发的回调。<br>非空代表取消订阅发生绑定对应的回调。 |
 
 ### off('onDetach')<sup>13+</sup>
@@ -3712,7 +3712,7 @@ off(type: 'onDetach', callback?: () => void): void
 
 | 参数名 | 类型      | 必填 | 说明                                                                   |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调 |
+| type   | string | 是   | 取消订阅CanvasRenderingContext2D与Canvas组件解除绑定的回调。 |
 | callback   | () => void | 否   | 为空代表取消所有订阅CanvasRenderingContext2D与Canvas组件解除绑定后触发的回调。<br>非空代表取消订阅接触绑定对应的回调。 |
 
 **示例：**

@@ -277,13 +277,13 @@
 
 | 名称   | 说明   |
 | ---- | ---- |
-| Mon  | 星期一  |
-| Tue  | 星期二  |
-| Wed  | 星期三  |
-| Thur | 星期四  |
-| Fri  | 星期五  |
-| Sat  | 星期六  |
-| Sun  | 星期日  |
+| Mon  | 星期一。  |
+| Tue  | 星期二。  |
+| Wed  | 星期三。  |
+| Thur | 星期四。  |
+| Fri  | 星期五。  |
+| Sat  | 星期六。  |
+| Sun  | 星期日。  |
 
 ## Direction
 
@@ -380,8 +380,8 @@
 
 | 名称   | 说明             |
 | ---- | -------------- |
-| FILL | 缩放当前子组件以填充满父组件 |
-| FIT  | 缩放当前子组件以自适应父组件 |
+| FILL | 缩放当前子组件以填充满父组件。 |
+| FIT  | 缩放当前子组件以自适应父组件。 |
 
 ## Visibility
 
@@ -1079,7 +1079,7 @@ Nullable\<T> {
 
 ## HeightBreakpoint<sup>13+</sup>
 
-表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回
+表示窗口不同高宽比阈值下对应的高度断点枚举值。通过[getWindowHeightBreakpoint](../js-apis-arkui-UIContext.md#getwindowheightbreakpoint13)返回。
 
 **原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。
 

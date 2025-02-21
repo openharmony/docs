@@ -607,7 +607,7 @@ setHomeWidthRange(minPercent: number, maxPercent: number): void
 
 keepBottomPage(keepBottom: boolean): void
 
-设置在调用pop和clear接口时是否保留栈底页面，
+设置在调用pop和clear接口时是否保留栈底页面。
 
 > **说明：**
 >
