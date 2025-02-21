@@ -315,28 +315,6 @@ import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
 struct Index {
   @State message: string = 'Hello World';
   childNavStack: NavPathStack = new NavPathStack();
-  private menuItems: Array<NavigationMenuItem> = [
-    {
-      value: "1",
-      icon: $r('app.media.custom'),
-    },
-    {
-      value: "1",
-      icon: $r('app.media.custom'),
-    },
-    {
-      value: "1",
-      icon: $r('app.media.custom'),
-    },
-    {
-      value: "1",
-      icon: $r('app.media.custom'),
-    },
-    {
-      value: "1",
-      icon: $r('app.media.custom'),
-    },
-  ]
 
   @Builder
   tabContent1() {
