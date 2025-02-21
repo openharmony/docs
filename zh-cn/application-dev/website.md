@@ -1811,6 +1811,7 @@
           - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis-ability-kit/js-apis-app-ability-wantAgent.md)
           - [@ohos.app.ability.wantConstant (wantConstant)](reference/apis-ability-kit/js-apis-app-ability-wantConstant.md)
           - [@ohos.continuation.continuationManager (continuationManager)](reference/apis-ability-kit/js-apis-continuation-continuationManager.md)
+          - [@ohos.app.ability.continueManager (continueManager)]( js-apis-app-ability-continueManager.md)
           <!--Del-->
           - [@ohos.abilityAccessCtrl (程序访问控制管理)(系统接口)](reference/apis-ability-kit/js-apis-abilityAccessCtrl-sys.md)
           - [@ohos.ability.screenLockFileManager (锁屏敏感数据管理)(系统接口)](reference/apis-ability-kit/js-apis-screenLockFileManager-sys.md)
