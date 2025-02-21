@@ -8,9 +8,7 @@
 
 **变更原因**
 
-原来的应用创建SoundPool实例，一个应用进程只能够创建一个SoundPool实例，为单实例模式，无法满足应用的使用场景。例如很多应用在使用SoundPool
-
-的能力的同时，还需要使用TimePicker组件(该组件中封装了SoundPool的能力)，单实例模式会使得SoundPool对象之间互相干扰，影响应用的使用体验。
+原来的应用创建SoundPool实例，一个应用进程只能够创建一个SoundPool实例，为单实例模式，无法满足应用的使用场景。例如很多应用在使用SoundPool的能力的同时，还需要使用TimePicker组件(该组件中封装了SoundPool的能力)，单实例模式会使得SoundPool对象之间互相干扰，影响应用的使用体验。
 
 **变更影响**
 
