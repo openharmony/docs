@@ -14,7 +14,6 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 
 **相关模块：**[HiCollie](_hi_hicollie.md)
 
-
 ## 汇总
 
 ### 结构体
@@ -28,10 +27,10 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 
 | 名称 | 描述 |
 | -------- | -------- |
-| typedef enum [HiCollie_ErrorCode](_hi_hicollie.md#hicollie_errorcode)[HiCollie_ErrorCode](_hi_hicollie.md#hicollie_errorcode) | 错误码定义  |
+| typedef enum [HiCollie_ErrorCode](_hi_hicollie.md#hicollie_errorcode)[HiCollie_ErrorCode](_hi_hicollie.md#hicollie_errorcode) | 错误码定义。  |
 | typedef void(\* [OH_HiCollie_Task](_hi_hicollie.md#oh_hicollie_task)) (void) | 在业务线程卡死检测中，通过实现该函数来检测业务线程是否卡住。 HiCollie将在独立线程中每3秒调用一次该函数。 例如：该函数可实现向业务线程发送消息。在业务线程接收到消息之后，设置一个标记，通过检查这个标记，可以知道业务线程是否卡住。  |
-| typedef void(\* [OH_HiCollie_BeginFunc](_hi_hicollie.md#oh_hicollie_beginfunc)) (const char \*eventName) | 事件处理前调用该函数。在卡顿检测中, 通过实现该函数来记录业务线程处理事件的开始时间。  |
-| typedef void(\* [OH_HiCollie_EndFunc](_hi_hicollie.md#oh_hicollie_endfunc)) (const char \*eventName) | 事件处理后调用该函数。在卡顿检测中, 通过实现该函数来检测业务线程处理事件是否卡顿。 通过检查处理事件的执行时间，HiCollie将知道每个事件的持续时间。如果超过预设阈值(150ms~450ms)，将报告jank事件。  |
+| typedef void(\* [OH_HiCollie_BeginFunc](_hi_hicollie.md#oh_hicollie_beginfunc)) (const char \*eventName) | 事件处理前调用该函数。在卡顿检测中，通过实现该函数来记录业务线程处理事件的开始时间。  |
+| typedef void(\* [OH_HiCollie_EndFunc](_hi_hicollie.md#oh_hicollie_endfunc)) (const char \*eventName) | 事件处理后调用该函数。在卡顿检测中，通过实现该函数来检测业务线程处理事件是否卡顿。 通过检查处理事件的执行时间，HiCollie将知道每个事件的持续时间。如果超过预设阈值(150ms~450ms)，将报告jank事件。  |
 | typedef struct [HiCollie_DetectionParam](_hi_hicollie___detection_param.md)[HiCollie_DetectionParam](_hi_hicollie.md#hicollie_detectionparam) | 用于检测业务线程卡顿的参数。 请注意，这些参数对API 12无效，仅用于扩展。  |
 | typedef void(\* [OH_HiCollie_Callback](_hi_hicollie.md#oh_hicollie_callback)) (void \*) | 启动函数执行超时检测。  |
 | typedef enum [HiCollie_Flag](_hi_hicollie.md#hicollie_flag)[HiCollie_Flag](_hi_hicollie.md#hicollie_flag) | 定义函数执行超时时发生的动作。  |
@@ -41,7 +40,7 @@ HiCollie模块对外提供检测业务线程卡死、卡顿，以及上报卡死
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [HiCollie_ErrorCode](_hi_hicollie.md#hicollie_errorcode) {<br/>[HICOLLIE_SUCCESS](_hi_hicollie.md) = 0, [HICOLLIE_INVALID_ARGUMENT](_hi_hicollie.md) = 401, [HICOLLIE_WRONG_THREAD_CONTEXT](_hi_hicollie.md) = 29800001, [HICOLLIE_REMOTE_FAILED](_hi_hicollie.md) = 29800002,<br/>[HICOLLIE_INVALID_TIMER_NAME](_hi_hicollie.md) = 29800003, [HICOLLIE_INVALID_TIMEOUT_VALUE](_hi_hicollie.md) = 29800004, [HICOLLIE_WRONG_PROCESS_CONTEXT](_hi_hicollie.md) = 29800005, [HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM](_hi_hicollie.md) = 29800006<br/>} | 错误码定义  |
+| [HiCollie_ErrorCode](_hi_hicollie.md#hicollie_errorcode) {<br/>[HICOLLIE_SUCCESS](_hi_hicollie.md) = 0, [HICOLLIE_INVALID_ARGUMENT](_hi_hicollie.md) = 401, [HICOLLIE_WRONG_THREAD_CONTEXT](_hi_hicollie.md) = 29800001, [HICOLLIE_REMOTE_FAILED](_hi_hicollie.md) = 29800002,<br/>[HICOLLIE_INVALID_TIMER_NAME](_hi_hicollie.md) = 29800003, [HICOLLIE_INVALID_TIMEOUT_VALUE](_hi_hicollie.md) = 29800004, [HICOLLIE_WRONG_PROCESS_CONTEXT](_hi_hicollie.md) = 29800005, [HICOLLIE_WRONG_TIMER_ID_OUTPUT_PARAM](_hi_hicollie.md) = 29800006<br/>} | 错误码定义。  |
 | [HiCollie_Flag](_hi_hicollie.md#hicollie_flag) { [HICOLLIE_FLAG_DEFAULT](_hi_hicollie.md) = (~0), **HICOLLIE_FLAG_NOOP** = (0), **HICOLLIE_FLAG_LOG** = (1 &lt;&lt; 0), **HICOLLIE_FLAG_RECOVERY** = (1 &lt;&lt; 1) } | 定义函数执行超时时发生的动作。  |
 
 ### 函数
