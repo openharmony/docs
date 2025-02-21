@@ -1,6 +1,6 @@
 # @ohos.app.ability.continueManager (continueManager)
 
-continueManager快速拉起结果获取。
+continueManager应用跨端迁移快速拉起结果获取。
 
 > **说明：**
 > 
