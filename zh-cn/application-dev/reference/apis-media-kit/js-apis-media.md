@@ -4440,8 +4440,8 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前播放状态。     |
-| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前播放状态的切换原因。 |
+| state  | [AVRecorderState](#avrecorderstate9) | 必填 | 当前录制状态。     |
+| reason | [StateChangeReason](#statechangereason9) | 必填 | 当前录制状态的切换原因。 |
 
 ## AVRecorderConfig<sup>9+</sup>
 
