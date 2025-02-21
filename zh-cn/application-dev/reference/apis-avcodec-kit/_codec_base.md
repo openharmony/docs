@@ -535,7 +535,7 @@ typedef void(* OH_AVCodecOnNewOutputData) (OH_AVCodec *codec, uint32_t index, OH
 | codec | OH_AVCodec实例。  | 
 | index | 与新输出缓冲区对应的索引。  | 
 | data | 包含新输出数据的缓冲区。  | 
-| attr | 新输出缓冲区的说明，请参见**OH_AVCodecBufferAttr**。  | 
+| attr | 新输出缓冲区的说明，请参见[OH_AVCodecBufferAttr](_o_h___a_v_codec_buffer_attr.md)。  | 
 | userData | 用户执行回调所依赖的数据。  | 
 
 
