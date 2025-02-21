@@ -152,7 +152,7 @@ UIContext的bindTabsToScrollable、bindTabsToNestedScrollable接口
 
 默认行为变更，无需适配。
 
-## cl.arkui.5 MenuItem高度设置百分比情况下文本垂直对齐方式变更
+## cl.arkui.5 MenuItem高度设置百分比情况下文本垂直对齐方式由顶部对齐变更为居中对齐
 
 **访问级别**
 
@@ -211,4 +211,4 @@ MenuItem组件
 
 **适配指导**
 
-MenuItem文本垂直布局位置调整，应用无需适配。
+默认效果变更，无需适配。
