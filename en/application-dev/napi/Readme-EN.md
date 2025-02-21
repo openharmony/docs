@@ -90,6 +90,8 @@
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
   - Resource Management<!--resource-management-->
     - [Raw File Development](rawfile-guidelines.md)
+  - Network Management
+    - [NetConnection Development](native-netmanager-guidelines.md)
   - Thread Scheduling
     - [QoS Development](qos-guidelines.md)
   - Memory Management
