@@ -51,6 +51,8 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 点击搜索按钮，同时触发onSubmit与onClick回调。
 
+wearable设备上默认字体大小为18fp。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -66,7 +68,7 @@ searchButton(value: string, option?: SearchButtonOptions)
 
 placeholderColor(value: ResourceColor)
 
-设置placeholder文本颜色，wearable设备上默认值为：'#99ffffff'。
+设置placeholder文本颜色，wearable设备上默认值为'#99ffffff'。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -84,7 +86,7 @@ placeholderFont(value?: Font)
 
 设置placeholder文本样式，包括字体大小，字体粗细，字体族，字体风格。当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。
 
-wearable设备上大小为：18px
+wearable设备上大小为18px。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -102,7 +104,7 @@ textFont(value?: Font)
 
 设置搜索框内输入文本样式，包括字体大小，字体粗细，字体族，字体风格。目前仅支持默认字体族。
 
-wearable设备上默认字体大小为：18fp
+wearable设备上默认字体大小为18fp。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -154,6 +156,8 @@ searchIcon(value: IconOptions | SymbolGlyphModifier)
 
 设置左侧搜索图标样式。
 
+wearable设备上默认图标大小为16vp。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -169,6 +173,8 @@ searchIcon(value: IconOptions | SymbolGlyphModifier)
 cancelButton(value: CancelButtonOptions | CancelButtonSymbolOptions)
 
 设置右侧清除按钮样式。
+
+wearable设备上默认图标大小为18fp。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -186,7 +192,7 @@ fontColor(value: ResourceColor)
 
 设置输入文本的字体颜色。[文本通用属性](ts-universal-attributes-text-style.md)fontSize、fontStyle、fontWeight和fontFamily在[textFont](#textfont)属性中设置。
 
-wearable设备上默认值为：'#dbffffff'
+wearable设备上默认值为'#dbffffff'。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -114,7 +114,7 @@ struct ContainerSpanModifierExample {
             .width('40vp')
             .height('40vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
-          Span(' 我是ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
+          Span(' I\'m ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
         }.attributeModifier(this.containerSpanModifier as MyContainerSpanModifier)
       }
     }.width('100%').alignItems(HorizontalAlign.Center)
