@@ -68,7 +68,18 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVMuxer_SetRotation(muxer, 0);
    ```
 
-4. 添加音频轨。
+4. 添加文件级数据。
+   ```c++
+   OH_AVFormat *format = OH_AVFormat_Create(); // 用OH_AVFormat_Create创建format
+   OH_AVFormat_SetStringValue(format, OH_MD_KEY_CREATION_TIME, "2024-12-28T00:00:00:000000Z"); // 设置创建时间（使用ISO 8601标准的时间格式且为UTC时间）
+   int ret = OH_AVMuxer_SetFormat(muxer, format); // 设置封装的format
+   if (ret != AV_ERR_OK) {
+      // 设置format失败，未找到有效待写入的key数据
+   }
+   OH_AVFormat_Destroy(format); // 销毁
+   ```
+
+5. 添加音频轨。
 
    **方法一：用OH_AVFormat_Create创建format**
 
@@ -107,7 +118,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(formatAudio); // 销毁
    ```
 
-5. 添加视频轨。
+6. 添加视频轨。
 
    **方法一：用OH_AVFormat_Create创建format**
 
@@ -144,7 +155,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(formatVideo); // 销毁
    ```
 
-6. 添加封面轨。
+7. 添加封面轨。
 
    **方法一：用OH_AVFormat_Create创建format**
 
@@ -175,7 +186,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    OH_AVFormat_Destroy(formatCover); // 销毁
    ```
 
-7. 调用OH_AVMuxer_Start()开始封装。
+8. 调用OH_AVMuxer_Start()开始封装。
 
    ```c++
    // 调用start，写封装文件头。start后，不能设置媒体参数、不能添加音视频轨
@@ -184,7 +195,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-8. 调用OH_AVMuxer_WriteSampleBuffer()，写入封装数据。
+9. 调用OH_AVMuxer_WriteSampleBuffer()，写入封装数据。
 
    封装数据包括视频、音频、封面等数据。
 
@@ -211,7 +222,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-9. 调用OH_AVMuxer_Stop()，停止封装。
+10. 调用OH_AVMuxer_Stop()，停止封装。
 
    ```c++
    // 调用stop，写封装文件尾。stop后不能写入媒体数据
@@ -220,9 +231,9 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    }
    ```
 
-10. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
+11. 调用OH_AVMuxer_Destroy()销毁实例，释放资源。
 
-    注意不能重复销毁，会导致程序崩溃。
+    注意不能重复销毁，否则将会导致程序崩溃。
 
     ```c++
     if (OH_AVMuxer_Destroy(muxer) != AV_ERR_OK) {
