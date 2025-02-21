@@ -44,13 +44,17 @@
 主机(Host)连接终端设备(Device)，通过`usbControlTransfer`接口进行数据传输。以下步骤描述了如何使用控制传输方式来传输数据：
 
 
-1. 获取设备列表。
+1. 导入模块。
 
    ```ts
    // 导入usbManager模块。
    import { usbManager } from '@kit.BasicServicesKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
+   ```
+
+2. 获取设备列表。
+
+   ```ts
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    /*
@@ -106,7 +110,7 @@
    */
    ```
 
-2. 获取设备操作权限。
+3. 获取设备操作权限。
 
    ```ts
    let deviceName : string = deviceList[0].name;
@@ -118,7 +122,7 @@
    });
    ```
 
-3. 打开终端设备。
+4. 打开终端设备。
 
    ```ts
    // 打开设备，获取数据传输通道。
@@ -132,7 +136,7 @@
    usbManager.claimInterface(pipe, interface1, true);
    ```
 
-4. 数据传输。
+5. 数据传输。
 
     ```ts
     /*
@@ -152,7 +156,7 @@
     })
     ```
 
-5. 释放接口，关闭设备。
+6. 释放接口，关闭设备。
 
    ```ts
    usbManager.releaseInterface(pipe, interface1);

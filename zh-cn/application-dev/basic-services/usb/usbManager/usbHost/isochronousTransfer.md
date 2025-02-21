@@ -45,12 +45,16 @@
 
 主机(Host)连接终端设备(Device)，通过`usbSubmitTransfer`接口进行数据传输。以下步骤描述了如何使用实时传输方式来传输数据：
 
-1. 获取设备列表。
+1. 导入模块。
 
     ```ts
     // 导入usbManager模块。
     import { usbManager } from '@kit.BasicServicesKit';
-    
+    ``` 
+
+2. 获取设备列表。
+
+    ```ts
     // 获取连接主设备的USB设备列表
     let usbDevices: Array<usbManager.USBDevice> = usbManager.getDevices();
     console.info('usbDevices: ', JSON.stringify(usbDevices));
@@ -60,7 +64,7 @@
     }
     ```
 
-2. 获取设备操作权限。
+3. 获取设备操作权限。
 
     ```ts
     // 此处对列表中的第一台USB设备判断是否拥有访问权限
@@ -76,7 +80,7 @@
     }
     ```
 
-3. 获取通过实时传输读取数据的端点
+4. 获取通过实时传输读取数据的端点
 
    ```ts
    let devicePipe: usbManager.USBDevicePipe = usbManager.connectDevice(usbDevice);
@@ -104,7 +108,7 @@
    }
    ```
    
-4. 连接终端设备，注册通信接口。
+5. 连接终端设备，注册通信接口。
 
     ```ts
     // 注册通信接口，注册成功返回0，注册失败返回其他错误码。
@@ -124,7 +128,7 @@
     }
    ```
 
-5. 传输数据。
+6. 传输数据。
 
    ```ts
    try {
@@ -153,7 +157,7 @@
    }
    ```
 
-6. 取消传输，释放接口，关闭设备消息控制通道。
+7. 取消传输，释放接口，关闭设备消息控制通道。
 
     ```ts
     usbManager.usbCancelTransfer(transferParams);
