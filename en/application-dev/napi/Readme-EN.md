@@ -46,7 +46,7 @@
       - [Creating an ArkTS Runtime Environment Using Node-API](use-napi-ark-runtime.md)
       - [Loading a Module in the Main Thread Using Node-API](use-napi-load-module.md)
       - [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs](use-napi-event-loop.md)
-      - [Loading a Module Using Node-API](use-napi-load-module-with-info.md).
+      - [Loading a Module Using Node-API](use-napi-load-module-with-info.md)
       - [Passing a Task with the Specified Priority to an ArkTS Thread from an Asynchronous Thread Using Node-API](use-call-threadsafe-function-with-priority.md)
       - [Analyzing Exceptions and Crashes Triggered by Using Node-API](use-napi-about-crash.md)
     - [Node-API FAQs](use-napi-faqs.md)
@@ -86,9 +86,11 @@
       - [Working with Proxy Using JSVM-API](use-jsvm-about-proxy.md)
       - [Working with Well-Known Symbols Using JSVM-API](use-jsvm-about-well-known-symbols.md)
       - [Working with Wrapper Objects Using JSVM-API](use-jsvm-about-wrapper-object.md)
+      - [Creating Basic Data Types Using JSVM-API](use-jsvm-basic-data-types.md)
     - Typical JSVM-API Use Cases
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
+      - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
       - JSVM-API Tuning and Performant Coding Cases
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
@@ -96,8 +98,10 @@
   - OpenMP Support
     - [OpenMP Overview](openmp-overview.md)
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
-  - Resource Management
+  - Resource Management<!--resource-management-->
     - [Raw File Development](rawfile-guidelines.md)
+  - Network Management
+    - [NetConnection Development](native-netmanager-guidelines.md) 
   - Thread Scheduling
     - [QoS Development](qos-guidelines.md)
   - Memory Management
@@ -116,3 +120,4 @@
   - [OpenHarmony ABIs](ohos-abi.md)
   - [CPU Features](cpu-features.md)
   - [Using Neon Instructions](neon-guide.md)
+
