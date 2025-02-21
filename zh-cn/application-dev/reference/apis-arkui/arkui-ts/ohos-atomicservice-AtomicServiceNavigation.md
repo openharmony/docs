@@ -31,6 +31,9 @@ AtomicServiceNavigation({
     navDestinationBuilder?: NavDestinationBuilder,
     navBarWidthRange?: [Dimension, Dimension],
     minContentWidth?: Dimension,
+    sideBarOptions?: sideBarOptions,
+    sideBarContent?: Callback<void>,
+    menus?:	CustomBuilder | Array<NavigationMenuItem>,
     stateChangeCallback?: Callback<boolean>,
     modeChangeCallback?: Callback<NavigationMode>
 })
@@ -119,7 +122,7 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | TOWARDS  | 3 | 一种颜色渐变为另一种颜色。 |
 
 ## TitleBarType<sup>16+</sup>
-标题栏类型的可选项。
+标题栏类型的可选项，默认值为ROUND_ICON。
 
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
@@ -172,6 +175,9 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | sideBarIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 侧边栏里的返回名称。 |
 
 ## 示例
+
+### 示例1（AtomicServiceNavigation页面布局与渐变色背景）
+AtomicServiceNavigation的基础样式，并展示渐变色背景。
 
 ```ts
 import { AtomicServiceNavigation, NavDestinationBuilder, AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
@@ -303,6 +309,10 @@ export struct PageTwo {
   }
 }
 ```
+
+### 示例2（抽屉模式，宽屏场景下插入自定义布局）
+
+设备宽屏场景（宽度大于600vp）下设置抽屉模式，用户在标题栏插入自定义布局。
 
 ![](figures/AtomicServiceNavigationDemo02.jpg)
 
@@ -443,6 +453,10 @@ export struct PageTwo {
 }
 ```
 ![](figures/AtomicServiceNavigationDemo03.png)
+
+### 示例3（边栏使用场景）
+
+设置边栏：背景色与内容样式。
 
 ```ts
 import { AtomicServiceNavigation, TitleBarType } from '@ohos.atomicservice.AtomicServiceNavigation'
