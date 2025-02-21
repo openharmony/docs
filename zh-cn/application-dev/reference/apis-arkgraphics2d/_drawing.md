@@ -402,7 +402,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 |
 | void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 |
 | void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 |
-| void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 重置当前矩阵为单位矩阵 |
+| void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 重置当前矩阵为单位矩阵。 |
 | void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | 将矩阵total设置为矩阵a乘以矩阵b。 例如给定矩阵a和矩阵b如下所示: \| A B C \| \| J K L \| a = \| D E F \|, b = \| M N O \| \| G H I \| \| P Q R \| 设置的最终矩阵total为: \| A B C \| \| J K L \| \| AJ+BM+CP AK+BN+CQ AL+BO+CR \| total = a \* b = \| D E F \| \* \| M N O \| = \| DJ+EM+FP DK+EN+FQ DL+EO+FR \| \| G H I \| \| P Q R \| \| GJ+HM+IP GK+HN+IQ GL+HO+IR \| |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | 获取矩阵所有元素值。 |
 | float [OH_Drawing_MatrixGetValue](#oh_drawing_matrixgetvalue) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, int index) | 获取矩阵给定索引位的值。索引范围0-8。 |
@@ -2880,9 +2880,9 @@ enum OH_Drawing_TextEncoding
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_ENCODING_UTF8 | 单字节，表示UTF-8或ASCII | 
-| TEXT_ENCODING_UTF16 | 双字节，表示大部分Unicode | 
-| TEXT_ENCODING_UTF32 | 四字节，表示所有Unicode | 
+| TEXT_ENCODING_UTF8 | 单字节，表示UTF-8或ASCII。 | 
+| TEXT_ENCODING_UTF16 | 双字节，表示大部分Unicode。 | 
+| TEXT_ENCODING_UTF32 | 四字节，表示所有Unicode。 | 
 | TEXT_ENCODING_GLYPH_ID | 双字节，表示字形索引。 | 
 
 
@@ -12362,7 +12362,7 @@ OH_Drawing_MipmapMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OU
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_FilterMode | 过滤采样模式[OH_Drawing_FilterMode](#oh_drawing_filtermode) | 
+| OH_Drawing_FilterMode | 过滤采样模式[OH_Drawing_FilterMode](#oh_drawing_filtermode)。 | 
 | OH_Drawing_MipmapMode | 多级渐远纹理采样模式[OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)。 | 
 
 **返回：**
