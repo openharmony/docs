@@ -235,7 +235,7 @@ void good_write()
     fclose(f);
 }
 ```
-
+#### 日志信息
 使用fopen打开的每个文件描述符都需要有一个与之对应的 `tag` 。`fdsan` 在 `close` 时会检查关闭的 `fd` 是否与 `tag` 匹配，不匹配就会默认提示相关日志信息。下面是上述代码的日志信息：
 
 ```
@@ -434,5 +434,5 @@ void good_write()
 }
 ```
 
-此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以参考3.2节。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
+此时运行该程序可以检测到另一个线程的double-close问题，详细信息可以 <a href="#日志信息">参考日志</a>。同样也可以设置error_level为fatal，这样可以使fdsan在检测到crash之后主动crash以获取更多信息。
 
