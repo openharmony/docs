@@ -8,15 +8,15 @@
 
 **变更原因**
 
-UX规范变更。
+应用创建的TYPE_FLOAT类型的悬浮窗，因为层级低于Dock，会被Dock栏遮挡，在视频会议等场景，体验不符合应用预期。
 
 **变更影响**
 
 此变更不涉及应用适配。
 
-- 变更前：TYPE_FLOAT类型的悬浮窗层级在dock栏之下
+- 变更前：在2in1设备上，TYPE_FLOAT类型的悬浮窗层级在dock栏之下。
   
-- 变更后：TYPE_FLOAT类型的悬浮窗层级在dock栏之上
+- 变更后：在2in1设备上，TYPE_FLOAT类型的悬浮窗层级在dock栏之上。
 
 **起始API Level**
 
