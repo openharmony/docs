@@ -398,8 +398,8 @@ export default class MigrationAbility extends UIAbility {
    }
 ```
 
-### 支持不同应用跨端迁移
-一般情况下，跨端迁移的双端是同BundleName应用之间，但有些应用在不同设备类型下的相同应用的BundleName名称不同，为了支持该场景下的两个应用之间能够完成迁移，可以通过在module.json5文件的abilities标签中配置可迁移应用continueBundleName进行关联。同时，可迁移应用的两个Ability的continueType字段必须保持一致，示例如下：
+### 支持同应用不同BundleName跨端迁移
+相同应用在不同设备类型下可能使用了不同的BundleName，该场景下的应用跨端迁移，可以通过在module.json5文件的abilities标签中配置可迁移应用continueBundleName进行关联。同时，可迁移应用的两个Ability的continueType字段必须保持一致，应用签名必须保持一致，示例如下：
 
    > **说明：**
    >
@@ -407,9 +407,10 @@ export default class MigrationAbility extends UIAbility {
    > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
     
 示例如下：
-
+   > 不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为：com.demo.example2。
+  
 ```JSON
-// 设备A，应用的BundleName为：com.demo.example1
+// 在设备A的应用配置文件中，continueBundleName字段配置包含设备B上应用的BundleName。
 {
   "module": {
     // ···
@@ -418,7 +419,7 @@ export default class MigrationAbility extends UIAbility {
         "name": "EntryAbility",
         // ···
         "continueType": ["continueType"],
-        "continueBundleName": ["com.demo.example2"], // continueBundleName标签配置
+        "continueBundleName": ["com.demo.example2"], // continueBundleName标签配置，com.demo.example2为设备B上应用的BundleName。
        
       }
     ]
@@ -428,7 +429,7 @@ export default class MigrationAbility extends UIAbility {
 ```
 
 ```JSON
-// 设备B，应用的BundleName为：com.demo.example2
+// 在设备B的应用配置文件中，continueBundleName字段配置包含设备A上应用的BundleName。
 {
   "module": {
     // ···
@@ -437,7 +438,7 @@ export default class MigrationAbility extends UIAbility {
         "name": "EntryAbility",
         // ···
         "continueType": ["continueType"],
-        "continueBundleName": ["com.demo.example1"], // continueBundleName标签配置
+        "continueBundleName": ["com.demo.example1"], // continueBundleName标签配置，com.demo.example1为设备A上应用的BundleName。
        
       }
     ]
