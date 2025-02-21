@@ -149,7 +149,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions)
 | backgroundBlurStyle | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 设置气泡模糊背景参数。<br />默认值：BlurStyle.COMPONENT_ULTRA_THICK |
 | focusable | boolean | 否 | 设置气泡弹出后是否获焦。<br />默认值：false<br />**说明：**<br />不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新。 |
 | transition | [TransitionEffect](ts-transition-animation-component.md#transitioneffect10对象说明) | 否 | 自定义设置popup弹窗显示和退出的动画效果。<br/>**说明：**<br/>1.如果不设置，则使用默认的显示/退出动效。<br/>2.显示动效中按back键，打断显示动效，执行退出动效，动画效果为显示动效与退出动效的曲线叠加后的效果。<br/>3.退出动效中按back键，不会打断退出动效，退出动效继续执行，back键不被响应。<br/>4.不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新。 |
-| onWillDismiss           | boolean\|Callback<[DismissPopupAction](#dismisspopupaction12类型说明)> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />1.在onWillDismiss回调中，不能再做onWillDismiss拦截。<br />2.不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新 |
+| onWillDismiss           | boolean\|Callback<[DismissPopupAction](#dismisspopupaction12类型说明)> | 否   | 设置popup交互式关闭拦截开关及拦截回调函数，默认值为true，popup响应点击、左滑/右滑、三键back。<br />1.当为boolean类型时，如果设置为false，则不响应点击、左滑/右滑、三键back或键盘ESC退出事件，仅当设置“弹窗显示状态”参数show值为false时才退出；如果设置为true，则正常响应退出事件；<br />2.如果设置为函数类型，则拦截退出事件且执行回调函数。<br />**说明：**<br />1.在onWillDismiss回调中，不能再做onWillDismiss拦截。<br />2.不支持通过[updatePopup](../js-apis-arkui-UIContext.md#updatepopup16)进行更新。 |
 | followTransformOfTarget          | boolean | 否   | 气泡绑定的宿主组件或其宿主组件的父容器添加了旋转、缩放等变换时，气泡是否能显示在对应变化后的位置上。<br/>默认值：false |
 
 ## PopupStateChangeParam<sup>16+</sup>类型说明
@@ -184,7 +184,7 @@ type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
 
 | 类型                                       | 说明      |
 | ---------------------------------------- | ------- |
-|   void           |    弹窗状态变化事件回调 |
+|   void           |   弹窗状态变化事件回调。 |
 
 ## PopupMaskType<sup>16+</sup>类型说明
 
