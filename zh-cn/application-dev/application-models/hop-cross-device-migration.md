@@ -401,7 +401,7 @@ export default class MigrationAbility extends UIAbility {
 ### 支持同应用不同BundleName的Ability跨端迁移
 相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
 
-- 这里是列表文本continueBundleName字段：分别添加对端应用的BundleName。
+- continueBundleName字段：分别添加对端应用的BundleName。
 - continueType字段：必须保持一致。
 
    > **说明：**
