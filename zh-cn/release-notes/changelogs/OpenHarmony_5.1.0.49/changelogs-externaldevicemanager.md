@@ -1,6 +1,6 @@
 # 驱动子系统扩展外设管理模块Changelog
 
-## cl.usbddk.1 SendPipeRequest和SendPipeRequestWithAshmem接口行为变更，传入错误参数时，返回值由USB_DDK_SUCCESS = 0变更为USB_DDK_INVALID_PARAMETER = 401
+## cl.usbddk.1 SendPipeRequest和SendPipeRequestWithAshmem接口行为变更，传入错误参数时，返回值由USB_DDK_SUCCESS变更为USB_DDK_INVALID_PARAMETER 
 
 **访问级别**
 
@@ -8,7 +8,7 @@
 
 **变更原因**
 
-调用OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口时，如果入参中的devMmap的bufferlen的长度大于设备的MaxPacketSize，会导致报错，但是以前接口未将错误上报，开发者无法感知。
+调用OH_Usb_SendPipeRequest和OH_Usb_SendPipeRequestWithAshmem接口时，如果入参中的devMmap的bufferlen的长度大于设备的MaxPacketSize，会导致接口执行失败，但是之前未将错误上报，开发者无法感知。
 
 **变更影响**
 
