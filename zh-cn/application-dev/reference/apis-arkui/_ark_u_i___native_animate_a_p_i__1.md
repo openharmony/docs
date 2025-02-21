@@ -33,7 +33,7 @@ int32_t(* ArkUI_NativeAnimateAPI_1::animateTo) (ArkUI_ContextHandle context, Ark
 ```
 **描述：**
 
-显式动画接口
+显式动画接口。
 
 **参数:**
 
@@ -50,7 +50,7 @@ event闭包中要设置的组件属性，必须在其之前设置过。
 
 **返回：**
 
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode)成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode)函数参数异常。
 
 
 ### createAnimator
@@ -108,4 +108,4 @@ int32_t(* ArkUI_NativeAnimateAPI_1::keyframeAnimateTo) (ArkUI_ContextHandle cont
 
 **返回：**
 
-[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode)成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode)函数参数异常。

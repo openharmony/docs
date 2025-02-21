@@ -35,7 +35,7 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 | progressButtonWidth               | [Length](ts-types.md#length)                                  | 否  | -      | 下载按钮的宽度。<br/>默认值：44。                                                            |
 | clickCallback                     | () =&gt; void                                                 | 是  | -      | 下载按钮的点击回调。                                                                      |
 | enable                            | boolean                                                       | 是  | \@Prop | 下载按钮是否可以点击。<br> enable为true时，表示可以点击。<br> enable为false时，表示不可点击。                  |
-| colorOptions<sup>16+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions16)   | 否  | \@Prop | 下载按钮颜色.                                                                         |
+| colorOptions<sup>16+<sup>         | [ProgressButtonColorOptions](#progressbuttoncoloroptions16)   | 否  | \@Prop | 下载按钮颜色。                                                                      |
 | progressButtonRadius<sup>16+<sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否  | \@Prop | 下载按钮的圆角（不支持百分比设置）。<br/>取值范围：[0, height/2]<br/>默认值：height/2<br/>设置非法数值时，按照默认值处理。 |
 
 ## ProgressButtonColorOptions<sup>16+<sup>
