@@ -2,7 +2,6 @@
 
 JavaScript virtual machine (JSVM) is a standard JavaScript (JS) code execution engine that strictly complies with the ECMAScript specification. For details, see [JSVM](../reference/common/_j_s_v_m.md).
 The JSVM-based code debugging and tuning capabilities include Debugger, CPU Profiler, Heap Snapshot, and Heap Statistics. The following APIs are involved:
-
 | API |  Description|
 |---|---|
 | OH_JSVM_GetVM  |  Obtains a VM instance.|
@@ -39,21 +38,21 @@ This topic describes how to use Debugger, CPU Profiler, and Heap Snapshot.
 
 2. To prevent the pause during the debugging process from being falsely reported as no response, [enable the DevEco Studio debug mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5) without setting breakpoints or run JSVM-API in threads except the main thread.
 
-3. Call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port. 
+3. Call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port.
 
    For example, call **OH_JSVM_OpenInspector(env, "localhost", 9225)** to create a socket on local port 9225 of the device.
 
 4. Call **OH_JSVM_WaitForDebugger** to wait for the setup of a socket connection.
 
-5. Check whether the port on the device is enabled successfully. 
+5. Check whether the port on the device is enabled successfully.
 
    For example, run **hdc shell "netstat -anp | grep 9225"**. If the status of port 9225 is **LISTEN**, the port is enabled.
 
-6. Forward port. 
+6. Forward port. For example, run **hdc fport tcp:9229 tcp:9225** to forward port 9229 on a PC to port 9225 on a device. If **Forwardport result:OK** is returned, the port is forwarded successfully.
 
-   For example, run **hdc fport tcp:9229 tcp:9225** to forward PC port 9229 to device port 9225. If **Forwardport result:OK** is returned, the port is forwarded successfully.
+7. Enter **localhost:9229/json** in the address box of Google Chrome and press **Enter**. Obtain port connection information. Copy the URL in the **devtoolsFrontendUrl** field to the address box and press **Enter**.
 
-7. Enter **localhost:9229/json** in the address box of Google Chrome and press **Enter**. Obtain port connection information. Copy the URL in the **devtoolsFrontendUrl** field to the address box and press **Enter**. <br>On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** in the application is displayed. The Debugger pauses at the first line of the JS source code. 
+   On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** in the application is displayed. The Debugger pauses at the first line of the JS source code.
 
    > **NOTE**
    >
@@ -157,15 +156,17 @@ void TestJSVM() {
 
 2. To prevent the pause during the debugging process from being falsely reported as no response, [enable the DevEco Studio debug mode](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-debug-arkts-debug-V5) without setting breakpoints or run JSVM-API in threads except the main thread.
 
-3. Enable the inspector port and connect to devtools for debugging.<br>Before executing the JS code, call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port and create a socket. For example, call **OH_JSVM_OpenInspectorWithName (env, 123, "test")** to create a TCP socket and the corresponding unixdomain port.
+3. Enable the inspector port and connect to devtools for debugging.
+
+   Before executing the JS code, call **OH_JSVM_OpenInspector** to open an inspector instance on the specified host and port and create a socket. For example, call **OH_JSVM_OpenInspectorWithName (env, 123, "test")** to create a TCP socket and the corresponding unixdomain port.
 
 4. Call **OH_JSVM_WaitForDebugger** to wait for the setup of a socket connection.
 
-5. Check whether the port on the device is enabled successfully. <br>Run **hdc shell "cat /proc/net/unix | grep jsvm"**. An available Unix port is displayed, for example, **jsvm_devtools_remote_9229_123**, where **9229** is the TCP port number and **123** is the PID.
+5. Check whether the port on the device is enabled successfully.<br>Run **hdc shell "cat /proc/net/unix | grep jsvm"**. An available Unix port is displayed, for example, **jsvm_devtools_remote_9229_123**, where **9229** is the TCP port number and **123** is the PID.
 
-6. Forward port. <br>Run **hdc fport tcp:9229 tcp:9229**. In this example, PC port 9229 is forwarded to device port 9229. If **Forwardport result:OK** is returned, the port is forwarded successfully.
+6. Forward port. For example, run **hdc fport tcp:9229 tcp:9229** to forward port 9229 on a PC to port 9229 on a device. If **Forwardport result:OK** is returned, the port is forwarded successfully.
 
-7. Enter **localhost:9229/json** in the address box of Google Chrome and press **Enter**. Obtain port connection information. Open Google Chrome DevTools, copy the URL in the **devtoolsFrontendUrl** field to the address box, and press **Enter**. <br>On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** is displayed. The Debugger pauses at the first line of the JS code. 
+7. Enter **localhost:9229/json** in the address box of Google Chrome and press **Enter**. Obtain port connection information. Open Google Chrome DevTools, copy the URL in the **devtoolsFrontendUrl** field to the address box, and press **Enter**. <br>On the DevTools source code page displayed, the JS source code executed by **OH_JSVM_RunScript** is displayed. The Debugger pauses at the first line of the JS code.
 
    > **NOTE**
    >
@@ -194,15 +195,15 @@ In addition to opening the URL specified by the **devtoolsFrontendUrl** field fo
    
    <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_1.png"/></div>
    
-2. Run the port forwarding command **hdc fport** [PC port number] [Device port number].
+2. Run **hdc fport** [*Port number on the developer's PC*] [*Port number on a device*] to forward a port. 
 
-  Example: **hdc fport tcp:9227 tcp:9226**
+     Example: **hdc fport tcp:9227 tcp:9226**
 
-3. Click **Port forwarding**, enter the PC port number in the left text box and the device port number in the right text box, and click **Done**, as shown in the figure below.
+3. Click **Port forwarding**, enter the port number on the PC in the left text box and the port number on the device in the right text box, and click **Done**, as shown in the figure below.
 
    <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_2.png"/></div>
 
-4. Click **Configure** and enter the PC port number, for example, **localhost:9227**, as shown in the figure below.
+4. Click **Configure**, enter the port number on the PC, for example, **localhost:9227**, and click **Done**, as shown in the figure below.
 
    <div align=left><img src="figures/jsvm-debugger-cpuprofiler-heapsnapshot_3.png"/></div>
 
@@ -335,7 +336,3 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // Call C++ code from JS.
 const char *srcCallNative = R"JS(runScriptWithStatistics();)JS";
 ```
-
-
-
-

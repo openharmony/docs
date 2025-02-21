@@ -34,7 +34,7 @@ Understanding these concepts helps you securely and effectively manipulate JS ob
 | OH_JSVM_CloseEscapableHandleScope    | Closes an escapable handle scope.|
 | OH_JSVM_EscapeHandle         | Promotes a handle to a JS object so that it is valid for the lifetime of the outer scope.|
 | OH_JSVM_CreateReference      | Creates a reference with the specified reference count to the value passed in. The reference allows objects to be used and shared in different contexts and helps effective track of the object lifecycle.|
-| OH_JSVM_DeleteReference      | Releases the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
+| OH_JSVM_DeleteReference      | Deletes the reference created by **OH_JSVM_CreateReference**. This allows objects to be correctly released and reclaimed when they are no longer required, avoiding memory leaks.|
 | OH_JSVM_ReferenceRef         | Increments the reference count of the reference created by **OH_JSVM_CreateReference** so that the object referenced will not be released.|
 | OH_JSVM_ReferenceUnref       | Decrements the reference count of the reference created by **OH_JSVM_CreateReference** so that the object can be correctly released and reclaimed when it is not referenced.|
 | OH_JSVM_GetReferenceValue   | Obtains the object referenced by **OH_JSVM_CreateReference**. |
@@ -99,7 +99,6 @@ JSVM HandleScopeFor: success
 ### OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, and OH_JSVM_EscapeHandle
 
 Call **OH_JSVM_OpenEscapableHandleScope** to create an escapeable handle scope, which allows the declared values in a scope to be returned to its parent scope. <br>Call **OH_JSVM_CloseEscapableHandleScope** to close the created scope.<br>Call **OH_JSVM_EscapeHandle** to promote the lifecycle of the passed-in JS object to its parent scope.
-
 These APIs are helpful for managing JS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
@@ -163,9 +162,7 @@ JSVM EscapableHandleScopeTest: success
 ### OH_JSVM_CreateReference, OH_JSVM_DeleteReference, and OH_JSVM_GetReferenceValue
 
 Call **OH_JSVM_CreateReference** to create a reference for a JS variable to extend its lifecycle.
-
 Call **OH_JSVM_GetReferenceValue** to obtain the JS variable associated with the reference.
-
 Call **OH_JSVM_DeleteReference** to delete the reference.
 
 The caller must manage the reference lifecycle. During the reference validity period, the JS variable will not be garbage-collected.
@@ -173,9 +170,7 @@ The caller must manage the reference lifecycle. During the reference validity pe
 ### OH_JSVM_ReferenceRef and OH_JSVM_ReferenceUnref
 
 Call **OH_JSVM_ReferenceRef** to increment the reference count of a reference and call **OH_JSVM_ReferenceUnref** to decrement the reference count of a reference, and return the new count value. 
-
 When the reference count is **0**:
-
 - For the JS types that can be set as weak references (objects, functions, and external variables), the reference will be set as a weak reference. The associated variable will be garbage-collected when the GC mechanism deems it necessary. After the variable is garbage-collected, calling **OH_JSVM_GetReferenceValue** will return JS **NULL**. 
 - For the JS types that cannot be set as weak references, the reference will be cleared and calling **OH_JSVM_GetReferenceValue** will return JS **NULL**.
 
