@@ -39,7 +39,7 @@ DatePicker(options?: DatePickerOptions)
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
 | selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
-| mode<sup>16+</sup> | [DatePickerMode](#datepickermode16枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。 |
+| mode<sup>16+</sup> | [DatePickerMode](#datepickermode16枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
 ## DatePickerMode<sup>16+</sup>枚举说明
 
@@ -398,9 +398,9 @@ struct DatePickerExample {
 
 ![datePicker](figures/DatePickerDemo2.png)
 
-### 示例3（设置显示年、月列）
+### 示例3（设置显示年、月和月、日列）
 
-该示例通过配置mode参数实现显示年、月两列。
+该示例通过配置mode参数实现显示年、月和月、日列。
 
 ```ts
 // xxx.ets
@@ -408,7 +408,13 @@ struct DatePickerExample {
 @Component
 struct DatePickerExample {
   @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  private selectedDate: Date = new Date('2025-01-15')
+  @State datePickerModeList: (DatePickerMode)[] = [
+    DatePickerMode.DATE,
+    DatePickerMode.YEAR_AND_MONTH,
+    DatePickerMode.MONTH_AND_DAY,
+  ]
+  @State datePickerModeIndex: number = 0;
 
   build() {
     Column() {
@@ -421,7 +427,7 @@ struct DatePickerExample {
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
         selected: this.selectedDate,
-        mode: DatePickerMode.YEAR_AND_MONTH
+        mode:this.datePickerModeList[this.datePickerModeIndex]
       })
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
@@ -429,8 +435,15 @@ struct DatePickerExample {
           console.info('select current date is: ' + value.toString())
         })
 
+      Button('mode :' + this.datePickerModeIndex).margin({ top: 20 })
+        .onClick(() => {
+          this.datePickerModeIndex++
+          if(this.datePickerModeIndex >= this.datePickerModeList.length){
+            this.datePickerModeIndex = 0
+          }
+        })
     }.width('100%')
   }
 }
 ```
-![datePicker](figures/DatePickerDemo3.png)
+![datePicker](figures/DatePickerDemo3.gif)
