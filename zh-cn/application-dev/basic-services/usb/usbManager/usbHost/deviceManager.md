@@ -1,23 +1,33 @@
 # USB设备管理
 
-## 简介
+## 场景介绍
 
-当有USB终端设备插入时，可以通过`usbManager`获取一些USB终端设备的基本信息，如设备类型、支持的功能等。 Host侧主要通过封装的pipe来完成和USB终端设备的通信。在鸿蒙系统中，USB管理服务是核心组件，负责管理与USB设备的连接和通信。通过USB管理服务，应用程序可以检测USB设备的连接与断开，管理USB设备的权限请求和设备配置，以及进行数据传输和设备控制。
+当有USB终端设备插入时，可以通过`usbManager`获取一些USB终端设备的基本信息，如设备类型、支持的功能等。 Host侧主要通过封装的pipe来完成和USB终端设备的通信。在OpenHarmony系统中，USB管理服务是核心组件，负责管理与USB设备的连接和通信。通过USB管理服务，应用程序可以检测USB设备的连接与断开，管理USB设备的权限请求和设备配置，以及进行数据传输和设备控制。
 
 ## 环境准备
 
 ### 环境要求
 
-- 开发工具及配置： DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
-- SDK版本配置： 扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
-- HDC配置：HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+- 开发工具及配置： 
+
+   DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
+
+
+- SDK版本配置： 
+
+   扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
+
+
+- HDC配置：
+
+   HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
 
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 - PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-- 用USB线缆将搭载HarmonyOS的设备连接到PC。
+- 用USB线缆将搭载OpenHarmony的设备连接到PC。
 
 ## 开发指导
 
@@ -52,7 +62,7 @@ USB设备可作为Host设备连接Device设备进行设备管理，开发示例�
 1. 获取设备列表。
 
    ```ts
-   // 导入USB接口api包。
+   // 导入usbManager模块。
    import { usbManager } from '@kit.BasicServicesKit';
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();

@@ -1,23 +1,33 @@
 # USB批量传输
 
-## 简介
+## 场景介绍
 
-批量传输主要应用在传输和接收大量数据，同时又没有带宽和间隔时间要求的情况下，例如传输文件、图像等，打印机和扫描仪等等=终端设备属于这种类型的设备。根据设备支持的端点类型支持批量传输读和写。
+批量传输主要应用在传输和接收大量数据同时又没有带宽和间隔时间要求的情况下，例如传输文件、图像等场景，打印机和扫描仪等终端设备属于这种类型的设备。
 
 ## 环境准备
 
 ### 环境要求
 
-- 开发工具及配置： DevEco Studio是驱动开发工具，进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
-- SDK版本配置： 扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
-- HDC配置：HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
+- 开发工具及配置：
+
+  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
+
+
+- SDK版本配置：
+
+  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
+
+
+- HDC配置：
+
+  HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命令行工具，通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
 
 ### 搭建环境
 
 - 在PC上安装[DevEco Studio](https://developer.huawei.com/consumer/cn/download/deveco-studio)，要求版本在4.1及以上。
 - 将public-SDK更新到API 16或以上，更新SDK的具体操作可参见[更新指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/faqs/full-sdk-switch-guide.md)。
 - PC安装HDC工具（HarmonyOS Device Connector），通过该工具可以在Windows/Linux/Mac系统上与真实设备或者模拟器进行交互，详细参考[HDC配置](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/hdc-V5)。
-- 用USB线缆将搭载HarmonyOS的设备连接到PC。
+- 用USB线缆将搭载OpenHarmony的设备连接到PC。
 
 ## 开发指导
 
@@ -27,17 +37,19 @@
 |-------------------------------------------------------------------------------------------------------------------|-----------------------|
 | bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;  | 批量传输。                 |
 
-详细的接口说明请查阅[API参考文档](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md)。
+更多关于设备管理和传输模式的详细接口介绍，请查阅[API参考文档](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md)。
 
 ### 开发步骤
 
-主机端连接终端设备，通过`bulkTransfer`接口进行数据传输。以下步骤描述了如何使用批量传输方式来传输数据：
+主机(Host)连接终端设备(Device)，通过`bulkTransfer`接口进行数据传输。以下步骤描述了如何使用批量传输方式来传输数据：
 
 1. 获取设备列表。
 
    ```ts
-   // 导入USB接口api包。
+   // 导入usbManager模块。
    import { usbManager } from '@kit.BasicServicesKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    /*
@@ -96,9 +108,6 @@
 2. 获取设备操作权限。
 
    ```ts
-   import { usbManager } from '@kit.BasicServicesKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-
    let deviceName : string = deviceList[0].name;
    // 申请操作指定的device的操作权限。
    usbManager.requestRight(deviceName).then((hasRight : boolean) => {
@@ -124,8 +133,6 @@
 4. 数据传输。
 
     ```ts
-    import { usbManager } from '@kit.BasicServicesKit';
-    import { BusinessError } from '@kit.BasicServicesKit';
     /*
       读取数据，在device信息中选取对应数据接收的endpoint来做数据传输
     （endpoint.direction == 0x80）；dataUint8Array是要读取的数据，类型为Uint8Array。
