@@ -53,7 +53,7 @@ color(value: ResourceColor)
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | [ResourceColor](ts-types.md#resourcecolor) | 是 | 空白填充的填充颜色。<br/><br/>默认值：Color.Transparent |
+| value | [ResourceColor](ts-types.md#resourcecolor) | 是 | 空白填充的填充颜色。<br/>默认值：Color.Transparent |
 
 ## 事件
 
