@@ -1,6 +1,6 @@
 # @ohos.app.ability.continueManager (continueManager)
 
-continueManager应用跨端迁移状态通知入口，提供应用快速拉起状态通知回调的注册与注销功能。
+continueManager快速拉起结果获取。
 
 > **说明：**
 > 
@@ -16,7 +16,7 @@ import { continueManager } from '@kit.AbilityKit';
 
 on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-注册回调函数以获取快速拉起结果，使用AsyncCallback异步回调。
+注册回调函数以获取快速拉起结果。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
@@ -25,8 +25,8 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Continu
   | 参数名 | 类型                                                                                              | 必填 | 说明                                       |
   | -------- |-------------------------------------------------------------------------------------------------| -------- |------------------------------------------|
   | type | string                                                                                          | 是 | 固定值：prepareContinue。                     |
-  | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                                                                                         | 是 | ability的context。                         |
-  | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | AsyncCallback形式返回，应用跨端迁移时，sink端应用快速拉起结果。 |
+  | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                                                                                         | 是 | Ability的Context。                         |
+  | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当快速拉起结果获取成功，err为undefined，否则为错误对象。 |
 
 **示例**：
 
@@ -69,7 +69,7 @@ export default class MigrationAbility extends UIAbility {
 
 off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;ContinueResultInfo&gt;): void
 
-取消注册快速拉起状态的通知回调，使用AsyncCallback方式作为异步方法。
+注销回调函数，不再获取快速拉起结果的通知。使用callback异步回调。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
@@ -78,8 +78,8 @@ off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Contin
 | 参数名 | 类型                                 | 必填 | 说明                                   |
   | -------- |------------------------------------| -------- |--------------------------------------|
 | type | string                             | 是 | 固定值：prepareContinue。                 |
-| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | 是 | ability的context。                     |
-| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | AsyncCallback形式返回，取消快速拉起通知回调函数注册的结果。 |
+| context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | 是 | Ability的Context。                     |
+| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当回调函数注销成功，err为undefined，否则为错误对象。 |
 
 **示例**：
 
@@ -120,7 +120,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## ContinueResultInfo
 
-注册或注销获取快速拉起结果的回调函数，收到的快速拉起结果。
+应用跨端迁移快速拉起的结果。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
@@ -131,7 +131,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## ContinueStateCode
 
-操作结果状态码枚举值。
+应用跨端迁移快速拉起的结果状态码的枚举值。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
