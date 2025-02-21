@@ -120,7 +120,7 @@ export default class MigrationAbility extends UIAbility {
 
 ## ContinueResultInfo
 
-注册或注销回调函数返回的速拉起的结果。
+注册或注销回调函数返回的快速拉起的结果。
 
 **系统能力**：SystemCapability.Ability.DistributedManagementService
 
