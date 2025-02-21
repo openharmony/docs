@@ -12,7 +12,7 @@ USB服务系统包含USB API、USB Service、USB HAL。
 
 **图1** USB服务运作机制
 
-![zh-cn_image_0000001237821727](figures/zh-cn_image_0000001237821727.png)
+![zh-cn_image_0000001237821727](../figures/zh-cn_image_0000001237821727.png)
 
 - USB API：提供USB的基础API，主要包含查询USB设备列表、批量数据传输、控制命令传输、权限控制等。
 

@@ -25,7 +25,7 @@
 
 | 接口名                                                                                                               | 描述                    |
 |-------------------------------------------------------------------------------------------------------------------|-----------------------|
-| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise<number>  | 批量传输。                 |
+| bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, timeout ?: number): Promise&lt;number&gt;  | 批量传输。                 |
 
 详细的接口说明请查阅[API参考文档](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md)。
 
