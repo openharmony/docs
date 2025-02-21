@@ -16080,7 +16080,7 @@ const char* OH_Drawing_TextStyleGetLocale (OH_Drawing_TextStyle*)
 
 **返回：**
 
-char 返回语言区域，数据类型为指向char的指针。语言区域格式为：语言-国家。如zh-CN表示中文（中国），en-US表示英语（美国）等。具体参考BCP 47语言标签标准。
+char 返回语言环境，数据类型为指向char的指针。语言环境格式为：语言-国家。如zh-CN表示中文（中国），en-US表示英语（美国）等。具体参考BCP 47语言标签标准。
 
 
 ### OH_Drawing_TextStyleGetShadowCount()
