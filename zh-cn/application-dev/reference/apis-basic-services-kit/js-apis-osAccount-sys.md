@@ -52,6 +52,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 **示例：** 激活ID为100的系统账号
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId, (err: BusinessError)=>{
@@ -454,7 +455,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
 | localId     | number                    | 是   | 系统账号ID。               |
 | constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统账号约束列表)列表。        |
-| enable      | boolean                   | 是   | 设置(true)/删除(false)                           |
+| enable      | boolean                   | 是   | 设置(true)/删除(false) 。                          |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -1968,8 +1969,8 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | 是   |  要查询的系统账号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 | callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统账号的指定[约束](js-apis-osAccount.md#系统账号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
@@ -2015,8 +2016,8 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | 是   |  要查询的系统账号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 
 **返回值：**
 
