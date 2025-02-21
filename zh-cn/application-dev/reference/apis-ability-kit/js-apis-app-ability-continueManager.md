@@ -1,6 +1,6 @@
 # @ohos.app.ability.continueManager (continueManager)
 
-continueManager应用跨端迁移快速拉起结果获取。
+continueManager提供了应用跨端迁移的管理能力，如获取应用跨端迁移过程中快速拉起目标应用的结果。
 
 > **说明：**
 > 
@@ -26,7 +26,7 @@ on(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Continu
   | -------- |-------------------------------------------------------------------------------------------------| -------- |------------------------------------------|
   | type | string                                                                                          | 是 | 固定值：prepareContinue。                     |
   | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                                                                                         | 是 | Ability的Context。                         |
-  | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当快速拉起结果获取成功，err为undefined，否则为错误对象。 |
+  | callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当快速拉起结果获取成功，err为undefined，ContinueResultInfo为获取到的快速启动结果。否则为错误对象。 |
 
 **示例**：
 
@@ -79,7 +79,7 @@ off(type: 'prepareContinue', context: Context, callback: AsyncCallback&lt;Contin
   | -------- |------------------------------------| -------- |--------------------------------------|
 | type | string                             | 是 | 固定值：prepareContinue。                 |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)                            | 是 | Ability的Context。                     |
-| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当回调函数注销成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback&lt;[ContinueResultInfo](js-apis-app-ability-continueManager.md#continueresultinfo)&gt; | 是 | 回调函数。当回调函数注销成功，err为undefined，ContinueResultInfo为获回调函数注销结果。否则为错误对象。 |
 
 **示例**：
 
