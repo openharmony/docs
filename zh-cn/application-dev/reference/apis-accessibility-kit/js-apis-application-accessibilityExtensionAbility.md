@@ -197,7 +197,7 @@ type PageUpdateType = 'pageContentUpdate' | 'pageStateUpdate'
 | 类型                | 说明            |
 | ----------------- | ---------------- |
 | 'pageContentUpdate' | 表示页面内容刷新。 |
-| 'pageStateUpdate' | 表示页面内容刷新。 |
+| 'pageStateUpdate' | 表示页面状态刷新。 |
 
 ## TouchGuideType
 
