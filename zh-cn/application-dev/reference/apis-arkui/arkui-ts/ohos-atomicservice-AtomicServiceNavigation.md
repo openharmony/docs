@@ -57,6 +57,7 @@ AtomicServiceNavigation({
 | navDestinationBuilder | [NavDestinationBuilder](#navdestinationbuilder) | 否 | @BuilderParam | 创建[NavDestination](ts-basic-components-navdestination.md)组件所需要的Builder数据。 |
 | navBarWidthRange | [[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)] | 否 | @Prop |设置导航栏最小和最大宽度（双栏模式下生效）。|
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
+| menus | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuildParam | 宽屏场景下用户自定义插入的布局样式。|
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
@@ -71,6 +72,8 @@ AtomicServiceNavigation({
 | backgroundColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 标题栏背景颜色。 |
 | isBlurEnabled | boolean | 否 | 标题栏是否模糊，默认为true。 |
 | barStyle | [BarStyle](ts-basic-components-navigation.md#barstyle12枚举说明)  | 否 | 标题栏样式属性设置。 |
+| titleBarType | [TitleBarType](#titlebartype16) | 否 | 设置标题栏类型。 |
+| titleIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 设置标题栏的图标。 |
 
 ## GradientBackground<sup>16+</sup>
 供开发者设置品牌渐变色。
@@ -113,6 +116,18 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | CROSS  | 2 | 一种颜色从另一种颜色中穿过。 |
 | TOWARDS  | 3 | 一种颜色渐变为另一种颜色。 |
 
+## TitleBarType<sup>16+</sup>
+标题栏类型的可选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| --------------- | ------ |-----|
+| SQUARED_ICON  | 1 | 方形图标样式。 |
+| ROUND_ICON | 2 | 圆形图标样式。 |
+| DRAWER | 3 | 抽屉样式。 |
 
 ## GradientAlpha<sup>16+</sup>
 导航栏背景底色的可选项。
@@ -141,6 +156,18 @@ type NavDestinationBuilder = (name: string, param?: Object) => void
 | LIGHT  | 2 | 背景底色为白色。|
 | DEFAULT  | 3 | 背景底色为灰白色。颜色值`#F1F3F5` 。|
 
+## SideBarOptions<sup>16+</sup>
+侧边栏的功能选项。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型 | 必填 | 描述 |
+| --------------- | ------ | ---- | ---------- |
+| sideBarBackground | [ResourceColor](ts-types.md#resourcecolor) | 否 | 侧边栏显示隐藏回调。 |
+| onChange | Callback\<boolean\> | 否 | 侧边栏显示隐藏回调。 |
+| sideBarIcon | [Resource](ts-types.md#resource) \| [SymbolGlyphModifier](ts-universal-attributes-attribute-modifier.md) | 否 | 侧边栏里的返回名称。 |
 
 ## 示例
 
@@ -276,3 +303,163 @@ export struct PageTwo {
 ```
 
 ![](figures/AtomicServiceNavigationDemo02.jpg)
+
+```ts
+import { AtomicServiceNavigation, TitleBarType } from '@ohos.atomicservice.AtomicServiceNavigation'
+import { AtomicServiceTabs, TabBarOptions, TabBarPosition } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World';
+  childNavStack: NavPathStack = new NavPathStack();
+  private menuItems: Array<NavigationMenuItem> = [
+    {
+      value: "1",
+      icon: $r('app.media.custom'),
+    },
+    {
+      value: "1",
+      icon: $r('app.media.custom'),
+    },
+    {
+      value: "1",
+      icon: $r('app.media.custom'),
+    },
+    {
+      value: "1",
+      icon: $r('app.media.custom'),
+    },
+    {
+      value: "1",
+      icon: $r('app.media.custom'),
+    },
+  ]
+
+  @Builder
+  tabContent1() {
+    Text('first page')
+      .onClick(() => {
+        this.childNavStack.pushPath({ name: 'page one' })
+      })
+  }
+
+  @Builder
+  tabContent2() {
+    Text('second page')
+  }
+
+  @Builder
+  tabContent3() {
+    Text('third page')
+  }
+
+  @Builder
+  navigationContent() {
+    AtomicServiceTabs({
+      tabContents: [
+        () => {
+          this.tabContent1()
+        },
+        () => {
+          this.tabContent2()
+        },
+        () => {
+          this.tabContent3()
+        }
+      ],
+      tabBarOptionsArray: [
+        new TabBarOptions($r('sys.media.ohos_ic_public_phone'), '功能1'),
+        new TabBarOptions($r('sys.media.ohos_ic_public_location'), '功能2', Color.Green, Color.Red),
+        new TabBarOptions($r('sys.media.ohos_ic_public_more'), '功能3')
+      ],
+      tabBarPosition: TabBarPosition.BOTTOM,
+      barBackgroundColor: $r('sys.color.ohos_id_color_bottom_tab_bg'),
+      onTabBarClick: (index: Number) => {
+        if (index == 0) {
+          this.message = '功能1';
+        } else if (index == 1) {
+          this.message = '功能2';
+        } else {
+          this.message = '功能3';
+        }
+      }
+    })
+  }
+
+  @Builder
+  pageMap(name: string) {
+    if (name === 'page one') {
+      PageOne()
+    } else if (name === 'page two') {
+      PageTwo()
+    }
+  }
+
+  @State showText: string = 'time: ';
+  @State time: number = 0;
+
+  @Builder
+  insertComp() {
+    Text('This is menus area')
+      .fontColor(Color.Red)
+      .width(200)
+      .height('100%')
+  }
+
+  build() {
+    Column() {
+      AtomicServiceNavigation({
+        navigationContent: () => {
+          this.navigationContent()
+        },
+        navDestinationBuilder: this.pageMap,
+        navPathStack: this.childNavStack,
+        title: this.message,
+        titleOptions: {
+          titleIcon: $r('app.media.startIcon'),
+          backgroundColor: 'rgb(61, 157, 180)',
+          titleBarType: TitleBarType.DRAWER
+        },
+        menus: () => { this.insertComp() },
+        mode: NavigationMode.Stack
+      })
+    }
+    .width('100%')
+  }
+}
+
+@Component
+export struct PageOne {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Button('Next')
+        .onClick(() => {
+          this.pageInfo.pushPath({ name: 'page two'})
+        })
+    }
+    .title('PageOne')
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+
+@Component
+export struct PageTwo {
+  pageInfo: NavPathStack = new NavPathStack();
+
+  build() {
+    NavDestination() {
+      Button('End')
+    }
+    .title('PageTwo')
+    .onReady((context: NavDestinationContext) => {
+      this.pageInfo = context.pathStack;
+    })
+  }
+}
+```
+![](figures/AtomicServiceNavigationDemo03.png)
