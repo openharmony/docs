@@ -1,8 +1,8 @@
-# USB控制传输
+# USB设备管理
 
-## 场景介绍
+## 简介
 
-控制传输主要用于主机和从机进行设备状态的获取和设置，进行设备属性状态的的控制。根据设备支持的端点类型支持控制传输读和写。
+当有USB终端设备插入时，可以通过`usbManager`获取一些USB终端设备的基本信息，如设备类型、支持的功能等。 Host侧主要通过封装的pipe来完成和USB终端设备的通信。在鸿蒙系统中，USB管理服务是核心组件，负责管理与USB设备的连接和通信。通过USB管理服务，应用程序可以检测USB设备的连接与断开，管理USB设备的权限请求和设备配置，以及进行数据传输和设备控制。
 
 ## 环境准备
 
@@ -23,15 +23,30 @@
 
 ### 接口说明
 
-| 接口名                                                       | 描述     |
-| ------------------------------------------------------------ |--------|
-| usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | 控制传输。  |
+USB设备管理主要提供的功能有：查询USB设备列表、USB设备权限控制、设置USB设备配置等。
 
-详细的接口说明请查阅[API参考文档](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md)。
+USB类开放能力如下，具体请查阅[API参考文档](../../../../reference/apis-basic-services-kit/js-apis-usbManager.md)。
+
+**表1** USB类的开放能力接口
+
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| hasRight(deviceName: string): boolean                         | 判断是否有权访问该设备。 |
+| requestRight(deviceName: string): Promise&lt;boolean&gt;       | 请求软件包的临时权限以访问设备。使用Promise异步回调。                        |
+| removeRight(deviceName: string): boolean | 移除软件包对设备的访问权限。|
+| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | 根据`getDevices()`返回的设备信息打开USB设备。                |
+| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | 获取接入主设备的USB设备列表。如果没有设备接入，那么将会返回一个空的列表。                                            |
+| setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number | 设置设备的配置。                                             |
+| setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | 设置设备的接口。                                             |
+| claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | 注册通信接口。                                                   |
+| closePipe(pipe: USBDevicePipe): number                         | 关闭设备消息控制通道。                                       |
+| releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | 释放注册过的通信接口。                                                   |
+| getFileDescriptor(pipe: USBDevicePipe): number                 | 获取文件描述符。                                             |
+| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | 获取原始的USB描述符。                                        |
 
 ### 开发步骤
 
-主机端连接终端设备，通过`usbControlTransfer`接口进行数据传输。以下步骤描述了如何使用控制传输方式来传输数据：
+USB设备可作为Host设备连接Device设备进行设备管理，开发示例如下：
 
 
 1. 获取设备列表。
@@ -39,8 +54,6 @@
    ```ts
    // 导入USB接口api包。
    import { usbManager } from '@kit.BasicServicesKit';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
    // 获取设备列表。
    let deviceList : Array<usbManager.USBDevice> = usbManager.getDevices();
    /*
@@ -99,6 +112,9 @@
 2. 获取设备操作权限。
 
    ```ts
+   import { usbManager } from '@kit.BasicServicesKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+
    let deviceName : string = deviceList[0].name;
    // 申请操作指定的device的操作权限。
    usbManager.requestRight(deviceName).then((hasRight : boolean) => {
@@ -114,7 +130,6 @@
    // 打开设备，获取数据传输通道。
    let pipe : usbManager.USBDevicePipe = usbManager.connectDevice(deviceList[0]);
    let interface1 : usbManager.USBInterface = deviceList[0].configs[0].interfaces[0];
-   
    /*
     打开对应接口，在设备信息（deviceList）中选取对应的interface。
    interface1为设备配置中的一个接口。
@@ -122,29 +137,15 @@
    usbManager.claimInterface(pipe, interface1, true);
    ```
 
-4. 数据传输。
-
-    ```ts
-    /*
-      构造控制传输参数
-    */
-    let param: usbManager.USBDeviceRequestParams = {
-      bmRequestType: 0x80,    //0x80指一次由设备到主机的标准请求命令
-      bRequest: 0x06,    //0x06指获取描述符
-      wValue:0x01 << 8 | 0,    //该值为2个字节，高字节指描述符类型，此处0x01指设备描述符；低字节指描述符索引，设备描述符不涉及，填0
-      wIndex: 0,    //索引值，可填0
-      wLength: 18,    //描述符的长度，此处18表示设备描述符长度，最大支持1024
-      data: new Uint8Array(18)
-    };
-
-    usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
-    console.info("usbControlTransfer = ${ret}");
-    })
-    ```
-
-5. 释放接口，关闭设备。
+4. 释放接口，关闭设备。
 
    ```ts
    usbManager.releaseInterface(pipe, interface1);
    usbManager.closePipe(pipe);
    ```
+
+### 相关实例
+
+针对USB管理开发，有以下相关实例可供参考：
+
+- [`DeviceManagementCollection`：设备管理合集（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/DeviceManagementCollection)

@@ -1,8 +1,8 @@
 # USB中断传输
 
-## 场景介绍
+## 简介
 
-中断传输主要用于主机端接收终端设备发送的数据包，属于异步传输。设备的端点模式决定了接口支持中断读或中断写。这种传输方式适用于少量的分散的不可预测的数据传输，鼠标、键盘和操纵杆等设备属于这种类型。这些设备的端点一般只支持中断读操作。
+中断传输主要用于主机端接收终端设备发送的数据包。设备的端点模式决定了接口支持中断读或中断写。这种传输方式适用于少量的分散的不可预测的数据传输，鼠标、键盘和操纵杆等设备属于这种类型。这些设备的端点一般只支持中断读操作。
 
 ## 环境准备
 
@@ -75,17 +75,17 @@
    let usbEndpoints: usbManager.USBEndpoint[] = [];
    let usbEndprint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
-   usbInterfaces = usbConfigs[i].interfaces;
-   for (let i = 0; i < usbInterfaces.length; i++) {
-     usbEndpoints = usbInterfaces[i].endpoints;
-     usbEndprint = usbEndpoints.find((value) => {
-       return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
-     })
-     if (usbEndprint !== undefined) {
-       usbInterface = usbInterfaces[i];
-       break;
+     usbInterfaces = usbConfigs[i].interfaces;
+     for (let i = 0; i < usbInterfaces.length; i++) {
+       usbEndpoints = usbInterfaces[i].endpoints;
+       usbEndprint = usbEndpoints.find((value) => {
+         return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_INTERRUPT;
+       })
+       if (usbEndprint !== undefined) {
+         usbInterface = usbInterfaces[i];
+         break;
+       }
      }
-   }
    }
    if (usbEndprint === undefined) {
      console.error(`get usbEndprint error`)
@@ -93,7 +93,7 @@
    }
    ```
 
-4. 连接USB设备，注册通信接口。
+4. 连接终端设备，注册通信接口。
 
     ```ts
     // 注册通信接口，注册成功返回0，注册失败返回其他错误码。
@@ -124,10 +124,8 @@
    
      transferParams.callback = (err: Error, callBackData: usbManager.SubmitTransferCallback) => {
        console.info('callBackData = ' + JSON.stringify(callBackData));
-       console.info('transferData = ' + transferParams.buffer.toString());
-       this.text = transferParams.buffer.toString()
+       console.info('transfer success，result = ' + transferParams.buffer.toString());
      }
-     console.log(`transferParams: `+ JSON.stringify(transferParams));
      usbManager.usbSubmitTransfer(transferParams);
      console.info('USB transfer request submitted.');
    } catch (error) {
@@ -142,3 +140,9 @@
     usbManager.releaseInterface(devicePipe, usbInterface);
     usbManager.closePipe(devicePipe);
     ```
+   
+### 调测验证
+
+1. 主机端通过USB接口连接支持中断传输的终端设备（鼠标、键盘等）。
+2. 执行上述代码。
+3. log中搜索关键字`transfer success`，表示中断传输接口调用成功。

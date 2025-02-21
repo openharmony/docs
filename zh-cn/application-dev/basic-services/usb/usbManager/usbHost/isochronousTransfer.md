@@ -1,8 +1,9 @@
 # USB实时传输
 
-## 场景介绍
+## 简介
 
-实时传输主要用于音频、视频流等实时性较高的数据传输，对数据传输的及时性要求较高，允许一定的数据丢包，具有容错性，属于异步传输。USB耳机、耳麦和摄像头等设备属于这种类型的设备。根据设备支持的端点类型支持实时传输读和写。
+实时传输主要用于音频、视频流等实时性较高的数据传输，对数据传输的及时性要求较高，允许一定的数据丢包，具有容错性。根据设备支持的端点类型支持实时传输读和写。适用于USB耳机、USB音响、视频会议设备等对连续性要求高、容错性强的场景。
+
 
 ## 环境准备
 
@@ -75,17 +76,17 @@
    let usbEndpoints: usbManager.USBEndpoint[] = [];
    let usbEndprint: usbManager.USBEndpoint | undefined = undefined
    for (let i = 0; i < usbConfigs.length; i++) {
-   usbInterfaces = usbConfigs[i].interfaces;
-   for (let i = 0; i < usbInterfaces.length; i++) {
-     usbEndpoints = usbInterfaces[i].endpoints;
-     usbEndprint = usbEndpoints.find((value) => {
-       return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
-     })
-     if (usbEndprint !== undefined) {
-       usbInterface = usbInterfaces[i];
-       break;
+     usbInterfaces = usbConfigs[i].interfaces;
+     for (let i = 0; i < usbInterfaces.length; i++) {
+       usbEndpoints = usbInterfaces[i].endpoints;
+       usbEndprint = usbEndpoints.find((value) => {
+         return value.direction === 128 && value.type === usbManager.UsbEndpointTransferType.TRANSFER_TYPE_ISOCHRONOUS;
+       })
+       if (usbEndprint !== undefined) {
+         usbInterface = usbInterfaces[i];
+         break;
+       }
      }
-   }
    }
    if (usbEndprint === undefined) {
      console.error(`get usbEndprint error`)
@@ -93,7 +94,7 @@
    }
    ```
    
-4. 连接USB设备，注册通信接口。
+4. 连接终端设备，注册通信接口。
 
     ```ts
     // 注册通信接口，注册成功返回0，注册失败返回其他错误码。
@@ -133,10 +134,8 @@
    
      transferParams.callback = (err: Error, callBackData: usbManager.SubmitTransferCallback) => {
        console.info('callBackData = ' + JSON.stringify(callBackData));
-       console.info('transferData = ' + transferParams.buffer.toString());
-       this.text = transferParams.buffer.toString()
+       console.info('transfer success，result = ' + transferParams.buffer.toString());
      }
-     console.log(`transferParams: `+ JSON.stringify(transferParams));
      usbManager.usbSubmitTransfer(transferParams);
      console.info('USB transfer request submitted.');
    } catch (error) {
@@ -151,3 +150,9 @@
     usbManager.releaseInterface(devicePipe, usbInterface);
     usbManager.closePipe(devicePipe);
     ```
+
+### 调测验证
+
+1. 主机端通过USB接口连接支持实时传输的终端设备（USB耳机等）。
+2. 执行上述代码。
+3. log中搜索关键字`transfer success`，表示实时传输接口调用成功。
