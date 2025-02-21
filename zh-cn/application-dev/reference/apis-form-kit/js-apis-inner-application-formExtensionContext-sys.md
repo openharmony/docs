@@ -30,6 +30,8 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -37,8 +39,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **参数：**
 
@@ -101,6 +101,8 @@ startAbility(want: Want): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
@@ -108,8 +110,6 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 16500050 | IPC connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
@@ -164,6 +164,8 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permissions denied.             |
@@ -178,8 +180,6 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number
 | 16000055 | Installation-free timed out. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -246,13 +246,13 @@ disconnectServiceExtensionAbility(connection: number, callback: AsyncCallback&lt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
@@ -312,13 +312,13 @@ disconnectServiceExtensionAbility(connection: number): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 | 16000011 | The context does not exist.        |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 **示例：**
 
