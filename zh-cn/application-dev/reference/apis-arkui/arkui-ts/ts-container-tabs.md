@@ -22,9 +22,23 @@
 
 ## 接口
 
-Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsController})
+Tabs(options?: TabsOptions)
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型         | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| options | [TabsOptions](#tabsoptions15) | 否 | Tabs组件参数。 |
+
+## TabsOptions<sup>15+</sup>
+
+Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tabs控制器和TabBar的[通用属性](ts-universal-attributes-size.md)。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -35,6 +49,7 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: TabsContro
 | barPosition | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
 | index       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。 |
 | controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
+| barModifier<sup>15+</sup>  | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 否    | 设置TabBar的[通用属性](ts-universal-attributes-size.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle11)会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor)、[barBackgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle9)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar9)属性为底部页签样式时不支持拖拽功能。|
 
 ## BarPosition枚举说明
 
@@ -1932,3 +1947,196 @@ struct TabsSwiperExample {
 ```
 
 ![tabs12](figures/tabs12.gif)
+
+### 示例13（页签超出TabBar区域显示）
+
+本示例通过使用barModifier设置tabBar的clip属性实现页签超出tabBar区域显示效果。
+
+```ts
+// xxx.ets
+import { CommonModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct TabsBarModifierExample {
+  @State selectedIndex: number = 2
+  @State currentIndex: number = 2
+  @State isClip: boolean = false
+  @State tabBarModifier: CommonModifier = new CommonModifier()
+  private controller: TabsController = new TabsController()
+
+  aboutToAppear(): void {
+    this.tabBarModifier.clip(this.isClip)
+  }
+
+  @Builder
+  tabBuilder(title: string, targetIndex: number) {
+    Column() {
+      Image($r("app.media.startIcon")).width(30).height(30)
+      Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
+    }.width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+    .offset({ y: this.selectedIndex === targetIndex ? -15 : 0 })
+  }
+
+  build() {
+    Column() {
+      Tabs({
+        barPosition: BarPosition.End,
+        index: this.currentIndex,
+        controller: this.controller,
+        barModifier: this.tabBarModifier
+      }) {
+        TabContent() {
+          Column() {
+            Text('首页的内容')
+          }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('首页', 0))
+
+        TabContent() {
+          Column() {
+            Text('发现的内容')
+          }.width('100%').height('100%').backgroundColor('#007DFF').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('发现', 1))
+
+        TabContent() {
+          Column() {
+            Text('推荐的内容')
+          }.width('100%').height('100%').backgroundColor('#FFBF00').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('推荐', 2))
+
+        TabContent() {
+          Column() {
+            Text('我的内容')
+          }.width('100%').height('100%').backgroundColor('#E67C92').justifyContent(FlexAlign.Center)
+        }.tabBar(this.tabBuilder('我的', 3))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(340)
+      .barHeight(60)
+      .onChange((index: number) => {
+        this.currentIndex = index
+        this.selectedIndex = index
+      })
+      .width(340)
+      .height(400)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+
+      Button("isClip: " + this.isClip)
+        .margin({ top: 30 })
+        .onClick(() => {
+          this.isClip = !this.isClip
+          this.tabBarModifier.clip(this.isClip)
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs13](figures/tabs13.gif)
+
+### 示例14（页签对齐布局）
+
+本示例通过使用barModifier设置tabBar的align属性实现页签对齐布局效果。
+
+```ts
+// xxx.ets
+import { CommonModifier } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct TabsBarModifierExample {
+  private controller: TabsController = new TabsController()
+  @State text: string = "文本"
+  @State isVertical: boolean = false
+  @State tabBarModifier: CommonModifier = new CommonModifier()
+
+  build() {
+    Column() {
+      Row() {
+        Button("Alignment.Start ")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Start)
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("Alignment.End")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.End)
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("Alignment.Center")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Center)
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("isVertical: " + this.isVertical)
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.isVertical = !this.isVertical
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Row() {
+        Button("Alignment.Top")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Top)
+          })
+          .margin({ right: '6%', bottom: '12vp' })
+        Button("Alignment.Bottom")
+          .width('47%')
+          .height(50)
+          .margin({ top: 5 })
+          .onClick((event?: ClickEvent) => {
+            this.tabBarModifier.align(Alignment.Bottom)
+          })
+          .margin({ bottom: '12vp' })
+      }
+
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, barModifier: this.tabBarModifier }) {
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Pink)
+        }.tabBar(SubTabBarStyle.of(this.text))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Green)
+        }.tabBar(SubTabBarStyle.of(this.text))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor(Color.Blue)
+        }.tabBar(SubTabBarStyle.of(this.text))
+      }
+      .vertical(this.isVertical)
+      .height('60%')
+      .backgroundColor(0xf1f3f5)
+      .barMode(BarMode.Scrollable)
+    }
+    .width('100%')
+    .height(500)
+    .margin({ top: 5 })
+    .padding('24vp')
+  }
+}
+```
+
+![tabs14](figures/tabs14.gif)
