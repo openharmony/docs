@@ -80,47 +80,45 @@ renderFit(fitMode: Optional\<RenderFit>)
 
 ```ts
 // xxx.ets
-import { uiEffect } from '@kit.ArkGraphics2D';
-
 @Entry
 @Component
-struct FilterEffectExample {
-  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10)
+struct RenderFitExample {
+  @State width1: number = 100;
+  @State height1: number = 30;
+  flag: boolean = true;
 
   build() {
-    Column({ space: 15 }) {
+    Column() {
+      Text("Hello")
+        .width(this.width1)
+        .height(this.height1)
+        .borderWidth(1)
+        .textAlign(TextAlign.Start)
+        .renderFit(RenderFit.LEFT)// 设置LEFT的renderFit，动画过程中，动画的终态内容与组件保持左对齐
+        .margin(20)
 
-      Text('foregroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text('前景滤镜')
-        .width(100)
-        .height(100)
-        .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.app_icon"))
-        .backgroundImageSize({ width: 80, height: 80 })
-        .foregroundFilter(this.filterTest1) // 通过 foregroundFilter 设置模糊效果
+      Text("Hello")
+        .width(this.width1)
+        .height(this.height1)
+        .textAlign(TextAlign.Center)
+        .borderWidth(1)
+        .renderFit(RenderFit.CENTER)// 设置CENTER的renderFit，动画过程中，动画的终态内容与组件保持中心对齐
+        .margin(20)
 
-      Text('backgroundFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text('背景滤镜')
-        .width(100)
-        .height(100)
-        .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.app_icon"))
-        .backgroundImageSize({ width: 80, height: 80 })
-        .backgroundFilter(this.filterTest2) // 通过 backgroundFilter 设置模糊效果
-
-      Text('compositingFilter').fontSize(20).width('75%').fontColor('#DCDCDC')
-      Text('合成滤镜')
-        .width(100)
-        .height(100)
-        .backgroundColor('#ADD8E6')
-        .backgroundImage($r("app.media.app_icon"))
-        .backgroundImageSize({ width: 80, height: 80 })
-        .compositingFilter(this.filterTest3) // 通过 compositingFilter 设置模糊效果
-    }
-    .height('100%')
-    .width('100%')
+      Button("animate")
+        .onClick(() => {
+          animateTo({ curve: Curve.Ease }, () => {
+            if (this.flag) {
+              this.width1 = 150;
+              this.height1 = 50;
+            } else {
+              this.width1 = 100;
+              this.height1 = 30;
+            }
+            this.flag = !this.flag;
+          })
+        })
+    }.width("100%").height("100%").alignItems(HorizontalAlign.Center)
   }
 }
 ```

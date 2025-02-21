@@ -29,12 +29,12 @@ onKeyEvent(event: (event: KeyEvent) => void): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## onKeyEvent<sup>16+</sup>
+## onKeyEvent<sup>15+</sup>
 onKeyEvent(event: Callback\<KeyEvent, boolean>): T
 
 当绑定该方法的组件获得焦点后，按键操作将触发此回调。若此回调的返回值为`true`，则视为按键事件已被处理。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +74,7 @@ onKeyPreIme(event: Callback<KeyEvent, boolean>): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-## onKeyEventDispatch<sup>16+</sup>
+## onKeyEventDispatch<sup>15+</sup>
 
 onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
@@ -82,7 +82,7 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 
 该回调的返回值为`true`时，视作该按键事件已被消费，不会冒泡给父组件处理。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -127,7 +127,9 @@ onKeyEventDispatch(event: Callback\<KeyEvent, boolean>): T
 | ------- | -------- |
 | 401 | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
 
-## 示例1（触发onKeyEvent回调）
+## 示例
+
+### 示例1（触发onKeyEvent回调）
 
 该示例通过按钮设置了按键事件，按钮获焦时可触发onKeyEvent回调。
 
@@ -161,7 +163,7 @@ struct KeyEventExample {
 
  ![keyEvent](figures/keyEvent.gif) 
 
-## 示例2（获取uniCode码值）
+### 示例2（获取uniCode码值）
 
 该示例通过key事件获取到所按按键的unicode码值。
 
@@ -203,7 +205,7 @@ struct KeyEventExample {
 
 ![keyEvent](figures/keyEvent_unicode.gif) 
 
-## 示例3（触发onKeyPreIme回调）
+### 示例3（触发onKeyPreIme回调）
 
 该示例使用onKeyPreIme屏蔽在输入框中使用方向左键。
 

@@ -6,7 +6,7 @@
 
 ## 在CMake脚本中链接相关动态库
 ```txt
-   target_link_libraries(entry PUBLIC libohcrypto.so)
+target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
 ## 开发步骤
@@ -30,6 +30,7 @@
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
+#include "CryptoArchitectureKit/crypto_signature.h"
 
 static bool doTestRsaSignature()
 {

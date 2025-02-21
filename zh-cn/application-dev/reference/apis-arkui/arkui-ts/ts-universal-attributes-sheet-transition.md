@@ -47,7 +47,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | --------------- | ---------------------------------------- | ---- | --------------- |
 | height          | [SheetSize](#sheetsize枚举说明)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 否    | 半模态高度，默认是LARGE。<br/>**说明：**<br/>API version 12之前，底部弹窗横屏时该属性设置无效，高度为距离屏幕顶部8vp。<br/>API version 12开始，底部弹窗横屏时该属性设置生效，最大高度为距离屏幕顶部8vp。<br/>API version 14开始，底部弹窗横屏时，无状态栏则最大高度为距离屏幕顶部8vp，有状态栏则最大高度为距离状态栏8vp。<br/>底部弹窗时，当设置detents时，该属性设置无效。<br/>底部弹窗竖屏时，最大高度为距离状态栏8vp。<br />居中弹窗和跟手弹窗设置类型为SheetSize.LARGE和SheetSize.MEDIUM无效，显示默认高度560vp。居中弹窗和跟手弹窗最小高度为320vp，最大高度为窗口短边的90%。当使用Length设置的高度和使用SheetSize.FIT_CONTENT自适应的高度大于最大高度，则显示最大高度，小于最小高度，则显示最小高度。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | detents<sup>11+</sup> | [([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length)), ( [SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?, ([SheetSize](#sheetsize枚举说明) \| [Length](ts-types.md#length))?] | 否 | 半模态页面的切换高度档位。<br/>**说明：**<br/>从API version 12开始，底部弹窗横屏时该属性设置生效。<br/>底部弹窗竖屏生效，元组中第一个高度为初始高度。<br />面板可跟手滑动切换档位，松手后是否滑动至目标档位有两个判断条件：速度和距离。速度超过阈值，则执行滑动至与手速方向一致的目标档位；速度小于阈值，则引入距离判断条件，当位移距离>当前位置与目标位置的1/2，滑动至与手速方向一致的目标档位，位移距离当前位置与目标位置的1/2，返回至当前档位。速度阈值：1000，距离阈值：50%。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部。<br/>2. 600vp <= 宽度 < 840vp：底部、居中。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手。默认跟手样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| preferType<sup>11+</sup> | [SheetType](#sheettype11枚举说明) | 否 | 半模态页面的样式。<br/>**说明：**<br/>半模态在不同窗口所支持的显示类型：<br/>1. 宽度 < 600vp：底部。<br/>2. 600vp <= 宽度 < 840vp：底部、居中、跟手。默认居中样式。<br/>3. 宽度 >= 840vp：底部、居中、跟手。默认跟手样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | showClose<sup>11+</sup> | boolean \| [Resource](ts-types.md#resource) | 否 | 是否显示关闭图标，默认显示。<br/> 2in1设备默认无按钮底板。<br/>**说明：**<br/>Resource需要为boolean类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | dragBar         | boolean                                  | 否    | 是否显示控制条。<br/>**说明：**<br/>半模态面板的detents属性设置多个不同高度并且设置生效时，默认显示控制条。否则不显示控制条。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 半模态面板的模糊背景。默认无模糊背景。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -72,7 +72,9 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | keyboardAvoidMode<sup>13+</sup> | [SheetKeyboardAvoidMode](#sheetkeyboardavoidmode13枚举说明) | 否 | 设置半模态激活输入法时对软键盘的避让方式。<br/> **默认值：** TRANSLATE_AND_SCROLL<br/>**原子化服务API：** 从API version 13开始，该接口支持在原子化服务中使用。 |
 | enableHoverMode<sup>14+</sup>              | boolean | 否   | 是否响应悬停态。<br />默认值：false，默认不响应。<br />**说明：**<br />底部弹窗样式和跟手弹窗样式不响应悬停态。|
 | hoverModeArea<sup>14+</sup>              | [HoverModeAreaType](ts-appendix-enums.md#hovermodeareatype14) | 否   | 悬停态下弹窗默认展示区域。<br />默认值：HoverModeAreaType.BOTTOM_SCREEN |
-| radius<sup>16+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | 否 | 设置半模态页面圆角半径。<br/>不建议设置4个圆角大小不相等，圆角大小相等时面板视觉体验最佳。<br/>**默认值**：32vp<br/>**说明：**<br/>1. 根据设置的圆角半径值显示，如果未设置，则使用默认值。底部样式不显示半模态底部2个圆角，即使设置了底部2个圆角也不生效。<br/>2. 分别设置4个方向的圆角半径后，如果某个方向的值异常，异常方向的圆角值重置为默认值，非异常方向的圆角值为已设置的值。统一设置4个方向的圆角时，如果设置的值异常，4个方向的圆角都重置为默认值。<br/>3. 半径设置为百分比时，以半模态页面的宽度为基准。<br/>4. 当圆角的半径大于半模态页面宽度一半时，圆角的半径取值为半模态页面宽度的一半。<br/>5. 当半模态页面高度过小且圆角半径设置过大时，可能导致显示异常。<br/>**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| radius<sup>15+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[BorderRadiuses](ts-types.md#borderradiuses9)&nbsp;\|&nbsp;[LocalizedBorderRadiuses](ts-types.md#LocalizedBorderRadiuses12) | 否 | 设置半模态页面圆角半径。<br/>不建议设置4个圆角大小不相等，圆角大小相等时面板视觉体验最佳。<br/>**默认值**：32vp<br/>**说明：**<br/>1. 根据设置的圆角半径值显示，如果未设置，则使用默认值。底部样式不显示半模态底部2个圆角，即使设置了底部2个圆角也不生效。<br/>2. 分别设置4个方向的圆角半径后，如果某个方向的值异常，异常方向的圆角值重置为默认值，非异常方向的圆角值为已设置的值。统一设置4个方向的圆角时，如果设置的值异常，4个方向的圆角都重置为默认值。<br/>3. 半径设置为百分比时，以半模态页面的宽度为基准。<br/>4. 当圆角的半径大于半模态页面宽度一半时，圆角的半径取值为半模态页面宽度的一半。<br/>5. 当半模态页面高度过小且圆角半径设置过大时，可能导致显示异常。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| placement<sup>16+</sup> | [Placement](ts-appendix-enums.md#placement8) | 否 | 设置半模态popup样式弹窗相对于目标的显示位置。<br />默认值：Placement.Bottom<br />**说明：** <br /> 1. popup样式弹窗在确保指定位置能容纳弹窗尺寸的前提下，优先依据设定的placement展示弹窗。若不可行，则遵循先垂直翻转，后尝试90°水平旋转的规则调整显示位置，以预设方向为下方为例，调整顺序依次为：下、上、右、左。<br />2. 如果设置的对齐方式导致组件布局超出窗口范围，将根据该对齐方式在水平或垂直方向上进行位移，直至组件完全显示在窗口内。<br />3. 如果在四个方向上均无法容纳当前的popup样式弹窗，处理方式遵循开发者设置的placementOnTarget属性：<br />1）若属性值为true，将依据设定的placement，向其镜像方向平移，直至弹窗能够完全显示。<br />2）若属性值为false，则在四个方向中，选择能够完全展示弹窗宽度且剩余高度最大的方向，通过调整半模态高度以适应当前方向，确保弹窗能够放下，同时保持预设placement对应的对齐方式不变。 <br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| placementOnTarget<sup>16+</sup> | Boolean | 否 | 半模态popup样式弹窗在当前窗口下，四个方向均无法容纳该弹窗大小时，设置是否允许其覆盖在目标节点上。<br /> 默认值：true <br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。|
 
 ## SheetSize枚举说明
 
@@ -188,7 +190,6 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Component
 struct SheetTransitionExample {
   @State isShow: boolean = false
-  @State isShow2: boolean = false
   @State sheetHeight: number = 300;
 
   @Builder
@@ -474,14 +475,14 @@ struct Index {
 
 ![zh-cn_sheet](figures/zh-cn_sheet5_rtl.gif)
 
-### 示例6（监测键盘高度变化）
+### 示例6（设置压缩模态内容）
 
-在resizeOnly模式下，监测键盘高度变化并根据高度变化做滚动组件的滚动。
+通过设置SheetKeyboardAvoidMode为RESIZE_ONLY，当键盘高度变化时，根据高度变化实现滚动组件的滚动。
 
 ```ts
 //xxx.ets
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
@@ -490,8 +491,6 @@ struct ListenKeyboardHeightChange {
   @State avoidMode: SheetKeyboardAvoidMode = SheetKeyboardAvoidMode.RESIZE_ONLY;
   scroller = new Scroller();
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6];
-  @State scrollHeight: number = 0;
-  @State keyBoardChange: boolean = false;
   windowClass: window.Window | undefined = undefined;
 
   aboutToAppear(): void {
@@ -506,7 +505,6 @@ struct ListenKeyboardHeightChange {
         try {
           if (this.windowClass !== undefined) {
             console.log('success in listen height change');
-            //注册键盘高度变化监听回调
             this.windowClass.on('keyboardHeightChange', this.callback);
           }
         } catch (exception) {
@@ -519,19 +517,13 @@ struct ListenKeyboardHeightChange {
     }
   }
 
-  //当键盘高度变化时，设置相应标志位
   callback = (height: number) => {
-    this.scrollHeight = height;
-    console.log('height change: ' + this.scrollHeight);
+    console.log('height change: ' + height);
     if (height !== 0) {
-      this.keyBoardChange = true;
-    }
-  }
-  //当滚动组件高度变化时，根据标志位触发滚动
-  sizeChangeCallback = (oldValue: SizeOptions, newValue: SizeOptions) => {
-    if (this.keyBoardChange) {
-      this.scroller.scrollBy(0, this.scrollHeight);
-      this.keyBoardChange = false;
+      this.scroller.scrollTo({
+        xOffset: 0, yOffset: height + this.scroller.currentOffset().yOffset,
+        animation: { duration: 1000, curve: Curve.Ease, canOverScroll: false }
+      });
     }
   }
 
@@ -566,12 +558,12 @@ struct ListenKeyboardHeightChange {
               .fontSize(20)
               .width('45%')
           }.width('100%')
-        }.height('100%')
-      }.margin({ right: 15 })
+        }.height(100)
+      }.margin({ right: 15, bottom: 50 })
     }
+    .height('100%')
     .scrollBar(BarState.On)
     .scrollable(ScrollDirection.Vertical)
-    .onSizeChange(this.sizeChangeCallback)
   }
 
   build() {
@@ -583,12 +575,12 @@ struct ListenKeyboardHeightChange {
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
-          detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
+          height: 750,
           backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
-          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY
+          keyboardAvoidMode: SheetKeyboardAvoidMode.RESIZE_ONLY,
         })
     }
     .justifyContent(FlexAlign.Start)
@@ -597,6 +589,7 @@ struct ListenKeyboardHeightChange {
   }
 }
 ```
+![zh-cn_sheet](figures/zh-cn_sheet6.gif)
 
 ### 示例7（镜像场景下如何设置圆角属性）
 

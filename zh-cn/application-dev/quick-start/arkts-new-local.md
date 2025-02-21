@@ -540,3 +540,95 @@ struct Index {
   }
 }
 ```
+
+### 在状态管理V2中使用animateTo动画效果异常
+
+在下面的场景中，[animateTo](../reference/apis-arkui/arkui-ts/ts-explicit-animation.md)暂不支持直接在状态管理V2中使用。
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local w: number = 50; // 宽度
+  @Local h: number = 50; // 高度
+  @Local message: string = 'Hello';
+
+  build() {
+    Column() {
+      Button('change size')
+        .margin(20)
+        .onClick(() => {
+          // 在执行动画前，存在额外的修改
+          this.w = 100;
+          this.h = 100;
+          this.message = 'Hello World';
+          animateTo({
+            duration: 1000
+          }, () => {
+            this.w = 200;
+            this.h = 200;
+            this.message = 'Hello ArkUI';
+          })
+        })
+      Column() {
+        Text(`${this.message}`)
+      }
+      .backgroundColor('#ff17a98d')
+      .width(this.w)
+      .height(this.h)
+    }
+  }
+}
+```
+
+上面的代码中，开发者预期显示的动画为绿色矩形从长宽100变化成200，字符串从`Hello World`变化成`Hello ArkUI`，但由于当前animateTo与V2在刷新机制上暂不兼容，在执行动画前额外的修改并不会生效，因此实际显示的动画为绿色矩形从长宽50变化成200，字符串从`Hello`变化成`Hello ArkUI`。
+
+![arkts-new-local-animateTo-1](figures/arkts-new-local-animateTo-1.gif)
+
+可以通过下面的方法暂时获得预期的显示效果。
+
+```ts
+@Entry
+@ComponentV2
+struct Index {
+  @Local w: number = 50; // 宽度
+  @Local h: number = 50; // 高度
+  @Local message: string = 'Hello';
+
+  build() {
+    Column() {
+      Button('change size')
+        .margin(20)
+        .onClick(() => {
+          // 在执行动画前，存在额外的修改
+          this.w = 100;
+          this.h = 100;
+          this.message = 'Hello Word';
+          animateToImmediately({
+            duration: 0
+          }, () => {
+          })
+          animateTo({
+            duration: 1000
+          }, () => {
+            this.w = 200;
+            this.h = 200;
+            this.message = 'Hello ArkUI';
+          })
+        })
+      Column() {
+        Text(`${this.message}`)
+      }
+      .backgroundColor('#ff17a98d')
+      .width(this.w)
+      .height(this.h)
+    }
+  }
+}
+```
+
+原理为使用一个duration为0的[animateToImmediately](../reference/apis-arkui/arkui-ts/ts-explicit-animatetoimmediately.md)将额外的修改先刷新，再执行原来的动画达成预期的效果。
+
+![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
+
+建议开发者在状态管理V2中谨慎使用animateTo接口。

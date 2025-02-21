@@ -256,5 +256,5 @@ struct Index {
 
 **Expected output**
 ```ts
-JSVM OH_JSVM_StrictEquals: success: 1
+JSVM OH_JSVM_StrictEquals: success: 0
 ```

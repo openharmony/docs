@@ -234,7 +234,7 @@ autoCollapse(enable: Optional&lt;boolean&gt;)
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | ------------------------------------------ |
-| enable  | Optional&lt;boolean&gt; | 是   | 是否使用自适应折叠模式。<br/>默认值：false |
+| enable  | Optional&lt;boolean&gt; | 是   | 是否使用自适应折叠模式。<br/>默认值：true |
 
 ### popupBackgroundBlurStyle
 

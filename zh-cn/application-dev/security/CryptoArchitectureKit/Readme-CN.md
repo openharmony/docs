@@ -1,12 +1,12 @@
 # Crypto Architecture Kit（加解密算法框架服务）
 
 - [Crypto Architecture Kit简介](crypto-architecture-kit-intro.md)
-- 密钥生成和转换
+- 密钥生成和转换<!--crypto-key-generation-conversion-->
   - [密钥生成与转换介绍](crypto-key-generation-conversion-overview.md)
-  - 密钥生成和转换规格
+  - 密钥生成和转换规格<!--crypto-key-generation-conversion-spec-->
     - [对称密钥生成和转换规格](crypto-sym-key-generation-conversion-spec.md)
     - [非对称密钥生成和转换规格](crypto-asym-key-generation-conversion-spec.md)
-  - 密钥生成和转换开发指导
+  - 密钥生成和转换开发指导<!--crypto-key-generation-conversion-dev-->
     - [随机生成对称密钥(ArkTS)](crypto-generate-sym-key-randomly.md)
     - [随机生成对称密钥(C/C++)](crypto-generate-sym-key-randomly-ndk.md)
     - [指定二进制数据转换对称密钥(ArkTS)](crypto-convert-binary-data-to-sym-key.md)
@@ -22,13 +22,13 @@
     - [指定PEM格式字符串数据转换非对称密钥对(ArkTS)](crypto-convert-string-data-to-asym-key-pair.md)
     - [指定PEM格式字符串数据转换非对称密钥对(C/C++)](crypto-convert-string-data-to-asym-key-pair-ndk.md)
     - [使用RSA私钥进行编码解码](crypto-rsa-encoded-decoded.md)
-- 加解密
+- 加解密<!--crypto-encryption-decryption-->
   - [加解密介绍](crypto-encryption-decryption-overview.md)
-  - 加解密算法规格
+  - 加解密算法规格<!--crypto-encrypt-decrypt-spec-->
     - [对称密钥加解密算法规格](crypto-sym-encrypt-decrypt-spec.md)
     - [非对称密钥加解密算法规格](crypto-asym-encrypt-decrypt-spec.md)
     - [分段加解密说明](crypto-encrypt-decrypt-by-segment.md)
-  - 加解密开发指导
+  - 加解密开发指导<!--crypto-encrypt-decrypt-dev-->
     - [使用AES对称密钥（GCM模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-gcm.md)
     - [使用AES对称密钥（GCM模式）加解密(C/C++)](crypto-aes-sym-encrypt-decrypt-gcm-ndk.md)
     - [使用AES对称密钥（CCM模式）加解密(ArkTS)](crypto-aes-sym-encrypt-decrypt-ccm.md)
@@ -54,9 +54,9 @@
     - [使用RSA非对称密钥（PKCS1_OAEP模式）加解密](crypto-rsa-asym-encrypt-decrypt-pkcs1_oaep.md)
     - [使用SM2非对称密钥加解密](crypto-sm2-asym-encrypt-decrypt.md)
     - [使用SM2密文格式转换](crypto-sm2-ciphertext-conversion.md)
-- 签名验签
+- 签名验签<!--crypto-sign-sig-verify-->
   - [签名验签介绍及算法规格](crypto-sign-sig-verify-overview.md)
-  - 签名验签开发指导
+  - 签名验签开发指导<!--crypto-sign-sig-verify-dev-->
     - [使用RSA密钥对（PKCS1模式）签名验签(ArkTS)](crypto-rsa-sign-sig-verify-pkcs1.md)
     - [使用RSA密钥对（PKCS1模式）验签(C/C++)](crypto-rsa-sign-sig-verify-pkcs1-ndk.md)
     - [使用RSA密钥对（PKCS1模式）签名及签名恢复(ArkTS)](crypto-rsa-sign-sig-verify-recover-pkcs1.md)
@@ -69,15 +69,15 @@
     - [使用ECDSA密钥对验签(C/C++)](crypto-ecdsa-sign-sig-verify-ndk.md)
     - [使用SM2密钥对签名验签(ArkTS)](crypto-sm2-sign-sig-verify-pkcs1.md)
     - [使用SM2密钥对验签(C/C++)](crypto-sm2-sign-sig-verify-pkcs1-ndk.md)
-- 密钥协商
+- 密钥协商<!--crypto-key-agreement-->
   - [密钥协商介绍及算法规格](crypto-key-agreement-overview.md)
-  - 密钥协商开发指导
+  - 密钥协商开发指导<!--crypto-key-agreement-dev-->
     - [使用ECDH进行密钥协商](crypto-key-agreement-using-ecdh.md)
     - [使用X25519进行密钥协商](crypto-key-agreement-using-x25519.md)
     - [使用DH进行密钥协商](crypto-key-agreement-using-dh.md)
-- 消息摘要计算
+- 消息摘要计算<!--crypto-generate-message-->
   - [消息摘要计算介绍及算法规格](crypto-generate-message-digest-overview.md)
-  - 消息摘要计算开发指导
+  - 消息摘要计算开发指导<!--crypto-generate-message-digest-dev-->
     - [消息摘要计算SHA256(ArkTS)](crypto-generate-message-digest.md)
     - [消息摘要计算SHA256(C/C++)](crypto-generate-message-digest-ndk.md)
     - [消息摘要计算MD5(ArkTS)](crypto-generate-message-digest-md5.md)
@@ -87,7 +87,7 @@
   - [消息认证码计算HMAC](crypto-compute-hmac.md)
   - [消息认证码计算CMAC](crypto-compute-cmac.md)
 - [安全随机数生成](crypto-generate-random-number.md)
-- 密钥派生
+- 密钥派生<!--crypto-key-derivation-->
   - [密钥派生介绍及算法规格](crypto-key-derivation-overview.md)
   - [使用PBKDF2进行密钥派生](crypto-key-derivation-using-pbkdf2.md)
   - [使用HKDF进行密钥派生](crypto-key-derivation-using-hkdf.md)

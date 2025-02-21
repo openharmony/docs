@@ -287,10 +287,10 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
-| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
-| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
-| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量。 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量。 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量。 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量。 |
 
 ## LocalizedEdges<sup>12+</sup>
 
@@ -818,13 +818,13 @@ setTextSelection选中文字时的配置。
 | colorMode | string | 是   | 否   | 颜色模式。 |
 | fontScale | number | 是   | 否   | 字体缩放。 |
 
-## LayoutPolicy<sup>16+</sup>
+## LayoutPolicy<sup>15+</sup>
 
 用于设置线性布局的布局策略。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

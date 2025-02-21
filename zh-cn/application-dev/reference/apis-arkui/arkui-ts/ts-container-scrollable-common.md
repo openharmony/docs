@@ -135,7 +135,7 @@ flingSpeedLimit(speedLimit: number): T
 
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
-| speedLimit | number | 是   | Fling动效开始时的最大初始速度。<br/>默认值：12000<br/>单位：vp/s |
+| speedLimit | number | 是   | Fling动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s |
 
 ### fadingEdge<sup>14+</sup>
 

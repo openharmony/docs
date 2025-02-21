@@ -175,29 +175,31 @@ Swiper支持手指滑动、点击导航点和通过控制器三种方式切换�
 @Entry
 @Component
 struct SwiperDemo {
+  private swiperBackgroundColors: Color[] = [Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Orange,
+    Color.Pink, Color.Red, Color.Yellow];
+  private swiperAnimationMode: (SwiperAnimationMode | boolean | undefined)[] = [undefined, true, false,
+    SwiperAnimationMode.NO_ANIMATION, SwiperAnimationMode.DEFAULT_ANIMATION, SwiperAnimationMode.FAST_ANIMATION];
   private swiperController: SwiperController = new SwiperController();
+  private animationModeIndex: number = 0;
+  private animationMode: (SwiperAnimationMode | boolean | undefined) = undefined;
+  @State animationModeStr: string = 'undefined';
+  @State targetIndex: number = 0;
+
+  aboutToAppear(): void {
+    this.toSwiperAnimationModeStr();
+  }
 
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text('0')
-          .width(250)
-          .height(250)
-          .backgroundColor(Color.Gray)
-          .textAlign(TextAlign.Center)
-          .fontSize(30)
-        Text('1')
-          .width(250)
-          .height(250)
-          .backgroundColor(Color.Green)
-          .textAlign(TextAlign.Center)
-          .fontSize(30)
-        Text('2')
-          .width(250)
-          .height(250)
-          .backgroundColor(Color.Pink)
-          .textAlign(TextAlign.Center)
-          .fontSize(30)
+        ForEach(this.swiperBackgroundColors, (backgroundColor: Color, index: number) => {
+          Text(index.toString())
+            .width(250)
+            .height(250)
+            .backgroundColor(backgroundColor)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        })
       }
       .indicator(true)
 
@@ -211,8 +213,44 @@ struct SwiperDemo {
             this.swiperController.showPrevious(); // 通过controller切换到前一页
           })
       }.margin(5)
+
+      Row({ space: 12 }) {
+        Text('Index:')
+        Button(this.targetIndex.toString())
+          .onClick(() => {
+            this.targetIndex = (this.targetIndex + 1) % this.swiperBackgroundColors.length;
+          })
+      }.margin(5)
+      Row({ space: 12 }) {
+        Text('AnimationMode:')
+        Button(this.animationModeStr)
+          .onClick(() => {
+            this.animationModeIndex = (this.animationModeIndex + 1) % this.swiperAnimationMode.length;
+            this.toSwiperAnimationModeStr();
+          })
+      }.margin(5)
+
+      Row({ space: 12 }) {
+        Button('changeIndex(' + this.targetIndex + ', ' + this.animationModeStr + ')')
+          .onClick(() => {
+            this.swiperController.changeIndex(this.targetIndex, this.animationMode); // 通过controller切换到指定页
+          })
+      }.margin(5)
     }.width('100%')
     .margin({ top: 5 })
+  }
+
+  private toSwiperAnimationModeStr() {
+    this.animationMode = this.swiperAnimationMode[this.animationModeIndex];
+    if ((this.animationMode === true) || (this.animationMode === false)) {
+      this.animationModeStr = '' + this.animationMode;
+    } else if ((this.animationMode === SwiperAnimationMode.NO_ANIMATION) ||
+      (this.animationMode === SwiperAnimationMode.DEFAULT_ANIMATION) ||
+      (this.animationMode === SwiperAnimationMode.FAST_ANIMATION)) {
+      this.animationModeStr = SwiperAnimationMode[this.animationMode];
+    } else {
+      this.animationModeStr = 'undefined';
+    }
   }
 }
 ```
@@ -363,6 +401,111 @@ struct SwiperCustomAnimationExample {
 ```
 
 ![customAnimation](figures/swiper-custom-animation.gif)
+
+## Swiper与Tabs联动
+
+Swiper选中的元素改变时，会通过onSelected回调事件，将元素的索引值index返回。通过调用tabsController.changeIndex(index)方法来实现Tabs页签的切换。
+
+```ts
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private list: number[] = []
+
+  constructor(list: number[]) {
+    this.list = list
+  }
+
+  totalCount(): number {
+    return this.list.length
+  }
+
+  getData(index: number): number {
+    return this.list[index]
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+
+  unregisterDataChangeListener() {
+  }
+}
+
+@Entry
+@Component
+struct TabsSwiperExample {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  private list: number[] = []
+  private tabsController: TabsController = new TabsController()
+  private swiperController: SwiperController = new SwiperController()
+  private swiperData: MyDataSource = new MyDataSource([])
+
+  aboutToAppear(): void {
+    for (let i = 0; i <= 9; i++) {
+      this.list.push(i);
+    }
+    this.swiperData = new MyDataSource(this.list)
+  }
+
+  @Builder tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.currentIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.currentIndex === index ? 1 : 0)
+    }.width('20%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, controller: this.tabsController }) {
+        ForEach(this.list, (index: number) =>{
+          TabContent().tabBar(this.tabBuilder(index, '页签 ' + this.list[index]))
+        })
+      }
+      .onTabBarClick((index: number) => {
+        this.currentIndex = index
+        this.swiperController.changeIndex(index, true)
+      })
+      .barMode(BarMode.Scrollable)
+      .backgroundColor('#F1F3F5')
+      .height(56)
+      .width('100%')
+
+      Swiper(this.swiperController) {
+        LazyForEach(this.swiperData, (item: string) => {
+          Text(item.toString())
+            .onAppear(()=>{
+              console.info('onAppear ' + item.toString())
+            })
+            .onDisAppear(()=>{
+              console.info('onDisAppear ' + item.toString())
+            })
+            .width('100%')
+            .height('40%')
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
+      }
+      .loop(false)
+      .onSelected((index: number) => {
+        console.info("onSelected:" + index)
+        this.currentIndex = index;
+        this.tabsController.changeIndex(index)
+      })
+    }
+  }
+}
+```
+![Swiper与Tabs联动](figures/tabs_swiper.gif)
 
 ## 相关实例
 

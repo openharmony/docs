@@ -912,7 +912,7 @@ class ArrayHolder {
 
 @Entry
 @ComponentV2
-export struct RepeatTemplateSingle {
+struct RepeatTemplateSingle {
   @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
   @Local totalCount: number = this.arrayHolder.arr.length;
   scroller: Scroller = new Scroller();
@@ -965,7 +965,7 @@ The following code shows the case of adding data to the data source.
 
 @Entry
 @ComponentV2
-export struct RepeatTemplateSingle {
+struct RepeatTemplateSingle {
   @Local arrayHolder: ArrayHolder = new ArrayHolder(100);
   @Local totalCount: number = this.arrayHolder.arr.length;
   scroller: Scroller = new Scroller();

@@ -37,7 +37,7 @@ TextArea(value?: TextAreaOptions)
 | 名称 | 类型  | 必填   | 说明 |
 | ---- | ----- | ---- | ---- |
 | placeholder      | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置无输入时的提示文本。输入内容后，提示文本不显示。<br/>仅设置placeholder属性时，手柄依然跟随拖动，手柄松开后光标停留在文字开头位置。     |
-| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 16开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
+| text             | [ResourceStr](ts-types.md#resourcestr)  | 否    | 设置输入框当前的文本内容。</br>建议通过onChange事件将状态变量与文本实时绑定，</br>避免组件刷新时TextArea中的文本内容异常。<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。<br />从API version 16开始，该参数支持[!!](../../../quick-start/arkts-new-binding.md#内置组件参数双向绑定)双向绑定变量。|
 | controller<sup>8+</sup> | [TextAreaController](#textareacontroller8) | 否    | 设置TextArea控制器。 |
 
 
@@ -156,7 +156,7 @@ fontSize(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | [Length](ts-types.md#length) | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp，wearable设备上默认值为：18fp。不支持设置百分比字符串。 |
 
 ### fontStyle
 
@@ -804,18 +804,6 @@ enablePreviewText(enable: boolean)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
 
->  **说明：**
->
->  该接口在CAPI场景使用时下，默认关闭。可以在工程的module.json5中配置[metadata](../../../../application-dev/quick-start/module-structure.md#metadata对象内部结构)字段控制是否启用预上屏，配置如下：
-> ```json
-> "metadata": [
->  {
->     "name": "can_preview_text",
->     "value": "true",
->  }
-> ]
-> ```
-
 ### enableHapticFeedback<sup>13+</sup>
 
 enableHapticFeedback(isEnabled: boolean)
@@ -877,13 +865,13 @@ keyboardAppearance(appearance: KeyboardAppearance)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [KeyboardAppearance](ts-text-common.md#keyboardappearance16枚举说明) | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
-### stopBackPress<sup>16+</sup>
+### stopBackPress<sup>15+</sup>
 
-stopBackPress(isStopped: boolean)
+stopBackPress(isStopped: Optional\<boolean>)
 
 设置是否阻止返回键向其它组件或应用侧传递。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -891,7 +879,7 @@ stopBackPress(isStopped: boolean)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | boolean | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
 
 ## 事件
 
@@ -1060,7 +1048,7 @@ onWillInsert(callback: Callback\<InsertValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
+| callback  | Callback\<[InsertValue](ts-text-common.md#insertvalue12对象说明), boolean> | 是   | 在将要输入时调用的回调。<br/>在返回true时，表示正常插入，返回false时，表示不插入。<br/>在预上屏和候选词操作时，该回调不触发。<br/>仅支持系统输入法输入的场景。 |
 
 ### onDidInsert<sup>12+</sup>
 
@@ -1116,6 +1104,8 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 在文本内容将要发生变化时，触发该回调。
 
+onWillChange的回调时序晚于onWillInsert、onWillDelete，早于onDidInsert、onDidDelete。
+
 **原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -1124,7 +1114,7 @@ onWillChange(callback: Callback\<EditableTextChangeValue, boolean>)
 
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
-| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。 |
+| callback  | Callback\<[EditableTextChangeValue](ts-text-common.md#editabletextchangevalue16), boolean> | 是   | 在文本内容将要发生变化时的回调。<br/>返回true时，表示正常修改。返回false时，表示拦截此次触发。 |
 
 ## TextAreaController<sup>8+</sup>
 
@@ -1246,6 +1236,18 @@ stopEditing(): void
 | NICKNAME                   | 23   | 【昵称】在已启用情景化自动填充的情况下，支持昵称的自动保存和自动填充。 |
 | DETAIL_INFO_WITHOUT_STREET | 24   | 【无街道地址】在已启用情景化自动填充的情况下，支持无街道地址的自动保存和自动填充。 |
 | FORMAT_ADDRESS             | 25   | 【标准地址】在已启用情景化自动填充的情况下，支持标准地址的自动保存和自动填充。 |
+| PASSPORT_NUMBER<sup>16+</sup>            | 26   | 【护照号】在已启用情景化自动填充的情况下，支持护照号的自动保存和自动填充。 |
+| VALIDITY<sup>16+</sup>                   | 27   | 【护照有效期】在已启用情景化自动填充的情况下，支持护照有效期的自动保存和自动填充。 |
+| ISSUE_AT<sup>16+</sup>                   | 28   | 【护照签发地】在已启用情景化自动填充的情况下，支持护照签发地的自动保存和自动填充。 |
+| ORGANIZATION<sup>16+</sup>               | 29   | 【发票抬头名称】在已启用情景化自动填充的情况下，支持发票抬头名称的自动保存和自动填充。 |
+| TAX_ID<sup>16+</sup>                     | 30   | 【税号】在已启用情景化自动填充的情况下，支持税号的自动保存和自动填充。 |
+| ADDRESS_CITY_AND_STATE<sup>16+</sup>     | 31   | 【所在地区】在已启用情景化自动填充的情况下，支持所在地区的自动保存和自动填充。 |
+| FLIGHT_NUMBER<sup>16+</sup>              | 32   | 【航班号】暂不支持自动保存和自动填充。 |
+| LICENSE_NUMBER<sup>16+</sup>             | 33   | 【驾驶证号】暂不支持自动保存和自动填充。 |
+| LICENSE_FILE_NUMBER<sup>16+</sup>        | 34   | 【驾驶证档案编号】暂不支持自动保存和自动填充。 |
+| LICENSE_PLATE<sup>16+</sup>              | 35   | 【车牌号】在已启用情景化自动填充的情况下，支持车牌号的自动保存和自动填充。 |
+| ENGINE_NUMBER<sup>16+</sup>              | 36   | 【行驶证发动机号】暂不支持自动保存和自动填充。 |
+| LICENSE_CHASSIS_NUMBER<sup>16+</sup>     | 37   | 【车牌识别号】暂不支持自动保存和自动填充。 |
 
 ## TextAreaSubmitCallback<sup>14+</sup>
 
@@ -2070,46 +2072,47 @@ export struct TextAreaExample11 {
   @State minFontScale: number = 0.85;
   @State maxFontScale: number = 2;
   @State changeValue: string = 'abcde';
-  @State currentFontSizeScale : string = "";
-  async setFontScale(scale: number): Promise<void> {
-    let configInit: Configuration = {
-      fontSizeScale: scale;
-    };
-    abilityManager.updateConfiguration(configInit, (err: BusinessError) => {
-      if (!err) {
-        this.currentFontSizeScale = scale.toString();
-      }
-    });
-  }
 
   build() {
     Column() {
       Column({ space: 30 }) {
-        Text("字体倍数：" + this.currentFontSizeScale)
+        Text("系统字体变大变小，变大变小aaaaaaaAAAAAA")
         TextArea({
           placeholder: 'The text area can hold an unlimited amount of text. input your word...',
         })
-          .minFontScale(this.minFontScale)
-          .maxFontScale(this.maxFontScale)
+        //设置最小字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
+          .minFontScale(0.85)
+          //设置最大字体缩放倍数，参数为undefined则跟随系统默认倍数缩放。
+          .maxFontScale(2)
       }.width('100%')
-      Row(){
-        Button("2倍").onClick(() => {
-          this.setFontScale(2)
-        }).alignSelf(ItemAlign.Start)
-        Button("1倍")
-          .margin({ left: 20 })
-          .onClick(() => {
-            this.setFontScale(1)
-          }).alignSelf(ItemAlign.Start)
-        Button("0.85")
-          .margin({ left: 20 })
-          .onClick(() => {
-            this.setFontScale(0.85)
-          }).alignSelf(ItemAlign.Start)
-      }.margin({ top: 30 })
     }
   }
 }
 ```
 
-![textAreaMaxAndMinFontScale](figures/textAreaMaxAndMinFontScale.gif)
+```ts
+路径：AppScope/resources/base，新建文件夹profile。
+路径：AppScope/resources/base/profile，新建文件configuration.json。
+路径：AppScope/resources/base/profile/configuration.json，增加如下代码。
+{
+  "configuration":{
+    "fontSizeScale": "followSystem",
+    "fontSizeMaxScale": "3.2"
+}
+}
+```
+
+```ts
+路径：AppScope/app.json5，修改如下代码。
+{
+  "app": {
+    "bundleName": "com.example.myapplication",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "configuration": "$profile:configuration"
+  }
+}
+```

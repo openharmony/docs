@@ -447,7 +447,7 @@ static getUsingLocalDigit(): boolean
 
 static getSimplifiedLanguage(language?: string): string
 
-获取语言的最简化表示。如："zh-Hans-CN"的最简化表示是"zh"，"zh-Hant-TW"的最简表示为"zh-TW"。
+获取语言的简化表示。如："en-Latn-US"的简化表示是"en"，"en-Latn-GB"的简化表示为"en-GB"。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -463,7 +463,7 @@ static getSimplifiedLanguage(language?: string): string
 
 | 类型      | 说明                                       |
 | ------- | ---------------------------------------- |
-| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的最简表示；若不存在，则返回系统语言的最简表示。<br>传入language时，返回language的最简表示。 |
+| string | 不传入language时，会根据系统语言和地区判断是否存在系统支持的方言，若存在则返回方言的简化表示；若不存在，则返回系统语言的简化表示。<br>传入language时，返回language的简化表示。 |
 
 **错误码：**
 
@@ -480,7 +480,7 @@ static getSimplifiedLanguage(language?: string): string
 
   try {
     let simplifiedLanguage: string = i18n.System.getSimplifiedLanguage("zh-Hans-CN");  // simplifiedLanguage = zh
-    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh, 如果当前系统语言为简体中文
+    let simplifiedSystemLanguage: string = i18n.System.getSimplifiedLanguage();  // simplifiedSystemLanguage = zh-Hans, 如果当前系统语言为简体中文
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.getSimplifiedLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -3170,7 +3170,7 @@ constructor(numberFormat: intl.NumberFormat | SimpleNumberFormat, options?: Styl
     decimal: decimal_textStyle,
     fraction: fraction_textStyle,
     unit: unit_textStyle });
-  
+
   // 通过SimpleNumberFormat创建StyledNumberFormat对象
   let locale = new intl.Locale("zh");
   let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);
@@ -3229,7 +3229,7 @@ format(value: number): StyledString
     fraction: fraction_textStyle,
     unit: unit_textStyle });
   let result_1 = styledNumFmt_1.format(1234.5678);  // result_1.getString() 为 "1,234.568%"。显示result_1时"1,234"是红色，"."是棕色，"568"是蓝色，"%"是绿色。
-  
+
   // 通过SimpleNumberFormat创建StyledNumberFormat对象
   let locale = new intl.Locale("zh");
   let simpleNumFmt = i18n.getSimpleNumberFormatBySkeleton("percent", locale);

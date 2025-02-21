@@ -20,6 +20,12 @@ HSP（Harmony Shared Package）是动态共享包，可以包含代码、C++库�
 - HSP支持在配置文件中声明[ExtensionAbility](../application-models/extensionability-overview.md)组件和[UIAbility](../application-models/uiability-overview.md)组件，但不支持具有入口能力的ExtensionAbility或UIAbility（即skill标签配置了entity.system.home和ohos.want.action.home）。
 - HSP可以依赖其他HAR或HSP，但不支持循环依赖，也不支持依赖传递。
 
+> **说明：**
+> 
+> 循环依赖：例如有三个HSP，HSP-A、HSP-B和HSP-C，循环依赖指HSP-A依赖HSP-B，HSP-B依赖HSP-C，HSP-C又依赖HSP-A。
+>
+> 依赖传递：例如有三个HSP，HSP-A、HSP-B和HSP-C，依赖关系是HSP-A依赖HSP-B，HSP-B依赖HSP-C。不支持传递依赖指HSP-A可以使用HSP-B的方法和组件，但是HSP-A不能直接使用HSP-C的方法和组件。
+
 
 ## 创建
 通过DevEco Studio创建一个HSP模块，详见[创建HSP模块](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546)，我们以创建一个名为`library`的HSP模块为例。基本的工程目录结构如下：

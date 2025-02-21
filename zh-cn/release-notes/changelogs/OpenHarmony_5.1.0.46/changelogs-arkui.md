@@ -265,3 +265,77 @@ struct attributeDemo {
 | -------------------------------------------------------- | ------------------------------------------------------ |
 | 浅色模式拉起。<br>![light_mode](figures/light_mode1.jpg) | 深色模式拉起。<br>![dark_mode](figures/dark_mode1.jpg) |
 | 切换深色。<br>![light_mode](figures/light_mode1.jpg)     | 切换浅色。<br>![dark_mode](figures/dark_mode1.jpg)     |
+
+## cl.arkui.4 FrameNode被UINode包裹时isVisible接口返回值发生变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+用户使用FrameNode的isVisible接口时，节点会依次向上层父节点查询可见性，如果父节点不可见，子节点也不可见。但如果子节点被UINode类型节点（如IfElse、ForEach、LazyForEach等）包裹，则向上查找过程被阻塞，无法继续查询父节点可见性。
+
+**变更影响**
+
+此变更不涉及应用适配。
+
+变更前：父节点设为不可见、子节点设为可见时，如果子节点被UINode类型节点包裹，子节点调用isVisible结果为true。
+
+变更后：父节点设为不可见、子节点设为可见时，如果子节点被UINode类型节点包裹，子节点调用isVisible结果为false。
+
+父节点设为不可见、子节点设为可见时，如果子节点被UINode类型节点包裹，调用isVisible接口返回值结果变更前后会不一致，例如：
+```ts
+import { FrameNode } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct Index {
+  private stackNode: FrameNode | null = null
+  private columnNode: FrameNode | null = null
+
+  build() {
+    Column() {
+      Stack() {
+        if (true) {
+          Column()
+            .id("column")
+            .visibility(Visibility.Visible)
+        }
+      }
+      .id("stack")
+      .visibility(Visibility.Hidden)
+
+      Button("print")
+        .onClick(() => {
+          this.stackNode = this.getUIContext().getFrameNodeById("stack")
+          this.columnNode = this.getUIContext().getFrameNodeById("column")
+          if (this.stackNode) {
+            // Stack节点的可见性，为false
+            console.log("stackNode.isVisible:", this.stackNode.isVisible())
+          }
+          if (this.columnNode) {
+            // Column节点的可见性，变更前为true，变更后为false
+            console.log("columnNode.isVisible:", this.columnNode.isVisible())
+          }
+        })
+    }
+  }
+}
+```
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.1.0.46开始。
+
+**变更的接口/组件**
+
+FrameNode.d.ts文件isVisible接口。
+
+**适配指导**
+
+默认行为变更，无需适配。

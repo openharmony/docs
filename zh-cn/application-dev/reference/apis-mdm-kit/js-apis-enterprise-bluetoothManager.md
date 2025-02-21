@@ -22,7 +22,7 @@ import { bluetoothManager } from '@kit.MDMKit';
 
 getBluetoothInfo(admin: Want): BluetoothInfo
 
-以同步方法查询设备蓝牙信息。成功返回设备蓝牙信息，失败抛出对应异常。
+查询设备蓝牙信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -34,7 +34,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -75,7 +75,7 @@ try {
 
 addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-指定设备管理应用添加蓝牙设备可用白名单。
+添加蓝牙设备可用白名单。如果调用[setDisallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了蓝牙，就无法调用此接口，否则会冲突；如果调用此接口后再全局禁用，则可以禁用成功。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -87,7 +87,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 | 参数名    | 类型                                                    | 必填 | 说明                                                |
 | --------- | ------------------------------------------------------- | ---- | --------------------------------------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                                      |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                      |
 | deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。添加后的数组长度上限为1000。 |
 
 **错误码**：
@@ -124,7 +124,7 @@ try {
 
 removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
-指定设备管理应用移除蓝牙设备可用白名单。
+移除蓝牙设备可用白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -136,7 +136,7 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 | 参数名    | 类型                                                    | 必填 | 说明                    |
 | --------- | ------------------------------------------------------- | ---- | ----------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。          |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。          |
 | deviceIds | Array\<string>                                          | 是   | 蓝牙设备MAC地址的数组。 |
 
 **错误码**：
@@ -172,7 +172,7 @@ try {
 
 getAllowedBluetoothDevices(admin: Want): Array\<string>;
 
-指定设备管理应用获取蓝牙设备可用白名单。
+获取蓝牙设备可用白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -184,7 +184,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>;
 
 | 参数名 | 类型                                                    | 必填 | 说明           |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。 |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
 
 **返回值：**
 

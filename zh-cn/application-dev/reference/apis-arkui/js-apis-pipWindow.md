@@ -230,11 +230,11 @@ promise.then((data : PiPWindow.PiPController) => {
 | controlGroups<sup>12+</sup>       | Array<[PiPControlGroup](#pipcontrolgroup12)>                               | 否   | 画中画控制面板的可选控件组列表，应用可以对此进行配置以决定是否显示。如果应用没有配置，面板将显示基础控件（如视频播放控件组的播放/暂停控件）；如果应用选择配置，则最多可以选择三个控件。从API version 12开始支持此参数。                                                                                                                                                                                                                                                 |
 | customUIController<sup>12+</sup>      | [NodeController](js-apis-arkui-nodeController.md)           | 否   | 用于实现在画中画界面内容上方展示自定义UI功能。从API version 12开始支持此参数。                                                                                                                                                                                                                                                                                           |
 
-## PiPWindowSize<sup>16+</sup>
+## PiPWindowSize<sup>15+</sup>
 
 画中画窗口大小。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -244,18 +244,18 @@ promise.then((data : PiPWindow.PiPController) => {
 | height | number   | 是   | 否   | 窗口高度，单位为px，该参数应为正整数，不大于屏幕高。 |
 | scale  | number   | 是   | 否   | 窗口缩放比，显示大小相对于width和height的缩放比，该参数为浮点数，取值范围大于0.0，小于等于1.0。等于1表示与width和height一样大。 |
 
-## PiPWindowInfo<sup>16+</sup>
+## PiPWindowInfo<sup>15+</sup>
 
 画中画窗口信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
 | windowId  | number   | 是   | 否   | 画中画窗口ID。 |
-| size  | [PiPWindowSize](#pipwindowsize16)  | 是   | 否   | 画中画窗口大小。 |
+| size  | [PiPWindowSize](#pipwindowsize15)  | 是   | 否   | 画中画窗口大小。 |
 
 ## PiPTemplateType
 
@@ -764,12 +764,12 @@ let controlType: PiPWindow.PiPControlType = PiPWindow.PiPControlType.VIDEO_PLAY_
 let enabled: boolean = false; // 视频播放控制面板中播放/暂停控件为禁用状态。
 pipController.setPiPControlEnabled(controlType, enabled);
 ```
-### getPiPWindowInfo<sup>16+</sup>
-getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo16)&gt;
+### getPiPWindowInfo<sup>15+</sup>
+getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo15)&gt;
 
 获取画中画窗口信息。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
 
@@ -777,7 +777,7 @@ getPiPWindowInfo(): Promise&lt;[PiPWindowInfo](#pipwindowinfo16)&gt;
 
 | 类型                   | 说明                  |
 |----------------------|---------------------|
-| Promise&lt;[PiPWindowInfo](#pipwindowinfo16)&gt;  | Promise对象，返回当前画中画窗口信息。 |
+| Promise&lt;[PiPWindowInfo](#pipwindowinfo15)&gt;  | Promise对象，返回当前画中画窗口信息。 |
 
 **错误码：**
 
@@ -1014,4 +1014,93 @@ off(type: 'controlEvent', callback?: Callback&lt;ControlEventParam&gt;): void
 
 ```ts
 pipController.off('controlEvent', () => {});
+```
+
+### on('pipWindowSizeChange')<sup>15+</sup>
+
+on(type: 'pipWindowSizeChange', callback: Callback&lt;PiPWindowSize&gt;): void
+
+开启画中画窗口尺寸变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型                                          | 必填    | 说明                                                |
+|----------|---------------------------------------------|-------|---------------------------------------------------|
+| type     | string                                      | 是     | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。 |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)> | 是     | 回调函数。返回当前画中画窗口的尺寸。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |    
+
+**示例：**
+
+```ts
+try {
+  pipcontroller.on('pipWindowSizeChange', (size: PiPWindow.PiPWindowSize) => {
+    console.info('Succeeded in enabling the listener for pip window size changes. size: ' + JSON.stringify(size));
+  });
+} catch (exception) {
+  console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('pipWindowSizeChange')<sup>15+</sup>
+
+off(type: 'pipWindowSizeChange', callback?: Callback&lt;PiPWindowSize&gt;): void
+
+关闭画中画窗口尺寸变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名      | 类型         | 必填 | 说明                                                                  |
+|----------|------------|----|---------------------------------------------------------------------|
+| type     | string     | 是  | 监听事件，固定为'pipWindowSizeChange'，即画中画窗口尺寸变化事件。                         |
+| callback | Callback<[PiPWindowSize](#pipwindowsize15)> | 否  | 回调函数。返回当前画中画窗口的尺寸。如果传入参数，则关闭该监听。如果未传入参数，解除type为'pipWindowSizeChange'的所有回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801   | Capability not supported.Failed to call the API due to limited device capabilities.                                                       |
+| 1300014    | PiP internal error.                                    |    
+
+**示例：**
+
+```ts
+const callback = (size: PiPWindow.PiPWindowSize) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  pipcontroller.on('pipWindowSizeChange', callback);
+} catch (exception) {
+  console.error(`Failed to enable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+
+try {
+  // 关闭指定callback的监听
+  pipcontroller.off('pipWindowSizeChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  pipcontroller.off('pipWindowSizeChange');
+} catch (exception) {
+  console.error(`Failed to disable the listener for pip window size changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```

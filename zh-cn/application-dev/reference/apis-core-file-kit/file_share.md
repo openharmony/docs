@@ -204,7 +204,7 @@ FileManagement_ErrCode OH_FileShare_CheckPersistentPermission (const FileShare_P
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
 | result | 授权校验结果指针。请引用头文件malloc.h并使用free()进行资源释放。 | 
-| resultNum | 校验结果数组的大小. | 
+| resultNum | 校验结果数组的大小。| 
 
 **需要权限：**
 
@@ -233,7 +233,7 @@ FileManagement_ErrCode OH_FileShare_DeactivatePermission (const FileShare_Policy
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**
@@ -263,7 +263,7 @@ FileManagement_ErrCode OH_FileShare_PersistPermission (const FileShare_PolicyInf
 | -------- | -------- |
 | policies | 一个指向FileShare_PolicyInfo实例的指针。 | 
 | policyNum | FileShare_PolicyInfo实例数组的大小。 | 
-| result | FileShare_PolicyErrorResult数组指针. 请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
+| result | FileShare_PolicyErrorResult数组指针。请使用OH_FileShare_ReleasePolicyErrorResult()进行资源释放。 | 
 | resultNum | FileShare_PolicyErrorResult数组大小。 | 
 
 **需要权限：**

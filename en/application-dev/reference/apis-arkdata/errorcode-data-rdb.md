@@ -587,7 +587,7 @@ Perform the operation on the stage model.
 
 **Error Message**
 
-Invalid data ground ID.
+Invalid data group ID.
 
 **Description**
 

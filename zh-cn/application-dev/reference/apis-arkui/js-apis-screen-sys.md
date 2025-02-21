@@ -945,7 +945,7 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| isLocked  | boolean | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定. |
+| isLocked  | boolean | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定。 |
 
 **返回值：**
 
@@ -987,7 +987,7 @@ setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;):
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| isLocked  | boolean                   | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定.                 |
+| isLocked  | boolean                   | 是   | 自动转屏开关是否锁定。true为锁定，false为未锁定。                 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置自动转屏是否锁定成功，err为undefined，否则为错误对象。 |
 
 **错误码：**

@@ -1,15 +1,15 @@
 # Camera Kit（相机服务）
 
-- ArkTS API
+- ArkTS API<!--camera-arkts-->
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.cameraPicker (相机选择器)](js-apis-cameraPicker.md)
   <!--Del-->
   - [@ohos.multimedia.camera (相机管理)(系统接口)](js-apis-camera-sys.md)
   <!--DelEnd-->
-- C API
-  - 模块
+- C API<!--camera-c-->
+  - 模块<!--camera-module-->
     - [OH_Camera](_o_h___camera.md)
-  - 头文件
+  - 头文件<!--camera-headerfile-->
     - [camera.h](camera_8h.md)
     - [camera_device.h](camera__device_8h.md)
     - [camera_input.h](camera__input_8h.md)
@@ -20,7 +20,7 @@
     - [photo_output.h](photo__output_8h.md)
     - [preview_output.h](preview__output_8h.md)
     - [video_output.h](video__output_8h.md)
-  - 结构体
+  - 结构体<!--camera-struct-->
     - [Camera_CaptureEndInfo](_camera___capture_end_info.md)
     - [Camera_CaptureStartInfo](_camera___capture_start_info.md)
     - [Camera_Device](_camera___device.md)
@@ -46,5 +46,5 @@
     - [PhotoOutput_Callbacks](_photo_output___callbacks.md)
     - [PreviewOutput_Callbacks](_preview_output___callbacks.md)
     - [VideoOutput_Callbacks](_video_output___callbacks.md)
-- 错误码
+- 错误码<!--camera-arkts-errcode-->
   - [Camera错误码](errorcode-camera.md)

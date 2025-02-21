@@ -222,13 +222,19 @@ class MyAbilityStage extends AbilityStage {
 }
 ```
 
-## AbilityStage.onPrepareTermination<sup>16+<sup>
+## AbilityStage.onPrepareTermination<sup>15+<sup>
 
 onPrepareTermination(): AbilityConstant.PrepareTermination
 
-当应用将被强制结束时调用，可用于询问用户选择立即执行操作还是取消操作。当前仅在2in1设备上生效。
+当应用被用户关闭时调用，可用于询问用户选择立即执行操作还是取消操作。当前仅在2in1设备上生效。
 
-**原子化服务API**：从API version 16开始，该接口支持在原子化服务中使用。
+> **说明：**
+>
+> 仅当应用正常退出时会调用该接口。如果应用被强制结束，则不会调用该接口。
+
+**需要权限**：ohos.permission.PREPARE_APP_TERMINATE
+
+**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -236,7 +242,7 @@ onPrepareTermination(): AbilityConstant.PrepareTermination
 
 | 类型 | 说明 | 
 | -------- | -------- |
-| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination16) | 用于返回用户的选择结果。 | 
+| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15) | 用于返回用户的选择结果。 | 
 
 **示例：**
 

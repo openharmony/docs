@@ -57,7 +57,7 @@ VideoEncoder模块提供用于视频编码的接口。
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Prepare](#oh_videoencoder_prepare) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 准备编码器的内部资源。  | 
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Start](#oh_videoencoder_start) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 调用OH_VideoEncoder_Prepare接口成功后调用此接口启动编码器。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Stop](#oh_videoencoder_stop) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 停止编码器，释放输入输出buffer。  |
-| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Flush](#oh_videoencoder_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除编码器中缓存的输入和输出数据及参数集如H264格式的PPS/SPS。  |
+| [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Flush](#oh_videoencoder_flush) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 清除编码器中缓存的输入和输出数据及参数集如H.264格式的PPS/SPS。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_Reset](#oh_videoencoder_reset) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 重置编码器，编码器回到初始化状态。  |
 | OH_AVFormat \* [OH_VideoEncoder_GetOutputDescription](#oh_videoencoder_getoutputdescription) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec) | 获取编码器输出数据的OH_AVFormat信息。  |
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_VideoEncoder_SetParameter](#oh_videoencoder_setparameter) ([OH_AVCodec](_codec_base.md#oh_avcodec) \*codec, OH_AVFormat \*format) | 在编码器运行时设置编码器参数。  | 
@@ -97,7 +97,7 @@ typedef void(* OH_VideoEncoder_OnNeedInputParameter) (OH_AVCodec *codec, uint32_
 | codec | 指向视频编码实例的指针。  | 
 | index | 对应编码帧的index。  | 
 | parameter | 编码参数。  | 
-| userData | 调用者执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 
 ## 枚举类型说明
@@ -288,7 +288,7 @@ OH_AVErrCode OH_VideoEncoder_Flush (OH_AVCodec *codec)
 ```
 **描述**
 
-清除编码器中缓存的输入和输出数据及参数集如H264格式的PPS/SPS。
+清除编码器中缓存的输入和输出数据及参数集如H.264格式的PPS/SPS。
 
 调用此接口后，以前通过异步回调上报的所有缓冲区index都将失效，请确保不要访问这些index对应的缓冲区。该接口不能连续调用。
 
@@ -325,9 +325,9 @@ AV_ERR_INVALID_STATE：编码器状态不支持调用本接口时调用。
 OH_AVErrCode OH_VideoEncoder_FreeOutputBuffer (OH_AVCodec *codec, uint32_t index )
 ```
 **描述**
-将处理后的index对应的OH_AVBuffer退回给编码器。调用者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
+将处理后的index对应的OH_AVBuffer退回给编码器。开发者使用完需要及时调用此接口释放输出缓存区，否则会阻塞编码流程。
 
-详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-14或Buffer模式步骤-10”。
+详情请参见：[视频编码](../../media/avcodec/video-encoding.md) “Surface模式的步骤-13或Buffer模式步骤-10”。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -352,7 +352,7 @@ AV_ERR_INVALID_VAL：
 
     1. 输入的codec指针为非编码器实例，或者为空指针；
     2. 输入format参数不支持；
-    3. index非法或者连续给同一个index，该错误不影响后续编码流程
+    3. index非法或者连续给同一个index，该错误不影响后续编码流程。
 
 AV_ERR_UNKNOWN：未知错误。
 
@@ -369,7 +369,7 @@ OH_AVFormat* OH_VideoEncoder_GetInputDescription (OH_AVCodec *codec)
 **描述**
 编码器接收到的图像的描述信息。调用[OH_VideoEncoder_Configure](#oh_videoencoder_configure)后调用此接口。 
 
-需要注意的是，返回指针所指向的OH_AVFormat实例的生命周期需要由调用者通过调用OH_AVFormat_Destroy接口释放，请参阅[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)。
+需要注意的是，返回指针所指向的OH_AVFormat实例的生命周期需要由开发者通过调用OH_AVFormat_Destroy接口释放，请参阅[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -394,7 +394,7 @@ OH_AVFormat* OH_VideoEncoder_GetOutputDescription (OH_AVCodec *codec)
 **描述**
 获取编码器输出数据的OH_AVFormat信息。
 
-需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要调用者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
+需要注意的是，返回值指向的OH_AVFormat实例的生命周期需要开发者通过调用接口[OH_AVFormat_Destroy](_core.md#oh_avformat_destroy)释放。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -428,7 +428,7 @@ OH_AVErrCode OH_VideoEncoder_GetSurface (OH_AVCodec *codec, OHNativeWindow ** wi
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
-| window | 指向OHNativeWindow实例的指针, 请参阅[OHNativeWindow](_codec_base.md#ohnativewindow)。 应用负责管理window的生命周期，结束时调用OH_NativeWindow_DestroyNativeWindow释放。  | 
+| window | 指向OHNativeWindow实例的指针，请参阅[OHNativeWindow](_codec_base.md#ohnativewindow)。 应用负责管理window的生命周期，结束时调用OH_NativeWindow_DestroyNativeWindow释放。  | 
 
 **返回：**
 
@@ -458,7 +458,7 @@ OH_AVErrCode OH_VideoEncoder_IsValid (OH_AVCodec *codec, bool *isValid )
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
-| isValid | 输出参数，指向布尔类型的指针。指向布尔实例的指针，如果编码器实例有效，则为true，如果编码器实例无效，则为false。建议调用者将isValid初始化为false。  |
+| isValid | 输出参数，指向布尔类型的指针。指向布尔实例的指针，如果编码器实例有效，则为true，如果编码器实例无效，则为false。建议开发者将isValid初始化为false。  |
 
 **返回：**
 
@@ -626,7 +626,7 @@ OH_AVErrCode OH_VideoEncoder_RegisterCallback (OH_AVCodec *codec, OH_AVCodecCall
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecCallback](_o_h___a_v_codec_callback.md)。  | 
-| userData | 调用者执行回调所依赖的数据。  | 
+| userData | 开发者执行回调所依赖的数据。  | 
 
 **返回：**
 
@@ -664,8 +664,8 @@ OH_AVErrCode OH_VideoEncoder_RegisterParameterCallback (OH_AVCodec *codec, OH_Vi
 | 名称 | 描述 | 
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
-| onInputParameter | 输入参数回调指针, 请参阅[OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)。  | 
-| userData | 调用者执行回调所依赖的数据。  |
+| onInputParameter | 输入参数回调指针，请参阅[OH_VideoEncoder_OnNeedInputParameter](#oh_videoencoder_onneedinputparameter)。  | 
+| userData | 开发者执行回调所依赖的数据。  |
 
 **返回：**
 
@@ -768,7 +768,7 @@ OH_AVErrCode OH_VideoEncoder_Start (OH_AVCodec *codec)
 
 Surface模式下，在surface中有正确的输入后，每完成一帧编码会触发OnNewOutputBuffer。
 
-Buffer模式下，编码器会立即触发输入回调，调用者每完成一次输入，编码器执行编码，每完成一帧编码会触发OnNewOutputBuffer。
+Buffer模式下，编码器会立即触发输入回调，开发者每完成一次输入，编码器执行编码，每完成一帧编码会触发OnNewOutputBuffer。
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoEncoder
 
@@ -857,7 +857,7 @@ OH_AVErrCode OH_VideoEncoder_SetCallback (OH_AVCodec *codec, OH_AVCodecAsyncCall
 | -------- | -------- |
 | codec | 指向视频编码实例的指针。  | 
 | callback | 所有回调函数的集合，请参阅[OH_AVCodecAsyncCallback](_o_h___a_v_codec_async_callback.md)。  | 
-| userData | 调用者执行回调所依赖的数据。  |
+| userData | 开发者执行回调所依赖的数据。  |
 
 **返回：**
 

@@ -1,4 +1,4 @@
-# @ohos.bluetooth.connection (蓝牙connection模块)（系统接口）
+# @ohos.bluetooth.connection (蓝牙connection模块)(系统接口)
 
 connection模块提供了对蓝牙操作和管理的方法。
 
@@ -25,7 +25,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: As
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -78,7 +78,7 @@ pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -133,7 +133,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -160,7 +160,7 @@ cancelPairedDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//callback
+// callback
 try {
     connection.cancelPairedDevice('11:22:33:44:55:66', (err: BusinessError) => {
         console.info('cancelPairedDevice, device name err:' + JSON.stringify(err));
@@ -181,7 +181,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -213,7 +213,7 @@ cancelPairedDevice(deviceId: string): Promise&lt;void&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.cancelPairedDevice('11:22:33:44:55:66').then(() => {
         console.info('cancelPairedDevice');
@@ -237,7 +237,7 @@ cancelPairingDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -282,7 +282,7 @@ cancelPairingDevice(deviceId: string): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -332,7 +332,7 @@ getLocalProfileUuids(callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): 
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -378,7 +378,7 @@ getLocalProfileUuids(): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **返回值：**
 
@@ -426,7 +426,7 @@ connectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;): v
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -477,7 +477,7 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -531,7 +531,7 @@ disconnectAllowedProfiles(deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -582,7 +582,7 @@ disconnectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -630,13 +630,11 @@ try {
 
 getRemoteProductId(deviceId: string): string
 
-获取对端蓝牙设备的Product ID。
+获取对端蓝牙设备的Product ID。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH权限。
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -656,7 +654,6 @@ getRemoteProductId(deviceId: string): string
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
 |202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |801 | Capability not supported.          |
@@ -684,7 +681,7 @@ setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -714,7 +711,7 @@ setRemoteDeviceType(deviceId: string, type: DeviceType): Promise&lt;void&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.setRemoteDeviceType('11:22:33:44:55:66', connection.DeviceType.DEVICE_TYPE_HEADSET).then(() => {
         console.info('setRemoteDeviceType success');
@@ -729,13 +726,11 @@ try {
 
 getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
-获取蓝牙远端设备自定义类型。使用Promise异步回调。
+获取蓝牙远端设备自定义类型。使用Promise异步回调。从API16开始不再校验ohos.permission.ACCESS_BLUETOOTH权限。
 
 **系统接口**：此接口为系统接口。
 
-**需要权限**：ohos.permission.ACCESS_BLUETOOTH
-
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 **参数：**
 
@@ -755,7 +750,7 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------- |
-|201 | Permission denied.                 |
+|202 | Non-system applications are not allowed to use system APIs. |
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
 |2900001 | Service stopped.                         |
 |2900003 | Bluetooth disabled.                 |
@@ -764,7 +759,7 @@ getRemoteDeviceType(deviceId: string): Promise&lt;DeviceType&gt;
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-//promise
+// promise
 try {
     connection.getRemoteDeviceType('11:22:33:44:55:66').then((data: connection.DeviceType) => {
         console.info('getRemoteDeviceType success, DeviceType:' + JSON.stringify(data));
@@ -779,7 +774,7 @@ try {
 
 描述配对请求参数。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
@@ -791,7 +786,7 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
@@ -812,7 +807,7 @@ try {
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
@@ -830,7 +825,7 @@ try {
 
 描述电量信息的内容。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称       | 类型   | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
