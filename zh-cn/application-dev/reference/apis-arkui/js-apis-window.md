@@ -6935,6 +6935,46 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
+### getWindowDecorVisible<sup>16+</sup>
+
+getWindowDecorVisible(): boolean
+
+查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 返回当前窗口标题栏是否可见，true表示可见，false表示不可见。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let isVisible: boolean | undefined = undefined;
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    isVisible = windowClass?.getWindowDecorVisible();
+  } catch (exception) {
+    console.error(`Failed to get the window decor visibility. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
+```
+
 ### setWindowTitle<sup>15+</sup>
 
 setWindowTitle(titleName: string): Promise&lt;void&gt;
