@@ -975,16 +975,16 @@ tabIndex配置在容器上时，如果容器中的所有组件都没有获焦过
 struct TabIndexExample2 {
   build() {
     Column() {
-      Button('Focus Button1')
+      Button('Button1')
         .width(140)
         .height(45)
         .margin(5).tabIndex(1)
       Column() {
-        Button('Button1')
+        Button('Button2')
           .width(140)
           .height(45)
           .margin(5)
-        Button('Button2')
+        Button('Button3')
           .width(140)
           .height(45)
           .margin(5)
