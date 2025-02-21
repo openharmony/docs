@@ -244,7 +244,6 @@ setWantAgentMultithreading(isMultithreadingSupported: boolean) : void
 import { wantAgent, WantAgent as _WantAgent, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-
 // 定义wantAgent对象
 let wantAgentData: _WantAgent;
 // 定义WantAgentInfo对象
@@ -270,7 +269,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       }
     } as Want
   ],
-  operationType: wantAgent.OperationType.START_ABILITIES,
+  actionType: wantAgent.OperationType.START_ABILITIES,
   requestCode: 0,
   wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
