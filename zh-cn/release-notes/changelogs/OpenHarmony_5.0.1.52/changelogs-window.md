@@ -20,11 +20,15 @@
 
 **起始API Level**
 
-15
+9
 
 **变更发生版本**
 
 从OpenHarmony SDK 5.1.0.52开始。
+
+@ohos.window.d.ts
+
+接口：TYPE_FLOAT
 
 **适配指导**
 
