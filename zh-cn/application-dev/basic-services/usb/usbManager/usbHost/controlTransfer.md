@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-控制传输主要用于主机端和终端设备进行设备状态的获取和设置，进行设备属性状态的的控制。根据设备支持的端点类型支持控制传输读和写。
+控制传输主要用于主机(Host)和终端设备(Device)进行设备状态的获取和设置，进行设备属性状态的的控制。根据设备支持的端点类型支持控制传输读和写。
 
 ## 环境准备
 
@@ -10,12 +10,12 @@
 
 - 开发工具及配置：
 
-  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
+  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 
 - SDK版本配置：
 
-  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
+  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
 
 
 - HDC配置：

@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-中断传输主要用于主机端接收终端设备发送的数据包。设备的端点模式决定了接口支持中断读或中断写。这种传输方式适用于少量的分散的不可预测的数据传输，鼠标、键盘和操纵杆等设备属于这种类型。这些设备的端点一般只支持中断读操作。
+中断传输主要用于主机(Host)接收终端设备(Device)发送的数据包。设备的端点模式决定了接口支持中断读或中断写，这种传输方式适用于少量的、分散的、不可预测的数据类型的传输，鼠标、键盘和操纵杆等设备均属于这种类型，且此类设备的端点一般只支持中断读操作。
 
 ## 环境准备
 
@@ -10,12 +10,12 @@
 
 - 开发工具及配置：
 
-  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，我们可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-tools-overview-V13)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-create-new-project-V13)进行基本的操作验证，保证DevEco Studio可正常运行。
+  DevEco Studio作为驱动开发工具，是进行驱动开发必备条件之一，开发者可以使用该工具进行开发、调试、打包等操作。请[下载安装](https://developer.huawei.com/consumer/cn/download/)该工具，并参考[DevEco Studio使用指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-tools-overview-V14)中的[创建工程及运行](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V14/ide-create-new-project-V14)进行基本的操作验证，保证DevEco Studio可正常运行。
 
 
 - SDK版本配置：
 
-  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上版本才可使用。
+  扩展外设管理提供的ArkTs接口，所需SDK版本为API16及以上才可使用。
 
 
 - HDC配置：
@@ -79,7 +79,7 @@
     }
     ```
 
-4. 获取通过中断传输读取数据的端点
+4. 获取通过中断传输读取数据的端点。
 
    ```ts
    let devicePipe: usbManager.USBDevicePipe = usbManager.connectDevice(usbDevice);
@@ -116,7 +116,7 @@
       console.error(`claimInterface error = ${claimInterfaceResult}`)
       return;
     }
-   ```
+    ```
 
 6. 传输数据。
 
