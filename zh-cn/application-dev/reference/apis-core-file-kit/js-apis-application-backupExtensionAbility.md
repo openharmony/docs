@@ -59,8 +59,8 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
-备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用
-onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。
+备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用。<br>
+onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。<br>
 onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串，则会尝试调用onBackup。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
@@ -158,9 +158,9 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
-Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。
-onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。
-onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。
+Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。<br>
+onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。<br>
+onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。<br>
 onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
@@ -170,7 +170,7 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 | 参数名        | 类型                            | 必填 | 说明                           |
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
-| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数 |
+| restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数。 |
 
 > **说明：**
 >
