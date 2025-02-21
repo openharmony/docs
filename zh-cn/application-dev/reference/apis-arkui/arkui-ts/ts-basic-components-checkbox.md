@@ -336,7 +336,7 @@ type OnCheckboxChangeCallback  = (value: boolean) => void
 @Component
 struct CheckboxExample {
   build() {
-    Flex({ justifyContent: FlexAlign.SpaceAround }) {
+    Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
       Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
         .select(true)
         .selectedColor(0xed6f21)

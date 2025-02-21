@@ -59,7 +59,7 @@ linearGradient(options: Optional\<LinearGradientOptions>)
 | angle     | number&nbsp;\|&nbsp;string                                   | 否   | 线性渐变的起始角度。0点方向顺时针旋转为正向角度。默认值：180。角度为字符串时仅支持类型deg，grad，rad，trun。 |
 | direction | [GradientDirection](ts-appendix-enums.md#gradientdirection)  | 否   | 线性渐变的方向，设置angle后不生效。默认值：GradientDirection.Bottom。 |
 | [colors](#radialgradientoptions16对象说明)    | Array[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。        |
-| repeating | boollean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                        |
+| repeating | boolean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                        |
 
 ## sweepGradient
 
@@ -112,7 +112,7 @@ sweepGradient(options: Optional\<SweepGradientOptions>)
 | end       | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的终点。&nbsp;默认值：0。                      |
 | rotation  | number&nbsp;\|&nbsp;string                                   | 否   | 角度渐变的旋转角度。默认值：0。                        |
 | [colors](#radialgradientoptions16对象说明)    | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number] | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
-| repeating | boollean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                  |
+| repeating | boolean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                  |
 
 ## radialGradient
 
@@ -164,7 +164,7 @@ radialGradient(options: Optional\<RadialGradientOptions>)
 | center    | &nbsp;[[Length](./ts-types.md#length), Length]               | 是   | 径向渐变的中心点，即相对于当前组件左上角的坐标。       |
 | radius    | number&nbsp;\|&nbsp;string                                   | 是   | 径向渐变的半径。&nbsp;取值范围：[0,+∞)。               |
 | colors    | Array&lt;[[ResourceColor](ts-types.md#resourcecolor),&nbsp;number]&gt; | 是   | 指定渐变色颜色和其对应的百分比位置的数组，设置非法颜色直接跳过。 |
-| repeating | boollean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                  |
+| repeating | boolean                                                     | 否   | 为渐变的颜色重复着色。默认值：false。                  |
 
 >  **说明：** 
 >

@@ -36,7 +36,7 @@
 
 ## 接口说明
 
-完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall-sys.md)。
+完整的JS API说明以及实例代码请参考：[网络防火墙](../reference/apis-network-kit/js-apis-net-netfirewall.md)。
 
 | 接口                                                                                               | 描述              |
 | -------------------------------------------------------------------------------------------------- | ----------------- |

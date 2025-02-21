@@ -269,7 +269,7 @@ struct CustomLayout {
   onMeasureSize(selfLayoutInfo: GeometryInfo, children: Array<Measurable>, constraint: ConstraintSizeOptions) {
     let size = 100;
     children.forEach((child) => {
-      console.log("child unqiueId: ", child.uniqueId)
+      console.log("child uniqueId: ", child.uniqueId)
       const uiContext = this.getUIContext()
       if (uiContext) {
         let node: FrameNode | null = uiContext.getFrameNodeByUniqueId(child.uniqueId) // 获取NodeContainer组件的FrameNode

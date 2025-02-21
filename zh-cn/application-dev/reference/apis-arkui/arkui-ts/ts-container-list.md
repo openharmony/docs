@@ -478,6 +478,22 @@ maintainVisibleContentPosition(enabled: boolean)
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
+### stackFromEnd<sup>16+</sup>
+
+stackFromEnd(enabled: boolean)
+
+设置List组件从末尾开始布局。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置List组件是否从末尾开始布局。<br/>默认值：false，List从顶部开始布局。 true：List组件从末尾开始布局。|
+
 ## ListItemAlign<sup>9+</sup>枚举说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。

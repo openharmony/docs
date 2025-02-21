@@ -2899,8 +2899,8 @@ type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' 
 
 |              类型               | 说明                                                         |
 | :-----------------------------: | :----------------------------------------------------------- |
-|              'idle'               | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入Idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
-|           'initialized'           | 资源初始化，在Idle 状态设置 url<sup>9+</sup> 或 fdSrc<sup>9+</sup>属性，AVPlayer会进入initialized状态，此时可以配置窗口、音频等静态属性。 |
+|              'idle'               | 闲置状态，AVPlayer刚被创建[createAVPlayer()](#mediacreateavplayer9)或者调用了[reset()](#reset9)方法之后，进入idle状态。<br/>首次创建[createAVPlayer()](#mediacreateavplayer9)，所有属性都为默认值。<br/>调用[reset()](#reset9)方法，url<sup>9+</sup> 或 fdSrc<sup>9+</sup>或dataSrc<sup>10+</sup>属性及loop属性会被重置，其他用户设置的属性将被保留。 |
+|           'initialized'           | 资源初始化，在idle 状态设置 url<sup>9+</sup> 或 fdSrc<sup>9+</sup>属性，AVPlayer会进入initialized状态，此时可以配置窗口、音频等静态属性。 |
 |            'prepared'             | 已准备状态，在initialized状态调用[prepare()](#prepare9)方法，AVPlayer会进入prepared状态，此时播放引擎的资源已准备就绪。 |
 |             'playing'             | 正在播放状态，在prepared/paused/completed状态调用[play()](#play9)方法，AVPlayer会进入playing状态。 |
 |             'paused'              | 暂停状态，在playing状态调用pause方法，AVPlayer会进入paused状态。 |
@@ -4470,7 +4470,7 @@ on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   |录像资源的回调类型，支持的事件：'photoAssetAvailable'。 |
-| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 是 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **错误码：**
 
@@ -4527,6 +4527,7 @@ off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsse
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | 是   | 录音配置变化的回调类型，支持的事件：'photoAssetAvailable'。 |
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | 否 | 系统创建的资源文件对应的PhotoAsset对象。|
 
 **示例：**
 

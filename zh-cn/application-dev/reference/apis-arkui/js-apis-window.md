@@ -82,6 +82,16 @@ import { window } from '@kit.ArkUI';
 | enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 | enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
 
+## StatusBarProperty<sup>16+</sup>
+
+状态栏的属性。在获取状态栏属性信息时返回。
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+| 名称                                   | 类型 |  必填 | 说明 |
+| ------------------------------------- | -------- | ---- |------- |
+| contentColor     | string   |  是   | 状态栏文字颜色，固定为ARGB格式, 如：`#E5FFFFFF`。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+
 ## SystemBarStyle<sup>12+</sup>
 
 状态栏的属性。在设置页面级状态栏属性时使用。
@@ -2808,6 +2818,133 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
+### setStatusBarColor<sup>16+</sup>
+
+setStatusBarColor(color: ColorMetrics): Promise&lt;void&gt;
+
+设置主窗口状态栏的文字颜色，使用Promise异步回调。
+
+子窗口不支持设置状态栏文字颜色，调用无效果。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名              | 类型                                        | 必填 | 说明                   |
+| ------------------- | ------------------------------------------- | ---- | ---------------------- |
+| color | [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12) | 是   | 要设置的状态栏颜色值。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported on this device. |
+| 1300002 | This window state is abnormal.               |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics, window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let promise = windowClass.setStatusBarColor(ColorMetrics.numeric(0x112233));
+        promise.then(() => {
+          console.info('Succeeded in setting the status bar color.');
+        }).catch((err: BusinessError) => {
+          console.error(`Set the status bar color failed. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to set the status bar color. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
+  }
+}
+```
+
+### getStatusBarProperty<sup>16+</sup>
+
+getStatusBarProperty(): StatusBarProperty
+
+获取主窗口状态栏的属性，如状态栏文字颜色。
+
+子窗口不支持查询，调用会返回错误码1300002。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------------------------- | ------------- |
+| [StatusBarProperty](#statusbarproperty16) | 当前状态栏属性，如状态栏颜色。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801 | Capability not supported on this device. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let statusBarProperty = windowClass.getStatusBarProperty();
+        console.info('Succeeded in obtaining system bar properties. Property: ' + JSON.stringify(statusBarProperty));
+      } catch (err) {
+        console.error(`Failed to get system bar properties. Code: ${err.code}, message: ${err.message}`);
+      }
+    });
+  }
+};
+```
+
 ### setPreferredOrientation<sup>9+</sup>
 
 setPreferredOrientation(orientation: Orientation, callback: AsyncCallback&lt;void&gt;): void
@@ -4715,6 +4852,12 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
 开启子窗口关闭事件的监听。此监听仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
 
+当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
+
+该接口触发的窗口关闭事件监听回调函数是同步执行，子窗口的异步关闭事件监听参考[on('windowWillClose')](#onwindowwillclose15)方法。
+
+如果存在[on('windowWillClose')](#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](#onwindowwillclose15)接口。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -4793,6 +4936,215 @@ try {
   windowClass.off('subWindowClose');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('windowWillClose')<sup>15+</sup>
+
+on(type: 'windowWillClose', callback: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
+
+开启主窗口或子窗口关闭事件的监听。此监听仅能通过系统提供的窗口标题栏关闭按键触发，其余关闭窗口的方式不触发回调。
+
+该接口触发的回调函数是异步执行。子窗口的同步关闭事件监听参考[on('subWindowClose')](#onsubwindowclose12)方法。主窗口的同步关闭事件监听参考[on('windowStageClose')](#onwindowstageclose14)方法。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->  </br>
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowWillClose'，即窗口关闭事件。 |
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | 是   | 回调函数。当点击窗口系统提供的右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有Promise&lt;boolean&gt;类型的返回值。在返回的Promise函数里，执行resolve(true) 方法表示不关闭当前窗口，执行resolve(false) 方法或者reject方法均表示关闭当前窗口。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = () => {
+      // ...
+      return new Promise<boolean>((resolve, reject) => {
+        // 是否关闭该窗口
+        let result: boolean = true;
+        resolve(result);
+      });
+    }
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowWillClose', callback);
+    } catch (exception) {
+      console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### off('windowWillClose')<sup>15+</sup>
+
+off(type: 'windowWillClose', callback?: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
+
+关闭主窗口或子窗口关闭事件的监听。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> </br>
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowWillClose'，即窗口关闭事件。 |
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | 否   | 回调函数。当点击窗口系统提供的右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有Promise&lt;boolean&gt;类型的返回值。在返回的Promise函数里，执行resolve(true) 方法表示不关闭当前窗口，执行resolve(false) 方法或者reject方法均表示关闭当前窗口。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      const callback = () => {
+        // ...
+        return new Promise<boolean>((resolve, reject) => {
+          // 是否关闭该窗口
+          let result: boolean = true;
+          resolve(result);
+        });
+      }
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowWillClose', callback);
+      windowClass.off('windowWillClose', callback);
+      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+      windowClass.off('windowWillClose');
+    } catch (exception) {
+      console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### on('windowHighlightChange')<sup>15+</sup>
+
+on(type: 'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
+
+开启窗口激活态变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当本窗口的激活态发生变化时的回调。回调函数返回boolean类型参数。当返回参数为true表示激活态；false表示非激活态。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('windowHighlightChange', (data: boolean) => {
+    console.info(`Window highlight Change: ${data}`);
+  });
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('windowHighlightChange')<sup>15+</sup>
+
+off(type: 'windowHighlightChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭窗口激活态变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。     |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。当本窗口的激活态发生变化时的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口激活态变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (data: boolean) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('windowHighlightChange', callback);
+  // 关闭指定callback的监听
+  windowClass.off('windowHighlightChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('windowHighlightChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -4997,7 +5349,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 ### setWindowBackgroundColor<sup>9+</sup>
 
-setWindowBackgroundColor(color: string): void
+setWindowBackgroundColor(color: string | ColorMetrics): void
 
 设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
@@ -5009,7 +5361,7 @@ setWindowBackgroundColor(color: string): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ------ | -- | ----------------------------------------------------------------------- |
-| color | string | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。 |
+| color | string \| [ColorMetrics](js-apis-arkui-graphics.md#colormetrics12)<sup>16+</sup> | 是 | 需要设置的背景色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。<br>从API version 16开始，此参数支持ColorMetrics类型。|
 
 **错误码：**
 
@@ -5024,6 +5376,7 @@ setWindowBackgroundColor(color: string): void
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics } from '@kit.ArkUI';
 
 let storage: LocalStorage = new LocalStorage();
 storage.setOrCreate('storageSimpleProp', 121);
@@ -5034,9 +5387,11 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
     return;
   }
   console.info('Succeeded in loading the content.');
-  let color: string = '#00ff33';
+  let color1: string = '#00ff33';
+  let color2: ColorMetrics = ColorMetrics.numeric(0xff112233);
   try {
-    windowClass?.setWindowBackgroundColor(color);
+    windowClass?.setWindowBackgroundColor(color1);
+    windowClass?.setWindowBackgroundColor(color2);
   } catch (exception) {
     console.error(`Failed to set the background color. Cause code: ${exception.code}, message: ${exception.message}`);
   };
@@ -6586,6 +6941,8 @@ setWindowTitle(titleName: string): Promise&lt;void&gt;
 
 设置窗口标题，存在标题栏的窗口形态生效，使用Promise异步回调。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
+此接口仅支持2in1设备和平板设备。
+
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -7757,7 +8114,7 @@ startMoving(offsetX: number, offsetY: number): Promise&lt;void&gt;
 | 参数名     | 类型       | 必填     | 说明                                                 |
 | --------- | --------- | ------- |----------------------------------------------------|
 | offsetX | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的x轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口宽度为非法参数，窗口宽度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
-| offsetY | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的y轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口高度为非法参数，窗口宽度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
+| offsetY | number | 是 | 窗口移动时预期鼠标位置相对窗口左上角的y轴偏移量，单位为px，该参数仅支持整数输入，浮点数向下取整。负值为非法参数，大于窗口高度为非法参数，窗口高度可以在窗口属性[WindowProperties](#windowproperties)中获取。 |
 
 **返回值：**
 
@@ -8086,7 +8443,7 @@ setWindowCornerRadius(cornerRadius: number): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
-  let promise = windowClass.setWindowCornerRadius(1.0f);
+  let promise = windowClass.setWindowCornerRadius(1.0);
   promise.then(() => {
     console.info('Succeeded in setting window corner radius.');
   }).catch((err: BusinessError) => {
@@ -8133,6 +8490,60 @@ try {
   let cornerRadius = windowClass.getWindowCornerRadius();
 } catch (exception) {
   console.error(`Failed to get corner radius. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setExclusivelyHighlighted<sup>15+<sup>
+
+setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;
+
+设置窗口独占激活态属性。独占激活态表示窗口获焦时，会导致当前父子窗口链中处于激活态的其他窗口失去激活态。使用Promise异步回调。
+
+此接口对主窗、模态窗、dialog窗口不生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----------- | ------- | -- | -------------------------------------------------------- |
+| isExclusivelyHighlight | boolean | 是 | 窗口是否独占激活态。true表示独占激活态；false表示不独占激活态。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isExclusivelyHighlight: boolean = true;
+try {
+  let promise = windowClass.setExclusivelyHighlighted(isExclusivelyHighlight);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to be exclusively highlight.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the window to be exclusively highlight. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the window to be exclusively highlight. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -11288,6 +11699,12 @@ on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
 开启点击主窗三键区的关闭按钮监听事件。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonpreparetoterminate10)生命周期回调函数。
 
+当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
+
+触发的回调函数是同步执行，主窗口的异步关闭事件监听参考[on('windowWillClose')](#onwindowwillclose15)方法。
+
+如果存在[on('windowWillClose')](#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](#onwindowwillclose15)接口。
+
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -11763,7 +12180,7 @@ setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowM
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | 是   | 设置主窗的窗口支持模式。<br>- FULL_SCREEN：支持全屏模式。<br>- FLOATING：支持悬浮窗模式。<br>- SPLIT：支持分屏模式。通常需要配合FULL_SCREEN或FLOATING一起使用，不建议只配置SPLIT。当仅配置SPLIT时，不会改变当前窗口所处的显示模式，支持进入分屏模式。<br> 注：数组中SupportWindowMode字段取值不应该与该UIAbility对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段取值或者[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)中[属性](../apis-ability-kit/js-apis-app-ability-startOptions.md#属性)的supportWindowModes字段取值冲突。当取值冲突时，最终以该参数设置的窗口支持模式为准。|
+| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | 是   | 设置主窗的窗口支持模式。<br>- FULL_SCREEN：支持全屏模式。<br>- FLOATING：支持悬浮窗模式。<br>- SPLIT：支持分屏模式。需要配合FULL_SCREEN或FLOATING一起使用，不支持仅配置SPLIT。<br> 注：数组中SupportWindowMode字段取值不应该与该UIAbility对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段取值或者[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)中[属性](../apis-ability-kit/js-apis-app-ability-startOptions.md#属性)的supportWindowModes字段取值冲突。当取值冲突时，最终以该参数设置的窗口支持模式为准。|
 
 **返回值：**
 

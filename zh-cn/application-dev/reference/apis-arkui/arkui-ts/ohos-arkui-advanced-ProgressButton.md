@@ -71,7 +71,6 @@ struct Index {
   @State ButtonWidth: number = 200
   @State isRunning: boolean = false
   @State enableState: boolean = true
-  @State value: number = 0
 
   build() {
     Column() {
@@ -127,7 +126,6 @@ struct Index {
   @State ButtonWidth: number = 200
   @State isRunning: boolean = false
   @State enableState: boolean = true
-  @State value: number = 0
 
   build() {
     Column() {
@@ -137,8 +135,8 @@ struct Index {
             //设置下载按钮颜色
             colorOptions: {
               progressColor: Color.Orange,
-              borderColor: Color.Red,
-              textColor: Color.Green,
+              borderColor: Color.Black,
+              textColor: Color.Blue,
               backgroundColor: Color.Pink
             },
             progress: this.progressIndex,
@@ -187,14 +185,13 @@ struct Index {
   @State ButtonWidth: number = 200
   @State isRunning: boolean = false
   @State enableState: boolean = true
-  @State value: number = 0
 
   build() {
     Column() {
       Scroll() {
         Column({ space: 20 }) {
           ProgressButton({
-            progressButtonradius: LengthMetrics.vp(8), //自定义圆角值为8vp
+            progressButtonRadius: LengthMetrics.vp(8), //自定义圆角值为8vp
             progress: this.progressIndex,
             progressButtonWidth: this.ButtonWidth,
             content: this.textState,

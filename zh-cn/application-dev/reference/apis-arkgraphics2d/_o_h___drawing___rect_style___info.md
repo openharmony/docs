@@ -17,11 +17,11 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| uint32_t [color](#color) | 矩形框的颜色  | 
-| double [leftTopRadius](#lefttopradius) | 矩形框的左上半径  | 
-| double [rightTopRadius](#righttopradius) | 矩形框的右上半径  | 
-| double [rightBottomRadius](#rightbottomradius) | 矩形框的右下半径  | 
-| double [leftBottomRadius](#leftbottomradius) | 矩形框的左下半径  | 
+| uint32_t [color](#color) | 矩形框的颜色。  | 
+| double [leftTopRadius](#lefttopradius) | 矩形框的左上半径。  | 
+| double [rightTopRadius](#righttopradius) | 矩形框的右上半径。  | 
+| double [rightBottomRadius](#rightbottomradius) | 矩形框的右下半径。  | 
+| double [leftBottomRadius](#leftbottomradius) | 矩形框的左下半径。  | 
 
 
 ## 结构体成员变量说明

@@ -142,15 +142,15 @@ indicator(value: DotIndicator | DigitIndicator | boolean)
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [DotIndicator](#dotindicator10)<sup>10+</sup>&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)<sup>10+</sup>&nbsp;\|&nbsp;boolean | 是   | 可选导航点指示器样式。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator |
 
-### indicator<sup>16+</sup>
+### indicator<sup>15+</sup>
 
 indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicator | boolean)
 
 设置外部绑定的导航点组件控制器。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -158,7 +158,7 @@ indicator(indicator: IndicatorComponentController | DotIndicator | DigitIndicato
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| indicator  | [IndicatorComponentController](ts-swiper-components-indicator.md#indicatorcomponentcontroller)<sup>16+</sup>&nbsp;\| [DotIndicator](#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)&nbsp;\|&nbsp;boolean| 是   | 可选导航点指示器样式。<br/>\- IndicatorComponentController：单独导航点指示器控制器。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator。|
+| indicator  | [IndicatorComponentController](ts-swiper-components-indicator.md#indicatorcomponentcontroller)<sup>15+</sup>&nbsp;\| [DotIndicator](#dotindicator10)&nbsp;\|&nbsp;[DigitIndicator](#digitindicator10)&nbsp;\|&nbsp;boolean| 是   | 可选导航点指示器样式。<br/>\- IndicatorComponentController：单独导航点指示器控制器。<br/> \- DotIndicator：圆点指示器样式。<br/> \- DigitIndicator：数字指示器样式。<br/> \- boolean：是否启用导航点指示器。设置为true启用，false不启用。<br/>&nbsp;&nbsp;默认值：true<br/>&nbsp;&nbsp;默认类型：DotIndicator。|
 
 
 ### loop
@@ -274,15 +274,15 @@ cachedCount(value: number)
 | ------ | ------ | ---- | -------------------------------- |
 | value  | number | 是   | 预加载子组件个数。<br/>默认值：1 |
 
-### cachedCount<sup>16+</sup>
+### cachedCount<sup>15+</sup>
 
 cachedCount(count: number, isShown: boolean)
 
 设置预加载子组件个数。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1396,7 +1396,7 @@ onUnselected(event: Callback\<number>)
 | ------ | ------ | ---- | -------------------- |
 | event  | [Callback](./ts-types.md#callback12)\<number> | 是   | 将要隐藏元素的索引。 |
 
-### onContentWillScroll<sup>16+</sup>
+### onContentWillScroll<sup>15+</sup>
 
 onContentWillScroll(handler: ContentWillScrollCallback)
 
@@ -1408,7 +1408,7 @@ Swiper滑动行为拦截事件，在滑动前触发。Swiper会依据该事件�
 
 3. 对于滚动鼠标滚轮和使用键盘方向键进行焦点移动的场景，每次翻页操作都会触发一次该事件，翻页是否被允许将根据事件的返回值来决定。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1416,7 +1416,7 @@ Swiper滑动行为拦截事件，在滑动前触发。Swiper会依据该事件�
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| handler | [ContentWillScrollCallback](#contentwillscrollcallback16) | 是 | Swiper滑动时触发的回调。 |
+| handler | [ContentWillScrollCallback](#contentwillscrollcallback15) | 是 | Swiper滑动时触发的回调。 |
 
 ## OnSwiperAnimationStartCallback<sup>16+</sup>
 
@@ -1493,25 +1493,25 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 | position | number | 是 | index页面相对于Swiper主轴起始位置（selectedIndex对应页面的起始位置）的移动比例。 |
 | mainAxisLength | number | 是 | index对应页面在主轴方向上的长度。 |
 
-## ContentWillScrollCallback<sup>16+</sup>
+## ContentWillScrollCallback<sup>15+</sup>
 
 type ContentWillScrollCallback = (result: SwiperContentWillScrollResult) => boolean
 
 Swiper即将滑动前触发的回调，返回值表示是否允许此次滑动。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ---- | ---- | ---- |
-| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult16) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
+| result | [SwiperContentWillScrollResult](#swipercontentwillscrollresult15) | 是 | 即将滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。 |
 
-## SwiperContentWillScrollResult<sup>16+</sup>
+## SwiperContentWillScrollResult<sup>15+</sup>
 
 滑动的相关信息，主要包括：当前页面对应的index、滑动方向上即将显示的页面index和此次滑动的位移。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

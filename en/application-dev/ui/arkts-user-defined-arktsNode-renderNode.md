@@ -23,13 +23,24 @@ With **RenderNode**, you can add, delete, query, and modify nodes, thereby chang
 ```ts
 import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
 
+const TEST_TAG: string = "RenderNode";
 const renderNode = new RenderNode();
-renderNode.frame = { x: 0, y: 0, width: 200, height: 350 };
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 200,
+  height: 350
+};
 renderNode.backgroundColor = 0xffff0000;
 for (let i = 0; i < 5; i++) {
   const node = new RenderNode();
   // Set the frame size of the node.
-  node.frame = { x: 10, y: 10 + 60 * i, width: 50, height: 50 };
+  node.frame = {
+    x: 10,
+    y: 10 + 60 * i,
+    width: 50,
+    height: 50
+  };
   // Set the background color of the node.
   node.backgroundColor = 0xff00ff00;
   // Mount the new node to the RenderNode.
@@ -65,10 +76,10 @@ struct Index {
           const child = renderNode.getChild(1);
           const nextSibling = child!.getNextSibling()
           if (child === null || nextSibling === null) {
-            console.log('the child or nextChild is null');
+            console.log(TEST_TAG + ' the child or nextChild is null');
           } else {
             // Obtain the position of the child node.
-            console.log(`the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
+            console.log(`${TEST_TAG} the position of child is x: ${child.position.x}, y: ${child.position.y}, ` +
             `the position of nextSibling is x: ${nextSibling.position.x}, y: ${nextSibling.position.y}`);
           }
         })
@@ -90,10 +101,16 @@ In **RenderNode**, you can set rendering-related properties, including the follo
 > - Avoid modifying RenderNodes in a BuilderNode. In **BuilderNode**, how properties are applied and updated is governed by the state management system, independently of manual intervention. Be aware that setting the same **RenderNode** property in both BuilderNode and FrameNode could lead to unexpected behavior.
 
 ```ts
-import {  RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
+import { RenderNode, FrameNode, NodeController, ShapeMask, ShapeClip } from '@kit.ArkUI';
 
+const TEST_TAG: string = "RenderNode";
 const mask = new ShapeMask();
-mask.setRectShape({ left: 0, right: 150, top: 0, bottom: 150 });
+mask.setRectShape({
+  left: 0,
+  right: 150,
+  top: 0,
+  bottom: 150
+});
 mask.fillColor = 0X55FF0000;
 mask.strokeColor = 0XFFFF0000;
 mask.strokeWidth = 24;
@@ -130,35 +147,36 @@ struct Index {
       Column() {
         NodeContainer(this.myNodeController)
       }
+
       Button("position")
         .width(300)
         .onClick(() => {
           renderNode.position = { x: 10, y: 10 };
-          console.log("renderNode position:" + JSON.stringify(renderNode.position));
+          console.log(TEST_TAG + " position:" + JSON.stringify(renderNode.position));
         })
       Button("pivot")
         .width(300)
         .onClick(() => {
           renderNode.pivot = { x: 0.5, y: 0.6 };
-          console.log("renderNode pivot:" + JSON.stringify(renderNode.pivot));
+          console.log(TEST_TAG + " pivot:" + JSON.stringify(renderNode.pivot));
         })
       Button("scale")
         .width(300)
         .onClick(() => {
           renderNode.scale = { x: 0.5, y: 1 };
-          console.log("renderNode scale:" + JSON.stringify(renderNode.scale));
+          console.log(TEST_TAG + " scale:" + JSON.stringify(renderNode.scale));
         })
       Button("translation")
         .width(300)
         .onClick(() => {
           renderNode.translation = { x: 100, y: 0 };
-          console.log("renderNode translation:" + JSON.stringify(renderNode.translation));
+          console.log(TEST_TAG + " translation:" + JSON.stringify(renderNode.translation));
         })
       Button("rotation")
         .width(300)
         .onClick(() => {
           renderNode.rotation = { x: 45, y: 0, z: 0 };
-          console.log("renderNode rotation:" + JSON.stringify(renderNode.rotation));
+          console.log(TEST_TAG + " rotation:" + JSON.stringify(renderNode.rotation));
         })
       Button("transform")
         .width(300)
@@ -169,7 +187,7 @@ struct Index {
             0, 0, 1, 0,
             0, 0, 0, 1
           ];
-          console.log("renderNode transform:" + JSON.stringify(renderNode.transform));
+          console.log(TEST_TAG + " transform:" + JSON.stringify(renderNode.transform));
         })
       Button("shadow")
         .width(300)
@@ -178,10 +196,10 @@ struct Index {
           renderNode.shadowColor = 0XFF00FF00;
           renderNode.shadowOffset = { x: 10, y: 10 };
           renderNode.shadowAlpha = 0.1;
-          console.log("renderNode shadowElevation:" + JSON.stringify(renderNode.shadowElevation));
-          console.log("renderNode shadowColor:" + JSON.stringify(renderNode.shadowColor));
-          console.log("renderNode shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
-          console.log("renderNode shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
+          console.log(TEST_TAG + " shadowElevation:" + JSON.stringify(renderNode.shadowElevation));
+          console.log(TEST_TAG + " shadowColor:" + JSON.stringify(renderNode.shadowColor));
+          console.log(TEST_TAG + " shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
+          console.log(TEST_TAG + " shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
         })
       Button("shadowRadius")
         .width(300)
@@ -189,41 +207,61 @@ struct Index {
           renderNode.shadowOffset = { x: 10, y: 10 };
           renderNode.shadowAlpha = 0.7
           renderNode.shadowRadius = 30;
-          console.log("renderNode shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
-          console.log("renderNode shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
-          console.log("renderNode shadowRadius:" + JSON.stringify(renderNode.shadowRadius));
+          console.log(TEST_TAG + " shadowOffset:" + JSON.stringify(renderNode.shadowOffset));
+          console.log(TEST_TAG + " shadowAlpha:" + JSON.stringify(renderNode.shadowAlpha));
+          console.log(TEST_TAG + " shadowRadius:" + JSON.stringify(renderNode.shadowRadius));
         })
       Button("border")
         .width(300)
         .onClick(() => {
-          renderNode.borderWidth = { left: 8, top: 8, right: 8, bottom: 8 };
+          renderNode.borderWidth = {
+            left: 8,
+            top: 8,
+            right: 8,
+            bottom: 8
+          };
           renderNode.borderStyle = {
             left: BorderStyle.Solid,
             top: BorderStyle.Dotted,
             right: BorderStyle.Dashed,
             bottom: BorderStyle.Solid
           }
-          renderNode.borderColor = { left: 0xFF0000FF, top: 0xFF0000FF, right: 0xFF0000FF, bottom: 0xFF0000FF };
-          renderNode.borderRadius = { topLeft: 32, topRight: 32, bottomLeft: 32, bottomRight: 32 };
-          console.log("renderNode borderWidth:" + JSON.stringify(renderNode.borderWidth));
-          console.log("renderNode borderStyle:" + JSON.stringify(renderNode.borderStyle));
-          console.log("renderNode borderColor:" + JSON.stringify(renderNode.borderColor));
-          console.log("renderNode borderRadius:" + JSON.stringify(renderNode.borderRadius));
+          renderNode.borderColor = {
+            left: 0xFF0000FF,
+            top: 0xFF0000FF,
+            right: 0xFF0000FF,
+            bottom: 0xFF0000FF
+          };
+          renderNode.borderRadius = {
+            topLeft: 32,
+            topRight: 32,
+            bottomLeft: 32,
+            bottomRight: 32
+          };
+          console.log(TEST_TAG + " borderWidth:" + JSON.stringify(renderNode.borderWidth));
+          console.log(TEST_TAG + " borderStyle:" + JSON.stringify(renderNode.borderStyle));
+          console.log(TEST_TAG + " borderColor:" + JSON.stringify(renderNode.borderColor));
+          console.log(TEST_TAG + " borderRadius:" + JSON.stringify(renderNode.borderRadius));
         })
       Button("shapeMask")
         .width(300)
         .onClick(() => {
           renderNode.shapeMask = mask;
-          console.log("renderNode shapeMask:" + JSON.stringify(renderNode.shapeMask));
+          console.log(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
         })
       Button("shapeClip")
         .width(300)
         .onClick(() => {
           renderNode.shapeClip = clip;
-          console.log("renderNode shapeMask:" + JSON.stringify(renderNode.shapeMask));
+          console.log(TEST_TAG + " shapeMask:" + JSON.stringify(renderNode.shapeMask));
         })
     }
-    .padding({ left: 35, right: 35, top: 35, bottom: 35 })
+    .padding({
+      left: 35,
+      right: 35,
+      top: 35,
+      bottom: 35
+    })
     .width("100%")
     .height("100%")
   }
@@ -236,7 +274,7 @@ Override the [draw](../reference/apis-arkui/js-apis-arkui-renderNode.md#draw) AP
 
 > **NOTE**
 > 
-> - Triggering multiple **invalidate** calls at once will only result in a single redraw.
+> - Calling **invalidate()** multiple times synchronously will trigger only a single redraw.
 > 
 > - Custom drawing can be implemented by calling ArkTS APIs or Node-APIs.
 
@@ -247,22 +285,40 @@ import { FrameNode, NodeController, RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
 
 class MyRenderNode extends RenderNode {
+  width: number = 200;
+
   draw(context: DrawContext) {
     // Obtain the canvas object.
     const canvas = context.canvas;
     // Create a brush.
     const brush = new drawing.Brush();
     // Set the brush color.
-    brush.setColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+    brush.setColor({
+      alpha: 255,
+      red: 255,
+      green: 0,
+      blue: 0
+    });
     canvas.attachBrush(brush);
     // Draw a rectangle.
-    canvas.drawRect({ left: 0, right: 200, top: 0, bottom: 200 });
+    canvas.drawRect({
+      left: 0,
+      right: this.width,
+      top: 0,
+      bottom: 200
+    });
     canvas.detachBrush();
+    console.log(`RenderNode draw width = ${this.width}`);
   }
 }
 
 const renderNode = new MyRenderNode();
-renderNode.frame = { x: 0, y: 0, width: 300, height: 300 };
+renderNode.frame = {
+  x: 0,
+  y: 0,
+  width: 300,
+  height: 300
+};
 renderNode.backgroundColor = 0xff0000ff;
 renderNode.opacity = 0.5;
 
@@ -274,7 +330,12 @@ class MyNodeController extends NodeController {
 
     const rootRenderNode = this.rootNode?.getRenderNode();
     if (rootRenderNode !== null) {
-      rootRenderNode.frame = { x: 0, y: 0, width: 500, height: 500 }
+      rootRenderNode.frame = {
+        x: 0,
+        y: 0,
+        width: 500,
+        height: 500
+      }
       rootRenderNode.appendChild(renderNode);
     }
 
@@ -293,7 +354,8 @@ struct Index {
         .width('100%')
       Button('Invalidate')
         .onClick(() => {
-          // Triggering multiple invalidate calls at once will only result in a single redraw.
+          // Calling invalidate() multiple times synchronously will trigger only a single redraw. As a result, the log inside the draw callback will be printed only once.
+          renderNode.width += 10;
           renderNode.invalidate();
           renderNode.invalidate();
         })

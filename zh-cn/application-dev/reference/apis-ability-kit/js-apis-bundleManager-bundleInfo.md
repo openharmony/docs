@@ -3,11 +3,12 @@
 应用包信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的应用包信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)指定所返回的[BundleInfo](js-apis-bundleManager-bundleInfo.md)中所包含的信息。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## BundleInfo
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -33,12 +34,11 @@
 
 应用运行时需向系统申请的权限集合的详细信息。
 > **说明：**
->
 > - 如果应用内多包申请的权限名称一样，但是权限申请理由不一致，系统只会返回一个权限申请理由，优先级从高到低顺序为entry类型HAP、feature类型HAP、应用内HSP。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                    | 只读 | 可选 | 说明                 |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------|
@@ -56,7 +56,7 @@
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
@@ -67,20 +67,20 @@
 
 描述应用包的签名信息。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
+ **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | appId     | string         | 是   | 否   | 应用的appId。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                 |
 |fingerprint| string         | 是   | 否   | 应用包的指纹信息。使用的签名证书发生变化，该字段会发生变化。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
-|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
+|appIdentifier<sup>11+</sup>| string         | 是   | 否   | 应用的唯一标识，是AppGallery Connect创建应用时分配的APP ID，为云端统一分配的随机字符串。该ID在应用全生命周期中不会发生变化，包括版本升级、证书变更、开发者公私钥变更、应用转移等。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。            |
 |certificate<sup>14+</sup>| string         | 是   | 是   | 应用的证书公钥。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。            |
 
 ## AppCloneIdentity<sup>14+<sup>
 
 描述应用包的身份信息。
 
-**系统能力：** SystemCapability.BundleManager.BundleFramework.Core。
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |

@@ -1,4 +1,4 @@
-# Working with Property Using Node-API
+# Working with Properties Using Node-API
 
 ## Introduction
 
@@ -36,7 +36,7 @@ If you are just starting out with Node-API, see [Node-API Development Process](u
 
 ### napi_get_property_names
 
-Use **napi_get_property_names** to obtain the names of the enumerable properties of an object in an array of strings.
+Call **napi_get_property_names** to obtain the names of the enumerable properties of an object in an array of strings.
 
 CPP code:
 
@@ -90,7 +90,7 @@ try {
 
 ### napi_set_property
 
-Use **napi_set_property** to set a property for an object.
+Call **napi_set_property** to set a property for an object.
 
 CPP code:
 
@@ -144,7 +144,7 @@ try {
 
 ### napi_get_property
 
-Use **napi_get_property** to obtain the value of the specified property in an object.
+Call **napi_get_property** to obtain the value of the specified property in an object.
 
 CPP code:
 
@@ -194,7 +194,7 @@ try {
 
 ### napi_has_property
 
-Use **napi_has_property** to check whether an object has the specified property. This can prevent the exception or error caused by access to a property that does not exist.
+Call **napi_has_property** to check whether an object has the specified property. This can prevent the exception or error caused by access to a property that does not exist.
 
 CPP code:
 
@@ -217,9 +217,9 @@ static napi_value HasProperty(napi_env env, napi_callback_info info)
     }
 
     // If the property exists in the object, output true, convert the result to napi_value, and return napi_value.
-    napi_value returnReslut;
-    napi_get_boolean(env, result, &returnReslut);
-    return returnReslut;
+    napi_value returnResult;
+    napi_get_boolean(env, result, &returnResult);
+    return returnResult;
 }
 ```
 
@@ -252,7 +252,7 @@ try {
 
 ### napi_delete_property
 
-Use **napi_delete_property** to delete the property specified by **key** from an object.
+Call **napi_delete_property** to delete the property specified by **key** from an object.
 If the object is a non-extensible object or the property is not configurable, the property cannot be deleted.
 
 CPP code:
@@ -316,7 +316,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_delete_property config: %{publ
 
 ### napi_has_own_property
 
-Use **napi_has_own_property** to check whether an ArkTS object has its own property.
+Call **napi_has_own_property** to check whether an ArkTS object has its own property.
 
 CPP code:
 
@@ -380,7 +380,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_own_property inherited: %{
 
 ### napi_set_named_property
 
-Use **napi_set_named_property** to set a property for an ArkTS object.
+Call **napi_set_named_property** to set a property for an ArkTS object.
 
 CPP code:
 
@@ -436,7 +436,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_named_property: %{public}s
 
 ### napi_get_named_property
 
-Use **napi_get_named_property** to obtain the value of the specified property from an ArkTS object.
+Call **napi_get_named_property** to obtain the value of the specified property from an ArkTS object.
 
 CPP code:
 
@@ -502,7 +502,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_named_property : %{public}
 
 ### napi_has_named_property
 
-Use **napi_has_named_property** to check whether an ArkTS object contains the specified property.
+Call **napi_has_named_property** to check whether an ArkTS object contains the specified property.
 
 CPP code:
 
@@ -565,7 +565,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_has_named_property : %{public}
 
 ### napi_define_properties
 
-Use **napi_define_properties** to define multiple properties for an ArkTS object.
+Call **napi_define_properties** to define multiple properties for an ArkTS object.
 
 CPP code:
 
@@ -600,10 +600,13 @@ static napi_value SetterCallback(napi_env env, napi_callback_info info)
     napi_value argv[1] = {nullptr};
     napi_value result;
     napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    std::string buf;
-    size_t length;
-    napi_get_value_string_utf8(env, argv[0], (char *)buf.c_str(), NAPI_AUTO_LENGTH, &length);
-    napi_create_string_utf8(env, buf.c_str(), length, &result);
+    size_t length = 0;
+    napi_get_value_string_utf8(env, argv[0], nullptr, 0, &length);
+    char* buf = new char[length + 1];
+    std::memset(buf, 0, length + 1);
+    napi_get_value_string_utf8(env, argv[0], buf, length + 1, &length);
+    napi_create_string_utf8(env, buf, length, &result);
+    delete buf;
     return result;
 }
 static napi_value DefineMethodProperties(napi_env env, napi_callback_info info)
@@ -687,7 +690,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API setter::%{public}s ', testNapi.crea
 
 ### napi_get_all_property_names
 
-Use **napi_get_all_property_names** to obtain all property names in an ArkTS object.
+Call **napi_get_all_property_names** to obtain all property names in an ArkTS object.
 
 CPP code:
 

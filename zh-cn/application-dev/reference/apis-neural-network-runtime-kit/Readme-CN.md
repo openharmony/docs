@@ -2,7 +2,7 @@
 
 - C API<!--neural-network-runtime-c-->
   - 模块<!--neural-network-runtime-module-->
-    - [NeuralNetworkRuntime](_neural_nework_runtime.md)
+    - [NeuralNetworkRuntime](_neural_network_runtime.md)
   - 头文件<!--neural-network-runtime-headerfile-->
     - [neural_network_core.h](neural__network__core_8h.md)
     - [neural_network_runtime.h](neural__network__runtime_8h.md)

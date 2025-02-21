@@ -123,27 +123,27 @@ The **EdgeWidths** type is used to describe the edge widths in different directi
 
 ## BorderRadiuses<sup>9+</sup>
 
-The **BorderRadiuses** type is used to describe the radius of the rounded corners of a component.
+The **BorderRadiuses** type is used to describe the corner radius of a component's border.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name         | Type               | Mandatory  | Description        |
 | ----------- | ----------------- | ---- | ---------- |
-| topLeft     | [Length](#length) | No   | Radius of the top left rounded corner of the component.|
-| topRight    | [Length](#length) | No   | Radius of the top right rounded corner of the component.|
-| bottomLeft  | [Length](#length) | No   | Radius of the bottom left rounded corner of the component.|
-| bottomRight | [Length](#length) | No   | Radius of the bottom right rounded corner of the component.|
+| topLeft     | [Length](#length) | No   | Radius of the upper left corner of the component.|
+| topRight    | [Length](#length) | No   | Radius of the upper right corner of the component.|
+| bottomLeft  | [Length](#length) | No   | Radius of the lower left corner of the component.|
+| bottomRight | [Length](#length) | No   | Radius of the lower right corner of the component.|
 
 ## LocalizedBorderRadiuses<sup>12+</sup>
 
-The **BorderRadiuses** type is used to describe the radius of the rounded corners of a component.
+The **LocalizedBorderRadiuses** type is used to describe the corner radius of a component's border.
 
 | Name         | Type               | Mandatory  | Description        |
 | ----------- | ----------------- | ---- | ---------- |
-| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the top left rounded corner of the component.<br>Radius of the top right rounded corner of the component for right-to-left scripts.|
-| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the top right rounded corner of the component.<br>Radius of the top left rounded corner of the component for right-to-left scripts.|
-| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the bottom left rounded corner of the component.<br>Radius of the bottom right rounded corner of the component for right-to-left scripts.|
-| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the bottom right rounded corner of the component.<br>Radius of the bottom left rounded corner of the component for right-to-left scripts.|
+| topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper left corner of the component.<br>For right-to-left scripts, this indicates the radius of the upper left right of the component.|
+| topEnd      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the upper right corner of the component.<br>For right-to-left scripts, this indicates the radius of the upper left corner of the component.|
+| bottomStart | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower left corner of the component.<br>For right-to-left scripts, this indicates the radius of the lower right corner of the component.|
+| bottomEnd   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | No   | Radius of the lower right corner of the component.<br>For right-to-left scripts, this indicates the radius of the lower left corner of the component.|
 
 ## EdgeColors<sup>9+</sup>
 
@@ -349,7 +349,7 @@ The **ColorFilter** type is used to create a color filter with a 4 x 5 matrix.
 
 | Name         | Type      | Mandatory  | Description                                      |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The matrix is row-first.|
+| constructor | number[] | Yes   | Constructor for creating a color filter with a 4\*5 matrix. The input parameter is [m\*n], which is the matrix value in row m and column n. The matrix is row-first.|
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -496,18 +496,16 @@ The **SafeAreaEdge** type is used to define the edge for expanding the safe area
 | START  | Start edge.|
 | END    | End edge.|
 
-## KeyboardAvoidMode<sup>11+</sup>
+## KeyboardAvoidMode<sup>12+</sup>
 
-The **KeyboardAvoidMode** type is used to define the avoidance mode for the virtual keyboard.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name  | Description      |
-| ------ | ---------- |
-| OFFSET | Avoid the virtual keyboard through offset.|
-| RESIZE | Avoid the virtual keyboard through resizing.|
-| OFFSET_WITH_CARET<sup>14+</sup> | The layout moves up, and this adjustment also occurs if the caret position in the text box changes.|
-| RESIZE_WITH_CARET<sup>14+</sup> | The layout is resized, and this adjustment also occurs if the caret position in the text box changes.|
+| Name   | Value  | Description                                            |
+| ------- | ---- | ------------------------------------------------ |
+| DEFAULT | 0    | Automatically avoids the soft keyboard and compresses the height when reaching the maximum limit.|
+| NONE    | 1    | Does not avoid the soft keyboard.                                  |
 
 ## LayoutSafeAreaType<sup>12+</sup>
 
@@ -682,6 +680,57 @@ The **getCaretOffset** type is used to obtain the position information of the ca
 > - If no text is entered in the **Search** component, the return value contains the position information relative to the component.
 > - The location information in the return value is the location of the caret relative to the editable component.
 
+### addText<sup>16+</sup>
+
+addText(text: string, textOperationOptions?: TextContentControllerOptions): number
+
+Inserts text at a specified position in the editable content. If no position is specified, the text is appended to the end of the existing content.
+This API does not work when the text is being dragged.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description |
+| ------- | ------ | ---- | ----- |
+| text | string | Yes   | Text to insert.|
+| textOperationOptions   | [TextContentControllerOptions](#textcontentcontrolleroptions16) | No   | Configuration option for inserting text. If this parameter is not provided, the text is appended to the end.|
+
+### deleteText<sup>16+</sup>
+
+deleteText(range?: TextRange): void
+
+Deletes text within a specified range in the editable content.
+This API does not work when the text is being dragged.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type  | Mandatory  | Description |
+| ------- | ------ | ---- | ----- |
+| range | [TextRange](ts-text-common.md#textrange12) | No   | Range of the text to be deleted, including the start and end positions.<br>If the range is not specified, the entire text is deleted. If the start position is not specified, deletion starts from index 0. If the end position is not specified, deletion ends at the end of the text.|
+
+### getSelection<sup>16+</sup>
+
+getSelection(): TextRange
+
+Obtains the current text selection range.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Return value**
+
+| Type                     | Description              |
+| ----------------------- | ---------------- |
+| [TextRange](ts-text-common.md#textrange12) | Current text selection range, or cursor position if no text is selected.|
+
 ## TextDecorationOptions<sup>12+</sup>
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
@@ -768,3 +817,37 @@ The **Configuration** type is used to describe the color mode and font scale.
 | --------- | ------ | ---- | ---- | ---------- |
 | colorMode | string | Yes  | No  | Color mode.|
 | fontScale | number | Yes  | No  | Font scale.|
+
+## LayoutPolicy<sup>15+</sup>
+
+The **LayoutPolicy** type is used to set the layout strategy for linear layouts.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 15.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type  | Read Only| Description|
+| --------- | ------ | ---- |---------- |
+| MATCH_PARENT | LayoutPolicy | Yes| Adjusts the size to match the parent component's layout.|
+
+>  **NOTE**
+>
+>  - When the parent container of a linear layout component has its length set, the component will automatically adjust its size based on the parent container's size. If the parent container does not have a length set, the linear layout component will wait for all child components to complete their layout before adjusting its size to match the parent container's layout.
+> 
+>  - If multiple child components under the same parent are set to **MATCH_PARENT**, all these child components will be resized to the parent's size, potentially causing overflow.
+> 
+>  - Setting **MATCH_PARENT** will force the component to match the parent's size, overriding any other size constraints set on the component.
+
+## TextContentControllerOptions<sup>16+</sup>
+
+The **TextContentControllerOptions** type is used to configure the insertion of text into a text box.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name     | Type  | Read Only| Optional| Description      |
+| --------- | ------ | ---- | ---- | ---------- |
+| offset | number | Yes  | Yes  | Position where the text will be inserted.|

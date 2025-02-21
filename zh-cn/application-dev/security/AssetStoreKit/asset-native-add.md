@@ -34,6 +34,7 @@
 | ASSET_TAG_CONFLICT_RESOLUTION   | 类型为uint32_t，取值范围详见[Asset_ConflictResolution](../../reference/apis-asset-store-kit/_asset_type.md#asset_conflictresolution)。 | 可选     | 新增关键资产时的冲突（如：别名相同）处理策略。                             |
 | ASSET_TAG_REQUIRE_ATTR_ENCRYPTED<sup>14+</sup> | 类型为bool。 | 可选 | 是否加密业务自定义附属信息，默认不需要加密。|
 | ASSET_TAG_GROUP_ID<sup>16+</sup> | 类型为uint8[]，长度为7-127字节。 | 可选 | 待新增的关键资产所属群组，默认新增不属于任何群组的关键资产。|
+| ASSET_TAG_WRAP_TYPE<sup>16+</sup> |类型为uint32_t，取值范围详见[Asset_WrapType](../../reference/apis-asset-store-kit/_asset_type.md#asset_wraptype)。 | 可选 | 关键资产支持的加密导入导出类型，默认不允许加密导入导出关键资产。|
 
 ## 约束和限制
 

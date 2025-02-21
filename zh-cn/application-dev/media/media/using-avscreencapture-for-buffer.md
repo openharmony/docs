@@ -252,9 +252,20 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
         if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
             // 录屏被打断状态处理
         }
-        ...
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER) {
+            // 录屏中途用户将麦克风禁音处理
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER) {
+            // 录屏中途用户将麦克风解除禁音处理
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE) {
+            // 录屏进入隐私状态处理
+        }
         if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
             // 录屏退出隐私模式状态处理
+        }
+        if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+            // 录屏被用户切换打断处理
         }
         (void)userData;
     }
@@ -395,9 +406,20 @@ void OnStageChange(struct OH_AVScreenCapture *capture, OH_AVScreenCaptureStateCo
     if (stateCode == OH_SCREEN_CAPTURE_STATE_INTERRUPTED_BY_OTHER) {
         // 录屏被打断状态处理
     }
-    ...
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_MUTED_BY_USER) {
+        // 录屏中途用户将麦克风禁音处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_MIC_UNMUTED_BY_USER) {
+        // 录屏中途用户将麦克风解除禁音处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_ENTER_PRIVATE_SCENE) {
+        // 录屏进入隐私状态处理
+    }
     if (stateCode == OH_SCREEN_CAPTURE_STATE_EXIT_PRIVATE_SCENE) {
         // 录屏退出隐私模式状态处理
+    }
+    if (stateCode == OH_SCREEN_CAPTURE_STATE_STOPPED_BY_USER_SWITCHES) {
+        // 录屏被用户切换打断处理
     }
     (void)userData;
 }

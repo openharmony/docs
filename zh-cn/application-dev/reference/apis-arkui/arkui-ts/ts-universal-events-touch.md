@@ -79,7 +79,7 @@ getHistoricalPoints(): Array&lt;HistoricalPoint&gt;
 | pressure<sup>16+</sup> | number | 当前手指按着的压力值。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | width<sup>16+</sup> | number | 当前手指按压区域的宽。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
 | height<sup>16+</sup> | number | 当前手指按压区域的高。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
-| hand<sup>16+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明16) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。 |
+| hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## HistoricalPoint<sup>10+</sup>对象说明
 

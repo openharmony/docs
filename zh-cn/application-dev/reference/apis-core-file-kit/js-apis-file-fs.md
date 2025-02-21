@@ -4148,12 +4148,12 @@ createWriteStream(path: string, options?: WriteStreamOptions): WriteStream;
   });
   ```
 
-## AtomicFile<sup>16+</sup>
+## AtomicFile<sup>15+</sup>
 用于保证文件操作的原子性。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-### constructor<sup>16+</sup>
+### constructor<sup>15+</sup>
 
 constructor(path: string)
 
@@ -4167,7 +4167,7 @@ AtomicFile的构造函数。
   | ------ | ------ | ---- | -------------------------------------- |
   | path   | string | 是    | 文件的沙箱路径。                       |
 
-### getBaseFile<sup>16+</sup>
+### getBaseFile<sup>15+</sup>
 
 getBaseFile(): File
 
@@ -4204,7 +4204,7 @@ try {
 }
 ```
 
-### openRead<sup>16+</sup>
+### openRead<sup>15+</sup>
 
 openRead(): ReadStream
 
@@ -4255,7 +4255,7 @@ try {
 }
 ```
 
-### readFully<sup>16+</sup>
+### readFully<sup>15+</sup>
 
 readFully(): ArrayBuffer
 
@@ -4302,7 +4302,7 @@ try {
 }
 ```
 
-### startWrite<sup>16+</sup>
+### startWrite<sup>15+</sup>
 
 startWrite(): WriteStream
 
@@ -4346,7 +4346,7 @@ try {
 }
 ```
 
-### finishWrite<sup>16+</sup>
+### finishWrite<sup>15+</sup>
 
 finishWrite(): void
 
@@ -4379,7 +4379,7 @@ try {
 }
 ```
 
-### failWrite<sup>16+</sup>
+### failWrite<sup>15+</sup>
 
 failWrite(): void
 
@@ -4415,7 +4415,7 @@ try {
 }
 ```
 
-### delete<sup>16+</sup>
+### delete<sup>15+</sup>
 
 delete(): void
 
@@ -4677,6 +4677,9 @@ copySignal.onCancel().then(() => {
 | atime  | number | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | mtime  | number | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的秒数。  <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      |
 | ctime  | number | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的秒数。      |
+| atimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次访问该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| mtimeNs<sup>15+</sup>  | bigint | 是    | 否    | 上次修改该文件的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
+| ctimeNs<sup>15+</sup>  | bigint | 是    | 否    | 最近改变文件状态的时间，表示距1970年1月1日0时0分0秒的纳秒数。      |
 | location<sup>11+</sup> | [LocaltionType](#locationtype11)| 是 |否| 文件的位置，表示该文件是本地文件或者云端文件。
 
 ### isBlockDevice
