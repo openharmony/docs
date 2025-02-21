@@ -88,6 +88,17 @@ interface ExtraData {
 | updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
 | normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
 
+## SyncStatus<sup>16+</sup>
+
+端云同步任务的状态。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称      | 说明              |
+| -------- |-----------------|
+| RUNNING<sup>16+</sup> | 表示端云同步任务状态处于运行中。  |
+| FINISHED<sup>16+</sup> | 表示端云同步任务状态处于已完成。 |
+
 ## SyncInfo<sup>12+</sup>
 
 返回数据，上一次端云同步所需要的信息。
@@ -99,6 +110,7 @@ interface ExtraData {
 | startTime  | Date                                                         | 是   | 上一次端云同步的开始时间。 |
 | finishTime | Date                                                         | 是   | 上一次端云同步的结束时间。 |
 | code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 上一次端云同步过程的状态。 |
+| syncStatus | [SyncStatus](#syncstatus16) | 否 | 上一次端云同步任务的状态。 |
 
 ## Config
 
