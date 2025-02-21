@@ -603,6 +603,25 @@ changeIndex(index: number, useAnimation?: boolean)
 | index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
 | useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
 
+### changeIndex<sup>15+</sup>
+
+changeIndex(index: number, animationMode: SwiperAnimationMode | boolean)
+
+翻页至指定页面。
+
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型       | 必填  | 说明     |
+| -------- | ---------- | ---- | -------- |
+| index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
+| animationMode| [SwiperAnimationMode](#swiperanimationmode15枚举说明)&nbsp;\|&nbsp;boolean | 是    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION。<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
+
 ### finishAnimation
 
 finishAnimation(callback?: () => void)
@@ -620,6 +639,20 @@ finishAnimation(callback?: () => void)
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
 | callback | () => void | 否    | 动画结束的回调。 |
+
+## SwiperAnimationMode<sup>15+</sup>枚举说明
+
+Swiper组件翻页至指定页面的动效模式。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 值   | 说明                                                         |
+| ------------- | ---- | ------------------------------------------------------------ |
+| NO_ANIMATION  | 0    | 无动效翻页至指定页面。                                                 |
+| DEFAULT_ANIMATION | 1    | 有动效翻页至指定页面。                             |
+| FAST_ANIMATION  | 2    | 先无动效翻页至指定页面附近，再有动效翻页至指定页面。 |
 
 ## Indicator<sup>10+</sup>
 
@@ -1394,9 +1427,9 @@ Swiper滑动时触发的回调，参数可参考[SwiperContentTransitionProxy](#
 
 ## 示例
 
-### 示例1（设置导航点交互）
+### 示例1（设置导航点交互及翻页动效）
 
-该示例通过indicatorInteractive接口，实现了控制导航点交互的功能。
+该示例通过changeIndex接口设置SwiperAnimationMode动效模式，实现了Swiper组件翻页至指定页面。
 
 ```ts
 // xxx.ets
@@ -1500,6 +1533,20 @@ struct SwiperExample {
         Button('showPrevious')
           .onClick(() => {
             this.swiperController.showPrevious()
+          })
+      }.margin(5)
+      Row({ space: 5 }) {
+        Button('FAST 0')
+          .onClick(() => {
+            this.swiperController.changeIndex(0, SwiperAnimationMode.FAST_ANIMATION)
+          })
+        Button('FAST 3')
+          .onClick(() => {
+            this.swiperController.changeIndex(3, SwiperAnimationMode.FAST_ANIMATION)
+          })
+        Button('FAST ' + 9)
+          .onClick(() => {
+            this.swiperController.changeIndex(9, SwiperAnimationMode.FAST_ANIMATION)
           })
       }.margin(5)
     }.width('100%')
