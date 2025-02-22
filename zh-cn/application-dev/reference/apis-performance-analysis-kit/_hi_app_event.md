@@ -74,7 +74,7 @@ HiAppEvent模块提供应用事件打点功能。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiAppEvent_ErrorCode](#hiappevent_errorcode) {<br/>HIAPPEVENT_SUCCESS = 0, HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, HIAPPEVENT_PROCESSOR_IS_NULL = -7, HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br/>HIAPPEVENT_INVALID_PARAM_VALUE = -9, HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, HIAPPEVENT_OPERATE_FAILED = -100, HIAPPEVENT_INVALID_UID = -200<br/>} | 错误码定义  |
+| [HiAppEvent_ErrorCode](#hiappevent_errorcode) {<br/>HIAPPEVENT_SUCCESS = 0, HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH = 4, HIAPPEVENT_PROCESSOR_IS_NULL = -7, HIAPPEVENT_PROCESSOR_NOT_FOUND = -8,<br/>HIAPPEVENT_INVALID_PARAM_VALUE = -9, HIAPPEVENT_EVENT_CONFIG_IS_NULL = -10, HIAPPEVENT_OPERATE_FAILED = -100, HIAPPEVENT_INVALID_UID = -200<br/>} | 错误码定义。  |
 | [EventType](#eventtype) { FAULT = 1, STATISTIC = 2, SECURITY = 3, BEHAVIOR = 4 } | 事件类型。  |
 
 ### 函数
@@ -1244,9 +1244,9 @@ int OH_HiAppEvent_SetCustomConfig (HiAppEvent_Processor * processor, const char 
 
 | 名称 | 描述 |
 | -------- | -------- |
-| processor | 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。  |
-| key | 参数名，长度不超过32个字符，  |
-| value | 参数值，长度不超过1024个字符。  |
+| processor | 指向处理者的指针（即OH_HiAppEvent_CreateProcessor接口返回的指针）。|
+| key | 参数名，长度不超过32个字符。|
+| value | 参数值，长度不超过1024个字符。|
 
 **返回：**
 
