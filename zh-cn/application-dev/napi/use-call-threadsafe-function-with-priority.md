@@ -32,6 +32,10 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
     #include <string.h>
     #include <stdlib.h>
 
+    static constexpr int INT_NUM_2 = 2;     // int类型数值2
+    static constexpr int INT_NUM_12 = 12;   // int类型数值12
+    static constexpr int INT_NUM_15 = 15;   // int类型数值15
+
     struct CallbackData {
         napi_threadsafe_function tsfn;
         napi_async_work work;
@@ -45,11 +49,11 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
         napi_value undefined = nullptr;
         napi_get_undefined(env, &undefined);
         napi_value number1 = nullptr;
-        napi_create_int32(env, 12, &number1);
+        napi_create_int32(env, INT_NUM_12, &number1);
         napi_value number2 = nullptr;
-        napi_create_int32(env, 15, &number2);
+        napi_create_int32(env, INT_NUM_15, &number2);
         napi_value argv[2] = {number1, number2};
-        napi_call_function(env, undefined, jsCb, 2, argv, &resultNumber);
+        napi_call_function(env, undefined, jsCb, INT_NUM_2, argv, &resultNumber);
         int32_t res = 0;
         napi_get_value_int32(env, resultNumber, &res);
     }
