@@ -3,4 +3,4 @@
 - ArkTS API<!--contacts-arkts-->
   - [@ohos.contact (联系人)](js-apis-contact.md)
 - 错误码
-  - [联系人子系统错误码](errorcode-contacts.md)
+  - [Contacts错误码](errorcode-contacts.md)
