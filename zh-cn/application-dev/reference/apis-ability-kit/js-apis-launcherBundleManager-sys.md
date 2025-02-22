@@ -130,7 +130,7 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfoSync<sup>10+</sup>
 
-getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>
+getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>
 
 查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
 
@@ -151,7 +151,7 @@ getLauncherAbilityInfoSync(bundleName: string, userId: number) : Array\<[Launche
 
 | 类型                          | 说明                                               |
 | ----------------------------- | -------------------------------------------------- |
-| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)> | Array形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
+| Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\> | Array形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
 
 **错误码：**
 
@@ -401,7 +401,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfoSync<sup>10+</sup>
 
-getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>
+getShortcutInfoSync(bundleName : string) : Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>
 
 查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
 
@@ -453,7 +453,7 @@ try {
 
 ## launcherBundleManager.startShortcut<sup>12+</sup>
 
-startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise<void>;
+startShortcut(shortcutInfo: ShortcutInfo, options?: StartOptions): Promise\<void>\;
 
 拉起指定[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)中的ability。
 
@@ -489,7 +489,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    let data : Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    let data : Array\<launcherBundleManager.ShortcutInfo\> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
     console.log("data is " + JSON.stringify(data));
     if (data) {
         try {
