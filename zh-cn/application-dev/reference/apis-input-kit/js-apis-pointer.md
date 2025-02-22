@@ -662,7 +662,7 @@ getContext().resourceManager.getMediaContent($r("app.media.app_icon")).then((svg
 
 | 名称     | 类型     | 可读     | 可写     | 说明     |
 | -------- | ------- | -------- | -------- | ------- |
-| followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小。 |
+| followSystem  | boolean  | 否   | 否   | 是否根据系统设置调整光标大小。false表示使用自定义光标样式大小，true表示根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256]。 |
 
 ## pointer.setCustomCursor<sup>14+</sup>
 
@@ -677,9 +677,9 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 | 参数名    | 类型    | 必填    | 说明    |
 | -------- | -------- | -------- | -------- |
-| windowId  | number  | 是    | 窗口id。如果传入无效的窗口id,返回错误码26500001。                          |
+| windowId  | number  | 是    | 窗口id。                          |
 | cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。是否根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256] |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。是否根据系统设置调整光标大小。 |
 
 **返回值**：
 
@@ -743,7 +743,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
-| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. | 如果传入无效的窗口id,返回错误码26500001。
 
 **示例**：
 
