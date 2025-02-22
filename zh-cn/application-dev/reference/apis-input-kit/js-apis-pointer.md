@@ -679,7 +679,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | -------- | -------- | -------- | -------- |
 | windowId  | number  | 是    | 窗口id。                          |
 | cursor  | [CustomCursor](js-apis-pointer.md#customcursor14) | 是    | 自定义光标资源。 |
-| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。是否根据系统设置调整光标大小。 |
+| config  | [CursorConfig](js-apis-pointer.md#cursorconfig14) | 是    | 自定义光标配置。是否根据系统设置调整光标大小，可调整范围为：[光标资源图大小，256×256]。 |
 
 **返回值**：
 
@@ -744,7 +744,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
-| 26500001 | invalid windowID. |
+| 26500001 | Invalid windowID. |
 
 **示例**：
 
