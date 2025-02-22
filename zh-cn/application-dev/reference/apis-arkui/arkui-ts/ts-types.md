@@ -299,10 +299,10 @@
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
-| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量 |
-| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量 |
-| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量 |
-| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量 |
+| top    | [Dimension](#dimension10) | 否    | 相对顶边的偏移量。 |
+| bottom    | [Dimension](#dimension10) | 否    | 相对底边的偏移量。 |
+| left    | [Dimension](#dimension10) | 否    | 相对左边的偏移量。 |
+| right    | [Dimension](#dimension10) | 否    | 相对右边的偏移量。 |
 
 ## LocalizedEdges<sup>12+</sup>
 
