@@ -624,15 +624,15 @@ changeIndex(index: number, useAnimation?: boolean)
 | index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
 | useAnimation| boolean | 否    | 设置翻至指定页面时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。 |
 
-### changeIndex<sup>16+</sup>
+### changeIndex<sup>15+</sup>
 
 changeIndex(index: number, animationMode: SwiperAnimationMode | boolean)
 
 翻页至指定页面。
 
-**卡片能力：** 从API version 16开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -641,7 +641,7 @@ changeIndex(index: number, animationMode: SwiperAnimationMode | boolean)
 | 参数名      | 类型       | 必填  | 说明     |
 | -------- | ---------- | ---- | -------- |
 | index| number | 是    | 指定页面在Swiper中的索引值。<br/>**说明：** <br/>设置的值小于0或大于最大页面索引时，取0。 |
-| animationMode| [SwiperAnimationMode](#swiperanimationmode16枚举说明)&nbsp;\|&nbsp;boolean | 是    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION。<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
+| animationMode| [SwiperAnimationMode](#swiperanimationmode15枚举说明)&nbsp;\|&nbsp;boolean | 是    | 设置翻页至指定页面时的动效模式。<br/>默认值：SwiperAnimationMode.NO_ANIMATION。<br/> **说明：** <br/>当传入true时有动效，等同于SwiperAnimationMode.DEFAULT_ANIMATION；当传入false时无动效，等同于SwiperAnimationMode.NO_ANIMATION。 |
 
 ### finishAnimation
 
@@ -696,11 +696,11 @@ preloadItems(indices: Optional\<Array\<number>>): Promise\<void>
 | 401 | Parameter invalid. Possible causes: 1. The parameter type is not Array\<number>; 2. The parameter is an empty array; 3. The parameter contains an invalid index. |
 | 100004 | Controller not bound to component. |
 
-## SwiperAnimationMode<sup>16+</sup>枚举说明
+## SwiperAnimationMode<sup>15+</sup>枚举说明
 
 Swiper组件翻页至指定页面的动效模式。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

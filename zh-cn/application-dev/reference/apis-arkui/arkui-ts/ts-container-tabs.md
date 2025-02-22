@@ -464,8 +464,8 @@ TabBar布局模式枚举。
 | CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。                             |
 | ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
 | NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。               |
-| CONTENT_FIRST_WITH_JUMP<sup>16+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
-| ACTION_FIRST_WITH_JUMP<sup>16+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
+| CONTENT_FIRST_WITH_JUMP<sup>15+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
+| ACTION_FIRST_WITH_JUMP<sup>15+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
