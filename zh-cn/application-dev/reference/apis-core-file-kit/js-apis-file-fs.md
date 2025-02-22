@@ -1514,8 +1514,8 @@ open(path: string, mode: number, callback: AsyncCallback&lt;File&gt;): void
       console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
+      fs.closeSync(file);
     }
-    fs.closeSync(file);
   });
   ```
 
@@ -1550,8 +1550,8 @@ open(path: string, callback: AsyncCallback&lt;File&gt;): void
       console.error("open failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.info("file fd: " + file.fd);
+      fs.closeSync(file);
     }
-    fs.closeSync(file);
   });
   ```
 
