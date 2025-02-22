@@ -5446,27 +5446,23 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     console.info('setSubTitle');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.notEqualTo('album', 'fake');
-    predicates.equalTo('highlight_status', '1');
-    predicates.orderByDesc('generate_time');
-    let fetchOptions: photoAccessHelper.FetchOptions = {
+    let helper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
-      predicates: predicates
+      predicates: new dataSharePredicates.DataSharePredicates()
     };
-    const context = getContext(this);
-    let phAccesseHelper = photoAccessHelper.getPhotoAccessHelper(context);
-    let fetchResult = await phAccesseHelper.getAlbums(TestHighlightAlbumPage.PORTRAIT_QUERY_TYPE, TestHighlightAlbumPage.HIGHLIGHT_QUERY_SUB_TYPE, fetchOptions);
-    let albums = await fetchResult.getAllObjects();
-    let highlightIndexNumber: number = Number(this.highlightIndex);
-    if (highlightIndexNumber < 0 || highlightIndexNumber > albums.length) {
-      this.result = 'highlight albums not found';
+    let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error(TAG, 'No album');
       return;
     }
-    let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(albums[highlightIndexNumber]);
+    let highlightAlbum = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    let changeHighlightAlbumRequest: photoAccessHelper.HighlightAlbum = new photoAccessHelper.HighlightAlbum(highlightAlbum);
     changeHighlightAlbumRequest.setSubTitle(this.input);
+    console.info('setSubTitle success');
   } catch (err) {
-    console.error(`setSubTitle with error: ${err.code}, ${err.message}`);
+    console.error(`setSubTitle with error: ${err}`);
   }
 }
 ```
@@ -5509,26 +5505,22 @@ import { dataSharePredicates } from '@kit.ArkData';
 async function example() {
   try {
     console.info('deleteHighlightAlbums');
-    let predicates = new dataSharePredicates.DataSharePredicates();
-    predicates.notEqualTo('album', 'fake');
-    predicates.equalTo('highlight_status', '1');
-    predicates.orderByDesc('generate_time');
-    let fetchOptions: photoAccessHelper.FetchOptions = {
+    let helper = photoAccessHelper.getPhotoAccessHelper(getContext(this));
+    let albumFetchOption: photoAccessHelper.FetchOptions = {
       fetchColumns: [],
-      predicates: predicates
+      predicates: new dataSharePredicates.DataSharePredicates()
     };
-    const context = getContext(this);
-    let phAccesseHelper = photoAccessHelper.getPhotoAccessHelper(context);
-    let fetchResult = await phAccesseHelper.getAlbums(TestHighlightAlbumPage.PORTRAIT_QUERY_TYPE, TestHighlightAlbumPage.HIGHLIGHT_QUERY_SUB_TYPE, fetchOptions);
-    let albums = await fetchResult.getAllObjects();
-    let highlightIndexNumber: number = Number(this.highlightIndex);
-    if (highlightIndexNumber < 0 || highlightIndexNumber > albums.length) {
-      this.result = 'highlight albums not found';
+    let albumFetchResult = await helper.getAlbums(photoAccessHelper.AlbumType.SMART, photoAccessHelper.AlbumSubtype.HIGHLIGHT, albumFetchOption);
+    if (albumFetchResult.getCount() === 0) {
+      console.error(TAG, 'No album');
       return;
     }
-    photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(context, [albums[0]]);
+    let highlightAlbum = await albumFetchResult.getFirstObject();
+    albumFetchResult.close();
+    photoAccessHelper.HighlightAlbum.deleteHighlightAlbums(getContext(this), [highlightAlbum]);
+    console.info('deleteHighlightAlbums success');
   } catch (err) {
-    console.error(`setSubTitle with error: ${err.code}, ${err.message}`);
+    console.error(`deleteHighlightAlbums with error: ${err}`);
   }
 }
 ```
