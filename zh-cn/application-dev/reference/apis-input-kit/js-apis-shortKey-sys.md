@@ -27,7 +27,7 @@ setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback&l
 | 参数名     | 类型                | 必填 | 说明                                                         |
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
 | businessKey| string              | 是   | 业务在多模侧注册的唯一标识，与ability_launch_config.json中的businessId对应。调用接口前自行查询。|
-| delay      | number              | 是   | 按下快捷键多长时间后拉起Ability，单位是毫秒（ms），仅支持快捷键按下触发。 |
+| delay      | number              | 是   | 按下快捷键多长时间后拉起Ability，单位：ms，仅支持快捷键按下触发。 |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数，设置成功时，err为undefined，否则为错误对象。  |                                               
 
 **错误码**：
@@ -69,7 +69,7 @@ setKeyDownDuration(businessKey: string, delay: number): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | businessKey| string | 是   | 业务在多模侧注册的唯一标识，与ability_launch_config.json中的businessId对应。调用接口前自行查询。|
-| delay      | number | 是   | 按下快捷键多长时间后拉起Ability，单位是毫秒（ms），仅支持快捷键按下触发。 |
+| delay      | number | 是   | 按下快捷键多长时间后拉起Ability，单位：ms，仅支持快捷键按下触发。 |
 
 **返回值**：
 

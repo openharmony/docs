@@ -79,7 +79,7 @@ Swiper() {
 
 ## Navigation Point Indicator
 
-The **Swiper** component comes with default navigation point and arrow styles, with navigation dots centered at the bottom and arrows hidden.
+The **Swiper** component comes with default navigation point and arrow styles, with navigation points centered at the bottom and arrows hidden.
 
 With the **indicator** attribute, you can set the position of the navigation point indicator relative to the edges of the **Swiper** component, in addition to the size, color, and mask of each navigation point as well as the color of the selected navigation point.
 
@@ -112,7 +112,7 @@ Swiper() {
 
 ![indicator](figures/indicator.PNG)
 
-- Example of customizing the style of the navigation dots indicator, with the diameter of 30 vp, left margin of 0, and color of red:
+- Example of customizing the style of the navigation point indicator, with the dot diameter of 30 vp, left margin of 0, and color of red:
 
  
 
@@ -147,9 +147,9 @@ Swiper() {
 
 ![arrow1](figures/arrow1.gif)
 
-- Example of customizing the style of navigation point arrows as follows:
+- Example of customizing the style of navigation point arrows:
 
-18 vp size, blue color, on both sides of the component
+In this example, the arrows are displayed on both sides of the component, with a size of 18 vp and a color of blue.
 
 ```ts
 Swiper() {
@@ -169,50 +169,88 @@ Swiper() {
 
 ## Page Switching Mode
 
-The **Swiper** component supports three page switching modes: using the swipe gesture, using the navigation dots indicator, and using the controller. The following example shows how to switch pages using the controller.
+The **Swiper** component supports three page switching modes: swiping with fingers, touching navigation points, and using a controller. The following example shows how to switch between pages using a controller.
 
 ```ts
 @Entry
 @Component
 struct SwiperDemo {
+  private swiperBackgroundColors: Color[] = [Color.Blue, Color.Brown, Color.Gray, Color.Green, Color.Orange,
+    Color.Pink, Color.Red, Color.Yellow];
+  private swiperAnimationMode: (SwiperAnimationMode | boolean | undefined)[] = [undefined, true, false,
+    SwiperAnimationMode.NO_ANIMATION, SwiperAnimationMode.DEFAULT_ANIMATION, SwiperAnimationMode.FAST_ANIMATION];
   private swiperController: SwiperController = new SwiperController();
+  private animationModeIndex: number = 0;
+  private animationMode: (SwiperAnimationMode | boolean | undefined) = undefined;
+  @State animationModeStr: string = 'undefined';
+  @State targetIndex: number = 0;
+
+  aboutToAppear(): void {
+    this.toSwiperAnimationModeStr();
+  }
 
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        Text('0')
-          .width(250)
-          .height(250)
-          .backgroundColor(Color.Gray)
-          .textAlign(TextAlign.Center)
-          .fontSize(30)
-        Text('1')
-          .width(250)
-          .height(250)
-          .backgroundColor(Color.Green)
-          .textAlign(TextAlign.Center)
-          .fontSize(30)
-        Text('2')
-          .width(250)
-          .height(250)
-          .backgroundColor(Color.Pink)
-          .textAlign(TextAlign.Center)
-          .fontSize(30)
+        ForEach(this.swiperBackgroundColors, (backgroundColor: Color, index: number) => {
+          Text(index.toString())
+            .width(250)
+            .height(250)
+            .backgroundColor(backgroundColor)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        })
       }
       .indicator(true)
 
       Row({ space: 12 }) {
         Button('showNext')
           .onClick(() => {
-            this.swiperController.showNext(); // Switch to the next page through the controller.
+            this.swiperController.showNext(); // Switch to the next page using the controller.
           })
         Button('showPrevious')
           .onClick(() => {
-            this.swiperController.showPrevious(); // Switch to the previous page through the controller.
+            this.swiperController.showPrevious(); // Switch to the previous page using the controller.
+          })
+      }.margin(5)
+
+      Row({ space: 12 }) {
+        Text('Index:')
+        Button(this.targetIndex.toString())
+          .onClick(() => {
+            this.targetIndex = (this.targetIndex + 1) % this.swiperBackgroundColors.length;
+          })
+      }.margin(5)
+      Row({ space: 12 }) {
+        Text('AnimationMode:')
+        Button(this.animationModeStr)
+          .onClick(() => {
+            this.animationModeIndex = (this.animationModeIndex + 1) % this.swiperAnimationMode.length;
+            this.toSwiperAnimationModeStr();
+          })
+      }.margin(5)
+
+      Row({ space: 12 }) {
+        Button('changeIndex(' + this.targetIndex + ', ' + this.animationModeStr + ')')
+          .onClick(() => {
+            this.swiperController.changeIndex(this.targetIndex, this.animationMode); // Switch to the specified page using the controller.
           })
       }.margin(5)
     }.width('100%')
     .margin({ top: 5 })
+  }
+
+  private toSwiperAnimationModeStr() {
+    this.animationMode = this.swiperAnimationMode[this.animationModeIndex];
+    if ((this.animationMode === true) || (this.animationMode === false)) {
+      this.animationModeStr = '' + this.animationMode;
+    } else if ((this.animationMode === SwiperAnimationMode.NO_ANIMATION) ||
+      (this.animationMode === SwiperAnimationMode.DEFAULT_ANIMATION) ||
+      (this.animationMode === SwiperAnimationMode.FAST_ANIMATION)) {
+      this.animationModeStr = SwiperAnimationMode[this.animationMode];
+    } else {
+      this.animationModeStr = 'undefined';
+    }
   }
 }
 ```
@@ -257,7 +295,7 @@ Swiper() {
 
 ## Child Components Per Page
 
-You can set the number of child components per page for the **Swiper** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#attributes) attribute.
+You can set the number of child components per page for the **Swiper** component through its [displayCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#displaycount8) attribute.
 
 ```ts
 Swiper() {
@@ -363,4 +401,3 @@ struct SwiperCustomAnimationExample {
 ```
 
 ![customAnimation](figures/swiper-custom-animation.gif)
-

@@ -403,7 +403,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 | 名称       | 类型                                                         | 必填 | 说明           |
 | ---------- | ------------------------------------------------------------ | ---- | -------------- |
-| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型 |
+| type       | [ChangeType](#changetype12)      | 是   | 通知变更的类型。 |
 | uri        | string                                                       | 是   | 指定uri。      |
 | values     | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt;| 是   | 更新的数据。   |
 

@@ -26,7 +26,7 @@ import { window } from '@kit.ArkUI';
 | 名称                                  | 值 | 说明                                                                                     |
 |-------------------------------------| ------ |----------------------------------------------------------------------------------------|
 | TYPE_APP                            | 0      | 表示应用子窗口。<br>**模型约束：** 此接口仅可在FA模型下使用。                                                   |
-| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从 API version 7开始支持。                               |
+| TYPE_SYSTEM_ALERT                   | 1      | 表示系统告警窗口。<br>- **说明：** 从API version 11开始废弃。<br>- 从API version 7开始支持。                               |
 | TYPE_FLOAT<sup>9+</sup>             | 8      | 表示悬浮窗。<br>**模型约束：** 此接口仅可在Stage模型下使用。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | TYPE_DIALOG<sup>10+</sup>           | 16      | 表示模态窗口。<br>**模型约束：** 此接口仅可在Stage模型下使用。                                                 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
@@ -73,14 +73,14 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                   | 类型 |  必填 | 说明                                                         |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
-| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager。|
+| statusBarColor                         | string   |  否   | 状态栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isStatusBarLightIcon<sup>7+</sup>      | boolean  |  否   | 状态栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| statusBarContentColor<sup>8+</sup>     | string   |  否   | 状态栏文字颜色。当设置此属性后， `isStatusBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarColor                     | string   |  否   | 导航栏背景颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`'#00FF00'`或`'#FF00FF00'`。默认值：`'#0x66000000'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  否   | 导航栏图标是否为高亮状态。true表示高亮；false表示不高亮。默认值：false。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| navigationBarContentColor<sup>8+</sup> | string   |  否   | 导航栏文字颜色。当设置此属性后， `isNavigationBarLightIcon`属性设置无效。默认值：`'#0xE5FFFFFF'`。 <br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| enableStatusBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能状态栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
+| enableNavigationBarAnimation<sup>12+</sup> | boolean   |  否   | 是否使能导航栏属性变化时动画效果。true表示变化时使能动画效果；false表示没有使能动画效果。默认值：false。 <br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## StatusBarProperty<sup>16+</sup>
 
@@ -110,24 +110,24 @@ import { window } from '@kit.ArkUI';
 
 | 名称                                  | 值   | 说明                          |
 | ------------------------------------- | ---- | ----------------------------- |
-| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| AUTO_ROTATION_PORTRAIT                | 6    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
+| UNSPECIFIED                           | 0    | 表示未定义方向模式，由系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| PORTRAIT                              | 1    | 表示竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| LANDSCAPE                             | 2    | 表示横屏显示模式。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| PORTRAIT_INVERTED                     | 3    | 表示反向竖屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| LANDSCAPE_INVERTED                    | 4    | 表示反向横屏显示模式。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION                         | 5    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_PORTRAIT                | 6    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
 | AUTO_ROTATION_LANDSCAPE               | 7    | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| LOCKED                                | 11   | 表示锁定模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定（如在某种设备，可以旋转到竖屏、横屏、反向横屏三个方向，无法旋转到反向竖屏）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 调用时临时旋转到竖屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 调用时临时旋转到横屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 调用时临时旋转到反向竖屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 调用时临时旋转到反向横屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager。|
-| FOLLOW_DESKTOP<sup>12+</sup>                   | 17   | 表示跟随桌面的旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| AUTO_ROTATION_RESTRICTED              | 8    | 跟随传感器自动旋转，可以旋转到竖屏、横屏、反向竖屏、反向横屏四个方向，且受控制中心的旋转开关控制。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core<br> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| AUTO_ROTATION_PORTRAIT_RESTRICTED     | 9    | 跟随传感器自动竖向旋转，可以旋转到竖屏、反向竖屏，无法旋转到横屏、反向横屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| AUTO_ROTATION_LANDSCAPE_RESTRICTED    | 10   | 跟随传感器自动横向旋转，可以旋转到横屏、反向横屏，无法旋转到竖屏、反向竖屏，且受控制中心的旋转开关控制。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| LOCKED                                | 11   | 表示锁定模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| AUTO_ROTATION_UNSPECIFIED<sup>12+</sup>        | 12   | 跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定（如在某种设备，可以旋转到竖屏、横屏、反向横屏三个方向，无法旋转到反向竖屏）。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager|
+| USER_ROTATION_PORTRAIT<sup>12+</sup>           | 13   | 调用时临时旋转到竖屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager|
+| USER_ROTATION_LANDSCAPE<sup>12+</sup>          | 14   | 调用时临时旋转到横屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager|
+| USER_ROTATION_PORTRAIT_INVERTED<sup>12+</sup>  | 15   | 调用时临时旋转到反向竖屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager|
+| USER_ROTATION_LANDSCAPE_INVERTED<sup>12+</sup> | 16   | 调用时临时旋转到反向横屏，之后跟随传感器自动旋转，受控制中心的旋转开关控制，且可旋转方向受系统判定。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager|
+| FOLLOW_DESKTOP<sup>12+</sup>                   | 17   | 表示跟随桌面的旋转模式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## Rect<sup>7+</sup>
 
@@ -241,10 +241,10 @@ import { window } from '@kit.ArkUI';
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
 | brightness                            | number                    | 否   | 否   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从API version 7开始支持。 |
 | isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                  |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从API version 7开始支持。      |
 | isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
@@ -285,11 +285,11 @@ import { window } from '@kit.ArkUI';
 
 | 名称       | 值 | 说明       |
 | ---------- | ------ | ---------- |
-| WINDOW_SHOWN      | 1      | 切到前台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| WINDOW_ACTIVE     | 2      | 获焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| WINDOW_INACTIVE   | 3      | 失焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| WINDOW_HIDDEN     | 4      | 切到后台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core。|
-| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **系统能力：** SystemCapability.Window.SessionManager。|
+| WINDOW_SHOWN      | 1      | 切到前台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_ACTIVE     | 2      | 获焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_INACTIVE   | 3      | 失焦状态。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_HIDDEN     | 4      | 切到后台。<br> **系统能力：** SystemCapability.WindowManager.WindowManager.Core|
+| WINDOW_DESTROYED<sup>11+</sup>  | 7      | 窗口销毁。<br> **系统能力：** SystemCapability.Window.SessionManager|
 
 ## WindowLimits<sup>11+</sup>
 
@@ -395,7 +395,7 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 
 创建子窗口或者系统窗口，使用callback异步回调。
 
-**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限
+**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -457,7 +457,7 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 
 创建子窗口或者系统窗口，使用Promise异步回调。
 
-**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限
+**需要权限：** 当创建窗口类型为window.WindowType.TYPE_FLOAT时，需要ohos.permission.SYSTEM_FLOAT_WINDOW权限。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -964,7 +964,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
 
@@ -1004,7 +1004,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9-1)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
 
@@ -1047,7 +1047,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1087,7 +1087,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[createWindow()](#windowcreatewindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1129,7 +1129,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[findWindow()](#windowfindwindow9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[findWindow()](#windowfindwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1165,7 +1165,7 @@ find(id: string): Promise&lt;Window&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[findWindow()](#windowfindwindow9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[findWindow()](#windowfindwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1204,7 +1204,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
 
@@ -1241,7 +1241,7 @@ getTopWindow(): Promise&lt;Window&gt;
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9-1)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9-1)。
 
 **模型约束：** 此接口仅可在FA模型下使用。
 
@@ -1276,7 +1276,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1323,7 +1323,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9-1)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[getLastWindow()](#windowgetlastwindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -4852,6 +4852,12 @@ on(type:  'subWindowClose', callback: Callback&lt;void&gt;): void
 
 开启子窗口关闭事件的监听。此监听仅在点击系统提供的右上角关闭按钮关闭子窗时触发，其余关闭方式不触发回调。
 
+当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
+
+该接口触发的窗口关闭事件监听回调函数是同步执行，子窗口的异步关闭事件监听参考[on('windowWillClose')](#onwindowwillclose15)方法。
+
+如果存在[on('windowWillClose')](#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](#onwindowwillclose15)接口。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Window.SessionManager
@@ -4930,6 +4936,215 @@ try {
   windowClass.off('subWindowClose');
 } catch (exception) {
   console.error(`Failed to register or unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('windowWillClose')<sup>15+</sup>
+
+on(type: 'windowWillClose', callback: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
+
+开启主窗口或子窗口关闭事件的监听。此监听仅能通过系统提供的窗口标题栏关闭按键触发，其余关闭窗口的方式不触发回调。
+
+该接口触发的回调函数是异步执行。子窗口的同步关闭事件监听参考[on('subWindowClose')](#onsubwindowclose12)方法。主窗口的同步关闭事件监听参考[on('windowStageClose')](#onwindowstageclose14)方法。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->  </br>
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowWillClose'，即窗口关闭事件。 |
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | 是   | 回调函数。当点击窗口系统提供的右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有Promise&lt;boolean&gt;类型的返回值。在返回的Promise函数里，执行resolve(true) 方法表示不关闭当前窗口，执行resolve(false) 方法或者reject方法均表示关闭当前窗口。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    const callback = () => {
+      // ...
+      return new Promise<boolean>((resolve, reject) => {
+        // 是否关闭该窗口
+        let result: boolean = true;
+        resolve(result);
+      });
+    }
+    try {
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowWillClose', callback);
+    } catch (exception) {
+      console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### off('windowWillClose')<sup>15+</sup>
+
+off(type: 'windowWillClose', callback?: Callback&lt;void, Promise&lt;boolean&gt;&gt;): void
+
+关闭主窗口或子窗口关闭事件的监听。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End--> </br>
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowWillClose'，即窗口关闭事件。 |
+| callback | Callback&lt;void, Promise&lt;boolean&gt;&gt; | 否   | 回调函数。当点击窗口系统提供的右上角关闭按钮事件发生时的回调。该回调函数不返回任何参数。回调函数内部逻辑需要有Promise&lt;boolean&gt;类型的返回值。在返回的Promise函数里，执行resolve(true) 方法表示不关闭当前窗口，执行resolve(false) 方法或者reject方法均表示关闭当前窗口。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Incorrect parameter types; 2. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('onWindowStageCreate');
+    try {
+      const callback = () => {
+        // ...
+        return new Promise<boolean>((resolve, reject) => {
+          // 是否关闭该窗口
+          let result: boolean = true;
+          resolve(result);
+        });
+      }
+      let windowClass = windowStage.getMainWindowSync();
+      windowClass.on('windowWillClose', callback);
+      windowClass.off('windowWillClose', callback);
+      // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+      windowClass.off('windowWillClose');
+    } catch (exception) {
+      console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
+```
+
+### on('windowHighlightChange')<sup>15+</sup>
+
+on(type: 'windowHighlightChange', callback: Callback&lt;boolean&gt;): void
+
+开启窗口激活态变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当本窗口的激活态发生变化时的回调。回调函数返回boolean类型参数。当返回参数为true表示激活态；false表示非激活态。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('windowHighlightChange', (data: boolean) => {
+    console.info(`Window highlight Change: ${data}`);
+  });
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('windowHighlightChange')<sup>15+</sup>
+
+off(type: 'windowHighlightChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭窗口激活态变化事件的监听。
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'windowHighlightChange'，即窗口激活态变化事件。     |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。当本窗口的激活态发生变化时的回调。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口激活态变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (data: boolean) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('windowHighlightChange', callback);
+  // 关闭指定callback的监听
+  windowClass.off('windowHighlightChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('windowHighlightChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -6720,11 +6935,53 @@ windowClass.loadContent("pages/page2", storage, (err: BusinessError) => {
 });
 ```
 
+### getWindowDecorVisible<sup>16+</sup>
+
+getWindowDecorVisible(): boolean
+
+查询窗口标题栏是否可见。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**返回值：**
+
+| 类型   | 说明                                                         |
+| ------ | ------------------------------------------------------------ |
+| boolean | 返回当前窗口标题栏是否可见，true表示可见，false表示不可见。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal. |
+
+**示例：**
+
+```ts
+let isVisible: boolean | undefined = undefined;
+windowClass.setUIContent('pages/WindowPage').then(() => {
+  try {
+    isVisible = windowClass?.getWindowDecorVisible();
+  } catch (exception) {
+    console.error(`Failed to get the window decor visibility. Cause code: ${exception.code}, message: ${exception.message}`);
+  }
+})
+```
+
 ### setWindowTitle<sup>15+</sup>
 
 setWindowTitle(titleName: string): Promise&lt;void&gt;
 
 设置窗口标题，存在标题栏的窗口形态生效，使用Promise异步回调。如果使用Stage模型，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
+
+此接口仅支持2in1设备和平板设备。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -8276,6 +8533,60 @@ try {
 }
 ```
 
+### setExclusivelyHighlighted<sup>15+<sup>
+
+setExclusivelyHighlighted(isExclusivelyHighlight: boolean): Promise&lt;void&gt;
+
+设置窗口独占激活态属性。独占激活态表示窗口获焦时，会导致当前父子窗口链中处于激活态的其他窗口失去激活态。使用Promise异步回调。
+
+此接口对主窗、模态窗、dialog窗口不生效。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----------- | ------- | -- | -------------------------------------------------------- |
+| isExclusivelyHighlight | boolean | 是 | 窗口是否独占激活态。true表示独占激活态；false表示不独占激活态。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities.                         |
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let isExclusivelyHighlight: boolean = true;
+try {
+  let promise = windowClass.setExclusivelyHighlighted(isExclusivelyHighlight);
+  promise.then(() => {
+    console.info('Succeeded in setting the window to be exclusively highlight.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the window to be exclusively highlight. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the window to be exclusively highlight. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowSystemBarProperties<sup>(deprecated)</sup>
 
 setWindowSystemBarProperties(systemBarProperties: SystemBarProperties, callback: AsyncCallback&lt;void&gt;): void
@@ -8502,7 +8813,7 @@ show(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[showWindow()](#showwindow9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[showWindow()](#showwindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8535,7 +8846,7 @@ show(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[showWindow()](#showwindow9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[showWindow()](#showwindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8566,7 +8877,7 @@ destroy(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[destroyWindow()](#destroywindow9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[destroyWindow()](#destroywindow9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8599,7 +8910,7 @@ destroy(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[destroyWindow()](#destroywindow9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[destroyWindow()](#destroywindow9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8632,7 +8943,7 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8669,7 +8980,7 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[moveWindowTo()](#movewindowto9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8718,7 +9029,7 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8764,7 +9075,7 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[resize()](#resize9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8802,7 +9113,7 @@ getProperties(callback: AsyncCallback&lt;WindowProperties&gt;): void
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowproperties9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8835,7 +9146,7 @@ getProperties(): Promise&lt;WindowProperties&gt;
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowproperties9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[getWindowProperties()](#getwindowproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8866,7 +9177,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7), callback: AsyncCallback&lt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8901,7 +9212,7 @@ getAvoidArea(type: [AvoidAreaType](#avoidareatype7)): Promise&lt;[AvoidArea](#av
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[getWindowAvoidArea()](#getwindowavoidarea9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8941,7 +9252,7 @@ setFullScreen(isFullScreen: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐联合使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)和[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)实现全屏。
+> 从API version 6开始支持，从API version 9开始废弃，推荐联合使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)和[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)实现全屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -8995,7 +9306,7 @@ setFullScreen(isFullScreen: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐联合使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)和[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)实现全屏。
+> 从API version 6开始支持，从API version 9开始废弃，推荐联合使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)和[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)实现全屏。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9052,7 +9363,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&lt;void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9106,7 +9417,7 @@ setLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowLayoutFullScreen()](#setwindowlayoutfullscreen9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9163,7 +9474,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>, callback: AsyncCallbac
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9219,7 +9530,7 @@ setSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarEnable()](#setwindowsystembarenable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9278,7 +9589,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties, callback: Async
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9338,7 +9649,7 @@ setSystemBarProperties(systemBarProperties: SystemBarProperties): Promise&lt;voi
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9-1)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowSystemBarProperties()](#setwindowsystembarproperties9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9399,7 +9710,7 @@ loadContent(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setUIContent()](#setuicontent9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setUIContent()](#setuicontent9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9433,7 +9744,7 @@ loadContent(path: string): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setUIContent()](#setuicontent9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setUIContent()](#setuicontent9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9470,7 +9781,7 @@ isShowing(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[isWindowShowing()](#iswindowshowing9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[isWindowShowing()](#iswindowshowing9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9503,7 +9814,7 @@ isShowing(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[isWindowShowing()](#iswindowshowing9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[isWindowShowing()](#iswindowshowing9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9534,7 +9845,7 @@ on(type: 'systemAvoidAreaChange', callback: Callback&lt;AvoidArea&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[on('avoidAreaChange')](#onavoidareachange9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[on('avoidAreaChange')](#onavoidareachange9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9562,7 +9873,7 @@ off(type: 'systemAvoidAreaChange', callback?: Callback&lt;AvoidArea&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[off('avoidAreaChange')](#offavoidareachange9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[off('avoidAreaChange')](#offavoidareachange9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9593,7 +9904,7 @@ isSupportWideGamut(callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[isWindowSupportWideGamut()](#iswindowsupportwidegamut9)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[isWindowSupportWideGamut()](#iswindowsupportwidegamut9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9626,7 +9937,7 @@ isSupportWideGamut(): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[isWindowSupportWideGamut()](#iswindowsupportwidegamut9-1)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[isWindowSupportWideGamut()](#iswindowsupportwidegamut9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9657,7 +9968,7 @@ setColorSpace(colorSpace:ColorSpace, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setWindowColorSpace()](#setwindowcolorspace9)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[setWindowColorSpace()](#setwindowcolorspace9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9692,7 +10003,7 @@ setColorSpace(colorSpace:ColorSpace): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[setWindowColorSpace()](#setwindowcolorspace9-1)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[setWindowColorSpace()](#setwindowcolorspace9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9730,7 +10041,7 @@ getColorSpace(callback: AsyncCallback&lt;ColorSpace&gt;): void
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getWindowColorSpace()](#getwindowcolorspace9)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[getWindowColorSpace()](#getwindowcolorspace9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9763,7 +10074,7 @@ getColorSpace(): Promise&lt;ColorSpace&gt;
 
 > **说明：**
 >
-> 从 API version 8开始支持，从API version 9开始废弃，推荐使用[getWindowColorSpace()](#getwindowcolorspace9)。
+> 从API version 8开始支持，从API version 9开始废弃，推荐使用[getWindowColorSpace()](#getwindowcolorspace9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9794,7 +10105,7 @@ setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBackgroundColor()](#setwindowbackgroundcolor9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBackgroundColor()](#setwindowbackgroundcolor9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9830,7 +10141,7 @@ setBackgroundColor(color: string): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBackgroundColor()](#setwindowbackgroundcolor9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBackgroundColor()](#setwindowbackgroundcolor9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9871,7 +10182,7 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9909,7 +10220,7 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9-1)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9948,7 +10259,7 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
+> 该接口不支持使用。从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -9982,7 +10293,7 @@ setDimBehind(dimBehindValue: number): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 该接口不支持使用。从 API version 7开始支持，从API version 9开始废弃。
+> 该接口不支持使用。从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10019,7 +10330,7 @@ setFocusable(isFocusable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowFocusable()](#setwindowfocusable9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowFocusable()](#setwindowfocusable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10055,7 +10366,7 @@ setFocusable(isFocusable: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowFocusable()](#setwindowfocusable9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowFocusable()](#setwindowfocusable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10094,7 +10405,7 @@ setKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): v
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowKeepScreenOn()](#setwindowkeepscreenon9)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowKeepScreenOn()](#setwindowkeepscreenon9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10130,7 +10441,7 @@ setKeepScreenOn(isKeepScreenOn: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowKeepScreenOn()](#setwindowkeepscreenon9-1)。
+> 从API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowKeepScreenOn()](#setwindowkeepscreenon9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10168,9 +10479,9 @@ setOutsideTouchable(touchable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从API version 7开始支持，从API version 9开始废弃。
 >
-> 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
+> 从API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10204,9 +10515,9 @@ setOutsideTouchable(touchable: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从API version 7开始支持，从API version 9开始废弃。
 >
-> 从 API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
+> 从API version 9开始，系统默认允许点击子窗口之外的区域，此接口不再支持使用，也不再提供替代接口。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10243,7 +10554,7 @@ setPrivacyMode(isPrivacyMode: boolean, callback: AsyncCallback&lt;void&gt;): voi
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowPrivacyMode()](#setwindowprivacymode9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowPrivacyMode()](#setwindowprivacymode9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10278,7 +10589,7 @@ setPrivacyMode(isPrivacyMode: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowPrivacyMode()](#setwindowprivacymode9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowPrivacyMode()](#setwindowprivacymode9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10316,7 +10627,7 @@ setTouchable(isTouchable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowTouchable()](#setwindowtouchable9)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowTouchable()](#setwindowtouchable9)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -10352,7 +10663,7 @@ setTouchable(isTouchable: boolean): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowTouchable()](#setwindowtouchable9-1)。
+> 从API version 7开始支持，从API version 9开始废弃，推荐使用[setWindowTouchable()](#setwindowtouchable9-1)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -11428,6 +11739,12 @@ on(eventType: 'windowStageClose', callback: Callback&lt;void&gt;): void
 
 开启点击主窗三键区的关闭按钮监听事件。点击主窗口的三键区域的关闭键时触发该回调函数，将不执行注册的[UIAbility.onPrepareToTerminate](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonpreparetoterminate10)生命周期回调函数。
 
+当重复注册窗口关闭事件的监听时，最后一次注册成功的监听事件生效。
+
+触发的回调函数是同步执行，主窗口的异步关闭事件监听参考[on('windowWillClose')](#onwindowwillclose15)方法。
+
+如果存在[on('windowWillClose')](#onwindowwillclose15)监听事件，只响应[on('windowWillClose')](#onwindowwillclose15)接口。
+
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
 **模型约束：** 此接口仅可在Stage模型下使用。
@@ -11903,7 +12220,7 @@ setSupportedWindowModes(supportedWindowModes: Array<bundleManager.SupportWindowM
 
 | 参数名    | 类型    | 必填 | 说明                                          |
 | --------- | ------- | ---- | --------------------------------------------- |
-| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | 是   | 设置主窗的窗口支持模式。<br>- FULL_SCREEN：支持全屏模式。<br>- FLOATING：支持悬浮窗模式。<br>- SPLIT：支持分屏模式。通常需要配合FULL_SCREEN或FLOATING一起使用，不建议只配置SPLIT。当仅配置SPLIT时，不会改变当前窗口所处的显示模式，支持进入分屏模式。<br> 注：数组中SupportWindowMode字段取值不应该与该UIAbility对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段取值或者[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)中[属性](../apis-ability-kit/js-apis-app-ability-startOptions.md#属性)的supportWindowModes字段取值冲突。当取值冲突时，最终以该参数设置的窗口支持模式为准。|
+| supportedWindowModes | Array&lt;[bundleManager.SupportWindowMode](../apis-ability-kit/js-apis-bundleManager.md#supportwindowmode)&gt; | 是   | 设置主窗的窗口支持模式。<br>- FULL_SCREEN：支持全屏模式。<br>- FLOATING：支持悬浮窗模式。<br>- SPLIT：支持分屏模式。需要配合FULL_SCREEN或FLOATING一起使用，不支持仅配置SPLIT。<br> 注：数组中SupportWindowMode字段取值不应该与该UIAbility对应的[module.json5配置文件](../../quick-start/module-configuration-file.md)中[abilities标签](../../quick-start/module-configuration-file.md#abilities标签)的supportWindowMode字段取值或者[StartOptions](../apis-ability-kit/js-apis-app-ability-startOptions.md)中[属性](../apis-ability-kit/js-apis-app-ability-startOptions.md#属性)的supportWindowModes字段取值冲突。当取值冲突时，最终以该参数设置的窗口支持模式为准。|
 
 **返回值：**
 

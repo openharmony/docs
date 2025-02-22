@@ -191,7 +191,7 @@ struct Index {
               console.log("main thread terminate");
             }
 
-            workerInstance.onerror = (err: ErrorEvent) => {
+            workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.log("main error message " + err.message);
             }
           })
@@ -448,6 +448,7 @@ registerGlobalCallObject(instanceName: string, globalCallObject: Object): void
 
 **示例：**
 ```ts
+//Index.ets
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
 class TestObj {
   private message : string = "this is a message from TestObj"
@@ -462,6 +463,31 @@ let registerObj = new TestObj();
 // 在ThreadWorker实例上注册registerObj
 workerInstance.registerGlobalCallObject("myObj", registerObj);
 workerInstance.postMessage("start worker")
+```
+
+```ts
+// worker.ets
+import { worker, MessageEvents } from '@kit.ArkTS';
+
+const workerPort = worker.workerPort;
+workerPort.onmessage = (e: MessageEvents): void => {
+  try {
+    // 调用方法无入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessage", 0) as string;
+    console.info("worker:", res) // worker: this is a message from TestObj
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+  try {
+    // 调用方法有入参
+    let res : string = workerPort.callGlobalCallObjectMethod("myObj", "getMessageWithInput", 0, "hello there!") as string;
+    console.info("worker:", res) //worker: this is a message from TestObj with input: hello there!
+  } catch (error) {
+    // 异常处理
+    console.error("worker: error code is " + error.code + " error message is " + error.message);
+  }
+}
 ```
 
 ### unregisterGlobalCallObject<sup>11+</sup>
@@ -606,7 +632,7 @@ workerInstance.onerror = (err: ErrorEvent) => {
 
 ### onAllErrors<sup>16+</sup>
 
-onAllErrors?: [ErrorCallback](#errorcallback16)
+onAllErrors?: ErrorCallback
 
 回调函数。表示Worker线程生命周期内发生异常被调用的事件处理程序，处理程序在宿主线程中执行。<br/>
 [onerror](#onerror9)仅捕获[onmessage](#onmessage9)回调中同步方法产生的异常，无法捕获多线程回调产生的异常和模块化相关异常，且onerror捕获异常后Worker线程进入销毁流程，不可以继续使用。<br/>
@@ -1295,6 +1321,24 @@ Worker线程调用注册在宿主线程上某个对象的指定方法，调用�
 | 10200021 | The global call exceeds the timeout. |
 
 **示例：**
+```ts
+//Index.ets
+const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ets");
+class TestObj {
+  private message : string = "this is a message from TestObj"
+  public getMessage() : string {
+    return this.message;
+  }
+  public getMessageWithInput(str : string) : string {
+    return this.message + " with input: " + str;
+  }
+}
+let registerObj = new TestObj();
+// 在ThreadWorker实例上注册registerObj
+workerInstance.registerGlobalCallObject("myObj", registerObj);
+workerInstance.postMessage("start worker")
+```
+
 ```ts
 // worker.ets
 import { worker, MessageEvents } from '@kit.ArkTS';
@@ -2493,7 +2537,7 @@ workerPort.onerror = (err: ErrorEvent) => {
   }
 ```
 ### Stage模型
-> 此处以API version 12的工程为例。
+> 此处以API version 16的工程为例。
 ```ts
 // Index.ets
 import { worker, MessageEvents, ErrorEvent } from '@kit.ArkTS';
@@ -2527,7 +2571,7 @@ struct Index {
               console.log("main thread terminate");
             }
 
-            workerInstance.onerror = (err: ErrorEvent) => {
+            workerInstance.onAllErrors = (err: ErrorEvent) => {
               console.log("main error message " + err.message);
             }
           })

@@ -95,8 +95,18 @@
 | int32_t [OH_ArkUI_PointerEvent_SetStopPropagation](#oh_arkui_pointerevent_setstoppropagation) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, bool stopPropagation) | 设置是否阻止事件冒泡。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetDeviceId](#oh_arkui_uiinputevent_getdeviceid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 获取当前按键的输入设备ID。  | 
 | int32_t [OH_ArkUI_UIInputEvent_GetPressedKeys](#oh_arkui_uiinputevent_getpressedkeys) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t \*pressedKeyCodes, int32_t \*length) | 获取所有按下的按键，当前只支持按键事件。  | 
+| double [OH_ArkUI_FocusAxisEvent_GetAxisValue](#oh_arkui_focusaxisevent_getaxisvalue) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t \*axis) | 获取焦点轴事件的轴值。  | 
+| int32_t [OH_ArkUI_FocusAxisEvent_SetStopPropagation](#oh_arkui_focusaxisevent_setstoppropagation) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, bool \*stopPropagation) | 设置是否阻止焦点轴事件冒泡。  | 
 | int32_t [OH_ArkUI_PointerEvent_GetInteractionHand](#oh_arkui_pointerevent_getinteractionhand) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_InteractionHand](_ark_u_i___event_module.md#interactionhand) \*hand) | 获取当前触摸事件是左手点击触发还是右手点击触发。  | 
 | int32_t [OH_ArkUI_PointerEvent_GetInteractionHandByIndex](#oh_arkui_pointerevent_getinteractionhandbyindex) (const [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, int32_t pointerIndex, [ArkUI_InteractionHand](_ark_u_i___event_module.md#interactionhand) \*hand) | 获取当前触摸事件是左手点击触发还是右手点击触发。  | 
+| int32_t [OH_ArkUI_PointerEvent_CreateClonedEvent](#oh_arkui_pointerevent_createclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent](#arkui_uiinputevent) \*clonedevent) | 基于原始事件指针创建克隆事件指针。  | 
+| int32_t [OH_ArkUI_PointerEvent_DestroyClonedEvent](#oh_arkui_pointerevent_destroyclonedevent) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 销毁克隆事件指针。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetClonedEventLocalPosition](#oh_arkui_pointerevent_setclonedeventlocalposition) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, float x, float y) | 设置指向性事件相对于当前组件左上角的X坐标和Y坐标。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex](#oh_arkui_pointerevent_setclonedeventlocalpositionbyindex) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, float x, float y, int32_t pointerIndex) | 设置指向性事件特有接触点相对于当前组件左上角的X坐标和Y坐标。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetClonedEventActionType](#oh_arkui_pointerevent_setclonedeventactiontype) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t actionType) | 设置当前带有指向性的克隆输入事件的事件类型。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId](#oh_arkui_pointerevent_setclonedeventchangedfingerid) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t fingerId) | 设置当前带有指向性的克隆输入事件的触摸点ID。  | 
+| int32_t [OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex](#oh_arkui_pointerevent_setclonedeventfingeridbyindex) (const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event, int32_t fingerId, int32_t pointerIndex) | 设置带有指向性的克隆输入事件特定接触点的触摸点ID。  | 
+| int32_t [OH_ArkUI_PointerEvent_PostClonedEvent](#oh_arkui_pointerevent_postclonedevent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) \*node, const [ArkUI_UIInputEvent](#arkui_uiinputevent) \*event) | 转发克隆事件到特定节点。  | 
 
 
 ## 类型定义说明
@@ -387,7 +397,7 @@ int32_t OH_ArkUI_AxisEvent_GetAxisAction(const ArkUI_UIInputEvent* event)
 
 获取当前轴事件的操作类型的值。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -943,7 +953,7 @@ int32_t OH_ArkUI_PointerEvent_GetChangedPointerId (const ArkUI_UIInputEvent * ev
 
 获取当前触摸事件触发的id。
 
-**起始版本：** 16
+**起始版本：** 15
 
 **参数:**
 
@@ -1454,7 +1464,7 @@ int32_t OH_ArkUI_UIInputEvent_GetType (const ArkUI_UIInputEvent * event)
 返回当前UI输入事件的类型，如果参数异常则返回0。
 
 
-### OH_ArkUI_FocusAxisEvent_SetStopPropagation()
+### OH_ArkUI_FocusAxisEvent_GetAxisValue()
 
 ```
 double OH_ArkUI_FocusAxisEvent_GetAxisValue (const ArkUI_UIInputEvent * event， int32_t axis)
@@ -1545,3 +1555,200 @@ int32_t OH_ArkUI_PointerEvent_GetInteractionHandByIndex (const ArkUI_UIInputEven
 **返回：**
 
 [ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_PointerEvent_CreateClonedEvent()
+
+```
+int32_t OH_ArkUI_PointerEvent_CreateClonedEvent(const ArkUI_UIInputEvent* event, ArkUI_UIInputEvent** clonedEvent)
+```
+**描述：**
+
+基于原始事件指针创建克隆事件指针。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| clonedEvent | ArkUI_UIInputEvent克隆事件指针。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_PointerEvent_DestroyClonedEvent()
+
+```
+int32_t OH_ArkUI_PointerEvent_DestroyClonedEvent(const ArkUI_UIInputEvent* event)
+```
+**描述：**
+
+销毁克隆事件指针。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+
+### OH_ArkUI_PointerEvent_SetClonedEventLocalPosition()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPosition(const ArkUI_UIInputEvent * event, float x, float y)
+```
+**描述：**
+
+设置指向性事件相对于当前组件左上角的X坐标和Y坐标。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| x | 当前带有指向性的输入事件相对于当前组件左上角的X坐标。  | 
+| y | 当前带有指向性的输入事件相对于当前组件左上角的Y坐标。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+
+### OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetClonedEventLocalPositionByIndex(const ArkUI_UIInputEvent * event, 
+float x, float y, int32_t pointerIndex)
+```
+**描述：**
+
+设置指向性事件特有接触点相对于当前组件左上角的X坐标和Y坐标。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| x | 当前带有指向性的输入事件相对于当前组件左上角的X坐标。  | 
+| y | 当前带有指向性的输入事件相对于当前组件左上角的Y坐标。  | 
+| pointerIndex | 表示多点触控数据列表中的序号。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+
+### OH_ArkUI_PointerEvent_SetClonedEventActionType()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetClonedEventActionType(const ArkUI_UIInputEvent * event, int32_t actionType)
+```
+**描述：**
+
+设置当前带有指向性的克隆输入事件的事件类型。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| actionType | 事件类型。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+
+### OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetClonedEventChangedFingerId(const ArkUI_UIInputEvent * event, int32_t fingerId)
+```
+**描述：**
+
+设置当前带有指向性的克隆输入事件的触摸点ID。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| fingerId | 触发当前事件指针的触摸点ID。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+
+### OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex()
+
+```
+int32_t OH_ArkUI_PointerEvent_SetClonedEventFingerIdByIndex(const ArkUI_UIInputEvent * event, 
+int32_t fingerId, int32_t pointerIndex)
+```
+**描述：**
+
+设置带有指向性的克隆输入事件特定接触点的触摸点ID。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+| fingerId | 触发当前事件指针的触摸点ID。  | 
+| pointerIndex | 表示多点触控数据列表中的序号。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+
+### OH_ArkUI_PointerEvent_PostClonedEvent()
+
+```
+int32_t OH_ArkUI_PointerEvent_PostClonedEvent(ArkUI_NodeHandle node, const ArkUI_UIInputEvent * event)
+```
+**描述：**
+
+转发克隆事件到特定节点。
+
+**起始版本：** 15
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| event | ArkUI_UIInputEvent事件指针。  | 
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。
+[ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+[ARKUI_ERROR_CODE_NON_CLONED_POINTER_EVENT](_ark_u_i___native_module.md) 输入的事件指针不是克隆事件。
+[ARKUI_ERROR_CODE_POST_CLONED_COMPONENT_STATUS_ABNORMAL](_ark_u_i___native_module.md) 组件状态异常。
+[ARKUI_ERROR_CODE_POST_CLONED_NO_COMPONENT_HIT_TO_RESPOND_TO_THE_EVENT](_ark_u_i___native_module.md) 未命中可响应事件的组件。

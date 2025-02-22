@@ -689,3 +689,5 @@ struct TestNewInterface {
   }
 }
 ```
+
+![arcSwiper](figures/arcSwiper.gif)

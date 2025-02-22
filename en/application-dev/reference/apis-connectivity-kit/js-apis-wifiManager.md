@@ -50,6 +50,41 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
+## wifiManager.enableWifi<sup>15+</sup>
+
+enableWifi(): void
+
+Enable Wi-Fi.
+
+**Required permissions** ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.          |
+| 801  | Capability not supported.|
+| 2501000 | Operation failed.          |
+| 2501003  | Operation failed because the service is being closed.|
+
+**Example**
+
+```ts
+  import { wifiManager } from '@kit.ConnectivityKit';
+  
+  try {
+    wifiManager.enableWifi();
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
+```
+
 ## wifiManager.scan<sup>9+</sup><sup>(deprecated)</sup>
 
 scan(): void
@@ -696,6 +731,49 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
+## wifiManager.removeDevice<sup>15+</sup>
+
+removeDevice(id: number): void
+
+Remove a Wi-Fi DeviceConfig with networkId.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | id | number | Yes| ID of the network configuration to remove.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
+
+**Example**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let id = 0;
+      wifiManager.removeDevice(id);
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+```
+
 ## wifiManager.removeCandidateConfig<sup>9+</sup>
 
 removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): void
@@ -835,7 +913,195 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 	
 ```
+## wifiManager.addDeviceConfig<sup>9+</sup>
 
+addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
+
+Add Wi-Fi connection configuration to the device. The configuration will be updated when the configuration is added.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+
+**Return value**
+
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the network configuration ID.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+	
+	try {
+		let config:wifiManager.WifiDeviceConfig = {
+			ssid : "****",
+			preSharedKey : "****",
+			securityType : 0
+		}
+		wifiManager.addDeviceConfig(config).then(result => {
+			console.info("result:" + JSON.stringify(result));
+		}).catch((err:number) => {
+			console.error("failed:" + JSON.stringify(err));
+		});
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.addDeviceConfig<sup>15+</sup>
+
+addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
+
+Add Wi-Fi connection configuration to the device. The configuration will be updated when the configuration is added.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed.|
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let config:wifiManager.WifiDeviceConfig = {
+        ssid : "****",
+        preSharedKey : "****",
+        securityType : 0
+      }
+      wifiManager.addDeviceConfig(config,(error,result) => {
+        console.info("result:" + JSON.stringify(result));
+      });
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+```
+
+## wifiManager.getDeviceConfigs<sup>15+</sup>
+
+getDeviceConfigs(): &nbsp;Array&lt;WifiDeviceConfig&gt;
+
+Obtain the list of all existed Wi-Fi configurations
+
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Return value**
+
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | network configuration obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.| 
+
+**Example**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let configs = wifiManager.getDeviceConfigs();
+      console.info("configs:" + JSON.stringify(configs));
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+
+```
+
+## wifiManager.connectToNetwork<sup>15+</sup>
+
+connectToNetwork(networkId: number): void
+
+Connect to Wi-Fi hotspot by networkId.
+
+**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION or ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | networkId | number | Yes| ID of the candidate network configuration.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | ---------------------------- |
+| 201 | Permission denied.                 |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+  
+    try {
+      let networkId = 0;
+      wifiManager.connectToNetwork(networkId);
+    }catch(error){
+      console.error("failed:" + JSON.stringify(error));
+    }
+	
+```
 
 ## wifiManager.getSignalLevel<sup>9+</sup>
 
@@ -1089,6 +1355,43 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	try {
 		let ret = wifiManager.isConnected();
 		console.info("isConnected:" + ret);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+
+## wifiManager.disconnect<sup>15+</sup>
+
+disconnect(): void
+
+Disconnect the WLAN.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and (ohos.permission.MANAGE_WIFI_CONNECTION or
+   ohos.permission.MANAGE_ENTERPRISE_WIFI_CONNECTION)
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled.|
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.disconnect();
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}

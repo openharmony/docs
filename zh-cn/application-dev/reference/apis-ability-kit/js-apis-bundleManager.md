@@ -339,7 +339,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -403,7 +403,7 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -487,7 +487,7 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -560,7 +560,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -623,7 +623,7 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -695,7 +695,7 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                             |
+| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -894,7 +894,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId: number, callback:
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **示例：**
 
@@ -973,7 +973,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, callback: AsyncCallback\<
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **示例：**
 
@@ -1035,7 +1035,7 @@ getBundleInfo(bundleName: string, bundleFlags: number, userId?: number): Promise
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **示例：**
 
@@ -1116,7 +1116,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number, userId: number): Bund
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
 | 17700004 | The specified user ID is not found.     |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **示例：**
 
@@ -1171,7 +1171,7 @@ getBundleInfoSync(bundleName: string, bundleFlags: number): BundleInfo
 | 201 | Permission denied. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700001 | The specified bundleName is not found. |
-| 17700026 | The specified bundle is disabled.      |
+| 17700026 | The specified bundle is disabled.     |
 
 **示例：**
 

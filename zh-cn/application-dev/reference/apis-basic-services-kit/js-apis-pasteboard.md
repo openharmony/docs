@@ -1838,8 +1838,8 @@ setData(data: PasteData, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
@@ -1884,8 +1884,8 @@ setData(data: PasteData): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
 **示例：**
@@ -1926,7 +1926,7 @@ getData( callback: AsyncCallback&lt;PasteData&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 
@@ -1969,7 +1969,7 @@ getData(): Promise&lt;PasteData&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 
 **示例：**
@@ -2619,7 +2619,7 @@ getUnifiedData(): Promise&lt;unifiedDataChannel.UnifiedData&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
-| 12900003 | Another copy or paste operation is in progress. |
+| 27787277 | Another copy or paste operation is in progress. |
 
 **示例：**
 
@@ -2712,8 +2712,8 @@ setUnifiedData(data: unifiedDataChannel.UnifiedData): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 401      | Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
-| 12900003 | Another copy or paste operation is in progress. |
-| 12900004 | Replication is prohibited. |
+| 27787277 | Another copy or paste operation is in progress. |
+| 27787278 | Replication is prohibited. |
 
 **示例：**
 

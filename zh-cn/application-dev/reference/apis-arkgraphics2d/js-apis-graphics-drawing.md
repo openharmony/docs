@@ -26,7 +26,7 @@ s : source 源的缩写。 d : destination 目标的缩写。 sa : source alpha 
 
 计算结果用如下缩写表示：
 
-r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
+r : 如果4个通道（透明度、红、绿、蓝）的计算方式相同，用r表示。 ra : 如果只操作透明度通道，用ra表示。 rc : 如果操作3个颜色通道，用rc表示。
 
 以黄色矩形为源图像，蓝色圆形为目标图像，各混合模式枚举生成的效果示意图请参考下表。
 
@@ -35,34 +35,34 @@ r : 如果4个通道的计算方式相同，用r表示。 ra : 如果只操作�
 | 名称        | 值   | 说明                                                         | 示意图   |
 | ----------- | ---- | ------------------------------------------------------------ | -------- |
 | CLEAR       | 0    | 清除模式，r = 0，设置为全透明。                                | ![CLEAR](./figures/zh-ch_image_BlendMode_Clear.png) |
-| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。），使用源像素替换目标像素 | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
-| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。），保持目标像素不变 | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
-| SRC_OVER    | 3    | r = s + (1 - sa) * d，在目标像素上方绘制源像素，考虑源像素的透明度 | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
-| DST_OVER    | 4    | r = d + (1 - da) * s，在源像素上方绘制目标像素，考虑目标像素的透明度 | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
-| SRC_IN      | 5    | r = s * da，仅保留源像素与目标不透明部分的交集 | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
-| DST_IN      | 6    | r = d * sa，仅保留目标像素与源不透明部分的交集 | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
-| SRC_OUT     | 7    | r = s * (1 - da)，保留源像素中不与目标重叠的部分 | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
-| DST_OUT     | 8    | r = d * (1 - sa)，保留目标像素中不与源重叠的部分 | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
-| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)，源像素覆盖在目标像素上，仅在目标不透明部分显示源像素 | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
-| DST_ATOP    | 10   | r = d * sa + s * (1 - da)，目标像素覆盖在源像素上，仅在源不透明部分显示目标像素 | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
-| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)，仅显示源像素和目标像素中不重叠的部分 | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
-| PLUS        | 12   | r = min(s + d, 1)，源和目标像素的颜色值相加                   | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
-| MODULATE    | 13   | r = s * d，源和目标像素的颜色值相乘                           | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
-| SCREEN      | 14   | 滤色模式，r = s + d - s * d，反转源和目标像素的颜色值，相乘后再反转，结果通常更亮 | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
-| OVERLAY     | 15   | 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度 | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
-| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较暗的颜色值 | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
-| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较亮的颜色值 | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
-| COLOR_DODGE | 18   | 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素           | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
-| COLOR_BURN  | 19   | 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素           | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
-| HARD_LIGHT  | 20   | 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式    | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
-| SOFT_LIGHT  | 21   | 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素             | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
-| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d，计算源和目标像素颜色值的差异 | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
-| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d，类似于DIFFERENCE，但对比度较低 | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
-| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d，源和目标像素的颜色值相乘，结果通常更暗 | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
-| HUE         | 25   | 色相模式，使用源像素的色相，目标像素的饱和度和亮度               | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
-| SATURATION  | 26   | 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度             | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
-| COLOR       | 27   | 颜色模式，使用源像素的色相和饱和度，目标像素的亮度               | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
-| LUMINOSITY  | 28   | 亮度模式，使用源像素的亮度，目标像素的色相和饱和度               | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
+| SRC         | 1    | r = s（result的4个通道，都等于source的4个通道，即结果等于源。），使用源像素替换目标像素。 | ![SRC](./figures/zh-ch_image_BlendMode_Src.png) |
+| DST         | 2    | r = d（result的4个通道，都等于destination的4个通道，即结果等于目标。），保持目标像素不变。 | ![DST](./figures/zh-ch_image_BlendMode_Dst.png) |
+| SRC_OVER    | 3    | r = s + (1 - sa) * d，在目标像素上方绘制源像素，考虑源像素的透明度。 | ![SRC_OVER](./figures/zh-ch_image_BlendMode_SrcOver.png) |
+| DST_OVER    | 4    | r = d + (1 - da) * s，在源像素上方绘制目标像素，考虑目标像素的透明度。 | ![DST_OVER](./figures/zh-ch_image_BlendMode_DstOver.png) |
+| SRC_IN      | 5    | r = s * da，仅保留源像素与目标不透明部分的交集。 | ![SRC_IN](./figures/zh-ch_image_BlendMode_SrcIn.png) |
+| DST_IN      | 6    | r = d * sa，仅保留目标像素与源不透明部分的交集。 | ![DST_IN](./figures/zh-ch_image_BlendMode_DstIn.png) |
+| SRC_OUT     | 7    | r = s * (1 - da)，保留源像素中不与目标重叠的部分。 | ![SRC_OUT](./figures/zh-ch_image_BlendMode_SrcOut.png) |
+| DST_OUT     | 8    | r = d * (1 - sa)，保留目标像素中不与源重叠的部分。 | ![DST_OUT](./figures/zh-ch_image_BlendMode_DstOut.png) |
+| SRC_ATOP    | 9    | r = s * da + d * (1 - sa)，源像素覆盖在目标像素上，仅在目标不透明部分显示源像素。 | ![SRC_ATOP](./figures/zh-ch_image_BlendMode_SrcATop.png) |
+| DST_ATOP    | 10   | r = d * sa + s * (1 - da)，目标像素覆盖在源像素上，仅在源不透明部分显示目标像素。 | ![DST_ATOP](./figures/zh-ch_image_BlendMode_DstATop.png) |
+| XOR         | 11   | r = s * (1 - da) + d * (1 - sa)，仅显示源像素和目标像素中不重叠的部分。 | ![XOR](./figures/zh-ch_image_BlendMode_Xor.png) |
+| PLUS        | 12   | r = min(s + d, 1)，源和目标像素的颜色值相加。                   | ![PLUS](./figures/zh-ch_image_BlendMode_Plus.png) |
+| MODULATE    | 13   | r = s * d，源和目标像素的颜色值相乘。                           | ![MODULATE](./figures/zh-ch_image_BlendMode_Modulate.png) |
+| SCREEN      | 14   | 滤色模式，r = s + d - s * d，反转源和目标像素的颜色值，相乘后再反转，结果通常更亮。 | ![SCREEN](./figures/zh-ch_image_BlendMode_Screen.png) |
+| OVERLAY     | 15   | 叠加模式，根据目标像素的亮度，选择性地应用MULTIPLY或SCREEN模式，增强对比度。 | ![OVERLAY](./figures/zh-ch_image_BlendMode_Overlay.png) |
+| DARKEN      | 16   | 变暗模式，rc = s + d - max(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较暗的颜色值。 | ![DARKEN](./figures/zh-ch_image_BlendMode_Darken.png) |
+| LIGHTEN     | 17   | 变亮模式，rc = s + d - min(s * da, d * sa), ra = s + (1 - sa) * d，取源和目标像素中较亮的颜色值。 | ![LIGHTEN](./figures/zh-ch_image_BlendMode_Lighten.png) |
+| COLOR_DODGE | 18   | 颜色减淡模式，通过减小对比度使目标像素变亮以反映源像素。           | ![COLOR_DODGE](./figures/zh-ch_image_BlendMode_ColorDodge.png) |
+| COLOR_BURN  | 19   | 颜色加深模式，通过增加对比度使目标像素变暗以反映源像素。           | ![COLOR_BURN](./figures/zh-ch_image_BlendMode_ColorBurn.png) |
+| HARD_LIGHT  | 20   | 强光模式，根据源像素的亮度，选择性地应用MULTIPLY或SCREEN模式。    | ![HARD_LIGHT](./figures/zh-ch_image_BlendMode_HardLight.png) |
+| SOFT_LIGHT  | 21   | 柔光模式，根据源像素的亮度，柔和地变亮或变暗目标像素。             | ![SOFT_LIGHT](./figures/zh-ch_image_BlendMode_SoftLight.png) |
+| DIFFERENCE  | 22   | 差值模式，rc = s + d - 2 * (min(s * da, d * sa)), ra = s + (1 - sa) * d，计算源和目标像素颜色值的差异。 | ![DIFFERENCE](./figures/zh-ch_image_BlendMode_Difference.png) |
+| EXCLUSION   | 23   | 排除模式，rc = s + d - two(s * d), ra = s + (1 - sa) * d，类似于DIFFERENCE，但对比度较低。 | ![EXCLUSION](./figures/zh-ch_image_BlendMode_Exclusion.png) |
+| MULTIPLY    | 24   | 正片叠底，r = s * (1 - da) + d * (1 - sa) + s * d，源和目标像素的颜色值相乘，结果通常更暗。 | ![MULTIPLY](./figures/zh-ch_image_BlendMode_Multiply.png) |
+| HUE         | 25   | 色相模式，使用源像素的色相，目标像素的饱和度和亮度。               | ![HUE](./figures/zh-ch_image_BlendMode_Hue.png) |
+| SATURATION  | 26   | 饱和度模式，使用源像素的饱和度，目标像素的色相和亮度。             | ![SATURATION](./figures/zh-ch_image_BlendMode_Saturation.png) |
+| COLOR       | 27   | 颜色模式，使用源像素的色相和饱和度，目标像素的亮度。               | ![COLOR](./figures/zh-ch_image_BlendMode_Color.png) |
+| LUMINOSITY  | 28   | 亮度模式，使用源像素的亮度，目标像素的色相和饱和度。               | ![LUMINOSITY](./figures/zh-ch_image_BlendMode_Luminosity.png) |
 
 ## PathMeasureMatrixFlags<sup>12+</sup>
 
@@ -375,8 +375,8 @@ arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg
 | y1       | number | 是   | 矩形左上角的y坐标，该参数为浮点数。 |
 | x2       | number | 是   | 矩形右下角的x坐标，该参数为浮点数。 |
 | y2       | number | 是   | 矩形右下角的y坐标，该参数为浮点数。 |
-| startDeg | number | 是   | 起始角度，单位为度，该参数为浮点数。 |
-| sweepDeg | number | 是   | 扫描度数，单位为度，该参数为浮点数。 |
+| startDeg | number | 是   | 起始的角度。角度的起始方向（0°）为x轴正方向。 |
+| sweepDeg | number | 是   | 扫描的度数，为正数时顺时针扫描，为负数时逆时针扫描。实际扫描的度数为该入参对360取模的结果。 |
 
 **错误码：**
 
@@ -1218,7 +1218,7 @@ getPositionAndTangent(forceClosed: boolean, distance: number, position: common2D
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | forceClosed | boolean | 是   | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。                 |
 | distance | number | 是   | 表示与路径起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。该参数为浮点数。               |
-| position | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的的坐标。                  |
+| position | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的坐标。                  |
 | tangent | [common2D.Point](js-apis-graphics-common2D.md#point) | 是   | 存储获取到的距离路径起始点distance处的点的的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。                 |
 
 **返回值：**
@@ -1449,7 +1449,7 @@ drawRect(rect: common2D.Rect): void
 
 | 参数名 | 类型                                               | 必填 | 说明           |
 | ------ | -------------------------------------------------- | ---- | -------------- |
-| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域 |
+| rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect) | 是   | 绘制的矩形区域。 |
 
 **错误码：**
 
@@ -1650,7 +1650,7 @@ drawShadow(path: Path, planeParams: common2D.Point3d, devLightPos: common2D.Poin
 | 参数名          | 类型                                       | 必填   | 说明         |
 | ------------ | ---------------------------------------- | ---- | ---------- |
 | path | [Path](#path)                | 是    | 路径对象，可生成阴影。 |
-| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算z轴方向的偏移量。 |
+| planeParams  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 表示一个三维向量，用于计算遮挡物相对于画布在z轴上的偏移量，其值取决于x与y坐标。 |
 | devLightPos  | [common2D.Point3d](js-apis-graphics-common2D.md#point3d12) | 是    | 光线相对于画布的位置。 |
 | lightRadius   | number           | 是    | 圆形灯半径，该参数为浮点数。      |
 | ambientColor  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是    | 环境阴影颜色。 |
@@ -1860,7 +1860,7 @@ drawImage(pixelmap: image.PixelMap, left: number, top: number, samplingOptions?:
 
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap                  |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 图片的PixelMap。                  |
 | left     | number                                       | 是   | 图片位置的左上角x轴坐标，该参数为浮点数。 |
 | top      | number                                       | 是   | 图片位置的左上角y轴坐标，该参数为浮点数。 |
 | samplingOptions<sup>12+</sup>  | [SamplingOptions](#samplingoptions12)  | 否  | 采样选项对象，默认为不使用任何参数构造的原始采样选项对象。 |
@@ -1994,7 +1994,7 @@ drawColor(color: common2D.Color, blendMode?: BlendMode): void
 | 参数名    | 类型                                                 | 必填 | 说明                             |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | color     | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | ARGB格式的颜色，每个颜色通道是0到255之间的整数。                   |
-| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER |
+| blendMode | [BlendMode](#blendmode)                              | 否   | 颜色混合模式，默认模式为SRC_OVER。 |
 
 **错误码：**
 
@@ -3029,8 +3029,8 @@ skew(sx: number, sy: number) : void
 
 | 参数名  | 类型     | 必填   | 说明         |
 | ---- | ------ | ---- | ----------------- |
-| sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。    |
-| sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。    |
+| sx   | number | 是   | x轴上的倾斜量，该参数为浮点数。正值会使绘制沿y轴增量方向向右倾斜；负值会使绘制沿y轴增量方向向左倾斜。    |
+| sy   | number | 是   | y轴上的倾斜量，该参数为浮点数。正值会使绘制沿x轴增量方向向下倾斜；负值会使绘制沿x轴增量方向向上倾斜。    |
 
 **错误码：**
 
@@ -3876,28 +3876,28 @@ let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilt
 
 ## FontEdging<sup>12+</sup>
 
-字形边缘效果类型枚举。
+字型边缘效果类型枚举。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
 | 名称                  | 值    | 说明      |
 | ------------------- | ---- | ------- |
 | ALIAS | 0    | 无抗锯齿处理。 |
-| ANTI_ALIAS  | 1    | 使用抗锯齿来平滑字形边缘。 |
-| SUBPIXEL_ANTI_ALIAS  | 2    | 使用次像素级别的抗锯齿来平滑字形边缘，可以获得更加平滑的字形渲染效果。 |
+| ANTI_ALIAS  | 1    | 使用抗锯齿来平滑字型边缘。 |
+| SUBPIXEL_ANTI_ALIAS  | 2    | 使用次像素级别的抗锯齿来平滑字型边缘，可以获得更加平滑的字型渲染效果。 |
 
 ## FontHinting<sup>12+</sup>
 
-字形轮廓效果类型枚举。
+字型轮廓效果类型枚举。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
 | 名称                  | 值    | 说明      |
 | ------------------- | ---- | ------- |
-| NONE    | 0    | 不修改字形轮廓。 |
-| SLIGHT  | 1    | 最小限度修改字形轮廓以改善对比度。 |
-| NORMAL  | 2    | 修改字形轮廓以提高对比度。 |
-| FULL    | 3    | 修改字形轮廓以获得最大对比度。 |
+| NONE    | 0    | 不修改字型轮廓。 |
+| SLIGHT  | 1    | 最小限度修改字型轮廓以改善对比度。 |
+| NORMAL  | 2    | 修改字型轮廓以提高对比度。 |
+| FULL    | 3    | 修改字型轮廓以获得最大对比度。 |
 
 ## TextBlob
 
@@ -4460,7 +4460,7 @@ font.enableEmbolden(true);
 
 enableLinearMetrics(isLinearMetrics: boolean): void
 
-使能字形的线性缩放。
+使能字型的线性缩放。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4468,7 +4468,7 @@ enableLinearMetrics(isLinearMetrics: boolean): void
 
 | 参数名          | 类型    | 必填 | 说明                                                        |
 | --------------- | ------- | ---- | ----------------------------------------------------------- |
-| isLinearMetrics | boolean | 是   | 表示是否使能字形的线性缩放。true表示使能，false表示不使能。 |
+| isLinearMetrics | boolean | 是   | 表示是否使能字型的线性缩放。true表示使能，false表示不使能。 |
 
 **错误码：**
 
@@ -4702,7 +4702,7 @@ class DrawingRenderNode extends RenderNode {
 
 setScaleX(scaleX: number): void
 
-用于设置字形对象在x轴上的缩放比例。
+用于设置字型对象在x轴上的缩放比例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4745,7 +4745,7 @@ class DrawingRenderNode extends RenderNode {
 
 setSkewX(skewX: number): void
 
-用于设置字形对象在x轴上的倾斜比例。
+用于设置字型对象在x轴上的倾斜比例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4788,7 +4788,7 @@ class DrawingRenderNode extends RenderNode {
 
 setEdging(edging: FontEdging): void
 
-设置字形边缘效果。
+设置字型边缘效果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4796,7 +4796,7 @@ setEdging(edging: FontEdging): void
 
 | 参数名   | 类型                          | 必填 | 说明       |
 | -------- | ----------------------------- | ---- | ---------- |
-| edging | [FontEdging](#fontedging12) | 是   | 字形边缘效果。 |
+| edging | [FontEdging](#fontedging12) | 是   | 字型边缘效果。 |
 
 **错误码：**
 
@@ -4819,7 +4819,7 @@ font.setEdging(drawing.FontEdging.SUBPIXEL_ANTI_ALIAS);
 
 setHinting(hinting: FontHinting): void
 
-设置字形轮廓效果。
+设置字型轮廓效果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4827,7 +4827,7 @@ setHinting(hinting: FontHinting): void
 
 | 参数名   | 类型                          | 必填 | 说明       |
 | -------- | ----------------------------- | ---- | ---------- |
-| hinting | [FontHinting](#fonthinting12) | 是   | 字形轮廓效果。 |
+| hinting | [FontHinting](#fonthinting12) | 是   | 字型轮廓效果。 |
 
 **错误码：**
 
@@ -4888,7 +4888,7 @@ console.info("count text number: " + resultNumber);
 
 setBaselineSnap(isBaselineSnap: boolean): void
 
-当前画布矩阵轴对齐时，设置字形基线是否与像素对齐。
+当前画布矩阵轴对齐时，设置字型基线是否与像素对齐。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4896,7 +4896,7 @@ setBaselineSnap(isBaselineSnap: boolean): void
 
 | 参数名          | 类型    | 必填 | 说明                                       |
 | --------------- | ------- | ---- | ---------------------------------------- |
-| isBaselineSnap | boolean | 是   | 指示字形基线是否和像素对齐，true表示对齐，false表示不对齐。 |
+| isBaselineSnap | boolean | 是   | 指示字型基线是否和像素对齐，true表示对齐，false表示不对齐。 |
 
 **错误码：**
 
@@ -4920,7 +4920,7 @@ console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
 
 isBaselineSnap(): boolean
 
-当前画布矩阵轴对齐时，获取字形基线是否与像素对齐的结果。
+当前画布矩阵轴对齐时，获取字型基线是否与像素对齐的结果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4928,7 +4928,7 @@ isBaselineSnap(): boolean
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| boolean | 返回字形基线是否与像素对齐，true为对齐，false为没有对齐。 |
+| boolean | 返回字型基线是否与像素对齐，true为对齐，false为没有对齐。 |
 
 **示例：**
 
@@ -4945,7 +4945,7 @@ console.info("drawing font isBaselineSnap: " + font.isBaselineSnap());
 
 setEmbeddedBitmaps(isEmbeddedBitmaps: boolean): void
 
-设置字形是否转换成位图处理。
+设置字型是否转换成位图处理。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4953,7 +4953,7 @@ setEmbeddedBitmaps(isEmbeddedBitmaps: boolean): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| isEmbeddedBitmaps | boolean | 是   | 设置字形是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 |
+| isEmbeddedBitmaps | boolean | 是   | 设置字型是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 |
 
 **错误码：**
 
@@ -4978,7 +4978,7 @@ console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
 
 isEmbeddedBitmaps(): boolean
 
-获取字形是否转换成位图处理的结果。
+获取字型是否转换成位图处理的结果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -4986,7 +4986,7 @@ isEmbeddedBitmaps(): boolean
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| boolean | 返回字形是否转换成位图处理结果，true表示转换成位图处理，false表示不转换成位图处理。 |
+| boolean | 返回字型是否转换成位图处理结果，true表示转换成位图处理，false表示不转换成位图处理。 |
 
 **示例：**
 
@@ -5003,7 +5003,7 @@ console.info("draw isEmbeddedBitmaps: " + font.isEmbeddedBitmaps());
 
 setForceAutoHinting(isForceAutoHinting: boolean): void
 
-设置是否自动调整字形轮廓。
+设置是否自动调整字型轮廓。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -5011,7 +5011,7 @@ setForceAutoHinting(isForceAutoHinting: boolean): void
 
 | 参数名   | 类型   | 必填 | 说明             |
 | -------- | ------ | ---- | ---------------- |
-| isForceAutoHinting | boolean | 是   | 是否自动调整字形轮廓，true为自动调整，false为不自动调整。 |
+| isForceAutoHinting | boolean | 是   | 是否自动调整字型轮廓，true为自动调整，false为不自动调整。 |
 
 **错误码：**
 
@@ -5036,7 +5036,7 @@ console.info("drawing isForceAutoHinting:  " + font.isForceAutoHinting());
 
 isForceAutoHinting(): boolean
 
-获取字形轮廓是否自动调整的结果。
+获取字型轮廓是否自动调整的结果。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -5044,7 +5044,7 @@ isForceAutoHinting(): boolean
 
 | 类型   | 说明             |
 | ------ | ---------------- |
-| boolean | 返回字形轮廓是否自动调整，true为自动调整，false为不自动调整。 |
+| boolean | 返回字型轮廓是否自动调整，true为自动调整，false为不自动调整。 |
 
 **示例：**
 
@@ -5419,7 +5419,7 @@ createBlendModeColorFilter(color: common2D.Color, mode: BlendMode) : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **错误码：**
 
@@ -5492,7 +5492,7 @@ createComposeColorFilter(outer: ColorFilter, inner: ColorFilter) : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **错误码：**
 
@@ -5524,7 +5524,7 @@ createLinearToSRGBGamma() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **示例：**
 
@@ -5545,7 +5545,7 @@ createSRGBGammaToLinear() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **示例：**
 
@@ -5558,7 +5558,7 @@ let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 
 createLumaColorFilter() : ColorFilter
 
-创建一个将亮度与透明度相乘的颜色滤波器。
+创建一个颜色滤波器将其输入的亮度值乘以透明度通道，并将红色、绿色和蓝色通道设置为零。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -5566,7 +5566,7 @@ createLumaColorFilter() : ColorFilter
 
 | 类型                        | 说明               |
 | --------------------------- | ------------------ |
-| [ColorFilter](#colorfilter) | 返回一个颜色滤波器 |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
 
 **示例：**
 
@@ -6969,7 +6969,7 @@ setJoinStyle(style: JoinStyle): void
 
 | 参数名 | 类型                     | 必填 | 说明             |
 | ------ | ----------------------- | ---- | --------------- |
-| style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式     |
+| style  | [JoinStyle](#joinstyle12) | 是   | 折线转角样式。     |
 
 **错误码：**
 
@@ -7599,7 +7599,7 @@ setShadowLayer(shadowLayer: ShadowLayer): void
 
 | 参数名  | 类型                       | 必填 | 说明      |
 | ------- | ------------------------- | ---- | --------- |
-| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果 |
+| shadowLayer  | [ShadowLayer](#shadowlayer12) | 是   | 阴影层对象。为null时表示清空阴影层效果。 |
 
 **错误码：**
 
@@ -8503,7 +8503,7 @@ if (matrix.setRectToRect(src, dst, scaleToFit)) {
 
 setPolyToPoly(src: Array\<common2D.Point>, dst: Array\<common2D.Point>, count: number): boolean
 
-将当前矩阵设置为能使源点数组映射到目标点数组的变换矩阵。
+将当前矩阵设置为能使源点数组映射到目标点数组的变换矩阵。源点以及目标点的个数要大于等于0，小于等于4。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -8590,8 +8590,8 @@ setCorner(pos: CornerPos, x: number, y: number): void
 | 参数名   | 类型                                         | 必填 | 说明                            |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
 | pos | [CornerPos](#cornerpos12) | 是   | 圆角位置。                 |
-| x     | number                 | 是   | x轴方向的圆角半径，该参数为浮点数。 |
-| y     | number      | 是   | y轴方向的圆角半径，该参数为浮点数。 |
+| x     | number                 | 是   | x轴方向的圆角半径，该参数为浮点数，小于等于0时无效。 |
+| y     | number      | 是   | y轴方向的圆角半径，该参数为浮点数，小于等于0时无效。 |
 
 **错误码：**
 

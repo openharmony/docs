@@ -24,7 +24,7 @@
 | labelId                    | string                                                       | 是   | 否   | 应用程序的标签的资源id值。                                   |
 | icon                       | string                                                       | 是   | 否   | 应用程序的图标。                                             |
 | iconId                     | string                                                       | 是   | 否   | 应用程序图标的资源id值。                                     |
-| process                    | string                                                       | 是   | 否   | 应用程序的进程，如果不设置，默认为包的名称。                 |
+| process                    | string                                                       | 是   | 否   | 应用程序的进程。如果不设置，默认为包的名称。                 |
 | supportedModes             | number                                                       | 是   | 否   | 标识应用支持的运行模式，当前只定义了驾驶模式（drive）。该标签只适用于车机。 |
 | moduleSourceDirs           | Array\<string>                                               | 是   | 否   | 应用程序的资源存放的相对路径。不能拼接路径访问资源文件，请使用[资源管理接口](../apis-localization-kit/js-apis-resource-manager.md)访问资源。                               |
 | permissions                | Array\<string>                                               | 是   | 否   | 访问应用程序所需的权限。<br />通过调用[bundle.getApplicationInfo](js-apis-Bundle.md#bundlegetapplicationinfodeprecated)接口时，传入GET_APPLICATION_INFO_WITH_PERMISSION获取。 |

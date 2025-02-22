@@ -64,7 +64,7 @@ getAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Photo
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来查询指定uri对应的图片或视频资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+ 通过picker的方式调用该接口来查询指定uri对应的图片或视频资源，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 
 **参数：**
 
@@ -121,7 +121,7 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来查询指定uri对应的图片或视频资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+ 通过picker的方式调用该接口来查询指定uri对应的图片或视频资源，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 
 **参数：**
 
@@ -837,7 +837,7 @@ applyChanges(mediaChangeRequest: MediaChangeRequest): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
 
-在提交创建资产的变更请求时，对于未申请'ohos.permission.WRITE_IMAGEVIDEO'权限的应用，可以用安全控件的方式调用该接口来创建媒体资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
+在提交创建资产的变更请求时，用安全控件的方式调用该接口来创建媒体资源，不需要申请'ohos.permission.WRITE_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -978,7 +978,7 @@ showAssetsCreationDialog(srcFileUris: Array&lt;string&gt;, photoCreationConfigs:
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 |  Internal system error |
+| 14000011 |  Internal system error. |
 
 **示例：**
 
@@ -3831,8 +3831,6 @@ setOrientation(orientation: number): void
 
 修改图片的旋转角度。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **参数：**
@@ -3848,6 +3846,7 @@ setOrientation(orientation: number): void
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
+| 14000011 |  Internal system error.         |
 
 **示例：**
 
@@ -4132,7 +4131,7 @@ static requestImage(context: Context, asset: PhotoAsset, requestOptions: Request
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 通过picker的方式调用该接口来请求图片资源，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 - 对于本应用保存到媒体库的图片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4207,7 +4206,7 @@ static requestImageData(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源数据，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 通过picker的方式调用该接口来请求图片资源数据，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 - 对于本应用保存到媒体库的图片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4280,7 +4279,7 @@ static requestMovingPhoto(context: Context, asset: PhotoAsset, requestOptions: R
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 通过picker的方式调用该接口来请求动态照片对象，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 - 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4357,7 +4356,7 @@ static requestVideoFile(context: Context, asset: PhotoAsset, requestOptions: Req
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求视频资源数据到应用沙箱，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 通过picker的方式调用该接口来请求视频资源数据到应用沙箱，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 - 对于本应用保存到媒体库的视频资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4526,7 +4525,7 @@ static quickRequestImage(context: Context, asset: PhotoAsset, requestOptions: Re
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求图片资源，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
+- 通过picker的方式调用该接口来请求图片资源，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-photoviewpicker.md#指定uri获取图片或视频资源)。
 
 **参数：**
 
@@ -4774,7 +4773,7 @@ requestContent(imageFileUri: string, videoFileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象并读取内容，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 通过picker的方式调用该接口来请求动态照片对象并读取内容，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
 - 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4858,7 +4857,7 @@ requestContent(resourceType: ResourceType, fileUri: string): Promise\<void>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象并读取内容，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 通过picker的方式调用该接口来请求动态照片对象并读取内容，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
 - 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -4941,7 +4940,7 @@ requestContent(resourceType: ResourceType): Promise\<ArrayBuffer>
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
-- 对于未申请'ohos.permission.READ_IMAGEVIDEO'权限的应用，可以通过picker的方式调用该接口来请求动态照片对象并读取内容，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
+- 通过picker的方式调用该接口来请求动态照片对象并读取内容，不需要申请'ohos.permission.READ_IMAGEVIDEO'权限，详情请参考[开发指南](../../media/medialibrary/photoAccessHelper-movingphoto.md)。
 - 对于本应用保存到媒体库的动态照片资源，应用无需额外申请'ohos.permission.READ_IMAGEVIDEO'权限即可访问。
 
 **参数：**
@@ -5451,9 +5450,9 @@ async function example() {
 
 | 名称  |  值 |  说明 |
 | ----- | ---- | ---- |
-| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。  |
-| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。    |
-| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。  |
+| TEXT_DONE<sup>14+</sup> |  0 |  显示“完成”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_SEND<sup>14+</sup>    |  1 |  显示“发送”。 <br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| TEXT_ADD<sup>14+</sup> |  2 |  显示“添加”。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。  |
 
 ## MediaAssetProgressHandler<sup>15+</sup>
 

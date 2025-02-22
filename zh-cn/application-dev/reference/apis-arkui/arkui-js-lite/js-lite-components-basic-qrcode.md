@@ -37,8 +37,8 @@
 
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
-| color | &lt;color&gt; | \#000000 | 否 | 二维码颜色 |
-| background-color | &lt;color&gt; | \#ffffff | 否 | 二维码背景颜色 |
+| color | &lt;color&gt; | \#000000 | 否 | 二维码颜色。 |
+| background-color | &lt;color&gt; | \#ffffff | 否 | 二维码背景颜色。 |
 | width | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的宽度。<br/><br/>未设置时组件宽度默认为0。 |
 | height | &lt;length&gt;&nbsp;\|&nbsp;&lt;percentage&gt;<sup>5+</sup> | - | 否 | 设置组件自身的高度。<br/><br/>未设置时组件高度默认为0。 |
 | padding | &lt;length&gt; | 0 | 否 | 使用简写属性设置所有的内边距属性。<br/>&nbsp;&nbsp;该属性可以有1到4个值：<br/>-&nbsp;指定一个值时，该值指定四个边的内边距。<br/>-&nbsp;指定两个值时，第一个值指定上下两边的内边距，第二个指定左右两边的内边距。<br/>-&nbsp;指定三个值时，第一个指定上边的内边距，第二个指定左右两边的内边距，第三个指定下边的内边距。<br/>-&nbsp;指定四个值时分别为上、右、下、左边的内边距（顺时针顺序）。 |

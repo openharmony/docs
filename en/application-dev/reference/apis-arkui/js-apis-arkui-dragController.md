@@ -436,41 +436,58 @@ Starts the drag service. This API uses a promise to return the result.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
   build() {
     Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-          let text = new unifiedDataChannel.Text()
-          let unifiedData = new unifiedDataChannel.UnifiedData(text)
-          let dragInfo: dragController.DragInfo = {
-            pointerId: 0,
-            data: unifiedData,
-            extraParams: ''
-          }
-          try {
-            let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
-            if(!dragAction){
-              console.info("listener dragAction is null");
-              return
+      Button('Touch to Drag').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new unifiedDataChannel.PlainText()
+            text.textContent = 'drag text'
+            let unifiedData = new unifiedDataChannel.UnifiedData(text)
+            let dragInfo: dragController.DragInfo = {
+              pointerId: 0,
+              data: unifiedData,
+              extraParams: ''
             }
-            dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
-              console.info("start drag Error:" + err.message);
-            })
-          } catch (err) {
-            console.info("create dragAction Error:" + err.message);
+            try{
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // You are advised to use this.getUIContext().getDragController().createDragAction().
+              if(!this.dragAction){
+                console.info("listener dragAction is null");
+                return;
+              }
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.info("start drag Error:" + err.message);
+              })
+            } catch(err) {
+              console.info("create dragAction Error:" + err.message);
+            }
           }
-        })
+        }
+      }).margin({top:20})
     }
   }
 }
-
 ```
 
 ### on('statusChange')<sup>11+</sup>
@@ -496,40 +513,60 @@ Subscribes to drag state changes.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI";
+import { dragController, componentSnapshot } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
   build() {
     Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if (event && event.type == TouchType.Down) {
-            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-            customBuilders.push(()=>{});
-            let text = new unifiedDataChannel.Text()
+      Button('Touch to Drag').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new unifiedDataChannel.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
             }
+            let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
+              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+            }
             try{
-              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
-              if(!dragAction){
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // You are advised to use this.getUIContext().getDragController().createDragAction().
+              if(!this.dragAction){
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              dragAction.on('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-                console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+              // Subscribe to drag state changes. The information in func will be logged once a change is detected.
+              this.dragAction.on('statusChange', func);
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.info("start drag Error:" + err.message);
               })
-            }catch(err) {
+            } catch(err) {
               console.info("create dragAction Error:" + err.message);
             }
           }
-        })
+        }
+      }).margin({top:20})
     }
   }
 }
@@ -558,40 +595,61 @@ Unsubscribes from drag state changes.
 > You are advised to use the [getDragController](js-apis-arkui-UIContext.md#getdragcontroller11) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the **DragController** object associated with the current UI context.
 
 ```ts
-import { dragController } from "@kit.ArkUI"
+import { dragController, componentSnapshot } from "@kit.ArkUI";
 import { unifiedDataChannel } from '@kit.ArkData';
 
 @Entry
 @Component
 struct DragControllerPage {
+  private dragAction: dragController.DragAction | null = null;
+  customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
+  @Builder DraggingBuilder() {
+    Column() {
+      Text("DraggingBuilder")
+        .fontColor(Color.White)
+        .fontSize(12)
+    }
+    .width(100)
+    .height(100)
+    .backgroundColor(Color.Blue)
+  }
+
   build() {
     Column() {
-      Button('touch to execute drag')
-        .onTouch((event?:TouchEvent) => {
-          if (event && event.type == TouchType.Down) {
-            let customBuilders:Array<CustomBuilder | DragItemInfo> = new Array<CustomBuilder | DragItemInfo>();
-            customBuilders.push(()=>{});
-            let text = new unifiedDataChannel.Text()
+      Button('touch to execute drag').onTouch((event?:TouchEvent) => {
+        if(event){
+          if (event.type == TouchType.Down) {
+            this.customBuilders.splice(0, this.customBuilders.length);
+            this.customBuilders.push(()=>{this.DraggingBuilder()});
+            let text = new unifiedDataChannel.PlainText()
+            text.textContent = 'drag text'
             let unifiedData = new unifiedDataChannel.UnifiedData(text)
             let dragInfo: dragController.DragInfo = {
               pointerId: 0,
               data: unifiedData,
               extraParams: ''
             }
+            let func = (dragAndDropInfo: dragController.DragAndDropInfo) => {
+              console.info("Register to listen on drag status", JSON.stringify(dragAndDropInfo));
+            }
             try{
-              let dragAction: dragController.DragAction | null = dragController.createDragAction(customBuilders, dragInfo); // You are advised to use this.getUIContext().getDragController().createDragAction().
-              if(!dragAction){
+              this.dragAction = dragController.createDragAction(this.customBuilders, dragInfo) // You are advised to use this.getUIContext().getDragController().createDragAction().
+              if(!this.dragAction){
                 console.info("listener dragAction is null");
-                return
+                return;
               }
-              dragAction.off('statusChange', (dragAndDropInfo: dragController.DragAndDropInfo)=>{
-                console.info("Cancel listening on drag status", JSON.stringify(dragAndDropInfo));
+              this.dragAction.on('statusChange', func);
+              // Unsubscribe from drag state changes. The information in func will not be logged after a drag operation starts.
+              this.dragAction.off('statusChange', func);
+              this.dragAction.startDrag().then(()=>{}).catch((err:Error)=>{
+                console.info("start drag Error:" + err.message);
               })
-            }catch(err) {
+            } catch(err) {
               console.info("create dragAction Error:" + err.message);
             }
           }
-        })
+        }
+      }).margin({top:20})
     }
   }
 }
@@ -654,7 +712,7 @@ Represents the callback used to return the result after a drag ends.
 
 getDragPreview(): DragPreview
 
-Obtains the **DragPreview** object, which represents the preview displayed during a drag.
+Obtains the **DragPreview** object, which represents the preview displayed during a drag operation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -861,3 +919,16 @@ struct DragControllerPage {
 }
   ```
   ![en-us_executeDrag5](figures/executeDrag5.gif)
+
+## DragStartRequestStatus<sup>16+</sup>
+
+Enumerates the states defining whether an application can initiate a drag operation.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name    | Value| Description                                                        |
+| -------- | -- | ------------------------------------------------------------ |
+| WAITING   | 0 | The application is preparing data and cannot initiate a drag operation yet.|
+| READY | 1 | The application has completed data preparation and is ready to initiate a drag operation.|

@@ -31,6 +31,8 @@ NavDestination组件状态。
 | ON_WILL_HIDE<sup>12+</sup> | 5   | NavDestination组件隐藏之前。 |
 | ON_WILL_APPEAR<sup>12+</sup>| 6   | NavDestination挂载到组件树之前。|
 | ON_WILL_DISAPPEAR<sup>12+</sup>| 7   | NavDestination从组件树上卸载之前。|
+| ON_ACTIVE<sup>16+</sup> | 8 | NavDestination组件处于激活态。|
+| ON_INACTIVE<sup>16+</sup> | 9 | NavDestination组件处于非激活态。|
 | ON_BACKPRESS<sup>12+</sup> | 100   | NavDestination组件返回。 |
 
 ## ScrollEventType<sup>12+</sup>

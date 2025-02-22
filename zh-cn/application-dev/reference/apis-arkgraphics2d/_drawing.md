@@ -112,8 +112,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | typedef enum [OH_Drawing_PointMode](#oh_drawing_pointmode)  [OH_Drawing_PointMode](#oh_drawing_pointmode) | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
 | typedef enum [OH_Drawing_VertexMode](#oh_drawing_vertexmode)  [OH_Drawing_VertexMode](#oh_drawing_vertexmode) | 用于指定如何解释给定顶点的几何形状的枚举类型。 | 
 | typedef enum [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop)  [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop) | 画布裁剪方式的枚举集合。 | 
-| typedef enum [OH_Drawing_FontEdging](#oh_drawing_fontedging)  [OH_Drawing_FontEdging](#oh_drawing_fontedging) | 字形边缘效果类型枚举。 | 
-| typedef enum [OH_Drawing_FontHinting](#oh_drawing_fonthinting)  [OH_Drawing_FontHinting](#oh_drawing_fonthinting) | 字形轮廓效果类型枚举。 | 
+| typedef enum [OH_Drawing_FontEdging](#oh_drawing_fontedging)  [OH_Drawing_FontEdging](#oh_drawing_fontedging) | 字型边缘效果类型枚举。 | 
+| typedef enum [OH_Drawing_FontHinting](#oh_drawing_fonthinting)  [OH_Drawing_FontHinting](#oh_drawing_fonthinting) | 字型轮廓效果类型枚举。 | 
 | typedef struct [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md)  [OH_Drawing_Font_Metrics](#oh_drawing_font_metrics) | 定义字体度量信息的结构体。 | 
 | typedef struct [OH_Drawing_GpuContextOptions](_o_h___drawing___gpu_context_options.md)  [OH_Drawing_GpuContextOptions](#oh_drawing_gpucontextoptions) | 定义有关图形处理器上下文的选项。 | 
 | typedef enum [OH_Drawing_BlurType](#oh_drawing_blurtype)  [OH_Drawing_BlurType](#oh_drawing_blurtype) | 蒙版滤波器模糊操作类型的枚举。 | 
@@ -209,8 +209,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_PointMode](#oh_drawing_pointmode-1) { POINT_MODE_POINTS, POINT_MODE_LINES, POINT_MODE_POLYGON } | 绘制多个点的方式枚举，方式分为离散点、直线或开放多边形。 | 
 | [OH_Drawing_VertexMode](#oh_drawing_vertexmode-1) { VERTEX_MODE_TRIANGLES, VERTEX_MODE_TRIANGLESSTRIP, VERTEX_MODE_TRIANGLEFAN } | 用于指定如何解释给定顶点的几何形状的枚举类型。 | 
 | [OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop-1) { DIFFERENCE, INTERSECT } | 画布裁剪方式的枚举集合。 | 
-| [OH_Drawing_FontEdging](#oh_drawing_fontedging-1) { FONT_EDGING_ALIAS, FONT_EDGING_ANTI_ALIAS, FONT_EDGING_SUBPIXEL_ANTI_ALIAS } | 字形边缘效果类型枚举。 | 
-| [OH_Drawing_FontHinting](#oh_drawing_fonthinting-1) { FONT_HINTING_NONE, FONT_HINTING_SLIGHT, FONT_HINTING_NORMAL, FONT_HINTING_FULL } | 字形轮廓效果类型枚举。 | 
+| [OH_Drawing_FontEdging](#oh_drawing_fontedging-1) { FONT_EDGING_ALIAS, FONT_EDGING_ANTI_ALIAS, FONT_EDGING_SUBPIXEL_ANTI_ALIAS } | 字型边缘效果类型枚举。 | 
+| [OH_Drawing_FontHinting](#oh_drawing_fonthinting-1) { FONT_HINTING_NONE, FONT_HINTING_SLIGHT, FONT_HINTING_NORMAL, FONT_HINTING_FULL } | 字型轮廓效果类型枚举。 | 
 | [OH_Drawing_BlurType](#oh_drawing_blurtype-1) { NORMAL, SOLID, OUTER, INNER } | 蒙版滤波器模糊操作类型的枚举。 | 
 | [OH_Drawing_ScaleToFit](#oh_drawing_scaletofit-1) { SCALE_TO_FIT_FILL, SCALE_TO_FIT_START, SCALE_TO_FIT_CENTER, SCALE_TO_FIT_END } | 矩阵缩放方式枚举。 | 
 | [OH_Drawing_PathDirection](#oh_drawing_pathdirection-1) { PATH_DIRECTION_CW, PATH_DIRECTION_CCW } | 添加闭合轮廓方向枚举。 | 
@@ -282,11 +282,11 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_Canvas](#oh_drawing_canvas) \* [OH_Drawing_CanvasCreate](#oh_drawing_canvascreate) (void) | 用于创建一个画布对象。 |
 | void [OH_Drawing_CanvasDestroy](#oh_drawing_canvasdestroy) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于销毁画布对象并回收该对象占有的内存。 |
 | void [OH_Drawing_CanvasBind](#oh_drawing_canvasbind) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, [OH_Drawing_Bitmap](#oh_drawing_bitmap) \*) | 用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。 |
-| void [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。 |
+| void [OH_Drawing_CanvasAttachPen](#oh_drawing_canvasattachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Pen](#oh_drawing_pen) \*) | 用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。执行该方法后，若画笔的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。 |
 | void [OH_Drawing_CanvasDetachPen](#oh_drawing_canvasdetachpen) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于去除掉画布中的画笔，使用后画布将不去绘制图形形状的轮廓。 |
-| void [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。 |
+| void [OH_Drawing_CanvasAttachBrush](#oh_drawing_canvasattachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。执行该方法后，若画刷的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。 |
 | void [OH_Drawing_CanvasDetachBrush](#oh_drawing_canvasdetachbrush) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于去除掉画布中的画刷，使用后画布将不使用此前设置的画刷去填充图形形状。 |
-| void [OH_Drawing_CanvasSave](#oh_drawing_canvassave) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于保存当前画布的状态（画布矩阵）到一个栈顶。 |
+| void [OH_Drawing_CanvasSave](#oh_drawing_canvassave) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于保存当前画布的状态（画布矩阵）到一个栈顶。需要与恢复接口[OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore)配合使用。 |
 | void [OH_Drawing_CanvasSaveLayer](#oh_drawing_canvassavelayer) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, const [OH_Drawing_Brush](#oh_drawing_brush) \*) | 保存矩阵和裁剪区域，为后续绘制分配位图。调用恢复接口 [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore)将放弃对矩阵和剪切区域所做的更改，并绘制位图。 |
 | void [OH_Drawing_CanvasRestore](#oh_drawing_canvasrestore) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于恢复保存在栈顶的画布状态（画布矩阵）。 |
 | uint32_t [OH_Drawing_CanvasGetSaveCount](#oh_drawing_canvasgetsavecount) ([OH_Drawing_Canvas](#oh_drawing_canvas) \*) | 用于获取栈中保存的画布状态（画布矩阵）的数量。 |
@@ -321,7 +321,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateBlendMode](#oh_drawing_colorfiltercreateblendmode) (uint32_t color, [OH_Drawing_BlendMode](#oh_drawing_blendmode)) | 创建具有混合模式的颜色滤波器。 |
 | [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateCompose](#oh_drawing_colorfiltercreatecompose) ([OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*colorFilter1, [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*colorFilter2) | 将两个颜色滤波器合成一个新的颜色滤波器。 |
 | [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateMatrix](#oh_drawing_colorfiltercreatematrix) (const float matrix[20]) | 创建具有5x4颜色矩阵的颜色滤波器。 |
-| [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateLinearToSrgbGamma](#oh_drawing_colorfiltercreatelineartosrgbgamma) (void) | 创建一个颜色滤波器将SRGB的伽玛曲线应用到RGB颜色通道。 |
+| [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateLinearToSrgbGamma](#oh_drawing_colorfiltercreatelineartosrgbgamma) (void) | 创建一个从线性颜色空间转换到SRGB颜色空间的颜色滤波器。 |
 | [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateSrgbGammaToLinear](#oh_drawing_colorfiltercreatesrgbgammatolinear) (void) | 创建颜色滤波器将RGB颜色通道应用于SRGB的伽玛曲线。 |
 | [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \* [OH_Drawing_ColorFilterCreateLuma](#oh_drawing_colorfiltercreateluma) (void) | 创建一个颜色滤波器将其输入的亮度值乘以透明度通道， 并将红色、绿色和蓝色通道设置为零。 |
 | void [OH_Drawing_ColorFilterDestroy](#oh_drawing_colorfilterdestroy) ([OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*) | 销毁颜色滤波器对象，并收回该对象占用的内存。 |
@@ -335,37 +335,37 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_FilterSetColorFilter](#oh_drawing_filtersetcolorfilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*) | 为滤波器对象设置颜色滤波器对象。 |
 | void [OH_Drawing_FilterGetColorFilter](#oh_drawing_filtergetcolorfilter) ([OH_Drawing_Filter](#oh_drawing_filter) \*, [OH_Drawing_ColorFilter](#oh_drawing_colorfilter) \*) | 从滤波器对象获取颜色滤波器对象。 |
 | void [OH_Drawing_FilterDestroy](#oh_drawing_filterdestroy) ([OH_Drawing_Filter](#oh_drawing_filter) \*) | 销毁滤波器对象，并收回该对象占用的内存。 |
-| void [OH_Drawing_FontSetBaselineSnap](#oh_drawing_fontsetbaselinesnap) ([OH_Drawing_Font](#oh_drawing_font) \*, bool baselineSnap) | 当前画布矩阵轴对齐时，将字形基线设置为是否与像素对齐。 |
-| bool [OH_Drawing_FontIsBaselineSnap](#oh_drawing_fontisbaselinesnap) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 当前画布矩阵轴对齐时，获取字形基线是否与像素对齐。 |
-| void [OH_Drawing_FontSetEdging](#oh_drawing_fontsetedging) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_FontEdging](#oh_drawing_fontedging)) | 用于设置字形边缘效果。 |
-| [OH_Drawing_FontEdging](#oh_drawing_fontedging) [OH_Drawing_FontGetEdging](#oh_drawing_fontgetedging) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形边缘效果。 |
-| void [OH_Drawing_FontSetForceAutoHinting](#oh_drawing_fontsetforceautohinting) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isForceAutoHinting) | 用于设置是否自动调整字形轮廓。 |
-| bool [OH_Drawing_FontIsForceAutoHinting](#oh_drawing_fontisforceautohinting) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形轮廓是否自动调整。 |
-| void [OH_Drawing_FontSetSubpixel](#oh_drawing_fontsetsubpixel) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isSubpixel) | 设置字形是否使用次像素渲染。 |
-| bool [OH_Drawing_FontIsSubpixel](#oh_drawing_fontissubpixel) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形是否使用次像素渲染。 |
-| [OH_Drawing_Font](#oh_drawing_font) \* [OH_Drawing_FontCreate](#oh_drawing_fontcreate) (void) | 用于创建一个字体对象。 |
-| void [OH_Drawing_FontSetTypeface](#oh_drawing_fontsettypeface) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_Typeface](#oh_drawing_typeface) \*) | 用于给字体设置字形。 |
-| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_FontGetTypeface](#oh_drawing_fontgettypeface) ([OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形对象。 |
-| void [OH_Drawing_FontSetTextSize](#oh_drawing_fontsettextsize) ([OH_Drawing_Font](#oh_drawing_font) \*, float textSize) | 用于给字体设置文字大小。 |
-| float [OH_Drawing_FontGetTextSize](#oh_drawing_fontgettextsize) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形文本大小。 |
+| void [OH_Drawing_FontSetBaselineSnap](#oh_drawing_fontsetbaselinesnap) ([OH_Drawing_Font](#oh_drawing_font) \*, bool baselineSnap) | 当前画布矩阵轴对齐时，将字型基线设置为是否与像素对齐。 |
+| bool [OH_Drawing_FontIsBaselineSnap](#oh_drawing_fontisbaselinesnap) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 当前画布矩阵轴对齐时，获取字型基线是否与像素对齐。 |
+| void [OH_Drawing_FontSetEdging](#oh_drawing_fontsetedging) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_FontEdging](#oh_drawing_fontedging)) | 用于设置字型边缘效果。 |
+| [OH_Drawing_FontEdging](#oh_drawing_fontedging) [OH_Drawing_FontGetEdging](#oh_drawing_fontgetedging) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型边缘效果。 |
+| void [OH_Drawing_FontSetForceAutoHinting](#oh_drawing_fontsetforceautohinting) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isForceAutoHinting) | 用于设置是否自动调整字型轮廓。 |
+| bool [OH_Drawing_FontIsForceAutoHinting](#oh_drawing_fontisforceautohinting) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型轮廓是否自动调整。 |
+| void [OH_Drawing_FontSetSubpixel](#oh_drawing_fontsetsubpixel) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isSubpixel) | 设置字型是否使用次像素渲染。 |
+| bool [OH_Drawing_FontIsSubpixel](#oh_drawing_fontissubpixel) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型是否使用次像素渲染。 |
+| [OH_Drawing_Font](#oh_drawing_font) \* [OH_Drawing_FontCreate](#oh_drawing_fontcreate) (void) | 用于创建一个字型对象。 |
+| void [OH_Drawing_FontSetTypeface](#oh_drawing_fontsettypeface) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_Typeface](#oh_drawing_typeface) \*) | 用于给字型设置字体。 |
+| [OH_Drawing_Typeface](#oh_drawing_typeface) \* [OH_Drawing_FontGetTypeface](#oh_drawing_fontgettypeface) ([OH_Drawing_Font](#oh_drawing_font) \*) | 获取字体对象。 |
+| void [OH_Drawing_FontSetTextSize](#oh_drawing_fontsettextsize) ([OH_Drawing_Font](#oh_drawing_font) \*, float textSize) | 用于给字型设置文字大小。 |
+| float [OH_Drawing_FontGetTextSize](#oh_drawing_fontgettextsize) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型文字大小。 |
 | int [OH_Drawing_FontCountText](#oh_drawing_fontcounttext) ([OH_Drawing_Font](#oh_drawing_font) \*, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding) | 获取文本所表示的字符数量。 |
 | uint32_t [OH_Drawing_FontTextToGlyphs](#oh_drawing_fonttexttoglyphs) (const [OH_Drawing_Font](#oh_drawing_font) \*, const void \*text, uint32_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, uint16_t \*glyphs, int maxGlyphCount) | 用于将文本转换为字形索引。 |
 | void [OH_Drawing_FontGetWidths](#oh_drawing_fontgetwidths) (const [OH_Drawing_Font](#oh_drawing_font) \*, const uint16_t \*glyphs, int count, float \*widths) | 用于获取字符串中每个字符的宽度。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureSingleCharacter](#oh_drawing_fontmeasuresinglecharacter) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const char \*str, float \*textWidth) | 用于测量单个字符的宽度。当前字型中的字体不支持待测量字符时，退化到使用系统字体测量字符宽度。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontMeasureText](#oh_drawing_fontmeasuretext) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const void \*text, size_t byteLength, [OH_Drawing_TextEncoding](#oh_drawing_textencoding) encoding, [OH_Drawing_Rect](#oh_drawing_rect) \*bounds, float \*textWidth) | 用于获取文本的宽度和边界框。 |
-| void [OH_Drawing_FontSetLinearText](#oh_drawing_fontsetlineartext) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isLinearText) | 用于设置线性可缩放字体。 |
-| bool [OH_Drawing_FontIsLinearText](#oh_drawing_fontislineartext) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形是否使用线性缩放。 |
-| void [OH_Drawing_FontSetTextSkewX](#oh_drawing_fontsettextskewx) ([OH_Drawing_Font](#oh_drawing_font) \*, float skewX) | 用于给字体设置文本倾斜。 |
-| float [OH_Drawing_FontGetTextSkewX](#oh_drawing_fontgettextskewx) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形文本在x轴上的倾斜度。 |
+| void [OH_Drawing_FontSetLinearText](#oh_drawing_fontsetlineartext) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isLinearText) | 用于设置线性可缩放字型。 |
+| bool [OH_Drawing_FontIsLinearText](#oh_drawing_fontislineartext) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型是否使用线性缩放。 |
+| void [OH_Drawing_FontSetTextSkewX](#oh_drawing_fontsettextskewx) ([OH_Drawing_Font](#oh_drawing_font) \*, float skewX) | 用于给字型设置文本倾斜。 |
+| float [OH_Drawing_FontGetTextSkewX](#oh_drawing_fontgettextskewx) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型文本在x轴上的倾斜度。 |
 | void [OH_Drawing_FontSetFakeBoldText](#oh_drawing_fontsetfakeboldtext) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isFakeBoldText) | 用于设置增加描边宽度以近似粗体字体效果。 |
-| bool [OH_Drawing_FontIsFakeBoldText](#oh_drawing_fontisfakeboldtext) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取是否增加笔画宽度以接近粗体字形。 |
-| void [OH_Drawing_FontSetScaleX](#oh_drawing_fontsetscalex) ([OH_Drawing_Font](#oh_drawing_font) \*, float scaleX) | 用于设置字形对象在x轴上的缩放比例。 |
-| float [OH_Drawing_FontGetScaleX](#oh_drawing_fontgetscalex) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形对象在x轴上的缩放比例。 |
-| void [OH_Drawing_FontSetHinting](#oh_drawing_fontsethinting) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_FontHinting](#oh_drawing_fonthinting)) | 用于设置字形轮廓效果。 |
-| [OH_Drawing_FontHinting](#oh_drawing_fonthinting) [OH_Drawing_FontGetHinting](#oh_drawing_fontgethinting) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形轮廓效果枚举类型。 |
-| void [OH_Drawing_FontSetEmbeddedBitmaps](#oh_drawing_fontsetembeddedbitmaps) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isEmbeddedBitmaps) | 用于设置字形是否转换成位图处理。 |
-| bool [OH_Drawing_FontIsEmbeddedBitmaps](#oh_drawing_fontisembeddedbitmaps) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字形是否转换成位图处理。 |
-| void [OH_Drawing_FontDestroy](#oh_drawing_fontdestroy) ([OH_Drawing_Font](#oh_drawing_font) \*) | 用于销毁字体对象并回收该对象占有的内存。 |
+| bool [OH_Drawing_FontIsFakeBoldText](#oh_drawing_fontisfakeboldtext) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取是否增加笔画宽度以接近粗体字体。 |
+| void [OH_Drawing_FontSetScaleX](#oh_drawing_fontsetscalex) ([OH_Drawing_Font](#oh_drawing_font) \*, float scaleX) | 用于设置字型对象在x轴上的缩放比例。 |
+| float [OH_Drawing_FontGetScaleX](#oh_drawing_fontgetscalex) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型对象在x轴上的缩放比例。 |
+| void [OH_Drawing_FontSetHinting](#oh_drawing_fontsethinting) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_FontHinting](#oh_drawing_fonthinting)) | 用于设置字型轮廓效果。 |
+| [OH_Drawing_FontHinting](#oh_drawing_fonthinting) [OH_Drawing_FontGetHinting](#oh_drawing_fontgethinting) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型轮廓效果枚举类型。 |
+| void [OH_Drawing_FontSetEmbeddedBitmaps](#oh_drawing_fontsetembeddedbitmaps) ([OH_Drawing_Font](#oh_drawing_font) \*, bool isEmbeddedBitmaps) | 用于设置字型是否转换成位图处理。 |
+| bool [OH_Drawing_FontIsEmbeddedBitmaps](#oh_drawing_fontisembeddedbitmaps) (const [OH_Drawing_Font](#oh_drawing_font) \*) | 获取字型是否转换成位图处理。 |
+| void [OH_Drawing_FontDestroy](#oh_drawing_fontdestroy) ([OH_Drawing_Font](#oh_drawing_font) \*) | 用于销毁字型对象并回收该对象占有的内存。 |
 | float [OH_Drawing_FontGetMetrics](#oh_drawing_fontgetmetrics) ([OH_Drawing_Font](#oh_drawing_font) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取字体度量信息。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontGetBounds](#oh_drawing_fontgetbounds) (const [OH_Drawing_Font](#oh_drawing_font) \*font, const uint16_t \*glyphs, uint32_t count, [OH_Drawing_Array](#oh_drawing_array) \*bounds) | 获取字体指定字形索引的矩形边界。 |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_FontGetPathForGlyph](#oh_drawing_fontgetpathforglyph) (const [OH_Drawing_Font](#oh_drawing_font) \*font, uint16_t glyph, [OH_Drawing_Path](#oh_drawing_path) \*path) | 获取字体指定字形索引的轮廓。 |
@@ -416,7 +416,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_MatrixPostRotate](#oh_drawing_matrixpostrotate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float degree, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点旋转一定角度的单位矩阵后得到的矩阵。 |
 | void [OH_Drawing_MatrixPostScale](#oh_drawing_matrixpostscale) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float sx, float sy, float px, float py) | 将矩阵设置为矩阵右乘围绕轴心点按一定缩放因子缩放后的单位矩阵后得到的矩阵。 |
 | void [OH_Drawing_MatrixPostTranslate](#oh_drawing_matrixposttranslate) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, float dx, float dy) | 将矩阵设置为矩阵右乘平移一定距离后的单位矩阵后得到的矩阵。 |
-| void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 重置当前矩阵为单位矩阵: \| 1 0 0 \| \| 0 1 0 \| \| 0 0 1 \| |
+| void [OH_Drawing_MatrixReset](#oh_drawing_matrixreset) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 重置当前矩阵为单位矩阵。 |
 | void [OH_Drawing_MatrixConcat](#oh_drawing_matrixconcat) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*total, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*a, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*b) | 将矩阵total设置为矩阵a乘以矩阵b。 例如给定矩阵a和矩阵b如下所示: \| A B C \| \| J K L \| a = \| D E F \|, b = \| M N O \| \| G H I \| \| P Q R \| 设置的最终矩阵total为: \| A B C \| \| J K L \| \| AJ+BM+CP AK+BN+CQ AL+BO+CR \| total = a \* b = \| D E F \| \* \| M N O \| = \| DJ+EM+FP DK+EN+FQ DL+EO+FR \| \| G H I \| \| P Q R \| \| GJ+HM+IP GK+HN+IQ GL+HO+IR \| |
 | [OH_Drawing_ErrorCode](#oh_drawing_errorcode) [OH_Drawing_MatrixGetAll](#oh_drawing_matrixgetall) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*matrix, float value[9]) | 获取矩阵所有元素值。 |
 | float [OH_Drawing_MatrixGetValue](#oh_drawing_matrixgetvalue) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, int index) | 获取矩阵给定索引位的值。索引范围0-8。 |
@@ -428,7 +428,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_MatrixMapPoints](#oh_drawing_matrixmappoints) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*src, [OH_Drawing_Point2D](_o_h___drawing___point2_d.md) \*dst, int count) | 通过矩阵变换将源点数组映射到目标点数组。 |
 | bool [OH_Drawing_MatrixMapRect](#oh_drawing_matrixmaprect) (const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*src, [OH_Drawing_Rect](#oh_drawing_rect) \*dst) | 将目标矩形设置为一个新的矩形，该矩形是能够包围源矩形的四个顶点通过矩阵变换映射后形成的新顶点的最小矩形。 |
 | bool [OH_Drawing_MatrixIsEqual](#oh_drawing_matrixisequal) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Matrix](#oh_drawing_matrix) \*other) | 判断两个矩阵是否相等。 |
-| bool [OH_Drawing_MatrixIsIdentity](#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 判断矩阵是否是单位矩阵。 单位矩阵为 : \| 1 0 0 \| \| 0 1 0 \| \| 0 0 1 \| |
+| bool [OH_Drawing_MatrixIsIdentity](#oh_drawing_matrixisidentity) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 判断矩阵是否是单位矩阵。 |
 | void [OH_Drawing_MatrixDestroy](#oh_drawing_matrixdestroy) ([OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 用于销毁矩阵对象并回收该对象占有的内存。 |
 | [OH_Drawing_MemoryStream](#oh_drawing_memorystream) \* [OH_Drawing_MemoryStreamCreate](#oh_drawing_memorystreamcreate) (const void \*data, size_t length, bool copyData) | 创建一个内存流对象。 |
 | void [OH_Drawing_MemoryStreamDestroy](#oh_drawing_memorystreamdestroy) ([OH_Drawing_MemoryStream](#oh_drawing_memorystream) \*) | 销毁内存流对象并回收该对象占有内存。 |
@@ -446,9 +446,9 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_PathRQuadTo](#oh_drawing_pathrquadto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY) | 使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的二阶贝塞尔曲线。 |
 | void [OH_Drawing_PathRConicTo](#oh_drawing_pathrconicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX, float ctrlY, float endX, float endY, float weight) | 使用相对位置在当前路径上添加一条路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的圆锥曲线段。 |
 | void [OH_Drawing_PathRCubicTo](#oh_drawing_pathrcubicto) ([OH_Drawing_Path](#oh_drawing_path) \*, float ctrlX1, float ctrlY1, float ctrlX2, float ctrlY2, float endX, float endY) | 使用相对位置在当前路径上添加一条当前路径终点（若路径没有内容则默认为 (0, 0)）到目标点位置的三阶贝塞尔圆滑曲线。 |
-| void [OH_Drawing_PathAddRect](#oh_drawing_pathaddrect) ([OH_Drawing_Path](#oh_drawing_path) \*, float left, float top, float right, float bottom, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加矩形轮廓。 |
+| void [OH_Drawing_PathAddRect](#oh_drawing_pathaddrect) ([OH_Drawing_Path](#oh_drawing_path) \*, float left, float top, float right, float bottom, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，将矩形添加到路径中，添加的路径的起始点为矩形左上角。 |
 | void [OH_Drawing_PathAddRectWithInitialCorner](#oh_drawing_pathaddrectwithinitialcorner) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, [OH_Drawing_PathDirection](#oh_drawing_pathdirection), uint32_t start) | 按指定方向，向路径添加矩形轮廓。 |
-| void [OH_Drawing_PathAddRoundRect](#oh_drawing_pathaddroundrect) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加圆角矩形轮廓。 |
+| void [OH_Drawing_PathAddRoundRect](#oh_drawing_pathaddroundrect) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_RoundRect](#oh_drawing_roundrect) \*roundRect, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 按指定方向，向路径添加圆角矩形轮廓。路径添加方向为顺时针时，起始点位于圆角矩形左下方圆角与左边界的交点；路径添加方向为逆时针时，起始点位于圆角矩形左上方圆角与左边界的交点。 |
 | void [OH_Drawing_PathAddOvalWithInitialPoint](#oh_drawing_pathaddovalwithinitialpoint) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, uint32_t start, [OH_Drawing_PathDirection](#oh_drawing_pathdirection)) | 将椭圆添加到路径中，其中矩形对象作为椭圆的外切矩形区域，绘制方向用来指定绘制时是顺时针或者逆时针方向。 |
 | void [OH_Drawing_PathAddArc](#oh_drawing_pathaddarc) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Rect](#oh_drawing_rect) \*, float startAngle, float sweepAngle) | 将圆弧添加到路径中，作为新轮廓的起点。从起始角度到扫描角度添加弧， 添加的弧是矩形内切椭圆的一部分，如果扫描角度&lt;= -360°，或&gt;= 360°， 并且起始角度对90取模接近于0，则添加椭圆而不是弧。 |
 | void [OH_Drawing_PathAddPath](#oh_drawing_pathaddpath) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 将源路径矩阵变换后，添加到当前路径中。 |
@@ -462,7 +462,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | bool [OH_Drawing_PathContains](#oh_drawing_pathcontains) ([OH_Drawing_Path](#oh_drawing_path) \*, float x, float y) | 判断指定坐标点是否被路径包含，判定是否被路径包含的规则参考[OH_Drawing_PathFillType](#oh_drawing_pathfilltype)。 |
 | void [OH_Drawing_PathTransform](#oh_drawing_pathtransform) ([OH_Drawing_Path](#oh_drawing_path) \*, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*) | 对路径进行矩阵变换。 |
 | void [OH_Drawing_PathTransformWithPerspectiveClip](#oh_drawing_pathtransformwithperspectiveclip) ([OH_Drawing_Path](#oh_drawing_path) \*src, const [OH_Drawing_Matrix](#oh_drawing_matrix) \*, [OH_Drawing_Path](#oh_drawing_path) \*dst, bool applyPerspectiveClip) | 对路径进行矩阵变换。用转换后的路径替换目标路径，如果目标路径为NULL，则替换源路径。 |
-| void [OH_Drawing_PathSetFillType](#oh_drawing_pathsetfilltype) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_PathFillType](#oh_drawing_pathfilltype)) | 设置填充路径的规则。 |
+| void [OH_Drawing_PathSetFillType](#oh_drawing_pathsetfilltype) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_PathFillType](#oh_drawing_pathfilltype)) | 设置路径的填充类型，这个决定了路径内部区域的定义方式。 |
 | float [OH_Drawing_PathGetLength](#oh_drawing_pathgetlength) ([OH_Drawing_Path](#oh_drawing_path) \*, bool forceClosed) | 获取当前路径的长度。 |
 | void [OH_Drawing_PathGetBounds](#oh_drawing_pathgetbounds) ([OH_Drawing_Path](#oh_drawing_path) \*, [OH_Drawing_Rect](#oh_drawing_rect) \*) | 获取包含路径的最小边界框。 |
 | void [OH_Drawing_PathClose](#oh_drawing_pathclose) ([OH_Drawing_Path](#oh_drawing_path) \*) | 用于闭合路径，会添加一条从路径起点位置到最后点位置的线段。 |
@@ -611,7 +611,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | uint32_t [OH_Drawing_GetRunGlyphCount](#oh_drawing_getrunglyphcount) (OH_Drawing_Run \*run) | 获取渲染单元字形数量。 |
 | [OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \* [OH_Drawing_CreateTypographyStyle](#oh_drawing_createtypographystyle) (void) | 创建指向OH_Drawing_TypographyStyle对象的指针。 |
 | void [OH_Drawing_DestroyTypographyStyle](#oh_drawing_destroytypographystyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 释放被OH_Drawing_TypographyStyle对象占据的内存。 |
-| void [OH_Drawing_SetTypographyTextDirection](#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本方向。 |
+| void [OH_Drawing_SetTypographyTextDirection](#oh_drawing_settypographytextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置指定排版样式中的文本方向。 |
 | void [OH_Drawing_SetTypographyTextAlign](#oh_drawing_settypographytextalign) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本对齐方式。 |
 | int [OH_Drawing_TypographyGetEffectiveAlignment](#oh_drawing_typographygeteffectivealignment) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取文字对齐方式。 |
 | void [OH_Drawing_SetTypographyTextMaxLines](#oh_drawing_settypographytextmaxlines) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, int) | 设置文本最大行数。 |
@@ -630,13 +630,13 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_SetTextStyleFontFamilies](#oh_drawing_settextstylefontfamilies) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int, const char \*fontFamilies[]) | 设置指定文本样式的字体家族类型。 |
 | void [OH_Drawing_SetTextStyleFontStyle](#oh_drawing_settextstylefontstyle) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, int) | 为指定文本样式设置字体样式。 |
 | void [OH_Drawing_SetTextStyleLocale](#oh_drawing_settextstylelocale) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, const char \*) | 设置文本语言环境。 |
-| void [OH_Drawing_SetTextStyleForegroundBrush](#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 设置前景色画刷。 |
+| void [OH_Drawing_SetTextStyleForegroundBrush](#oh_drawing_settextstyleforegroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 设置指定文本样式中的前景色画刷。 |
 | void [OH_Drawing_TextStyleGetForegroundBrush](#oh_drawing_textstylegetforegroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 返回设置的前景色画刷。 |
-| void [OH_Drawing_SetTextStyleForegroundPen](#oh_drawing_settextstyleforegroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 设置前景色画笔。 |
+| void [OH_Drawing_SetTextStyleForegroundPen](#oh_drawing_settextstyleforegroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 设置指定文本样式中的前景色画笔。 |
 | void [OH_Drawing_TextStyleGetForegroundPen](#oh_drawing_textstylegetforegroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 返回设置的前景色画笔。 |
-| void [OH_Drawing_SetTextStyleBackgroundBrush](#oh_drawing_settextstylebackgroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 设置背景色画刷。 |
+| void [OH_Drawing_SetTextStyleBackgroundBrush](#oh_drawing_settextstylebackgroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 设置指定文本样式中的背景色画刷。 |
 | void [OH_Drawing_TextStyleGetBackgroundBrush](#oh_drawing_textstylegetbackgroundbrush) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Brush](#oh_drawing_brush) \*) | 返回设置的背景色画刷。 |
-| void [OH_Drawing_SetTextStyleBackgroundPen](#oh_drawing_settextstylebackgroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 设置背景色画笔。 |
+| void [OH_Drawing_SetTextStyleBackgroundPen](#oh_drawing_settextstylebackgroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 设置指定文本样式中的背景色画笔。 |
 | void [OH_Drawing_TextStyleGetBackgroundPen](#oh_drawing_textstylegetbackgroundpen) ([OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Pen](#oh_drawing_pen) \*) | 返回设置的背景色画笔。 |
 | [OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \* [OH_Drawing_CreateTypographyHandler](#oh_drawing_createtypographyhandler) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_FontCollection](#oh_drawing_fontcollection) \*) | 创建指向OH_Drawing_TypographyCreate对象的指针。 |
 | void [OH_Drawing_DestroyTypographyHandler](#oh_drawing_destroytypographyhandler) ([OH_Drawing_TypographyCreate](#oh_drawing_typographycreate) \*) | 释放被OH_Drawing_TypographyCreate对象占据的内存。 |
@@ -689,8 +689,8 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | double [OH_Drawing_TypographyGetLineWidth](#oh_drawing_typographygetlinewidth) ([OH_Drawing_Typography](#oh_drawing_typography) \*, int) | 获取指定行的行宽，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用之后调用。 |
 | void [OH_Drawing_SetTypographyTextSplitRatio](#oh_drawing_settypographytextsplitratio) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, float textSplitRatio) | 设置文本划分比率。 |
 | bool [OH_Drawing_TypographyIsLineUnlimited](#oh_drawing_typographyislineunlimited) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取文本是否有最大行数限制。 |
-| bool [OH_Drawing_TypographyIsEllipsized](#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取文本是否配置省略号。 |
-| void [OH_Drawing_SetTypographyTextLocale](#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, const char \*locale) | 设置段落语言环境。 |
+| bool [OH_Drawing_TypographyIsEllipsized](#oh_drawing_typographyisellipsized) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style) | 获取指定排版样式是否配置省略号。 |
+| void [OH_Drawing_SetTypographyTextLocale](#oh_drawing_settypographytextlocale) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, const char \*locale) | 设置指定排版样式的语言环境。 |
 | bool [OH_Drawing_TextStyleGetFontMetrics](#oh_drawing_textstylegetfontmetrics) ([OH_Drawing_Typography](#oh_drawing_typography) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*, [OH_Drawing_Font_Metrics](_o_h___drawing___font___metrics.md) \*) | 获取文本字体属性。 |
 | void [OH_Drawing_SetTypographyTextStyle](#oh_drawing_settypographytextstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*, [OH_Drawing_TextStyle](#oh_drawing_textstyle) \*) | 设置排版样式。 |
 | [OH_Drawing_FontDescriptor](_o_h___drawing___font_descriptor.md) \* [OH_Drawing_CreateFontDescriptor](#oh_drawing_createfontdescriptor) (void) | 构造字体描述对象，用于描述系统字体详细信息。 |
@@ -765,7 +765,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | void [OH_Drawing_TypographyStyleSetHintsEnabled](#oh_drawing_typographystylesethintsenabled) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*style, bool hintsEnabled) | 设置文本是否启用字形轮廓自动调整，字形轮廓自动调整用于在渲染小字号文本时改善其可读性和外观。 |
 | void [OH_Drawing_TypographyMarkDirty](#oh_drawing_typographymarkdirty) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 将排版标记为脏数据，用于初始化排版状态。 |
 | int32_t [OH_Drawing_TypographyGetUnresolvedGlyphsCount](#oh_drawing_typographygetunresolvedglyphscount) ([OH_Drawing_Typography](#oh_drawing_typography) \*) | 获取文本中尚未解析的字形的数量，该接口需要在[OH_Drawing_TypographyLayout](#oh_drawing_typographylayout)接口调用并生效之后调用。 |
-| void [OH_Drawing_TypographyUpdateFontSize](#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新文本中的字体大小。 |
+| void [OH_Drawing_TypographyUpdateFontSize](#oh_drawing_typographyupdatefontsize) ([OH_Drawing_Typography](#oh_drawing_typography) \*, size_t from, size_t to, float fontSize) | 更新排版对象中的字体大小。 |
 | bool [OH_Drawing_TypographyTextGetLineStyle](#oh_drawing_typographytextgetlinestyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版是否启用行样式。 |
 | [OH_Drawing_FontWeight](#oh_drawing_fontweight) [OH_Drawing_TypographyTextlineStyleGetFontWeight](#oh_drawing_typographytextlinestylegetfontweight) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取排版样式中支柱样式字重。 |
 | [OH_Drawing_FontStyle](#oh_drawing_fontstyle) [OH_Drawing_TypographyTextlineStyleGetFontStyle](#oh_drawing_typographytextlinestylegetfontstyle) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版样式中支柱样式的字体样式。 |
@@ -778,7 +778,7 @@ Drawing模块提供包括2D图形渲染、文字绘制和图片显示等功能�
 | double [OH_Drawing_TypographyTextlineStyleGetSpacingScale](#oh_drawing_typographytextlinestylegetspacingscale) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版行样式间距比例。 |
 | bool [OH_Drawing_TypographyTextlineGetStyleOnly](#oh_drawing_typographytextlinegetstyleonly) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本排版是否仅启用行样式。 |
 | [OH_Drawing_TextAlign](#oh_drawing_textalign) [OH_Drawing_TypographyGetTextAlign](#oh_drawing_typographygettextalign) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本对齐方式。 |
-| [OH_Drawing_TextDirection](#oh_drawing_textdirection) [OH_Drawing_TypographyGetTextDirection](#oh_drawing_typographygettextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本方向。 |
+| [OH_Drawing_TextDirection](#oh_drawing_textdirection) [OH_Drawing_TypographyGetTextDirection](#oh_drawing_typographygettextdirection) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取指定排版样式中的文本方向。 |
 | size_t [OH_Drawing_TypographyGetTextMaxLines](#oh_drawing_typographygettextmaxlines) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取文本的最大行数。 |
 | char \* [OH_Drawing_TypographyGetTextEllipsis](#oh_drawing_typographygettextellipsis) ([OH_Drawing_TypographyStyle](#oh_drawing_typographystyle) \*) | 获取指定排版样式设置的省略号文本。 |
 | void [OH_Drawing_TypographyDestroyEllipsis](#oh_drawing_typographydestroyellipsis) (char \*ellipsis) | 释放省略号名称列表占用的内存。 |
@@ -1413,7 +1413,7 @@ typedef enum OH_Drawing_FontEdging OH_Drawing_FontEdging
 
 **描述**
 
-字形边缘效果类型枚举。
+字型边缘效果类型枚举。
 
 **起始版本：** 12
 
@@ -1465,7 +1465,7 @@ typedef enum OH_Drawing_FontHinting OH_Drawing_FontHinting
 
 **描述**
 
-字形轮廓效果类型枚举。
+字型轮廓效果类型枚举。
 
 **起始版本：** 12
 
@@ -2598,15 +2598,15 @@ enum OH_Drawing_FontEdging
 
 **描述**
 
-字形边缘效果类型枚举。
+字型边缘效果类型枚举。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | FONT_EDGING_ALIAS | 无抗锯齿处理。 | 
-| FONT_EDGING_ANTI_ALIAS | 使用抗锯齿来平滑字形边缘。 | 
-| FONT_EDGING_SUBPIXEL_ANTI_ALIAS | 使用次像素级别的抗锯齿来平滑字形边缘，可以获得更加平滑的字形渲染效果。 | 
+| FONT_EDGING_ANTI_ALIAS | 使用抗锯齿来平滑字型边缘。 | 
+| FONT_EDGING_SUBPIXEL_ANTI_ALIAS | 使用次像素级别的抗锯齿来平滑字型边缘，可以获得更加平滑的字形渲染效果。 | 
 
 
 ### OH_Drawing_FontHinting
@@ -2617,16 +2617,16 @@ enum OH_Drawing_FontHinting
 
 **描述**
 
-字形轮廓效果类型枚举。
+字型轮廓效果类型枚举。
 
 **起始版本：** 12
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| FONT_HINTING_NONE | 不修改字形轮廓。 | 
-| FONT_HINTING_SLIGHT | 最小限度修改字形轮廓以改善对比度。 | 
-| FONT_HINTING_NORMAL | 修改字形轮廓以提高对比度。 | 
-| FONT_HINTING_FULL | 修改字形轮廓以获得最大对比度。 | 
+| FONT_HINTING_NONE | 不修改字型轮廓。 | 
+| FONT_HINTING_SLIGHT | 最小限度修改字型轮廓以改善对比度。 | 
+| FONT_HINTING_NORMAL | 修改字型轮廓以提高对比度。 | 
+| FONT_HINTING_FULL | 修改字型轮廓以获得最大对比度。 | 
 
 
 ### OH_Drawing_FontStyle
@@ -3019,9 +3019,9 @@ enum OH_Drawing_TextEncoding
 
 | 枚举值 | 描述 | 
 | -------- | -------- |
-| TEXT_ENCODING_UTF8 | 单字节，表示UTF-8或ASCII | 
-| TEXT_ENCODING_UTF16 | 双字节，表示大部分Unicode | 
-| TEXT_ENCODING_UTF32 | 四字节，表示所有Unicode | 
+| TEXT_ENCODING_UTF8 | 单字节，表示UTF-8或ASCII。 | 
+| TEXT_ENCODING_UTF16 | 双字节，表示大部分Unicode。 | 
+| TEXT_ENCODING_UTF32 | 四字节，表示所有Unicode。 | 
 | TEXT_ENCODING_GLYPH_ID | 双字节，表示字形索引。 | 
 
 
@@ -5193,7 +5193,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasClipRegion (OH_Drawing_Canvas* canvas, con
 | -------- | -------- |
 | canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | region | 指向区域对象[OH_Drawing_Region](#oh_drawing_region)的指针。 | 
-| clipOp | 表示裁剪类型。 | 
+| clipOp | 表示裁剪类型。支持可选的具体裁剪方式可见[OH_Drawing_CanvasClipOp](#oh_drawing_canvasclipop)枚举。 | 
 
 **返回：**
 
@@ -5219,7 +5219,7 @@ OH_Drawing_ErrorCode OH_Drawing_CanvasDrawColor (OH_Drawing_Canvas* canvas, uint
 | 名称 | 描述 | 
 | -------- | -------- |
 | canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
-| color | 表示指定的颜色。 | 
+| color | 表示指定的颜色，用一个32位（ARGB）的变量表示。 | 
 | blendMode | 表示指定的混合模式。 | 
 
 **返回：**
@@ -5424,8 +5424,8 @@ OH_Drawing_ImageFilter* OH_Drawing_ImageFilterCreateBlur (float sigmaX, float si
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| sigmaX | 表示沿x轴方向上高斯模糊的方差。 | 
-| sigmaY | 表示沿y轴方向上高斯模糊的方差。 | 
+| sigmaX | 表示沿x轴方向上高斯模糊的标准差，必须大于0。 | 
+| sigmaY | 表示沿y轴方向上高斯模糊的标准差，必须大于0。 | 
 | OH_Drawing_TileMode | 图像滤波器效果平铺模式类型，支持可选的具体模式可见[OH_Drawing_TileMode](#oh_drawing_tilemode)枚举。 | 
 | input | 表示将要和当前图像滤波器叠加的输入滤波器, 如果为NULL，表示直接将当前图像滤波器作用于原始图像。 | 
 
@@ -5715,9 +5715,9 @@ path、position、tangent任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PA
 | -------- | -------- |
 | path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 | 
-| distance | 表示距离起始点的距离。 | 
+| distance | 表示距离起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。 | 
 | position | 表示距路径起始点指定距离的坐标点。 | 
-| tangent | 表示距路径起始点指定距离的切线值。 | 
+| tangent | 表示距路径起始点指定距离的切线值，tangent.x表示该点切线的余弦值，tangent.y表示该点切线的正弦值。 | 
 
 **返回：**
 
@@ -5783,7 +5783,7 @@ flag不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 | -------- | -------- |
 | path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
 | forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 | 
-| distance | 表示距离起始点的距离。 | 
+| distance | 表示距离起始点的距离，小于0时会被视作0，大于路径长度时会被视作路径长度。 | 
 | matrix | 表示要获取的变换矩阵。 | 
 | flag | 矩阵信息维度枚举，支持可选的具体模式可见[OH_Drawing_PathMeasureMatrixFlags](#oh_drawing_pathmeasurematrixflags)枚举。 | 
 
@@ -6068,7 +6068,7 @@ OH_Drawing_ShaderEffect* OH_Drawing_ShaderEffectCreateColorShader (const uint32_
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| color | 表示着色器的颜色。| 
+| color | 表示着色器的ARGB格式颜色，该参数为32位无符号整数。| 
 
 **返回：**
 
@@ -6174,9 +6174,9 @@ OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_
 | 名称 | 描述 | 
 | -------- | -------- |
 | startPt | 表示渐变的起点圆心。 | 
-| startRadius | 表示渐变的起点半径。 | 
+| startRadius | 表示渐变的起点半径，需为非负数。 | 
 | endPt | 表示渐变的终点圆心。 | 
-| endRadius | 表示渐变的终点半径。 | 
+| endRadius | 表示渐变的终点半径，需为非负数。 | 
 | colors | 表示在两个圆之间分布的颜色。 | 
 | pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL, 颜色均匀分布在两个圆之间。 | 
 | size | 表示颜色和位置的数量(如果pos不为NULL)。 | 
@@ -6331,7 +6331,7 @@ void OH_Drawing_FontSetBaselineSnap (OH_Drawing_Font* , bool baselineSnap )
 
 **描述**
 
-当前画布矩阵轴对齐时，将字形基线设置为是否与像素对齐。
+当前画布矩阵轴对齐时，将字型基线设置为是否与像素对齐。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6345,8 +6345,8 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| baselineSnap | 指示字形基线是否和像素对齐，true表示对齐，false表示不对齐。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| baselineSnap | 指示字型基线是否和像素对齐，true表示对齐，false表示不对齐。 | 
 
 
 ### OH_Drawing_FontIsBaselineSnap()
@@ -6357,7 +6357,7 @@ bool OH_Drawing_FontIsBaselineSnap (const OH_Drawing_Font* )
 
 **描述**
 
-当前画布矩阵轴对齐时，获取字形基线是否与像素对齐。
+当前画布矩阵轴对齐时，获取字型基线是否与像素对齐。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6371,11 +6371,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回字形基线是否与像素对齐，true为对齐，false为没有对齐。
+返回字型基线是否与像素对齐，true为对齐，false为没有对齐。
 
 
 ### OH_Drawing_FontSetEdging()
@@ -6386,7 +6386,7 @@ void OH_Drawing_FontSetEdging (OH_Drawing_Font* , OH_Drawing_FontEdging  )
 
 **描述**
 
-用于设置字形边缘效果。
+用于设置字型边缘效果。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6402,8 +6402,8 @@ OH_Drawing_FontEdging不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OU
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| OH_Drawing_FontEdging | 字形边缘效果。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_FontEdging | 字型边缘效果。 | 
 
 
 ### OH_Drawing_FontGetEdging()
@@ -6414,7 +6414,7 @@ OH_Drawing_FontEdging OH_Drawing_FontGetEdging (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形边缘效果。
+获取字型边缘效果。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6428,11 +6428,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回字形边缘效果。
+返回字型边缘效果。
 
 
 
@@ -6444,7 +6444,7 @@ void OH_Drawing_FontSetForceAutoHinting (OH_Drawing_Font* , bool isForceAutoHint
 
 **描述**
 
-用于设置是否自动调整字形轮廓。
+用于设置是否自动调整字型轮廓。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6458,8 +6458,8 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| isForceAutoHinting | 是否自动调整字形轮廓，true为自动调整，false为不自动调整。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| isForceAutoHinting | 是否自动调整字型轮廓，true为自动调整，false为不自动调整。 | 
 
 
 ### OH_Drawing_FontIsForceAutoHinting()
@@ -6470,7 +6470,7 @@ bool OH_Drawing_FontIsForceAutoHinting (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形轮廓是否自动调整。
+获取字型轮廓是否自动调整。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6484,11 +6484,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回字形轮廓是否自动调整，true为自动调整，false为不自动调整。
+返回字型轮廓是否自动调整，true为自动调整，false为不自动调整。
 
 
 ### OH_Drawing_FontSetSubpixel()
@@ -6499,7 +6499,7 @@ void OH_Drawing_FontSetSubpixel (OH_Drawing_Font* , bool isSubpixel )
 
 **描述**
 
-设置字形是否使用次像素渲染。
+设置字型是否使用次像素渲染。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6513,8 +6513,8 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| isSubpixel | 字形是否使用次像素渲染，true为使用，false为不使用。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| isSubpixel | 字型是否使用次像素渲染，true为使用，false为不使用。 | 
 
 
 ### OH_Drawing_FontIsSubpixel()
@@ -6525,7 +6525,7 @@ bool OH_Drawing_FontIsSubpixel (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形是否使用次像素渲染。
+获取字型是否使用次像素渲染。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6539,11 +6539,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回字形是否使用次像素渲染，true为使用，false为不使用。
+返回字型是否使用次像素渲染，true为使用，false为不使用。
 
 
 ### OH_Drawing_FontGetTextSize()
@@ -6554,7 +6554,7 @@ float OH_Drawing_FontGetTextSize (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形文本大小。
+获取字型文字大小。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6568,11 +6568,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回一个浮点数，表示字形文本大小。
+返回一个浮点数，表示字型文字大小。
 
 
 ### OH_Drawing_FontTextToGlyphs()
@@ -6597,7 +6597,7 @@ OH_Drawing_Font、text、glyphs任意一个为NULL或者byteLength等于0或者m
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 | text | 文本存储首地址。 | 
 | byteLength | 文本长度，单位为字节。 | 
 | encoding | 文本编码类型[OH_Drawing_TextEncoding](#oh_drawing_textencoding)。 | 
@@ -6631,7 +6631,7 @@ OH_Drawing_Font、glyphs、widths任意一个为NULL或者count小于等于0时�
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 | glyphs | 字形索引存储首地址。 | 
 | count | 字形索引的数量。 | 
 | widths | 字形宽度存储首地址，用于存储得到的字形宽度。 | 
@@ -6645,7 +6645,7 @@ bool OH_Drawing_FontIsLinearText (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形是否使用线性缩放。
+获取字型是否使用线性缩放。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6659,11 +6659,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回字形是否使用线性缩放，true为使用，false为不使用。
+返回字型是否使用线性缩放，true为使用，false为不使用。
 
 
 ### OH_Drawing_FontGetTextSkewX()
@@ -6674,7 +6674,7 @@ float OH_Drawing_FontGetTextSkewX (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形文本在x轴上的倾斜度。
+获取字型文本在x轴上的倾斜度。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6688,7 +6688,7 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
@@ -6703,7 +6703,7 @@ bool OH_Drawing_FontIsFakeBoldText (const OH_Drawing_Font* )
 
 **描述**
 
-获取是否增加笔画宽度以接近粗体字形。
+获取是否增加笔画宽度以接近粗体字体。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6717,11 +6717,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回是否增加笔画宽度以接近粗体字形，true为增加，false为不增加。
+返回是否增加笔画宽度以接近粗体字体，true为增加，false为不增加。
 
 
 ### OH_Drawing_FontSetScaleX()
@@ -6732,7 +6732,7 @@ void OH_Drawing_FontSetScaleX (OH_Drawing_Font* , float scaleX )
 
 **描述**
 
-用于设置字形对象在x轴上的缩放比例。
+用于设置字型对象在x轴上的缩放比例。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6746,7 +6746,7 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 | scaleX | 文本在x轴上的缩放比例。 | 
 
 
@@ -6758,7 +6758,7 @@ float OH_Drawing_FontGetScaleX (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形对象在x轴上的缩放比例。
+获取字型对象在x轴上的缩放比例。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6772,7 +6772,7 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
@@ -6787,7 +6787,7 @@ void OH_Drawing_FontSetHinting (OH_Drawing_Font* , OH_Drawing_FontHinting  )
 
 **描述**
 
-用于设置字形轮廓效果。
+用于设置字型轮廓效果。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6803,8 +6803,8 @@ OH_Drawing_FontHinting不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_O
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| OH_Drawing_FontHinting | 字形轮廓枚举类型[OH_Drawing_FontHinting](#oh_drawing_fonthinting)。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_FontHinting | 字型轮廓枚举类型[OH_Drawing_FontHinting](#oh_drawing_fonthinting)。 | 
 
 
 ### OH_Drawing_FontGetHinting()
@@ -6815,7 +6815,7 @@ OH_Drawing_FontHinting OH_Drawing_FontGetHinting (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形轮廓效果枚举类型。
+获取字型轮廓效果枚举类型。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6829,11 +6829,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-OH_Drawing_FontHinting 返回字形轮廓效果枚举类型[OH_Drawing_FontHinting](#oh_drawing_fonthinting)。
+OH_Drawing_FontHinting 返回字型轮廓效果枚举类型[OH_Drawing_FontHinting](#oh_drawing_fonthinting)。
 
 
 ### OH_Drawing_FontSetEmbeddedBitmaps()
@@ -6844,7 +6844,7 @@ void OH_Drawing_FontSetEmbeddedBitmaps (OH_Drawing_Font* , bool isEmbeddedBitmap
 
 **描述**
 
-用于设置字形是否转换成位图处理。
+用于设置字型是否转换成位图处理。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6858,8 +6858,8 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
-| isEmbeddedBitmaps | 设置字形是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| isEmbeddedBitmaps | 设置字型是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。 | 
 
 
 ### OH_Drawing_FontIsEmbeddedBitmaps()
@@ -6870,7 +6870,7 @@ bool OH_Drawing_FontIsEmbeddedBitmaps (const OH_Drawing_Font* )
 
 **描述**
 
-获取字形是否转换成位图处理。
+获取字型是否转换成位图处理。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -6884,11 +6884,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字形对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-返回字形是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。
+返回字型是否转换成位图处理，true表示转换成位图处理，false表示不转换成位图处理。
 
 
 ### OH_Drawing_BitmapBuild()
@@ -6962,7 +6962,7 @@ OH_Drawing_Image_Info、pixels任意一个为NULL或者rowBytes等于0时返回O
 | -------- | -------- |
 | OH_Drawing_Image_Info | 指向图片信息对象[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)的指针。 | 
 | pixels | 指向像素存储的内存首地址，内存由开发者申请，保证有效性。 | 
-| rowBytes | 每行像素的大小。 | 
+| rowBytes | 每行像素的大小，小于等于0时无效。 | 
 
 **返回：**
 
@@ -7538,7 +7538,7 @@ void OH_Drawing_CanvasAttachBrush (OH_Drawing_Canvas* , const OH_Drawing_Brush* 
 
 **描述**
 
-用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。
+用于设置画刷给画布，画布将会使用设置的画刷样式和颜色去填充绘制的图形形状。执行该方法后，若画刷的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -7564,7 +7564,7 @@ void OH_Drawing_CanvasAttachPen (OH_Drawing_Canvas* , const OH_Drawing_Pen*  )
 
 **描述**
 
-用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。
+用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。执行该方法后，若画笔的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -7862,8 +7862,8 @@ OH_Drawing_Canvas、OH_Drawing_Rect任意一个为NULL时返回OH_DRAWING_ERROR_
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象的指针。 | 
 | OH_Drawing_Rect | 指向矩形对象的指针。 | 
-| startAngle | 弧的起始角度。 | 
-| sweepAngle | 弧的扫描角度。 | 
+| startAngle | 弧的起始角度，0度时起始点位于椭圆的右端点，正数时以顺时针方向放置起始点，负数时以逆时针方向放置起始点。 | 
+| sweepAngle | 弧的扫描角度，正数时顺时针扫描，负数时逆时针扫描。它的有效范围在-360度到360度之间，当绝对值大于360度时，该函数绘制的是一个椭圆。 | 
 
 
 ### OH_Drawing_CanvasDrawBackground()
@@ -7975,7 +7975,7 @@ radius小于等于0时返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象的指针。 | 
 | OH_Drawing_Point | 指向坐标点对象的指针，表示圆心。 | 
-| radius | 圆形的半径。 | 
+| radius | 圆形的半径，小于等于0时无效。 | 
 
 
 ### OH_Drawing_CanvasDrawImageRect()
@@ -8280,11 +8280,11 @@ flag不在枚举范围内返回OH_DRAWING_ERROR_PARAMETER_OUT_OF_RANGE。
 | -------- | -------- |
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针，用于生成阴影。 | 
-| planeParams | 基于x轴和y轴的遮挡器从画布返回z轴偏移量的函数值。 | 
+| planeParams | 表示遮挡物相对于画布在Z轴上的偏移量，其值取决于x与y坐标。 | 
 | devLightPos | 光线相对于画布的位置。 | 
-| lightRadius | 圆形灯半径。 | 
-| ambientColor | 环境阴影颜色。 | 
-| spotColor | 点阴影颜色。 | 
+| lightRadius | 光源半径，需大于或等于0。 | 
+| ambientColor | 环境阴影颜色，是一个32位（ARGB）变量。 | 
+| spotColor | 点阴影颜色，是一个32位（ARGB）变量。 | 
 | flag | 阴影标志枚举[OH_Drawing_CanvasShadowFlags](#oh_drawing_canvasshadowflags)。 | 
 
 
@@ -8515,7 +8515,7 @@ OH_Drawing_Canvas、OH_Drawing_Image_Info、dstPixels任意一个为NULL时返�
 | OH_Drawing_Canvas | 指向画布对象[OH_Drawing_Canvas](#oh_drawing_canvas)的指针。 | 
 | [OH_Drawing_Image_Info](_o_h___drawing___image___info.md) | 指向图片信息[OH_Drawing_Image_Info](_o_h___drawing___image___info.md)的指针。 | 
 | dstPixels | 目标像素存储首地址。 | 
-| dstRowBytes | 一行像素的大小。 | 
+| dstRowBytes | 一行像素的大小，小于等于0时无效。 | 
 | srcX | 画布像素的x轴偏移量，单位为像素。 | 
 | srcY | 画布像素的y轴偏移量，单位为像素。 | 
 
@@ -8883,7 +8883,7 @@ OH_Drawing_ColorFilter* OH_Drawing_ColorFilterCreateLinearToSrgbGamma (void )
 
 **描述**
 
-创建一个颜色滤波器将SRGB的伽玛曲线应用到RGB颜色通道。
+创建一个从线性颜色空间转换到SRGB颜色空间的颜色滤波器。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -9698,7 +9698,7 @@ void OH_Drawing_FilterSetMaskFilter (OH_Drawing_Filter* , OH_Drawing_MaskFilter*
 
 **描述**
 
-为滤波器对象设置蒙板滤波器对象。
+为滤波器对象设置蒙版滤波器对象。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9822,7 +9822,7 @@ OH_Drawing_Typeface* OH_Drawing_FontGetTypeface (OH_Drawing_Font* )
 
 **描述**
 
-获取字形对象。
+获取字体对象。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -9836,11 +9836,11 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字体对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
+| OH_Drawing_Font | 指向字型对象[OH_Drawing_Font](#oh_drawing_font)的指针。 | 
 
 **返回：**
 
-OH_Drawing_Typeface 函数返回一个指针，指向字形对象[OH_Drawing_Typeface](#oh_drawing_typeface)。
+OH_Drawing_Typeface 函数返回一个指针，指字体对象[OH_Drawing_Typeface](#oh_drawing_typeface)。
 
 
 ### OH_Drawing_FontMgrCreate()
@@ -10212,7 +10212,7 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Font | 指向字体对象的指针。 | 
-| textSize | 字体大小。 | 
+| textSize | 字体大小，该参数为浮点数，为负数时字体大小会被置为0。字体大小为0时，绘制的文字不会显示。 | 
 
 
 ### OH_Drawing_FontSetTextSkewX()
@@ -10249,7 +10249,7 @@ void OH_Drawing_FontSetTypeface (OH_Drawing_Font* , OH_Drawing_Typeface*  )
 
 **描述**
 
-用于给字体设置字形。
+用于给字型设置字体。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -10263,8 +10263,8 @@ OH_Drawing_Font为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_Font | 指向字体对象的指针。 | 
-| OH_Drawing_Typeface | 指向字形对象的指针，为NULL会使用系统默认字形对象。 | 
+| OH_Drawing_Font | 指向字型对象的指针。 | 
+| OH_Drawing_Typeface | 指向字体对象的指针，为NULL会使用系统默认字体对象。 | 
 
 
 ### OH_Drawing_FontStyleSetCount()
@@ -11036,8 +11036,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateScale (float sx, float sy, float px, f
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| sx | 水平缩放因子。 | 
-| sy | 垂直缩放因子。 | 
+| sx | x轴方向缩放系数，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 | 
+| sy | y轴方向缩放系数，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 | 
 | px | x轴上坐标点。 | 
 | py | y轴上坐标点。 | 
 
@@ -11064,8 +11064,8 @@ OH_Drawing_Matrix* OH_Drawing_MatrixCreateTranslation (float dx, float dy )
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| dx | 水平方向平移距离。 | 
-| dy | 垂直方向平移距离。 | 
+| dx | 水平方向平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 | 
+| dy | 垂直方向平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 | 
 
 **返回：**
 
@@ -11266,8 +11266,8 @@ OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
-| sx | x轴方向的缩放比例因子。 | 
-| sy | y轴方向的缩放比例因子。 | 
+| sx | x轴方向的缩放比例因子，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 | 
+| sy | y轴方向的缩放比例因子，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 | 
 | px | 缩放中心点的横坐标。 | 
 | py | 缩放中心点的纵坐标。 | 
 
@@ -11353,8 +11353,8 @@ OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
-| sx | x轴方向的缩放比例因子。 | 
-| sy | y轴方向的缩放比例因子。 | 
+| sx | x轴方向的缩放比例因子，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 | 
+| sy | y轴方向的缩放比例因子，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 | 
 | px | 缩放中心点的横坐标。 | 
 | py | 缩放中心点的纵坐标。 | 
 
@@ -11462,8 +11462,8 @@ OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
-| sx | 水平缩放因子。 | 
-| sy | 垂直缩放因子。 | 
+| sx | 水平缩放因子，为负数时可看作是先关于y = px作镜像翻转后再进行缩放，该参数为浮点数。 | 
+| sy | 垂直缩放因子，为负数时可看作是先关于x = py作镜像翻转后再进行缩放，该参数为浮点数。 | 
 | px | x轴上坐标点。 | 
 | py | y轴上坐标点。 | 
 
@@ -11565,7 +11565,7 @@ OH_Drawing_Matrix、src、dst任意一个为NULL时返回OH_DRAWING_ERROR_INVALI
 
 **返回：**
 
-如果设置失败，则返回false；如果设置成功，则返回true；如果矩阵为空，则返回true，并将矩阵设置为：|0 0 0| |0 0 0| |0 0 1|
+如果设置失败，则返回false；如果设置成功，则返回true；特别地，如果源矩形src的宽高任意一个小于等于0，则返回false，并将矩阵设置为单位矩阵；如果目标矩形dst的宽高任意一个小于等于0，则返回true，并将矩阵设置为除透视缩放系数为1外其余值皆为0的矩阵。
 
 ### OH_Drawing_MatrixTranslate()
 
@@ -11590,8 +11590,8 @@ OH_Drawing_Matrix为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Matrix | 指向矩阵对象[OH_Drawing_Matrix](#oh_drawing_matrix)的指针。 | 
-| dx | 水平方向平移距离。 | 
-| dy | 垂直方向平移距离。 | 
+| dx | 水平方向平移距离，正数表示往x轴正方向平移，负数表示往x轴负方向平移，该参数为浮点数。 | 
+| dy | 垂直方向平移距离，正数表示往y轴正方向平移，负数表示往y轴负方向平移，该参数为浮点数。 | 
 
 
 ### OH_Drawing_MemoryStreamCreate()
@@ -11856,7 +11856,7 @@ void OH_Drawing_PathAddRect (OH_Drawing_Path* , float left, float top, float rig
 
 **描述**
 
-按指定方向，向路径添加矩形轮廓。
+按指定方向，将矩形添加到路径中，添加的路径的起始点为矩形左上角。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -11918,7 +11918,7 @@ void OH_Drawing_PathAddRoundRect (OH_Drawing_Path* , const OH_Drawing_RoundRect*
 
 **描述**
 
-按指定方向，向路径添加圆角矩形轮廓。
+按指定方向，向路径添加圆角矩形轮廓。路径添加方向为顺时针时，起始点位于圆角矩形左下方圆角与左边界的交点；路径添加方向为逆时针时，起始点位于圆角矩形左上方圆角与左边界的交点。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -12200,7 +12200,7 @@ OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| forceClosed | 表示调用后是否可以自由修改/删除路径。true表示可以自由修改/删除路径。false表示不能自由修改/删除路径。 | 
+| forceClosed | 表示是否按照闭合路径测量，true表示测量时路径会被强制视为已闭合，false表示会根据路径的实际闭合状态测量。 | 
 
 **返回：**
 
@@ -12454,8 +12454,8 @@ OH_Drawing_Path为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Path | 指向路径对象[OH_Drawing_Path](#oh_drawing_path)的指针。 | 
-| x | 相对于当前路径终点的x轴偏移量，用于指定新的路径起始点的横坐标。 | 
-| y | 相对于当前路径终点的y轴偏移量，用于指定新的路径起始点的纵坐标。 | 
+| x | 目标点相对于当前路径终点的x轴偏移量，正数往x轴正方向偏移，负数往x轴负方向偏移，该参数为浮点数。 | 
+| y | 目标点相对于当前路径终点的y轴偏移量，正数往y轴正方向偏移，负数往y轴负方向偏移，该参数为浮点数。 | 
 
 
 ### OH_Drawing_PathRQuadTo()
@@ -12495,7 +12495,7 @@ void OH_Drawing_PathSetFillType (OH_Drawing_Path* , OH_Drawing_PathFillType  )
 
 **描述**
 
-设置填充路径的规则。
+设置路径的填充类型，这个决定了路径内部区域的定义方式。例如，使用 Winding 填充类型时，路径内部区域由路径环绕的次数决定，而使用 EvenOdd 填充类型时，路径内部区域由路径环绕的次数是否为奇数决定。
 
 本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](#oh_drawing_errorcodeget)查看错误码[OH_Drawing_ErrorCode](#oh_drawing_errorcode)的取值。
 
@@ -13331,7 +13331,7 @@ OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **返回：**
 
-返回矩形对象的高度。
+返回矩形对象的高度，单位为像素。
 
 
 ### OH_Drawing_RectGetLeft()
@@ -13447,7 +13447,7 @@ OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 
 **返回：**
 
-返回矩形对象的宽度。
+返回矩形对象的宽度，单位为像素。
 
 
 ### OH_Drawing_RectIntersect()
@@ -13732,8 +13732,8 @@ OH_Drawing_Rect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | 名称 | 描述 | 
 | -------- | -------- |
 | OH_Drawing_Rect | 指向矩形对象的指针。 | 
-| xRad | X轴上的圆角半径。 | 
-| yRad | Y轴上的圆角半径。 | 
+| xRad | X轴上的圆角半径，小于或等于0时无效。 | 
+| yRad | Y轴上的圆角半径，小于或等于0时无效。 | 
 
 **返回：**
 
@@ -13815,7 +13815,7 @@ OH_Drawing_RoundRect为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。
 | -------- | -------- |
 | OH_Drawing_RoundRect | 指向圆角矩形对象的指针。 | 
 | pos | 圆角位置的枚举，支持类型可见[OH_Drawing_CornerPos](#oh_drawing_cornerpos)。 | 
-| OH_Drawing_Corner_Radii | 圆角半径结构体[OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)，其中包含x轴方向和y轴方向上的半径。 | 
+| OH_Drawing_Corner_Radii | 圆角半径结构体[OH_Drawing_Corner_Radii](#oh_drawing_corner_radii)，其中包含x轴方向和y轴方向上的半径，半径需大于或等于0。 | 
 
 
 ### OH_Drawing_SamplingOptionsCreate()
@@ -13840,7 +13840,7 @@ OH_Drawing_MipmapMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OU
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_Drawing_FilterMode | 过滤采样模式[OH_Drawing_FilterMode](#oh_drawing_filtermode) | 
+| OH_Drawing_FilterMode | 过滤采样模式[OH_Drawing_FilterMode](#oh_drawing_filtermode)。 | 
 | OH_Drawing_MipmapMode | 多级渐远纹理采样模式[OH_Drawing_MipmapMode](#oh_drawing_mipmapmode)。 | 
 
 **返回：**
@@ -13877,7 +13877,7 @@ void OH_Drawing_SetTextStyleBackgroundBrush (OH_Drawing_TextStyle* , OH_Drawing_
 
 **描述**
 
-设置背景色画刷。
+设置指定文本样式中的背景色画刷。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -13899,7 +13899,7 @@ void OH_Drawing_SetTextStyleBackgroundPen (OH_Drawing_TextStyle* , OH_Drawing_Pe
 
 **描述**
 
-设置背景色画笔。
+设置指定文本样式中的背景色画笔。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14230,7 +14230,7 @@ void OH_Drawing_SetTextStyleForegroundBrush (OH_Drawing_TextStyle* , OH_Drawing_
 
 **描述**
 
-设置前景色画刷。
+设置指定文本样式中的前景色画刷。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14252,7 +14252,7 @@ void OH_Drawing_SetTextStyleForegroundPen (OH_Drawing_TextStyle* , OH_Drawing_Pe
 
 **描述**
 
-设置前景色画笔。
+设置指定文本样式中的前景色画笔。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14450,7 +14450,7 @@ void OH_Drawing_SetTypographyTextDirection (OH_Drawing_TypographyStyle* , int  )
 
 **描述**
 
-设置文本方向。
+设置指定排版样式中的文本方向。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -14825,7 +14825,7 @@ void OH_Drawing_SetTypographyTextLocale (OH_Drawing_TypographyStyle* style, cons
 
 **描述**
 
-设置段落语言环境。
+设置指定排版样式的语言环境。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -15044,7 +15044,7 @@ OH_Drawing_TileMode不在枚举范围内时返回OH_DRAWING_ERROR_PARAMETER_OUT_
 | 名称 | 描述 | 
 | -------- | -------- |
 | centerPt | 表示渐变的圆心。 | 
-| radius | 表示渐变的圆半径。 | 
+| radius | 表示渐变的圆半径，需为非负数。 | 
 | colors | 表示在径向上分布的颜色。 | 
 | pos | 表示每种对应颜色在颜色数组中的相对位置，如果pos为NULL，颜色均匀分布在径向上。 | 
 | size | 表示颜色和位置的数量（如果pos不为NULL）。 | 
@@ -16080,7 +16080,7 @@ const char* OH_Drawing_TextStyleGetLocale (OH_Drawing_TextStyle*)
 
 **返回：**
 
-char 返回语言区域，数据类型为指向char的指针。语言区域格式为：语言-国家。如zh-CN表示中文（中国），en-US表示英语（美国）等。具体参考BCP 47语言标签标准。
+char 返回语言环境，数据类型为指向char的指针。语言环境格式为：语言-国家。如zh-CN表示中文（中国），en-US表示英语（美国）等。具体参考BCP 47语言标签标准。
 
 
 ### OH_Drawing_TextStyleGetShadowCount()
@@ -17099,7 +17099,7 @@ OH_Drawing_TextDirection OH_Drawing_TypographyGetTextDirection (OH_Drawing_Typog
 
 **描述**
 
-获取文本方向。
+获取指定排版样式中的文本方向。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -17359,7 +17359,7 @@ bool OH_Drawing_TypographyIsEllipsized (OH_Drawing_TypographyStyle* style)
 
 **描述**
 
-获取文本是否配置省略号。
+获取指定排版样式是否配置省略号。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -18013,7 +18013,7 @@ void OH_Drawing_TypographyUpdateFontSize (OH_Drawing_Typography* , size_t from, 
 
 **描述**
 
-更新文本中的字体大小。
+更新排版对象中的字体大小。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 

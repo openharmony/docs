@@ -743,7 +743,7 @@ queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}}).then((res:usageStatistics.AppStatsMap) => {
+usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
   console.log('queryLastUseTime promise success.');
   console.log('queryLastUseTime promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
@@ -1564,7 +1564,7 @@ registerAppGroupCallBack(groupCallback: Callback&lt;AppGroupCallbackInfo&gt;, ca
 
 **错误码**：
 
-以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)。和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[设备信息使用统计错误码](errorcode-DeviceUsageStatistics.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |

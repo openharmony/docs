@@ -52,14 +52,14 @@ checkAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Grant
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象，返回授权状态结果。 |
 
 **错误码：**
 
@@ -99,7 +99,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID   |  number   | 是   | 要校验应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
@@ -371,7 +371,7 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;Array&lt;[GrantStatus](#grantstatus)&gt;&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;Array&lt;[GrantStatus](#grantstatus)&gt;&gt; | Promise对象，返回授权状态结果。 |
 
 **错误码：**
 
@@ -430,7 +430,7 @@ requestGlobalSwitch(context: Context, type: SwitchType): Promise&lt;boolean&gt;
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回全局开关状态。 |
+| Promise&lt;boolean&gt; | Promise对象，返回全局开关状态。 |
 
 **错误码：**
 
@@ -471,7 +471,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID   |  number   | 是   | 要校验应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
@@ -520,14 +520,14 @@ verifyAccessToken(tokenID: number, permissionName: Permissions): Promise&lt;Gran
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象，返回授权状态结果。 |
 
 **示例：**
 
@@ -561,14 +561,14 @@ verifyAccessToken(tokenID: number, permissionName: string): Promise&lt;GrantStat
 
 | 参数名   | 类型                 | 必填 | 说明                                       |
 | -------- | -------------------  | ---- | ------------------------------------------ |
-| tokenID   |  number   | 是   | 要校验的目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID   |  number   | 是   | 要校验的目标应用的身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | string | 是   | 需要校验的权限名称，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 **返回值：**
 
 | 类型          | 说明                                |
 | :------------ | :---------------------------------- |
-| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象。返回授权状态结果。 |
+| Promise&lt;[GrantStatus](#grantstatus)&gt; | Promise对象，返回授权状态结果。 |
 
 **示例：**
 
@@ -636,7 +636,7 @@ atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSION
 | 名称           | 类型                       | 只读 | 必填 | 说明                |
 | -------------- | ------------------------- | ---- | ---- | ------------------ |
 | change         | [PermissionStateChangeType](#permissionstatechangetype16) | 是   | 是   | 权限授权状态变化类型。        |
-| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
+| tokenID        | number                    | 是   | 是   | 被订阅的应用身份标识，可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)的accessTokenId字段获得。|
 | permissionName | Permissions                    | 是   | 是   | 当前授权状态发生变化的权限名，合法的权限名取值可在[应用权限列表](../../security/AccessToken/app-permissions.md)中查询。 |
 
 ## PermissionRequestResult<sup>10+</sup>

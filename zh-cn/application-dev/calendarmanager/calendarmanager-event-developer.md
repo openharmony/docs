@@ -26,7 +26,7 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
 
    ```ts
    // entry/src/main/ets/entryability/EntryAbility.ets
-   import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+   import { abilityAccessCtrl, AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    import { calendarManager } from '@kit.CalendarKit';
    import { window } from '@kit.ArkUI';
@@ -190,7 +190,7 @@ Calendar Kit中的日程[Event](../reference/apis-calendar-kit/js-apis-calendarM
      console.error(`Failed to addEvent. Code: ${err.code}, message: ${err.message}`);
    });
    // 方式二
-    const eventInfo: calendarManager.Event = {
+   const eventInfo: calendarManager.Event = {
      // 日程标题
      title: 'title',
      // 日程类型

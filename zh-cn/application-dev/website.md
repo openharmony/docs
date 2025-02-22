@@ -1348,6 +1348,7 @@
         - [时域可分层视频编码](media/avcodec/video-encoding-temporal-scalability.md)
         - [典型场景的视频编码配置](media/avcodec/video-encoding-configuration-typical-scenarios.md)
         - [视频解码](media/avcodec/video-decoding.md)
+        - [视频可变帧率](media/avcodec/video-variable-refreshrate.md)
         - [创建视频解码器和NativeWindow初始化并行](media/avcodec/parallel-decoding-nativeWindow.md)
       - 媒体数据封装与解析<!--file-muxing-demuxing-->
         - [媒体数据封装](media/avcodec/audio-video-muxer.md)
@@ -1872,6 +1873,7 @@
           - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)
           - [@ohos.app.ability.Configuration (Configuration)](reference/apis-ability-kit/js-apis-app-ability-configuration.md)
           - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](reference/apis-ability-kit/js-apis-app-ability-configurationConstant.md)
+          - [@ohos.app.ability.continueManager (continueManager)](reference/apis-ability-kit/js-apis-app-ability-continueManager.md)
           - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis-ability-kit/js-apis-app-ability-dataUriUtils.md)
           - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis-ability-kit/js-apis-app-ability-dialogRequest.md)
           - [@ohos.app.ability.errorManager (ErrorManager)](reference/apis-ability-kit/js-apis-app-ability-errorManager.md)
@@ -2850,6 +2852,7 @@
           - [native_xcomponent_key_event.h](reference/apis-arkui/native__xcomponent__key__event_8h.md)
           - [styled_string.h](reference/apis-arkui/styled__string_8h.md)
           - [ui_input_event.h](reference/apis-arkui/ui__input__event_8h.md)
+          - [oh_window.h](reference/apis-arkui/oh__window_8h.md)
           - [oh_window_comm.h](reference/apis-arkui/oh__window__comm_8h.md)
           - [oh_window_event_filter.h](reference/apis-arkui/oh__window__event__filter_8h.md)
           - [oh_display_capture.h](reference/apis-arkui/oh__display__capture_8h.md)
@@ -2893,6 +2896,9 @@
           - [NativeDisplayManager_DisplaysInfo](reference/apis-arkui/_native_display_manager___displays_info.md)
           - [NativeDisplayManager_Rect](reference/apis-arkui/_native_display_manager___rect.md)
           - [NativeDisplayManager_WaterfallDisplayAreaRects](reference/apis-arkui/ive_display_manager___waterfall_display_area_rects.md)
+          - [WindowManager_AvoidArea](reference/apis-arkui/_window_manager___avoid_area.md)
+          - [WindowManager_Rect](reference/apis-arkui/_window_manager___rect.md)
+          - [WindowManager_WindowProperties](reference/apis-arkui/_window_manager___window_properties.md)
       - 错误码<!--arkui-arkts-errcode-->
         - UI界面<!--arkui-ui-arkts-errcode-->
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
