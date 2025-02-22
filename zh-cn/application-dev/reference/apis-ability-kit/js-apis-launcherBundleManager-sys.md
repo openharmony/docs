@@ -17,7 +17,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>>) : void
+getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
 
 查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
 
@@ -33,7 +33,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
 | userId     | number | 是   | 被查询的用户id。|
-| callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
 
 **错误码：**
 
@@ -72,7 +72,7 @@ try {
 
 ## launcherBundleManager.getLauncherAbilityInfo<sup>9+</sup>
 
-getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>>
+getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>
 
 查询指定bundleName及用户的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
 
@@ -93,7 +93,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise<Array\<[Lau
 
 | 类型                          | 说明                                               |
 | ----------------------------- | -------------------------------------------------- |
-| Promise\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>> | Promise形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Promise形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
 
 **错误码：**
 
@@ -199,7 +199,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[Launc
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
 | userId | number | 是   | 被查询的用户id。 |
-| callback | AsyncCallback\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
+| callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
 
 **错误码：**
 
@@ -236,7 +236,7 @@ try {
 ```
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>>
+getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>
 
 查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
 
@@ -256,7 +256,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise<Array\<[LauncherAbilityInfo]
 
 | 类型                          | 说明                                                   |
 | ----------------------------- | ------------------------------------------------------ |
-| Promise\<Array<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>> | Promise形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
+| Promise\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | Promise形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
 
 **错误码：**
 
@@ -292,7 +292,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>>) : void
+getShortcutInfo(bundleName :string, callback: AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\>) : void
 
 查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
 
@@ -307,7 +307,7 @@ getShortcutInfo(bundleName :string, callback: AsyncCallback<Array\<[ShortcutInfo
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| callback | AsyncCallback\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>> | 是 | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
+| callback | AsyncCallback\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\> | 是 | callback形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
 
 **错误码：**
 
@@ -345,7 +345,7 @@ try {
 
 ## launcherBundleManager.getShortcutInfo<sup>9+</sup>
 
-getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>>
+getShortcutInfo(bundleName : string) : Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\>
 
 查询当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。
 
@@ -365,7 +365,7 @@ getShortcutInfo(bundleName : string) : Promise<Array\<[ShortcutInfo](js-apis-bun
 
 | 类型                   | 说明                                            |
 | ---------------------- | ----------------------------------------------- |
-| Promise\<Array<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)>> | Promise形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
+| Promise\<Array\<[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)\>\> | Promise形式返回当前用户下指定应用的[ShortcutInfo](js-apis-bundleManager-shortcutInfo-sys.md)。 |
 
 **错误码：**
 
