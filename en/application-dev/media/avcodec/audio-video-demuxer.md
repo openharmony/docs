@@ -176,27 +176,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
    After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 [Surface Output in Video Decoding](./video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer mode).
 
-5. Obtaim the information from the file
-
-   5.1 (Optional) Obtain the custom metadata info. If you does not need to retrieve custom metadata info, skip this step.
-   ```c++
-   // Obtain the custom metadata info from the file.
-   OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
-   if (customMetadataFormat == nullptr) {
-      printf("get custom metadata format failed");
-      return;
-   }
-   // User defined known keys, corresponding to string type (similar to int and float types)
-   const char *key1 = "com.openharmony.custom.meta.string";
-   std::string value1;
-   if (!OH_AVFormat_GetStringValue(customMetadataFormat, key1, &value1)) {
-      printf("get custom metadata from custom metadata format failed");
-      return;
-   }
-   OH_AVFormat_Destroy(customMetadataFormat);
-   ```
-
-   5.2 (Optional) Obtain the number of tracks. If you know the track information, skip this step.
+5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
    ```c++
    // Obtain the number of tracks from the file source information. You can call the API to obtain file-level attributes. For details, see Table 1 in Appendix 1.

@@ -37,7 +37,6 @@ The AVSource module provides the functions for constructing media resource objec
 | [OH_AVErrCode](_core.md#oh_averrcode) [OH_AVSource_Destroy](#oh_avsource_destroy) ([OH_AVSource](#oh_avsource) \*source) | Destroys an **OH_AVSource** instance and clears internal resources. | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetSourceFormat](#oh_avsource_getsourceformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the basic information about a media resource. | 
 | [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetTrackFormat](#oh_avsource_gettrackformat) ([OH_AVSource](#oh_avsource) \*source, uint32_t trackIndex) | Obtains the basic information about a track. | 
-| [OH_AVFormat](_core.md#oh_avformat) \* [OH_AVSource_GetCustomMetadataFormat](#oh_avsource_getcustommetadataformat) ([OH_AVSource](#oh_avsource) \*source) | Obtains the information about the custom metadata. | 
 
 ## Type Description
 
@@ -265,34 +264,4 @@ The possible causes of an operation failure are as follows:
 
 1. The value of **source** is invalid (either a null pointer or a pointer to a non-OH_AVSource instance).
 2. The track index is out of range.
-3. The source is not initialized.
-
-### OH_AVSource_GetCustomMetadataFormat()
-
-```
-OH_AVFormat* OH_AVSource_GetCustomMetadataFormat (OH_AVSource *source)
-```
-
-**Description**
-
-Obtains the information about the custom metadata.
-
-**System capability**: SystemCapability.Multimedia.Media.Spliter
-
-**Since**: 16
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| source | Pointer to an **OH_AVSource** instance. | 
-
-**Returns**
-
-Returns the pointer to the **OH_AVSource** instance created if the operation is successful; returns NULL otherwise.
-
-The possible causes of an operation failure are as follows:
-
-1. The source pointer is invalid.
-2. The pointer is null or does not point to an **OH_AVSource** instance.
 3. The source is not initialized.

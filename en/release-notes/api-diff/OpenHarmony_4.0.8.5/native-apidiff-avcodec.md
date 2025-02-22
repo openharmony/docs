@@ -18,7 +18,6 @@ Compared with earlier versions, OpenHarmony 4.0.8.5 has the following API change
 | avsource  | OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);         | Added    | This API is added to destroy an **OH_AVSource** instance.      |
 | avsource  | OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);         | Added    | This API is added to obtain source information.      |
 | avsource  | OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackCount);         | Added    | This API is added to obtain track information.      |
-| avsource  | OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source);         | Added    | This API is added to obtain the information about the custom metadata.     |
 | avdemuxer  | OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);         | Added    | This API is added to create an **OH_AVDemuxer** instance based on source information.      |
 | avdemuxer  | OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);         | Added    | This API is added to destroy an **OH_AVDemuxer** instance.      |
 | avdemuxer  | OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);         | Added    | This API is added to select a track, from which the demuxer reads data.     |
