@@ -18,6 +18,7 @@ OpenHarmony 4.0.8.5 版本相较于OpenHarmony 之前的版本的API变更如下
 | avsource  | OH_AVErrCode OH_AVSource_Destroy(OH_AVSource *source);         | 新增     | 销毁 OH_AVSource       |
 | avsource  | OH_AVFormat *OH_AVSource_GetSourceFormat(OH_AVSource *source);         | 新增     | 获取 source 信息       |
 | avsource  | OH_AVFormat *OH_AVSource_GetTrackFormat(OH_AVSource *source, uint32_t trackCount);         | 新增     | 获取 track 信息       |
+| avsource  | OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source);         | 新增     | 获取 custom metadata 信息。       |
 | avdemuxer  | OH_AVDemuxer *OH_AVDemuxer_CreateWithSource(OH_AVSource *source);         | 新增     | 根据 source 创建 OH_AVDemuxer       |
 | avdemuxer  | OH_AVErrCode OH_AVDemuxer_Destroy(OH_AVDemuxer *demuxer);         | 新增     | 销毁 OH_AVDemuxer       |
 | avdemuxer  | OH_AVErrCode OH_AVDemuxer_SelectTrackByID(OH_AVDemuxer *demuxer, uint32_t trackIndex);         | 新增     | 选择需要解封装的轨道      |

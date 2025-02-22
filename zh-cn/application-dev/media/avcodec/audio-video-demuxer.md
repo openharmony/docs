@@ -176,7 +176,27 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    ```
    在获取、解析DRM信息后，需创建对应DRM解决方案的[MediaKeySystem、MediaKeySession](../drm/drm-c-dev-guide.md)，获取DRM许可证等。并根据需要设置音频解密配置(详见[音频解码开发指南开发步骤](audio-decoding.md#开发步骤)第4步)、设置视频解密配置（详见[视频解码开发指南开发步骤Surface模式](video-decoding.md#surface模式)第5步或[Buffer模式](video-decoding.md#buffer模式)第4步），实现DRM内容解密。
 
-5. 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
+5. 获取文件信息
+
+   5.1 获取文件用户自定义属性（可选，若用户无需获取自定义属性，可跳过此步）。
+   ```c++
+   // 从文件 source 获取用户自定义属性信息
+   OH_AVFormat *customMetadataFormat = OH_AVSource_GetCustomMetadataFormat(source);
+   if (customMetadataFormat == nullptr) {
+      printf("get custom metadata format failed");
+      return;
+   }
+   // 用户自定义已知的key，对应为string类型（int和float类型类似）
+   const char *key1 = "com.openharmony.custom.meta.string";
+   std::string value1;
+   if (!OH_AVFormat_GetStringValue(customMetadataFormat, key1, &value1)) {
+      printf("get custom metadata from custom metadata format failed");
+      return;
+   }
+   OH_AVFormat_Destroy(customMetadataFormat);
+   ```
+
+   5.2 获取文件轨道数（可选，若用户已知轨道信息，可跳过此步）。
 
    ```c++
    // 从文件 source 信息获取文件轨道数，用户可通过该接口获取文件级别属性，具体支持信息参考附表 1。
