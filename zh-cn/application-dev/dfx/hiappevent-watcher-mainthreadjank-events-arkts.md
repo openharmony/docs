@@ -148,7 +148,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                     // 事件上报次数定义
                     "report_times_per_app": "3",
                   };
-                  hiAppEvent.setEventConfig("MAIN_THREAD_JANK", params).then(() => {
+                  hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => {
                     hilog.info(0x0000, 'testTag', `HiAppEvent success to set event params.`)
                   }).catch((err: BusinessError) => {
                     hilog.error(0x0000, 'testTag', `HiAppEvent err.code: ${err.code}, err.message: ${err.message}`)
