@@ -33,23 +33,22 @@
 
 | Name       | Description                             |
 | --------- | ------------------------------- |
-| Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Auto      | The image is scaled automatically based on its own size and the size of the component to fit the display area.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| None      | The image is displayed in its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| TOP_START<sup>12+</sup> | The image is displayed at the top start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| TOP<sup>12+</sup>       | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| TOP_END<sup>12+</sup>   | The image is displayed at the top end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| START<sup>12+</sup>     | The image is displayed vertically centered at the start of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| CENTER<sup>12+</sup>    | The image is displayed at the center of the **Image** component both horizontally and vertically, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| END<sup>12+</sup>       | The image is displayed vertically centered at the end of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BOTTOM_START<sup>12+</sup> | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BOTTOM<sup>12+</sup>    | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| BOTTOM_END<sup>12+</sup>| The image is displayed at the bottom end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| MATRIX<sup>16+</sup>| The image, with the use of [imageMatrix](ts-basic-components-image.md#imagematrix16), is displayed in the specified position of the **Image component**, keeping its original size. SVG images are not supported.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 16.<br>**Atomic service API**: This API can be used in atomic services since API version 16.|
-
+| Contain   | The image is scaled with its aspect ratio retained for the content to be completely displayed within the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples01](figures/image_fit_contain.png) |
+| Cover     | The image is scaled with its aspect ratio retained for both sides to be greater than or equal to the display boundaries.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples02](figures/image_fit_cover.png) |
+| Auto      | The image is scaled automatically based on its own size and the size of the component to fit the display area.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples03](figures/image_fit_auto.png) |
+| Fill      | The image is scaled to fill the display area, and its aspect ratio is not retained.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples04](figures/image_fit_fill.png) |
+| ScaleDown | The image is displayed with its aspect ratio retained, in a size smaller than or equal to the original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples05](figures/image_fit_scaleDown.png) |
+| None      | The image is displayed in its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>![ImageFit-Examples06](figures/image_fit_none.png) |
+| TOP_START<sup>12+</sup> | The image is displayed at the top start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples07](figures/image_fit_top_start.png) |
+| TOP<sup>12+</sup>       | The image is displayed horizontally centered at the top of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples08](figures/image_fit_top.png)  |
+| TOP_END<sup>12+</sup>   | The image is displayed at the top end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples09](figures/image_fit_top_end.png) |
+| START<sup>12+</sup>     | The image is displayed vertically centered at the start of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples10](figures/image_fit_start.png) |
+| CENTER<sup>12+</sup>    | The image is displayed at the center of the **Image** component both horizontally and vertically, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples11](figures/image_fit_center.png) |
+| END<sup>12+</sup>       | The image is displayed vertically centered at the end of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples12](figures/image_fit_end.png) |
+| BOTTOM_START<sup>12+</sup> | The image is displayed at the bottom start corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples13](figures/image_fit_bottom_start.png) |
+| BOTTOM<sup>12+</sup>    | The image is displayed horizontally centered at the bottom of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples14](figures/image_fit_bottom.png) |
+| BOTTOM_END<sup>12+</sup>| The image is displayed at the bottom end corner of the **Image** component, keeping its original size.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>![ImageFit-Examples15](figures/image_fit_bottom_end.png) |
+| MATRIX<sup>15+</sup>| The image, with the use of [imageMatrix](ts-basic-components-image.md#imagematrix15), is displayed in the specified position of the **Image component**, keeping its original size. SVG images are not supported.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 15.<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## BorderStyle
 
@@ -1165,3 +1164,20 @@ Enumerates the sensitivity levels for crown rotation.
 | LOW 	         | 0   | Low sensitivity.                                |
 | MEDIUM         | 1   | Medium sensitivity.                                |
 | HIGH 	         | 2   | High sensitivity.                                |
+
+## AxisAction<sup>16+</sup>
+
+Enumerates the types of axis actions for axis events.
+
+**Atomic service API**: This API can be used in atomic services since API version 16.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name   | Value  | Description                              |
+| ------- | ---- | ---------------------------------- |
+| NONE   | 0    | No axis event.|
+| BEGIN  | 1    | The axis event begins.|
+| UPDATE | 2    | The axis event is in progress.|
+| END    | 3    | The axis event ends.|
+| CANCEL | 4    | The axis event is canceled.|
+<!--no_check-->

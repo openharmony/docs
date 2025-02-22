@@ -25,7 +25,7 @@ ImageAnimator()
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### images
 
@@ -181,7 +181,7 @@ Sets whether the component should automatically pause or resume based on its vis
 
 | Name| Type  | Mandatory| Description                                                  |
 | ------ | ------ | ---- | ------------------------------------------------------ |
-| monitorInvisibleArea  | boolean | Yes| Whether the component should automatically pause or resume based on its visibility, using the system's [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event.<br> With the value **true**, when the component's [AnimationStatus](ts-appendix-enums.md#animationstatus) is Running, the component automatically pauses once it becomes invisible and resumes playback if it becomes visible again, based on the **onVisibleAreaChange** event.<br>Default value: **false**<br> **NOTE**<br>When this parameter is dynamically changed from **true** to **false**,<br> the component will resume from its last paused state based on the current **AnimationStatus**.|
+| monitorInvisibleArea  | boolean | Yes| Whether the component should automatically pause or resume based on its visibility, using the system's [onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange) event.<br> With the value **true**, when the component's [AnimationStatus](ts-appendix-enums.md#animationstatus) is Running, the component automatically pauses once it becomes invisible and resumes playback if it becomes visible again, based on the **onVisibleAreaChange** event.<br>Default value: **false**<br> **NOTE**<br>When this parameter is dynamically changed from **true** to **false**,<br> the component will resume from its last paused state based on the current **AnimationStatus**.<br>Changes to this property do not affect the custom [state](./ts-basic-components-imageanimator.md#state) value.|
 
 ## ImageFrameInfo
 
@@ -200,7 +200,7 @@ Sets whether the component should automatically pause or resume based on its vis
 
 ## Events
 
-In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+In addition to the [universal events](ts-component-general-events.md), the following events are supported.
 
 ### onStart
 
@@ -427,3 +427,96 @@ struct ImageAnimatorExample {
 ```
 
 ![imageAnimator](figures/imageAnimator.gif)
+
+### Example 3: Enabling Automatic Pause on Invisibility
+
+This example demonstrates how to use [monitorInvisibleArea](#monitorinvisiblearea16) to automatically pause the **ImageAnimator** component when it becomes invisible and resume playback when it becomes visible again. This behavior is controlled based on the component's [state](#state) being set to **AnimationStatus.Running**.
+
+```ts
+@Entry
+@Component
+struct ImageAnimatorAutoPauseTest {
+  scroller: Scroller = new Scroller()
+  @State state: AnimationStatus = AnimationStatus.Running
+  @State reverse: boolean = false
+  @State iterations: number = 100
+  @State preCallBack: string = "Null"
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ImageAnimator()
+            .images([
+              {
+                src: $r('app.media.Clouds')
+              },
+              {
+                src: $r('app.media.landscape')
+              },
+              {
+                src: $r('app.media.sky')
+              },
+              {
+                src: $r('app.media.mountain')
+              }
+            ])
+            .borderRadius(10)
+            .monitorInvisibleArea(true)
+            .clip(true).duration(4000).state(this.state).reverse(this.reverse)
+            .fillMode(FillMode.Forwards).iterations(this.iterations).width(340).height(240)
+            .margin({ top: 100 })
+            .onStart(() => {
+              this.preCallBack = "Start"
+              console.info('ImageAnimator Start')
+            })
+            .onPause(() => {
+              this.preCallBack = "Pause"
+              console.info('ImageAnimator Pause')
+            })
+            .onRepeat(() => {
+              console.info('ImageAnimator Repeat')
+            })
+            .onCancel(() => {
+              console.info('ImageAnimator Cancel')
+            })
+            .onFinish(() => {
+              console.info('ImageAnimator Finish')
+            })
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .scrollable(ScrollDirection.Vertical) // The scrollbar scrolls in the vertical direction.
+      .scrollBar(BarState.On) // The scrollbar is always displayed.
+      .scrollBarColor(Color.Gray) // The scrollbar color is gray.
+      .scrollBarWidth(10) // The scrollbar width is 10.
+      .friction(0.6)
+      .edgeEffect(EdgeEffect.None)
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
+        console.info(xOffset + ' ' + yOffset)
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge')
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop')
+      })
+      Text("Last triggered callback (Pause/Start): " + this.preCallBack)
+        .margin({ top: 60, left: 20 })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![imageAnimatorMonitorInvisibleAreaExample](figures/imageAnimatorMonitorInvisibleArea.gif)
+<!--no_check-->

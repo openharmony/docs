@@ -54,7 +54,7 @@ invalidate(): void
 
 Invalidates the component and triggers re-rendering of the component.
 
-**Example**
+## Example
 
 This example shows how to use the APIs in **DrawingRenderingContext** for drawing.
 

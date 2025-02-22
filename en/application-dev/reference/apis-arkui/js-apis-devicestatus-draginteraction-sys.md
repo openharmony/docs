@@ -165,3 +165,66 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 let summarys: Array<dragInteraction.Summary> = dragInteraction.getDataSummary();
 console.log(`Drag interaction summarys: ${JSON.stringify(summarys)}`);
 ```
+
+## dragInteraction.setDragSwitchState<sup>16+</sup>
+
+setDragSwitchState(enabled: boolean): void
+
+Sets the global drag-and-drop switch.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Drag
+
+**Parameters**
+
+| Name  | Type                              | Mandatory| Description                                                                  |
+| -------- | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
+| enabled  | boolean                            | Yes  | State of the drag-and-drop switch.<br>**false**: disabled; **true**: enabled                                             |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
+**Example**
+
+```ts
+dragInteraction.setDragSwitchState(false);
+```
+
+## dragInteraction.setAppDragSwitchState<sup>16+</sup>
+
+setAppDragSwitchState(enabled: boolean, bundleName: string): void
+
+Sets the drag-and-drop switch for a specific application.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Msdp.DeviceStatus.Drag
+
+**Parameters**
+
+| Name     | Type                              | Mandatory| Description                                                                  |
+| --------   | ---------------------------------- | ---- | ---------------------------------------------------------------------- |
+| enabled    | boolean                            | Yes  | State of the drag-and-drop switch.<br>**false**: disabled; **true**: enabled                                             |
+| bundleName | string                             | Yes  | Bundle name of the target application.                                              |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 202 | Not system application. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
+**Example**
+
+```ts
+dragInteraction.setAppDragSwitchState(true, "com.app.bundleName");
+```
