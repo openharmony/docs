@@ -3,7 +3,7 @@
 
 ## 概述
 
-定义图像大小。
+定义图像大小。是[OhosImageDecodingOps](_ohos_image_decoding_ops.md)的成员变量。
 
 **系统能力：** SystemCapability.Multimedia.Image
 
@@ -19,8 +19,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t [width](#width) | 像素中的图像宽度，用pixels表示  | 
-| int32_t [height](#height) | 像素中的图像高度，用pixels表示  | 
+| int32_t [width](#width) | 像素中的图像宽度，用pixels表示。  |
+| int32_t [height](#height) | 像素中的图像高度，用pixels表示。  |
 
 
 ## 结构体成员变量说明
@@ -32,7 +32,7 @@
 int32_t OhosImageSize::height
 ```
 **描述**
-像素中的图像高度，用pixels表示
+像素中的图像高度，用pixels表示。
 
 
 ### width
@@ -41,4 +41,4 @@ int32_t OhosImageSize::height
 int32_t OhosImageSize::width
 ```
 **描述**
-像素中的图像宽度，用pixels表示
+像素中的图像宽度，用pixels表示。
