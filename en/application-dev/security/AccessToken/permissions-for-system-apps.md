@@ -755,6 +755,18 @@ Allows a system application to access the permission usage records.
 
 **Valid since**: 9
 
+### ohos.permission.PERMISSION_RECORD_TOGGLE
+
+Allows an application to set the permission usage record switch.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Valid since**: 16
+
 ### ohos.permission.CAPTURE_SCREEN
 
 Allows an application to take screenshots.
