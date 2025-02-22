@@ -205,7 +205,7 @@ animationDuration(value: number)
 
 animationMode(mode: Optional\<AnimationMode\>)
 
-设置点击TabBar页签时切换TabContent的动画形式。
+设置点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -215,7 +215,7 @@ animationMode(mode: Optional\<AnimationMode\>)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签时切换TabContent的动画形式。<br/>默认值：<br/>默认值是AnimationMode.CONTENT_FIRST，表示在点击TabBar切换TabContent时，先加载目标页内容，再开始切换动画。|
+| mode  | Optional\<[AnimationMode](#animationmode12枚举说明)\> | 是   | 点击TabBar页签或调用TabsController的changeIndex接口时切换TabContent的动画形式。<br/>默认值：AnimationMode.CONTENT_FIRST，表示在点击TabBar页签或调用TabsController的changeIndex接口切换TabContent时，先加载目标页内容，再开始切换动画。|
 
 ### barPosition<sup>9+</sup>
 
@@ -428,9 +428,11 @@ TabBar布局模式枚举。
 
 | 名称          | 值   | 说明                                                         |
 | ------------- | ---- | ------------------------------------------------------------ |
-| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画                             |
-| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto |
-| NO_ANIMATION  | 2    | 关闭默认动画                                                 |
+| CONTENT_FIRST | 0    | 先加载目标页内容，再开始切换动画。                             |
+| ACTION_FIRST  | 1    | 先开始切换动画，再加载目标页内容；生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
+| NO_ANIMATION  | 2    | 关闭默认动画。调用TabsController的changeIndex接口切换TabContent时该枚举值不生效。<br>可以通过设置animationDuration为0实现调用TabsController的changeIndex接口时不带动画。               |
+| CONTENT_FIRST_WITH_JUMP<sup>15+</sup> | 3    | 先加载目标页内容，再无动画跳转到目标页附近，最后有动画跳转到目标页。                             |
+| ACTION_FIRST_WITH_JUMP<sup>15+</sup>  | 4    | 先无动画跳转到目标页附近，再有动画跳转到目标页，最后加载目标页内容。此项生效需要同时需要满足：Tabs的height、width没有设置成auto。 |
 
 ## LayoutStyle<sup>10+</sup>枚举说明
 
@@ -2140,3 +2142,94 @@ struct TabsBarModifierExample {
 ```
 
 ![tabs14](figures/tabs14.gif)
+
+### 示例15（设置翻页动效）
+
+本示例通过设置animationMode属性，实现了翻页的动效。
+
+```ts
+// xxx.ets
+class TabsMyDataSource implements IDataSource {
+  private list: number[] = []
+  constructor(list: number[]) {
+    this.list = list
+  }
+  totalCount(): number {
+    return this.list.length
+  }
+  getData(index: number): number {
+    return this.list[index]
+  }
+  registerDataChangeListener(listener: DataChangeListener): void {
+  }
+  unregisterDataChangeListener() {
+  }
+}
+@Entry
+@Component
+struct TabsExample {
+  @State currentIndex: number = 0
+  @State currentAnimationMode: AnimationMode = AnimationMode.CONTENT_FIRST
+  private controller: TabsController = new TabsController()
+  private data: TabsMyDataSource = new TabsMyDataSource([])
+  private sum : number = 10
+  aboutToAppear(): void {
+    let list: number[] = []
+    for (let i = 0; i < this.sum; i++) {
+      list.push(i);
+    }
+    this.data = new TabsMyDataSource(list)
+  }
+  @Builder
+  tabBuilder(title: string,targetIndex: number) {
+    Column(){
+      Text(title).fontColor(this.currentIndex === targetIndex ? '#FF0000' : '#6B6B6B')
+    }.width('100%')
+    .height(50)
+    .justifyContent(FlexAlign.Center)
+  }
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.End, controller: this.controller, index: this.currentIndex }) {
+        LazyForEach(this.data, (item: string) => {
+          TabContent() {
+            Column(){
+              Text('' + item)
+            }.width('100%').height('100%').backgroundColor('#00CB87').justifyContent(FlexAlign.Center)
+          }.tabBar(this.tabBuilder('P' + item, parseInt(item)))
+        }, (item: string) => item)
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(60)
+      .animationMode(this.currentAnimationMode)
+      .animationDuration(4000)
+      .onChange((index: number) => {
+        this.currentIndex = index
+      })
+      .width(360)
+      .height(120)
+      .backgroundColor('#F1F3F5')
+      .scrollable(true)
+      Text('AnimationMode:' + AnimationMode[this.currentAnimationMode])
+      Button('AnimationMode').width('50%').margin({ top: 1 }).height(25)
+        .onClick(()=>{
+          if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST) {
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST
+          } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST) {
+            this.currentAnimationMode = AnimationMode.NO_ANIMATION
+          } else if (this.currentAnimationMode === AnimationMode.NO_ANIMATION) {
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST_WITH_JUMP
+          } else if (this.currentAnimationMode === AnimationMode.CONTENT_FIRST_WITH_JUMP) {
+            this.currentAnimationMode = AnimationMode.ACTION_FIRST_WITH_JUMP
+          } else if (this.currentAnimationMode === AnimationMode.ACTION_FIRST_WITH_JUMP) {
+            this.currentAnimationMode = AnimationMode.CONTENT_FIRST
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+
+![tabs15](figures/tabs15.gif)

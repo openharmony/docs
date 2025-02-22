@@ -202,6 +202,7 @@
 | [ArkUI_SwiperArrow](#arkui_swiperarrow) { ARKUI_SWIPER_ARROW_HIDE = 0, ARKUI_SWIPER_ARROW_SHOW, ARKUI_SWIPER_ARROW_SHOW_ON_HOVER } | Swiper导航点箭头枚举值。  | 
 | [ArkUI_SwiperNestedScrollMode](#arkui_swipernestedscrollmode) { ARKUI_SWIPER_NESTED_SRCOLL_SELF_ONLY = 0, ARKUI_SWIPER_NESTED_SRCOLL_SELF_FIRST } | Swiper组件和父组件的嵌套滚动模式。  | 
 | [ArkUI_PageFlipMode](#arkui_pageflipmode) { ARKUI_PAGE_FLIP_MODE_CONTINUOUS = 0, ARKUI_PAGE_FLIP_MODE_SINGLE } | Swiper组件鼠标滚轮翻页模式。  | 
+| [ArkUI_SwiperAnimationMode](#arkui_swiperanimationmode) { ARKUI_SWIPER_NO_ANIMATION = 0, ARKUI_SWIPER_DEFAULT_ANIMATION, ARKUI_SWIPER_FAST_ANIMATION } | Swiper组件跳转到目标index的动画模式。  | 
 | [ArkUI_AccessibilityMode](#arkui_accessibilitymode) { ARKUI_ACCESSIBILITY_MODE_AUTO = 0, ARKUI_ACCESSIBILITY_MODE_ENABLED, ARKUI_ACCESSIBILITY_MODE_DISABLED, ARKUI_ACCESSIBILITY_MODE_DISABLED_FOR_DESCENDANTS } | 定义无障碍辅助服务模式。  | 
 | [ArkUI_TextCopyOptions](#arkui_textcopyoptions) { ARKUI_TEXT_COPY_OPTIONS_NONE = 0, ARKUI_TEXT_COPY_OPTIONS_IN_APP, ARKUI_TEXT_COPY_OPTIONS_LOCAL_DEVICE, ARKUI_TEXT_COPY_OPTIONS_CROSS_DEVICE } | 定义组件支持设置文本是否可复制粘贴。  | 
 | [ArkUI_TextHeightAdaptivePolicy](#arkui_textheightadaptivepolicy) { ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MAX_LINES_FIRST = 0, ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_MIN_FONT_SIZE_FIRST, ARKUI_TEXT_HEIGHT_ADAPTIVE_POLICY_LAYOUT_CONSTRAINT_FIRST } | 定义文本自适应高度的方式。  | 
@@ -3411,7 +3412,7 @@ enum ArkUI_NodeAttributeType
 | NODE_SWIPER_DURATION  | 设置Swiper子组件切换的动画时长，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件切换的动画时长，单位为毫秒, 默认值为400。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件切换的动画时长，单位为毫秒, 默认值为400。 | 
 | NODE_SWIPER_CURVE  | 设置Swiper的动画曲线，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置动画曲线参数，参数类型[ArkUI_AnimationCurve](#arkui_animationcurve)，默认值为ARKUI_CURVE_LINEAR。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置动画曲线参数，参数类型[ArkUI_AnimationCurve](#arkui_animationcurve)，默认值为ARKUI_CURVE_LINEAR。 | 
 | NODE_SWIPER_ITEM_SPACE  | 设置Swiper子组件与子组件之间间隙，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件与子组件之间间隙数值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].f32：子组件与子组件之间间隙数值。 | 
-| NODE_SWIPER_INDEX  | 设置Swiper当前在容器中显示的子组件的索引值，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。 | 
+| NODE_SWIPER_INDEX  | 设置Swiper当前在容器中显示的子组件的索引值，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。<br/>.value[1]?.i32：跳转动画模式，参数类型[ArkUI_SwiperAnimationMode](#arkui_swiperanimationmode)。仅当次调用有效。<br/>该参数自API 15开始支持。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。 | 
 | NODE_SWIPER_DISPLAY_COUNT  | 设置Swiper一页内元素显示个数，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：子组件的索引值。 | 
 | NODE_SWIPER_DISABLE_SWIPE  | 设置Swiper禁用组件滑动切换功能，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：是否禁用组件滑动切换功能，0表示不禁用滑动切换功能，1表示禁用滑动切换功能，默认值为0。 | 
 | NODE_SWIPER_SHOW_DISPLAY_ARROW  | 设置Swiper是否显示导航点箭头，支持属性设置，属性重置和属性获取接口。<br/>属性设置方法参数[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。<br/>属性获取方法返回值[ArkUI_AttributeItem](_ark_u_i___attribute_item.md)格式：<br/>.value[0].i32：设置是否显示导航点箭头，参数类型[ArkUI_SwiperArrow](#arkui_swiperarrow)，<br/>默认值为ARKUI_SWIPER_ARROW_HIDE。 | 
@@ -3730,6 +3731,24 @@ Swiper组件鼠标滚轮翻页模式。
 | -------- | -------- |
 | ARKUI_PAGE_FLIP_MODE_CONTINUOUS  | 鼠标滚轮连续滚动时翻多页，根据鼠标事件上报次数确定。  | 
 | ARKUI_PAGE_FLIP_MODE_SINGLE  | 一次翻页动画结束前不响应其他鼠标滚轮事件。  | 
+
+
+### ArkUI_SwiperAnimationMode
+
+```
+enum ArkUI_SwiperAnimationMode
+```
+**描述：**
+
+Swiper组件跳转到目标index的动画模式。
+
+**起始版本：** 15
+
+| 枚举值 | 描述 | 
+| -------- | -------- |
+| ARKUI_SWIPER_NO_ANIMATION  | 无动画跳转到目标index。  | 
+| ARKUI_SWIPER_DEFAULT_ANIMATION  | 做动画跳转到目标index。  | 
+| ARKUI_SWIPER_FAST_ANIMATION  | 先无动画跳转到目标附近再做动画跳转到目标index。  | 
 
 
 ### ArkUI_PreDragStatus
