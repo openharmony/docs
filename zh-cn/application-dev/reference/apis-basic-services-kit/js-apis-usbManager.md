@@ -1331,7 +1331,7 @@ USB设备消息传输通道，用于确定设备。
 | bRequest  | number                                        | 是   |请求类型。          |
 | wValue | number                                           | 是   |请求参数。          |
 | wIndex   | number                                         | 是   |请求参数value对应的索引值。            |
-| wLength   | number                                        | 是   |请求数据的长度 |
+| wLength   | number                                        | 是   |请求数据的长度。 |
 | data    | Uint8Array                                      | 是   |用于写入或读取的缓冲区。     |
 
 ## USBRequestTargetType
@@ -1410,7 +1410,7 @@ USB配件句柄。
 | length | number |是 | 数据缓冲区的长度，必须是非负数（期望长度），单位为字节。 |
 | callback | AsyncCallback<[SubmitTransferCallback](#submittransfercallback16)> |是 | 传输完成时的回调信息。|
 | userData | Uint8Array | 否 | 用户上下文数据。 |
-| buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据 |
+| buffer | Uint8Array | 是 | 用于存储读或者写请求时的数据。 |
 | isoPacketCount | number | 是 | 实时传输时数据包的数量，仅用于具有实时传输端点的I/O。必须是非负数，单位为个数。 |
 
 ## UsbTransferFlags<sup>16+</sup>
@@ -1434,9 +1434,9 @@ Usb传输类型。
 
 | 名称                         | 值   | 说明   |
 | ---------------------------- | ---- | ------ |
-| TRANSFER_TYPE_ISOCHRONOUS | 1    | 实时传输 |
-| TRANSFER_TYPE_BULK  | 2    | 批量传输 |
-| TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输|
+| TRANSFER_TYPE_ISOCHRONOUS | 1    | 实时传输。 |
+| TRANSFER_TYPE_BULK  | 2    | 批量传输。 |
+| TRANSFER_TYPE_INTERRUPT     | 3    | 中断传输。|
 
 ## SubmitTransferCallback<sup>16+</sup>
 
@@ -1446,9 +1446,9 @@ Usb异步传输回调。
 
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
-| actualLength | number | 读写操作的实际长度值，单位为字节 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态 |
-| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息 |
+| actualLength | number | 读写操作的实际长度值，单位为字节。 |
+| status | [UsbTransferStatus](#usbtransferstatus16) | 读写操作完成的状态。 |
+| isoPacketDescs | Array<Readonly<[UsbIsoPacketDescriptor](#usbisopacketdescriptor16)>> | 实时传输的分包信息。 |
 
 ## UsbTransferStatus<sup>16+</sup>
 
@@ -1458,13 +1458,13 @@ libusb实际处理完成后通过回调返回的状态码。
 
 | 名称                         | 值   | 说明   |
 | ---------------------------- | ---- | ------ |
-| TRANSFER_COMPLETED    | 0    | 传输完成|
-| TRANSFER_ERROR | 1    | 传输失败 |
-| TRANSFER_TIMED_OUT  | 2    | 传输超时 |
-| TRANSFER_CANCELLED     | 3    |传输已被取消 |
-| TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）|
-| TRANSFER_NO_DEVICE     | 5    | 设备已断开|
-| TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多|
+| TRANSFER_COMPLETED    | 0    | 传输完成。|
+| TRANSFER_ERROR | 1    | 传输失败。 |
+| TRANSFER_TIMED_OUT  | 2    | 传输超时。 |
+| TRANSFER_CANCELLED     | 3    |传输已被取消。 |
+| TRANSFER_STALL  | 4    | 检测到暂停（批量/中断端点）。|
+| TRANSFER_NO_DEVICE     | 5    | 设备已断开。|
+| TRANSFER_OVERFLOW     | 6    | 设备发送的数据比请求的多。|
 
 
 ## UsbIsoPacketDescriptor<sup>16+</sup>
@@ -1475,6 +1475,6 @@ libusb实际处理完成后通过回调返回的状态码。
 
 | 名称         | 类型 | 说明    |
 | ---------- | ------ | ----- |
-| length | number | 读写操作的期望长度值，单位为字节 |
-| actualLength | number| 读写操作的实际长度值，单位为字节 |
-| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码 |
+| length | number | 读写操作的期望长度值，单位为字节。 |
+| actualLength | number| 读写操作的实际长度值，单位为字节。 |
+| status | [UsbTransferStatus](#usbtransferstatus16) | 实时传输分包的状态码。 |
