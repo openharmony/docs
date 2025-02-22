@@ -24,7 +24,7 @@ API 16
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.52开始。
+从OpenHarmony SDK 5.1.0.56开始。
 
 **变更的接口/组件**
 
