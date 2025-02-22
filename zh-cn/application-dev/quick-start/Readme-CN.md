@@ -102,13 +102,13 @@
         - [PersistenceV2: 持久化存储UI状态](arkts-new-persistencev2.md)
         - [!!语法：双向绑定](arkts-new-binding.md)
         - [自定义组件冻结功能](arkts-custom-components-freezeV2.md)
-        - [Repeat：子组件复用](arkts-new-rendering-control-repeat.md)
+        - [Repeat：可复用的循环渲染](arkts-new-rendering-control-repeat.md)
         - [getTarget接口：获取状态管理框架代理前的原始对象](arkts-new-getTarget.md)
         - [makeObserved接口：将非观察数据变为可观察数据](arkts-new-makeObserved.md)
       - [MVVM模式（状态管理V2）](arkts-mvvm-V2.md)
     - V1V2混用和迁移指导<!--v1v2-migration-->
       - [自定义组件混用场景指导](arkts-custom-component-mixed-scenarios.md)
-+     - [V1->V2迁移指导](arkts-v1-v2-migration.md)
+      - [V1->V2迁移指导](arkts-v1-v2-migration.md)
   - 渲染控制<!--arkts-rendering-control-->
     - [渲染控制概述](arkts-rendering-control-overview.md)
     - [if/else：条件渲染](arkts-rendering-control-ifelse.md)

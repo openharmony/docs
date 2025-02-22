@@ -130,7 +130,7 @@ getPastCpuTime(): number
 **示例：**
 
 ```js
-let result = process.getPastCpuTime() ;
+let result = process.getPastCpuTime();
 ```
 
 

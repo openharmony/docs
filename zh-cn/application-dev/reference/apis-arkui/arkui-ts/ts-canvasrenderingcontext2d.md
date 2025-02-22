@@ -106,12 +106,12 @@ struct LengthMetricsUnitDemo {
 | [fillStyle](#fillstyle) | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 否 | 否 | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置填充区域的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
 | [lineWidth](#linewidth) | number | 否 | 否 | 设置绘制线条的宽度。<br/>默认值：1(px)<br/>默认单位：vp <br/> linewidth取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。               |
 | [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern)  | 否 | 否 | 设置线条的颜色。<br/>-&nbsp;类型为string时，表示设置线条使用的颜色。<br/>默认值：'#000000'<br/>- 类型为number时，表示设置线条使用的颜色，不支持设置全透明色。<br/>默认值：0x000000<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。 |
-| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
-| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
+| [lineCap](#linecap)                      | [CanvasLineCap](#canvaslinecap类型说明) | 否 | 否 | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'。 |
+| [lineJoin](#linejoin)                    | [CanvasLineJoin](#canvaslinejoin类型说明) | 否 | 否 | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'。 |
 | [miterLimit](#miterlimit)                | number | 否 | 否 | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10px<br/>单位：px<br/>miterLimit取值不支持0和负数，0和负数按异常值处理，异常值按默认值处理。 |
 | [font](#font)                            | string | 否 | 否 | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px和vp。在不同设备上呈现的字体大小可能不同。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'。|
-| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'start'。 |
-| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
+| [textAlign](#textalign)                  | [CanvasTextAlign](#canvastextalign类型说明) | 否 | 否 | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'start'。 |
+| [textBaseline](#textbaseline)            | [CanvasTextBaseline](#canvastextbaseline类型说明) | 否 | 否 | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'。 |
 | [globalAlpha](#globalalpha)              | number | 否 | 否 | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>默认值：1.0。 |
 | [lineDashOffset](#linedashoffset)        | number | 否 | 否 | 设置画布的虚线偏移量，精度为float。    <br/>默认值：0.0<br/>默认单位：vp。 |
 | [globalCompositeOperation](#globalcompositeoperation) | string | 否 | 否 | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'。 |
@@ -122,8 +122,8 @@ struct LengthMetricsUnitDemo {
 | [imageSmoothingEnabled](#imagesmoothingenabled) | boolean | 否 | 否 | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true。 |
 | [height](#height)                        | number | 是 | 否 | 组件高度。 <br/>默认单位：vp。 |
 | [width](#width)                          | number | 是 | 否 | 组件宽度。 <br/>默认单位：vp。 |
-| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality-1) | 否 | 否 | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值："low"。 |
-| [direction](#direction)                  | [CanvasDirection](#canvasdirection) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值："inherit"。 |
+| [imageSmoothingQuality](#imagesmoothingquality) | [ImageSmoothingQuality](#imagesmoothingquality类型说明) | 否 | 否 | imageSmoothingEnabled为true时，用于设置图像平滑度。<br/>默认值："low"。 |
+| [direction](#direction)                  | [CanvasDirection](#canvasdirection类型说明) | 否 | 否 | 用于设置绘制文字时使用的文字方向。<br/>默认值："inherit"。 |
 | [filter](#filter)                        | string | 否 | 否 | 用于设置图像的滤镜，可以组合任意数量的滤镜。<br/>支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'。 |
 
 > **说明：**
@@ -1946,7 +1946,7 @@ fill(fillRule?: CanvasFillRule): void
 
 | 参数名 | 类型             | 必填   | 说明    |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
 
 
 **示例:**   
@@ -1994,7 +1994,7 @@ fill(path: Path2D, fillRule?: CanvasFillRule): void
 | 参数名    | 类型             | 必填   | 说明  |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | path     | [Path2D](ts-components-canvas-path2d.md)         | 是  | Path2D填充路径。                              |
-| fillRule | [CanvasFillRule](ts-canvasrenderingcontext2d.md#canvasfillrule) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否    | 指定要填充对象的规则。<br/>可选参数为："nonzero", "evenodd"。<br>默认值："nonzero"。 |
 
 
 **示例:**   
@@ -2052,7 +2052,7 @@ clip(fillRule?: CanvasFillRule): void
 
 | 参数名       | 类型             | 必填   | 说明                            |
 | -------- | -------------- | ---- | ---------------------------------------- |
-| fillRule | [CanvasFillRule](#canvasfillrule) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否 | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
 
 **示例:** 
 
@@ -2102,7 +2102,7 @@ clip(path: Path2D, fillRule?: CanvasFillRule): void
 | 参数名      | 类型             | 必填   | 说明          |
 | -------- | -------------- | ---- | ---------------------------------------- |
 | path     | [Path2D](ts-components-canvas-path2d.md)         | 是    | Path2D剪切路径。                              |
-| fillRule | [CanvasFillRule](#canvasfillrule) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
+| fillRule | [CanvasFillRule](#canvasfillrule类型说明) | 否  | 指定要剪切对象的规则。<br/>可选参数为："nonzero", "evenodd"。 <br>默认值："nonzero"。 |
 
 
 **示例:** 
@@ -3525,7 +3525,7 @@ struct CanvasExample {
 
 startImageAnalyzer(config: ImageAnalyzerConfig): Promise\<void>
 
-配置AI分析并启动AI分析功能，使用前需先[使能](ts-components-canvas-canvas.md#enableanalyzer12)图像AI分析能力。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
+配置AI分析并启动AI分析功能，使用前需先[启用图像AI分析能力](ts-components-canvas-canvas.md#enableanalyzer12)。<br>该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。<br>未执行完重复调用该方法会触发错误回调。示例代码同stopImageAnalyzer。
 
 > **说明：**
 > 
@@ -3634,7 +3634,7 @@ struct ImageAnalyzerExample {
 }
 ```
 
-## CanvasDirection
+## CanvasDirection类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3648,7 +3648,7 @@ struct ImageAnalyzerExample {
 | ltr     | 从左往右。               |
 | rtl     | 从右往左。               |
 
-## CanvasFillRule
+## CanvasFillRule类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3661,7 +3661,7 @@ struct ImageAnalyzerExample {
 | evenodd | 奇偶规则。 |
 | nonzero | 非零规则。 |
 
-## CanvasLineCap
+## CanvasLineCap类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3675,7 +3675,7 @@ struct ImageAnalyzerExample {
 | round  | 在线条两端延伸半个圆，直径等于线宽。            |
 | square | 在线条两端延伸一个矩形，宽度等于线宽的一半，高度等于线宽。 |
 
-## CanvasLineJoin
+## CanvasLineJoin类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3689,7 +3689,7 @@ struct ImageAnalyzerExample {
 | miter | 在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。 |
 | round | 在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。              |
 
-## CanvasTextAlign
+## CanvasTextAlign类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3705,7 +3705,7 @@ struct ImageAnalyzerExample {
 | left   | 文本左对齐。       |
 | right  | 文本右对齐。       |
 
-## CanvasTextBaseline
+## CanvasTextBaseline类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3722,7 +3722,7 @@ struct ImageAnalyzerExample {
 | middle      | 文本基线在文本块的中间。                             |
 | top         | 文本基线在文本块的顶部。                             |
 
-## ImageSmoothingQuality
+## ImageSmoothingQuality类型说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -3748,14 +3748,14 @@ struct ImageAnalyzerExample {
 | ---------- | -------------- | ------ | ---------------- | ------------------------ |
 | width                    | number | 是 | 否 | 只读属性，文本方块的宽度。 |
 | height                   | number | 是 | 否 | 只读属性，文本方块的高度。 |
-| actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
-| actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
-| actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界左侧的距离。 |
-| actualBoundingBoxRight   | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign)属性确定的对齐点到文本矩形边界右侧的距离。 |
-| alphabeticBaseline       | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 alphabetic 基线的距离。 |
-| emHeightAscent           | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块顶部的距离。 |
-| emHeightDescent          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框中 em 方块底部的距离。 |
-| fontBoundingBoxAscent    | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离。 |
-| fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
-| hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 hanging 基线的距离。 |
-| ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline)属性标明的水平线到线框的 ideographic 基线的距离。 |
+| actualBoundingBoxAscent  | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的矩形边界顶部的距离。 |
+| actualBoundingBoxDescent | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的矩形边界底部的距离。 |
+| actualBoundingBoxLeft    | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign类型说明)属性确定的对齐点到文本矩形边界左侧的距离。 |
+| actualBoundingBoxRight   | number | 是 | 否 | 只读属性，平行于基线，从[CanvasRenderingContext2D.textAlign](#canvastextalign类型说明)属性确定的对齐点到文本矩形边界右侧的距离。 |
+| alphabeticBaseline       | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 alphabetic 基线的距离。 |
+| emHeightAscent           | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框中 em 方块顶部的距离。 |
+| emHeightDescent          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框中 em 方块底部的距离。 |
+| fontBoundingBoxAscent    | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的所有字体的矩形最高边界顶部的距离。 |
+| fontBoundingBoxDescent   | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到渲染文本的所有字体的矩形边界最底部的距离。 |
+| hangingBaseline          | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 hanging 基线的距离。 |
+| ideographicBaseline      | number | 是 | 否 | 只读属性，从[CanvasRenderingContext2D.textBaseline](#canvastextbaseline类型说明)属性标明的水平线到线框的 ideographic 基线的距离。 |
