@@ -1,6 +1,6 @@
 # @ohos.data.unifiedDataChannel (标准化数据通路)
 
-本模块为统一数据管理框架（Unified Data Management Framework,UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。
+本模块为统一数据管理框架（Unified Data Management Framework，UDMF）的组成部分，针对多对多跨应用数据共享的不同业务场景提供了标准化的数据通路，提供了标准化的数据接入与读取接口。同时对文本、图片等数据类型提供了标准化定义，方便不同应用间进行数据交互，减少数据类型适配的工作量。
 
 > **说明：**
 >
@@ -142,7 +142,7 @@ properties.getDelayData = ((type: string) => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                              |
 | -------- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
-| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | 否 | 否 | 当前统一数据对象中所有数据记录的属性，包含时间戳、标签、粘贴范围以及一些附加数据等。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| properties<sup>12+</sup> | [UnifiedDataProperties](#unifieddataproperties12) | 否 | 否 | 当前统一数据对象中所有数据记录的属性，包含时间戳、标签、粘贴范围以及一些附加数据等。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ### constructor<sup>12+</sup>
 
@@ -382,7 +382,7 @@ let unifiedRecord = new unifiedDataChannel.UnifiedRecord();
 
 constructor(type: string, value: ValueType)
 
-用于创建指定类型和值的数据记录。<br />当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br />当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
+用于创建指定类型和值的数据记录。<br/>当参数value为[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_PIXEL_MAP的值;<br/>当参数value为[Want](../apis-ability-kit/js-apis-app-ability-want.md)类型时，参数type必须对应为[UniformDataType](js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中OPENHARMONY_WANT的值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -767,7 +767,7 @@ for (let i = 0; i < records.length; i++) {
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| details | Record<string, string> | 否 | 是 | 是一个字典类型对象，key和value都是string类型，用于描述文本内容。例如，可生成一个details内容为<br />{<br />"title":"标题",<br />"content":"内容"<br />}<br />的数据对象，用于描述一篇文章。非必填字段，默认值为空字典对象。 |
+| details | Record<string, string> | 否 | 是 | 是一个字典类型对象，key和value都是string类型，用于描述文本内容。例如，可生成一个details内容为<br/>{<br/>"title":"标题",<br/>"content":"内容"<br/>}<br/>的数据对象，用于描述一篇文章。非必填字段，默认值为空字典对象。 |
 
 **示例：**
 
@@ -853,7 +853,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| details | Record<string, string> | 否 | 是 | 是一个字典类型对象，key和value都是string类型，用于描述文件相关信息。例如，可生成一个details内容为<br />{<br />"name":"文件名",<br />"type":"文件类型"<br />}<br />的数据对象，用于描述一个文件。非必填字段，默认值为空字典对象。 |
+| details | Record<string, string> | 否 | 是 | 是一个字典类型对象，key和value都是string类型，用于描述文件相关信息。例如，可生成一个details内容为<br/>{<br/>"name":"文件名",<br/>"type":"文件类型"<br/>}<br/>的数据对象，用于描述一个文件。非必填字段，默认值为空字典对象。 |
 | uri     | string                    | 否 | 否 | 文件数据uri。                                                                                                                                             |
 
 **示例：**
