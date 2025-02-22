@@ -245,8 +245,6 @@ reminderAgentManager.getValidReminders((err: BusinessError, reminders: Array<rem
       }
       console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
       console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-      console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-      console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
       console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
       console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
       console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -301,8 +299,6 @@ reminderAgentManager.getValidReminders().then((reminders: Array<reminderAgentMan
     }
     console.log("getValidReminders, wantAgent.pkgName = " + reminders[i].wantAgent?.pkgName);
     console.log("getValidReminders, wantAgent.abilityName = " + reminders[i].wantAgent?.abilityName);
-    console.log("getValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].maxScreenWantAgent?.pkgName);
-    console.log("getValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].maxScreenWantAgent?.abilityName);
     console.log("getValidReminders, ringDuration = " + reminders[i].ringDuration);
     console.log("getValidReminders, snoozeTimes = " + reminders[i].snoozeTimes);
     console.log("getValidReminders, timeInterval = " + reminders[i].timeInterval);
@@ -599,8 +595,6 @@ reminderAgentManager.getAllValidReminders().then((reminders: Array<reminderAgent
     }
     console.log("getAllValidReminders, wantAgent.pkgName = " + reminders[i].reminderReq.wantAgent?.pkgName);
     console.log("getAllValidReminders, wantAgent.abilityName = " + reminders[i].reminderReq.wantAgent?.abilityName);
-    console.log("getAllValidReminders, maxScreenWantAgent.pkgName = " + reminders[i].reminderReq.maxScreenWantAgent?.pkgName);
-    console.log("getAllValidReminders, maxScreenWantAgent.abilityName = " + reminders[i].reminderReq.maxScreenWantAgent?.abilityName);
     console.log("getAllValidReminders, ringDuration = " + reminders[i].reminderReq.ringDuration);
     console.log("getAllValidReminders, snoozeTimes = " + reminders[i].reminderReq.snoozeTimes);
     console.log("getAllValidReminders, timeInterval = " + reminders[i].reminderReq.timeInterval);
