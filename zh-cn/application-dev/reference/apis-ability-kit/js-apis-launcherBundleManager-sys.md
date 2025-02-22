@@ -489,7 +489,7 @@ import launcherBundleManager from '@ohos.bundle.launcherBundleManager';
 import { BusinessError } from '@ohos.base';
 
 try {
-    let data : Array\<launcherBundleManager.ShortcutInfo\> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
+    let data : Array<launcherBundleManager.ShortcutInfo> = launcherBundleManager.getShortcutInfoSync("com.example.demo");
     console.log("data is " + JSON.stringify(data));
     if (data) {
         try {
