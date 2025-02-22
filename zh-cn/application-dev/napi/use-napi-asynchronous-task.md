@@ -116,6 +116,8 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
 1. 使用napi_create_async_work创建异步任务，并使用napi_queue_async_work将异步任务加入队列，等待执行。
 
    ```cpp
+   static constexpr int INT_ARG_2 = 2; // 入参索引
+
    struct CallbackData {
      napi_async_work asyncWork = nullptr;
      napi_ref callbackRef = nullptr;
@@ -133,7 +135,7 @@ napi_create_async_work是Node-API接口之一，用于创建一个异步工作�
        napi_get_value_double(env, args[0], &asyncContext->args[0]);
        napi_get_value_double(env, args[1], &asyncContext->args[1]);
        // 将传入的callback转换为napi_ref延长其生命周期，防止被GC掉
-       napi_create_reference(env, args[2], 1, &asyncContext->callbackRef);
+       napi_create_reference(env, args[INT_ARG_2], 1, &asyncContext->callbackRef);
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "asyncWorkCallback", NAPI_AUTO_LENGTH, &resourceName);
        // 创建异步任务
