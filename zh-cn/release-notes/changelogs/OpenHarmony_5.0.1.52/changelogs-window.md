@@ -1,6 +1,6 @@
 # 窗口子系统Changelog
 
-## TYPE_FLOAT类型的窗口层级高于dock栏
+## cl.window.1 2in1设备上，悬浮窗层级由低于dock栏调整为高于dock栏
 
 **访问级别**
 
@@ -24,7 +24,9 @@
 
 **变更发生版本**
 
-从OpenHarmony SDK 5.1.0.52开始。
+从OpenHarmony SDK 5.0.1.52开始。
+
+**变更的接口/组件**
 
 @ohos.window.d.ts
 
@@ -32,4 +34,4 @@
 
 **适配指导**
 
-默认行为变更，无需适配。
+默认行为变更，无需适配。 
