@@ -264,7 +264,7 @@ OH_AVFormat* OH_AVSource_GetCustomMetadataFormat (OH_AVSource *source)
 
 **返回：**
 
-执行成功返回轨道的基础信息，否则返回NULL。
+执行成功返回用户自定义属性信息，否则返回NULL。
 
 可能的故障原因：
 
