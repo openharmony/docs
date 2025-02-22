@@ -17,7 +17,7 @@ ArkUI提供的Native侧动画接口集合。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| int32_t(\* [animateTo](#animateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option, [ArkUI_ContextCallback](_ark_u_i___context_callback.md) \*update, [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md) \*complete) | 显式动画接口  | 
+| int32_t(\* [animateTo](#animateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimateOption](_ark_u_i___native_module.md#arkui_animateoption) \*option, [ArkUI_ContextCallback](_ark_u_i___context_callback.md) \*update, [ArkUI_AnimateCompleteCallback](_ark_u_i___animate_complete_callback.md) \*complete) | 显式动画接口。  | 
 | int32_t(\* [keyframeAnimateTo](#keyframeanimateto) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_KeyframeAnimateOption](_ark_u_i___native_module.md#arkui_keyframeanimateoption) \*option) | 关键帧动画接口。  | 
 | [ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle)(\* [createAnimator](#createanimator) )([ArkUI_ContextHandle](_ark_u_i___native_module.md#arkui_contexthandle-12) context, [ArkUI_AnimatorOption](_ark_u_i___native_module.md#arkui_animatoroption) \*option) | 创建animator动画对象。  | 
 | void(\* [disposeAnimator](#disposeanimator) )([ArkUI_AnimatorHandle](_ark_u_i___native_module.md#arkui_animatorhandle) animator) | 销毁animator动画对象。  | 
