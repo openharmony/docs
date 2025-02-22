@@ -3157,7 +3157,7 @@ setWindowType(type: WindowType, callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3194,7 +3194,7 @@ setWindowType(type: WindowType): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从 API version 7开始支持，从API version 9开始废弃。
+> 从API version 7开始支持，从API version 9开始废弃。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
