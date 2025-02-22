@@ -11,6 +11,5 @@
   - [管理域账号插件](manage-domain-plugin.md)
 - 分布式账号（仅对系统应用开放）<!--distributed-account-->
   - [管理分布式账号](manage-distributed-account.md)
-<!--DelEnd-->
 - 应用账号<!--application-account-->
   - [管理应用账号](manage-application-account.md)

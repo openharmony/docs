@@ -4,7 +4,7 @@
 
 ## 约束列表
 
-预定义的账号约束条件，可以参考 ：[系统账号约束列表](../../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)
+预定义的账号约束条件，可以参考 ：[系统账号约束列表](../../reference/apis-basic-services-kit/js-apis-osAccount.md#系统账号约束列表)。
 
 ## 开发准备
 
