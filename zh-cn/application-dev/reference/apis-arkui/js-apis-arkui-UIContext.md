@@ -7714,13 +7714,13 @@ import { window, UIContext } from '@kit.ArkUI';
 }
 ```
 
-### cancelDataLoading<sup>16+</sup>
+### cancelDataLoading<sup>15+</sup>
 
 cancelDataLoading(key: string): void
 
 当使用[startDataLoading](arkui-ts/ts-universal-events-drag-drop.md#dragevent7)获取拖拽数据时，可调用该接口取消数据传输。
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 **系统能力：** : SystemCapability.ArkUI.ArkUI.Full
 
