@@ -7,8 +7,8 @@
 
 开发者可根据实际的开发需求，参考对应的开发指南及样例：
 
-- [使用AVScreenCapture录屏取码流。](../../media/media/using-avscreencapture-for-buffer.md)
-- [使用AVScreenCapture录屏写文件。](../../media/media/using-avscreencapture-for-file.md)
+- [使用AVScreenCapture录屏取码流](../../media/media/using-avscreencapture-for-buffer.md)
+- [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
