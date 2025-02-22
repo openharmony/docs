@@ -71,6 +71,7 @@ onClick(event: (event: ClickEvent) => void): T
 | screenY<sup>(deprecated)</sup> | number                    | 点击位置相对于应用窗口左上角的Y坐标。<br>从API Version 10开始不再维护，建议使用windowY代替。 |
 | preventDefault<sup>12+</sup>      | () => void | 阻止默认事件。<br/> **说明：**&nbsp;该接口仅支持部分组件使用，当前支持组件：RichEditor、Hyperlink。暂不支持异步调用和提供Modifier接口。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 | hand<sup>15+</sup> | [InteractionHand](./ts-gesture-settings.md#interactionhand枚举说明15) | 表示事件是由左手点击还是右手点击触发。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
+| targetDisplayId<sup>15+</sup> | number | 事件发生的屏幕ID。<br />**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 
 ## EventTarget<sup>8+</sup>对象说明
 
@@ -106,7 +107,7 @@ struct ClickExample {
                 + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
                 + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
                 + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
-                + '\n id:'+ event.target.id;
+                + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
             }
           }, 20)
         Button('Click').width(200).height(50).id('click')
@@ -116,7 +117,7 @@ struct ClickExample {
                 + '\n  x:' + event.x + '\n  y:' + event.y + '\ntarget:' + '\n  component globalPos:('
                 + event.target.area.globalPosition.x + ',' + event.target.area.globalPosition.y + ')\n  width:'
                 + event.target.area.width + '\n  height:' + event.target.area.height + '\ntimestamp' + event.timestamp
-                + '\n id:'+ event.target.id;
+                + '\n id:'+ event.target.id + '\ntargetDisplayId:' + event.targetDisplayId;
             }
           }, 20)
       }.margin(20)
@@ -127,4 +128,4 @@ struct ClickExample {
 }
 ```
 
-![zh-cn_image_0000001210353788](figures/Event-handling-and-information-display.gif)
+![clilk](figures/click.gif)
