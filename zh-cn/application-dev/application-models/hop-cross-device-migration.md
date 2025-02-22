@@ -398,6 +398,60 @@ export default class MigrationAbility extends UIAbility {
    }
 ```
 
+### 支持同应用不同BundleName的Ability跨端迁移
+相同应用在不同设备类型下可能使用了不同的BundleName，该场景下如果需要支持应用跨端迁移，需要在不同BundleName的应用的module.json5配置文件中的abilities标签进行如下配置：
+
+- continueBundleName字段：分别添加对端应用的BundleName。
+- continueType字段：必须保持一致。
+
+   > **说明：**
+   >
+   > continueType在本应用中要保证唯一，字符串以字母、数字和下划线组成，最大长度127个字节，不支持中文。
+   > continueType标签类型为字符串数组，如果配置了多个字段，当前仅第一个字段会生效。
+    
+示例如下：
+
+   不同BundleName的相同应用在设备A和设备B之间相互迁移，设备A应用的BundleName为com.demo.example1，设备B应用的BundleName为com.demo.example2。
+  
+```JSON
+// 在设备A的应用配置文件中，continueBundleName字段配置包含设备B上应用的BundleName。
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example2"], // continueBundleName标签配置，com.demo.example2为设备B上应用的BundleName。
+       
+      }
+    ]
+    
+  }
+}
+```
+
+```JSON
+// 在设备B的应用配置文件中，continueBundleName字段配置包含设备A上应用的BundleName。
+{
+  "module": {
+    // ···
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        // ···
+        "continueType": ["continueType"],
+        "continueBundleName": ["com.demo.example1"], // continueBundleName标签配置，com.demo.example1为设备A上应用的BundleName。
+       
+      }
+    ]
+    
+  }
+}
+
+```
+
 ### 支持快速拉起目标应用
 默认情况下，发起迁移后不会立即拉起对端的目标应用，而是等待迁移数据从源端同步到对端后，才会拉起。为了发起迁移后能够立即拉起目标应用，做到及时响应，可以通过在continueType标签中添加“_ContinueQuickStart”后缀进行生效，这样待迁移数据从源端同步到对端后只恢复迁移数据即可，提升应用迁移体验。
 
