@@ -184,7 +184,7 @@ try {
 
 ## launcherBundleManager.getAllLauncherAbilityInfo<sup>9+</sup>
 
-getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)>>) : void
+getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\>) : void
 
 查询指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。
 
