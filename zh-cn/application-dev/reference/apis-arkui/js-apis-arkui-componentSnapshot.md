@@ -465,15 +465,15 @@ struct SnapshotExample {
 | ---------------|------------     | -----------------------------| -----------------------------|
 | scale           | number | 否 | 指定截图时图形侧绘制pixelmap的缩放比例，比例过大时截图时间会变长，或者截图可能会失败。 <br/> 默认值：1 <br/>**说明：** <br/>请不要截取过大尺寸的图片，截图不建议超过屏幕尺寸的大小。当要截取的图片目标长宽超过底层限制时，截图会返回失败，不同设备的底层限制不同。    |
 | waitUntilRenderFinished    | boolean | 否 | 设置是否强制系统在截图前等待所有绘制指令执行完毕。该选项可尽可能确保截图内容是最新的状态，应尽量开启。需要注意的是，开启后接口可能需要更长的时间返回，具体的时间依赖页面当时时刻需要重绘区域的大小。<br>默认值：false         |
-| region<sup>16+</sup> | [SnapshotRegion](#snapshotregion16)\|[LocalizedSnapshotRegion ](#localizedsnapshotregion16) | 否 | 指定截图的矩形区域范围，默认为整个组件。<br />如果参数类型为LocalizedSnapshotRegion，则根据布局方向确定是否对矩形区域水平翻转。若布局方向为RTL，则把指定的截图区域做左右翻转处理以适应RTL布局方向。 |
+| region<sup>15+</sup> | [SnapshotRegion](#snapshotregion15)\|[LocalizedSnapshotRegion ](#localizedsnapshotregion15) | 否 | 指定截图的矩形区域范围，默认为整个组件。<br />如果参数类型为LocalizedSnapshotRegion，则根据布局方向确定是否对矩形区域水平翻转。若布局方向为RTL，则把指定的截图区域做左右翻转处理以适应RTL布局方向。 |
 
-## SnapshotRegion<sup>16+</sup>
+## SnapshotRegion<sup>15+</sup>
 
 定义组件截图的矩形区域。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型   | 必填 | 说明                                    |
 | ------ | ------ | ---- | --------------------------------------- |
@@ -482,13 +482,13 @@ struct SnapshotExample {
 | right  | number | 是   | 截图区域矩形右下角的x轴坐标，单位为px。 |
 | bottom | number | 是   | 截图区域矩形右下角的y轴坐标，单位为px。 |
 
-## LocalizedSnapshotRegion<sup>16+</sup>
+## LocalizedSnapshotRegion<sup>15+</sup>
 
 定义组件截图的矩形区域，start和end的值在布局方向为LTR时指定为left和right，在布局方向为RTL时指定为right和left。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 16开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 | 名称   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
