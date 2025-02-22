@@ -7,8 +7,8 @@
 
 开发者可根据实际的开发需求，参考对应的开发指南及样例：
 
-- [使用AVScreenCapture录屏取码流](../../media/media/using-avscreencapture-for-buffer.md)
-- [使用AVScreenCapture录屏写文件](../../media/media/using-avscreencapture-for-file.md)
+- [使用AVScreenCapture录屏取码流。](../../media/media/using-avscreencapture-for-buffer.md)
+- [使用AVScreenCapture录屏写文件。](../../media/media/using-avscreencapture-for-file.md)
 
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -124,9 +124,9 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ReleaseContentFilter](#oh_avscreencapture_releasecontentfilter) (struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter) | 释放ContentFilter。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ContentFilter_AddAudioContent](#oh_avscreencapture_contentfilter_addaudiocontent) (struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter, [OH_AVScreenCaptureFilterableAudioContent](#oh_avscreencapturefilterableaudiocontent) content) | 向ContentFilter实例添加可被过滤的声音类型。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ExcludeContent](#oh_avscreencapture_excludecontent) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter) | 向OH_AVScreenCapture实例设置内容过滤器ContentFilter。  | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ContentFilter_AddWindowContent](#oh_avscreencapture_contentfilter_addwindowcontent) (struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter, int32_t \*windowIDs, int32_t windowCount) | 向ContentFilter实例添加可被过滤的窗口ID列表  | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率  | 
-| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ContentFilter_AddWindowContent](#oh_avscreencapture_contentfilter_addwindowcontent) (struct [OH_AVScreenCapture_ContentFilter](#oh_avscreencapture_contentfilter) \*filter, int32_t \*windowIDs, int32_t windowCount) | 向ContentFilter实例添加可被过滤的窗口ID列表。  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ResizeCanvas](#oh_avscreencapture_resizecanvas) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t width, int32_t height) | 调整屏幕的分辨率。  | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SkipPrivacyMode](#oh_avscreencapture_skipprivacymode) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t \*windowIDs, int32_t windowCount) | 录屏时豁免隐私窗口。  | 
 
 
 ## 类型定义说明
