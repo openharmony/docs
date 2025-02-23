@@ -40,7 +40,7 @@ TextInput(value?: TextInputOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)，还支持以下属性：
 
 >  **说明：**    
 >  默认情况下，通用属性[padding](ts-universal-attributes-size.md#padding)的默认值为：<br>{<br>&nbsp;top: '8vp',<br>&nbsp;right: '16vp',<br>&nbsp;bottom: '8vp',<br>&nbsp;left: '16vp'<br> } 
@@ -1078,7 +1078,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange
 

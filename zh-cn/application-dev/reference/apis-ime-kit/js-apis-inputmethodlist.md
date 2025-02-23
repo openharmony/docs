@@ -17,7 +17,7 @@ import { inputMethod } from '@kit.IMEKit';
 无
 
 ## 属性
-不支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)
+不支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)
 
 ## InputMethodListDialog
 
@@ -57,7 +57,7 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 ##  事件
 
-不支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)
+不支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)
 
 ##  示例
 

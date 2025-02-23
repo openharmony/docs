@@ -22,7 +22,7 @@ import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
 
 ## 属性
 
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## ExceptionPrompt
 
@@ -74,7 +74,7 @@ MarginType定义marginType的类型。
 | FIT_MARGIN | 1 | 可适配边距：<br /> 边距1：引用ohos_id_max_padding_start。<br /> 边距2：引用ohos_id_max_padding_end。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 ### 示例1（设置异常提示）
