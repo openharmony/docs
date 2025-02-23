@@ -26,23 +26,27 @@ edm help
 
 
   ```bash
-edm enable-admin [-h] [-n bundleName] [-a abilityName] 
+# 显示帮助信息
+edm enable-admin -h
+# 激活
+edm enable-admin -n <bundleName> -a <abilityName> [-t <adminType>]
   ```
 
 **激活命令参数列表**
 
-| 参数              | 参数说明                |
-| ----------------- | ----------------------- |
-| -h/--help         | 帮助信息。              |
-| -n/--bundle-name  | 必选参数，bundleName。  |
-| -a/--ability-name | 必选参数，abilityName。 |
+| 参数              | 参数说明                                                     |
+| ----------------- | ------------------------------------------------------------ |
+| -h/--help         | 帮助信息。                                                   |
+| -n/--bundle-name  | 必选参数，bundleName。                                       |
+| -a/--ability-name | 必选参数，abilityName。                                      |
+| -t/--admin-type   | 可选参数，adminType。<br/>取值如下：<br/>super - 表示激活为超级设备管理应用。<br/>byod - 表示激活为BYOD设备管理应用。<br/>缺省值为super。 |
 
  **示例**：
 
 ```bash
 # 激活一个所在应用包名为com.example.mdmsample，类名为EnterpriseAdminAbility的EnterpriseAdminExtensionAbility。
 edm enable-admin -n com.example.mdmsample -a com.example.mdmsample.EnterpriseAdminAbility
-// 执行结果
+# 执行结果
 enable-admin success.
 ```
 
@@ -50,7 +54,10 @@ enable-admin success.
 ## 解除激活命令（disable-admin）
 
   ```bash
-edm disable-admin [-h] [-n bundleName]
+# 显示帮助信息
+edm disable-admin -h
+# 解除激活
+edm disable-admin -n <bundleName>
   ```
 
 **解除激活命令参数列表**
@@ -66,7 +73,7 @@ edm disable-admin [-h] [-n bundleName]
   ```bash
 # 解除激活所在应用包名为com.example.mdmsample的EnterpriseAdminExtensionAbility。
 edm disable-admin -n com.example.mdmsample
-// 执行结果
+# 执行结果
 disable-admin success.
   ```
 
