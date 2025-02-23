@@ -22,7 +22,7 @@ import { SubHeader } from '@kit.ArkUI'
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 > **说明：**
 >
@@ -109,7 +109,7 @@ SubHeader({icon?: ResourceStr, iconSymbolOptions?: SymbolOptions, primaryTitle?:
 | effectStrategy | [SymbolEffectStrategy](ts-basic-components-symbolGlyph.md#symboleffectstrategy11枚举说明) | 否 | 设置[Symbol资源](ts-basic-components-symbolGlyph.md)动效策略。<br/>默认值：SymbolEffectStrategy.NONE。<br/>**说明：**<br/>$r('sys.symbol.ohos_*')中引用的资源仅ohos_wifi支持层级动效模式。 |
 
 ## 事件
-支持[通用事件](ts-universal-events-click.md)
+支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 ### 示例1（效率型子标题）

@@ -39,7 +39,7 @@ ProgressButtonV2({progress: number, content: ResourceStr, progressButtonWidth?: 
 | colorOptions | [ProgressButtonV2Color](#progressbuttonv2color)               | 否  | \@Param       | 下载按钮颜色选项。<br/>默认值：undefined。                                                      |
 
 ## 属性
-不支持[通用属性](ts-universal-attributes-size.md)
+不支持[通用属性](ts-component-general-attributes.md)
 
 ## ClickCallback
 
@@ -98,7 +98,7 @@ constructor(options: ProgressButtonV2ColorOptions);
 | backgroundColor | ColorMetrics | 否 | 按钮背景颜色。<br/>默认值：undefined |
 
 ## 事件
-不支持[通用事件](ts-universal-events-click.md)
+不支持[通用事件](ts-component-general-events.md)
 
 ## 示例
 

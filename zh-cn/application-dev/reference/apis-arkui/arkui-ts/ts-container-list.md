@@ -82,7 +82,7 @@ List(value?: [ListOptions](#listoptions16对象说明))
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
 
 ### listDirection
 
@@ -571,7 +571,7 @@ stackFromEnd(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)和[滚动组件通用事件](ts-container-scrollable-common.md#事件)外，还支持以下事件：
 
 ### onItemDelete<sup>(deprecated)</sup>
 

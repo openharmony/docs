@@ -42,7 +42,7 @@ MovingPhotoView(options: MovingPhotoViewOptions)
 
 ## 属性
 
-除支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)外，还支持以下属性：
 
 ### muted
 
@@ -151,7 +151,7 @@ enableAnalyzer(enabled: boolean)
 
 ## 事件
 
-除支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)外，还支持以下事件：
 
 ### onComplete<sup>13+</sup>
 

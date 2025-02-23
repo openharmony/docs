@@ -32,7 +32,7 @@ NavDestination()
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 不推荐设置位置、大小等布局相关属性，可能会造成页面显示异常。
 
@@ -374,7 +374,7 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持如下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持如下事件：
 
 ### onShown<sup>10+</sup>
 
