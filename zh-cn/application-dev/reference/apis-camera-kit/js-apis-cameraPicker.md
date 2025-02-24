@@ -36,7 +36,6 @@ pick(context: Context, mediaTypes: Array\<PickerMediaType\>, pickerProfile: Pick
 | ----------------------------------------------- | -------------------------------------------------------------------------------------- |
 | Promise\<PickerResult\>                         | 使用Promise的方式获取相机选择器的处理结果。具体返回值[PickerResult](#pickerresult)           |
 
-
 **示例：**
 
 ```ts
