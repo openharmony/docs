@@ -1249,6 +1249,10 @@ let uint8 = new Uint8Array(buffer);
 let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
 console.info("uint8 = " + uint8);
 // 输出结果: uint8 = 97,98,99,100
+console.info("result.read = " + result.read);
+// 输出结果: result.read = 4
+console.info("result.written = " + result.written);
+// 输出结果: result.written = 4
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
