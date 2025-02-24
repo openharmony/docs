@@ -62,7 +62,7 @@ AtomicServiceNavigation({
 | minContentWidth | [Dimension](ts-types.md#dimension10) | 否 | @Prop | 设置导航栏内容区最小宽度（双栏模式下生效）。|
 | sideBarOptions<sup>16+</sup> | [sideBarOptions](#sidebaroptions16) | 否 | @Prop | 侧边栏的功能选项。|
 | sideBarContent<sup>16+</sup> | Callback\<void\> | 否 | @BuilderParam | 侧边栏的内容。|
-| menus<sup>16+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuildParam | 宽屏场景下用户自定义插入的布局样式。默认为空，不显示任何样式。 |
+| menus<sup>16+</sup> | [CustomBuilder](ts-types.md#custombuilder8) \| Array\<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)\> | 否 | @BuilderParam | 宽屏场景下用户自定义插入的布局样式。默认为空，不显示任何样式。 |
 | stateChangeCallback | Callback\<boolean\> | 否 | - | 导航栏显示状态切换时触发该回调。|
 | modeChangeCallback | Callback\<[NavigationMode](ts-basic-components-navigation.md#navigationmode9枚举说明)\> | 否 | - | 当Navigation首次显示或者单双栏状态发生变化时触发该回调。|
 
